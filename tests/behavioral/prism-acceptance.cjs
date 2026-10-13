@@ -49,7 +49,7 @@ async function run(){
  assert(chrome,'supported Chromium required');fs.mkdirSync(evidence,{recursive:true});
  await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'prism-acceptance-'));
- browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
+ browser=spawn(chrome,['--headless=new','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
  completion=new Promise(r=>{browser.once('error',e=>{rejectAll(e.message);r({error:e.message});});browser.once('close',(code,signal)=>{closed=true;rejectAll('browser closed');r({code,signal});});});
  browser.stderr.on('data',b=>stderr=(stderr+b).slice(-8000));for(const s of [browser.stdio[3],browser.stdio[4]])s.on('error',e=>rejectAll(e.message));
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
@@ -58,6 +58,7 @@ async function run(){
   session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await send('Page.enable');
+  await send('Runtime.enable');await send('DOM.enable');
   await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});await ready();
   // Wait for the real 430ms intro completion before replacing the test fixture.
   await pause(500);await ready();await ev('document.fonts.ready.then(()=>true)');

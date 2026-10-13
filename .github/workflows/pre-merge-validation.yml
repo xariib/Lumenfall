@@ -93,6 +93,29 @@ jobs:
           node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_EXPANSION_001.md
           node tests/behavioral/collection-price-ui.cjs index.html /tmp/lumenfall-collection-price --negative
 
+      - name: Read Ascend alerts and stationary daily quest claims
+        shell: bash
+        run: |
+          node tests/behavioral/ui-attention-quest.cjs index.html > validation-evidence/ui-attention-quest.json
+          if node tests/behavioral/ui-attention-quest.cjs index.html --mutate-attention --ascend-only > validation-evidence/ui-attention-control.json; then
+            echo "::error::Undoing Ascend acknowledgement unexpectedly passed."
+            exit 1
+          fi
+          if node tests/behavioral/ui-attention-quest.cjs index.html --mutate-quest-focus --quest-only > validation-evidence/ui-quest-control.json; then
+            echo "::error::Undoing same-row quest focus unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+          const original=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');
+          for(const [file,message] of [['ui-attention-control.json','entering Ascend clears notification'],['ui-quest-control.json','claim keeps exact scroll position']]){
+            const result=JSON.parse(fs.readFileSync('validation-evidence/'+file));
+            assert.equal(result.status,'FAIL');assert.match(result.error,/AssertionError/);
+            assert(result.error.includes(message));assert.notEqual(result.sourceSha256,original);
+            assert(!result.teardown,'negative control must exit and clean up normally');
+          }
+          JS
+
       - name: Cheaper Recruitment cap and refund regression
         run: node tests/behavioral/cheaper-recruitment.cjs --source mobile/www/index.html --output /tmp/cheaper-recruitment.json
 

@@ -12,18 +12,19 @@ localStorage.setItem(STARTUP_INTRO_KEY,String(Date.now()));
 const server=http.createServer((req,res)=>{if(req.url==='/index.html'){res.setHeader('Content-Type','text/html');res.end(source);return;}
  const f=path.resolve(root,'.'+decodeURIComponent(req.url.split('?')[0]));if(!f.startsWith(root+path.sep)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.statusCode=404;res.end();return;}
  const types={'.svg':'image/svg+xml','.css':'text/css','.woff2':'font/woff2'};res.setHeader('Content-Type',types[path.extname(f)]||'application/octet-stream');fs.createReadStream(f).pipe(res);});
-let browser,profile,sid,seq=0,buffer='',stderr='',checks=0;const pending=new Map(),records=[];
+let browser,profile,sid,seq=0,buffer='',stderr='',checks=0,closed=false;const pending=new Map(),records=[];
 function send(method,params={},session=sid){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP timeout '+method));},15000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(session?{sessionId:session}:{})})+'\0');});}
 async function ev(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 function ok(v,m){checks++;assert(v,m);}const pause=ms=>new Promise(r=>setTimeout(r,ms));
 async function run(){
  await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
  const chrome=process.env.LUMENFALL_QA_CDP_CHROME||['google-chrome','google-chrome-stable','chromium','chromium-browser'].find(c=>{try{execFileSync('which',[c],{stdio:'pipe'});return true;}catch{return false;}});assert(chrome,'actual Chromium required');
- const executable=execFileSync('which',[chrome],{encoding:'utf8'}).trim(),identity={executable:fs.realpathSync(executable),version:execFileSync(chrome,['--version'],{encoding:'utf8'}).trim()};
+ const executable=require('../../scripts/lib/browser.cjs').resolveBrowser(chrome),identity={executable:fs.realpathSync(executable)};
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-roles-'));browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
  browser.stderr.on('data',b=>stderr=(stderr+b).slice(-4000));browser.on('error',e=>{for(const p of pending.values())p.reject(e);});
- browser.on('close',()=>{for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();});
+ browser.on('close',()=>{closed=true;for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();});
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
+ identity.version=await send('Browser.getVersion',{},null);
  const tab=await send('Target.createTarget',{url:'about:blank'},null);sid=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;await send('Page.enable');await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});
  let ready=false;for(let i=0;i<200;i++){if(await ev('!!window.roleQa && !!document.querySelector("[data-wisp-role=ember]")')){ready=true;break;}await pause(20);}ok(ready,'actual complete app readiness');await ev('document.fonts.ready');
  for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
@@ -49,4 +50,16 @@ async function run(){
  }
  fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'PASS',checks,sourceSha256,browser:identity,profiles:records,scope:'Modern browser DOM/CSS/native input only; not Android textZoom/exact WebView60/physical/TalkBack'},null,2));console.log(JSON.stringify({status:'PASS',checks,profiles:records.length,sourceSha256,browser:identity}));
 }
-run().catch(e=>{fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',checks,sourceSha256,error:String(e.stack),stderr},null,2));console.error(e);process.exitCode=1;}).finally(async()=>{for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('cleanup'));}pending.clear();if(browser){browser.kill();await pause(150);}server.close();if(profile)fs.rmSync(profile,{recursive:true,force:true});});
+function reportFailure(e){fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',checks,sourceSha256,error:String(e.stack),stderr},null,2));console.error(e);process.exitCode=1;}
+run().catch(reportFailure).finally(async()=>{
+ if(browser&&!closed){
+  const completion=new Promise(resolve=>browser.once('close',(code,signal)=>resolve({code,signal})));
+  await send('Browser.close',{},null).catch(()=>{});
+  let timer;const exit=await Promise.race([completion,new Promise(resolve=>{timer=setTimeout(()=>resolve(null),5000);})]).finally(()=>clearTimeout(timer));
+  if(!exit){browser.kill();await completion;throw Error('Browser teardown deadline');}
+  assert.equal(exit.code,0,'browser exits cleanly before profile removal');
+ }
+ for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('cleanup'));}pending.clear();
+ server.closeAllConnections();await new Promise(resolve=>server.close(resolve));
+ if(profile)await fs.promises.rm(profile,{recursive:true,force:true,maxRetries:3,retryDelay:100});
+}).catch(reportFailure);

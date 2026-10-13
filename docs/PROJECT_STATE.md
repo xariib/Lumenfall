@@ -1,5 +1,19 @@
 # Lumenfall — current delivery status
 
+13 October 2026: [local full debugging](tasks/LOCAL_FULL_DEBUG_001.md) is OPEN.
+The supplied ZIP's42b180ad source is the local baseline; currentb3eca666 fixes
+read Ascend notifications and daily quest claim scroll/focus. Focused browser
+1081 checks/12 profiles/two causal controls, current17 core suites, eight actual
+V8.6.0 suites and regenerated32h offline references PASS. The full browser
+baseline had native-touch/contract deadline failures; the offline gate and all
+four failed Rift cases subsequently pass on current source. Browser setup fixes
+also produce Comet12738/12 profiles/10 causal controls PASS. The Prism contract
+deadline remains unresolved. No final full-suite, installed
+APK or physical acceptance is claimed. GitHub account access is blocked;
+changes/evidence are local, with no release or remote integration.
+
+## Saved 12 October delivery checkpoint
+
 12 October 2026. Task [FINISH_DEVELOPMENT_RELEASE_001](tasks/FINISH_DEVELOPMENT_RELEASE_001.md).
 User wants remaining improvements finished before the new APK. Eventual main
 integration/build/sign/release is authorized after required validation.

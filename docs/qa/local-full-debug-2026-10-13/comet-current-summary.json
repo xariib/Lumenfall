@@ -1,0 +1,117 @@
+{
+  "status": "pass",
+  "sourceSha256": "b3eca6661042a7245100d9dcd0a6fbbb2e38a01e99b305102b5307abb52db7a9",
+  "cometIdentity": {
+    "testSha256": "0294404abe720f0aaf03abc157a0fb46a4d03009db57c4b981f14d65a8c55c18",
+    "helperSha256": "c8e9138b896dd314b32eb3a98dcadece4cd2458dce75bf423876c1c10c534cfa",
+    "transportSha256": "71b53389cb80391115dce9c9485aabede52943dd5c75fe635feb8a44f3d16e86",
+    "numericalSha256": "3dc7c0ab293b3c16c2a2edd01146fbc72a2ff356db9fe1b614946a983d3bd0d8"
+  },
+  "checks": 12738,
+  "profiles": 12,
+  "negativeControls": [
+    {
+      "kind": "stale-affordability",
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "recreate-trial",
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "stale-command",
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "wrong-pending-feedback",
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "pressed-purchase",
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "stale-affordability",
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "recreate-trial",
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "stale-command",
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "wrong-pending-feedback",
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    },
+    {
+      "kind": "pressed-purchase",
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      "status": "pass"
+    }
+  ],
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/151.0.7922.34",
+    "revision": "@782af9cb30a53f54487e5d2e44738645a8ec457c",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "jsVersion": "15.1.206.8"
+  },
+  "instrumentedHtmlSha256": "a4f45b9d86bedb7654190b83d61e7542f439685d1afb11be07d3ac535a657873",
+  "error": null,
+  "receipt": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\full-debug\\comet-initialization-final\\receipt.json",
+  "rawStdoutSha256": "55027095a3b4118cb7ba6ad7c7091cefb94f2fdea3e8a0ba406bebcebe299617",
+  "rawStdoutBytes": 42146418,
+  "nativeAndroid": "untested"
+}

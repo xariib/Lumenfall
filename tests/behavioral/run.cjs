@@ -15,15 +15,7 @@ const LAYOUT_VIEWPORTS = [[360,800,0,0], [360,780,0,0], [390,844,0,0], [412,915,
 const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8');
 const temporary = prefix => fs.mkdtempSync(path.join(os.tmpdir(), prefix));
 const reportJson = value => JSON.stringify(value, null, 1).replace(/\n\s*/g, ' ');
-function findChrome() {
-  for (const candidate of ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser']) {
-    for (const directory of (process.env.PATH || '').split(path.delimiter)) {
-      const file = path.join(directory, candidate);
-      try { fs.accessSync(file, fs.constants.X_OK); if (fs.statSync(file).isFile()) return file; } catch {}
-    }
-  }
-  throw Error('Behavioral QA failed: no supported Chromium browser found');
-}
+const { findChrome } = require('../../scripts/lib/browser.cjs');
 function loadFixtures() {
   const fixtures = json(path.join(ROOT, 'fixtures.json'));
   const seed = json(path.join(ROOT, '../../docs/qa/offline-autoascend-2026-10-07/device_backup.json'));
@@ -80,6 +72,7 @@ async function nativeProcessContract(log = console.log) {
 async function browserIdentity(chrome) {
   const resolved = fs.realpathSync(chrome), identity = { selected_path: chrome, resolved_path: resolved };
   try { identity.sha256 = hash(fs.readFileSync(resolved)); } catch (error) { identity.identity_error = error.message; }
+  if (process.platform === 'win32') { identity.version_note='Windows browser version is obtained through CDP by native-input drivers'; console.log('Browser identity: ' + reportJson(identity)); return; }
   try {
     const result = await runProcess([chrome, '--version'], { timeout: 2000 });
     if (result.timed_out) throw Error('Browser version timed out');
@@ -121,7 +114,7 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
   if (scenario === 'lab-ui-regression') driver = 'lab-ui-regression.cjs';
   if (['lab-motes-native', 'lab-motes-reduced-motion'].includes(scenario)) driver = 'lab-motes.cjs';
   if (driver) return runNativeProcess([process.execPath, path.join(ROOT, driver), chrome, urlFor('/index.html'), scenario], scenario, driver === 'rift-status.cjs' ? 300000 : 90000, options);
-  if (scenario === 'offline-12h-ui') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-12h-ui.cjs'), chrome], scenario, 180000, options);
+  if (scenario === 'offline-12h-ui') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-12h-ui.cjs'), chrome, path.join(options.rawArtifactRoot || temporary('offline-12h-ui-'), scenario)], scenario, 180000, options);
   if (scenario === 'offline-12h-core') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-12h.cjs')], scenario, 300000, options);
   const profile = temporary('lumenfall-qa-' + scenario + '-');
   const params = { qaScenario: scenario, qaFixture: fixture };

@@ -8678,6 +8678,7 @@ function prismCalculationText(breakdown){
     (breakdown.cleared>breakdown.benchmark && breakdown.benchmark>0 ? '<p>The new-depth bonus uses the difference between the depth curves before rounding, with your current Tree and Lab bonuses. That difference is rounded up once; '+(treeLevel('frontier')?'the reward before Frontier Record':'the total')+' cannot exceed the full depth reward.</p>' : '')+
     (treeLevel('frontier')?'<p>Frontier Record adds its separate award for newly crossed 25-Rift milestones. Your rewarded benchmark prevents repeated claims.</p>':'');
 }
+var ascendAttentionAcknowledged = false;
 function renderAscendSummary(){
   var autoRoot=els['auto-ascend-controls'];
   var editingAuto=autoRoot && autoRoot.contains(document.activeElement);
@@ -8694,7 +8695,9 @@ function renderAscendSummary(){
   els['ascend-btn'].setAttribute('data-state',eligible?'available':'locked');
   els['ascend-btn'].setAttribute('aria-describedby','ascend-note prism-calculation');
   var ascendTab = document.querySelector('.tab-btn[data-tab="ascend"]');
-  if(ascendTab) ascendTab.classList.toggle('has-attention',eligible);
+  if(!eligible) ascendAttentionAcknowledged=false;
+  if(eligible && ascendTab && ascendTab.classList.contains('active')) ascendAttentionAcknowledged=true;
+  if(ascendTab) ascendTab.classList.toggle('has-attention',eligible && !ascendAttentionAcknowledged);
   if(!eligible){
     els['ascend-note'].textContent = 'Clear Rift 15 to unlock your first Ascend. (' + Math.max(0,15-cleared) + ' to go)';
   } else if(breakdown.benchmark<=0){
@@ -9225,6 +9228,9 @@ function renderDaily(force){
   var questViewport=captureControlViewport(els['daily-quest-list']);
   var previousQuest=document.activeElement && document.activeElement.closest ? document.activeElement.closest('[data-quest-slot]') : null;
   var refreshSlot=previousQuest && document.activeElement.hasAttribute('data-quest-refresh') ? Number(previousQuest.getAttribute('data-quest-slot')) : -1;
+  var claimSlot=previousQuest && (document.activeElement.hasAttribute('data-quest-claim') || document.activeElement.classList.contains('quest-name')) ? Number(previousQuest.getAttribute('data-quest-slot')) : -1;
+  var questMain=claimSlot>=0 ? document.querySelector('main') : null;
+  var claimScroll=questMain ? questMain.scrollTop : 0;
   (state.questIds||[]).forEach(function(id,slot){
     var q = QUEST_POOL.find(function(x){ return x.id===id; });
     if(!q) return;
@@ -9248,9 +9254,16 @@ function renderDaily(force){
       '</div>' +
     '</div>';
   });
-  replaceControlMarkup(els['daily-quest-list'],html,false,refreshSlot>=0);
+  replaceControlMarkup(els['daily-quest-list'],html,false,refreshSlot>=0 || claimSlot>=0);
   updatePurchasePriceColors(els['daily-quest-list']);
-  if(refreshSlot>=0) cometRestoreQuestView({viewport:questViewport},refreshSlot);else restoreControlViewport(questViewport);
+  if(refreshSlot>=0) cometRestoreQuestView({viewport:questViewport},refreshSlot);
+  else if(claimSlot>=0){
+    var claimRow=els['daily-quest-list'].querySelector('[data-quest-slot="'+claimSlot+'"]');
+    var claimButton=claimRow && claimRow.querySelector('[data-quest-claim]');
+    var claimFocus=claimButton && !claimButton.disabled ? claimButton : claimRow && claimRow.querySelector('.quest-name');
+    if(claimFocus) claimFocus.focus({preventScroll:true});
+    if(questMain) questMain.scrollTop=claimScroll;
+  } else restoreControlViewport(questViewport);
   var deedsTab = document.querySelector('.tab-btn[data-tab="deeds"]');
   if(deedsTab) deedsTab.classList.toggle('has-attention',hasReadyQuest);
   els['daily-quest-list'].querySelectorAll('[data-quest-claim]').forEach(function(btn){

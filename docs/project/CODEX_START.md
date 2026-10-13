@@ -22,6 +22,14 @@ CI helpers and recovery tools now use Node.js and need no Python or extra
 npm packages. Migration evidence is in
 `docs/qa/offline-catchup-001/javascript-tooling/`.
 
+On Windows, set `LUMENFALL_QA_CDP_CHROME` to the absolute path of an installed
+Chromium executable, for example `$env:LUMENFALL_QA_CDP_CHROME = 'C:\path\chrome.exe'`.
+The main runner accepts this override and rejects missing executables. Native
+input drivers initialize browser automation/Runtime/DOM agents before gestures;
+browser profile cleanup waits for the actual process exit. Headless browser and
+loopback execution may require running outside a restricted Windows sandbox.
+The POSIX mode/symlink fixtures in the tooling suite are not Windows acceptance.
+
 Hvis miljøet understøtter et setup-script, kan det sættes til:
 
 ```bash

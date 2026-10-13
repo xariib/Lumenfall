@@ -1,0 +1,217 @@
+{
+  "sourceSha256": "b3eca6661042a7245100d9dcd0a6fbbb2e38a01e99b305102b5307abb52db7a9",
+  "results": [
+    {
+      "name": "tooling",
+      "args": [
+        "tests/tooling/run.cjs"
+      ],
+      "code": 1,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 0.202
+    },
+    {
+      "name": "source",
+      "args": [
+        "scripts/ci/validate_source.cjs"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 0.523
+    },
+    {
+      "name": "lab-boundary",
+      "args": [
+        "tests/behavioral/lab-expansion-boundary.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 1.367
+    },
+    {
+      "name": "lab-stress",
+      "args": [
+        "tests/behavioral/lab-expansion-stress.cjs",
+        "index.html"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 1.796
+    },
+    {
+      "name": "forge",
+      "args": [
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 1.761
+    },
+    {
+      "name": "lab",
+      "args": [
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 4.146
+    },
+    {
+      "name": "tree",
+      "args": [
+        "tests/behavioral/tree-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 2.37
+    },
+    {
+      "name": "tree-economy",
+      "args": [
+        "tests/behavioral/tree-expansion-economy.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 3.559
+    },
+    {
+      "name": "comet",
+      "args": [
+        "tests/behavioral/comet-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 1.535
+    },
+    {
+      "name": "comet-numerical",
+      "args": [
+        "tests/behavioral/comet-expansion-numerical.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 1.931
+    },
+    {
+      "name": "comet-offline",
+      "args": [
+        "tests/behavioral/comet-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 1.349
+    },
+    {
+      "name": "prism-state",
+      "args": [
+        "tests/behavioral/prism-earning-state.cjs",
+        "index.html"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 2.175
+    },
+    {
+      "name": "echo",
+      "args": [
+        "tests/behavioral/echo-refund-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 3.961
+    },
+    {
+      "name": "payment",
+      "args": [
+        "tests/behavioral/cheaper-payment-oracle.cjs",
+        "--source",
+        "index.html",
+        "--output",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\full-debug\\baseline-current\\payment.json"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 0.792
+    },
+    {
+      "name": "f21-integration",
+      "args": [
+        "tests/behavioral/cheaper-recruitment-integrated.cjs",
+        "index.html",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\full-debug\\baseline-current\\f21-integration.json"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 0.331
+    },
+    {
+      "name": "tree-offline",
+      "args": [
+        "tests/behavioral/tree-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 18.514
+    },
+    {
+      "name": "forge-calibration",
+      "args": [
+        "tests/behavioral/forge-expansion-calibration.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 29.217
+    },
+    {
+      "name": "offline-catchup",
+      "args": [
+        "tests/behavioral/offline-catchup.cjs",
+        "--source",
+        "index.html"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 281.016
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs'),{instrumentHtml,loadFixtures}=require('./run.cjs');
 const root=path.resolve(__dirname,'../..'),stage=fs.mkdtempSync(path.join(os.tmpdir(),'offline-12h-ui-'));
-const evidence=path.join(root,'docs/qa/offline-12h-001/ui');fs.mkdirSync(evidence,{recursive:true});
+const evidence=process.argv[3] ? path.resolve(process.argv[3]) : fs.mkdtempSync(path.join(os.tmpdir(),'offline-12h-ui-evidence-'));fs.mkdirSync(evidence,{recursive:true});
 fs.cpSync(path.join(root,'mobile/www'),stage,{recursive:true});
 const instrumented=instrumentHtml(fs.readFileSync(path.join(root,'index.html'),'utf8'),loadFixtures());
 fs.writeFileSync(path.join(stage,'index.html'),instrumented.replace('window.__lumenfallQaBridge = {','window.__offline12hRenderHud=renderHud;\nwindow.__lumenfallQaBridge = {'));

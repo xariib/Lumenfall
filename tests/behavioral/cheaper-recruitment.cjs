@@ -79,8 +79,8 @@ async function run(){
  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
  const url='http://127.0.0.1:'+server.address().port+'/index.html';
  const chrome=option('--chrome',process.env.LUMENFALL_QA_CDP_CHROME||['google-chrome','google-chrome-stable','chromium','chromium-browser'].find(c=>{try{execFileSync('which',[c],{stdio:'pipe'});return true;}catch{return false;}}));assert(chrome,'Chromium required');
- const executable=execFileSync('which',[chrome],{encoding:'utf8',stdio:'pipe'}).trim();
- browserIdentity={selected:executable,resolved:fs.realpathSync(executable),version:execFileSync(chrome,['--version'],{encoding:'utf8',timeout:3000,stdio:'pipe'}).trim()};
+ const executable=require('../../scripts/lib/browser.cjs').resolveBrowser(chrome);
+ browserIdentity={selected:executable,resolved:fs.realpathSync(executable)};
  console.log('Browser identity: '+JSON.stringify(browserIdentity));
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-f21-'));
  browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
@@ -88,6 +88,7 @@ async function run(){
  browser.stderr.on('data',b=>{stderr=(stderr+b).slice(-4000);});
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))!==-1){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
  for(const pipe of [browser.stdio[3],browser.stdio[4]])pipe.on('error',e=>{for(const p of pending.values()){clearTimeout(p.timer);p.reject(e);}pending.clear();});
+ browserIdentity.version=await send('Browser.getVersion',{},null);
  const tab=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
  await send('Page.enable');await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await navigate(url);
  await evaluate('window.cheaperReceiptCanonicalPrices='+JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname,'cheaper-receipt-prices.json'),'utf8')).legacy.map((n,i)=>Math.max(n,JSON.parse(fs.readFileSync(path.join(__dirname,'cheaper-receipt-prices.json'),'utf8')).modern[i]))));

@@ -3,7 +3,7 @@
 // --dump-dom stalls in this executor; this does not change assertion bodies.
 const {spawn}=require('node:child_process'), fs=require('node:fs'), assert=require('node:assert/strict');
 const [chrome,url,profile,motion,mode]=process.argv.slice(2);
-const browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
+const browser=spawn(chrome,['--headless=new','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
 let seq=0,buffer='',session,closed=false,stderr='';const pending=new Map();
 const completion=new Promise(resolve=>{browser.once('error',e=>resolve({error:e.message}));browser.once('close',(code,signal)=>{closed=true;for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();resolve({code,signal});});});
 browser.stderr.on('data',b=>stderr=(stderr+b).slice(-2000));
@@ -15,7 +15,7 @@ async function run(){
  const tab=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion==='reduce'?'reduce':'no-preference'}]});
- await send('Page.enable');await send('Page.navigate',{url});
+ await send('Page.enable');await send('Runtime.enable');await send('DOM.enable');await send('Page.navigate',{url});
  const deadline=Date.now()+20000;
  while(Date.now()<deadline){
   try{
