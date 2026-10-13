@@ -17,13 +17,21 @@ Local checkpoint only; full-suite/Prism/standard transport and Android acceptanc
 remain open. Next local improvement: FORMATION_COLLAPSE_001.
 
 13 October 2026: [LAB_AFFORDABLE_ALERT_001](tasks/LAB_AFFORDABLE_ALERT_001.md)
-has a verified local implementation on `local/full-debug`: both Lab notifications
+has a verified local implementation at `86f5779` on `local/full-debug`: both Lab notifications
 require free capacity AND an affordable eligible start. Prices, scheduling and
 saves are preserved. Focused browser166, Lab core2465, actual V8.6.0 legacy580,
 navigation443, Rift1736 and real reload/completion checks PASS; two causal
 controls are rejected. [Evidence and transport limitation](qa/lab-affordable-alert-001/README.md).
 That checkpoint source `f2da7446` was staged and served at http://127.0.0.1:4174/index.html.
 Full-suite/standard dump-DOM transport and Android/release acceptance remain open.
+No Lab product regression or outstanding behavioral assertion failure was
+demonstrated in its scoped checks; the standard transport timeout's cause/task
+attribution remains unknown, while identical navigation assertions pass via CDP.
+Per the user's follow-up, the Lab chat stays open. Required combined-source
+regression/CI gates, unresolved dump-DOM/Prism/tooling checks and Android/device,
+WebView60 and TalkBack acceptance are deferred until after the improvements.
+Rerun Lab preservation/notification checks on that final combined checkpoint;
+this local milestone is not a final release acceptance claim.
 
 The remaining [sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
 are recorded from the user's browser observations; task2 is locally verified; tasks3–7 have not started.
