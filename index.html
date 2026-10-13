@@ -2136,14 +2136,27 @@
   #study-list .study-bar-track{position:relative;display:grid;place-items:center;height:auto;min-height:36px;padding:6px 8px;border-radius:10px;background:#0a1625;border-color:#4c6574;}
   #study-list .study-bar-fill{position:absolute;top:0;left:0;height:100%;}
   #study-list .study-bar-track .study-time{position:relative;margin:0;padding:2px 6px;border-radius:4px;background:#0a1625;color:#f2f7ff;font-size:.82rem;line-height:1.5;text-align:center;overflow-wrap:anywhere;}
-  #study-list .study-card .name{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:.88rem;overflow-wrap:anywhere;}
+  #study-list .study-card .name{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px;overflow-wrap:anywhere;}
+  #study-list .study-identity{flex:1 1 9em;min-width:0;}
+  #study-list .study-title{display:block;font-size:1rem;line-height:1.4;color:#e0f2f1;}
+  #study-list .study-level{display:inline-block;max-width:100%;margin-top:6px;padding:3px 10px;border:1px solid #526b7b;border-radius:20px;background:#203544;color:#f0b7d4;font-size:.75rem;line-height:1.5;font-weight:600;}
   #study-list .study-card .earned-effect,#study-list .study-card .effect-note{font-size:.8rem;overflow-wrap:anywhere;}
   #study-list .study-card button,#study-list .study-card select{min-width:44px;min-height:44px;font-size:.8rem;white-space:normal;}
-  #study-list .study-motes-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px;margin-top:8px;}
-  #study-list .study-motes-controls label{flex:1 1 8em;min-width:0;max-width:100%;font-size:.8rem;}
-  #study-list .study-motes-controls select{display:block;width:100%;max-width:100%;min-width:44px;box-sizing:border-box;color-scheme:dark;}
-  #study-list .study-motes-controls button{flex:1 1 7em;max-width:100%;margin:0;overflow-wrap:anywhere;}
-  #study-list .study-motes-controls .speed-cost{display:block;font-size:.74rem;}
+  #study-list .study-speed-controls{margin-top:10px;}
+  #study-list .study-speed-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;font-size:.8rem;}
+  #study-list .study-speed-heading>span{display:flex;flex-wrap:wrap;align-items:center;gap:4px;}
+  #study-list .study-speed-heading [data-price-currency]{display:inline-flex;align-items:center;gap:3px;}
+  #study-list .study-speed-buy{min-height:44px;padding:6px;background:transparent;border:0;border-radius:6px;color:#d8e7ff;text-decoration:underline;font:inherit;box-shadow:none;}
+  #study-list .study-speed-buy[aria-pressed="true"]::before{content:none;}
+  #study-list .study-speed-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+  #study-list .study-speed-row button{flex:0 1 7em;max-width:100%;padding:8px;border:1px solid #506a79;border-radius:8px;background:#182e3d;color:#eef8ff;line-height:1.4;box-shadow:none;}
+  #study-list .study-speed-row .node-queue-toggle.active{background:#21444a;border-color:#70b7b5;color:#e8fffa;}
+  #study-list .study-speed-range{flex:1 1 9em;min-width:0;max-width:100%;}
+  #study-list [data-study-speed-target]{display:block;width:100%;min-width:44px;min-height:44px;margin:0;box-sizing:border-box;cursor:pointer;-webkit-appearance:none;appearance:none;border:0;background-color:transparent;background-image:linear-gradient(#7ad4ca,#7ad4ca);background-position:left center;background-repeat:no-repeat;}
+  #study-list [data-study-speed-target]::-webkit-slider-runnable-track{height:8px;border-radius:5px;background:rgba(106,143,158,.25);}
+  #study-list [data-study-speed-target]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-8px;border:2px solid #d5fff7;border-radius:50%;background:#3e918d;box-shadow:0 1px 4px #07111b;}
+  #study-list .study-speed-limits{display:flex;justify-content:space-between;color:#abc1ce;font-size:.7rem;}
+  #study-list [data-study-speed-target]:focus{outline:2px solid var(--lumen);outline-offset:2px;}
   #study-list .study-card button:focus,#study-list .study-card select:focus{outline:2px solid var(--lumen);outline-offset:2px;}
   @media (prefers-reduced-motion:reduce){#study-list .study-bar-fill{transition:none!important;}}
 .legacy-upgrades { margin: 12px 0; }
@@ -3711,7 +3724,7 @@ function projectEarnedMarkup(id){
   var level=longStudyLevel(id);
   var node=LONG_STUDIES.find(function(n){return n.id===id;});
   var preserved=node.levelCap!==undefined && level>node.levelCap ? ' · Saved purchases preserved; effect capped.' : '';
-  return '<div class="earned-effect" data-project-effect="'+id+'">Earned: '+projectEarnedEffect(id)+preserved+'</div>';
+  return '<div class="earned-effect" data-project-effect="'+id+'">Current: '+projectEarnedEffect(id)+preserved+'</div>';
 }
 
 var RIFT_THEMES = [
@@ -7538,7 +7551,8 @@ function presentControlStates(root){
       var mult=Number(btn.getAttribute('data-speed'));
       var speedNode=LONG_STUDIES.find(function(n){return n.id===btn.getAttribute('data-speed-study');});
       subject=(speedNode?speedNode.name+' — ':'')+'Study speed';
-      btn.setAttribute('aria-pressed',String(!!study && study.speedMult===mult));
+      if(btn.classList.contains('study-speed-buy')){btn.removeAttribute('aria-pressed');subject+=(' '+mult+'x · '+speedTierCost(mult)+' Motes');}
+      else btn.setAttribute('aria-pressed',String(!!study && study.speedMult===mult));
       if(!study){btn.disabled=true;kind='completed';reason='';}
       else if(study.speedMult>=mult) kind='completed';
       else if(LONG_STUDIES.some(function(n){return n.id===study.id && n.levelCap!==undefined && longStudyLevel(n.id)>=n.levelCap;})){kind='maxed';reason='Maxed';}
@@ -8537,49 +8551,58 @@ function renderResearch(){
 }
 
 function studySpeedMarkup(node,active,maxed){
-  var on=state.studyUseMotes[node.id]===true,target=state.studySpeedTargets[node.id];
-  var acquired=active && active.speedMult>=target;
-  var unavailable=!active || maxed || active.remainingSec<=SIM_EPS || acquired || !labCanPay(state.motes,speedTierCost(target));
-  var note='study-speed-note-'+node.id;
-  return '<div class="study-motes-controls" data-study-inspection="'+node.id+'">'+
-    (node.retiredTo?'':'<button class="node-queue-toggle '+(state.studyQueue[node.id]?'active':'')+'" data-study-queue="'+node.id+'">Queue '+(state.studyQueue[node.id]?'ON':'OFF')+'</button>')+
-    '<label>Speed<select data-study-speed-target="'+node.id+'" aria-label="'+node.name+' — Speed multiplier and price" aria-describedby="'+note+'">'+LAB_SPEED_TIERS.map(function(mult){
-      return '<option value="'+mult+'" '+(mult===target?'selected':'')+'>'+mult+'x · '+speedTierCost(mult)+' Motes</option>';
-    }).join('')+'</select></label>'+
-    '<button class="mini-btn speed-btn '+(active && active.speedMult===target?'active':'')+'" data-speed="'+target+'" data-speed-study="'+node.id+'" aria-describedby="'+note+'" '+(unavailable?'disabled':'')+'>'+(acquired?(active.speedMult===target?'Paid':'Covered'):'Buy now')+' · '+target+'x'+purchasePriceMarkup('mote',speedTierCost(target),'speed-cost')+'</button>'+
-    '<button class="node-queue-toggle '+(on?'active':'')+'" data-study-use-motes="'+node.id+'" aria-describedby="'+note+'">Queue speed '+(on?'ON':'OFF')+'</button></div>'+
-    '<p class="effect-note" id="'+note+'">'+(active?'Paid speed: '+active.speedMult+'x. ':'Begin a Study to buy speed. ')+
-    'Buy now pays once for this level. Queue speed '+(on?'ON':'OFF')+': '+target+'x · '+speedTierCost(target)+' Motes per level'+(on?' when affordable, including this level and offline.':'.')+' OFF keeps paid speed. Study Queue starts new levels at 1x.</p>';
+  var target=state.studySpeedTargets[node.id],index=LAB_SPEED_TIERS.indexOf(target),cost=speedTierCost(target);
+  var on=state.studyUseMotes[node.id]===true;
+  var disabled=!active || maxed || active.remainingSec<=SIM_EPS || active.speedMult>=target || !labCanPay(state.motes,cost);
+  return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
+    '<div class="study-speed-heading"><span>Speed <strong data-study-speed-value="'+node.id+'">'+target+'x</strong> · '+
+    '<span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',cost)+'</span> / level</span>'+
+    '<button class="study-speed-buy" data-speed="'+target+'" data-speed-study="'+node.id+'" '+(disabled?'disabled':'')+' aria-describedby="study-speed-help">Buy now</button></div>'+
+    '<div class="study-speed-row">'+
+    '<div class="study-speed-range"><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x · '+cost+' Motes per level" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
+    '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div>'+
+    '<button class="node-queue-toggle '+(on?'active':'')+'" data-study-use-motes="'+node.id+'" aria-describedby="study-speed-help">Speed queue '+(on?'ON':'OFF')+'</button></div></div>';
 }
-// Preserve an attached native select while its menu is in use. Other cards and
-// the rest of this card still receive authoritative markup on every render.
+// Keep a live native slider attached during drag, ticks and reordering. Preview
+// state is presentation-only; authoritative queue preferences change on release.
 function replaceStudyMarkup(html){
-  var root=els['study-list'],select=document.activeElement;
-  var card=root.contains(select) && select.hasAttribute('data-study-speed-target') && select.closest('[data-running-study],[data-study-card]');
+  var root=els['study-list'],input=document.activeElement;
+  var card=root.contains(input) && input.hasAttribute('data-study-speed-target') && input.closest('[data-running-study],[data-study-card]');
   var prepared=document.createElement('div');prepared.innerHTML=html;
   var attr=card && (card.hasAttribute('data-running-study')?'data-running-study':'data-study-card');
   var next=card && prepared.querySelector('['+attr+'="'+card.getAttribute(attr)+'"]');
-  if(!next){replaceControlMarkup(root,html);return;}
-  var row=select.closest('.study-motes-controls'),nextRow=next.querySelector('.study-motes-controls');
-  row.querySelectorAll('button').forEach(function(button){
+  if(input && input.hasAttribute('data-study-speed-target'))input.studyRendering=true;
+  if(!next){replaceControlMarkup(root,html);if(input)input.studyRendering=false;return;}
+  var controls=input.closest('.study-speed-controls'),nextControls=next.querySelector('.study-speed-controls');
+  if(input.studyPreview!==undefined){
+    var preview=LAB_SPEED_TIERS[input.studyPreview];
+    nextControls.querySelector('[data-study-speed-value]').textContent=preview+'x';
+    nextControls.querySelector('[data-study-speed-price]').innerHTML=purchasePriceMarkup('mote',speedTierCost(preview));
+    var buy=nextControls.querySelector('[data-speed-study]'),active=findActiveStudy(card.getAttribute(attr)),node=LONG_STUDIES.find(function(n){return n.id===card.getAttribute(attr);});
+    buy.setAttribute('data-speed',preview);buy.disabled=!active || active.remainingSec<=SIM_EPS || active.speedMult>=preview || (node.levelCap!==undefined && longStudyLevel(node.id)>=node.levelCap) || !labCanPay(state.motes,speedTierCost(preview));
+  }
+  controls.querySelectorAll('button').forEach(function(button){
     var key=Array.from(button.attributes).find(function(a){return a.name==='data-study-queue'||a.name==='data-study-use-motes'||a.name==='data-speed-study';});
-    var replacement=nextRow.querySelector('['+key.name+'="'+key.value+'"]');
-    Array.from(replacement.attributes).forEach(function(a){button.setAttribute(a.name,a.value);});
-    button.disabled=replacement.disabled;button.innerHTML=replacement.innerHTML;
+    var replacement=nextControls.querySelector('['+key.name+'="'+key.value+'"]');
+    Array.from(replacement.attributes).forEach(function(a){button.setAttribute(a.name,a.value);});button.disabled=replacement.disabled;button.innerHTML=replacement.innerHTML;
   });
-  var nextSelect=nextRow.querySelector('select');
-  Array.from(select.options).forEach(function(option,i){option.textContent=nextSelect.options[i].textContent;});
-  select.value=state.studySpeedTargets[select.getAttribute('data-study-speed-target')];
-  Array.from(card.children).forEach(function(child){if(child!==row)card.removeChild(child);});
-  var nextChildren=Array.from(next.children),rowIndex=nextChildren.indexOf(nextRow);
-  nextChildren.forEach(function(child,i){if(child===nextRow)return;if(i<rowIndex)card.insertBefore(child,row);else card.appendChild(child);});
-  // Keep the card attached at its existing position when ordering is unchanged.
+  controls.querySelector('[data-study-speed-value]').textContent=nextControls.querySelector('[data-study-speed-value]').textContent;
+  controls.querySelector('[data-study-speed-price]').innerHTML=nextControls.querySelector('[data-study-speed-price]').innerHTML;
+  input.value=input.studyPreview!==undefined ? input.studyPreview : LAB_SPEED_TIERS.indexOf(state.studySpeedTargets[input.getAttribute('data-study-speed-target')]);
+  input.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(input.value)]+'x · '+speedTierCost(LAB_SPEED_TIERS[Number(input.value)])+' Motes per level');
+  input.style.backgroundSize=(Number(input.value)/7*100)+'% 8px';
+  Array.from(card.children).forEach(function(child){if(child!==controls)card.removeChild(child);});
+  var nextChildren=Array.from(next.children),rowIndex=nextChildren.indexOf(nextControls);
+  nextChildren.forEach(function(child,i){if(child===nextControls)return;if(i<rowIndex)card.insertBefore(child,controls);else card.appendChild(child);});
   var children=Array.from(prepared.children);children[children.indexOf(next)]=card;
   children.forEach(function(child,i){if(root.children[i]===child)return;if(child===card)root.insertBefore(card,root.children[i]||null);else if(root.children[i]===card)root.insertBefore(child,card);else if(root.children[i])root.replaceChild(child,root.children[i]);else root.appendChild(child);});
   while(root.children.length>children.length)root.removeChild(root.lastElementChild);
   presentControlStates(root);
+  if(document.activeElement!==input)input.focus({preventScroll:true});
+  input.studyRendering=false;
 }
 function renderLongStudies(){
+  var studyView=captureControlViewport(els['study-list']);
   var focusedStudyChoices=document.activeElement && document.activeElement.id==='study-choices';
   var focusedCard=document.activeElement && document.activeElement.closest('[data-running-study],[data-study-card]');
   var focusedStudy=focusedCard && (focusedCard.getAttribute('data-running-study') || focusedCard.getAttribute('data-study-card'));
@@ -8587,6 +8610,8 @@ function renderLongStudies(){
   var focusedBegin=document.activeElement && document.activeElement.getAttribute('data-study');
   var focusedSpeed=document.activeElement && document.activeElement.getAttribute('data-speed-study');
   var focusedTier=focusedSpeed && document.activeElement.getAttribute('data-speed');
+  var previousSlider=focusedSpeed && focusedCard.querySelector('[data-study-speed-target]');
+  var previousSliderTop=previousSlider && previousSlider.getBoundingClientRect().top;
   renderLabCapacityBadge();
   var slots = studySlotCount();
   var openSlots = slots - state.activeStudies.length;
@@ -8601,14 +8626,14 @@ function renderLongStudies(){
       var pct = Math.max(0, Math.min(100, 100-(active.remainingSec/active.totalDurationSec*100)));
       var progressValue=active.remainingSec>0?Math.min(99,Math.round(pct)):100;
       html += '<div class="card study-card study-running" data-running-study="'+active.id+'">' +
-        '<div class="study-running-label">'+(maxed?'Finishing paid Study':index===0?'Next completion':'Running')+'</div>' +
-        '<div class="name"><span>'+(node?node.name:'')+' <span style="color:var(--mote);">Lv.'+(longStudyLevel(active.id)+(maxed?0:1))+(maxed?' · Maxed':'')+'</span></span>' +
+        '<div class="name"><span class="study-identity"><span class="study-title">'+(node?node.name:'')+'</span><span class="study-level">Lv.'+(longStudyLevel(active.id)+(maxed?0:1))+(maxed?' · Maxed':'')+'</span></span>' +
+        (node && !node.retiredTo?'<button class="node-queue-toggle '+(state.studyQueue[active.id]?'active':'')+'" data-study-queue="'+active.id+'">Queue '+(state.studyQueue[active.id]?'ON':'OFF')+'</button>':'')+
         '</div>' +
         (node ? studySpeedMarkup(node,active,maxed) : '') +
         (node ? projectEarnedMarkup(active.id) : '') +
         (node && node.retiredTo?'<div class="effect-note">Last paid level: work, speed and completion bonus kept. Future upgrades: '+node.retiredTo+'.</div>':'') +
         '<div class="effect-note">'+(maxed?'Level cap already reached. Paid work finishes without another level or bonus.':
-          'On completion: '+projectEarnedEffect(active.id,longStudyLevel(active.id)+1)+'.')+'</div>' +
+          'Next: '+projectEarnedEffect(active.id,longStudyLevel(active.id)+1)+'.')+'</div>' +
         '<div class="study-bar-track" role="progressbar" aria-label="'+(node?node.name:'Study')+' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+progressValue+'" aria-valuetext="'+progressValue+'% · '+studyRemainingText(active)+'">'+
           '<div class="study-bar-fill" aria-hidden="true" data-study-bar="'+active.id+'" style="width:'+pct+'%;"></div>'+
           '<span class="study-time" data-study-text="'+active.id+'">'+studyRemainingText(active)+'</span></div>' +
@@ -8637,19 +8662,19 @@ function renderLongStudies(){
     var level=plan.level,cost=plan.cost,dur=plan.duration;
     var queueOn = !!state.studyQueue[lnode.id];
     html += '<div class="card study-card" data-study-card="'+lnode.id+'" data-state="'+(plan.maxed?'maxed':plan.affordable?'affordable':'unavailable')+'" style="margin-bottom:10px;">' +
-      '<div class="name">'+lnode.name+' <span style="color:var(--mote);">'+(plan.maxed?'Lv.'+level+' · Maxed':'Next Lv.'+(level+1))+'</span>' +
-      '</div>' +
+      '<div class="name"><span class="study-identity"><span class="study-title">'+lnode.name+'</span><span class="study-level">'+(plan.maxed?'Lv.'+level+' · Maxed':'Next Lv.'+(level+1))+'</span></span>' +
+      '<button class="node-queue-toggle '+(queueOn?'active':'')+'" data-study-queue="'+lnode.id+'">Queue '+(queueOn?'ON':'OFF')+'</button></div>' +
       studySpeedMarkup(lnode,null,plan.maxed) +
       (lnode.labGroup?'<div class="desc">'+lnode.desc+'</div><div class="effect-note">Level '+level+' / '+lnode.levelCap+'</div>':'')+
       projectEarnedMarkup(lnode.id) +
       '<div class="effect-note">'+(plan.maxed?'Effect cap reached. Queue '+(queueOn?'ON':'OFF')+' retained; no new starts.':
-        'On completion: '+projectEarnedEffect(lnode.id,level+1)+'.')+'</div>' +
+        'Next: '+projectEarnedEffect(lnode.id,level+1)+'.')+'</div>' +
       (plan.maxed?'':'<div class="study-meta" id="study-price-'+lnode.id+'">Takes '+fmtStudyDuration(dur)+' &middot; '+purchasePriceMarkup('lumen',cost.lumen)+' '+purchasePriceMarkup('shard',cost.shard)+'</div>') +
       '<button class="mini-btn" data-study="'+lnode.id+'" '+(plan.maxed?'':'aria-describedby="study-price-'+lnode.id+'" ')+(plan.affordable?'':'disabled')+' style="margin-top:10px;width:100%;">'+(plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':openSlots>0?'Begin Study':'No open slots')+'</button>' +
     '</div>';
   });
 
-  html += '<div class="section-sub">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Base slots rise at Rift 40, 60 and 90; Expanded Apparatus adds up to two. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level when a slot and currency are free.</div>';
+  html += '<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Base slots rise at Rift 40, 60 and 90; Expanded Apparatus adds up to two. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. The slider selects a speed target. Speed queue pays the full selected Mote price per level when affordable, including current work and offline. OFF keeps speed already bought. Buy now pays once for the current level; it does not toggle speed queue ON/OFF.</div>';
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -8671,7 +8696,7 @@ function renderLongStudies(){
       var restoreStudy=focusedStudy || focusedSpeed;
       var speedFocus=els['study-list'].querySelector('[data-study-speed-target="'+restoreStudy+'"]') ||
         els['study-list'].querySelector('[data-legacy-upgrade="'+restoreStudy+'"]') || document.getElementById('study-choices');
-      if(speedFocus){if(speedFocus.tagName!=='SELECT' && speedFocus.tagName!=='BUTTON')speedFocus.tabIndex=-1;speedFocus.focus({preventScroll:true});}
+      if(speedFocus){if(speedFocus.tagName!=='INPUT' && speedFocus.tagName!=='SELECT' && speedFocus.tagName!=='BUTTON')speedFocus.tabIndex=-1;speedFocus.focus({preventScroll:true});}
     }
   }
   if(focusedLegacy){
@@ -8689,13 +8714,6 @@ function renderLongStudies(){
       startStudy(lnode);
     });
   });
-  els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(btn){
-    if(btn.studyBound) return;
-    btn.studyBound=true;
-    btn.addEventListener('click', function(){
-      applySpeedTier(btn.getAttribute('data-speed-study'), parseFloat(btn.getAttribute('data-speed')));
-    });
-  });
   els['study-list'].querySelectorAll('[data-study-queue]').forEach(function(btn){
     if(btn.studyBound) return;
     btn.studyBound=true;
@@ -8707,25 +8725,34 @@ function renderLongStudies(){
       renderLongStudies();
     });
   });
-  els['study-list'].querySelectorAll('[data-study-use-motes]').forEach(function(btn){
-    if(btn.studyBound) return;
-    btn.studyBound=true;
-    btn.addEventListener('click',function(){
-      var id=btn.getAttribute('data-study-use-motes');
-      state.studyUseMotes[id]=!state.studyUseMotes[id];
-      saveState();renderLongStudies();
-    });
+  els['study-list'].querySelectorAll('[data-study-use-motes]').forEach(function(button){
+    if(button.studyBound)return;button.studyBound=true;
+    button.addEventListener('click',function(){var id=button.getAttribute('data-study-use-motes');state.studyUseMotes[id]=!state.studyUseMotes[id];saveState();renderLongStudies();});
   });
-  els['study-list'].querySelectorAll('[data-study-speed-target]').forEach(function(select){
-    if(select.studyBound) return;
-    select.studyBound=true;
-    select.addEventListener('change',function(){
-      var target=Number(select.value);
-      if(LAB_SPEED_TIERS.indexOf(target)===-1) return;
-      state.studySpeedTargets[select.getAttribute('data-study-speed-target')]=target;
-      saveState();renderLongStudies();
-    });
+  els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(button){
+    if(button.studyBound)return;button.studyBound=true;
+    button.addEventListener('click',function(){applySpeedTier(button.getAttribute('data-speed-study'),Number(button.getAttribute('data-speed')));});
   });
+  els['study-list'].querySelectorAll('[data-study-speed-target]').forEach(function(input){
+    if(input.studyBound)return;input.studyBound=true;
+    function commit(){
+      var index=Number(input.value),id=input.getAttribute('data-study-speed-target');
+      if(index<0 || index>7 || index!==Math.floor(index))return;
+      input.studyPreview=undefined;state.studySpeedTargets[id]=LAB_SPEED_TIERS[index];saveState();renderLongStudies();
+    }
+    // Keep the live range attached from the start of a touch or mouse gesture.
+    ['mousedown','touchstart'].forEach(function(type){input.addEventListener(type,function(){input.focus({preventScroll:true});});});
+    input.addEventListener('input',function(){
+      input.studyPreview=Number(input.value);renderLongStudies();
+    });
+    input.addEventListener('change',function(){if(!input.studyKeyboard)commit();});
+    input.addEventListener('keydown',function(e){if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].indexOf(e.key)!==-1)input.studyKeyboard=true;});
+    input.addEventListener('keyup',function(e){if(input.studyKeyboard && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].indexOf(e.key)!==-1){input.studyKeyboard=false;commit();}});
+    input.addEventListener('blur',function(){if(!input.studyRendering && input.studyPreview!==undefined){input.studyKeyboard=false;commit();}});
+  });
+
+  if(studyView && previousSlider && document.activeElement.getAttribute('data-study-speed-target')===focusedSpeed)studyView.top=previousSliderTop;
+  restoreControlViewport(studyView);
 }
 
 // Display approximations are marked; the canonical breakdown determines payout.
@@ -11000,7 +11027,7 @@ function checkAffordability(){
   });
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(btn){
     var active = findActiveStudy(btn.getAttribute('data-speed-study'));
-    if(!active) return;
+    if(!active){btn.disabled=true;return;}
     var mult = parseFloat(btn.getAttribute('data-speed'));
     var acquired = active.speedMult>=mult;
     var node=LONG_STUDIES.find(function(n){return n.id===active.id;});

@@ -54,7 +54,7 @@ window.runNavWorkshopQa = function(b,ctx,assert){
       var copy=btn.textContent+' '+btn.getAttribute('aria-label');
       ok(btn.disabled,'unaffordable retains native disabled');
       ok(!/Need\s+(Lumen|Shards|Motes|Prisms|Comets|Sigils)|Cannot afford|Insufficient resources/i.test(copy),'currency shortage copy absent in text and ARIA');
-      var price=btn.hasAttribute('data-study')?document.getElementById(btn.getAttribute('aria-describedby')):btn;
+      var price=btn.hasAttribute('data-speed-study')?btn.closest('.study-speed-controls'):btn.hasAttribute('data-study')?document.getElementById(btn.getAttribute('aria-describedby')):btn;
       ok(!!btn.getAttribute('aria-label')&&price&&!!price.querySelector('.cost-icon'),'disabled purchase retains accessible action and actual currency price');
       if(btn.hasAttribute('data-research'))ok(btn.querySelector('.label').textContent==='Upgrade','poor Forge shows Upgrade without ×0');
       ['empower','module','ultimate','research','node','study','shop','speed-study'].forEach(function(type){if(btn.hasAttribute('data-'+type))types[type]=true;});

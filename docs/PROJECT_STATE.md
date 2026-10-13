@@ -1,21 +1,24 @@
 # Lumenfall — current delivery status
 
 13 October 2026: [LAB_SPEED_CONTROLS_001](tasks/LAB_SPEED_CONTROLS_001.md)
-LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted `678ccd7` and Formation docs checkpoint `e3fc6c8`.
-Compact speed selection, priced Buy now and speed queue sit beside Study Queue;
-paid speed and automatic target remain explicit. Existing prices/discounts/work,
-scheduler/saves/offline simulation preserved. Native selectors retain attachment,
-focus and scroll; repeated input cannot charge twice.
-[Evidence](qa/lab-speed-controls-001/README.md): focused890/12 profiles, two causal
-controls, expansion mobile6588, Lab core2465, offline transaction/retry checks,
-19 existing Lab/Inquiry/duration/persistence/navigation cases, native/reduced
-live-timer checks, Lab alert166, Wisp scroll3229 and Formation529 PASS.
-Source `639b5426`, fonts and branding byte-verified in mobile/www and HTTP;
-playable preview open on Lab at http://127.0.0.1:4174/index.html, loaded script
-matches source. Self-review only. No known unresolved scoped failure remains.
-Combined suite/CI, inherited Prism/transport and Android/device/WebView60/TalkBack
-acceptance remain pending. Local milestone only; no remote/APK/signing/archive.
-Next queue item: RIFT_HINT_LAYOUT_001; keep feature open for combined acceptance.
+LOCAL FOLLOW-UP VERIFIED on local/full-debug, continuing6a694f4.
+Latest user corrections: native1.5x–8x stepped slider with adjacent speed queue
+ON/OFF, prominent project name and rounded level badge below, Current/Next
+effects, no Running/Next completion/Paid speed line. Lab Queue remains separate;
+price is visible, Buy now is an explicit text action. Drag/held-key preview is
+DOM-only; final release saves target without intermediate spending. Existing
+tiers/prices/work, queue/save/offline behavior retained; actual speed stays in
+the completion bar. Focus/scroll retained through live reordering and purchases.
+[Current evidence](qa/lab-speed-controls-001/slider/README.md): focused1118/12
+profiles, two causal controls, core2465/offline,19 existing cases18949 assertions,
+native/reduced live timers each6 profiles, expansion6588/12 with reload,
+accessibility and R3/reload PASS. Source ac190cdf; current source/assets staged
+and HTTP/loaded-script verified. Playable preview open on Lab at
+http://127.0.0.1:4174/index.html. Self-review only; no unresolved scoped failure
+demonstrated. First6a694f4 and superseded dropdown receipts remain historical.
+Combined suite/CI, inherited Prism/transport and Android/device/WebView60/
+TalkBack acceptance remain pending. Local milestone; no remote/APK/signing/archive.
+Next queue item: RIFT_HINT_LAYOUT_001 following review of the corrected preview.
 
 13 October 2026: [FORMATION_COLLAPSE_001](tasks/FORMATION_COLLAPSE_001.md)
 LOCAL IMPLEMENTATION VERIFIED at `678ccd7` on `local/full-debug`, continuing accepted9ad4b6f.

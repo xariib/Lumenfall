@@ -58,7 +58,7 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
       }
       ok(!!el,'current Study exposes earned effect '+id);
       var text=el.textContent;
-      ok(text.startsWith('Earned: ')&&!text.includes('Completed level'),'earned effect without a second level on '+id);
+      ok(text.startsWith('Current: ')&&!text.includes('Completed level'),'earned effect without a second level on '+id);
       ok(text.includes('+'+(l*projectRates[id])+(id==='riftattune'?' percentage points':'%')),'actual earned '+id+' rate at '+l);
       ok(text.includes('+0')===(l===0),'zero completion is no earned bonus '+id);
     });
@@ -66,7 +66,7 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
     ok(Math.abs(current.offline-(.7+l*.1))<1e-10,'hidden Rift Attunement retains actual offline factor');
     ok(Math.abs(current.formation-(1+l*.05))<1e-10,'hidden Formation Insight retains actual formation factor');
     ok(Math.abs(current.prisms-(1+l*.05))<1e-10,'hidden Clarity retains actual Prism factor');
-    ok(q('[data-running-study="guardmastery"]').textContent.includes('On completion: +'+((l+1)*20)+'%'),'pending effect labelled');
+    ok(q('[data-running-study="guardmastery"]').textContent.includes('Next: +'+((l+1)*20)+'%'),'pending effect labelled');
     ok(q('[data-study-text="guardmastery"]').textContent==='Finishing… · 1x','zero pending does not complete');
   });
   var locked=b.freshStateSnapshot();pureRender(locked);

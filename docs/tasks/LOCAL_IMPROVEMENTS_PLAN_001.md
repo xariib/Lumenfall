@@ -88,7 +88,8 @@ final/device acceptance pending. [FORMATION_COLLAPSE_001](FORMATION_COLLAPSE_001
 local implementation and focused browser/core checks verified; default collapsed
 and current choice/focus retained, calculations/saves unchanged. Final/device
 acceptance pending. [LAB_SPEED_CONTROLS_001](LAB_SPEED_CONTROLS_001.md) locally
-verified: inline speed/price, immediate purchase and separate queue choice; scoped
+verified: stepped speed slider/price, separate queue toggle and explicit immediate
+purchase; prominent name/level badge and Current/Next effects; scoped
 preservation and native checks PASS, final/device acceptance pending.
 Tasks5–7 implementation NOT STARTED.
 Next action: user reviews the current preview, then starts RIFT_HINT_LAYOUT_001

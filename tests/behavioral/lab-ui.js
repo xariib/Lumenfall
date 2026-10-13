@@ -1,13 +1,13 @@
 /* LAB_UI_001 presentation checks against real rendering and handlers. */
-window.selectLabSpeed=function(id,mult){var select=document.querySelector('[data-study-speed-target="'+id+'"]');select.value=String(mult);select.dispatchEvent(new Event('change',{bubbles:true}));};
+window.selectLabSpeed=function(id,mult){var select=document.querySelector('[data-study-speed-target="'+id+'"]');select.focus({preventScroll:true});select.value=String([1.5,2,3,4,5,6,7,8].indexOf(mult));select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));};
 window.checkLabSpeedControls = function(b,assert,id){
  var q=function(selector){return document.querySelector(selector);},row=q('[data-study-inspection="'+id+'"]'),select=q('[data-study-speed-target="'+id+'"]');
  assert(!row.hidden&&select.getClientRects().length,'speed controls directly visible');
  var before=JSON.stringify(b.getState()),save=b.rawSave(),recovery=b.rawRecovery();
  select.focus();b.renderLayout();
  assert(document.activeElement===select&&select.isConnected,'native speed select stays attached across rendering');
- assert(select.options.length===8,'all original tiers directly reachable');
- assert(row.closest('.study-card').textContent.includes('On completion:'),'effect remains on card');
+ assert(select.type==='range'&&select.min==='0'&&select.max==='7'&&select.step==='1','all original tiers directly reachable');
+ assert(row.closest('.study-card').textContent.includes('Next:'),'effect remains on card');
  assert(JSON.stringify(b.getState())===before&&b.rawSave()===save&&b.rawRecovery()===recovery,'focus/render do not pay, advance or save');
 };
 
@@ -18,7 +18,7 @@ window.runLabUiQa = function(b,ctx,assert){
   function install(s){b.setState(s);b.renderLayout();q('[data-tab="research"]').click();}
   function fit(){
     ok(document.documentElement.scrollWidth<=innerWidth+1&&q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'no horizontal overflow');
-    Array.from(q('#study-list').querySelectorAll('button,select')).filter(function(el){return el.getClientRects().length;}).forEach(function(el){
+    Array.from(q('#study-list').querySelectorAll('button,input')).filter(function(el){return el.getClientRects().length;}).forEach(function(el){
       ok(el.offsetWidth>=44&&el.offsetHeight>=44,'controls have 44px layout targets: '+el.outerHTML.slice(0,180));
     });
   }
@@ -27,7 +27,7 @@ window.runLabUiQa = function(b,ctx,assert){
   var card=q('[data-running-study="guardmastery"]');
   ok(card.innerText.split("Guardian's Mastery").length===2,'one visible title');
   ok((card.innerText.match(/Lv\./g)||[]).length===1&&!/Completed level|In progress: level|Details/.test(card.innerText),'one current level and no repeated status');
-  ok(card.innerText.includes('Earned: +0%')&&card.innerText.includes('On completion: +20% tap damage'),'earned and completion effects distinct');
+  ok(card.innerText.includes('Current: +0%')&&card.innerText.includes('Next: +20% tap damage'),'earned and completion effects distinct');
   ok(!card.querySelector('details')&&!card.querySelector('[data-study-details]'),'direct controls without a separate panel');
   ok(card.querySelector('[data-study-speed-target]').getClientRects().length,'direct selector visible initially');
   window.checkLabSpeedControls(b,ok,'guardmastery');
@@ -61,14 +61,14 @@ window.runLabUiQa = function(b,ctx,assert){
   });
 
   install(seed());
-  var select=q('[data-study-speed-target="guardmastery"]');select.value='3';select.dispatchEvent(new Event('change',{bubbles:true}));
+  var select=q('[data-study-speed-target="guardmastery"]');window.selectLabSpeed('guardmastery',3);
   var saved=b.getState();ok(saved.studySpeedTargets.guardmastery===3&&saved.motes===1000&&saved.activeStudies[0].speedMult===1,'selection alone never buys');
   var buy=q('[data-speed-study="guardmastery"][data-speed="3"]');buy.focus();b.renderLayout();
   ok(document.activeElement.dataset.speed==='3'&&document.activeElement.dataset.speedStudy==='guardmastery','unrelated rendering preserves an available purchase focus');
   q('[data-speed-study="guardmastery"][data-speed="3"]').click();
   var paid=b.getState();ok(paid.motes===940&&paid.activeStudies[0].speedMult===3,'real button charges exactly 60 Motes');
   ok(document.activeElement.dataset.studySpeedTarget==='guardmastery','purchase returns usable focus to same Study selector');
-  ok(!q('[data-study-inspection="guardmastery"]').hidden&&q('[data-speed-study="guardmastery"][data-speed="3"]').getAttribute('aria-pressed')==='true','inline purchase marks current speed');
+  ok(!q('[data-study-inspection="guardmastery"]').hidden&&q('[data-speed-study="guardmastery"][data-speed="3"]').disabled&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline purchase marks current speed');
   ok(q('[data-study-inspection="wispascend"] [data-speed-study]').disabled,'idle controls cannot purchase a nonexistent level');
   window.selectLabSpeed('guardmastery',2);
   var finish=seed();finish.activeStudies[0].remainingSec=.1;install(finish);window.selectLabSpeed('guardmastery',2);
