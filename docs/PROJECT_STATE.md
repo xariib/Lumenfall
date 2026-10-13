@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+13 October 2026: [seven sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
+are recorded from the user's browser observations. Requirements/planning only;
+no implementation has started. Each improvement has one owner chat, starting
+from the latest accepted local checkpoint. High Forge/Lab caps require specific
+balance choices first. The full debugging task and release acceptance remain open.
+
 13 October 2026: [local full debugging](tasks/LOCAL_FULL_DEBUG_001.md) is OPEN.
 The supplied ZIP's42b180ad source is the local baseline; currentb3eca666 fixes
 read Ascend notifications and daily quest claim scroll/focus. Focused browser
