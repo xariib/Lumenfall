@@ -1,0 +1,172 @@
+{
+  "mode": "fixed-published",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "bridgeSha256": "8568cfb994b0a6c4c1c2bded8f2946a6489b18591992e58d534f483f5cb287c1",
+  "oracleSha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482",
+  "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+  "engine": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  },
+  "scope": "Complete production IIFE, actual bridge and real transaction/storage. Presentation stubbed by unchanged Tree harness; original first three browser seeds/BigInt reward oracle, not browser or native acceptance.",
+  "rows": [
+    {
+      "values": [
+        16,
+        15,
+        0,
+        0
+      ],
+      "want": {
+        "full": 8,
+        "reserve": 1,
+        "progressBonus": 1,
+        "gain": 2
+      },
+      "payout": {
+        "before": {
+          "prisms": 100,
+          "ascendCount": 0,
+          "benchmark": 15
+        },
+        "after": {
+          "prisms": 102,
+          "ascendCount": 1,
+          "benchmark": 16,
+          "depth": 1
+        },
+        "gain": 2
+      },
+      "flagsBefore": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": false,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "flagsAfter": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": false,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "actualReset": true,
+      "primary": 102,
+      "recovery": 102
+    },
+    {
+      "values": [
+        16,
+        15,
+        1,
+        0
+      ],
+      "want": {
+        "full": 8,
+        "reserve": 1,
+        "progressBonus": 1,
+        "gain": 2
+      },
+      "payout": {
+        "before": {
+          "prisms": 100,
+          "ascendCount": 0,
+          "benchmark": 15
+        },
+        "after": {
+          "prisms": 102,
+          "ascendCount": 1,
+          "benchmark": 16,
+          "depth": 1
+        },
+        "gain": 2
+      },
+      "flagsBefore": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": true,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "flagsAfter": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": true,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "actualReset": true,
+      "primary": 102,
+      "recovery": 102
+    },
+    {
+      "values": [
+        16,
+        15,
+        0,
+        1
+      ],
+      "want": {
+        "full": 8,
+        "reserve": 2,
+        "progressBonus": 1,
+        "gain": 3
+      },
+      "payout": {
+        "before": {
+          "prisms": 100,
+          "ascendCount": 0,
+          "benchmark": 15
+        },
+        "after": {
+          "prisms": 103,
+          "ascendCount": 1,
+          "benchmark": 16,
+          "depth": 1
+        },
+        "gain": 3
+      },
+      "flagsBefore": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": true,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "flagsAfter": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": true,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "actualReset": true,
+      "primary": 103,
+      "recovery": 103
+    }
+  ],
+  "restoration": [
+    {
+      "previousReload": false,
+      "primaryFailurePreservesState": true,
+      "exceptionIdentityPreserved": true,
+      "flagInside": false,
+      "retryGain": 21
+    },
+    {
+      "previousReload": true,
+      "primaryFailurePreservesState": true,
+      "exceptionIdentityPreserved": true,
+      "flagInside": false,
+      "retryGain": 21
+    }
+  ],
+  "status": "pass"
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-10 21:45:58 UTC",
+  "scope": "Original byte manifests for this scratch-only diagnostic package. Full production HTML and raw CI DOMs remain at the separately referenced sources; only complete synthetic fixture states are included.",
+  "files": [
+    {
+      "path": "acceptance.json",
+      "bytes": 2858,
+      "sha256": "b27c0a2fb5baa2debbb46872c2f1e632f178e52edd73187127b2adfc6458600c"
+    },
+    {
+      "path": "draft-probe/NOTE.txt",
+      "bytes": 371,
+      "sha256": "daf969a4a14c4fd22fdf065fa796b86c0f179b6b4aa311d7518e36f370476446"
+    },
+    {
+      "path": "draft-probe/witness.cjs",
+      "bytes": 11682,
+      "sha256": "c9179896303ae913b12a319c59e5fa964bd381d5a115fcb907e9c34ac4bed021"
+    },
+    {
+      "path": "draft-probe/witness.stderr.txt",
+      "bytes": 848,
+      "sha256": "c57a9cf9455678306b8dc70ecb790b1d38c4e287cfab76f72f253a06ad0a6ee1"
+    },
+    {
+      "path": "draft-probe/witness.stdout.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "exact-adapter-hooks.js",
+      "bytes": 2038,
+      "sha256": "0c7bb1d975a4f44fa4b441c283ea37e433c11548ab21c8a309de19ca99de5bd7"
+    },
+    {
+      "path": "execution.json",
+      "bytes": 1968,
+      "sha256": "54dcb8ad9fa5d8f6bcc9205023ae2260aa5876640741321d0ce03237105c4a78"
+    },
+    {
+      "path": "matrix.json",
+      "bytes": 45257,
+      "sha256": "518480165329d90f61e3204dde5d706d6a08b3b1fb83a471af5359b948d02586"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9191,
+      "sha256": "ae3dcbd2c6db35392dfc8c2983a901ba19c31ae20cea78f1b4e527669ca71281"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 8627,
+      "sha256": "55e3ec84852542926c88720512a1f65088016e6be1a30a53d43be5ea1f0400a8"
+    },
+    {
+      "path": "tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+    },
+    {
+      "path": "witness.cjs",
+      "bytes": 11737,
+      "sha256": "07d6db1c7f63cc00d78e35334e8b175559ed72bb7f6bd9957c015864bf2e91d6"
+    },
+    {
+      "path": "witness.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "witness.stdout.json",
+      "bytes": 8627,
+      "sha256": "55e3ec84852542926c88720512a1f65088016e6be1a30a53d43be5ea1f0400a8"
+    },
+    {
+      "path": "witnesses.json",
+      "bytes": 1105242,
+      "sha256": "af2267797122c54d649394c31855a9a9094ecbf8e9f0024a35738a0fb0614503"
+    }
+  ],
+  "fileCountExcludingManifest": 15,
+  "bytesExcludingManifest": 1222886,
+  "externalReferences": {
+    "rawAnalysis": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenario-analysis.json",
+    "rawAnalysisSha256": "4d40997e7801e2453a1d579fae10a2ed54f88528a75e170e02583fef1c81a568",
+    "rawDomProvenance": "matrix.json rows[].rawDom; witnesses.json rawRows[].sourceDom",
+    "sourceAndModuleIdentities": "receipt.json identity",
+    "gitRepository": "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+    "publishedCommit": "3c931a26bbcf7b009dee03e7411ed41faeb971f8"
+  },
+  "manifestSelfExcluded": true
+}

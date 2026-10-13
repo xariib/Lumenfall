@@ -1,0 +1,1351 @@
+{
+  "accepted": false,
+  "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "syntheticMerge": "a2561ca083c036df0b5ebe27e09939d0bd35c701",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "runId": 38085086718,
+  "artifactId": 11682079317,
+  "method": "Read-only archived log/process/DOM observation; no product or scenario execution",
+  "failedRows": [
+    {
+      "name": "inquiry-save-reload",
+      "occurrence": 1,
+      "rawLogSection": {
+        "byteOffset": 4514577,
+        "bytes": 6514,
+        "sha256": "2366574de48744ad9d67e431c692f9cba5080ea5b994523ce8e691e0ea958032"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.3821545460000635,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/process.json",
+          "bytes": 925,
+          "sha256": "416bde7792e1791de05566de46628ea0ea8f669d0bc75a80715dfbc877ed7255",
+          "zipCrc32": "c6f6e962"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/stderr.log",
+          "bytes": 4021,
+          "sha256": "6e0e806173aeb134215c3679fea46fb015518547bcb56e5df5e5820acc9d718a",
+          "zipCrc32": "4d95633c"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/stdout.html",
+          "bytes": 1458658,
+          "sha256": "50343e89ab4d8a73dd054d2a0de309be554feaa4d2d970ab17e9d80cd8242b7c",
+          "zipCrc32": "1746e94c"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-inquiry-save-reload-MctNvU",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=inquiry-save-reload&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.3821545460000635,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "inquiry-save-reload",
+          "json_status": "fail",
+          "json_scenario": "inquiry-save-reload",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "inquiry-save-reload",
+          "json_status": "fail",
+          "json_scenario": "inquiry-save-reload",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "inquiry-save-reload",
+          "status": "fail",
+          "detail": {
+            "message": "existing Ascension currency reset unchanged",
+            "stack": "Error: existing Ascension currency reset unchanged\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=inquiry-save-reload&qaFixture=fresh:15077:61)\n    at window.runInquiryPersistence (http://127.0.0.1:36039/index.html?qaScenario=inquiry-save-reload&qaFixture=fresh:14631:3)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=inquiry-save-reload&qaFixture=fresh:15604:18)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/stdout.html",
+        "bytes": 1458658,
+        "sha256": "50343e89ab4d8a73dd054d2a0de309be554feaa4d2d970ab17e9d80cd8242b7c",
+        "zipCrc32": "1746e94c"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/01-inquiry-save-reload"
+    },
+    {
+      "name": "inquiry-backup-restore",
+      "occurrence": 2,
+      "rawLogSection": {
+        "byteOffset": 4521091,
+        "bytes": 6526,
+        "sha256": "9501c1a8ec7f45a35c19fb46c8aee47e2f789f936746d8c04e04e3cbd36602dd"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.3212922369999578,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/process.json",
+          "bytes": 937,
+          "sha256": "7cd20699cc1e6cd258f34080cac987f2c6b1322bc7d4f09a687c4ff5a096cba9",
+          "zipCrc32": "c637865c"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stderr.log",
+          "bytes": 4021,
+          "sha256": "25efa1aa27d3eefe62620cb0333bf34b15ca890ba9e136ef78d5591b196e513a",
+          "zipCrc32": "eaeb47db"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stdout.html",
+          "bytes": 1458673,
+          "sha256": "bfd10440f84d7ef07863602001a712b6ecf697d3c3a7a283419941c8364f298c",
+          "zipCrc32": "fb0c890f"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-inquiry-backup-restore-jocjK4",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.3212922369999578,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "inquiry-backup-restore",
+          "json_status": "fail",
+          "json_scenario": "inquiry-backup-restore",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "inquiry-backup-restore",
+          "json_status": "fail",
+          "json_scenario": "inquiry-backup-restore",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "inquiry-backup-restore",
+          "status": "fail",
+          "detail": {
+            "message": "existing Ascension currency reset unchanged",
+            "stack": "Error: existing Ascension currency reset unchanged\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh:15077:61)\n    at window.runInquiryPersistence (http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh:14631:3)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh:15604:18)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stdout.html",
+        "bytes": 1458673,
+        "sha256": "bfd10440f84d7ef07863602001a712b6ecf697d3c3a7a283419941c8364f298c",
+        "zipCrc32": "fb0c890f"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/02-inquiry-backup-restore"
+    },
+    {
+      "name": "inquiry-recovery",
+      "occurrence": 3,
+      "rawLogSection": {
+        "byteOffset": 4527617,
+        "bytes": 6502,
+        "sha256": "488a47e729ca11ef6ae6adc28ed68939ede32592d2af0e677213b376e7203eb4"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.3828299750000006,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/process.json",
+          "bytes": 913,
+          "sha256": "e5b38ea66626025000908333bf63ad13c453d530981e4247af6973078b5b27e4",
+          "zipCrc32": "b6a27493"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/stderr.log",
+          "bytes": 4021,
+          "sha256": "a6458ec23e19ca8be9c8389a8d50eb453326e762dbf892c4558fdd97f8cc0371",
+          "zipCrc32": "278d6c5e"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/stdout.html",
+          "bytes": 1458684,
+          "sha256": "7d368f4d6ae5b728e94f4a1fb3c3e90d1b5a60850e96f4366107c44912494e8d",
+          "zipCrc32": "154307a6"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-inquiry-recovery-csCtxH",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=inquiry-recovery&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.3828299750000006,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "inquiry-recovery",
+          "json_status": "fail",
+          "json_scenario": "inquiry-recovery",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "inquiry-recovery",
+          "json_status": "fail",
+          "json_scenario": "inquiry-recovery",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "inquiry-recovery",
+          "status": "fail",
+          "detail": {
+            "message": "existing Ascension currency reset unchanged",
+            "stack": "Error: existing Ascension currency reset unchanged\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=inquiry-recovery&qaFixture=fresh:15077:61)\n    at window.runInquiryPersistence (http://127.0.0.1:36039/index.html?qaScenario=inquiry-recovery&qaFixture=fresh:14631:3)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=inquiry-recovery&qaFixture=fresh:15604:18)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/stdout.html",
+        "bytes": 1458684,
+        "sha256": "7d368f4d6ae5b728e94f4a1fb3c3e90d1b5a60850e96f4366107c44912494e8d",
+        "zipCrc32": "154307a6"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/03-inquiry-recovery"
+    },
+    {
+      "name": "support-stacking",
+      "occurrence": 4,
+      "rawLogSection": {
+        "byteOffset": 4536224,
+        "bytes": 6502,
+        "sha256": "64f26da7bbb5fe23011c20eee54b899c16060f29085a7c57071639bf3668ea48"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.1630275559999281,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/process.json",
+          "bytes": 913,
+          "sha256": "d27213530f57fdf97dc68f4c662dae29e0225f228a760114bf6fe2ee63fb612b",
+          "zipCrc32": "88abde37"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stderr.log",
+          "bytes": 4021,
+          "sha256": "d61442b8324b0390634f506b13ace693b99cb548d311ea8be80df1751686c34c",
+          "zipCrc32": "daab5c5f"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stdout.html",
+          "bytes": 1377107,
+          "sha256": "e998962dfc59ab6295cd804835092606621b7c195f9ddd75acc7840534d71bae",
+          "zipCrc32": "48cd6933"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-support-stacking-hYoEIn",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.1630275559999281,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "support-stacking",
+          "json_status": "fail",
+          "json_scenario": "support-stacking",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "support-stacking",
+          "json_status": "fail",
+          "json_scenario": "support-stacking",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "support-stacking",
+          "status": "fail",
+          "detail": {
+            "message": "Ascension clears all sources",
+            "stack": "Error: Ascension clears all sources\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:15077:61)\n    at ok (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:14067:29)\n    at window.runSupportStacking (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:14116:202)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:15569:46)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stdout.html",
+        "bytes": 1377107,
+        "sha256": "e998962dfc59ab6295cd804835092606621b7c195f9ddd75acc7840534d71bae",
+        "zipCrc32": "48cd6933"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/04-support-stacking"
+    },
+    {
+      "name": "rift-status-contract",
+      "occurrence": 5,
+      "rawLogSection": {
+        "byteOffset": 10408139,
+        "bytes": 6517,
+        "sha256": "28ab475360b326be3bb5d5d8dba9ceed19bfd2655ae578a2dad78ad500e7aaf3"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.479551897000056,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/process.json",
+          "bytes": 928,
+          "sha256": "55061a5a7c13e7ccfa2d239ded893eb7f6d34162952ad02ab9850e699961ba49",
+          "zipCrc32": "75472e95"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stderr.log",
+          "bytes": 4021,
+          "sha256": "3b29a9fea502fea630a0504fae054837825e624d5d9cc2f151e34ae476cf3781",
+          "zipCrc32": "223c793f"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stdout.html",
+          "bytes": 1458064,
+          "sha256": "d5b7fc2b08a7276efa398187500b2f621153eb403f76d6e7a5e6e91752a64e46",
+          "zipCrc32": "25a41863"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-rift-status-contract-KgbRQX",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=rift-status-contract&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 2.479551897000056,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "rift-status-contract",
+          "json_status": "fail",
+          "json_scenario": "rift-status-contract",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "rift-status-contract",
+          "json_status": "fail",
+          "json_scenario": "rift-status-contract",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "rift-status-contract",
+          "status": "fail",
+          "detail": "pending intent is not active Bonds",
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stdout.html",
+        "bytes": 1458064,
+        "sha256": "d5b7fc2b08a7276efa398187500b2f621153eb403f76d6e7a5e6e91752a64e46",
+        "zipCrc32": "25a41863"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/05-rift-status-contract"
+    },
+    {
+      "name": "p2-07a-formation-reconstruction",
+      "occurrence": 6,
+      "rawLogSection": {
+        "byteOffset": 10856227,
+        "bytes": 6562,
+        "sha256": "b5a40ae0c94a61d352eddfb9a5e998b55b3b8741233961f294fac8cb959438c1"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.0900776840001345,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/process.json",
+          "bytes": 973,
+          "sha256": "583112df2b73d2f2240dad0f9a93c266ee34d616576565319005ebc47157fa58",
+          "zipCrc32": "d8263a61"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stderr.log",
+          "bytes": 4021,
+          "sha256": "d722bb3f81c0ede66345edbb0c876202e0f56e3aceec0250e2d226f84ba6433e",
+          "zipCrc32": "931f190b"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stdout.html",
+          "bytes": 1371503,
+          "sha256": "43983abaeac165deb80337548bdf7595e484b7dbcef9f63882cf14123e215ede",
+          "zipCrc32": "3fa2f9a6"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-p2-07a-formation-reconstruction-fI1G3H",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.0900776840001345,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "p2-07a-formation-reconstruction",
+          "json_status": "fail",
+          "json_scenario": "p2-07a-formation-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "p2-07a-formation-reconstruction",
+          "json_status": "fail",
+          "json_scenario": "p2-07a-formation-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "p2-07a-formation-reconstruction",
+          "status": "fail",
+          "detail": {
+            "message": "temporary powered Ember only [\"stone\",\"ember\",\"tide\"]",
+            "stack": "Error: temporary powered Ember only [\"stone\",\"ember\",\"tide\"]\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15077:61)\n    at ok (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13449:31)\n    at same (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13450:26)\n    at http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13460:5\n    at Array.forEach (<anonymous>)\n    at window.runP207FormationQa (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13457:11)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15633:32)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stdout.html",
+        "bytes": 1371503,
+        "sha256": "43983abaeac165deb80337548bdf7595e484b7dbcef9f63882cf14123e215ede",
+        "zipCrc32": "3fa2f9a6"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/06-p2-07a-formation-reconstruction"
+    },
+    {
+      "name": "p2-07a-chronology",
+      "occurrence": 7,
+      "rawLogSection": {
+        "byteOffset": 10863065,
+        "bytes": 6506,
+        "sha256": "f20acfc277eb0b94db2b725bb2952e13122ba8f2be92324b076c2d4f3197f1e6"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.1044447670001536,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/process.json",
+          "bytes": 917,
+          "sha256": "f8f630e0cda9053d7c77bbdcee203a93acbe21514cecb6ed394f77444b00bd7d",
+          "zipCrc32": "7900f6ec"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stderr.log",
+          "bytes": 4021,
+          "sha256": "4a4ce92c4eca276a313bedc841d223e30151e1e5129ec3bf4910ece565046668",
+          "zipCrc32": "4a87a29e"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stdout.html",
+          "bytes": 1371009,
+          "sha256": "433d01e0067fb667d45b40541726f126ea563fe9d6a9479eaebbffa546c5b5bd",
+          "zipCrc32": "91071f2f"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-p2-07a-chronology-t2xSdX",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.1044447670001536,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "p2-07a-chronology",
+          "json_status": "fail",
+          "json_scenario": "p2-07a-chronology",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "p2-07a-chronology",
+          "json_status": "fail",
+          "json_scenario": "p2-07a-chronology",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "p2-07a-chronology",
+          "status": "fail",
+          "detail": {
+            "message": "no purchase before existing 1-second cadence",
+            "stack": "Error: no purchase before existing 1-second cadence\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh:15077:61)\n    at window.runP207ChronologyQa (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh:13532:53)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh:15637:32)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stdout.html",
+        "bytes": 1371009,
+        "sha256": "433d01e0067fb667d45b40541726f126ea563fe9d6a9479eaebbffa546c5b5bd",
+        "zipCrc32": "91071f2f"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/07-p2-07a-chronology"
+    },
+    {
+      "name": "layout-p2-07a-reconstruction",
+      "occurrence": 8,
+      "rawLogSection": {
+        "byteOffset": 10869571,
+        "bytes": 5602,
+        "sha256": "03c7f412ce8040c143f1e2edcd33aa9f9dcfa24d8c4f29ee6b2cbc90e37305c4"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 0.9741656490000896,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/process.json",
+          "bytes": 1012,
+          "sha256": "b984ae276a0fa8951c92b180f27a2ce69ecbae3dd6ec47f4e599820cbf94d02d",
+          "zipCrc32": "c8db37d1"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/stderr.log",
+          "bytes": 4021,
+          "sha256": "0f62312120961a6ef4b877590361092cf38931e9641a7ae843f0128514e9bd4c",
+          "zipCrc32": "b45f64b8"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/stdout.html",
+          "bytes": 1078,
+          "sha256": "63cb47caba956874bab2304b0a93e0c3a203421d134f1e119980e61dc371c748",
+          "zipCrc32": "24c74196"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-kjS82m",
+          "--dump-dom",
+          "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=360&height=800&safeTop=0&safeBottom=0"
+        ],
+        "fixture": "fresh",
+        "viewport": [
+          360,
+          800,
+          0,
+          0
+        ],
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 0.9741656490000896,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "layout-p2-07a-reconstruction",
+          "status": "fail",
+          "detail": "startup support explained",
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/stdout.html",
+        "bytes": 1078,
+        "sha256": "63cb47caba956874bab2304b0a93e0c3a203421d134f1e119980e61dc371c748",
+        "zipCrc32": "24c74196"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/08-layout-p2-07a-reconstruction"
+    },
+    {
+      "name": "layout-p2-07a-reconstruction",
+      "occurrence": 9,
+      "rawLogSection": {
+        "byteOffset": 10875173,
+        "bytes": 5602,
+        "sha256": "46a50db5246b2ad715453263b13072efca66390fc14d66e6657355ab8853451b"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 0.9767293050000444,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/process.json",
+          "bytes": 1012,
+          "sha256": "5c4fa731e08e96621fb52ee9fdf8a89545913c9e54180fd551b6d9d084de1f53",
+          "zipCrc32": "947cb09d"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stderr.log",
+          "bytes": 4021,
+          "sha256": "ea1368224df05739971dc11714fcffec81cce283b46f900b4a7903c4691942a3",
+          "zipCrc32": "d692b4d5"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stdout.html",
+          "bytes": 1078,
+          "sha256": "0a226660072a087fb6e52cb74a5ae88ac4ee37596229d285cab7271465d810ff",
+          "zipCrc32": "873540cb"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-w05XfA",
+          "--dump-dom",
+          "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=360&height=780&safeTop=0&safeBottom=0"
+        ],
+        "fixture": "fresh",
+        "viewport": [
+          360,
+          780,
+          0,
+          0
+        ],
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 0.9767293050000444,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "layout-p2-07a-reconstruction",
+          "status": "fail",
+          "detail": "startup support explained",
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stdout.html",
+        "bytes": 1078,
+        "sha256": "0a226660072a087fb6e52cb74a5ae88ac4ee37596229d285cab7271465d810ff",
+        "zipCrc32": "873540cb"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/09-layout-p2-07a-reconstruction"
+    },
+    {
+      "name": "layout-p2-07a-reconstruction",
+      "occurrence": 10,
+      "rawLogSection": {
+        "byteOffset": 10880775,
+        "bytes": 5602,
+        "sha256": "2e70169d1bcf084b28da5b5ed637eb9109082cad4ec4bf935de485021b47307f"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 0.9669987089997157,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/process.json",
+          "bytes": 1012,
+          "sha256": "6d6305114c79e34dc7e5bb52302baeb1e213f836be0e4af4d42f69e7408262e6",
+          "zipCrc32": "22257501"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/stderr.log",
+          "bytes": 4021,
+          "sha256": "af06a97bfe1d83ce16c40f26899b733c0ee545f683d7b2ba78da8689cb6f981d",
+          "zipCrc32": "0accfe12"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/stdout.html",
+          "bytes": 1078,
+          "sha256": "c5483cf2e37e59dbee90398f7e57fa7869a3e5aa2bd01f778b534b39a6b5773e",
+          "zipCrc32": "057ff63b"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-XEPzJq",
+          "--dump-dom",
+          "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0"
+        ],
+        "fixture": "fresh",
+        "viewport": [
+          390,
+          844,
+          0,
+          0
+        ],
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 0.9669987089997157,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "layout-p2-07a-reconstruction",
+          "status": "fail",
+          "detail": "startup support explained",
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/stdout.html",
+        "bytes": 1078,
+        "sha256": "c5483cf2e37e59dbee90398f7e57fa7869a3e5aa2bd01f778b534b39a6b5773e",
+        "zipCrc32": "057ff63b"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/10-layout-p2-07a-reconstruction"
+    },
+    {
+      "name": "layout-p2-07a-reconstruction",
+      "occurrence": 11,
+      "rawLogSection": {
+        "byteOffset": 10886377,
+        "bytes": 5601,
+        "sha256": "c6fb15ac622c4432665601f2e53637b7d3f1c9c5871b642dd11e01dc2495439c"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 0.985116820000112,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/process.json",
+          "bytes": 1011,
+          "sha256": "6c495e133904b3fca6069c24125a50bdced29c41a0427e95232c94bbf952537a",
+          "zipCrc32": "b56bca7e"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/stderr.log",
+          "bytes": 4021,
+          "sha256": "31a89ddd91867930605ad4d0d9b978ccef4f5949f9e16e047c0501106e6a9b47",
+          "zipCrc32": "72b9c52d"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/stdout.html",
+          "bytes": 1078,
+          "sha256": "fcd7dde6bc3d5933dc6e27b8125a71309fdade10f5d2d52b7a92f425b0a53121",
+          "zipCrc32": "14243434"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-VlDpS0",
+          "--dump-dom",
+          "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=412&height=915&safeTop=0&safeBottom=0"
+        ],
+        "fixture": "fresh",
+        "viewport": [
+          412,
+          915,
+          0,
+          0
+        ],
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 0.985116820000112,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "layout-p2-07a-reconstruction",
+          "status": "fail",
+          "detail": "startup support explained",
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/stdout.html",
+        "bytes": 1078,
+        "sha256": "fcd7dde6bc3d5933dc6e27b8125a71309fdade10f5d2d52b7a92f425b0a53121",
+        "zipCrc32": "14243434"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/11-layout-p2-07a-reconstruction"
+    },
+    {
+      "name": "layout-p2-07a-reconstruction",
+      "occurrence": 12,
+      "rawLogSection": {
+        "byteOffset": 10891978,
+        "bytes": 5604,
+        "sha256": "6b967430688b689e83d0686acabdba7598da6274bcd4f3b90733ebec00a59dae"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 0.9170289360000752,
+        "timeout_sec": 25
+      },
+      "detail": null,
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/process.json",
+          "bytes": 1016,
+          "sha256": "6befb74a826e96438b498d51272ec01fe17fccdf31e6335e99a826283973c80a",
+          "zipCrc32": "936cccd6"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/stderr.log",
+          "bytes": 4021,
+          "sha256": "1f63ba037a752e2cbae553ce22848d74e8116f33ae2ca460001d5414417ef5d4",
+          "zipCrc32": "09e67721"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/stdout.html",
+          "bytes": 1080,
+          "sha256": "1f2189031f3e5fe336d3f33ded0450875eddb05e40fa2125a90ed7de78d3fda5",
+          "zipCrc32": "a572b03f"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-vnJKpz",
+          "--dump-dom",
+          "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=360&height=640&safeTop=24&safeBottom=24"
+        ],
+        "fixture": "fresh",
+        "viewport": [
+          360,
+          640,
+          24,
+          24
+        ],
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 0.9170289360000752,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": null,
+          "json_status": "fail",
+          "json_scenario": "layout-p2-07a-reconstruction",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "layout-p2-07a-reconstruction",
+          "status": "fail",
+          "detail": "startup support explained",
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/stdout.html",
+        "bytes": 1080,
+        "sha256": "1f2189031f3e5fe336d3f33ded0450875eddb05e40fa2125a90ed7de78d3fda5",
+        "zipCrc32": "a572b03f"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/12-layout-p2-07a-reconstruction"
+    },
+    {
+      "name": "ascend-prisms-contract",
+      "occurrence": 13,
+      "rawLogSection": {
+        "byteOffset": 10981329,
+        "bytes": 6653,
+        "sha256": "6f9cf00aed9263578aa87b251b87e78e44c62c005d09e658a395099e758e72b5"
+      },
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.277992178000044,
+        "timeout_sec": 25
+      },
+      "detail": {
+        "route": "ascend-prisms-save-reload",
+        "reward": 21,
+        "benchmark": 219,
+        "tree": 17,
+        "completedLab": 18,
+        "schema": 2
+      },
+      "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH",
+      "artifactFiles": [
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/process.json",
+          "bytes": 936,
+          "sha256": "dab6ec76f45dd83613c8eadcd89ac42f56382c50e2feabba48f2e2ba9d2d3268",
+          "zipCrc32": "6e728e40"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stderr.log",
+          "bytes": 4021,
+          "sha256": "a197995c4d9c91b63394a45678d6999fbc9c295c2763253482072e7e7f4e853e",
+          "zipCrc32": "f245c13c"
+        },
+        {
+          "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stdout.html",
+          "bytes": 1460846,
+          "sha256": "cac74cf8232285d9ce705b0235c6f75ed534dc8e3e4e0de62007df09e2880cf9",
+          "zipCrc32": "a7406c7f"
+        }
+      ],
+      "rawProcess": {
+        "command": [
+          "/usr/bin/google-chrome",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--no-first-run",
+          "--window-size=390,844",
+          "--virtual-time-budget=1500",
+          "--user-data-dir=/tmp/lumenfall-qa-ascend-prisms-contract-erwWOM",
+          "--dump-dom",
+          "http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh"
+        ],
+        "fixture": "fresh",
+        "viewport": null,
+        "process": {
+          "exitcode": 0,
+          "timed_out": false,
+          "elapsed_sec": 1.277992178000044,
+          "timeout_sec": 25
+        },
+        "qa": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "ascend-prisms-contract",
+          "json_status": "fail",
+          "json_scenario": "ascend-prisms-contract",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        }
+      },
+      "qa": {
+        "observation": {
+          "qa_count": 1,
+          "qa_status": "fail",
+          "qa_scenario": "ascend-prisms-contract",
+          "json_status": "fail",
+          "json_scenario": "ascend-prisms-contract",
+          "runtime_markers": [],
+          "runtime_error_count": 0,
+          "json_error": null,
+          "valid": true
+        },
+        "payload": {
+          "scenario": "ascend-prisms-contract",
+          "status": "fail",
+          "detail": {
+            "message": "manual payout equals preview/oracle",
+            "stack": "Error: manual payout equals preview/oracle\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:15077:61)\n    at ok (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:11359:29)\n    at check (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:11375:33)\n    at window.runAscendPrismsContract (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:11400:20)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:17235:32)"
+          },
+          "runtimeErrors": []
+        }
+      },
+      "domProvenance": {
+        "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stdout.html",
+        "bytes": 1460846,
+        "sha256": "cac74cf8232285d9ce705b0235c6f75ed534dc8e3e4e0de62007df09e2880cf9",
+        "zipCrc32": "a7406c7f"
+      },
+      "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/13-ascend-prisms-contract"
+    }
+  ]
+}

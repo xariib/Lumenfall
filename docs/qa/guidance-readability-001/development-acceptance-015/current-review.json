@@ -1,0 +1,650 @@
+{
+  "status": "PASS_CURRENT_SOURCE_AND_ORIGINAL_RAW_REVIEW",
+  "attribution": "Self-review in this owner chat; published collaboration reviews retain their attribution",
+  "merge": "354e19ff956b47cf8833a8ae25c599298cbe659f",
+  "orderedParents": [
+    "684bfc52bb2ca523124fe63981188b9a8004d747",
+    "bfed924be57a3b25e06c2f6e4ba3a38e9fc940b6"
+  ],
+  "tree": "381a7951d3b45a1a0a64e49b7dd13ed11d6022c6",
+  "wholeTreeFiles": 6567,
+  "changedFiles": [
+    {
+      "status": "M",
+      "path": ".github/workflows/pre-merge-validation.yml"
+    },
+    {
+      "status": "M",
+      "path": "docs/PROJECT_STATE.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ACCEPTANCE.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/context.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/context.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/context.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/independent-review.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/inverse-unit.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/inverse-unit.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/inverse-unit.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/run-local.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/source.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/source.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/source.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-helper.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-helper.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-helper.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-mutators.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-mutators.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-mutators.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-unit.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-unit.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/archive/ci-review-005/syntax-unit.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-005/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/clock-anchors.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/collaboration-peer-review.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/baseline-assets-unit.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/baseline-assets-unit.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/baseline-assets-unit.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/baseline-source.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/baseline-source.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/baseline-source.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/context.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/context.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/context.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/inverse-unit.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/inverse-unit.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/inverse-unit.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/source.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/source.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/source.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-assets-unit.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-assets-unit.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-assets-unit.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-assets.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-assets.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-assets.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-helper.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-helper.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-helper.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-mutators.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-mutators.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-mutators.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-runner.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-runner.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-runner.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-unit.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-unit.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/local/syntax-unit.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/run-local.cjs"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/ci-review-006/runner-peer-review.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/baseline-002/process-start.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/baseline-002/process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/baseline-002/source.diff"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/baseline-002/stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/baseline-002/stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/about-blank.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/about-blank.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/about-blank.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/diagnostic-progress.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/disk.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/disk.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/disk.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/extract.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/extract.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/extract.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/final-diagnosis.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/kernel.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/kernel.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/kernel.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/proc-self-cgroup.txt"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/proc-self-limits.txt"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/proc-self-mountinfo.txt"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/proc-self-status.txt"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/ps.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/ps.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/ps.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/root-original-runtime-receipt.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/run-diagnostic.cjs"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/version.process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/version.stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-environment/chrome-startup/version.stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-tooling/process.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-tooling/stderr.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/qa/guidance-readability-001/local-tooling/stdout.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/tasks/GUIDANCE_READABILITY_001.md"
+    },
+    {
+      "status": "M",
+      "path": "index.html"
+    },
+    {
+      "status": "A",
+      "path": "scripts/ci/guidance-baseline-assets.cjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/ci/guidance-readability.cjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/behavioral/guidance-baseline-assets.test.cjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/behavioral/rift-guidance-inverses.cjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/behavioral/rift-guidance-inverses.test.cjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/behavioral/rift-guidance-readability.cjs"
+    },
+    {
+      "status": "M",
+      "path": "tests/behavioral/rift-guidance.cjs"
+    }
+  ],
+  "nonStyleBytesExceptSingleTitleUnchanged": true,
+  "completeScriptsExceptSingleTitleUnchanged": true,
+  "scenarioIds": 182,
+  "passingAttempts": 212,
+  "registeredNegatives": 40,
+  "mandatoryNegativeCauses": [
+    {
+      "scenario": "self-test-bad-assertion",
+      "cause": "intentional harness self-test assertion",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-uncaught-error",
+      "cause": "Uncaught Error: intentional uncaught QA self-test",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-unhandled-rejection",
+      "cause": "Error: intentional unhandled rejection QA self-test",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-parity-regression",
+      "cause": "intentional parity regression totalKills must match exactly (expected 42, got 43)",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-chronology-regression",
+      "cause": "intentional chronology regression: Study incorrectly expected before Research",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-wisp-formula-regression",
+      "cause": "intentional Wisp formula regression: passive-only Formation Training incorrectly expected to scale ability damage",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-wisp-pacing-regression",
+      "cause": "intentional Wisp pacing regression: Mythic cost compression was not detected",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-endgame-currency-regression",
+      "cause": "intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-wisp-role-regression",
+      "cause": "intentional Wisp role regression: stale Tank semantics were not detected",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-p1-05-selected",
+      "cause": "intentional selected semantics regression",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-p1-05-focus-return",
+      "cause": "intentional overlay focus-return regression",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-lifecycle-duplicate",
+      "cause": "intentional duplicate lifecycle regression must consume exactly one offline window, got 2",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-save-backup-placement",
+      "cause": "Backup is under Save immediately before separate Reset",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-save-backup-confirmation",
+      "cause": "Restore request waits for confirmation: primary",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-upgrade-identity-buy",
+      "cause": "closed bulk focus 1",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-upgrade-identity-value",
+      "cause": "exact old Formation factors 1",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-upgrade-identity-clock",
+      "cause": "Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":2,\"elapsedWholeSec\":2,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":58,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":2,\"riftMode\":\"farm\",\"candidates\":{\"ability\":0.10526315789473645,\"autoTap\":1,\"autoEmpower\":1,\"study\":88,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-tree",
+      "cause": "reward oracle 15,0,1,0,full expected 8 got 7",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-lab",
+      "cause": "reward oracle 16,15,0,1,reserve expected 2 got 1",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-payout",
+      "cause": "manual payout equals preview/oracle",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-repeat",
+      "cause": "reward oracle 16,15,0,0,reserve expected 1 got 2",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-rounding",
+      "cause": "reward oracle 16,15,1,0,progressBonus expected 1 got 0",
+      "status": "RAW_INTENDED_CAUSE_CONFIRMED"
+    }
+  ],
+  "nativePositiveProcesses": 29,
+  "guidance": {
+    "profiles": 16,
+    "originalSamples": 160,
+    "ascendCases": 16,
+    "recomputedOrdinaryWords": 80,
+    "recomputedAscendWords": 48,
+    "recomputedGeometryPairs": 208,
+    "maxGeometryDelta": 0,
+    "healthyBrowserTeardown": true
+  },
+  "guardedSmoke": {
+    "status": "PASS_ORIGINAL_GUARDED_RUNTIME_EVIDENCE",
+    "scripts": [
+      {
+        "order": 0,
+        "attrs": {
+          "id": "ci-runtime-error-guard"
+        },
+        "bytes": 283,
+        "sha256": "bf5ca4673ff4e83bba05813f29f98ca5b5c164acccd70939df129306fe4786e9"
+      },
+      {
+        "order": 1,
+        "attrs": {},
+        "bytes": 414063,
+        "sha256": "c78fc95eb861ac59aa3b87e76b17831ba3176892e89e0429a017d8d2dcf92e77"
+      },
+      {
+        "order": 2,
+        "attrs": {},
+        "bytes": 338,
+        "sha256": "002cf9dec93becfe1e66d07cd9e9a08124168f62e12ea6e56b3546422f21fca2"
+      }
+    ],
+    "guardUnique": true,
+    "guardBeforeGame": true,
+    "sourceByteEquality": true,
+    "noRuntimeMarker": true,
+    "renderedZone0": 2,
+    "scrollLockedMain": true,
+    "enemyName": "Dusk Prowler",
+    "hudLumen": "0",
+    "chromeLog": {
+      "lines": 21,
+      "classification": "Only DBus/UPower environment-service diagnostics; no JS or browser-crash diagnostic."
+    },
+    "httpServer": "http://127.0.0.1:4173",
+    "viewportFromWorkflow": [
+      390,
+      844
+    ],
+    "virtualTimeBudgetMs": 1800,
+    "workflowStep": "Browser runtime smoke test",
+    "workflowConclusion": "success",
+    "completeCombinedJoblogAvailable": false
+  },
+  "limitations": [
+    "Complete combined terminal job log unavailable; original uploaded logs and raw receipts reviewed.",
+    "Original transient Guidance state/accessibility/scroll snapshots remain source-bound live assertions; absent outputs are not invented.",
+    "Two negative Backup receipts do not serialize Chrome teardown code.",
+    "CSS root scaling does not establish native textZoom/TalkBack/installed-app acceptance."
+  ],
+  "hostUtc": "2026-10-11T15:08:11.725Z"
+}

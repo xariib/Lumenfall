@@ -1,0 +1,264 @@
+{
+  "observedAt": "2026-10-11 23:03:38 UTC",
+  "head": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+  "sourceSha256": "f40baeedc086fd89d8dd3c10d596af000cc073942110bc628b957e9ceca2b5fa",
+  "checks": [
+    {
+      "name": "Lumenfall pre-merge validation",
+      "id": 114597607430,
+      "head_sha": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38182406008/job/114597607430",
+      "started_at": "2026-10-11T22:57:09Z",
+      "completed_at": null
+    },
+    {
+      "name": "forge",
+      "id": 114597551137,
+      "head_sha": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38182405985/job/114597551137",
+      "started_at": "2026-10-11T22:56:51Z",
+      "completed_at": "2026-10-11T23:00:31Z"
+    },
+    {
+      "name": "comet",
+      "id": 114597550675,
+      "head_sha": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38182406010/job/114597550675",
+      "started_at": "2026-10-11T22:56:51Z",
+      "completed_at": "2026-10-11T23:00:42Z"
+    },
+    {
+      "name": "tree",
+      "id": 114597550614,
+      "head_sha": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38182406022/job/114597550614",
+      "started_at": "2026-10-11T22:56:51Z",
+      "completed_at": "2026-10-11T23:01:32Z"
+    },
+    {
+      "name": "shared-ui",
+      "id": 114597550474,
+      "head_sha": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38182405989/job/114597550474",
+      "started_at": "2026-10-11T22:56:51Z",
+      "completed_at": "2026-10-11T23:00:48Z"
+    },
+    {
+      "name": "lab",
+      "id": 114597550337,
+      "head_sha": "3ad4751c683938313f0bed7c8e612dd76a9b3bbb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38182405988/job/114597550337",
+      "started_at": "2026-10-11T22:56:51Z",
+      "completed_at": "2026-10-11T22:58:33Z"
+    }
+  ],
+  "fullJobs": [
+    {
+      "id": 114597607430,
+      "status": "in_progress",
+      "conclusion": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-11T22:57:11Z",
+          "completed_at": "2026-10-11T22:57:12Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-11T22:57:12Z",
+          "completed_at": "2026-10-11T22:57:35Z"
+        },
+        {
+          "name": "Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-11T22:57:35Z",
+          "completed_at": "2026-10-11T22:57:41Z"
+        },
+        {
+          "name": "APK identity verifier self-test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-11T22:57:41Z",
+          "completed_at": "2026-10-11T22:57:41Z"
+        },
+        {
+          "name": "Node tooling regression checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-11T22:57:41Z",
+          "completed_at": "2026-10-11T22:57:41Z"
+        },
+        {
+          "name": "Validate game source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-11T22:57:41Z",
+          "completed_at": "2026-10-11T22:57:41Z"
+        },
+        {
+          "name": "Stage web assets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-11T22:57:41Z",
+          "completed_at": "2026-10-11T22:57:41Z"
+        },
+        {
+          "name": "Guidance baseline readability and exact old-width inverse",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-11T22:57:41Z",
+          "completed_at": "2026-10-11T22:58:17Z"
+        },
+        {
+          "name": "Preserve early Guidance readability evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-11T22:58:17Z",
+          "completed_at": "2026-10-11T22:58:20Z"
+        },
+        {
+          "name": "Rift cosmetics selection, persistence and mobile acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-11T22:58:20Z",
+          "completed_at": "2026-10-11T22:58:28Z"
+        },
+        {
+          "name": "Exact Prism earning numerical and causal regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-11T22:58:28Z",
+          "completed_at": "2026-10-11T22:58:33Z"
+        },
+        {
+          "name": "Tree caps original-value refunds and current collection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-11T22:58:33Z",
+          "completed_at": "2026-10-11T22:59:34Z"
+        },
+        {
+          "name": "Development currency UI and retained-value acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-11T22:59:34Z",
+          "completed_at": "2026-10-11T23:00:15Z"
+        },
+        {
+          "name": "Stateful behavioral regression suite",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 14,
+          "started_at": "2026-10-11T23:00:15Z",
+          "completed_at": null
+        },
+        {
+          "name": "Behavioral harness negative self-test",
+          "status": "pending",
+          "conclusion": null,
+          "number": 15,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Install runtime error guard in staged copy",
+          "status": "pending",
+          "conclusion": null,
+          "number": 16,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Browser runtime smoke test",
+          "status": "pending",
+          "conclusion": null,
+          "number": 17,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Preserve full regression evidence",
+          "status": "pending",
+          "conclusion": null,
+          "number": 18,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Set up Node.js",
+          "status": "pending",
+          "conclusion": null,
+          "number": 35,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Checkout",
+          "status": "pending",
+          "conclusion": null,
+          "number": 36,
+          "started_at": null,
+          "completed_at": null
+        }
+      ]
+    }
+  ],
+  "decodedLogs": [
+    {
+      "lane": "forge",
+      "job": 114597551137,
+      "path": "forge-3ad4751c-job.txt"
+    },
+    {
+      "lane": "comet",
+      "job": 114597550675,
+      "path": "comet-3ad4751c-job.txt"
+    },
+    {
+      "lane": "tree",
+      "job": 114597550614,
+      "path": "tree-3ad4751c-job.txt"
+    },
+    {
+      "lane": "shared-ui",
+      "job": 114597550474,
+      "path": "shared-ui-3ad4751c-job.txt"
+    },
+    {
+      "lane": "lab",
+      "job": 114597550337,
+      "path": "lab-3ad4751c-job.txt"
+    }
+  ],
+  "limitation": "Five current-head lanes succeeded and decoded raw logs saved. Full remains in progress; no final Full pass/default counts claimed. All six exact-head CI lanes required for integration. Historical Full/Shared evidence gaps retained."
+}

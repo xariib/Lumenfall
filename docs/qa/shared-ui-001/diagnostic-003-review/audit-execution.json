@@ -1,0 +1,20 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "NODE_OPTIONS",
+    "-u",
+    "NODE_PATH",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "shared-ui-ci/diagnostic-003/mobile-audit/audit-raw.cjs"
+  ],
+  "cwd": "/workspace/scratch/0848c4e4f365",
+  "exitCode": 0,
+  "node": "v24.19.0",
+  "toolChunk": "c4a18e",
+  "wallSeconds": 1.716361713,
+  "stdout": "{\"status\":\"PASS_INDEPENDENT_DIAGNOSTIC_BROWSER_SUBAUDIT\",\"actual\":{\"checks\":6985,\"profiles\":12,\"exactInverseCauses\":3,\"normalProcessExit\":0,\"chromeExit\":{\"code\":0,\"signal\":null},\"wispRows\":96,\"wispImmediateAndSettledObservations\":192,\"glyphMeasurements\":5736,\"clippingOwnerObservations\":1536,\"nativeActionRows\":84,\"settingsActionRows\":48,\"nativeWispTabRows\":12,\"lastWispRefusals\":24,\"refusalTouch\":12,\"refusalEnter\":12,\"completeStateAndRawSlotComparisons\":168,\"saveWritesDuringObservedActions\":0,\"runtimeErrors\":[]},\"images\":{\"total\":118,\"directlyViewed\":75,\"unique\":116},\"negativeCauses\":[\"brand-glyph-intersects-settings\",\"wisp-glyph-intersects-toggle\",\"toast-adjacent-glyph-lines-intersect\"]}\n",
+  "sourceOfResult": "Actual tools.exec_command completion; original-data arithmetic only",
+  "gameRuns": 0,
+  "browserRuns": 0
+}

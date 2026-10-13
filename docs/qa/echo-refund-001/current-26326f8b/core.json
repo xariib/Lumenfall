@@ -1,0 +1,138 @@
+{
+  "status": "PASS",
+  "sourceSha256": "26326f8b1b85bffa420a4e8e0abb711113d418f069fceaeabc25c9df466a1011",
+  "checks": 611,
+  "records": [
+    {
+      "raw": 0,
+      "wallet": 17,
+      "bonds": 0,
+      "total": "17",
+      "creditEntries": 0
+    },
+    {
+      "raw": 5,
+      "wallet": 17,
+      "bonds": 0,
+      "total": "17",
+      "creditEntries": 0
+    },
+    {
+      "raw": 6,
+      "wallet": 17,
+      "bonds": 0,
+      "total": "17",
+      "creditEntries": 0
+    },
+    {
+      "raw": 7,
+      "wallet": 17,
+      "bonds": 0,
+      "total": "33",
+      "creditEntries": 0
+    },
+    {
+      "raw": 10,
+      "wallet": 17,
+      "bonds": 21,
+      "total": "3503",
+      "creditEntries": 0
+    },
+    {
+      "raw": 95,
+      "wallet": 0,
+      "bonds": 40,
+      "total": "381182898585695",
+      "creditEntries": 0
+    },
+    {
+      "raw": 2000,
+      "wallet": 0,
+      "bonds": 2000,
+      "total": "500418951316020436540505465864953848651365078524097903150379582370043851005120380895096475411824706966917550739651730366294989352197337329188645094251614388679741632533641671366030681063386874416645261470436784440267060832250865717952092400612119567952212034979852013851380960149568606169188949024892043999674",
+      "creditEntries": 3715
+    },
+    {
+      "raw": 2100,
+      "wallet": 0,
+      "bonds": 0,
+      "total": "36969615064988623589546261493193773023062879891788863797188853546802815946586656691785735357153331322601888634767964027566503488120225610700355898842160253576222901959466171158637687612638060932728861853527923708313574602394317186610647479455968451044886549686351133777954892931694504782202759143546773354488",
+      "creditEntries": 1996
+    },
+    {
+      "raw": 1e+300,
+      "wallet": 0,
+      "bonds": 0,
+      "total": "545593533174429112660680659083780728936790541299067481987023091744666711373531269789706239693500133011524053940817719665274192256578199479997005078714987885514980084985799091697667879349773990238199209583884780708437492711190272910952741209807925763859844258704243666627958050429573168122360491402480093804536",
+      "creditEntries": 2004
+    },
+    {
+      "raw": 7,
+      "wallet": 0.1,
+      "bonds": 0,
+      "total": "16",
+      "creditEntries": 1
+    },
+    {
+      "raw": 7,
+      "wallet": 0.5,
+      "bonds": 0,
+      "total": "16",
+      "creditEntries": 0
+    },
+    {
+      "raw": 7,
+      "wallet": 1e+30,
+      "bonds": 21,
+      "total": "1000000000000000019884624842048",
+      "creditEntries": 2
+    }
+  ],
+  "negative": [
+    {
+      "name": "missing-refund",
+      "assertion": "original total value 7/17"
+    },
+    {
+      "name": "double-refund",
+      "assertion": "second normalization never refunds again"
+    },
+    {
+      "name": "wrong-price",
+      "assertion": "original total value 7/17"
+    },
+    {
+      "name": "overflow-tolerance",
+      "assertion": "Missing expected exception: finite original suffix rejects corrupted price 2085"
+    },
+    {
+      "name": "missing-receipt",
+      "assertion": "Missing expected exception: either completed proof requires recovery: none"
+    },
+    {
+      "name": "missing-history-audit",
+      "assertion": "Missing expected exception: either completed proof requires recovery: marker"
+    },
+    {
+      "name": "missing-marker-audit",
+      "assertion": "Missing expected exception: either completed proof requires recovery: history"
+    },
+    {
+      "name": "missing-credit-audit",
+      "assertion": "Missing expected exception: reject damaged audit"
+    },
+    {
+      "name": "free-credit",
+      "assertion": "unrepresentable credit cannot pay a free purchase"
+    },
+    {
+      "name": "free-wallet",
+      "assertion": "unrepresentable wallet cannot pay a free purchase"
+    },
+    {
+      "name": "lost-payment-audit",
+      "assertion": "Echo-only credit payment"
+    }
+  ],
+  "scope": "Complete current production IIFE; exact original prices and credits, cap/identity, mixed ledgers, backup/cold load/recovery/transaction failures, preserved raw levels and paid Study snapshots. UI/native/long chronology checked separately; reset defaults only."
+}

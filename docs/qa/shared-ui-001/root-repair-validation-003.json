@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "scope": "Root review of driver-only repair003 after actual diagnostic002. No new browser execution.",
+  "candidateUnderDiagnosis": "33153db7a59dbf0d69412241a33ac076177dee7f",
+  "diagnosticRun": 38111030896,
+  "originalDriverSha256": "d95e30aa66b101bcfb8afcde023697e12acad581544964ece39a8304aa714abe",
+  "repairedDriverSha256": "a2d4346daa8da30d61ef39135cb22399fc7b9b3cce40da9813d70c1fbcdf058c",
+  "productSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+  "failure": {
+    "code": "wisp-glyph-outside-header",
+    "checks": 982,
+    "completedProfiles": 2,
+    "executedInverses": 0,
+    "profile": {
+      "width": 320,
+      "rootFont": 32,
+      "motion": "no-preference"
+    },
+    "headerTop": 348,
+    "nameRangeTop": 347,
+    "cardTop": 335,
+    "mainTop": 129,
+    "classification": "One-pixel typographic overhang above a transparent, nonclipping flex header; no actual visible clipping or overlap."
+  },
+  "rootVisualReview": {
+    "path": "shared-ui-ci/diagnostic-002/raw/artifact/layout/normal/failure.png",
+    "sha256": "f0dcd8cf279bac8ab85ec9f76137daec3491a78018b18ef1566470dc8b7e2dc8",
+    "viewed": true,
+    "findings": "Name/class are visible inside the card; class wraps and Bench is on its own row."
+  },
+  "sourceReview": {
+    "observerOnly": true,
+    "computedAxisOverflowAndInnerClientBoxes": true,
+    "horizontalIdentityHeaderBoundsRetained": true,
+    "halfPixelToleranceUnchanged": true,
+    "cardMainViewportContainment": true,
+    "originalOverlapTrustedInputFocusSaveAndInverseAssertionsPreserved": true
+  },
+  "checks": {
+    "context": {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "93bac2",
+        "wall_time_seconds": 0.023714442,
+        "exit_code": 0,
+        "original_token_count": 32,
+        "output": "PASS: 29 entrypoints, 87 local Markdown links, shared startup 31107 bytes; startup with docs/tasks/SHARED_UI_001.md 32668 bytes\n"
+      }
+    },
+    "diffAndSourceIdentity": {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "37c8e2",
+        "wall_time_seconds": 0.000026487,
+        "exit_code": 0,
+        "original_token_count": 44,
+        "output": "{\"status\": \"PASS\", \"productBytes\": 657751, \"productUnchanged\": true, \"driverBytes\": 40591, \"driverSha256\": \"a2d4346daa8da30d61ef39135cb22399fc7b9b3cce40da9813d70c1fbcdf058c\"}\n"
+      }
+    }
+  },
+  "clock": {
+    "status": "fulfilled",
+    "value": {
+      "current_time": "2026-10-11 04:24:52 UTC"
+    }
+  },
+  "decision": "Publish candidate003 for another actual diagnostic. Do not infer12-profile, inverse or combined acceptance."
+}

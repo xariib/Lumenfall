@@ -1,0 +1,922 @@
+﻿2026-10-11T22:16:05.0704394Z Current runner version: '2.337.0'
+2026-10-11T22:16:05.0728911Z ##[group]Runner Image Provisioner
+2026-10-11T22:16:05.0729845Z Hosted Compute Agent
+2026-10-11T22:16:05.0730504Z Version: 20261002.596
+2026-10-11T22:16:05.0731203Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-11T22:16:05.0732033Z Build Date: 2026-10-02T22:28:27Z
+2026-10-11T22:16:05.0732738Z Worker ID: {61f3bb69-a9b0-497a-9c4e-e01611beb39c}
+2026-10-11T22:16:05.0733507Z Region: northcentralus
+2026-10-11T22:16:05.0734328Z Cloud: Azure
+2026-10-11T22:16:05.0734964Z ##[endgroup]
+2026-10-11T22:16:05.0736566Z ##[group]Operating System
+2026-10-11T22:16:05.0737237Z Ubuntu
+2026-10-11T22:16:05.0737839Z 24.04.5
+2026-10-11T22:16:05.0738405Z LTS
+2026-10-11T22:16:05.0738987Z ##[endgroup]
+2026-10-11T22:16:05.0739600Z ##[group]Runner Image
+2026-10-11T22:16:05.0740214Z Image: ubuntu-24.04
+2026-10-11T22:16:05.0740779Z Version: 20261004.327.1
+2026-10-11T22:16:05.0742136Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-11T22:16:05.0743810Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-11T22:16:05.0745006Z ##[endgroup]
+2026-10-11T22:16:05.0746235Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T22:16:05.0748334Z Contents: read
+2026-10-11T22:16:05.0749021Z Metadata: read
+2026-10-11T22:16:05.0749740Z ##[endgroup]
+2026-10-11T22:16:05.0752232Z Secret source: Actions
+2026-10-11T22:16:05.0753350Z Cache mode: write
+2026-10-11T22:16:05.0754508Z Prepare workflow directory
+2026-10-11T22:16:05.1097764Z Prepare all required actions
+2026-10-11T22:16:05.1147222Z Getting action download info
+2026-10-11T22:16:05.3729819Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-11T22:16:05.4574817Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-11T22:16:05.5442152Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-11T22:16:05.7598474Z Complete job name: comet
+2026-10-11T22:16:05.8402625Z ##[group]Run actions/checkout@v4
+2026-10-11T22:16:05.8403531Z with:
+2026-10-11T22:16:05.8403995Z   repository: karahaNx/Lumenfall
+2026-10-11T22:16:05.8408006Z   token: ***
+2026-10-11T22:16:05.8408510Z   ssh-strict: true
+2026-10-11T22:16:05.8408954Z   ssh-user: git
+2026-10-11T22:16:05.8409415Z   persist-credentials: true
+2026-10-11T22:16:05.8409912Z   clean: true
+2026-10-11T22:16:05.8410370Z   sparse-checkout-cone-mode: true
+2026-10-11T22:16:05.8410893Z   fetch-depth: 1
+2026-10-11T22:16:05.8411326Z   fetch-tags: false
+2026-10-11T22:16:05.8411771Z   show-progress: true
+2026-10-11T22:16:05.8412230Z   lfs: false
+2026-10-11T22:16:05.8412646Z   submodules: false
+2026-10-11T22:16:05.8413109Z   set-safe-directory: true
+2026-10-11T22:16:05.8413619Z   allow-unsafe-pr-checkout: false
+2026-10-11T22:16:05.8414612Z ##[endgroup]
+2026-10-11T22:16:05.9450185Z Syncing repository: karahaNx/Lumenfall
+2026-10-11T22:16:05.9452773Z ##[group]Getting Git version info
+2026-10-11T22:16:05.9454009Z Working directory is '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-11T22:16:05.9455932Z [command]/usr/bin/git version
+2026-10-11T22:16:05.9491320Z git version 2.55.0
+2026-10-11T22:16:05.9516204Z ##[endgroup]
+2026-10-11T22:16:05.9532001Z Temporarily overriding HOME='/home/runner/work/_temp/5cef5950-1b5d-45aa-bddc-ab20f507f834' before making global git config changes
+2026-10-11T22:16:05.9534566Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T22:16:05.9538194Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-11T22:16:05.9594715Z Deleting the contents of '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-11T22:16:05.9611214Z ##[group]Initializing the repository
+2026-10-11T22:16:05.9618450Z [command]/usr/bin/git init /home/runner/work/Lumenfall/Lumenfall
+2026-10-11T22:16:05.9725702Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-11T22:16:05.9727576Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-11T22:16:05.9728653Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-11T22:16:05.9729511Z hint: call:
+2026-10-11T22:16:05.9730269Z hint:
+2026-10-11T22:16:05.9730875Z hint: 	git config --global init.defaultBranch <name>
+2026-10-11T22:16:05.9731599Z hint:
+2026-10-11T22:16:05.9732360Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-11T22:16:05.9733345Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-11T22:16:05.9734461Z hint:
+2026-10-11T22:16:05.9735186Z hint: 	git branch -m <name>
+2026-10-11T22:16:05.9735969Z hint:
+2026-10-11T22:16:05.9736994Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-11T22:16:05.9743574Z Initialized empty Git repository in /home/runner/work/Lumenfall/Lumenfall/.git/
+2026-10-11T22:16:05.9758222Z [command]/usr/bin/git remote add origin https://github.com/karahaNx/Lumenfall
+2026-10-11T22:16:05.9815141Z ##[endgroup]
+2026-10-11T22:16:05.9816473Z ##[group]Disabling automatic garbage collection
+2026-10-11T22:16:05.9819636Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-11T22:16:05.9855393Z ##[endgroup]
+2026-10-11T22:16:05.9857183Z ##[group]Setting up auth
+2026-10-11T22:16:05.9862890Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T22:16:05.9901201Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T22:16:06.0267612Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T22:16:06.0309078Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T22:16:06.0592274Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T22:16:06.0628553Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-11T22:16:06.0870636Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-11T22:16:06.0916133Z ##[endgroup]
+2026-10-11T22:16:06.0917625Z ##[group]Fetching the repository
+2026-10-11T22:16:06.0927795Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8d7c727051509854eb94684256925c9294b0717b:refs/remotes/pull/111/merge
+2026-10-11T22:16:16.6708953Z From https://github.com/karahaNx/Lumenfall
+2026-10-11T22:16:16.6711733Z  * [new ref]         8d7c727051509854eb94684256925c9294b0717b -> pull/111/merge
+2026-10-11T22:16:16.6798302Z ##[endgroup]
+2026-10-11T22:16:16.6800622Z ##[group]Determining the checkout info
+2026-10-11T22:16:16.6803581Z ##[endgroup]
+2026-10-11T22:16:16.6805655Z [command]/usr/bin/git sparse-checkout disable
+2026-10-11T22:16:16.6810377Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-11T22:16:16.6840000Z ##[group]Checking out the ref
+2026-10-11T22:16:16.6842696Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/111/merge
+2026-10-11T22:16:17.6962003Z Updating files:  59% (4231/7058)
+2026-10-11T22:16:17.7048263Z Updating files:  60% (4235/7058)
+2026-10-11T22:16:17.7109841Z Updating files:  61% (4306/7058)
+2026-10-11T22:16:17.7257485Z Updating files:  62% (4376/7058)
+2026-10-11T22:16:17.7302133Z Updating files:  63% (4447/7058)
+2026-10-11T22:16:17.7363900Z Updating files:  64% (4518/7058)
+2026-10-11T22:16:17.7423805Z Updating files:  65% (4588/7058)
+2026-10-11T22:16:17.7460270Z Updating files:  66% (4659/7058)
+2026-10-11T22:16:17.7509851Z Updating files:  67% (4729/7058)
+2026-10-11T22:16:17.7564465Z Updating files:  68% (4800/7058)
+2026-10-11T22:16:17.7612549Z Updating files:  69% (4871/7058)
+2026-10-11T22:16:17.7668038Z Updating files:  70% (4941/7058)
+2026-10-11T22:16:17.7727991Z Updating files:  71% (5012/7058)
+2026-10-11T22:16:17.7791663Z Updating files:  72% (5082/7058)
+2026-10-11T22:16:17.7871415Z Updating files:  73% (5153/7058)
+2026-10-11T22:16:17.7939506Z Updating files:  74% (5223/7058)
+2026-10-11T22:16:17.8072116Z Updating files:  75% (5294/7058)
+2026-10-11T22:16:17.8122476Z Updating files:  76% (5365/7058)
+2026-10-11T22:16:17.8159173Z Updating files:  77% (5435/7058)
+2026-10-11T22:16:17.8243123Z Updating files:  78% (5506/7058)
+2026-10-11T22:16:17.8667064Z Updating files:  79% (5576/7058)
+2026-10-11T22:16:17.9145852Z Updating files:  80% (5647/7058)
+2026-10-11T22:16:17.9924811Z Updating files:  81% (5717/7058)
+2026-10-11T22:16:18.0779965Z Updating files:  82% (5788/7058)
+2026-10-11T22:16:18.0943968Z Updating files:  83% (5859/7058)
+2026-10-11T22:16:18.1031661Z Updating files:  84% (5929/7058)
+2026-10-11T22:16:18.1095965Z Updating files:  85% (6000/7058)
+2026-10-11T22:16:18.1179659Z Updating files:  86% (6070/7058)
+2026-10-11T22:16:18.1239881Z Updating files:  87% (6141/7058)
+2026-10-11T22:16:18.1340184Z Updating files:  88% (6212/7058)
+2026-10-11T22:16:18.1555273Z Updating files:  89% (6282/7058)
+2026-10-11T22:16:18.1603071Z Updating files:  90% (6353/7058)
+2026-10-11T22:16:18.1658986Z Updating files:  91% (6423/7058)
+2026-10-11T22:16:18.1906005Z Updating files:  92% (6494/7058)
+2026-10-11T22:16:18.1959153Z Updating files:  93% (6564/7058)
+2026-10-11T22:16:18.1995919Z Updating files:  94% (6635/7058)
+2026-10-11T22:16:18.2032640Z Updating files:  95% (6706/7058)
+2026-10-11T22:16:18.2074719Z Updating files:  96% (6776/7058)
+2026-10-11T22:16:18.2115700Z Updating files:  97% (6847/7058)
+2026-10-11T22:16:18.2200678Z Updating files:  98% (6917/7058)
+2026-10-11T22:16:18.2262527Z Updating files:  99% (6988/7058)
+2026-10-11T22:16:18.2263066Z Updating files: 100% (7058/7058)
+2026-10-11T22:16:18.2263469Z Updating files: 100% (7058/7058), done.
+2026-10-11T22:16:18.2366276Z Note: switching to 'refs/remotes/pull/111/merge'.
+2026-10-11T22:16:18.2366801Z 
+2026-10-11T22:16:18.2367175Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-11T22:16:18.2368152Z changes and commit them, and you can discard any commits you make in this
+2026-10-11T22:16:18.2369124Z state without impacting any branches by switching back to a branch.
+2026-10-11T22:16:18.2369658Z 
+2026-10-11T22:16:18.2369998Z If you want to create a new branch to retain commits you create, you may
+2026-10-11T22:16:18.2370806Z do so (now or later) by using -c with the switch command. Example:
+2026-10-11T22:16:18.2371291Z 
+2026-10-11T22:16:18.2371552Z   git switch -c <new-branch-name>
+2026-10-11T22:16:18.2371880Z 
+2026-10-11T22:16:18.2372043Z Or undo this operation with:
+2026-10-11T22:16:18.2372280Z 
+2026-10-11T22:16:18.2372383Z   git switch -
+2026-10-11T22:16:18.2372538Z 
+2026-10-11T22:16:18.2372793Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-11T22:16:18.2373231Z 
+2026-10-11T22:16:18.2373655Z HEAD is now at 8d7c727 Merge 83cdceebdf96c8627c812487de8611e89caa0196 into eb441039231f6fbb8676fa0a069b028e9aa50b2e
+2026-10-11T22:16:18.2472382Z ##[endgroup]
+2026-10-11T22:16:18.2521331Z [command]/usr/bin/git log -1 --format=%H
+2026-10-11T22:16:18.2561959Z 8d7c727051509854eb94684256925c9294b0717b
+2026-10-11T22:16:18.2843550Z ##[group]Run actions/setup-node@v4
+2026-10-11T22:16:18.2843880Z with:
+2026-10-11T22:16:18.2844342Z   node-version: 20
+2026-10-11T22:16:18.2844592Z   always-auth: false
+2026-10-11T22:16:18.2844830Z   check-latest: false
+2026-10-11T22:16:18.2847222Z   token: ***
+2026-10-11T22:16:18.2847450Z ##[endgroup]
+2026-10-11T22:16:18.4244734Z Attempting to download 20...
+2026-10-11T22:16:18.4350609Z (node:2310) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T22:16:18.4351556Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T22:16:19.0626674Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+2026-10-11T22:16:19.3776106Z Extracting ...
+2026-10-11T22:16:19.3887998Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/d5bd5d03-5673-451a-bbdf-4ce327db5131 -f /home/runner/work/_temp/c30c8136-6b0c-41d6-b321-76494b8bc188
+2026-10-11T22:16:20.3932102Z Adding to the cache ...
+2026-10-11T22:16:23.5797248Z ##[group]Environment details
+2026-10-11T22:16:23.7957069Z node: v20.20.2
+2026-10-11T22:16:23.7957615Z npm: 10.8.2
+2026-10-11T22:16:23.7958357Z yarn: 1.22.22
+2026-10-11T22:16:23.7959135Z ##[endgroup]
+2026-10-11T22:16:23.8149669Z ##[group]Run set -euo pipefail
+2026-10-11T22:16:23.8150059Z [36;1mset -euo pipefail[0m
+2026-10-11T22:16:23.8150337Z [36;1mmkdir -p comet-validation[0m
+2026-10-11T22:16:23.8150718Z [36;1mgit rev-parse HEAD > comet-validation/commit.txt[0m
+2026-10-11T22:16:23.8151157Z [36;1mgit rev-parse 'HEAD^{tree}' > comet-validation/tree.txt[0m
+2026-10-11T22:16:23.8151626Z [36;1mgit cat-file -p HEAD > comet-validation/commit-object.txt[0m
+2026-10-11T22:16:23.8152805Z [36;1mnode -e "const fs=require('fs'); const headers=fs.readFileSync('comet-validation/commit-object.txt','utf8').split('\\n\\n',1)[0].split('\\n'); fs.writeFileSync('comet-validation/parents.txt',headers.filter(line=>line.startsWith('parent ')).map(line=>line.slice(7)).join(' ')+'\\n');"[0m
+2026-10-11T22:16:23.8154575Z [36;1mgit ls-tree -r HEAD index.html tests/behavioral scripts/ci scripts/lib .github/workflows fonts branding > comet-validation/source-blobs.txt[0m
+2026-10-11T22:16:23.8155626Z [36;1mgit archive --format=tar HEAD index.html tests/behavioral scripts/ci scripts/lib .github/workflows fonts branding > comet-validation/source.tar[0m
+2026-10-11T22:16:23.8156782Z [36;1msha256sum index.html tests/behavioral/fixtures.json tests/behavioral/comet-expansion-*.cjs .github/workflows/comet-expansion-validation.yml > comet-validation/source-sha256.txt[0m
+2026-10-11T22:16:23.8157741Z [36;1mnode -p 'JSON.stringify(process.versions)' > comet-validation/node-versions.json[0m
+2026-10-11T22:16:23.8158318Z [36;1mnode scripts/ci/validate_source.cjs 2>&1 | tee comet-validation/source.log[0m
+2026-10-11T22:16:23.8159013Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/COMET_EXPANSION_001.md 2>&1 | tee comet-validation/context.log[0m
+2026-10-11T22:16:23.8411935Z shell: /usr/bin/bash -e {0}
+2026-10-11T22:16:23.8412250Z ##[endgroup]
+2026-10-11T22:16:24.0389706Z QA passed: 2 scripts syntax-checked, 16 unique IDs verified, cache/state lifecycle guards present.
+2026-10-11T22:16:24.0812594Z PASS: 29 entrypoints, 90 local Markdown links, shared startup 31035 bytes; startup with docs/tasks/COMET_EXPANSION_001.md 32495 bytes
+2026-10-11T22:16:24.0883414Z ##[group]Run set -euo pipefail
+2026-10-11T22:16:24.0883755Z [36;1mset -euo pipefail[0m
+2026-10-11T22:16:24.0884594Z [36;1mnode tests/behavioral/comet-expansion-core.cjs index.html --negative 2>&1 | tee comet-validation/core.log[0m
+2026-10-11T22:16:24.0948937Z shell: /usr/bin/bash -e {0}
+2026-10-11T22:16:24.0949201Z ##[endgroup]
+2026-10-11T22:16:24.7039277Z {
+2026-10-11T22:16:24.7039847Z   "status": "FAIL",
+2026-10-11T22:16:24.7040359Z   "checks": 9979,
+2026-10-11T22:16:24.7040900Z   "groups": [
+2026-10-11T22:16:24.7041429Z     {
+2026-10-11T22:16:24.7042129Z       "name": "fresh schema, fixed catalog and historical reward policy",
+2026-10-11T22:16:24.7042945Z       "checks": 43,
+2026-10-11T22:16:24.7043513Z       "status": "PASS"
+2026-10-11T22:16:24.7044239Z     },
+2026-10-11T22:16:24.7044729Z     {
+2026-10-11T22:16:24.7045542Z       "name": "old0/1/2 paid migrations and one-pass retirement compensation",
+2026-10-11T22:16:24.7046646Z       "checks": 8222,
+2026-10-11T22:16:24.7048177Z       "status": "PASS"
+2026-10-11T22:16:24.7048743Z     },
+2026-10-11T22:16:24.7049196Z     {
+2026-10-11T22:16:24.7050131Z       "name": "strict current3 paid data, recovery preservation and explicit restore",
+2026-10-11T22:16:24.7051411Z       "checks": 227,
+2026-10-11T22:16:24.7051832Z       "status": "PASS"
+2026-10-11T22:16:24.7052186Z     },
+2026-10-11T22:16:24.7052476Z     {
+2026-10-11T22:16:24.7052979Z       "name": "actual six-type purchases and four event Deeds",
+2026-10-11T22:16:24.7053519Z       "checks": 137,
+2026-10-11T22:16:24.7053876Z       "status": "PASS"
+2026-10-11T22:16:24.7054471Z     },
+2026-10-11T22:16:24.7054806Z     {
+2026-10-11T22:16:24.7055317Z       "name": "sticky unlocks, exact wallets and read-only plans",
+2026-10-11T22:16:24.7055894Z       "checks": 151,
+2026-10-11T22:16:24.7056252Z       "status": "PASS"
+2026-10-11T22:16:24.7056613Z     },
+2026-10-11T22:16:24.7056975Z     {
+2026-10-11T22:16:24.7057564Z       "name": "newly earned credits and transactional spend plus settlement",
+2026-10-11T22:16:24.7058209Z       "checks": 47,
+2026-10-11T22:16:24.7058566Z       "status": "PASS"
+2026-10-11T22:16:24.7058906Z     },
+2026-10-11T22:16:24.7059201Z     {
+2026-10-11T22:16:24.7059804Z       "name": "command lifecycle, pure nested preview and no zero-effect charge",
+2026-10-11T22:16:24.7060452Z       "checks": 158,
+2026-10-11T22:16:24.7060802Z       "status": "PASS"
+2026-10-11T22:16:24.7061137Z     },
+2026-10-11T22:16:24.7061423Z     {
+2026-10-11T22:16:24.7061969Z       "name": "Meteor exact HP, no elapsed work or duplicate multipliers",
+2026-10-11T22:16:24.7062593Z       "checks": 206,
+2026-10-11T22:16:24.7062955Z       "status": "PASS"
+2026-10-11T22:16:24.7063294Z     },
+2026-10-11T22:16:24.7063581Z     {
+2026-10-11T22:16:24.7074489Z       "name": "canonical lethal rewards, Auto-Ascend and rollback after state replacement",
+2026-10-11T22:16:24.7075258Z       "checks": 95,
+2026-10-11T22:16:24.7075505Z       "status": "PASS"
+2026-10-11T22:16:24.7075750Z     },
+2026-10-11T22:16:24.7075947Z     {
+2026-10-11T22:16:24.7076276Z       "name": "Call, reload, abandonment and actual defeat owners",
+2026-10-11T22:16:24.7076635Z       "checks": 182,
+2026-10-11T22:16:24.7076863Z       "status": "PASS"
+2026-10-11T22:16:24.7077087Z     },
+2026-10-11T22:16:24.7077274Z     {
+2026-10-11T22:16:24.7078062Z       "name": "exact charge thresholds, unsafe lifetime counters and admitted-state closure",
+2026-10-11T22:16:24.7078828Z       "checks": 332,
+2026-10-11T22:16:24.7079204Z       "status": "PASS"
+2026-10-11T22:16:24.7079569Z     },
+2026-10-11T22:16:24.7079757Z     {
+2026-10-11T22:16:24.7080320Z       "name": "paid Refresh legacy/new routes, determinism, exact counter and rollback",
+2026-10-11T22:16:24.7080783Z       "checks": 138,
+2026-10-11T22:16:24.7081005Z       "status": "PASS"
+2026-10-11T22:16:24.7081218Z     }
+2026-10-11T22:16:24.7081408Z   ],
+2026-10-11T22:16:24.7081634Z   "witnesses": [
+2026-10-11T22:16:24.7082018Z     {
+2026-10-11T22:16:24.7082354Z       "id": "old-loader",
+2026-10-11T22:16:24.7083500Z       "rawSha256": "4341bad6f7a78b0c0a5bcd8213548fbe38c1e13632f2b85ade3233069b601420",
+2026-10-11T22:16:24.7084566Z       "finalComets": 450,
+2026-10-11T22:16:24.7084980Z       "claims": {
+2026-10-11T22:16:24.7085425Z         "policy": "comet-commands-001",
+2026-10-11T22:16:24.7085906Z         "retired": {
+2026-10-11T22:16:24.7086329Z           "comettrials": "settled",
+2026-10-11T22:16:24.7086820Z           "rifttrail": "settled",
+2026-10-11T22:16:24.7087310Z           "starfallcrest": "settled"
+2026-10-11T22:16:24.7087749Z         },
+2026-10-11T22:16:24.7088086Z         "deeds": {}
+2026-10-11T22:16:24.7088502Z       }
+2026-10-11T22:16:24.7088804Z     },
+2026-10-11T22:16:24.7089016Z     {
+2026-10-11T22:16:24.7089224Z       "id": "strict-schema",
+2026-10-11T22:16:24.7089595Z       "invalidCases": [
+2026-10-11T22:16:24.7089859Z         {
+2026-10-11T22:16:24.7090179Z           "id": "missing-cometUpgrades",
+2026-10-11T22:16:24.7090564Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7090847Z         },
+2026-10-11T22:16:24.7091128Z         {
+2026-10-11T22:16:24.7091409Z           "id": "missing-cometCharges",
+2026-10-11T22:16:24.7091843Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7092374Z         },
+2026-10-11T22:16:24.7092609Z         {
+2026-10-11T22:16:24.7092839Z           "id": "missing-cometWork",
+2026-10-11T22:16:24.7093257Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7093520Z         },
+2026-10-11T22:16:24.7093715Z         {
+2026-10-11T22:16:24.7094260Z           "id": "missing-cometMeteorUsed",
+2026-10-11T22:16:24.7094882Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7095322Z         },
+2026-10-11T22:16:24.7095631Z         {
+2026-10-11T22:16:24.7096051Z           "id": "missing-cometCalled",
+2026-10-11T22:16:24.7096591Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7097022Z         },
+2026-10-11T22:16:24.7097326Z         {
+2026-10-11T22:16:24.7097713Z           "id": "missing-cometEvents",
+2026-10-11T22:16:24.7098263Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7098557Z         },
+2026-10-11T22:16:24.7098747Z         {
+2026-10-11T22:16:24.7099001Z           "id": "missing-cometClaims",
+2026-10-11T22:16:24.7099361Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7099657Z         },
+2026-10-11T22:16:24.7099848Z         {
+2026-10-11T22:16:24.7100098Z           "id": "missing-owned-meteor",
+2026-10-11T22:16:24.7100424Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7100710Z         },
+2026-10-11T22:16:24.7100914Z         {
+2026-10-11T22:16:24.7101166Z           "id": "nonboolean-owned-meteor",
+2026-10-11T22:16:24.7101501Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7101942Z         },
+2026-10-11T22:16:24.7102218Z         {
+2026-10-11T22:16:24.7102486Z           "id": "missing-owned-starcall",
+2026-10-11T22:16:24.7102825Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7103104Z         },
+2026-10-11T22:16:24.7103307Z         {
+2026-10-11T22:16:24.7103577Z           "id": "nonboolean-owned-starcall",
+2026-10-11T22:16:24.7103922Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7104479Z         },
+2026-10-11T22:16:24.7104703Z         {
+2026-10-11T22:16:24.7104992Z           "id": "redundant-owned-comettrials",
+2026-10-11T22:16:24.7105372Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7105670Z         },
+2026-10-11T22:16:24.7105875Z         {
+2026-10-11T22:16:24.7106153Z           "id": "redundant-owned-rifttrail",
+2026-10-11T22:16:24.7106503Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7106787Z         },
+2026-10-11T22:16:24.7106978Z         {
+2026-10-11T22:16:24.7107267Z           "id": "redundant-owned-starfallcrest",
+2026-10-11T22:16:24.7107662Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7107949Z         },
+2026-10-11T22:16:24.7108162Z         {
+2026-10-11T22:16:24.7108446Z           "id": "redundant-owned-cometreservoir",
+2026-10-11T22:16:24.7108825Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7109321Z         },
+2026-10-11T22:16:24.7109549Z         {
+2026-10-11T22:16:24.7110010Z           "id": "redundant-owned-cometcycle",
+2026-10-11T22:16:24.7110394Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7110679Z         },
+2026-10-11T22:16:24.7110909Z         {
+2026-10-11T22:16:24.7111199Z           "id": "redundant-owned-meteorcore",
+2026-10-11T22:16:24.7111584Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7111882Z         },
+2026-10-11T22:16:24.7112096Z         {
+2026-10-11T22:16:24.7112356Z           "id": "unknown-level",
+2026-10-11T22:16:24.7112864Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7113332Z         },
+2026-10-11T22:16:24.7113555Z         {
+2026-10-11T22:16:24.7113827Z           "id": "array-levels",
+2026-10-11T22:16:24.7114426Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7114736Z         },
+2026-10-11T22:16:24.7114958Z         {
+2026-10-11T22:16:24.7115224Z           "id": "invalid-level--1",
+2026-10-11T22:16:24.7115578Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7115880Z         },
+2026-10-11T22:16:24.7116107Z         {
+2026-10-11T22:16:24.7116358Z           "id": "invalid-level-0.5",
+2026-10-11T22:16:24.7116713Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7141705Z         },
+2026-10-11T22:16:24.7142041Z         {
+2026-10-11T22:16:24.7142427Z           "id": "invalid-level-NaN",
+2026-10-11T22:16:24.7142787Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7143072Z         },
+2026-10-11T22:16:24.7143272Z         {
+2026-10-11T22:16:24.7143526Z           "id": "invalid-level-Infinity",
+2026-10-11T22:16:24.7143870Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7144403Z         },
+2026-10-11T22:16:24.7144633Z         {
+2026-10-11T22:16:24.7144869Z           "id": "invalid-level-1",
+2026-10-11T22:16:24.7145176Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7145444Z         },
+2026-10-11T22:16:24.7145629Z         {
+2026-10-11T22:16:24.7145909Z           "id": "invalid-level-null",
+2026-10-11T22:16:24.7146238Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7146491Z         },
+2026-10-11T22:16:24.7146706Z         {
+2026-10-11T22:16:24.7146930Z           "id": "unknown-event",
+2026-10-11T22:16:24.7147233Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7147488Z         },
+2026-10-11T22:16:24.7147675Z         {
+2026-10-11T22:16:24.7147900Z           "id": "nonboolean-event",
+2026-10-11T22:16:24.7148194Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7148446Z         },
+2026-10-11T22:16:24.7148635Z         {
+2026-10-11T22:16:24.7148854Z           "id": "orphan-event",
+2026-10-11T22:16:24.7149152Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7149544Z         },
+2026-10-11T22:16:24.7149823Z         {
+2026-10-11T22:16:24.7150057Z           "id": "orphan-boss",
+2026-10-11T22:16:24.7150364Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7150711Z         },
+2026-10-11T22:16:24.7151014Z         {
+2026-10-11T22:16:24.7151428Z           "id": "orphan-called-kill",
+2026-10-11T22:16:24.7151941Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7152378Z         },
+2026-10-11T22:16:24.7152685Z         {
+2026-10-11T22:16:24.7153089Z           "id": "earned-without-event",
+2026-10-11T22:16:24.7153616Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7154525Z         },
+2026-10-11T22:16:24.7154852Z         {
+2026-10-11T22:16:24.7155101Z           "id": "invalid-charges--1",
+2026-10-11T22:16:24.7155419Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7155692Z         },
+2026-10-11T22:16:24.7155886Z         {
+2026-10-11T22:16:24.7156119Z           "id": "invalid-charges-0.5",
+2026-10-11T22:16:24.7156425Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7156685Z         },
+2026-10-11T22:16:24.7156870Z         {
+2026-10-11T22:16:24.7157094Z           "id": "invalid-charges-4",
+2026-10-11T22:16:24.7157400Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7157659Z         },
+2026-10-11T22:16:24.7158026Z         {
+2026-10-11T22:16:24.7158278Z           "id": "invalid-charges-Infinity",
+2026-10-11T22:16:24.7158603Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7158860Z         },
+2026-10-11T22:16:24.7159049Z         {
+2026-10-11T22:16:24.7159276Z           "id": "invalid-work--1",
+2026-10-11T22:16:24.7159572Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7159830Z         },
+2026-10-11T22:16:24.7160012Z         {
+2026-10-11T22:16:24.7160236Z           "id": "invalid-work-0.5",
+2026-10-11T22:16:24.7160533Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7160796Z         },
+2026-10-11T22:16:24.7160979Z         {
+2026-10-11T22:16:24.7161210Z           "id": "invalid-work-4000",
+2026-10-11T22:16:24.7161538Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7161802Z         },
+2026-10-11T22:16:24.7161985Z         {
+2026-10-11T22:16:24.7162228Z           "id": "invalid-work-Infinity",
+2026-10-11T22:16:24.7162544Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7162807Z         },
+2026-10-11T22:16:24.7162993Z         {
+2026-10-11T22:16:24.7163215Z           "id": "full-bank-work",
+2026-10-11T22:16:24.7163505Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7163893Z         },
+2026-10-11T22:16:24.7164314Z         {
+2026-10-11T22:16:24.7164560Z           "id": "orphan-charge",
+2026-10-11T22:16:24.7164857Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7165120Z         },
+2026-10-11T22:16:24.7165305Z         {
+2026-10-11T22:16:24.7165528Z           "id": "nonboolean-used",
+2026-10-11T22:16:24.7165861Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7166122Z         },
+2026-10-11T22:16:24.7166305Z         {
+2026-10-11T22:16:24.7166526Z           "id": "nonboolean-called",
+2026-10-11T22:16:24.7166823Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7167081Z         },
+2026-10-11T22:16:24.7167271Z         {
+2026-10-11T22:16:24.7167487Z           "id": "marker-no-owner",
+2026-10-11T22:16:24.7167781Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7168035Z         },
+2026-10-11T22:16:24.7168217Z         {
+2026-10-11T22:16:24.7168446Z           "id": "called-not-luminous",
+2026-10-11T22:16:24.7168754Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7169007Z         },
+2026-10-11T22:16:24.7169187Z         {
+2026-10-11T22:16:24.7169406Z           "id": "called-boss",
+2026-10-11T22:16:24.7169686Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7169939Z         },
+2026-10-11T22:16:24.7170130Z         {
+2026-10-11T22:16:24.7170363Z           "id": "marker-wrong-encounter",
+2026-10-11T22:16:24.7170674Z           "code": "invalid-comet-state"
+2026-10-11T22:16:24.7170931Z         },
+2026-10-11T22:16:24.7171110Z         {
+2026-10-11T22:16:24.7171332Z           "id": "wrong-policy",
+2026-10-11T22:16:24.7171616Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7171883Z         },
+2026-10-11T22:16:24.7172065Z         {
+2026-10-11T22:16:24.7172295Z           "id": "extra-claims-field",
+2026-10-11T22:16:24.7172599Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7172860Z         },
+2026-10-11T22:16:24.7173040Z         {
+2026-10-11T22:16:24.7173270Z           "id": "missing-retirement",
+2026-10-11T22:16:24.7173573Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7173831Z         },
+2026-10-11T22:16:24.7174191Z         {
+2026-10-11T22:16:24.7174450Z           "id": "unknown-retirement",
+2026-10-11T22:16:24.7174782Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7175046Z         },
+2026-10-11T22:16:24.7175224Z         {
+2026-10-11T22:16:24.7175442Z           "id": "unknown-deed",
+2026-10-11T22:16:24.7175726Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7176007Z         },
+2026-10-11T22:16:24.7176190Z         {
+2026-10-11T22:16:24.7176419Z           "id": "false-pending-deed",
+2026-10-11T22:16:24.7176719Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7176975Z         },
+2026-10-11T22:16:24.7177154Z         {
+2026-10-11T22:16:24.7177517Z           "id": "orphan-pending-deed",
+2026-10-11T22:16:24.7177835Z           "code": "invalid-comet-claims"
+2026-10-11T22:16:24.7178092Z         }
+2026-10-11T22:16:24.7178272Z       ],
+2026-10-11T22:16:24.7178469Z       "overcaps": {
+2026-10-11T22:16:24.7178736Z         "cometreservoir": 1e+30,
+2026-10-11T22:16:24.7178997Z         "cometcycle": 9,
+2026-10-11T22:16:24.7179233Z         "meteorcore": 7
+2026-10-11T22:16:24.7179450Z       }
+2026-10-11T22:16:24.7179628Z     },
+2026-10-11T22:16:24.7179810Z     {
+2026-10-11T22:16:24.7180039Z       "id": "complete-real-catalog",
+2026-10-11T22:16:24.7180317Z       "comets": 8670,
+2026-10-11T22:16:24.7180537Z       "upgrades": {
+2026-10-11T22:16:24.7180763Z         "cometreservoir": 2,
+2026-10-11T22:16:24.7181007Z         "cometcycle": 3,
+2026-10-11T22:16:24.7181238Z         "meteorcore": 4
+2026-10-11T22:16:24.7181452Z       },
+2026-10-11T22:16:24.7181654Z       "events": {
+2026-10-11T22:16:24.7181873Z         "firstCommand": true,
+2026-10-11T22:16:24.7182152Z         "firstRecharge": true,
+2026-10-11T22:16:24.7182405Z         "bossStrike": true,
+2026-10-11T22:16:24.7182648Z         "calledKill": true
+2026-10-11T22:16:24.7182872Z       },
+2026-10-11T22:16:24.7183188Z       "earned": [
+2026-10-11T22:16:24.7183391Z         [
+2026-10-11T22:16:24.7183620Z           "comet_first_command",
+2026-10-11T22:16:24.7183872Z           true
+2026-10-11T22:16:24.7184294Z         ],
+2026-10-11T22:16:24.7184485Z         [
+2026-10-11T22:16:24.7184709Z           "comet_first_recharge",
+2026-10-11T22:16:24.7184965Z           true
+2026-10-11T22:16:24.7185156Z         ],
+2026-10-11T22:16:24.7185337Z         [
+2026-10-11T22:16:24.7185552Z           "comet_boss_strike",
+2026-10-11T22:16:24.7185795Z           true
+2026-10-11T22:16:24.7186009Z         ],
+2026-10-11T22:16:24.7186210Z         [
+2026-10-11T22:16:24.7186423Z           "comet_called_kill",
+2026-10-11T22:16:24.7186659Z           true
+2026-10-11T22:16:24.7186849Z         ]
+2026-10-11T22:16:24.7187029Z       ]
+2026-10-11T22:16:24.7187217Z     },
+2026-10-11T22:16:24.7187398Z     {
+2026-10-11T22:16:24.7187643Z       "id": "purchase-settlement-none",
+2026-10-11T22:16:24.7187922Z       "staged": [
+2026-10-11T22:16:24.7188125Z         {
+2026-10-11T22:16:24.7188346Z           "comets": 18014398509481884,
+2026-10-11T22:16:24.7188609Z           "claim": "due"
+2026-10-11T22:16:24.7188828Z         }
+2026-10-11T22:16:24.7189014Z       ],
+2026-10-11T22:16:24.7189207Z       "result": true,
+2026-10-11T22:16:24.7189461Z       "finalComets": 18014398509481934,
+2026-10-11T22:16:24.7189722Z       "claims": {
+2026-10-11T22:16:24.7189968Z         "policy": "comet-commands-001",
+2026-10-11T22:16:24.7190234Z         "retired": {
+2026-10-11T22:16:24.7190481Z           "comettrials": "absent",
+2026-10-11T22:16:24.7190762Z           "rifttrail": "settled",
+2026-10-11T22:16:24.7191043Z           "starfallcrest": "absent"
+2026-10-11T22:16:24.7191289Z         },
+2026-10-11T22:16:24.7191486Z         "deeds": {}
+2026-10-11T22:16:24.7191690Z       },
+2026-10-11T22:16:24.7192110Z       "primarySha256": "48189efd3b6f66e6f1b0a5c86573e5de97a15c38ab16503acc09b41b6b1a9b7a"
+2026-10-11T22:16:24.7192544Z     },
+2026-10-11T22:16:24.7192723Z     {
+2026-10-11T22:16:24.7192972Z       "id": "purchase-settlement-primary",
+2026-10-11T22:16:24.7193263Z       "staged": [
+2026-10-11T22:16:24.7193459Z         {
+2026-10-11T22:16:24.7193681Z           "comets": 18014398509481884,
+2026-10-11T22:16:24.7193954Z           "claim": "due"
+2026-10-11T22:16:24.7194421Z         }
+2026-10-11T22:16:24.7194607Z       ],
+2026-10-11T22:16:24.7194799Z       "result": false,
+2026-10-11T22:16:24.7195054Z       "finalComets": 18014398509481934,
+2026-10-11T22:16:24.7195321Z       "claims": {
+2026-10-11T22:16:24.7195586Z         "policy": "comet-commands-001",
+2026-10-11T22:16:24.7195866Z         "retired": {
+2026-10-11T22:16:24.7196122Z           "comettrials": "absent",
+2026-10-11T22:16:24.7196410Z           "rifttrail": "settled",
+2026-10-11T22:16:24.7196828Z           "starfallcrest": "absent"
+2026-10-11T22:16:24.7197090Z         },
+2026-10-11T22:16:24.7197292Z         "deeds": {}
+2026-10-11T22:16:24.7197499Z       },
+2026-10-11T22:16:24.7197910Z       "primarySha256": "48189efd3b6f66e6f1b0a5c86573e5de97a15c38ab16503acc09b41b6b1a9b7a"
+2026-10-11T22:16:24.7198348Z     },
+2026-10-11T22:16:24.7198529Z     {
+2026-10-11T22:16:24.7198774Z       "id": "purchase-settlement-recovery",
+2026-10-11T22:16:24.7199073Z       "staged": [
+2026-10-11T22:16:24.7199272Z         {
+2026-10-11T22:16:24.7199492Z           "comets": 18014398509481884,
+2026-10-11T22:16:24.7199754Z           "claim": "due"
+2026-10-11T22:16:24.7199971Z         }
+2026-10-11T22:16:24.7200152Z       ],
+2026-10-11T22:16:24.7200349Z       "result": true,
+2026-10-11T22:16:24.7200600Z       "finalComets": 18014398509481934,
+2026-10-11T22:16:24.7200858Z       "claims": {
+2026-10-11T22:16:24.7201104Z         "policy": "comet-commands-001",
+2026-10-11T22:16:24.7201371Z         "retired": {
+2026-10-11T22:16:24.7201626Z           "comettrials": "absent",
+2026-10-11T22:16:24.7201917Z           "rifttrail": "settled",
+2026-10-11T22:16:24.7202194Z           "starfallcrest": "absent"
+2026-10-11T22:16:24.7202441Z         },
+2026-10-11T22:16:24.7202634Z         "deeds": {}
+2026-10-11T22:16:24.7202957Z       },
+2026-10-11T22:16:24.7203357Z       "primarySha256": "48189efd3b6f66e6f1b0a5c86573e5de97a15c38ab16503acc09b41b6b1a9b7a"
+2026-10-11T22:16:24.7203784Z     },
+2026-10-11T22:16:24.7203965Z     {
+2026-10-11T22:16:24.7204546Z       "id": "actual-epsilon-nonlethal",
+2026-10-11T22:16:24.7204939Z       "beforeHp": 1.0000000005,
+2026-10-11T22:16:24.7205190Z       "budget": 1,
+2026-10-11T22:16:24.7205433Z       "afterHp": 5.000000413701855e-10,
+2026-10-11T22:16:24.7205699Z       "killOwners": []
+2026-10-11T22:16:24.7205916Z     },
+2026-10-11T22:16:24.7206095Z     {
+2026-10-11T22:16:24.7206313Z       "id": "ending-hit-none",
+2026-10-11T22:16:24.7206568Z       "result": true,
+2026-10-11T22:16:24.7206784Z       "ascends": 1,
+2026-10-11T22:16:24.7206995Z       "saves": 1,
+2026-10-11T22:16:24.7207206Z       "after": {
+2026-10-11T22:16:24.7207408Z         "depth": 1,
+2026-10-11T22:16:24.7207624Z         "ascendCount": 4,
+2026-10-11T22:16:24.7207859Z         "charges": 0,
+2026-10-11T22:16:24.7208073Z         "work": 3990
+2026-10-11T22:16:24.7208277Z       },
+2026-10-11T22:16:24.7208480Z       "tokenChanged": true
+2026-10-11T22:16:24.7208716Z     },
+2026-10-11T22:16:24.7208893Z     {
+2026-10-11T22:16:24.7209119Z       "id": "ending-hit-primary",
+2026-10-11T22:16:24.7209375Z       "result": false,
+2026-10-11T22:16:24.7209592Z       "ascends": 1,
+2026-10-11T22:16:24.7209794Z       "saves": 1,
+2026-10-11T22:16:24.7209997Z       "after": {
+2026-10-11T22:16:24.7210197Z         "depth": 1,
+2026-10-11T22:16:24.7210408Z         "ascendCount": 4,
+2026-10-11T22:16:24.7210819Z         "charges": 0,
+2026-10-11T22:16:24.7211037Z         "work": 3990
+2026-10-11T22:16:24.7211239Z       },
+2026-10-11T22:16:24.7211449Z       "tokenChanged": true
+2026-10-11T22:16:24.7211677Z     },
+2026-10-11T22:16:24.7211860Z     {
+2026-10-11T22:16:24.7212082Z       "id": "ending-hit-recovery",
+2026-10-11T22:16:24.7212340Z       "result": true,
+2026-10-11T22:16:24.7212556Z       "ascends": 1,
+2026-10-11T22:16:24.7212768Z       "saves": 1,
+2026-10-11T22:16:24.7212977Z       "after": {
+2026-10-11T22:16:24.7213181Z         "depth": 1,
+2026-10-11T22:16:24.7213399Z         "ascendCount": 4,
+2026-10-11T22:16:24.7213627Z         "charges": 0,
+2026-10-11T22:16:24.7213840Z         "work": 3990
+2026-10-11T22:16:24.7214271Z       },
+2026-10-11T22:16:24.7214504Z       "tokenChanged": true
+2026-10-11T22:16:24.7214742Z     },
+2026-10-11T22:16:24.7214925Z     {
+2026-10-11T22:16:24.7215200Z       "id": "ending-hit-none-unsafe-count",
+2026-10-11T22:16:24.7215494Z       "result": true,
+2026-10-11T22:16:24.7215708Z       "ascends": 1,
+2026-10-11T22:16:24.7215917Z       "saves": 1,
+2026-10-11T22:16:24.7216122Z       "after": {
+2026-10-11T22:16:24.7216322Z         "depth": 1,
+2026-10-11T22:16:24.7216538Z         "ascendCount": 1e+30,
+2026-10-11T22:16:24.7216971Z         "charges": 0,
+2026-10-11T22:16:24.7217194Z         "work": 3990
+2026-10-11T22:16:24.7217392Z       },
+2026-10-11T22:16:24.7217597Z       "tokenChanged": true
+2026-10-11T22:16:24.7217827Z     },
+2026-10-11T22:16:24.7218003Z     {
+2026-10-11T22:16:24.7218263Z       "id": "ending-hit-primary-unsafe-count",
+2026-10-11T22:16:24.7218564Z       "result": false,
+2026-10-11T22:16:24.7218776Z       "ascends": 1,
+2026-10-11T22:16:24.7218979Z       "saves": 1,
+2026-10-11T22:16:24.7219173Z       "after": {
+2026-10-11T22:16:24.7219366Z         "depth": 1,
+2026-10-11T22:16:24.7219575Z         "ascendCount": 1e+30,
+2026-10-11T22:16:24.7219811Z         "charges": 0,
+2026-10-11T22:16:24.7220020Z         "work": 3990
+2026-10-11T22:16:24.7220217Z       },
+2026-10-11T22:16:24.7220416Z       "tokenChanged": true
+2026-10-11T22:16:24.7220635Z     },
+2026-10-11T22:16:24.7220812Z     {
+2026-10-11T22:16:24.7221081Z       "id": "ending-hit-recovery-unsafe-count",
+2026-10-11T22:16:24.7221389Z       "result": true,
+2026-10-11T22:16:24.7221608Z       "ascends": 1,
+2026-10-11T22:16:24.7221817Z       "saves": 1,
+2026-10-11T22:16:24.7222019Z       "after": {
+2026-10-11T22:16:24.7222220Z         "depth": 1,
+2026-10-11T22:16:24.7222557Z         "ascendCount": 1e+30,
+2026-10-11T22:16:24.7222797Z         "charges": 0,
+2026-10-11T22:16:24.7223005Z         "work": 3990
+2026-10-11T22:16:24.7223207Z       },
+2026-10-11T22:16:24.7223401Z       "tokenChanged": true
+2026-10-11T22:16:24.7223621Z     },
+2026-10-11T22:16:24.7223797Z     {
+2026-10-11T22:16:24.7224257Z       "id": "admitted-state-real-recharge",
+2026-10-11T22:16:24.7224559Z       "kills": 200,
+2026-10-11T22:16:24.7224764Z       "bank": {
+2026-10-11T22:16:24.7224968Z         "charges": 1,
+2026-10-11T22:16:24.7225181Z         "work": 0,
+2026-10-11T22:16:24.7225385Z         "used": false,
+2026-10-11T22:16:24.7225603Z         "called": false,
+2026-10-11T22:16:24.7225836Z         "events": {
+2026-10-11T22:16:24.7226075Z           "firstCommand": false,
+2026-10-11T22:16:24.7226359Z           "firstRecharge": true,
+2026-10-11T22:16:24.7226632Z           "bossStrike": false,
+2026-10-11T22:16:24.7226881Z           "calledKill": false
+2026-10-11T22:16:24.7227113Z         }
+2026-10-11T22:16:24.7227305Z       },
+2026-10-11T22:16:24.7227493Z       "comets": 10010,
+2026-10-11T22:16:24.7227713Z       "saveStatus": {
+2026-10-11T22:16:24.7227937Z         "failureCount": 0,
+2026-10-11T22:16:24.7228205Z         "warningShown": false,
+2026-10-11T22:16:24.7228450Z         "lastError": "",
+2026-10-11T22:16:24.7228687Z         "blocked": false,
+2026-10-11T22:16:24.7228924Z         "blockedReason": "",
+2026-10-11T22:16:24.7229168Z         "recovered": false
+2026-10-11T22:16:24.7229389Z       }
+2026-10-11T22:16:24.7229570Z     }
+2026-10-11T22:16:24.7229752Z   ],
+2026-10-11T22:16:24.7229960Z   "negativeControls": [],
+2026-10-11T22:16:24.7230431Z   "currentGroup": "separate original F26 receipts settle before the bounded Comet family",
+2026-10-11T22:16:24.7230874Z   "error": {
+2026-10-11T22:16:24.7231094Z     "name": "AssertionError",
+2026-10-11T22:16:24.7231347Z     "code": "ERR_ASSERTION",
+2026-10-11T22:16:24.7231731Z     "message": "original recorded Reserves sum\n\n48.125 !== 32.125\n",
+2026-10-11T22:16:24.7236253Z     "stack": "AssertionError [ERR_ASSERTION]: original recorded Reserves sum\n\n48.125 !== 32.125\n\n    at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs:47:33)\n    at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs:399:73\n    at group (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs:49:79)\n    at runCore (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs:378:3)\n    at cli (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs:518:14)\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs:526:26)\n    at Module._compile (node:internal/modules/cjs/loader:1521:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)\n    at Module.load (node:internal/modules/cjs/loader:1266:32)\n    at Module._load (node:internal/modules/cjs/loader:1091:12)"
+2026-10-11T22:16:24.7239663Z   },
+2026-10-11T22:16:24.7239852Z   "input": {
+2026-10-11T22:16:24.7240179Z     "path": "/home/runner/work/Lumenfall/Lumenfall/index.html",
+2026-10-11T22:16:24.7240521Z     "bytes": 673193,
+2026-10-11T22:16:24.7240924Z     "sha256": "9b899ca458c4a4559437bf33e101408bebb0a1a3ca5e2574b5e821f1585a97c3"
+2026-10-11T22:16:24.7241316Z   },
+2026-10-11T22:16:24.7241512Z   "dependencies": [
+2026-10-11T22:16:24.7241718Z     {
+2026-10-11T22:16:24.7242159Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs",
+2026-10-11T22:16:24.7242619Z       "bytes": 58714,
+2026-10-11T22:16:24.7243034Z       "sha256": "5bda9de4f7ac58a3b510c6f1acc4120aa211f045e92b4c2e6ba55ce640a7f2d6"
+2026-10-11T22:16:24.7243432Z     },
+2026-10-11T22:16:24.7243612Z     {
+2026-10-11T22:16:24.7244328Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-harness.cjs",
+2026-10-11T22:16:24.7244847Z       "bytes": 15743,
+2026-10-11T22:16:24.7245251Z       "sha256": "aeccdff0583636396da3a214336f5cfce41b607765b458c51ca105637c00298e"
+2026-10-11T22:16:24.7245789Z     },
+2026-10-11T22:16:24.7245968Z     {
+2026-10-11T22:16:24.7246425Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-numerical.cjs",
+2026-10-11T22:16:24.7246904Z       "bytes": 21869,
+2026-10-11T22:16:24.7247305Z       "sha256": "8dad842c0bf81ab5eaa9e34849d6d6f1916fb92b004a52ddd5a0e018f09551fe"
+2026-10-11T22:16:24.7247702Z     }
+2026-10-11T22:16:24.7247881Z   ],
+2026-10-11T22:16:24.7248063Z   "runtime": {
+2026-10-11T22:16:24.7248271Z     "node": "v20.20.2",
+2026-10-11T22:16:24.7248520Z     "v8": "11.3.244.8-node.38"
+2026-10-11T22:16:24.7248751Z   }
+2026-10-11T22:16:24.7248930Z }
+2026-10-11T22:16:24.7259897Z ##[error]Process completed with exit code 1.
+2026-10-11T22:16:24.7321641Z ##[group]Run set -euo pipefail
+2026-10-11T22:16:24.7321990Z [36;1mset -euo pipefail[0m
+2026-10-11T22:16:24.7322579Z [36;1mnode tests/behavioral/comet-expansion-mobile.cjs index.html comet-validation/mobile 2>&1 | tee comet-validation/mobile.log[0m
+2026-10-11T22:16:24.7388508Z shell: /usr/bin/bash -e {0}
+2026-10-11T22:16:24.7388781Z ##[endgroup]
+2026-10-11T22:19:47.1555996Z {"status":"pass","sourceSha256":"9b899ca458c4a4559437bf33e101408bebb0a1a3ca5e2574b5e821f1585a97c3","cometIdentity":{"testSha256":"0294404abe720f0aaf03abc157a0fb46a4d03009db57c4b981f14d65a8c55c18","helperSha256":"a7212cf6707f0c63c59148d25a833efa80cc7db81dd0dda208f36e81ec78e62e","transportSha256":"8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd","numericalSha256":"8dad842c0bf81ab5eaa9e34849d6d6f1916fb92b004a52ddd5a0e018f09551fe"},"checks":12738,"profiles":12,"negativeControls":[{"kind":"stale-affordability","profile":{"width":320,"scale":1,"motion":"reduce"},"status":"pass"},{"kind":"recreate-trial","profile":{"width":320,"scale":1,"motion":"reduce"},"status":"pass"},{"kind":"stale-command","profile":{"width":320,"scale":1,"motion":"reduce"},"status":"pass"},{"kind":"wrong-pending-feedback","profile":{"width":320,"scale":1,"motion":"reduce"},"status":"pass"},{"kind":"pressed-purchase","profile":{"width":320,"scale":1,"motion":"reduce"},"status":"pass"},{"kind":"stale-affordability","profile":{"width":320,"scale":2,"motion":"reduce"},"status":"pass"},{"kind":"recreate-trial","profile":{"width":320,"scale":2,"motion":"reduce"},"status":"pass"},{"kind":"stale-command","profile":{"width":320,"scale":2,"motion":"reduce"},"status":"pass"},{"kind":"wrong-pending-feedback","profile":{"width":320,"scale":2,"motion":"reduce"},"status":"pass"},{"kind":"pressed-purchase","profile":{"width":320,"scale":2,"motion":"reduce"},"status":"pass"}],"browserVersion":{"protocolVersion":"1.3","product":"Chrome/154.0.8037.97","revision":"@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36","jsVersion":"15.4.80.20"},"instrumentedHtmlSha256":"6e6d3f52dbf3df07b56d839da81057a630fd9f37891e7382ba4c7e946a82e14b","error":null,"receipt":"/home/runner/work/Lumenfall/Lumenfall/comet-validation/mobile/receipt.json","rawStdoutSha256":"11ef36b484344c4bf73c67f42be19453ea49310a74ff6859aaebc7ff6ae45ace","rawStdoutBytes":41622925,"nativeAndroid":"untested"}
+2026-10-11T22:19:47.1713977Z ##[group]Run set -euo pipefail
+2026-10-11T22:19:47.1714653Z [36;1mset -euo pipefail[0m
+2026-10-11T22:19:47.1715345Z [36;1mnode tests/behavioral/comet-expansion-warning.cjs index.html comet-validation/mobile comet-validation/warning 2>&1 | tee comet-validation/warning.log[0m
+2026-10-11T22:19:47.1780120Z shell: /usr/bin/bash -e {0}
+2026-10-11T22:19:47.1780384Z ##[endgroup]
+2026-10-11T22:20:02.9273921Z {"status":"pass","kind":"exact protected-warning source reversion","positiveProfiles":12,"originalCausalPairs":10,"warningReversionsCaught":1,"receipt":"/home/runner/work/Lumenfall/Lumenfall/comet-validation/warning/receipt.json","error":null,"nativeAndroid":"untested"}
+2026-10-11T22:20:02.9513581Z ##[group]Run set -euo pipefail
+2026-10-11T22:20:02.9513929Z [36;1mset -euo pipefail[0m
+2026-10-11T22:20:02.9514729Z [36;1mmkdir -p /tmp/comet-node8[0m
+2026-10-11T22:20:02.9515014Z [36;1mcd /tmp/comet-node8[0m
+2026-10-11T22:20:02.9515446Z [36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt[0m
+2026-10-11T22:20:02.9516150Z [36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz[0m
+2026-10-11T22:20:02.9516814Z [36;1mgrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -[0m
+2026-10-11T22:20:02.9517251Z [36;1mtar -xf node-v8.3.0-linux-x64.tar.xz[0m
+2026-10-11T22:20:02.9517554Z [36;1mcd "$GITHUB_WORKSPACE"[0m
+2026-10-11T22:20:02.9518040Z [36;1msha256sum /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node > comet-validation/v8-runtime-sha256.txt[0m
+2026-10-11T22:20:02.9518967Z [36;1menv -u NODE_OPTIONS -u NODE_PATH /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node -p 'JSON.stringify(process.versions)' > comet-validation/v8-versions.json[0m
+2026-10-11T22:20:02.9520087Z [36;1menv -u NODE_OPTIONS -u NODE_PATH /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/comet-expansion-v8.cjs index.html 2>&1 | tee comet-validation/v8.log[0m
+2026-10-11T22:20:02.9583952Z shell: /usr/bin/bash -e {0}
+2026-10-11T22:20:02.9584419Z ##[endgroup]
+2026-10-11T22:20:02.9749746Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-11T22:20:02.9750715Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-11T22:20:02.9751211Z 
+2026-10-11T22:20:02.9987266Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-11T22:20:03.0240479Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-11T22:20:03.0241755Z 100  3865  100  3865    0     0  78564      0 --:--:-- --:--:-- --:--:-- 77300
+2026-10-11T22:20:03.0303421Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-11T22:20:03.0304521Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-11T22:20:03.0305022Z 
+2026-10-11T22:20:03.1615969Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-11T22:20:03.1616909Z 100 10.9M  100 10.9M    0     0  83.6M      0 --:--:-- --:--:-- --:--:-- 83.9M
+2026-10-11T22:20:03.1735550Z node-v8.3.0-linux-x64.tar.xz: OK
+2026-10-11T22:20:05.0083831Z {
+2026-10-11T22:20:05.0084623Z   "status": "pass",
+2026-10-11T22:20:05.0085143Z   "checks": 1362,
+2026-10-11T22:20:05.0085597Z   "inlineScriptsParsed": 2,
+2026-10-11T22:20:05.0086042Z   "completeIifeInstances": 255,
+2026-10-11T22:20:05.0086428Z   "priceCases": 12,
+2026-10-11T22:20:05.0086756Z   "faultCases": 22,
+2026-10-11T22:20:05.0087330Z   "numericCases": 28,
+2026-10-11T22:20:05.0087816Z   "migrationCases": 16,
+2026-10-11T22:20:05.0088390Z   "invalidCases": 18,
+2026-10-11T22:20:05.0088942Z   "records": [
+2026-10-11T22:20:05.0089504Z     {
+2026-10-11T22:20:05.0090177Z       "id": "catalog-and-historical-ledgers",
+2026-10-11T22:20:05.0091082Z       "checks": 24
+2026-10-11T22:20:05.0091633Z     },
+2026-10-11T22:20:05.0092132Z     {
+2026-10-11T22:20:05.0092987Z       "id": "all-purchased-prices-caps-and-storage",
+2026-10-11T22:20:05.0093862Z       "checks": 357
+2026-10-11T22:20:05.0094558Z     },
+2026-10-11T22:20:05.0094999Z     {
+2026-10-11T22:20:05.0095628Z       "id": "purchase-unlocks-lifecycle-and-exact-debit",
+2026-10-11T22:20:05.0096475Z       "checks": 150
+2026-10-11T22:20:05.0096998Z     },
+2026-10-11T22:20:05.0097470Z     {
+2026-10-11T22:20:05.0098158Z       "id": "all-shop-primary-and-recovery-faults",
+2026-10-11T22:20:05.0098959Z       "checks": 120
+2026-10-11T22:20:05.0099509Z     },
+2026-10-11T22:20:05.0100148Z     {
+2026-10-11T22:20:05.0101224Z       "id": "raw-old-schema-migrations-and-idempotency",
+2026-10-11T22:20:05.0102262Z       "checks": 93
+2026-10-11T22:20:05.0102944Z     },
+2026-10-11T22:20:05.0103697Z     {
+2026-10-11T22:20:05.0105159Z       "id": "pending-claims-representability-and-one-pass-order",
+2026-10-11T22:20:05.0106563Z       "checks": 23
+2026-10-11T22:20:05.0107290Z     },
+2026-10-11T22:20:05.0107913Z     {
+2026-10-11T22:20:05.0108816Z       "id": "strict-current3-preservation-and-backups",
+2026-10-11T22:20:05.0109653Z       "checks": 148
+2026-10-11T22:20:05.0110351Z     },
+2026-10-11T22:20:05.0110886Z     {
+2026-10-11T22:20:05.0111579Z       "id": "literal-independent-meteor-numerics",
+2026-10-11T22:20:05.0112455Z       "checks": 44
+2026-10-11T22:20:05.0112984Z     },
+2026-10-11T22:20:05.0114370Z     {
+2026-10-11T22:20:05.0115415Z       "id": "actual-meteor-no-time-no-extra-hit-and-preview",
+2026-10-11T22:20:05.0116249Z       "checks": 58
+2026-10-11T22:20:05.0116910Z     },
+2026-10-11T22:20:05.0117421Z     {
+2026-10-11T22:20:05.0118245Z       "id": "actual-command-rejections-and-primary-faults",
+2026-10-11T22:20:05.0119086Z       "checks": 127
+2026-10-11T22:20:05.0119609Z     },
+2026-10-11T22:20:05.0120194Z     {
+2026-10-11T22:20:05.0121141Z       "id": "actual-call-kill-natural-counter-and-retained-motes",
+2026-10-11T22:20:05.0122105Z       "checks": 42
+2026-10-11T22:20:05.0122692Z     },
+2026-10-11T22:20:05.0123251Z     {
+2026-10-11T22:20:05.0124552Z       "id": "actual-orbital-kill-work-and-bounded-farm-batches",
+2026-10-11T22:20:05.0125566Z       "checks": 72
+2026-10-11T22:20:05.0126288Z     },
+2026-10-11T22:20:05.0126872Z     {
+2026-10-11T22:20:05.0127755Z       "id": "lethal-meteor-auto-ascend-atomicity-and-run-token",
+2026-10-11T22:20:05.0128859Z       "checks": 47
+2026-10-11T22:20:05.0129532Z     },
+2026-10-11T22:20:05.0130210Z     {
+2026-10-11T22:20:05.0130926Z       "id": "legacy-trials-refresh-and-save-faults",
+2026-10-11T22:20:05.0131713Z       "checks": 40
+2026-10-11T22:20:05.0132326Z     },
+2026-10-11T22:20:05.0132863Z     {
+2026-10-11T22:20:05.0133574Z       "id": "real-offline-call-endpoint-and-bank-retention",
+2026-10-11T22:20:05.0134812Z       "checks": 12
+2026-10-11T22:20:05.0135353Z     }
+2026-10-11T22:20:05.0135949Z   ],
+2026-10-11T22:20:05.0136544Z   "bigIntAvailable": false,
+2026-10-11T22:20:05.0138761Z   "scope": "Actual Node8.3/V8 6.0 complete production IIFE: all six purchases, fixed numeric vectors, old/current schema, exact claims, actual commands and defeat owners, Auto-Ascend, offline and persistence. Native browser layout is a separate gate.",
+2026-10-11T22:20:05.0141792Z   "sourceSha256": "9b899ca458c4a4559437bf33e101408bebb0a1a3ca5e2574b5e821f1585a97c3",
+2026-10-11T22:20:05.0143751Z   "testSha256": "1de2726eaae0f209c053cebceb15832fff54b199ed34652032731b5da43d7b7a",
+2026-10-11T22:20:05.0145665Z   "harnessSha256": "aeccdff0583636396da3a214336f5cfce41b607765b458c51ca105637c00298e",
+2026-10-11T22:20:05.0146652Z   "node": "v8.3.0",
+2026-10-11T22:20:05.0147147Z   "v8": "6.0.286.52"
+2026-10-11T22:20:05.0147636Z }
+2026-10-11T22:20:05.0266521Z ##[group]Run actions/upload-artifact@v4
+2026-10-11T22:20:05.0267005Z with:
+2026-10-11T22:20:05.0267322Z   name: comet-expansion-38179731459
+2026-10-11T22:20:05.0267668Z   retention-days: 14
+2026-10-11T22:20:05.0268052Z   if-no-files-found: error
+2026-10-11T22:20:05.0268565Z   path: comet-validation/
+tests/behavioral/comet-expansion-*.cjs
+
+2026-10-11T22:20:05.0269076Z   compression-level: 6
+2026-10-11T22:20:05.0269406Z   overwrite: false
+2026-10-11T22:20:05.0269706Z   include-hidden-files: false
+2026-10-11T22:20:05.0270106Z ##[endgroup]
+2026-10-11T22:20:05.1930928Z (node:3819) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T22:20:05.1931841Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T22:20:05.2441982Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-11T22:20:05.2443327Z The least common ancestor is /home/runner/work/Lumenfall/Lumenfall. This will be the root directory of the artifact
+2026-10-11T22:20:05.2444499Z With the provided path, there will be 184 files uploaded
+2026-10-11T22:20:05.2445185Z Artifact name is valid!
+2026-10-11T22:20:05.2445476Z Root directory input is valid!
+2026-10-11T22:20:05.5190770Z Beginning upload of artifact content to blob storage
+2026-10-11T22:20:05.8396408Z (node:3819) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T22:20:06.2729840Z Uploaded bytes 8388608
+2026-10-11T22:20:06.5069661Z Uploaded bytes 16777216
+2026-10-11T22:20:06.6421236Z Uploaded bytes 25165824
+2026-10-11T22:20:07.7005098Z Uploaded bytes 32246602
+2026-10-11T22:20:07.7373013Z Finished uploading artifact content to blob storage!
+2026-10-11T22:20:07.7379384Z SHA256 digest of uploaded artifact zip is 535ea10096e93da9f1619c0f0213db01bc09e1b983a9023f49babe7751bb20c0
+2026-10-11T22:20:07.7380259Z Finalizing artifact upload
+2026-10-11T22:20:07.9672423Z Artifact comet-expansion-38179731459.zip successfully finalized. Artifact ID 11716478956
+2026-10-11T22:20:07.9674763Z Artifact comet-expansion-38179731459 has been successfully uploaded! Final size is 32246602 bytes. Artifact ID is 11716478956
+2026-10-11T22:20:07.9681483Z Artifact download URL: https://github.com/karahaNx/Lumenfall/actions/runs/38179731459/artifacts/11716478956
+2026-10-11T22:20:07.9950135Z Post job cleanup.
+2026-10-11T22:20:08.0855087Z [command]/usr/bin/git version
+2026-10-11T22:20:08.0894384Z git version 2.55.0
+2026-10-11T22:20:08.0938550Z Temporarily overriding HOME='/home/runner/work/_temp/79a1f53d-3c00-4990-b3bf-a18b36b037cb' before making global git config changes
+2026-10-11T22:20:08.0940249Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T22:20:08.0945959Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-11T22:20:08.1001935Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T22:20:08.1042556Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T22:20:08.1382965Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T22:20:08.1416282Z http.https://github.com/.extraheader
+2026-10-11T22:20:08.1428679Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T22:20:08.1484246Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T22:20:08.1809229Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T22:20:08.1860572Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-11T22:20:08.2383737Z Cleaning up orphan processes
+2026-10-11T22:20:08.2757475Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

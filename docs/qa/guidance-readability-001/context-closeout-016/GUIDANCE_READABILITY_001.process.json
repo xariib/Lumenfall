@@ -1,0 +1,22 @@
+{
+  "task": "GUIDANCE_READABILITY_001",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "scripts/codex/check_context.cjs",
+    "--task",
+    "docs/tasks/GUIDANCE_READABILITY_001.md"
+  ],
+  "startedHostUtc": "2026-10-11T15:21:40.779Z",
+  "endedHostUtc": "2026-10-11T15:21:40.859Z",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "bytes": 139,
+    "sha256": "10cce9448cfeae442da4274af49defbc638238bd689867c51e4a706b4551548d"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

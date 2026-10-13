@@ -1,0 +1,1146 @@
+{
+  "status": "PASS_SUPPORTED_DEVELOPMENT_ACCEPTANCE",
+  "feature": "GUIDANCE_READABILITY_001",
+  "merge": "354e19ff956b47cf8833a8ae25c599298cbe659f",
+  "orderedParents": [
+    "684bfc52bb2ca523124fe63981188b9a8004d747",
+    "bfed924be57a3b25e06c2f6e4ba3a38e9fc940b6"
+  ],
+  "tree": "381a7951d3b45a1a0a64e49b7dd13ed11d6022c6",
+  "sourceSha256": "dd81757378880ef42052cf6b175ea06721043e0ba7213cd135d5661367a743f1",
+  "commands": 13,
+  "assertions": 843198,
+  "causalControls": 111,
+  "planSha256": "095d8f0bfc84248af6f1cb3c961be0d429ecf1b245950c9794467d67649d838a",
+  "results": [
+    {
+      "group": "lab-forge",
+      "id": "lab-core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 2464,
+      "causalControls": [
+        {
+          "name": "lost-capacity",
+          "caught": "capacity curve\n\n2 !== 3\n"
+        },
+        {
+          "name": "free-start",
+          "caught": "exact Lumen debit\n\n20000 !== 0\n"
+        },
+        {
+          "name": "early-level",
+          "caught": "no early bonus\n\n1 !== 0\n"
+        },
+        {
+          "name": "lost-seventh-paid-record",
+          "caught": "eighth slot rejected\n\ntrue !== false\n"
+        },
+        {
+          "name": "ascend-drops-paid-slots",
+          "caught": "manual preserves activeStudies\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      id: 'wispascend',\n      remainingSec: 1800,\n      speedMult: 1.5,\n...\n    },\n-   {\n-     id: 'focusprotocol',\n-     remainingSec: 2100,\n-     speedMult: 6,\n-     totalDurationSec: 3000\n-   },\n-   {\n-     id: 'bossledger',\n-     remainingSec: 2160,\n-     speedMult: 8,\n-     totalDurationSec: 3060\n-   }\n  ]\n"
+        },
+        {
+          "name": "ascend-drops-earned-capacity",
+          "caught": "manual preserves longStudyLevels\n+ actual - expected\n... Skipped lines\n\n  {\n    adaptivegrowth: 1,\n    bossledger: 1,\n    catalysis: 1,\n    curriculum: 1,\n...\n    guardmastery: 0,\n+   labcapacity: 0,\n-   labcapacity: 2,\n    lumenstudy: 0,\n    luminousdistill: 1,\n    measuredinquiry: 0,\n    modulefabrication: 1,\n    motestudy: 0,\n"
+        },
+        {
+          "name": "double-notes",
+          "caught": "earned completion Motes\n\n10012 !== 10006\n"
+        },
+        {
+          "name": "no-procurement",
+          "caught": "future prices reduced20%\n+ actual - expected\n\n  {\n+   lumen: 600,\n+   shard: 40\n-   lumen: 480,\n-   shard: 32\n  }\n"
+        },
+        {
+          "name": "missed-luminous-purchase",
+          "caught": "first affordable kill counts Luminous material rewards\n\n2 !== 1\n"
+        },
+        {
+          "name": "erased-old-value",
+          "caught": "old value preserved research\n+ actual - expected\n\n  {\n    amplifiertrim: 0,\n    arcanecal: 0,\n    cauterize: 0,\n+   charge: 0,\n-   charge: 28,\n    conduction: 0,\n    dualchannel: 0,\n    focus: 0,\n    formation: 0,\n    fracturekey: 0,\n"
+        }
+      ],
+      "stdout": {
+        "path": "01-lab-core.stdout.log",
+        "bytes": 3328,
+        "sha256": "0df680a6e2c7b2cee14f9fc24757e3a49aaac4ba1293b64c1deaa72c6a9a320d",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "01-lab-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "lab-forge",
+      "id": "lab-boundary",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/lab-expansion-boundary.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 2344,
+      "causalControls": [
+        {
+          "name": "wallet-before-luminous-bonus",
+          "caught": "original fractional-wallet reproduction: predicted boundary equals first actually affordable Farm batch\n\n32 !== 31\n"
+        },
+        {
+          "name": "unverified-one-kill-estimate",
+          "caught": "one-kill estimate still short by a representable fraction: predicted boundary equals first actually affordable Farm batch\n\n1 !== 2\n"
+        },
+        {
+          "name": "imaginary-first-luminous-kill",
+          "caught": "ordinary first enemy at a real near-wrap Luminous phase: predicted boundary equals first actually affordable Farm batch\n\n1 !== 2\n"
+        },
+        {
+          "name": "unverified-upper-bound",
+          "caught": "one-kill estimate still short by a representable fraction: predicted boundary equals first actually affordable Farm batch\n\n1 !== 2\n"
+        },
+        {
+          "name": "unsafe-normal-estimate-skips-safe-buy",
+          "caught": "unsafe ordinary estimate must not hide the earlier safe boundary\n+ actual - expected\n\n+ 9100000000000000\n- 8834951456310660\n"
+        }
+      ],
+      "stdout": {
+        "path": "02-lab-boundary.stdout.log",
+        "bytes": 1158,
+        "sha256": "f5d9dc08e8ea864ef83193a02adc3bf73baac3511edd1e5965a56a7762782099",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "02-lab-boundary.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "lab-forge",
+      "id": "prism-state",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/prism-earning-state.cjs",
+        "index.html"
+      ],
+      "assertions": 3506,
+      "causalControls": [],
+      "stdout": {
+        "path": "03-prism-state.stdout.log",
+        "bytes": 449,
+        "sha256": "5e8365d54f8faff987fc2117748194f54dba8a0f1d6470fa779235883910d812",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "03-prism-state.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "lab-forge",
+      "id": "forge-core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 9315,
+      "causalControls": [
+        {
+          "name": "disabled-effect-cauterize",
+          "assertion": "Cauterize multiplies current boss regeneration: 0.009 vs 0.0072"
+        },
+        {
+          "name": "disabled-effect-fracturekey",
+          "assertion": "fracturekey actual contextual hit 20: 8.75 vs 10"
+        },
+        {
+          "name": "disabled-effect-guardianseal",
+          "assertion": "guardianseal actual contextual hit 30: 15.06000000005588 vs 17.570000000065193"
+        },
+        {
+          "name": "disabled-effect-spillway",
+          "assertion": "Spillway real next nonboss damage tap: 9957714 vs 9957713.196"
+        },
+        {
+          "name": "disabled-effect-sustainedchannel",
+          "assertion": "Sustained Channel actual eligible refund ember/20/false"
+        },
+        {
+          "name": "disabled-effect-tapconduit",
+          "assertion": "Tap Conduit first powered Active manual"
+        },
+        {
+          "name": "disabled-effect-guardiancadence",
+          "assertion": "actual shared cadence ordinal 5/manual: 5.0200000000186265 vs 7.529999999999999"
+        },
+        {
+          "name": "disabled-effect-relay",
+          "assertion": "post-pass two-Support relay to Ember"
+        },
+        {
+          "name": "disabled-effect-resonantedge",
+          "assertion": "Support now delivers a real pulse"
+        },
+        {
+          "name": "disabled-effect-victorycharge",
+          "assertion": "boss victory grants caster charge"
+        },
+        {
+          "name": "disabled-effect-amplifiertrim",
+          "assertion": "actual stronger Support snapshot"
+        },
+        {
+          "name": "disabled-effect-dualchannel",
+          "assertion": "Dual Channel real Lumen cast gale/live: 0 vs 71"
+        },
+        {
+          "name": "disabled-effect-overflowconduit",
+          "assertion": "Overflow Conduit actual source overkill gale/true: 6098 vs 6105"
+        },
+        {
+          "name": "disabled-effect-resonancecells",
+          "assertion": "purchased extra actual Resonate use"
+        },
+        {
+          "name": "disabled-effect-resonancecascade",
+          "assertion": "manual Resonate cascades only to powered Active, bounded100"
+        },
+        {
+          "name": "disabled-effect-resonancereclaim",
+          "assertion": "actual boss restores bounded spent uses"
+        },
+        {
+          "name": "one-unit-price-drift",
+          "assertion": "exact approved price must buy the real Relay level"
+        },
+        {
+          "name": "inexact-wallet-free-purchase",
+          "assertion": "huge wallet refuses actual free Forge purchase"
+        },
+        {
+          "name": "primary-mutation-leak-forge",
+          "assertion": "primary failure prevents leaked Forge mutation"
+        },
+        {
+          "name": "primary-mutation-leak-resonate",
+          "assertion": "primary failure prevents leaked Resonate mutation"
+        },
+        {
+          "name": "paid-relay-lost-on-real-ascend",
+          "assertion": "manual retains research"
+        },
+        {
+          "name": "finite-burst-false-wall",
+          "assertion": "finite remaining burst prevents automatic wall retreat"
+        },
+        {
+          "name": "unsafe-counter-normal-cadence-average",
+          "assertion": "HUD recognizes stagnant cadence ordinal: 5.522 vs 5.02"
+        },
+        {
+          "name": "unsafe-count-as-forge-run-identity",
+          "assertion": "unsafe run blocks old Spillway damage support-live"
+        },
+        {
+          "name": "unsafe-count-as-passive-run-identity",
+          "assertion": "unsafe run blocks old charge/time credit passive-live/ember"
+        }
+      ],
+      "stdout": {
+        "path": "04-forge-core.stdout.log",
+        "bytes": 3772,
+        "sha256": "dc81f360145d33b82ed374e0b7d354f5552628dec4352aed147a2676fbf37f04",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "04-forge-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "lab-forge",
+      "id": "forge-v8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/forge-expansion-legacy.cjs",
+        "index.html"
+      ],
+      "assertions": 2452,
+      "causalControls": [],
+      "stdout": {
+        "path": "05-forge-v8.stdout.log",
+        "bytes": 906,
+        "sha256": "37ad93a62704ffb9a2f6cabd37d451665da21ed7ad544b9b6bae98c8574bf341",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "05-forge-v8.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "tree",
+      "id": "core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 5278,
+      "causalControls": [
+        {
+          "name": "drop-swiftcharter",
+          "status": "killed",
+          "checksBeforeFailure": 46,
+          "assertion": "negative drop-swiftcharter: Charter affects only future level10+ price 1/10\n\n173 !== 60\n"
+        },
+        {
+          "name": "drop-veteranrecruits",
+          "status": "killed",
+          "checksBeforeFailure": 15,
+          "assertion": "negative drop-veteranrecruits: one paid recruitment grants starting levels\n\n1 !== 2\n"
+        },
+        {
+          "name": "drop-gentlegrowth",
+          "status": "killed",
+          "checksBeforeFailure": 107,
+          "assertion": "negative drop-gentlegrowth: independent literal/rational Empower price 1/26/0\n\n240 !== 238\n"
+        },
+        {
+          "name": "drop-formationseat",
+          "status": "killed",
+          "checksBeforeFailure": 11,
+          "assertion": "negative drop-formationseat: actual sixth Field button eligibility\n\nfalse !== true\n"
+        },
+        {
+          "name": "drop-benchmentor",
+          "status": "killed",
+          "checksBeforeFailure": 29,
+          "assertion": "negative drop-benchmentor: paid action count independent of levels\n\n0 !== 9\n"
+        },
+        {
+          "name": "drop-empowerbatch",
+          "status": "killed",
+          "checksBeforeFailure": 14,
+          "assertion": "negative drop-empowerbatch: up to purchased throughput in one real timer event\n\n1 !== 2\n"
+        },
+        {
+          "name": "drop-recruitreserve",
+          "status": "killed",
+          "checksBeforeFailure": 18,
+          "assertion": "negative drop-recruitreserve: affordable next remembered recruit has priority\n\n0 !== 1\n"
+        },
+        {
+          "name": "drop-invitations",
+          "status": "killed",
+          "checksBeforeFailure": 47,
+          "assertion": "negative drop-invitations: earlier future recruitment depth tide/1\n\n3 !== 2\n"
+        },
+        {
+          "name": "drop-frontier",
+          "status": "killed",
+          "checksBeforeFailure": 153,
+          "assertion": "negative drop-frontier: canonical independent base plus new Frontier term 1/25/0\n+ actual - expected\n\n  {\n    benchmark: 0,\n    cleared: 25,\n-   frontier: 1,\n    full: 14,\n+   gain: 14,\n-   gain: 15,\n    progressBonus: 14,\n    reserve: 0\n  }\n"
+        },
+        {
+          "name": "drop-stardust",
+          "status": "killed",
+          "checksBeforeFailure": 15,
+          "assertion": "negative drop-stardust: Dust from final actually credited Prism gain, with per-run cap\n\n10000 !== 10002\n"
+        },
+        {
+          "name": "drop-wallwisdom",
+          "status": "killed",
+          "checksBeforeFailure": 9,
+          "assertion": "negative drop-wallwisdom: genuine wall retreats at purchased grace\n\n0 !== 1\n"
+        },
+        {
+          "name": "drop-lumenmemory",
+          "status": "killed",
+          "checksBeforeFailure": 10,
+          "assertion": "negative drop-lumenmemory: exact owned Lumen carry\n\n0 !== 617.25\n"
+        },
+        {
+          "name": "drop-rosterrecall",
+          "status": "killed",
+          "checksBeforeFailure": 11,
+          "assertion": "negative drop-rosterrecall: first paid additional remembered members recalled\n+ actual - expected\n\n+ []\n- [\n-   'tide'\n- ]\n"
+        },
+        {
+          "name": "drop-chargememory",
+          "status": "killed",
+          "checksBeforeFailure": 20,
+          "assertion": "negative drop-chargememory: each actual charge retained ember; 0 vs 1.45"
+        },
+        {
+          "name": "drop-supportmemory",
+          "status": "killed",
+          "checksBeforeFailure": 12,
+          "assertion": "negative drop-supportmemory: Support source snapshots retained exactly\n+ actual - expected\n\n+ null\n- {\n-   sources: {\n-     aurora: {\n-       mult: 1.5,\n-       until: 2000000002500\n-     },\n-     tide: {\n-       mult: 1.25,\n-       until: 2000000004000\n-     }\n-   },\n-   version: 1\n- }\n"
+        },
+        {
+          "name": "drop-phasememory",
+          "status": "killed",
+          "checksBeforeFailure": 10,
+          "assertion": "negative drop-phasememory: only existing unlocked timer phase carried\n+ actual - expected\n\n  [\n+   0,\n+   0\n-   375.125,\n-   847.5\n  ]\n"
+        },
+        {
+          "name": "drop-riftstep",
+          "status": "killed",
+          "checksBeforeFailure": 12,
+          "assertion": "negative drop-riftstep: new run enemy starts at purchased Rift\n+ actual - expected\n\n  [\n+   1,\n+   1\n-   2,\n-   2\n  ]\n"
+        },
+        {
+          "name": "wrong-price",
+          "status": "killed",
+          "checksBeforeFailure": 71,
+          "assertion": "negative wrong-price: independent price lumenmemory/0\n\n9 !== 8\n"
+        },
+        {
+          "name": "ignore-unlock",
+          "status": "killed",
+          "checksBeforeFailure": 62,
+          "assertion": "negative ignore-unlock: one Rift below unlock swiftcharter\n+ actual - expected\n\n+ 'available'\n- 'locked'\n"
+        },
+        {
+          "name": "free-Tree-huge-wallet",
+          "status": "killed",
+          "checksBeforeFailure": 1,
+          "assertion": "negative free-Tree-huge-wallet: unrepresentable Tree price refused\n\ntrue !== false\n"
+        },
+        {
+          "name": "free-Wisp-huge-wallet",
+          "status": "killed",
+          "checksBeforeFailure": 1,
+          "assertion": "negative free-Wisp-huge-wallet: unrepresentable manual Wisp price refused\n\ntrue !== false\n"
+        },
+        {
+          "name": "Tree-primary-leak",
+          "status": "killed",
+          "checksBeforeFailure": 3,
+          "assertion": "negative Tree-primary-leak: primary rollback restores complete Tree state echo\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n    achieved: {},\n    activeFormationPreset: 'push',\n...\n      chargememory: 0,\n+     echo: 1,\n-     echo: 0,\n      empowerbatch: 0,\n      formationseat: 0,\n      frontier: 0,\n      gentlegrowth: 0,\n      invitations: 0,\n...\n    },\n+   prisms: 9998,\n-   prisms: 10000,\n    questClaimed: {},\n    questDay: '2026-10-11',\n    questIds: [],\n    research: {\n      amplifiertrim: 0,\n"
+        },
+        {
+          "name": "Wisp-primary-leak",
+          "status": "killed",
+          "checksBeforeFailure": 2,
+          "assertion": "negative Wisp-primary-leak: manual Empower rolls back recruitment, training and Formation\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n+   achieved: {\n+     d100: true,\n+     d10: true,\n+     d250: true,\n+     d25: true,\n+     d50: true\n+   },\n-   achieved: {},\n    activeFormationPreset: '',\n    activeParty: [\n      'tide'\n    ],\n    activeStudies: [],\n...\n    cometWork: 0,\n+   comets: 300,\n-   comets: 115,\n    dailyQuestRefreshes: 0,\n    dailyStats: {\n      ascends: 0,\n      bossKills: 0,\n+     empowers: 1,\n-     empowers: 0,\n      kills: 0,\n      luminousKills: 0,\n      research: 0,\n      taps: 0\n    },\n...\n    },\n+   lumen: 999999999989,\n-   lumen: 1000000000000,\n    luminousAccum: 0,\n    maxDepthEver: 250,\n    motes: 10000,\n    nodes: {\n      benchmentor: 5,\n...\n      aurora: 0,\n+     ember: 2,\n-     ember: 1,\n      gale: 0,\n+     stone: 7,\n-     stone: 2,\n      thorn: 0,\n      tide: 2,\n      titan: 0,\n      void: 0\n    },\n...\n    totalTaps: 0,\n+   treeTrainingProgress: 0,\n-   treeTrainingProgress: 9,\n    wispModules: {\n      aurora: 0,\n      ember: 0,\n      gale: 0,\n      stone: 0,\n"
+        },
+        {
+          "name": "Ascend-primary-leak",
+          "status": "killed",
+          "checksBeforeFailure": 2,
+          "assertion": "negative Ascend-primary-leak: manual Ascend rolls back complete reset and awards\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 847.5,\n    _autoTapAccum: 375.125,\n    achieved: {\n+     allstudies: true,\n+     asc1: true,\n      autotap: true,\n+     d100: true,\n+     d10: true,\n+     d250: true,\n+     d25: true,\n+     d50: true,\n+     firstultimate: true,\n+     fullparty: true,\n      labmaster: true,\n+     modulemax: true,\n+     mythic: true,\n+     study1: true,\n+     study25: true\n    },\n    activeFormationPreset: 'push',\n    activeParty: [\n      'ember',\n      'tide',\n...\n      'thorn',\n-     'void'\n    ],\n    activeStudies: [\n      {\n        id: 'wispascend',\n        remainingSec: 1800,\n...\n    ],\n+   ascendCount: 4,\n+   ascendRewardedDepth: 50,\n-   ascendCount: 3,\n-   ascendRewardedDepth: 25,\n    autoAscendEnabled: false,\n    autoAscendTargetDepth: 51,\n    buffMult: 1.7,\n    buffUntil: 2000000003000,\n    cometCalled: false,\n...\n    cometWork: 0,\n+   comets: 902,\n-   comets: 465,\n    dailyQuestRefreshes: 0,\n    dailyStats: {\n+     ascends: 1,\n-     ascends: 0,\n      bossKills: 0,\n      empowers: 0,\n      kills: 0,\n      luminousKills: 0,\n      research: 0,\n      taps: 0\n    },\n+   depth: 6,\n-   depth: 51,\n    empowerQueue: {\n      aurora: false,\n      ember: false,\n      gale: false,\n      stone: false,\n...\n    },\n+   enemyDepth: 6,\n+   enemyHp: 23,\n-   enemyDepth: 51,\n-   enemyHp: 1000000000000000,\n    enemyIsLuminous: false,\n+   enemyMaxHp: 23,\n-   enemyMaxHp: 1000000000000000,\n    farmDepth: 0,\n    farmReturnDepth: 0,\n    formationPresets: {\n      boss: [\n        'titan',\n...\n    },\n+   formationRebuild: {\n+     members: [\n+       'ember',\n+       'tide',\n+       'stone',\n+       'gale',\n+       'thorn',\n+       'void'\n+     ],\n+     preset: 'push'\n+   },\n-   formationRebuild: null,\n    heroRarity: {\n      aurora: 5,\n      ember: 5,\n      gale: 5,\n      stone: 5,\n...\n    },\n+   lumen: 3086.25,\n+   luminousAccum: 0.08,\n-   lumen: 12345,\n-   luminousAccum: 0,\n    maxDepthEver: 250,\n+   motes: 10010,\n-   motes: 10000,\n    nodes: {\n      benchmentor: 5,\n      bonds: 28,\n      chargememory: 5,\n      echo: 10,\n...\n    },\n+   prisms: 10046,\n-   prisms: 10000,\n    questClaimed: {},\n    questDay: '2026-10-11',\n    questIds: [],\n    research: {\n      amplifiertrim: 5,\n...\n    shards: 1000000000000,\n+   sigilResonanceUses: 0,\n-   sigilResonanceUses: 3,\n    sigils: 10000,\n    spirits: {\n+     aurora: 0,\n+     ember: 6,\n+     gale: 6,\n+     stone: 6,\n+     thorn: 6,\n+     tide: 6,\n+     titan: 0,\n+     void: 0\n-     aurora: 26,\n-     ember: 20,\n-     gale: 23,\n-     stone: 22,\n-     thorn: 24,\n-     tide: 21,\n-     titan: 27,\n-     void: 25\n    },\n    studyQueue: {\n      adaptivegrowth: false,\n      bossledger: true,\n      catalysis: true,\n...\n    totalTaps: 0,\n+   treeTrainingProgress: 0,\n-   treeTrainingProgress: 7,\n    wispModules: {\n      aurora: 20,\n      ember: 20,\n      gale: 20,\n      stone: 20,\n"
+        },
+        {
+          "name": "Ascend-rollback-token",
+          "status": "killed",
+          "checksBeforeFailure": 3,
+          "assertion": "negative Ascend-rollback-token: manual Ascend restores original transient run identity"
+        },
+        {
+          "name": "ignored-Auto-Ascend-result",
+          "status": "killed",
+          "checksBeforeFailure": 3,
+          "assertion": "negative ignored-Auto-Ascend-result: failed Auto-Ascend must execute the normal post-kill achievement tail\n+ actual - expected\n\n+ undefined\n- true\n"
+        },
+        {
+          "name": "lost-paid-Ascend",
+          "status": "killed",
+          "checksBeforeFailure": 32,
+          "assertion": "negative lost-paid-Ascend: manual all paid data and intent survive nodes\n+ actual - expected\n... Skipped lines\n\n  {\n    benchmentor: 5,\n    bonds: 28,\n    chargememory: 5,\n    echo: 10,\n...\n    invitations: 3,\n+   lumenmemory: 0,\n-   lumenmemory: 5,\n    momentum: 11,\n    phasememory: 1,\n    recruitreserve: 5,\n    reserves: 0,\n    riftstep: 5,\n"
+        },
+        {
+          "name": "double-Frontier",
+          "status": "killed",
+          "checksBeforeFailure": 5,
+          "assertion": "negative double-Frontier: repeated record has no Frontier award\n\n10064 !== 10049\n"
+        }
+      ],
+      "stdout": {
+        "path": "01-core.stdout.log",
+        "bytes": 14632,
+        "sha256": "727d91de4752965593fa8e828c38e0c0a3a54af623890151e5665a541b759d47",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "01-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "tree",
+      "id": "offline",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 7691,
+      "causalControls": [
+        {
+          "name": "discard-final-old-run-charge",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "ending event-time charge includes old-run final interval: actual=18 expected=22.166666666666668"
+        },
+        {
+          "name": "double-accrue-paid-memory-interval",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "ordinary interval accrues charge exactly once: actual=26.333333333333336 expected=22.166666666666668"
+        },
+        {
+          "name": "discard-paid-event-phase",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "ending event-time Auto-Tap phase retained: actual=0 expected=375"
+        },
+        {
+          "name": "ignore-paid-wall-grace",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "independent paid offline wall grace"
+        }
+      ],
+      "stdout": {
+        "path": "02-offline.stdout.log",
+        "bytes": 14816,
+        "sha256": "2749f04baca1f150568f240e0b8205f817513c5095ab9d6af0d33585f71ed6e0",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "02-offline.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "tree",
+      "id": "economy",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-economy.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 16802,
+      "causalControls": [
+        {
+          "name": "missing-paid-charter",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "owned Charter changes only future Swift10 quote to60P"
+        },
+        {
+          "name": "missing-patient-growth",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "Patient Growth independent quote Ember50/G5/B20=582"
+        },
+        {
+          "name": "double-frontier-credit",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "rewarded Frontier benchmark prevents repeat milestone credit"
+        },
+        {
+          "name": "dust-uses-old-kernel-only",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "Dust uses final40P exactly once"
+        },
+        {
+          "name": "missing-combined-carry-effect",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "combined paid Lumen carry early-carry"
+        },
+        {
+          "name": "lost-combined-paid-ownership",
+          "caught": true,
+          "errorName": "AssertionError",
+          "message": "combined transition retains all purchased ranks early-carry"
+        }
+      ],
+      "stdout": {
+        "path": "03-economy.stdout.log",
+        "bytes": 30008,
+        "sha256": "9557b8946daffd7a5d6d9790e6651de146fa21ced16f3ea5c30bd9bf8ba64fc1",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "03-economy.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "tree",
+      "id": "v8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-v8.cjs",
+        "index.html"
+      ],
+      "assertions": 2862,
+      "causalControls": [],
+      "stdout": {
+        "path": "04-v8.stdout.log",
+        "bytes": 905,
+        "sha256": "66e06884208fb7cbd39e84405f590f8d8f39db05853e91baf6a7cf2aa955951a",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "04-v8.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "comet",
+      "id": "core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 10490,
+      "causalControls": [
+        {
+          "id": "second-command-is-not-another-initial-gift",
+          "function": "buyShopItem",
+          "sourceSha256": "8490f556ded1408850fb2937d2ab95edd98f0709d0e0b8ff131fb11484d8cd9f",
+          "positiveWitness": {
+            "charges": 0,
+            "owned": [
+              true,
+              true
+            ]
+          },
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "second purchase must not refill the spent shared gift\n\n1 !== 0\n"
+          }
+        },
+        {
+          "id": "representable-debit-required",
+          "function": "cometExactDebit",
+          "sourceSha256": "b522503780679bae7948fdf2c5a7d3af2cfe37e669f3ea6b1f7ffbb2d148f748",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "unrepresentable paid debit must refuse\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "unrepresentable-credit-keeps-original-claim",
+          "function": "cometCreditExactly",
+          "sourceSha256": "bd9c1868792b4af62ed784e83fc5c126c1b63fcb26a7b253e246287801f5feda",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "lost credit must retain its original pending identity\n+ actual - expected\n\n+ undefined\n- true\n"
+          }
+        },
+        {
+          "id": "new-deed-does-not-sweep-older-claims",
+          "function": "cometEarnDeed",
+          "sourceSha256": "a193640385bdd7f458eca960a5e306e6e1694b21bc6ed39f41c049f978d6efda",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "new Deed must not sweep an unrelated old claim\n\n'settled' !== 'due'\n"
+          }
+        },
+        {
+          "id": "recharge-does-not-imply-an-earlier-command",
+          "function": "normalizeCometState",
+          "sourceSha256": "e9012280606e2e3650ddea6f7b3316eb1771e99aaea127e9ae661592205d3759",
+          "positiveWitness": {
+            "charges": 1,
+            "work": 0,
+            "used": false,
+            "called": false,
+            "events": {
+              "firstCommand": false,
+              "firstRecharge": true,
+              "bossStrike": false,
+              "calledKill": false
+            }
+          },
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "accepted owned empty bank must stay valid after 200 actual defeats\n\nfalse !== true\n"
+          }
+        },
+        {
+          "id": "hidden-page-cannot-spend",
+          "function": "cometMutationOpen",
+          "sourceSha256": "2b9cd6ab899cd9d7599a0f8e70325c0b0d20dfa6de328bcf1a3ee5c576fff83a",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "hidden command must remain unavailable\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "ready-auto-ascend-cannot-spend",
+          "function": "getCometCommandPlan",
+          "sourceSha256": "252c441cd6795abd15aeb33469e7b5e49bd8d190b26c981b0e85447d5acb0abf",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "already-ready Auto-Ascend must not spend a command\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "positive-epsilon-hp-is-not-a-lethal-command",
+          "function": "activateCometCommand",
+          "sourceSha256": "1365ae1c317cb22c4a28dec87df4f994ce1fae61c2fed249cbf8f779fc6b65c1",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "positive Meteor remainder must not become an epsilon kill\n\n1 !== 0\n"
+          }
+        },
+        {
+          "id": "primary-failure-restores-run-identity",
+          "function": "cometCommitMutation",
+          "sourceSha256": "8f40c67f6d490e62de8473b17e6819551852fa0806a40129697bcad3807e50c2",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "failed ending hit must restore the exact original run token"
+          }
+        },
+        {
+          "id": "capture-working-object-after-actual-ascend",
+          "function": "cometCommitMutation",
+          "sourceSha256": "c3738bc01dd93efa2aecc6e90ff98fd420f1ddfb1103be9e3e93d4d10730fe73",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "primary failure after actual Ascend replacement must refuse\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "new-encounter-clears-command-use",
+          "function": "spawnEnemy",
+          "sourceSha256": "a696c98ebe4d39e46d5789ae9e000cbe7a4c9d64626f7350644b03b7008bfa0e",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "new actual enemy must clear the Meteor use marker\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "farm-batch-captures-called-enemy-before-replacement",
+          "function": "simulationBatchFarmKills",
+          "sourceSha256": "0b9f1c919f838563f133912e44dcbf1104e8e39bbe1ffeed9fcd047c7f617653",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "actual called Farm defeat must retain its event\n\nfalse !== true\n"
+          }
+        },
+        {
+          "id": "manual-defeat-owner-awards-work",
+          "function": "defeatEnemy",
+          "sourceSha256": "5f8ffac243e534ca2554e9dcc344a8146b93253a91df68c679aa34dc66563741",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "one original manual defeat must award20 work\n\n0 !== 20\n"
+          }
+        },
+        {
+          "id": "authoritative-defeat-owner-awards-work",
+          "function": "simulationDefeatEnemy",
+          "sourceSha256": "f64ba6d2badcdff2c06f67e2f1fafc6c496190db85d5c4495b919f4a005a5e39",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "one authoritative defeat must award20 work\n\n0 !== 20\n"
+          }
+        },
+        {
+          "id": "engine-rank-changes-defeat-work-only",
+          "function": "cometWorkPerKill",
+          "sourceSha256": "a57c9a4ecc4bf778856749e6b1aaa0b808743b30da4965ec5e4a60fd6375cd70",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "124 actual rank2 defeats must produce3968 work\n\n3844 !== 3968\n"
+          }
+        },
+        {
+          "id": "full-bank-discards-bounded-residual",
+          "function": "cometRecordDefeats",
+          "sourceSha256": "64975aecce921a49874bb89617ec9205ec024d50420e47c559b416868cc083e9",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "saturated bank must discard all residual work\n\n1 !== 0\n"
+          }
+        },
+        {
+          "id": "refresh-refuses-stagnating-counter",
+          "function": "getDailyQuestRefreshPlan",
+          "sourceSha256": "1952d33375eea4736a94cac898cea0bd087bc1652c1b7b560e613b7297df4e77",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "Refresh must refuse a counter that cannot increment exactly\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "original-forge-deed-threshold-is-not-total-new-levels",
+          "function": "legacyResearchLevels",
+          "sourceSha256": "d60bd6f5bc19b707c6455d1bc2b6d2c5b09e2cdfa8996ae1073aa5ba5f0b7440",
+          "positiveWitness": null,
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "new Forge levels must not satisfy the original20-level Deed\n\ntrue !== false\n"
+          }
+        }
+      ],
+      "stdout": {
+        "path": "01-core.stdout.log",
+        "bytes": 21827,
+        "sha256": "34a0275bae6e6729864a72ba20ecb03231e90652c252b2c07687c46c541e05d2",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "01-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "comet",
+      "id": "numerical",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-numerical.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 681747,
+      "causalControls": [
+        {
+          "id": "native-rounded-floor",
+          "function": "cometMeteorBudget",
+          "sourceSha256": "a08be8f1f1dfa7b8265167a6d334a6a7309b702ccf25d278e3333d9f9ec9e7c0",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "fractional power must floor before rounded native product\n\n1 !== 0\n"
+          }
+        },
+        {
+          "id": "division-first-safe-floor",
+          "function": "cometMeteorBudget",
+          "sourceSha256": "afa9f465722ce3249f050eb9cd71a14bbab2afdba80bd18391c6cbb9ce5a3d61",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "safe floor must be exact\n+ actual - expected\n\n+ 3152519739159347\n- 3152519739159346\n                 ^\n"
+          }
+        },
+        {
+          "id": "unused-power-overflow",
+          "function": "cometMeteorBudget",
+          "sourceSha256": "5318694fd7f9c011dcf0cb4d0ff7865331ebde51ac96893a512dd01a3d40fd09",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "unused overflow cannot reject finite budget\n\n0 !== 200\n"
+          }
+        },
+        {
+          "id": "lost-power-ceiling",
+          "function": "cometMeteorBudget",
+          "sourceSha256": "250c2cc3c15bf43d5fa3ed90a04d3de203d6ac50a097ad87325627c769d40ff4",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "power cap remains twelve passive seconds\n\n4000 !== 1200\n"
+          }
+        },
+        {
+          "id": "lost-core-rank",
+          "function": "cometMeteorBudget",
+          "sourceSha256": "63a8110b88de63100fe969b991f4c75f8a2f098384b0e69b728fbbb1175dc966",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "Core rank4 remains forty percent\n\n200 !== 400\n"
+          }
+        },
+        {
+          "id": "lost-directed-hp-correction",
+          "function": "cometMeteorHpPlan",
+          "sourceSha256": "849a4e03943b180d6382ed5aff3439e85cb9c89108bec466e65869381c73dbe6",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "representable positive damage2 with budget3 remains available\n+ actual - expected\n\n  {\n+   available: false,\n-   available: true,\n    budget: 3,\n+   reason: 'unrepresentable'\n-   damage: 2,\n-   hpAfter: 18014398509481982,\n-   lethal: false\n  }\n"
+          }
+        },
+        {
+          "id": "reject-valid-fractional-hp",
+          "function": "cometMeteorHpPlan",
+          "sourceSha256": "6b30264be34e16e4bce34ff9afddc7e4e810e1c6107ddcefa82b9a641ccc8db7",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "fractional lethal HP is supported\n+ actual - expected\n\n  {\n+   available: false,\n+   budget: 0,\n+   reason: 'invalid'\n-   available: true,\n-   budget: 1,\n-   damage: 0.125,\n-   hpAfter: 0,\n-   lethal: true\n  }\n"
+          }
+        },
+        {
+          "id": "ledger-hidden-rescan",
+          "function": "settleCometClaims",
+          "sourceSha256": "5c949d73ba4422603d6f38cded2fc1f426e99f3eb5d52638287303f64834b530",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "one fixed pass must retain earlier due claim\n+ actual - expected\n\n+ []\n- [\n-   'retirement:comettrials'\n- ]\n"
+          }
+        }
+      ],
+      "stdout": {
+        "path": "02-numerical.stdout.log",
+        "bytes": 206507,
+        "sha256": "1bc3cfad6712197179cfb16bf824f60a3f2a584b1b14afbb90eeb22b999c5964",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "02-numerical.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "comet",
+      "id": "offline",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "assertions": 96885,
+      "causalControls": [
+        {
+          "id": "elapsed-seconds-are-not-defeat-work",
+          "function": "advanceAuthoritativeTime",
+          "sourceSha256": "c349c974a4c65a5c12e17ce5d820bdd3364d4aaa9948a63f13672b542a0d7a04",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "elapsed time alone must not earn work\n\n2434 !== 1234\n"
+          }
+        },
+        {
+          "id": "offline-never-automatically-spends-a-command",
+          "function": "applyOfflineProgress",
+          "sourceSha256": "dca6bb9f4badb82241d35294c5f84b3935d22ea8659ae36b902994cc02dadd8e",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "elapsed time must not spend or refill command charges\n\n2 !== 3\n"
+          }
+        },
+        {
+          "id": "direct-farm-batch-count-is-required",
+          "function": "simulationBatchFarmKills",
+          "sourceSha256": "c19aab7553f6a150aa9b4c9cc265167b9b3fb858fd34afd2b505c70c015391dd",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "real Farm fast-forward must account for every defeat\n+ actual - expected\n\n  {\n+   charges: 1,\n+   work: 450\n-   charges: 2,\n-   work: 290\n  }\n"
+          }
+        },
+        {
+          "id": "unsafe-lifetime-counter-does-not-suppress-recharge",
+          "function": "cometRecordDefeats",
+          "sourceSha256": "c796d6f6ad49f5ed3cb33d5359bab4bfff65857a45adf0ab5962b51bf93df6d8",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "actual offline defeats survive a stalled lifetime counter\n+ actual - expected\n\n  {\n+   charges: 0,\n+   work: 3970\n-   charges: 2,\n-   work: 2882\n  }\n"
+          }
+        },
+        {
+          "id": "direct-farm-replacement-clears-called-marker",
+          "function": "simulationBatchFarmKills",
+          "sourceSha256": "2e34fc0d3eb8552758ab3719d387d89ecfa92da994a8eb46a42c865ac337592a",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "actual Farm replacement must consume the called marker\n\ntrue !== false\n"
+          }
+        },
+        {
+          "id": "offline-primary-failure-cannot-publish-working-bank",
+          "function": "applyOfflineProgress",
+          "sourceSha256": "fb8546f4e23717eebcd8175406f7f4c96fc81e61ec3c48f1ed54a244d35a5786",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "failed primary must report rejected offline commit"
+          }
+        },
+        {
+          "id": "actual-ascend-does-not-empty-earned-comet-bank",
+          "function": "applyAscendMutation",
+          "sourceSha256": "cb887e40e6d1933e0996e044b65cbac1cbbcf84ef923321d0376d947562d785b",
+          "detected": true,
+          "error": {
+            "name": "AssertionError",
+            "code": "ERR_ASSERTION",
+            "message": "actual offline Ascend must preserve earned bank\n+ actual - expected\n\n  {\n+   charges: 0,\n+   work: 0\n-   charges: 2,\n-   work: 3990\n  }\n"
+          }
+        }
+      ],
+      "stdout": {
+        "path": "03-offline.stdout.log",
+        "bytes": 44846,
+        "sha256": "fdf373a8d16fb5f749166b507dbb7083c622ab6cff1b2695866ea1593dad8dd1",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "03-offline.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    },
+    {
+      "group": "comet",
+      "id": "v8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-v8.cjs",
+        "index.html"
+      ],
+      "assertions": 1362,
+      "causalControls": [],
+      "stdout": {
+        "path": "04-v8.stdout.log",
+        "bytes": 2165,
+        "sha256": "7e83fa32f983bcbb37fcd01da5f04b15c5ac784a302b68bb15e6fb559ae8bddd",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "04-v8.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "status": "PASS_EXACT_FRESH_COMMAND_AND_SEMANTICS"
+    }
+  ],
+  "trustedClockBefore": {
+    "current_time": "2026-10-11 15:08:51 UTC"
+  },
+  "trustedClockAfter": {
+    "current_time": "2026-10-11 15:11:04 UTC"
+  },
+  "hostReviewUtc": "2026-10-11T15:11:06.012Z",
+  "attribution": "Owner self-review; no external independent review claim",
+  "limitations": [
+    "No physical Android/native WebView60/textZoom/TalkBack/installed-app acceptance.",
+    "No APK/signing/main integration/release.",
+    "Full combined terminal log unavailable; original ZIP/raw evidence is published.",
+    "Original Shared postmerge raw-file gap remains documented in recovery006."
+  ]
+}

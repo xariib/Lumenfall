@@ -1,0 +1,95 @@
+{
+  "status": "focused-diagnostic-pass-after-minimal-test-adapter-repair",
+  "originalBrowserFailure": {
+    "runScope": "Tree repair CI at head3c931",
+    "process": "../tree/prism-focused/contract/process.json",
+    "rawDom": "../tree/prism-focused/contract/stdout.html.gz",
+    "qaResult": "../tree/prism-focused/contract/qa-result.json",
+    "wrapperReceipt": "../tree/prism-focused/receipt.json.gz",
+    "message": "manual payout equals preview/oracle",
+    "processExitcode": 0,
+    "timedOut": false,
+    "runtimeErrors": 0
+  },
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "initial-repro.cjs",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+        "before"
+      ],
+      "exitcode": 1,
+      "stdout": "before.stdout.json",
+      "stderr": "before.stderr.log",
+      "observedCompleteUtc": "2026-10-10T20:55:40Z",
+      "sourceSha256": "17d4ff66cc960f80200bbc7a640947d87bf1c8e2c216eea181761f036df5f806"
+    },
+    {
+      "argv": [
+        "node",
+        "repro.cjs",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+        "before-published",
+        "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/published-index.html"
+      ],
+      "exitcode": 1,
+      "stdout": "before-published.stdout.json",
+      "stderr": "before-published.stderr.log",
+      "observedCompleteUtc": "2026-10-10T20:55:59Z",
+      "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef"
+    },
+    {
+      "argv": [
+        "node",
+        "repro.cjs",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+        "fixed-published",
+        "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/published-index.html"
+      ],
+      "exitcode": 0,
+      "stdout": "fixed-published.stdout.json",
+      "stderr": "fixed-published.stderr.log",
+      "observedCompleteUtc": "2026-10-10T20:56:37Z",
+      "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef"
+    },
+    {
+      "argv": [
+        "node",
+        "repro.cjs",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+        "fixed-current"
+      ],
+      "exitcode": 0,
+      "stdout": "fixed-current.stdout.json",
+      "stderr": "fixed-current.stderr.log",
+      "observedCompleteUtc": "2026-10-10T20:56:37Z",
+      "sourceSha256": "17d4ff66cc960f80200bbc7a640947d87bf1c8e2c216eea181761f036df5f806"
+    }
+  ],
+  "clockNote": "Completion observation timestamps came from clock__curr_time; they are not fabricated process-start timestamps.",
+  "originalBridgeSha256": "3a7e96895d982f005ed075334c5159b8a5e00c138475f1bc4e34b1790e978c3c",
+  "fixedBridgeSha256": "8568cfb994b0a6c4c1c2bded8f2946a6489b18591992e58d534f483f5cb287c1",
+  "limitedRepair": "ascendManual saves the incoming QA reload flag, sets it false while calling actual doAscend(false), and restores it in finally. All original returned fields remain.",
+  "observedAfter": {
+    "originalSeedRewards": [
+      2,
+      2,
+      3
+    ],
+    "actualAscendCountAndReset": true,
+    "exactPrimaryRecovery": true,
+    "primaryFailureStateAndTokenRollback": true,
+    "exceptionIdentityAndFlagRestoration": [
+      false,
+      true
+    ],
+    "actualRetryGain": 21
+  },
+  "limitations": [
+    "Node complete-IIFE diagnostic uses the unchanged Tree harness presentation stubs. It is not the complete browser oracle or native acceptance.",
+    "The original browser oracle and all five original negative definitions remain byte-identical. They were not rerun by this focused diagnostic.",
+    "Failed CI evidence is retained. Full CI and required browser gates must run successfully at the eventual published repair head.",
+    "Native Android/WebView/TalkBack remains untested."
+  ]
+}

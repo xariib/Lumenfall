@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "scope": "Metadata for an already completed single bounded diagnostic run; no new test run performed while packaging.",
+  "clockObservations": {
+    "taskStart": "2026-10-10 21:35:35 UTC",
+    "afterFinalWitnessRun": "2026-10-10 21:40:12 UTC",
+    "metadataFinalization": "2026-10-10 21:45:58 UTC",
+    "authority": "clock.curr_time tool observations; these bound the work and are not claimed as exact process start/end timestamps"
+  },
+  "command": "node witness.cjs > witness.stdout.json 2> witness.stderr.txt",
+  "argv": [
+    "node",
+    "witness.cjs"
+  ],
+  "cwd": "/workspace/scratch/0848c4e4f365/tree-work/full-3c-ascend-adapter-audit",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "exitCode": 0,
+  "toolReportedWallTimeSeconds": 0.40224959,
+  "stdout": {
+    "path": "witness.stdout.json",
+    "bytes": 8627,
+    "sha256": "55e3ec84852542926c88720512a1f65088016e6be1a30a53d43be5ea1f0400a8"
+  },
+  "stderr": {
+    "path": "witness.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "driver": {
+    "path": "witness.cjs",
+    "bytes": 11737,
+    "sha256": "07d6db1c7f63cc00d78e35334e8b175559ed72bb7f6bd9957c015864bf2e91d6"
+  },
+  "harness": {
+    "path": "tree-expansion-harness.cjs",
+    "bytes": 14440,
+    "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+  },
+  "adapterHooks": {
+    "path": "exact-adapter-hooks.js",
+    "bytes": 2038,
+    "sha256": "0c7bb1d975a4f44fa4b441c283ea37e433c11548ab21c8a309de19ca99de5bd7"
+  },
+  "initialDraft": {
+    "exitCode": 1,
+    "toolReportedWallTimeSeconds": 0.218479892,
+    "path": "draft-probe",
+    "classification": "Scratch driver compared post-Ascend Rift1 preview with pre-Ascend quote. Final driver captures quote before Ascend; preserved verbatim and not classified as product failure."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "source": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "41aa63",
+      "wall_time_seconds": 0.301770471,
+      "exit_code": 0,
+      "original_token_count": 25,
+      "output": "QA passed: 2 scripts syntax-checked, 16 unique IDs verified, cache/state lifecycle guards present.\n"
+    }
+  },
+  "sharedContext": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "9ea35a",
+      "wall_time_seconds": 0.117472595,
+      "exit_code": 0,
+      "original_token_count": 32,
+      "output": "PASS: 29 entrypoints, 87 local Markdown links, shared startup 31107 bytes; startup with docs/tasks/SHARED_UI_001.md 32596 bytes\n"
+    }
+  },
+  "cometContext": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "689e59",
+      "wall_time_seconds": 0.166028117,
+      "exit_code": 0,
+      "original_token_count": 34,
+      "output": "PASS: 29 entrypoints, 89 local Markdown links, shared startup 31107 bytes; startup with docs/tasks/COMET_EXPANSION_001.md 32567 bytes\n"
+    }
+  },
+  "diff": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "d4a10e",
+      "wall_time_seconds": 0.047122831,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    }
+  },
+  "preservation": {
+    "chunk_id": "9f3be7",
+    "wall_time_seconds": 0.511963261,
+    "exit_code": 0,
+    "original_token_count": 67,
+    "output": "{\"status\":\"PASS\",\"baseline\":\"fe2a7b32859ebe04ecd3382d7b74ef285f683771\",\"protectedOriginalFiles\":125,\"gameScripts\":2,\"onlyStyleChanges\":true,\"sourceSha256\":\"38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f\",\"sourceBytes\":657751,\"sourceByteDelta\":124}\n"
+  }
+}

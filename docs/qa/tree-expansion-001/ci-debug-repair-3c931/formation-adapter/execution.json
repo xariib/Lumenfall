@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "clock": {
+    "start": "2026-10-10 21:49:08 UTC",
+    "afterWitnessRun": "2026-10-10 21:51:32 UTC",
+    "packaged": "2026-10-10 21:55:37 UTC",
+    "authority": "clock.curr_time observations; not asserted to be exact process start/end"
+  },
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "runs": [
+    {
+      "command": "node witness.cjs > witness.stdout.json 2> witness.stderr.txt",
+      "cwd": "/workspace/scratch/0848c4e4f365/tree-work/formation-buy-adapter-audit",
+      "exitCode": 0,
+      "toolReportedWallTimeSeconds": 0.180263005,
+      "stdout": {
+        "path": "witness.stdout.json",
+        "bytes": 8791,
+        "sha256": "1e89419cb7c54cbd3d2fa9c73e49ba76fce31ffed51d38f259af2e7ccac967ed"
+      },
+      "stderr": {
+        "path": "witness.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "driver": {
+        "path": "witness.cjs",
+        "bytes": 15697,
+        "sha256": "43345748b16e0db659fb72eda75f4ce93ebb3d5837a861deb657441678504f7b"
+      },
+      "harness": {
+        "path": "tree-expansion-harness.cjs",
+        "bytes": 14440,
+        "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+      }
+    },
+    {
+      "command": "node --check tests/behavioral/bridge.js",
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+      "exitCode": 0,
+      "toolReportedWallTimeSeconds": 0.000021168,
+      "stdout": {
+        "path": "syntax.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "syntax.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "sourceSha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc"
+    }
+  ],
+  "counting": "15 top-level witness records = 13 purchase records + 2 read-only Comet probes; the four retry substeps are nested in their fault records."
+}

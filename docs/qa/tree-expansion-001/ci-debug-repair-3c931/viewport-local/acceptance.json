@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "scope": "Two authorized Node-only checks and read-only product viewport review. No browser layout pass claimed; no repository or remote mutations.",
+  "clockToolStartedUTC": "2026-10-10 21:21:25 UTC",
+  "identity": {
+    "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+    "source": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+      "bytes": 619788,
+      "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+    },
+    "published": {
+      "bytes": 618571,
+      "sha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef"
+    },
+    "priorDiagnostic": {
+      "bytes": 618689,
+      "sha256": "17d4ff66cc960f80200bbc7a640947d87bf1c8e2c216eea181761f036df5f806"
+    },
+    "fixture": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/fixtures.json",
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753"
+    },
+    "harness": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+    },
+    "prismReference": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/prism-earning-reference.cjs",
+      "bytes": 1956,
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2"
+    }
+  },
+  "after": {
+    "source": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+      "bytes": 619788,
+      "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+    },
+    "harness": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+    },
+    "fixture": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/fixtures.json",
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753"
+    }
+  },
+  "sourceDependenciesUnchanged": true,
+  "results": [
+    {
+      "id": "core",
+      "accepted": true,
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/tree-expansion-core.cjs index.html --negative",
+      "exitCode": 0,
+      "checks": 5267,
+      "negativeCount": 28,
+      "runtime": {
+        "node": "v24.19.0",
+        "v8": "13.6.233.17-node.51",
+        "execPath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+      },
+      "execution": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/core.execution.json",
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/core.stdout.json",
+        "bytes": 14658,
+        "sha256": "b092c340d02ca9922d026cab30bed635eebca17580e7377898bf1de35e0b5c1b"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/core.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test": {
+        "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-core.cjs",
+        "bytes": 54294,
+        "sha256": "43c0c8bf9931411bd8af4e9a2ef591521d29e050cfc9a929b94f2fbf3f78d441"
+      }
+    },
+    {
+      "id": "v8",
+      "accepted": true,
+      "command": "/tmp/lumenfall-node830/bin/node tests/behavioral/tree-expansion-v8.cjs index.html",
+      "exitCode": 0,
+      "checks": 2862,
+      "runtime": {
+        "node": "v8.3.0",
+        "v8": "6.0.286.52",
+        "execPath": "/tmp/lumenfall-node830/bin/node"
+      },
+      "execution": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/v8.execution.json",
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/v8.stdout.json",
+        "bytes": 905,
+        "sha256": "369e4ea2df8f237aac8849733dcd9308b0ca09b89cbab752e4959f0a5f887fb7"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/v8.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test": {
+        "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-v8.cjs",
+        "bytes": 24937,
+        "sha256": "7ed1f234a07f846fb52b99cb7df02542fe49e621864089e4927354587225fcf4"
+      }
+    }
+  ],
+  "clockToolFinishedUTC": "2026-10-10 21:22:45 UTC",
+  "review": "review.md",
+  "browserLayoutStatus": "Not executed by this task; existing mobile owner is updating the real-input geometry gate."
+}

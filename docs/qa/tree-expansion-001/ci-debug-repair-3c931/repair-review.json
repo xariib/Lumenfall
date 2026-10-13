@@ -1,0 +1,90 @@
+{
+  "recordedAt": "2026-10-10T21:05:55.534Z",
+  "reviewer": "root code/evidence review; agent-authored diagnostics reviewed separately, no human approval claimed",
+  "baseHead": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "sourceSha256": "17d4ff66cc960f80200bbc7a640947d87bf1c8e2c216eea181761f036df5f806",
+  "sourceBaselineSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "bridgeSha256": "8568cfb994b0a6c4c1c2bded8f2946a6489b18591992e58d534f483f5cb287c1",
+  "mobileTestSha256": "a2a90c83100daca4f7c770f48f681d55cb63ca75463d85385a3c9703ed89f4df",
+  "productDiffScope": "Only focused Tree controls join the existing summary scroll protection; comment clarified. Full bytes match exactly that transformation.",
+  "bridgeDiffScope": "Only actual manual Ascend is enclosed by a restored QA reload-flag scope. Full bytes match exactly that transformation.",
+  "retained": [
+    {
+      "path": "tests/behavioral/fixtures.json",
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+      "bytes": 84610
+    },
+    {
+      "path": "tests/behavioral/ascend-prisms.js",
+      "sha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482",
+      "bytes": 10680
+    },
+    {
+      "path": "tests/behavioral/scenarios.json",
+      "sha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2",
+      "bytes": 9882
+    },
+    {
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "sha256": "f0218e6b818970a8bacdf0f43431c89c94b8a7a85343be29b79bc1b99b23e818",
+      "bytes": 5691
+    },
+    {
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "sha256": "8dd81626af8d3a3c0e3519387060f3015adbbd220ce48d30732555291a3eda02",
+      "bytes": 2681
+    },
+    {
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "sha256": "a611890e612a80b72e964dd86f228c9fd8a4ef2ff9f99f36333dd2c7c47fb9de",
+      "bytes": 2889
+    },
+    {
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "sha256": "4d8778abab15f004fdddb8a3580976d131767ef381515b50a6449f81be25e554",
+      "bytes": 4967
+    }
+  ],
+  "packages": [
+    {
+      "name": "lab",
+      "status": "closed-inventory-and-hash-pass",
+      "files": 4,
+      "storedBytes": 30193,
+      "manifestSha256": "7cf56a1018c23f486d2e1338b11773fb0655c1c5cc55317ed721b92970ef4a4b"
+    },
+    {
+      "name": "forge",
+      "status": "closed-inventory-and-hash-pass",
+      "files": 5,
+      "storedBytes": 39102,
+      "manifestSha256": "15a2130aca8d0928e1b3c6204fe5eaa8d9bf7432ee0050072427e074fdd9d921"
+    },
+    {
+      "name": "local",
+      "status": "closed-inventory-and-hash-pass",
+      "files": 13,
+      "storedBytes": 18560,
+      "manifestSha256": "e7f8fd066649a0bb9616d8e8dfe3250f2c8248b8cd907ac99b2a7b3ef6b8a943"
+    },
+    {
+      "name": "prism-adapter",
+      "status": "closed-inventory-and-hash-pass",
+      "files": 14,
+      "storedBytes": 36174,
+      "manifestSha256": "d6a1fa11f0e098b5b76098fcdf6ed3f63a7984734cf26d7bd4117ccd8d85601e"
+    },
+    {
+      "name": "tree",
+      "status": "closed-inventory-and-hash-pass",
+      "files": 57,
+      "storedBytes": 1045540,
+      "manifestSha256": "01de8c9ac278e97039675a23450e7743b50e112128fcfbeb99746c6b1c24e82c"
+    },
+    {
+      "name": "full",
+      "status": "not-yet-created"
+    }
+  ],
+  "remaining": "Full3c terminal evidence and all required CI on the eventual repaired head, including actual mobile geometry and causal control; no integration/production-browser acceptance."
+}

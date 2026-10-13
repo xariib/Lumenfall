@@ -1,0 +1,307 @@
+{
+  "status": "PASS",
+  "scope": "Pure inverse/asset units, syntax, source and task context; no game/browser",
+  "runtime": {
+    "node": "v24.19.0",
+    "versions": {
+      "node": "24.19.0",
+      "acorn": "8.17.0",
+      "ada": "3.4.4",
+      "amaro": "1.1.10",
+      "ares": "1.34.6",
+      "brotli": "1.2.0",
+      "cldr": "48.0",
+      "icu": "78.3",
+      "llhttp": "9.4.3",
+      "merve": "1.2.2",
+      "modules": "137",
+      "napi": "10",
+      "nbytes": "0.1.4",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.69.0",
+      "nghttp3": "",
+      "ngtcp2": "",
+      "openssl": "3.5.7",
+      "simdjson": "4.6.4",
+      "simdutf": "6.4.0",
+      "sqlite": "3.53.3",
+      "tz": "2026b",
+      "undici": "7.29.0",
+      "unicode": "17.0",
+      "uv": "1.52.1",
+      "uvwasi": "0.0.23",
+      "v8": "13.6.233.17-node.51",
+      "zlib": "1.3.2.1-motley-3246f1b",
+      "zstd": "1.5.7"
+    },
+    "binary": {
+      "bytes": 125989464,
+      "sha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12"
+    }
+  },
+  "inputs": {
+    "index.html": {
+      "bytes": 657955,
+      "sha256": "dd81757378880ef42052cf6b175ea06721043e0ba7213cd135d5661367a743f1"
+    },
+    "tests/behavioral/rift-guidance.cjs": {
+      "bytes": 41266,
+      "sha256": "e8b28db760c4f07f65affe7d8a585b0a21f6c10827ae7ac8a4a34fb4b3431ae5"
+    },
+    "tests/behavioral/fixtures.json": {
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753"
+    },
+    "tests/behavioral/scenarios.json": {
+      "bytes": 9882,
+      "sha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2"
+    },
+    "scripts/ci/guidance-readability.cjs": {
+      "bytes": 16127,
+      "sha256": "3685c6962a2f7f28f04d2d630fb725d9943defffd86af8eee123f0af4b416af7"
+    },
+    "scripts/ci/guidance-baseline-assets.cjs": {
+      "bytes": 1937,
+      "sha256": "95fb78cce9272d2a21dd0f4b2dbe0e6bfe37e5b48c46fa39013b9ea223c74a2c"
+    },
+    "tests/behavioral/guidance-baseline-assets.test.cjs": {
+      "bytes": 2858,
+      "sha256": "2d1f09639bd078254b69724f00aaa84a03481b48c3074d85359d30202ec0d811"
+    },
+    "tests/behavioral/rift-guidance-inverses.cjs": {
+      "bytes": 3047,
+      "sha256": "172e9b5656f80dcaff9130a8c9c01cf0f1021f8b2d14bbce7fc083c7436b6fb4"
+    },
+    "tests/behavioral/rift-guidance-inverses.test.cjs": {
+      "bytes": 3151,
+      "sha256": "cbfed855ed9e62e1c6eded75106de0f08636bee80c7cc5746e52a640a5c37b8f"
+    },
+    "docs/qa/guidance-readability-001/ci-review-006/run-local.cjs": {
+      "bytes": 4247,
+      "sha256": "a061b61b4a4ab8ba1f17146367548bd47a8ce1cc1614318ea9efcf2f01ffeab4"
+    }
+  },
+  "commands": [
+    {
+      "id": "syntax-helper",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "scripts/ci/guidance-readability.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.330Z",
+      "completedUtc": "2026-10-11T13:42:59.377Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-mutators",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/behavioral/rift-guidance-inverses.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.378Z",
+      "completedUtc": "2026-10-11T13:42:59.430Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-unit",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/behavioral/rift-guidance-inverses.test.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.430Z",
+      "completedUtc": "2026-10-11T13:42:59.479Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "inverse-unit",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/rift-guidance-inverses.test.cjs",
+        "index.html",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text/docs/qa/guidance-readability-001/ci-review-006/local/baseline-source.stdout.log"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.480Z",
+      "completedUtc": "2026-10-11T13:42:59.787Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 546,
+        "sha256": "8f2c3caf0a87640ddbb54ff0a6bcafcb77f5c0df7745987611f0cb3028b63526"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-assets",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "scripts/ci/guidance-baseline-assets.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.787Z",
+      "completedUtc": "2026-10-11T13:42:59.852Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-assets-unit",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/behavioral/guidance-baseline-assets.test.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.853Z",
+      "completedUtc": "2026-10-11T13:42:59.900Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "baseline-assets-unit",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/guidance-baseline-assets.test.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.901Z",
+      "completedUtc": "2026-10-11T13:42:59.979Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 645,
+        "sha256": "09f5380881b61c215bf2bd11eda1e9038ab8a14686e7f5b187507a45c3e8a6bd"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-runner",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "docs/qa/guidance-readability-001/ci-review-006/run-local.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:42:59.980Z",
+      "completedUtc": "2026-10-11T13:43:00.079Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "source",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "scripts/ci/validate_source.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:43:00.080Z",
+      "completedUtc": "2026-10-11T13:43:00.298Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 99,
+        "sha256": "554c0938eec03dd8c8db111b0fcc9c537dd5b879531a874c492090a357d941e6"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "context",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "scripts/codex/check_context.cjs",
+        "--task",
+        "docs/tasks/GUIDANCE_READABILITY_001.md"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:43:00.298Z",
+      "completedUtc": "2026-10-11T13:43:00.358Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 139,
+        "sha256": "0b5bda3f08f311f80eb2786347efdb01b05adec46747823fafae44785abe0666"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "error": null
+}

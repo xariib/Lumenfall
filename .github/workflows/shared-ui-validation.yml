@@ -1,0 +1,39 @@
+name: Shared UI layout validation
+
+on:
+  push:
+    branches: ['qa/shared-ui-diagnostic-001']
+  pull_request:
+    branches: [main, 'feature/progression-expansion-2026-10-09']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumenfall-shared-ui-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shared-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Exact source, task context and original standalone gate receipts
+        run: node scripts/ci/shared-ui-receipts.cjs shared-ui-validation/standalone
+      - name: Twelve native browser profiles and three exact CSS reversions
+        if: always()
+        run: |
+          set -euo pipefail
+          node tests/behavioral/shared-layout-ui.cjs index.html shared-ui-validation/layout --negative 2>&1 | tee shared-ui-validation/layout.log
+      - name: Preserve original source, process receipts, geometry and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shared-ui-evidence-${{ github.run_id }}
+          retention-days: 14
+          include-hidden-files: true
+          path: shared-ui-validation/

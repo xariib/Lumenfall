@@ -1,0 +1,54 @@
+{
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "transport": "existing local CDP fallback",
+  "observation": {
+    "qa_count": 1,
+    "qa_status": "fail",
+    "qa_scenario": "upgrade-effects-and-deeds",
+    "json_status": "fail",
+    "json_scenario": "upgrade-effects-and-deeds",
+    "runtime_markers": [],
+    "runtime_error_count": 0,
+    "json_error": null,
+    "valid": true
+  },
+  "payload": {
+    "scenario": "upgrade-effects-and-deeds",
+    "status": "fail",
+    "detail": {
+      "message": "Completed offline-rate refund receipt needs recovery",
+      "stack": "Error: Completed offline-rate refund receipt needs recovery\n    at persistenceError (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:4437:15)\n    at normalizeEchoingRestRefund (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:5050:11)\n    at normalizeCurrentSave (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:4917:5)\n    at acceptPersistedState (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:5112:20)\n    at Object.setState (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:11894:13)\n    at pureRender (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:13774:7)\n    at http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:13786:51\n    at Array.forEach (<anonymous>)\n    at window.runUpgradeClarityQa (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:13781:27)\n    at HTMLDocument.run (http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh:16557:32)"
+    },
+    "runtimeErrors": []
+  },
+  "process": {
+    "command": [
+      "/tmp/lumenfall-node20/node-v20.20.2-linux-x64/bin/node",
+      "/workspace/Lumenfall-echo-refund/tests/behavioral/browser-dom.cjs",
+      "/usr/bin/chromium",
+      "http://127.0.0.1:34277/index.html?qaScenario=upgrade-effects-and-deeds&qaFixture=fresh",
+      "/tmp/lumenfall-qa-upgrade-effects-and-deeds-mqcdGo",
+      "no-preference"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 3.5614337279999164,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "upgrade-effects-and-deeds",
+      "json_status": "fail",
+      "json_scenario": "upgrade-effects-and-deeds",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "scope": "Failed local observation; no CI/native/causal-control claim"
+}

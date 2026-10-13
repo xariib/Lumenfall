@@ -1,0 +1,328 @@
+{
+  "schema": 1,
+  "scope": "Isolated official Chrome runtime diagnosis; only version/about:blank; no game or Git",
+  "trustedStartedUtc": "2026-10-11 11:43:18 UTC",
+  "steps": [
+    {
+      "id": "ps",
+      "command": "ps",
+      "args": [
+        "-eo",
+        "pid,ppid,stat,etime,comm"
+      ],
+      "timeoutMs": 12000,
+      "timeout": false,
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "elapsedMs": 8.23298,
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/ps.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "statBytes": 0,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.544Z"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/ps.stderr.log",
+        "bytes": 33,
+        "sha256": "a55c6a5e4fa226e987190d56b156a177b1cf3e0e382d4d652fc9a63bc2345f5b",
+        "statBytes": 33,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.552Z"
+      }
+    },
+    {
+      "id": "disk",
+      "command": "df",
+      "args": [
+        "-h",
+        "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic",
+        "/tmp",
+        "/dev/shm"
+      ],
+      "timeoutMs": 12000,
+      "timeout": false,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedMs": 2.802772,
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/disk.stdout.log",
+        "bytes": 176,
+        "sha256": "8672c262153662d0b8a6493d80e966a12cf6d1ccbd7e163ef5a04c8a699e9329",
+        "statBytes": 176,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.556Z"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/disk.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "statBytes": 0,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.552Z"
+      }
+    },
+    {
+      "id": "kernel",
+      "command": "uname",
+      "args": [
+        "-a"
+      ],
+      "timeoutMs": 12000,
+      "timeout": false,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedMs": 2.260735,
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/kernel.stdout.log",
+        "bytes": 94,
+        "sha256": "20411ece762bf204eee7de5b607619c77bfe4c5ce3698d5807eb55dd0b29ff3e",
+        "statBytes": 94,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.562Z"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/kernel.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "statBytes": 0,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.556Z"
+      }
+    },
+    {
+      "id": "extract",
+      "command": "dpkg-deb",
+      "args": [
+        "--extract",
+        "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+        "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked"
+      ],
+      "timeoutMs": 30000,
+      "timeout": false,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedMs": 6331.461986,
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/extract.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "statBytes": 0,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.562Z"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/extract.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "statBytes": 0,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:14.562Z"
+      }
+    },
+    {
+      "id": "version",
+      "command": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked/opt/google/chrome/chrome",
+      "args": [
+        "--version"
+      ],
+      "timeoutMs": 12000,
+      "timeout": false,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedMs": 29.771621,
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/version.stdout.log",
+        "bytes": 29,
+        "sha256": "1d28eea0e6a41c2c043b348936d84628c86fc0d043a65835aff20c8350aad070",
+        "statBytes": 29,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:21.192Z"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/version.stderr.log",
+        "bytes": 209,
+        "sha256": "def0a820edb70802e8a88788de902ed6af37d8099cd60d62dbc7c4a699ccd799",
+        "statBytes": 209,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:21.192Z"
+      }
+    },
+    {
+      "id": "about-blank",
+      "command": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked/opt/google/chrome/chrome",
+      "args": [
+        "--headless=new",
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--user-data-dir=/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/about-blank-profile",
+        "--dump-dom",
+        "about:blank"
+      ],
+      "timeoutMs": 12000,
+      "timeout": false,
+      "exitCode": null,
+      "signal": "SIGABRT",
+      "error": null,
+      "elapsedMs": 5022.801463,
+      "stdout": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/about-blank.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "statBytes": 0,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:21.192Z"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/about-blank.stderr.log",
+        "bytes": 629,
+        "sha256": "7b5b348d387d8215078b53e6ac1ee6161a23e639ffa0824183a91b9ae163d49c",
+        "statBytes": 629,
+        "mode": "644",
+        "executorMtime": "2026-10-11T11:44:21.212Z"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "name": "rootChromeBefore",
+      "value": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked/opt/google/chrome/chrome",
+        "bytes": 126309376,
+        "sha256": "cf54b460e294f87ee8d7b993b16d0d0566ad28ca1040d076ad6a345bdec1e9e3",
+        "statBytes": 126309376,
+        "mode": "700",
+        "executorMtime": "2026-10-11T11:41:25.743Z"
+      }
+    },
+    {
+      "name": "nodeRuntime",
+      "value": {
+        "version": "v24.19.0",
+        "pid": 2,
+        "ppid": 1,
+        "platform": "linux",
+        "arch": "x64",
+        "versions": {
+          "node": "24.19.0",
+          "acorn": "8.17.0",
+          "ada": "3.4.4",
+          "amaro": "1.1.10",
+          "ares": "1.34.6",
+          "brotli": "1.2.0",
+          "cldr": "48.0",
+          "icu": "78.3",
+          "llhttp": "9.4.3",
+          "merve": "1.2.2",
+          "modules": "137",
+          "napi": "10",
+          "nbytes": "0.1.4",
+          "ncrypto": "0.0.1",
+          "nghttp2": "1.69.0",
+          "nghttp3": "",
+          "ngtcp2": "",
+          "openssl": "3.5.7",
+          "simdjson": "4.6.4",
+          "simdutf": "6.4.0",
+          "sqlite": "3.53.3",
+          "tz": "2026b",
+          "undici": "7.29.0",
+          "unicode": "17.0",
+          "uv": "1.52.1",
+          "uvwasi": "0.0.23",
+          "v8": "13.6.233.17-node.51",
+          "zlib": "1.3.2.1-motley-3246f1b",
+          "zstd": "1.5.7"
+        }
+      }
+    },
+    {
+      "name": "proc-self-status",
+      "value": {
+        "path": "/proc/self/status",
+        "bytes": 1150,
+        "sha256": "fa36619cc3f64fe51490d84120293685723f65fea34fac2243a77577e2260692"
+      }
+    },
+    {
+      "name": "proc-self-limits",
+      "value": {
+        "path": "/proc/self/limits",
+        "bytes": 1323,
+        "sha256": "c69ddd854d2e6d1aa0a34b8ec906607bf5b2a67bd4e90c7786a360ed028f1fa1"
+      }
+    },
+    {
+      "name": "proc-self-cgroup",
+      "value": {
+        "path": "/proc/self/cgroup",
+        "bytes": 5,
+        "sha256": "e57fd7b21104f091de366ace1464596378a498b0a5e63f1b21147a8998c20107"
+      }
+    },
+    {
+      "name": "proc-self-mountinfo",
+      "value": {
+        "path": "/proc/self/mountinfo",
+        "bytes": 2047,
+        "sha256": "8407c3aa4dc2488f323e28875660fac017159b652444dd016ba6c0931fca5da2"
+      }
+    },
+    {
+      "name": "proc-self-link",
+      "value": "2267"
+    },
+    {
+      "name": "rootChromeAfter",
+      "value": {
+        "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked/opt/google/chrome/chrome",
+        "bytes": 126309376,
+        "sha256": "cf54b460e294f87ee8d7b993b16d0d0566ad28ca1040d076ad6a345bdec1e9e3",
+        "statBytes": 126309376,
+        "mode": "700",
+        "executorMtime": "2026-10-11T11:41:25.743Z"
+      }
+    }
+  ],
+  "debBefore": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+    "bytes": 143552428,
+    "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+    "statBytes": 143552428,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:31:03.716Z"
+  },
+  "chromeBefore": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked/opt/google/chrome/chrome",
+    "bytes": 297798984,
+    "sha256": "9bfb381296dffe75f3419d07b6cc64525105ed117d1453a4ef3b291cb97d2b58",
+    "statBytes": 297798984,
+    "mode": "755",
+    "executorMtime": "2026-10-06T00:06:58.000Z"
+  },
+  "chromeAfter": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked/opt/google/chrome/chrome",
+    "bytes": 124701696,
+    "sha256": "0edc0967d6d29efa1f9c37e99547e2834428a513132b8295e1873a1b1041ef15",
+    "statBytes": 124701696,
+    "mode": "700",
+    "executorMtime": "2026-10-11T11:44:16.416Z"
+  },
+  "debAfter": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+    "bytes": 143552428,
+    "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+    "statBytes": 143552428,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:31:03.716Z"
+  },
+  "completed": true
+}

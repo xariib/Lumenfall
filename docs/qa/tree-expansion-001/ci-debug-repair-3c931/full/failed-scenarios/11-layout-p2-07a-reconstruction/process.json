@@ -1,0 +1,41 @@
+{
+  "command": [
+    "/usr/bin/google-chrome",
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-gpu",
+    "--disable-dev-shm-usage",
+    "--disable-background-networking",
+    "--disable-background-timer-throttling",
+    "--no-first-run",
+    "--window-size=390,844",
+    "--virtual-time-budget=1500",
+    "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-VlDpS0",
+    "--dump-dom",
+    "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=412&height=915&safeTop=0&safeBottom=0"
+  ],
+  "fixture": "fresh",
+  "viewport": [
+    412,
+    915,
+    0,
+    0
+  ],
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 0.985116820000112,
+    "timeout_sec": 25
+  },
+  "qa": {
+    "qa_count": 1,
+    "qa_status": "fail",
+    "qa_scenario": null,
+    "json_status": "fail",
+    "json_scenario": "layout-p2-07a-reconstruction",
+    "runtime_markers": [],
+    "runtime_error_count": 0,
+    "json_error": null,
+    "valid": true
+  }
+}

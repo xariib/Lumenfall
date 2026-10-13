@@ -1,0 +1,64 @@
+--- /workspace/scratch/0848c4e4f365/shared-ui-work/repair-003/before/shared-layout-ui.cjs	2026-10-11 06:21:35.704635177 +0200
++++ /workspace/scratch/0848c4e4f365/shared-ui-work/repair-003/after/shared-layout-ui.cjs	2026-10-11 06:22:00.604519798 +0200
+@@ -101,6 +101,20 @@
+ // not a raster ink mask; retain the original PNGs alongside these measurements.
+ function sharedDOM(kind,selector){
+  function rect(r){return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};}
++ function clientBox(e){
++  var r=e.getBoundingClientRect(),left=r.left+e.clientLeft,top=r.top+e.clientTop;
++  return {left:left,right:left+e.clientWidth,top:top,bottom:top+e.clientHeight,width:e.clientWidth,height:e.clientHeight};
++ }
++ function clippingOwners(e){
++  var owners=[];
++  for(var p=e;p;p=p.parentElement){
++   var s=getComputedStyle(p),clipsX=s.overflowX!=='visible',clipsY=s.overflowY!=='visible';
++   if(clipsX||clipsY)owners.push({tag:p.tagName,id:p.id||null,className:typeof p.className==='string'?p.className:null,
++    overflowX:s.overflowX,overflowY:s.overflowY,clipsX:clipsX,clipsY:clipsY,
++    rect:rect(p.getBoundingClientRect()),client:clientBox(p),clientLeft:p.clientLeft,clientTop:p.clientTop,transform:s.transform});
++  }
++  return owners;
++ }
+  function element(e){
+   if(!e)throw Error('missing observed DOM element');
+   var r=e.getBoundingClientRect(),s=getComputedStyle(e);
+@@ -142,7 +156,7 @@
+   var layout={};selected.forEach(function(sel){var e=document.querySelector(sel);layout[sel]=rect(e.getBoundingClientRect());});
+   return {width:innerWidth,height:innerHeight,rootFont:getComputedStyle(document.documentElement).fontSize,
+    bodyWidth:document.body.scrollWidth,documentWidth:document.documentElement.scrollWidth,
+-   main:rect(main.getBoundingClientRect()),mainScroll:main.scrollTop,mainScrollHeight:main.scrollHeight,
++   main:rect(main.getBoundingClientRect()),mainInner:clientBox(main),mainScroll:main.scrollTop,mainScrollHeight:main.scrollHeight,
+    mainClientHeight:main.clientHeight,nav:rect(nav.getBoundingClientRect()),layout:layout,
+    focus:a?{id:a.id||null,toggle:a.getAttribute('data-toggle'),tab:a.getAttribute('data-tab')}:null,
+    sameGear:document.getElementById('settings-btn')===window.__sharedRefs.gear,
+@@ -162,6 +176,7 @@
+   out.card=element(card);out.header=element(card.querySelector('.hero-top'));
+   out.identity=element(card.querySelector('.hero-id'));out.name=text(card.querySelector('.hero-id .name'));
+   out.classTag=text(card.querySelector('.hero-id .class-tag'));
++  out.clippingOwners={name:clippingOwners(card.querySelector('.hero-id .name')),classTag:clippingOwners(card.querySelector('.hero-id .class-tag'))};
+   out.portrait=element(card.querySelector('.hero-top .wisp-portrait'));
+   out.button=text(card.querySelector('[data-toggle="'+selector+'"]'));
+  }else if(kind==='toast'){
+@@ -315,12 +330,20 @@
+   ok(d.button.rect.width>=44&&d.button.rect.height>=44,'Wisp native 44px control '+spec[0]);
+   const glyphs=d.name.glyphs.concat(d.classTag.glyphs);
+   geometry(!glyphs.some(g=>intersect(g.rect,d.button.rect)),'wisp-glyph-intersects-toggle',{id:spec[0],measurement:d});
+-  // Visible font metrics can exceed a transparent line box vertically. The
+-  // identity column still bounds x; clipping owners and header/card bound y.
++  // Visible font metrics can exceed transparent identity/header line boxes.
++  // Keep their horizontal limits; actual clipping owners/card/viewport bound y.
+   geometry(glyphs.every(g=>g.rect.left>=d.identity.rect.left-.5&&g.rect.right<=d.identity.rect.right+.5),'wisp-glyph-outside-identity',{id:spec[0],measurement:d});
+-  geometry(glyphs.every(g=>contains(d.header.rect,g.rect)&&g.rect.left>=-.5&&g.rect.right<=width+.5),'wisp-glyph-outside-header',{id:spec[0],measurement:d});
++  geometry(glyphs.every(g=>g.rect.left>=d.header.rect.left-.5&&g.rect.right<=d.header.rect.right+.5),'wisp-glyph-outside-header',{id:spec[0],measurement:d});
+   geometry(d.identity.overflowY==='visible'||glyphs.every(g=>g.rect.top>=d.identity.rect.top-.5&&g.rect.bottom<=d.identity.rect.bottom+.5),'wisp-glyph-clipped-by-identity',{id:spec[0],measurement:d});
+   geometry(glyphs.every(g=>contains(d.card.rect,g.rect)),'wisp-glyph-outside-card',{id:spec[0],measurement:d});
++  const visible={left:Math.max(0,d.context.mainInner.left),right:Math.min(width,d.context.mainInner.right),
++   top:Math.max(0,d.context.mainInner.top),bottom:Math.min(844,d.context.nav.top,d.context.mainInner.bottom)};
++  geometry(glyphs.every(g=>contains(visible,g.rect)),'wisp-glyph-outside-visible-main',{id:spec[0],visible,measurement:d});
++  for(const field of ['name','classTag'])for(const owner of d.clippingOwners[field]){
++   geometry(d[field].glyphs.every(g=>(!owner.clipsX||(g.rect.left>=owner.client.left-.5&&g.rect.right<=owner.client.right+.5))&&
++    (!owner.clipsY||(g.rect.top>=owner.client.top-.5&&g.rect.bottom<=owner.client.bottom+.5))),
++   'wisp-glyph-clipped-by-ancestor',{id:spec[0],field,owner,measurement:d});
++  }
+   geometry(!d.name.glyphs.some(a=>d.classTag.glyphs.some(b=>intersect(a.rect,b.rect))),'wisp-name-class-glyphs-intersect',{id:spec[0],measurement:d});
+   geometry(!glyphs.some(g=>intersect(g.rect,d.portrait.rect)),'wisp-glyph-intersects-portrait',{id:spec[0],measurement:d});
+   ok(d.header.rect.top>=d.context.main.top-.5&&d.header.rect.bottom<=Math.min(d.context.main.bottom,d.context.nav.top)+.5,'observed Wisp header visible '+spec[0]);

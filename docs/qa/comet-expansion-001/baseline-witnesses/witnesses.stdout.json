@@ -1,0 +1,134 @@
+{
+  "status": "KNOWN_BASELINE_BEHAVIOR_REPRODUCED",
+  "scope": "Read-only diagnostics against archived published product; no Comet implementation or product acceptance claimed.",
+  "sourceCommit": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "observedSourceSha256": "1c0793611b519b0b2483c4f3f1feb3e890a43f92139e258dd17b6c2a5e8a6389",
+  "observerHooksSha256": "9ba5747b05f6d5129af01e1ab2a984013b039b74c486cf8af201a2ffe4c3904e",
+  "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+  "testSha256": "cec928af5594bd108df91861311dd5b1f4a317acfb68cead912c7295b9c05457",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "caseCount": 30,
+  "defectWitnesses": [
+    {
+      "id": "shop-autoascend-primary",
+      "defect": "returned success and mutated live ownership/wallet despite failed primary; old cold state; leaked endpoint exportable",
+      "nominalCost": 100,
+      "representedDebit": 100,
+      "caseFile": "shop-autoascend-primary.json"
+    },
+    {
+      "id": "shop-autoascend-huge",
+      "defect": "ownership persisted with zero represented Comet debit",
+      "nominalCost": 100,
+      "representedDebit": 0,
+      "caseFile": "shop-autoascend-huge.json"
+    },
+    {
+      "id": "shop-comettrials-primary",
+      "defect": "returned success and mutated live ownership/wallet despite failed primary; old cold state; leaked endpoint exportable",
+      "nominalCost": 140,
+      "representedDebit": 140,
+      "caseFile": "shop-comettrials-primary.json"
+    },
+    {
+      "id": "shop-comettrials-huge",
+      "defect": "ownership persisted with zero represented Comet debit",
+      "nominalCost": 140,
+      "representedDebit": 0,
+      "caseFile": "shop-comettrials-huge.json"
+    },
+    {
+      "id": "shop-rifttrail-primary",
+      "defect": "returned success and mutated live ownership/wallet despite failed primary; old cold state; leaked endpoint exportable",
+      "nominalCost": 50,
+      "representedDebit": 50,
+      "caseFile": "shop-rifttrail-primary.json"
+    },
+    {
+      "id": "shop-rifttrail-huge",
+      "defect": "ownership persisted with zero represented Comet debit",
+      "nominalCost": 50,
+      "representedDebit": 0,
+      "caseFile": "shop-rifttrail-huge.json"
+    },
+    {
+      "id": "shop-starfallcrest-primary",
+      "defect": "returned success and mutated live ownership/wallet despite failed primary; old cold state; leaked endpoint exportable",
+      "nominalCost": 160,
+      "representedDebit": 160,
+      "caseFile": "shop-starfallcrest-primary.json"
+    },
+    {
+      "id": "shop-starfallcrest-huge",
+      "defect": "ownership persisted with zero represented Comet debit",
+      "nominalCost": 160,
+      "representedDebit": 0,
+      "caseFile": "shop-starfallcrest-huge.json"
+    },
+    {
+      "id": "quest-refresh-primary",
+      "defect": "returned success and mutated quest/count/wallet despite failed primary; old cold state; leaked endpoint exportable",
+      "nominalCost": 25,
+      "representedDebit": 25,
+      "caseFile": "quest-refresh-primary.json"
+    },
+    {
+      "id": "quest-refresh-huge",
+      "defect": "quest/count persisted with zero represented Comet debit",
+      "nominalCost": 25,
+      "representedDebit": 0,
+      "caseFile": "quest-refresh-huge.json"
+    },
+    {
+      "id": "deed-tap100-rounded",
+      "defect": "earned flag persists with represented reward4 instead of3",
+      "nominalReward": 3,
+      "representedCredit": 4,
+      "caseFile": "deed-tap100-rounded.json"
+    },
+    {
+      "id": "deed-tap100-huge",
+      "defect": "earned flag persists with zero represented reward; reload does not re-award",
+      "nominalReward": 3,
+      "representedCredit": 0,
+      "caseFile": "deed-tap100-huge.json"
+    },
+    {
+      "id": "deed-autotap-huge",
+      "defect": "sticky automation unlock persists while its nominal Comet reward is unrepresented; do not revoke this earned unlock in any future repair",
+      "nominalReward": 25,
+      "representedCredit": 0,
+      "caseFile": "deed-autotap-huge.json"
+    },
+    {
+      "id": "deed-labmaster-huge",
+      "defect": "sticky automation unlock persists while its nominal Comet reward is unrepresented; do not revoke this earned unlock in any future repair",
+      "nominalReward": 30,
+      "representedCredit": 0,
+      "caseFile": "deed-labmaster-huge.json"
+    }
+  ],
+  "controls": [
+    "shop-autoascend-none",
+    "shop-autoascend-recovery",
+    "shop-autoascend-short",
+    "shop-comettrials-none",
+    "shop-comettrials-recovery",
+    "shop-comettrials-short",
+    "shop-rifttrail-none",
+    "shop-rifttrail-recovery",
+    "shop-rifttrail-short",
+    "shop-starfallcrest-none",
+    "shop-starfallcrest-recovery",
+    "shop-starfallcrest-short",
+    "quest-refresh-none",
+    "quest-refresh-recovery",
+    "quest-refresh-short",
+    "deed-tap100-safe"
+  ],
+  "catalog": "catalog-and-entitlements.json",
+  "syntheticSavesOnly": true,
+  "backupScope": "Actual currentSaveBackup calls are separate operations, including their additional attempted writes; decoded synthetic backups and exact raw code bytes are preserved."
+}

@@ -1,0 +1,289 @@
+{
+  "id": "deed-autotap-huge",
+  "kind": "deed-unlock",
+  "seeded": {
+    "path": "blobs/742986bdabe9d80b726671a8f9909e6a5ff607d762e4de5699d192f6fe17eb5e.json",
+    "bytes": 4859,
+    "sha256": "742986bdabe9d80b726671a8f9909e6a5ff607d762e4de5699d192f6fe17eb5e"
+  },
+  "baseline": {
+    "state": {
+      "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+      "bytes": 4987,
+      "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+    },
+    "view": {
+      "comets": 1e+30,
+      "owned": {},
+      "achieved": {
+        "asc1": true,
+        "asc5": true,
+        "asc10": true
+      },
+      "questIds": [],
+      "questClaimed": {},
+      "questDay": "2026-10-10",
+      "dailyQuestRefreshes": 0,
+      "autoAscendEnabled": false,
+      "autoAscendTargetDepth": 43,
+      "legacyCometPurchases": {},
+      "offline12hRefund": null
+    },
+    "primary": {
+      "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+      "bytes": 4987,
+      "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+    },
+    "recovery": {
+      "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+      "bytes": 4987,
+      "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+    }
+  },
+  "nominalReward": 25,
+  "representedCredit": 0,
+  "awarded": {
+    "label": "actual unlock Deed applyAchievementChecks()",
+    "before": {
+      "state": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      },
+      "view": {
+        "comets": 1e+30,
+        "owned": {},
+        "achieved": {
+          "asc1": true,
+          "asc5": true,
+          "asc10": true
+        },
+        "questIds": [],
+        "questClaimed": {},
+        "questDay": "2026-10-10",
+        "dailyQuestRefreshes": 0,
+        "autoAscendEnabled": false,
+        "autoAscendTargetDepth": 43,
+        "legacyCometPurchases": {},
+        "offline12hRefund": null
+      },
+      "primary": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      },
+      "recovery": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      }
+    },
+    "after": {
+      "state": {
+        "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+        "bytes": 5002,
+        "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+      },
+      "view": {
+        "comets": 1e+30,
+        "owned": {},
+        "achieved": {
+          "asc1": true,
+          "asc5": true,
+          "asc10": true,
+          "autotap": true
+        },
+        "questIds": [],
+        "questClaimed": {},
+        "questDay": "2026-10-10",
+        "dailyQuestRefreshes": 0,
+        "autoAscendEnabled": false,
+        "autoAscendTargetDepth": 43,
+        "legacyCometPurchases": {},
+        "offline12hRefund": null
+      },
+      "primary": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      },
+      "recovery": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      }
+    },
+    "sameLiveObject": true,
+    "returned": [
+      {
+        "id": "autotap",
+        "reward": 25
+      }
+    ],
+    "returnedUndefined": false,
+    "error": null,
+    "attempts": [],
+    "attemptCounts": {
+      "primary": 0,
+      "recovery": 0
+    },
+    "successfulWrites": []
+  },
+  "save": {
+    "label": "actual subsequent saveState()",
+    "before": {
+      "state": {
+        "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+        "bytes": 5002,
+        "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+      },
+      "view": {
+        "comets": 1e+30,
+        "owned": {},
+        "achieved": {
+          "asc1": true,
+          "asc5": true,
+          "asc10": true,
+          "autotap": true
+        },
+        "questIds": [],
+        "questClaimed": {},
+        "questDay": "2026-10-10",
+        "dailyQuestRefreshes": 0,
+        "autoAscendEnabled": false,
+        "autoAscendTargetDepth": 43,
+        "legacyCometPurchases": {},
+        "offline12hRefund": null
+      },
+      "primary": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      },
+      "recovery": {
+        "path": "blobs/bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41.json",
+        "bytes": 4987,
+        "sha256": "bf8c8b9b3af8af9d9bc8974e0b6fce808ce19450831f754a73f656e0caf1db41"
+      }
+    },
+    "after": {
+      "state": {
+        "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+        "bytes": 5002,
+        "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+      },
+      "view": {
+        "comets": 1e+30,
+        "owned": {},
+        "achieved": {
+          "asc1": true,
+          "asc5": true,
+          "asc10": true,
+          "autotap": true
+        },
+        "questIds": [],
+        "questClaimed": {},
+        "questDay": "2026-10-10",
+        "dailyQuestRefreshes": 0,
+        "autoAscendEnabled": false,
+        "autoAscendTargetDepth": 43,
+        "legacyCometPurchases": {},
+        "offline12hRefund": null
+      },
+      "primary": {
+        "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+        "bytes": 5002,
+        "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+      },
+      "recovery": {
+        "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+        "bytes": 5002,
+        "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+      }
+    },
+    "sameLiveObject": false,
+    "returned": true,
+    "returnedUndefined": false,
+    "error": null,
+    "attempts": [
+      {
+        "key": "lumenfall_save_v2",
+        "status": "committed",
+        "error": null,
+        "value": {
+          "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+          "bytes": 5002,
+          "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+        }
+      },
+      {
+        "key": "lumenfall_save_recovery_v1",
+        "status": "committed",
+        "error": null,
+        "value": {
+          "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+          "bytes": 5002,
+          "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+        }
+      }
+    ],
+    "attemptCounts": {
+      "primary": 1,
+      "recovery": 1
+    },
+    "successfulWrites": [
+      {
+        "key": "lumenfall_save_v2",
+        "value": {
+          "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+          "bytes": 5002,
+          "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+        }
+      },
+      {
+        "key": "lumenfall_save_recovery_v1",
+        "value": {
+          "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+          "bytes": 5002,
+          "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+        }
+      }
+    ]
+  },
+  "coldAfter": {
+    "state": {
+      "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+      "bytes": 5002,
+      "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+    },
+    "view": {
+      "comets": 1e+30,
+      "owned": {},
+      "achieved": {
+        "asc1": true,
+        "asc5": true,
+        "asc10": true,
+        "autotap": true
+      },
+      "questIds": [],
+      "questClaimed": {},
+      "questDay": "2026-10-10",
+      "dailyQuestRefreshes": 0,
+      "autoAscendEnabled": false,
+      "autoAscendTargetDepth": 43,
+      "legacyCometPurchases": {},
+      "offline12hRefund": null
+    },
+    "primary": {
+      "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+      "bytes": 5002,
+      "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+    },
+    "recovery": {
+      "path": "blobs/aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f.json",
+      "bytes": 5002,
+      "sha256": "aedffdc0ff1b3ebe363046a6ef8b69b6019bc0f6f2521f080994e5a04260563f"
+    }
+  },
+  "observedDefect": "sticky automation unlock persists while its nominal Comet reward is unrepresented; do not revoke this earned unlock in any future repair"
+}

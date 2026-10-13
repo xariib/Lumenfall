@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "tests/behavioral/shared-layout-ui.cjs",
+    "index.html",
+    "/workspace/scratch/0848c4e4f365/shared-ui-work/testing/layout-preparation-002/prepared",
+    "--negative",
+    "--prepare-only"
+  ],
+  "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-shared-ui",
+  "node": "v24.19.0",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+  "testSha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+  "browserExecuted": false,
+  "gameExecuted": false,
+  "stdout": {
+    "bytes": 4141,
+    "sha256": "7b9dfc77773eb813a8efe0090b8357ce63a78576f7f975abb26133efa31c05f0"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

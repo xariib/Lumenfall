@@ -1,0 +1,99 @@
+{
+  "name": "rift-status-contract",
+  "occurrence": 5,
+  "rawLogSection": {
+    "byteOffset": 10408139,
+    "bytes": 6517,
+    "sha256": "28ab475360b326be3bb5d5d8dba9ceed19bfd2655ae578a2dad78ad500e7aaf3"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 2.479551897000056,
+    "timeout_sec": 25
+  },
+  "detail": null,
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/process.json",
+      "bytes": 928,
+      "sha256": "55061a5a7c13e7ccfa2d239ded893eb7f6d34162952ad02ab9850e699961ba49",
+      "zipCrc32": "75472e95"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stderr.log",
+      "bytes": 4021,
+      "sha256": "3b29a9fea502fea630a0504fae054837825e624d5d9cc2f151e34ae476cf3781",
+      "zipCrc32": "223c793f"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stdout.html",
+      "bytes": 1458064,
+      "sha256": "d5b7fc2b08a7276efa398187500b2f621153eb403f76d6e7a5e6e91752a64e46",
+      "zipCrc32": "25a41863"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-rift-status-contract-KgbRQX",
+      "--dump-dom",
+      "http://127.0.0.1:36039/index.html?qaScenario=rift-status-contract&qaFixture=fresh"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 2.479551897000056,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "rift-status-contract",
+      "json_status": "fail",
+      "json_scenario": "rift-status-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "rift-status-contract",
+      "json_status": "fail",
+      "json_scenario": "rift-status-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "rift-status-contract",
+      "status": "fail",
+      "detail": "pending intent is not active Bonds",
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stdout.html",
+    "bytes": 1458064,
+    "sha256": "d5b7fc2b08a7276efa398187500b2f621153eb403f76d6e7a5e6e91752a64e46",
+    "zipCrc32": "25a41863"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/05-rift-status-contract"
+}

@@ -1,0 +1,91 @@
+{
+  "status": "COMPACT_DIAGNOSTIC_SUCCESS_EVIDENCE_PACKAGED",
+  "clockToolObservedAtUTC": "2026-10-10 22:12:49 UTC",
+  "sourceFrozenAt": "2026-10-10T22:11:06Z",
+  "identity": {
+    "head": "48c13f2d74b0bd6dc52cf79b0e0e97b89c8b2e5e",
+    "tree": "f7ebddde82ee7856220591128f0f00c7e0037a68",
+    "orderedParents": [
+      "cd3e915b91ed2a41f0ada01543437600a2349a48"
+    ],
+    "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+    "bridgeSha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc",
+    "mobileTestSha256": "45d8b66546b48318586eb1c045fe95cd373fd386601d17e4984a1eda4b3818ee",
+    "workflowSha256": "fee7b294740ea8e01b115b0de0504671c4f2e51c8734261c7df1f42f4367dc2e",
+    "fixtureSha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+    "runId": 38089706277,
+    "jobId": 114323458107,
+    "artifactId": 11683956884,
+    "zipBytes": 11856883,
+    "zipSha256": "c66538e734394dba9cb02f102d5f0657cd05c51f568a9c15d636bdb21ab3fb88",
+    "artifactCrcPassed": true,
+    "inputIdentitiesVerified": 132,
+    "exactInputBodiesInArtifact": 122,
+    "originalWorkflowsUnchanged": [
+      {
+        "path": ".github/workflows/build-android.yml",
+        "blob": "054f02751551b68a6959c9ed24cca55ec97bd15b"
+      },
+      {
+        "path": ".github/workflows/forge-expansion-validation.yml",
+        "blob": "5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196"
+      },
+      {
+        "path": ".github/workflows/lab-expansion-validation.yml",
+        "blob": "d5e5778bc4819fa5bc1d162a9c9362ed68051199"
+      },
+      {
+        "path": ".github/workflows/lab-scroll-diagnostic.yml",
+        "blob": "68d76113f069a4af4a8100047b0dd2aac3918094"
+      },
+      {
+        "path": ".github/workflows/pre-merge-validation.yml",
+        "blob": "4c67564c7d30a51f618eb76f286cc34a4bf4f6d0"
+      },
+      {
+        "path": ".github/workflows/prism-closeout.yml",
+        "blob": "1821f79dd833cf619cf6230b8f6a6670735f8381"
+      },
+      {
+        "path": ".github/workflows/prism-earning-validation.yml",
+        "blob": "9ce8ab30ac31dad9f9cc64e56b456e91a3bd418f"
+      },
+      {
+        "path": ".github/workflows/prism-integration-recheck.yml",
+        "blob": "d6df708140f8b492117fd813e26ac08bad611f94"
+      },
+      {
+        "path": ".github/workflows/tree-focused-qa.yml",
+        "blob": "9740959a724547d1cefed6952762a15da2e09fab"
+      }
+    ]
+  },
+  "diagnosticSucceeded": true,
+  "requiredPrValidationReplaced": false,
+  "sourceTopLevelFilesHashed": 25,
+  "sourceArtifactMembersHashed": 236,
+  "apiZipBytesAndSha256Match": true,
+  "crcResult": "Original auditor proof retained; no archive/test rerun while packaging",
+  "sourceManifest": {
+    "bytes": 48841,
+    "sha256": "252e423bbaf823c89f89370463d6b886dd34c86356cae9e66e18799ee1f9e3d8"
+  },
+  "sourceAudit": {
+    "bytes": 457280,
+    "sha256": "5c8e0b5183ecaede6b13237a8a3d9dfecdceb6b1ee35347da936aec0a9189c49"
+  },
+  "retainedCausalPngs": 4,
+  "otherPngsOmittedWithHash": 36,
+  "fullCommandTriplets": 9,
+  "fullAttemptPassRows": 13,
+  "fullPositiveDomsAvailable": 0,
+  "focusedPrismPositiveFlows": 4,
+  "strictNegativeQaSubranges": 5,
+  "completeJobLog": {
+    "bytes": 3496508,
+    "sha256": "3abb6a691acd6948c445ae434cb9e965e439fd2863f7460b650892b652aa71dc"
+  },
+  "testsOrBrowsersExecutedByPackager": 0,
+  "productOrTestChanges": false,
+  "stagingOrRemoteChanges": false
+}

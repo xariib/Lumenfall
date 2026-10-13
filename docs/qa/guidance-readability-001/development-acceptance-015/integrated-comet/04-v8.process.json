@@ -1,0 +1,36 @@
+{
+  "group": "comet",
+  "id": "v8",
+  "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+  "args": [
+    "tests/behavioral/comet-expansion-v8.cjs",
+    "index.html"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:09:04.086Z",
+  "endedHostUtc": "2026-10-11T15:09:05.023Z",
+  "elapsedNanoseconds": "937326707",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "04-v8.stdout.log",
+    "bytes": 2165,
+    "sha256": "7e83fa32f983bcbb37fcd01da5f04b15c5ac784a302b68bb15e6fb559ae8bddd",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "04-v8.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 1362,
+    "declaredCausalControls": 0
+  }
+}

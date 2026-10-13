@@ -1,0 +1,102 @@
+{
+  "status": "FAIL",
+  "sourcePath": "/workspace/Lumenfall-unfinished/index.html",
+  "sourceSha256": "33d444ed901f3d1c95879df3c390fa2a821a025fb222d9097314c01caf406828",
+  "browserIdentity": {
+    "selected": "/usr/bin/chromium",
+    "resolved": "/usr/bin/chromium",
+    "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)"
+  },
+  "mutation": "ui",
+  "observedAt": "2026-10-11T20:41:21.219Z",
+  "records": [
+    {
+      "kind": "refund-contracts",
+      "result": {
+        "checks": 178,
+        "records": [
+          {
+            "raw": 19,
+            "wallet": 1234,
+            "creditEntries": 0,
+            "retainedValue": "1234",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 20,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "0",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "3376",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 40,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "12655538",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 1e+30,
+            "creditEntries": 1,
+            "retainedValue": "1000000000000000019884624842032",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 2000,
+            "wallet": 1000000,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445289096194",
+            "unpricedFrom": 1910
+          },
+          {
+            "raw": 1e+300,
+            "wallet": 0,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445288096194",
+            "unpricedFrom": 1910
+          },
+          {
+            "kind": "completed-refund-boundaries",
+            "raw": 2000,
+            "boundaries": 100,
+            "priceCalculations": 0,
+            "elapsedMs": 545.6000000000931
+          },
+          {
+            "kind": "actual-auto-ascend-boundaries",
+            "raw": 2000,
+            "result": {
+              "boundaries": 14400,
+              "refundNormalizations": 0,
+              "recordsRetained": true,
+              "canonicalParity": true
+            },
+            "elapsedMs": 1114.6999999999534
+          }
+        ],
+        "receipt": "feedbackMigration.receipts[node.bonds]",
+        "rawHistoryRetained": true,
+        "exactCreditDebit": true
+      }
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  },
+  "failure": "Error: Error: UI maxed even with affordable wallet 20\n    at ok (http://127.0.0.1:42089/index.html:10979:41)\n    at http://127.0.0.1:42089/index.html:10990:5\n    at Array.forEach (<anonymous>)\n    at window.runCheaperRecruitmentContracts (http://127.0.0.1:42089/index.html:10983:19)\n    at <anonymous>:1:1\n    at evaluate (/workspace/Lumenfall-unfinished/tests/behavioral/cheaper-recruitment.cjs:64:154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/Lumenfall-unfinished/tests/behavioral/cheaper-recruitment.cjs:86:40)\n    at async /workspace/Lumenfall-unfinished/tests/behavioral/cheaper-recruitment.cjs:181:6",
+  "stderr": "reedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2867:1011/204117.912378:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2843:2867:1011/204117.912414:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2843:2843:1011/204117.913607:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2843:1011/204117.920745:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2867:1011/204117.926156:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[2843:2867:1011/204117.926227:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n\n(process:2843): dconf-CRITICAL **: 20:41:17.930: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n\n(process:2843): dconf-CRITICAL **: 20:41:17.930: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n\n(process:2843): dconf-CRITICAL **: 20:41:17.931: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n[2843:2879:1011/204117.959699:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 2928: Read-only file system (30)\n[2843:2879:1011/204117.991541:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 2935: Read-only file system (30)\n[2843:2879:1011/204117.995164:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 2937: Read-only file system (30)\n[2843:2879:1011/204118.042892:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 2956: Read-only file system (30)\n[2843:2843:1011/204118.053753:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2843:1011/204118.053958:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2867:1011/204118.054072:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2843:2843:1011/204118.069645:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[2843:2843:1011/204118.090450:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2867:1011/204118.090574:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2843:2843:1011/204118.112767:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2843:2867:1011/204118.112877:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2843:2843:1011/204118.118327:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}

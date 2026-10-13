@@ -1,0 +1,23 @@
+{
+  "id": "context",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "scripts/codex/check_context.cjs",
+    "--task",
+    "docs/tasks/GUIDANCE_READABILITY_001.md"
+  ],
+  "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+  "startedUtc": "2026-10-11T13:24:04.820797+00:00",
+  "completedUtc": "2026-10-11T13:24:04.887307+00:00",
+  "returncode": 0,
+  "stdout": {
+    "path": "context.stdout.log",
+    "bytes": 139,
+    "sha256": "0b5bda3f08f311f80eb2786347efdb01b05adec46747823fafae44785abe0666"
+  },
+  "stderr": {
+    "path": "context.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

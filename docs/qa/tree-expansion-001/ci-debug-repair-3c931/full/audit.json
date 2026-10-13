@@ -1,0 +1,279 @@
+{
+  "accepted": false,
+  "conclusion": "failure",
+  "auditUtc": "2026-10-10 21:36:18 UTC",
+  "identity": {
+    "run": 38085086718,
+    "job": 114309817414,
+    "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "base": "2d01049393e3bb45a90d80e07af52ae0484b0ec5",
+    "merge": "a2561ca083c036df0b5ebe27e09939d0bd35c701",
+    "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+    "source": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef"
+  },
+  "artifact": {
+    "id": 11682079317,
+    "name": "pre-merge-evidence-38085086718",
+    "bytes": 17005268,
+    "sha256": "675319bc4e89915f63778ebfab414a1d947fba17f9283499929258b2b0dc8e4d",
+    "apiDigestMatched": true,
+    "crcAllEntriesPassed": true,
+    "nativeUnzipExitCode": 0,
+    "files": 123,
+    "zipRetainedOnlyInScratch": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/pre-merge-evidence-38085086718.zip"
+  },
+  "sourceVerification": {
+    "publishedFiles": 117,
+    "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+    "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+    "record": "published-source-verification.json"
+  },
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-10-10T20:47:01Z",
+      "completed_at": "2026-10-10T20:47:02Z"
+    },
+    {
+      "name": "Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-10-10T20:47:02Z",
+      "completed_at": "2026-10-10T20:47:16Z"
+    },
+    {
+      "name": "Set up Node.js",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-10-10T20:47:16Z",
+      "completed_at": "2026-10-10T20:47:20Z"
+    },
+    {
+      "name": "APK identity verifier self-test",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-10-10T20:47:20Z",
+      "completed_at": "2026-10-10T20:47:20Z"
+    },
+    {
+      "name": "Node tooling regression checks",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-10-10T20:47:20Z",
+      "completed_at": "2026-10-10T20:47:21Z"
+    },
+    {
+      "name": "Validate game source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-10-10T20:47:21Z",
+      "completed_at": "2026-10-10T20:47:21Z"
+    },
+    {
+      "name": "Stage web assets",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-10-10T20:47:21Z",
+      "completed_at": "2026-10-10T20:47:21Z"
+    },
+    {
+      "name": "Rift cosmetics selection, persistence and mobile acceptance",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-10-10T20:47:21Z",
+      "completed_at": "2026-10-10T20:47:38Z"
+    },
+    {
+      "name": "Exact Prism earning numerical and causal regression",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-10-10T20:47:38Z",
+      "completed_at": "2026-10-10T20:47:42Z"
+    },
+    {
+      "name": "Development currency UI and retained-value acceptance",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-10-10T20:47:42Z",
+      "completed_at": "2026-10-10T20:48:22Z"
+    },
+    {
+      "name": "Stateful behavioral regression suite",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 11,
+      "started_at": "2026-10-10T20:48:22Z",
+      "completed_at": "2026-10-10T21:29:46Z"
+    },
+    {
+      "name": "Behavioral harness negative self-test",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 12,
+      "started_at": "2026-10-10T21:29:46Z",
+      "completed_at": "2026-10-10T21:29:46Z"
+    },
+    {
+      "name": "Install runtime error guard in staged copy",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 13,
+      "started_at": "2026-10-10T21:29:46Z",
+      "completed_at": "2026-10-10T21:29:46Z"
+    },
+    {
+      "name": "Browser runtime smoke test",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 14,
+      "started_at": "2026-10-10T21:29:46Z",
+      "completed_at": "2026-10-10T21:29:46Z"
+    },
+    {
+      "name": "Preserve full regression evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-10-10T21:29:46Z",
+      "completed_at": "2026-10-10T21:29:49Z"
+    },
+    {
+      "name": "Post Set up Node.js",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 29,
+      "started_at": "2026-10-10T21:29:49Z",
+      "completed_at": "2026-10-10T21:29:49Z"
+    },
+    {
+      "name": "Post Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 30,
+      "started_at": "2026-10-10T21:29:49Z",
+      "completed_at": "2026-10-10T21:29:49Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 31,
+      "started_at": "2026-10-10T21:29:49Z",
+      "completed_at": "2026-10-10T21:29:49Z"
+    }
+  ],
+  "behavioral": {
+    "scenarios": 182,
+    "rows": 212,
+    "pass": 199,
+    "fail": 13,
+    "distinctFailingScenarios": 9,
+    "allFailedProcessesExitZero": true,
+    "failedTimeouts": 0,
+    "failedRuntimeErrors": 0,
+    "failedRawQaValid": true,
+    "order": "failed-scenario-order.json"
+  },
+  "gates": {
+    "cosmetics": {
+      "reportedStatus": "pass",
+      "reportedSamples": 168,
+      "evidence": "gates/cosmetics.json"
+    },
+    "prismNumerical": {
+      "status": "pass",
+      "assertions": 341654,
+      "formulaCases": 277916,
+      "payoutCases": 3780,
+      "causalControls": 7,
+      "evidence": "gates/prism-numerical.json"
+    },
+    "currency": {
+      "status": "pass",
+      "normalChecks": 5808,
+      "profiles": 12,
+      "causalControls": 3,
+      "evidence": "gates/currency/summary.json"
+    },
+    "offlineCatchup": {
+      "status": "pass",
+      "records": 17,
+      "wallMs": 211115.951851,
+      "exitCode": 0,
+      "timedOut": false,
+      "evidence": "gates/offline-catchup-core.json"
+    },
+    "originalWorkflowNegatives": {
+      "expected": 22,
+      "executed": 0,
+      "status": "skipped",
+      "names": [
+        "self-test-bad-assertion",
+        "self-test-uncaught-error",
+        "self-test-unhandled-rejection",
+        "self-test-parity-regression",
+        "self-test-chronology-regression",
+        "self-test-wisp-formula-regression",
+        "self-test-wisp-pacing-regression",
+        "self-test-endgame-currency-regression",
+        "self-test-wisp-role-regression",
+        "self-test-p1-05-selected",
+        "self-test-p1-05-focus-return",
+        "self-test-lifecycle-duplicate",
+        "self-test-save-backup-placement",
+        "self-test-save-backup-confirmation",
+        "self-test-upgrade-identity-buy",
+        "self-test-upgrade-identity-value",
+        "self-test-upgrade-identity-clock",
+        "self-test-ascend-prisms-tree",
+        "self-test-ascend-prisms-lab",
+        "self-test-ascend-prisms-payout",
+        "self-test-ascend-prisms-repeat",
+        "self-test-ascend-prisms-rounding"
+      ]
+    },
+    "runtimeGuard": {
+      "status": "skipped"
+    },
+    "finalBrowserSmoke": {
+      "status": "skipped"
+    }
+  },
+  "logs": {
+    "behavioral": {
+      "complete": true,
+      "path": "logs/behavioral.log.gz",
+      "originalBytes": 10988793,
+      "originalSha256": "a1f7dd57080857eff2d64853b937f07067b99702f59360a9d2eb1232ee14e900"
+    },
+    "job": {
+      "complete": false,
+      "path": "logs/job-partial-prefix.log.gz",
+      "firstTimestamp": "2026-10-10T20:47:01.4308185Z",
+      "lastTimestamp": "2026-10-10T20:50:04.0167177Z",
+      "originalBytes": 2978707,
+      "originalSha256": "f98a6ac3228ad07cad101d2a12aa02f509be61a08bd519c235878ad67b9d4f7b",
+      "transport": "metadata/log-fetch-observations.json"
+    }
+  },
+  "limitations": [
+    "This failed Full run is not acceptance of PR106 or the Tree expansion.",
+    "The 13 original assertion failures are preserved without asserting that one adapter fix resolves every failure.",
+    "The 22 workflow negative controls, final runtime guard, and final browser smoke were skipped.",
+    "Only a partial job-log prefix is available; the complete stateful behavioral log is preserved separately.",
+    "Actual native Android, WebView integration, and TalkBack were not tested by this evidence audit."
+  ]
+}

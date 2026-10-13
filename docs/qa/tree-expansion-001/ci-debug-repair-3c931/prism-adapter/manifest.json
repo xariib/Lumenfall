@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "before.stdout.json",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/before.stdout.json",
+      "originalBytes": 3534,
+      "originalSha256": "3fd6163434ebfa1965086c0cc717d14ca31e1463263fb5381d7188e76a9d6545",
+      "storedBytes": 3534,
+      "storedSha256": "3fd6163434ebfa1965086c0cc717d14ca31e1463263fb5381d7188e76a9d6545"
+    },
+    {
+      "path": "before.stderr.log",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/before.stderr.log",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 0,
+      "storedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-published.stdout.json",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/before-published.stdout.json",
+      "originalBytes": 3544,
+      "originalSha256": "fb7f96cd46912384d53f2b6e62a90e2cb159cc355dc0fd77eeedbc52a7ba744b",
+      "storedBytes": 3544,
+      "storedSha256": "fb7f96cd46912384d53f2b6e62a90e2cb159cc355dc0fd77eeedbc52a7ba744b"
+    },
+    {
+      "path": "before-published.stderr.log",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/before-published.stderr.log",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 0,
+      "storedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixed-published.stdout.json",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/fixed-published.stdout.json",
+      "originalBytes": 4132,
+      "originalSha256": "5ca6c10ad4361acf528d0c6e4b7e2c661bcc14e0023d0d0064a8e6ec997fb963",
+      "storedBytes": 4132,
+      "storedSha256": "5ca6c10ad4361acf528d0c6e4b7e2c661bcc14e0023d0d0064a8e6ec997fb963"
+    },
+    {
+      "path": "fixed-published.stderr.log",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/fixed-published.stderr.log",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 0,
+      "storedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixed-current.stdout.json",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/fixed-current.stdout.json",
+      "originalBytes": 4130,
+      "originalSha256": "f671b44d606f51b8a5249e3702c748f30d6708d87cae2a1eaead1946d413d78d",
+      "storedBytes": 4130,
+      "storedSha256": "f671b44d606f51b8a5249e3702c748f30d6708d87cae2a1eaead1946d413d78d"
+    },
+    {
+      "path": "fixed-current.stderr.log",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/fixed-current.stderr.log",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 0,
+      "storedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repro.cjs",
+      "encoding": "identity",
+      "originalPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/repro.cjs",
+      "originalBytes": 5527,
+      "originalSha256": "8d2ea0c7e01c935bdc423bb7d932d8ab2692f57e25bf7a22885305be708d05a9",
+      "storedBytes": 5527,
+      "storedSha256": "8d2ea0c7e01c935bdc423bb7d932d8ab2692f57e25bf7a22885305be708d05a9"
+    },
+    {
+      "path": "initial-repro.cjs",
+      "encoding": "identity",
+      "originalPath": "Exact reconstruction of first diagnostic revision; only later addition was optional source-path argument",
+      "originalBytes": 5481,
+      "originalSha256": "e3738ecf2d4a208b19f699c7cc8cac3ed48a65aa886dea11c25ee77f6b834e77",
+      "storedBytes": 5481,
+      "storedSha256": "e3738ecf2d4a208b19f699c7cc8cac3ed48a65aa886dea11c25ee77f6b834e77"
+    },
+    {
+      "path": "adapter.patch.gz",
+      "encoding": "gzip",
+      "originalPath": "git diff -- tests/behavioral/bridge.js against unchanged original bridge at HEAD0c539",
+      "originalBytes": 758,
+      "originalSha256": "c4f3d7e9ac5eaa7f8c2dc8230ee11a17d7c1b2a8ad8a4bcd75bafe4bfe348843",
+      "storedBytes": 393,
+      "storedSha256": "baed5dd089c2c202498f06f4fa25e26aca37c62c6fcc7bcb977a3ca6ca504299"
+    },
+    {
+      "path": "source-binding.json",
+      "encoding": "identity",
+      "originalPath": "GitHub-published tree/blob verification and local repaired bridge",
+      "originalBytes": 1706,
+      "originalSha256": "51292e5cbbb2e54b6c4dc5a636dc3788fa4a401d641ff58584c6ddd421a7e7f5",
+      "storedBytes": 1706,
+      "storedSha256": "51292e5cbbb2e54b6c4dc5a636dc3788fa4a401d641ff58584c6ddd421a7e7f5"
+    },
+    {
+      "path": "receipt.json",
+      "encoding": "identity",
+      "originalPath": "Commands and raw output reported by exec; source/test identities",
+      "originalBytes": 3718,
+      "originalSha256": "c4427842f461eaa53f877c2af3412898bec947b6a7cdbf5ec4139348965d979b",
+      "storedBytes": 3718,
+      "storedSha256": "c4427842f461eaa53f877c2af3412898bec947b6a7cdbf5ec4139348965d979b"
+    },
+    {
+      "path": "README.md",
+      "encoding": "identity",
+      "originalPath": "Diagnostic documentation",
+      "originalBytes": 4009,
+      "originalSha256": "79c2afdfe8a1b7868a8bd051f82ee5a5e4df4525a4654ccedea4b83c29a16d4b",
+      "storedBytes": 4009,
+      "storedSha256": "79c2afdfe8a1b7868a8bd051f82ee5a5e4df4525a4654ccedea4b83c29a16d4b"
+    }
+  ]
+}

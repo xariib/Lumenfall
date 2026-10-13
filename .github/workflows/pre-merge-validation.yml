@@ -1,0 +1,203 @@
+name: Pre-merge validation
+
+on:
+  pull_request:
+    branches: [main, 'feature/progression-expansion-2026-10-09']
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumenfall-pre-merge-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validation:
+    name: Lumenfall pre-merge validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: APK identity verifier self-test
+        run: node scripts/verify_apk_identity.cjs --self-test
+
+      - name: Node tooling regression checks
+        run: node tests/tooling/run.cjs
+
+      - name: Validate game source
+        shell: bash
+        run: |
+          node scripts/ci/validate_source.cjs
+
+      - name: Stage web assets
+        shell: bash
+        run: |
+          rm -rf mobile/www
+          mkdir -p mobile/www/fonts mobile/www/branding
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+
+      - name: Guidance baseline readability and exact old-width inverse
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/GUIDANCE_READABILITY_001.md
+          node scripts/ci/guidance-readability.cjs validation-evidence/guidance-readability
+
+      - name: Preserve early Guidance readability evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: guidance-readability-evidence-${{ github.run_id }}
+          retention-days: 14
+          path: validation-evidence/guidance-readability/
+
+      - name: Rift cosmetics selection, persistence and mobile acceptance
+        run: node tests/behavioral/rift-cosmetics.cjs --source mobile/www/index.html --negative
+
+      - name: Exact Prism earning numerical and causal regression
+        run: node tests/behavioral/prism-earning.cjs --source mobile/www/index.html
+
+      - name: Tree caps original-value refunds and current collection
+        run: |
+          node tests/behavioral/cheaper-recruitment-integrated.cjs index.html validation-evidence/f21-integration.json
+          node scripts/codex/check_context.cjs --task docs/tasks/ECHOING_REST_CAP_001.md
+          node tests/behavioral/echo-refund-core.cjs index.html --negative --output validation-evidence/f20-core.json
+          node tests/behavioral/cheaper-recruitment.cjs --source index.html --echo --output validation-evidence/f21-f20-browser.json
+          node tests/behavioral/cheaper-recruitment-negative.cjs index.html validation-evidence/f21-negative
+
+      - name: Swift cap, original Shard value and reachable Forge Deeds
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/SWIFT_CURRENT_001.md
+          node tests/behavioral/swift-current-core.cjs --negative > validation-evidence/swift-current-core.json
+          node tests/behavioral/swift-current-legacy.cjs index.html > validation-evidence/swift-current-modern.json
+
+      - name: Wisp contribution readability and unchanged gameplay
+        run: |
+          node tests/behavioral/support-recast-current.cjs index.html --negative > validation-evidence/support-recast.json
+          node tests/behavioral/early-wisp-curve-current.cjs index.html --negative > validation-evidence/early-wisp-curve.json
+          node scripts/codex/check_context.cjs --task docs/tasks/WISP_CONTRIBUTION_001.md
+          node tests/behavioral/wisp-contribution-core.cjs index.html --negative --preservation > validation-evidence/wisp-contribution-core.json
+          node tests/behavioral/wisp-contribution-mobile.cjs index.html validation-evidence/wisp-contribution-mobile
+
+      - name: Development currency UI and retained-value acceptance
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/PRISM_EARNING_001.md
+          node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_EXPANSION_001.md
+          node tests/behavioral/collection-price-ui.cjs index.html /tmp/lumenfall-collection-price --negative
+
+      - name: Cheaper Recruitment cap and refund regression
+        run: node tests/behavioral/cheaper-recruitment.cjs --source mobile/www/index.html --output /tmp/cheaper-recruitment.json
+
+      - name: Independent exact Prism funding oracle
+        run: node tests/behavioral/cheaper-payment-oracle.cjs --source mobile/www/index.html --output /tmp/cheaper-payment-oracle.json
+
+      - name: Cheaper Recruitment defect controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          for mutation in handler refund credit free-credit wallet receipt cache credit-record ascend-copy version-check credit-reconcile below-cap-receipt missing-receipt canonical-price mixed-payment power-spacing funding-sources; do
+            if node tests/behavioral/cheaper-recruitment.cjs --source mobile/www/index.html --mutation "$mutation" --output "/tmp/cheaper-recruitment-$mutation.json"; then
+              echo "::error::Cheaper Recruitment mutation '$mutation' unexpectedly passed."
+              exit 1
+            fi
+            node - "$mutation" "/tmp/cheaper-recruitment-$mutation.json" <<'JS'
+          const fs = require('node:fs'), assert = require('node:assert/strict');
+          const result = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
+          const expected = {handler:'UI maxed even with affordable wallet',refund:'refund receipt prevents a second credit',credit:'fractional original wallet retains exact refund value', 'free-credit':'unrepresentable credit subtraction cannot buy a free level',wallet:'unrepresentable wallet debit cannot buy a free level',receipt:'wrong receipt amount rejects for recovery',cache:'completed large refund avoids repeated price calculation at Ascend boundaries','credit-record':'malformed persisted Prism credit rejects for recovery','ascend-copy':'actual auto-Ascends avoid repeated refund cloning and validation','version-check':'unsupported migration version rejects before any early return','credit-reconcile':'own credit sequence reconciles with saved receipt','below-cap-receipt':'below-cap receipt rejects before legitimate purchase','missing-receipt':'completed marker cannot refund again after receipt deletion','canonical-price':'all finite original purchase value retained','mixed-payment':'exact wallet-only allocation keeps small credit','power-spacing':'downward ULP at power of two supports exact mixed payment','funding-sources':'best exact available contribution finds payable Tree price'};
+          assert.equal(result.status, 'FAIL');
+          assert(result.failure.includes(expected[process.argv[2]]), 'Expected causal assertion missing');
+          assert.equal(result.teardown.browser.code, 0);
+          assert.equal(result.teardown.pending, 0);
+          JS
+          done
+
+      - name: Behavioral harness negative self-test
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p validation-evidence
+          {
+            for scenario in self-test-bad-assertion self-test-uncaught-error self-test-unhandled-rejection self-test-parity-regression self-test-chronology-regression self-test-wisp-formula-regression self-test-wisp-pacing-regression self-test-endgame-currency-regression self-test-wisp-role-regression self-test-p1-05-selected self-test-p1-05-focus-return self-test-lifecycle-duplicate self-test-save-backup-placement self-test-save-backup-confirmation self-test-upgrade-identity-buy self-test-upgrade-identity-value self-test-upgrade-identity-clock self-test-ascend-prisms-tree self-test-ascend-prisms-lab self-test-ascend-prisms-payout self-test-ascend-prisms-repeat self-test-ascend-prisms-rounding; do
+              if node tests/behavioral/run.cjs --web-root mobile/www --scenario "$scenario" --raw-artifacts validation-evidence/negative-raw; then
+                echo "::error::Behavioral harness negative scenario '$scenario' unexpectedly passed."
+                exit 1
+              fi
+              echo "Behavioral harness correctly caught expected failure: $scenario"
+            done
+          } 2>&1 | tee validation-evidence/negative-self-tests.log
+
+      - name: Stateful behavioral regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p validation-evidence
+          git rev-parse HEAD > validation-evidence/commit.txt
+          sha256sum index.html > validation-evidence/source-sha256.txt
+          node tests/behavioral/run.cjs --web-root mobile/www --raw-artifacts validation-evidence/raw 2>&1 | tee validation-evidence/behavioral.log | node scripts/ci/behavioral-console.cjs
+
+      - name: Install runtime error guard in staged copy
+        shell: bash
+        run: |
+          node scripts/ci/smoke.cjs --install-guard mobile/www/index.html
+
+      - name: Browser runtime smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME" ]; then
+            echo "No supported Chromium browser found on the runner."
+            exit 1
+          fi
+
+          node scripts/serve.cjs --port 4173 --directory mobile/www >/tmp/lumenfall-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" >/dev/null 2>&1 || true' EXIT
+
+          ready=0
+          for _ in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null && curl --fail --silent http://127.0.0.1:4173/branding/lumenfall-mark.svg >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 0.25
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/lumenfall-http.log
+            exit 1
+          fi
+
+          "$CHROME" \
+            --headless=new \
+            --no-sandbox \
+            --disable-gpu \
+            --disable-dev-shm-usage \
+            --window-size=390,844 \
+            --virtual-time-budget=1800 \
+            --dump-dom \
+            http://127.0.0.1:4173/index.html \
+            >/tmp/lumenfall-dom.html 2>/tmp/lumenfall-chrome.log
+
+          node scripts/ci/smoke.cjs --dom /tmp/lumenfall-dom.html --chrome-log /tmp/lumenfall-chrome.log --require-guard
+
+      - name: Preserve full regression evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-merge-evidence-${{ github.run_id }}
+          retention-days: 14
+          path: |
+            validation-evidence/
+            /tmp/lumenfall-collection-price/
+            /tmp/lumenfall-dom.html
+            /tmp/lumenfall-chrome.log
+            /tmp/lumenfall-http.log

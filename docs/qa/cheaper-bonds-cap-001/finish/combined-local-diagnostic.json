@@ -1,0 +1,18 @@
+{
+  "status": "diagnostic-fail-corrected-by-targeted-reruns",
+  "observedAt": "2026-10-11T22:44:52.677Z",
+  "passedProfiles": 209,
+  "failures": [
+    "FAIL upgrade-identity-contracts",
+    "FAIL offline-12h-ui",
+    "FAIL upgrade-effects-and-deeds"
+  ],
+  "targetedReruns": [
+    "upgrade-identity-legacy-fixture.txt",
+    "legacy-clarity-fixed.txt",
+    "offline-ui-staged-rerun.txt"
+  ],
+  "sourceNote": "Diagnostic started with0dcce970; later standalone drivers consumed properly staged46323fdd. This is not final combined acceptance. Final required GitHub CI uses complete head8a9500c.",
+  "nodeTooling": "Supported Node20 PASS. Local Node24 diagnostic failed mock aapt output parsing; actual SDK identity verifier passes143.",
+  "finalCi": 38180910155
+}

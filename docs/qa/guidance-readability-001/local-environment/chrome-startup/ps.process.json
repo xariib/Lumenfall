@@ -1,0 +1,30 @@
+{
+  "id": "ps",
+  "command": "ps",
+  "args": [
+    "-eo",
+    "pid,ppid,stat,etime,comm"
+  ],
+  "timeoutMs": 12000,
+  "timeout": false,
+  "exitCode": 1,
+  "signal": null,
+  "error": null,
+  "elapsedMs": 8.23298,
+  "stdout": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/ps.stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "statBytes": 0,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:44:14.544Z"
+  },
+  "stderr": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/ps.stderr.log",
+    "bytes": 33,
+    "sha256": "a55c6a5e4fa226e987190d56b156a177b1cf3e0e382d4d652fc9a63bc2345f5b",
+    "statBytes": 33,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:44:14.552Z"
+  }
+}

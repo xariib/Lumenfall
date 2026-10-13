@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "status": "READ_ONLY_CAUSAL_AUDIT_COMPLETE",
+  "clock": "2026-10-10 21:45:58 UTC",
+  "identity": {
+    "commit": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+    "publishedSourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+    "viewportSourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+    "oldBridgeSha256": "3a7e96895d982f005ed075334c5159b8a5e00c138475f1bc4e34b1790e978c3c",
+    "fixedBridgeSha256": "8568cfb994b0a6c4c1c2bded8f2946a6489b18591992e58d534f483f5cb287c1",
+    "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+    "adapterHooksSha256": "0c7bb1d975a4f44fa4b441c283ea37e433c11548ab21c8a309de19ca99de5bd7",
+    "testSha256": "07d6db1c7f63cc00d78e35334e8b175559ed72bb7f6bd9957c015864bf2e91d6",
+    "modules": [
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "sha256": "71ebec88516738509276c2e3ddb07e6bcc0a18e6f46805ebdb5b4b2e227767c3",
+        "bytes": 22267
+      },
+      {
+        "path": "tests/behavioral/support-stacking.js",
+        "sha256": "403b29fcabd9d68ae338486f0550e90f172a7b66f1307e8a967cada4139060e0",
+        "bytes": 14386
+      },
+      {
+        "path": "tests/behavioral/formation.js",
+        "sha256": "3464976af2dd02c8cc8dfc95510a6c7a2f347209ea355b5bd62f568e513b444e",
+        "bytes": 29739
+      },
+      {
+        "path": "tests/behavioral/rift-status.js",
+        "sha256": "879a7a0ab5c71dbf398694ed76dd036fe44351f44294643a58002ab3a903df42",
+        "bytes": 46160
+      },
+      {
+        "path": "tests/behavioral/ascend-prisms.js",
+        "sha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482",
+        "bytes": 10680
+      }
+    ],
+    "rawAnalysisSha256": "4d40997e7801e2453a1d579fae10a2ed54f88528a75e170e02583fef1c81a568",
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  },
+  "ciRowsMapped": 13,
+  "uniqueScenarioIds": 9,
+  "vmRecords": 28,
+  "boundaryResults": {
+    "oldAdapter": {
+      "records": 14,
+      "predicateFalse": 14,
+      "realAscendFalse": 14,
+      "zeroGain": 14,
+      "zeroWrites": 14
+    },
+    "fixedAdapter": {
+      "records": 14,
+      "predicateTrue": 14,
+      "realAscendTrue": 14,
+      "twoSuccessfulWrites": 14
+    }
+  },
+  "allNewTreeNodesAndTrainingZero": true,
+  "distinctOtherCauseForOriginalFirstFailuresFound": false,
+  "productMutations": false,
+  "repoMutations": false,
+  "remoteMutations": false,
+  "browserTestsRun": 0,
+  "fullScenarioPassClaimed": false,
+  "sourceProductHtmlCopied": false,
+  "privateSavesIncluded": false,
+  "remaining": "Actual browser scenarios, downstream assertions and layout geometry remain a separate gate. A reported new diagnostic failure is not explained or accepted by this earlier-boundary audit."
+}

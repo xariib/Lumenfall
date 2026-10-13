@@ -1,0 +1,746 @@
+{
+  "label": "after-02-lab-boundary",
+  "hostUtc": "2026-10-11T15:09:00.789Z",
+  "git": [
+    {
+      "args": [
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "354e19ff956b47cf8833a8ae25c599298cbe659f\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "381a7951d3b45a1a0a64e49b7dd13ed11d6022c6\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "show",
+        "-s",
+        "--format=%P",
+        "HEAD"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "684bfc52bb2ca523124fe63981188b9a8004d747 bfed924be57a3b25e06c2f6e4ba3a38e9fc940b6\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--binary",
+        "HEAD",
+        "--"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "index.html"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 4c36cc5a8c6413d76856a56a46a999e5ff2a9e20\tindex.html\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/lab-expansion.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 23b368f87bed283d5527464e8a4baee18e2adee8\ttests/behavioral/lab-expansion.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/lab-expansion-boundary.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 93e3b2cae86f700fbbfe95c041b68f6c42292172\ttests/behavioral/lab-expansion-boundary.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/prism-earning-state.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 6cf0b6a156080eee70be57c4a1fbc4347c6bca66\ttests/behavioral/prism-earning-state.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/forge-expansion.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 26a6ec0885b35fbb6a2de8501900f9774c2fa2cd\ttests/behavioral/forge-expansion.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/forge-expansion-legacy.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 66573cb10f68494d4b8ac0e7b82ea464f610c900\ttests/behavioral/forge-expansion-legacy.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/tree-expansion-core.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob e340e4960ac1f67b1d8502657fd4710317a77631\ttests/behavioral/tree-expansion-core.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/tree-expansion-offline.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 9f119445195099d9d1e38db6a1e0ad001767ca6f\ttests/behavioral/tree-expansion-offline.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/tree-expansion-economy.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob d03c34aae1f201010dbf523fcc5e99655781b4d9\ttests/behavioral/tree-expansion-economy.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/tree-expansion-v8.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 149e3a698f91fb3fae951612928a2ffa3fc88cb4\ttests/behavioral/tree-expansion-v8.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/comet-expansion-core.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 6014e90ad56f729f4413dff9a1042e6c6d194ab7\ttests/behavioral/comet-expansion-core.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/comet-expansion-numerical.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 34b68931a32c93df30fee6a2ad6b59b419c48f69\ttests/behavioral/comet-expansion-numerical.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/comet-expansion-offline.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 49c164d038333f518acf633df254f70334ff4fab\ttests/behavioral/comet-expansion-offline.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/comet-expansion-v8.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 8b2d98d7245cda27e101af81fd9980f601cd78de\ttests/behavioral/comet-expansion-v8.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/comet-expansion-harness.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 4b9657bba0d1d6b18dfad25ed16a7e73de1ce2e0\ttests/behavioral/comet-expansion-harness.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/forge-expansion-calibration.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob b4b432ae1c5afcd46ac57d6579a0613d8d9f18ca\ttests/behavioral/forge-expansion-calibration.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/forge-expansion-harness.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 80570d355f0909e7e153a7111552e4308a05e61c\ttests/behavioral/forge-expansion-harness.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/lab-expansion-harness.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 58c24cd3803905766e9f705275550fc60e383b26\ttests/behavioral/lab-expansion-harness.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/prism-earning-reference.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 82699e9a8f57f1a2f6609e8b68de4c67254f338e\ttests/behavioral/prism-earning-reference.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "tests/behavioral/tree-expansion-harness.cjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 3027844dcf5f804de8e5090c69a59517be1155b1\ttests/behavioral/tree-expansion-harness.cjs\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        ".github/workflows/lab-expansion-validation.yml"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob d5e5778bc4819fa5bc1d162a9c9362ed68051199\t.github/workflows/lab-expansion-validation.yml\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        ".github/workflows/forge-expansion-validation.yml"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196\t.github/workflows/forge-expansion-validation.yml\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        ".github/workflows/tree-focused-qa.yml"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 9740959a724547d1cefed6952762a15da2e09fab\t.github/workflows/tree-focused-qa.yml\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        ".github/workflows/comet-expansion-validation.yml"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 0f378bd29860d1118cf1fe18ed066716f26366a3\t.github/workflows/comet-expansion-validation.yml\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "AGENTS.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 07902c39869b6e7df1e4e551de1de06c57b11c4e\tAGENTS.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "PROJECT_BOOTSTRAP.txt"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 04b557bfa2ec78f0d239884ae94d38ce74119a71\tPROJECT_BOOTSTRAP.txt\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/PROJECT_STATE.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob e2f66a30db5c4ffb80c78f2cb5d2129eb7a4c416\tdocs/PROJECT_STATE.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/tasks/GUIDANCE_READABILITY_001.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 74cd2850654248d3f6dd7d591ecbf7518ff37836\tdocs/tasks/GUIDANCE_READABILITY_001.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/qa/guidance-readability-001/ACCEPTANCE.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob fdaf28b0aa65958cc0f4cb467e2bf0ab28cca617\tdocs/qa/guidance-readability-001/ACCEPTANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/qa/guidance-readability-001/README.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 3c613a4ae96e6c73c5c4ada7463a6bded396375e\tdocs/qa/guidance-readability-001/README.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/project/FEATURE_WORKFLOW.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob eb496b138cc95f2f44a44411ed526ce54f6e9dcf\tdocs/project/FEATURE_WORKFLOW.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/tasks/COMET_EXPANSION_001.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 1219c717983c742ac5deac4c1b6a9253b3370bd5\tdocs/tasks/COMET_EXPANSION_001.md\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "ls-tree",
+        "HEAD",
+        "--",
+        "docs/qa/comet-expansion-001/README.md"
+      ],
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "100644 blob 34a5f01c312a9ded91a608593e874f99e7075513\tdocs/qa/comet-expansion-001/README.md\n",
+      "stderr": ""
+    }
+  ],
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 657955,
+      "sha256": "dd81757378880ef42052cf6b175ea06721043e0ba7213cd135d5661367a743f1",
+      "mode": "0644",
+      "gitEntry": "100644 blob 4c36cc5a8c6413d76856a56a46a999e5ff2a9e20\tindex.html"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion.cjs",
+      "bytes": 27796,
+      "sha256": "4a3c8a2d523f8d739dc9b2b69fc4abc384d751904a644cc2e1657757f5b9f00d",
+      "mode": "0644",
+      "gitEntry": "100644 blob 23b368f87bed283d5527464e8a4baee18e2adee8\ttests/behavioral/lab-expansion.cjs"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-boundary.cjs",
+      "bytes": 9803,
+      "sha256": "4ba37b0b37723a37accb3051d82861a87fc101ae24dfdb231e2accaf2f73484d",
+      "mode": "0644",
+      "gitEntry": "100644 blob 93e3b2cae86f700fbbfe95c041b68f6c42292172\ttests/behavioral/lab-expansion-boundary.cjs"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-state.cjs",
+      "bytes": 8465,
+      "sha256": "bbaa33852a9d90f5829df61d6b6be9326f769046a676fe2e4b94800273aa044e",
+      "mode": "0644",
+      "gitEntry": "100644 blob 6cf0b6a156080eee70be57c4a1fbc4347c6bca66\ttests/behavioral/prism-earning-state.cjs"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion.cjs",
+      "bytes": 59493,
+      "sha256": "3fd3575a50fbf5f01277f1c509feb0a7c5ee9f19c3c91789caf5496c0056487e",
+      "mode": "0644",
+      "gitEntry": "100644 blob 26a6ec0885b35fbb6a2de8501900f9774c2fa2cd\ttests/behavioral/forge-expansion.cjs"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-legacy.cjs",
+      "bytes": 22552,
+      "sha256": "5f97700df5f19f535cb84de75b2b39fe9826cc9672184d1493afb274297630e0",
+      "mode": "0644",
+      "gitEntry": "100644 blob 66573cb10f68494d4b8ac0e7b82ea464f610c900\ttests/behavioral/forge-expansion-legacy.cjs"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-core.cjs",
+      "bytes": 55087,
+      "sha256": "4706213bb31c4ba08902292892273fcb02642cbf49ebe5b793d9cf656e5cec29",
+      "mode": "0644",
+      "gitEntry": "100644 blob e340e4960ac1f67b1d8502657fd4710317a77631\ttests/behavioral/tree-expansion-core.cjs"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-offline.cjs",
+      "bytes": 24517,
+      "sha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71",
+      "mode": "0644",
+      "gitEntry": "100644 blob 9f119445195099d9d1e38db6a1e0ad001767ca6f\ttests/behavioral/tree-expansion-offline.cjs"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-economy.cjs",
+      "bytes": 28283,
+      "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a",
+      "mode": "0644",
+      "gitEntry": "100644 blob d03c34aae1f201010dbf523fcc5e99655781b4d9\ttests/behavioral/tree-expansion-economy.cjs"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-v8.cjs",
+      "bytes": 24964,
+      "sha256": "2fe14d008b05288e118d390892832e59b828fc976f4c30bd00a8cdb887010da6",
+      "mode": "0644",
+      "gitEntry": "100644 blob 149e3a698f91fb3fae951612928a2ffa3fc88cb4\ttests/behavioral/tree-expansion-v8.cjs"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-core.cjs",
+      "bytes": 58714,
+      "sha256": "5bda9de4f7ac58a3b510c6f1acc4120aa211f045e92b4c2e6ba55ce640a7f2d6",
+      "mode": "0644",
+      "gitEntry": "100644 blob 6014e90ad56f729f4413dff9a1042e6c6d194ab7\ttests/behavioral/comet-expansion-core.cjs"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-numerical.cjs",
+      "bytes": 21869,
+      "sha256": "8dad842c0bf81ab5eaa9e34849d6d6f1916fb92b004a52ddd5a0e018f09551fe",
+      "mode": "0644",
+      "gitEntry": "100644 blob 34b68931a32c93df30fee6a2ad6b59b419c48f69\ttests/behavioral/comet-expansion-numerical.cjs"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-offline.cjs",
+      "bytes": 25516,
+      "sha256": "31d544bf30951e90234508c1a61e8d7f57ace2e0f3477e99e7991335c6aee911",
+      "mode": "0644",
+      "gitEntry": "100644 blob 49c164d038333f518acf633df254f70334ff4fab\ttests/behavioral/comet-expansion-offline.cjs"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-v8.cjs",
+      "bytes": 41602,
+      "sha256": "1de2726eaae0f209c053cebceb15832fff54b199ed34652032731b5da43d7b7a",
+      "mode": "0644",
+      "gitEntry": "100644 blob 8b2d98d7245cda27e101af81fd9980f601cd78de\ttests/behavioral/comet-expansion-v8.cjs"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-harness.cjs",
+      "bytes": 15743,
+      "sha256": "aeccdff0583636396da3a214336f5cfce41b607765b458c51ca105637c00298e",
+      "mode": "0644",
+      "gitEntry": "100644 blob 4b9657bba0d1d6b18dfad25ed16a7e73de1ce2e0\ttests/behavioral/comet-expansion-harness.cjs"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-calibration.cjs",
+      "bytes": 26059,
+      "sha256": "ea5787eb14d63237c3cbe4687914c67935703cf81d1c176042c4473c40bad3f4",
+      "mode": "0644",
+      "gitEntry": "100644 blob b4b432ae1c5afcd46ac57d6579a0613d8d9f18ca\ttests/behavioral/forge-expansion-calibration.cjs"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-harness.cjs",
+      "bytes": 10916,
+      "sha256": "185feb9242a3c8b5fac48871be20f61a119e2881e78191ecd832d12da16d9724",
+      "mode": "0644",
+      "gitEntry": "100644 blob 80570d355f0909e7e153a7111552e4308a05e61c\ttests/behavioral/forge-expansion-harness.cjs"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-harness.cjs",
+      "bytes": 5153,
+      "sha256": "5221a2c2125077edabca1d2577a616d0e8cd0514c0c18c53ff321d9eaff4f659",
+      "mode": "0644",
+      "gitEntry": "100644 blob 58c24cd3803905766e9f705275550fc60e383b26\ttests/behavioral/lab-expansion-harness.cjs"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-reference.cjs",
+      "bytes": 1956,
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+      "mode": "0644",
+      "gitEntry": "100644 blob 82699e9a8f57f1a2f6609e8b68de4c67254f338e\ttests/behavioral/prism-earning-reference.cjs"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+      "mode": "0644",
+      "gitEntry": "100644 blob 3027844dcf5f804de8e5090c69a59517be1155b1\ttests/behavioral/tree-expansion-harness.cjs"
+    },
+    {
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "bytes": 2681,
+      "sha256": "8dd81626af8d3a3c0e3519387060f3015adbbd220ce48d30732555291a3eda02",
+      "mode": "0644",
+      "gitEntry": "100644 blob d5e5778bc4819fa5bc1d162a9c9362ed68051199\t.github/workflows/lab-expansion-validation.yml"
+    },
+    {
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "bytes": 2889,
+      "sha256": "a611890e612a80b72e964dd86f228c9fd8a4ef2ff9f99f36333dd2c7c47fb9de",
+      "mode": "0644",
+      "gitEntry": "100644 blob 5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196\t.github/workflows/forge-expansion-validation.yml"
+    },
+    {
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "bytes": 4967,
+      "sha256": "4d8778abab15f004fdddb8a3580976d131767ef381515b50a6449f81be25e554",
+      "mode": "0644",
+      "gitEntry": "100644 blob 9740959a724547d1cefed6952762a15da2e09fab\t.github/workflows/tree-focused-qa.yml"
+    },
+    {
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "bytes": 4540,
+      "sha256": "74912b2297d5d3197ebb2728a41bd53053eeb676a9ccab6f3851a3e98801f4cb",
+      "mode": "0644",
+      "gitEntry": "100644 blob 0f378bd29860d1118cf1fe18ed066716f26366a3\t.github/workflows/comet-expansion-validation.yml"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 7590,
+      "sha256": "d2569fd40996892731651ddf213092b263727268f5fc34168fc33dda84b4dff6",
+      "mode": "0644",
+      "gitEntry": "100644 blob 07902c39869b6e7df1e4e551de1de06c57b11c4e\tAGENTS.md"
+    },
+    {
+      "path": "PROJECT_BOOTSTRAP.txt",
+      "bytes": 2177,
+      "sha256": "151ce10bc5aeac170d46962030ccf939c7911b8097c50531a7bb7e276d1e69e4",
+      "mode": "0644",
+      "gitEntry": "100644 blob 04b557bfa2ec78f0d239884ae94d38ce74119a71\tPROJECT_BOOTSTRAP.txt"
+    },
+    {
+      "path": "docs/PROJECT_STATE.md",
+      "bytes": 21305,
+      "sha256": "ff3df91f0ab885aeee273abfef68e57d802094518f6d39a5b5f7977bfff6cf30",
+      "mode": "0644",
+      "gitEntry": "100644 blob e2f66a30db5c4ffb80c78f2cb5d2129eb7a4c416\tdocs/PROJECT_STATE.md"
+    },
+    {
+      "path": "docs/tasks/GUIDANCE_READABILITY_001.md",
+      "bytes": 1403,
+      "sha256": "355a334730d9dd3037665758c11b7190373701cf2a4e408cc1f5452912b27b97",
+      "mode": "0644",
+      "gitEntry": "100644 blob 74cd2850654248d3f6dd7d591ecbf7518ff37836\tdocs/tasks/GUIDANCE_READABILITY_001.md"
+    },
+    {
+      "path": "docs/qa/guidance-readability-001/ACCEPTANCE.md",
+      "bytes": 6114,
+      "sha256": "f6bf154771980f2b3935cfbfac2433d687a67995aaf127ea1e6f6105f23341e6",
+      "mode": "0644",
+      "gitEntry": "100644 blob fdaf28b0aa65958cc0f4cb467e2bf0ab28cca617\tdocs/qa/guidance-readability-001/ACCEPTANCE.md"
+    },
+    {
+      "path": "docs/qa/guidance-readability-001/README.md",
+      "bytes": 7087,
+      "sha256": "0a19c39f46e81b428bde006645ac7f5e8e42341f56a74b97c9178795795654e0",
+      "mode": "0644",
+      "gitEntry": "100644 blob 3c613a4ae96e6c73c5c4ada7463a6bded396375e\tdocs/qa/guidance-readability-001/README.md"
+    },
+    {
+      "path": "docs/project/FEATURE_WORKFLOW.md",
+      "bytes": 5326,
+      "sha256": "01167bd2fa2c95b2bc16493f355f9fa6db6da3ad76d229091583294b5b435ca6",
+      "mode": "0644",
+      "gitEntry": "100644 blob eb496b138cc95f2f44a44411ed526ce54f6e9dcf\tdocs/project/FEATURE_WORKFLOW.md"
+    },
+    {
+      "path": "docs/tasks/COMET_EXPANSION_001.md",
+      "bytes": 1460,
+      "sha256": "0444b5efa25849f6d11ecc27965d56c3ee673aff08aa25536407f1706a183070",
+      "mode": "0644",
+      "gitEntry": "100644 blob 1219c717983c742ac5deac4c1b6a9253b3370bd5\tdocs/tasks/COMET_EXPANSION_001.md"
+    },
+    {
+      "path": "docs/qa/comet-expansion-001/README.md",
+      "bytes": 3566,
+      "sha256": "f6053e243a8aeecb5eeb9fa842b52d5a70a60b2a39b4c3d101ceb17078274dfc",
+      "mode": "0644",
+      "gitEntry": "100644 blob 34a5f01c312a9ded91a608593e874f99e7075513\tdocs/qa/comet-expansion-001/README.md"
+    }
+  ],
+  "runtimes": [
+    {
+      "kind": "modern-node24",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "bytes": 125989464,
+      "sha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+      "mode": "0755"
+    },
+    {
+      "kind": "actual-node8",
+      "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "bytes": 35945397,
+      "sha256": "04f42eb73bd609b5a53df1e15b101feb6db93419f6697e684377dae07327ed0f",
+      "mode": "0775"
+    }
+  ],
+  "status": "PASS_INPUT_IDENTITY"
+}

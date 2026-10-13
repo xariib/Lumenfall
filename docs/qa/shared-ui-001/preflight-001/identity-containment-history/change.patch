@@ -1,0 +1,10 @@
+--- /workspace/scratch/0848c4e4f365/shared-ui-work/testing/layout-identity-containment-repair/before/shared-layout-ui.cjs	2026-10-11 05:51:22.580039382 +0200
++++ /workspace/scratch/0848c4e4f365/shared-ui-work/testing/layout-identity-containment-repair/after/shared-layout-ui.cjs	2026-10-11 05:52:18.998493315 +0200
+@@ -315,6 +315,7 @@
+   ok(d.button.rect.width>=44&&d.button.rect.height>=44,'Wisp native 44px control '+spec[0]);
+   const glyphs=d.name.glyphs.concat(d.classTag.glyphs);
+   geometry(!glyphs.some(g=>intersect(g.rect,d.button.rect)),'wisp-glyph-intersects-toggle',{id:spec[0],measurement:d});
++  geometry(glyphs.every(g=>contains(d.identity.rect,g.rect)),'wisp-glyph-outside-identity',{id:spec[0],measurement:d});
+   geometry(glyphs.every(g=>contains(d.header.rect,g.rect)&&g.rect.left>=-.5&&g.rect.right<=width+.5),'wisp-glyph-outside-header',{id:spec[0],measurement:d});
+   geometry(!d.name.glyphs.some(a=>d.classTag.glyphs.some(b=>intersect(a.rect,b.rect))),'wisp-name-class-glyphs-intersect',{id:spec[0],measurement:d});
+   geometry(!glyphs.some(g=>intersect(g.rect,d.portrait.rect)),'wisp-glyph-intersects-portrait',{id:spec[0],measurement:d});

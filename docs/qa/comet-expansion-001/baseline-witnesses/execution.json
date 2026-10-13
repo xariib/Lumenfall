@@ -1,0 +1,49 @@
+{
+  "command": "node witnesses.cjs > witnesses.stdout.json 2> witnesses.stderr.txt",
+  "cwd": "/workspace/scratch/0848c4e4f365/comet-work/baseline-witnesses",
+  "argv": [
+    "witnesses.cjs"
+  ],
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "exitCode": 0,
+  "exitProvenance": "exec_command completed with exit_code 0",
+  "wallTimeSecondsFromExec": 0.260379028,
+  "clockToolObservations": {
+    "taskStartedUTC": "2026-10-10 21:26:05 UTC",
+    "afterWitnessRunUTC": "2026-10-10 21:30:34 UTC",
+    "documentationCompletedUTC": "2026-10-10 21:33:36 UTC"
+  },
+  "stdout": {
+    "path": "witnesses.stdout.json",
+    "bytes": 5199,
+    "sha256": "786678e0820b9624ef785d02cc97c324797af289e9ee668c3223dbde6871f5fc"
+  },
+  "stderr": {
+    "path": "witnesses.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "source": {
+    "path": "source-3c931.html",
+    "bytes": 618571,
+    "sha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef"
+  },
+  "harness": {
+    "path": "tree-expansion-harness.cjs",
+    "bytes": 14440,
+    "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+  },
+  "test": {
+    "path": "witnesses.cjs",
+    "bytes": 14564,
+    "sha256": "cec928af5594bd108df91861311dd5b1f4a317acfb68cead912c7295b9c05457"
+  },
+  "observer": {
+    "path": "observer-hooks.js",
+    "bytes": 935,
+    "sha256": "9ba5747b05f6d5129af01e1ab2a984013b039b74c486cf8af201a2ffe4c3904e"
+  },
+  "observedSourceSha256": "1c0793611b519b0b2483c4f3f1feb3e890a43f92139e258dd17b6c2a5e8a6389"
+}

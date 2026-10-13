@@ -1,0 +1,1676 @@
+{
+  "status": "fail",
+  "sourceSha256": "f40baeedc086fd89d8dd3c10d596af000cc073942110bc628b957e9ceca2b5fa",
+  "cometIdentity": {
+    "testSha256": "0294404abe720f0aaf03abc157a0fb46a4d03009db57c4b981f14d65a8c55c18",
+    "helperSha256": "c13b9da71cc3c0722da17f8780c2928b80432ac45c003a046dccce134338ac79",
+    "transportSha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd",
+    "numericalSha256": "8dad842c0bf81ab5eaa9e34849d6d6f1916fb92b004a52ddd5a0e018f09551fe"
+  },
+  "error": "Error: Game initialization deadline\n    at ready (/workspace/Lumenfall-echo-refund/tests/behavioral/.comet-mobile-33268.cjs:104:9)\n    at async runSemantics (/workspace/Lumenfall-echo-refund/tests/behavioral/.comet-mobile-33268.cjs:359:869)\n    at async profile (/workspace/Lumenfall-echo-refund/tests/behavioral/.comet-mobile-33268.cjs:253:2)\n    at async run (/workspace/Lumenfall-echo-refund/tests/behavioral/.comet-mobile-33268.cjs:133:3)\n    at async /workspace/Lumenfall-echo-refund/tests/behavioral/.comet-mobile-33268.cjs:414:6",
+  "checks": 7195,
+  "completedProfiles": [
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference"
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "reduce"
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference"
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "reduce"
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "no-preference"
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "reduce"
+    }
+  ],
+  "failedReadiness": [
+    {
+      "profile": {
+        "width": 390,
+        "scale": 2,
+        "motion": "no-preference"
+      },
+      "phase": "actual-valid-backup-restore",
+      "deadlineMs": 10000,
+      "status": "failed",
+      "probes": [
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 0,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 38,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 344,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 421,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 592,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 643,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 684,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 733,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 781,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 818,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 865,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 920,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 952,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1004,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1066,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1101,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1132,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1165,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1195,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1226,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1258,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1289,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1321,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1357,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1398,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1434,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1524,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1565,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1609,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1664,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1696,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1733,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1793,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1843,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 1921,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2007,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2083,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2133,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2185,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2216,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2248,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2279,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2369,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2461,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2588,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2633,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2680,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2798,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2882,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2926,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 2980,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3017,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3117,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3161,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3318,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3381,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3425,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3462,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3556,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3737,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3771,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3804,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3836,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3867,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3898,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3929,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 3964,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4001,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4034,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4080,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4113,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4218,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4261,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4292,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4323,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4356,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4405,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4438,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4469,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4501,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4540,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4617,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4670,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4701,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4734,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4769,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4800,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4831,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4869,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4917,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4950,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 4988,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5096,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5127,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5159,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5191,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5232,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5314,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5389,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5435,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5471,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5516,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5548,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5581,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5626,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5681,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5716,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5747,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5784,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5819,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5850,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5887,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 5973,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6008,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6063,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6120,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6154,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6185,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6257,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6324,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6414,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6465,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6520,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6575,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6655,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6694,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6737,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6776,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6811,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6842,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 6880,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7010,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7055,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7195,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7239,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7281,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7316,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7372,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7545,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7583,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7614,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7648,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7681,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7719,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7752,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7783,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7814,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7848,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7881,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7940,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 7971,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8005,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8047,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8089,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8120,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8153,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8187,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8229,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8350,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8412,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8445,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8484,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8520,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8552,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8583,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8613,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8645,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8676,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8710,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8741,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8803,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8844,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8881,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8918,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8949,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 8982,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9015,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9046,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9076,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9107,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9138,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9169,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9204,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9235,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9266,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9297,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9328,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9364,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9399,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9456,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9519,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9561,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9592,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9624,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9659,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9691,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9722,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9838,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9901,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        },
+        {
+          "method": "Runtime.evaluate",
+          "expression": "!!window.prismQa&&prismQa.initialized()",
+          "elapsedMs": 9933,
+          "calls": 1,
+          "status": "waiting",
+          "initialized": false
+        }
+      ],
+      "action": null,
+      "error": {
+        "name": "Error",
+        "message": "Game initialization deadline",
+        "cdpMethod": null,
+        "cdpError": null
+      },
+      "elapsedMs": 10003
+    }
+  ],
+  "failure": {
+    "state": null,
+    "bootstrap": null,
+    "beforeReady": [],
+    "runtimeErrors": []
+  },
+  "rawLocalPath": "/tmp/f20-strict-comet-mobile/receipt.json",
+  "rawBytes": 31150126,
+  "rawSha256": "c02071b43e775523603608b59b29817393c47701e8ae0b0d5c6e4bf9e101f41e",
+  "limitation": "Selected diagnostic fields, not a full raw-receipt copy; full run is not accepted. Genuine restore completed but driver could null the new page bridge after touch delay."
+}

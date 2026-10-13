@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "scope": "Root review of driver-only repair after actual first Shared UI diagnostic failure; no browser execution on the repaired candidate.",
+  "originalCandidate": "9f6ff0abe08c87ff8a7a007e5b51c89ca7e48233",
+  "originalDriverSha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+  "repairedDriverSha256": "d95e30aa66b101bcfb8afcde023697e12acad581544964ece39a8304aa714abe",
+  "unchangedProductSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+  "rootVisualReview": {
+    "path": "shared-ui-ci/diagnostic-001/raw/artifact/layout/normal/failure.png",
+    "sha256": "70a53f30c04a624b5ed9fd25c00796c8c4ebce9c582fbe14d53259643df3f566",
+    "viewed": true,
+    "conclusion": "Original first320/root16/no-preference Ember name/class are legible, unclipped and separated from Bench. Exact Range top exceeds transparent identity top by1px; all glyphs remain inside the visible header/card."
+  },
+  "checks": {
+    "context": {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "495ac6",
+        "wall_time_seconds": 0.023826181,
+        "exit_code": 0,
+        "original_token_count": 32,
+        "output": "PASS: 29 entrypoints, 87 local Markdown links, shared startup 31107 bytes; startup with docs/tasks/SHARED_UI_001.md 32668 bytes\n"
+      }
+    },
+    "diff": {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "e83d33",
+        "wall_time_seconds": 0.000025437,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    },
+    "productAndDriverIdentity": {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "8ecd7d",
+        "wall_time_seconds": 0.00002368,
+        "exit_code": 0,
+        "original_token_count": 19,
+        "output": "PASS: product unchanged; repaired driver d95e30aa independently reviewed.\n"
+      }
+    }
+  },
+  "decision": "Publish reviewed driver repair and rerun focused diagnostic; preserve original actual failure. No full-browser or negative-control acceptance yet."
+}

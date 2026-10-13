@@ -1,0 +1,476 @@
+{
+  "status": "PASS_DESIGN_PROTOTYPE_ORACLE",
+  "auditedAt": "2026-10-10 22:26:47 UTC",
+  "runtime": "v24.19.0",
+  "scope": "Pure Meteor budget/HP proposal plus one isolated source-helper branch observation; no Comet implementation or gameplay acceptance.",
+  "input": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+    "bytes": 619788,
+    "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+  },
+  "dependencies": [
+    {
+      "name": "meteor-candidate.cjs",
+      "bytes": 3511,
+      "sha256": "aeb375c7e8458e27580020efb5c2f7635e8789bab380ec13e18a75e9a2e59b3e"
+    },
+    {
+      "name": "exact-oracle.cjs",
+      "bytes": 3067,
+      "sha256": "1b3d7ba4b2636dadd8bb19ddd413cfa6bce5fc3b8309e831a808923e2a86d207"
+    },
+    {
+      "name": "prove-meteor.cjs",
+      "bytes": 11813,
+      "sha256": "e72dbbcecd986047323ec6eb2cef3d3cf358379ed14e4682c3f45d81c21ae816"
+    }
+  ],
+  "counts": {
+    "checks": 156704,
+    "budgetVectors": 35110,
+    "hpPlanVectors": 6048,
+    "explicitExamples": 15,
+    "invalidInputs": 13,
+    "discriminatingCounterexamples": 6
+  },
+  "generator": {
+    "kind": "all finite exponent fields, all ranks, fixed significands and xorshift32",
+    "initialSeed": "0x43da01b9",
+    "vectorSha256": "b6924974e58d0454bc084aec4de2cbb213bbba22e59c9b97d56a4292e4fc3ecc"
+  },
+  "examples": [
+    {
+      "id": "ordinary-base",
+      "H": 1000,
+      "h": 1000,
+      "P": 50,
+      "rank": 0,
+      "bits": {
+        "H": "408f400000000000",
+        "h": "408f400000000000",
+        "P": "4049000000000000"
+      },
+      "exact": {
+        "hp": "200",
+        "power": "600",
+        "damageFloor": "200"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 200,
+        "damage": 200,
+        "hpAfter": 800
+      }
+    },
+    {
+      "id": "ordinary-core4-lethal",
+      "H": 1000,
+      "h": 350,
+      "P": 50,
+      "rank": 4,
+      "bits": {
+        "H": "408f400000000000",
+        "h": "4075e00000000000",
+        "P": "4049000000000000"
+      },
+      "exact": {
+        "hp": "400",
+        "power": "600",
+        "damageFloor": "400"
+      },
+      "plan": {
+        "available": true,
+        "lethal": true,
+        "budget": 400,
+        "damage": 350,
+        "hpAfter": 0
+      }
+    },
+    {
+      "id": "power-bound-core4",
+      "H": 10000,
+      "h": 10000,
+      "P": 100,
+      "rank": 4,
+      "bits": {
+        "H": "40c3880000000000",
+        "h": "40c3880000000000",
+        "P": "4059000000000000"
+      },
+      "exact": {
+        "hp": "4000",
+        "power": "1200",
+        "damageFloor": "1200"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 1200,
+        "damage": 1200,
+        "hpAfter": 8800
+      }
+    },
+    {
+      "id": "fractional-power-below-one",
+      "H": 5,
+      "h": 5,
+      "P": 0.08333333333333333,
+      "rank": 0,
+      "bits": {
+        "H": "4014000000000000",
+        "h": "4014000000000000",
+        "P": "3fb5555555555555"
+      },
+      "exact": {
+        "hp": "1",
+        "power": "0",
+        "damageFloor": "0"
+      },
+      "plan": {
+        "available": false,
+        "reason": "zero-budget",
+        "budget": 0
+      }
+    },
+    {
+      "id": "fractional-power-above-one",
+      "H": 5,
+      "h": 5,
+      "P": 0.08333333333333334,
+      "rank": 0,
+      "bits": {
+        "H": "4014000000000000",
+        "h": "4014000000000000",
+        "P": "3fb5555555555556"
+      },
+      "exact": {
+        "hp": "1",
+        "power": "1",
+        "damageFloor": "1"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 1,
+        "damage": 1,
+        "hpAfter": 4
+      }
+    },
+    {
+      "id": "fractional-current-hp-lethal",
+      "H": 5,
+      "h": 0.125,
+      "P": 1,
+      "rank": 0,
+      "bits": {
+        "H": "4014000000000000",
+        "h": "3fc0000000000000",
+        "P": "3ff0000000000000"
+      },
+      "exact": {
+        "hp": "1",
+        "power": "12",
+        "damageFloor": "1"
+      },
+      "plan": {
+        "available": true,
+        "lethal": true,
+        "budget": 1,
+        "damage": 0.125,
+        "hpAfter": 0
+      }
+    },
+    {
+      "id": "unsafe-unrepresentable-integer-budget",
+      "H": 72057594037927940,
+      "h": 72057594037927940,
+      "P": 1.7976931348623157e+308,
+      "rank": 0,
+      "bits": {
+        "H": "4370000000000000",
+        "h": "4370000000000000",
+        "P": "7fefffffffffffff"
+      },
+      "exact": {
+        "hp": "14411518807585587",
+        "power": "2157231761834778849774329084780452281576846810310139959187009721637887129360342465127074703593202538058485507442172589570811855922673570193221610560442450203832598926918615384914945881084671947328910422101461607307654998842838675377989702711985480179297573914449736678024858126171031598575004848314209498300416",
+        "damageFloor": "14411518807585587"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 14411518807585586,
+        "damage": 14411518807585584,
+        "hpAfter": 57646075230342350
+      }
+    },
+    {
+      "id": "rounded-subtraction-overdebit",
+      "H": 18014398509481984,
+      "h": 18014398509481984,
+      "P": 0.25,
+      "rank": 0,
+      "bits": {
+        "H": "4350000000000000",
+        "h": "4350000000000000",
+        "P": "3fd0000000000000"
+      },
+      "exact": {
+        "hp": "3602879701896396",
+        "power": "3",
+        "damageFloor": "3"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 3,
+        "damage": 2,
+        "hpAfter": 18014398509481982
+      }
+    },
+    {
+      "id": "stalled-current-hp",
+      "H": 18014398509481984,
+      "h": 18014398509481984,
+      "P": 0.1,
+      "rank": 0,
+      "bits": {
+        "H": "4350000000000000",
+        "h": "4350000000000000",
+        "P": "3fb999999999999a"
+      },
+      "exact": {
+        "hp": "3602879701896396",
+        "power": "1",
+        "damageFloor": "1"
+      },
+      "plan": {
+        "available": false,
+        "reason": "unrepresentable",
+        "budget": 1
+      }
+    },
+    {
+      "id": "nonlethal-positive-epsilon-remainder",
+      "H": 5,
+      "h": 1.0000000005,
+      "P": 1,
+      "rank": 0,
+      "bits": {
+        "H": "4014000000000000",
+        "h": "3ff0000000225c18",
+        "P": "3ff0000000000000"
+      },
+      "exact": {
+        "hp": "1",
+        "power": "12",
+        "damageFloor": "1"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 1,
+        "damage": 1,
+        "hpAfter": 5.000000413701855e-10
+      }
+    },
+    {
+      "id": "overflowing-power-finite-hp-cap",
+      "H": 1000,
+      "h": 1000,
+      "P": 1.7976931348623157e+308,
+      "rank": 0,
+      "bits": {
+        "H": "408f400000000000",
+        "h": "408f400000000000",
+        "P": "7fefffffffffffff"
+      },
+      "exact": {
+        "hp": "200",
+        "power": "2157231761834778849774329084780452281576846810310139959187009721637887129360342465127074703593202538058485507442172589570811855922673570193221610560442450203832598926918615384914945881084671947328910422101461607307654998842838675377989702711985480179297573914449736678024858126171031598575004848314209498300416",
+        "damageFloor": "200"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 200,
+        "damage": 200,
+        "hpAfter": 800
+      }
+    },
+    {
+      "id": "both-naive-products-overflow",
+      "H": 1.7976931348623157e+308,
+      "h": 1.7976931348623157e+308,
+      "P": 1.7976931348623157e+308,
+      "rank": 4,
+      "bits": {
+        "H": "7fefffffffffffff",
+        "h": "7fefffffffffffff",
+        "P": "7fefffffffffffff"
+      },
+      "exact": {
+        "hp": "71907725394492628325810969492681742719228227010337998639566990721262904312011415504235823453106751268616183581405752985693728530755785673107387018681415006794419964230620512830498196036155731577630347403382053576921833294761289179266323423732849339309919130481657889267495270872367719952500161610473649943347",
+        "power": "2157231761834778849774329084780452281576846810310139959187009721637887129360342465127074703593202538058485507442172589570811855922673570193221610560442450203832598926918615384914945881084671947328910422101461607307654998842838675377989702711985480179297573914449736678024858126171031598575004848314209498300416",
+        "damageFloor": "71907725394492628325810969492681742719228227010337998639566990721262904312011415504235823453106751268616183581405752985693728530755785673107387018681415006794419964230620512830498196036155731577630347403382053576921833294761289179266323423732849339309919130481657889267495270872367719952500161610473649943347"
+      },
+      "plan": {
+        "available": true,
+        "lethal": false,
+        "budget": 7.190772539449262e+307,
+        "damage": 7.190772539449262e+307,
+        "hpAfter": 1.0786158809173895e+308
+      }
+    },
+    {
+      "id": "finite-maxhp-small-no-effect",
+      "H": 1.7976931348623157e+308,
+      "h": 1.7976931348623157e+308,
+      "P": 1,
+      "rank": 4,
+      "bits": {
+        "H": "7fefffffffffffff",
+        "h": "7fefffffffffffff",
+        "P": "3ff0000000000000"
+      },
+      "exact": {
+        "hp": "71907725394492628325810969492681742719228227010337998639566990721262904312011415504235823453106751268616183581405752985693728530755785673107387018681415006794419964230620512830498196036155731577630347403382053576921833294761289179266323423732849339309919130481657889267495270872367719952500161610473649943347",
+        "power": "12",
+        "damageFloor": "12"
+      },
+      "plan": {
+        "available": false,
+        "reason": "unrepresentable",
+        "budget": 12
+      }
+    },
+    {
+      "id": "subnormal-inputs",
+      "H": 5e-324,
+      "h": 5e-324,
+      "P": 1.7976931348623157e+308,
+      "rank": 0,
+      "bits": {
+        "H": "1",
+        "h": "1",
+        "P": "7fefffffffffffff"
+      },
+      "exact": {
+        "hp": "0",
+        "power": "2157231761834778849774329084780452281576846810310139959187009721637887129360342465127074703593202538058485507442172589570811855922673570193221610560442450203832598926918615384914945881084671947328910422101461607307654998842838675377989702711985480179297573914449736678024858126171031598575004848314209498300416",
+        "damageFloor": "0"
+      },
+      "plan": {
+        "available": false,
+        "reason": "zero-budget",
+        "budget": 0
+      }
+    },
+    {
+      "id": "subnormal-current-hp-lethal",
+      "H": 5,
+      "h": 5e-324,
+      "P": 1,
+      "rank": 0,
+      "bits": {
+        "H": "4014000000000000",
+        "h": "1",
+        "P": "3ff0000000000000"
+      },
+      "exact": {
+        "hp": "1",
+        "power": "12",
+        "damageFloor": "1"
+      },
+      "plan": {
+        "available": true,
+        "lethal": true,
+        "budget": 1,
+        "damage": 5e-324,
+        "hpAfter": 0
+      }
+    }
+  ],
+  "counterexamples": [
+    {
+      "id": "naive-double-overflow",
+      "H": 1.7976931348623157e+308,
+      "P": 1.7976931348623157e+308,
+      "rank": 4,
+      "incorrect": "Infinity",
+      "correct": 7.190772539449262e+307,
+      "exactInteger": "71907725394492628325810969492681742719228227010337998639566990721262904312011415504235823453106751268616183581405752985693728530755785673107387018681415006794419964230620512830498196036155731577630347403382053576921833294761289179266323423732849339309919130481657889267495270872367719952500161610473649943347"
+    },
+    {
+      "id": "naive-rounded-power-crosses-floor",
+      "H": 5,
+      "P": 0.08333333333333333,
+      "rank": 0,
+      "incorrect": 1,
+      "correct": 0,
+      "exactInteger": "0"
+    },
+    {
+      "id": "nearest-Number-conversion-overpays",
+      "H": 72057594037927940,
+      "P": 1.7976931348623157e+308,
+      "rank": 0,
+      "incorrect": 14411518807585588,
+      "correct": 14411518807585586,
+      "exactInteger": "14411518807585587"
+    },
+    {
+      "id": "division-first-is-not-exact-floor",
+      "H": 9007199254740991,
+      "P": 1.7976931348623157e+308,
+      "rank": 3,
+      "incorrect": 3152519739159347,
+      "correct": 3152519739159346,
+      "exactInteger": "3152519739159346"
+    },
+    {
+      "id": "multiply-first-loses-safe-floor",
+      "H": 9007199254740991,
+      "P": 1.7976931348623157e+308,
+      "rank": 3,
+      "incorrect": 3152519739159347,
+      "correct": 3152519739159346,
+      "exactInteger": "3152519739159346"
+    },
+    {
+      "id": "omit-HP-roundup-removes-four-with-budget-three",
+      "H": 18014398509481984,
+      "h": 18014398509481984,
+      "P": 0.25,
+      "rank": 0,
+      "budget": 3,
+      "incorrectActualHpLoss": 4,
+      "correctActualHpLoss": 2
+    }
+  ],
+  "sharedEpsilonWitness": {
+    "helperSha256": "7ea7ed82edca6e6650cdad3b5a5e7e26cf11e3497cb67121824cbc54e7eab1bc",
+    "helperBytes": 460,
+    "epsilon": 1e-9,
+    "beforeHp": 1.0000000005,
+    "amount": 1,
+    "afterHp": 5.000000413701855e-10,
+    "returned": true,
+    "observedDefeats": 1,
+    "callbackMode": "observation stub, not canonical reward execution",
+    "proposed": {
+      "available": true,
+      "lethal": false,
+      "budget": 1,
+      "damage": 1,
+      "hpAfter": 5.000000413701855e-10
+    }
+  },
+  "limitations": [
+    "No actual Node8 execution in this Node20+ design task; candidate is ES2017 and was run in a BigInt-disabled VM.",
+    "No product/source/test/repository changes.",
+    "Budget operands are the exact binary64 input values, not an assumed decimal intention.",
+    "Persistence, command lifecycle, canonical rewards and UI still require implementation and actual regression tests."
+  ]
+}

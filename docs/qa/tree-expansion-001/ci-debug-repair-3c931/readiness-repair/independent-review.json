@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "status": "NO_BLOCKING_DEFECT_FOUND",
+  "reviewedAtUtc": "2026-10-10 22:00:00 UTC",
+  "clockSource": "clock.curr_time",
+  "authority": "Root read-only review; lab_ci_audit explicitly cleared exclusive write of this one new review file.",
+  "scope": "Only readiness/error retry/deadline/load identity/unchanged HTML and shared transport. No browser, game, helper replay or test execution by this reviewer.",
+  "inputs": {
+    "wrapper": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-mobile.cjs",
+      "bytes": 50616,
+      "sha256": "45d8b66546b48318586eb1c045fe95cd373fd386601d17e4984a1eda4b3818ee"
+    },
+    "product": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+      "bytes": 619788,
+      "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+    },
+    "sharedPrismTransport": {
+      "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/prism-acceptance.cjs",
+      "bytes": 13167,
+      "sha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd"
+    },
+    "beforeWrapper": {
+      "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/readiness-repair/mobile-before-a8d8fa1d.cjs",
+      "bytes": 47035,
+      "sha256": "a8d8fa1d7a0b09ef0cbce0013bb168ef2a8ef36996f10c5fb58c2dc76dbaa6b1"
+    },
+    "generatedBefore": {
+      "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/readiness-repair/driver-before.cjs",
+      "bytes": 54434,
+      "sha256": "c43bede30b38a7d7bf73e570d5fd9f07c986c7e29b26b64d104ae4153361d93f"
+    },
+    "generatedAfter": {
+      "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/readiness-repair/driver-after.cjs",
+      "bytes": 56784,
+      "sha256": "b4e2ad3c2a050a787d821f6b063da37f0b8dd2046ee6b69f5d0abf511dc1e102"
+    },
+    "existingOwnerProof": {
+      "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/readiness-repair/readiness-proof.json",
+      "bytes": 946260,
+      "sha256": "318f7ba8ded0f7d788eb666d6c764c0694aa36145e4561a0f74bd70b965fbecf"
+    },
+    "existingOwnerSyntax": {
+      "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/readiness-repair/generated-syntax.json",
+      "bytes": 841,
+      "sha256": "09510dad6892c8260918ca5d4fd442747ec61903c28c1c1a90685fd9fe5a7194"
+    }
+  },
+  "findings": [
+    {
+      "area": "strict retry predicate",
+      "result": "acceptable",
+      "anchors": [
+        18,
+        33,
+        35,
+        39,
+        40
+      ],
+      "detail": "Only a tagged protocol error from Runtime.evaluate, numeric code -32000, and exact message Inspected target navigated or closed is tolerated. Unmatched protocol errors, ordinary Error objects, JS runtime exceptions and deadlines propagate."
+    },
+    {
+      "area": "probe-only retry",
+      "result": "acceptable",
+      "anchors": [
+        31,
+        32,
+        33,
+        41,
+        43,
+        45,
+        46,
+        47
+      ],
+      "detail": "The catch that may continue applies only to !!window.prismQa&&prismQa.initialized(). prismQa.ready() executes at most once per existing phase and its failure throws outside that retry catch. No input, purchase, Page.reload or Page.navigate operation is retried."
+    },
+    {
+      "area": "bounded readiness budget",
+      "result": "acceptable",
+      "anchors": [
+        21,
+        24,
+        25,
+        27,
+        28,
+        49,
+        51
+      ],
+      "detail": "One started+10000 deadline is shared by every probe and the single ready action. Each evaluate is raced against only the remaining budget; pauses are capped to the remainder. Timers are cleared in finally."
+    },
+    {
+      "area": "load identity and idempotence",
+      "result": "unchanged",
+      "anchors": [
+        56,
+        57,
+        259,
+        260,
+        261,
+        263,
+        265,
+        266,
+        268,
+        269,
+        270,
+        399,
+        400,
+        401
+      ],
+      "detail": "All three Page.reload calls retain prior window.prismQa=null invalidation. The raw legacy bootstrap, removal of its next-document script, seed/slot identity, one-time refund assertions, backup roundtrip, and paid cold-load assertions are unchanged. Five labels only identify the already-existing initial/intro/three-reload phases."
+    },
+    {
+      "area": "instrumented HTML and shared Prism",
+      "result": "unchanged",
+      "detail": "The generated driver prefix containing source/prelude/bridge/HTML construction and server is byte-identical before and after. The shared Prism driver remains hash 8009b22e; readiness edits are Tree wrapper transformations only.",
+      "htmlConstructionPrefix": {
+        "bytes": 7942,
+        "identical": true,
+        "sha256": "2c64791d28832a011a84319eb5db085130db3b86877cbf27f1d4b7416e5c9748"
+      },
+      "ownerReportedInstrumentedHtmlSha256": "2c37a177f59f4679010b5f79bfe0cebb405006c1d18847d48f7e91a720153c51"
+    }
+  ],
+  "observedExistingOwnerEvidence": {
+    "proofStatus": "pass",
+    "caseCount": 15,
+    "causalControlCount": 3,
+    "syntaxStatus": "pass",
+    "inlineScriptsParsed": 3,
+    "reviewerDidNotRerun": true
+  },
+  "nonBlockingLimit": {
+    "description": "The 10-second bound covers readiness, not the unchanged failure screenshot/diagnostics/teardown. A timed-out CDP request is not cancelled at protocol level; its eventual settlement has no retry or continuation path that can replay ready/input actions. The outer run remains failed and closes the browser.",
+    "action": "No code change required for the requested scope."
+  },
+  "remaining": "Actual Chromium CI must establish readiness and all original game/UI assertions on the frozen candidate. This static review is not browser acceptance.",
+  "repositoryEdits": 0,
+  "testsExecuted": 0,
+  "remoteMutations": 0
+}

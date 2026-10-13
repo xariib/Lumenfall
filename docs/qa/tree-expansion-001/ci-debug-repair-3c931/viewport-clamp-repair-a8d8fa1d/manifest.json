@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "closedInventory": true,
+  "excludedSelf": "manifest.json",
+  "scope": "Frozen static viewport test preparation/replay only; no browser acceptance",
+  "sourceDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/viewport-clamp-repair",
+  "packagedAt": "2026-10-10 21:43:04 UTC",
+  "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+  "files": [
+    {
+      "path": "clamp-contract.json.gz",
+      "originalPath": "clamp-contract.json",
+      "encoding": "gzip",
+      "originalBytes": 4064,
+      "originalSha256": "87ef13a664876fdd7b1e7e15c087d27300c6709ee5900474b037c85a653f010d",
+      "storedBytes": 1253,
+      "storedSha256": "0731e0a669974e8aa46f3ba0eef95edc889ede372201fb2d1d97f5aa2d72867e",
+      "origin": {
+        "kind": "retained-frozen-evidence",
+        "originalPath": "clamp-contract.json"
+      }
+    },
+    {
+      "path": "generated-syntax.json.gz",
+      "originalPath": "generated-syntax.json",
+      "encoding": "gzip",
+      "originalBytes": 841,
+      "originalSha256": "31e5fa9352badddac77d5a5cbeb8e30d147bb9a19831e5cfff292d577110b488",
+      "storedBytes": 544,
+      "storedSha256": "c592f7241056c7eb8d8215f5800da667fce49dae80a84fd6713f065f61322642",
+      "origin": {
+        "kind": "retained-frozen-evidence",
+        "originalPath": "generated-syntax.json"
+      }
+    },
+    {
+      "path": "mobile-before-22bf25b1.cjs.gz",
+      "originalPath": "mobile-before-22bf25b1.cjs",
+      "encoding": "gzip",
+      "originalBytes": 45584,
+      "originalSha256": "22bf25b1200ebd149503ad779d283f07e2f2795620fc96b71a13493d4557a61f",
+      "storedBytes": 13747,
+      "storedSha256": "021d9d828a50246d1f5bc9511f475b58fb2c9b4adba50ca251a299bca8844d40",
+      "origin": {
+        "kind": "retained-frozen-evidence",
+        "originalPath": "mobile-before-22bf25b1.cjs"
+      }
+    },
+    {
+      "path": "mobile-clamp.patch.gz",
+      "originalPath": "mobile-clamp.patch.gz",
+      "encoding": "gzip",
+      "originalBytes": 12752,
+      "originalSha256": "16955f784b393f0551423f92fa964f2c3cbe88d16a4f7ba474c95448523d4c17",
+      "storedBytes": 3649,
+      "storedSha256": "fbdbb48b97ebe1faef5ee8a859fba2020ccc8159cade7de0d4aa18ae611af17a",
+      "origin": {
+        "kind": "retained-frozen-evidence",
+        "originalPath": "mobile-clamp.patch.gz",
+        "sourceEncoding": "gzip",
+        "sourceStoredBytes": 3649,
+        "sourceStoredSha256": "fbdbb48b97ebe1faef5ee8a859fba2020ccc8159cade7de0d4aa18ae611af17a"
+      }
+    },
+    {
+      "path": "packaging-clock.json.gz",
+      "originalPath": "../packaging-20261010/clock.json",
+      "encoding": "gzip",
+      "originalBytes": 48,
+      "originalSha256": "78d5332149a1ed7d506e88d2038aebef30dbf8935f448ab1b18a397f0f6cfc06",
+      "storedBytes": 68,
+      "storedSha256": "c253e096f0a42425eec70f4b146d77501e48675c1de4af3282fc90b2c68bd1a5",
+      "origin": {
+        "kind": "retained-frozen-evidence",
+        "originalPath": "../packaging-20261010/clock.json"
+      }
+    },
+    {
+      "path": "packaging-verification.json",
+      "originalPath": null,
+      "encoding": "identity",
+      "originalBytes": 787,
+      "originalSha256": "18351677131607ccb7d167310ee2f3f19b2f8ceea3db2d2dcfcda789e3fc3828",
+      "storedBytes": 787,
+      "storedSha256": "18351677131607ccb7d167310ee2f3f19b2f8ceea3db2d2dcfcda789e3fc3828",
+      "origin": {
+        "kind": "derived-packaging-observation",
+        "description": "No helper or test execution performed while packaging."
+      }
+    },
+    {
+      "path": "README.md",
+      "originalPath": null,
+      "encoding": "identity",
+      "originalBytes": 3359,
+      "originalSha256": "ffb3f8eff1e62f60621a9f619d896cb272cbc45652ae744e61e3cd33398b1d90",
+      "storedBytes": 3359,
+      "storedSha256": "ffb3f8eff1e62f60621a9f619d896cb272cbc45652ae744e61e3cd33398b1d90",
+      "origin": {
+        "kind": "derived-document",
+        "description": "Static-only scope and exact immutable source/test/recorded-data binding."
+      }
+    },
+    {
+      "path": "verify-clamp-contract.cjs.gz",
+      "originalPath": "verify-clamp-contract.cjs",
+      "encoding": "gzip",
+      "originalBytes": 5607,
+      "originalSha256": "b641f96e881d2ee3357918117226d7c872ada941d8ea6354d0e927967709f2a9",
+      "storedBytes": 2277,
+      "storedSha256": "96c736e507f8365ac6ec9c85d9b259cf8878a44b3851db974d40b5b6390e571b",
+      "origin": {
+        "kind": "retained-frozen-evidence",
+        "originalPath": "verify-clamp-contract.cjs"
+      }
+    }
+  ]
+}

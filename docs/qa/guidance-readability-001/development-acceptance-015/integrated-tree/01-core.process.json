@@ -1,0 +1,37 @@
+{
+  "group": "tree",
+  "id": "core",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/behavioral/tree-expansion-core.cjs",
+    "index.html",
+    "--negative"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:08:56.084Z",
+  "endedHostUtc": "2026-10-11T15:08:57.800Z",
+  "elapsedNanoseconds": "1716432715",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "01-core.stdout.log",
+    "bytes": 14632,
+    "sha256": "727d91de4752965593fa8e828c38e0c0a3a54af623890151e5665a541b759d47",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "01-core.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 5278,
+    "declaredCausalControls": 28
+  }
+}

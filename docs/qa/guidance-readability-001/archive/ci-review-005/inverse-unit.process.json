@@ -1,0 +1,23 @@
+{
+  "id": "inverse-unit",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "tests/behavioral/rift-guidance-inverses.test.cjs",
+    "index.html",
+    "/workspace/scratch/0848c4e4f365/guidance-work/ci-0401/full-early/extracted/baseline-www/index.html"
+  ],
+  "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+  "startedUtc": "2026-10-11T13:24:04.468899+00:00",
+  "completedUtc": "2026-10-11T13:24:04.614153+00:00",
+  "returncode": 0,
+  "stdout": {
+    "path": "inverse-unit.stdout.log",
+    "bytes": 546,
+    "sha256": "8f2c3caf0a87640ddbb54ff0a6bcafcb77f5c0df7745987611f0cb3028b63526"
+  },
+  "stderr": {
+    "path": "inverse-unit.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

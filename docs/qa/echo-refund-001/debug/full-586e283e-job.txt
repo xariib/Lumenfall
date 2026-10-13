@@ -1,0 +1,359 @@
+﻿2026-10-11T23:17:45.5221001Z Current runner version: '2.337.0'
+2026-10-11T23:17:45.5245307Z ##[group]Runner Image Provisioner
+2026-10-11T23:17:45.5246155Z Hosted Compute Agent
+2026-10-11T23:17:45.5247083Z Version: 20261002.596
+2026-10-11T23:17:45.5247783Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-11T23:17:45.5248473Z Build Date: 2026-10-02T22:28:27Z
+2026-10-11T23:17:45.5249172Z Worker ID: {8743315a-0dc5-4383-bb7b-71e5c18d941e}
+2026-10-11T23:17:45.5249911Z Region: westcentralus
+2026-10-11T23:17:45.5250466Z Cloud: Azure
+2026-10-11T23:17:45.5251047Z ##[endgroup]
+2026-10-11T23:17:45.5252386Z ##[group]Operating System
+2026-10-11T23:17:45.5252988Z Ubuntu
+2026-10-11T23:17:45.5253499Z 24.04.5
+2026-10-11T23:17:45.5253994Z LTS
+2026-10-11T23:17:45.5254541Z ##[endgroup]
+2026-10-11T23:17:45.5255071Z ##[group]Runner Image
+2026-10-11T23:17:45.5255688Z Image: ubuntu-24.04
+2026-10-11T23:17:45.5256402Z Version: 20261004.327.1
+2026-10-11T23:17:45.5257671Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-11T23:17:45.5259075Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-11T23:17:45.5260000Z ##[endgroup]
+2026-10-11T23:17:45.5261040Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T23:17:45.5263090Z Contents: read
+2026-10-11T23:17:45.5263642Z Metadata: read
+2026-10-11T23:17:45.5264172Z ##[endgroup]
+2026-10-11T23:17:45.5266096Z Secret source: Actions
+2026-10-11T23:17:45.5267235Z Cache mode: write
+2026-10-11T23:17:45.5267939Z Prepare workflow directory
+2026-10-11T23:17:45.5572713Z Prepare all required actions
+2026-10-11T23:17:45.5622838Z Getting action download info
+2026-10-11T23:17:45.8584855Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-11T23:17:45.9624499Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-11T23:17:46.1004655Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-11T23:17:46.3863401Z Complete job name: Lumenfall pre-merge validation
+2026-10-11T23:17:46.4599384Z ##[group]Run actions/checkout@v4
+2026-10-11T23:17:46.4600343Z with:
+2026-10-11T23:17:46.4600855Z   repository: karahaNx/Lumenfall
+2026-10-11T23:17:46.4604894Z   token: ***
+2026-10-11T23:17:46.4605420Z   ssh-strict: true
+2026-10-11T23:17:46.4605896Z   ssh-user: git
+2026-10-11T23:17:46.4606813Z   persist-credentials: true
+2026-10-11T23:17:46.4607396Z   clean: true
+2026-10-11T23:17:46.4607926Z   sparse-checkout-cone-mode: true
+2026-10-11T23:17:46.4608498Z   fetch-depth: 1
+2026-10-11T23:17:46.4608982Z   fetch-tags: false
+2026-10-11T23:17:46.4609503Z   show-progress: true
+2026-10-11T23:17:46.4609995Z   lfs: false
+2026-10-11T23:17:46.4610680Z   submodules: false
+2026-10-11T23:17:46.4611244Z   set-safe-directory: true
+2026-10-11T23:17:46.4611797Z   allow-unsafe-pr-checkout: false
+2026-10-11T23:17:46.4612609Z ##[endgroup]
+2026-10-11T23:17:46.5643864Z Syncing repository: karahaNx/Lumenfall
+2026-10-11T23:17:46.5646486Z ##[group]Getting Git version info
+2026-10-11T23:17:46.5647907Z Working directory is '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-11T23:17:46.5649623Z [command]/usr/bin/git version
+2026-10-11T23:17:46.5680825Z git version 2.55.0
+2026-10-11T23:17:46.5705430Z ##[endgroup]
+2026-10-11T23:17:46.5721509Z Temporarily overriding HOME='/home/runner/work/_temp/d21967c8-a6e8-4c1a-95b8-ebe6f7cb528c' before making global git config changes
+2026-10-11T23:17:46.5723941Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T23:17:46.5729485Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-11T23:17:46.5788738Z Deleting the contents of '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-11T23:17:46.5796505Z ##[group]Initializing the repository
+2026-10-11T23:17:46.5806590Z [command]/usr/bin/git init /home/runner/work/Lumenfall/Lumenfall
+2026-10-11T23:17:46.5925201Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-11T23:17:46.5952256Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-11T23:17:46.5959714Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-11T23:17:46.5961159Z hint: call:
+2026-10-11T23:17:46.5961922Z hint:
+2026-10-11T23:17:46.5962828Z hint: 	git config --global init.defaultBranch <name>
+2026-10-11T23:17:46.5964042Z hint:
+2026-10-11T23:17:46.5965081Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-11T23:17:46.5966847Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-11T23:17:46.5968240Z hint:
+2026-10-11T23:17:46.5969089Z hint: 	git branch -m <name>
+2026-10-11T23:17:46.5969942Z hint:
+2026-10-11T23:17:46.5971228Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-11T23:17:46.5972929Z Initialized empty Git repository in /home/runner/work/Lumenfall/Lumenfall/.git/
+2026-10-11T23:17:46.5975866Z [command]/usr/bin/git remote add origin https://github.com/karahaNx/Lumenfall
+2026-10-11T23:17:46.6013372Z ##[endgroup]
+2026-10-11T23:17:46.6014749Z ##[group]Disabling automatic garbage collection
+2026-10-11T23:17:46.6018190Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-11T23:17:46.6057211Z ##[endgroup]
+2026-10-11T23:17:46.6058645Z ##[group]Setting up auth
+2026-10-11T23:17:46.6064944Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T23:17:46.6104729Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T23:17:46.6466732Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T23:17:46.6500356Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T23:17:46.6708090Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T23:17:46.6738720Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-11T23:17:46.6927719Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-11T23:17:46.6967397Z ##[endgroup]
+2026-10-11T23:17:46.6968793Z ##[group]Fetching the repository
+2026-10-11T23:17:46.6977160Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6ed7fa57dd53f803ae49de8ae32b79200755e966:refs/remotes/pull/111/merge
+2026-10-11T23:17:59.3942650Z From https://github.com/karahaNx/Lumenfall
+2026-10-11T23:17:59.3945145Z  * [new ref]         6ed7fa57dd53f803ae49de8ae32b79200755e966 -> pull/111/merge
+2026-10-11T23:17:59.3952059Z ##[endgroup]
+2026-10-11T23:17:59.3954403Z ##[group]Determining the checkout info
+2026-10-11T23:17:59.3957471Z ##[endgroup]
+2026-10-11T23:17:59.3959048Z [command]/usr/bin/git sparse-checkout disable
+2026-10-11T23:17:59.4012275Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-11T23:17:59.4053129Z ##[group]Checking out the ref
+2026-10-11T23:17:59.4055865Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/111/merge
+2026-10-11T23:18:00.4199870Z Updating files:  57% (4105/7130)
+2026-10-11T23:18:00.4401182Z Updating files:  58% (4136/7130)
+2026-10-11T23:18:00.4563841Z Updating files:  59% (4207/7130)
+2026-10-11T23:18:00.4644154Z Updating files:  60% (4278/7130)
+2026-10-11T23:18:00.4718578Z Updating files:  61% (4350/7130)
+2026-10-11T23:18:00.4830059Z Updating files:  62% (4421/7130)
+2026-10-11T23:18:00.4914392Z Updating files:  63% (4492/7130)
+2026-10-11T23:18:00.4976874Z Updating files:  64% (4564/7130)
+2026-10-11T23:18:00.5027746Z Updating files:  65% (4635/7130)
+2026-10-11T23:18:00.5053553Z Updating files:  66% (4706/7130)
+2026-10-11T23:18:00.5084348Z Updating files:  67% (4778/7130)
+2026-10-11T23:18:00.5130440Z Updating files:  68% (4849/7130)
+2026-10-11T23:18:00.5172823Z Updating files:  69% (4920/7130)
+2026-10-11T23:18:00.5195578Z Updating files:  70% (4991/7130)
+2026-10-11T23:18:00.5260337Z Updating files:  71% (5063/7130)
+2026-10-11T23:18:00.5323738Z Updating files:  72% (5134/7130)
+2026-10-11T23:18:00.5389156Z Updating files:  73% (5205/7130)
+2026-10-11T23:18:00.5437811Z Updating files:  74% (5277/7130)
+2026-10-11T23:18:00.5600680Z Updating files:  75% (5348/7130)
+2026-10-11T23:18:00.5645516Z Updating files:  76% (5419/7130)
+2026-10-11T23:18:00.5670831Z Updating files:  77% (5491/7130)
+2026-10-11T23:18:00.5687526Z Updating files:  78% (5562/7130)
+2026-10-11T23:18:00.6162581Z Updating files:  79% (5633/7130)
+2026-10-11T23:18:00.6782550Z Updating files:  80% (5704/7130)
+2026-10-11T23:18:00.7663407Z Updating files:  81% (5776/7130)
+2026-10-11T23:18:00.8746769Z Updating files:  82% (5847/7130)
+2026-10-11T23:18:00.9020073Z Updating files:  83% (5918/7130)
+2026-10-11T23:18:00.9090062Z Updating files:  84% (5990/7130)
+2026-10-11T23:18:00.9147757Z Updating files:  85% (6061/7130)
+2026-10-11T23:18:00.9241875Z Updating files:  86% (6132/7130)
+2026-10-11T23:18:00.9313623Z Updating files:  87% (6204/7130)
+2026-10-11T23:18:00.9417000Z Updating files:  88% (6275/7130)
+2026-10-11T23:18:00.9492963Z Updating files:  89% (6346/7130)
+2026-10-11T23:18:00.9677441Z Updating files:  90% (6417/7130)
+2026-10-11T23:18:00.9721682Z Updating files:  91% (6489/7130)
+2026-10-11T23:18:00.9977167Z Updating files:  92% (6560/7130)
+2026-10-11T23:18:01.0015495Z Updating files:  93% (6631/7130)
+2026-10-11T23:18:01.0041688Z Updating files:  94% (6703/7130)
+2026-10-11T23:18:01.0066040Z Updating files:  95% (6774/7130)
+2026-10-11T23:18:01.0095379Z Updating files:  96% (6845/7130)
+2026-10-11T23:18:01.0126425Z Updating files:  97% (6917/7130)
+2026-10-11T23:18:01.0215512Z Updating files:  98% (6988/7130)
+2026-10-11T23:18:01.0293549Z Updating files:  99% (7059/7130)
+2026-10-11T23:18:01.0294423Z Updating files: 100% (7130/7130)
+2026-10-11T23:18:01.0295869Z Updating files: 100% (7130/7130), done.
+2026-10-11T23:18:01.1389338Z Note: switching to 'refs/remotes/pull/111/merge'.
+2026-10-11T23:18:01.1389782Z 
+2026-10-11T23:18:01.1390361Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-11T23:18:01.1390967Z changes and commit them, and you can discard any commits you make in this
+2026-10-11T23:18:01.1392033Z state without impacting any branches by switching back to a branch.
+2026-10-11T23:18:01.1392488Z 
+2026-10-11T23:18:01.1392740Z If you want to create a new branch to retain commits you create, you may
+2026-10-11T23:18:01.1393345Z do so (now or later) by using -c with the switch command. Example:
+2026-10-11T23:18:01.1393696Z 
+2026-10-11T23:18:01.1394042Z   git switch -c <new-branch-name>
+2026-10-11T23:18:01.1394413Z 
+2026-10-11T23:18:01.1394601Z Or undo this operation with:
+2026-10-11T23:18:01.1394794Z 
+2026-10-11T23:18:01.1395002Z   git switch -
+2026-10-11T23:18:01.1395221Z 
+2026-10-11T23:18:01.1395463Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-11T23:18:01.1395804Z 
+2026-10-11T23:18:01.1396141Z HEAD is now at 6ed7fa5 Merge 586e283ee2ed6e109f9dc078570d7a2e56b1bf38 into eb441039231f6fbb8676fa0a069b028e9aa50b2e
+2026-10-11T23:18:01.1732344Z ##[endgroup]
+2026-10-11T23:18:01.1890546Z [command]/usr/bin/git log -1 --format=%H
+2026-10-11T23:18:01.1918387Z 6ed7fa57dd53f803ae49de8ae32b79200755e966
+2026-10-11T23:18:01.2215587Z ##[group]Run actions/setup-node@v4
+2026-10-11T23:18:01.2216092Z with:
+2026-10-11T23:18:01.2216650Z   node-version: 20
+2026-10-11T23:18:01.2217166Z   always-auth: false
+2026-10-11T23:18:01.2217475Z   check-latest: false
+2026-10-11T23:18:01.2219998Z   token: ***
+2026-10-11T23:18:01.2220287Z ##[endgroup]
+2026-10-11T23:18:01.3606704Z Attempting to download 20...
+2026-10-11T23:18:01.3712344Z (node:2362) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T23:18:01.3713628Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T23:18:02.3303495Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+2026-10-11T23:18:02.9682209Z Extracting ...
+2026-10-11T23:18:02.9784446Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/d0fb5163-2d13-40d0-865c-3eb2c2a8beb5 -f /home/runner/work/_temp/84f686e2-b586-440b-a968-6783af17df43
+2026-10-11T23:18:04.2125242Z Adding to the cache ...
+2026-10-11T23:18:12.5552054Z ##[group]Environment details
+2026-10-11T23:18:12.7911122Z node: v20.20.2
+2026-10-11T23:18:12.7911782Z npm: 10.8.2
+2026-10-11T23:18:12.7912171Z yarn: 1.22.22
+2026-10-11T23:18:12.7913187Z ##[endgroup]
+2026-10-11T23:18:12.8062358Z ##[group]Run node scripts/verify_apk_identity.cjs --self-test
+2026-10-11T23:18:12.8062938Z [36;1mnode scripts/verify_apk_identity.cjs --self-test[0m
+2026-10-11T23:18:12.8251629Z shell: /usr/bin/bash -e {0}
+2026-10-11T23:18:12.8252001Z ##[endgroup]
+2026-10-11T23:18:12.8681989Z APK identity verifier self-test passed: missing/invalid APK and all identity mismatch cases were rejected.
+2026-10-11T23:18:12.8751669Z ##[group]Run node tests/tooling/run.cjs
+2026-10-11T23:18:12.8752078Z [36;1mnode tests/tooling/run.cjs[0m
+2026-10-11T23:18:12.8793957Z shell: /usr/bin/bash -e {0}
+2026-10-11T23:18:12.8794343Z ##[endgroup]
+2026-10-11T23:18:12.9262346Z PASS archive integrity: stored/deflated ZIP CRC, truncation, hash and symlink escape controls
+2026-10-11T23:18:12.9511007Z PASS: restored 96 files; tree 758d9a3f5baee9fd49a5acfaa0e11d13e746b7ef to /tmp/lumenfall-node-tools-rlWHAL/candidate
+2026-10-11T23:18:12.9801689Z PASS candidate recovery: 96 exact files/modes, tree 758d9a3f5baee9fd49a5acfaa0e11d13e746b7ef, overwrite and overlap rejection
+2026-10-11T23:18:13.0093972Z Restored 66 verified payloads to /tmp/lumenfall-node-tools-rlWHAL/package
+2026-10-11T23:18:13.0247371Z PASS package recovery: 66 byte-identical logical payloads
+2026-10-11T23:18:13.1963063Z PASS APK identity: real subprocess arguments, complete identity, wrong signer and tool failure rejection
+2026-10-11T23:18:13.1967848Z Android versionCode=134, versionName=0.1.134
+2026-10-11T23:18:13.1970026Z PASS Android version support: expected fields and invalid build-number rejection
+2026-10-11T23:18:13.2528295Z 
+2026-10-11T23:18:13.2531031Z /tmp/lumenfall-source-PgTjEu/script-1.js:1
+2026-10-11T23:18:13.2531810Z var = broken;
+2026-10-11T23:18:13.2532309Z     ^
+2026-10-11T23:18:13.2532602Z 
+2026-10-11T23:18:13.2532941Z SyntaxError: Unexpected token '='
+2026-10-11T23:18:13.2533686Z     at wrapSafe (node:internal/modules/cjs/loader:1464:18)
+2026-10-11T23:18:13.2534588Z     at checkSyntax (node:internal/main/check_syntax:78:3)
+2026-10-11T23:18:13.2535057Z 
+2026-10-11T23:18:13.2535242Z Node.js v20.20.2
+2026-10-11T23:18:13.2535504Z 
+2026-10-11T23:18:13.2543977Z Browser smoke test passed: game initialized without uncaught runtime errors at a 390x844 mobile viewport.
+2026-10-11T23:18:13.2548692Z <html data-ci-runtime-error="uncaught-error"><script id="ci-runtime-error-guard"></script><main class="rift-scroll-locked" data-zone-index="0"></main><div id="enemy-name">Enemy</div><div id="hud-lumen">0</div></html>
+2026-10-11T23:18:13.2553713Z <html data-ci-runtime-error="unhandled-rejection"><script id="ci-runtime-error-guard"></script><main class="rift-scroll-locked" data-zone-index="0"></main><div id="enemy-name">Enemy</div><div id="hud-lumen">0</div></html>
+2026-10-11T23:18:13.2622499Z Installed CI-only runtime error guard in staged HTML.
+2026-10-11T23:18:13.2655054Z PASS source/smoke gates: missing/duplicate IDs, syntax failure and runtime error rejection
+2026-10-11T23:18:13.2717767Z PASS: 29 entrypoints, 87 local Markdown links, shared startup 31035 bytes; startup with docs/tasks/.context-check-tCViXI/feature.md 31089 bytes
+2026-10-11T23:18:13.2810638Z PASS feature checkpoints: real task links/budget and missing, misplaced, traversal/symlink, broken-link and oversized task rejection
+2026-10-11T23:18:13.3224671Z PASS local server: real requests and traversal/symlink rejection
+2026-10-11T23:18:13.3317863Z Node tooling checks passed.
+2026-10-11T23:18:13.4114772Z ##[group]Run node scripts/ci/validate_source.cjs
+2026-10-11T23:18:13.4115487Z [36;1mnode scripts/ci/validate_source.cjs[0m
+2026-10-11T23:18:13.4165415Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-11T23:18:13.4165979Z ##[endgroup]
+2026-10-11T23:18:13.5252074Z QA passed: 2 scripts syntax-checked, 16 unique IDs verified, cache/state lifecycle guards present.
+2026-10-11T23:18:13.5315067Z ##[group]Run rm -rf mobile/www
+2026-10-11T23:18:13.5315507Z [36;1mrm -rf mobile/www[0m
+2026-10-11T23:18:13.5315897Z [36;1mmkdir -p mobile/www/fonts mobile/www/branding[0m
+2026-10-11T23:18:13.5316864Z [36;1mcp index.html mobile/www/index.html[0m
+2026-10-11T23:18:13.5317379Z [36;1mcp -r fonts/. mobile/www/fonts/[0m
+2026-10-11T23:18:13.5317775Z [36;1mcp -r branding/. mobile/www/branding/[0m
+2026-10-11T23:18:13.5362908Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-11T23:18:13.5363464Z ##[endgroup]
+2026-10-11T23:18:13.5525565Z ##[group]Run node scripts/codex/check_context.cjs --task docs/tasks/GUIDANCE_READABILITY_001.md
+2026-10-11T23:18:13.5526504Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/GUIDANCE_READABILITY_001.md[0m
+2026-10-11T23:18:13.5527164Z [36;1mnode scripts/ci/guidance-readability.cjs validation-evidence/guidance-readability[0m
+2026-10-11T23:18:13.5567175Z shell: /usr/bin/bash -e {0}
+2026-10-11T23:18:13.5567534Z ##[endgroup]
+2026-10-11T23:18:13.6027917Z PASS: 29 entrypoints, 89 local Markdown links, shared startup 31035 bytes; startup with docs/tasks/GUIDANCE_READABILITY_001.md 32545 bytes
+2026-10-11T23:18:40.9980004Z {"status":"pass","scope":"GUIDANCE_READABILITY_001","baselineCommit":"684bfc52bb2ca523124fe63981188b9a8004d747","fullDefaultGateExecutedHere":false,"inputs":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/inputs.json","bytes":5398,"sha256":"cd05c9dd22326b8e2e278f665ce6518ba77803aa9b5ae46c7816f42a6cfbd165"},"runtime":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/runtime.json","bytes":959,"sha256":"c313458e4cceb925cf3ca190161272c21e87165a106ac1ecf75649345c4548f5"},"baselineAssets":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/baseline-assets.json","bytes":3247,"sha256":"45d75259345695d4bb1239c2e480f87db41d015cd81499f94cfb52d5e805245c"},"baselineAssetsUnit":{"process":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/baseline-assets-unit-process.json","bytes":844,"sha256":"60a3b1734325d2deefa8fe778e4976b53bb53f7eba1e6b48b49d45eac183a111"},"report":{"status":"pass","scope":"Isolated Git asset unit test; no game or browser","baselineCommit":"253b1b820a5b3c0833fffefa21443da5461b5595","changedCandidateFontIgnored":true,"changedCandidateBrandingIgnored":true,"candidateOnlyAssetExcluded":true,"candidateUnchanged":true,"corruptBlobRejected":true,"assets":[{"path":"branding/mark.svg","gitBlob":"2bbcc6e69f4536aaaf04ff076d911471ab2af9fd","bytes":19,"sha256":"e997e538df9b512b020e13838852fc861bec311abaef3a4fb3a37bc18ce5090d"},{"path":"fonts/font.woff2","gitBlob":"577524cbb8865fd5d402a7c147e55099134e8207","bytes":8,"sha256":"7a2c00a19bf3d5333bcc16c3311127c02ca95f0ce65d34f9e5ccdee994db5fdd"}]}},"inverseUnit":{"process":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/inverse-unit-process.json","bytes":1003,"sha256":"b6bbfaaf6dc2f7a6ecfdd39b38204db6d1ac20813ecc4a66ca7e7e489a32f986"},"report":{"status":"pass","scope":"Pure inverse regression; no game/browser executed","sourceSha256":"26326f8b1b85bffa420a4e8e0abb711113d418f069fceaeabc25c9df466a1011","baselineSha256":"38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f","unrelatedFutureProbes":2,"invalidTitleCases":3,"completeBaselineCss":true,"roundtripsExact":true,"historicalMatch":false,"oldTitleSourceSha256":"e7e55c9a39256f58446fa1b3f00daecd4d295a15aca2e013c9c239e9941023a1","oldLayoutSourceSha256":"d5dde727dc306ac5743c7f1452049c05187ea03161cf5a9c277a4d3366d2bd07"}},"baseline":{"sourceSha256":"38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f","process":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/baseline-process.json","bytes":1055,"sha256":"f872388fc42c1d8b91c1b321907e8f7f4a2bbf96231db081dcb410daba5a335f"},"receipt":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/baseline/results.json","bytes":83392,"sha256":"9b0c3224229569d3c40d346973996f4d281eb58906644a42f27fcc7fd54c6021"},"failure":{"code":"guidance-leading-word-fragmented","message":"guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Awaken\",\"lineCount\":2,\"lines\":[{\"top\":98,\"bottom\":131},{\"top\":131.59375,\"bottom\":164.59375}],\"typographicTolerancePx\":0.5}","details":{"word":"Awaken","lineCount":2,"lines":[{"top":98,"bottom":131},{"top":131.59375,"bottom":164.59375}],"typographicTolerancePx":0.5}},"fontSizes":[32,28,24,28]},"candidate":{"sourceSha256":"26326f8b1b85bffa420a4e8e0abb711113d418f069fceaeabc25c9df466a1011","profiles":1,"samples":5,"supplementalSamples":1,"oldWidthInverse":{"code":"guidance-leading-word-fragmented","message":"guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Awaken\",\"lineCount\":2,\"lines\":[{\"top\":98,\"bottom\":131},{\"top\":131.59375,\"bottom\":164.59375}],\"typographicTolerancePx\":0.5}","details":{"word":"Awaken","lineCount":2,"lines":[{"top":98,"bottom":131},{"top":131.59375,"bottom":164.59375}],"typographicTolerancePx":0.5}},"process":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/candidate-process.json","bytes":1015,"sha256":"f30e3a275e388f45cf356bccb6264024fd92d8c6281e144b66893d82ce249c6f"},"receipt":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/candidate/results.json","bytes":958462,"sha256":"e4ba2099d5e12ee9ca4c64334a9653999c1dd75b116cbfcf33fe4d29680d938c"}},"oldCopyInverse":{"publishedSourceCommit":null,"historicalMatch":false,"sourceSha256":"e7e55c9a39256f58446fa1b3f00daecd4d295a15aca2e013c9c239e9941023a1","mutation":"Only the Ascend-ready production title literal is reversed","failure":{"code":"guidance-leading-word-fragmented","message":"guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Permanent\",\"lineCount\":2,\"lines\":[{\"top\":98,\"bottom\":131},{\"top\":131.59375,\"bottom\":164.59375}],\"typographicTolerancePx\":0.5}","details":{"word":"Permanent","lineCount":2,"lines":[{"top":98,"bottom":131},{"top":131.59375,"bottom":164.59375}],"typographicTolerancePx":0.5}},"process":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/old-copy-process.json","bytes":1056,"sha256":"72747a88cd168ce27be5b38c4d377c0ca913d6da01f8d6e48ffd097b17942ec7"},"receipt":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/old-copy/results.json","bytes":730158,"sha256":"c16f9eb2b7086e0b002d531ca7a26dab23c4df97a97fb9d63f3e875659ad89fd"}},"oldLayoutInverse":{"baselineCommit":"684bfc52bb2ca523124fe63981188b9a8004d747","sourceSha256":"d5dde727dc306ac5743c7f1452049c05187ea03161cf5a9c277a4d3366d2bd07","mutation":"Only the complete Guidance CSS block is restored from the immutable baseline","ledger":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/old-layout-edit-ledger.json","bytes":3800,"sha256":"00da986b464e299a875c089cba06a04e37c727cf450828c07562ba01da710a00"},"failure":{"code":"guidance-leading-word-fragmented","message":"guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Awaken\",\"lineCount\":2,\"lines\":[{\"top\":98,\"bottom\":131},{\"top\":131.59375,\"bottom\":164.59375}],\"typographicTolerancePx\":0.5}","details":{"word":"Awaken","lineCount":2,"lines":[{"top":98,"bottom":131},{"top":131.59375,"bottom":164.59375}],"typographicTolerancePx":0.5}},"process":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/old-layout-process.json","bytes":1063,"sha256":"1e7eca95ece641105a5531bc5d74ba0e7e16a4c7ef4fa10fdb62bebc2b820335"},"receipt":{"path":"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/old-layout/results.json","bytes":83392,"sha256":"bf99948df05ae610a2006128f8217366ed4120a77bb1977fbeb74c33dce6a834"}},"completedUtc":"2026-10-11T23:18:40.993Z"}
+2026-10-11T23:18:41.0121798Z ##[group]Run actions/upload-artifact@v4
+2026-10-11T23:18:41.0122161Z with:
+2026-10-11T23:18:41.0122507Z   name: guidance-readability-evidence-38183718756
+2026-10-11T23:18:41.0122932Z   retention-days: 14
+2026-10-11T23:18:41.0123274Z   path: validation-evidence/guidance-readability/
+2026-10-11T23:18:41.0123668Z   if-no-files-found: warn
+2026-10-11T23:18:41.0123989Z   compression-level: 6
+2026-10-11T23:18:41.0124297Z   overwrite: false
+2026-10-11T23:18:41.0124686Z   include-hidden-files: false
+2026-10-11T23:18:41.0125008Z ##[endgroup]
+2026-10-11T23:18:41.1781652Z (node:3421) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T23:18:41.1782477Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T23:18:41.2126566Z With the provided path, there will be 160 files uploaded
+2026-10-11T23:18:41.2127862Z Artifact name is valid!
+2026-10-11T23:18:41.2128603Z Root directory input is valid!
+2026-10-11T23:18:41.5543147Z Beginning upload of artifact content to blob storage
+2026-10-11T23:18:42.0669457Z (node:3421) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T23:18:42.8374532Z Uploaded bytes 6911438
+2026-10-11T23:18:42.8999248Z Finished uploading artifact content to blob storage!
+2026-10-11T23:18:42.9000927Z SHA256 digest of uploaded artifact zip is 684b8e02f2798b491c1abfea3d0100faa02b2c6c46b91fed487e3dcd6215e2e2
+2026-10-11T23:18:42.9002066Z Finalizing artifact upload
+2026-10-11T23:18:43.1448150Z Artifact guidance-readability-evidence-38183718756.zip successfully finalized. Artifact ID 11719055773
+2026-10-11T23:18:43.1449746Z Artifact guidance-readability-evidence-38183718756 has been successfully uploaded! Final size is 6911438 bytes. Artifact ID is 11719055773
+2026-10-11T23:18:43.1451221Z Artifact download URL: https://github.com/karahaNx/Lumenfall/actions/runs/38183718756/artifacts/11719055773
+2026-10-11T23:18:43.1575245Z ##[group]Run node tests/behavioral/rift-cosmetics.cjs --source mobile/www/index.html --negative
+2026-10-11T23:18:43.1575965Z [36;1mnode tests/behavioral/rift-cosmetics.cjs --source mobile/www/index.html --negative[0m
+2026-10-11T23:18:43.1617230Z shell: /usr/bin/bash -e {0}
+2026-10-11T23:18:43.1617665Z ##[endgroup]
+2026-10-11T23:18:50.8517425Z {"status":"pass","samples":168,"out":"/tmp/lumenfall-rift-cosmetics"}
+2026-10-11T23:18:50.8609271Z ##[group]Run node tests/behavioral/prism-earning.cjs --source mobile/www/index.html
+2026-10-11T23:18:50.8610561Z [36;1mnode tests/behavioral/prism-earning.cjs --source mobile/www/index.html[0m
+2026-10-11T23:18:50.8652469Z shell: /usr/bin/bash -e {0}
+2026-10-11T23:18:50.8652836Z ##[endgroup]
+2026-10-11T23:18:54.5499329Z {"status":"pass","source_sha256":"26326f8b1b85bffa420a4e8e0abb711113d418f069fceaeabc25c9df466a1011","node":"v20.20.2","assertions":341654,"formulaCases":277916,"payoutCases":3780,"negativeControls":["old-repeat-penalizes-bonus","drop-tree","drop-completed-lab","floating-full-floor","floating-progress-ceil","displayed-vs-cleared-rift","count-bonus-twice"],"rows":[{"cleared":20,"swift":0,"clarity":0,"gain":1,"full":8,"reserve":1,"progressBonus":0,"benchmark":20},{"cleared":20,"swift":1,"clarity":0,"gain":2,"full":9,"reserve":2,"progressBonus":0,"benchmark":20},{"cleared":20,"swift":5,"clarity":0,"gain":3,"full":10,"reserve":3,"progressBonus":0,"benchmark":20},{"cleared":20,"swift":7,"clarity":0,"gain":4,"full":11,"reserve":4,"progressBonus":0,"benchmark":20},{"cleared":20,"swift":10,"clarity":0,"gain":5,"full":12,"reserve":5,"progressBonus":0,"benchmark":20},{"cleared":20,"swift":20,"clarity":0,"gain":8,"full":16,"reserve":8,"progressBonus":0,"benchmark":20}],"scope":"actual extracted production reward functions; full browser, persistence and Android are separate gates"}
+2026-10-11T23:18:54.5594067Z ##[group]Run node tests/behavioral/cheaper-recruitment-integrated.cjs index.html validation-evidence/f21-integration.json
+2026-10-11T23:18:54.5595530Z [36;1mnode tests/behavioral/cheaper-recruitment-integrated.cjs index.html validation-evidence/f21-integration.json[0m
+2026-10-11T23:18:54.5596933Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/ECHOING_REST_CAP_001.md[0m
+2026-10-11T23:18:54.5598086Z [36;1mnode tests/behavioral/echo-refund-core.cjs index.html --negative --output validation-evidence/f20-core.json[0m
+2026-10-11T23:18:54.5599414Z [36;1mnode tests/behavioral/cheaper-recruitment.cjs --source index.html --echo --output validation-evidence/f21-f20-browser.json[0m
+2026-10-11T23:18:54.5600827Z [36;1mnode tests/behavioral/cheaper-recruitment-negative.cjs index.html validation-evidence/f21-negative[0m
+2026-10-11T23:18:54.5656913Z shell: /usr/bin/bash -e {0}
+2026-10-11T23:18:54.5657477Z ##[endgroup]
+2026-10-11T23:18:54.6844705Z node:assert:90
+2026-10-11T23:18:54.6852728Z   throw new AssertionError(obj);
+2026-10-11T23:18:54.6853508Z   ^
+2026-10-11T23:18:54.6853825Z 
+2026-10-11T23:18:54.6854406Z AssertionError [ERR_ASSERTION]: exact original value 2000
+2026-10-11T23:18:54.6855275Z + actual - expected
+2026-10-11T23:18:54.6855649Z 
+2026-10-11T23:18:54.6857806Z + 500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445288096194n
+2026-10-11T23:18:54.6861594Z - 500418951316020346530311674475778057398031880987191938528035805234205148376304885231806577438183233673401762007437564283117025576536426286134593830686406259667535754790790699667799013981630310232606378153375339771549591440083225192702908131230590045047591522485475414687131128917385766062598581047702110860664n
+2026-10-11T23:18:54.6863881Z     at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/cheaper-recruitment-integrated.cjs:8:36)
+2026-10-11T23:18:54.6865409Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/cheaper-recruitment-integrated.cjs:18:3)
+2026-10-11T23:18:54.6866815Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2026-10-11T23:18:54.6867686Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2026-10-11T23:18:54.6868650Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2026-10-11T23:18:54.6869589Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2026-10-11T23:18:54.6870589Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2026-10-11T23:18:54.6871552Z     at node:internal/main/run_main_module:28:49 {
+2026-10-11T23:18:54.6872197Z   generatedMessage: false,
+2026-10-11T23:18:54.6872796Z   code: 'ERR_ASSERTION',
+2026-10-11T23:18:54.6874829Z   actual: 500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445288096194n,
+2026-10-11T23:18:54.6878495Z   expected: 500418951316020346530311674475778057398031880987191938528035805234205148376304885231806577438183233673401762007437564283117025576536426286134593830686406259667535754790790699667799013981630310232606378153375339771549591440083225192702908131230590045047591522485475414687131128917385766062598581047702110860664n,
+2026-10-11T23:18:54.6887631Z   operator: 'deepStrictEqual'
+2026-10-11T23:18:54.6888227Z }
+2026-10-11T23:18:54.6888407Z 
+2026-10-11T23:18:54.6888753Z Node.js v20.20.2
+2026-10-11T23:18:54.6898519Z ##[error]Process completed with exit code 1.
+2026-10-11T23:18:54.6998234Z ##[group]Run actions/upload-artifact@v4
+2026-10-11T23:18:54.6998673Z with:
+2026-10-11T23:18:54.6998986Z   name: pre-merge-evidence-38183718756
+2026-10-11T23:18:54.6999410Z   retention-days: 14
+2026-10-11T23:18:54.7000036Z   path: validation-evidence/
+/tmp/lumenfall-collection-price/
+/tmp/lumenfall-dom.html
+/tmp/lumenfall-chrome.log
+/tmp/lumenfall-http.log
+
+2026-10-11T23:18:54.7000732Z   if-no-files-found: warn
+2026-10-11T23:18:54.7001063Z   compression-level: 6
+2026-10-11T23:18:54.7001379Z   overwrite: false
+2026-10-11T23:18:54.7001721Z   include-hidden-files: false
+2026-10-11T23:18:54.7002085Z ##[endgroup]
+2026-10-11T23:18:54.8616915Z (node:3728) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T23:18:54.8618674Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T23:18:54.9408188Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-11T23:18:54.9410962Z The least common ancestor is /. This will be the root directory of the artifact
+2026-10-11T23:18:54.9411988Z With the provided path, there will be 160 files uploaded
+2026-10-11T23:18:54.9412997Z Artifact name is valid!
+2026-10-11T23:18:54.9413518Z Root directory input is valid!
+2026-10-11T23:18:55.2657345Z Beginning upload of artifact content to blob storage
+2026-10-11T23:18:55.7869904Z (node:3728) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T23:18:56.5479240Z Uploaded bytes 6936398
+2026-10-11T23:18:56.6041152Z Finished uploading artifact content to blob storage!
+2026-10-11T23:18:56.6042337Z SHA256 digest of uploaded artifact zip is fdc71017e33e660b4851dbe1a8dd2a2faf892fa108e34737e028cb18dff4c16f
+2026-10-11T23:18:56.6043094Z Finalizing artifact upload
+2026-10-11T23:18:56.8408477Z Artifact pre-merge-evidence-38183718756.zip successfully finalized. Artifact ID 11718856337
+2026-10-11T23:18:56.8409631Z Artifact pre-merge-evidence-38183718756 has been successfully uploaded! Final size is 6936398 bytes. Artifact ID is 11718856337
+2026-10-11T23:18:56.8413268Z Artifact download URL: https://github.com/karahaNx/Lumenfall/actions/runs/38183718756/artifacts/11718856337
+2026-10-11T23:18:56.8611394Z Post job cleanup.
+2026-10-11T23:18:56.9414493Z [command]/usr/bin/git version
+2026-10-11T23:18:56.9451548Z git version 2.55.0
+2026-10-11T23:18:56.9483590Z Temporarily overriding HOME='/home/runner/work/_temp/c9bfee4b-00e5-4578-bbba-0aca62932bdf' before making global git config changes
+2026-10-11T23:18:56.9485267Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T23:18:56.9488316Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-11T23:18:56.9524841Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T23:18:56.9557156Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T23:18:56.9783185Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T23:18:56.9805214Z http.https://github.com/.extraheader
+2026-10-11T23:18:56.9814921Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T23:18:56.9850069Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T23:18:57.0081615Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T23:18:57.0122130Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-11T23:18:57.0627487Z Cleaning up orphan processes
+2026-10-11T23:18:57.0868000Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

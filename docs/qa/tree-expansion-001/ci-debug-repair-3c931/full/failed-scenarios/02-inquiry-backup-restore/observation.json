@@ -1,0 +1,102 @@
+{
+  "name": "inquiry-backup-restore",
+  "occurrence": 2,
+  "rawLogSection": {
+    "byteOffset": 4521091,
+    "bytes": 6526,
+    "sha256": "9501c1a8ec7f45a35c19fb46c8aee47e2f789f936746d8c04e04e3cbd36602dd"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 1.3212922369999578,
+    "timeout_sec": 25
+  },
+  "detail": null,
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/process.json",
+      "bytes": 937,
+      "sha256": "7cd20699cc1e6cd258f34080cac987f2c6b1322bc7d4f09a687c4ff5a096cba9",
+      "zipCrc32": "c637865c"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stderr.log",
+      "bytes": 4021,
+      "sha256": "25efa1aa27d3eefe62620cb0333bf34b15ca890ba9e136ef78d5591b196e513a",
+      "zipCrc32": "eaeb47db"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stdout.html",
+      "bytes": 1458673,
+      "sha256": "bfd10440f84d7ef07863602001a712b6ecf697d3c3a7a283419941c8364f298c",
+      "zipCrc32": "fb0c890f"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-inquiry-backup-restore-jocjK4",
+      "--dump-dom",
+      "http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.3212922369999578,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "inquiry-backup-restore",
+      "json_status": "fail",
+      "json_scenario": "inquiry-backup-restore",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "inquiry-backup-restore",
+      "json_status": "fail",
+      "json_scenario": "inquiry-backup-restore",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "inquiry-backup-restore",
+      "status": "fail",
+      "detail": {
+        "message": "existing Ascension currency reset unchanged",
+        "stack": "Error: existing Ascension currency reset unchanged\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh:15077:61)\n    at window.runInquiryPersistence (http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh:14631:3)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=inquiry-backup-restore&qaFixture=fresh:15604:18)"
+      },
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stdout.html",
+    "bytes": 1458673,
+    "sha256": "bfd10440f84d7ef07863602001a712b6ecf697d3c3a7a283419941c8364f298c",
+    "zipCrc32": "fb0c890f"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/02-inquiry-backup-restore"
+}

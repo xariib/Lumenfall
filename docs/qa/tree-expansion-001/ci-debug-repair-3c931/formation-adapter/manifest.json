@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-10 21:55:37 UTC",
+  "scope": "Closed byte manifest for this new package. Every stored file except this self-excluded manifest is listed. All raw files are lossless, uncompressed copies. No full product HTML or private saves are included.",
+  "files": [
+    {
+      "path": "acceptance.json",
+      "bytes": 1663,
+      "sha256": "0f0a5003dd14481b8c8e796d6e3e97340c7df7995a8a3946c137b445eb04017c"
+    },
+    {
+      "path": "bridge-after.js",
+      "bytes": 52598,
+      "sha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc"
+    },
+    {
+      "path": "bridge-before.js",
+      "bytes": 52449,
+      "sha256": "8568cfb994b0a6c4c1c2bded8f2946a6489b18591992e58d534f483f5cb287c1"
+    },
+    {
+      "path": "comet-read-only-review.json",
+      "bytes": 1647,
+      "sha256": "5f1ea5e87b865e4cbf00e1619540c83a61a71ee4f256ad7abd072625b164d83e"
+    },
+    {
+      "path": "exact-adapter-hooks.js",
+      "bytes": 2304,
+      "sha256": "d719504c786e832628b2eee159610d0cb7335fe4d7f988cb422aac6224f18ede"
+    },
+    {
+      "path": "execution.json",
+      "bytes": 2158,
+      "sha256": "562984e9c933289f8c636de2da0c57a620bf9ac14a41d9e5556b5ee7465b6bd6"
+    },
+    {
+      "path": "formation-buy.patch",
+      "bytes": 617,
+      "sha256": "7d3618785c166ec32477fd63c62bef09c4efe7b6f512ed647f5c9031fd241480"
+    },
+    {
+      "path": "p2-07a-formation-reconstruction.process.json",
+      "bytes": 966,
+      "sha256": "1de5bc630c4fbe9279a2118337c16539dbfaec9b733e2cade8615a7bfe0d8ad2"
+    },
+    {
+      "path": "p2-07a-formation-reconstruction.qa-result.htmltext",
+      "bytes": 1170,
+      "sha256": "68528212300f398e31b0b81da99ffb294b64981eb865c09130824ebd9c019bc5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6997,
+      "sha256": "845b6714465dc612b2a8fdbc9d3e6718f020d1a21d2983aeeb76a2182dc81584"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 8791,
+      "sha256": "1e89419cb7c54cbd3d2fa9c73e49ba76fce31ffed51d38f259af2e7ccac967ed"
+    },
+    {
+      "path": "rift-status-contract.process.json",
+      "bytes": 922,
+      "sha256": "66639e279c710e5e676b60c658a5212b1facf2ec33ea0193adfd637bc655df09"
+    },
+    {
+      "path": "rift-status-contract.qa-result.htmltext",
+      "bytes": 176,
+      "sha256": "0f70f798ae8feb5f4c206f7d6ba0202ae08db40ec7282e8a69f1110cf8475750"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 6096,
+      "sha256": "b41ff19abd6b3f3907a7be8e2c986e196758fdb323155849ff6b86bec189c159"
+    },
+    {
+      "path": "support-stacking.process.json",
+      "bytes": 906,
+      "sha256": "f83b0f47f7512219c69a30b91c51f77490111a566e9778710c2aaef5b69e78e0"
+    },
+    {
+      "path": "support-stacking.qa-result.htmltext",
+      "bytes": 818,
+      "sha256": "516af650b037f37a76deb425a660930086e5df2b199ee091b2a2f63b191ab36c"
+    },
+    {
+      "path": "syntax.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "syntax.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+    },
+    {
+      "path": "witness.cjs",
+      "bytes": 15697,
+      "sha256": "43345748b16e0db659fb72eda75f4ce93ebb3d5837a861deb657441678504f7b"
+    },
+    {
+      "path": "witness.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "witness.stdout.json",
+      "bytes": 8791,
+      "sha256": "1e89419cb7c54cbd3d2fa9c73e49ba76fce31ffed51d38f259af2e7ccac967ed"
+    },
+    {
+      "path": "witnesses.json",
+      "bytes": 501270,
+      "sha256": "858a6d669bcf4eb89dba60185abc661959d0213262d13d8488675e25b4f89f06"
+    }
+  ],
+  "filesExcludingManifest": 23,
+  "bytesExcludingManifest": 680476,
+  "externalReferences": {
+    "diagnosticArtifactRoot": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/third/artifact/tree-scroll-diagnostic",
+    "rawDoms": "witnesses.json rawRows[].dom; receipt.json rawFailures[].dom",
+    "sourceAndCiIdentities": "source-binding.json",
+    "requiredGitRepository": "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+    "baseCommit": "3c931a26bbcf7b009dee03e7411ed41faeb971f8"
+  },
+  "manifestSelfExcluded": true
+}

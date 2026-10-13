@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "label": "baseline-002",
+  "startedUtc": "2026-10-11T11:41:30.317Z",
+  "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "node": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "args": [
+    "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text/tests/behavioral/rift-guidance.cjs",
+    "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked/opt/google/chrome/chrome",
+    "/workspace/scratch/0848c4e4f365/guidance-work/baseline-002/web",
+    "/workspace/scratch/0848c4e4f365/guidance-work/baseline-002/raw",
+    "--readability-probe"
+  ],
+  "timeoutMs": 300000,
+  "head": "684bfc52bb2ca523124fe63981188b9a8004d747",
+  "inputs": [
+    {
+      "path": "index.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+    },
+    {
+      "path": "tests/behavioral/rift-guidance.cjs",
+      "bytes": 30931,
+      "sha256": "3cb925dd06a56e600d6b8e16ec7db0bd2f36bc4cb7b9a018b14e1c3e5c778054"
+    },
+    {
+      "path": "tests/behavioral/rift-guidance-readability.cjs",
+      "bytes": 11614,
+      "sha256": "e58a5692a48bbc7bc8b200e431e96a6fe4684757f19560adf9400382ed655ae4"
+    },
+    {
+      "path": "tests/behavioral/run.cjs",
+      "bytes": 20903,
+      "sha256": "3e52c9a021f650ea9d52fcc55aa6e7ad50ce4bd467848f69e0aa81bfffd1ec81"
+    },
+    {
+      "path": "tests/behavioral/fixtures.json",
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753"
+    }
+  ],
+  "browser": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked/opt/google/chrome/chrome",
+    "bytes": 297798984,
+    "sha256": "9bfb381296dffe75f3419d07b6cc64525105ed117d1453a4ef3b291cb97d2b58"
+  },
+  "sourceDiff": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/baseline-002/source.diff",
+    "bytes": 17867,
+    "sha256": "ec62cfd954e77c8e59d91755023943313cc81e122541036447a1acae8cacea51"
+  }
+}

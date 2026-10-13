@@ -1,0 +1,152 @@
+{
+  "status": "PASS-for-publication-and-required-CI",
+  "integrationAccepted": false,
+  "observedAt": "2026-10-10T22:16:06Z",
+  "clock": "clock__curr_time",
+  "parentHead": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "developmentBase": "2d01049393e3bb45a90d80e07af52ae0484b0ec5",
+  "main": "67373faa531f0bb791c883210ee623320861e380",
+  "identities": [
+    {
+      "path": "index.html",
+      "bytes": 619788,
+      "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+      "blob": "2e6485650f2b5a5d5105ee14e3c19a9b7419f6c7"
+    },
+    {
+      "path": "tests/behavioral/bridge.js",
+      "bytes": 52598,
+      "sha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc",
+      "blob": "fdda299a1d75f6b7d3d53f2c97c6de88bb10a3e7"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-mobile.cjs",
+      "bytes": 50616,
+      "sha256": "45d8b66546b48318586eb1c045fe95cd373fd386601d17e4984a1eda4b3818ee",
+      "blob": "caec0640ac76ff21f1f516431ef7a63fb688fb99"
+    },
+    {
+      "path": "tests/behavioral/fixtures.json",
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+      "blob": "5bc34425a9e745e6b656d5b8a173fddcb4b16194"
+    }
+  ],
+  "codeDiff": [
+    "index.html",
+    "tests/behavioral/bridge.js",
+    "tests/behavioral/tree-expansion-mobile.cjs"
+  ],
+  "originalWorkflowsUnchanged": true,
+  "packages": [
+    {
+      "name": "readiness-repair",
+      "manifestSha256": "ca18e4ce4d60a010f59002d3af3502a60523a83dad93637c3a7cd055af23a0b6",
+      "files": 15,
+      "storedBytes": 112979,
+      "originalBytesExcludingManifest": 1157172,
+      "gzipFiles": 7,
+      "closedInventory": true,
+      "allStoredAndOriginalHashesMatch": true
+    },
+    {
+      "name": "scroll-diagnostic-48c13f2d",
+      "manifestSha256": "0d48b3efdf9f0d08297b17b82e9241d648dbb3c1a0cd056d4244776906d43cb2",
+      "files": 113,
+      "storedBytes": 1666236,
+      "originalBytesExcludingManifest": 13370594,
+      "gzipFiles": 106,
+      "closedInventory": true,
+      "allStoredAndOriginalHashesMatch": true
+    }
+  ],
+  "checks": [
+    {
+      "args": [
+        "node",
+        "--check",
+        "tests/behavioral/bridge.js"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "node",
+        "--check",
+        "tests/behavioral/tree-expansion-mobile.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "node",
+        "scripts/ci/validate_source.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "QA passed: 2 scripts syntax-checked, 16 unique IDs verified, cache/state lifecycle guards present.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "node",
+        "scripts/codex/check_context.cjs",
+        "--task",
+        "docs/tasks/TREE_EXPANSION_001.md"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "PASS: 29 entrypoints, 91 local Markdown links, shared startup 31131 bytes; startup with docs/tasks/TREE_EXPANSION_001.md 32404 bytes\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD",
+        "--",
+        "index.html",
+        "tests/behavioral/bridge.js",
+        "tests/behavioral/tree-expansion-mobile.cjs",
+        "docs/qa/tree-expansion-001/DEBUG.md",
+        "docs/qa/tree-expansion-001/ci-debug-repair-3c931/README.md"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "relativeLinkChecks": 40,
+  "diagnostic": {
+    "run": "38089706277",
+    "head": "48c13f2d74b0bd6dc52cf79b0e0e97b89c8b2e5e",
+    "mobileChecks": 26600,
+    "profiles": 12,
+    "originalFullAttemptsPassed": 13,
+    "focusedPrismPositives": 4,
+    "focusedPrismNegatives": 5,
+    "auditSha256": "5c8e0b5183ecaede6b13237a8a3d9dfecdceb6b1ee35347da936aec0a9189c49"
+  },
+  "review": [
+    "Product diff preserves actual focused-control viewport coordinates around Tree summary/list and Wisp rendering; existing Auto-Ascend native picker guard is retained. No gameplay/economy/save schema or migration is changed in this repair.",
+    "Only the actual QA manual-Ascend and Formation buy adapters temporarily clear and finally restore the synthetic reload guard. Actual paid handlers, storage failures and original browser assertions remain.",
+    "Tree-specific readiness retries only the exact Runtime.evaluate/-32000 navigation interruption during its read-only initialization probe, within one shared ten-second deadline; the ready action and inputs are never retried.",
+    "Historical failed candidates and their original local receipts remain immutable and explicitly distinguished from this product.",
+    "Successful Full DOM is absent by original runner design; the actual successful process/stdout/QA detail is preserved. Incidental class-tag/toast text observations remain assigned to the later shared UI phase."
+  ],
+  "requiredBeforeIntegration": [
+    "Terminal Full, Lab, Forge and Tree workflows on one final coherent PR106 head",
+    "All 182 Full scenario IDs / 212 rows and all 22 separate strict causal negatives plus runtime guard and smoke",
+    "Raw artifact size/digest/CRC, source/fixture/test identities and real mobile controls",
+    "Equal entire tested/actual merge tree, correct ordered parents and fresh integrated checks"
+  ],
+  "releaseHeld": true
+}

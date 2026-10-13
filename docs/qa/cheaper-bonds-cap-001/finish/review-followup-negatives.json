@@ -1,0 +1,246 @@
+{
+  "status": "PASS",
+  "count": 17,
+  "required": 15,
+  "records": [
+    {
+      "mutation": "handler",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: cap prevents direct/repeated debit at raw level 20",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "refund",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: refund receipt prevents a second credit 21",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "credit",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: fractional original wallet retains exact refund value",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "free-credit",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: unrepresentable credit subtraction cannot buy a free level",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "wallet",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: unrepresentable wallet debit cannot buy a free level",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "receipt",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: wrong receipt amount rejects for recovery",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "cache",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "credit-record",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: malformed persisted Prism credit rejects for recovery",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "ascend-copy",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: actual auto-Ascends avoid repeated refund cloning and validation",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "version-check",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: unsupported migration version rejects before any early return",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "credit-reconcile",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: own credit sequence reconciles with saved receipt",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "ui",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: UI maxed even with affordable wallet 20",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "raw",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: all finite original purchase value retained 21/0",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "below-cap-receipt",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: below-cap receipt rejects before legitimate purchase",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "missing-receipt",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: completed marker cannot refund again after receipt deletion",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "canonical-price",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: all finite original purchase value retained 2000/1000000",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "mutation": "mixed-payment",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: exact wallet plus large-credit mixed payment planned",
+      "sourceSha256": "0dcce970cdd19aa2ee8a37f4c3f36a47d1c30998ba0f908cef608aafc0be0fd0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    }
+  ],
+  "rawControlNote": "Conservation rejects clamped raw levels before the later raw-history assertion; local collector initially expected that later failure."
+}

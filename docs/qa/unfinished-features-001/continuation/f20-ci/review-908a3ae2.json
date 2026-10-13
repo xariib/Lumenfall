@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-10-11 22:53:58 UTC",
+  "head": "908a3ae2bc04f82f0cf7074dfc2c4e2f379653cf",
+  "sourceSha256": "f40baeedc086fd89d8dd3c10d596af000cc073942110bc628b957e9ceca2b5fa",
+  "reviewType": "Self-review plus automated inline finding; no independent final-head review claimed",
+  "threads": [
+    {
+      "id": "PRRT_kwDOUF0Vls6rSNJr",
+      "is_resolved": false,
+      "is_outdated": true,
+      "path": "index.html",
+      "line": null,
+      "diff_side": "RIGHT",
+      "start_line": null,
+      "start_diff_side": "RIGHT",
+      "original_line": 4854,
+      "original_start_line": 4853,
+      "resolved_by": null,
+      "comments": [
+        {
+          "id": "PRRC_kwDOUF0Vls787uqF",
+          "database_id": 4243516037,
+          "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reject audited refunds even when history is missing**\n\nWhen an already-migrated overcap save has `echoCreditAuditVersion: 1` but loses both its `node.echo` receipt and `history.echo`, this guard is skipped because it requires the history objects to exist. Execution then reaches the refund path and credits the entire original-value refund again—for example, a level-7 save with 33 Prisms becomes 49 instead of selecting recovery. Treat the audit version plus `raw > 6` as sufficient evidence that a missing receipt is invalid, regardless of whether history also survived.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/4ef0608988e9d809f5214857192e48ae95aba4d5/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+          "created_at": "2026-10-11T22:27:49Z",
+          "updated_at": "2026-10-11T22:27:50Z",
+          "author": {
+            "login": "chatgpt-codex-connector",
+            "name": "chatgpt-codex-connector",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+            "id": null
+          },
+          "viewer_did_author": false
+        }
+      ]
+    }
+  ],
+  "disposition": "Automated missing-receipt/history finding and self-review missing-receipt/audit finding fixed for both Echo and Recruitment. Either independent surviving proof now rejects missing receipt. 10 Echo and 17 Recruitment causal controls include each proof removed separately; actual V8 and modern-browser real recovery pass. Thread remains mechanically unresolved/outdated; no final-head automated review response yet.",
+  "diffReview": "Full product diff against developmenteb441039 reviewed: original cap6/rate/price unchanged, separate original-value receipt and exact existing credit/payment ledger; same canonical Auto-Ascend retained record optimization. Only current product additions and necessary F21 guard fix, no Wisp curve, Study duration, asset, package or native workflow changes. Historical fixture construction explicitly predates audits; original assertions not removed.",
+  "limitations": "Current native/exactWebView60/physical/TalkBack unavailable; arbitrary simultaneous removal of every provenance record is not claimed detectable. All six current-head CI gates required."
+}

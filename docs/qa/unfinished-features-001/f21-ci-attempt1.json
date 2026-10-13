@@ -1,0 +1,81 @@
+{
+  "head": "6e6d9585d1efc325a4069185a818632c289b1e5f",
+  "sourceSha256": "33d444ed901f3d1c95879df3c390fa2a821a025fb222d9097314c01caf406828",
+  "runs": [
+    {
+      "id": 38173776231,
+      "name": "Prism feature validation",
+      "status": "completed",
+      "conclusion": "skipped",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776176,
+      "name": "Prism mobile engine and economy acceptance",
+      "status": "completed",
+      "conclusion": "skipped",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776172,
+      "name": "Pre-merge validation",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776230,
+      "name": "Comet shop and Deeds validation",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776156,
+      "name": "Research Lab expansion validation",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776097,
+      "name": "Ascension Tree focused validation",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776181,
+      "name": "Rift Forge expansion validation",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    },
+    {
+      "id": 38173776250,
+      "name": "Shared UI layout validation",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "6e6d9585d1efc325a4069185a818632c289b1e5f"
+    }
+  ],
+  "findings": [
+    {
+      "lane": "Comet",
+      "cause": "Legacy raw25 fixture expected unchanged Prisms; approved F21 adds original40586.",
+      "action": "Require exact old Prism value plus one original-price F21 refund; retain every ownership and Comet assertion."
+    },
+    {
+      "lane": "Tree",
+      "cause": "Legacy refund fixture excluded F21; independent visible-name/effect wording used Cheaper Bonds/old floor text.",
+      "action": "Require wallet40718, five original receipt prices, repeat-load idempotence and updated exact name/floor/cap."
+    },
+    {
+      "lane": "Forge",
+      "cause": "Frozen complete offline oracle predates additive F21 value records.",
+      "action": "Assert the exact below-cap receipt/history/credit defaults before comparing every original frozen field; no historical oracle bytes changed."
+    }
+  ],
+  "limits": "Observed run statuses at this point, not final status. No integration. Full still running; later synchronize may cancel it. Original job logs/artifacts remain associated with these run IDs.",
+  "observationTimeNotCaptured": true
+}

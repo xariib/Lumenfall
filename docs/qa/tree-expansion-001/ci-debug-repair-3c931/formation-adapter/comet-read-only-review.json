@@ -1,0 +1,59 @@
+{
+  "status": "UNUSED_SHARED_ADAPTER_LEFT_UNCHANGED",
+  "source": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+  "sharedHelper": {
+    "file": "tests/behavioral/bridge.js",
+    "beforeLine": 72,
+    "body": "function(){doAscend(false);}",
+    "sharedHelperCallsFoundInExistingTests": 0,
+    "probes": [
+      {
+        "reload": false,
+        "actualReturn": true,
+        "ascends": 1,
+        "successfulWrites": 2,
+        "activeCallerFound": false
+      },
+      {
+        "reload": true,
+        "actualReturn": false,
+        "ascends": 0,
+        "successfulWrites": 0,
+        "activeCallerFound": false
+      }
+    ]
+  },
+  "actualExistingCore": {
+    "file": "tests/behavioral/comet-unlocks-core.cjs",
+    "line": 22,
+    "body": "ascend:applyAscendMutation",
+    "trialCalls": [
+      50,
+      51,
+      72,
+      75
+    ],
+    "interpretation": "The core test calls the mutation helper directly in its own complete-IIFE facade; no shared QA reload guard is involved."
+  },
+  "actualExistingUi": {
+    "file": "tests/behavioral/comet-unlocks-ui.cjs",
+    "lines": [
+      42,
+      48,
+      65
+    ],
+    "membersUsed": [
+      "render",
+      "shop",
+      "tab"
+    ],
+    "pause": "uiMeasurementPause(true), timer-only",
+    "ascendCalls": 0
+  },
+  "search": {
+    "command": "rg -n '\\.comet\\b' tests/behavioral",
+    "result": "Only UI render/shop/tab references and unrelated CSS selector strings; no caller of the shared ascend member."
+  },
+  "limitation": "This is a source caller audit plus two direct probes. It does not claim to have rerun the Comet browser or core suite.",
+  "changed": false
+}

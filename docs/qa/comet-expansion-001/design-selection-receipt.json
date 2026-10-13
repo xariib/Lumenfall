@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "selectedAtUtc": "2026-10-10 23:15:22 UTC",
+  "timeSource": "clock__curr_time",
+  "scope": "Selected Comet design and observable interfaces only; no product implementation or feature acceptance.",
+  "acceptedBaseline": {
+    "commit": "9f04aca7265b57d73edc98822f3bd89d85f1881d",
+    "tree": "30213b2ae877ff64db08e3d06b087d040fe72ca2",
+    "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+  },
+  "requiredOrder": "Tree integration and fresh checks accepted; finish durable Tree evidence before starting the separate Comet branch.",
+  "rootChoices": [
+    "Preserve original saves, paid entitlements, progression and Auto-Ascend.",
+    "Schema 3 has explicit strict new paid/claim state. Invalid new paid data preserves the raw primary and blocks overwrite.",
+    "Three retired purchases retain their old features and receive an intentional extra one-time 140/50/160 Comet compensation, recorded per entitlement.",
+    "Meteor Strike and Luminous Call are manual bounded commands with a kill-earned capped shared charge bank. Three paid capped upgrades; no automated casting/queue.",
+    "Twenty-three old Deed predicates and 683C remain; four new actual-event Deeds add 50C. Pending credit pays only exact whole amounts.",
+    "Meteor numeric preview stays under plan.meteor, separate from aggregate command availability. Accepted disabled command focuses the panel, never the other action."
+  ],
+  "frozenSupportingPackages": {
+    "numeric": "593fab1f342a6630749179d88d6db848d839b09d5bfd38754fd5a38da746672b",
+    "ui": "032a7fde63c1d0c62643eb0473a63b8748e189726b8290402ac3e62d1420e4f2",
+    "adapterImpact": "5184f881f57cd8778cf478cedb9b9858c1660e1d77e1e0c69f49f41b25b695b7"
+  },
+  "holds": {
+    "main": "67373faa531f0bb791c883210ee623320861e380",
+    "pr102Draft": true,
+    "apkBuild": false,
+    "apkSign": false,
+    "apkPublish": false
+  },
+  "files": [
+    {
+      "path": "SELECTED_DESIGN.md",
+      "bytes": 24001,
+      "sha256": "789219e832d5b1b57d667bea59f2f2fd7288845e63d0e12080e6f74313b4883a"
+    },
+    {
+      "path": "IMPLEMENTATION_INTERFACES.md",
+      "bytes": 5862,
+      "sha256": "f712ee610a0af4343024c2473ed4bca68a00810790bbec895c39313d2291f1d6"
+    }
+  ]
+}

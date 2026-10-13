@@ -1,0 +1,3124 @@
+{
+  "status": "read-only impact inventory; no Comet implementation or new test execution",
+  "publishedHead": "768050d7cca586ea724e7ac677804a5ed7d6a3f5",
+  "tree": "30213b2ae877ff64db08e3d06b087d040fe72ca2",
+  "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+  "sourceBytes": 619788,
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "selectedFutureContract": {
+    "status": "root-selected proposal, integration still gated",
+    "catalog": [
+      "autoascend",
+      "meteor",
+      "starcall",
+      "cometreservoir",
+      "cometcycle",
+      "meteorcore"
+    ],
+    "currentSchema": 2,
+    "targetSchema": 3,
+    "newStrictBlocks": [
+      "cometUpgrades",
+      "cometCharges",
+      "cometWork",
+      "cometMeteorUsed",
+      "cometCalled",
+      "cometEvents",
+      "cometClaims"
+    ],
+    "strictRule": "Initialize only fresh3 and schema2→3 migration. Missing/wrong-type current3 blocks reject with invalid-comet-claims or invalid-comet-state, preserve raw primary and block persistence even while valid recovery runs; no silent repair/defaulting. Retain valid overcap raw levels with effect clamps and bounded no-refill bank.",
+    "settlementOrder": [
+      "existing F26 unchanged",
+      "retired comettrials140",
+      "retired rifttrail50",
+      "retired starfallcrest160",
+      "pending known Deeds in fixed order"
+    ],
+    "newlyEarnedDeed": "Stickyflag plus claim; attempt only its own whole exact credit within existing owner; no nested save or old-claim sweep.",
+    "legacyRefunds": {
+      "comettrials": 140,
+      "rifttrail": 50,
+      "starfallcrest": 160,
+      "totalWhenAllOwned": 350
+    },
+    "oldDeeds": 23,
+    "oldDeedRewards": 683,
+    "newDeeds": 4,
+    "newDeedRewardsInProposal": 50,
+    "globalDailyDebt": false
+  },
+  "scope": {
+    "repositoryEdits": false,
+    "testsExecuted": false,
+    "remoteMutations": false,
+    "privateSavePayloadsCopied": false
+  },
+  "deeds": [
+    {
+      "id": "d10",
+      "reward": 5,
+      "line": 3530,
+      "predicate": "return s.maxDepthEver>=10;",
+      "predicateSha256": "a7d4832f556a234b7e5e4cca6858982d96f0907fe76866deb73561b26b46b7c2",
+      "rawLineSha256": "0ee923131a0df9a12f968e605286c5863709ba83839ed73d4ea338b3df068241",
+      "rawLine": "  {id:'d10',   name:'Reach Rift 10',        reward:5,  check:function(s){return s.maxDepthEver>=10;}},"
+    },
+    {
+      "id": "d25",
+      "reward": 10,
+      "line": 3531,
+      "predicate": "return s.maxDepthEver>=25;",
+      "predicateSha256": "499a83280bf4442fddb5cdcd217f7093ea0ce57526d63203f903e5185b9311cc",
+      "rawLineSha256": "bdc7720080e9d22e51db0d2e5d548f92a2979485a2e459930fa521e7a9b945e0",
+      "rawLine": "  {id:'d25',   name:'Reach Rift 25',        reward:10, check:function(s){return s.maxDepthEver>=25;}},"
+    },
+    {
+      "id": "d50",
+      "reward": 20,
+      "line": 3532,
+      "predicate": "return s.maxDepthEver>=50;",
+      "predicateSha256": "62d7e9cfdb98cdfc2d88c2ac46d5991a13ad50e768a0c315592256a874ad6c25",
+      "rawLineSha256": "17cdc1fa3057227cd67270fb99311de84d980eeb43d53275dab7cbcfa3b7500b",
+      "rawLine": "  {id:'d50',   name:'Reach Rift 50',        reward:20, check:function(s){return s.maxDepthEver>=50;}},"
+    },
+    {
+      "id": "d100",
+      "reward": 50,
+      "line": 3533,
+      "predicate": "return s.maxDepthEver>=100;",
+      "predicateSha256": "a5ce52d1a339737c25678eb691793dc4da03f0ca693bdd50dced2c2d1e3fa839",
+      "rawLineSha256": "34266077b0f178706ab3548f1d702d5d31c4d5acb04d7aedaece3dcea57d6622",
+      "rawLine": "  {id:'d100',  name:'Reach Rift 100',       reward:50, check:function(s){return s.maxDepthEver>=100;}},"
+    },
+    {
+      "id": "d250",
+      "reward": 100,
+      "line": 3534,
+      "predicate": "return s.maxDepthEver>=250;",
+      "predicateSha256": "27e133fca845ad853c0b57e67df575e3990bb1c06bc49c0619a4f8f827f92b8d",
+      "rawLineSha256": "d61ae2f467117909916d19b100d58316e69de7a2075423c80baff654627b86f1",
+      "rawLine": "  {id:'d250',  name:'Reach Rift 250',       reward:100, check:function(s){return s.maxDepthEver>=250;}},"
+    },
+    {
+      "id": "tap100",
+      "reward": 3,
+      "line": 3535,
+      "predicate": "return s.totalTaps>=100;",
+      "predicateSha256": "9b0cdae5d8eb638a04b0100fa008bb67d3b0988792957964455a92bbd9308cc8",
+      "rawLineSha256": "6f86b7cc98e3ad462dd029bd9141d73bfaaaf19d7ea96c8ab4b4efaebcf88d02",
+      "rawLine": "  {id:'tap100',  name:'Strike 100 times',    reward:3,  check:function(s){return s.totalTaps>=100;}},"
+    },
+    {
+      "id": "tap1000",
+      "reward": 8,
+      "line": 3536,
+      "predicate": "return s.totalTaps>=1000;",
+      "predicateSha256": "4530b2c91e348f40b10c904ec771f8c0c549d934978fee56e36428b7a09a2473",
+      "rawLineSha256": "f9d74240f2de6713a8750e864b3d488a0e1c0460da0b972cda67e80eddc560da",
+      "rawLine": "  {id:'tap1000', name:'Strike 1,000 times',  reward:8,  check:function(s){return s.totalTaps>=1000;}},"
+    },
+    {
+      "id": "tap10000",
+      "reward": 20,
+      "line": 3537,
+      "predicate": "return s.totalTaps>=10000;",
+      "predicateSha256": "cfb4208a54a146b64067ba2c4899e1f48f2cc8b7140d81b227c547440c23a811",
+      "rawLineSha256": "debace78b233cc9ffe265c277bd51f31d315424666eae0e1005f6cbae1a6dc76",
+      "rawLine": "  {id:'tap10000',name:'Strike 10,000 times', reward:20, check:function(s){return s.totalTaps>=10000;}},"
+    },
+    {
+      "id": "fullparty",
+      "reward": 12,
+      "line": 3538,
+      "predicate": "return s.activeParty.length>=5;",
+      "predicateSha256": "fd4a528cf0edf2717fd23d9887a1d953ec15e1fbf68abfd9a4ef6145e9ab555f",
+      "rawLineSha256": "eea75ba19cd9edc30663bb1f628815e8f61ad6f8db8721b161fcfc8b9c90c17d",
+      "rawLine": "  {id:'fullparty', name:'Full Formation',    reward:12, check:function(s){return s.activeParty.length>=5;}},"
+    },
+    {
+      "id": "asc1",
+      "reward": 10,
+      "line": 3539,
+      "predicate": "return s.ascendCount>=1;",
+      "predicateSha256": "ca4b217909a2d90a6f49438f4e89319a12b85c4c36600631df9cb7c451e31bfe",
+      "rawLineSha256": "7c3b57b98ea7869aa74c2240d89c0ebba183e15f1d8c4b76b41875616e2c5623",
+      "rawLine": "  {id:'asc1',  name:'Ascend once',          reward:10, check:function(s){return s.ascendCount>=1;}},"
+    },
+    {
+      "id": "asc5",
+      "reward": 25,
+      "line": 3540,
+      "predicate": "return s.ascendCount>=5;",
+      "predicateSha256": "1f43b57998d9b0bf2636d81ff74ef84cb8333da19ee3b38c648ba4ed82a4cc76",
+      "rawLineSha256": "47f29aaf056470e37a3e515493491c7dc8263b51a8f40f311212d8f666d46261",
+      "rawLine": "  {id:'asc5',  name:'Ascend 5 times',       reward:25, unlocks:'Ascension Tree: Eternal Momentum', check:function(s){return s.ascendCount>=5;}},"
+    },
+    {
+      "id": "asc10",
+      "reward": 50,
+      "line": 3541,
+      "predicate": "return s.ascendCount>=10;",
+      "predicateSha256": "cf347e825acfaafa58f7ea34cbbb76cff3be5280c10df6296a89ef66e4cad960",
+      "rawLineSha256": "c68fd0f865cd6133308d74287f68b45cfb91db23a42f3b6f186823ee1104f2a9",
+      "rawLine": "  {id:'asc10', name:'Ascend 10 times',      reward:50, check:function(s){return s.ascendCount>=10;}},"
+    },
+    {
+      "id": "all",
+      "reward": 30,
+      "line": 3542,
+      "predicate": "return SPIRITS.every(function(sp){return (s.spirits[sp.id]||0)>0;});",
+      "predicateSha256": "d394340b802a0e7731bcc49263ce0383343134dc6b8a6e62d6628043bce155a1",
+      "rawLineSha256": "54d09b9f94e7901b28abdd6976b45da81c32ad6f0f113f9d83e7c4cfdaf5ebc2",
+      "rawLine": "  {id:'all',   name:'Recruit every Wisp',   reward:30, check:function(s){return SPIRITS.every(function(sp){return (s.spirits[sp.id]||0)>0;});}},"
+    },
+    {
+      "id": "mythic",
+      "reward": 40,
+      "line": 3543,
+      "predicate": "return SPIRITS.some(function(sp){return (s.heroRarity[sp.id]||0)>=5;});",
+      "predicateSha256": "9c7f178f1ae9d625b96c852b2eb6004e407124a30627eb54268b88ce911215de",
+      "rawLineSha256": "6ba2689e864e23ca404cc9194e776c5e36cfd7185f8da53a65466d5ef5070c2b",
+      "rawLine": "  {id:'mythic',name:'Raise a Wisp to Mythic', reward:40, check:function(s){return SPIRITS.some(function(sp){return (s.heroRarity[sp.id]||0)>=5;});}},"
+    },
+    {
+      "id": "idle8",
+      "reward": 15,
+      "line": 3544,
+      "predicate": "return s.totalOfflineSeconds>=8*3600;",
+      "predicateSha256": "849237118bc8a0d422c02b8776e4e8abe3f62ec3fae95d7dd688b7df0fd32b62",
+      "rawLineSha256": "2cbd61e1c815d008fa9bb69cb11c9f6d3fdc19b5c51ecd07279327d599005d2e",
+      "rawLine": "  {id:'idle8', name:'Rest 8 hours offline', reward:15, check:function(s){return s.totalOfflineSeconds>=8*3600;}},"
+    },
+    {
+      "id": "autotap",
+      "reward": 25,
+      "line": 3545,
+      "predicate": "return s.ascendCount>=12;",
+      "predicateSha256": "bbc14c9d2c85df1669294c083b1f5e9beaadc2afe6a936d9adf3706acbe176a9",
+      "rawLineSha256": "a47e62eb9cb4dbd1e1648d5b4e0dcc2c880765019d7fa96d2148b859b087b019",
+      "rawLine": "  {id:'autotap',   name:'Tireless Vigil',      reward:25, unlocks:'Auto-Tap — your Guardian strikes on its own, once a second', check:function(s){return s.ascendCount>=12;}},"
+    },
+    {
+      "id": "labmaster",
+      "reward": 30,
+      "line": 3546,
+      "predicate": "return legacyResearchLevels(s)>=20;",
+      "predicateSha256": "1fab00bdba13bf53185a1b2ac3bdde8923e86d8ddb1639c243e79a1109359d0b",
+      "rawLineSha256": "fda2aac9ccf654f2f180063cac54f020c50e218a14a19bd4653b00183a251a8f",
+      "rawLine": "  {id:'labmaster', name:'The Forge Never Sleeps', reward:30, unlocks:'Auto-Empower — spare Lumen levels up your party for you, live or while you\\'re offline', check:function(s){return legacyResearchLevels(s)>=20;}},"
+    },
+    {
+      "id": "study1",
+      "reward": 15,
+      "line": 3547,
+      "predicate": "return totalStudyLevels(s)>=1;",
+      "predicateSha256": "449a44f452ea2460049981a74d5a4743290dacbae7163e483c48b0bec9583762",
+      "rawLineSha256": "12b935e8d7d5aedf96fde7d80486fc56c064d19ce25c1349aa59d98b10187c6a",
+      "rawLine": "  {id:'study1',    name:'First Discovery',     reward:15, check:function(s){return totalStudyLevels(s)>=1;}},"
+    },
+    {
+      "id": "study25",
+      "reward": 50,
+      "line": 3548,
+      "predicate": "return totalStudyLevels(s)>=25;",
+      "predicateSha256": "49ad0f31dfcfa1f6c3e1dc1c5cad969bec06419f85b0b726359af09b47edb10d",
+      "rawLineSha256": "835463b490e26ba91f264e4e7c7cae0d3b7ebaa45707f87079d09229a433343d",
+      "rawLine": "  {id:'study25',   name:'Devoted Scholar',     reward:50, check:function(s){return totalStudyLevels(s)>=25;}},"
+    },
+    {
+      "id": "allstudies",
+      "reward": 35,
+      "line": 3549,
+      "predicate": "return CURRENT_STUDY_IDS.every(function(id){return (s.longStudyLevels[id]||0)>=1;});",
+      "predicateSha256": "b14d83387b78a55f09be8dcf222f835252bede504e0ec5dd6e9269312b023497",
+      "rawLineSha256": "f0e45823481d685e6fa2028094f6bf247078b0c6a198abae6b35e255d8d561ef",
+      "rawLine": "  {id:'allstudies',name:'Every Path Studied',  reward:35, check:function(s){return CURRENT_STUDY_IDS.every(function(id){return (s.longStudyLevels[id]||0)>=1;});}},"
+    },
+    {
+      "id": "labqueue",
+      "reward": 40,
+      "line": 3550,
+      "predicate": "return legacyResearchLevels(s)>=60;",
+      "predicateSha256": "ada1b2db1c581296437e92a436feec7a25942807885f110a15593e0ae7d3b34a",
+      "rawLineSha256": "adcae60eaf61cbdf0544747cc4f224dd7c58c0b0decdc17e4a2a0d9a403a326d",
+      "rawLine": "  {id:'labqueue',  name:'Endless Curiosity',   reward:40, check:function(s){return legacyResearchLevels(s)>=60;}},"
+    },
+    {
+      "id": "firstultimate",
+      "reward": 45,
+      "line": 3551,
+      "predicate": "return SPIRITS.some(function(sp){return !!(s.wispUltimate && s.wispUltimate[sp.id]);});",
+      "predicateSha256": "7bede68f12cfa97874aa87d5daf717ec51faabf85d2048fca9643b2e4fc1e881",
+      "rawLineSha256": "d0429d577c13c1cec73a0523570844668a33d847a9edd8a0271719b79904444d",
+      "rawLine": "  {id:'firstultimate', name:'Awakened Power',  reward:45, check:function(s){return SPIRITS.some(function(sp){return !!(s.wispUltimate && s.wispUltimate[sp.id]);});}},"
+    },
+    {
+      "id": "modulemax",
+      "reward": 45,
+      "line": 3552,
+      "predicate": "return SPIRITS.some(function(sp){return (s.wispModules[sp.id]||0)>=MODULE_MAX_LEVEL;});",
+      "predicateSha256": "7b42326250dad1daaf761c31ed14610a210433c1fd177d08872b19ae83280204",
+      "rawLineSha256": "4d5c4d209152f0305c0b758e433310929c10357a08239a905165e1b036fe23ba",
+      "rawLine": "  {id:'modulemax', name:'Perfect Synergy',     reward:45, unlocks:'Cosmetics: Radiant Rift aura', check:function(s){return SPIRITS.some(function(sp){return (s.wispModules[sp.id]||0)>=MODULE_MAX_LEVEL;});}}"
+    }
+  ],
+  "shop": [
+    {
+      "id": "autoascend",
+      "cost": 100,
+      "line": 3665,
+      "rawLineSha256": "fbb915492ef2ccc2645d519d5a93101b2828e26596606529fe1589b2a66830da",
+      "rawLine": "  {id:'autoascend', name:'Auto-Ascend Ritual', desc:'Choose which Rift to defeat before automatic Ascension. Toggle it on or off anytime. Your chosen target persists across Ascensions.', cost:100},"
+    },
+    {
+      "id": "comettrials",
+      "cost": 140,
+      "line": 3666,
+      "rawLineSha256": "d5c1597e5acfc70a9f19e19f0c3faa23682b6f8a0f38b43cddac4bcbc367f573",
+      "rawLine": "  {id:'comettrials', name:'Comet Trials', desc:'Unlock Quiet Guardian and Single Star run challenges. One Trial at a time, beginning after your next Ascend. Completing each earns a permanent cosmetic mark. No power or currency bonus; starts and retries are free.', cost:140},"
+    },
+    {
+      "id": "rifttrail",
+      "cost": 50,
+      "line": 3667,
+      "rawLineSha256": "7a12c74cae8c033f8f1b3420ef435f73ffe9c7e5278f2aae39979a9626b8d828",
+      "rawLine": "  {id:'rifttrail', name:'Rift Trail', desc:'An optional starlight trail around the Rift. One trail slot, independent of your aura. Static with reduced motion. Cosmetic only.', cost:50},"
+    },
+    {
+      "id": "starfallcrest",
+      "cost": 160,
+      "line": 3668,
+      "rawLineSha256": "1a0a463eead779df6aa767f53cf4f96f119eadca2652775cbcd55f042bc93ca5",
+      "rawLine": "  {id:'starfallcrest', name:'Starfall Crest', desc:'An optional star emblem beside your Guardian and on Ascension. One crest slot, independent of your aura. Cosmetic only.', cost:160}"
+    }
+  ],
+  "productAnchors": [
+    {
+      "name": "freshState",
+      "path": "index.html",
+      "line": 3739,
+      "signature": "function freshState(){"
+    },
+    {
+      "name": "identifySaveSchemaVersion",
+      "path": "index.html",
+      "line": 3918,
+      "signature": "function identifySaveSchemaVersion(value){"
+    },
+    {
+      "name": "migrateSaveV0ToV1",
+      "path": "index.html",
+      "line": 3929,
+      "signature": "function migrateSaveV0ToV1(input){"
+    },
+    {
+      "name": "migrateSaveV1ToV2",
+      "path": "index.html",
+      "line": 4035,
+      "signature": "function migrateSaveV1ToV2(input){"
+    },
+    {
+      "name": "migratePersistedState",
+      "path": "index.html",
+      "line": 4055,
+      "signature": "function migratePersistedState(input){"
+    },
+    {
+      "name": "normalizeCurrentSave",
+      "path": "index.html",
+      "line": 4129,
+      "signature": "function normalizeCurrentSave(input){"
+    },
+    {
+      "name": "acceptPersistedState",
+      "path": "index.html",
+      "line": 4340,
+      "signature": "function acceptPersistedState(input,sourceName){"
+    },
+    {
+      "name": "normalizeOffline12hRefund",
+      "path": "index.html",
+      "line": 3998,
+      "signature": "function normalizeOffline12hRefund(receipt){"
+    },
+    {
+      "name": "settleOffline12hRefund",
+      "path": "index.html",
+      "line": 4014,
+      "signature": "function settleOffline12hRefund(out){"
+    },
+    {
+      "name": "loadState",
+      "path": "index.html",
+      "line": 4419,
+      "signature": "function loadState(){"
+    },
+    {
+      "name": "saveState",
+      "path": "index.html",
+      "line": 4466,
+      "signature": "function saveState(clockMs){"
+    },
+    {
+      "name": "currentSaveBackup",
+      "path": "index.html",
+      "line": 4506,
+      "signature": "function currentSaveBackup(){"
+    },
+    {
+      "name": "restoreSaveBackup",
+      "path": "index.html",
+      "line": 4529,
+      "signature": "function restoreSaveBackup(){"
+    },
+    {
+      "name": "forgeCommitPaidMutation",
+      "path": "index.html",
+      "line": 4719,
+      "signature": "function forgeCommitPaidMutation(apply){"
+    },
+    {
+      "name": "restStopComplete",
+      "path": "index.html",
+      "line": 3805,
+      "signature": "function restStopComplete(){"
+    },
+    {
+      "name": "refreshDailyQuest",
+      "path": "index.html",
+      "line": 3827,
+      "signature": "function refreshDailyQuest(id){"
+    },
+    {
+      "name": "applyAchievementChecks",
+      "path": "index.html",
+      "line": 5618,
+      "signature": "function applyAchievementChecks(){"
+    },
+    {
+      "name": "checkAchievements",
+      "path": "index.html",
+      "line": 5629,
+      "signature": "function checkAchievements(){"
+    },
+    {
+      "name": "normalizeCometTrials",
+      "path": "index.html",
+      "line": 5646,
+      "signature": "function normalizeCometTrials(source,out){"
+    },
+    {
+      "name": "queueCometTrial",
+      "path": "index.html",
+      "line": 5678,
+      "signature": "function queueCometTrial(id,target){"
+    },
+    {
+      "name": "selectCometCosmetic",
+      "path": "index.html",
+      "line": 5715,
+      "signature": "function selectCometCosmetic(slot,enabled){"
+    },
+    {
+      "name": "spawnEnemy",
+      "path": "index.html",
+      "line": 5310,
+      "signature": "function spawnEnemy(rollLuminous){"
+    },
+    {
+      "name": "restoreEnemyOrSpawn",
+      "path": "index.html",
+      "line": 5330,
+      "signature": "function restoreEnemyOrSpawn(){"
+    },
+    {
+      "name": "defeatEnemy",
+      "path": "index.html",
+      "line": 5450,
+      "signature": "function defeatEnemy(){"
+    },
+    {
+      "name": "checkAutoAscend",
+      "path": "index.html",
+      "line": 5610,
+      "signature": "function checkAutoAscend(){"
+    },
+    {
+      "name": "autoAscendReady",
+      "path": "index.html",
+      "line": 5516,
+      "signature": "function autoAscendReady(){"
+    },
+    {
+      "name": "applyAscendMutation",
+      "path": "index.html",
+      "line": 6523,
+      "signature": "function applyAscendMutation(){"
+    },
+    {
+      "name": "doAscend",
+      "path": "index.html",
+      "line": 6589,
+      "signature": "function doAscend(auto){"
+    },
+    {
+      "name": "simulationDefeatEnemy",
+      "path": "index.html",
+      "line": 8754,
+      "signature": "function simulationDefeatEnemy(policy,summary){"
+    },
+    {
+      "name": "simulationBatchFarmKills",
+      "path": "index.html",
+      "line": 8799,
+      "signature": "function simulationBatchFarmKills(count,policy,summary){"
+    },
+    {
+      "name": "simulationApplyFarmPassive",
+      "path": "index.html",
+      "line": 8853,
+      "signature": "function simulationApplyFarmPassive(elapsedSec,dps,policy,summary){"
+    },
+    {
+      "name": "simulationApplyPushPassive",
+      "path": "index.html",
+      "line": 8927,
+      "signature": "function simulationApplyPushPassive(elapsedSec,dps,policy,summary){"
+    },
+    {
+      "name": "simulationResolveTimestamp",
+      "path": "index.html",
+      "line": 9055,
+      "signature": "function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){"
+    },
+    {
+      "name": "advanceAuthoritativeTime",
+      "path": "index.html",
+      "line": 9155,
+      "signature": "function advanceAuthoritativeTime(elapsedSec,options){"
+    },
+    {
+      "name": "offlineProgressSteps",
+      "path": "index.html",
+      "line": 9809,
+      "signature": "function* offlineProgressSteps(now,lastSeen,elapsedSec,effectiveSec,processingStart){"
+    },
+    {
+      "name": "renderShop",
+      "path": "index.html",
+      "line": 7978,
+      "signature": "function renderShop(){ renderAchievements(); }"
+    },
+    {
+      "name": "renderCosmetics",
+      "path": "index.html",
+      "line": 7980,
+      "signature": "function renderCosmetics(){"
+    },
+    {
+      "name": "renderAchievements",
+      "path": "index.html",
+      "line": 7893,
+      "signature": "function renderAchievements(){"
+    },
+    {
+      "name": "deedProgress",
+      "path": "index.html",
+      "line": 3557,
+      "signature": "function deedProgress(a,s){"
+    },
+    {
+      "name": "deedPresentation",
+      "path": "index.html",
+      "line": 3588,
+      "signature": "function deedPresentation(a){"
+    }
+  ],
+  "hits": {
+    "schema": [
+      {
+        "path": "tests/behavioral/ascend-prisms.js",
+        "line": 150,
+        "nearestRunnerCase": null,
+        "text": "  finish('pass',{route:ctx.scenario,reward:payout.gain,benchmark:payout.after.benchmark,tree:s.nodes.swift,completedLab:s.longStudyLevels.prismstudy,schema:s.schemaVersion});"
+      },
+      {
+        "path": "tests/behavioral/buff-timing.js",
+        "line": 84,
+        "nearestRunnerCase": null,
+        "text": "  finish('pass',{activeDeadline:record.saved.buffUntil,multiplier:record.saved.buffMult,resumeSeconds:15,finalHp:s.enemyHp,expiredReload:true,schema:s.schemaVersion});"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 135,
+        "nearestRunnerCase": null,
+        "text": "  const a=ready(),old=copy(a.b.get());old.schemaVersion=1;delete old.offline12hRefund;old.owned={autoascend:true,rememberbulk:true,offline24:true,offline48:true};old.nodes.reserves=6;old.comets=789;"
+      },
+      {
+        "path": "tests/behavioral/forge.js",
+        "line": 15,
+        "nearestRunnerCase": null,
+        "text": "  function saved(raw){var s=Object.assign(seed(),raw);if(raw.schemaVersion===undefined)delete s.schemaVersion;if(raw.researchQueue===undefined)delete s.researchQueue;return s;}"
+      },
+      {
+        "path": "tests/behavioral/forge.js",
+        "line": 26,
+        "nearestRunnerCase": null,
+        "text": "    [b.freshStateSnapshot(),{schemaVersion:1,research:{focus:123},researchQueue:{focus:true,charge:false}},{labQueueOn:true,research:{sense:42}}].forEach(function(raw,i){"
+      },
+      {
+        "path": "tests/behavioral/forge.js",
+        "line": 103,
+        "nearestRunnerCase": null,
+        "text": "  ['schemaVersion','research','researchQueue','studyQueue','activeStudies','longStudyLevels','formationRebuild','activeParty','spirits','lumen','shards','enemyIsLuminous','luminousAccum'].forEach(function(k){assert(JSON.stringify(s[k])===JSON.stringify(expected[k]),'Forge persistence exact '+k);});"
+      },
+      {
+        "path": "tests/behavioral/formation.js",
+        "line": 66,
+        "nearestRunnerCase": null,
+        "text": "  s=b.freshStateSnapshot();delete s.formationRebuild;ok(b.setState(s).formationRebuild===null,'existing schema-v1 default');delete s.schemaVersion;ok(b.setState(s).formationRebuild===null,'legacy default');ok(b.setState(b.freshStateSnapshot()).formationRebuild===null,'fresh default');"
+      },
+      {
+        "path": "tests/behavioral/formation.js",
+        "line": 215,
+        "nearestRunnerCase": null,
+        "text": "  return {checks:checks,cases:cases.map(function(c){return c.name;}),fullStateIdempotence:true,fixedClock:true,negativePersist:detected,schema:out.schemaVersion};"
+      },
+      {
+        "path": "tests/behavioral/lab-motes.js",
+        "line": 76,
+        "nearestRunnerCase": null,
+        "text": "  var keys=['schemaVersion','studyQueue','studyUseMotes','studySpeedTargets','activeStudies','motes'];"
+      },
+      {
+        "path": "tests/behavioral/lab-motes.js",
+        "line": 79,
+        "nearestRunnerCase": null,
+        "text": "  if(ctx.scenario==='lab-motes-reset'){assert(s.schemaVersion===2&&!s.activeStudies.length&&Object.values(s.studyUseMotes).every(function(v){return v===false;})&&Object.values(s.studySpeedTargets).every(function(v){return v===1.5;}),'actual Reset clears intent, targets and work');finish('pass',{reset:true});return;}"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 41,
+        "nearestRunnerCase": null,
+        "text": "      const input=JSON.parse(JSON.stringify(seed));if(legacy)delete input.schemaVersion;"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 165,
+        "nearestRunnerCase": null,
+        "text": "    const legacy=await evaluate('__f25.fresh()');delete legacy.schemaVersion;legacy.owned.rememberbulk=true;legacy.savedLabMultiplier='max';legacy.comets=125;"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 36,
+        "nearestRunnerCase": null,
+        "text": "    var legacy=seed();delete legacy.schemaVersion;delete legacy.studyQueue;legacy.owned.autostudy=true;"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 39,
+        "nearestRunnerCase": null,
+        "text": "    ok(!migrated.studyQueue.measuredinquiry && migrated.schemaVersion===2,'v0 InquiryOFF, schema unchanged');"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 170,
+        "nearestRunnerCase": null,
+        "text": "  var keys=['schemaVersion','longStudyLevels','studyQueue','activeStudies','lumen','shards','motes','comets'];"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 183,
+        "nearestRunnerCase": null,
+        "text": "    assert(state.schemaVersion===2&&state.longStudyLevels.measuredinquiry===0&&!state.studyQueue.measuredinquiry&&!state.activeStudies.length,'Reset new fields0/OFF and no paid work');"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-ui.cjs",
+        "line": 23,
+        "nearestRunnerCase": null,
+        "text": "  await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=b.freshStateSnapshot();s.schemaVersion=1;delete s.offline12hRefund;s.owned={offline24:true,offline48:true};s.nodes.reserves=3;s.comets=100;s.prisms=100;s.maxDepthEver=101;s.achieved.d100=true;b.setState(s);b.upgradeClarity.render();document.documentElement.style.fontSize=${JSON.stringify(scale*100+'%')};document.querySelector('[data-tab=deeds]').focus();})()`);"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-webview60.cjs",
+        "line": 25,
+        "nearestRunnerCase": null,
+        "text": "seed.schemaVersion=1;delete seed.offline12hRefund;"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-webview60.cjs",
+        "line": 46,
+        "nearestRunnerCase": null,
+        "text": "  var old=qa.fresh();old.schemaVersion=1;delete old.offline12hRefund;old.nodes.reserves=level;old.prisms=1e300;old.legacyCometPurchases={offline24:true,offline48:true};"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 43,
+        "nearestRunnerCase": null,
+        "text": "  const s=app().b.fresh(); s.schemaVersion=1; delete s.offline12hRefund;"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 76,
+        "nearestRunnerCase": null,
+        "text": "    assert.equal(m.schemaVersion,2); assert.equal(m.lastSeen,seed.lastSeen);"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 125,
+        "nearestRunnerCase": null,
+        "text": " assert.equal(actual.schemaVersion,2,label+' migrated schema');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 126,
+        "nearestRunnerCase": null,
+        "text": " assert.deepEqual(existing,{...expected,schemaVersion:2,owned:oldOwnership,activeFormationPreset:selected,"
+      },
+      {
+        "path": "tests/behavioral/r3-destinations.js",
+        "line": 132,
+        "nearestRunnerCase": null,
+        "text": "  ['research','researchQueue','studyQueue','activeStudies','longStudyLevels','savedLabMultiplier','lumen','shards','motes','activeParty','formationRebuild','schemaVersion'].forEach(function(key){"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 358,
+        "nearestRunnerCase": null,
+        "text": "    assert(actual.schemaVersion===2,label+' must preserve save schema v2');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 478,
+        "nearestRunnerCase": null,
+        "text": "    assert(s.schemaVersion===2,'fresh state must use current save schema');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 617,
+        "nearestRunnerCase": "p2-07a-recovery",
+        "text": "          assert(state().schemaVersion===2,'partial reconstruction remains schema-v2');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 668,
+        "nearestRunnerCase": "midgame-load",
+        "text": "          assert(s.schemaVersion===2,'schema-v1 fixture must migrate to schema 2');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 672,
+        "nearestRunnerCase": "midgame-load",
+        "text": "          assert(JSON.parse(bridge.rawSave()).schemaVersion===2,'current save must serialize schema version');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 673,
+        "nearestRunnerCase": "midgame-load",
+        "text": "          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===2,'successful save must refresh bounded recovery');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 705,
+        "nearestRunnerCase": "legacy-load",
+        "text": "          assert(s.schemaVersion===2,'legacy save must migrate to current schema');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 706,
+        "nearestRunnerCase": "legacy-load",
+        "text": "          assert(JSON.parse(bridge.rawSave()).schemaVersion===2,'migrated legacy save must round-trip as current schema');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 707,
+        "nearestRunnerCase": "legacy-load",
+        "text": "          finish('pass',{activeStudies:s.activeStudies.length,autoAscendTargetDepth:s.autoAscendTargetDepth,schemaVersion:s.schemaVersion});"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 833,
+        "nearestRunnerCase": "restore-roundtrip",
+        "text": "          assert(s.schemaVersion===2,'current backup restore must remain on current schema');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 835,
+        "nearestRunnerCase": "restore-roundtrip",
+        "text": "          finish('pass',{depth:s.depth,lumen:s.lumen,schemaVersion:s.schemaVersion});"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 854,
+        "nearestRunnerCase": "recovery-from-corrupt-primary",
+        "text": "          assert(repairedPrimary.schemaVersion===2 && repairedPrimary.depth===17,'malformed primary must be repaired from validated recovery');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 855,
+        "nearestRunnerCase": "recovery-from-corrupt-primary",
+        "text": "          assert(goodRecovery.schemaVersion===2 && goodRecovery.depth===17,'good recovery must never be overwritten by malformed primary');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 863,
+        "nearestRunnerCase": "unsupported-future-load",
+        "text": "          assert(JSON.parse(futureRaw).schemaVersion===99,'future schema fixture must remain intact');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 876,
+        "nearestRunnerCase": "legacy-backup-restore",
+        "text": "          assert(s.schemaVersion===2,'legacy backup must migrate to current schema before acceptance');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 878,
+        "nearestRunnerCase": "legacy-backup-restore",
+        "text": "          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===2,'legacy restore must establish current-schema recovery');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 879,
+        "nearestRunnerCase": "legacy-backup-restore",
+        "text": "          finish('pass',{schemaVersion:s.schemaVersion,depth:s.depth});"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1278,
+        "nearestRunnerCase": "lifecycle-cold-restart",
+        "text": "          assert(JSON.parse(bridge.rawSave()).schemaVersion===2,'cold restart must preserve canonical primary schema');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1279,
+        "nearestRunnerCase": "lifecycle-cold-restart",
+        "text": "          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===2,'cold restart must preserve bounded recovery schema');"
+      },
+      {
+        "path": "tests/behavioral/support-stacking.js",
+        "line": 85,
+        "nearestRunnerCase": null,
+        "text": "  if(ctx.scenario==='support-reset'){assert(!s.supportBuffs&&s.buffUntil===0&&s.buffMult===1,'Reset clears every boost');finish('pass',{reset:true,schema:s.schemaVersion});return;}"
+      },
+      {
+        "path": "tests/behavioral/support-stacking.js",
+        "line": 104,
+        "nearestRunnerCase": null,
+        "text": "  parity(s,record.expired,'expired source reload');assert(q.factor(b.clockNow())===1,'no expired source resurrection');finish('pass',{coldResumeSeconds:15,expiredSources:s.supportBuffs,schema:s.schemaVersion});"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 168,
+        "nearestRunnerCase": null,
+        "text": "    const a=app(source),q=a.q,s=q.fresh();s.schemaVersion=1;delete s.offline12hRefund;"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-mobile.cjs",
+        "line": 252,
+        "nearestRunnerCase": null,
+        "text": "  const old=copy(seed);old.schemaVersion=1;delete old.offline12hRefund;delete old.treeTrainingProgress;added.forEach(id=>delete old.nodes[id]);"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-mobile.cjs",
+        "line": 255,
+        "nearestRunnerCase": null,
+        "text": "  const migrationDiagnostic={synthetic:true,width,scale,motion,seedSha256:legacySeedSha256,seed:{schemaVersion:old.schemaVersion,nodes:old.nodes,prisms:old.prisms,comets:old.comets},loaded:null};treeMigrationDiagnostics.push(migrationDiagnostic);"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-mobile.cjs",
+        "line": 258,
+        "nearestRunnerCase": null,
+        "text": "  const legacyBootstrap=await send('Page.addScriptToEvaluateOnNewDocument',{source:'('+function(raw,sha){var keys=['lumenfall_save_v2','lumenfall_save_recovery_v1'];keys.forEach(function(k){localStorage.setItem(k,raw);});var s=JSON.parse(raw);window.__treeLegacySeedObservation={synthetic:true,sha256:sha,schemaVersion:s.schemaVersion,prisms:s.prisms,comets:s.comets,nodes:s.nodes,slotsMatch:keys.every(function(k){return localStorage.getItem(k)===raw;})};}.toString()+')('+JSON.stringify(legacyRaw)+','+JSON.stringify(legacySeedSha256)+')'});"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-mobile.cjs",
+        "line": 263,
+        "nearestRunnerCase": null,
+        "text": "  const migrated=await ev('prismQa.get()');migrationDiagnostic.loaded={schemaVersion:migrated.schemaVersion,nodes:migrated.nodes,prisms:migrated.prisms,comets:migrated.comets};ok(migrated.schemaVersion===2,'actual load migrates schema1');"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-mobile.cjs",
+        "line": 404,
+        "nearestRunnerCase": null,
+        "text": "  ok((await ev('window.__prismErrors')).length===0,'no browser runtime errors');records.push({width,scale,motion,nativeAnimationFrames:true,catalog,samples,effectSamples,locks,inputSamples,formationSamples,dustSamples,unavailableEmpower,sixMembers:six.activeParty,legacyMigration:{seed:legacySeedObservation,schema:migrated.schemaVersion,prisms:migrated.prisms,comets:migrated.comets,nodes:migrated.nodes,newDefaultZero:added.length},input});"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-v8.cjs",
+        "line": 115,
+        "nearestRunnerCase": null,
+        "text": "var legacyApp=freshWorld(),lq=legacyApp.q,old=seed(lq);old.schemaVersion=1;delete old.offline12hRefund;delete old.treeTrainingProgress;"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-v8.cjs",
+        "line": 122,
+        "nearestRunnerCase": null,
+        "text": "eq(migrated.schemaVersion,2,'actual schema1 cold-load migration');eq([migrated.prisms,migrated.comets],[132,307],'original6+10+16 Prism and300 Comet refund');"
+      },
+      {
+        "path": "tests/behavioral/tree-purchases.js",
+        "line": 43,
+        "nearestRunnerCase": null,
+        "text": "  var old=b.freshStateSnapshot();old.schemaVersion=1;delete old.offline12hRefund;"
+      },
+      {
+        "path": "tests/behavioral/upgrade-identity.js",
+        "line": 137,
+        "nearestRunnerCase": null,
+        "text": "  var keys=['schemaVersion','nodes','research','researchQueue','longStudyLevels','studyQueue','activeStudies','studyUseMotes','studySpeedTargets','lumen','shards','prisms','motes','comets','sigils'];"
+      },
+      {
+        "path": "tests/behavioral/wisp-upgrades.js",
+        "line": 87,
+        "nearestRunnerCase": null,
+        "text": "      var after=b.get();['spirits','heroRarity','wispModules','wispUltimate','lumen','shards','sigils','schemaVersion'].forEach(function(key){same(after[key],before[key],route+' preserves '+key);});"
+      }
+    ],
+    "retiredOwnership": [
+      {
+        "path": "tests/behavioral/auto-ascend-target.cjs",
+        "line": 104,
+        "nearestRunnerCase": null,
+        "text": "  await evaluate('document.querySelector(\"[data-shop=comettrials]\").scrollIntoView({block:\"center\"});document.querySelector(\"[data-shop=comettrials]\").focus({preventScroll:true})');before=await snapshot();await key('Space');const purchased=await snapshot();"
+      },
+      {
+        "path": "tests/behavioral/auto-ascend-target.cjs",
+        "line": 105,
+        "nearestRunnerCase": null,
+        "text": "  assert(purchased.observation.state.owned.comettrials&&purchased.observation.state.comets===before.observation.state.comets-140,'existing Comet Trials purchase retains exact price and ownership');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 50,
+        "nearestRunnerCase": null,
+        "text": "function trial(id){const a=ready();assert(a.b.buy('comettrials'));assert(a.b.queue(id,15));a.b.ascend();assert.equal(a.b.get().cometTrial.phase,'active');return a;}"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 53,
+        "nearestRunnerCase": null,
+        "text": "  const a=ready();assert.deepEqual(a.b.catalog().map(item=>[item.id,item.cost]),[['autoascend',100],['comettrials',140],['rifttrail',50],['starfallcrest',160]]);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 54,
+        "nearestRunnerCase": null,
+        "text": "  for(const [id,cost] of [['comettrials',140],['rifttrail',50],['starfallcrest',160]]){"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 58,
+        "nearestRunnerCase": null,
+        "text": "  const poor=app();assert.equal(poor.b.buy('comettrials'),false);assert.equal(poor.b.get().comets,0);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 61,
+        "nearestRunnerCase": null,
+        "text": "  const a=ready();assert.equal(a.b.queue('quiet',15),false);a.b.buy('comettrials');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 65,
+        "nearestRunnerCase": null,
+        "text": "  a.b.tap();assert.equal(a.b.get().cometTrial.phase,'pending');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 69,
+        "nearestRunnerCase": null,
+        "text": "  const a=trial('quiet'),control=app(copy(a.b.get()));control.b.get().cometTrial=null;"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 74,
+        "nearestRunnerCase": null,
+        "text": "    assert.equal(a.b.get().cometTrial,null);assert.deepEqual(a.b.get().cometTrialMarks,{quiet:true});"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 79,
+        "nearestRunnerCase": null,
+        "text": "  const early=trial('quiet');early.b.ascend();assert.equal(early.b.get().cometTrialResult.outcome,'failed');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 81,
+        "nearestRunnerCase": null,
+        "text": "  a.b.tap();assert.equal(a.b.get().cometTrial.reason,'manual');clear(a);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 82,
+        "nearestRunnerCase": null,
+        "text": "  assert.deepEqual(a.b.get().cometTrialMarks,{});assert.equal(a.b.get().cometTrialResult.outcome,'failed');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 110,
+        "nearestRunnerCase": null,
+        "text": "    assert.equal(s.activeParty.length,2,action+' party intent remains');assert.equal(s.cometTrial.reason,'party',action);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 111,
+        "nearestRunnerCase": null,
+        "text": "    a.b.toggle('void');clear(a);assert.equal(a.b.get().cometTrialResult.outcome,'failed',action+' latch persists');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 113,
+        "nearestRunnerCase": null,
+        "text": "  const a=trial('single');clear(a);assert.deepEqual(a.b.get().cometTrialMarks,{single:true});"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 131,
+        "nearestRunnerCase": null,
+        "text": "  assert.equal(s.cometTrial.reason,'party');assert.equal(s.spirits.void,1);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 132,
+        "nearestRunnerCase": null,
+        "text": "  clear(a);assert.equal(a.b.get().cometTrialResult.outcome,'failed');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 137,
+        "nearestRunnerCase": null,
+        "text": "  assert.deepEqual(once.legacyCometPurchases,{rememberbulk:true,offline24:true,offline48:true});assert.equal(once.nodes.reserves,6);assert.equal(once.comets,1089);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 144,
+        "nearestRunnerCase": null,
+        "text": "  const a=trial('quiet');a.b.buy('rifttrail');a.b.buy('starfallcrest');assert(a.b.equip('trail',true));assert(a.b.equip('crest',true));"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 147,
+        "nearestRunnerCase": null,
+        "text": "  const malformed=copy(s);malformed.cometTrial.startedAscend++;assert.equal(a.b.normalize(malformed).cometTrial,null);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 148,
+        "nearestRunnerCase": null,
+        "text": "  malformed.owned={};assert.deepEqual(a.b.normalize(malformed).cometCosmetics,{trail:false,crest:false});"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 152,
+        "nearestRunnerCase": null,
+        "text": "  const a=ready();a.b.buy('autoascend');assert.equal(a.b.gate(),false);a.b.buy('comettrials');assert(a.b.gate());"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 159,
+        "nearestRunnerCase": null,
+        "text": "  seed.owned.comettrials=true;seed.cometTrial={id:'quiet',target:15,phase:'pending'};"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 160,
+        "nearestRunnerCase": null,
+        "text": "  const whole=app(seed),split=app(seed),live=app(seed),plain=app(seed);plain.b.get().cometTrial=null;"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 165,
+        "nearestRunnerCase": null,
+        "text": "  assert.deepEqual(live.b.get().cometTrialMarks,whole.b.get().cometTrialMarks);assert.deepEqual(whole.b.get().cometTrialMarks,{quiet:true});"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 171,
+        "nearestRunnerCase": null,
+        "text": "  seed.lastSeen=2000000000000;seed.owned.comettrials=true;seed.cometTrial={id:'quiet',target:15,phase:'pending'};"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 174,
+        "nearestRunnerCase": null,
+        "text": "  a.fail(false);a.b.offline((result,e)=>error=e);a.drain();assert.ifError(error);assert.deepEqual(a.b.get().cometTrialMarks,{quiet:true});"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-ui.cjs",
+        "line": 42,
+        "nearestRunnerCase": null,
+        "text": "    await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();const s=b.getState();s.maxDepthEver=101;s.depth=16;s.comets=1000;s.autoAscendEnabled=false;s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};s.cometTrial=null;s.cometTrialMarks={};s.cometCosmetics={trail:false,crest:false};b.setState(s);b.comet.render();b.comet.tab('deeds');})()`);"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-ui.cjs",
+        "line": 56,
+        "nearestRunnerCase": null,
+        "text": "    await touch('[data-trial-queue]');let pendingTrial=await evaluate('window.__lumenfallQaBridge.getState().cometTrial');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-ui.cjs",
+        "line": 58,
+        "nearestRunnerCase": null,
+        "text": "    await evaluate('document.querySelector(\"[data-trial-cancel]\").focus()');await key('Space');assert(await evaluate('window.__lumenfallQaBridge.getState().cometTrial===null'),'native Space cancels');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-ui.cjs",
+        "line": 61,
+        "nearestRunnerCase": null,
+        "text": "    const cosmetic=await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=b.getState(),trail=document.querySelector('.comet-trail'),style=getComputedStyle(trail);return {selected:s.cometCosmetics,aura:s.riftTheme,animation:style.animationName,controls:Array.from(document.querySelectorAll('[data-comet-cosmetic]')).map(e=>({w:e.getBoundingClientRect().width,h:e.getBoundingClientRect().height,pressed:e.getAttribute('aria-pressed')})),errors:window.__lumenfallQaContext.errors};})()`);"
+      },
+      {
+        "path": "tests/behavioral/forge-expansion-ui.cjs",
+        "line": 19,
+        "nearestRunnerCase": null,
+        "text": "  s.longStudyLevels.guardmastery=2;s.longStudyLevels.prismstudy=3;s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};"
+      },
+      {
+        "path": "tests/behavioral/forge-expansion.cjs",
+        "line": 395,
+        "nearestRunnerCase": null,
+        "text": "  s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};"
+      },
+      {
+        "path": "tests/behavioral/formation-bonds.cjs",
+        "line": 63,
+        "nearestRunnerCase": null,
+        "text": "  let s=seed(b,['ember','tide','stone','gale','void']);s.lumen=12345;s.shards=456;s.motes=17;s.sigils=50;s.wispModules.ember=12;s.heroRarity.ember=5;s.wispUltimate.ember=true;s.owned.comettrials=true;b.set(s);"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion-ui.cjs",
+        "line": 10,
+        "nearestRunnerCase": null,
+        "text": "one(\"breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}\",\"labSeed:function(){var s=freshState();s.maxDepthEver=250;s.lumen=10000000;s.shards=10000000;s.motes=10000;s.prisms=23;s.comets=115;s.sigils=849;s.questDay=todayStr();s.lastSeen=Date.now();s.nodes.echo=10;s.nodes.swift=7;s.research.charge=28;s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};s.autoAscendEnabled=false;s.autoAscendTargetDepth=16;SPIRITS.forEach(function(sp){s.empowerQueue[sp.id]=false;});return s;},\\n labs:function(){return LONG_STUDIES;},newLabs:function(){return LAB_EXPANSION;},\\n labSet:function(s){state=acceptPersistedState(s);renderAll();activateTab('research');},\\n labRender:renderLongStudies,labWallet:function(v){Object.keys(v).forEach(function(k){state[k]=v[k];});lastAffordabilityAt=0;checkAffordability();},\\n labPlan:function(id){return getStudyStar [line truncated in index; inspect exact published source]"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion.cjs",
+        "line": 47,
+        "nearestRunnerCase": null,
+        "text": "  s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};s.activeStudies=[{id:'riftattune',remainingSec:13.25,totalDurationSec:200,speedMult:3}];"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion.cjs",
+        "line": 71,
+        "nearestRunnerCase": null,
+        "text": "  s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 19,
+        "nearestRunnerCase": null,
+        "text": "  'lost-ownership':['if(legacy[id]===true || owned[id]===true) out.legacyCometPurchases[id]=true;',\"if(id!=='rememberbulk' && (legacy[id]===true || owned[id]===true)) out.legacyCometPurchases[id]=true;\"],"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 36,
+        "nearestRunnerCase": null,
+        "text": "  same(b.shop.map(x=>x.id),['autoascend','comettrials','rifttrail','starfallcrest'],'retired item absent');"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 46,
+        "nearestRunnerCase": null,
+        "text": "      ok(!!out.legacyCometPurchases.rememberbulk===paid,'historical ownership preserved');"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 61,
+        "nearestRunnerCase": null,
+        "text": "  const complete=b.fresh();complete.owned={autoascend:true,comettrials:true};b.set(complete);"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 131,
+        "nearestRunnerCase": null,
+        "text": "    ok(await evaluate('__f25.mult()===25&&!__f25.get().legacyCometPurchases.rememberbulk'),'cold start restores unowned 25x');"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 167,
+        "nearestRunnerCase": null,
+        "text": "    ok(await evaluate(`__f25.get().comets===125&&__f25.get().legacyCometPurchases.rememberbulk&&__f25.mult()==='max'`),'legacy recovery preserves wallet and ownership without a gate');"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-ui.cjs",
+        "line": 31,
+        "nearestRunnerCase": null,
+        "text": "   const before=JSON.stringify(b.getState());document.querySelector('[data-shop=comettrials]').focus({preventScroll:true});const focused=document.activeElement;"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-webview60.cjs",
+        "line": 46,
+        "nearestRunnerCase": null,
+        "text": "  var old=qa.fresh();old.schemaVersion=1;delete old.offline12hRefund;old.nodes.reserves=level;old.prisms=1e300;old.legacyCometPurchases={offline24:true,offline48:true};"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 75,
+        "nearestRunnerCase": null,
+        "text": "    assert.equal(m.nodes.reserves,level); assert.equal(m.legacyCometPurchases.offline24, a?true:undefined); assert.equal(m.legacyCometPurchases.offline48,b?true:undefined);"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 90,
+        "nearestRunnerCase": null,
+        "text": "const complete=app(); complete.b.get().owned={autoascend:true,comettrials:true}; assert(complete.b.complete(),'retired items cannot remain a completion gate');"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 197,
+        "nearestRunnerCase": null,
+        "text": "const archived=legacy();archived.legacyCometPurchases={offline24:true,offline48:true};archived.owned={};"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 111,
+        "nearestRunnerCase": null,
+        "text": " assert.equal(actual.cometTrial,null,label+' no unsolicited Trial');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 112,
+        "nearestRunnerCase": null,
+        "text": " assert.equal(actual.cometTrialResult,null,label+' no unsolicited result');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 113,
+        "nearestRunnerCase": null,
+        "text": " assert.deepEqual(actual.cometTrialMarks,{},label+' no unsolicited marks');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 114,
+        "nearestRunnerCase": null,
+        "text": " assert.deepEqual(actual.cometCosmetics,{trail:false,crest:false},label+' new cosmetics default OFF');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 117,
+        "nearestRunnerCase": null,
+        "text": " assert.deepEqual(actual.legacyCometPurchases,legacy,label+' full legacy ownership archived');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 118,
+        "nearestRunnerCase": null,
+        "text": " const {studyUseMotes,studySpeedTargets,cometTrial,cometTrialResult,cometTrialMarks,cometCosmetics,legacyCometPurchases,offline12hRefund,...existing}=actual;"
+      },
+      {
+        "path": "tests/behavioral/rift-cosmetics.cjs",
+        "line": 91,
+        "nearestRunnerCase": null,
+        "text": "    state.owned.rifttrail=true;state.owned.starfallcrest=true;"
+      },
+      {
+        "path": "tests/behavioral/rift-cosmetics.cjs",
+        "line": 92,
+        "nearestRunnerCase": null,
+        "text": "    state.cometCosmetics={trail:true,crest:true};"
+      },
+      {
+        "path": "tests/behavioral/rift-cosmetics.cjs",
+        "line": 113,
+        "nearestRunnerCase": null,
+        "text": "      a(state.cometCosmetics[slot] && style.display!=='none','Comet '+slot+' remains equipped and visible with '+id);"
+      },
+      {
+        "path": "tests/behavioral/rift-guidance.cjs",
+        "line": 116,
+        "nearestRunnerCase": null,
+        "text": "  record.cometCosmetics=[];"
+      },
+      {
+        "path": "tests/behavioral/rift-guidance.cjs",
+        "line": 118,
+        "nearestRunnerCase": null,
+        "text": "   await evaluate(`riftStatusMobile.setup(${inset},'boss');(()=>{const b=__lumenfallQaBridge,s=b.getState();s.owned.rifttrail=true;s.owned.starfallcrest=true;s.cometCosmetics={trail:false,crest:false};b.setState(s);b.renderLayout();${equipped.trail?\"document.querySelector('[data-comet-cosmetic=trail]').click();\":\"\"}${equipped.crest?\"document.querySelector('[data-comet-cosmetic=crest]').click();\":\"\"}})()`);"
+      },
+      {
+        "path": "tests/behavioral/rift-guidance.cjs",
+        "line": 120,
+        "nearestRunnerCase": null,
+        "text": "   const shown=await snapshot();await toggleWithInput(true);const hidden=await snapshot();sameGeometry(shown,hidden,'Comet cosmetics');sameData(shown,hidden,'Comet cosmetics hints');await toggleWithInput();record.cometCosmetics.push({equipped,boxes:shown.boxes});"
+      },
+      {
+        "path": "tests/behavioral/rift-guidance.cjs",
+        "line": 122,
+        "nearestRunnerCase": null,
+        "text": "  await evaluate(`riftStatusMobile.setup(${inset},'dense');(()=>{const b=__lumenfallQaBridge,s=b.getState();s.owned.comettrials=true;s.maxDepthEver=Math.max(20,s.maxDepthEver);s.cometTrial={id:'quiet',target:15,phase:'pending'};b.setState(s);b.renderLayout();})()`);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 686,
+        "nearestRunnerCase": "mature-load",
+        "text": "          assert(s.owned.autoascend && s.legacyCometPurchases.offline24 && s.legacyCometPurchases.offline48 && s.legacyCometPurchases.rememberbulk,'existing Auto-Ascend and archived Rest Stop entitlements must remain owned');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 2474,
+        "nearestRunnerCase": "p2-endgame-currency-utility",
+        "text": "          assert(refresh1.state.owned.autoascend && refresh1.state.legacyCometPurchases.offline24 && refresh1.state.legacyCometPurchases.offline48 && refresh1.state.legacyCometPurchases.rememberbulk,'refreshing a quest must preserve Auto-Ascend and archived legacy purchase ownership');"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 192,
+        "nearestRunnerCase": null,
+        "text": "  s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};s.autoAscendEnabled=true;s.autoAscendTargetDepth=121;"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 521,
+        "nearestRunnerCase": null,
+        "text": "  s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};s.cometCosmetics={trail:true,crest:true};"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 528,
+        "nearestRunnerCase": null,
+        "text": "const PAID_FIELDS=['nodes','research','longStudyLevels','owned','heroRarity','wispModules','wispUltimate','studyQueue','studyUseMotes','studySpeedTargets','empowerQueue','researchQueue','formationPresets','cometCosmetics'];"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 647,
+        "nearestRunnerCase": null,
+        "text": "    const a=app(source),q=a.q,s=paidState(q,route!=='manual');s.cometTrial={id:'single',target:50,phase:'pending'};"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 650,
+        "nearestRunnerCase": null,
+        "text": "    t.eq(q.get().cometTrial.phase,'active','pending Single Star begins after actual '+route+' Ascend');"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 651,
+        "nearestRunnerCase": null,
+        "text": "    t.eq(q.get().cometTrial.failed,false,'Recall cannot fail a newly started single-Wisp trial');"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 654,
+        "nearestRunnerCase": null,
+        "text": "    q.save();t.eq(app(source,a.storage).q.get().cometTrial,q.get().cometTrial,'single trial state remains valid after reload');"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-economy.cjs",
+        "line": 101,
+        "nearestRunnerCase": null,
+        "text": "    'treeTrainingProgress','empowerQueue','studyQueue','studyUseMotes','cometTrial']) result[key]=clone(s[key]===undefined?null:s[key]);"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-mobile.cjs",
+        "line": 67,
+        "nearestRunnerCase": null,
+        "text": "  s.owned.autoascend=true;s.owned.comettrials=true;s.owned.rifttrail=true;s.owned.starfallcrest=true;"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-offline.cjs",
+        "line": 127,
+        "nearestRunnerCase": null,
+        "text": "  for(const key of ['dailyStats','achieved','comets','activeStudies','sigilResonanceUses','buffUntil','buffMult','legacyCometPurchases','offline12hRefund'])"
+      }
+    ],
+    "catalogue": [
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 197,
+        "nearestRunnerCase": null,
+        "text": "    shopItem: function(){return JSON.parse(JSON.stringify(SHOP.find(function(x){return x.id==='autoascend';})));}"
+      },
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 258,
+        "nearestRunnerCase": null,
+        "text": "    deeds: function(){return {total:ACHIEVEMENTS.reduce(function(n,a){return n+a.reward;},0),items:ACHIEVEMENTS.map(function(a){return {id:a.id,eligible:a.check(state),progress:deedProgress(a,state),text:deedProgressText(a,!!state.achieved[a.id]),reward:a.reward};})};},"
+      },
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 607,
+        "nearestRunnerCase": null,
+        "text": "    var restStopTotal=SHOP.reduce(function(sum,item){return sum+item.cost;},0);"
+      },
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 608,
+        "nearestRunnerCase": null,
+        "text": "    var deedTotal=ACHIEVEMENTS.reduce(function(sum,item){return sum+item.reward;},0);"
+      },
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 613,
+        "nearestRunnerCase": null,
+        "text": "      restStopCometTotal:restStopTotal,"
+      },
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 614,
+        "nearestRunnerCase": null,
+        "text": "      deedCometTotal:deedTotal,"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 28,
+        "nearestRunnerCase": null,
+        "text": "      cap:offlineCapHours,catalog:()=>SHOP,summary:simulationSummary};"
+      },
+      {
+        "path": "tests/behavioral/forge-expansion-harness.cjs",
+        "line": 72,
+        "nearestRunnerCase": null,
+        "text": "    achievementDefs:function(){return ACHIEVEMENTS;},deed:function(id){return ACHIEVEMENTS.find(function(a){return a.id===id;}).check(state);},achievements:applyAchievementChecks,"
+      },
+      {
+        "path": "tests/behavioral/forge.js",
+        "line": 52,
+        "nearestRunnerCase": null,
+        "text": "    [19,20,59,60].forEach(function(n){var s=seed();s.research.focus=n;ids.concat(expansion).forEach(function(id){s.research[id]=100;});b.setState(s);b.upgradeClarity.render();var d=f.deeds();ok(d.total===683,'one-time Comet pool');['labmaster','labqueue'].forEach(function(id){var item=d.items.find(function(a){return a.id===id;}),target=id==='labmaster'?20:60;ok(item.eligible===(n>=target) && item.progress.current===n,'legacy-only threshold '+n+' '+id);var progress=document.querySelector('[data-deed-progress=\"'+id+'\"]'),scope=progress.closest('.ach-card').querySelector('.deed-scope');ok(scope.textContent==='Counts Battle Focus, Shard Sense, Formation Training, Guardian’s Resolve and Swift Recovery only. Other Forge upgrades do not count.','Deed explains all five legacy upgrades separately');ok(item.text.endsWith('original Forge levels')&&!item.text.includes('Swift Recovery'),'Deed progres [line truncated in index; inspect exact published source]"
+      },
+      {
+        "path": "tests/behavioral/forge.js",
+        "line": 79,
+        "nearestRunnerCase": null,
+        "text": "        if(kind==='deed'){s.research.focus=19;b.setState(s);assert(!f.deeds().items.find(function(a){return a.id==='labmaster';}).eligible,'negative new levels in Deed');}"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion-harness.cjs",
+        "line": 36,
+        "nearestRunnerCase": null,
+        "text": " deed:function(id){return ACHIEVEMENTS.find(function(a){return a.id===id;}).check(state);},achievements:applyAchievementChecks};"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 18,
+        "nearestRunnerCase": null,
+        "text": "  'old-purchase':['  item=item && SHOP.find(function(entry){return entry.id===item.id;});',\"  if(item && item.id==='rememberbulk'){state.comets-=item.cost;return;}\\n  item=item && SHOP.find(function(entry){return entry.id===item.id;});\"],"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 27,
+        "nearestRunnerCase": null,
+        "text": "  buy:buyShopItem,complete:restStopComplete,shop:SHOP,"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 37,
+        "nearestRunnerCase": null,
+        "text": "  ok(b.shop.reduce((sum,x)=>sum+x.cost,0)===450,'accepted F27 catalog prices remain');"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 8,
+        "nearestRunnerCase": null,
+        "text": "  b.forge.deeds().items.forEach(function(d){s.achieved[d.id]=true;});"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 80,
+        "nearestRunnerCase": null,
+        "text": "    ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement=\"'+id+'\"]').closest('.ach-card').querySelector('.deed-scope').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 81,
+        "nearestRunnerCase": null,
+        "text": "    deeds.longStudyLevels.guardmastery=24;install(deeds);ok(!b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'Inquiry13 cannot supply level25');"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 82,
+        "nearestRunnerCase": null,
+        "text": "    deeds.longStudyLevels.guardmastery=25;install(deeds);ok(b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'original level25 still earns');"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 84,
+        "nearestRunnerCase": null,
+        "text": "    var every=b.forge.deeds().items.find(function(d){return d.id==='allstudies';});ok(every.eligible&&every.progress.target===5&&every.progress.current===5,'five retained targets require no Inquiry; old total credit retained');"
+      },
+      {
+        "path": "tests/behavioral/measured-inquiry.js",
+        "line": 85,
+        "nearestRunnerCase": null,
+        "text": "    b.forge.achievements();var once=b.getState();b.forge.achievements();same(b.getState(),once,'sticky one-time grants');ok(b.forge.deeds().total===683,'unchanged683 pool');"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-ui.cjs",
+        "line": 33,
+        "nearestRunnerCase": null,
+        "text": "   await new Promise(resolve=>setTimeout(resolve,450));card=document.querySelector('[data-offline-policy]');card.scrollIntoView({block:'center'});"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-ui.cjs",
+        "line": 63,
+        "nearestRunnerCase": null,
+        "text": "  await new Promise(r=>setTimeout(r,450));"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 2396,
+        "nearestRunnerCase": "p2-endgame-currency-utility",
+        "text": "          assert(economy.restStopCometTotal===450,'the four finite Rest Stop purchases must total 450 Comets');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 2397,
+        "nearestRunnerCase": "p2-endgame-currency-utility",
+        "text": "          assert(economy.deedCometTotal===683,'current one-time Deeds must total 683 Comets');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 2489,
+        "nearestRunnerCase": "p2-endgame-currency-utility",
+        "text": "            restStopCometTotal:economy.restStopCometTotal,"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 2490,
+        "nearestRunnerCase": "p2-endgame-currency-utility",
+        "text": "            deedCometTotal:economy.deedCometTotal,"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-harness.cjs",
+        "line": 84,
+        "nearestRunnerCase": null,
+        "text": "    achievementDefs:function(){return ACHIEVEMENTS;},deed:function(id){return ACHIEVEMENTS.find(function(a){return a.id===id;}).check(state);},achievements:applyAchievementChecks,"
+      },
+      {
+        "path": "tests/behavioral/upgrade-clarity.js",
+        "line": 81,
+        "nearestRunnerCase": null,
+        "text": "  var ids=b.forge.deeds().items.map(function(a){return a.id;});"
+      },
+      {
+        "path": "tests/behavioral/upgrade-clarity.js",
+        "line": 94,
+        "nearestRunnerCase": null,
+        "text": "      pureRender(s);var item=b.forge.deeds().items.find(function(a){return a.id===id;});"
+      },
+      {
+        "path": "tests/behavioral/upgrade-clarity.js",
+        "line": 124,
+        "nearestRunnerCase": null,
+        "text": "  ok(b.forge.deeds().total===683,'reward catalogue unchanged');"
+      },
+      {
+        "path": "tests/behavioral/upgrade-identity.js",
+        "line": 61,
+        "nearestRunnerCase": null,
+        "text": "    var deed=f.deeds().items.find(function(d){return d.id==='allstudies';});ok(deed.eligible&&deed.progress.current===5&&deed.progress.target===5,'fresh Every Path reachable without closed Studies/Inquiry');"
+      },
+      {
+        "path": "tests/behavioral/upgrade-identity.js",
+        "line": 63,
+        "nearestRunnerCase": null,
+        "text": "    fresh=b.freshStateSnapshot();fresh.research.charge=60;install(fresh);['labmaster','labqueue'].forEach(function(id){ok(f.deeds().items.find(function(d){return d.id===id;}).eligible,'fresh original Forge threshold reachable '+id);});"
+      },
+      {
+        "path": "tests/behavioral/upgrade-identity.js",
+        "line": 64,
+        "nearestRunnerCase": null,
+        "text": "    ok(f.deeds().total===683,'one-time Comet reward pool unchanged');"
+      }
+    ],
+    "extraction": [
+      {
+        "path": "tests/behavioral/bridge.js",
+        "line": 391,
+        "nearestRunnerCase": null,
+        "text": "        assert(source.indexOf(guard)!==-1,'timer mutation anchor');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 30,
+        "nearestRunnerCase": null,
+        "text": "  const script=html.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1].replace(\"if(document.readyState==='loading'){\",bridge+\"if(document.readyState==='loading'){\");"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 31,
+        "nearestRunnerCase": null,
+        "text": "  new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)("
+      },
+      {
+        "path": "tests/behavioral/forge-expansion-harness.cjs",
+        "line": 133,
+        "nearestRunnerCase": null,
+        "text": "  const script = source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1];"
+      },
+      {
+        "path": "tests/behavioral/forge-expansion-harness.cjs",
+        "line": 136,
+        "nearestRunnerCase": null,
+        "text": "  new Function('window', 'document', 'localStorage', 'Date', 'setTimeout', 'clearTimeout', 'performance', 'BigInt', 'location', 'navigator', 'qaStage', script.replace(marker, hooks + marker))("
+      },
+      {
+        "path": "tests/behavioral/forge-expansion-legacy.cjs",
+        "line": 12,
+        "nearestRunnerCase": null,
+        "text": "var scripts=[],match,re=/<script>\\s*([\\s\\S]*?)<\\/script>/g;while((match=re.exec(source))){scripts.push(match[1]);new Function(match[1]);}"
+      },
+      {
+        "path": "tests/behavioral/formation-bonds.cjs",
+        "line": 24,
+        "nearestRunnerCase": null,
+        "text": " const script=html.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1].replace(\"if(document.readyState==='loading'){\",bridge+\"if(document.readyState==='loading'){\");"
+      },
+      {
+        "path": "tests/behavioral/formation-bonds.cjs",
+        "line": 25,
+        "nearestRunnerCase": null,
+        "text": " new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,class extends Date{static now(){return now;}},fn=>{queue.push({id:++seq,fn});return seq;},id=>{const i=queue.findIndex(x=>x.id===id);if(i>=0)queue.splice(i,1);},{now:()=>0});"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion-harness.cjs",
+        "line": 38,
+        "nearestRunnerCase": null,
+        "text": " const script=source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1],marker=\"if(document.readyState==='loading'){\";"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion-harness.cjs",
+        "line": 40,
+        "nearestRunnerCase": null,
+        "text": " new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance','BigInt','location','navigator',script.replace(marker,hooks+marker))("
+      },
+      {
+        "path": "tests/behavioral/lab-expansion-legacy.cjs",
+        "line": 8,
+        "nearestRunnerCase": null,
+        "text": "var scripts=[],match,re=/<script>\\s*([\\s\\S]*?)<\\/script>/g;while((match=re.exec(source))){scripts.push(match[1]);new Function(match[1]);}"
+      },
+      {
+        "path": "tests/behavioral/lab-motes-offline.cjs",
+        "line": 18,
+        "nearestRunnerCase": null,
+        "text": "  const script=source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1].replace(\"if(document.readyState==='loading'){\",bridge+\"if(document.readyState==='loading'){\");"
+      },
+      {
+        "path": "tests/behavioral/lab-motes-offline.cjs",
+        "line": 20,
+        "nearestRunnerCase": null,
+        "text": "  new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,Clock,fn=>{queue.push(fn);return queue.length;},()=>{},{now:()=>monotonic});"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 24,
+        "nearestRunnerCase": null,
+        "text": "const marker=\"if(document.readyState==='loading'){\",script=html.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1];"
+      },
+      {
+        "path": "tests/behavioral/loadout-memory.cjs",
+        "line": 34,
+        "nearestRunnerCase": null,
+        "text": "  vm.runInContext(script.replace(marker,vmBridge+marker),ctx,{timeout:3000});"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-webview60.cjs",
+        "line": 7,
+        "nearestRunnerCase": null,
+        "text": "var script = html.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1];"
+      },
+      {
+        "path": "tests/behavioral/offline-12h-webview60.cjs",
+        "line": 19,
+        "nearestRunnerCase": null,
+        "text": "new Function('window','document','localStorage','Date','setTimeout','clearTimeout','BigInt','btoa','atob','performance',"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 30,
+        "nearestRunnerCase": null,
+        "text": "  const script = html.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1];"
+      },
+      {
+        "path": "tests/behavioral/offline-12h.cjs",
+        "line": 32,
+        "nearestRunnerCase": null,
+        "text": "  new Function('window', 'document', 'localStorage', 'Date', 'setTimeout', 'clearTimeout', 'BigInt', 'performance',"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup-v8.cjs",
+        "line": 12,
+        "nearestRunnerCase": null,
+        "text": "var script=source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1].replace(\"if(document.readyState==='loading'){\",bridge+\"if(document.readyState==='loading'){\");"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup-v8.cjs",
+        "line": 14,
+        "nearestRunnerCase": null,
+        "text": "new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,{"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 61,
+        "nearestRunnerCase": null,
+        "text": " const script=html.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1].replace(\"if(document.readyState==='loading'){\",bridge+\"if(document.readyState==='loading'){\");"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 62,
+        "nearestRunnerCase": null,
+        "text": " new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,date,(fn)=>{queue.push({id:++seq,fn});return seq;},id=>{const i=queue.findIndex(x=>x.id===id);if(i>=0)queue.splice(i,1);},{now:()=>monotonic});"
+      },
+      {
+        "path": "tests/behavioral/prism-closeout-data.cjs",
+        "line": 8,
+        "nearestRunnerCase": null,
+        "text": "const start=html.indexOf('// PRISM_EARNING_001:'),end=html.indexOf('function ascendPrismGain(',start);assert(start>=0&&end>start);"
+      },
+      {
+        "path": "tests/behavioral/prism-closeout-data.cjs",
+        "line": 12,
+        "nearestRunnerCase": null,
+        "text": "const nodesStart=html.indexOf('var NODES = ['),nodesEnd=html.indexOf('function treeFormationCapacity(',nodesStart);"
+      },
+      {
+        "path": "tests/behavioral/prism-closeout-data.cjs",
+        "line": 13,
+        "nearestRunnerCase": null,
+        "text": "const numericStart=html.indexOf('function finiteNonNegative('),numericEnd=html.indexOf('function boundedInt(',numericStart);"
+      },
+      {
+        "path": "tests/behavioral/prism-closeout-data.cjs",
+        "line": 15,
+        "nearestRunnerCase": null,
+        "text": "const nodes=html.slice(numericStart,numericEnd)+'\\n'+html.slice(nodesStart,nodesEnd);"
+      },
+      {
+        "path": "tests/behavioral/prism-closeout-data.cjs",
+        "line": 17,
+        "nearestRunnerCase": null,
+        "text": "vm.runInContext(['nodeLevel','longStudyLevel','longStudyPrismMult','prismMult'].map(single).join('\\n')+'\\n'+nodes+'\\n'+cost+'\\n'+html.slice(start,end),ctx);"
+      },
+      {
+        "path": "tests/behavioral/prism-earning-state.cjs",
+        "line": 25,
+        "nearestRunnerCase": null,
+        "text": " const script=source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1],marker=\"if(document.readyState==='loading'){\";"
+      },
+      {
+        "path": "tests/behavioral/prism-earning-state.cjs",
+        "line": 27,
+        "nearestRunnerCase": null,
+        "text": " new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance','BigInt','location',script.replace(marker,hooks+marker))("
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 9,
+        "nearestRunnerCase": null,
+        "text": "function single(name){const m=source.match(new RegExp('function '+name+'\\\\([^\\\\n]*\\\\}'));assert(m,'missing production function '+name);return m[0];}"
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 10,
+        "nearestRunnerCase": null,
+        "text": "const start=source.indexOf('// PRISM_EARNING_001:'),end=source.indexOf('function ascendPrismGain(',start);"
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 12,
+        "nearestRunnerCase": null,
+        "text": "const block=source.slice(start,end),helpers=['nodeLevel','longStudyLevel','longStudyPrismMult','prismMult'].map(single).join('\\n');"
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 15,
+        "nearestRunnerCase": null,
+        "text": "const treeStart=source.indexOf('var NODES = ['),treeEnd=source.indexOf('function treeFormationCapacity(',treeStart);"
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 16,
+        "nearestRunnerCase": null,
+        "text": "const numberStart=source.indexOf('function finiteNonNegative('),numberEnd=source.indexOf('function boundedInt(',numberStart);"
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 18,
+        "nearestRunnerCase": null,
+        "text": "const treeHelpers=source.slice(numberStart,numberEnd)+'\\n'+source.slice(treeStart,treeEnd);"
+      },
+      {
+        "path": "tests/behavioral/prism-earning.cjs",
+        "line": 19,
+        "nearestRunnerCase": null,
+        "text": "function engine(code=block){const c={ASCEND_REPEAT_REWARD_RATE:0.20,BigInt:undefined,state:null};vm.createContext(c);vm.runInContext(helpers+'\\n'+treeHelpers+'\\nfunction progressionDepth(){return state.riftMode===\\'farm\\'?state.farmReturnDepth:state.depth;}\\n'+code,c,{timeout:2000});return c;}"
+      },
+      {
+        "path": "tests/behavioral/prism-legacy-runtime.cjs",
+        "line": 16,
+        "nearestRunnerCase": null,
+        "text": "var scripts=[],match,re=/<script>\\s*([\\s\\S]*?)<\\/script>/g;while((match=re.exec(source))){scripts.push(match[1]);new Function(match[1]);}"
+      },
+      {
+        "path": "tests/behavioral/prism-legacy-runtime.cjs",
+        "line": 18,
+        "nearestRunnerCase": null,
+        "text": "new Function('window','document','localStorage','setTimeout','clearTimeout','performance',scripts[0].replace(marker,hooks+marker))(window,document,localStorage,function(){return 0;},function(){},{now:function(){return 0;}});"
+      },
+      {
+        "path": "tests/behavioral/process_contract.cjs",
+        "line": 36,
+        "nearestRunnerCase": null,
+        "text": "  vm.runInNewContext(source.replace(before, after), { module: mod, exports: mod.exports, require: createRequire(file),"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 185,
+        "nearestRunnerCase": null,
+        "text": "    const start = source.indexOf(\"  var root=els['research-list'],main=document.querySelector('main');\", source.indexOf('function renderResearch(){'));"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 186,
+        "nearestRunnerCase": null,
+        "text": "    const end = source.indexOf(\"  els['research-list'].querySelectorAll('[data-mult]')\", start);"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 188,
+        "nearestRunnerCase": null,
+        "text": "    source = source.slice(0, start) + `  replaceControlMarkup(els['research-list'],multHtml + html);"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 191,
+        "nearestRunnerCase": null,
+        "text": "` + source.slice(end);"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 194,
+        "nearestRunnerCase": null,
+        "text": "    const start = source.indexOf('function renderResearch(){'), marker = '      state.researchQueue[id] = !state.researchQueue[id];';"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 195,
+        "nearestRunnerCase": null,
+        "text": "    const at = source.indexOf(marker, start), save = source.indexOf('      saveState();', at);"
+      },
+      {
+        "path": "tests/behavioral/run.cjs",
+        "line": 197,
+        "nearestRunnerCase": null,
+        "text": "    source = source.slice(0, save) + '      saveState();\\n' + source.slice(save);"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-harness.cjs",
+        "line": 143,
+        "nearestRunnerCase": null,
+        "text": "  const match = source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/);"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-harness.cjs",
+        "line": 147,
+        "nearestRunnerCase": null,
+        "text": "  new Function('window', 'document', 'localStorage', 'Date', 'setTimeout', 'clearTimeout', 'performance', 'BigInt', 'location', 'navigator', 'qaStage', script.replace(marker, hooks + marker))("
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-v8.cjs",
+        "line": 24,
+        "nearestRunnerCase": null,
+        "text": "while((match=pattern.exec(source))){if(match[1].trim()){new Function(match[1]);scripts.push(match[1]);}}"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-v8.cjs",
+        "line": 26,
+        "nearestRunnerCase": null,
+        "text": "var game=source.match(/<script>\\s*([\\s\\S]*?)<\\/script>/)[1];"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-v8.cjs",
+        "line": 48,
+        "nearestRunnerCase": null,
+        "text": "var execute=new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance','BigInt','location','navigator',game.replace(marker,hooks+marker));"
+      }
+    ],
+    "fullState": [
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 44,
+        "nearestRunnerCase": null,
+        "text": "    assert.deepEqual(Object.keys(actual).sort(),Object.keys(expected).sort(),label+' keys');"
+      },
+      {
+        "path": "tests/behavioral/comet-unlocks-core.cjs",
+        "line": 45,
+        "nearestRunnerCase": null,
+        "text": "    for(const key of Object.keys(actual))parity(actual[key],expected[key],label+'.'+key);return;"
+      },
+      {
+        "path": "tests/behavioral/forge-expansion.cjs",
+        "line": 408,
+        "nearestRunnerCase": null,
+        "text": "const PAID_FIELDS=['research','researchQueue','nodes','longStudyLevels','owned','heroRarity','wispModules','wispUltimate','studyQueue','studyUseMotes','studySpeedTargets','formationPresets'];"
+      },
+      {
+        "path": "tests/behavioral/forge-expansion.cjs",
+        "line": 415,
+        "nearestRunnerCase": null,
+        "text": "  for(const key of PAID_FIELDS)a.eq(after[key],before[key],label+' retains '+key);"
+      },
+      {
+        "path": "tests/behavioral/formation-bonds.cjs",
+        "line": 30,
+        "nearestRunnerCase": null,
+        "text": "function parity(a,b,label='state'){if(typeof a==='number'&&typeof b==='number'){near(a,b,label);return;}if(a&&typeof a==='object'){assert.deepEqual(Object.keys(a).sort(),Object.keys(b).sort(),label+' keys');for(const k of Object.keys(a))parity(a[k],b[k],label+'.'+k);return;}assert.equal(a,b,label);}"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion.cjs",
+        "line": 81,
+        "nearestRunnerCase": null,
+        "text": " const paidFields=['nodes','research','longStudyLevels','owned','studyQueue','studyUseMotes','studySpeedTargets','activeStudies'];"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion.cjs",
+        "line": 88,
+        "nearestRunnerCase": null,
+        "text": "  for(const field of paidFields)eq(after[field],before[field],label+' preserves '+field);"
+      },
+      {
+        "path": "tests/behavioral/lab-expansion.cjs",
+        "line": 121,
+        "nearestRunnerCase": null,
+        "text": "  for(const field of paidFields.filter(field=>field!=='activeStudies'))eq(r.get()[field],before[field],'offline preserves paid '+field);"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 71,
+        "nearestRunnerCase": null,
+        "text": "  assert.deepEqual(Object.keys(a).sort(),Object.keys(b).sort(),label+' keys');"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 72,
+        "nearestRunnerCase": null,
+        "text": "  Object.keys(a).forEach(k=>compare(a[k],b[k],label+'.'+k));return;"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 78,
+        "nearestRunnerCase": null,
+        "text": "function baselineSummary(actual,expected,label){"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 84,
+        "nearestRunnerCase": null,
+        "text": "function baselineState(actual,expected,seed,label){"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 204,
+        "nearestRunnerCase": null,
+        "text": "  baselineSummary(b,a,'unchanged baseline summary '+seconds);baselineState(next.b.get(),old.b.get(),seed,'unchanged baseline state '+seconds);"
+      },
+      {
+        "path": "tests/behavioral/offline-catchup.cjs",
+        "line": 214,
+        "nearestRunnerCase": null,
+        "text": " baselineSummary(legacySum,oldSum,'economy/order baseline '+kind);baselineState(legacy.b.get(),old.b.get(),all,'baseline chronology '+kind);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 342,
+        "nearestRunnerCase": null,
+        "text": "  function assertLifecycleState(actual,expected,label){"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 401,
+        "nearestRunnerCase": null,
+        "text": "    assertLifecycleState(actual,expected.state,label);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 409,
+        "nearestRunnerCase": null,
+        "text": "    assertLifecycleState(afterDuplicate,beforeDuplicate,label+' duplicate visible signal');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 471,
+        "nearestRunnerCase": null,
+        "text": "  function assertFresh(s){"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 585,
+        "nearestRunnerCase": "p2-07a-persist-reset",
+        "text": "          assertFresh(s);assert(s.formationRebuild===null,'Reset clears pending intent');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 659,
+        "nearestRunnerCase": "fresh-load",
+        "text": "          assertFresh(s);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 711,
+        "nearestRunnerCase": "corrupted-load",
+        "text": "          assertFresh(s);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 811,
+        "nearestRunnerCase": "reset-roundtrip",
+        "text": "            assertFresh(s);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 818,
+        "nearestRunnerCase": "reset-roundtrip",
+        "text": "          assertFresh(s);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 861,
+        "nearestRunnerCase": "unsupported-future-load",
+        "text": "          assertFresh(s);"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1267,
+        "nearestRunnerCase": "lifecycle-cold-restart",
+        "text": "          assertLifecycleState(state(),expectedCold.state,'cold restart');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1276,
+        "nearestRunnerCase": "lifecycle-cold-restart",
+        "text": "          assertLifecycleState(state(),beforeColdVisible,'cold restart stray visible signal');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1388,
+        "nearestRunnerCase": "lifecycle-long-study",
+        "text": "          assertLifecycleState(state(),expectedStudy.state,'Long Study cold restart');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1402,
+        "nearestRunnerCase": "lifecycle-long-study",
+        "text": "          assertLifecycleState(state(),studyBeforeVisible,'Long Study duplicate visible signal');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1425,
+        "nearestRunnerCase": "lifecycle-lab-queue",
+        "text": "          assertLifecycleState(state(),expectedLab.state,'Lab queue cold restart');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1435,
+        "nearestRunnerCase": "lifecycle-lab-queue",
+        "text": "          assertLifecycleState(state(),labBeforeVisible,'Lab queue duplicate visible signal');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1471,
+        "nearestRunnerCase": "lifecycle-daily-rollover",
+        "text": "            assertLifecycleState(state(),firstSnapshot,'same-day duplicate visible after daily rollover');"
+      },
+      {
+        "path": "tests/behavioral/runner.js",
+        "line": 1513,
+        "nearestRunnerCase": "lifecycle-daily-rollover",
+        "text": "          assertLifecycleState(state(),secondSnapshot,'second daily duplicate visible');"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 528,
+        "nearestRunnerCase": null,
+        "text": "const PAID_FIELDS=['nodes','research','longStudyLevels','owned','heroRarity','wispModules','wispUltimate','studyQueue','studyUseMotes','studySpeedTargets','empowerQueue','researchQueue','formationPresets','cometCosmetics'];"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 544,
+        "nearestRunnerCase": null,
+        "text": "  for(const field of PAID_FIELDS)t.eq(after[field],before[field],label+' all paid data and intent survive '+field);"
+      },
+      {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "line": 568,
+        "nearestRunnerCase": null,
+        "text": "      for(const field of PAID_FIELDS)t.eq(q.get()[field],event.after[field],route+' canonical endpoint retains '+field);"
+      }
+    ]
+  },
+  "workflows": [
+    {
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "bytes": 5691,
+      "sha256": "f0218e6b818970a8bacdf0f43431c89c94b8a7a85343be29b79bc1b99b23e818",
+      "gitBlob": "4c67564c7d30a51f618eb76f286cc34a4bf4f6d0",
+      "name": "Pre-merge validation",
+      "status": "existing mandatory lane; preserve workflow",
+      "runBlocks": [
+        {
+          "step": "APK identity verifier self-test",
+          "line": 30,
+          "endLine": 30,
+          "rawRun": "node scripts/verify_apk_identity.cjs --self-test"
+        },
+        {
+          "step": "Node tooling regression checks",
+          "line": 33,
+          "endLine": 33,
+          "rawRun": "node tests/tooling/run.cjs"
+        },
+        {
+          "step": "Validate game source",
+          "line": 37,
+          "endLine": 38,
+          "rawRun": "node scripts/ci/validate_source.cjs"
+        },
+        {
+          "step": "Stage web assets",
+          "line": 42,
+          "endLine": 47,
+          "rawRun": "rm -rf mobile/www\nmkdir -p mobile/www/fonts mobile/www/branding\ncp index.html mobile/www/index.html\ncp -r fonts/. mobile/www/fonts/\ncp -r branding/. mobile/www/branding/"
+        },
+        {
+          "step": "Rift cosmetics selection, persistence and mobile acceptance",
+          "line": 50,
+          "endLine": 50,
+          "rawRun": "node tests/behavioral/rift-cosmetics.cjs --source mobile/www/index.html --negative"
+        },
+        {
+          "step": "Exact Prism earning numerical and causal regression",
+          "line": 53,
+          "endLine": 53,
+          "rawRun": "node tests/behavioral/prism-earning.cjs --source mobile/www/index.html"
+        },
+        {
+          "step": "Development currency UI and retained-value acceptance",
+          "line": 56,
+          "endLine": 59,
+          "rawRun": "node scripts/codex/check_context.cjs --task docs/tasks/PRISM_EARNING_001.md\nnode scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_EXPANSION_001.md\nnode tests/behavioral/collection-price-ui.cjs index.html /tmp/lumenfall-collection-price --negative"
+        },
+        {
+          "step": "Stateful behavioral regression suite",
+          "line": 63,
+          "endLine": 68,
+          "rawRun": "set -euo pipefail\nmkdir -p validation-evidence\ngit rev-parse HEAD > validation-evidence/commit.txt\nsha256sum index.html > validation-evidence/source-sha256.txt\nnode tests/behavioral/run.cjs --web-root mobile/www --raw-artifacts validation-evidence/raw 2>&1 | tee validation-evidence/behavioral.log"
+        },
+        {
+          "step": "Behavioral harness negative self-test",
+          "line": 72,
+          "endLine": 83,
+          "rawRun": "set -euo pipefail\nmkdir -p validation-evidence\n{\n  for scenario in self-test-bad-assertion self-test-uncaught-error self-test-unhandled-rejection self-test-parity-regression self-test-chronology-regression self-test-wisp-formula-regression self-test-wisp-pacing-regression self-test-endgame-currency-regression self-test-wisp-role-regression self-test-p1-05-selected self-test-p1-05-focus-return self-test-lifecycle-duplicate self-test-save-backup-placement self-test-save-backup-confirmation self-test-upgrade-identity-buy self-test-upgrade-identity-value self-test-upgrade-identity-clock self-test-ascend-prisms-tree self-test-ascend-prisms-lab self-test-ascend-prisms-payout self-test-ascend-prisms-repeat self-test-ascend-prisms-rounding; do\n    if node tests/behavioral/run.cjs --web-root mobile/www --scenario \"$scenario\" --raw-artifacts validation-evidence/negative-raw; then\n      echo \"::error::Behavioral harness negative scenario '$scenario' unexpectedly passed.\"\n      exit 1\n    fi\n    echo \"Behavioral harness correctly caught expected failure: $scenario\"\n  done\n} 2>&1 | tee validation-evidence/negative-self-tests.log"
+        },
+        {
+          "step": "Install runtime error guard in staged copy",
+          "line": 87,
+          "endLine": 88,
+          "rawRun": "node scripts/ci/smoke.cjs --install-guard mobile/www/index.html"
+        },
+        {
+          "step": "Browser runtime smoke test",
+          "line": 92,
+          "endLine": 129,
+          "rawRun": "set -euo pipefail\n\nCHROME=\"$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)\"\nif [ -z \"$CHROME\" ]; then\n  echo \"No supported Chromium browser found on the runner.\"\n  exit 1\nfi\n\nnode scripts/serve.cjs --port 4173 --directory mobile/www >/tmp/lumenfall-http.log 2>&1 &\nSERVER_PID=$!\ntrap 'kill \"$SERVER_PID\" >/dev/null 2>&1 || true' EXIT\n\nready=0\nfor _ in $(seq 1 20); do\n  if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null && curl --fail --silent http://127.0.0.1:4173/branding/lumenfall-mark.svg >/dev/null; then\n    ready=1\n    break\n  fi\n  sleep 0.25\ndone\nif [ \"$ready\" -ne 1 ]; then\n  cat /tmp/lumenfall-http.log\n  exit 1\nfi\n\n\"$CHROME\" \\\n  --headless=new \\\n  --no-sandbox \\\n  --disable-gpu \\\n  --disable-dev-shm-usage \\\n  --window-size=390,844 \\\n  --virtual-time-budget=1800 \\\n  --dump-dom \\\n  http://127.0.0.1:4173/index.html \\\n  >/tmp/lumenfall-dom.html 2>/tmp/lumenfall-chrome.log\n\nnode scripts/ci/smoke.cjs --dom /tmp/lumenfall-dom.html --chrome-log /tmp/lumenfall-chrome.log --require-guard"
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "bytes": 2681,
+      "sha256": "8dd81626af8d3a3c0e3519387060f3015adbbd220ce48d30732555291a3eda02",
+      "gitBlob": "d5e5778bc4819fa5bc1d162a9c9362ed68051199",
+      "name": "Research Lab expansion validation",
+      "status": "existing mandatory lane; preserve workflow",
+      "runBlocks": [
+        {
+          "step": "Exact source identity and task context",
+          "line": 20,
+          "endLine": 26,
+          "rawRun": "set -euo pipefail\nmkdir -p lab-validation\ngit rev-parse HEAD > lab-validation/commit.txt\nsha256sum index.html > lab-validation/source-sha256.txt\nnode scripts/ci/validate_source.cjs | tee lab-validation/source.txt\nnode scripts/codex/check_context.cjs --task docs/tasks/LAB_EXPANSION_001.md | tee lab-validation/context.txt"
+        },
+        {
+          "step": "Complete-game Lab effects purchases save and causal controls",
+          "line": 28,
+          "endLine": 33,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/lab-expansion.cjs index.html --negative | tee lab-validation/core.json\nnode tests/behavioral/lab-expansion-boundary.cjs index.html --negative | tee lab-validation/boundary.json\nnode tests/behavioral/lab-expansion-stress.cjs index.html | tee lab-validation/boundary-stress.json\nnode tests/behavioral/prism-earning-state.cjs index.html | tee lab-validation/prism-state.json"
+        },
+        {
+          "step": "Actual mobile touch keyboard seven-slot persistence and currency colors",
+          "line": 36,
+          "endLine": 36,
+          "rawRun": "node tests/behavioral/lab-expansion-ui.cjs index.html lab-validation/mobile"
+        },
+        {
+          "step": "Execute full product on actual V8 6.0",
+          "line": 39,
+          "endLine": 48,
+          "rawRun": "set -euo pipefail\nmkdir -p /tmp/lab-node8\ncd /tmp/lab-node8\ncurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt\ncurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz\ngrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -\ntar -xf node-v8.3.0-linux-x64.tar.xz\ncd \"$GITHUB_WORKSPACE\"\n/tmp/lab-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/lab-expansion-legacy.cjs index.html | tee lab-validation/v8.json"
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "bytes": 2889,
+      "sha256": "a611890e612a80b72e964dd86f228c9fd8a4ef2ff9f99f36333dd2c7c47fb9de",
+      "gitBlob": "5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196",
+      "name": "Rift Forge expansion validation",
+      "status": "existing mandatory lane; preserve workflow",
+      "runBlocks": [
+        {
+          "step": "Exact source identity and task context",
+          "line": 20,
+          "endLine": 26,
+          "rawRun": "set -euo pipefail\nmkdir -p forge-validation\ngit rev-parse HEAD > forge-validation/commit.txt\nsha256sum index.html tests/behavioral/fixtures.json > forge-validation/source-sha256.txt\nnode scripts/ci/validate_source.cjs | tee forge-validation/source.txt\nnode scripts/codex/check_context.cjs --task docs/tasks/FORGE_EXPANSION_001.md | tee forge-validation/context.txt"
+        },
+        {
+          "step": "Exact prices real effects transactions Ascends and causal controls",
+          "line": 28,
+          "endLine": 30,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/forge-expansion.cjs index.html --negative | tee forge-validation/core.json"
+        },
+        {
+          "step": "Authoritative charge calibration and conservative boss bounds",
+          "line": 32,
+          "endLine": 34,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/forge-expansion-calibration.cjs index.html --negative | tee forge-validation/calibration.json"
+        },
+        {
+          "step": "Eight-hour Auto-Ascend capped windows and frozen offline oracle",
+          "line": 36,
+          "endLine": 38,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/offline-catchup.cjs --source index.html | tee forge-validation/offline.json"
+        },
+        {
+          "step": "Actual mobile prices input focus and twenty-card acceptance",
+          "line": 41,
+          "endLine": 41,
+          "rawRun": "node tests/behavioral/forge-expansion-ui.cjs index.html forge-validation/mobile"
+        },
+        {
+          "step": "Complete product on actual V8 6.0",
+          "line": 44,
+          "endLine": 53,
+          "rawRun": "set -euo pipefail\nmkdir -p /tmp/forge-node8\ncd /tmp/forge-node8\ncurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt\ncurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz\ngrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -\ntar -xf node-v8.3.0-linux-x64.tar.xz\ncd \"$GITHUB_WORKSPACE\"\n/tmp/forge-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/forge-expansion-legacy.cjs index.html | tee forge-validation/v8.json"
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "bytes": 4967,
+      "sha256": "4d8778abab15f004fdddb8a3580976d131767ef381515b50a6449f81be25e554",
+      "gitBlob": "9740959a724547d1cefed6952762a15da2e09fab",
+      "name": "Ascension Tree focused validation",
+      "status": "existing mandatory lane; preserve workflow",
+      "runBlocks": [
+        {
+          "step": "Exact source identity and task context",
+          "line": 24,
+          "endLine": 37,
+          "rawRun": "set -euo pipefail\nmkdir -p tree-validation\ngit rev-parse HEAD > tree-validation/commit.txt\ngit rev-parse 'HEAD^{tree}' > tree-validation/tree.txt\ngit show -s --format=%P HEAD > tree-validation/parents.txt\nsha256sum index.html tests/behavioral/fixtures.json > tree-validation/source-sha256.txt\ngit ls-tree -r HEAD .github/workflows tests/behavioral scripts/ci scripts/lib > tree-validation/source-blobs.txt\nnode scripts/ci/validate_source.cjs 2>&1 | tee tree-validation/source.txt\nnode scripts/codex/check_context.cjs --task docs/tasks/TREE_EXPANSION_001.md 2>&1 | tee tree-validation/context.txt\nmkdir -p mobile/www/fonts mobile/www/branding\ncp index.html mobile/www/index.html\ncp -r fonts/. mobile/www/fonts/\ncp -r branding/. mobile/www/branding/"
+        },
+        {
+          "step": "Tree prices real effects purchases saves and causal controls",
+          "line": 41,
+          "endLine": 43,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/tree-expansion-core.cjs index.html --negative 2>&1 | tee tree-validation/core.json"
+        },
+        {
+          "step": "Tree offline chronology and Auto-Ascend preservation",
+          "line": 45,
+          "endLine": 47,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/tree-expansion-offline.cjs index.html --negative 2>&1 | tee tree-validation/offline.json"
+        },
+        {
+          "step": "Tree independent investment and earned-benefit economy",
+          "line": 49,
+          "endLine": 51,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/tree-expansion-economy.cjs index.html --negative 2>&1 | tee tree-validation/economy.json"
+        },
+        {
+          "step": "Swift actual purchase ROI and independent Prism matrix",
+          "line": 53,
+          "endLine": 56,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/prism-earning-state.cjs index.html 2>&1 | tee tree-validation/prism-state.json\nnode tests/behavioral/prism-closeout-data.cjs index.html tree-validation/prism 2>&1 | tee tree-validation/prism-economy-summary.json"
+        },
+        {
+          "step": "Actual browser Prism payouts persistence and causal failures",
+          "line": 58,
+          "endLine": 60,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/prism-earning-focused.cjs mobile/www tree-validation/prism/browser 2>&1 | tee tree-validation/prism-browser.log"
+        },
+        {
+          "step": "Actual Tree mobile input focus prices and all tracks",
+          "line": 63,
+          "endLine": 65,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/tree-expansion-mobile.cjs index.html tree-validation/mobile 2>&1 | tee tree-validation/mobile.log"
+        },
+        {
+          "step": "Prism mobile payout and Auto-Ascend UI acceptance",
+          "line": 68,
+          "endLine": 70,
+          "rawRun": "set -euo pipefail\nnode tests/behavioral/prism-acceptance.cjs index.html tree-validation/prism/mobile 2>&1 | tee tree-validation/prism-mobile.log"
+        },
+        {
+          "step": "Complete Tree and Prism execution on actual V8 6.0",
+          "line": 73,
+          "endLine": 83,
+          "rawRun": "set -euo pipefail\nmkdir -p /tmp/tree-node8\ncd /tmp/tree-node8\ncurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt\ncurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz\ngrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -\ntar -xf node-v8.3.0-linux-x64.tar.xz\ncd \"$GITHUB_WORKSPACE\"\n/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/tree-expansion-v8.cjs index.html 2>&1 | tee tree-validation/v8.json\n/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/prism-legacy-runtime.cjs index.html tree-validation/prism/legacy-cases.json 2>&1 | tee tree-validation/prism-v8.json"
+        }
+      ]
+    }
+  ],
+  "fifthLane": {
+    "status": "new additional Comet workflow planned; no file exists at this head",
+    "preserveFourExisting": true,
+    "exactNewCommandNames": "not yet assigned; do not imply executable tests exist",
+    "requiredCoverage": [
+      "strict schema3 migration/recovery/backup and single pending-claim ledger",
+      "exact catalog/payment/effects/primary and recovery failure controls",
+      "actual Meteor/Call/charge-work events and all old23 plus new4 Deeds",
+      "live/split/yielded offline/Farm/Auto-Ascend chronology and no automatic commands",
+      "12 actual mobile input/price/focus/motion profiles",
+      "complete product on official checksum-verified Node8.3/V8 6.0"
+    ]
+  },
+  "fullGate": {
+    "scenarios": 182,
+    "registeredNegativeScenarios": 40,
+    "mandatoryNegativeScenarios": [
+      "self-test-bad-assertion",
+      "self-test-uncaught-error",
+      "self-test-unhandled-rejection",
+      "self-test-parity-regression",
+      "self-test-chronology-regression",
+      "self-test-wisp-formula-regression",
+      "self-test-wisp-pacing-regression",
+      "self-test-endgame-currency-regression",
+      "self-test-wisp-role-regression",
+      "self-test-p1-05-selected",
+      "self-test-p1-05-focus-return",
+      "self-test-lifecycle-duplicate",
+      "self-test-save-backup-placement",
+      "self-test-save-backup-confirmation",
+      "self-test-upgrade-identity-buy",
+      "self-test-upgrade-identity-value",
+      "self-test-upgrade-identity-clock",
+      "self-test-ascend-prisms-tree",
+      "self-test-ascend-prisms-lab",
+      "self-test-ascend-prisms-payout",
+      "self-test-ascend-prisms-repeat",
+      "self-test-ascend-prisms-rounding"
+    ],
+    "knownScenarios": [
+      "resonate-clarity",
+      "upgrade-identity-contracts",
+      "upgrade-identity-chronology",
+      "upgrade-identity-farm-clock",
+      "upgrade-identity-save-reload",
+      "upgrade-identity-backup-restore",
+      "upgrade-identity-recovery",
+      "upgrade-identity-ui",
+      "upgrade-identity-reduced-motion",
+      "wisp-upgrade-display",
+      "comet-unlocks-core",
+      "comet-unlocks-mobile",
+      "comet-unlocks-reduced-motion",
+      "lab-motes-offline-integration",
+      "lab-motes-numerical",
+      "lab-motes-runtime",
+      "lab-motes-conservation",
+      "lab-motes-contracts",
+      "lab-motes-chronology",
+      "lab-motes-ui",
+      "lab-motes-native",
+      "lab-motes-reduced-motion",
+      "lab-motes-save-reload",
+      "lab-motes-backup-restore",
+      "lab-motes-recovery",
+      "lab-motes-reset",
+      "save-backup-ui",
+      "offline-catchup-core",
+      "offline-12h-core",
+      "offline-12h-ui",
+      "offline-catchup-ui",
+      "offline-catchup-legacy-dom",
+      "nav-workshop-contract",
+      "inquiry-contracts",
+      "inquiry-chronology",
+      "inquiry-ui",
+      "inquiry-ui-reduced-motion",
+      "inquiry-save-reload",
+      "inquiry-backup-restore",
+      "inquiry-recovery",
+      "inquiry-reset",
+      "raw-process-contract",
+      "support-stacking",
+      "auto-ascend-target-contract",
+      "auto-ascend-target-legacy16",
+      "auto-ascend-target-legacy44",
+      "auto-ascend-target-legacy56",
+      "auto-ascend-target-legacy130",
+      "auto-ascend-target-recovery",
+      "auto-ascend-target-resume",
+      "auto-ascend-target-reset",
+      "auto-ascend-target-manual-reload",
+      "auto-ascend-target-cold-resume",
+      "auto-ascend-target-mobile",
+      "auto-ascend-target-reduced-motion",
+      "rift-status-stacking-mobile",
+      "rift-status-stacking-reduced-motion",
+      "support-save-reload",
+      "support-backup-restore",
+      "support-recovery",
+      "support-resume",
+      "support-recovery-resume",
+      "support-visibility-resume",
+      "support-reset",
+      "upgrade-effects-and-deeds",
+      "tree-purchase-contract",
+      "tree-purchase-ui",
+      "tree-purchase-ui-reduced-motion",
+      "rift-status-contract",
+      "bond-text-contract",
+      "rift-status-mobile",
+      "rift-guidance-mobile",
+      "rift-status-reduced-motion",
+      "forge-ui-process-contract",
+      "forge-ui-mobile",
+      "forge-ui-reduced-motion",
+      "buff-timing",
+      "buff-save-reload",
+      "forge-contracts",
+      "forge-effects",
+      "forge-chronology",
+      "forge-save-reload",
+      "loadout-memory-core",
+      "loadout-memory-mobile",
+      "forge-backup-restore",
+      "forge-recovery",
+      "forge-baseline",
+      "forge-balance",
+      "r3-destinations",
+      "r3-save-reload",
+      "research-duration",
+      "research-duration-reduced-motion",
+      "p2-07a-persistence-review",
+      "p2-07a-persist-save-reload",
+      "p2-07a-persist-backup-restore",
+      "p2-07a-persist-recovery",
+      "p2-07a-persist-reset",
+      "p2-07a-formation-reconstruction",
+      "p2-07a-save-reload",
+      "p2-07a-backup-restore",
+      "p2-07a-recovery",
+      "p2-07a-chronology",
+      "layout-p2-07a-reconstruction",
+      "p2-06b-live-feedback",
+      "p2-06b-reduced-motion",
+      "layout-fresh",
+      "layout-dense",
+      "layout-boss",
+      "layout-accessibility-states",
+      "p1-05-accessibility-baseline",
+      "p1-05-accessibility-contract",
+      "p1-05-control-regressions",
+      "p1-05-reduced-motion",
+      "fresh-load",
+      "midgame-load",
+      "mature-load",
+      "legacy-load",
+      "corrupted-load",
+      "malformed-daily-load",
+      "farm-load",
+      "farm-roundtrip",
+      "enemy-normal-reload",
+      "enemy-boss-reload",
+      "active-studies-load",
+      "auto-ascend-load",
+      "reset-roundtrip",
+      "restore-roundtrip",
+      "malformed-backup-rejection",
+      "recovery-from-corrupt-primary",
+      "unsupported-future-load",
+      "legacy-backup-restore",
+      "future-backup-rejection",
+      "recovery-offline-once",
+      "save-failure-warning",
+      "parity-short",
+      "parity-medium-farm",
+      "p2-07a-farm-retention",
+      "p2-07a-timer-boundary",
+      "parity-long-high-power",
+      "parity-boss-short",
+      "parity-boss-retry",
+      "parity-auto-ascend",
+      "chronology-research-mid-window",
+      "chronology-study-mid-window",
+      "chronology-auto-empower-mid-window",
+      "chronology-auto-ascend-mid-window",
+      "chronology-boss-retry",
+      "chronology-simultaneous-order",
+      "lifecycle-background-resume",
+      "lifecycle-repeated-resume",
+      "lifecycle-cold-restart",
+      "lifecycle-partial-enemy",
+      "lifecycle-boss-background-short",
+      "lifecycle-boss-retry",
+      "lifecycle-auto-ascend",
+      "p2-ascend-integrity",
+      "p2-03b-auto-ascend-integrity",
+      "p2-wisp-progression-pacing",
+      "p2-endgame-currency-utility",
+      "p2-03a-wisp-role-integrity",
+      "p2-03a-wisp-role-integrity-mature",
+      "p2-03a-wisp-role-integrity-endgame",
+      "p2-02a-core-qol",
+      "p2-02b-wisp-hierarchy",
+      "p2-02b-lab-hierarchy",
+      "lifecycle-long-study",
+      "lifecycle-lab-queue",
+      "lifecycle-daily-rollover",
+      "wisp-formula-contract",
+      "formation-bonds-core",
+      "formation-bonds-mobile",
+      "auto-ascend-target-backup-restore",
+      "formation-autosave-contract",
+      "formation-autosave-native",
+      "formation-autosave-reduced-motion",
+      "formation-autosave-save-reload",
+      "formation-autosave-backup-restore",
+      "formation-autosave-recovery",
+      "ascend-prisms-contract",
+      "ascend-prisms-save-reload",
+      "ascend-prisms-backup-restore",
+      "ascend-prisms-recovery"
+    ]
+  },
+  "fixtureSummary": [
+    {
+      "name": "fresh",
+      "hasObjectSave": false,
+      "schema": null,
+      "retiredOwnership": []
+    },
+    {
+      "name": "mid-game",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "mature-high-power",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "legacy",
+      "hasObjectSave": true,
+      "schema": 0,
+      "retiredOwnership": []
+    },
+    {
+      "name": "corrupted-json",
+      "hasObjectSave": false,
+      "schema": null,
+      "retiredOwnership": []
+    },
+    {
+      "name": "malformed-state",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "farm-mode",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "damaged-normal-enemy",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "damaged-boss",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "active-long-studies",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "auto-ascend-enabled",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "restore-target",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "future-schema",
+      "hasObjectSave": true,
+      "schema": 99,
+      "retiredOwnership": []
+    },
+    {
+      "name": "corrupted-with-recovery",
+      "hasObjectSave": false,
+      "schema": null,
+      "retiredOwnership": []
+    },
+    {
+      "name": "offline-recovery",
+      "hasObjectSave": false,
+      "schema": null,
+      "retiredOwnership": []
+    },
+    {
+      "name": "parity-early-simple",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "parity-medium-farm",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "parity-long-high-power",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "parity-boss-short",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "parity-boss-retry",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "parity-auto-ascend",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "chronology-research-mid-window",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "chronology-study-mid-window",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "chronology-auto-empower-mid-window",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "chronology-auto-ascend-mid-window",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "chronology-boss-retry",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "chronology-simultaneous-order",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "layout-dense-boss",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "layout-dense",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "accessibility-mixed-states",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "accessibility-locked",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "lifecycle-basic",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "lifecycle-partial-enemy",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    },
+    {
+      "name": "lifecycle-daily",
+      "hasObjectSave": true,
+      "schema": 1,
+      "retiredOwnership": []
+    }
+  ],
+  "extraFixtureSummary": [
+    {
+      "file": "tests/behavioral/fixtures-offline-refund-interop.json",
+      "states": [
+        {
+          "at": "$.0",
+          "schema": 2,
+          "retiredOwnership": [],
+          "oldLegacyOwnership": [
+            "offline24",
+            "offline48"
+          ]
+        },
+        {
+          "at": "$.1",
+          "schema": 2,
+          "retiredOwnership": [],
+          "oldLegacyOwnership": [
+            "offline24",
+            "offline48"
+          ]
+        },
+        {
+          "at": "$.2",
+          "schema": 2,
+          "retiredOwnership": [],
+          "oldLegacyOwnership": [
+            "offline24",
+            "offline48"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/qa/offline-autoascend-2026-10-07/device_backup.json",
+      "states": [
+        {
+          "at": "$",
+          "schema": 1,
+          "retiredOwnership": [],
+          "oldLegacyOwnership": []
+        }
+      ]
+    }
+  ],
+  "protectedFiles": [
+    {
+      "path": "tests/behavioral/fixtures.json",
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+      "gitBlob": "5bc34425a9e745e6b656d5b8a173fddcb4b16194"
+    },
+    {
+      "path": "tests/behavioral/fixtures-offline-refund-interop.json",
+      "bytes": 71316,
+      "sha256": "8f48490641769fd005d3eb071cfb3e3f7301eed6470f669b7d8a38b670ea2a9e",
+      "gitBlob": "41da5c4606b7de16aae6a2f710d32e30dc688299"
+    },
+    {
+      "path": "tests/behavioral/scenarios.json",
+      "bytes": 9882,
+      "sha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2",
+      "gitBlob": "b43b07284f67cecceb7e10727c7fca75869e5ed7"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-reference.cjs",
+      "bytes": 1956,
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+      "gitBlob": "82699e9a8f57f1a2f6609e8b68de4c67254f338e"
+    },
+    {
+      "path": "docs/recovery/2026-10-07/lead_context/FEEDBACK/EVIDENCE/main-index.html",
+      "bytes": 488044,
+      "sha256": "f896459f4f113b4173f8d1d1875f32cca9e3e4ae6f7416c6aca9be208f2537b4",
+      "gitBlob": "ea44431c163569548973d9e489f75345749a07ee"
+    },
+    {
+      "path": "docs/qa/offline-autoascend-2026-10-07/device_backup.json",
+      "bytes": 4864,
+      "sha256": "2aedccffee1ddbc4da0db8b1c8a312df89ae22b5a1da6bbf8f386d1f60f296bc",
+      "gitBlob": "d2698256684a60bcc495952ff162853b97410f36"
+    },
+    {
+      "path": ".github/workflows/build-android.yml",
+      "bytes": 12089,
+      "sha256": "70993746220fcd24c0dc091b59e5fc2442a354e752b29c4b46945c6a312a0e6b",
+      "gitBlob": "054f02751551b68a6959c9ed24cca55ec97bd15b"
+    },
+    {
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "bytes": 2889,
+      "sha256": "a611890e612a80b72e964dd86f228c9fd8a4ef2ff9f99f36333dd2c7c47fb9de",
+      "gitBlob": "5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196"
+    },
+    {
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "bytes": 2681,
+      "sha256": "8dd81626af8d3a3c0e3519387060f3015adbbd220ce48d30732555291a3eda02",
+      "gitBlob": "d5e5778bc4819fa5bc1d162a9c9362ed68051199"
+    },
+    {
+      "path": ".github/workflows/lab-scroll-diagnostic.yml",
+      "bytes": 1744,
+      "sha256": "2cbc89cbd022a3ba023a638af078733f35a5ae630680fa4d4343c7f2b1f465fd",
+      "gitBlob": "68d76113f069a4af4a8100047b0dd2aac3918094"
+    },
+    {
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "bytes": 5691,
+      "sha256": "f0218e6b818970a8bacdf0f43431c89c94b8a7a85343be29b79bc1b99b23e818",
+      "gitBlob": "4c67564c7d30a51f618eb76f286cc34a4bf4f6d0"
+    },
+    {
+      "path": ".github/workflows/prism-closeout.yml",
+      "bytes": 2291,
+      "sha256": "ab911d665a9e8f54a13b8ccde7e506b212dde6e56d4127c0164b290250304ee9",
+      "gitBlob": "1821f79dd833cf619cf6230b8f6a6670735f8381"
+    },
+    {
+      "path": ".github/workflows/prism-earning-validation.yml",
+      "bytes": 2315,
+      "sha256": "c4231b7ac02fc25a57c77b850d3c380b4af40a92b3b4cccd3c5fba9478c92f79",
+      "gitBlob": "9ce8ab30ac31dad9f9cc64e56b456e91a3bd418f"
+    },
+    {
+      "path": ".github/workflows/prism-integration-recheck.yml",
+      "bytes": 3920,
+      "sha256": "90f53b5e8e0de82b732eb1b765d0b268c7fb3c4ec54944c0835e7591da3b8c97",
+      "gitBlob": "d6df708140f8b492117fd813e26ac08bad611f94"
+    },
+    {
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "bytes": 4967,
+      "sha256": "4d8778abab15f004fdddb8a3580976d131767ef381515b50a6449f81be25e554",
+      "gitBlob": "9740959a724547d1cefed6952762a15da2e09fab"
+    }
+  ],
+  "relevantFileIdentities": [
+    {
+      "path": "tests/behavioral/ascend-prisms.js",
+      "bytes": 10680,
+      "sha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482",
+      "gitBlob": "67c321697152b7ec9c1c1236d70c86d80a46d853"
+    },
+    {
+      "path": "tests/behavioral/auto-ascend-target.cjs",
+      "bytes": 18373,
+      "sha256": "4d6b1eea78c5a1492cf43ed4176cb1a70808832d7448755874e8a045fb74c6e0",
+      "gitBlob": "43db5d9d34fb4430d81dce85f629cb81464cc541"
+    },
+    {
+      "path": "tests/behavioral/bridge.js",
+      "bytes": 52598,
+      "sha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc",
+      "gitBlob": "fdda299a1d75f6b7d3d53f2c97c6de88bb10a3e7"
+    },
+    {
+      "path": "tests/behavioral/buff-timing.js",
+      "bytes": 7838,
+      "sha256": "2bd2fab7f188d5f0e27e13c1796bcd3125a31aaaf3bbd6a04cf1fbf77fe6886e",
+      "gitBlob": "ba78235e7479547289596e2378452e21192d6df8"
+    },
+    {
+      "path": "tests/behavioral/comet-unlocks-core.cjs",
+      "bytes": 13840,
+      "sha256": "a67f67fa07e84f2299d44b5ea5553a1bf9f415556d5fc122845b39e679e925b5",
+      "gitBlob": "611e27355718772bf5cc95314f4cef2116344c48"
+    },
+    {
+      "path": "tests/behavioral/comet-unlocks-ui.cjs",
+      "bytes": 11899,
+      "sha256": "44aee041f3806187022f26bcc73dd70af4d26bfe4de98002dcbc710305528092",
+      "gitBlob": "8fa9408e0efcb45813ae9a0f13a3678b9ac2661b"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-harness.cjs",
+      "bytes": 10916,
+      "sha256": "185feb9242a3c8b5fac48871be20f61a119e2881e78191ecd832d12da16d9724",
+      "gitBlob": "80570d355f0909e7e153a7111552e4308a05e61c"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-legacy.cjs",
+      "bytes": 22552,
+      "sha256": "5f97700df5f19f535cb84de75b2b39fe9826cc9672184d1493afb274297630e0",
+      "gitBlob": "66573cb10f68494d4b8ac0e7b82ea464f610c900"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-ui.cjs",
+      "bytes": 23212,
+      "sha256": "72311ef88c417e89ab70321a12119279d598392456343c25d4102e2c6e0aca7b",
+      "gitBlob": "08934b20006f808fa635cf466a9b3ee631ae78f2"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion.cjs",
+      "bytes": 59184,
+      "sha256": "64fc2471bac4b8ba2efd9adaa79c92e4091aa9f5c16a632096556bc539bd0e89",
+      "gitBlob": "0188d609ee353a0856e2215f07df6fdffbdd5a58"
+    },
+    {
+      "path": "tests/behavioral/forge.js",
+      "bytes": 28053,
+      "sha256": "0a8799898096ce1b3307c13c320e92e0c80ff851cc016a657b7f606b23fa0387",
+      "gitBlob": "beba8c337d3aaa72f0c574a922cbd8dffabb5cc6"
+    },
+    {
+      "path": "tests/behavioral/formation-bonds.cjs",
+      "bytes": 11234,
+      "sha256": "29c75ca85d754f6e04c76e452ab0c10dd9c76dbf31621ebc948f5ed5a93a95ed",
+      "gitBlob": "5816da63479341a9187649b5bf38c53d97660ba7"
+    },
+    {
+      "path": "tests/behavioral/formation.js",
+      "bytes": 29739,
+      "sha256": "3464976af2dd02c8cc8dfc95510a6c7a2f347209ea355b5bd62f568e513b444e",
+      "gitBlob": "ed720eba56826cc06d9aa5153e6a4eacb7fc5486"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-harness.cjs",
+      "bytes": 5153,
+      "sha256": "5221a2c2125077edabca1d2577a616d0e8cd0514c0c18c53ff321d9eaff4f659",
+      "gitBlob": "58c24cd3803905766e9f705275550fc60e383b26"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-legacy.cjs",
+      "bytes": 5372,
+      "sha256": "a683bf60b0993cdb4ce40687005d778e5f26c777f093a8633524694b88285078",
+      "gitBlob": "ce8b5664aa11d19dde3ce23eb1c0f1e8deda5d13"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-ui.cjs",
+      "bytes": 11710,
+      "sha256": "70e61e93a83bd4a340ae4e707a45067a9f36434d7bdd6da78c5f62a57084b179",
+      "gitBlob": "2f605d9e0d8b24233cd8cb89075e4e4ccdb9a284"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion.cjs",
+      "bytes": 27320,
+      "sha256": "1efa11715a25c17efff19fb3a903b5a474004e12bf11fd4a448b08e6fecf0d72",
+      "gitBlob": "d8afaf81e0919c5ee148cbeb633b41c873cfc9b1"
+    },
+    {
+      "path": "tests/behavioral/lab-motes-offline.cjs",
+      "bytes": 6971,
+      "sha256": "31d468af05d10727dfbd4e831b04b4c445e95bbd687bb7c19d0e127461f53c75",
+      "gitBlob": "fba1db91bfc5080541d26d31d6a500121d59094e"
+    },
+    {
+      "path": "tests/behavioral/lab-motes.js",
+      "bytes": 20827,
+      "sha256": "29ed00dfb8b2499277a503523973b71c21e68b2763106a4921c70bf2e231608b",
+      "gitBlob": "d4940914894d49d15789e6c8867c1e4fab051899"
+    },
+    {
+      "path": "tests/behavioral/loadout-memory.cjs",
+      "bytes": 19275,
+      "sha256": "992e82ffdf62580f338754e3e51ddd506b32aa164a50cfff011d95a65efdf85e",
+      "gitBlob": "9c9439f74245fba99b3c6bcb09e33079d3cea692"
+    },
+    {
+      "path": "tests/behavioral/measured-inquiry.js",
+      "bytes": 22267,
+      "sha256": "71ebec88516738509276c2e3ddb07e6bcc0a18e6f46805ebdb5b4b2e227767c3",
+      "gitBlob": "3a1bf5bab3043d654a5e13891c30b7ccd2ebe005"
+    },
+    {
+      "path": "tests/behavioral/offline-12h-ui.cjs",
+      "bytes": 10258,
+      "sha256": "5ad506c3baa88b12ff0f45d13da9c15ea967f982223e6ddf013387883842b70c",
+      "gitBlob": "c50339abfcc41c70888c667b330dbb35f1a481f5"
+    },
+    {
+      "path": "tests/behavioral/offline-12h-webview60.cjs",
+      "bytes": 3467,
+      "sha256": "9d3e3b457c89c396f9bbd21f826a5b07b7ff585d74d5f586bdd06bfd1aaa99d5",
+      "gitBlob": "89d4a68064d19aa17b6b58cb09c0630b1723bc98"
+    },
+    {
+      "path": "tests/behavioral/offline-12h.cjs",
+      "bytes": 16063,
+      "sha256": "a258d4348bafd43b15be57947e34fb494c91bfecefbcdcc6c6805fb81a166d6c",
+      "gitBlob": "a68772b0ff1d56bc17eea851b1a09234bb1b8a8f"
+    },
+    {
+      "path": "tests/behavioral/offline-catchup-v8.cjs",
+      "bytes": 2539,
+      "sha256": "0d04293a4b01c0240c6c935a104c5ffb69f6b6dfaeb1031a6c175986f373c996",
+      "gitBlob": "88260aee20f44c189d34efac58dd71f603ab4be5"
+    },
+    {
+      "path": "tests/behavioral/offline-catchup.cjs",
+      "bytes": 22354,
+      "sha256": "694850f3fd284636eed83bade7a18dcf2148abc97a437ffa8b20555d3a0b2f84",
+      "gitBlob": "1fe02665350f0626972f116fb652977c6ea00587"
+    },
+    {
+      "path": "tests/behavioral/prism-closeout-data.cjs",
+      "bytes": 3860,
+      "sha256": "3d809e42d59d32b4add58034520148b97797a689fe2f45f013062cc39d9a4dff",
+      "gitBlob": "6cc0a284c9e5a910894d73c699b5679e7d35eb57"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-state.cjs",
+      "bytes": 8465,
+      "sha256": "bbaa33852a9d90f5829df61d6b6be9326f769046a676fe2e4b94800273aa044e",
+      "gitBlob": "6cf0b6a156080eee70be57c4a1fbc4347c6bca66"
+    },
+    {
+      "path": "tests/behavioral/prism-earning.cjs",
+      "bytes": 8351,
+      "sha256": "26d75f5d303febb56dda2c67c24ae7371f84c8e32cc0be2ac24bf4cb7186236f",
+      "gitBlob": "56917a559ab8e3badadcd26da34b86c25a838f84"
+    },
+    {
+      "path": "tests/behavioral/prism-legacy-runtime.cjs",
+      "bytes": 3282,
+      "sha256": "b3cc6e5fe8c02f52f3e4d7180bb38bde85ffd10cfbc0640169959168534a9484",
+      "gitBlob": "2266e18b2ba3196bf986a99811de433528d84424"
+    },
+    {
+      "path": "tests/behavioral/process_contract.cjs",
+      "bytes": 9488,
+      "sha256": "00ca2f77a6989ba70ced834171c7ad80834b6dd627f6d1a2d6008c671fe44462",
+      "gitBlob": "1e2a83082060b02c8b7aedca39faaa1ac8ef7bfe"
+    },
+    {
+      "path": "tests/behavioral/r3-destinations.js",
+      "bytes": 11943,
+      "sha256": "1fbac7358a44a8f511e6f17b0f6d56d75e76e8ba85e31f65464dc37c2b07829c",
+      "gitBlob": "a9e4564221f94052f3f88e8b5b19c2ddbec7337d"
+    },
+    {
+      "path": "tests/behavioral/rift-cosmetics.cjs",
+      "bytes": 21838,
+      "sha256": "1d25c04ab3fa99206d1bdc3e0861a6091645f96acd0ec57490fa9b2c36d2e7f1",
+      "gitBlob": "69f508755f1b864defb0464cbe9efe0dc4a3d52e"
+    },
+    {
+      "path": "tests/behavioral/rift-guidance.cjs",
+      "bytes": 26807,
+      "sha256": "3f3349404e1561a22a9db118c0c7fa55571f2b0ec5d1b9ee22d36cd1fe0f9bfa",
+      "gitBlob": "d417aaf87dc149112ef644aacda6404bf3e5b657"
+    },
+    {
+      "path": "tests/behavioral/run.cjs",
+      "bytes": 20903,
+      "sha256": "3e52c9a021f650ea9d52fcc55aa6e7ad50ce4bd467848f69e0aa81bfffd1ec81",
+      "gitBlob": "3b0ef91cec0965cf50b9a0630e488e87f6c6fc53"
+    },
+    {
+      "path": "tests/behavioral/runner.js",
+      "bytes": 158493,
+      "sha256": "0fd30cee20407ebf51a8b25fb589545c20f2612c68f0f68fdab72ff26a341ab1",
+      "gitBlob": "8d8e2a47c4cadf9ab1b6dfff867b943be8b7853c"
+    },
+    {
+      "path": "tests/behavioral/support-stacking.js",
+      "bytes": 14386,
+      "sha256": "403b29fcabd9d68ae338486f0550e90f172a7b66f1307e8a967cada4139060e0",
+      "gitBlob": "9788660584348130015435ffcc647e397f0fd589"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-core.cjs",
+      "bytes": 54294,
+      "sha256": "43c0c8bf9931411bd8af4e9a2ef591521d29e050cfc9a929b94f2fbf3f78d441",
+      "gitBlob": "d0e23a760fcef067460f573546c780e6b7997b4f"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-economy.cjs",
+      "bytes": 28283,
+      "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a",
+      "gitBlob": "d03c34aae1f201010dbf523fcc5e99655781b4d9"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+      "gitBlob": "3027844dcf5f804de8e5090c69a59517be1155b1"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-mobile.cjs",
+      "bytes": 50616,
+      "sha256": "45d8b66546b48318586eb1c045fe95cd373fd386601d17e4984a1eda4b3818ee",
+      "gitBlob": "caec0640ac76ff21f1f516431ef7a63fb688fb99"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-offline.cjs",
+      "bytes": 24517,
+      "sha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71",
+      "gitBlob": "9f119445195099d9d1e38db6a1e0ad001767ca6f"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-v8.cjs",
+      "bytes": 24937,
+      "sha256": "7ed1f234a07f846fb52b99cb7df02542fe49e621864089e4927354587225fcf4",
+      "gitBlob": "06a5da71efb947e6d861a12db60206a56e15d4f1"
+    },
+    {
+      "path": "tests/behavioral/tree-purchases.js",
+      "bytes": 12937,
+      "sha256": "d91b8d4774061e9b7586a852eabc2fa12f8ce80dc15b535004eedbd41f4b2684",
+      "gitBlob": "917cd14410b4f6bd598bc4414a9ba0d61918133c"
+    },
+    {
+      "path": "tests/behavioral/upgrade-clarity.js",
+      "bytes": 10441,
+      "sha256": "ada9467943284db320598f87a4f82d6b40c4c3e5e9781b1fa4416854ec62589f",
+      "gitBlob": "ff3cddaea2a87a3d138b38cc0b57ae766993e8b6"
+    },
+    {
+      "path": "tests/behavioral/upgrade-identity.js",
+      "bytes": 15572,
+      "sha256": "a92845db4043185d4de465b849dbebf9e58f5bfe68f551f80924e23fde05b9e5",
+      "gitBlob": "9f1e54f49e9cbfa8cad7a061c4fe43304428d227"
+    },
+    {
+      "path": "tests/behavioral/wisp-upgrades.js",
+      "bytes": 7985,
+      "sha256": "f0d85db9e4783efb725f1265929d23b9ca75ca324057fa73a933276c3b810f9c",
+      "gitBlob": "4ab352987df478993f1c8777729237741b17c6d6"
+    }
+  ]
+}

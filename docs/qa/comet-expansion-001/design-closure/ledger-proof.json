@@ -1,0 +1,2194 @@
+{
+  "status": "PASS_DESIGN_MODEL_ORACLE",
+  "auditedAt": "2026-10-10 22:34:52 UTC",
+  "runtime": "v24.19.0",
+  "scope": "Bounded known-ID proposal, exact arithmetic and model endpoints; actual unchanged F26 helper only. No new ledger implementation/handler/save acceptance.",
+  "input": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+    "bytes": 619788,
+    "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+  },
+  "sources": [
+    {
+      "name": "ACHIEVEMENTS",
+      "bytes": 3145,
+      "sha256": "c1c74c3808312498a9c37014e50ba49970523718cef751b4764c3d1b067cdaf5"
+    },
+    {
+      "name": "SHOP",
+      "bytes": 860,
+      "sha256": "12e5fc077ca84af3a9b447ede553d4b70387a72d28ab5fa128d79523d0e56b37"
+    },
+    {
+      "name": "settleOffline12hRefund",
+      "bytes": 903,
+      "sha256": "39782ef0356f5d0065cb92b87b94326cd6a2cf067e19d1abe0ebaa90e55fa54d"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "prove-ledger.cjs",
+      "bytes": 18204,
+      "sha256": "3617cc6222e09fc751653eca5c01cdff2ff49f44a988ba50b40b21c7be62e658"
+    },
+    {
+      "name": "exact-oracle.cjs",
+      "bytes": 3067,
+      "sha256": "1b3d7ba4b2636dadd8bb19ddd413cfa6bce5fc3b8309e831a808923e2a86d207"
+    }
+  ],
+  "counts": {
+    "checks": 142967,
+    "walletVectors": 5468,
+    "creditVectors": 87488,
+    "debitVectors": 54680,
+    "settlementPasses": 46,
+    "claims": 30,
+    "oldDeeds": 23,
+    "newDeeds": 4,
+    "retirementClaims": 3,
+    "oldDeedComets": 683,
+    "newDeedComets": 50,
+    "retirementComets": 350,
+    "maximumKnownDue": 1083
+  },
+  "orderedClaims": [
+    {
+      "id": "retirement:comettrials",
+      "amount": 140
+    },
+    {
+      "id": "retirement:rifttrail",
+      "amount": 50
+    },
+    {
+      "id": "retirement:starfallcrest",
+      "amount": 160
+    },
+    {
+      "id": "deed:d10",
+      "amount": 5
+    },
+    {
+      "id": "deed:d25",
+      "amount": 10
+    },
+    {
+      "id": "deed:d50",
+      "amount": 20
+    },
+    {
+      "id": "deed:d100",
+      "amount": 50
+    },
+    {
+      "id": "deed:d250",
+      "amount": 100
+    },
+    {
+      "id": "deed:tap100",
+      "amount": 3
+    },
+    {
+      "id": "deed:tap1000",
+      "amount": 8
+    },
+    {
+      "id": "deed:tap10000",
+      "amount": 20
+    },
+    {
+      "id": "deed:fullparty",
+      "amount": 12
+    },
+    {
+      "id": "deed:asc1",
+      "amount": 10
+    },
+    {
+      "id": "deed:asc5",
+      "amount": 25
+    },
+    {
+      "id": "deed:asc10",
+      "amount": 50
+    },
+    {
+      "id": "deed:all",
+      "amount": 30
+    },
+    {
+      "id": "deed:mythic",
+      "amount": 40
+    },
+    {
+      "id": "deed:idle8",
+      "amount": 15
+    },
+    {
+      "id": "deed:autotap",
+      "amount": 25
+    },
+    {
+      "id": "deed:labmaster",
+      "amount": 30
+    },
+    {
+      "id": "deed:study1",
+      "amount": 15
+    },
+    {
+      "id": "deed:study25",
+      "amount": 50
+    },
+    {
+      "id": "deed:allstudies",
+      "amount": 35
+    },
+    {
+      "id": "deed:labqueue",
+      "amount": 40
+    },
+    {
+      "id": "deed:firstultimate",
+      "amount": 45
+    },
+    {
+      "id": "deed:modulemax",
+      "amount": 45
+    },
+    {
+      "id": "deed:comet_first_command",
+      "amount": 5
+    },
+    {
+      "id": "deed:comet_first_recharge",
+      "amount": 10
+    },
+    {
+      "id": "deed:comet_boss_strike",
+      "amount": 15
+    },
+    {
+      "id": "deed:comet_called_kill",
+      "amount": 20
+    }
+  ],
+  "examples": [
+    {
+      "label": "ordinary",
+      "initial": {
+        "wallet": 0,
+        "walletExact": "0",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest"
+        ],
+        "knownDue": 350,
+        "earned": []
+      },
+      "first": {
+        "state": {
+          "wallet": 350,
+          "walletExact": "350",
+          "pending": [],
+          "knownDue": 0,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 0,
+            "beforeExact": "0",
+            "after": 140,
+            "afterExact": "140",
+            "credited": true
+          },
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 140,
+            "beforeExact": "140",
+            "after": 190,
+            "afterExact": "190",
+            "credited": true
+          },
+          {
+            "id": "retirement:starfallcrest",
+            "amount": 160,
+            "before": 190,
+            "beforeExact": "190",
+            "after": 350,
+            "afterExact": "350",
+            "credited": true
+          }
+        ],
+        "credited": 350
+      },
+      "second": {
+        "state": {
+          "wallet": 350,
+          "walletExact": "350",
+          "pending": [],
+          "knownDue": 0,
+          "earned": []
+        },
+        "events": []
+      }
+    },
+    {
+      "label": "2^54",
+      "initial": {
+        "wallet": 18014398509481984,
+        "walletExact": "18014398509481984",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest"
+        ],
+        "knownDue": 350,
+        "earned": []
+      },
+      "first": {
+        "state": {
+          "wallet": 18014398509482284,
+          "walletExact": "18014398509482284",
+          "pending": [
+            "retirement:rifttrail"
+          ],
+          "knownDue": 50,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 18014398509481984,
+            "beforeExact": "18014398509481984",
+            "after": 18014398509482124,
+            "afterExact": "18014398509482124",
+            "credited": true
+          },
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 18014398509482124,
+            "beforeExact": "18014398509482124",
+            "after": 18014398509482124,
+            "afterExact": "18014398509482124",
+            "credited": false
+          },
+          {
+            "id": "retirement:starfallcrest",
+            "amount": 160,
+            "before": 18014398509482124,
+            "beforeExact": "18014398509482124",
+            "after": 18014398509482284,
+            "afterExact": "18014398509482284",
+            "credited": true
+          }
+        ],
+        "credited": 300
+      },
+      "second": {
+        "state": {
+          "wallet": 18014398509482284,
+          "walletExact": "18014398509482284",
+          "pending": [
+            "retirement:rifttrail"
+          ],
+          "knownDue": 50,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 18014398509482284,
+            "beforeExact": "18014398509482284",
+            "after": 18014398509482284,
+            "afterExact": "18014398509482284",
+            "credited": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "2^55",
+      "initial": {
+        "wallet": 36028797018963970,
+        "walletExact": "36028797018963968",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest"
+        ],
+        "knownDue": 350,
+        "earned": []
+      },
+      "first": {
+        "state": {
+          "wallet": 36028797018964130,
+          "walletExact": "36028797018964128",
+          "pending": [
+            "retirement:comettrials",
+            "retirement:rifttrail"
+          ],
+          "knownDue": 190,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 36028797018963970,
+            "beforeExact": "36028797018963968",
+            "after": 36028797018963970,
+            "afterExact": "36028797018963968",
+            "credited": false
+          },
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 36028797018963970,
+            "beforeExact": "36028797018963968",
+            "after": 36028797018963970,
+            "afterExact": "36028797018963968",
+            "credited": false
+          },
+          {
+            "id": "retirement:starfallcrest",
+            "amount": 160,
+            "before": 36028797018963970,
+            "beforeExact": "36028797018963968",
+            "after": 36028797018964130,
+            "afterExact": "36028797018964128",
+            "credited": true
+          }
+        ],
+        "credited": 160
+      },
+      "second": {
+        "state": {
+          "wallet": 36028797018964130,
+          "walletExact": "36028797018964128",
+          "pending": [
+            "retirement:comettrials",
+            "retirement:rifttrail"
+          ],
+          "knownDue": 190,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 36028797018964130,
+            "beforeExact": "36028797018964128",
+            "after": 36028797018964130,
+            "afterExact": "36028797018964128",
+            "credited": false
+          },
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 36028797018964130,
+            "beforeExact": "36028797018964128",
+            "after": 36028797018964130,
+            "afterExact": "36028797018964128",
+            "credited": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "huge",
+      "initial": {
+        "wallet": 1e+30,
+        "walletExact": "1000000000000000019884624838656",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest"
+        ],
+        "knownDue": 350,
+        "earned": []
+      },
+      "first": {
+        "state": {
+          "wallet": 1e+30,
+          "walletExact": "1000000000000000019884624838656",
+          "pending": [
+            "retirement:comettrials",
+            "retirement:rifttrail",
+            "retirement:starfallcrest"
+          ],
+          "knownDue": 350,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          },
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          },
+          {
+            "id": "retirement:starfallcrest",
+            "amount": 160,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          }
+        ],
+        "credited": 0
+      },
+      "second": {
+        "state": {
+          "wallet": 1e+30,
+          "walletExact": "1000000000000000019884624838656",
+          "pending": [
+            "retirement:comettrials",
+            "retirement:rifttrail",
+            "retirement:starfallcrest"
+          ],
+          "knownDue": 350,
+          "earned": []
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          },
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          },
+          {
+            "id": "retirement:starfallcrest",
+            "amount": 160,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          }
+        ]
+      }
+    }
+  ],
+  "nonIdempotentSinglePass": {
+    "initial": {
+      "wallet": 18014398509481974,
+      "walletExact": "18014398509481974",
+      "pending": [
+        "retirement:comettrials",
+        "retirement:rifttrail",
+        "retirement:starfallcrest"
+      ],
+      "knownDue": 350,
+      "earned": []
+    },
+    "first": {
+      "state": {
+        "wallet": 18014398509482184,
+        "walletExact": "18014398509482184",
+        "pending": [
+          "retirement:comettrials"
+        ],
+        "knownDue": 140,
+        "earned": []
+      },
+      "events": [
+        {
+          "id": "retirement:comettrials",
+          "amount": 140,
+          "before": 18014398509481974,
+          "beforeExact": "18014398509481974",
+          "after": 18014398509481974,
+          "afterExact": "18014398509481974",
+          "credited": false
+        },
+        {
+          "id": "retirement:rifttrail",
+          "amount": 50,
+          "before": 18014398509481974,
+          "beforeExact": "18014398509481974",
+          "after": 18014398509482024,
+          "afterExact": "18014398509482024",
+          "credited": true
+        },
+        {
+          "id": "retirement:starfallcrest",
+          "amount": 160,
+          "before": 18014398509482024,
+          "beforeExact": "18014398509482024",
+          "after": 18014398509482184,
+          "afterExact": "18014398509482184",
+          "credited": true
+        }
+      ]
+    },
+    "second": {
+      "state": {
+        "wallet": 18014398509482324,
+        "walletExact": "18014398509482324",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "events": [
+        {
+          "id": "retirement:comettrials",
+          "amount": 140,
+          "before": 18014398509482184,
+          "beforeExact": "18014398509482184",
+          "after": 18014398509482324,
+          "afterExact": "18014398509482324",
+          "credited": true
+        }
+      ]
+    },
+    "third": {
+      "state": {
+        "wallet": 18014398509482324,
+        "walletExact": "18014398509482324",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "events": []
+    }
+  },
+  "spendExamples": [
+    {
+      "price": 60,
+      "initial": {
+        "wallet": 18014398509481984,
+        "walletExact": "18014398509481984",
+        "pending": [
+          "retirement:rifttrail"
+        ],
+        "knownDue": 50,
+        "earned": []
+      },
+      "stagedWallet": 18014398509481924,
+      "stagedWalletExact": "18014398509481924",
+      "canonical": {
+        "wallet": 18014398509481974,
+        "walletExact": "18014398509481974",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "canonicalEvents": [
+        {
+          "id": "retirement:rifttrail",
+          "amount": 50,
+          "before": 18014398509481924,
+          "beforeExact": "18014398509481924",
+          "after": 18014398509481974,
+          "afterExact": "18014398509481974",
+          "credited": true
+        }
+      ],
+      "netWalletDecrease": 10,
+      "endpointModel": {
+        "primaryFailure": {
+          "wallet": 18014398509481984,
+          "walletExact": "18014398509481984",
+          "pending": [
+            "retirement:rifttrail"
+          ],
+          "knownDue": 50,
+          "earned": []
+        },
+        "successfulRetry": {
+          "wallet": 18014398509481974,
+          "walletExact": "18014398509481974",
+          "pending": [],
+          "knownDue": 0,
+          "earned": []
+        },
+        "recoveryOnlyFailure": {
+          "wallet": 18014398509481974,
+          "walletExact": "18014398509481974",
+          "pending": [],
+          "knownDue": 0,
+          "earned": []
+        }
+      }
+    },
+    {
+      "price": 100,
+      "initial": {
+        "wallet": 18014398509481984,
+        "walletExact": "18014398509481984",
+        "pending": [
+          "retirement:rifttrail"
+        ],
+        "knownDue": 50,
+        "earned": []
+      },
+      "stagedWallet": 18014398509481884,
+      "stagedWalletExact": "18014398509481884",
+      "canonical": {
+        "wallet": 18014398509481934,
+        "walletExact": "18014398509481934",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "canonicalEvents": [
+        {
+          "id": "retirement:rifttrail",
+          "amount": 50,
+          "before": 18014398509481884,
+          "beforeExact": "18014398509481884",
+          "after": 18014398509481934,
+          "afterExact": "18014398509481934",
+          "credited": true
+        }
+      ],
+      "netWalletDecrease": 50,
+      "endpointModel": {
+        "primaryFailure": {
+          "wallet": 18014398509481984,
+          "walletExact": "18014398509481984",
+          "pending": [
+            "retirement:rifttrail"
+          ],
+          "knownDue": 50,
+          "earned": []
+        },
+        "successfulRetry": {
+          "wallet": 18014398509481934,
+          "walletExact": "18014398509481934",
+          "pending": [],
+          "knownDue": 0,
+          "earned": []
+        },
+        "recoveryOnlyFailure": {
+          "wallet": 18014398509481934,
+          "walletExact": "18014398509481934",
+          "pending": [],
+          "knownDue": 0,
+          "earned": []
+        }
+      }
+    }
+  ],
+  "fullFamily": [
+    {
+      "initialWallet": 0,
+      "initialWalletExact": "0",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:comettrials",
+            "retirement:rifttrail",
+            "retirement:starfallcrest",
+            "deed:d10",
+            "deed:d25",
+            "deed:d50",
+            "deed:d100",
+            "deed:d250",
+            "deed:tap100",
+            "deed:tap1000",
+            "deed:tap10000",
+            "deed:fullparty",
+            "deed:asc1",
+            "deed:asc5",
+            "deed:asc10",
+            "deed:all",
+            "deed:mythic",
+            "deed:idle8",
+            "deed:autotap",
+            "deed:labmaster",
+            "deed:study1",
+            "deed:study25",
+            "deed:allstudies",
+            "deed:labqueue",
+            "deed:firstultimate",
+            "deed:modulemax",
+            "deed:comet_first_command",
+            "deed:comet_first_recharge",
+            "deed:comet_boss_strike",
+            "deed:comet_called_kill"
+          ],
+          "wallet": 1083,
+          "walletExact": "1083",
+          "remainingDue": 0
+        },
+        {
+          "number": 2,
+          "credited": [],
+          "wallet": 1083,
+          "walletExact": "1083",
+          "remainingDue": 0
+        }
+      ],
+      "final": {
+        "wallet": 1083,
+        "walletExact": "1083",
+        "pending": [],
+        "knownDue": 0,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:comettrials",
+        "retirement:rifttrail",
+        "retirement:starfallcrest",
+        "deed:d10",
+        "deed:d25",
+        "deed:d50",
+        "deed:d100",
+        "deed:d250",
+        "deed:tap100",
+        "deed:tap1000",
+        "deed:tap10000",
+        "deed:fullparty",
+        "deed:asc1",
+        "deed:asc5",
+        "deed:asc10",
+        "deed:all",
+        "deed:mythic",
+        "deed:idle8",
+        "deed:autotap",
+        "deed:labmaster",
+        "deed:study1",
+        "deed:study25",
+        "deed:allstudies",
+        "deed:labqueue",
+        "deed:firstultimate",
+        "deed:modulemax",
+        "deed:comet_first_command",
+        "deed:comet_first_recharge",
+        "deed:comet_boss_strike",
+        "deed:comet_called_kill"
+      ]
+    },
+    {
+      "initialWallet": 0.125,
+      "initialWalletExact": {
+        "numerator": "4503599627370496",
+        "exponent2": -55
+      },
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:comettrials",
+            "retirement:rifttrail",
+            "retirement:starfallcrest",
+            "deed:d10",
+            "deed:d25",
+            "deed:d50",
+            "deed:d100",
+            "deed:d250",
+            "deed:tap100",
+            "deed:tap1000",
+            "deed:tap10000",
+            "deed:fullparty",
+            "deed:asc1",
+            "deed:asc5",
+            "deed:asc10",
+            "deed:all",
+            "deed:mythic",
+            "deed:idle8",
+            "deed:autotap",
+            "deed:labmaster",
+            "deed:study1",
+            "deed:study25",
+            "deed:allstudies",
+            "deed:labqueue",
+            "deed:firstultimate",
+            "deed:modulemax",
+            "deed:comet_first_command",
+            "deed:comet_first_recharge",
+            "deed:comet_boss_strike",
+            "deed:comet_called_kill"
+          ],
+          "wallet": 1083.125,
+          "walletExact": {
+            "numerator": "4763634127339520",
+            "exponent2": -42
+          },
+          "remainingDue": 0
+        },
+        {
+          "number": 2,
+          "credited": [],
+          "wallet": 1083.125,
+          "walletExact": {
+            "numerator": "4763634127339520",
+            "exponent2": -42
+          },
+          "remainingDue": 0
+        }
+      ],
+      "final": {
+        "wallet": 1083.125,
+        "walletExact": {
+          "numerator": "4763634127339520",
+          "exponent2": -42
+        },
+        "pending": [],
+        "knownDue": 0,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:comettrials",
+        "retirement:rifttrail",
+        "retirement:starfallcrest",
+        "deed:d10",
+        "deed:d25",
+        "deed:d50",
+        "deed:d100",
+        "deed:d250",
+        "deed:tap100",
+        "deed:tap1000",
+        "deed:tap10000",
+        "deed:fullparty",
+        "deed:asc1",
+        "deed:asc5",
+        "deed:asc10",
+        "deed:all",
+        "deed:mythic",
+        "deed:idle8",
+        "deed:autotap",
+        "deed:labmaster",
+        "deed:study1",
+        "deed:study25",
+        "deed:allstudies",
+        "deed:labqueue",
+        "deed:firstultimate",
+        "deed:modulemax",
+        "deed:comet_first_command",
+        "deed:comet_first_recharge",
+        "deed:comet_boss_strike",
+        "deed:comet_called_kill"
+      ]
+    },
+    {
+      "initialWallet": 0.1,
+      "initialWalletExact": {
+        "numerator": "7205759403792794",
+        "exponent2": -56
+      },
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [],
+          "wallet": 0.1,
+          "walletExact": {
+            "numerator": "7205759403792794",
+            "exponent2": -56
+          },
+          "remainingDue": 1083
+        }
+      ],
+      "final": {
+        "wallet": 0.1,
+        "walletExact": {
+          "numerator": "7205759403792794",
+          "exponent2": -56
+        },
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest",
+          "deed:d10",
+          "deed:d25",
+          "deed:d50",
+          "deed:d100",
+          "deed:d250",
+          "deed:tap100",
+          "deed:tap1000",
+          "deed:tap10000",
+          "deed:fullparty",
+          "deed:asc1",
+          "deed:asc5",
+          "deed:asc10",
+          "deed:all",
+          "deed:mythic",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:labmaster",
+          "deed:study1",
+          "deed:study25",
+          "deed:allstudies",
+          "deed:labqueue",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_first_recharge",
+          "deed:comet_boss_strike",
+          "deed:comet_called_kill"
+        ],
+        "knownDue": 1083,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": []
+    },
+    {
+      "initialWallet": 9007199254740992,
+      "initialWalletExact": "9007199254740992",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:comettrials",
+            "retirement:rifttrail",
+            "retirement:starfallcrest",
+            "deed:d25",
+            "deed:d50",
+            "deed:d100",
+            "deed:d250",
+            "deed:tap1000",
+            "deed:tap10000",
+            "deed:fullparty",
+            "deed:asc1",
+            "deed:asc10",
+            "deed:all",
+            "deed:mythic",
+            "deed:labmaster",
+            "deed:study25",
+            "deed:labqueue",
+            "deed:comet_first_recharge",
+            "deed:comet_called_kill"
+          ],
+          "wallet": 9007199254741842,
+          "walletExact": "9007199254741842",
+          "remainingDue": 233
+        },
+        {
+          "number": 2,
+          "credited": [],
+          "wallet": 9007199254741842,
+          "walletExact": "9007199254741842",
+          "remainingDue": 233
+        }
+      ],
+      "final": {
+        "wallet": 9007199254741842,
+        "walletExact": "9007199254741842",
+        "pending": [
+          "deed:d10",
+          "deed:tap100",
+          "deed:asc5",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:study1",
+          "deed:allstudies",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_boss_strike"
+        ],
+        "knownDue": 233,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:comettrials",
+        "retirement:rifttrail",
+        "retirement:starfallcrest",
+        "deed:d25",
+        "deed:d50",
+        "deed:d100",
+        "deed:d250",
+        "deed:tap1000",
+        "deed:tap10000",
+        "deed:fullparty",
+        "deed:asc1",
+        "deed:asc10",
+        "deed:all",
+        "deed:mythic",
+        "deed:labmaster",
+        "deed:study25",
+        "deed:labqueue",
+        "deed:comet_first_recharge",
+        "deed:comet_called_kill"
+      ]
+    },
+    {
+      "initialWallet": 18014398509481974,
+      "initialWalletExact": "18014398509481974",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:rifttrail",
+            "retirement:starfallcrest",
+            "deed:d50",
+            "deed:d250",
+            "deed:tap1000",
+            "deed:tap10000",
+            "deed:fullparty",
+            "deed:mythic",
+            "deed:labqueue",
+            "deed:comet_called_kill"
+          ],
+          "wallet": 18014398509482444,
+          "walletExact": "18014398509482444",
+          "remainingDue": 613
+        },
+        {
+          "number": 2,
+          "credited": [
+            "retirement:comettrials"
+          ],
+          "wallet": 18014398509482584,
+          "walletExact": "18014398509482584",
+          "remainingDue": 473
+        },
+        {
+          "number": 3,
+          "credited": [],
+          "wallet": 18014398509482584,
+          "walletExact": "18014398509482584",
+          "remainingDue": 473
+        }
+      ],
+      "final": {
+        "wallet": 18014398509482584,
+        "walletExact": "18014398509482584",
+        "pending": [
+          "deed:d10",
+          "deed:d25",
+          "deed:d100",
+          "deed:tap100",
+          "deed:asc1",
+          "deed:asc5",
+          "deed:asc10",
+          "deed:all",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:labmaster",
+          "deed:study1",
+          "deed:study25",
+          "deed:allstudies",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_first_recharge",
+          "deed:comet_boss_strike"
+        ],
+        "knownDue": 473,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:rifttrail",
+        "retirement:starfallcrest",
+        "deed:d50",
+        "deed:d250",
+        "deed:tap1000",
+        "deed:tap10000",
+        "deed:fullparty",
+        "deed:mythic",
+        "deed:labqueue",
+        "deed:comet_called_kill",
+        "retirement:comettrials"
+      ]
+    },
+    {
+      "initialWallet": 18014398509481984,
+      "initialWalletExact": "18014398509481984",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:comettrials",
+            "retirement:starfallcrest",
+            "deed:d50",
+            "deed:d250",
+            "deed:tap1000",
+            "deed:tap10000",
+            "deed:fullparty",
+            "deed:mythic",
+            "deed:labqueue",
+            "deed:comet_called_kill"
+          ],
+          "wallet": 18014398509482544,
+          "walletExact": "18014398509482544",
+          "remainingDue": 523
+        },
+        {
+          "number": 2,
+          "credited": [],
+          "wallet": 18014398509482544,
+          "walletExact": "18014398509482544",
+          "remainingDue": 523
+        }
+      ],
+      "final": {
+        "wallet": 18014398509482544,
+        "walletExact": "18014398509482544",
+        "pending": [
+          "retirement:rifttrail",
+          "deed:d10",
+          "deed:d25",
+          "deed:d100",
+          "deed:tap100",
+          "deed:asc1",
+          "deed:asc5",
+          "deed:asc10",
+          "deed:all",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:labmaster",
+          "deed:study1",
+          "deed:study25",
+          "deed:allstudies",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_first_recharge",
+          "deed:comet_boss_strike"
+        ],
+        "knownDue": 523,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:comettrials",
+        "retirement:starfallcrest",
+        "deed:d50",
+        "deed:d250",
+        "deed:tap1000",
+        "deed:tap10000",
+        "deed:fullparty",
+        "deed:mythic",
+        "deed:labqueue",
+        "deed:comet_called_kill"
+      ]
+    },
+    {
+      "initialWallet": 36028797018963970,
+      "initialWalletExact": "36028797018963968",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:starfallcrest",
+            "deed:tap1000",
+            "deed:mythic",
+            "deed:labqueue"
+          ],
+          "wallet": 36028797018964216,
+          "walletExact": "36028797018964216",
+          "remainingDue": 835
+        },
+        {
+          "number": 2,
+          "credited": [],
+          "wallet": 36028797018964216,
+          "walletExact": "36028797018964216",
+          "remainingDue": 835
+        }
+      ],
+      "final": {
+        "wallet": 36028797018964216,
+        "walletExact": "36028797018964216",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "deed:d10",
+          "deed:d25",
+          "deed:d50",
+          "deed:d100",
+          "deed:d250",
+          "deed:tap100",
+          "deed:tap10000",
+          "deed:fullparty",
+          "deed:asc1",
+          "deed:asc5",
+          "deed:asc10",
+          "deed:all",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:labmaster",
+          "deed:study1",
+          "deed:study25",
+          "deed:allstudies",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_first_recharge",
+          "deed:comet_boss_strike",
+          "deed:comet_called_kill"
+        ],
+        "knownDue": 835,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:starfallcrest",
+        "deed:tap1000",
+        "deed:mythic",
+        "deed:labqueue"
+      ]
+    },
+    {
+      "initialWallet": 10000000000000000,
+      "initialWalletExact": "10000000000000000",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [
+            "retirement:comettrials",
+            "retirement:rifttrail",
+            "retirement:starfallcrest",
+            "deed:d25",
+            "deed:d50",
+            "deed:d100",
+            "deed:d250",
+            "deed:tap1000",
+            "deed:tap10000",
+            "deed:fullparty",
+            "deed:asc1",
+            "deed:asc10",
+            "deed:all",
+            "deed:mythic",
+            "deed:labmaster",
+            "deed:study25",
+            "deed:labqueue",
+            "deed:comet_first_recharge",
+            "deed:comet_called_kill"
+          ],
+          "wallet": 10000000000000850,
+          "walletExact": "10000000000000850",
+          "remainingDue": 233
+        },
+        {
+          "number": 2,
+          "credited": [],
+          "wallet": 10000000000000850,
+          "walletExact": "10000000000000850",
+          "remainingDue": 233
+        }
+      ],
+      "final": {
+        "wallet": 10000000000000850,
+        "walletExact": "10000000000000850",
+        "pending": [
+          "deed:d10",
+          "deed:tap100",
+          "deed:asc5",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:study1",
+          "deed:allstudies",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_boss_strike"
+        ],
+        "knownDue": 233,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": [
+        "retirement:comettrials",
+        "retirement:rifttrail",
+        "retirement:starfallcrest",
+        "deed:d25",
+        "deed:d50",
+        "deed:d100",
+        "deed:d250",
+        "deed:tap1000",
+        "deed:tap10000",
+        "deed:fullparty",
+        "deed:asc1",
+        "deed:asc10",
+        "deed:all",
+        "deed:mythic",
+        "deed:labmaster",
+        "deed:study25",
+        "deed:labqueue",
+        "deed:comet_first_recharge",
+        "deed:comet_called_kill"
+      ]
+    },
+    {
+      "initialWallet": 1e+30,
+      "initialWalletExact": "1000000000000000019884624838656",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [],
+          "wallet": 1e+30,
+          "walletExact": "1000000000000000019884624838656",
+          "remainingDue": 1083
+        }
+      ],
+      "final": {
+        "wallet": 1e+30,
+        "walletExact": "1000000000000000019884624838656",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest",
+          "deed:d10",
+          "deed:d25",
+          "deed:d50",
+          "deed:d100",
+          "deed:d250",
+          "deed:tap100",
+          "deed:tap1000",
+          "deed:tap10000",
+          "deed:fullparty",
+          "deed:asc1",
+          "deed:asc5",
+          "deed:asc10",
+          "deed:all",
+          "deed:mythic",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:labmaster",
+          "deed:study1",
+          "deed:study25",
+          "deed:allstudies",
+          "deed:labqueue",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_first_recharge",
+          "deed:comet_boss_strike",
+          "deed:comet_called_kill"
+        ],
+        "knownDue": 1083,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": []
+    },
+    {
+      "initialWallet": 1.7976931348623157e+308,
+      "initialWalletExact": "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368",
+      "passTrace": [
+        {
+          "number": 1,
+          "credited": [],
+          "wallet": 1.7976931348623157e+308,
+          "walletExact": "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368",
+          "remainingDue": 1083
+        }
+      ],
+      "final": {
+        "wallet": 1.7976931348623157e+308,
+        "walletExact": "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368",
+        "pending": [
+          "retirement:comettrials",
+          "retirement:rifttrail",
+          "retirement:starfallcrest",
+          "deed:d10",
+          "deed:d25",
+          "deed:d50",
+          "deed:d100",
+          "deed:d250",
+          "deed:tap100",
+          "deed:tap1000",
+          "deed:tap10000",
+          "deed:fullparty",
+          "deed:asc1",
+          "deed:asc5",
+          "deed:asc10",
+          "deed:all",
+          "deed:mythic",
+          "deed:idle8",
+          "deed:autotap",
+          "deed:labmaster",
+          "deed:study1",
+          "deed:study25",
+          "deed:allstudies",
+          "deed:labqueue",
+          "deed:firstultimate",
+          "deed:modulemax",
+          "deed:comet_first_command",
+          "deed:comet_first_recharge",
+          "deed:comet_boss_strike",
+          "deed:comet_called_kill"
+        ],
+        "knownDue": 1083,
+        "earned": [
+          "d10",
+          "d25",
+          "d50",
+          "d100",
+          "d250",
+          "tap100",
+          "tap1000",
+          "tap10000",
+          "fullparty",
+          "asc1",
+          "asc5",
+          "asc10",
+          "all",
+          "mythic",
+          "idle8",
+          "autotap",
+          "labmaster",
+          "study1",
+          "study25",
+          "allstudies",
+          "labqueue",
+          "firstultimate",
+          "modulemax",
+          "comet_first_command",
+          "comet_first_recharge",
+          "comet_boss_strike",
+          "comet_called_kill"
+        ]
+      },
+      "paidIDs": []
+    }
+  ],
+  "newAwardExamples": [
+    {
+      "label": "ordinary-immediate",
+      "initial": {
+        "wallet": 0,
+        "walletExact": "0",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "award": {
+        "id": "deed:d10",
+        "amount": 5,
+        "alreadyEarned": false,
+        "attempted": true,
+        "credited": true,
+        "before": 0,
+        "after": 5
+      },
+      "afterAward": {
+        "wallet": 5,
+        "walletExact": "5",
+        "pending": [],
+        "knownDue": 0,
+        "earned": [
+          "d10"
+        ]
+      },
+      "repeat": {
+        "id": "deed:d10",
+        "alreadyEarned": true,
+        "attempted": false
+      },
+      "nextCanonical": {
+        "state": {
+          "wallet": 5,
+          "walletExact": "5",
+          "pending": [],
+          "knownDue": 0,
+          "earned": [
+            "d10"
+          ]
+        },
+        "events": []
+      }
+    },
+    {
+      "label": "rounded-three-kept-due",
+      "initial": {
+        "wallet": 10000000000000000,
+        "walletExact": "10000000000000000",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "award": {
+        "id": "deed:tap100",
+        "amount": 3,
+        "alreadyEarned": false,
+        "attempted": true,
+        "credited": false,
+        "before": 10000000000000000,
+        "after": 10000000000000000
+      },
+      "afterAward": {
+        "wallet": 10000000000000000,
+        "walletExact": "10000000000000000",
+        "pending": [
+          "deed:tap100"
+        ],
+        "knownDue": 3,
+        "earned": [
+          "tap100"
+        ]
+      },
+      "repeat": {
+        "id": "deed:tap100",
+        "alreadyEarned": true,
+        "attempted": false
+      },
+      "nextCanonical": {
+        "state": {
+          "wallet": 10000000000000000,
+          "walletExact": "10000000000000000",
+          "pending": [
+            "deed:tap100"
+          ],
+          "knownDue": 3,
+          "earned": [
+            "tap100"
+          ]
+        },
+        "events": [
+          {
+            "id": "deed:tap100",
+            "amount": 3,
+            "before": 10000000000000000,
+            "beforeExact": "10000000000000000",
+            "after": 10000000000000000,
+            "afterExact": "10000000000000000",
+            "credited": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "huge-unlock-kept-immediate",
+      "initial": {
+        "wallet": 1e+30,
+        "walletExact": "1000000000000000019884624838656",
+        "pending": [],
+        "knownDue": 0,
+        "earned": []
+      },
+      "award": {
+        "id": "deed:autotap",
+        "amount": 25,
+        "alreadyEarned": false,
+        "attempted": true,
+        "credited": false,
+        "before": 1e+30,
+        "after": 1e+30
+      },
+      "afterAward": {
+        "wallet": 1e+30,
+        "walletExact": "1000000000000000019884624838656",
+        "pending": [
+          "deed:autotap"
+        ],
+        "knownDue": 25,
+        "earned": [
+          "autotap"
+        ]
+      },
+      "repeat": {
+        "id": "deed:autotap",
+        "alreadyEarned": true,
+        "attempted": false
+      },
+      "nextCanonical": {
+        "state": {
+          "wallet": 1e+30,
+          "walletExact": "1000000000000000019884624838656",
+          "pending": [
+            "deed:autotap"
+          ],
+          "knownDue": 25,
+          "earned": [
+            "autotap"
+          ]
+        },
+        "events": [
+          {
+            "id": "deed:autotap",
+            "amount": 25,
+            "before": 1e+30,
+            "beforeExact": "1000000000000000019884624838656",
+            "after": 1e+30,
+            "afterExact": "1000000000000000019884624838656",
+            "credited": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "no-sweep-of-old-payable-deed",
+      "initial": {
+        "wallet": 0,
+        "walletExact": "0",
+        "pending": [
+          "deed:tap100"
+        ],
+        "knownDue": 3,
+        "earned": [
+          "tap100"
+        ]
+      },
+      "award": {
+        "id": "deed:d10",
+        "amount": 5,
+        "alreadyEarned": false,
+        "attempted": true,
+        "credited": true,
+        "before": 0,
+        "after": 5
+      },
+      "afterAward": {
+        "wallet": 5,
+        "walletExact": "5",
+        "pending": [
+          "deed:tap100"
+        ],
+        "knownDue": 3,
+        "earned": [
+          "tap100",
+          "d10"
+        ]
+      },
+      "repeat": {
+        "id": "deed:d10",
+        "alreadyEarned": true,
+        "attempted": false
+      },
+      "nextCanonical": {
+        "state": {
+          "wallet": 8,
+          "walletExact": "8",
+          "pending": [],
+          "knownDue": 0,
+          "earned": [
+            "tap100",
+            "d10"
+          ]
+        },
+        "events": [
+          {
+            "id": "deed:tap100",
+            "amount": 3,
+            "before": 5,
+            "beforeExact": "5",
+            "after": 8,
+            "afterExact": "8",
+            "credited": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "new-deed-makes-retirement-payable-later",
+      "initial": {
+        "wallet": 18014398509481974,
+        "walletExact": "18014398509481974",
+        "pending": [
+          "retirement:comettrials"
+        ],
+        "knownDue": 140,
+        "earned": []
+      },
+      "award": {
+        "id": "deed:d100",
+        "amount": 50,
+        "alreadyEarned": false,
+        "attempted": true,
+        "credited": true,
+        "before": 18014398509481974,
+        "after": 18014398509482024
+      },
+      "afterAward": {
+        "wallet": 18014398509482024,
+        "walletExact": "18014398509482024",
+        "pending": [
+          "retirement:comettrials"
+        ],
+        "knownDue": 140,
+        "earned": [
+          "d100"
+        ]
+      },
+      "repeat": {
+        "id": "deed:d100",
+        "alreadyEarned": true,
+        "attempted": false
+      },
+      "nextCanonical": {
+        "state": {
+          "wallet": 18014398509482164,
+          "walletExact": "18014398509482164",
+          "pending": [],
+          "knownDue": 0,
+          "earned": [
+            "d100"
+          ]
+        },
+        "events": [
+          {
+            "id": "retirement:comettrials",
+            "amount": 140,
+            "before": 18014398509482024,
+            "beforeExact": "18014398509482024",
+            "after": 18014398509482164,
+            "afterExact": "18014398509482164",
+            "credited": true
+          }
+        ]
+      }
+    }
+  ],
+  "f26CrossFamily": {
+    "actualHelperSha256": "39782ef0356f5d0065cb92b87b94326cd6a2cf067e19d1abe0ebaa90e55fa54d",
+    "trace": [
+      {
+        "number": 1,
+        "before": {
+          "comets": 18014398509481974,
+          "prisms": 0,
+          "offline12hRefund": {
+            "offline24": true,
+            "offline48": false,
+            "cometsPaid": [
+              false,
+              true
+            ],
+            "prismPrices": [],
+            "prismsPaid": []
+          }
+        },
+        "afterF26Wallet": 18014398509481974,
+        "f26Paid": [
+          false,
+          true
+        ],
+        "familyEvents": [
+          {
+            "id": "retirement:rifttrail",
+            "amount": 50,
+            "before": 18014398509481974,
+            "beforeExact": "18014398509481974",
+            "after": 18014398509482024,
+            "afterExact": "18014398509482024",
+            "credited": true
+          }
+        ],
+        "after": {
+          "comets": 18014398509482024,
+          "prisms": 0,
+          "offline12hRefund": {
+            "offline24": true,
+            "offline48": false,
+            "cometsPaid": [
+              false,
+              true
+            ],
+            "prismPrices": [],
+            "prismsPaid": []
+          }
+        },
+        "knownDue": 0
+      },
+      {
+        "number": 2,
+        "before": {
+          "comets": 18014398509482024,
+          "prisms": 0,
+          "offline12hRefund": {
+            "offline24": true,
+            "offline48": false,
+            "cometsPaid": [
+              false,
+              true
+            ],
+            "prismPrices": [],
+            "prismsPaid": []
+          }
+        },
+        "afterF26Wallet": 18014398509482164,
+        "f26Paid": [
+          true,
+          true
+        ],
+        "familyEvents": [],
+        "after": {
+          "comets": 18014398509482164,
+          "prisms": 0,
+          "offline12hRefund": {
+            "offline24": true,
+            "offline48": false,
+            "cometsPaid": [
+              true,
+              true
+            ],
+            "prismPrices": [],
+            "prismsPaid": []
+          }
+        },
+        "knownDue": 0
+      },
+      {
+        "number": 3,
+        "before": {
+          "comets": 18014398509482164,
+          "prisms": 0,
+          "offline12hRefund": {
+            "offline24": true,
+            "offline48": false,
+            "cometsPaid": [
+              true,
+              true
+            ],
+            "prismPrices": [],
+            "prismsPaid": []
+          }
+        },
+        "afterF26Wallet": 18014398509482164,
+        "f26Paid": [
+          true,
+          true
+        ],
+        "familyEvents": [],
+        "after": {
+          "comets": 18014398509482164,
+          "prisms": 0,
+          "offline12hRefund": {
+            "offline24": true,
+            "offline48": false,
+            "cometsPaid": [
+              true,
+              true
+            ],
+            "prismPrices": [],
+            "prismsPaid": []
+          }
+        },
+        "knownDue": 0
+      }
+    ],
+    "note": "Existing F26 single pass stays first and separate. A later new-family credit can make an earlier F26 claim payable on another canonicalization."
+  },
+  "indivisibleCounterexample": {
+    "initial": {
+      "wallet": 18014398509481984,
+      "walletExact": "18014398509481984",
+      "pending": [
+        "retirement:rifttrail",
+        "deed:comet_first_recharge"
+      ],
+      "knownDue": 60,
+      "earned": [
+        "comet_first_recharge"
+      ]
+    },
+    "after": {
+      "wallet": 18014398509481984,
+      "walletExact": "18014398509481984",
+      "pending": [
+        "retirement:rifttrail",
+        "deed:comet_first_recharge"
+      ],
+      "knownDue": 60,
+      "earned": [
+        "comet_first_recharge"
+      ]
+    },
+    "events": [
+      {
+        "id": "retirement:rifttrail",
+        "amount": 50,
+        "before": 18014398509481984,
+        "beforeExact": "18014398509481984",
+        "after": 18014398509481984,
+        "afterExact": "18014398509481984",
+        "credited": false
+      },
+      {
+        "id": "deed:comet_first_recharge",
+        "amount": 10,
+        "before": 18014398509481984,
+        "beforeExact": "18014398509481984",
+        "after": 18014398509481984,
+        "afterExact": "18014398509481984",
+        "credited": false
+      }
+    ],
+    "forbiddenCombinedCredit": 60,
+    "combinedWouldFit": 18014398509482044
+  },
+  "limitations": [
+    "The 1083C bound excludes unchanged F26 claims and all daily/login/quest income.",
+    "Existing earned Deeds are historically settled at migration by convention; no unseen historical loss can be reconstructed.",
+    "One pass is not a numerical fixed point. Settled IDs cannot pay twice; due IDs keep original amounts.",
+    "Primary/recovery checks above are design model endpoint checks, not new product fault tests.",
+    "A huge or unsuitable fractional wallet may retain all due claims indefinitely; no wallet rounding or partial settlement is permitted."
+  ]
+}

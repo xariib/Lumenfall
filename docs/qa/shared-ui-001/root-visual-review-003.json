@@ -1,0 +1,53 @@
+{
+  "status": "ROOT_VISUAL_REVIEW_NO_CONCRETE_BLOCKER_IN_THREE_TARGETED_FIXES",
+  "reviewedAtUtc": "2026-10-11 04:37:35 UTC",
+  "clockSource": "clock.curr_time",
+  "candidate": "b11567aac6a2d52145fe86c522b36fb559062cf9",
+  "run": 38111828759,
+  "scope": "Six original PNGs, normal 320px root32 no-preference and each exact inverse failure. Full twelve-profile numerical/native/source audit remains owned by independent agents. No game/browser re-execution or image modification.",
+  "images": [
+    {
+      "path": "shared-ui-ci/diagnostic-003/raw/artifact/layout/normal/shared-320-2-no-preference-brand-rift.png",
+      "bytes": 219523,
+      "sha256": "b8c9bfdf56be24e435c3e6c79a78a69ba120d46594300852cd82103e98df2b4d",
+      "directlyViewedByRoot": true
+    },
+    {
+      "path": "shared-ui-ci/diagnostic-003/raw/artifact/layout/brand-spacing/failure.png",
+      "bytes": 219103,
+      "sha256": "c4dc5e568ee9f285b523b0fdfdf1c33482d0a8a8c51f91cb11821b33cd94b52a",
+      "directlyViewedByRoot": true
+    },
+    {
+      "path": "shared-ui-ci/diagnostic-003/raw/artifact/layout/normal/shared-320-2-no-preference-wisp-ember.png",
+      "bytes": 185633,
+      "sha256": "8ad88451d99cf7f0b3844f69759383566bbd34cee8ad0bdd8e6fd4fcb31bbbbe",
+      "directlyViewedByRoot": true
+    },
+    {
+      "path": "shared-ui-ci/diagnostic-003/raw/artifact/layout/wisp-header/failure.png",
+      "bytes": 193415,
+      "sha256": "7679eb5bf6e0c14f49839ed1cf820af51df4d0544169c30d725666bbd6dd20e8",
+      "directlyViewedByRoot": true
+    },
+    {
+      "path": "shared-ui-ci/diagnostic-003/raw/artifact/layout/normal/shared-320-2-no-preference-last-wisp-toast.png",
+      "bytes": 195640,
+      "sha256": "f0632a3b3461ea283e7b3e9dc62995e3dda1ff1b302619aaa00a44c655323617",
+      "directlyViewedByRoot": true
+    },
+    {
+      "path": "shared-ui-ci/diagnostic-003/raw/artifact/layout/toast-leading/failure.png",
+      "bytes": 198035,
+      "sha256": "b406ceade28a63dca0e0f1a0c375234600f0d5eb1c8b933d2334ef868f882261",
+      "directlyViewedByRoot": true
+    }
+  ],
+  "observations": [
+    "Candidate wordmark stays clear of Settings; the exact letter-spacing inverse runs underneath the button.",
+    "Candidate Ember class remains readable with Bench on its own row; the exact wrap/minimum-width inverse intersects class text and Bench.",
+    "Candidate last-Wisp refusal text is readable on two separate lines; the exact fixed-leading inverse visibly overlaps the two lines.",
+    "Existing narrow enlarged-text Recruit guidance control clipping in the Rift view is the already documented separate F07 follow-up in ACCEPTANCE.md; no claim that these three fixes resolve that separate behavior."
+  ],
+  "noProductEdits": true
+}

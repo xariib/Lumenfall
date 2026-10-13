@@ -1,0 +1,159 @@
+{
+  "status": "PREPARED_BROWSER_NOT_EXECUTED",
+  "identity": {
+    "testSha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+    "transportSha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd",
+    "referenceSha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+    "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+  },
+  "driverSha256": "b9d3276d59de4252d4176976fd8e611ba6fd1e7aa80832e748c945ec969b548e",
+  "node": "v24.19.0",
+  "versions": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "assets": [
+    {
+      "path": "fonts/cinzel-500.woff2",
+      "bytes": 25904,
+      "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+    },
+    {
+      "path": "fonts/cinzel-600.woff2",
+      "bytes": 25904,
+      "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+    },
+    {
+      "path": "fonts/cinzel-700.woff2",
+      "bytes": 25904,
+      "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+    },
+    {
+      "path": "fonts/fonts.css",
+      "bytes": 1482,
+      "sha256": "befd8e42d48b477c567ba3ce469ff475c12a1f8724c98258469dea11b15065d7"
+    },
+    {
+      "path": "fonts/ibm-plex-mono-400.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "fonts/ibm-plex-mono-500.woff2",
+      "bytes": 14888,
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+    },
+    {
+      "path": "fonts/ibm-plex-mono-600.woff2",
+      "bytes": 15620,
+      "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+    },
+    {
+      "path": "fonts/manrope-400.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "fonts/manrope-500.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "fonts/manrope-600.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "fonts/manrope-700.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "fonts/manrope-800.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "branding/README.md",
+      "bytes": 988,
+      "sha256": "2ec43b9b11efdf98f802942dfb09740ebdbb08bb3a1364be2bb29f1a7bc19050"
+    },
+    {
+      "path": "branding/lumenfall-mark.svg",
+      "bytes": 3933,
+      "sha256": "976398b0e662181ae6dbb3430ce74d606a9db3a3f6c451818d5fda9e0f9395e4"
+    }
+  ],
+  "profiles": 12,
+  "negativeControls": 3,
+  "syntax": {
+    "generatedDriver": true,
+    "completeBridge": true,
+    "prelude": true,
+    "staticExpressions": 2,
+    "allDynamicExpressionsParsedBeforeSend": true
+  },
+  "variants": [
+    {
+      "id": "normal",
+      "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+      "expectedGeometryCode": null,
+      "patch": null
+    },
+    {
+      "id": "brand-spacing",
+      "sourceSha256": "2226ae1faf31ffc3d68aeab4c8b0f80b4a8fffcfe2e06bb171f2fe99ce189d06",
+      "expectedGeometryCode": "brand-glyph-intersects-settings",
+      "patch": {
+        "from": "  @media(max-width:360px){.hud .brand{letter-spacing:.04em;}}\n",
+        "to": ""
+      }
+    },
+    {
+      "id": "wisp-header",
+      "sourceSha256": "beda64ddea4ec7314e1a6c3bc58763cf8dedb5a24d79189715b53117e446cd01",
+      "expectedGeometryCode": "wisp-glyph-intersects-toggle",
+      "patch": {
+        "from": "  #tab-spirits .hero-top{margin-bottom:6px;flex-wrap:wrap;}\n  #tab-spirits .hero-id{min-width:min-content;}\n",
+        "to": "  #tab-spirits .hero-top{margin-bottom:6px;}\n"
+      }
+    },
+    {
+      "id": "toast-leading",
+      "sourceSha256": "f85d17cd7d6d6e6eb2ad94637a4c54929a3013977612a4310903622c63950c24",
+      "expectedGeometryCode": "toast-adjacent-glyph-lines-intersect",
+      "patch": {
+        "from": "    line-height:1.4;border-radius:12px;\n",
+        "to": "    line-height:16px;border-radius:12px;\n"
+      }
+    }
+  ],
+  "limits": "Only ambient setInterval is paused. Native RAF/startup/fonts/input/handlers stay active. Range boxes are not raster ink masks. Android/WebView60 CSS/textZoom/TalkBack untested."
+}

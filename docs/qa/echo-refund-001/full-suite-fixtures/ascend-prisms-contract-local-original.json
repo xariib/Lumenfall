@@ -1,0 +1,45 @@
+{
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "observation": {
+    "qa_count": 0,
+    "qa_status": null,
+    "qa_scenario": null,
+    "json_status": null,
+    "json_scenario": null,
+    "runtime_markers": [],
+    "runtime_error_count": null,
+    "json_error": "Expected exactly one completed QA result",
+    "valid": false
+  },
+  "payload": null,
+  "process": {
+    "command": [
+      "/tmp/lumenfall-node20/node-v20.20.2-linux-x64/bin/node",
+      "/workspace/Lumenfall-echo-refund/tests/behavioral/browser-dom.cjs",
+      "/usr/bin/chromium",
+      "http://127.0.0.1:34277/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh",
+      "/tmp/lumenfall-qa-ascend-prisms-contract-m5nyEr",
+      "no-preference"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 1,
+      "timed_out": false,
+      "elapsed_sec": 9.688463253000286,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 0,
+      "qa_status": null,
+      "qa_scenario": null,
+      "json_status": null,
+      "json_scenario": null,
+      "runtime_markers": [],
+      "runtime_error_count": null,
+      "json_error": "Expected exactly one completed QA result",
+      "valid": false
+    }
+  },
+  "scope": "Failed local broad-run attempt; not a causal control or CI receipt"
+}

@@ -1,0 +1,36 @@
+{
+  "group": "tree",
+  "id": "v8",
+  "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+  "args": [
+    "tests/behavioral/tree-expansion-v8.cjs",
+    "index.html"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:09:59.753Z",
+  "endedHostUtc": "2026-10-11T15:10:00.542Z",
+  "elapsedNanoseconds": "788288989",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "04-v8.stdout.log",
+    "bytes": 905,
+    "sha256": "66e06884208fb7cbd39e84405f590f8d8f39db05853e91baf6a7cf2aa955951a",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "04-v8.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 2862,
+    "declaredCausalControls": null
+  }
+}

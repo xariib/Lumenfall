@@ -1,0 +1,22 @@
+{
+  "status": "fail",
+  "phase": "purchase autoascend/0",
+  "checks": 28,
+  "priceCases": 0,
+  "faultCases": 0,
+  "numericCases": 0,
+  "migrationCases": 0,
+  "invalidCases": 0,
+  "records": [
+    {
+      "id": "catalog-and-historical-ledgers",
+      "checks": 24
+    }
+  ],
+  "error": "Error: Swift refund history needs recovery\n    at persistenceError (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-harness.cjs:189:3), <anonymous>:1272:15)\n    at invalid (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-harness.cjs:189:3), <anonymous>:1826:28)\n    at normalizeSwiftRecoveryRefund (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-harness.cjs:189:3), <anonymous>:1838:19)\n    at normalizeCurrentSave (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-harness.cjs:189:3), <anonymous>:1762:5)\n    at acceptPersistedState (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-harness.cjs:189:3), <anonymous>:2040:20)\n    at Object.set (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-harness.cjs:189:3), <anonymous>:8325:34)\n    at /workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-v8.cjs:103:72\n    at Array.forEach (<anonymous>)\n    at /workspace/Lumenfall-swift-current/tests/behavioral/comet-expansion-v8.cjs:102:37\n    at Array.forEach (<anonymous>)",
+  "sourceSha256": "a59e2e258b0babbf5026cf97b75a4933e4c8b31b15e5fe97e67913efaea3cc9c",
+  "testSha256": "8a41353c97cdc8ae6cfea77d732b832dbbdbf859ec5b2a57bf225e6ca0aa89c0",
+  "harnessSha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928",
+  "node": "v8.3.0",
+  "v8": "6.0.286.52"
+}

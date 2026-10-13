@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "scope": "Pure inverse unit regression, syntax/source/context only; no browser/game run",
+  "inputs": {
+    "index.html": {
+      "bytes": 657955,
+      "sha256": "dd81757378880ef42052cf6b175ea06721043e0ba7213cd135d5661367a743f1"
+    },
+    "tests/behavioral/rift-guidance.cjs": {
+      "bytes": 41266,
+      "sha256": "e8b28db760c4f07f65affe7d8a585b0a21f6c10827ae7ac8a4a34fb4b3431ae5"
+    },
+    "tests/behavioral/fixtures.json": {
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753"
+    },
+    "tests/behavioral/scenarios.json": {
+      "bytes": 9882,
+      "sha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2"
+    },
+    "scripts/ci/guidance-readability.cjs": {
+      "bytes": 15056,
+      "sha256": "16592a6e62f6176eaf7fa13f9a1f99a3c83a23a10defd583182b3d77d20de8fc"
+    },
+    "tests/behavioral/rift-guidance-inverses.cjs": {
+      "bytes": 3047,
+      "sha256": "172e9b5656f80dcaff9130a8c9c01cf0f1021f8b2d14bbce7fc083c7436b6fb4"
+    },
+    "tests/behavioral/rift-guidance-inverses.test.cjs": {
+      "bytes": 3151,
+      "sha256": "cbfed855ed9e62e1c6eded75106de0f08636bee80c7cc5746e52a640a5c37b8f"
+    }
+  },
+  "commands": [
+    {
+      "id": "syntax-helper",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "scripts/ci/guidance-readability.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:24:04.281954+00:00",
+      "completedUtc": "2026-10-11T13:24:04.342402+00:00",
+      "returncode": 0,
+      "stdout": {
+        "path": "syntax-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "syntax-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-mutators",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/behavioral/rift-guidance-inverses.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:24:04.342899+00:00",
+      "completedUtc": "2026-10-11T13:24:04.407577+00:00",
+      "returncode": 0,
+      "stdout": {
+        "path": "syntax-mutators.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "syntax-mutators.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "syntax-unit",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/behavioral/rift-guidance-inverses.test.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:24:04.407954+00:00",
+      "completedUtc": "2026-10-11T13:24:04.468533+00:00",
+      "returncode": 0,
+      "stdout": {
+        "path": "syntax-unit.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "syntax-unit.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "inverse-unit",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/rift-guidance-inverses.test.cjs",
+        "index.html",
+        "/workspace/scratch/0848c4e4f365/guidance-work/ci-0401/full-early/extracted/baseline-www/index.html"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:24:04.468899+00:00",
+      "completedUtc": "2026-10-11T13:24:04.614153+00:00",
+      "returncode": 0,
+      "stdout": {
+        "path": "inverse-unit.stdout.log",
+        "bytes": 546,
+        "sha256": "8f2c3caf0a87640ddbb54ff0a6bcafcb77f5c0df7745987611f0cb3028b63526"
+      },
+      "stderr": {
+        "path": "inverse-unit.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "source",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "scripts/ci/validate_source.cjs"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:24:04.614676+00:00",
+      "completedUtc": "2026-10-11T13:24:04.820471+00:00",
+      "returncode": 0,
+      "stdout": {
+        "path": "source.stdout.log",
+        "bytes": 99,
+        "sha256": "554c0938eec03dd8c8db111b0fcc9c537dd5b879531a874c492090a357d941e6"
+      },
+      "stderr": {
+        "path": "source.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "context",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "scripts/codex/check_context.cjs",
+        "--task",
+        "docs/tasks/GUIDANCE_READABILITY_001.md"
+      ],
+      "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-guidance-large-text",
+      "startedUtc": "2026-10-11T13:24:04.820797+00:00",
+      "completedUtc": "2026-10-11T13:24:04.887307+00:00",
+      "returncode": 0,
+      "stdout": {
+        "path": "context.stdout.log",
+        "bytes": 139,
+        "sha256": "0b5bda3f08f311f80eb2786347efdb01b05adec46747823fafae44785abe0666"
+      },
+      "stderr": {
+        "path": "context.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

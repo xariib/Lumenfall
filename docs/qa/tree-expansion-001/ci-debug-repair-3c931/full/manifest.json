@@ -1,0 +1,1662 @@
+{
+  "schemaVersion": 1,
+  "closedInventory": true,
+  "excludedSelf": "manifest.json",
+  "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "auditUtc": "2026-10-10 21:36:18 UTC",
+  "files": [
+    {
+      "path": "artifact-manifest.json",
+      "encoding": "identity",
+      "originalBytes": 29343,
+      "originalSha256": "f58df963e40c2de25cf31495b935e6ff841cd7a0e77d5401f77f58f3b9f717b0",
+      "storedBytes": 29343,
+      "storedSha256": "f58df963e40c2de25cf31495b935e6ff841cd7a0e77d5401f77f58f3b9f717b0",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/artifact-manifest.json"
+      }
+    },
+    {
+      "path": "audit.json",
+      "encoding": "identity",
+      "originalBytes": 8681,
+      "originalSha256": "308a34755899f6ee3736feeeb4c45860594489b083f41a2f24115062802dde77",
+      "storedBytes": 8681,
+      "storedSha256": "308a34755899f6ee3736feeeb4c45860594489b083f41a2f24115062802dde77",
+      "origin": {
+        "kind": "derived-observation",
+        "description": "Final read-only audit of the failed published candidate."
+      }
+    },
+    {
+      "path": "failed-scenario-analysis.json",
+      "encoding": "identity",
+      "originalBytes": 52048,
+      "originalSha256": "4d40997e7801e2453a1d579fae10a2ed54f88528a75e170e02583fef1c81a568",
+      "storedBytes": 52048,
+      "storedSha256": "4d40997e7801e2453a1d579fae10a2ed54f88528a75e170e02583fef1c81a568",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenario-analysis.json"
+      }
+    },
+    {
+      "path": "failed-scenario-order.json",
+      "encoding": "identity",
+      "originalBytes": 8525,
+      "originalSha256": "011d39bd37f91ced01784df3be0626ba8a41f920863bb48781259d9fc24dc510",
+      "storedBytes": 8525,
+      "storedSha256": "011d39bd37f91ced01784df3be0626ba8a41f920863bb48781259d9fc24dc510",
+      "origin": {
+        "kind": "derived-observation",
+        "description": "Exact order and viewport expansion in the original completed stateful log."
+      }
+    },
+    {
+      "path": "failed-scenarios/01-inquiry-save-reload/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6514,
+      "originalSha256": "2366574de48744ad9d67e431c692f9cba5080ea5b994523ce8e691e0ea958032",
+      "storedBytes": 1499,
+      "storedSha256": "c55ff6265dfcc234c39192d1e064db9ee04e530bcc6e05d18d78ef5c8ff98fbc",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 4514577,
+        "bytes": 6514,
+        "sha256": "2366574de48744ad9d67e431c692f9cba5080ea5b994523ce8e691e0ea958032"
+      }
+    },
+    {
+      "path": "failed-scenarios/01-inquiry-save-reload/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3638,
+      "originalSha256": "28fa2a2f82be6f1b324a77f33f6e0ea56d5a7f3e2b8490bbaaa882115fa1bd23",
+      "storedBytes": 3638,
+      "storedSha256": "28fa2a2f82be6f1b324a77f33f6e0ea56d5a7f3e2b8490bbaaa882115fa1bd23",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/01-inquiry-save-reload/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/01-inquiry-save-reload/process.json",
+      "encoding": "identity",
+      "originalBytes": 925,
+      "originalSha256": "416bde7792e1791de05566de46628ea0ea8f669d0bc75a80715dfbc877ed7255",
+      "storedBytes": 925,
+      "storedSha256": "416bde7792e1791de05566de46628ea0ea8f669d0bc75a80715dfbc877ed7255",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/process.json",
+        "zipCrc32": "c6f6e962"
+      }
+    },
+    {
+      "path": "failed-scenarios/01-inquiry-save-reload/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 582,
+      "originalSha256": "8463bf1409d592dc110e24b564dbe5cf1b9a3512771879a77696bd551ad12671",
+      "storedBytes": 582,
+      "storedSha256": "8463bf1409d592dc110e24b564dbe5cf1b9a3512771879a77696bd551ad12671",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/01-inquiry-save-reload/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/01-inquiry-save-reload/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "6e0e806173aeb134215c3679fea46fb015518547bcb56e5df5e5820acc9d718a",
+      "storedBytes": 484,
+      "storedSha256": "4540ff9353d505f937a5dbea4be12341c23f2455b053df3b460269991ef52aae",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/stderr.log",
+        "zipCrc32": "4d95633c"
+      }
+    },
+    {
+      "path": "failed-scenarios/01-inquiry-save-reload/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1458658,
+      "originalSha256": "50343e89ab4d8a73dd054d2a0de309be554feaa4d2d970ab17e9d80cd8242b7c",
+      "storedBytes": 324003,
+      "storedSha256": "c37af428ac1895c3b75d702a197a63f207e3c23ec96574cb8ae0fbadc0102d7a",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-save-reload-GVDa88/stdout.html",
+        "zipCrc32": "1746e94c"
+      }
+    },
+    {
+      "path": "failed-scenarios/02-inquiry-backup-restore/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6526,
+      "originalSha256": "9501c1a8ec7f45a35c19fb46c8aee47e2f789f936746d8c04e04e3cbd36602dd",
+      "storedBytes": 1505,
+      "storedSha256": "52ee13b5f6bc6813c9d169bc8b0d5f39b37582548cc95c86cb4e92d705828f28",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 4521091,
+        "bytes": 6526,
+        "sha256": "9501c1a8ec7f45a35c19fb46c8aee47e2f789f936746d8c04e04e3cbd36602dd"
+      }
+    },
+    {
+      "path": "failed-scenarios/02-inquiry-backup-restore/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3689,
+      "originalSha256": "52f0df896975fa60384bd0d2e86f67767ad81ba95069bedeb5441034479c2aba",
+      "storedBytes": 3689,
+      "storedSha256": "52f0df896975fa60384bd0d2e86f67767ad81ba95069bedeb5441034479c2aba",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/02-inquiry-backup-restore/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/02-inquiry-backup-restore/process.json",
+      "encoding": "identity",
+      "originalBytes": 937,
+      "originalSha256": "7cd20699cc1e6cd258f34080cac987f2c6b1322bc7d4f09a687c4ff5a096cba9",
+      "storedBytes": 937,
+      "storedSha256": "7cd20699cc1e6cd258f34080cac987f2c6b1322bc7d4f09a687c4ff5a096cba9",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/process.json",
+        "zipCrc32": "c637865c"
+      }
+    },
+    {
+      "path": "failed-scenarios/02-inquiry-backup-restore/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 594,
+      "originalSha256": "d9c4c1fe5c010b25792ae125bc26633ab316766323633426ac8a7595477604ac",
+      "storedBytes": 594,
+      "storedSha256": "d9c4c1fe5c010b25792ae125bc26633ab316766323633426ac8a7595477604ac",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/02-inquiry-backup-restore/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/02-inquiry-backup-restore/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "25efa1aa27d3eefe62620cb0333bf34b15ca890ba9e136ef78d5591b196e513a",
+      "storedBytes": 483,
+      "storedSha256": "5aa3cb750e1c354c9bbf136ed2215339fc2f25e2d0646e7f5caae38a38677613",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stderr.log",
+        "zipCrc32": "eaeb47db"
+      }
+    },
+    {
+      "path": "failed-scenarios/02-inquiry-backup-restore/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1458673,
+      "originalSha256": "bfd10440f84d7ef07863602001a712b6ecf697d3c3a7a283419941c8364f298c",
+      "storedBytes": 324004,
+      "storedSha256": "44fb74ff1625f61f01790140b204f6e5cb9e7bd10616f9328d8e27a7cb2479c2",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-backup-restore-rSRFbb/stdout.html",
+        "zipCrc32": "fb0c890f"
+      }
+    },
+    {
+      "path": "failed-scenarios/03-inquiry-recovery/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6502,
+      "originalSha256": "488a47e729ca11ef6ae6adc28ed68939ede32592d2af0e677213b376e7203eb4",
+      "storedBytes": 1497,
+      "storedSha256": "c03f17fa9200ca5f4ea2bdc0c1f43cbeea0a0afabc472fa0727203908e3a89ea",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 4527617,
+        "bytes": 6502,
+        "sha256": "488a47e729ca11ef6ae6adc28ed68939ede32592d2af0e677213b376e7203eb4"
+      }
+    },
+    {
+      "path": "failed-scenarios/03-inquiry-recovery/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3587,
+      "originalSha256": "8a5d3921ab7675d737ab1e96f071730500a1f17859865c0e7100fbb95f091cc8",
+      "storedBytes": 3587,
+      "storedSha256": "8a5d3921ab7675d737ab1e96f071730500a1f17859865c0e7100fbb95f091cc8",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/03-inquiry-recovery/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/03-inquiry-recovery/process.json",
+      "encoding": "identity",
+      "originalBytes": 913,
+      "originalSha256": "e5b38ea66626025000908333bf63ad13c453d530981e4247af6973078b5b27e4",
+      "storedBytes": 913,
+      "storedSha256": "e5b38ea66626025000908333bf63ad13c453d530981e4247af6973078b5b27e4",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/process.json",
+        "zipCrc32": "b6a27493"
+      }
+    },
+    {
+      "path": "failed-scenarios/03-inquiry-recovery/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 570,
+      "originalSha256": "3f1d61bdb6599f6911faeb193dace1c65388b86161596bed1803769c2319b1c6",
+      "storedBytes": 570,
+      "storedSha256": "3f1d61bdb6599f6911faeb193dace1c65388b86161596bed1803769c2319b1c6",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/03-inquiry-recovery/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/03-inquiry-recovery/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "a6458ec23e19ca8be9c8389a8d50eb453326e762dbf892c4558fdd97f8cc0371",
+      "storedBytes": 486,
+      "storedSha256": "8f8d182f049b9d5f3050f833cde2060e7c30632c5dbce6aa9da5b28903e536e3",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/stderr.log",
+        "zipCrc32": "278d6c5e"
+      }
+    },
+    {
+      "path": "failed-scenarios/03-inquiry-recovery/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1458684,
+      "originalSha256": "7d368f4d6ae5b728e94f4a1fb3c3e90d1b5a60850e96f4366107c44912494e8d",
+      "storedBytes": 324023,
+      "storedSha256": "21941eafc3c2b9c2b12055e267d620e395a2380361e26738ada7142895bed791",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/inquiry-recovery-h3rtqD/stdout.html",
+        "zipCrc32": "154307a6"
+      }
+    },
+    {
+      "path": "failed-scenarios/04-support-stacking/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6502,
+      "originalSha256": "64f26da7bbb5fe23011c20eee54b899c16060f29085a7c57071639bf3668ea48",
+      "storedBytes": 1493,
+      "storedSha256": "3597c159cc5c9c39126d7516e4000ad9d09749cea293fe6ce98392eee6946e2c",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 4536224,
+        "bytes": 6502,
+        "sha256": "64f26da7bbb5fe23011c20eee54b899c16060f29085a7c57071639bf3668ea48"
+      }
+    },
+    {
+      "path": "failed-scenarios/04-support-stacking/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3656,
+      "originalSha256": "741aab65f35fac6dc881bcd31de086f7fb092d79208711d575d168b992f40fe6",
+      "storedBytes": 3656,
+      "storedSha256": "741aab65f35fac6dc881bcd31de086f7fb092d79208711d575d168b992f40fe6",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/04-support-stacking/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/04-support-stacking/process.json",
+      "encoding": "identity",
+      "originalBytes": 913,
+      "originalSha256": "d27213530f57fdf97dc68f4c662dae29e0225f228a760114bf6fe2ee63fb612b",
+      "storedBytes": 913,
+      "storedSha256": "d27213530f57fdf97dc68f4c662dae29e0225f228a760114bf6fe2ee63fb612b",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/process.json",
+        "zipCrc32": "88abde37"
+      }
+    },
+    {
+      "path": "failed-scenarios/04-support-stacking/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 639,
+      "originalSha256": "84ad514c639327ab4e727483ef223a3634ac3505ab8bec64295caa5314bbbf49",
+      "storedBytes": 639,
+      "storedSha256": "84ad514c639327ab4e727483ef223a3634ac3505ab8bec64295caa5314bbbf49",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/04-support-stacking/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/04-support-stacking/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "d61442b8324b0390634f506b13ace693b99cb548d311ea8be80df1751686c34c",
+      "storedBytes": 486,
+      "storedSha256": "eab35b67d914b81ce4618d1354610715762f81e63abd62decea546a72c9c920c",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stderr.log",
+        "zipCrc32": "daab5c5f"
+      }
+    },
+    {
+      "path": "failed-scenarios/04-support-stacking/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1377107,
+      "originalSha256": "e998962dfc59ab6295cd804835092606621b7c195f9ddd75acc7840534d71bae",
+      "storedBytes": 318484,
+      "storedSha256": "a3f798f967c89c0fc9c6e5bb7577aa2676fefa4f3200cd3ee9987ce309ec1c1e",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stdout.html",
+        "zipCrc32": "48cd6933"
+      }
+    },
+    {
+      "path": "failed-scenarios/05-rift-status-contract/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6517,
+      "originalSha256": "28ab475360b326be3bb5d5d8dba9ceed19bfd2655ae578a2dad78ad500e7aaf3",
+      "storedBytes": 1442,
+      "storedSha256": "f24f8cf122345e67542ca938d2e5a3b0b12aa0e978c08c038455a5c898403a49",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10408139,
+        "bytes": 6517,
+        "sha256": "28ab475360b326be3bb5d5d8dba9ceed19bfd2655ae578a2dad78ad500e7aaf3"
+      }
+    },
+    {
+      "path": "failed-scenarios/05-rift-status-contract/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3190,
+      "originalSha256": "da5855cf355fa2bab05949da886dfdeebff0b1bd642b4aeaf46daa0f155e992e",
+      "storedBytes": 3190,
+      "storedSha256": "da5855cf355fa2bab05949da886dfdeebff0b1bd642b4aeaf46daa0f155e992e",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/05-rift-status-contract/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/05-rift-status-contract/process.json",
+      "encoding": "identity",
+      "originalBytes": 928,
+      "originalSha256": "55061a5a7c13e7ccfa2d239ded893eb7f6d34162952ad02ab9850e699961ba49",
+      "storedBytes": 928,
+      "storedSha256": "55061a5a7c13e7ccfa2d239ded893eb7f6d34162952ad02ab9850e699961ba49",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/process.json",
+        "zipCrc32": "75472e95"
+      }
+    },
+    {
+      "path": "failed-scenarios/05-rift-status-contract/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 134,
+      "originalSha256": "a4b27ec7dbcb57878456e5f3da8369a23aba35bd7c509936068ac80f99c92331",
+      "storedBytes": 134,
+      "storedSha256": "a4b27ec7dbcb57878456e5f3da8369a23aba35bd7c509936068ac80f99c92331",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/05-rift-status-contract/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/05-rift-status-contract/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "3b29a9fea502fea630a0504fae054837825e624d5d9cc2f151e34ae476cf3781",
+      "storedBytes": 484,
+      "storedSha256": "316907de58dfaa96cc58a39e4743d65ff86dec17430cdec8165cc3da4f3768d8",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stderr.log",
+        "zipCrc32": "223c793f"
+      }
+    },
+    {
+      "path": "failed-scenarios/05-rift-status-contract/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1458064,
+      "originalSha256": "d5b7fc2b08a7276efa398187500b2f621153eb403f76d6e7a5e6e91752a64e46",
+      "storedBytes": 323846,
+      "storedSha256": "0c028cd0cf9d5027180978d20dbaf8dcacee71489207b3f96b282d43eeaf4e16",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/rift-status-contract-G7z8vv/stdout.html",
+        "zipCrc32": "25a41863"
+      }
+    },
+    {
+      "path": "failed-scenarios/06-p2-07a-formation-reconstruction/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6562,
+      "originalSha256": "b5a40ae0c94a61d352eddfb9a5e998b55b3b8741233961f294fac8cb959438c1",
+      "storedBytes": 1454,
+      "storedSha256": "9b1164fd4bd4d8119e50856fdc0236f34c7793dc8c506ce555bd2071e4037ab6",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10856227,
+        "bytes": 6562,
+        "sha256": "b5a40ae0c94a61d352eddfb9a5e998b55b3b8741233961f294fac8cb959438c1"
+      }
+    },
+    {
+      "path": "failed-scenarios/06-p2-07a-formation-reconstruction/observation.json",
+      "encoding": "identity",
+      "originalBytes": 4250,
+      "originalSha256": "8fcf1fd45ef5aa7beac8c074a2abd4b58486df7096a9266501077925add2ffbf",
+      "storedBytes": 4250,
+      "storedSha256": "8fcf1fd45ef5aa7beac8c074a2abd4b58486df7096a9266501077925add2ffbf",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/06-p2-07a-formation-reconstruction/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/06-p2-07a-formation-reconstruction/process.json",
+      "encoding": "identity",
+      "originalBytes": 973,
+      "originalSha256": "583112df2b73d2f2240dad0f9a93c266ee34d616576565319005ebc47157fa58",
+      "storedBytes": 973,
+      "storedSha256": "583112df2b73d2f2240dad0f9a93c266ee34d616576565319005ebc47157fa58",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/process.json",
+        "zipCrc32": "d8263a61"
+      }
+    },
+    {
+      "path": "failed-scenarios/06-p2-07a-formation-reconstruction/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 1037,
+      "originalSha256": "4bcc23300545dd346c4b2e0435b63e62283b6eaf45b123e98c2624421d7cd77c",
+      "storedBytes": 1037,
+      "storedSha256": "4bcc23300545dd346c4b2e0435b63e62283b6eaf45b123e98c2624421d7cd77c",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/06-p2-07a-formation-reconstruction/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/06-p2-07a-formation-reconstruction/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "d722bb3f81c0ede66345edbb0c876202e0f56e3aceec0250e2d226f84ba6433e",
+      "storedBytes": 489,
+      "storedSha256": "459d5a022f395705909cf8a7b08b7a8e162caad7dabc68b383113b40a2db4e6b",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stderr.log",
+        "zipCrc32": "931f190b"
+      }
+    },
+    {
+      "path": "failed-scenarios/06-p2-07a-formation-reconstruction/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1371503,
+      "originalSha256": "43983abaeac165deb80337548bdf7595e484b7dbcef9f63882cf14123e215ede",
+      "storedBytes": 317738,
+      "storedSha256": "b5dcc63a8ddbb57b05a6e073906a56e76feff3fa45a2e81a3b1af40bd8858021",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stdout.html",
+        "zipCrc32": "3fa2f9a6"
+      }
+    },
+    {
+      "path": "failed-scenarios/07-p2-07a-chronology/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6506,
+      "originalSha256": "f20acfc277eb0b94db2b725bb2952e13122ba8f2be92324b076c2d4f3197f1e6",
+      "storedBytes": 1510,
+      "storedSha256": "0a623c1f9cfd4c9d5030ecd120721046a82ad3bee1ddcd58cf7352f64070d9b2",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10863065,
+        "bytes": 6506,
+        "sha256": "f20acfc277eb0b94db2b725bb2952e13122ba8f2be92324b076c2d4f3197f1e6"
+      }
+    },
+    {
+      "path": "failed-scenarios/07-p2-07a-chronology/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3606,
+      "originalSha256": "2d4a3da4c8c5b620f47aef17e6c294ac3007ea5a98185584b73eee611c59935c",
+      "storedBytes": 3606,
+      "storedSha256": "2d4a3da4c8c5b620f47aef17e6c294ac3007ea5a98185584b73eee611c59935c",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/07-p2-07a-chronology/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/07-p2-07a-chronology/process.json",
+      "encoding": "identity",
+      "originalBytes": 917,
+      "originalSha256": "f8f630e0cda9053d7c77bbdcee203a93acbe21514cecb6ed394f77444b00bd7d",
+      "storedBytes": 917,
+      "storedSha256": "f8f630e0cda9053d7c77bbdcee203a93acbe21514cecb6ed394f77444b00bd7d",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/process.json",
+        "zipCrc32": "7900f6ec"
+      }
+    },
+    {
+      "path": "failed-scenarios/07-p2-07a-chronology/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 575,
+      "originalSha256": "7b967186d21160278e55a5c25a1c1fbea11fe697a8be8074834bd1ca42139092",
+      "storedBytes": 575,
+      "storedSha256": "7b967186d21160278e55a5c25a1c1fbea11fe697a8be8074834bd1ca42139092",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/07-p2-07a-chronology/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/07-p2-07a-chronology/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "4a4ce92c4eca276a313bedc841d223e30151e1e5129ec3bf4910ece565046668",
+      "storedBytes": 487,
+      "storedSha256": "0619f51ed44d80dc3c471dbe5a1a83dc982744f568e5f332adc5d0b13068631d",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stderr.log",
+        "zipCrc32": "4a87a29e"
+      }
+    },
+    {
+      "path": "failed-scenarios/07-p2-07a-chronology/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1371009,
+      "originalSha256": "433d01e0067fb667d45b40541726f126ea563fe9d6a9479eaebbffa546c5b5bd",
+      "storedBytes": 317656,
+      "storedSha256": "b74bcb0b964f9138140b72118986719e3c3ca6a0c1c4180d1483469a5d2258c7",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stdout.html",
+        "zipCrc32": "91071f2f"
+      }
+    },
+    {
+      "path": "failed-scenarios/08-layout-p2-07a-reconstruction/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 5602,
+      "originalSha256": "03c7f412ce8040c143f1e2edcd33aa9f9dcfa24d8c4f29ee6b2cbc90e37305c4",
+      "storedBytes": 1292,
+      "storedSha256": "c767624d784ffb1dae0eee8cabeccb67af3ac9cb820ac12ecdf5a7a81743c37a",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10869571,
+        "bytes": 5602,
+        "sha256": "03c7f412ce8040c143f1e2edcd33aa9f9dcfa24d8c4f29ee6b2cbc90e37305c4"
+      }
+    },
+    {
+      "path": "failed-scenarios/08-layout-p2-07a-reconstruction/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3325,
+      "originalSha256": "f187b30673ac73c9bcfb9d50191eddcb65f0f49d99ead5d07b8cdde5804a5748",
+      "storedBytes": 3325,
+      "storedSha256": "f187b30673ac73c9bcfb9d50191eddcb65f0f49d99ead5d07b8cdde5804a5748",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/08-layout-p2-07a-reconstruction/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/08-layout-p2-07a-reconstruction/process.json",
+      "encoding": "identity",
+      "originalBytes": 1012,
+      "originalSha256": "b984ae276a0fa8951c92b180f27a2ce69ecbae3dd6ec47f4e599820cbf94d02d",
+      "storedBytes": 1012,
+      "storedSha256": "b984ae276a0fa8951c92b180f27a2ce69ecbae3dd6ec47f4e599820cbf94d02d",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/process.json",
+        "zipCrc32": "c8db37d1"
+      }
+    },
+    {
+      "path": "failed-scenarios/08-layout-p2-07a-reconstruction/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 133,
+      "originalSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "storedBytes": 133,
+      "storedSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/08-layout-p2-07a-reconstruction/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/08-layout-p2-07a-reconstruction/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "0f62312120961a6ef4b877590361092cf38931e9641a7ae843f0128514e9bd4c",
+      "storedBytes": 490,
+      "storedSha256": "cd70bca5657a2397c17a56514d4ee4d343a6ad6376b2a67b48258b3d027d47e1",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/stderr.log",
+        "zipCrc32": "b45f64b8"
+      }
+    },
+    {
+      "path": "failed-scenarios/08-layout-p2-07a-reconstruction/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1078,
+      "originalSha256": "63cb47caba956874bab2304b0a93e0c3a203421d134f1e119980e61dc371c748",
+      "storedBytes": 603,
+      "storedSha256": "c63971a5b421a711f7e3d118c1dcafebc2611223748d1d711b8d8c2cc1d29c64",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-2PsfeK/stdout.html",
+        "zipCrc32": "24c74196"
+      }
+    },
+    {
+      "path": "failed-scenarios/09-layout-p2-07a-reconstruction/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 5602,
+      "originalSha256": "46a50db5246b2ad715453263b13072efca66390fc14d66e6657355ab8853451b",
+      "storedBytes": 1298,
+      "storedSha256": "514a293087d1c39b1b711c7f5ad59cdff11e0dbd2ec1ddb9298699998a5ac21b",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10875173,
+        "bytes": 5602,
+        "sha256": "46a50db5246b2ad715453263b13072efca66390fc14d66e6657355ab8853451b"
+      }
+    },
+    {
+      "path": "failed-scenarios/09-layout-p2-07a-reconstruction/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3325,
+      "originalSha256": "e399ab6aa50a38ee69bec8c8e4e0d40a39585cf5005e956075a28cd7523b56da",
+      "storedBytes": 3325,
+      "storedSha256": "e399ab6aa50a38ee69bec8c8e4e0d40a39585cf5005e956075a28cd7523b56da",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/09-layout-p2-07a-reconstruction/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/09-layout-p2-07a-reconstruction/process.json",
+      "encoding": "identity",
+      "originalBytes": 1012,
+      "originalSha256": "5c4fa731e08e96621fb52ee9fdf8a89545913c9e54180fd551b6d9d084de1f53",
+      "storedBytes": 1012,
+      "storedSha256": "5c4fa731e08e96621fb52ee9fdf8a89545913c9e54180fd551b6d9d084de1f53",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/process.json",
+        "zipCrc32": "947cb09d"
+      }
+    },
+    {
+      "path": "failed-scenarios/09-layout-p2-07a-reconstruction/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 133,
+      "originalSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "storedBytes": 133,
+      "storedSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/09-layout-p2-07a-reconstruction/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/09-layout-p2-07a-reconstruction/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "ea1368224df05739971dc11714fcffec81cce283b46f900b4a7903c4691942a3",
+      "storedBytes": 493,
+      "storedSha256": "a3abbad40dfd5686a38219434a55683f57be5caf9ac89cc511507d316d7fe230",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stderr.log",
+        "zipCrc32": "d692b4d5"
+      }
+    },
+    {
+      "path": "failed-scenarios/09-layout-p2-07a-reconstruction/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1078,
+      "originalSha256": "0a226660072a087fb6e52cb74a5ae88ac4ee37596229d285cab7271465d810ff",
+      "storedBytes": 603,
+      "storedSha256": "b3345c50ced544feb5de045fc78acce7f248178e2b63c04aaf8af9b6094b0263",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stdout.html",
+        "zipCrc32": "873540cb"
+      }
+    },
+    {
+      "path": "failed-scenarios/10-layout-p2-07a-reconstruction/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 5602,
+      "originalSha256": "2e70169d1bcf084b28da5b5ed637eb9109082cad4ec4bf935de485021b47307f",
+      "storedBytes": 1299,
+      "storedSha256": "a4c6191b4733d240e0193b16ee434bd257b72fbbbda6953234cd2d11ed5b559b",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10880775,
+        "bytes": 5602,
+        "sha256": "2e70169d1bcf084b28da5b5ed637eb9109082cad4ec4bf935de485021b47307f"
+      }
+    },
+    {
+      "path": "failed-scenarios/10-layout-p2-07a-reconstruction/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3326,
+      "originalSha256": "39cba578541c52810d6b98ffbd707d09039066d440dd85b14276c838fb189518",
+      "storedBytes": 3326,
+      "storedSha256": "39cba578541c52810d6b98ffbd707d09039066d440dd85b14276c838fb189518",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/10-layout-p2-07a-reconstruction/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/10-layout-p2-07a-reconstruction/process.json",
+      "encoding": "identity",
+      "originalBytes": 1012,
+      "originalSha256": "6d6305114c79e34dc7e5bb52302baeb1e213f836be0e4af4d42f69e7408262e6",
+      "storedBytes": 1012,
+      "storedSha256": "6d6305114c79e34dc7e5bb52302baeb1e213f836be0e4af4d42f69e7408262e6",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/process.json",
+        "zipCrc32": "22257501"
+      }
+    },
+    {
+      "path": "failed-scenarios/10-layout-p2-07a-reconstruction/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 133,
+      "originalSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "storedBytes": 133,
+      "storedSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/10-layout-p2-07a-reconstruction/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/10-layout-p2-07a-reconstruction/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "af06a97bfe1d83ce16c40f26899b733c0ee545f683d7b2ba78da8689cb6f981d",
+      "storedBytes": 491,
+      "storedSha256": "677db5ed27dda253dab679df75cfa3f421ef0c4fcaa3dbcb3b851fe47ba8101a",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/stderr.log",
+        "zipCrc32": "0accfe12"
+      }
+    },
+    {
+      "path": "failed-scenarios/10-layout-p2-07a-reconstruction/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1078,
+      "originalSha256": "c5483cf2e37e59dbee90398f7e57fa7869a3e5aa2bd01f778b534b39a6b5773e",
+      "storedBytes": 607,
+      "storedSha256": "cb563cb6edd666c60162aa3b96156501f87ed5d226d465e2f0c6879062bd9811",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-3GqwAV/stdout.html",
+        "zipCrc32": "057ff63b"
+      }
+    },
+    {
+      "path": "failed-scenarios/11-layout-p2-07a-reconstruction/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 5601,
+      "originalSha256": "c6fb15ac622c4432665601f2e53637b7d3f1c9c5871b642dd11e01dc2495439c",
+      "storedBytes": 1293,
+      "storedSha256": "0dc55c937b5d68a48c4055cb6f6d6c7f6eb8760c92aae5f60ed40913e743c578",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10886377,
+        "bytes": 5601,
+        "sha256": "c6fb15ac622c4432665601f2e53637b7d3f1c9c5871b642dd11e01dc2495439c"
+      }
+    },
+    {
+      "path": "failed-scenarios/11-layout-p2-07a-reconstruction/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3324,
+      "originalSha256": "c69a7d58c69b49214f66dffe647c78cda2bf8b5b40539ffaef0dfbee089983fb",
+      "storedBytes": 3324,
+      "storedSha256": "c69a7d58c69b49214f66dffe647c78cda2bf8b5b40539ffaef0dfbee089983fb",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/11-layout-p2-07a-reconstruction/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/11-layout-p2-07a-reconstruction/process.json",
+      "encoding": "identity",
+      "originalBytes": 1011,
+      "originalSha256": "6c495e133904b3fca6069c24125a50bdced29c41a0427e95232c94bbf952537a",
+      "storedBytes": 1011,
+      "storedSha256": "6c495e133904b3fca6069c24125a50bdced29c41a0427e95232c94bbf952537a",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/process.json",
+        "zipCrc32": "b56bca7e"
+      }
+    },
+    {
+      "path": "failed-scenarios/11-layout-p2-07a-reconstruction/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 133,
+      "originalSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "storedBytes": 133,
+      "storedSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/11-layout-p2-07a-reconstruction/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/11-layout-p2-07a-reconstruction/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "31a89ddd91867930605ad4d0d9b978ccef4f5949f9e16e047c0501106e6a9b47",
+      "storedBytes": 485,
+      "storedSha256": "b13dedfc67eaf79c89dcebbd7ea6e4c863d85f283e55bc8d9d94df229b95bc4e",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/stderr.log",
+        "zipCrc32": "72b9c52d"
+      }
+    },
+    {
+      "path": "failed-scenarios/11-layout-p2-07a-reconstruction/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1078,
+      "originalSha256": "fcd7dde6bc3d5933dc6e27b8125a71309fdade10f5d2d52b7a92f425b0a53121",
+      "storedBytes": 609,
+      "storedSha256": "cb4a391722203f461973ca9f6f3c7c553aa5de8406fa8f29ce8b602158b810d7",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-U5ydWA/stdout.html",
+        "zipCrc32": "14243434"
+      }
+    },
+    {
+      "path": "failed-scenarios/12-layout-p2-07a-reconstruction/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 5604,
+      "originalSha256": "6b967430688b689e83d0686acabdba7598da6274bcd4f3b90733ebec00a59dae",
+      "storedBytes": 1293,
+      "storedSha256": "1c0eafbd439441fd2e932cc4ca6a3fc1447f3f7cc174bd31e2618f1cc9995967",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10891978,
+        "bytes": 5604,
+        "sha256": "6b967430688b689e83d0686acabdba7598da6274bcd4f3b90733ebec00a59dae"
+      }
+    },
+    {
+      "path": "failed-scenarios/12-layout-p2-07a-reconstruction/observation.json",
+      "encoding": "identity",
+      "originalBytes": 3330,
+      "originalSha256": "7fe3fd7c9b5152ec696693675246caac77def2b7b4eec5bcd0c516996d679cda",
+      "storedBytes": 3330,
+      "storedSha256": "7fe3fd7c9b5152ec696693675246caac77def2b7b4eec5bcd0c516996d679cda",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/12-layout-p2-07a-reconstruction/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/12-layout-p2-07a-reconstruction/process.json",
+      "encoding": "identity",
+      "originalBytes": 1016,
+      "originalSha256": "6befb74a826e96438b498d51272ec01fe17fccdf31e6335e99a826283973c80a",
+      "storedBytes": 1016,
+      "storedSha256": "6befb74a826e96438b498d51272ec01fe17fccdf31e6335e99a826283973c80a",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/process.json",
+        "zipCrc32": "936cccd6"
+      }
+    },
+    {
+      "path": "failed-scenarios/12-layout-p2-07a-reconstruction/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 133,
+      "originalSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "storedBytes": 133,
+      "storedSha256": "a7f175a18e137a90aa3ba13e9708364bda27042af1b1ab907afdef74f3b2a4ee",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/12-layout-p2-07a-reconstruction/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/12-layout-p2-07a-reconstruction/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "1f63ba037a752e2cbae553ce22848d74e8116f33ae2ca460001d5414417ef5d4",
+      "storedBytes": 486,
+      "storedSha256": "5e57b64bcc17308351c8f63b7c4364c95de29f09fe35cbfb60f201a822284a38",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/stderr.log",
+        "zipCrc32": "09e67721"
+      }
+    },
+    {
+      "path": "failed-scenarios/12-layout-p2-07a-reconstruction/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1080,
+      "originalSha256": "1f2189031f3e5fe336d3f33ded0450875eddb05e40fa2125a90ed7de78d3fda5",
+      "storedBytes": 606,
+      "storedSha256": "994929572bc6a48737d41ffbe69e285fb5082d3ae35f23a8f3c77c28770a87a1",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-h0LQwV/stdout.html",
+        "zipCrc32": "a572b03f"
+      }
+    },
+    {
+      "path": "failed-scenarios/13-ascend-prisms-contract/behavioral-section.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 6653,
+      "originalSha256": "6f9cf00aed9263578aa87b251b87e78e44c62c005d09e658a395099e758e72b5",
+      "storedBytes": 1577,
+      "storedSha256": "e82db3ed03832ee3fa3591ea7817d2d5ef68af1f73f70fb1633a5174dbbf970a",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 10981329,
+        "bytes": 6653,
+        "sha256": "6f9cf00aed9263578aa87b251b87e78e44c62c005d09e658a395099e758e72b5"
+      }
+    },
+    {
+      "path": "failed-scenarios/13-ascend-prisms-contract/observation.json",
+      "encoding": "identity",
+      "originalBytes": 4030,
+      "originalSha256": "6894bb3a10068d62dbcc21faba67d474aecc48638efbede1e286a3d217562805",
+      "storedBytes": 4030,
+      "storedSha256": "6894bb3a10068d62dbcc21faba67d474aecc48638efbede1e286a3d217562805",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/13-ascend-prisms-contract/observation.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/13-ascend-prisms-contract/process.json",
+      "encoding": "identity",
+      "originalBytes": 936,
+      "originalSha256": "dab6ec76f45dd83613c8eadcd89ac42f56382c50e2feabba48f2e2ba9d2d3268",
+      "storedBytes": 936,
+      "storedSha256": "dab6ec76f45dd83613c8eadcd89ac42f56382c50e2feabba48f2e2ba9d2d3268",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/process.json",
+        "zipCrc32": "6e728e40"
+      }
+    },
+    {
+      "path": "failed-scenarios/13-ascend-prisms-contract/qa-result.json",
+      "encoding": "identity",
+      "originalBytes": 796,
+      "originalSha256": "805922cc85c422bfc95aa0a2b057488a58eab281a7d687ba33a4d1985c86c05d",
+      "storedBytes": 796,
+      "storedSha256": "805922cc85c422bfc95aa0a2b057488a58eab281a7d687ba33a4d1985c86c05d",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/13-ascend-prisms-contract/qa-result.json"
+      }
+    },
+    {
+      "path": "failed-scenarios/13-ascend-prisms-contract/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4021,
+      "originalSha256": "a197995c4d9c91b63394a45678d6999fbc9c295c2763253482072e7e7f4e853e",
+      "storedBytes": 489,
+      "storedSha256": "fe6c6005c5c8237326b358533019d6a5fbc3d1bf5798b1ac2d24fe232b507477",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stderr.log",
+        "zipCrc32": "f245c13c"
+      }
+    },
+    {
+      "path": "failed-scenarios/13-ascend-prisms-contract/stdout.html.gz",
+      "encoding": "gzip",
+      "originalBytes": 1460846,
+      "originalSha256": "cac74cf8232285d9ce705b0235c6f75ed534dc8e3e4e0de62007df09e2880cf9",
+      "storedBytes": 325047,
+      "storedSha256": "19eaeb3fcef91f48a450f7fc5110a6c215bf912c8112b064ac104611a80ae34a",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stdout.html",
+        "zipCrc32": "a7406c7f"
+      }
+    },
+    {
+      "path": "gates/cosmetics.json",
+      "encoding": "identity",
+      "originalBytes": 83,
+      "originalSha256": "ea6c8a3dc5c9af0cb6152bd44555594f8a74476f5205b6cfa10c480dd18779f4",
+      "storedBytes": 83,
+      "storedSha256": "ea6c8a3dc5c9af0cb6152bd44555594f8a74476f5205b6cfa10c480dd18779f4",
+      "origin": {
+        "kind": "derived-observation",
+        "description": "Unchanged JSON payload parsed from the retained job-log prefix."
+      }
+    },
+    {
+      "path": "gates/currency/all-white/receipt.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 5051,
+      "originalSha256": "8358ea1672024d7abc35d0d4663c3b825c0f7a734a6020ee9b0585242c67eeff",
+      "storedBytes": 937,
+      "storedSha256": "a5d496a7ae2b1f9d8d72af05fe7f1bad82a0f072167f48f477a1258575728a45",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/all-white/receipt.json"
+      }
+    },
+    {
+      "path": "gates/currency/all-white/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/all-white/stderr.log"
+      }
+    },
+    {
+      "path": "gates/currency/all-white/stdout.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4995,
+      "originalSha256": "61223af9ca2a837e602b0f3408f524d13b0008096bcf88579487d87f71c1a786",
+      "storedBytes": 925,
+      "storedSha256": "ff8791b11cef67e13cd1a482f86fc577a2584da30d417e1f2806cf1443b0a231",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/all-white/stdout.log"
+      }
+    },
+    {
+      "path": "gates/currency/normal/receipt.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 103685,
+      "originalSha256": "448577ce10a507111afa7465881e257ac9d93a883a91459786bac6db9f342090",
+      "storedBytes": 2900,
+      "storedSha256": "85984021df82a2654be9139132b458d36583a2d48119a4b2cfcee112f544bb1e",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/normal/receipt.json"
+      }
+    },
+    {
+      "path": "gates/currency/normal/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/normal/stderr.log"
+      }
+    },
+    {
+      "path": "gates/currency/normal/stdout.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 55658,
+      "originalSha256": "430cafd499a24338b902727bb1247392354c43f940c41dcb460079999b755dcc",
+      "storedBytes": 2228,
+      "storedSha256": "44c906b83ec84e0510af8f93279dc14ebc03ade2232791c96d972d3d304c1cc8",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/normal/stdout.log"
+      }
+    },
+    {
+      "path": "gates/currency/retired-card-returns/receipt.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 4938,
+      "originalSha256": "1dc3508a5d7cb88dec3d8570153bdc6a07305ea6c96d1cbdbba1c9cb90365305",
+      "storedBytes": 866,
+      "storedSha256": "2ef39fdde9f7d1db794c8f07e1c64267e5de39952b9cc7826570ad1f3044b4e1",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/retired-card-returns/receipt.json"
+      }
+    },
+    {
+      "path": "gates/currency/retired-card-returns/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/retired-card-returns/stderr.log"
+      }
+    },
+    {
+      "path": "gates/currency/retired-card-returns/stdout.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 4882,
+      "originalSha256": "d15e93a13018909a7566e7572f233da0fb69b31a2e7636201c1de4e14f6435ff",
+      "storedBytes": 856,
+      "storedSha256": "bf32d4294057b029ca31f4bb53131cd6a024950b08dcb1dd1333bf1fdff22f06",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/retired-card-returns/stdout.log"
+      }
+    },
+    {
+      "path": "gates/currency/stale-refresh/receipt.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 5357,
+      "originalSha256": "fe1b6ed3e23c146361fc19679e5a57ae5263dc462d1b9236e91de310c034db0e",
+      "storedBytes": 1092,
+      "storedSha256": "530034357e0046103289c0b994cbb95e35e1a672f86464b989f1c25c826b0186",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/stale-refresh/receipt.json"
+      }
+    },
+    {
+      "path": "gates/currency/stale-refresh/stderr.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/stale-refresh/stderr.log"
+      }
+    },
+    {
+      "path": "gates/currency/stale-refresh/stdout.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 5264,
+      "originalSha256": "834bce42eda4e991f1d5cb293e9a3311466925555ae2a715102224e107581e03",
+      "storedBytes": 1072,
+      "storedSha256": "b5bd8360efd19bd1346eff892f9a54699df072b0c0a9a75ca01ff05b0ebf7001",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/stale-refresh/stdout.log"
+      }
+    },
+    {
+      "path": "gates/currency/summary.json",
+      "encoding": "identity",
+      "originalBytes": 3126,
+      "originalSha256": "1e3dae53234c7c83a066af266edad8adbd12fa6447ea83af04e8b784ffe63483",
+      "storedBytes": 3126,
+      "storedSha256": "1e3dae53234c7c83a066af266edad8adbd12fa6447ea83af04e8b784ffe63483",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "tmp/lumenfall-collection-price/summary.json"
+      }
+    },
+    {
+      "path": "gates/offline-catchup-core.json",
+      "encoding": "identity",
+      "originalBytes": 3222,
+      "originalSha256": "c7f7fa51243e999e32c1037d5ae59437edd4f3bee1429e5c041e682b0cd8e986",
+      "storedBytes": 3222,
+      "storedSha256": "c7f7fa51243e999e32c1037d5ae59437edd4f3bee1429e5c041e682b0cd8e986",
+      "origin": {
+        "kind": "derived-observation",
+        "description": "Parsed without executing the game from the complete artifact behavioral.log."
+      }
+    },
+    {
+      "path": "gates/offline-catchup-core.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 2227,
+      "originalSha256": "94209f81d353bb5d2b59e0c70021bc4e854fb7a6c5b7c762e3a5fb656ee0e51b",
+      "storedBytes": 710,
+      "storedSha256": "178f7a3f39adb5ef8c9d3d297d7d4e8c90044c6166ddfd4206a40f319c5faff0",
+      "origin": {
+        "kind": "exact-log-excerpt",
+        "source": "logs/behavioral.log.gz",
+        "byteOffset": 4422802
+      }
+    },
+    {
+      "path": "gates/prism-numerical.json",
+      "encoding": "identity",
+      "originalBytes": 1608,
+      "originalSha256": "8e2c8bedc68a3c1c86b8a77dff9a65fd58aa796b259a9758dd05bee788b4f37f",
+      "storedBytes": 1608,
+      "storedSha256": "8e2c8bedc68a3c1c86b8a77dff9a65fd58aa796b259a9758dd05bee788b4f37f",
+      "origin": {
+        "kind": "derived-observation",
+        "description": "Unchanged JSON payload parsed from the retained job-log prefix."
+      }
+    },
+    {
+      "path": "identity/commit.txt",
+      "encoding": "identity",
+      "originalBytes": 41,
+      "originalSha256": "a48ad7f1534f7e7924a5acd277029b071e5a427fc0b37b37ced502283e04b322",
+      "storedBytes": 41,
+      "storedSha256": "a48ad7f1534f7e7924a5acd277029b071e5a427fc0b37b37ced502283e04b322",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/commit.txt"
+      }
+    },
+    {
+      "path": "identity/source-sha256.txt",
+      "encoding": "identity",
+      "originalBytes": 77,
+      "originalSha256": "707a7dcf6c59e387492ffe7ffd61c0d6616a92b523fe223e5604c2fdd7b9df1c",
+      "storedBytes": 77,
+      "storedSha256": "707a7dcf6c59e387492ffe7ffd61c0d6616a92b523fe223e5604c2fdd7b9df1c",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/source-sha256.txt"
+      }
+    },
+    {
+      "path": "logs/behavioral.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 10988793,
+      "originalSha256": "a1f7dd57080857eff2d64853b937f07067b99702f59360a9d2eb1232ee14e900",
+      "storedBytes": 204964,
+      "storedSha256": "5557726832acf48c8fccf62c0d61b9a054e34d6daec731be777caa80c9f64b8c",
+      "origin": {
+        "kind": "artifact-member",
+        "artifactId": 11682079317,
+        "memberPath": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/behavioral.log"
+      }
+    },
+    {
+      "path": "logs/job-partial-prefix.log.gz",
+      "encoding": "gzip",
+      "originalBytes": 2978707,
+      "originalSha256": "f98a6ac3228ad07cad101d2a12aa02f509be61a08bd519c235878ad67b9d4f7b",
+      "storedBytes": 75014,
+      "storedSha256": "3f14b1f82edff49fb52687bfb452adb18258d8ed17c41c109d820a2127d123cc",
+      "origin": {
+        "kind": "github-job-log-prefix",
+        "jobId": 114309817414,
+        "complete": false,
+        "firstTimestamp": "2026-10-10T20:47:01.4308185Z",
+        "lastTimestamp": "2026-10-10T20:50:04.0167177Z",
+        "retrievedScratchFile": "progress-205837-job.log"
+      }
+    },
+    {
+      "path": "metadata/archive-verification.json",
+      "encoding": "identity",
+      "originalBytes": 13680,
+      "originalSha256": "9f480cccad9e8757962b01091b0053abb9ed854025b571d141508362df26087f",
+      "storedBytes": 13680,
+      "storedSha256": "9f480cccad9e8757962b01091b0053abb9ed854025b571d141508362df26087f",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/archive-verification.json"
+      }
+    },
+    {
+      "path": "metadata/audit-clock.json",
+      "encoding": "identity",
+      "originalBytes": 48,
+      "originalSha256": "e5603be74d41a641c1057e584e9a3c8a63041e7f2c31c23d8ee0046a67f73180",
+      "storedBytes": 48,
+      "storedSha256": "e5603be74d41a641c1057e584e9a3c8a63041e7f2c31c23d8ee0046a67f73180",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/audit-clock.json"
+      }
+    },
+    {
+      "path": "metadata/download-metadata.json",
+      "encoding": "identity",
+      "originalBytes": 326,
+      "originalSha256": "a64aa87148b709e12c438c8b5584252ad1b6cad9dad9405a0e493911626f5693",
+      "storedBytes": 326,
+      "storedSha256": "a64aa87148b709e12c438c8b5584252ad1b6cad9dad9405a0e493911626f5693",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/download-metadata.json"
+      }
+    },
+    {
+      "path": "metadata/final-artifacts.json",
+      "encoding": "identity",
+      "originalBytes": 853,
+      "originalSha256": "575d5891b8b41c326c2205b82928200b11e55eb8d1bfa890c32ca82c0c6d893b",
+      "storedBytes": 853,
+      "storedSha256": "575d5891b8b41c326c2205b82928200b11e55eb8d1bfa890c32ca82c0c6d893b",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/final-artifacts.json"
+      }
+    },
+    {
+      "path": "metadata/final-clock.json",
+      "encoding": "identity",
+      "originalBytes": 48,
+      "originalSha256": "7b0571b60b712e407af92b092f1145c28d8c26725965d145e63317c6b2c52e92",
+      "storedBytes": 48,
+      "storedSha256": "7b0571b60b712e407af92b092f1145c28d8c26725965d145e63317c6b2c52e92",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/final-clock.json"
+      }
+    },
+    {
+      "path": "metadata/final-jobs.json",
+      "encoding": "identity",
+      "originalBytes": 5867,
+      "originalSha256": "6ca3289fb1f4c89c22a55edf9b3a7395a21956927c7e536ac5ccfb93b21f4438",
+      "storedBytes": 5867,
+      "storedSha256": "6ca3289fb1f4c89c22a55edf9b3a7395a21956927c7e536ac5ccfb93b21f4438",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/final-jobs.json"
+      }
+    },
+    {
+      "path": "metadata/final-run.json",
+      "encoding": "identity",
+      "originalBytes": 15002,
+      "originalSha256": "68799470bd73833159470fa4a6763ca275a99e3b95a1065ec929b1a44f83a3df",
+      "storedBytes": 15002,
+      "storedSha256": "68799470bd73833159470fa4a6763ca275a99e3b95a1065ec929b1a44f83a3df",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/final-run.json"
+      }
+    },
+    {
+      "path": "metadata/log-fetch-observations.json",
+      "encoding": "identity",
+      "originalBytes": 2438,
+      "originalSha256": "d6a42e6dfb75deb62341f9c0cda8b1c9e1d537c3241fe1630301a021cddfe21a",
+      "storedBytes": 2438,
+      "storedSha256": "d6a42e6dfb75deb62341f9c0cda8b1c9e1d537c3241fe1630301a021cddfe21a",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/log-fetch-observations.json"
+      }
+    },
+    {
+      "path": "metadata/native-unzip.receipt.json",
+      "encoding": "identity",
+      "originalBytes": 356,
+      "originalSha256": "7a9963aec77c2eb6aedcdc7240a8bad352cb1d3191afeed26f9fc0ac26fad2d4",
+      "storedBytes": 356,
+      "storedSha256": "7a9963aec77c2eb6aedcdc7240a8bad352cb1d3191afeed26f9fc0ac26fad2d4",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/native-unzip.receipt.json"
+      }
+    },
+    {
+      "path": "metadata/native-unzip.stderr.log",
+      "encoding": "identity",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 0,
+      "storedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/native-unzip.stderr.log"
+      }
+    },
+    {
+      "path": "metadata/native-unzip.stdout.log",
+      "encoding": "identity",
+      "originalBytes": 129,
+      "originalSha256": "302d0e183a5b8ea07ba7c02238d346853148158e52a76db9f02eed15c335d1da",
+      "storedBytes": 129,
+      "storedSha256": "302d0e183a5b8ea07ba7c02238d346853148158e52a76db9f02eed15c335d1da",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/native-unzip.stdout.log"
+      }
+    },
+    {
+      "path": "metadata/published-github-tree.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 2591,
+      "originalSha256": "552ff224120daf0caa2bd9256e9363304fe4c0247079c8c5d00405ccac4e3d1e",
+      "storedBytes": 671,
+      "storedSha256": "3509dc6e8a8f324d8d02aeb95af155ec2bbc763b64e8cce5b89a6a81f8604169",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/published-github-tree.json"
+      }
+    },
+    {
+      "path": "metadata/published-root-tree.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 3603,
+      "originalSha256": "7e8a51a2c2358103e0d614da210c341512acc900da2e480362c3531ad15593c0",
+      "storedBytes": 872,
+      "storedSha256": "64968db3158b89d6579b1f9f93be4d7dfe3562996cbbec9395929482dd128f2f",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/published-root-tree.json"
+      }
+    },
+    {
+      "path": "metadata/published-scripts-tree.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 5096,
+      "originalSha256": "6b72301cccba270e437a381315c2f14ce3b5275c578f6209493a04c5e6cc3eeb",
+      "storedBytes": 1159,
+      "storedSha256": "2336844371836f20f966dea4d3898dcd99bde79f0ff9703fbae6b0dc09f820a4",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/published-scripts-tree.json"
+      }
+    },
+    {
+      "path": "metadata/published-tests-tree.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 22476,
+      "originalSha256": "cea1cd3c64acc344da7bd702d9f3f411150d286d003d002abd227873b5c59336",
+      "storedBytes": 4054,
+      "storedSha256": "b3ce269cf86940ee4029863534ffe38f70276f22a415716220988f0545d0695e",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/published-tests-tree.json"
+      }
+    },
+    {
+      "path": "metadata/synthetic-merge.json",
+      "encoding": "identity",
+      "originalBytes": 2846,
+      "originalSha256": "67260023cfbd399ae38636295006af0e846346f8412775332ad553ae8df61321",
+      "storedBytes": 2846,
+      "storedSha256": "67260023cfbd399ae38636295006af0e846346f8412775332ad553ae8df61321",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/synthetic-merge.json"
+      }
+    },
+    {
+      "path": "metadata/synthetic-ref-api.json",
+      "encoding": "identity",
+      "originalBytes": 386,
+      "originalSha256": "eb2b660a2b4912ee31e87e409b333dc1432c85fe7fbbfc4ea3bf66d30322f2ae",
+      "storedBytes": 386,
+      "storedSha256": "eb2b660a2b4912ee31e87e409b333dc1432c85fe7fbbfc4ea3bf66d30322f2ae",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/synthetic-ref-api.json"
+      }
+    },
+    {
+      "path": "metadata/workflow-source-api.json.gz",
+      "encoding": "gzip",
+      "originalBytes": 12429,
+      "originalSha256": "02d2f1795cd491e3c5e6b3d49e8702643adb0e66bfa9061e58ac08513fd586c4",
+      "storedBytes": 2097,
+      "storedSha256": "eaab57da001171058116a4ff1acbdc26efcc55334b9d883147d9380eb48645c2",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/workflow-source-api.json"
+      }
+    },
+    {
+      "path": "processing-history.json",
+      "encoding": "identity",
+      "originalBytes": 1656,
+      "originalSha256": "fc27a5a823febfc5115cdc4a85194444ec39e5bb3d2a64d033e21e3942023f47",
+      "storedBytes": 1656,
+      "storedSha256": "fc27a5a823febfc5115cdc4a85194444ec39e5bb3d2a64d033e21e3942023f47",
+      "origin": {
+        "kind": "derived-observation",
+        "description": "Factual audit-tool history and explicit transport limitations."
+      }
+    },
+    {
+      "path": "published-source-verification.json",
+      "encoding": "identity",
+      "originalBytes": 34181,
+      "originalSha256": "415704c9173fe211359308bb7f76cbced88ca25b8eb674823ba76c980373f8b4",
+      "storedBytes": 34181,
+      "storedSha256": "415704c9173fe211359308bb7f76cbced88ca25b8eb674823ba76c980373f8b4",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/published-source-verification.json"
+      }
+    },
+    {
+      "path": "README.md",
+      "encoding": "identity",
+      "originalBytes": 5929,
+      "originalSha256": "a7f2596086a357405c97142369179b91f6b3e032191363cafd68dde353eea83d",
+      "storedBytes": 5929,
+      "storedSha256": "a7f2596086a357405c97142369179b91f6b3e032191363cafd68dde353eea83d",
+      "origin": {
+        "kind": "derived-document",
+        "description": "Failure scope, links, immutable identity, raw-log completeness and limitations."
+      }
+    },
+    {
+      "path": "scenarios-at-head.json",
+      "encoding": "identity",
+      "originalBytes": 9882,
+      "originalSha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2",
+      "storedBytes": 9882,
+      "storedSha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2",
+      "origin": {
+        "kind": "published-file",
+        "path": "tests/behavioral/scenarios.json",
+        "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+        "gitBlobSha1": "b43b07284f67cecceb7e10727c7fca75869e5ed7"
+      }
+    },
+    {
+      "path": "workflow-at-head.yml",
+      "encoding": "identity",
+      "originalBytes": 5691,
+      "originalSha256": "f0218e6b818970a8bacdf0f43431c89c94b8a7a85343be29b79bc1b99b23e818",
+      "storedBytes": 5691,
+      "storedSha256": "f0218e6b818970a8bacdf0f43431c89c94b8a7a85343be29b79bc1b99b23e818",
+      "origin": {
+        "kind": "retained-audit-file",
+        "scratchPath": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/workflow-at-head.yml"
+      }
+    }
+  ]
+}

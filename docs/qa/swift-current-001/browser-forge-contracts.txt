@@ -1,0 +1,5 @@
+Browser identity: { "selected_path": "/usr/bin/chromium", "resolved_path": "/usr/bin/chromium", "sha256": "2c8d32d29dc6781c35ae196ea83299d507ac88fc339301abe74672feda299779", "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)", "version_exitcode": 0, "version_stderr": "" }
+Staged source: { "source_sha256": "f5a998427fa032e3f8ad8010246fa296d2f6b91e1b1ac0db4fb72ab3a39c0131", "instrumented_sha256": "6ac5d4c3c40ff9c6f687f28ec81fc6d7067e4791b1ce68c8e63a65a141b69a48" }
+PASS forge-contracts
+  detail: { "checks": 3585, "purchaseCases": 336, "negativeControls": [ "cap", "migration", "deed", "effect" ] }
+Behavioral QA passed: 1 deterministic scenario(s).

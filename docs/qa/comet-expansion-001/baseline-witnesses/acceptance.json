@@ -1,0 +1,41 @@
+{
+  "status": "KNOWN_BASELINE_BEHAVIOR_REPRODUCED",
+  "scope": "Bounded baseline diagnostics only, no product acceptance or Comet implementation",
+  "commit": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+  "testSha256": "cec928af5594bd108df91861311dd5b1f4a317acfb68cead912c7295b9c05457",
+  "exitCode": 0,
+  "clockToolObservations": {
+    "taskStartedUTC": "2026-10-10 21:26:05 UTC",
+    "afterWitnessRunUTC": "2026-10-10 21:30:34 UTC",
+    "documentationCompletedUTC": "2026-10-10 21:33:36 UTC"
+  },
+  "caseCount": 30,
+  "defectWitnessCount": 14,
+  "controlCaseCount": 16,
+  "directGateObservations": 5,
+  "legacyEntitlementObservations": 5,
+  "findings": {
+    "shopPrimaryFailure": "All4 handlers returntrue; live ownership and debit leak; 0 committed writes; cold state unchanged; failed export can contain live leak",
+    "shopHugeWallet": "All4 persist ownership at1e30 for represented debit0",
+    "questPrimaryFailure": "50->25, q_tap_small->q_tap_big, count0->1, returntrue; 0 committed writes; old cold state",
+    "questHugeWallet": "1e30 unchanged with persisted reroll/count",
+    "recoveryOnly": "Primary success retains paid endpoint correctly",
+    "deedCredit": "tap100 nominal3 -> actual4 at1e16; actual0 at1e30; flag persists; no repeat reward",
+    "automationDeeds": "AutoTap25 and AutoEmpower30 rewards swallowed at1e30; earned flags retained"
+  },
+  "originalDeeds": {
+    "count": 23,
+    "rewardPool": 683,
+    "autoTapAscends": 12,
+    "autoEmpowerOriginalForgeLevels": 20
+  },
+  "readOnlyCodeMap": "README.md",
+  "records": "receipt.json",
+  "execution": "execution.json",
+  "syntheticSavesOnly": true,
+  "repositoryChanges": false,
+  "remoteChanges": false
+}

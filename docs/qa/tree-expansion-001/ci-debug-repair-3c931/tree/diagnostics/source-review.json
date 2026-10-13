@@ -1,0 +1,24 @@
+{
+  "status": "source-and-syntax-only",
+  "reviewedAt": "2026-10-10T21:02:48Z",
+  "clockSource": "clock__curr_time UTC supplied by caller",
+  "historicalSource": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "currentSource": "17d4ff66cc960f80200bbc7a640947d87bf1c8e2c216eea181761f036df5f806",
+  "originalTestSha256": "8ffec748df96ec66558385fbf6da1a07d7d41f8f3a1980b38baa020b5e0f36de",
+  "currentTestSha256": "a2a90c83100daca4f7c770f48f681d55cb63ca75463d85385a3c9703ed89f4df",
+  "originalAssertionBearingLines": 58,
+  "unchangedAssertionBearingLines": 57,
+  "movedFundedAssertionPredicatesPreserved": [
+    "visible(now,'funded post-purchase '+id)",
+    "ok(now.focus.node===id&&now.scroll===m.scroll,'funded purchase retains native focus/exact scroll '+id)",
+    "ok(settled.focus.node===id&&settled.scroll===m.scroll,'focus/scroll stable after native frames '+id)"
+  ],
+  "diagnostics": "Each funded before/immediate/settled observation is retained before the original assertions, including control/main/summary/tree geometry.",
+  "causalControl": "One first 320/1/no-preference real Frontier purchase; only editingAuto || editingTree is replaced with editingAuto in the original function through direct eval. Actual purchase/state/primary/recovery/trusted-input/errors and original/mutated/restored function hashes are recorded. The precise original scroll assertion must catch the mutation. Exact prior positive state/raw slots and original function are restored in finally.",
+  "limits": [
+    "No newly added control or diagnostic has executed in a real browser yet.",
+    "No existing focus, exact-scroll, visibility or hit-target assertion is relaxed.",
+    "The failed historical receipt has no saved before/immediate geometry, so it cannot prove a numeric viewport displacement.",
+    "No local Chrome probe, gameplay run or CI rerun was performed for this packaging task."
+  ]
+}

@@ -1,0 +1,33 @@
+LUMENFALL — START IN CODEX
+Repository: karahaNx/Lumenfall. Start from current main or the feature's branch.
+Communicate in English. One feature/task, one owner chat; no permanent Lead,
+Core, Gameplay, Visuals or QA chats and no separate writer-assignment ceremony.
+
+Read: AGENTS.md → docs/PROJECT_STATE.md → docs/tasks/<FEATURE_ID>.md.
+The user's task defines scope. The owner handles implementation, necessary
+fixes, testing, documentation and delivery across all affected areas.
+Use docs/project/FEATURE_WORKFLOW.md for checkpoints and completion,
+docs/project/CODEX_START.md for setup/checks and docs/CONTEXT_INDEX.md for
+targeted sources. Optional technical guides do not assign roles or permissions.
+Run node scripts/codex/check_context.cjs --task docs/tasks/<FEATURE_ID>.md
+to validate this feature's checkpoint/links/startup budget. Verify its baseline/PR.
+Do not start unrelated B2/PR46 work merely because an older prompt mentions it.
+
+Make small changes and preserve existing game features, saves and test gates.
+Record baseline failures, cover changed behavior, review the complete diff and
+resolve introduced regressions. Keep the task checkpoint current before context
+compaction or handoff; resume from its exact version and next action.
+Standing authorization covers necessary actions in the assigned scope.
+For concurrent features, use isolated branches/worktrees and coordinate actual
+overlap/integration. Do not overwrite others' work or replace live game code
+with a prototype/archive. Historical writer releases do not block new tasks.
+
+Use JavaScript/Node.js 20+ where technically possible; HTML/native Android and
+necessary declarative formats remain valid. Preserve historical originals.
+Notify the user before applying a new rule. Do not create/rename other chats or
+use subagents/message tools without an explicit user request.
+
+Save requirements, decisions and evidence in GitHub. Archive the owner chat
+only after verified integration, relevant acceptance and saved status; open PRs
+or blocked checks remain open work. TXT/ZIP exports are optional when useful.
+New account: docs/project/ACCOUNT_RECOVERY.md; GitHub access and setup are needed.

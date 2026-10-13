@@ -1,0 +1,240 @@
+[
+  {
+    "mutation": "handler",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: UI maxed even with affordable wallet 20",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "refund",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: refund receipt prevents a second credit 21",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "credit",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: fractional original wallet retains exact refund value",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "free-credit",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: unrepresentable credit subtraction cannot buy a free level",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "wallet",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: unrepresentable wallet debit cannot buy a free level",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "receipt",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: wrong receipt amount rejects for recovery",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "cache",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "credit-record",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: malformed persisted Prism credit rejects for recovery",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "ascend-copy",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: actual auto-Ascends avoid repeated refund cloning and validation",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "version-check",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: unsupported migration version rejects before any early return",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "credit-reconcile",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: own credit sequence reconciles with saved receipt",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "below-cap-receipt",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: below-cap receipt rejects before legitimate purchase",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "missing-receipt",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: completed marker cannot refund again after receipt deletion",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "canonical-price",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: all finite original purchase value retained 2000/1000000",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "mixed-payment",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: exact wallet-only allocation keeps small credit",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "power-spacing",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: downward ULP at power of two supports exact mixed payment",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  },
+  {
+    "mutation": "funding-sources",
+    "exit": 1,
+    "status": "FAIL",
+    "failure": "Error: Error: best exact available contribution finds payable Tree price",
+    "teardown": {
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pending": 0,
+      "profileRemoved": true
+    }
+  }
+]

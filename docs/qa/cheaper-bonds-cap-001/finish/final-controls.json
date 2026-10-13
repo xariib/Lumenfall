@@ -1,0 +1,273 @@
+{
+  "status": "PASS",
+  "count": 19,
+  "required": 17,
+  "records": [
+    {
+      "mutation": "handler",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: cap prevents direct/repeated debit at raw level 20",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "refund",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: refund receipt prevents a second credit 21",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "credit",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: fractional original wallet retains exact refund value",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "free-credit",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: unrepresentable credit subtraction cannot buy a free level",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "wallet",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: unrepresentable wallet debit cannot buy a free level",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "receipt",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: wrong receipt amount rejects for recovery",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "cache",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "credit-record",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: malformed persisted Prism credit rejects for recovery",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "ascend-copy",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: actual auto-Ascends avoid repeated refund cloning and validation",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "version-check",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: unsupported migration version rejects before any early return",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "credit-reconcile",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: own credit sequence reconciles with saved receipt",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "ui",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: UI maxed even with affordable wallet 20",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "raw",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: all finite original purchase value retained 21/0",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "below-cap-receipt",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: below-cap receipt rejects before legitimate purchase",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "missing-receipt",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: completed marker cannot refund again after receipt deletion",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "canonical-price",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: all finite original purchase value retained 2000/1000000",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "mixed-payment",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: exact wallet-only allocation keeps small credit",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "power-spacing",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: downward ULP at power of two supports exact mixed payment",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    },
+    {
+      "mutation": "funding-sources",
+      "status": "FAIL",
+      "firstAssertion": "Error: Error: best exact available contribution finds payable Tree price",
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      },
+      "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+    }
+  ]
+}

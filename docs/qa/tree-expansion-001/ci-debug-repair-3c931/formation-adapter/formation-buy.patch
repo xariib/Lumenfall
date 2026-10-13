@@ -1,0 +1,16 @@
+--- a/tests/behavioral/bridge.js
++++ b/tests/behavioral/bridge.js
+@@ -399,7 +399,12 @@
+       }};
+     },
+ 
+-    buy: function(id){ buySpirit(SPIRITS.find(function(sp){return sp.id===id;})); },
++    buy: function(id){
++      var previousReload=reloadInProgress;
++      reloadInProgress=false;
++      try { return buySpirit(SPIRITS.find(function(sp){return sp.id===id;})); }
++      finally { reloadInProgress=previousReload; }
++    },
+     cost: function(id){ return spiritCost(SPIRITS.find(function(sp){return sp.id===id;})); },
+     tick: function(){ return autoEmpowerTick(); },
+     spent: function(before,after){

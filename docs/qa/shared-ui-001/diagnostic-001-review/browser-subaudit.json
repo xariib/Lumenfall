@@ -1,0 +1,568 @@
+{
+  "status": "FAILED_DIAGNOSTIC_TEST_BOUNDARY_IDENTIFIED",
+  "auditKind": "Original-data hash/geometry/input review; not browser or game execution",
+  "candidate": "9f6ff0abe08c87ff8a7a007e5b51c89ca7e48233",
+  "run": 38110447923,
+  "artifact": {
+    "id": 11691409000,
+    "run": 38110447923,
+    "head": "9f6ff0abe08c87ff8a7a007e5b51c89ca7e48233",
+    "bytes": 19026173,
+    "sha256": "7de6de69d0f15280607369a706cc11008ca28cbcba36bd43b20fbffc7cbf4ffa"
+  },
+  "identity": {
+    "testSha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+    "transportSha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd",
+    "referenceSha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+    "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+  },
+  "generatedDriverSha256": "b9d3276d59de4252d4176976fd8e611ba6fd1e7aa80832e748c945ec969b548e",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/154.0.8037.97",
+    "revision": "@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+    "jsVersion": "15.4.80.20"
+  },
+  "actual": {
+    "checks": 113,
+    "completedProfiles": 0,
+    "startedProfile": {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference"
+    },
+    "startedWisp": "ember",
+    "completedNegativeControls": 0,
+    "negativeDisposition": "All three were unexecuted because normal failed.",
+    "processExit": 1,
+    "chromeExit": {
+      "code": 0,
+      "signal": null
+    },
+    "runtimeErrors": []
+  },
+  "finding": {
+    "classification": "An overstrict test predicate applied full vertical containment to a transparent nonclipping CSS line box.",
+    "identity": {
+      "left": 91,
+      "right": 231.59375,
+      "top": 437.59375,
+      "bottom": 472.390625,
+      "width": 140.59375,
+      "height": 34.796875
+    },
+    "identityOverflowY": "visible",
+    "nameElement": {
+      "left": 91,
+      "right": 231.59375,
+      "top": 437.59375,
+      "bottom": 458.390625,
+      "width": 140.59375,
+      "height": 20.796875
+    },
+    "nameFont": "850 16px / 20.8px Cinzel, serif",
+    "nameGlyphLine": {
+      "left": 91,
+      "right": 186.578125,
+      "top": 436.59375,
+      "bottom": 458.59375,
+      "text": "EmberWisp"
+    },
+    "classGlyphLine": {
+      "left": 91,
+      "right": 200.015625,
+      "top": 459.390625,
+      "bottom": 472.390625,
+      "text": "Starcaller·Burst"
+    },
+    "header": {
+      "left": 23,
+      "right": 297,
+      "top": 426,
+      "bottom": 484,
+      "width": 274,
+      "height": 58
+    },
+    "card": {
+      "left": 10,
+      "right": 310,
+      "top": 413,
+      "bottom": 1009.34375,
+      "width": 300,
+      "height": 596.34375
+    },
+    "button": {
+      "left": 241.59375,
+      "right": 297,
+      "top": 431,
+      "bottom": 479,
+      "width": 55.40625,
+      "height": 48
+    },
+    "overhangs": [
+      {
+        "kind": "name",
+        "text": "E",
+        "rect": {
+          "left": 91,
+          "right": 101.125,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 10.125,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "m",
+        "rect": {
+          "left": 101.109375,
+          "right": 114.921875,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 13.8125,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "b",
+        "rect": {
+          "left": 114.90625,
+          "right": 124.59375,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 9.6875,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "e",
+        "rect": {
+          "left": 124.578125,
+          "right": 133.546875,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 8.96875,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "r",
+        "rect": {
+          "left": 133.53125,
+          "right": 144.078125,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 10.546875,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "W",
+        "rect": {
+          "left": 148.0625,
+          "right": 163.421875,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 15.359375,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "i",
+        "rect": {
+          "left": 163.40625,
+          "right": 169.0625,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 5.65625,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "s",
+        "rect": {
+          "left": 169.046875,
+          "right": 177.203125,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 8.15625,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      },
+      {
+        "kind": "name",
+        "text": "p",
+        "rect": {
+          "left": 177.1875,
+          "right": 186.578125,
+          "top": 436.59375,
+          "bottom": 458.59375,
+          "width": 9.390625,
+          "height": 22
+        },
+        "left": 0,
+        "right": 0,
+        "top": 1,
+        "bottom": 0
+      }
+    ],
+    "oldFullContainment": false,
+    "horizontalContainment": true,
+    "fullHeaderAndCardContainment": true,
+    "controlPortraitAndNameClassNonOverlap": true
+  },
+  "repairDirection": "Bound the identity column horizontally using the same0.5px tolerance; enforce vertical containment when its observed overflowY clips; retain full2Dheader/viewport and all overlap checks, and add full card containment. Product CSS stays unchanged.",
+  "readiness": [
+    {
+      "phase": "initial-navigation",
+      "status": "ready",
+      "elapsedMs": 6243,
+      "probes": 188,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    },
+    {
+      "phase": "startup-confirmed",
+      "status": "ready",
+      "elapsedMs": 1,
+      "probes": 1,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    }
+  ],
+  "input": [
+    {
+      "label": "open Settings by touch",
+      "kind": "touch",
+      "completeStateAndBothRawSlotsUnchanged": true,
+      "saveWrites": 0,
+      "trusted": [
+        {
+          "type": "click",
+          "key": null,
+          "control": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        }
+      ],
+      "immediateFocus": {
+        "id": "settings-close",
+        "toggle": null,
+        "tab": null
+      },
+      "settledFocus": {
+        "id": "settings-close",
+        "toggle": null,
+        "tab": null
+      }
+    },
+    {
+      "label": "native Escape closes Settings",
+      "kind": "Escape",
+      "completeStateAndBothRawSlotsUnchanged": true,
+      "saveWrites": 0,
+      "trusted": [
+        {
+          "type": "keydown",
+          "key": "Escape",
+          "control": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        }
+      ],
+      "immediateFocus": {
+        "id": "settings-btn",
+        "toggle": null,
+        "tab": null
+      },
+      "settledFocus": {
+        "id": "settings-btn",
+        "toggle": null,
+        "tab": null
+      }
+    },
+    {
+      "label": "open Settings by Enter",
+      "kind": "Enter",
+      "completeStateAndBothRawSlotsUnchanged": true,
+      "saveWrites": 0,
+      "trusted": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "control": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "type": "click",
+          "key": null,
+          "control": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        }
+      ],
+      "immediateFocus": {
+        "id": "settings-close",
+        "toggle": null,
+        "tab": null
+      },
+      "settledFocus": {
+        "id": "settings-close",
+        "toggle": null,
+        "tab": null
+      }
+    },
+    {
+      "label": "Close Settings by touch",
+      "kind": "touch",
+      "completeStateAndBothRawSlotsUnchanged": true,
+      "saveWrites": 0,
+      "trusted": [
+        {
+          "type": "click",
+          "key": null,
+          "control": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        }
+      ],
+      "immediateFocus": {
+        "id": "settings-btn",
+        "toggle": null,
+        "tab": null
+      },
+      "settledFocus": {
+        "id": "settings-btn",
+        "toggle": null,
+        "tab": null
+      }
+    },
+    {
+      "label": "navigate to Wisps",
+      "kind": "touch",
+      "completeStateAndBothRawSlotsUnchanged": true,
+      "saveWrites": 0,
+      "trusted": [
+        {
+          "type": "click",
+          "key": null,
+          "control": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          }
+        }
+      ],
+      "immediateFocus": {
+        "id": "nav-spirits",
+        "toggle": null,
+        "tab": "spirits"
+      },
+      "settledFocus": {
+        "id": "nav-spirits",
+        "toggle": null,
+        "tab": "spirits"
+      }
+    }
+  ],
+  "images": [
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-brand-rift.png",
+      "bytes": 214979,
+      "sha256": "b5cca79d616696dd779a9658b0268727e6566454ce2c5226aed9255f9c7119a7",
+      "directlyViewed": true,
+      "observation": "Directly viewed: root16 wordmark and gear are separated; original Rift, wallets and bottom navigation are visible. The intentionally fixed guidance strip remains vertically scrollable and is not accepted as a changed readability contract."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-settings.png",
+      "bytes": 182415,
+      "sha256": "26e2805688653df8250007ee62de21f13563bd055df2af138b9a6ae1da7912f1",
+      "directlyViewed": true,
+      "observation": "Directly viewed: Settings title and Close control fit; body is a vertically scrollable modal. This still image does not independently prove keyboard focus; the original trusted event/endpoint records do."
+    },
+    {
+      "path": "artifact/layout/normal/failure.png",
+      "bytes": 179350,
+      "sha256": "70a53f30c04a624b5ed9fd25c00796c8c4ebce9c582fbe14d53259643df3f566",
+      "directlyViewed": true,
+      "observation": "Directly viewed: full Ember name and class are clear and separated from portrait and Bench. No visible clipping at the transparent identity top. Card extends below the viewport with ordinary main scrolling; remaining cards and enlarged profiles were not reached."
+    }
+  ],
+  "limitations": [
+    "No complete profile or CSS inversion passed in this run.",
+    "Receipt arithmetic is a re-evaluation of already captured measurements; it is not a fresh browser result for the repair.",
+    "Range rectangles are typographic boxes rather than raster ink bounds.",
+    "The first normal320/root16 profile does not establish enlarged text or other widths/motion.",
+    "Native Android/WebView60/textZoom/physical input/TalkBack remain untested."
+  ],
+  "dependencies": [
+    {
+      "path": "artifact-verification.json",
+      "bytes": 13717,
+      "sha256": "b8a826c17271ae9821bbfe137f94fd29941a6cbd720dfc1cfe548535a3044972"
+    },
+    {
+      "path": "artifact/layout/normal/receipt.json",
+      "bytes": 1195962,
+      "sha256": "634d64e9a642c810993159f44c9a64c5f815b659939e0e137ec2c4e1537b03bb"
+    },
+    {
+      "path": "artifact/layout/normal/process.json",
+      "bytes": 755,
+      "sha256": "0a3485647530b2a3c43715a0c2345a0dd599dd8fb87e88242e9cc5e6cd4f8a68"
+    },
+    {
+      "path": "artifact/layout/summary.json",
+      "bytes": 2245,
+      "sha256": "9229338e093d9d166fb7d0a67469e758727706f69f891061ce3b94edc5762b49"
+    },
+    {
+      "path": "artifact/layout/normal/stdout.log",
+      "bytes": 718113,
+      "sha256": "37d793d1939dc4d54cc69af5dfdb951e0ad10447a84fa2829a0ff47859283547"
+    },
+    {
+      "path": "artifact/layout/normal/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifact/layout/normal/source.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+    },
+    {
+      "path": "artifact/layout/candidate-source.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+    },
+    {
+      "path": "artifact/layout/instrumented-driver.cjs",
+      "bytes": 35399,
+      "sha256": "b9d3276d59de4252d4176976fd8e611ba6fd1e7aa80832e748c945ec969b548e"
+    },
+    {
+      "path": "artifact/layout/normal/failure-dom.html",
+      "bytes": 909366,
+      "sha256": "7eadf249dd74f8b4da5860885390102cd88ae5a3b83c0c4dbdb6c2ec242c9fd8"
+    },
+    {
+      "path": "artifact/layout/preparation.json",
+      "bytes": 4978,
+      "sha256": "8e2bf6af5d3529e3e9f452a44716f035927b6124a382dd360519d6a6dd992229"
+    },
+    {
+      "path": "artifact/layout/brand-spacing-inverse.json",
+      "bytes": 264,
+      "sha256": "75333be9b32d7d386a0df0c3f6fb700ac4298ab31db3c8a632a070137513c18d"
+    },
+    {
+      "path": "artifact/layout/wisp-header-inverse.json",
+      "bytes": 357,
+      "sha256": "64b3ea2471b6cf8bcbb5b41f7e6cbd38abd2b560a2029861607b57d8228ca895"
+    },
+    {
+      "path": "artifact/layout/toast-leading-inverse.json",
+      "bytes": 284,
+      "sha256": "5384dbe3f3d341043ee6a9d84ae2e83e004f41e1200222dec659327ddc41907e"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-brand-rift.png",
+      "bytes": 214979,
+      "sha256": "b5cca79d616696dd779a9658b0268727e6566454ce2c5226aed9255f9c7119a7"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-settings.png",
+      "bytes": 182415,
+      "sha256": "26e2805688653df8250007ee62de21f13563bd055df2af138b9a6ae1da7912f1"
+    },
+    {
+      "path": "artifact/layout/normal/failure.png",
+      "bytes": 179350,
+      "sha256": "70a53f30c04a624b5ed9fd25c00796c8c4ebce9c582fbe14d53259643df3f566"
+    }
+  ]
+}

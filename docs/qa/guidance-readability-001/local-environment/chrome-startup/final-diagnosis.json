@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "scope": "Chrome startup diagnosis only; no product/Guidance test, Git or API action",
+  "trustedStartedUtc": "2026-10-11 11:43:18 UTC",
+  "trustedCompletedUtc": "2026-10-11 11:45:21 UTC",
+  "outcome": "LOCAL_BROWSER_STARTUP_BLOCKED_BY_EXECUTOR",
+  "startup": {
+    "exitCode": null,
+    "signal": "SIGABRT",
+    "timeout": false,
+    "elapsedMs": 5022.801463,
+    "stdout": {
+      "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/about-blank.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "statBytes": 0,
+      "mode": "644",
+      "executorMtime": "2026-10-11T11:44:21.192Z"
+    },
+    "stderr": {
+      "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/about-blank.stderr.log",
+      "bytes": 629,
+      "sha256": "7b5b348d387d8215078b53e6ac1ee6161a23e639ffa0824183a91b9ae163d49c",
+      "statBytes": 629,
+      "mode": "644",
+      "executorMtime": "2026-10-11T11:44:21.212Z"
+    },
+    "exactFatal": "[21:21:1011/134421.218077:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)"
+  },
+  "package": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+    "bytes": 143552428,
+    "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+    "statBytes": 143552428,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:31:03.716Z"
+  },
+  "packageAfter": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+    "bytes": 143552428,
+    "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+    "statBytes": 143552428,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:31:03.716Z"
+  },
+  "isolatedBinaryBefore": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked/opt/google/chrome/chrome",
+    "bytes": 297798984,
+    "sha256": "9bfb381296dffe75f3419d07b6cc64525105ed117d1453a4ef3b291cb97d2b58",
+    "statBytes": 297798984,
+    "mode": "755",
+    "executorMtime": "2026-10-06T00:06:58.000Z"
+  },
+  "isolatedBinaryAfter": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/unpacked/opt/google/chrome/chrome",
+    "bytes": 124701696,
+    "sha256": "0edc0967d6d29efa1f9c37e99547e2834428a513132b8295e1873a1b1041ef15",
+    "statBytes": 124701696,
+    "mode": "700",
+    "executorMtime": "2026-10-11T11:44:16.416Z"
+  },
+  "binaryChangeCause": "Not established; recorded before/after bytes and mode. The diagnostic script only extracts once, reads/hashes the executable, and invokes version/about:blank.",
+  "procObservation": {
+    "nodePid": 2,
+    "procSelfLink": "2267",
+    "procStatusPid": "2267",
+    "procStatusNamespacePids": "2267\t2",
+    "seccomp": "2"
+  },
+  "commands": [
+    {
+      "id": "ps",
+      "exitCode": 1,
+      "signal": null,
+      "timeout": false,
+      "elapsedMs": 8.23298
+    },
+    {
+      "id": "disk",
+      "exitCode": 0,
+      "signal": null,
+      "timeout": false,
+      "elapsedMs": 2.802772
+    },
+    {
+      "id": "kernel",
+      "exitCode": 0,
+      "signal": null,
+      "timeout": false,
+      "elapsedMs": 2.260735
+    },
+    {
+      "id": "extract",
+      "exitCode": 0,
+      "signal": null,
+      "timeout": false,
+      "elapsedMs": 6331.461986
+    },
+    {
+      "id": "version",
+      "exitCode": 0,
+      "signal": null,
+      "timeout": false,
+      "elapsedMs": 29.771621
+    },
+    {
+      "id": "about-blank",
+      "exitCode": null,
+      "signal": "SIGABRT",
+      "timeout": false,
+      "elapsedMs": 5022.801463
+    }
+  ],
+  "disposition": "Do not run Guidance/game tests using these changed local Chrome bytes. Preserve the original official package. Use the already required GitHub CI browser runner or a restored supported executor with normal permitted startup IPC. Do not bypass OS security policy or weaken test assertions.",
+  "limitations": [
+    "No game page, script or assertion was loaded or executed.",
+    "Chrome --version is not browser-readiness evidence.",
+    "The executable byte/mode change is observed, not attributed to Chrome or a particular platform component.",
+    "The local materialization/profile directories remain runtime working data and are not part of this compact immutable evidence scope."
+  ]
+}

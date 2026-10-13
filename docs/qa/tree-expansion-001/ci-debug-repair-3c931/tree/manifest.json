@@ -1,0 +1,915 @@
+{
+  "schemaVersion": 1,
+  "status": "FAILED-HISTORICAL",
+  "accepted": false,
+  "packagedAt": "2026-10-10T21:02:48Z",
+  "clockSource": "clock__curr_time UTC supplied by caller",
+  "identity": {
+    "run": 38085086726,
+    "job": 114309817326,
+    "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "base": "2d01049393e3bb45a90d80e07af52ae0484b0ec5",
+    "merge": "a2561ca083c036df0b5ebe27e09939d0bd35c701",
+    "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+    "source": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+    "fixture": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+    "artifact": 11682335839,
+    "artifactBytes": 5634700,
+    "artifactSha256": "4564eedd5aaf2889cc841c5cf07b417c97ca3472ce418b537838ce1334af442d",
+    "artifactCrcPassed": true,
+    "sourceBlob": "c7094e9c84f057d9d76d37e51772ac20ac73596a",
+    "fixtureBlob": "5bc34425a9e745e6b656d5b8a173fddcb4b16194",
+    "includedTestBlobsVerified": 12,
+    "sourceBlobEntriesVerified": 107,
+    "syntheticParentsApiVerified": true,
+    "parentFile": "blank because actions/checkout uses a shallow checkout; not treated as parent proof"
+  },
+  "failedAuditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181",
+  "selectedFiles": 57,
+  "totalOriginalBytes": 3330594,
+  "totalStoredBytes": 1045540,
+  "manifestExcludesItself": true,
+  "files": [
+    {
+      "path": "failed-ci-audit.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "failed-ci-audit.json"
+      },
+      "originalBytes": 70302,
+      "originalSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181",
+      "storedBytes": 12348,
+      "storedSha256": "d88743c0e9513d7f2c0bae92604c07c62547e29c4de80c9d90a5f5bbb57d443d",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "job.log.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "job.log"
+      },
+      "originalBytes": 169292,
+      "originalSha256": "1188f039b6aae201417d2e5dbd75e9084d16d759bb8103c86104453376a36b2d",
+      "storedBytes": 25869,
+      "storedSha256": "85da73c042300b05b3b891cd6a6854e82db5f27a53a92699d182e9e2e041f7be",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "zip-verification.json",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "zip-verification.json"
+      },
+      "originalBytes": 455,
+      "originalSha256": "68c2e501f9b6aa2431dd2b025159f9137e814aa6c1fb1cab6e34427f0d5dfcba",
+      "storedBytes": 455,
+      "storedSha256": "68c2e501f9b6aa2431dd2b025159f9137e814aa6c1fb1cab6e34427f0d5dfcba",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/run.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "run-final.json"
+      },
+      "originalBytes": 13462,
+      "originalSha256": "37a6195979c2d36f6b34b5bde7ebc69262369998d101c2a751766060cbe08a03",
+      "storedBytes": 2147,
+      "storedSha256": "68ad7ce26cf18c27d87d931fd29433f3fdcb5337ddc477a764300d09d50c5468",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/jobs.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "jobs-final.json"
+      },
+      "originalBytes": 3840,
+      "originalSha256": "011d0ae8d5356b2938372ccb552a23d9b44a99884b30bb6d959ffc591933a4d1",
+      "storedBytes": 975,
+      "storedSha256": "416200c3d0b8a5a7ebc034a766bbca4c307685ec67d5f46e80b2fd876fdc53ef",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/artifacts.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "artifacts-final.json"
+      },
+      "originalBytes": 743,
+      "originalSha256": "c44db7ccbbcf6228714706507f4c3d1b552362338f1ee87d237da76da2d603ed",
+      "storedBytes": 445,
+      "storedSha256": "ca6f1e70eb1c06e08923cb0b28699dba49d6e73836cb5c0f952e046d43ad4cb2",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/pr106.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "pr106-initial.json"
+      },
+      "originalBytes": 25994,
+      "originalSha256": "5073346aff4d9b352f3474ffe7e894d0a53799878d77c86076ba4c8ba3703f01",
+      "storedBytes": 5511,
+      "storedSha256": "648ed3bea32f41280ff837e09319fa4f44094c4286298a1f84fb276223ee5122",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/head.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "head.json"
+      },
+      "originalBytes": 2121,
+      "originalSha256": "e10bdd425f63c83ac615a3c09fae5241dfb1c62b2276a42752b94ce1fb970ed7",
+      "storedBytes": 984,
+      "storedSha256": "4f2ca3dca330af0bf80d09f213ca7191c4c456491b487ad011570a4bd45ec7b4",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/synthetic-merge.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "synthetic-merge.json"
+      },
+      "originalBytes": 2846,
+      "originalSha256": "67260023cfbd399ae38636295006af0e846346f8412775332ad553ae8df61321",
+      "storedBytes": 1283,
+      "storedSha256": "fde7981aea8f743a0485d57a64ce42740a542c953e34b41bab87d2181cb7e879",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/root-tree.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "root-tree.json"
+      },
+      "originalBytes": 4487,
+      "originalSha256": "20e54770bb7f33188fd513f1c65f521997a833b3b922b66ca4643b465a10d0d4",
+      "storedBytes": 923,
+      "storedSha256": "2a699f155fa9e44da9bbe96142acd4134acd0b08b8a2c8b4c8e29915c1d84799",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/tests-tree.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "tests-tree.json"
+      },
+      "originalBytes": 27874,
+      "originalSha256": "4ccb73bc0570561927645c7c6b47e00dca7d0fa321946dc66d5388fed7d69ceb",
+      "storedBytes": 4144,
+      "storedSha256": "bbd1081ef752177f66e915321d6c5e55c948ded5bd878e3c3cd78267f7ddfd8a",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/workflow-tree.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "workflow-tree.json"
+      },
+      "originalBytes": 3183,
+      "originalSha256": "8cad2b94214da1dec7e7b2705720f0d566e6e1a5daab848fdcf05491b213a14f",
+      "storedBytes": 706,
+      "storedSha256": "798490d5265a48dcd35f2d6bd1ff20d7274e13153b5f6ae9d93122cdf71574a7",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "api/scripts-tree.json.gz",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "scripts-tree.json"
+      },
+      "originalBytes": 5095,
+      "originalSha256": "26af8f19b846e28dbf9654349ac9a124ee6f368d11e4d50abee2b2b9b34d2cf5",
+      "storedBytes": 1156,
+      "storedSha256": "5f8a0e87d3484311629907fc46634c100f0c0e1744a0c8b3c7401f8b248ec6d1",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/commit.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/commit.txt",
+        "inventoryBytes": 41,
+        "inventorySha256": "a48ad7f1534f7e7924a5acd277029b071e5a427fc0b37b37ced502283e04b322"
+      },
+      "originalBytes": 41,
+      "originalSha256": "a48ad7f1534f7e7924a5acd277029b071e5a427fc0b37b37ced502283e04b322",
+      "storedBytes": 59,
+      "storedSha256": "2924917fd5afe34040e09df9aefda5c1177047e956f2af9ceb2ef870405d90d0",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/tree.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/tree.txt",
+        "inventoryBytes": 41,
+        "inventorySha256": "c0c77d744941a769d24b6f2694acc178fdec622d30043dc0cfa167ea15d684b2"
+      },
+      "originalBytes": 41,
+      "originalSha256": "c0c77d744941a769d24b6f2694acc178fdec622d30043dc0cfa167ea15d684b2",
+      "storedBytes": 59,
+      "storedSha256": "90a3d646b36df1ee0f1c9131a7320dfe02162d99e1673489421c509972193d25",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/parents.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/parents.txt",
+        "inventoryBytes": 1,
+        "inventorySha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "originalBytes": 1,
+      "originalSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "storedBytes": 21,
+      "storedSha256": "34d5848c995803cfd00c2f7f02d807e2069b51ffca60a40f05d2d7229ef13b69",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/source.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/source.txt",
+        "inventoryBytes": 99,
+        "inventorySha256": "554c0938eec03dd8c8db111b0fcc9c537dd5b879531a874c492090a357d941e6"
+      },
+      "originalBytes": 99,
+      "originalSha256": "554c0938eec03dd8c8db111b0fcc9c537dd5b879531a874c492090a357d941e6",
+      "storedBytes": 111,
+      "storedSha256": "b3a58695b3fb176c01648fe32980264f76b7667b6b371f2ffcbf8e1c4cec0c4a",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/source-sha256.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/source-sha256.txt",
+        "inventoryBytes": 174,
+        "inventorySha256": "0cd0391f4b837fc563055f4d61185f654d40f6d9854df4903619f2c180b43b69"
+      },
+      "originalBytes": 174,
+      "originalSha256": "0cd0391f4b837fc563055f4d61185f654d40f6d9854df4903619f2c180b43b69",
+      "storedBytes": 150,
+      "storedSha256": "19031cd2be8fb421fc1b7ee90deb59914ac856a1a5bb73f84af970afe345941a",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/source-blobs.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/source-blobs.txt",
+        "inventoryBytes": 9598,
+        "inventorySha256": "8dc9bc4c57d99755e09e865718bf21c6ce3e31dd2acc3ddf14782fde9effd9dc"
+      },
+      "originalBytes": 9598,
+      "originalSha256": "8dc9bc4c57d99755e09e865718bf21c6ce3e31dd2acc3ddf14782fde9effd9dc",
+      "storedBytes": 3508,
+      "storedSha256": "d7634d5f7b42d97964cba4ad296b825a4537a5eb0eece071c84ff859cfcae33e",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "source-identity/context.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/context.txt",
+        "inventoryBytes": 133,
+        "inventorySha256": "c2fa068a175c205b2fc23e1a700c22a53af81bf184504c0b9689aaf0d9a524f0"
+      },
+      "originalBytes": 133,
+      "originalSha256": "c2fa068a175c205b2fc23e1a700c22a53af81bf184504c0b9689aaf0d9a524f0",
+      "storedBytes": 140,
+      "storedSha256": "35b5a6bb78d50adafe8a6f9913ab9524b008f15f71f22cec7ccdeb0db7846c76",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/receipt.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/receipt.json",
+        "inventoryBytes": 1737,
+        "inventorySha256": "da1b663cfae524d76b41837393fa7a42b6e499b3f54bc856256294585af9f112"
+      },
+      "originalBytes": 1737,
+      "originalSha256": "da1b663cfae524d76b41837393fa7a42b6e499b3f54bc856256294585af9f112",
+      "storedBytes": 350,
+      "storedSha256": "5a731387baa672146ebc6b312c083de1fac23024a8e6cee3a3afc663b8c12308",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/command.log.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism-browser.log",
+        "inventoryBytes": 1946,
+        "inventorySha256": "f3aa9e8ab2420ff3c1acdc83d645075fad048703dbe0979ec63c48509f0ae1b1"
+      },
+      "originalBytes": 1946,
+      "originalSha256": "f3aa9e8ab2420ff3c1acdc83d645075fad048703dbe0979ec63c48509f0ae1b1",
+      "storedBytes": 628,
+      "storedSha256": "cd052bb6b99263c50fb75e913c094870304944c722cf4c55cf3f79a33cf31e10",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/contract/process.json",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/raw/ascend-prisms-contract-XSsjqY/process.json",
+        "inventoryBytes": 930,
+        "inventorySha256": "ed424e98354c6da5ca80ba84e1bf967cabd40618235f97400fcece2c54b59d6d"
+      },
+      "originalBytes": 930,
+      "originalSha256": "ed424e98354c6da5ca80ba84e1bf967cabd40618235f97400fcece2c54b59d6d",
+      "storedBytes": 930,
+      "storedSha256": "ed424e98354c6da5ca80ba84e1bf967cabd40618235f97400fcece2c54b59d6d",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/contract/stdout.html.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/raw/ascend-prisms-contract-XSsjqY/stdout.html",
+        "inventoryBytes": 1460846,
+        "inventorySha256": "0d0570c04998c862fcbfae5147a091f58c006f72ee7561955fefb06e5341cbde"
+      },
+      "originalBytes": 1460846,
+      "originalSha256": "0d0570c04998c862fcbfae5147a091f58c006f72ee7561955fefb06e5341cbde",
+      "storedBytes": 325047,
+      "storedSha256": "4f86b2c865584bad8ad2f906e616d159a53a66920fb21c16242d2a2c6d557fd3",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/contract/stderr.log.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/raw/ascend-prisms-contract-XSsjqY/stderr.log",
+        "inventoryBytes": 3979,
+        "inventorySha256": "3bfea8ba799851b80380f2bcbd4e2b1d441ccb9300924f53576c131e0425bd1a"
+      },
+      "originalBytes": 3979,
+      "originalSha256": "3bfea8ba799851b80380f2bcbd4e2b1d441ccb9300924f53576c131e0425bd1a",
+      "storedBytes": 496,
+      "storedSha256": "8e22cc1447c01663ff6b3278c8f5ad0ef3b2d48ce320ad261e8bc89b62641591",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/contract/command.stdout.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/stdout.txt",
+        "inventoryBytes": 7014,
+        "inventorySha256": "8dc8a16a6e7dcd5ebf20d7deb78ce9aaea6bbeb937f5012f2e2395c1b0d16a81"
+      },
+      "originalBytes": 7014,
+      "originalSha256": "8dc8a16a6e7dcd5ebf20d7deb78ce9aaea6bbeb937f5012f2e2395c1b0d16a81",
+      "storedBytes": 1789,
+      "storedSha256": "99e36de5729e8510bd356978c07e21e81a2a442563dfcdb49cd286d494df9557",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/contract/command.stderr.txt.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/stderr.txt",
+        "inventoryBytes": 50,
+        "inventorySha256": "c04eb5e81bac44eb1686252ca898e078404a79895927bff544dbb3a49ecd03af"
+      },
+      "originalBytes": 50,
+      "originalSha256": "c04eb5e81bac44eb1686252ca898e078404a79895927bff544dbb3a49ecd03af",
+      "storedBytes": 70,
+      "storedSha256": "439a7c1f258465d728317443afe1e05d9fea11b4eef1d9486e6456d7dcd850cd",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/contract/qa-result.json",
+      "origin": {
+        "kind": "derived-observation",
+        "domPath": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/raw/ascend-prisms-contract-XSsjqY/stdout.html",
+        "domSha256": "0d0570c04998c862fcbfae5147a091f58c006f72ee7561955fefb06e5341cbde",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181",
+        "transformation": "Original QA result decoded by the raw-result reader; the full original DOM is preserved separately."
+      },
+      "originalBytes": 796,
+      "originalSha256": "62eb51026ec82207be513cf88c48a7bc5e7f98f9575ff199ec6e235b58916809",
+      "storedBytes": 796,
+      "storedSha256": "62eb51026ec82207be513cf88c48a7bc5e7f98f9575ff199ec6e235b58916809",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/qa-observations.json.gz",
+      "origin": {
+        "kind": "derived-observation",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181",
+        "domSources": [
+          {
+            "path": "tree-validation/prism/browser/ascend-prisms-contract-PAVahh/raw/ascend-prisms-contract-XSsjqY/stdout.html",
+            "sha256": "0d0570c04998c862fcbfae5147a091f58c006f72ee7561955fefb06e5341cbde"
+          },
+          {
+            "path": "tree-validation/prism/browser/self-test-ascend-prisms-lab-OUUntu/raw/self-test-ascend-prisms-lab-Hh7h0l/stdout.html",
+            "sha256": "d8e6d571f9b7a81ff2fbf321f6bce8763d642fc5b24adf392075e16be5dddaed"
+          },
+          {
+            "path": "tree-validation/prism/browser/self-test-ascend-prisms-payout-iFkZEC/raw/self-test-ascend-prisms-payout-4wZewL/stdout.html",
+            "sha256": "58621dedf2cd18fd0adc728a82b0092ae5643e46daa7449bc203f6ff2f7c7958"
+          },
+          {
+            "path": "tree-validation/prism/browser/self-test-ascend-prisms-repeat-3jyC0l/raw/self-test-ascend-prisms-repeat-LheIVs/stdout.html",
+            "sha256": "948c10c81929b505bae841e88244711a61a5be5700804bb917690671f213f8ec"
+          },
+          {
+            "path": "tree-validation/prism/browser/self-test-ascend-prisms-rounding-xAwlar/raw/self-test-ascend-prisms-rounding-SXkP02/stdout.html",
+            "sha256": "88ac515b6de09f4bf4cb4222de1cb56fa2ebd77314bd77be25b40ec33e47889d"
+          },
+          {
+            "path": "tree-validation/prism/browser/self-test-ascend-prisms-tree-Fv1AT4/raw/self-test-ascend-prisms-tree-jkLcrT/stdout.html",
+            "sha256": "dbb1fbf9b715f4b7035789a52f4046adcbaa4ae9d1d6b019042db31b7e220ef8"
+          }
+        ],
+        "transformation": "Unmodified parsed process/QA observations from the frozen failed audit."
+      },
+      "originalBytes": 12327,
+      "originalSha256": "887f7ea019310fb1da1d6f623eae1bb54e44acf68bfee1d19b03a0456f3b9643",
+      "storedBytes": 1257,
+      "storedSha256": "4a4aa684916f5e7e42c4a3907e4265cb11bf78fef684663fe40513e8dde43af7",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-lab/process.json",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/self-test-ascend-prisms-lab-OUUntu/raw/self-test-ascend-prisms-lab-Hh7h0l/process.json",
+        "inventoryBytes": 957,
+        "inventorySha256": "0ade432cfbe969869d780ff0d95ab496fabbee2ab03789b83ae6f1855a9cfb13"
+      },
+      "originalBytes": 957,
+      "originalSha256": "0ade432cfbe969869d780ff0d95ab496fabbee2ab03789b83ae6f1855a9cfb13",
+      "storedBytes": 957,
+      "storedSha256": "0ade432cfbe969869d780ff0d95ab496fabbee2ab03789b83ae6f1855a9cfb13",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-lab/qa-result.json",
+      "origin": {
+        "kind": "derived-observation",
+        "domPath": "tree-validation/prism/browser/self-test-ascend-prisms-lab-OUUntu/raw/self-test-ascend-prisms-lab-Hh7h0l/stdout.html",
+        "domSha256": "d8e6d571f9b7a81ff2fbf321f6bce8763d642fc5b24adf392075e16be5dddaed",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181"
+      },
+      "originalBytes": 826,
+      "originalSha256": "e8d794a16cfd017f1bb7d8989345c43958f84865257bb376627f1f6a1f723026",
+      "storedBytes": 826,
+      "storedSha256": "e8d794a16cfd017f1bb7d8989345c43958f84865257bb376627f1f6a1f723026",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-payout/process.json",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/self-test-ascend-prisms-payout-iFkZEC/raw/self-test-ascend-prisms-payout-4wZewL/process.json",
+        "inventoryBytes": 969,
+        "inventorySha256": "670bb314e70c5603bbc8c32f86e41eefc96cb4c7144e784ec32307c3eae7c978"
+      },
+      "originalBytes": 969,
+      "originalSha256": "670bb314e70c5603bbc8c32f86e41eefc96cb4c7144e784ec32307c3eae7c978",
+      "storedBytes": 969,
+      "storedSha256": "670bb314e70c5603bbc8c32f86e41eefc96cb4c7144e784ec32307c3eae7c978",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-payout/qa-result.json",
+      "origin": {
+        "kind": "derived-observation",
+        "domPath": "tree-validation/prism/browser/self-test-ascend-prisms-payout-iFkZEC/raw/self-test-ascend-prisms-payout-4wZewL/stdout.html",
+        "domSha256": "58621dedf2cd18fd0adc728a82b0092ae5643e46daa7449bc203f6ff2f7c7958",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181"
+      },
+      "originalBytes": 843,
+      "originalSha256": "e01e24564b0b041d3f88797383b03da0656d80f6df3a2863ec010944fa21cb4e",
+      "storedBytes": 843,
+      "storedSha256": "e01e24564b0b041d3f88797383b03da0656d80f6df3a2863ec010944fa21cb4e",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-repeat/process.json",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/self-test-ascend-prisms-repeat-3jyC0l/raw/self-test-ascend-prisms-repeat-LheIVs/process.json",
+        "inventoryBytes": 969,
+        "inventorySha256": "6bfdde94ed6523b37e1dbaae172c740d91fa288cb157dd50138e4518279a97dd"
+      },
+      "originalBytes": 969,
+      "originalSha256": "6bfdde94ed6523b37e1dbaae172c740d91fa288cb157dd50138e4518279a97dd",
+      "storedBytes": 969,
+      "storedSha256": "6bfdde94ed6523b37e1dbaae172c740d91fa288cb157dd50138e4518279a97dd",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-repeat/qa-result.json",
+      "origin": {
+        "kind": "derived-observation",
+        "domPath": "tree-validation/prism/browser/self-test-ascend-prisms-repeat-3jyC0l/raw/self-test-ascend-prisms-repeat-LheIVs/stdout.html",
+        "domSha256": "948c10c81929b505bae841e88244711a61a5be5700804bb917690671f213f8ec",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181"
+      },
+      "originalBytes": 1014,
+      "originalSha256": "23d4459d52270e0c1be0011782bbd510a2075022c6946c3b24fa0bd83232c265",
+      "storedBytes": 1014,
+      "storedSha256": "23d4459d52270e0c1be0011782bbd510a2075022c6946c3b24fa0bd83232c265",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-rounding/process.json",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/self-test-ascend-prisms-rounding-xAwlar/raw/self-test-ascend-prisms-rounding-SXkP02/process.json",
+        "inventoryBytes": 970,
+        "inventorySha256": "79d2d4e7d7fd4342fb51be463ce8afd42b0ae5d3fdb64a4053182b3d8d11decb"
+      },
+      "originalBytes": 970,
+      "originalSha256": "79d2d4e7d7fd4342fb51be463ce8afd42b0ae5d3fdb64a4053182b3d8d11decb",
+      "storedBytes": 970,
+      "storedSha256": "79d2d4e7d7fd4342fb51be463ce8afd42b0ae5d3fdb64a4053182b3d8d11decb",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-rounding/qa-result.json",
+      "origin": {
+        "kind": "derived-observation",
+        "domPath": "tree-validation/prism/browser/self-test-ascend-prisms-rounding-xAwlar/raw/self-test-ascend-prisms-rounding-SXkP02/stdout.html",
+        "domSha256": "88ac515b6de09f4bf4cb4222de1cb56fa2ebd77314bd77be25b40ec33e47889d",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181"
+      },
+      "originalBytes": 1041,
+      "originalSha256": "606c710b89e11e0dbd84982a6df4ac7c3244a3c3b0ad96d4e8529b93dd9149de",
+      "storedBytes": 1041,
+      "storedSha256": "606c710b89e11e0dbd84982a6df4ac7c3244a3c3b0ad96d4e8529b93dd9149de",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-tree/process.json",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/browser/self-test-ascend-prisms-tree-Fv1AT4/raw/self-test-ascend-prisms-tree-jkLcrT/process.json",
+        "inventoryBytes": 954,
+        "inventorySha256": "559e511a2424837407e5a4b52dc1d5ca6aa15f4258df4b0c477c0cef23a96634"
+      },
+      "originalBytes": 954,
+      "originalSha256": "559e511a2424837407e5a4b52dc1d5ca6aa15f4258df4b0c477c0cef23a96634",
+      "storedBytes": 954,
+      "storedSha256": "559e511a2424837407e5a4b52dc1d5ca6aa15f4258df4b0c477c0cef23a96634",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "prism-focused/negative/self-test-ascend-prisms-tree/qa-result.json",
+      "origin": {
+        "kind": "derived-observation",
+        "domPath": "tree-validation/prism/browser/self-test-ascend-prisms-tree-Fv1AT4/raw/self-test-ascend-prisms-tree-jkLcrT/stdout.html",
+        "domSha256": "dbb1fbf9b715f4b7035789a52f4046adcbaa4ae9d1d6b019042db31b7e220ef8",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181"
+      },
+      "originalBytes": 832,
+      "originalSha256": "ddda37c4083a4fc811d530ef3851e425f4cbd3817be71c63bef0cffd24507b9a",
+      "storedBytes": 832,
+      "storedSha256": "ddda37c4083a4fc811d530ef3851e425f4cbd3817be71c63bef0cffd24507b9a",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "mobile/receipt.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/mobile/receipt.json",
+        "inventoryBytes": 43687,
+        "inventorySha256": "25696fe68d0427b3eed48cbbec9e38139674fb4aa34e5054259aea40b10d2235"
+      },
+      "originalBytes": 43687,
+      "originalSha256": "25696fe68d0427b3eed48cbbec9e38139674fb4aa34e5054259aea40b10d2235",
+      "storedBytes": 5363,
+      "storedSha256": "89f64b66a6706966a1e15d454a1fbce83167dacbd0049d107710b4ee820367ee",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "mobile/failure.png",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/mobile/failure.png",
+        "inventoryBytes": 220922,
+        "inventorySha256": "b0d4509543a63d0b173857d87c0659ea81ee95f3a88b77da643f5a3a205d2cb9"
+      },
+      "originalBytes": 220922,
+      "originalSha256": "b0d4509543a63d0b173857d87c0659ea81ee95f3a88b77da643f5a3a205d2cb9",
+      "storedBytes": 220922,
+      "storedSha256": "b0d4509543a63d0b173857d87c0659ea81ee95f3a88b77da643f5a3a205d2cb9",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "mobile/failure-dom.html.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/mobile/failure-dom.html",
+        "inventoryBytes": 855156,
+        "inventorySha256": "5b3f0cfb92882ef35e854b363e7b7deb8e21736b06733be73fb0d259cdf1c6a9"
+      },
+      "originalBytes": 855156,
+      "originalSha256": "5b3f0cfb92882ef35e854b363e7b7deb8e21736b06733be73fb0d259cdf1c6a9",
+      "storedBytes": 183805,
+      "storedSha256": "dc43119f7e9ed6cdaf61c4007592a49e2285bafc9eb245300d7a50a12decb3ba",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "mobile/tree-first-320-1-no-preference.png",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/mobile/tree-first-320-1-no-preference.png",
+        "inventoryBytes": 198532,
+        "inventorySha256": "3049d5e028c4428fdffc68c3a81fed25b96b10a369ec4e1ce72e7712fa81d438"
+      },
+      "originalBytes": 198532,
+      "originalSha256": "3049d5e028c4428fdffc68c3a81fed25b96b10a369ec4e1ce72e7712fa81d438",
+      "storedBytes": 198532,
+      "storedSha256": "3049d5e028c4428fdffc68c3a81fed25b96b10a369ec4e1ce72e7712fa81d438",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "mobile/command.log.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/mobile.log",
+        "inventoryBytes": 38849,
+        "inventorySha256": "eb4701eca882b2c8eead043928e8c4efce3b270fbd557cadcdcb8ba2a4e5d6dd"
+      },
+      "originalBytes": 38849,
+      "originalSha256": "eb4701eca882b2c8eead043928e8c4efce3b270fbd557cadcdcb8ba2a4e5d6dd",
+      "storedBytes": 5487,
+      "storedSha256": "570d52b408edff409f091a589c8b27bd921617f64421871a89de768f016562f5",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/core.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/core.json",
+        "inventoryBytes": 12449,
+        "inventorySha256": "9bd9fe4783920562d356f194ed2a24d11a70ff7600575bf635e40f87cc018ecd"
+      },
+      "originalBytes": 12449,
+      "originalSha256": "9bd9fe4783920562d356f194ed2a24d11a70ff7600575bf635e40f87cc018ecd",
+      "storedBytes": 3027,
+      "storedSha256": "8c1be44bc27dc49bb2c17cc4fbe696b03699999255cd3c6d0ecea16d52bc78ab",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/offline.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/offline.json",
+        "inventoryBytes": 14816,
+        "inventorySha256": "2c4e18873479f81563b437242a26c14dc1f52470a443bf367b1d848f4bccfb2b"
+      },
+      "originalBytes": 14816,
+      "originalSha256": "2c4e18873479f81563b437242a26c14dc1f52470a443bf367b1d848f4bccfb2b",
+      "storedBytes": 3057,
+      "storedSha256": "3785229936f5cba200ade38887b79bd22c74b17168b910a0a4050c5b86d00573",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/economy.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/economy.json",
+        "inventoryBytes": 30008,
+        "inventorySha256": "f9db838047ba9ca136be76bd9f6aea67e2eccab6b7430bffcdd6a66af2b29e7e"
+      },
+      "originalBytes": 30008,
+      "originalSha256": "f9db838047ba9ca136be76bd9f6aea67e2eccab6b7430bffcdd6a66af2b29e7e",
+      "storedBytes": 3199,
+      "storedSha256": "925fa58efbabb7bdb522fe81f156e2ca518f5bad4a875d686aa3e55321f6cedc",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/prism-state.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism-state.json",
+        "inventoryBytes": 449,
+        "inventorySha256": "a10c94f5e583f586dda809d8cd7742889f6d48e9087d8edf521800ae4ab7b5b5"
+      },
+      "originalBytes": 449,
+      "originalSha256": "a10c94f5e583f586dda809d8cd7742889f6d48e9087d8edf521800ae4ab7b5b5",
+      "storedBytes": 331,
+      "storedSha256": "8d43ee7fd7b787b113c2b91e6bc54b58b8e3bca5ad12dab738c7256f055fbfe5",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/prism-economy-summary.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism-economy-summary.json",
+        "inventoryBytes": 1487,
+        "inventorySha256": "a8606647e8414b02c1eadbad72466f4351437b7a058c460c177bcc1ca414d41d"
+      },
+      "originalBytes": 1487,
+      "originalSha256": "a8606647e8414b02c1eadbad72466f4351437b7a058c460c177bcc1ca414d41d",
+      "storedBytes": 536,
+      "storedSha256": "c35e17f446f2f7c1c5f1186e0b92e628a68d9317538753c67995c6e53a0b9cf4",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/v8.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/v8.json",
+        "inventoryBytes": 905,
+        "inventorySha256": "c19f97a4810a000aa0ac82a301ab4a3ac7af50e6c29ffebbdc0115a4e8b3a3bf"
+      },
+      "originalBytes": 905,
+      "originalSha256": "c19f97a4810a000aa0ac82a301ab4a3ac7af50e6c29ffebbdc0115a4e8b3a3bf",
+      "storedBytes": 525,
+      "storedSha256": "bb238d4526711216d508273085bf948b893f9bae0c05a884bb6dca065271fb0e",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/prism-v8.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism-v8.json",
+        "inventoryBytes": 352,
+        "inventorySha256": "5b0e1aaa8c4af910cd0df33abe8719ca1876e92f5034a596535a867338ff4bbe"
+      },
+      "originalBytes": 352,
+      "originalSha256": "5b0e1aaa8c4af910cd0df33abe8719ca1876e92f5034a596535a867338ff4bbe",
+      "storedBytes": 281,
+      "storedSha256": "2f5837127a41efc1f215161d967ca97b88bd3b3f4578f2c5878000945020e39c",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "completed-gates/prism-mobile-receipt.json.gz",
+      "origin": {
+        "kind": "verified-GitHub-Actions-artifact",
+        "artifactId": 11682335839,
+        "path": "tree-validation/prism/mobile/receipt.json",
+        "inventoryBytes": 47048,
+        "inventorySha256": "6d1ff573de10a1688578fc8a7397edfaa2d88e8d959f5514885f8d503b4fc2b5"
+      },
+      "originalBytes": 47048,
+      "originalSha256": "6d1ff573de10a1688578fc8a7397edfaa2d88e8d959f5514885f8d503b4fc2b5",
+      "storedBytes": 1637,
+      "storedSha256": "60664592f408272361ca15036be13595b431a58ce714d5f3ca20c3acfd236498",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "diagnostics/source-review.json",
+      "origin": {
+        "kind": "derived-observation",
+        "beforeTestArtifactPath": "tests/behavioral/tree-expansion-mobile.cjs",
+        "beforeTestSha256": "8ffec748df96ec66558385fbf6da1a07d7d41f8f3a1980b38baa020b5e0f36de",
+        "afterTestPath": "tests/behavioral/tree-expansion-mobile.cjs",
+        "afterTestSha256": "a2a90c83100daca4f7c770f48f681d55cb63ca75463d85385a3c9703ed89f4df"
+      },
+      "originalBytes": 1913,
+      "originalSha256": "3641713d6ac9f095e252933ecf94072c3af8c4b2777493ceebda8b545c9be45d",
+      "storedBytes": 1913,
+      "storedSha256": "3641713d6ac9f095e252933ecf94072c3af8c4b2777493ceebda8b545c9be45d",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "diagnostics/generated-syntax.json",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "diagnostics/generated-syntax-complete.json"
+      },
+      "originalBytes": 841,
+      "originalSha256": "87aa148e168368f16f8c3fa0b50ad057c084c3bf37cf4c890b35ad4b766364d3",
+      "storedBytes": 841,
+      "storedSha256": "87aa148e168368f16f8c3fa0b50ad057c084c3bf37cf4c890b35ad4b766364d3",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "diagnostics/verify-complete-mobile-syntax.cjs",
+      "origin": {
+        "kind": "saved-read-only-audit",
+        "path": "diagnostics/verify-complete-mobile-syntax.cjs"
+      },
+      "originalBytes": 2708,
+      "originalSha256": "2ab0ea207fa1dc2cf8b42e3ced24506f4f87fad128bb04230159f35a14f2dc74",
+      "storedBytes": 2708,
+      "storedSha256": "2ab0ea207fa1dc2cf8b42e3ced24506f4f87fad128bb04230159f35a14f2dc74",
+      "encoding": "identity",
+      "roundTripVerified": true
+    },
+    {
+      "path": "diagnostics/mobile.patch.gz",
+      "origin": {
+        "kind": "uncommitted-test-only-patch",
+        "beforeSha256": "8ffec748df96ec66558385fbf6da1a07d7d41f8f3a1980b38baa020b5e0f36de",
+        "afterSha256": "a2a90c83100daca4f7c770f48f681d55cb63ca75463d85385a3c9703ed89f4df"
+      },
+      "originalBytes": 14425,
+      "originalSha256": "c07d35950543b7fb1c37e9942b9e5fa52ad819ea26c1571514a3b4323e4ce0d0",
+      "storedBytes": 4378,
+      "storedSha256": "a177f0303492bb7e3725431cc912643ec7eb6a1bd9bef91a348b0fcdef974f21",
+      "encoding": "gzip",
+      "roundTripVerified": true
+    },
+    {
+      "path": "README.md",
+      "origin": {
+        "kind": "authored-evidence-guide",
+        "auditSha256": "9fdfd784767492513e1e2f6ddfa41ad91f2e8d2a5c8fd775a4a07ad4ebff8181"
+      },
+      "originalBytes": 7266,
+      "originalSha256": "94116060afbdb91a9b99922e4a747d713c860cafdce87ddeb945584f494b4fef",
+      "storedBytes": 7266,
+      "storedSha256": "94116060afbdb91a9b99922e4a747d713c860cafdce87ddeb945584f494b4fef",
+      "encoding": "identity",
+      "roundTripVerified": true
+    }
+  ]
+}

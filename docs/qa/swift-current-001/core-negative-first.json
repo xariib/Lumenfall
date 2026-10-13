@@ -1,0 +1,73 @@
+{
+  "status": "pass",
+  "source": "/workspace/Lumenfall-swift-current/index.html",
+  "sourceSha256": "1f35a88aa9f6831a8235db81277f28bff62c96b6532730f532efc024bf48e060",
+  "cases": 15,
+  "purchaseBoundaryCases": 110,
+  "records": [
+    "cap and effective cycle at 0..10, huge legacy levels and direct forged-node handler",
+    "paid current Forge route reaches both original Deeds; history, rewards and unlocks stay sticky",
+    "single/bulk/Max exact price and partial affordability at every boundary",
+    "queue stops at cap and retains ON intent without spending or incrementing counters",
+    "raw history, Deeds, queues and paid work retained; original single-price compensation",
+    "refund keeps exact spendable value beside huge wallets, above Number capacity and after many purchases",
+    "primary/recovery/backup idempotence, restoration replaces full wallet and Ascend retains permanent credit",
+    "receipt and money remain one canonical transaction on storage failure",
+    "precision credits pay through real Forge, queued Forge, Rarity, Module and Study handlers",
+    "damaged receipt selects recovery, original old-save migration and Reset remain supported",
+    "actual casts before/exact/after floor, immediate-ready semantics, purchase preserves current percent",
+    "whole/split live/offline charge and cast chronology match at legacy overlevels",
+    "Support durations remain independent; natural-cycle ratios exclude external charge",
+    "capped Farm cadence crosses tiny clock boundaries and retains whole/split parity",
+    "paid Study work follows the canonical clock across combat events and Ascend copies"
+  ],
+  "controls": [
+    {
+      "id": "cap",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "floor",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "refund",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "deeds",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "price",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "free-debit",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "audit",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "clock",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    },
+    {
+      "id": "study-clock",
+      "status": "killed",
+      "failure": "ERR_ASSERTION"
+    }
+  ],
+  "node": "v20.20.2",
+  "v8": "11.3.244.8-node.38"
+}

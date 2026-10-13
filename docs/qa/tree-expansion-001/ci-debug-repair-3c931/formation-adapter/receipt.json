@@ -1,0 +1,299 @@
+{
+  "status": "SCOPED_TRANSACTION_BOUNDARIES_PASS",
+  "scope": "Exact three original recruitment boundaries plus guard/storage controls. No browser or full scenario PASS claimed.",
+  "identity": {
+    "localHead": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "diagnosticCommit": "cd3e915b91ed2a41f0ada01543437600a2349a48",
+    "diagnosticTree": "22eb701ddbaece465ba962a2aed0c520f914bc3e",
+    "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+    "beforeBridgeSha256": "8568cfb994b0a6c4c1c2bded8f2946a6489b18591992e58d534f483f5cb287c1",
+    "afterBridgeSha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc",
+    "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+    "testSha256": "43345748b16e0db659fb72eda75f4ce93ebb3d5837a861deb657441678504f7b",
+    "hooksSha256": "d719504c786e832628b2eee159610d0cb7335fe4d7f988cb422aac6224f18ede",
+    "modules": [
+      {
+        "path": "tests/behavioral/support-stacking.js",
+        "sha256": "403b29fcabd9d68ae338486f0550e90f172a7b66f1307e8a967cada4139060e0",
+        "bytes": 14386
+      },
+      {
+        "path": "tests/behavioral/formation.js",
+        "sha256": "3464976af2dd02c8cc8dfc95510a6c7a2f347209ea355b5bd62f568e513b444e",
+        "bytes": 29739
+      },
+      {
+        "path": "tests/behavioral/rift-status.js",
+        "sha256": "879a7a0ab5c71dbf398694ed76dd036fe44351f44294643a58002ab3a903df42",
+        "bytes": 46160
+      }
+    ],
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "rawReceiptSha256": "9be42af25b6117807eb40fab743faaafddfc37e6055d304489da9faa8b420e0f"
+  },
+  "records": 13,
+  "scenarioPairs": 3,
+  "storageAndGuardControls": 6,
+  "oldUnblockedControl": 1,
+  "cometReadOnlyProbes": 2,
+  "allNewTreeNodesAndTrainingZero": true,
+  "rows": [
+    {
+      "kind": "original-scenario-boundary",
+      "family": "support",
+      "method": "oldBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": false,
+      "actualDebit": 0,
+      "levelDelta": 0,
+      "successfulWrites": 0,
+      "attempts": 0,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "original-scenario-boundary",
+      "family": "support",
+      "method": "fixedBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 2,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "original-scenario-boundary",
+      "family": "rift-status",
+      "method": "oldBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": false,
+      "actualDebit": 0,
+      "levelDelta": 0,
+      "successfulWrites": 0,
+      "attempts": 0,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "original-scenario-boundary",
+      "family": "rift-status",
+      "method": "fixedBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": true,
+      "actualDebit": 70000,
+      "levelDelta": 1,
+      "successfulWrites": 2,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "original-scenario-boundary",
+      "family": "formation",
+      "method": "oldBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": false,
+      "actualDebit": 0,
+      "levelDelta": 0,
+      "successfulWrites": 0,
+      "attempts": 0,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "original-scenario-boundary",
+      "family": "formation",
+      "method": "fixedBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 2,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "guard-and-storage-control",
+      "family": null,
+      "method": "fixedBuy",
+      "reload": false,
+      "fault": "none",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 2,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "guard-and-storage-control",
+      "family": null,
+      "method": "fixedBuy",
+      "reload": false,
+      "fault": "primary",
+      "actualReturn": false,
+      "actualDebit": 0,
+      "levelDelta": 0,
+      "successfulWrites": 0,
+      "attempts": 1,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": {
+        "actualReturn": true,
+        "debit": 60,
+        "level": 1
+      }
+    },
+    {
+      "kind": "guard-and-storage-control",
+      "family": null,
+      "method": "fixedBuy",
+      "reload": false,
+      "fault": "recovery",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 1,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": {
+        "actualReturn": false,
+        "debit": 0,
+        "level": 1
+      }
+    },
+    {
+      "kind": "guard-and-storage-control",
+      "family": null,
+      "method": "fixedBuy",
+      "reload": true,
+      "fault": "none",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 2,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    },
+    {
+      "kind": "guard-and-storage-control",
+      "family": null,
+      "method": "fixedBuy",
+      "reload": true,
+      "fault": "primary",
+      "actualReturn": false,
+      "actualDebit": 0,
+      "levelDelta": 0,
+      "successfulWrites": 0,
+      "attempts": 1,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": {
+        "actualReturn": true,
+        "debit": 60,
+        "level": 1
+      }
+    },
+    {
+      "kind": "guard-and-storage-control",
+      "family": null,
+      "method": "fixedBuy",
+      "reload": true,
+      "fault": "recovery",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 1,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": {
+        "actualReturn": false,
+        "debit": 0,
+        "level": 1
+      }
+    },
+    {
+      "kind": "old-adapter-unblocked-control",
+      "family": null,
+      "method": "oldBuy",
+      "reload": false,
+      "fault": "none",
+      "actualReturn": true,
+      "actualDebit": 60,
+      "levelDelta": 1,
+      "successfulWrites": 2,
+      "attempts": 2,
+      "guardRestored": true,
+      "beforeSnapshotUnchanged": true,
+      "recoveredRetry": null
+    }
+  ],
+  "rawFailures": [
+    {
+      "name": "support-stacking",
+      "assertion": "reconstruction Wisp paid exactly once actual=0 expected=60",
+      "dom": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/third/artifact/tree-scroll-diagnostic/full-failed-rerun/support-stacking/raw/support-stacking-rBXrJc/stdout.html",
+        "bytes": 1454074,
+        "sha256": "9cb556195554df7d09c4125923ae4e60835132bb1f16661e3c08ede06246da07"
+      }
+    },
+    {
+      "name": "rift-status-contract",
+      "assertion": "reconstruction recruits one paid level with the exact independent debit: void",
+      "dom": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/third/artifact/tree-scroll-diagnostic/full-failed-rerun/rift-status-contract/raw/rift-status-contract-wyTra2/stdout.html",
+        "bytes": 1454314,
+        "sha256": "6ea7e1afca32afc1f34362f841ede9ddab49d759242db11f7bf887ad157bbcd3"
+      }
+    },
+    {
+      "name": "p2-07a-formation-reconstruction",
+      "assertion": "exact legitimate Lumen debit tide",
+      "dom": {
+        "path": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/third/artifact/tree-scroll-diagnostic/full-failed-rerun/p2-07a-formation-reconstruction/raw/p2-07a-formation-reconstruction-vW5vxk/stdout.html",
+        "bytes": 1454665,
+        "sha256": "3c05fc4993560f389d49946a92ec36b8e684161e11b4d21b6e65cbc25eee81f6"
+      }
+    }
+  ],
+  "comet": [
+    {
+      "reload": false,
+      "actualReturn": true,
+      "ascends": 1,
+      "successfulWrites": 2,
+      "activeCallerFound": false
+    },
+    {
+      "reload": true,
+      "actualReturn": false,
+      "ascends": 0,
+      "successfulWrites": 0,
+      "activeCallerFound": false
+    }
+  ]
+}

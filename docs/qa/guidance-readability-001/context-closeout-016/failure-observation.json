@@ -1,0 +1,12 @@
+{
+  "kind": "Exact read-only tool-output observation; not a reconstructed process receipt",
+  "documentationCommit": "018a5f1bd5bcf0a3ca81ca5a0ad2f79ed0864845",
+  "commands": [
+    "node scripts/codex/check_context.cjs --task docs/tasks/FORGE_EXPANSION_001.md",
+    "node scripts/codex/check_context.cjs --task docs/tasks/TREE_EXPANSION_001.md",
+    "node scripts/codex/check_context.cjs --task docs/tasks/SHARED_UI_001.md"
+  ],
+  "observedOutput": "Mandatory startup exceeds 32 KiB\nPASS: 29 entrypoints, 88 local Markdown links, shared startup 31146 bytes; startup with docs/tasks/TREE_EXPANSION_001.md 32766 bytes\nMandatory startup exceeds 32 KiB\n",
+  "combinedCommandExit": 1,
+  "disposition": "Shorten only the project-status header; preserve all original requirements and the 32768-byte limit."
+}

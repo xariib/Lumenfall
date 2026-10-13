@@ -1,0 +1,24 @@
+node:assert:90
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: Autosave mutation anchor
+
+3 !== 2
+
+    at main (/workspace/Lumenfall-wisp-contribution/tests/behavioral/formation-bonds.cjs:91:10)
+    at Object.<anonymous> (/workspace/Lumenfall-wisp-contribution/tests/behavioral/formation-bonds.cjs:95:71)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 2,
+  operator: 'strictEqual'
+}
+
+Node.js v20.20.2

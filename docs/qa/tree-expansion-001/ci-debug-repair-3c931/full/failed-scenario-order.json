@@ -1,0 +1,339 @@
+[
+  {
+    "occurrence": 1,
+    "scenario": "inquiry-save-reload",
+    "viewport": null,
+    "reason": "existing Ascension currency reset unchanged",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.3821545460000635,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "inquiry-save-reload",
+      "json_status": "fail",
+      "json_scenario": "inquiry-save-reload",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/01-inquiry-save-reload"
+  },
+  {
+    "occurrence": 2,
+    "scenario": "inquiry-backup-restore",
+    "viewport": null,
+    "reason": "existing Ascension currency reset unchanged",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.3212922369999578,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "inquiry-backup-restore",
+      "json_status": "fail",
+      "json_scenario": "inquiry-backup-restore",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/02-inquiry-backup-restore"
+  },
+  {
+    "occurrence": 3,
+    "scenario": "inquiry-recovery",
+    "viewport": null,
+    "reason": "existing Ascension currency reset unchanged",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.3828299750000006,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "inquiry-recovery",
+      "json_status": "fail",
+      "json_scenario": "inquiry-recovery",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/03-inquiry-recovery"
+  },
+  {
+    "occurrence": 4,
+    "scenario": "support-stacking",
+    "viewport": null,
+    "reason": "Ascension clears all sources",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.1630275559999281,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "support-stacking",
+      "json_status": "fail",
+      "json_scenario": "support-stacking",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/04-support-stacking"
+  },
+  {
+    "occurrence": 5,
+    "scenario": "rift-status-contract",
+    "viewport": null,
+    "reason": "pending intent is not active Bonds",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 2.479551897000056,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "rift-status-contract",
+      "json_status": "fail",
+      "json_scenario": "rift-status-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/05-rift-status-contract"
+  },
+  {
+    "occurrence": 6,
+    "scenario": "p2-07a-formation-reconstruction",
+    "viewport": null,
+    "reason": "temporary powered Ember only [\"stone\",\"ember\",\"tide\"]",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.0900776840001345,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "p2-07a-formation-reconstruction",
+      "json_status": "fail",
+      "json_scenario": "p2-07a-formation-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/06-p2-07a-formation-reconstruction"
+  },
+  {
+    "occurrence": 7,
+    "scenario": "p2-07a-chronology",
+    "viewport": null,
+    "reason": "no purchase before existing 1-second cadence",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.1044447670001536,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "p2-07a-chronology",
+      "json_status": "fail",
+      "json_scenario": "p2-07a-chronology",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/07-p2-07a-chronology"
+  },
+  {
+    "occurrence": 8,
+    "scenario": "layout-p2-07a-reconstruction",
+    "viewport": [
+      360,
+      800,
+      0,
+      0
+    ],
+    "reason": "startup support explained",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 0.9741656490000896,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/08-layout-p2-07a-reconstruction"
+  },
+  {
+    "occurrence": 9,
+    "scenario": "layout-p2-07a-reconstruction",
+    "viewport": [
+      360,
+      780,
+      0,
+      0
+    ],
+    "reason": "startup support explained",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 0.9767293050000444,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/09-layout-p2-07a-reconstruction"
+  },
+  {
+    "occurrence": 10,
+    "scenario": "layout-p2-07a-reconstruction",
+    "viewport": [
+      390,
+      844,
+      0,
+      0
+    ],
+    "reason": "startup support explained",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 0.9669987089997157,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/10-layout-p2-07a-reconstruction"
+  },
+  {
+    "occurrence": 11,
+    "scenario": "layout-p2-07a-reconstruction",
+    "viewport": [
+      412,
+      915,
+      0,
+      0
+    ],
+    "reason": "startup support explained",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 0.985116820000112,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/11-layout-p2-07a-reconstruction"
+  },
+  {
+    "occurrence": 12,
+    "scenario": "layout-p2-07a-reconstruction",
+    "viewport": [
+      360,
+      640,
+      24,
+      24
+    ],
+    "reason": "startup support explained",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 0.9170289360000752,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/12-layout-p2-07a-reconstruction"
+  },
+  {
+    "occurrence": 13,
+    "scenario": "ascend-prisms-contract",
+    "viewport": null,
+    "reason": "manual payout equals preview/oracle",
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.277992178000044,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "ascend-prisms-contract",
+      "json_status": "fail",
+      "json_scenario": "ascend-prisms-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "directory": "failed-scenarios/13-ascend-prisms-contract"
+  }
+]

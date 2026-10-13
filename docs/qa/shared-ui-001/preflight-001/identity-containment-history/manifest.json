@@ -1,0 +1,35 @@
+{
+  "schema": "lumenfall-closed-preparation-v1",
+  "frozenUtc": "2026-10-11 03:53:13 UTC",
+  "clockProvider": "clock.curr_time",
+  "scope": "source/parse preparation only; no browser or gameplay acceptance",
+  "files": [
+    {
+      "path": "after/shared-layout-ui.cjs",
+      "bytes": 38407,
+      "sha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+      "mode": "644"
+    },
+    {
+      "path": "before/shared-layout-ui.cjs",
+      "bytes": 38287,
+      "sha256": "b29c937e37f9a195f493eebc3ae661667b8811889ab6b19ea41dbf79c7925267",
+      "mode": "644"
+    },
+    {
+      "path": "change.json",
+      "bytes": 798,
+      "sha256": "be0daf3c4f5c72df39e0c6915a4f6974bbccee2f5ebc6e5441615aa5205c820e",
+      "mode": "644"
+    },
+    {
+      "path": "change.patch",
+      "bytes": 1164,
+      "sha256": "4676a81efc6a350fad2986798be8dc399e51cdb88bc4c1ff95121404b4ef4c6f",
+      "mode": "644"
+    }
+  ],
+  "totalFiles": 4,
+  "totalBytes": 78656,
+  "closedInventoryExcludesOnly": "manifest.json"
+}

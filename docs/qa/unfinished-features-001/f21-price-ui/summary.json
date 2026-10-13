@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "33d444ed901f3d1c95879df3c390fa2a821a025fb222d9097314c01caf406828",
+  "results": [
+    {
+      "name": "normal",
+      "accepted": true,
+      "exitcode": 0,
+      "checks": 5808,
+      "sourceSha256": "33d444ed901f3d1c95879df3c390fa2a821a025fb222d9097314c01caf406828",
+      "profiles": 12,
+      "error": null
+    },
+    {
+      "name": "stale-refresh",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 147,
+      "sourceSha256": "da055dc51b414da2c22e319f0f8d2d3876a0799cc1ee43f4aa01554abcf9ee45",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"research\",\"label\":\"becomes affordable without rerender\",\"kind\":\"lumen\",\"want\":\"rgb(240, 239, 251)\",\"got\":\"rgb(255, 123, 146)\"}\n    at ok (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:40:27)\n    at observe (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:97:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:105:47)\n    at async /workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:127:6"
+    },
+    {
+      "name": "all-white",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 4,
+      "sourceSha256": "2d1290d1052c39c635391c86a4c2947073a7aa05c155844c3c162ec5107bc827",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"forge\",\"label\":\"initial insufficient\",\"kind\":\"lumen\",\"want\":\"rgb(255, 123, 146)\",\"got\":\"rgb(240, 239, 251)\"}\n    at ok (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:40:27)\n    at observe (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:97:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:105:4)\n    at async /workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:127:6"
+    },
+    {
+      "name": "retired-card-returns",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 2,
+      "sourceSha256": "c8a3485f3320d05042fb76eefe3ab1d6a04693cc648689e9e7a3119ee276a337",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: legacy shop cards must remain absent\n    at ok (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:40:27)\n    at observe (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:94:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:105:4)\n    at async /workspace/Lumenfall-unfinished/tests/behavioral/.collection-price-generated-5910.cjs:127:6"
+    }
+  ]
+}

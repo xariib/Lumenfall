@@ -1,0 +1,1 @@
+Diagnostic driver error only: it compared the current Prism preview with the pre-Ascend value after the fixed adapter had already reset to Rift1. The final driver captures preview before invoking Ascend, matching the original browser scenario. No product or repository assertion was changed. Initial exit code1, stdout empty; raw stderr and original driver are retained.

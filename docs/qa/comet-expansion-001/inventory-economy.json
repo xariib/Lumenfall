@@ -1,0 +1,644 @@
+{
+  "purpose": "Published-source inventory plus independent arithmetic for an UNACCEPTED Comet proposal; no new command or refund migration has been implemented or acceptance-tested.",
+  "publishedHead": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "productSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "productBytes": 618571,
+  "fixtureSha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+  "fixtureBytes": 84610,
+  "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "localHeadAtRead": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "deeds": [
+    {
+      "id": "d10",
+      "name": "Reach Rift 10",
+      "comets": 5
+    },
+    {
+      "id": "d25",
+      "name": "Reach Rift 25",
+      "comets": 10
+    },
+    {
+      "id": "d50",
+      "name": "Reach Rift 50",
+      "comets": 20
+    },
+    {
+      "id": "d100",
+      "name": "Reach Rift 100",
+      "comets": 50
+    },
+    {
+      "id": "d250",
+      "name": "Reach Rift 250",
+      "comets": 100
+    },
+    {
+      "id": "tap100",
+      "name": "Strike 100 times",
+      "comets": 3
+    },
+    {
+      "id": "tap1000",
+      "name": "Strike 1,000 times",
+      "comets": 8
+    },
+    {
+      "id": "tap10000",
+      "name": "Strike 10,000 times",
+      "comets": 20
+    },
+    {
+      "id": "fullparty",
+      "name": "Full Formation",
+      "comets": 12
+    },
+    {
+      "id": "asc1",
+      "name": "Ascend once",
+      "comets": 10
+    },
+    {
+      "id": "asc5",
+      "name": "Ascend 5 times",
+      "comets": 25
+    },
+    {
+      "id": "asc10",
+      "name": "Ascend 10 times",
+      "comets": 50
+    },
+    {
+      "id": "all",
+      "name": "Recruit every Wisp",
+      "comets": 30
+    },
+    {
+      "id": "mythic",
+      "name": "Raise a Wisp to Mythic",
+      "comets": 40
+    },
+    {
+      "id": "idle8",
+      "name": "Rest 8 hours offline",
+      "comets": 15
+    },
+    {
+      "id": "autotap",
+      "name": "Tireless Vigil",
+      "comets": 25
+    },
+    {
+      "id": "labmaster",
+      "name": "The Forge Never Sleeps",
+      "comets": 30
+    },
+    {
+      "id": "study1",
+      "name": "First Discovery",
+      "comets": 15
+    },
+    {
+      "id": "study25",
+      "name": "Devoted Scholar",
+      "comets": 50
+    },
+    {
+      "id": "allstudies",
+      "name": "Every Path Studied",
+      "comets": 35
+    },
+    {
+      "id": "labqueue",
+      "name": "Endless Curiosity",
+      "comets": 40
+    },
+    {
+      "id": "firstultimate",
+      "name": "Awakened Power",
+      "comets": 45
+    },
+    {
+      "id": "modulemax",
+      "name": "Perfect Synergy",
+      "comets": 45
+    }
+  ],
+  "publicFixtureSnapshots": [
+    {
+      "fixture": "parity-early-simple",
+      "rawComets": 0,
+      "canonicalComets": 0,
+      "record": 5,
+      "currentRift": 5,
+      "ascends": 0,
+      "knownOwned": {},
+      "historicalCometPurchases": {},
+      "f26CometRefund": {
+        "amount": 0,
+        "paid": [
+          true,
+          true
+        ]
+      },
+      "earnedDeedIds": [],
+      "moteQuotesBeforeOptionalSupport": [
+        {
+          "depth": 49,
+          "motes": 7
+        },
+        {
+          "depth": 99,
+          "motes": 13
+        },
+        {
+          "depth": 249,
+          "motes": 32
+        }
+      ],
+      "scope": "Read-only canonicalization of frozen public fixture; no tick, rewards, purchase or proposed migration executed."
+    },
+    {
+      "fixture": "mid-game",
+      "rawComets": 55,
+      "canonicalComets": 55,
+      "record": 17,
+      "currentRift": 17,
+      "ascends": 1,
+      "knownOwned": {},
+      "historicalCometPurchases": {},
+      "f26CometRefund": {
+        "amount": 0,
+        "paid": [
+          true,
+          true
+        ]
+      },
+      "earnedDeedIds": [
+        "d10"
+      ],
+      "moteQuotesBeforeOptionalSupport": [
+        {
+          "depth": 49,
+          "motes": 7
+        },
+        {
+          "depth": 99,
+          "motes": 13
+        },
+        {
+          "depth": 249,
+          "motes": 32
+        }
+      ],
+      "scope": "Read-only canonicalization of frozen public fixture; no tick, rewards, purchase or proposed migration executed."
+    },
+    {
+      "fixture": "mature-high-power",
+      "rawComets": 850,
+      "canonicalComets": 1150,
+      "record": 120,
+      "currentRift": 95,
+      "ascends": 14,
+      "knownOwned": {
+        "autoascend": true
+      },
+      "historicalCometPurchases": {
+        "rememberbulk": true,
+        "offline24": true,
+        "offline48": true
+      },
+      "f26CometRefund": {
+        "amount": 300,
+        "paid": [
+          true,
+          true
+        ]
+      },
+      "earnedDeedIds": [
+        "d10",
+        "d25",
+        "d50",
+        "d100",
+        "tap100",
+        "tap1000",
+        "fullparty",
+        "asc1",
+        "asc5",
+        "autotap",
+        "labmaster",
+        "study1"
+      ],
+      "moteQuotesBeforeOptionalSupport": [
+        {
+          "depth": 49,
+          "motes": 9
+        },
+        {
+          "depth": 99,
+          "motes": 16
+        },
+        {
+          "depth": 249,
+          "motes": 39
+        }
+      ],
+      "scope": "Read-only canonicalization of frozen public fixture; no tick, rewards, purchase or proposed migration executed."
+    }
+  ],
+  "proposedPrices": {
+    "autoascend": [
+      100
+    ],
+    "meteor": [
+      100
+    ],
+    "starcall": [
+      140
+    ],
+    "cometreservoir": [
+      60,
+      120
+    ],
+    "cometcycle": [
+      80,
+      140,
+      220
+    ],
+    "meteorcore": [
+      45,
+      75,
+      120,
+      180
+    ]
+  },
+  "proposedCostTotals": {
+    "autoascend": 100,
+    "meteor": 100,
+    "starcall": 140,
+    "cometreservoir": 180,
+    "cometcycle": 440,
+    "meteorcore": 420
+  },
+  "proposalArithmetic": {
+    "deedPool": 683,
+    "proposedNewDeeds": [
+      {
+        "id": "comet_first_command",
+        "comets": 5
+      },
+      {
+        "id": "comet_first_recharge",
+        "comets": 10
+      },
+      {
+        "id": "comet_boss_strike",
+        "comets": 15
+      },
+      {
+        "id": "comet_called_kill",
+        "comets": 20
+      }
+    ],
+    "newDeedComets": 50,
+    "combinedProposedDeedComets": 733,
+    "newMaximumCost": 1280,
+    "completeMaximumCost": 1380,
+    "oldRetiredPrice": 350,
+    "refundStarter": {
+      "availablePrincipal": 350,
+      "purchases": [
+        "meteor",
+        "starcall",
+        "cometreservoir:1",
+        "meteorcore:1"
+      ],
+      "cost": 345,
+      "remainingPrincipal": 5,
+      "requiredNewDeedCredits": 20,
+      "normalWalletRemainingAtLeast": 25
+    },
+    "allDeedsExample": {
+      "availablePrincipal": 683,
+      "purchases": [
+        "autoascend",
+        "meteor",
+        "starcall",
+        "cometreservoir:1..2",
+        "cometcycle:1",
+        "meteorcore:1"
+      ],
+      "cost": 645,
+      "remainingPrincipal": 38,
+      "requiredNewDeedCredits": 30,
+      "normalWalletRemainingAtLeast": 68
+    },
+    "weeklyLogin": 126,
+    "theoreticalThreeDistinctQuestComets": {
+      "minimum": 28,
+      "maximum": 63,
+      "qualification": "Bounds from distinct quest rewards only; actual deterministic daily choice/eligibility/completion is not guaranteed."
+    },
+    "commandSupply": [
+      {
+        "rank": 0,
+        "unitsPerKill": 20,
+        "defeatsPerCharge": 200,
+        "extraChargesIn2000Defeats": 10
+      },
+      {
+        "rank": 1,
+        "unitsPerKill": 25,
+        "defeatsPerCharge": 160,
+        "extraChargesIn2000Defeats": 12
+      },
+      {
+        "rank": 2,
+        "unitsPerKill": 32,
+        "defeatsPerCharge": 125,
+        "extraChargesIn2000Defeats": 16
+      },
+      {
+        "rank": 3,
+        "unitsPerKill": 40,
+        "defeatsPerCharge": 100,
+        "extraChargesIn2000Defeats": 20
+      }
+    ],
+    "meteor": [
+      {
+        "enemyMaxHp": 11,
+        "damage": [
+          {
+            "percent": 20,
+            "damage": 2
+          },
+          {
+            "percent": 25,
+            "damage": 2
+          },
+          {
+            "percent": 30,
+            "damage": 3
+          },
+          {
+            "percent": 35,
+            "damage": 3
+          },
+          {
+            "percent": 40,
+            "damage": 4
+          }
+        ]
+      },
+      {
+        "enemyMaxHp": 1000,
+        "damage": [
+          {
+            "percent": 20,
+            "damage": 200
+          },
+          {
+            "percent": 25,
+            "damage": 250
+          },
+          {
+            "percent": 30,
+            "damage": 300
+          },
+          {
+            "percent": 35,
+            "damage": 350
+          },
+          {
+            "percent": 40,
+            "damage": 400
+          }
+        ]
+      },
+      {
+        "enemyMaxHp": 999999,
+        "damage": [
+          {
+            "percent": 20,
+            "damage": 199999
+          },
+          {
+            "percent": 25,
+            "damage": 249999
+          },
+          {
+            "percent": 30,
+            "damage": 299999
+          },
+          {
+            "percent": 35,
+            "damage": 349999
+          },
+          {
+            "percent": 40,
+            "damage": 399999
+          }
+        ]
+      }
+    ],
+    "meteorPowerBoundExamples": [
+      {
+        "case": "ordinary percentage limit",
+        "maxHp": 1000,
+        "currentHp": 1000,
+        "unbuffedPartyDps": 50,
+        "rank0Damage": 200,
+        "rank4Damage": 400
+      },
+      {
+        "case": "bounded execution",
+        "maxHp": 1000,
+        "currentHp": 350,
+        "unbuffedPartyDps": 50,
+        "rank0Damage": 200,
+        "rank4Damage": 400
+      },
+      {
+        "case": "party limit binds both ranks",
+        "maxHp": 10000,
+        "currentHp": 10000,
+        "unbuffedPartyDps": 100,
+        "rank0Damage": 1200,
+        "rank4Damage": 1200
+      },
+      {
+        "case": "party supports full rank benefit",
+        "maxHp": 10000,
+        "currentHp": 10000,
+        "unbuffedPartyDps": 500,
+        "rank0Damage": 2000,
+        "rank4Damage": 4000
+      },
+      {
+        "case": "arbitrary extreme boss is not bypassed",
+        "maxHp": 1000000000000000000,
+        "currentHp": 1000000000000000000,
+        "unbuffedPartyDps": 1000000,
+        "rank0Damage": 12000000,
+        "rank4Damage": 12000000
+      },
+      {
+        "case": "no active power",
+        "maxHp": 1000,
+        "currentHp": 1000,
+        "unbuffedPartyDps": 0,
+        "rank0Damage": 0,
+        "rank4Damage": 0
+      }
+    ],
+    "refundRepresentability": [
+      {
+        "initial": 0,
+        "final": 350,
+        "representedCredit": 350,
+        "items": [
+          {
+            "id": "comettrials",
+            "amount": 140,
+            "paid": true,
+            "observedAttemptDelta": 140
+          },
+          {
+            "id": "rifttrail",
+            "amount": 50,
+            "paid": true,
+            "observedAttemptDelta": 50
+          },
+          {
+            "id": "starfallcrest",
+            "amount": 160,
+            "paid": true,
+            "observedAttemptDelta": 160
+          }
+        ],
+        "pending": 0
+      },
+      {
+        "initial": 18014398509481984,
+        "final": 18014398509482284,
+        "representedCredit": 300,
+        "items": [
+          {
+            "id": "comettrials",
+            "amount": 140,
+            "paid": true,
+            "observedAttemptDelta": 140
+          },
+          {
+            "id": "rifttrail",
+            "amount": 50,
+            "paid": false,
+            "observedAttemptDelta": 52
+          },
+          {
+            "id": "starfallcrest",
+            "amount": 160,
+            "paid": true,
+            "observedAttemptDelta": 160
+          }
+        ],
+        "pending": 50
+      },
+      {
+        "initial": 36028797018963970,
+        "final": 36028797018964130,
+        "representedCredit": 160,
+        "items": [
+          {
+            "id": "comettrials",
+            "amount": 140,
+            "paid": false,
+            "observedAttemptDelta": 144
+          },
+          {
+            "id": "rifttrail",
+            "amount": 50,
+            "paid": false,
+            "observedAttemptDelta": 48
+          },
+          {
+            "id": "starfallcrest",
+            "amount": 160,
+            "paid": true,
+            "observedAttemptDelta": 160
+          }
+        ],
+        "pending": 190
+      },
+      {
+        "initial": 1e+30,
+        "final": 1e+30,
+        "representedCredit": 0,
+        "items": [
+          {
+            "id": "comettrials",
+            "amount": 140,
+            "paid": false,
+            "observedAttemptDelta": 0
+          },
+          {
+            "id": "rifttrail",
+            "amount": 50,
+            "paid": false,
+            "observedAttemptDelta": 0
+          },
+          {
+            "id": "starfallcrest",
+            "amount": 160,
+            "paid": false,
+            "observedAttemptDelta": 0
+          }
+        ],
+        "pending": 350
+      }
+    ],
+    "debitRepresentability": [
+      {
+        "wallet": 100,
+        "cost": 100,
+        "representedDebit": 100,
+        "accepted": true
+      },
+      {
+        "wallet": 10000000000000000,
+        "cost": 100,
+        "representedDebit": 100,
+        "accepted": true
+      },
+      {
+        "wallet": 18014398509481984,
+        "cost": 45,
+        "representedDebit": 44,
+        "accepted": false
+      },
+      {
+        "wallet": 18014398509481984,
+        "cost": 100,
+        "representedDebit": 100,
+        "accepted": true
+      },
+      {
+        "wallet": 1e+30,
+        "cost": 100,
+        "representedDebit": 0,
+        "accepted": false
+      },
+      {
+        "wallet": 1e+30,
+        "cost": 25,
+        "representedDebit": 0,
+        "accepted": false
+      }
+    ]
+  },
+  "observationsOnly": true,
+  "privateSaveUsed": false
+}

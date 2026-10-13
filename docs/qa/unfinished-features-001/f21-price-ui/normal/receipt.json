@@ -1,0 +1,3674 @@
+{
+  "status": "pass",
+  "sourceSha256": "33d444ed901f3d1c95879df3c390fa2a821a025fb222d9097314c01caf406828",
+  "node": "v24.19.0",
+  "browser": "chromium",
+  "profiles": [
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Prisms</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "reduce",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"lumen\" data-price-amount=\"15000\" style=\"color:var(--ink)\"><span class=\"shape shape-triangle cost-icon\" role=\"img\" aria-label=\"Lumen\" style=\"background:var(",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-node=\"swift\" aria-label=\"Swift Ascension — Prisms 3 Prisms\" style=\"min-width:78px;\" data-state=\"available\"><span class=\"cost mono\" data-price-currency=\"prism\" data-price-a",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "reduce",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"lumen\" data-price-amount=\"15000\" style=\"color:var(--ink)\"><span class=\"shape shape-triangle cost-icon\" role=\"img\" aria-label=\"Lumen\" style=\"background:var(",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Upgrade ×1</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Prisms</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "reduce",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-node=\"swift\" aria-label=\"Swift Ascension — Prisms 3 Prisms\" style=\"min-width:78px;\" data-state=\"available\"><span class=\"cost mono\" data-price-currency=\"prism\" data-price-a",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "reduce",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"lumen\" data-price-amount=\"15000\" style=\"color:var(--ink)\"><span class=\"shape shape-triangle cost-icon\" role=\"img\" aria-label=\"Lumen\" style=\"background:var(",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Upgrade ×1</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-node=\"swift\" aria-label=\"Swift Ascension — Prisms 3 Prisms\" style=\"min-width:78px;\" data-state=\"available\"><span class=\"cost mono\" data-price-currency=\"prism\" data-price-a",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1,
+      "motion": "reduce",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 30,
+              "client": 30
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 23,
+              "client": 23
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 19,
+              "client": 19
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 2,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 2,
+      "motion": "reduce",
+      "samples": [
+        {
+          "tab": "forge",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "forge",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "15.00K",
+              "scroll": 55,
+              "client": 55
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "120",
+              "scroll": 34,
+              "client": 34
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "initial insufficient",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only lumen missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(255, 123, 146)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "only shard missing",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(255, 123, 146)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "research",
+          "label": "affordable again",
+          "colors": {
+            "lumen": {
+              "color": "rgb(240, 239, 251)",
+              "text": "600",
+              "scroll": 60,
+              "client": 60
+            },
+            "shard": {
+              "color": "rgb(240, 239, 251)",
+              "text": "40",
+              "scroll": 46,
+              "client": 46
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "initial insufficient",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "only prism missing",
+          "colors": {
+            "prism": {
+              "color": "rgb(255, 123, 146)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "ascend",
+          "label": "affordable again",
+          "colors": {
+            "prism": {
+              "color": "rgb(240, 239, 251)",
+              "text": "3",
+              "scroll": 36,
+              "client": 36
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "initial insufficient",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "becomes affordable without rerender",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "only comet missing",
+          "colors": {
+            "comet": {
+              "color": "rgb(255, 123, 146)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        },
+        {
+          "tab": "deeds",
+          "label": "affordable again",
+          "colors": {
+            "comet": {
+              "color": "rgb(240, 239, 251)",
+              "text": "100",
+              "scroll": 0,
+              "client": 0
+            }
+          }
+        }
+      ],
+      "input": [
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"lumen\" data-price-amount=\"15000\" style=\"color:var(--ink)\"><span class=\"shape shape-triangle cost-icon\" role=\"img\" aria-label=\"Lumen\" style=\"background:var(",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"cost mono\" data-price-currency=\"prism\" data-price-amount=\"3\" style=\"color: var(--ink);\"><span class=\"shape shape-diamond cost-icon\" role=\"img\" aria-label=\"Prisms\" style=\"background:var(--",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+          "trusted": true
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 5808,
+  "stderr": "t work properly.\n[5927:5964:1011/204438.806742:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6013: Read-only file system (30)\n[5927:5964:1011/204438.850387:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6022: Read-only file system (30)\n[5927:5964:1011/204438.851970:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6023: Read-only file system (30)\n[5927:5927:1011/204438.869375:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[5927:5927:1011/204438.869544:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[5927:5951:1011/204438.869688:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[5927:5964:1011/204438.886883:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6038: Read-only file system (30)\n[5927:5964:1011/204438.911818:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6049: Read-only file system (30)\n[5927:5964:1011/204438.913203:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6050: Read-only file system (30)\n[5927:5927:1011/204438.930022:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[5927:5951:1011/204438.931207:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[5927:5927:1011/204438.953036:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[5927:5964:1011/204442.603432:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6094: Read-only file system (30)\n[5927:5964:1011/204442.619454:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6101: Read-only file system (30)\n[5927:5964:1011/204442.621176:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6102: Read-only file system (30)\n[5927:5964:1011/204444.995128:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6128: Read-only file system (30)\n[5927:5964:1011/204445.017082:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6135: Read-only file system (30)\n[5927:5964:1011/204445.018589:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6138: Read-only file system (30)\n[5927:5964:1011/204448.423473:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6170: Read-only file system (30)\n[5927:5964:1011/204448.438792:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6179: Read-only file system (30)\n[5927:5964:1011/204448.440571:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6180: Read-only file system (30)\n[5927:5964:1011/204450.863382:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6204: Read-only file system (30)\n[5927:5964:1011/204450.881500:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6211: Read-only file system (30)\n[5927:5964:1011/204450.885929:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6212: Read-only file system (30)\n[5927:5964:1011/204454.883786:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6239: Read-only file system (30)\n[5927:5964:1011/204454.899658:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6246: Read-only file system (30)\n[5927:5964:1011/204454.904024:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6247: Read-only file system (30)\n[5927:5964:1011/204457.391891:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6271: Read-only file system (30)\n[5927:5964:1011/204457.408162:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6278: Read-only file system (30)\n[5927:5964:1011/204457.412143:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6279: Read-only file system (30)\n[5927:5964:1011/204500.943027:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6398: Read-only file system (30)\n[5927:5964:1011/204500.962817:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6407: Read-only file system (30)\n[5927:5964:1011/204500.964188:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6408: Read-only file system (30)\n[5927:5964:1011/204503.573065:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6610: Read-only file system (30)\n[5927:5964:1011/204503.590351:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6617: Read-only file system (30)\n[5927:5964:1011/204503.591524:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6619: Read-only file system (30)\n[5927:5964:1011/204507.008217:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6643: Read-only file system (30)\n[5927:5964:1011/204507.026874:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6650: Read-only file system (30)\n[5927:5964:1011/204507.031235:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6653: Read-only file system (30)\n[5927:5964:1011/204509.532213:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6678: Read-only file system (30)\n[5927:5964:1011/204509.549167:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6685: Read-only file system (30)\n[5927:5964:1011/204509.550574:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6687: Read-only file system (30)\n[5927:5964:1011/204513.077146:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6711: Read-only file system (30)\n[5927:5964:1011/204513.095187:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6720: Read-only file system (30)\n[5927:5964:1011/204513.096700:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 6721: Read-only file system (30)\n"
+}

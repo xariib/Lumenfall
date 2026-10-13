@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_DRIVER_REVIEW_BLOCKER_ACTUAL_BROWSER_ACCEPTANCE_PENDING",
+  "reviewedUtc": "2026-10-11 03:53:14 UTC",
+  "scope": "Independent read-only source/cascade/handler/diff/preparation-receipt review. No original driver, builder, browser or game execution and no repository/remote changes by this reviewer.",
+  "source": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-shared-ui/index.html",
+    "bytes": 657751,
+    "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+  },
+  "driver": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-shared-ui/tests/behavioral/shared-layout-ui.cjs",
+    "bytes": 38407,
+    "sha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+    "previousSha256": "b29c937e37f9a195f493eebc3ae661667b8811889ab6b19ea41dbf79c7925267"
+  },
+  "finalDelta": {
+    "exactOne120ByteAssertion": true,
+    "statement": "geometry(glyphs.every(g=>contains(d.identity.rect,g.rect)),'wisp-glyph-outside-identity',{id:spec[0],measurement:d});",
+    "placement": "Immediately after wisp-glyph-intersects-toggle, before outer header/name-class/portrait checks; original negative code/order retained."
+  },
+  "reviewedContracts": [
+    {
+      "area": "Startup and transport",
+      "anchors": [
+        "shared-layout-ui.cjs:182-211",
+        "shared-layout-ui.cjs:396-427",
+        "prism-acceptance.cjs:25-45",
+        "index.html:10519-10571",
+        "index.html:10754-10776"
+      ],
+      "finding": "Original complete IIFE and natural new-game startup finish execute before fixture replacement. Read-only readiness has a single10000ms absolute deadline, retries only exact Runtime.evaluate/-32000/Inspected target navigated or closed; unexpected lifecycle/errors fail. Only original interval pause is inherited; native RAF and timeouts remain. Scheduled intro+fade+welcome-toast durations are roughly5.88s normal and3.68s reduced before extra browser overhead, not measured acceptance."
+    },
+    {
+      "area": "Canonical fixture and retained state",
+      "anchors": [
+        "shared-layout-ui.cjs:51-77",
+        "shared-layout-ui.cjs:334-339",
+        "shared-layout-ui.cjs:375-382",
+        "index.html:2985-2992",
+        "index.html:6206-6217"
+      ],
+      "finding": "Actual freshState/acceptPersistedState/saveState are called. Live state is reread after replacement; both raw saves must equal canonical live state. All8 actual labels match product. Five-Wisp fixture and then Ember-only across all3 presets resolve competing intent before native last-Wisp refusal. Paid levels, studies, currencies and disabled queues are explicit rather than hidden startup-flag overrides."
+    },
+    {
+      "area": "Native input, focus and purity",
+      "anchors": [
+        "shared-layout-ui.cjs:81-98",
+        "shared-layout-ui.cjs:247-299",
+        "shared-layout-ui.cjs:341-390",
+        "index.html:7226-7268",
+        "index.html:8823-8852",
+        "index.html:8871-8893"
+      ],
+      "finding": "Native trusted touch and keyboard events call original handlers. Settings opens on original close control and returns same gear; refusal preserves same button. Initial positioning occurs before before-snapshot, with no corrective scroll/focus between action and immediate/settled assertions. Complete live state, exact raw slots and write counts remain equal. Passive Storage observer forwards original calls and errors."
+    },
+    {
+      "area": "Geometry and exact causal controls",
+      "anchors": [
+        "shared-layout-ui.cjs:22-30",
+        "shared-layout-ui.cjs:100-179",
+        "shared-layout-ui.cjs:301-332",
+        "shared-layout-ui.cjs:449-455",
+        "shared-layout-ui.cjs:476-510"
+      ],
+      "finding": "Full text/per-character Range boxes, exact original fonts/sigil, control dimensions, logo/gear, all8 Wisp identity/header/toggle/portrait boundaries, toast adjacent lines and live-region semantics are checked. Three literal CSS-only inversions use identical generated driver; each must reject its named original geometry code with browserexit0, no signal/timeout/runtime or readiness failure. No arbitrary nonzero exit counts as control success. Normal acceptance requires12 complete profiles and all8 labels/two refusals in each."
+    }
+  ],
+  "preparation": {
+    "path": "/workspace/scratch/0848c4e4f365/shared-ui-work/testing/layout-preparation-002/process.json",
+    "bytes": 887,
+    "sha256": "bbfaac56b68ca9d9486bfac45ff2e5e0bdc676c579ee9776c338dc3f866f257a",
+    "actualExitField": "exit",
+    "exit": 0,
+    "browserExecuted": false,
+    "gameExecuted": false,
+    "generatedDriverSha256": "b9d3276d59de4252d4176976fd8e611ba6fd1e7aa80832e748c945ec969b548e",
+    "receipt": {
+      "path": "/workspace/scratch/0848c4e4f365/shared-ui-work/testing/layout-preparation-002/prepared/preparation.json",
+      "bytes": 5154,
+      "sha256": "dbbec435c29faea30e5a03404e4f4bdeeaeccc6d9a034b490eee845fa4861b52"
+    },
+    "syntax": {
+      "generatedDriver": true,
+      "completeBridge": true,
+      "prelude": true,
+      "staticExpressions": 2,
+      "allDynamicExpressionsParsedBeforeSend": true
+    }
+  },
+  "inspectionHistory": [
+    {
+      "scope": "Peer receipt-shape read only",
+      "observation": "An initial inspection reused preparation001 exitCode field for preparation002; raw preparation002 uses exit:0. The corrected specific raw-schema read is above. This was not a driver, product or game-test failure."
+    }
+  ],
+  "blockers": [],
+  "remainingEvidence": [
+    "Run the frozen actual12-profile driver and all3 exact inverse-CSS controls in real Chrome; inspect actual raw geometry and PNGs. No outcomes inferred here.",
+    "Root32 is CSS rem-text emulation; pixel-sized name16px remains unchanged. Range rectangles are typographic boxes, not raster ink masks.",
+    "Native WebView60 CSS/textZoom, installed app, physical Android and TalkBack remain untested."
+  ]
+}

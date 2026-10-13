@@ -1,0 +1,36 @@
+{
+  "schema": "lumenfall-closed-evidence-v1",
+  "frozenUtc": "2026-10-11 04:13:11 UTC",
+  "clockProvider": "clock.curr_time",
+  "scope": "Read-only original failed browser audit",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 752,
+      "sha256": "d977e5290d456f08affb7e64f7e929e2b832ee78f65a5e21194c53e93c4cca96",
+      "mode": "644"
+    },
+    {
+      "path": "audit-raw.cjs",
+      "bytes": 8984,
+      "sha256": "c3b2952f6bf70dd082584335f586238eeb342793d99910fbbe04fa29db88a1ee",
+      "mode": "644"
+    },
+    {
+      "path": "browser-subaudit.json",
+      "bytes": 15753,
+      "sha256": "e09e082404bef555596ee66dbe55dd9d773545b3107807fd7e65fd181177c450",
+      "mode": "644"
+    },
+    {
+      "path": "observed-geometry.json",
+      "bytes": 19839,
+      "sha256": "7f2772290f7aadf1d4833d9fad9f9a642ceb76055b4c54a9df04cb8440bc756a",
+      "mode": "644"
+    }
+  ],
+  "totalFiles": 4,
+  "totalBytes": 45328,
+  "closedInventoryExcludesOnly": "manifest.json",
+  "freezeClockScope": "Trusted clock observed after underlying source/parse/arithmetic evidence completed; no browser execution by this audit."
+}

@@ -1,0 +1,570 @@
+{
+  "scope": "Failed diagnostic2bce; historical evidence frozen",
+  "sourceDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/first",
+  "files": [
+    {
+      "path": "artifacts-final.json.gz",
+      "originalPath": "artifacts-final.json",
+      "encoding": "gzip",
+      "originalBytes": 856,
+      "originalSha256": "3635cee2be2c19bdba57a798ac4e6fff7de1a59682178b6a82de73105a5866db",
+      "storedBytes": 419,
+      "storedSha256": "a961666399266e30b11deeedeffac27089735712f1bcd2d2a7065102bfd74861"
+    },
+    {
+      "path": "audit-clock.json.gz",
+      "originalPath": "audit-clock.json",
+      "encoding": "gzip",
+      "originalBytes": 48,
+      "originalSha256": "71d3b97d7ab6e6e5e0d15e069b0f41774c0837afb7da2684ffe62420736c509c",
+      "storedBytes": 68,
+      "storedSha256": "d2a3705cec89b68bb68efcb5e11b85b42f1762196b34d40d49e2168eebd404ef"
+    },
+    {
+      "path": "audit.cjs.gz",
+      "originalPath": "audit.cjs",
+      "encoding": "gzip",
+      "originalBytes": 14038,
+      "originalSha256": "c363313350a7876bb3110f846e80523d2b2b89b12ceaf889c0469c2a57196af1",
+      "storedBytes": 5150,
+      "storedSha256": "37e78549f42384f5f42e1106959d18eb893d8d96e3215fb568427ad6373482fd"
+    },
+    {
+      "path": "commit-api.json.gz",
+      "originalPath": "commit-api.json",
+      "encoding": "gzip",
+      "originalBytes": 1404,
+      "originalSha256": "3893685aa80a72633d2879fb43ff2682cbcd3645e5644381aa464f917a3da5c8",
+      "storedBytes": 650,
+      "storedSha256": "4b45a032d474e833545e824473366202e8981d64a805ae6d3bc222cfa63e3328"
+    },
+    {
+      "path": "diagnostic-audit.json.gz",
+      "originalPath": "diagnostic-audit.json",
+      "encoding": "gzip",
+      "originalBytes": 64479,
+      "originalSha256": "68222afa29027aa53ddb5540f583d99384a3b289a67061040a7cfde8d3e666cb",
+      "storedBytes": 14257,
+      "storedSha256": "e52eb4a7bfcafb14ab66eff8d6b6d030fa23379795f3b77274a9ca65a34d6918"
+    },
+    {
+      "path": "job.log.gz",
+      "originalPath": "job.log",
+      "encoding": "gzip",
+      "originalBytes": 116976,
+      "originalSha256": "e188698f5700b3f7453e1a47027da4a8d93f8b832d97bac6707e3bbbc191ed4f",
+      "storedBytes": 16957,
+      "storedSha256": "9ccc34f373a6a8ac91d280af9496dd4d8660951eb50c046d95ade6c7b0ba5746"
+    },
+    {
+      "path": "jobs-final.json.gz",
+      "originalPath": "jobs-final.json",
+      "encoding": "gzip",
+      "originalBytes": 2721,
+      "originalSha256": "d63bb0875cf0b0577fe48a9bb6c5a8c6ee3d3d80908adc35db4a89fb39d6f80d",
+      "storedBytes": 773,
+      "storedSha256": "0fc69efa0822e9725e7a5a0023e09be36487e7d0951dcded2c47418f2fc18b2b"
+    },
+    {
+      "path": "raw/commit.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/commit.txt",
+      "encoding": "gzip",
+      "originalBytes": 41,
+      "originalSha256": "c4980e1cf7c5e8ace51bd5bec327841a7bf98e4df1220a4f3f6eae6f1efc34b6",
+      "storedBytes": 59,
+      "storedSha256": "bc7d9c3f3c70fced988552d8c5c4bb6dbd948ca26e891e963cbf8d6c11e36ffd"
+    },
+    {
+      "path": "raw/context.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/context.log",
+      "encoding": "gzip",
+      "originalBytes": 133,
+      "originalSha256": "c2fa068a175c205b2fc23e1a700c22a53af81bf184504c0b9689aaf0d9a524f0",
+      "storedBytes": 140,
+      "storedSha256": "35b5a6bb78d50adafe8a6f9913ab9524b008f15f71f22cec7ccdeb0db7846c76"
+    },
+    {
+      "path": "raw/identity.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/identity.json",
+      "encoding": "gzip",
+      "originalBytes": 30477,
+      "originalSha256": "0a5d807b849a3034cc8e12b4c2fe79e895f6cace84fb013682da5ed664b0ef2a",
+      "storedBytes": 9985,
+      "storedSha256": "2482712a1571640607847daf7dd133aa11351a14afdf64da21655d498da885b2"
+    },
+    {
+      "path": "raw/mobile.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile.log",
+      "encoding": "gzip",
+      "originalBytes": 94375,
+      "originalSha256": "d9ceda5cbb63b6e07b40de5c4123cc70b5c6c774a50a4bda653615e2be36ed86",
+      "storedBytes": 9685,
+      "storedSha256": "35c3463b8a5c24e3abfd3520c3050b6d61d72b36f8aae9f71ac775d795e8bbc7"
+    },
+    {
+      "path": "raw/mobile/failure-dom.html.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile/failure-dom.html",
+      "encoding": "gzip",
+      "originalBytes": 860030,
+      "originalSha256": "c4749fc95354d39d99bd4c3d21589a5ca793622bbab0531226b7830032d2ad71",
+      "storedBytes": 184625,
+      "storedSha256": "536ff18701badaef37e9322e54d2094c773b77911ad300489004dc38018d1dda"
+    },
+    {
+      "path": "raw/mobile/failure.png",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile/failure.png",
+      "encoding": "identity",
+      "originalBytes": 189571,
+      "originalSha256": "38e8805c4598a9f5d6f63cc606bddb0f8580285dd2715efb77fb4f1dc5ade175",
+      "storedBytes": 189571,
+      "storedSha256": "38e8805c4598a9f5d6f63cc606bddb0f8580285dd2715efb77fb4f1dc5ade175"
+    },
+    {
+      "path": "raw/mobile/receipt.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile/receipt.json",
+      "encoding": "gzip",
+      "originalBytes": 133437,
+      "originalSha256": "0d94f78d7ad07dc6220e24e0c8caf8ee5063efff0ef2c05ced21ccc58bdca5e9",
+      "storedBytes": 11197,
+      "storedSha256": "c6cf2c3b565ab1b906644069b150201c7a1d2487253a956b25003ffa7d242d6f"
+    },
+    {
+      "path": "raw/mobile/tree-first-320-1-no-preference.png",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile/tree-first-320-1-no-preference.png",
+      "encoding": "identity",
+      "originalBytes": 198547,
+      "originalSha256": "f8e0b2166e0439148d437a690919ef3137e04937756c44adee59bf50f632a25f",
+      "storedBytes": 198547,
+      "storedSha256": "f8e0b2166e0439148d437a690919ef3137e04937756c44adee59bf50f632a25f"
+    },
+    {
+      "path": "raw/mobile/tree-last-320-1-no-preference.png",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile/tree-last-320-1-no-preference.png",
+      "encoding": "identity",
+      "originalBytes": 215799,
+      "originalSha256": "f0c115928a365da2234664cc2dbff0d6e9c4966e23cf6bcc35bdc1706a11125b",
+      "storedBytes": 215799,
+      "storedSha256": "f0c115928a365da2234664cc2dbff0d6e9c4966e23cf6bcc35bdc1706a11125b"
+    },
+    {
+      "path": "raw/mobile/tree-summary-scroll-negative-320-1-no-preference.png",
+      "originalPath": "artifact/tree-scroll-diagnostic/mobile/tree-summary-scroll-negative-320-1-no-preference.png",
+      "encoding": "identity",
+      "originalBytes": 220590,
+      "originalSha256": "f88ebf544393757ca8c34bf71becb97fd2cd0726f9d16fa464e15c1c94ba09a1",
+      "storedBytes": 220590,
+      "storedSha256": "f88ebf544393757ca8c34bf71becb97fd2cd0726f9d16fa464e15c1c94ba09a1"
+    },
+    {
+      "path": "raw/parents.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/parents.txt",
+      "encoding": "gzip",
+      "originalBytes": 41,
+      "originalSha256": "1d931a0c82ef8cc9be72993136e250f6bf8ee8c64e5181db989fb4dfb2e7290c",
+      "storedBytes": 60,
+      "storedSha256": "e49e31d1b08be50df3f9f90eef8efd899111fddf66585e35a044134153310569"
+    },
+    {
+      "path": "raw/prism-browser-exit.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism-browser-exit.txt",
+      "encoding": "gzip",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedBytes": 22,
+      "storedSha256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "path": "raw/prism-browser.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism-browser.log",
+      "encoding": "gzip",
+      "originalBytes": 1110,
+      "originalSha256": "d3d69a01d03369465d4839ccd35c9db216e4251aee7289eb12d67f7b5f5cc1d0",
+      "storedBytes": 210,
+      "storedSha256": "b83673055d6fa3b363d2e7f9fbaa266d92c9e8aab43d388c8a3de8ded574c9f9"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-backup-restore-YC7qtX/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-backup-restore-YC7qtX/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-backup-restore-YC7qtX/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-backup-restore-YC7qtX/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 692,
+      "originalSha256": "cce1671d8e7d313da88f63bea56960b0a1881c99eac7a9054347bfbba865e9fd",
+      "storedBytes": 451,
+      "storedSha256": "4eea91a08d97956daad743e5eaca95dd1e7e0f12de5dbf176667564240bb9b23"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-contract-rMxQuo/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-contract-rMxQuo/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-contract-rMxQuo/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-contract-rMxQuo/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 30011,
+      "originalSha256": "9e2a9efce843e41e12b1a5ea986372456ff4b811d3a27a0855341f764c17add1",
+      "storedBytes": 1980,
+      "storedSha256": "65402a1b870e1bf388bb396ab1b4d7c1c97b93a03e5f3265c80b1554913e556f"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-recovery-nCGrzH/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-recovery-nCGrzH/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-recovery-nCGrzH/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-recovery-nCGrzH/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 680,
+      "originalSha256": "dd0f2bee7572c8188a1cfc0a6a290f5b09f2b26a64404e4e2082908382ffa2e5",
+      "storedBytes": 446,
+      "storedSha256": "ce2b6c0d864d378ab07c6729e9d1a4f18dee98949028e1f836fa068a16401604"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-save-reload-dcHVQA/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-save-reload-dcHVQA/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedBytes": 20,
+      "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/prism/browser/ascend-prisms-save-reload-dcHVQA/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/ascend-prisms-save-reload-dcHVQA/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 686,
+      "originalSha256": "dc553d68e889fdbee59a7f9e623171ef44d08c2fdd5ef83d58c1f7d2e1221f63",
+      "storedBytes": 448,
+      "storedSha256": "b64f0acb1ee6fd625cd9106d519927b91ea97c813a08745e6943a66035114a27"
+    },
+    {
+      "path": "raw/prism/browser/receipt.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/receipt.json",
+      "encoding": "gzip",
+      "originalBytes": 1736,
+      "originalSha256": "fc7bd9d7fa6468e31346d0cd79accfdfada627fad682c699f64f383ab1fce686",
+      "storedBytes": 348,
+      "storedSha256": "fe40d7a03a04ceceea132bc1a1e21ce7a6ed8e639108090cac95d46ca1e9b7f8"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-lab-4fOpsV/raw/self-test-ascend-prisms-lab-dV8kJG/process.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-lab-4fOpsV/raw/self-test-ascend-prisms-lab-dV8kJG/process.json",
+      "encoding": "gzip",
+      "originalBytes": 950,
+      "originalSha256": "8b0efe245e8bd20629eb918e19ae385ff6aa30e77f5dc3152da8f1e7a0963cfc",
+      "storedBytes": 472,
+      "storedSha256": "a49cb709cc643f258916004ce495bcb077ac334f7663d689fd12fd4da3546219"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-lab-4fOpsV/raw/self-test-ascend-prisms-lab-dV8kJG/stderr.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-lab-4fOpsV/raw/self-test-ascend-prisms-lab-dV8kJG/stderr.log",
+      "encoding": "gzip",
+      "originalBytes": 3979,
+      "originalSha256": "09bc322dc15a67250da4fc927a6d5f6bea24c28d429824c0ad2c0800f243fe11",
+      "storedBytes": 481,
+      "storedSha256": "90a80908d65555f8ab664065db876d8bca7f0dee1f018948346c70f9611a9c31"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-lab-4fOpsV/raw/self-test-ascend-prisms-lab-dV8kJG/stdout.html.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-lab-4fOpsV/raw/self-test-ascend-prisms-lab-dV8kJG/stdout.html",
+      "encoding": "gzip",
+      "originalBytes": 1461278,
+      "originalSha256": "cabe5225ac61fc56a4c53e777c3a32c5f8dea34c8ebc3b8912861cd97ea4b9fe",
+      "storedBytes": 325143,
+      "storedSha256": "2a76a1f8c4e446d06e5c82481aacc1805cad23543cdf21b1a05966ab62bde313"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-lab-4fOpsV/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-lab-4fOpsV/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 55,
+      "originalSha256": "343ccd7fd390946f41a2ab73d8d0f0c8d109fedc8ff07b9b12be4d8e4eced30e",
+      "storedBytes": 75,
+      "storedSha256": "48bdfcfada7cdffd40d9a5bb75f60f5c681dcdf6707b54cae472e2cb4e14a24d"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-lab-4fOpsV/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-lab-4fOpsV/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 7046,
+      "originalSha256": "bd7a7d7c969a8cac6a42e9c1010666db0d528090e7c6e1faf7902e74289dce5a",
+      "storedBytes": 1785,
+      "storedSha256": "da80e39799f9dd1c0dbdf879e697b9b650bd3abe7abe2ee1bd09281cf1174fac"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-payout-AZlp42/raw/self-test-ascend-prisms-payout-EUGXJg/process.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-payout-AZlp42/raw/self-test-ascend-prisms-payout-EUGXJg/process.json",
+      "encoding": "gzip",
+      "originalBytes": 962,
+      "originalSha256": "97b2e057d6277a411c80e5d96cb617c663d94e223997230a015cf109220de703",
+      "storedBytes": 476,
+      "storedSha256": "dfe6d551d44421c6f997fd76ce29759cd07078e64075bc9a3cc7de21d8da1d80"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-payout-AZlp42/raw/self-test-ascend-prisms-payout-EUGXJg/stderr.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-payout-AZlp42/raw/self-test-ascend-prisms-payout-EUGXJg/stderr.log",
+      "encoding": "gzip",
+      "originalBytes": 3979,
+      "originalSha256": "8219c5354a432109893219e9899f1413bc71b2cb631cc58177794d25122a1d22",
+      "storedBytes": 481,
+      "storedSha256": "dc1dd61185f1cee8b9dbe047b437571f0574212c1185f2b35997c0522c93d62a"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-payout-AZlp42/raw/self-test-ascend-prisms-payout-EUGXJg/stdout.html.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-payout-AZlp42/raw/self-test-ascend-prisms-payout-EUGXJg/stdout.html",
+      "encoding": "gzip",
+      "originalBytes": 1460808,
+      "originalSha256": "b4073012882b4b917e753056a648e046bf4c31d077c382080da1d053ea0fbd24",
+      "storedBytes": 324977,
+      "storedSha256": "66e9b4e30ac2359a42b1dc10a75eb6b6d9bf1fbd6b7de4d7aad9ffaa035770e1"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-payout-AZlp42/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-payout-AZlp42/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 58,
+      "originalSha256": "22aa663373d18b4d665381c7d671e11c237333fa3a02f51455a7bcde456b6a73",
+      "storedBytes": 78,
+      "storedSha256": "bef6b9e4fae0ba1b4738383ecaa4a88e9c9dce9477425fd969184d8c4b44bb62"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-payout-AZlp42/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-payout-AZlp42/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 7061,
+      "originalSha256": "92b4d54b7b7125a496ac46ce0b9bdc00c93c94fa64c558db0eaf58d02a8f2ce6",
+      "storedBytes": 1781,
+      "storedSha256": "597330a34d324347871b6ac511f53f75d89f99cfeb42c127994561f2b68e10e4"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/raw/self-test-ascend-prisms-repeat-giwl0u/process.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/raw/self-test-ascend-prisms-repeat-giwl0u/process.json",
+      "encoding": "gzip",
+      "originalBytes": 969,
+      "originalSha256": "202d819a89f1448878fa5d143bfc1026e4e9c1d7a385a271f140482a843490a8",
+      "storedBytes": 478,
+      "storedSha256": "88838942e8b9133786146ca52868ab07f1e32b674d177fb6c04c6fe9adcab98d"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/raw/self-test-ascend-prisms-repeat-giwl0u/stderr.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/raw/self-test-ascend-prisms-repeat-giwl0u/stderr.log",
+      "encoding": "gzip",
+      "originalBytes": 3979,
+      "originalSha256": "8846598d4b008d9f60f5bf8995fd77725159c62ad1ac704a55bb278ad0f559ca",
+      "storedBytes": 486,
+      "storedSha256": "aed4bd81dc862eed060a3e1b2e8658967674dfe40b56832c41a7d650a08209d1"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/raw/self-test-ascend-prisms-repeat-giwl0u/stdout.html.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/raw/self-test-ascend-prisms-repeat-giwl0u/stdout.html",
+      "encoding": "gzip",
+      "originalBytes": 1461144,
+      "originalSha256": "649f7f84bedd2682832fc9ff48b475844e40349cad3762478df41f790efca4b2",
+      "storedBytes": 325025,
+      "storedSha256": "a27869a20de0610d2a735d8af0661f53a5f92424db24da28e833784a9d9bec4b"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 58,
+      "originalSha256": "8d3d6b2f8ded564f1fbf5cc31debac383493a65256f1abb1cd961bed6e0d71c1",
+      "storedBytes": 78,
+      "storedSha256": "7c059d1e1d7bad89f31ac9efeac97b0dc9f617333e271184b0b523c219a464f7"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-repeat-tYTK6V/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 7068,
+      "originalSha256": "cf90f2a2420f14d47ab5d5aab776a994f516ca78eb696f8b5d15aa29ad4ae80e",
+      "storedBytes": 1724,
+      "storedSha256": "c4b9767841f2675654bc83328ee67e675e3f171b7885ecd2a4f8a952b5c3569c"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/raw/self-test-ascend-prisms-rounding-Cxoc2v/process.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/raw/self-test-ascend-prisms-rounding-Cxoc2v/process.json",
+      "encoding": "gzip",
+      "originalBytes": 970,
+      "originalSha256": "d404a6d1ca997c92204676af821697e451abaeaed41c4d7921374c6f4ad66d20",
+      "storedBytes": 477,
+      "storedSha256": "52690c3c3e85fa19cfa3948667e602b6de00d8a1cde8fd3fd3a1d6a91dd9b3b2"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/raw/self-test-ascend-prisms-rounding-Cxoc2v/stderr.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/raw/self-test-ascend-prisms-rounding-Cxoc2v/stderr.log",
+      "encoding": "gzip",
+      "originalBytes": 3979,
+      "originalSha256": "7e23ac5486f8ef35f4e2d72fde0656a46065cd8fd72a0b15aacda81772e0eac7",
+      "storedBytes": 483,
+      "storedSha256": "a58c987bc4e03e27b6383ce68a6c3cb21e087d41e5e4b9c6cb64901eb3284e45"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/raw/self-test-ascend-prisms-rounding-Cxoc2v/stdout.html.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/raw/self-test-ascend-prisms-rounding-Cxoc2v/stdout.html",
+      "encoding": "gzip",
+      "originalBytes": 1461385,
+      "originalSha256": "85cd14f4a1f9532429ba8d2bb31edfdbc48d694896b8886cf280476ad89a3131",
+      "storedBytes": 325157,
+      "storedSha256": "1e8d86a27c95d80eaf9465f34771223a3dfbf3351d70c3ace152e04a1f5f0ae5"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 60,
+      "originalSha256": "ead16cecd6c7f11d75e2b077a1537f8a15b66148e46e8873a018ef5a1ed25208",
+      "storedBytes": 80,
+      "storedSha256": "ba3995f42d60cd150d0d68cb10ff75d73e22a7d1a5ba5a330299c5346ddcf5b8"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-rounding-LNr3WP/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 7071,
+      "originalSha256": "cd3c4c5c2b0cc615ff91027d56fe6e57487df48959c1a0b77de8db70a086bab3",
+      "storedBytes": 1773,
+      "storedSha256": "71c131d1c13d9780699c6d7b5814ef1aa9dd5364b6044909f1dd72349c3fafee"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/raw/self-test-ascend-prisms-tree-aG3GrM/process.json.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/raw/self-test-ascend-prisms-tree-aG3GrM/process.json",
+      "encoding": "gzip",
+      "originalBytes": 954,
+      "originalSha256": "d9424ee10697a1ef134ec6fb58bbdb30663a141d3f9c852c259ca9b8281762ad",
+      "storedBytes": 470,
+      "storedSha256": "e9987c6eba92d755c4058cc9518dc401f680b0288959e985f20422f8e8172a10"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/raw/self-test-ascend-prisms-tree-aG3GrM/stderr.log.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/raw/self-test-ascend-prisms-tree-aG3GrM/stderr.log",
+      "encoding": "gzip",
+      "originalBytes": 3979,
+      "originalSha256": "8ef20a87e4883fd746f2cac7f0a29a42276ba86fecf83af7e6217dacb92ad059",
+      "storedBytes": 486,
+      "storedSha256": "412ff5fb61c80c5542a7d192edd85641382ee787c9f825d614cd800838ca775a"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/raw/self-test-ascend-prisms-tree-aG3GrM/stdout.html.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/raw/self-test-ascend-prisms-tree-aG3GrM/stdout.html",
+      "encoding": "gzip",
+      "originalBytes": 1461048,
+      "originalSha256": "b59044ad5c7776925885778b754d710be8374f72b4691b1675a86940b6d785a7",
+      "storedBytes": 324986,
+      "storedSha256": "7459576781042c61861c4e05736c9767efed8ec4a5102f0e2b0c200073dae17a"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/stderr.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/stderr.txt",
+      "encoding": "gzip",
+      "originalBytes": 56,
+      "originalSha256": "fe5c0e14664835499ddc22b43e34e69cf1a037f7752796239aa848f38d7f7555",
+      "storedBytes": 76,
+      "storedSha256": "2c8e0fa7eebc324b7f9e794d6e240790fcba39e590d4c17d2f54f50428dbe686"
+    },
+    {
+      "path": "raw/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/stdout.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/prism/browser/self-test-ascend-prisms-tree-mUz6Tb/stdout.txt",
+      "encoding": "gzip",
+      "originalBytes": 7051,
+      "originalSha256": "b4a6cecaa1c464c3595cffdcf47abe2544656ef1b88b46b8078f1a0c76205742",
+      "storedBytes": 1692,
+      "storedSha256": "dee5bf0140936b1503fda7e289e6c6b3db3fd9215a74bde3448bb50385c3109b"
+    },
+    {
+      "path": "raw/source-blobs.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/source-blobs.txt",
+      "encoding": "gzip",
+      "originalBytes": 11645,
+      "originalSha256": "0d1e2cc4c48564864a9c9ea0efcd38fa872a572cbdbbd85b5f947ef33205d0af",
+      "storedBytes": 4255,
+      "storedSha256": "fb6ae07bed975fe860c82f2dd083331f54ae859068b1b2b716e99333088adfc9"
+    },
+    {
+      "path": "raw/source-sha256.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/source-sha256.txt",
+      "encoding": "gzip",
+      "originalBytes": 376,
+      "originalSha256": "e116f40cb8b984ac264b563d4ab5ca6a1f043b065145dbe43ec187f2a8bc9478",
+      "storedBytes": 255,
+      "storedSha256": "259d7cedfb70d91bf50dc6756ec18f73b83cd583aa6b7ad3a1ab274868c835b6"
+    },
+    {
+      "path": "raw/tree-mobile-exit.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/tree-mobile-exit.txt",
+      "encoding": "gzip",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedBytes": 22,
+      "storedSha256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "path": "raw/tree.txt.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/tree.txt",
+      "encoding": "gzip",
+      "originalBytes": 41,
+      "originalSha256": "cf3b4a83073d362a54c9e5f5c94cbfcf980bc553d1b4e4786c9ea950665fa0b6",
+      "storedBytes": 59,
+      "storedSha256": "ad6f16ebfd7aff2dbf408cbc1e61bd302dc0a3c2a78688c00c741a59890a3297"
+    },
+    {
+      "path": "raw/workflow.yml.gz",
+      "originalPath": "artifact/tree-scroll-diagnostic/workflow.yml",
+      "encoding": "gzip",
+      "originalBytes": 5172,
+      "originalSha256": "b99eb751f72a8382b5bef799d0aa73638ecb753ec90673f78e1753acf810c67f",
+      "storedBytes": 1990,
+      "storedSha256": "be50d33eb72ae34a1534c31cb8ebef6491102f0327362ec409c86ed55ec01c86"
+    },
+    {
+      "path": "README.md",
+      "encoding": "authored",
+      "storedBytes": 3964,
+      "storedSha256": "b01ad24aef8cd11b3a6a209519d81eb3fd83ca7d1986eaf2333905a2297f6425"
+    },
+    {
+      "path": "run-final.json.gz",
+      "originalPath": "run-final.json",
+      "encoding": "gzip",
+      "originalBytes": 12428,
+      "originalSha256": "02af7848101b93f9e0f471c737bfbeeb212cab7b6786ab031611f935ba61d61f",
+      "storedBytes": 1703,
+      "storedSha256": "95b757d1955ee7435159244ceafca749ae584ba5e35baba25fec7884e30c70fb"
+    },
+    {
+      "path": "tree-api.json.gz",
+      "originalPath": "tree-api.json",
+      "encoding": "gzip",
+      "originalBytes": 3602,
+      "originalSha256": "953f4fb785cb420d26597a9c5e32508706b5bf613e2f455d1c9908e61a5b906d",
+      "storedBytes": 870,
+      "storedSha256": "15ee03cd29186899c06d5c8ca61d522c908162f4ab9f5a3003f550ed50bdd9ef"
+    },
+    {
+      "path": "zip-verification.json.gz",
+      "originalPath": "zip-verification.json",
+      "encoding": "gzip",
+      "originalBytes": 478,
+      "originalSha256": "633ae378b6e26209b59094748fb105c077e8284e9ba03d2cda991b5292079c7b",
+      "storedBytes": 325,
+      "storedSha256": "d534b44421246ca74a4c9ea4d8f443a8112181d42d431c3d72f2c359a5591f50"
+    }
+  ]
+}

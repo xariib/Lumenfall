@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_DELTA_REVIEW_NO_CONCRETE_BLOCKER",
+  "reviewer": "/root/lab_ci_audit",
+  "reviewedAtUtc": "2026-10-11 03:52:12 UTC",
+  "clockSource": "clock.curr_time",
+  "repository": "/workspace/scratch/0848c4e4f365/Lumenfall-shared-ui",
+  "files": [
+    {
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "bytes": 1290,
+      "sha256": "ae215b5055ce1222d02396a0394206a8c4c8bf5ae60432118781b0ca1b5d486c"
+    },
+    {
+      "path": "scripts/ci/shared-ui-receipts.cjs",
+      "bytes": 10819,
+      "sha256": "07bfbff6318f95d2b0cb6dac7edfe3e5f6974df62d239250f4a4ea411ac601a0"
+    }
+  ],
+  "scope": "Only the new Shared UI workflow and receipt helper, compared read-only with original Full commands, actual dependency readers and the reviewed immutable QA6 source selector. The evolving browser driver was not reviewed or executed.",
+  "resolvedFinding": {
+    "original": "Narrow archive omitted recovery helpers, actual96/66 recovery fixtures and context-read documents.",
+    "disposition": "Helper selects all scripts/tests/assets/workflows/context/task/project/agent/decision inputs plus Shared UI QA documents. Its includeToolingFixtures retains all96 snapshot paths and the unique66-payload archive, including original-helper remap and any PARTS metadata/bodies. Explicit context/fixture paths must be present in HEAD rows before archiving.",
+    "reference": {
+      "path": "comet-ci/final-receipts-010/recovered-publication/.github/scripts/comet-final-receipts.cjs",
+      "bytes": 14377,
+      "sha256": "b243c18491fe3e546f7a8004e138071f5c06d7cb8e72f92573e9d0240a1bbc46"
+    },
+    "actualReadOnlyFixtureInventory": {
+      "snapshotSourceFiles": 96,
+      "matchingArchiveCount": 1,
+      "archivePayloads": 66
+    }
+  },
+  "reviewedContracts": [
+    {
+      "id": "actual-commit-inputs",
+      "result": "PASS_REVIEW",
+      "detail": "Rows come from git ls-tree -rz of actual checkout HEAD, not the index. All tracked working bytes and executable modes are compared with those blob IDs before/after commands. Actual raw commit and full tree are retained."
+    },
+    {
+      "id": "six-original-commands",
+      "result": "UNCHANGED_ARGV",
+      "detail": "APK identity --self-test, tooling, Rift cosmetics --source mobile/www/index.html --negative, Prism earning --source mobile/www/index.html, and both original PRISM_EARNING_001/PROGRESSION_EXPANSION_001 context commands remain exact. Source validator and Shared UI context are the only additional standalone commands."
+    },
+    {
+      "id": "bounded-evidence-selection",
+      "result": "PASS_REVIEW",
+      "detail": "QA6 contextFiles/isActive/includeToolingFixtures selection is reused with root path and Shared UI QA prefix; no new fixture oracle, fallback or optional test is introduced."
+    },
+    {
+      "id": "staging",
+      "result": "PASS_REVIEW",
+      "detail": "Fresh mobile/www receives exact index, fonts and branding. Each staged asset is byte-compared with the committed source before the commands."
+    },
+    {
+      "id": "raw-failure-preservation",
+      "result": "PASS_REVIEW",
+      "detail": "One spawn per command with existing finite timeout; raw stdout/stderr plus bytes/SHA, exit/signal/error, argv/cwd and timing are stored. Nonzero or timed-out commands remain failures while later commands run once."
+    },
+    {
+      "id": "single-root-cosmetics-and-closure",
+      "result": "PASS_REVIEW",
+      "detail": "Fresh cosmetics output is copied into standalone/rift-cosmetics after its command. All normal results and caught preparation/identity failures proceed to a recursive original-byte manifest, excluding only the manifest itself. Workflow uploads one shared-ui-validation root with include-hidden-files:true and always()."
+    },
+    {
+      "id": "time-envelope",
+      "result": "PASS_REVIEW",
+      "helperCommandCapsSeconds": 1200,
+      "declaredBrowserCapsSeconds": 2400,
+      "workflowTimeoutSeconds": 3900,
+      "remainingOverheadSeconds": 300,
+      "detail": "65min covers the20min standalone maxima plus root-declared4x10min browser maxima and5min overhead. The still-separate driver implementation is outside this review."
+    },
+    {
+      "id": "workflow-scope",
+      "result": "PASS_REVIEW",
+      "detail": "Push only qa/shared-ui-diagnostic-001; PR bases main and feature/progression-expansion-2026-10-09. Dedicated concurrency group, contents:read, Node20, strict browser pipefail, always artifact preservation, no Android build actions."
+    }
+  ],
+  "verdict": "No remaining concrete blocker in these scoped workflow/helper changes. Actual CI execution and browser acceptance remain required and are not inferred from this review.",
+  "limitations": [
+    "Static read-only review; root-reported syntax PASS was not rerun.",
+    "No original test, helper, workflow, browser or gameplay code was executed.",
+    "No product/repository/remote edit; only this requested external review receipt was written."
+  ]
+}

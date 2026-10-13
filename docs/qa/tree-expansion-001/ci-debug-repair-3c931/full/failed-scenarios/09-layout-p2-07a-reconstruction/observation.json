@@ -1,0 +1,104 @@
+{
+  "name": "layout-p2-07a-reconstruction",
+  "occurrence": 9,
+  "rawLogSection": {
+    "byteOffset": 10875173,
+    "bytes": 5602,
+    "sha256": "46a50db5246b2ad715453263b13072efca66390fc14d66e6657355ab8853451b"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 0.9767293050000444,
+    "timeout_sec": 25
+  },
+  "detail": null,
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/process.json",
+      "bytes": 1012,
+      "sha256": "5c4fa731e08e96621fb52ee9fdf8a89545913c9e54180fd551b6d9d084de1f53",
+      "zipCrc32": "947cb09d"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stderr.log",
+      "bytes": 4021,
+      "sha256": "ea1368224df05739971dc11714fcffec81cce283b46f900b4a7903c4691942a3",
+      "zipCrc32": "d692b4d5"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stdout.html",
+      "bytes": 1078,
+      "sha256": "0a226660072a087fb6e52cb74a5ae88ac4ee37596229d285cab7271465d810ff",
+      "zipCrc32": "873540cb"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-layout-p2-07a-reconstruction-w05XfA",
+      "--dump-dom",
+      "http://127.0.0.1:36039/layout.html?qaScenario=layout-p2-07a-reconstruction&qaFixture=fresh&width=360&height=780&safeTop=0&safeBottom=0"
+    ],
+    "fixture": "fresh",
+    "viewport": [
+      360,
+      780,
+      0,
+      0
+    ],
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 0.9767293050000444,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": null,
+      "json_status": "fail",
+      "json_scenario": "layout-p2-07a-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "layout-p2-07a-reconstruction",
+      "status": "fail",
+      "detail": "startup support explained",
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/layout-p2-07a-reconstruction-dNhPKq/stdout.html",
+    "bytes": 1078,
+    "sha256": "0a226660072a087fb6e52cb74a5ae88ac4ee37596229d285cab7271465d810ff",
+    "zipCrc32": "873540cb"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/09-layout-p2-07a-reconstruction"
+}

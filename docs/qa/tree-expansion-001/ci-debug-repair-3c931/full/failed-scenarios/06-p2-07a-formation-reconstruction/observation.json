@@ -1,0 +1,102 @@
+{
+  "name": "p2-07a-formation-reconstruction",
+  "occurrence": 6,
+  "rawLogSection": {
+    "byteOffset": 10856227,
+    "bytes": 6562,
+    "sha256": "b5a40ae0c94a61d352eddfb9a5e998b55b3b8741233961f294fac8cb959438c1"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 1.0900776840001345,
+    "timeout_sec": 25
+  },
+  "detail": null,
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/process.json",
+      "bytes": 973,
+      "sha256": "583112df2b73d2f2240dad0f9a93c266ee34d616576565319005ebc47157fa58",
+      "zipCrc32": "d8263a61"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stderr.log",
+      "bytes": 4021,
+      "sha256": "d722bb3f81c0ede66345edbb0c876202e0f56e3aceec0250e2d226f84ba6433e",
+      "zipCrc32": "931f190b"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stdout.html",
+      "bytes": 1371503,
+      "sha256": "43983abaeac165deb80337548bdf7595e484b7dbcef9f63882cf14123e215ede",
+      "zipCrc32": "3fa2f9a6"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-p2-07a-formation-reconstruction-fI1G3H",
+      "--dump-dom",
+      "http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.0900776840001345,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "p2-07a-formation-reconstruction",
+      "json_status": "fail",
+      "json_scenario": "p2-07a-formation-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "p2-07a-formation-reconstruction",
+      "json_status": "fail",
+      "json_scenario": "p2-07a-formation-reconstruction",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "p2-07a-formation-reconstruction",
+      "status": "fail",
+      "detail": {
+        "message": "temporary powered Ember only [\"stone\",\"ember\",\"tide\"]",
+        "stack": "Error: temporary powered Ember only [\"stone\",\"ember\",\"tide\"]\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15077:61)\n    at ok (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13449:31)\n    at same (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13450:26)\n    at http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13460:5\n    at Array.forEach (<anonymous>)\n    at window.runP207FormationQa (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:13457:11)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15633:32)"
+      },
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-formation-reconstruction-iUI5aT/stdout.html",
+    "bytes": 1371503,
+    "sha256": "43983abaeac165deb80337548bdf7595e484b7dbcef9f63882cf14123e215ede",
+    "zipCrc32": "3fa2f9a6"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/06-p2-07a-formation-reconstruction"
+}

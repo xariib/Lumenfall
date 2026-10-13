@@ -1,0 +1,82 @@
+name: Comet shop and Deeds validation
+
+on:
+  pull_request:
+    branches: [main, 'feature/progression-expansion-2026-10-09']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumenfall-comet-expansion-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  comet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Exact source identity and Comet task context
+        run: |
+          set -euo pipefail
+          mkdir -p comet-validation
+          git rev-parse HEAD > comet-validation/commit.txt
+          git rev-parse 'HEAD^{tree}' > comet-validation/tree.txt
+          git cat-file -p HEAD > comet-validation/commit-object.txt
+          node -e "const fs=require('fs'); const headers=fs.readFileSync('comet-validation/commit-object.txt','utf8').split('\\n\\n',1)[0].split('\\n'); fs.writeFileSync('comet-validation/parents.txt',headers.filter(line=>line.startsWith('parent ')).map(line=>line.slice(7)).join(' ')+'\\n');"
+          git ls-tree -r HEAD index.html tests/behavioral scripts/ci scripts/lib .github/workflows fonts branding > comet-validation/source-blobs.txt
+          git archive --format=tar HEAD index.html tests/behavioral scripts/ci scripts/lib .github/workflows fonts branding > comet-validation/source.tar
+          sha256sum index.html tests/behavioral/fixtures.json tests/behavioral/comet-expansion-*.cjs .github/workflows/comet-expansion-validation.yml > comet-validation/source-sha256.txt
+          node -p 'JSON.stringify(process.versions)' > comet-validation/node-versions.json
+          node scripts/ci/validate_source.cjs 2>&1 | tee comet-validation/source.log
+          node scripts/codex/check_context.cjs --task docs/tasks/COMET_EXPANSION_001.md 2>&1 | tee comet-validation/context.log
+      - name: Actual purchases commands save recovery and causal controls
+        run: |
+          set -euo pipefail
+          node tests/behavioral/comet-expansion-core.cjs index.html --negative 2>&1 | tee comet-validation/core.log
+      - name: Independent exact Meteor and bounded credit arithmetic
+        run: |
+          set -euo pipefail
+          node tests/behavioral/comet-expansion-numerical.cjs index.html --negative 2>&1 | tee comet-validation/numerical.log
+      - name: Actual defeat recharge offline chronology and Auto-Ascend
+        run: |
+          set -euo pipefail
+          node tests/behavioral/comet-expansion-offline.cjs index.html --negative 2>&1 | tee comet-validation/offline.log
+      - name: Twelve browser profiles with real input and causal failures
+        if: always()
+        run: |
+          set -euo pipefail
+          node tests/behavioral/comet-expansion-mobile.cjs index.html comet-validation/mobile 2>&1 | tee comet-validation/mobile.log
+      - name: Exact protected-save warning reversion after the complete positive browser lane
+        if: always()
+        run: |
+          set -euo pipefail
+          node tests/behavioral/comet-expansion-warning.cjs index.html comet-validation/mobile comet-validation/warning 2>&1 | tee comet-validation/warning.log
+      - name: Complete actual Comet execution on V8 6.0
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/comet-node8
+          cd /tmp/comet-node8
+          curl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt
+          curl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz
+          grep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -
+          tar -xf node-v8.3.0-linux-x64.tar.xz
+          cd "$GITHUB_WORKSPACE"
+          sha256sum /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node > comet-validation/v8-runtime-sha256.txt
+          env -u NODE_OPTIONS -u NODE_PATH /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node -p 'JSON.stringify(process.versions)' > comet-validation/v8-versions.json
+          env -u NODE_OPTIONS -u NODE_PATH /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/comet-expansion-v8.cjs index.html 2>&1 | tee comet-validation/v8.log
+      - name: Preserve complete source-bound Comet evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: comet-expansion-${{ github.run_id }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            comet-validation/
+            tests/behavioral/comet-expansion-*.cjs

@@ -1,0 +1,623 @@
+{
+  "status": "PASS",
+  "sourcePath": "/workspace/Lumenfall-echo-refund/index.html",
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "browserIdentity": {
+    "selected": "/usr/bin/chromium",
+    "resolved": "/usr/bin/chromium",
+    "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)"
+  },
+  "mutation": "none",
+  "observedAt": "2026-10-11T23:27:27.571Z",
+  "records": [
+    {
+      "kind": "refund-contracts",
+      "result": {
+        "checks": 184,
+        "records": [
+          {
+            "raw": 19,
+            "wallet": 1234,
+            "creditEntries": 0,
+            "retainedValue": "1234",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 20,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "0",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "3376",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 40,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "12655538",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 1e+30,
+            "creditEntries": 1,
+            "retainedValue": "1000000000000000019884624842032",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 2000,
+            "wallet": 1000000,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445289096194",
+            "unpricedFrom": 1910
+          },
+          {
+            "raw": 1e+300,
+            "wallet": 0,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445288096194",
+            "unpricedFrom": 1910
+          },
+          {
+            "kind": "large-ledger-quotes",
+            "raw": 2000,
+            "result": {
+              "quotes": 2000,
+              "quoteCopies": 0,
+              "purchaseCopies": 1,
+              "unchanged": true,
+              "elapsedMs": 11.800000000745058
+            }
+          },
+          {
+            "kind": "completed-refund-boundaries",
+            "raw": 2000,
+            "boundaries": 100,
+            "priceCalculations": 0,
+            "elapsedMs": 1701.5
+          },
+          {
+            "kind": "actual-auto-ascend-boundaries",
+            "raw": 2000,
+            "result": {
+              "boundaries": 14400,
+              "refundNormalizations": 0,
+              "recordsRetained": true,
+              "canonicalParity": true
+            },
+            "elapsedMs": 2721
+          }
+        ],
+        "receipt": "feedbackMigration.receipts[node.bonds]",
+        "rawHistoryRetained": true,
+        "exactCreditDebit": true
+      }
+    },
+    {
+      "kind": "contracts",
+      "result": {
+        "checks": 389,
+        "purchaseCap": 20,
+        "finalPrice": 2329,
+        "pricesThroughCap": 7507,
+        "legacyLevels": [
+          21,
+          40,
+          2000
+        ],
+        "migration": "one-time original-curve Prism restitution; raw levels retained"
+      }
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-persistence",
+      "raw": 7,
+      "oldColdLaunch": true,
+      "reload": true,
+      "deletedReceiptRecovery": true,
+      "confirmedRestore": true
+    },
+    {
+      "kind": "echo-persistence",
+      "raw": 95,
+      "oldColdLaunch": true,
+      "reload": true,
+      "deletedReceiptRecovery": true,
+      "confirmedRestore": true
+    },
+    {
+      "kind": "echo-persistence",
+      "raw": 2000,
+      "oldColdLaunch": true,
+      "reload": true,
+      "deletedReceiptRecovery": true,
+      "confirmedRestore": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        109.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        109.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "persistence",
+      "level": 21,
+      "reload": true,
+      "corruptPrimaryRecovery": true,
+      "repeatedRestore": 2,
+      "ascend": true
+    },
+    {
+      "kind": "persistence",
+      "level": 40,
+      "reload": true,
+      "corruptPrimaryRecovery": true,
+      "repeatedRestore": 2,
+      "ascend": true
+    },
+    {
+      "kind": "persistence",
+      "level": 2000,
+      "reload": true,
+      "corruptPrimaryRecovery": true,
+      "repeatedRestore": 2,
+      "ascend": true
+    },
+    {
+      "kind": "migration-persistence",
+      "level": 21,
+      "oldFirstLaunch": true,
+      "reload": true,
+      "recovery": true,
+      "oldRestoreRepetitions": 2,
+      "ascend": true
+    },
+    {
+      "kind": "migration-persistence",
+      "level": 40,
+      "oldFirstLaunch": true,
+      "reload": true,
+      "recovery": true,
+      "oldRestoreRepetitions": 2,
+      "ascend": true
+    },
+    {
+      "kind": "migration-persistence",
+      "level": 2000,
+      "oldFirstLaunch": true,
+      "reload": true,
+      "recovery": true,
+      "oldRestoreRepetitions": 2,
+      "ascend": true
+    },
+    {
+      "kind": "receipt-recovery",
+      "primaryAmount": 1,
+      "recoveredAmount": 3376,
+      "wallet": 3393
+    },
+    {
+      "kind": "credit-recovery",
+      "damagedEntry": null,
+      "wallet": 3393
+    },
+    {
+      "kind": "credit-recovery",
+      "damagedEntry": {
+        "id": "node.bonds",
+        "amount": 0.5
+      },
+      "wallet": 3393
+    },
+    {
+      "kind": "version-recovery",
+      "primaryVersion": 2,
+      "recoveredVersion": 1,
+      "raw": 20,
+      "wallet": 1000000
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "deleted",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "duplicated",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "changed",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "missing-audit",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "missing-receipt",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "missing-receipt-and-marker",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "missing-receipt-and-history",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "migration-write-failure",
+      "restoreRollback": true,
+      "primaryAuthoritative": true,
+      "oldRecoveryNoDuplicate": true
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema": "lumenfall-closed-evidence-v1",
+  "frozenUtc": "2026-10-11 04:13:11 UTC",
+  "clockProvider": "clock.curr_time",
+  "scope": "Driver-only source/parse preparation; browser unexecuted",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2015,
+      "sha256": "c0d3f7ca024bd5558b50c54de07aa264188d491385c5e2178fd07c0f668bd9a2",
+      "mode": "644"
+    },
+    {
+      "path": "after/shared-layout-ui.cjs",
+      "bytes": 38918,
+      "sha256": "d95e30aa66b101bcfb8afcde023697e12acad581544964ece39a8304aa714abe",
+      "mode": "644"
+    },
+    {
+      "path": "before/index.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+      "mode": "644"
+    },
+    {
+      "path": "before/shared-layout-ui.cjs",
+      "bytes": 38407,
+      "sha256": "da1b05466ec74394402f93733b9f665276b42ed87ff5fa1067554804b548f609",
+      "mode": "644"
+    },
+    {
+      "path": "change.patch",
+      "bytes": 1902,
+      "sha256": "50b00b6e4c0ff83c2ce574a546c15e171db2eb76be5915551139efb0700acafd",
+      "mode": "644"
+    },
+    {
+      "path": "clock.json",
+      "bytes": 199,
+      "sha256": "78b9eadf11f83dd8b663649abd99c597ddc773fa61927b20e34a0e069ecdee22",
+      "mode": "644"
+    },
+    {
+      "path": "observed-geometry.json",
+      "bytes": 19839,
+      "sha256": "7f2772290f7aadf1d4833d9fad9f9a642ceb76055b4c54a9df04cb8440bc756a",
+      "mode": "644"
+    },
+    {
+      "path": "prepared/brand-spacing-inverse.json",
+      "bytes": 264,
+      "sha256": "75333be9b32d7d386a0df0c3f6fb700ac4298ab31db3c8a632a070137513c18d",
+      "mode": "644"
+    },
+    {
+      "path": "prepared/candidate-source.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+      "mode": "644"
+    },
+    {
+      "path": "prepared/instrumented-driver.cjs",
+      "bytes": 35910,
+      "sha256": "2ced1d8acdcee42c3c15985f09fdbc59114747051d2145275b9e15f902da9125",
+      "mode": "644"
+    },
+    {
+      "path": "prepared/preparation.json",
+      "bytes": 5154,
+      "sha256": "0c30aa96761326a3aa0cf0dfd47ef602e1f30b5657ee31d153eab6b3c169a295",
+      "mode": "644"
+    },
+    {
+      "path": "prepared/toast-leading-inverse.json",
+      "bytes": 284,
+      "sha256": "5384dbe3f3d341043ee6a9d84ae2e83e004f41e1200222dec659327ddc41907e",
+      "mode": "644"
+    },
+    {
+      "path": "prepared/wisp-header-inverse.json",
+      "bytes": 357,
+      "sha256": "64b3ea2471b6cf8bcbb5b41f7e6cbd38abd2b560a2029861607b57d8228ca895",
+      "mode": "644"
+    },
+    {
+      "path": "process.json",
+      "bytes": 1553,
+      "sha256": "e009645284783038da53ed5d78deeaded3967f058e04c51764c502a90b26214c",
+      "mode": "644"
+    },
+    {
+      "path": "raw-references.json",
+      "bytes": 1692,
+      "sha256": "11a6be91afbd877797366478ad04c3a3c3e4ba34a5ca8152806c37cd97e97a32",
+      "mode": "644"
+    },
+    {
+      "path": "stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "644"
+    },
+    {
+      "path": "stdout.log",
+      "bytes": 4141,
+      "sha256": "0ea46997a79b88f6fb17a6817c05f1c41c3180ef385d24f0fa70119cf1c3b96e",
+      "mode": "644"
+    }
+  ],
+  "totalFiles": 17,
+  "totalBytes": 1466137,
+  "closedInventoryExcludesOnly": "manifest.json",
+  "freezeClockScope": "Trusted clock observed after underlying source/parse/arithmetic evidence completed; no browser execution by this audit."
+}

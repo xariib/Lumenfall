@@ -1,0 +1,115 @@
+{
+  "mode": "before-published",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "bridgeSha256": "3a7e96895d982f005ed075334c5159b8a5e00c138475f1bc4e34b1790e978c3c",
+  "oracleSha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482",
+  "harnessSha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+  "engine": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  },
+  "scope": "Complete production IIFE, actual bridge and real transaction/storage. Presentation stubbed by unchanged Tree harness; original first three browser seeds/BigInt reward oracle, not browser or native acceptance.",
+  "rows": [
+    {
+      "values": [
+        16,
+        15,
+        0,
+        0
+      ],
+      "want": {
+        "full": 8,
+        "reserve": 1,
+        "progressBonus": 1,
+        "gain": 2
+      },
+      "payout": {
+        "before": {
+          "prisms": 100,
+          "ascendCount": 0,
+          "benchmark": 15
+        },
+        "after": {
+          "prisms": 102,
+          "ascendCount": 1,
+          "benchmark": 16,
+          "depth": 1
+        },
+        "gain": 2
+      },
+      "flagsBefore": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": false,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "flagsAfter": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": false,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "actualReset": true,
+      "primary": 102,
+      "recovery": 102
+    },
+    {
+      "values": [
+        16,
+        15,
+        1,
+        0
+      ],
+      "want": {
+        "full": 8,
+        "reserve": 1,
+        "progressBonus": 1,
+        "gain": 2
+      },
+      "payout": {
+        "before": {
+          "prisms": 100,
+          "ascendCount": 0,
+          "benchmark": 15
+        },
+        "after": {
+          "prisms": 100,
+          "ascendCount": 0,
+          "benchmark": 15,
+          "depth": 17
+        },
+        "gain": 0
+      },
+      "flagsBefore": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": true,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "flagsAfter": {
+        "resetInProgress": false,
+        "resetBootPending": false,
+        "reloadInProgress": true,
+        "offlineBusy": false,
+        "offlinePending": false,
+        "resumeFlowBusy": false
+      },
+      "actualReset": false,
+      "primary": 102,
+      "recovery": 102
+    }
+  ],
+  "restoration": [],
+  "status": "fail",
+  "error": {
+    "name": "AssertionError",
+    "message": "manual payout equals preview/oracle\n\n0 !== 2\n",
+    "stack": "AssertionError [ERR_ASSERTION]: manual payout equals preview/oracle\n\n0 !== 2\n\n    at Object.<anonymous> (/workspace/scratch/0848c4e4f365/tree-ci/repair/full/prism-adapter/repro.cjs:41:12)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "status": "FAIL",
+  "artifactIdentity": {
+    "installedApkPath": "/data/app/com.lumenfall.app-V5nE6Ho_YdTUVs-zXddTjA==/base.apk",
+    "installedApkSha256": "daa99edbca84cfd65d7d9e683ce01e4a52f4d1084f929cd0d70e832a95239dc0",
+    "providedApkSha256": "daa99edbca84cfd65d7d9e683ce01e4a52f4d1084f929cd0d70e832a95239dc0",
+    "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+  },
+  "error": "AssertionError [ERR_ASSERTION]: native restore request never debits/replaces before confirmation\n+ actual - expected\n\n+ '{\"schemaVersion\":2,\"offline12hRefund\":{\"policy\":\"OFFLINE_12H_001:140/160:sum-ceil-6x1.6^level\",\"offline24\":false,\"offline48\":false,\"reservesLevel\":0,\"comets\":0,\"prismPrices\":[],\"prismsExact\":\"0\",\"cometsPaid\":[true,true],\"prismsPaid\":[]},\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":40}},\"receipts\":{\"node.bonds\":{\"from\":20,\"to\":40,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[3376,4896,7098,10292,14924,21639,31377,45496,65969,95654,138698,201113,291613,422839,613116,889018,1289075,1869159,2710280,3929906]},\"creditAuditVersion\":1,\"remainingCredits\":[]}}},\"refundCredits\":{\"prisms\":[]},\"lumen\":1063.4,\"shards\":128.9,\"prisms\":19997671,\"comets\":35,\"motes\":4,\"sigils\":3,\"depth\":29,\"maxDepthEver\":100,\"riftMode\":\"farm\",\"farmDepth\":29,\"farmReturnDepth\":30,\"enemyDepth\":29,\"enemyHp\":489.03273689999975,\"enemyMaxHp\":507,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":7,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":79.17175000000009,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":0,\"steady\":0,\"echo\":0,\"bonds\":40,\"swift\":0,\"momentum\":0,\"reserves\":0},\"research\":{\"focus\":0,\"sense\":0,\"formation\":0,\"resolve\":0,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":0,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":0,\"measuredinquiry\":0},\"activeStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"asc5\":true},\"owned\":{},\"riftTheme\":\"default\",\"cometTrial\":null,\"cometTrialMarks\":{},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":30,\"totalOfflineSeconds\":411.178,\"luminousAccum\":0.4200000000000005,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":16,\"loginStreak\":0,\"questDay\":\"2026-10-12\",\"questIds\":[],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":0,\"kills\":30,\"empowers\":0,\"research\":0,\"bossKills\":2,\"luminousKills\":1,\"ascends\":0},\"lastSeen\":1791768306859,\"_autoTapAccum\":0,\"_autoEmpowerAccum\":0}'\n- '{\"schemaVersion\":2,\"offline12hRefund\":{\"policy\":\"OFFLINE_12H_001:140/160:sum-ceil-6x1.6^level\",\"offline24\":false,\"offline48\":false,\"reservesLevel\":0,\"comets\":0,\"prismPrices\":[],\"prismsExact\":\"0\",\"cometsPaid\":[true,true],\"prismsPaid\":[]},\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":40}},\"receipts\":{\"node.bonds\":{\"from\":20,\"to\":40,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[3376,4896,7098,10292,14924,21639,31377,45496,65969,95654,138698,201113,291613,422839,613116,889018,1289075,1869159,2710280,3929906]},\"creditAuditVersion\":1,\"remainingCredits\":[]}}},\"refundCredits\":{\"prisms\":[]},\"lumen\":1063.4,\"shards\":128.9,\"prisms\":19997671,\"comets\":35,\"motes\":4,\"sigils\":3,\"depth\":29,\"maxDepthEver\":100,\"riftMode\":\"farm\",\"farmDepth\":29,\"farmReturnDepth\":30,\"enemyDepth\":29,\"enemyHp\":494.2267368999999,\"enemyMaxHp\":507,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":7,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":67.50508333333339,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":0,\"steady\":0,\"echo\":0,\"bonds\":40,\"swift\":0,\"momentum\":0,\"reserves\":0},\"research\":{\"focus\":0,\"sense\":0,\"formation\":0,\"resolve\":0,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":0,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":0,\"measuredinquiry\":0},\"activeStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"asc5\":true},\"owned\":{},\"riftTheme\":\"default\",\"cometTrial\":null,\"cometTrialMarks\":{},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":30,\"totalOfflineSeconds\":411.178,\"luminousAccum\":0.4200000000000005,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":16,\"loginStreak\":0,\"questDay\":\"2026-10-12\",\"questIds\":[],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":0,\"kills\":30,\"empowers\":0,\"research\":0,\"bossKills\":2,\"luminousKills\":1,\"ascends\":0},\"lastSeen\":1791768295637,\"_autoTapAccum\":0,\"_autoEmpowerAccum\":0}'\n\n    at accept (/workspace/CHEAPER_BONDS_CAP_001/docs/qa/cheaper-bonds-cap-001/finish/native/native-f21.cjs:99:10)\n    at async /workspace/CHEAPER_BONDS_CAP_001/docs/qa/cheaper-bonds-cap-001/finish/native/native-f21.cjs:111:349",
+  "records": [
+    {
+      "kind": "signed-update",
+      "baseline": {
+        "installedApkPath": "/data/app/com.lumenfall.app-lqL0vlivmMGuZxnx0hZuoQ==/base.apk",
+        "installedApkSha256": "45d1032ae6e77362d3540db740c6cfbdc4d275f2e3f6b98f4cecb1229e3205e7",
+        "providedApkSha256": "45d1032ae6e77362d3540db740c6cfbdc4d275f2e3f6b98f4cecb1229e3205e7",
+        "sourceSha256": "5c4b3dacfed70a25c4aed45496e84af7ae8efe310eed43ec002988e854d7091c"
+      },
+      "install": "Success\n",
+      "storageBytes": 112128,
+      "beforeSha256": "80e219d5f4a1014f9338638a2dec5bad4abf775ce8b27887984bd170502b9f9d",
+      "afterSha256": "80e219d5f4a1014f9338638a2dec5bad4abf775ce8b27887984bd170502b9f9d"
+    },
+    {
+      "kind": "old-save-migration",
+      "prisms": 19997671,
+      "raw": 40,
+      "receipt": {
+        "from": 20,
+        "to": 40,
+        "unpricedFrom": 0,
+        "amounts": {
+          "prisms": [
+            3376,
+            4896,
+            7098,
+            10292,
+            14924,
+            21639,
+            31377,
+            45496,
+            65969,
+            95654,
+            138698,
+            201113,
+            291613,
+            422839,
+            613116,
+            889018,
+            1289075,
+            1869159,
+            2710280,
+            3929906
+          ]
+        },
+        "creditAuditVersion": 1,
+        "remainingCredits": []
+      },
+      "refund": 12655538,
+      "coldReloadOnce": true
+    },
+    {
+      "kind": "native-cap-no-debit",
+      "raw": 40,
+      "blockedAttempts": 100,
+      "prisms": 19997671
+    },
+    {
+      "kind": "native-mobile-touch",
+      "width": 320,
+      "minimumContrast": 9.09870030710368,
+      "target": [
+        72,
+        46
+      ],
+      "finalLevel": 20,
+      "noMaxedDebit": true
+    },
+    {
+      "kind": "native-accessibility",
+      "node": {
+        "nodeId": "1",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "button"
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Cheaper Recruitment — Maxed",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "value": {
+                "type": "computedString",
+                "value": "Cheaper Recruitment — Maxed"
+              },
+              "attribute": "aria-label",
+              "attributeValue": {
+                "type": "string",
+                "value": "Cheaper Recruitment — Maxed"
+              }
+            },
+            {
+              "type": "relatedElement",
+              "superseded": true,
+              "nativeSource": "label"
+            },
+            {
+              "type": "contents",
+              "value": {
+                "type": "computedString",
+                "value": "MAXED"
+              },
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "disabled",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          {
+            "name": "invalid",
+            "value": {
+              "type": "token",
+              "value": "false"
+            }
+          }
+        ],
+        "childIds": [],
+        "backendDOMNodeId": 166
+      }
+    },
+    {
+      "kind": "native-mobile-touch",
+      "width": 390,
+      "minimumContrast": 9.09870030710368,
+      "target": [
+        78,
+        46
+      ],
+      "finalLevel": 20,
+      "noMaxedDebit": true
+    },
+    {
+      "kind": "native-mobile-touch",
+      "width": 430,
+      "minimumContrast": 9.09870030710368,
+      "target": [
+        78,
+        46
+      ],
+      "finalLevel": 20,
+      "noMaxedDebit": true
+    },
+    {
+      "kind": "native-keyboard",
+      "tabToBonds": true,
+      "outline": "auto",
+      "enterFinalPurchase": true
+    },
+    {
+      "kind": "native-large-refund-usable",
+      "raw": 95,
+      "price": 3,
+      "exactConservation": true
+    },
+    {
+      "kind": "native-mature-wallet-rejection",
+      "prisms": 1e+30,
+      "noDebit": true
+    },
+    {
+      "kind": "native-old-backup-confirmed",
+      "restoreAttempt": 0,
+      "prisms": 19997671,
+      "raw": 40
+    }
+  ],
+  "runtimeErrors": []
+}

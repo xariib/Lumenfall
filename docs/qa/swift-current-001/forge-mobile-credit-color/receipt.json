@@ -1,0 +1,573 @@
+{
+  "status": "fail",
+  "sourceSha256": "36c6fcb44987812409d10956481b232a2dc2274a29e5761ccb9ff88c886955ef",
+  "node": "v24.19.0",
+  "browser": "chromium",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: real Enter spends original2402 Shard credit once\n    at ok (/workspace/Lumenfall-swift-current/tests/behavioral/.forge-mobile-100613.cjs:50:27)\n    at run (/workspace/Lumenfall-swift-current/tests/behavioral/.forge-mobile-100613.cjs:200:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async /workspace/Lumenfall-swift-current/tests/behavioral/.forge-mobile-100613.cjs:232:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"charge\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;shard&quot; data-price-amount=&quot;30&quot; style=&quot;color:var(--ink)&",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"charge\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Swift Recovery — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"charge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Swift Recovery — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"charge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Swift Recovery — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"charge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Swift Recovery — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"arcanecal\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Arcane Calibration — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"arcanecal\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Arcane Calibration — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"arcanecal\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Arcane Calibration — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"arcanecal\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Arcane Calibration — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;90000&quot; style=&quot;color:var(",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"conduction\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resource Conduction — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"conduction\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resource Conduction — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"conduction\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resource Conduction — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"luminoustracking\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Luminous Tracking — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"luminoustracking\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Luminous Tracking — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"luminoustracking\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Luminous Tracking — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"luminoustracking\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Luminous Tracking — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"cauterize\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;36000&quot; style=&quot;color:var(-",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"cauterize\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Cauterize — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"cauterize\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Cauterize — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"cauterize\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Cauterize — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"cauterize\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Cauterize — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"fracturekey\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Fracture Key — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"fracturekey\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Fracture Key — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"fracturekey\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Fracture Key — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"fracturekey\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Fracture Key — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"guardianseal\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Guardian Seal — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"guardianseal\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Guardian Seal — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"guardianseal\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Guardian Seal — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"guardianseal\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Guardian Seal — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"spillway\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Rift Spillway — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"spillway\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Rift Spillway — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"spillway\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Rift Spillway — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"spillway\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Rift Spillway — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"sustainedchannel\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;6703000&quot; style=&quot;co",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"sustainedchannel\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Sustained Channel — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"sustainedchannel\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Sustained Channel — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"sustainedchannel\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Sustained Channel — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"sustainedchannel\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Sustained Channel — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"tapconduit\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Tap Conduit — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"tapconduit\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Tap Conduit — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"tapconduit\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Tap Conduit — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"tapconduit\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Tap Conduit — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"guardiancadence\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;174000&quot; style=&quot;colo",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"guardiancadence\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Guardian Cadence — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"guardiancadence\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Guardian Cadence — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"guardiancadence\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Guardian Cadence — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"guardiancadence\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Guardian Cadence — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"relay\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--in",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"relay\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resonance Relay — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"relay\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Relay — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"relay\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Relay — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"relay\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Relay — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"resonantedge\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resonant Edge — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonantedge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonant Edge — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonantedge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonant Edge — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonantedge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonant Edge — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"victorycharge\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;1401000&quot; style=&quot;color",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"victorycharge\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Victory Charge — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"victorycharge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Victory Charge — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"victorycharge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Victory Charge — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"victorycharge\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Victory Charge — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"amplifiertrim\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Amplifier Trim — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"amplifiertrim\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Amplifier Trim — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"amplifiertrim\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Amplifier Trim — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"amplifiertrim\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Amplifier Trim — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"dualchannel\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Dual Channel — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"dualchannel\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Dual Channel — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"dualchannel\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Dual Channel — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"dualchannel\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Dual Channel — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"overflowconduit\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;3978000&quot; style=&quot;col",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"overflowconduit\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Overflow Conduit — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"overflowconduit\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Overflow Conduit — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"overflowconduit\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Overflow Conduit — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"overflowconduit\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Overflow Conduit — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"resonancecells\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;19032000&quot; style=&quot;col",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"resonancecells\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resonance Cells — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancecells\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Cells — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancecells\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Cells — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancecells\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Cells — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Upgrade ×1</span>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"resonancecascade\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resonance Cascade — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancecascade\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Cascade — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancecascade\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Cascade — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancecascade\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Cascade — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"resonancereclaim\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;153442000&quot; style=&quot;",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle \" data-queue=\"resonancereclaim\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resonance Reclaim — Queue OFF\">Queue OFF</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancereclaim\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Reclaim — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancereclaim\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Reclaim — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"node-queue-toggle active\" data-queue=\"resonancereclaim\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Resonance Reclaim — Queue ON\">Queue ON</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": "Enter",
+      "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;24000&quot; style=&quot;color:var(-",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;24000&quot; style=&quot;color:var(-",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": "Enter",
+      "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;38401&quot; style=&quot;color:var(-",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 2012,
+  "stderr": "02.048456:ERROR:third_party/crashpad/crashpad/util/file/filesystem_posix.cc:63] mkdir : No such file or directory (2)\nchrome_crashpad_handler: --database is required\nTry 'chrome_crashpad_handler --help' for more information.\n[100630:100654:1012/081102.104960:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[100630:100654:1012/081102.111941:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100654:1012/081102.112136:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[100630:100654:1012/081102.112233:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[100630:100654:1012/081102.112245:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100666:1012/081102.122514:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100668: Read-only file system (30)\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\nFontconfig error: No writable cache directories\n[100630:100654:1012/081102.551006:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100666:1012/081102.597026:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100684: Read-only file system (30)\n[100630:100654:1012/081102.597050:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100630:1012/081102.624928:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100630:1012/081102.625026:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100654:1012/081102.625427:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100654:1012/081102.625466:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100630:1012/081102.626681:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100630:1012/081102.631579:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n\n(process:100630): dconf-CRITICAL **: 08:11:02.646: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n\n(process:100630): dconf-CRITICAL **: 08:11:02.646: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n\n(process:100630): dconf-CRITICAL **: 08:11:02.646: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n[100630:100666:1012/081102.678760:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100715: Read-only file system (30)\n[100630:100666:1012/081102.717766:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100724: Read-only file system (30)\n[100630:100666:1012/081102.722129:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100725: Read-only file system (30)\n[100630:100654:1012/081102.735580:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[100630:100654:1012/081102.735689:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[100630:100630:1012/081102.736209:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100630:1012/081102.736473:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100654:1012/081102.736540:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100666:1012/081102.769379:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100740: Read-only file system (30)\n[100630:100666:1012/081102.790238:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100747: Read-only file system (30)\n[100630:100666:1012/081102.794753:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 100750: Read-only file system (30)\n[100630:100630:1012/081102.804305:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[100630:100630:1012/081102.805070:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100654:1012/081102.805466:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100630:1012/081102.830898:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[100630:100654:1012/081102.831000:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[100630:100630:1012/081102.841973:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}

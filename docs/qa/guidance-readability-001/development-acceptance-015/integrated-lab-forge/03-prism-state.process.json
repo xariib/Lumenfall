@@ -1,0 +1,36 @@
+{
+  "group": "lab-forge",
+  "id": "prism-state",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/behavioral/prism-earning-state.cjs",
+    "index.html"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:09:01.212Z",
+  "endedHostUtc": "2026-10-11T15:09:02.702Z",
+  "elapsedNanoseconds": "1490239222",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "03-prism-state.stdout.log",
+    "bytes": 449,
+    "sha256": "5e8365d54f8faff987fc2117748194f54dba8a0f1d6470fa779235883910d812",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "03-prism-state.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 3506,
+    "declaredCausalControls": 0
+  }
+}

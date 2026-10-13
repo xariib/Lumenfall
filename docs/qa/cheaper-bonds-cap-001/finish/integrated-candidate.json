@@ -1,0 +1,418 @@
+{
+  "status": "PASS",
+  "sourcePath": "/workspace/f21-final-source/index.html",
+  "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc",
+  "browserIdentity": {
+    "selected": "/usr/bin/chromium",
+    "resolved": "/usr/bin/chromium",
+    "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)"
+  },
+  "mutation": "none",
+  "observedAt": "2026-10-12T00:04:40.645Z",
+  "records": [
+    {
+      "kind": "refund-contracts",
+      "result": {
+        "checks": 201,
+        "records": [
+          {
+            "raw": 19,
+            "wallet": 1234,
+            "creditEntries": 0,
+            "retainedValue": "1234",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 20,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "0",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "3376",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 40,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "12655538",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 1e+30,
+            "creditEntries": 1,
+            "retainedValue": "1000000000000000019884624842032",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 2000,
+            "wallet": 1000000,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534644397160",
+            "unpricedFrom": 1910
+          },
+          {
+            "raw": 1e+300,
+            "wallet": 0,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534643397160",
+            "unpricedFrom": 1910
+          },
+          {
+            "kind": "completed-refund-boundaries",
+            "raw": 2000,
+            "boundaries": 100,
+            "priceCalculations": 0,
+            "elapsedMs": 183
+          },
+          {
+            "kind": "actual-auto-ascend-boundaries",
+            "raw": 2000,
+            "result": {
+              "boundaries": 14400,
+              "refundNormalizations": 0,
+              "recordsRetained": true,
+              "canonicalParity": true
+            },
+            "elapsedMs": 268.09999999962747
+          }
+        ],
+        "receipt": "feedbackMigration.receipts[node.bonds]",
+        "rawHistoryRetained": true,
+        "exactCreditDebit": true
+      }
+    },
+    {
+      "kind": "contracts",
+      "result": {
+        "checks": 389,
+        "purchaseCap": 20,
+        "finalPrice": 2329,
+        "pricesThroughCap": 7507,
+        "legacyLevels": [
+          21,
+          40,
+          2000
+        ],
+        "migration": "one-time original-curve Prism restitution; raw levels retained"
+      }
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        109.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        109.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        115.140625,
+        64
+      ],
+      "nativeTouch": true,
+      "nativeKeyboard": true,
+      "focusAfterCap": "swift",
+      "legacyFit": true
+    },
+    {
+      "kind": "screenshot",
+      "file": "/tmp/mobile-cap-390.png"
+    },
+    {
+      "kind": "persistence",
+      "level": 21,
+      "reload": true,
+      "corruptPrimaryRecovery": true,
+      "repeatedRestore": 2,
+      "ascend": true
+    },
+    {
+      "kind": "persistence",
+      "level": 40,
+      "reload": true,
+      "corruptPrimaryRecovery": true,
+      "repeatedRestore": 2,
+      "ascend": true
+    },
+    {
+      "kind": "persistence",
+      "level": 2000,
+      "reload": true,
+      "corruptPrimaryRecovery": true,
+      "repeatedRestore": 2,
+      "ascend": true
+    },
+    {
+      "kind": "migration-persistence",
+      "level": 21,
+      "oldFirstLaunch": true,
+      "reload": true,
+      "recovery": true,
+      "oldRestoreRepetitions": 2,
+      "ascend": true
+    },
+    {
+      "kind": "migration-persistence",
+      "level": 40,
+      "oldFirstLaunch": true,
+      "reload": true,
+      "recovery": true,
+      "oldRestoreRepetitions": 2,
+      "ascend": true
+    },
+    {
+      "kind": "migration-persistence",
+      "level": 2000,
+      "oldFirstLaunch": true,
+      "reload": true,
+      "recovery": true,
+      "oldRestoreRepetitions": 2,
+      "ascend": true
+    },
+    {
+      "kind": "receipt-recovery",
+      "primaryAmount": 1,
+      "recoveredAmount": 3376,
+      "wallet": 3393
+    },
+    {
+      "kind": "credit-recovery",
+      "damagedEntry": null,
+      "wallet": 3393
+    },
+    {
+      "kind": "credit-recovery",
+      "damagedEntry": {
+        "id": "node.bonds",
+        "amount": 0.5
+      },
+      "wallet": 3393
+    },
+    {
+      "kind": "version-recovery",
+      "primaryVersion": 2,
+      "recoveredVersion": 1,
+      "raw": 20,
+      "wallet": 1000000
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "deleted",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "duplicated",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "changed",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "credit-balance-recovery",
+      "damage": "missing-audit",
+      "raw": 95,
+      "exactCreditAndReceiptRetained": true
+    },
+    {
+      "kind": "refund-receipt-recovery",
+      "damage": "missing-receipt",
+      "raw": 40,
+      "wallet": 12655555
+    },
+    {
+      "kind": "refund-receipt-recovery",
+      "damage": "below-cap-receipt",
+      "raw": 19,
+      "wallet": 17
+    },
+    {
+      "kind": "migration-write-failure",
+      "restoreRollback": true,
+      "primaryAuthoritative": true,
+      "oldRecoveryNoDuplicate": true
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  }
+}

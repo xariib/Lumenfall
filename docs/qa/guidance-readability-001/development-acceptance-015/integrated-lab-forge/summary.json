@@ -1,0 +1,207 @@
+{
+  "schema": "lumenfall.guidance-integrated-capture/v4",
+  "status": "ALL_COMMANDS_EXIT_ZERO_REQUIRES_SEMANTIC_REVIEW",
+  "group": "lab-forge",
+  "mergeSha": "354e19ff956b47cf8833a8ae25c599298cbe659f",
+  "tree": "381a7951d3b45a1a0a64e49b7dd13ed11d6022c6",
+  "orderedParents": [
+    "684bfc52bb2ca523124fe63981188b9a8004d747",
+    "bfed924be57a3b25e06c2f6e4ba3a38e9fc940b6"
+  ],
+  "configSha256": "c9b1603b63ae88299128e73344f8a969aa21bddbeaaa38369403be94366eb81e",
+  "planSha256": "095d8f0bfc84248af6f1cb3c961be0d429ecf1b245950c9794467d67649d838a",
+  "runnerSha256": "e710462a27fc63375e29f5fb90e9c41c615598ac5034586222f3e5c8ba58d092",
+  "hostTimeNote": "Raw process-host timestamps are unchanged; external trusted UTC anchors are recorded separately.",
+  "commands": [
+    {
+      "group": "lab-forge",
+      "id": "lab-core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:08:56.528Z",
+      "endedHostUtc": "2026-10-11T15:08:59.355Z",
+      "elapsedNanoseconds": "2826335583",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "01-lab-core.stdout.log",
+        "bytes": 3328,
+        "sha256": "0df680a6e2c7b2cee14f9fc24757e3a49aaac4ba1293b64c1deaa72c6a9a320d",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "01-lab-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 2464,
+        "declaredCausalControls": 10
+      }
+    },
+    {
+      "group": "lab-forge",
+      "id": "lab-boundary",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/lab-expansion-boundary.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:08:59.749Z",
+      "endedHostUtc": "2026-10-11T15:09:00.789Z",
+      "elapsedNanoseconds": "1039379025",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "02-lab-boundary.stdout.log",
+        "bytes": 1158,
+        "sha256": "f5d9dc08e8ea864ef83193a02adc3bf73baac3511edd1e5965a56a7762782099",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "02-lab-boundary.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 2344,
+        "declaredCausalControls": 5
+      }
+    },
+    {
+      "group": "lab-forge",
+      "id": "prism-state",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/prism-earning-state.cjs",
+        "index.html"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:09:01.212Z",
+      "endedHostUtc": "2026-10-11T15:09:02.702Z",
+      "elapsedNanoseconds": "1490239222",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "03-prism-state.stdout.log",
+        "bytes": 449,
+        "sha256": "5e8365d54f8faff987fc2117748194f54dba8a0f1d6470fa779235883910d812",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "03-prism-state.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 3506,
+        "declaredCausalControls": 0
+      }
+    },
+    {
+      "group": "lab-forge",
+      "id": "forge-core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:09:03.178Z",
+      "endedHostUtc": "2026-10-11T15:09:04.539Z",
+      "elapsedNanoseconds": "1362041363",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "04-forge-core.stdout.log",
+        "bytes": 3772,
+        "sha256": "dc81f360145d33b82ed374e0b7d354f5552628dec4352aed147a2676fbf37f04",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "04-forge-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 9315,
+        "declaredCausalControls": 25
+      }
+    },
+    {
+      "group": "lab-forge",
+      "id": "forge-v8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/forge-expansion-legacy.cjs",
+        "index.html"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:09:04.998Z",
+      "endedHostUtc": "2026-10-11T15:09:06.246Z",
+      "elapsedNanoseconds": "1248844313",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "05-forge-v8.stdout.log",
+        "bytes": 906,
+        "sha256": "37ad93a62704ffb9a2f6cabd37d451665da21ed7ad544b9b6bae98c8574bf341",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "05-forge-v8.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 2452,
+        "declaredCausalControls": 0
+      }
+    }
+  ],
+  "validations": 6,
+  "failure": null,
+  "limitations": [
+    "Exit status alone is not semantic acceptance.",
+    "No game/browser/CI process was retried by this wrapper.",
+    "Native Android/WebView/textZoom/TalkBack acceptance and APK publication are outside this execution."
+  ]
+}

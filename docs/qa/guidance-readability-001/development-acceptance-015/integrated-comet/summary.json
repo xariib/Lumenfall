@@ -1,0 +1,171 @@
+{
+  "schema": "lumenfall.guidance-integrated-capture/v4",
+  "status": "ALL_COMMANDS_EXIT_ZERO_REQUIRES_SEMANTIC_REVIEW",
+  "group": "comet",
+  "mergeSha": "354e19ff956b47cf8833a8ae25c599298cbe659f",
+  "tree": "381a7951d3b45a1a0a64e49b7dd13ed11d6022c6",
+  "orderedParents": [
+    "684bfc52bb2ca523124fe63981188b9a8004d747",
+    "bfed924be57a3b25e06c2f6e4ba3a38e9fc940b6"
+  ],
+  "configSha256": "c9b1603b63ae88299128e73344f8a969aa21bddbeaaa38369403be94366eb81e",
+  "planSha256": "095d8f0bfc84248af6f1cb3c961be0d429ecf1b245950c9794467d67649d838a",
+  "runnerSha256": "e710462a27fc63375e29f5fb90e9c41c615598ac5034586222f3e5c8ba58d092",
+  "hostTimeNote": "Raw process-host timestamps are unchanged; external trusted UTC anchors are recorded separately.",
+  "commands": [
+    {
+      "group": "comet",
+      "id": "core",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:08:58.818Z",
+      "endedHostUtc": "2026-10-11T15:08:59.830Z",
+      "elapsedNanoseconds": "1012385123",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "01-core.stdout.log",
+        "bytes": 21827,
+        "sha256": "34a0275bae6e6729864a72ba20ecb03231e90652c252b2c07687c46c541e05d2",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "01-core.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 10490,
+        "declaredCausalControls": 18
+      }
+    },
+    {
+      "group": "comet",
+      "id": "numerical",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-numerical.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:09:00.234Z",
+      "endedHostUtc": "2026-10-11T15:09:01.787Z",
+      "elapsedNanoseconds": "1553551616",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "02-numerical.stdout.log",
+        "bytes": 206507,
+        "sha256": "1bc3cfad6712197179cfb16bf824f60a3f2a584b1b14afbb90eeb22b999c5964",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "02-numerical.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 681747,
+        "declaredCausalControls": 8
+      }
+    },
+    {
+      "group": "comet",
+      "id": "offline",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:09:02.470Z",
+      "endedHostUtc": "2026-10-11T15:09:03.547Z",
+      "elapsedNanoseconds": "1077353245",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "03-offline.stdout.log",
+        "bytes": 44846,
+        "sha256": "fdf373a8d16fb5f749166b507dbb7083c622ab6cff1b2695866ea1593dad8dd1",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "03-offline.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 96885,
+        "declaredCausalControls": 7
+      }
+    },
+    {
+      "group": "comet",
+      "id": "v8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-v8.cjs",
+        "index.html"
+      ],
+      "cwd": "/workspace/Lumenfall-guidance-integrated",
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "startedHostUtc": "2026-10-11T15:09:04.086Z",
+      "endedHostUtc": "2026-10-11T15:09:05.023Z",
+      "elapsedNanoseconds": "937326707",
+      "exit": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "04-v8.stdout.log",
+        "bytes": 2165,
+        "sha256": "7e83fa32f983bcbb37fcd01da5f04b15c5ac784a302b68bb15e6fb559ae8bddd",
+        "mode": "0600"
+      },
+      "stderr": {
+        "path": "04-v8.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "0600"
+      },
+      "historicalExpected": {
+        "checks": 1362,
+        "declaredCausalControls": 0
+      }
+    }
+  ],
+  "validations": 5,
+  "failure": null,
+  "limitations": [
+    "Exit status alone is not semantic acceptance.",
+    "No game/browser/CI process was retried by this wrapper.",
+    "Native Android/WebView/textZoom/TalkBack acceptance and APK publication are outside this execution."
+  ]
+}

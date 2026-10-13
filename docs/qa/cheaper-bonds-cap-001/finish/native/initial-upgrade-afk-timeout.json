@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "artifactIdentity": {
+    "installedApkPath": "/data/app/com.lumenfall.app-MQ6t9IRzdrJEbVeBDkms2A==/base.apk",
+    "installedApkSha256": "daa99edbca84cfd65d7d9e683ce01e4a52f4d1084f929cd0d70e832a95239dc0",
+    "providedApkSha256": "daa99edbca84cfd65d7d9e683ce01e4a52f4d1084f929cd0d70e832a95239dc0",
+    "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+  },
+  "error": "Error: first migration persisted timed out\n    at until (/workspace/CHEAPER_BONDS_CAP_001/docs/qa/cheaper-bonds-cap-001/finish/native/native-f21.cjs:11:160)\n    at async accept (/workspace/CHEAPER_BONDS_CAP_001/docs/qa/cheaper-bonds-cap-001/finish/native/native-f21.cjs:76:202)\n    at async /workspace/CHEAPER_BONDS_CAP_001/docs/qa/cheaper-bonds-cap-001/finish/native/native-f21.cjs:108:260",
+  "records": [
+    {
+      "kind": "signed-update",
+      "baseline": {
+        "installedApkPath": "/data/app/com.lumenfall.app-muj93FGXT1SP1BWM2FNONw==/base.apk",
+        "installedApkSha256": "45d1032ae6e77362d3540db740c6cfbdc4d275f2e3f6b98f4cecb1229e3205e7",
+        "providedApkSha256": "45d1032ae6e77362d3540db740c6cfbdc4d275f2e3f6b98f4cecb1229e3205e7",
+        "sourceSha256": "5c4b3dacfed70a25c4aed45496e84af7ae8efe310eed43ec002988e854d7091c"
+      },
+      "install": "Success\n",
+      "storageBytes": 148992,
+      "beforeSha256": "d81daa5ad7cf9942e62581375d077b9a24f1cda525b9cd41d36248426a660a6a",
+      "afterSha256": "d81daa5ad7cf9942e62581375d077b9a24f1cda525b9cd41d36248426a660a6a"
+    }
+  ],
+  "runtimeErrors": []
+}

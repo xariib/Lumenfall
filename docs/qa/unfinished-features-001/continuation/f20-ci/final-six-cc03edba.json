@@ -1,0 +1,1525 @@
+{
+  "observedUtc": "2026-10-12 01:41:28 UTC",
+  "head": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "checkRuns": {
+    "total_count": 9,
+    "check_runs": [
+      {
+        "id": 114620832924,
+        "name": "Lumenfall pre-merge validation",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-8cnA",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "f0477c95-f9fb-50ae-a82d-1017163716fd",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620832924",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090675/job/114620832924",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090675/job/114620832924",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-12T00:59:15Z",
+        "completed_at": "2026-10-12T01:40:04Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620832924/annotations"
+        },
+        "check_suite": {
+          "id": 103466920494
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620801408,
+        "name": "closeout",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-6hgA",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "130ac3e0-08a9-54aa-90bc-8569d2b8a023",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620801408",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090780/job/114620801408",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090780/job/114620801408",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-12T00:59:03Z",
+        "completed_at": "2026-10-12T00:58:56Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 0,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620801408/annotations"
+        },
+        "check_suite": {
+          "id": 103466920765
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620777847,
+        "name": "prism-feature",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-5Fdw",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "30ee3536-fbca-5001-b99b-f07bbe15e5bb",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620777847",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090656/job/114620777847",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090656/job/114620777847",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-12T00:58:56Z",
+        "completed_at": "2026-10-12T00:58:55Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 0,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620777847/annotations"
+        },
+        "check_suite": {
+          "id": 103466920448
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620776753,
+        "name": "tree",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-5BMQ",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "2d000d92-4b45-51c7-83b3-e3c09a430112",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776753",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090697/job/114620776753",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090697/job/114620776753",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-12T00:58:58Z",
+        "completed_at": "2026-10-12T01:03:04Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776753/annotations"
+        },
+        "check_suite": {
+          "id": 103466920555
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620776731,
+        "name": "shared-ui",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-5BGw",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "1c0c6fa0-30e0-51ea-97af-8f48883765f5",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776731",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090733/job/114620776731",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090733/job/114620776731",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-12T00:58:58Z",
+        "completed_at": "2026-10-12T01:02:34Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776731/annotations"
+        },
+        "check_suite": {
+          "id": 103466920652
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620776664,
+        "name": "lab",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-5A2A",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "ab59ee1b-1810-5364-8fd0-eca162d512fd",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776664",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090690/job/114620776664",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090690/job/114620776664",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-12T00:58:58Z",
+        "completed_at": "2026-10-12T01:00:52Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776664/annotations"
+        },
+        "check_suite": {
+          "id": 103466920540
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620776449,
+        "name": "comet",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-5AAQ",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "412ce318-8970-57b8-af70-333de0be5f76",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776449",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090661/job/114620776449",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090661/job/114620776449",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-12T00:58:58Z",
+        "completed_at": "2026-10-12T01:03:09Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776449/annotations"
+        },
+        "check_suite": {
+          "id": 103466920454
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620776308,
+        "name": "forge",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-4_dA",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "00650f8a-8bee-5e61-8b6b-6cbe3c855495",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776308",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090640/job/114620776308",
+        "details_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090640/job/114620776308",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-12T00:58:57Z",
+        "completed_at": "2026-10-12T01:04:44Z",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620776308/annotations"
+        },
+        "check_suite": {
+          "id": 103466920393
+        },
+        "app": {
+          "id": 15368,
+          "client_id": "Iv1.05c79e9ad1f6bdfa",
+          "slug": "github-actions",
+          "node_id": "MDM6QXBwMTUzNjg=",
+          "owner": {
+            "login": "github",
+            "id": 9919,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github",
+            "html_url": "https://github.com/github",
+            "followers_url": "https://api.github.com/users/github/followers",
+            "following_url": "https://api.github.com/users/github/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+            "organizations_url": "https://api.github.com/users/github/orgs",
+            "repos_url": "https://api.github.com/users/github/repos",
+            "events_url": "https://api.github.com/users/github/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitHub Actions",
+          "description": "Automate your workflow from idea to production",
+          "external_url": "https://help.github.com/en/actions",
+          "html_url": "https://github.com/apps/github-actions",
+          "created_at": "2018-07-30T09:30:17Z",
+          "updated_at": "2026-06-18T16:17:48Z",
+          "permissions": {
+            "actions": "write",
+            "administration": "read",
+            "artifact_metadata": "write",
+            "attestations": "write",
+            "checks": "write",
+            "code_quality": "write",
+            "contents": "write",
+            "copilot_requests": "write",
+            "deployments": "write",
+            "discussions": "write",
+            "drives": "write",
+            "issues": "write",
+            "merge_queues": "write",
+            "metadata": "read",
+            "models": "read",
+            "packages": "write",
+            "pages": "write",
+            "pull_requests": "write",
+            "repository_hooks": "write",
+            "repository_projects": "write",
+            "security_events": "write",
+            "statuses": "write",
+            "vulnerability_alerts": "read"
+          },
+          "events": [
+            "branch_protection_rule",
+            "check_run",
+            "check_suite",
+            "create",
+            "delete",
+            "deployment",
+            "deployment_status",
+            "discussion",
+            "discussion_comment",
+            "fork",
+            "gollum",
+            "issues",
+            "issue_comment",
+            "label",
+            "merge_group",
+            "milestone",
+            "page_build",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "registry_package",
+            "release",
+            "repository",
+            "repository_dispatch",
+            "status",
+            "watch",
+            "workflow_dispatch",
+            "workflow_run"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 114620768602,
+        "name": "GitGuardian Security Checks",
+        "node_id": "CR_kwDOUF0Vls8AAAAar-4hWg",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "external_id": "",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620768602",
+        "html_url": "https://github.com/karahaNx/Lumenfall/runs/114620768602",
+        "details_url": "https://dashboard.gitguardian.com",
+        "status": "completed",
+        "conclusion": "neutral",
+        "started_at": "2026-10-12T00:58:53Z",
+        "completed_at": "2026-10-12T00:58:55Z",
+        "output": {
+          "title": "Could not complete scanning of your commits",
+          "summary": "Pull request too large to scan.\n\nThis pull request exceeds the configured size limit, so GitGuardian skipped its scan to preserve the GitHub API rate limit budget shared with the rest of your organization.",
+          "text": "🦉 [GitGuardian](https://dashboard.gitguardian.com/auth/login/?utm_medium=checkruns&amp;utm_source=github&amp;utm_campaign=cr1) detects secrets in your source code to help developers and security teams secure the modern development process. You are seeing this because you or someone else with access to this repository has authorized GitGuardian to scan your pull request.<br/>\n",
+          "annotations_count": 0,
+          "annotations_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620768602/annotations"
+        },
+        "check_suite": {
+          "id": 103466908986
+        },
+        "app": {
+          "id": 46505,
+          "client_id": "Iv1.ec3c001966b4cc5a",
+          "slug": "gitguardian",
+          "node_id": "MDM6QXBwNDY1MDU=",
+          "owner": {
+            "login": "GitGuardian",
+            "id": 27360172,
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3MzYwMTcy",
+            "avatar_url": "https://avatars.githubusercontent.com/u/27360172?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/GitGuardian",
+            "html_url": "https://github.com/GitGuardian",
+            "followers_url": "https://api.github.com/users/GitGuardian/followers",
+            "following_url": "https://api.github.com/users/GitGuardian/following{/other_user}",
+            "gists_url": "https://api.github.com/users/GitGuardian/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/GitGuardian/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/GitGuardian/subscriptions",
+            "organizations_url": "https://api.github.com/users/GitGuardian/orgs",
+            "repos_url": "https://api.github.com/users/GitGuardian/repos",
+            "events_url": "https://api.github.com/users/GitGuardian/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/GitGuardian/received_events",
+            "type": "Organization",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "name": "GitGuardian",
+          "description": "# 🦉 What is GitGuardian?\r\n\r\nGitGuardian Secrets Detection detects and fixes vulnerabilities in source code at every step of the software development lifecycle, covering 350+ types of secrets like API keys, database connection strings, private keys, certificates, and more. The platform’s policy engine enables security teams to monitor and enforce rules across their VCS, DevOps tools, and infrastructure-as-code configurations. Our automated remediation playbooks and collaboration features bring security and development teams together to resolve incidents fast and in full.\r\n\r\n## 1. Scan your codebase for 350+ types of secrets\r\nGitGuardian scans your GitHub repositories and raises alerts only for critical secrets, such as API keys or other credentials. At scale, GitGuardian’s detection algorithm has been battle-tested on over three years of activity in all public GitHub repositories – totaling over 1 billion scanned commits!\r\n\r\n## 2. Quickly remediate your hard-coded secrets\r\nIf you ever experience a leak involving a credential, we have a complete remediation guide used by 100k+ developers each year. We’ll show you how to revoke the secret and remove it from your git history.\r\n\r\n##  3. Prevent secrets from reaching GitHub\r\nInstall ggshield, the GitGuardian CLI, and add secrets detection to your local development workflow using pre-commit and pre-push git hooks integrations.\r\n\r\n# 🙋‍♂️ FAQ\r\n\r\n**What is your pricing?**\r\nGitGuardian is free for teams under 25 developers and offers a 30-day trial for larger teams.\r\n\r\n**How can I be sure that GitGuardian won’t raise too many false positives?**\r\nWe have scanned billions of commits, sent millions of alerts since 2018, and integrated each feedback to improve our algorithm. Our alerts currently receive 91% “true positive” feedback from developers.\r\n\r\n**My repositories are private; why should I install automated secret detection?**\r\nImagine if there were a plain text file with all your credit card numbers inside, you wouldn’t put this file inside your company’s git repository. Secrets are just as sensitive and should be handled with special care.\r\n\r\n**Is GitGuardian available to be installed on-premise?**\r\nYes, you can contact one of our security specialists to look over the possibility of installing GitGuardian on-premise on your repositories.\r\n\r\n# ⚒️ Installation notes \r\n\r\nYou should install GitGuardian directly through your [GitGuardian](https://dashboard.gitguardian.com/) workspace on the Integration settings page. \r\n\r\nSo that you know, your GitHub organization or GitHub account can only be associated with a single GitGuardian workspace.\r\n\r\n# 👋 Support\r\n\r\nIf you experience any difficulties or have any questions, please reach out to us by email ([support@gitguardian.com](mailto:support@gitguardian.com)).",
+          "external_url": "https://dashboard.gitguardian.com",
+          "html_url": "https://github.com/apps/gitguardian",
+          "created_at": "2019-11-12T15:44:31Z",
+          "updated_at": "2026-10-08T14:49:57Z",
+          "permissions": {
+            "checks": "write",
+            "contents": "read",
+            "emails": "read",
+            "issues": "write",
+            "members": "read",
+            "metadata": "read",
+            "organization_hooks": "write",
+            "pull_requests": "write"
+          },
+          "events": [
+            "check_run",
+            "check_suite",
+            "commit_comment",
+            "create",
+            "delete",
+            "issue_comment",
+            "organization",
+            "public",
+            "pull_request",
+            "pull_request_review",
+            "pull_request_review_comment",
+            "push",
+            "repository"
+          ]
+        },
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/karahaNx/Lumenfall/pulls/111",
+            "id": 4822793280,
+            "number": 111,
+            "head": {
+              "ref": "feature/echo-refund-2026-10-11",
+              "sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            },
+            "base": {
+              "ref": "feature/progression-expansion-2026-10-09",
+              "sha": "eb441039231f6fbb8676fa0a069b028e9aa50b2e",
+              "repo": {
+                "id": 1348277654,
+                "url": "https://api.github.com/repos/karahaNx/Lumenfall",
+                "name": "Lumenfall"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "fullJob": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 114620832924,
+        "run_id": 38190090675,
+        "workflow_name": "Pre-merge validation",
+        "head_branch": "feature/echo-refund-2026-10-11",
+        "run_url": "https://api.github.com/repos/karahaNx/Lumenfall/actions/runs/38190090675",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUF0Vls8AAAAar-8cnA",
+        "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+        "url": "https://api.github.com/repos/karahaNx/Lumenfall/actions/jobs/114620832924",
+        "html_url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090675/job/114620832924",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-12T00:59:13Z",
+        "started_at": "2026-10-12T00:59:15Z",
+        "completed_at": "2026-10-12T01:40:04Z",
+        "name": "Lumenfall pre-merge validation",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-12T00:59:16Z",
+            "completed_at": "2026-10-12T00:59:17Z"
+          },
+          {
+            "name": "Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-12T00:59:17Z",
+            "completed_at": "2026-10-12T00:59:26Z"
+          },
+          {
+            "name": "Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-12T00:59:26Z",
+            "completed_at": "2026-10-12T00:59:30Z"
+          },
+          {
+            "name": "APK identity verifier self-test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-12T00:59:30Z",
+            "completed_at": "2026-10-12T00:59:30Z"
+          },
+          {
+            "name": "Node tooling regression checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-12T00:59:30Z",
+            "completed_at": "2026-10-12T00:59:31Z"
+          },
+          {
+            "name": "Validate game source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-12T00:59:31Z",
+            "completed_at": "2026-10-12T00:59:31Z"
+          },
+          {
+            "name": "Stage web assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-12T00:59:31Z",
+            "completed_at": "2026-10-12T00:59:31Z"
+          },
+          {
+            "name": "Guidance baseline readability and exact old-width inverse",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-12T00:59:31Z",
+            "completed_at": "2026-10-12T01:00:04Z"
+          },
+          {
+            "name": "Preserve early Guidance readability evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-12T01:00:04Z",
+            "completed_at": "2026-10-12T01:00:06Z"
+          },
+          {
+            "name": "Rift cosmetics selection, persistence and mobile acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-12T01:00:06Z",
+            "completed_at": "2026-10-12T01:00:13Z"
+          },
+          {
+            "name": "Exact Prism earning numerical and causal regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-12T01:00:13Z",
+            "completed_at": "2026-10-12T01:00:17Z"
+          },
+          {
+            "name": "Tree caps original-value refunds and current collection",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-12T01:00:17Z",
+            "completed_at": "2026-10-12T01:01:08Z"
+          },
+          {
+            "name": "Development currency UI and retained-value acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-12T01:01:08Z",
+            "completed_at": "2026-10-12T01:01:45Z"
+          },
+          {
+            "name": "Stateful behavioral regression suite",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-12T01:01:45Z",
+            "completed_at": "2026-10-12T01:39:21Z"
+          },
+          {
+            "name": "Behavioral harness negative self-test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-12T01:39:21Z",
+            "completed_at": "2026-10-12T01:39:56Z"
+          },
+          {
+            "name": "Install runtime error guard in staged copy",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-12T01:39:56Z",
+            "completed_at": "2026-10-12T01:39:56Z"
+          },
+          {
+            "name": "Browser runtime smoke test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-12T01:39:56Z",
+            "completed_at": "2026-10-12T01:39:58Z"
+          },
+          {
+            "name": "Preserve full regression evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-10-12T01:39:58Z",
+            "completed_at": "2026-10-12T01:40:01Z"
+          },
+          {
+            "name": "Post Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35,
+            "started_at": "2026-10-12T01:40:01Z",
+            "completed_at": "2026-10-12T01:40:01Z"
+          },
+          {
+            "name": "Post Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 36,
+            "started_at": "2026-10-12T01:40:01Z",
+            "completed_at": "2026-10-12T01:40:01Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 37,
+            "started_at": "2026-10-12T01:40:01Z",
+            "completed_at": "2026-10-12T01:40:01Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/karahaNx/Lumenfall/check-runs/114620832924",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000000824,
+        "runner_name": "GitHub Actions 1000000824",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  "reviewThreads": {
+    "review_threads": [
+      {
+        "id": "PRRT_kwDOUF0Vls6rSNJr",
+        "is_resolved": false,
+        "is_outdated": true,
+        "path": "index.html",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": "RIGHT",
+        "original_line": 4854,
+        "original_start_line": 4853,
+        "resolved_by": null,
+        "comments": [
+          {
+            "id": "PRRC_kwDOUF0Vls787uqF",
+            "database_id": 4243516037,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reject audited refunds even when history is missing**\n\nWhen an already-migrated overcap save has `echoCreditAuditVersion: 1` but loses both its `node.echo` receipt and `history.echo`, this guard is skipped because it requires the history objects to exist. Execution then reaches the refund path and credits the entire original-value refund again—for example, a level-7 save with 33 Prisms becomes 49 instead of selecting recovery. Treat the audit version plus `raw > 6` as sufficient evidence that a missing receipt is invalid, regardless of whether history also survived.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/4ef0608988e9d809f5214857192e48ae95aba4d5/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-11T22:27:49Z",
+            "updated_at": "2026-10-11T22:27:50Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUF0Vls6rSdnZ",
+        "is_resolved": false,
+        "is_outdated": true,
+        "path": "index.html",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 4840,
+        "original_start_line": null,
+        "resolved_by": null,
+        "comments": [
+          {
+            "id": "PRRC_kwDOUF0Vls788I8T",
+            "database_id": 4243623699,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Avoid overflowing the Echo receipt tolerance**\n\nFor overcap saves containing purchase index 2085 or later, `value` is still finite but the intermediate `value * level` overflows, making `allowance` infinite and the stored validation bounds `[-Infinity, Infinity]`. Consequently, any positive finite integer in that suffix of `receipt.amounts.prisms` is accepted rather than selecting recovery (for example, a raw-2100 receipt still canonicalizes after its final price is changed to `1`). Compute the relative-error factor before multiplying by `value`, as the Recruitment implementation does, so damaged high-level receipts cannot silently pass validation.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/3ad4751c683938313f0bed7c8e612dd76a9b3bbb/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-11T23:04:10Z",
+            "updated_at": "2026-10-11T23:04:10Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUF0Vls6rSdnb",
+        "is_resolved": false,
+        "is_outdated": true,
+        "path": "index.html",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 4838,
+        "original_start_line": null,
+        "resolved_by": null,
+        "comments": [
+          {
+            "id": "PRRC_kwDOUF0Vls788I8X",
+            "database_id": 4243623703,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Canonicalize Echo refunds across JavaScript engines**\n\nWhen the same unrefunded overcap save is first loaded on different supported JavaScript engines, this runtime `Math.pow` calculation produces different refund amounts. The committed compatibility fixture demonstrates that V8 6 and modern V8 diverge beginning at index 93; by raw level 95, the otherwise identical save receives two fewer Prisms on the legacy engine, with much larger absolute divergence at higher levels. Receipt tolerance preserves an already-migrated value but does not make the initial migration deterministic, so derive new receipts from one canonical price schedule rather than the host engine's `Math.pow` result.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/3ad4751c683938313f0bed7c8e612dd76a9b3bbb/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-11T23:04:10Z",
+            "updated_at": "2026-10-11T23:04:10Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      }
+    ]
+  },
+  "disposition": "All six exact-head required lanes PASS. Three automated findings fixed and regression-covered; outdated mechanically unresolved threads retained. Self-review, no independent final-head review claim. Complete decoded current Full job log saved; this does not reconstruct older Full/Shared raw gaps."
+}

@@ -1,0 +1,117 @@
+{
+  "kind": "scratch-only-ui-and-acceptance-plan",
+  "status": "prepared-not-implemented-not-tested",
+  "reviewedAtUtc": "2026-10-10 22:47:27 UTC",
+  "agent": "/root/lab_code_review",
+  "node": "v24.19.0",
+  "provisional": {
+    "head": "768050d7cca586ea724e7ac677804a5ed7d6a3f5",
+    "tree": "30213b2ae877ff64db08e3d06b087d040fe72ca2",
+    "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+    "gitStatus": "",
+    "remoteRole": "Previously verified published Tree candidate; this UI planning pass made no new remote call and does not certify integration."
+  },
+  "scope": {
+    "newFilesOnly": "comet-work/ui-plan/",
+    "productEdits": 0,
+    "testEdits": 0,
+    "gameTestsRun": 0,
+    "browserTestsRun": 0,
+    "repositoryEdits": 0,
+    "staging": false,
+    "remoteMutations": false,
+    "apk": false
+  },
+  "decisions": {
+    "commandPlacement": "Inside Rift .card.stage immediately after .battle-row, before #buff-indicator; sibling of attack button",
+    "purchases": "Six existing/new types in #shop-list; no command activation inside Shop",
+    "legacy": "Separate #comet-journal / #legacy-comet-trials plus existing #theme-list Collection",
+    "rootScale": "Retain actual current16px base;12 profiles at16/32px unless root explicitly changes base",
+    "pendingCredit": "Sticky completed Deed/unlock with exact due claim; no false currency-credit toast"
+  },
+  "inputs": [
+    {
+      "path": "Lumenfall-tree/AGENTS.md",
+      "bytes": 7590,
+      "sha256": "d2569fd40996892731651ddf213092b263727268f5fc34168fc33dda84b4dff6"
+    },
+    {
+      "path": "Lumenfall-tree/index.html",
+      "bytes": 619788,
+      "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3"
+    },
+    {
+      "path": "Lumenfall-tree/docs/qa/progression-expansion-001/ORIGINAL_MANDATE.md",
+      "bytes": 7037,
+      "sha256": "651adfeb124b5e361ccf12a76b1fb123c4839512560aff640715b47a9b9478c2"
+    },
+    {
+      "path": "Lumenfall-tree/docs/tasks/UPGRADE_IDENTITY_001/MATRIX.md",
+      "bytes": 8807,
+      "sha256": "4876fbe9ede99d5d85b9b9e12851a6bd268e75500d8c8c573a3ce225e17c028b"
+    },
+    {
+      "path": "comet-work/design-proposal.md",
+      "bytes": 36221,
+      "sha256": "95b239ade7a80f2fa2a3d05f11ba15a89575f2634f027e27c158907e258fa1e5"
+    },
+    {
+      "path": "comet-work/root-design-review.md",
+      "bytes": 22308,
+      "sha256": "f138ddb6204972e4d6e965c1c6d4a3c26d8c6ed369beb8ae003e4dd52c82ba51"
+    },
+    {
+      "path": "comet-work/SELECTED_DESIGN.md",
+      "bytes": 23315,
+      "sha256": "495df7c1272939d8adb9a08ee5d9f6965013e49c72d273586dd0ec9b736e2b7b"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/comet-unlocks-core.cjs",
+      "bytes": 13840,
+      "sha256": "a67f67fa07e84f2299d44b5ea5553a1bf9f415556d5fc122845b39e679e925b5"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/comet-unlocks-ui.cjs",
+      "bytes": 11899,
+      "sha256": "44aee041f3806187022f26bcc73dd70af4d26bfe4de98002dcbc710305528092"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/prism-acceptance.cjs",
+      "bytes": 13167,
+      "sha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/tree-expansion-mobile.cjs",
+      "bytes": 50616,
+      "sha256": "45d8b66546b48318586eb1c045fe95cd373fd386601d17e4984a1eda4b3818ee"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/bridge.js",
+      "bytes": 52598,
+      "sha256": "e5abae8c0e7e1a422f1322049963438040be62f181967c9eb7fd40b5229f11dc"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/scenarios.json",
+      "bytes": 9882,
+      "sha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2"
+    },
+    {
+      "path": "Lumenfall-tree/tests/behavioral/run.cjs",
+      "bytes": 20903,
+      "sha256": "3e52c9a021f650ea9d52fcc55aa6e7ad50ce4bd467848f69e0aa81bfffd1ec81"
+    }
+  ],
+  "plan": {
+    "path": "PLAN.md",
+    "bytes": 29833,
+    "sha256": "889986d122ab4c83bee1c15d811074e510c4d7bb7ebdf808b23c200209d3cbd9"
+  },
+  "limitations": [
+    "Planning and source inspection only; no new Comet gameplay or UI PASS.",
+    "Selected design may be revised by root after this review; input hash records the version read.",
+    "Numerical gameplay helper and ledger implementation belong to root and the independent numerical owner.",
+    "Actual final Tree integration and all Comet mandatory workflows remain separate gates.",
+    "Native Android/WebView, OS font scaling, TalkBack and APK untested.",
+    "Shared class-tag/toast observations remain separate UI follow-up."
+  ]
+}

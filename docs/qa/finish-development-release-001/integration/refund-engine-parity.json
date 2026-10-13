@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "sourceSha256": "58f85f67b1f18f24741abdcf248339e4e6eb58a820ae4f7157cc27a48848cb33",
+  "modern": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  },
+  "legacy": {
+    "node": "v8.3.0",
+    "v8": "6.0.286.52"
+  },
+  "cases": 12,
+  "issuedLegacyCases": 4,
+  "negative": [
+    {
+      "id": "echo",
+      "sourceSha256": "e0ff6d73de2d3a186154a013593fe5279b06b0256e268181d38fddf73a25494c",
+      "assertion": "frozen original modern schedule echo",
+      "stderrSha256": "187897924e5840eea7de77e2d2149e935af6db87549520a45537decd2d67b6a3"
+    },
+    {
+      "id": "bonds",
+      "sourceSha256": "17af4c167c177e7ba988163ff40fc770c6f2a345664c57090886eff0f06ddb32",
+      "assertion": "frozen original modern schedule bonds",
+      "stderrSha256": "6d87df5603c75c9816c4e45b5bb4f0f6039eb882463a88f4f42d2073ba24b228"
+    }
+  ],
+  "recordsSha256": "8eda1c889587a4ddf2ff25bbf96e6c268d335856ff1d9258bfbd748a8aa8350a",
+  "originalFixtureSha256": "eb1de3966e989ccc0c99bfc51d0cf4b21c431252c39766352efd098acc5b6e43",
+  "issuedFixtureSha256": "66da1621626d10be98d4960e61f0eb7d8cae15fa0adf53fb499ed269786f208a",
+  "scope": "Both original initial refunds, exact wallet/credit/receipt/history parity and repeat normalization; both engines retain original previously-issued legacy values. No native claim."
+}

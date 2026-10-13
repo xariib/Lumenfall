@@ -1,0 +1,512 @@
+{
+  "status": "pass",
+  "auditedAtUtc": "2026-10-10 20:53:49 UTC",
+  "clockSource": "clock.curr_time",
+  "runId": 38085086755,
+  "runUrl": "https://github.com/karahaNx/Lumenfall/actions/runs/38085086755",
+  "jobId": 114309817228,
+  "attempt": 1,
+  "headSha": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "baseSha": "2d01049393e3bb45a90d80e07af52ae0484b0ec5",
+  "syntheticCommit": "a2561ca083c036df0b5ebe27e09939d0bd35c701",
+  "treeSha": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "sourceBytes": 618571,
+  "fixtureSha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753",
+  "sourceIdentityVerified": true,
+  "fixtureIdentityVerified": true,
+  "allJobStepsSucceeded": true,
+  "jobStepCount": 13,
+  "artifact": {
+    "id": 11682585883,
+    "name": "forge-expansion-38085086755",
+    "bytes": 5733913,
+    "apiDigest": "sha256:b21a6d8a51765b97b1b8cd1ce37dc47085858f84795209d43aebc468923b2731",
+    "computedDigest": "sha256:b21a6d8a51765b97b1b8cd1ce37dc47085858f84795209d43aebc468923b2731",
+    "digestMatches": true,
+    "crcIntegrity": true,
+    "entries": 124
+  },
+  "results": {
+    "core": {
+      "status": "pass",
+      "assertions": 9308,
+      "priceCases": 598,
+      "purchases": 448,
+      "negativeControls": 25,
+      "negativeNames": [
+        "disabled-effect-cauterize",
+        "disabled-effect-fracturekey",
+        "disabled-effect-guardianseal",
+        "disabled-effect-spillway",
+        "disabled-effect-sustainedchannel",
+        "disabled-effect-tapconduit",
+        "disabled-effect-guardiancadence",
+        "disabled-effect-relay",
+        "disabled-effect-resonantedge",
+        "disabled-effect-victorycharge",
+        "disabled-effect-amplifiertrim",
+        "disabled-effect-dualchannel",
+        "disabled-effect-overflowconduit",
+        "disabled-effect-resonancecells",
+        "disabled-effect-resonancecascade",
+        "disabled-effect-resonancereclaim",
+        "one-unit-price-drift",
+        "inexact-wallet-free-purchase",
+        "primary-mutation-leak-forge",
+        "primary-mutation-leak-resonate",
+        "paid-relay-lost-on-real-ascend",
+        "finite-burst-false-wall",
+        "unsafe-counter-normal-cadence-average",
+        "unsafe-count-as-forge-run-identity",
+        "unsafe-count-as-passive-run-identity"
+      ]
+    },
+    "calibration": {
+      "status": "pass",
+      "checks": 3134,
+      "cases": 26,
+      "negativeControls": 7,
+      "negativeNames": [
+        "ignore-initial-burst-budget",
+        "omit-paid-saved-support-source",
+        "omit-nonlethal-refund-from-hud-reference",
+        "assume-exact-support-deadline-uptime",
+        "assume-every-fifth-cadence-in-lower-bound",
+        "assume-every-fifth-cadence-in-upper-bound",
+        "ignore-unsafe-counter-transition-in-hud"
+      ]
+    },
+    "offline": {
+      "status": "pass",
+      "records": 17,
+      "wallMs": 210726.87887800002,
+      "command": "node tests/behavioral/offline-catchup.cjs --source index.html",
+      "eightHours": [
+        {
+          "case": "ON Clear21",
+          "seconds": 28800,
+          "batch": 256,
+          "batches": 1181,
+          "kills": 302400,
+          "ascends": 14400,
+          "iterations": 302401,
+          "earned": 1290055679.9983335
+        },
+        {
+          "case": "ON Clear21",
+          "seconds": 28800,
+          "batch": 31,
+          "batches": 9754,
+          "kills": 302400,
+          "ascends": 14400,
+          "iterations": 302401,
+          "earned": 1290055679.9983335
+        }
+      ],
+      "prismIsolation": {
+        "case": "Prism policy isolation",
+        "perAscend": 23,
+        "newPrisms": 334010,
+        "legacyPrisms": 89210
+      },
+      "otherCases": [
+        {
+          "case": "ON Clear20",
+          "seconds": 28800,
+          "batch": 256,
+          "batches": 1140,
+          "kills": 291959,
+          "ascends": 14597,
+          "iterations": 291961,
+          "earned": 1232991914.398166
+        },
+        {
+          "case": "OFF",
+          "seconds": 28800,
+          "batch": 256,
+          "batches": 414,
+          "kills": 773,
+          "ascends": 0,
+          "iterations": 106128,
+          "earned": 351609164909646.25
+        },
+        {
+          "case": "ON Clear21",
+          "seconds": 259200,
+          "batch": 256,
+          "batches": 1771,
+          "kills": 453600,
+          "ascends": 21600,
+          "iterations": 453601,
+          "earned": 1935083519.9986768
+        },
+        {
+          "case": "ON Clear21",
+          "seconds": 345600,
+          "batch": 256,
+          "batches": 1771,
+          "kills": 453600,
+          "ascends": 21600,
+          "iterations": 453600,
+          "earned": 1935083519.9986768
+        },
+        {
+          "case": "boundaries live",
+          "kills": 56047,
+          "motes": 22789,
+          "empowers": 2669,
+          "research": 47,
+          "studies": [
+            "Guardian's Mastery"
+          ]
+        },
+        {
+          "case": "boundaries offline",
+          "kills": 56047,
+          "motes": 22789,
+          "empowers": 2669,
+          "research": 47,
+          "studies": [
+            "Guardian's Mastery"
+          ]
+        },
+        {
+          "case": "cancel",
+          "callbacks": 1,
+          "error": "Offline catch-up cancelled",
+          "pending": true
+        },
+        {
+          "case": "simulation",
+          "callbacks": 1,
+          "error": "injected simulation failure",
+          "pending": true
+        },
+        {
+          "case": "primary",
+          "callbacks": 1,
+          "error": "Offline progress could not be saved",
+          "pending": true
+        },
+        {
+          "case": "recovery",
+          "callbacks": 1,
+          "error": null,
+          "pending": false
+        },
+        {
+          "case": "processing time 28800",
+          "kills": 303030,
+          "lastSeen": 1791390424477
+        },
+        {
+          "case": "processing time 259200",
+          "kills": 454230,
+          "lastSeen": 1791620824477
+        },
+        {
+          "case": "wall-clock jump -604800000",
+          "kills": 303030,
+          "lastSeen": 1790785624477
+        },
+        {
+          "case": "wall-clock jump 604800000",
+          "kills": 303030,
+          "lastSeen": 1791995224477
+        }
+      ],
+      "testAndFrozenDependencies": [
+        {
+          "path": "tests/behavioral/offline-catchup.cjs",
+          "bytes": 22354,
+          "sha256": "694850f3fd284636eed83bade7a18dcf2148abc97a437ffa8b20555d3a0b2f84",
+          "gitBlob": "1fe02665350f0626972f116fb652977c6ea00587",
+          "source": "exact published commit3c931",
+          "payloadCopied": false
+        },
+        {
+          "path": "tests/behavioral/prism-earning-reference.cjs",
+          "bytes": 1956,
+          "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+          "gitBlob": "82699e9a8f57f1a2f6609e8b68de4c67254f338e",
+          "source": "exact published commit3c931",
+          "payloadCopied": false
+        },
+        {
+          "path": "docs/recovery/2026-10-07/lead_context/FEEDBACK/EVIDENCE/main-index.html",
+          "bytes": 488044,
+          "sha256": "f896459f4f113b4173f8d1d1875f32cca9e3e4ae6f7416c6aca9be208f2537b4",
+          "gitBlob": "ea44431c163569548973d9e489f75345749a07ee",
+          "source": "exact published commit3c931",
+          "payloadCopied": false
+        },
+        {
+          "path": "docs/qa/offline-autoascend-2026-10-07/device_backup.json",
+          "bytes": 4864,
+          "sha256": "2aedccffee1ddbc4da0db8b1c8a312df89ae22b5a1da6bbf8f386d1f60f296bc",
+          "gitBlob": "d2698256684a60bcc495952ff162853b97410f36",
+          "source": "exact published commit3c931",
+          "payloadCopied": false
+        }
+      ],
+      "rawReceipt": {
+        "path": "forge-validation/offline.json",
+        "bytes": 2859,
+        "sha256": "9ca6b0a4067c2fafffb6df24417b2501e0e2e0759deec247704f0012d596c071"
+      },
+      "scope": "Exact full existing offline regression on this CI checkout; no earlier candidate or local result substituted."
+    },
+    "mobile": {
+      "status": "pass",
+      "checks": 25524,
+      "profiles": 12,
+      "screenshots": 24,
+      "node": "v20.20.2",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "profileTuples": [
+        "320/1/no-preference",
+        "320/1/reduce",
+        "320/2/no-preference",
+        "320/2/reduce",
+        "390/1/no-preference",
+        "390/1/reduce",
+        "390/2/no-preference",
+        "390/2/reduce",
+        "430/1/no-preference",
+        "430/1/reduce",
+        "430/2/no-preference",
+        "430/2/reduce"
+      ]
+    },
+    "v8": {
+      "status": "pass",
+      "checks": 2452,
+      "node": "v8.3.0",
+      "v8": "6.0.286.52",
+      "scriptsParsed": 2,
+      "purchases": 48,
+      "effectCases": 64,
+      "storageFaultCases": 51,
+      "invalidRequestCases": 112,
+      "unsafeAscendRunCases": 2,
+      "storageWrites": 589,
+      "officialArchiveChecksumVerified": true
+    },
+    "sourceGate": "QA passed: 2 scripts syntax-checked, 16 unique IDs verified, cache/state lifecycle guards present.",
+    "contextGate": "PASS: 29 entrypoints, 91 local Markdown links, shared startup 31131 bytes; startup with docs/tasks/FORGE_EXPANSION_001.md 32762 bytes"
+  },
+  "artifactTests": [
+    {
+      "path": "tests/behavioral/forge-expansion-calibration.cjs",
+      "bytes": 26059,
+      "sha256": "ea5787eb14d63237c3cbe4687914c67935703cf81d1c176042c4473c40bad3f4",
+      "matchesPublishedCommit": true
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-harness.cjs",
+      "bytes": 10916,
+      "sha256": "185feb9242a3c8b5fac48871be20f61a119e2881e78191ecd832d12da16d9724",
+      "matchesPublishedCommit": true
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-legacy.cjs",
+      "bytes": 22552,
+      "sha256": "5f97700df5f19f535cb84de75b2b39fe9826cc9672184d1493afb274297630e0",
+      "matchesPublishedCommit": true
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-ui.cjs",
+      "bytes": 23212,
+      "sha256": "72311ef88c417e89ab70321a12119279d598392456343c25d4102e2c6e0aca7b",
+      "matchesPublishedCommit": true
+    },
+    {
+      "path": "tests/behavioral/forge-expansion.cjs",
+      "bytes": 59184,
+      "sha256": "64fc2471bac4b8ba2efd9adaa79c92e4091aa9f5c16a632096556bc539bd0e89",
+      "matchesPublishedCommit": true
+    }
+  ],
+  "screenshotFiles": [
+    {
+      "path": "forge-validation/mobile/forge-last-before-320-1-no-preference.png",
+      "bytes": 190991,
+      "sha256": "baf2a1736c401a2953bc320cf31966d25e5f25050eb8f29f26c0b63d1cc0225e",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-320-1-reduce.png",
+      "bytes": 191186,
+      "sha256": "c55a83a9be12f4c5608edd701dc31454e6a9eda62da08faa72fa70a4d1eaad9a",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-320-2-no-preference.png",
+      "bytes": 191049,
+      "sha256": "365a20cb3ab947d42ccf7f663e31c689ce723cfa3678e9271a159db040a6b020",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-320-2-reduce.png",
+      "bytes": 190986,
+      "sha256": "fb4490d3f564f3aef1055c1b4cd3d846feaa9a8912e6744bbd315dc466cd1d29",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-390-1-no-preference.png",
+      "bytes": 209853,
+      "sha256": "4590f52609ec2ffd4092951dff4d6b9a1ff0920451e175ea4f9c0cb1b61fcd22",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-390-1-reduce.png",
+      "bytes": 209698,
+      "sha256": "d046a3d5b15d1bb1f99d398724c577f6d172999a90823419a930bcaf7c918bfc",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-390-2-no-preference.png",
+      "bytes": 212374,
+      "sha256": "fff27dce97308a410103d6a66bd6bb4ace06d99ebf1d98317ca3d101013d025a",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-390-2-reduce.png",
+      "bytes": 212260,
+      "sha256": "d2c4d126cf7568046e26f87f202c317e17a32cb74d7f6b92f1bd30ef2a088067",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-430-1-no-preference.png",
+      "bytes": 222683,
+      "sha256": "3d313d47264e0026d5cc551210e922170c52bf41dbabea4ef3fc4afb865a383a",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-430-1-reduce.png",
+      "bytes": 222504,
+      "sha256": "f054b13ff2d54d80e151f1a9693a8fc11c828941c0ce3f6d3eaf87ab7117d03d",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-430-2-no-preference.png",
+      "bytes": 231569,
+      "sha256": "40b69ca2b05ddde7e4f97f051838025f46c441772b4ae03a25ba70dbbfbc91a7",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-before-430-2-reduce.png",
+      "bytes": 231376,
+      "sha256": "c3944047d95bcbf3b0c08181fc9bea3c5d1965d1441b54163372c7fd684f1e8a",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-320-1-no-preference.png",
+      "bytes": 179449,
+      "sha256": "a95f5dac998ba27e2469b0a194f5edb9854f08fee283f16095cdaac9803e5f72",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-320-1-reduce.png",
+      "bytes": 179381,
+      "sha256": "ee36a83e5fcd950a9faf4e11a500794caf3fcf9d2343ce818ae18885085a214c",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-320-2-no-preference.png",
+      "bytes": 180869,
+      "sha256": "0fcafa1afa524a542d697999ffaeb9d5d857934aba19157d15aa3655e094dd40",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-320-2-reduce.png",
+      "bytes": 181003,
+      "sha256": "8c6b1f1f7b6a15a5c1d0dc50651c2b2f9b32c54c8cf442b985ca0853890fe477",
+      "width": 320,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-390-1-no-preference.png",
+      "bytes": 199439,
+      "sha256": "a67b62eaed2fcd853a3d85ccdd6f902a0811ed9edb74f18a7256fca03220e015",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-390-1-reduce.png",
+      "bytes": 199499,
+      "sha256": "ab1eb891600c696359287b4374cebb4d208df8838f0decb00a42283314cb99a2",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-390-2-no-preference.png",
+      "bytes": 209914,
+      "sha256": "3980d8c5834016cd0f5178c5143c5ed685f60302b3a67e238f1500ef23d1e0d2",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-390-2-reduce.png",
+      "bytes": 209813,
+      "sha256": "22aeb25e16d71116209be692ad3f7151b168ba47b39bfcd2efe913ab38d187b9",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-430-1-no-preference.png",
+      "bytes": 209436,
+      "sha256": "1554c39b93fa4fbfc4d88806ec660ee428fd8d836637da6b557e212b004553b7",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-430-1-reduce.png",
+      "bytes": 209251,
+      "sha256": "1adf1842c6237b19afcfd84a30db4cc2e0b83574ae00991615c0626618de5abf",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-430-2-no-preference.png",
+      "bytes": 220991,
+      "sha256": "7e3479b13b2211daab7aa9a4cc5eacda61dc5ef060deb2b9b7bfa7a97ec7bf72",
+      "width": 430,
+      "height": 844
+    },
+    {
+      "path": "forge-validation/mobile/forge-last-cap-430-2-reduce.png",
+      "bytes": 220852,
+      "sha256": "53cbfc75981858c0c3d226a351d8a616fec981ff8068ad101b414f87c962a0dc",
+      "width": 430,
+      "height": 844
+    }
+  ],
+  "jobLog": {
+    "path": "job-114309817228.log",
+    "bytes": 599651,
+    "sha256": "c634ec0bf5a14c3374a9b2b242435f520249373dadffa8a601a58596d2379c12",
+    "provenance": "Exact UTF-8 bytes of decoded GitHub job-log tool content; no appended newline"
+  },
+  "evidenceDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/forge",
+  "scope": "Read-only audit of the repair candidate CI. Historical artifact docs are not current acceptance. CSS root-font scaling is not native WebView textZoom/TalkBack. No test reruns, repository changes, remote writes or Android work."
+}

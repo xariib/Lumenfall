@@ -1,0 +1,53 @@
+{
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "observation": {
+    "qa_count": 1,
+    "qa_status": "fail",
+    "qa_scenario": "lifecycle-boss-retry",
+    "json_status": "fail",
+    "json_scenario": "lifecycle-boss-retry",
+    "runtime_markers": [],
+    "runtime_error_count": 0,
+    "json_error": null,
+    "valid": true
+  },
+  "payload": {
+    "scenario": "lifecycle-boss-retry",
+    "status": "fail",
+    "detail": {
+      "message": "boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 16.859999999998852, got 15.037140000037073, tolerance 0.000001)",
+      "stack": "Error: boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 16.859999999998852, got 15.037140000037073, tolerance 0.000001)\n    at parityApprox (http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:15940:13)\n    at http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:15965:7\n    at Array.forEach (<anonymous>)\n    at assertProtectedParity (http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:15964:122)\n    at assertLifecycleState (http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16253:5)\n    at runResumeWindow (http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16302:5)\n    at async HTMLDocument.run (http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:17240:26)"
+    },
+    "runtimeErrors": []
+  },
+  "process": {
+    "command": [
+      "/tmp/lumenfall-node20/node-v20.20.2-linux-x64/bin/node",
+      "/workspace/Lumenfall-echo-refund/tests/behavioral/browser-dom.cjs",
+      "/usr/bin/chromium",
+      "http://127.0.0.1:34277/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry",
+      "/tmp/lumenfall-qa-lifecycle-boss-retry-iFa5WI",
+      "no-preference"
+    ],
+    "fixture": "chronology-boss-retry",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 2.8604637639997526,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "lifecycle-boss-retry",
+      "json_status": "fail",
+      "json_scenario": "lifecycle-boss-retry",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "scope": "Failed local broad-run attempt; not a causal control or CI receipt"
+}

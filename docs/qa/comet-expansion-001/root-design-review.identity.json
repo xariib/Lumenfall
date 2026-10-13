@@ -1,0 +1,155 @@
+{
+  "status": "READ_ONLY_DESIGN_REVIEW_COMPLETE",
+  "reviewBy": "/root/lab_code_review",
+  "clockToolUTC": {
+    "started": "2026-10-10 21:46:37 UTC",
+    "completed": "2026-10-10 21:58:40 UTC"
+  },
+  "baseline": {
+    "publishedHead": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+    "publishedTree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+    "developmentBase": "2d01049393e3bb45a90d80e07af52ae0484b0ec5",
+    "identityProvenance": "Frozen baseline-witness source identity and previously verified published context; archived product bytes rehashed here. No new remote lookup.",
+    "source": {
+      "file": "comet-work/baseline-witnesses/source-3c931.html",
+      "bytes": 618571,
+      "sha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+      "scope": "Targeted read-only product source inspection; no game execution."
+    }
+  },
+  "method": {
+    "runtimeForDocumentMetadata": "v24.19.0",
+    "existingWitnessCasesReviewed": 30,
+    "existingDefectWitnesses": 14,
+    "existingControls": 16,
+    "testOrWitnessRuns": 0,
+    "browserRuns": 0,
+    "gameplayExecutions": 0,
+    "productImplementation": false,
+    "repositoryChanges": false,
+    "stagingChanges": false,
+    "remoteChanges": false,
+    "writtenFiles": [
+      "comet-work/root-design-review.md",
+      "comet-work/root-design-review.identity.json"
+    ],
+    "resultIsProductAcceptance": false,
+    "nativeAndroidWebViewIntegrationTestedByThisReview": false,
+    "talkBackTestedByThisReview": false
+  },
+  "recommendations": {
+    "boundedLedger": "At most 27 fixed Deed claims plus three fixed retirement claims; at most 1083 Comets in this new claim family, with F26 separate.",
+    "dailyIncomeDebtRefactor": "Exclude from this feature; do not claim exactness of untouched daily/login/quest income paths.",
+    "historicalEarnedDeeds": "Preserve all earned flags and raw wallets. Legacy flags are treated as historically settled; unrecorded shortfalls cannot be inferred without possible double-payment.",
+    "retirement": "350 Comets maximum plus retained legacy entitlements is an intentional extra compensation policy requiring an explicit design decision.",
+    "unresolvedContract": "Freeze Meteor unsafe/fractional HP arithmetic, represented damage, shared ready-Auto-Ascend refusal, and atomic encounter lifecycle before implementation."
+  },
+  "reviewedInputs": [
+    {
+      "file": "comet-work/design-proposal.md",
+      "bytes": 36221,
+      "sha256": "95b239ade7a80f2fa2a3d05f11ba15a89575f2634f027e27c158907e258fa1e5",
+      "scope": "Complete unaccepted design proposal."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/README.md",
+      "bytes": 14726,
+      "sha256": "f26e24f7acd12b44af3c660b7c4368dbe2069eedf951949080284176a167836c",
+      "scope": "Existing witness interpretation and source hook map."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/acceptance.json",
+      "bytes": 1912,
+      "sha256": "2e7d6e8e6ab2347c4135e1c99ffccba436750e9601e22ab8b6a4e544e1693ae4",
+      "scope": "Existing 30-case baseline results; not re-executed."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/source-identity.json",
+      "bytes": 762,
+      "sha256": "0cd8b1e9043e2bbb2aed88c62883da1fae6d7c781301c1a7468945b2d280f099",
+      "scope": "Frozen published commit, tree and archived source identity."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/catalog-and-entitlements.json",
+      "bytes": 7803,
+      "sha256": "f22813ece344f24711f7c36cda63a6d05b61f3310ed436cdf17cf9a6c810256f",
+      "scope": "Original catalog, reward totals and legacy entitlement observations."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/shop-autoascend-primary.json",
+      "bytes": 15343,
+      "sha256": "e11b9ee39d6edd06aa350ae967ab524e1c9d0a7382d1118ae26ac191266eff83",
+      "scope": "Existing actual-handler primary failure record."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/shop-autoascend-huge.json",
+      "bytes": 13447,
+      "sha256": "28ebdbaf2feb6fcfb2612c2840bb486dc2e8fa002f1f5ba0d6dafa82d2476c78",
+      "scope": "Existing actual-handler oversized-wallet record."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/quest-refresh-primary.json",
+      "bytes": 16689,
+      "sha256": "0555da827ed6678f40236e570eac4e16aa20128651f2f09a478e242d088c575d",
+      "scope": "Existing actual-handler primary failure record."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/quest-refresh-huge.json",
+      "bytes": 14511,
+      "sha256": "0e2908228053d07244c2ef2601f6542dbbfab20876fe5db28439449098cda9d7",
+      "scope": "Existing actual-handler oversized-wallet record."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/deed-tap100-rounded.json",
+      "bytes": 16037,
+      "sha256": "47ad15828e0378d525f4359cbebcfda6b984cac73b9944d789f83c618c40fe4f",
+      "scope": "Existing rounded nominal-versus-represented Deed credit record."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/deed-autotap-huge.json",
+      "bytes": 9304,
+      "sha256": "73c87f9225ca22bede4f5b7b6e8a2101672cd22c93d114e95f8da6b2b15084ab",
+      "scope": "Existing earned Deed and unrepresented credit record."
+    },
+    {
+      "file": "comet-work/baseline-witnesses/witnesses.cjs",
+      "bytes": 14564,
+      "sha256": "cec928af5594bd108df91861311dd5b1f4a317acfb68cead912c7295b9c05457",
+      "scope": "Read-only inspection of witness source and observation hooks; never imported or run."
+    },
+    {
+      "file": "Lumenfall-tree/AGENTS.md",
+      "bytes": 7590,
+      "sha256": "d2569fd40996892731651ddf213092b263727268f5fc34168fc33dda84b4dff6",
+      "scope": "Governing repository instructions."
+    },
+    {
+      "file": "Lumenfall-tree/docs/qa/progression-expansion-001/ORIGINAL_MANDATE.md",
+      "bytes": 7037,
+      "sha256": "651adfeb124b5e361ccf12a76b1fb123c4839512560aff640715b47a9b9478c2",
+      "scope": "Approved scope and preservation requirements."
+    },
+    {
+      "file": "Lumenfall-tree/docs/tasks/UPGRADE_IDENTITY_001/MATRIX.md",
+      "bytes": 8807,
+      "sha256": "4876fbe9ede99d5d85b9b9e12851a6bd268e75500d8c8c573a3ce225e17c028b",
+      "scope": "Existing mechanic ownership and exclusivity map."
+    }
+  ],
+  "rootReportedSeparateUiFollowup": {
+    "reference": {
+      "file": "tree-ci/scroll-diagnostic/third/artifact/tree-scroll-diagnostic/mobile/tree-six-320-2-reduce.png",
+      "bytes": 189784,
+      "sha256": "03116f2d941ba40e56650567114f9b3176c6c1a6ec81e398fa98ffaca11f144f",
+      "scope": "Root-reported apparent class-label overlap only. This reviewer did not view or measure the PNG."
+    },
+    "observation": "Apparent Ember class-tag under Bench at 320px/root32; root viewed the image, but supplied no geometric overlap measurement.",
+    "classification": "Shared UI follow-up; not a measured defect, not Comet economic scope, and no class-tag fit PASS inferred."
+  },
+  "output": {
+    "file": "comet-work/root-design-review.md",
+    "bytes": 22308,
+    "sha256": "f138ddb6204972e4d6e965c1c6d4a3c26d8c6ed369beb8ae003e4dd52c82ba51",
+    "scope": "New scratch-only independent subagent design review."
+  }
+}

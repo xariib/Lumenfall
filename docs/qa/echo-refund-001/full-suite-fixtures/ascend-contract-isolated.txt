@@ -1,0 +1,25 @@
+Browser identity: { "selected_path": "/usr/bin/chromium", "resolved_path": "/usr/bin/chromium", "sha256": "2c8d32d29dc6781c35ae196ea83299d507ac88fc339301abe74672feda299779", "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)", "version_exitcode": 0, "version_stderr": "" }
+Staged source: { "source_sha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8", "instrumented_sha256": "4dd284422745840935a9a36efbf50f56a57ba3a089de78958742c21e4c0149b7" }
+FAIL ascend-prisms-contract
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 9.323525288999999, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: /tmp/f20-full-d907-fixed/ascend-contract-isolated/ascend-prisms-contract-w2hWkg
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (/workspace/Lumenfall-echo-refund/tests/behavioral/browser-dom.cjs:12:146)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+ss:88644): dconf-CRITICAL **: 01:19:33.259: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.
+[88644:88680:1012/011933.288003:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 88729: Read-only file system (30)
+[88644:88680:1012/011933.326338:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 88738: Read-only file system (30)
+[88644:88680:1012/011933.328881:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 88739: Read-only file system (30)
+[88644:88680:1012/011933.342228:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 88752: Read-only file system (30)
+[88644:88644:1012/011933.352791:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: 
+[88644:88644:1012/011933.352828:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[88644:88669:1012/011933.353272:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[88644:88644:1012/011933.370517:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[88644:88669:1012/011933.371381:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[88644:88644:1012/011933.388112:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+
+Behavioral QA failed: ascend-prisms-contract null

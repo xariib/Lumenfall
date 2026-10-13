@@ -1,0 +1,262 @@
+﻿2026-10-12T07:55:48.6971001Z Current runner version: '2.337.0'
+2026-10-12T07:55:48.6995487Z ##[group]Runner Image Provisioner
+2026-10-12T07:55:48.6996485Z Hosted Compute Agent
+2026-10-12T07:55:48.6997162Z Version: 20261002.596
+2026-10-12T07:55:48.6998143Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-12T07:55:48.6999067Z Build Date: 2026-10-02T22:28:27Z
+2026-10-12T07:55:48.6999817Z Worker ID: {b0c4c3e0-7fcc-4816-a309-7c01f9a9d961}
+2026-10-12T07:55:48.7000630Z Region: westus
+2026-10-12T07:55:48.7001245Z Cloud: Azure
+2026-10-12T07:55:48.7001841Z ##[endgroup]
+2026-10-12T07:55:48.7003447Z ##[group]Operating System
+2026-10-12T07:55:48.7004159Z Ubuntu
+2026-10-12T07:55:48.7004788Z 24.04.5
+2026-10-12T07:55:48.7005376Z LTS
+2026-10-12T07:55:48.7005987Z ##[endgroup]
+2026-10-12T07:55:48.7006662Z ##[group]Runner Image
+2026-10-12T07:55:48.7007309Z Image: ubuntu-24.04
+2026-10-12T07:55:48.7008155Z Version: 20261004.327.1
+2026-10-12T07:55:48.7009515Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-12T07:55:48.7011168Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-12T07:55:48.7012180Z ##[endgroup]
+2026-10-12T07:55:48.7013361Z ##[group]GITHUB_TOKEN Permissions
+2026-10-12T07:55:48.7015344Z Contents: read
+2026-10-12T07:55:48.7016079Z Metadata: read
+2026-10-12T07:55:48.7016712Z ##[endgroup]
+2026-10-12T07:55:48.7019500Z Secret source: Actions
+2026-10-12T07:55:48.7020677Z Cache mode: write
+2026-10-12T07:55:48.7021423Z Prepare workflow directory
+2026-10-12T07:55:48.7364456Z Prepare all required actions
+2026-10-12T07:55:48.7414838Z Getting action download info
+2026-10-12T07:55:49.0970765Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-12T07:55:49.2123969Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-12T07:55:49.3054121Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-12T07:55:49.5099300Z Complete job name: shared-ui
+2026-10-12T07:55:49.5979448Z ##[group]Run actions/checkout@v4
+2026-10-12T07:55:49.5980852Z with:
+2026-10-12T07:55:49.5981629Z   repository: karahaNx/Lumenfall
+2026-10-12T07:55:49.5986716Z   token: ***
+2026-10-12T07:55:49.5987201Z   ssh-strict: true
+2026-10-12T07:55:49.5987869Z   ssh-user: git
+2026-10-12T07:55:49.5988338Z   persist-credentials: true
+2026-10-12T07:55:49.5988843Z   clean: true
+2026-10-12T07:55:49.5989301Z   sparse-checkout-cone-mode: true
+2026-10-12T07:55:49.5989829Z   fetch-depth: 1
+2026-10-12T07:55:49.5990275Z   fetch-tags: false
+2026-10-12T07:55:49.5990744Z   show-progress: true
+2026-10-12T07:55:49.5991208Z   lfs: false
+2026-10-12T07:55:49.5991636Z   submodules: false
+2026-10-12T07:55:49.5992129Z   set-safe-directory: true
+2026-10-12T07:55:49.5992659Z   allow-unsafe-pr-checkout: false
+2026-10-12T07:55:49.5994351Z ##[endgroup]
+2026-10-12T07:55:49.7068515Z Syncing repository: karahaNx/Lumenfall
+2026-10-12T07:55:49.7071045Z ##[group]Getting Git version info
+2026-10-12T07:55:49.7072239Z Working directory is '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-12T07:55:49.7074014Z [command]/usr/bin/git version
+2026-10-12T07:55:49.7176158Z git version 2.55.0
+2026-10-12T07:55:49.7200321Z ##[endgroup]
+2026-10-12T07:55:49.7215803Z Temporarily overriding HOME='/home/runner/work/_temp/2aba2fa4-3578-48ab-83a0-ac63cd54cfe1' before making global git config changes
+2026-10-12T07:55:49.7218400Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T07:55:49.7221516Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-12T07:55:49.7274324Z Deleting the contents of '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-12T07:55:49.7279348Z ##[group]Initializing the repository
+2026-10-12T07:55:49.7289497Z [command]/usr/bin/git init /home/runner/work/Lumenfall/Lumenfall
+2026-10-12T07:55:49.7398655Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-12T07:55:49.7400718Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-12T07:55:49.7402689Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-12T07:55:49.7404242Z hint: call:
+2026-10-12T07:55:49.7405450Z hint:
+2026-10-12T07:55:49.7406593Z hint: 	git config --global init.defaultBranch <name>
+2026-10-12T07:55:49.7408128Z hint:
+2026-10-12T07:55:49.7409371Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-12T07:55:49.7411277Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-12T07:55:49.7413649Z hint:
+2026-10-12T07:55:49.7414589Z hint: 	git branch -m <name>
+2026-10-12T07:55:49.7415700Z hint:
+2026-10-12T07:55:49.7417030Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-12T07:55:49.7419368Z Initialized empty Git repository in /home/runner/work/Lumenfall/Lumenfall/.git/
+2026-10-12T07:55:49.7423187Z [command]/usr/bin/git remote add origin https://github.com/karahaNx/Lumenfall
+2026-10-12T07:55:49.7503038Z ##[endgroup]
+2026-10-12T07:55:49.7504459Z ##[group]Disabling automatic garbage collection
+2026-10-12T07:55:49.7506866Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-12T07:55:49.7546451Z ##[endgroup]
+2026-10-12T07:55:49.7547927Z ##[group]Setting up auth
+2026-10-12T07:55:49.7554249Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T07:55:49.7594920Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T07:55:49.8021706Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T07:55:49.8070857Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T07:55:49.8341467Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T07:55:49.8370631Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T07:55:49.8602648Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-12T07:55:49.8642918Z ##[endgroup]
+2026-10-12T07:55:49.8644233Z ##[group]Fetching the repository
+2026-10-12T07:55:49.8653056Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +37f630de4022ac0e3a40af202845c12122c05861:refs/remotes/pull/114/merge
+2026-10-12T07:56:01.3674583Z From https://github.com/karahaNx/Lumenfall
+2026-10-12T07:56:01.3675903Z  * [new ref]         37f630de4022ac0e3a40af202845c12122c05861 -> pull/114/merge
+2026-10-12T07:56:01.3687182Z ##[endgroup]
+2026-10-12T07:56:01.3688279Z ##[group]Determining the checkout info
+2026-10-12T07:56:01.3689482Z ##[endgroup]
+2026-10-12T07:56:01.3689850Z [command]/usr/bin/git sparse-checkout disable
+2026-10-12T07:56:01.3741760Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-12T07:56:01.3781184Z ##[group]Checking out the ref
+2026-10-12T07:56:01.3784589Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/114/merge
+2026-10-12T07:56:02.3930745Z Updating files:  54% (4049/7371)
+2026-10-12T07:56:02.4110497Z Updating files:  55% (4055/7371)
+2026-10-12T07:56:02.4246312Z Updating files:  56% (4128/7371)
+2026-10-12T07:56:02.4408945Z Updating files:  57% (4202/7371)
+2026-10-12T07:56:02.4589816Z Updating files:  58% (4276/7371)
+2026-10-12T07:56:02.4691116Z Updating files:  59% (4349/7371)
+2026-10-12T07:56:02.4783071Z Updating files:  60% (4423/7371)
+2026-10-12T07:56:02.4918447Z Updating files:  61% (4497/7371)
+2026-10-12T07:56:02.5196329Z Updating files:  62% (4571/7371)
+2026-10-12T07:56:02.5316798Z Updating files:  63% (4644/7371)
+2026-10-12T07:56:02.5375738Z Updating files:  64% (4718/7371)
+2026-10-12T07:56:02.5423683Z Updating files:  65% (4792/7371)
+2026-10-12T07:56:02.5475566Z Updating files:  66% (4865/7371)
+2026-10-12T07:56:02.5524472Z Updating files:  67% (4939/7371)
+2026-10-12T07:56:02.5582018Z Updating files:  68% (5013/7371)
+2026-10-12T07:56:02.5638733Z Updating files:  69% (5086/7371)
+2026-10-12T07:56:02.5676401Z Updating files:  70% (5160/7371)
+2026-10-12T07:56:02.5761655Z Updating files:  71% (5234/7371)
+2026-10-12T07:56:02.5829877Z Updating files:  72% (5308/7371)
+2026-10-12T07:56:02.5913774Z Updating files:  73% (5381/7371)
+2026-10-12T07:56:02.5997508Z Updating files:  74% (5455/7371)
+2026-10-12T07:56:02.6121460Z Updating files:  75% (5529/7371)
+2026-10-12T07:56:02.6174006Z Updating files:  76% (5602/7371)
+2026-10-12T07:56:02.6220725Z Updating files:  77% (5676/7371)
+2026-10-12T07:56:02.6375575Z Updating files:  78% (5750/7371)
+2026-10-12T07:56:02.6890348Z Updating files:  79% (5824/7371)
+2026-10-12T07:56:02.7386322Z Updating files:  80% (5897/7371)
+2026-10-12T07:56:02.8197989Z Updating files:  81% (5971/7371)
+2026-10-12T07:56:02.9070726Z Updating files:  82% (6045/7371)
+2026-10-12T07:56:02.9267299Z Updating files:  83% (6118/7371)
+2026-10-12T07:56:02.9348764Z Updating files:  84% (6192/7371)
+2026-10-12T07:56:02.9433380Z Updating files:  85% (6266/7371)
+2026-10-12T07:56:02.9561831Z Updating files:  86% (6340/7371)
+2026-10-12T07:56:02.9635739Z Updating files:  87% (6413/7371)
+2026-10-12T07:56:02.9765394Z Updating files:  88% (6487/7371)
+2026-10-12T07:56:02.9834097Z Updating files:  89% (6561/7371)
+2026-10-12T07:56:03.0032089Z Updating files:  90% (6634/7371)
+2026-10-12T07:56:03.0093837Z Updating files:  91% (6708/7371)
+2026-10-12T07:56:03.0344484Z Updating files:  92% (6782/7371)
+2026-10-12T07:56:03.0399017Z Updating files:  93% (6856/7371)
+2026-10-12T07:56:03.0437580Z Updating files:  94% (6929/7371)
+2026-10-12T07:56:03.0475533Z Updating files:  95% (7003/7371)
+2026-10-12T07:56:03.0518977Z Updating files:  96% (7077/7371)
+2026-10-12T07:56:03.0567923Z Updating files:  97% (7150/7371)
+2026-10-12T07:56:03.0651201Z Updating files:  98% (7224/7371)
+2026-10-12T07:56:03.0750640Z Updating files:  99% (7298/7371)
+2026-10-12T07:56:03.0751498Z Updating files: 100% (7371/7371)
+2026-10-12T07:56:03.0752201Z Updating files: 100% (7371/7371), done.
+2026-10-12T07:56:03.0921967Z Note: switching to 'refs/remotes/pull/114/merge'.
+2026-10-12T07:56:03.0922551Z 
+2026-10-12T07:56:03.0922965Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-12T07:56:03.0923990Z changes and commit them, and you can discard any commits you make in this
+2026-10-12T07:56:03.0924929Z state without impacting any branches by switching back to a branch.
+2026-10-12T07:56:03.0925432Z 
+2026-10-12T07:56:03.0925772Z If you want to create a new branch to retain commits you create, you may
+2026-10-12T07:56:03.0926230Z do so (now or later) by using -c with the switch command. Example:
+2026-10-12T07:56:03.0926487Z 
+2026-10-12T07:56:03.0926600Z   git switch -c <new-branch-name>
+2026-10-12T07:56:03.0926807Z 
+2026-10-12T07:56:03.0926917Z Or undo this operation with:
+2026-10-12T07:56:03.0927086Z 
+2026-10-12T07:56:03.0927352Z   git switch -
+2026-10-12T07:56:03.0927600Z 
+2026-10-12T07:56:03.0928227Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-12T07:56:03.0928639Z 
+2026-10-12T07:56:03.0928997Z HEAD is now at 37f630d Merge 002dc1a771551675a0d570d3f4656906e852abda into 21394fff1bf67d954f77cd790cbd30f3f0cdd3f7
+2026-10-12T07:56:03.1035152Z ##[endgroup]
+2026-10-12T07:56:03.1105660Z [command]/usr/bin/git log -1 --format=%H
+2026-10-12T07:56:03.1138194Z 37f630de4022ac0e3a40af202845c12122c05861
+2026-10-12T07:56:03.2033445Z ##[group]Run actions/setup-node@v4
+2026-10-12T07:56:03.2033752Z with:
+2026-10-12T07:56:03.2033951Z   node-version: 20
+2026-10-12T07:56:03.2034171Z   always-auth: false
+2026-10-12T07:56:03.2034393Z   check-latest: false
+2026-10-12T07:56:03.2036926Z   token: ***
+2026-10-12T07:56:03.2037129Z ##[endgroup]
+2026-10-12T07:56:03.3448311Z Attempting to download 20...
+2026-10-12T07:56:03.3559975Z (node:2305) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T07:56:03.3561259Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T07:56:04.1149161Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+2026-10-12T07:56:04.5827005Z Extracting ...
+2026-10-12T07:56:04.5949572Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/a086ce2b-773e-4c20-a23e-e654e507e14a -f /home/runner/work/_temp/db5fdf75-2af5-4447-9954-ff09cda6bbf0
+2026-10-12T07:56:05.6163645Z Adding to the cache ...
+2026-10-12T07:56:07.4733599Z ##[group]Environment details
+2026-10-12T07:56:07.6924121Z node: v20.20.2
+2026-10-12T07:56:07.6924545Z npm: 10.8.2
+2026-10-12T07:56:07.6924864Z yarn: 1.22.22
+2026-10-12T07:56:07.6925591Z ##[endgroup]
+2026-10-12T07:56:07.7110846Z ##[group]Run node scripts/ci/shared-ui-receipts.cjs shared-ui-validation/standalone
+2026-10-12T07:56:07.7111504Z [36;1mnode scripts/ci/shared-ui-receipts.cjs shared-ui-validation/standalone[0m
+2026-10-12T07:56:07.7388718Z shell: /usr/bin/bash -e {0}
+2026-10-12T07:56:07.7389008Z ##[endgroup]
+2026-10-12T07:56:12.8300918Z {"id":"source","exitCode":0,"signal":null,"stdoutBytes":99,"stderrBytes":0}
+2026-10-12T07:56:15.9264828Z {"id":"shared-context","exitCode":0,"signal":null,"stdoutBytes":128,"stderrBytes":0}
+2026-10-12T07:56:19.0042291Z {"id":"apk-identity-self-test","exitCode":0,"signal":null,"stdoutBytes":107,"stderrBytes":0}
+2026-10-12T07:56:22.5843334Z {"id":"tooling","exitCode":0,"signal":null,"stdoutBytes":1761,"stderrBytes":234}
+2026-10-12T07:56:35.3663086Z {"id":"rift-cosmetics","exitCode":0,"signal":null,"stdoutBytes":70,"stderrBytes":0}
+2026-10-12T07:56:43.1379889Z {"id":"prism-earning","exitCode":0,"signal":null,"stdoutBytes":1086,"stderrBytes":0}
+2026-10-12T07:56:46.2329347Z {"id":"prism-context","exitCode":0,"signal":null,"stdoutBytes":132,"stderrBytes":0}
+2026-10-12T07:56:49.3226660Z {"id":"progression-context","exitCode":0,"signal":null,"stdoutBytes":140,"stderrBytes":0}
+2026-10-12T07:56:50.8921145Z ##[group]Run set -euo pipefail
+2026-10-12T07:56:50.8921483Z [36;1mset -euo pipefail[0m
+2026-10-12T07:56:50.8922107Z [36;1mnode tests/behavioral/shared-layout-ui.cjs index.html shared-ui-validation/layout --negative 2>&1 | tee shared-ui-validation/layout.log[0m
+2026-10-12T07:56:50.8988065Z shell: /usr/bin/bash -e {0}
+2026-10-12T07:56:50.8988325Z ##[endgroup]
+2026-10-12T07:58:21.3607254Z {"id":"normal","accepted":true,"exitCode":0,"sourceSha256":"f5a998427fa032e3f8ad8010246fa296d2f6b91e1b1ac0db4fb72ab3a39c0131","driverSha256":"a6fe63671c4fd430a9cf487f764d52c032b7b0474f64bc2f13a682f39c3acc75","checks":6985,"profiles":12,"expectedGeometryCode":null,"actualGeometryCode":null,"error":null,"receipt":"normal/receipt.json","receiptSha256":"672491fe0b1d03719eb7b9f4310a23c55e2627915cef37ac06edc5fbfe1c0d2a","browserVersion":{"protocolVersion":"1.3","product":"Chrome/154.0.8037.97","revision":"@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36","jsVersion":"15.4.80.20"}}
+2026-10-12T07:58:43.6562709Z {"id":"brand-spacing","accepted":true,"exitCode":1,"sourceSha256":"a07cd72dc6683bed9dc47bbeeb253770deb50fef0a8e6dbfd9142f10defcf623","driverSha256":"a6fe63671c4fd430a9cf487f764d52c032b7b0474f64bc2f13a682f39c3acc75","checks":1176,"profiles":2,"expectedGeometryCode":"brand-glyph-intersects-settings","actualGeometryCode":"brand-glyph-intersects-settings","error":"AssertionError [ERR_ASSERTION]: brand-glyph-intersects-settings\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:40:27)\n    at geometry (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:112:7)\n    at brand (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:196:3)\n    at sharedScenario (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:242:89)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:103:3)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:300:6","receipt":"brand-spacing/receipt.json","receiptSha256":"6693086bd2dcf7c16fc34c89180a972ccfc32905211a46cc0801402ea605b2e6","browserVersion":{"protocolVersion":"1.3","product":"Chrome/154.0.8037.97","revision":"@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36","jsVersion":"15.4.80.20"}}
+2026-10-12T07:59:06.8578153Z {"id":"wisp-header","accepted":true,"exitCode":1,"sourceSha256":"036f670ede3081ec8ce52443603d23ecbb8482f1e3046f5e6d4be14ede2b1a9f","driverSha256":"a6fe63671c4fd430a9cf487f764d52c032b7b0474f64bc2f13a682f39c3acc75","checks":1268,"profiles":2,"expectedGeometryCode":"wisp-glyph-intersects-toggle","actualGeometryCode":"wisp-glyph-intersects-toggle","error":"AssertionError [ERR_ASSERTION]: wisp-glyph-intersects-toggle\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:40:27)\n    at geometry (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:112:7)\n    at wisp (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:206:3)\n    at sharedScenario (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:272:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:103:3)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:300:6","receipt":"wisp-header/receipt.json","receiptSha256":"3f72cd3955a1bbe874f3d8482a360e3b4dfcc41277a3b1e7622cb3dae9c6722b","browserVersion":{"protocolVersion":"1.3","product":"Chrome/154.0.8037.97","revision":"@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36","jsVersion":"15.4.80.20"}}
+2026-10-12T07:59:31.0774408Z {"id":"toast-leading","accepted":true,"exitCode":1,"sourceSha256":"270b7a97bd3bad979e96a42fd8a323d160b4012ca98642f15c62afc4806064d2","driverSha256":"a6fe63671c4fd430a9cf487f764d52c032b7b0474f64bc2f13a682f39c3acc75","checks":1699,"profiles":2,"expectedGeometryCode":"toast-adjacent-glyph-lines-intersect","actualGeometryCode":"toast-adjacent-glyph-lines-intersect","error":"AssertionError [ERR_ASSERTION]: toast-adjacent-glyph-lines-intersect\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:40:27)\n    at geometry (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:112:7)\n    at toast (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:230:36)\n    at sharedScenario (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:289:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:103:3)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.shared-layout-2750.cjs:300:6","receipt":"toast-leading/receipt.json","receiptSha256":"acefe5fdac4f2fb73e3ab7af256d58feddb6d5302138574334bd577b864f2098","browserVersion":{"protocolVersion":"1.3","product":"Chrome/154.0.8037.97","revision":"@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36","jsVersion":"15.4.80.20"}}
+2026-10-12T07:59:31.1023952Z ##[group]Run actions/upload-artifact@v4
+2026-10-12T07:59:31.1024252Z with:
+2026-10-12T07:59:31.1024461Z   name: shared-ui-evidence-38220512205
+2026-10-12T07:59:31.1024901Z   retention-days: 14
+2026-10-12T07:59:31.1025122Z   include-hidden-files: true
+2026-10-12T07:59:31.1025366Z   path: shared-ui-validation/
+2026-10-12T07:59:31.1025604Z   if-no-files-found: warn
+2026-10-12T07:59:31.1025821Z   compression-level: 6
+2026-10-12T07:59:31.1026026Z   overwrite: false
+2026-10-12T07:59:31.1026226Z ##[endgroup]
+2026-10-12T07:59:31.2698393Z (node:4928) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T07:59:31.2699265Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T07:59:31.3158576Z With the provided path, there will be 193 files uploaded
+2026-10-12T07:59:31.3164057Z Artifact name is valid!
+2026-10-12T07:59:31.3165051Z Root directory input is valid!
+2026-10-12T07:59:31.7252216Z Beginning upload of artifact content to blob storage
+2026-10-12T07:59:32.5103634Z (node:4928) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-12T07:59:33.5064302Z Uploaded bytes 8388608
+2026-10-12T07:59:34.0325527Z Uploaded bytes 16777216
+2026-10-12T07:59:34.3364249Z Uploaded bytes 25165824
+2026-10-12T07:59:34.3988977Z Uploaded bytes 33554432
+2026-10-12T07:59:34.9750619Z Uploaded bytes 41943040
+2026-10-12T07:59:35.4634425Z Uploaded bytes 50331648
+2026-10-12T07:59:35.8465826Z Uploaded bytes 58720256
+2026-10-12T07:59:36.0859009Z Uploaded bytes 65020220
+2026-10-12T07:59:36.1672784Z Finished uploading artifact content to blob storage!
+2026-10-12T07:59:36.1676147Z SHA256 digest of uploaded artifact zip is 58d12993e10043ef8e0a3034eecafecc8029f735a3b333ca3eaa5e0f52eeba3c
+2026-10-12T07:59:36.1679119Z Finalizing artifact upload
+2026-10-12T07:59:36.4526332Z Artifact shared-ui-evidence-38220512205.zip successfully finalized. Artifact ID 11733354425
+2026-10-12T07:59:36.4528348Z Artifact shared-ui-evidence-38220512205 has been successfully uploaded! Final size is 65020220 bytes. Artifact ID is 11733354425
+2026-10-12T07:59:36.4535296Z Artifact download URL: https://github.com/karahaNx/Lumenfall/actions/runs/38220512205/artifacts/11733354425
+2026-10-12T07:59:36.4738355Z Post job cleanup.
+2026-10-12T07:59:36.5972838Z (node:4943) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T07:59:36.5974065Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T07:59:36.6170219Z Post job cleanup.
+2026-10-12T07:59:36.7105711Z [command]/usr/bin/git version
+2026-10-12T07:59:36.7150820Z git version 2.55.0
+2026-10-12T07:59:36.7195857Z Temporarily overriding HOME='/home/runner/work/_temp/7f3e1562-8f67-4124-a193-786686cfa2f0' before making global git config changes
+2026-10-12T07:59:36.7198758Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T07:59:36.7203858Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-12T07:59:36.7249035Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T07:59:36.7289487Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T07:59:36.7630149Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T07:59:36.7644868Z http.https://github.com/.extraheader
+2026-10-12T07:59:36.7659636Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-12T07:59:36.7716314Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T07:59:36.8051259Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T07:59:36.8092571Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T07:59:36.8493916Z Cleaning up orphan processes
+2026-10-12T07:59:36.8823576Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

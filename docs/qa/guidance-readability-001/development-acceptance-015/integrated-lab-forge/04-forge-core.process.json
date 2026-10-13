@@ -1,0 +1,37 @@
+{
+  "group": "lab-forge",
+  "id": "forge-core",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/behavioral/forge-expansion.cjs",
+    "index.html",
+    "--negative"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:09:03.178Z",
+  "endedHostUtc": "2026-10-11T15:09:04.539Z",
+  "elapsedNanoseconds": "1362041363",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "04-forge-core.stdout.log",
+    "bytes": 3772,
+    "sha256": "dc81f360145d33b82ed374e0b7d354f5552628dec4352aed147a2676fbf37f04",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "04-forge-core.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 9315,
+    "declaredCausalControls": 25
+  }
+}

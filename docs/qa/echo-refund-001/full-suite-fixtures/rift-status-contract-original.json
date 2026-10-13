@@ -1,0 +1,46 @@
+{
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "transport": "existing local CDP fallback",
+  "observation": {
+    "qa_count": 0,
+    "qa_status": null,
+    "qa_scenario": null,
+    "json_status": null,
+    "json_scenario": null,
+    "runtime_markers": [],
+    "runtime_error_count": null,
+    "json_error": "Expected exactly one completed QA result",
+    "valid": false
+  },
+  "payload": null,
+  "process": {
+    "command": [
+      "/tmp/lumenfall-node20/node-v20.20.2-linux-x64/bin/node",
+      "/workspace/Lumenfall-echo-refund/tests/behavioral/browser-dom.cjs",
+      "/usr/bin/chromium",
+      "http://127.0.0.1:34277/index.html?qaScenario=rift-status-contract&qaFixture=fresh",
+      "/tmp/lumenfall-qa-rift-status-contract-5UgMHY",
+      "no-preference"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 1,
+      "timed_out": false,
+      "elapsed_sec": 10.830213461000007,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 0,
+      "qa_status": null,
+      "qa_scenario": null,
+      "json_status": null,
+      "json_scenario": null,
+      "runtime_markers": [],
+      "runtime_error_count": null,
+      "json_error": "Expected exactly one completed QA result",
+      "valid": false
+    }
+  },
+  "scope": "Failed local observation; no CI/native/causal-control claim"
+}

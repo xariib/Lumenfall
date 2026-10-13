@@ -1,0 +1,37 @@
+{
+  "group": "lab-forge",
+  "id": "lab-core",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/behavioral/lab-expansion.cjs",
+    "index.html",
+    "--negative"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:08:56.528Z",
+  "endedHostUtc": "2026-10-11T15:08:59.355Z",
+  "elapsedNanoseconds": "2826335583",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "01-lab-core.stdout.log",
+    "bytes": 3328,
+    "sha256": "0df680a6e2c7b2cee14f9fc24757e3a49aaac4ba1293b64c1deaa72c6a9a320d",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "01-lab-core.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 2464,
+    "declaredCausalControls": 10
+  }
+}

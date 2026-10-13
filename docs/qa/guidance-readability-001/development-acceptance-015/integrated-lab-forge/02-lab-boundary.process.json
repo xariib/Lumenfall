@@ -1,0 +1,37 @@
+{
+  "group": "lab-forge",
+  "id": "lab-boundary",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/behavioral/lab-expansion-boundary.cjs",
+    "index.html",
+    "--negative"
+  ],
+  "cwd": "/workspace/Lumenfall-guidance-integrated",
+  "cleanEnvironment": [
+    "NODE_OPTIONS",
+    "NODE_PATH"
+  ],
+  "startedHostUtc": "2026-10-11T15:08:59.749Z",
+  "endedHostUtc": "2026-10-11T15:09:00.789Z",
+  "elapsedNanoseconds": "1039379025",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "02-lab-boundary.stdout.log",
+    "bytes": 1158,
+    "sha256": "f5d9dc08e8ea864ef83193a02adc3bf73baac3511edd1e5965a56a7762782099",
+    "mode": "0600"
+  },
+  "stderr": {
+    "path": "02-lab-boundary.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": "0600"
+  },
+  "historicalExpected": {
+    "checks": 2344,
+    "declaredCausalControls": 5
+  }
+}

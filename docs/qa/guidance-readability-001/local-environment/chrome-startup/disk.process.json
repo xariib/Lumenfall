@@ -1,0 +1,32 @@
+{
+  "id": "disk",
+  "command": "df",
+  "args": [
+    "-h",
+    "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic",
+    "/tmp",
+    "/dev/shm"
+  ],
+  "timeoutMs": 12000,
+  "timeout": false,
+  "exitCode": 0,
+  "signal": null,
+  "error": null,
+  "elapsedMs": 2.802772,
+  "stdout": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/disk.stdout.log",
+    "bytes": 176,
+    "sha256": "8672c262153662d0b8a6493d80e966a12cf6d1ccbd7e163ef5a04c8a699e9329",
+    "statBytes": 176,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:44:14.556Z"
+  },
+  "stderr": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/chrome-diagnostic/disk.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "statBytes": 0,
+    "mode": "644",
+    "executorMtime": "2026-10-11T11:44:14.552Z"
+  }
+}

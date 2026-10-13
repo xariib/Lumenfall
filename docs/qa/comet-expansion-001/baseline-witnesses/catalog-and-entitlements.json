@@ -1,0 +1,354 @@
+{
+  "shop": [
+    [
+      "autoascend",
+      100
+    ],
+    [
+      "comettrials",
+      140
+    ],
+    [
+      "rifttrail",
+      50
+    ],
+    [
+      "starfallcrest",
+      160
+    ]
+  ],
+  "deeds": [
+    [
+      "d10",
+      5
+    ],
+    [
+      "d25",
+      10
+    ],
+    [
+      "d50",
+      20
+    ],
+    [
+      "d100",
+      50
+    ],
+    [
+      "d250",
+      100
+    ],
+    [
+      "tap100",
+      3
+    ],
+    [
+      "tap1000",
+      8
+    ],
+    [
+      "tap10000",
+      20
+    ],
+    [
+      "fullparty",
+      12
+    ],
+    [
+      "asc1",
+      10
+    ],
+    [
+      "asc5",
+      25
+    ],
+    [
+      "asc10",
+      50
+    ],
+    [
+      "all",
+      30
+    ],
+    [
+      "mythic",
+      40
+    ],
+    [
+      "idle8",
+      15
+    ],
+    [
+      "autotap",
+      25
+    ],
+    [
+      "labmaster",
+      30
+    ],
+    [
+      "study1",
+      15
+    ],
+    [
+      "study25",
+      50
+    ],
+    [
+      "allstudies",
+      35
+    ],
+    [
+      "labqueue",
+      40
+    ],
+    [
+      "firstultimate",
+      45
+    ],
+    [
+      "modulemax",
+      45
+    ]
+  ],
+  "deedCount": 23,
+  "deedRewardPool": 683,
+  "legacyForgeIds": [
+    "focus",
+    "sense",
+    "formation",
+    "resolve",
+    "charge"
+  ],
+  "legacyStudyIds": [
+    "wispascend",
+    "guardmastery",
+    "riftattune",
+    "shardstudy",
+    "lumenstudy",
+    "formationstudy",
+    "motestudy",
+    "prismstudy"
+  ],
+  "foundationStudyIds": [
+    "wispascend",
+    "guardmastery",
+    "shardstudy",
+    "lumenstudy",
+    "motestudy"
+  ],
+  "trials": [
+    {
+      "id": "quiet",
+      "rule": "No manual attacks during the run. Auto-Tap is allowed.",
+      "mark": "Quiet Guardian mark"
+    },
+    {
+      "id": "single",
+      "rule": "Keep at most one Active Wisp throughout the run. Formation rebuild and Auto-Empower also count.",
+      "mark": "Single Star mark"
+    }
+  ],
+  "gates": [
+    {
+      "name": "autotap",
+      "ascends": 11,
+      "eligible": false
+    },
+    {
+      "name": "autotap",
+      "ascends": 12,
+      "eligible": true
+    },
+    {
+      "name": "labmaster",
+      "originalForgeLevels": 19,
+      "eligible": false
+    },
+    {
+      "name": "labmaster",
+      "originalForgeLevels": 20,
+      "eligible": true
+    },
+    {
+      "name": "labmaster",
+      "onlyAddedForgeAndTree": true,
+      "eligible": false
+    }
+  ],
+  "entitlements": [
+    {
+      "route": "auto-only",
+      "seeded": {
+        "path": "blobs/02bd69861d72029063fc2a017042fe79537c2be4f6f2a3231776cc2c5ad4028b.json",
+        "bytes": 4856,
+        "sha256": "02bd69861d72029063fc2a017042fe79537c2be4f6f2a3231776cc2c5ad4028b"
+      },
+      "accepted": {
+        "state": {
+          "path": "blobs/54a0f87615ce39aeeaf5a7b83bd75fbd511d246188c788935e295081a55e2a41.json",
+          "bytes": 4964,
+          "sha256": "54a0f87615ce39aeeaf5a7b83bd75fbd511d246188c788935e295081a55e2a41"
+        },
+        "view": {
+          "comets": 0,
+          "owned": {
+            "autoascend": true
+          },
+          "achieved": {},
+          "questIds": [],
+          "questClaimed": {},
+          "questDay": "2026-10-10",
+          "dailyQuestRefreshes": 0,
+          "autoAscendEnabled": false,
+          "autoAscendTargetDepth": 43,
+          "legacyCometPurchases": {},
+          "offline12hRefund": null
+        },
+        "primary": null,
+        "recovery": null
+      },
+      "refreshEntitled": false
+    },
+    {
+      "route": "auto-trials",
+      "seeded": {
+        "path": "blobs/ccf12cdc0765cd3a35621de246c06f864b40f08cece79b74909f0831ada19cd4.json",
+        "bytes": 4855,
+        "sha256": "ccf12cdc0765cd3a35621de246c06f864b40f08cece79b74909f0831ada19cd4"
+      },
+      "accepted": {
+        "state": {
+          "path": "blobs/6ea8d2d6a58614b49713a9564ae8cae5f11d27e5fdd8f6c7aa195aa7385e4a60.json",
+          "bytes": 4983,
+          "sha256": "6ea8d2d6a58614b49713a9564ae8cae5f11d27e5fdd8f6c7aa195aa7385e4a60"
+        },
+        "view": {
+          "comets": 0,
+          "owned": {
+            "autoascend": true,
+            "comettrials": true
+          },
+          "achieved": {},
+          "questIds": [],
+          "questClaimed": {},
+          "questDay": "2026-10-10",
+          "dailyQuestRefreshes": 0,
+          "autoAscendEnabled": false,
+          "autoAscendTargetDepth": 43,
+          "legacyCometPurchases": {},
+          "offline12hRefund": null
+        },
+        "primary": null,
+        "recovery": null
+      },
+      "refreshEntitled": true
+    },
+    {
+      "route": "auto-all-legacy",
+      "seeded": {
+        "path": "blobs/5f8aed80b831c8927428f17ea0580bce74c02180d1fe5990f5292b239644064c.json",
+        "bytes": 4909,
+        "sha256": "5f8aed80b831c8927428f17ea0580bce74c02180d1fe5990f5292b239644064c"
+      },
+      "accepted": {
+        "state": {
+          "path": "blobs/82e84542909179dab7fc2fbc6bdb665f425f345ff0e7b0bea3ca3c194264a2e2.json",
+          "bytes": 5017,
+          "sha256": "82e84542909179dab7fc2fbc6bdb665f425f345ff0e7b0bea3ca3c194264a2e2"
+        },
+        "view": {
+          "comets": 0,
+          "owned": {
+            "autoascend": true
+          },
+          "achieved": {},
+          "questIds": [],
+          "questClaimed": {},
+          "questDay": "2026-10-10",
+          "dailyQuestRefreshes": 0,
+          "autoAscendEnabled": false,
+          "autoAscendTargetDepth": 43,
+          "legacyCometPurchases": {
+            "rememberbulk": true,
+            "offline24": true,
+            "offline48": true
+          },
+          "offline12hRefund": null
+        },
+        "primary": null,
+        "recovery": null
+      },
+      "refreshEntitled": true
+    },
+    {
+      "route": "auto-two-legacy",
+      "seeded": {
+        "path": "blobs/4f792dd63287808c6c505812a83d6f3a386432afa0cc83edb52c58378e9fa355.json",
+        "bytes": 4910,
+        "sha256": "4f792dd63287808c6c505812a83d6f3a386432afa0cc83edb52c58378e9fa355"
+      },
+      "accepted": {
+        "state": {
+          "path": "blobs/6b07aedee78970a3c979fed497f12668032cc85e9b9f93c5e04180b4fa0f7611.json",
+          "bytes": 5000,
+          "sha256": "6b07aedee78970a3c979fed497f12668032cc85e9b9f93c5e04180b4fa0f7611"
+        },
+        "view": {
+          "comets": 0,
+          "owned": {
+            "autoascend": true
+          },
+          "achieved": {},
+          "questIds": [],
+          "questClaimed": {},
+          "questDay": "2026-10-10",
+          "dailyQuestRefreshes": 0,
+          "autoAscendEnabled": false,
+          "autoAscendTargetDepth": 43,
+          "legacyCometPurchases": {
+            "rememberbulk": true,
+            "offline24": true
+          },
+          "offline12hRefund": null
+        },
+        "primary": null,
+        "recovery": null
+      },
+      "refreshEntitled": false
+    },
+    {
+      "route": "no-auto-trials",
+      "seeded": {
+        "path": "blobs/85d43db18ebb73de630dfa29ed86c050667dce2167598b9dc0c8f7d80c259be7.json",
+        "bytes": 4856,
+        "sha256": "85d43db18ebb73de630dfa29ed86c050667dce2167598b9dc0c8f7d80c259be7"
+      },
+      "accepted": {
+        "state": {
+          "path": "blobs/ec304019ed8b95fd74c6be88861943d0afe368c695bf6ce4d349662b97bc5385.json",
+          "bytes": 4965,
+          "sha256": "ec304019ed8b95fd74c6be88861943d0afe368c695bf6ce4d349662b97bc5385"
+        },
+        "view": {
+          "comets": 0,
+          "owned": {
+            "comettrials": true
+          },
+          "achieved": {},
+          "questIds": [],
+          "questClaimed": {},
+          "questDay": "2026-10-10",
+          "dailyQuestRefreshes": 0,
+          "autoAscendEnabled": false,
+          "autoAscendTargetDepth": 43,
+          "legacyCometPurchases": {},
+          "offline12hRefund": null
+        },
+        "primary": null,
+        "recovery": null
+      },
+      "refreshEntitled": false
+    }
+  ]
+}

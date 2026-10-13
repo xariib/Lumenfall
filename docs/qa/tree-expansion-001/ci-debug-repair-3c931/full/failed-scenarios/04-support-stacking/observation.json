@@ -1,0 +1,102 @@
+{
+  "name": "support-stacking",
+  "occurrence": 4,
+  "rawLogSection": {
+    "byteOffset": 4536224,
+    "bytes": 6502,
+    "sha256": "64f26da7bbb5fe23011c20eee54b899c16060f29085a7c57071639bf3668ea48"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 1.1630275559999281,
+    "timeout_sec": 25
+  },
+  "detail": null,
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/process.json",
+      "bytes": 913,
+      "sha256": "d27213530f57fdf97dc68f4c662dae29e0225f228a760114bf6fe2ee63fb612b",
+      "zipCrc32": "88abde37"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stderr.log",
+      "bytes": 4021,
+      "sha256": "d61442b8324b0390634f506b13ace693b99cb548d311ea8be80df1751686c34c",
+      "zipCrc32": "daab5c5f"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stdout.html",
+      "bytes": 1377107,
+      "sha256": "e998962dfc59ab6295cd804835092606621b7c195f9ddd75acc7840534d71bae",
+      "zipCrc32": "48cd6933"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-support-stacking-hYoEIn",
+      "--dump-dom",
+      "http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.1630275559999281,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "support-stacking",
+      "json_status": "fail",
+      "json_scenario": "support-stacking",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "support-stacking",
+      "json_status": "fail",
+      "json_scenario": "support-stacking",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "support-stacking",
+      "status": "fail",
+      "detail": {
+        "message": "Ascension clears all sources",
+        "stack": "Error: Ascension clears all sources\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:15077:61)\n    at ok (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:14067:29)\n    at window.runSupportStacking (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:14116:202)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=support-stacking&qaFixture=fresh:15569:46)"
+      },
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/support-stacking-Hid6wr/stdout.html",
+    "bytes": 1377107,
+    "sha256": "e998962dfc59ab6295cd804835092606621b7c195f9ddd75acc7840534d71bae",
+    "zipCrc32": "48cd6933"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/04-support-stacking"
+}

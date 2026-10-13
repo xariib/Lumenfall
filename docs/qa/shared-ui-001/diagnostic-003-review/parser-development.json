@@ -1,0 +1,23 @@
+{
+  "scope": "Read-only audit parser development; no browser/game/test execution",
+  "originalAuditOnlyExit": 1,
+  "actualDiagnosticUnaffected": "PASS6985/12/3",
+  "cause": "Expected the native Wisp-tab id to be null; original raw trusted click and observed before-control both carry nav-spirits.",
+  "correction": "Use the actual native nav-spirits id while retaining exact trusted closest-control equality.",
+  "originalParserSha256": "6075c5a7d175e11b9f9755b02b49ffb47cae73a0ca2496e0579b56004b285c1c",
+  "finalParserSha256": "5340532ca135e13ae9a7e35292457a970704dc8d504f3f953bc8305049e70881",
+  "originalAssertion": "assert(row.events.some(e=>e.trusted&&e.type==='click'&&JSON.stringify(e.control)===JSON.stringify(expected)))",
+  "originalToolChunk": "0cbaef",
+  "originalWallSeconds": 1.080788515,
+  "rawBasis": {
+    "receipt": "../raw/artifact/layout/normal/receipt.json",
+    "sha256": "9161f534942e0abdf82994e032fd0430dbe1308b0297083f2e866c117b0760ae",
+    "jsonPath": "profiles[0].inputs[4]",
+    "observedBeforeId": "nav-spirits",
+    "actualTrustedClickControl": {
+      "id": "nav-spirits",
+      "toggle": null,
+      "tab": "spirits"
+    }
+  }
+}

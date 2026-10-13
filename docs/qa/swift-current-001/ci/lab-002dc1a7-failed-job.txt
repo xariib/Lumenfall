@@ -1,0 +1,311 @@
+﻿2026-10-12T07:55:48.2239720Z Current runner version: '2.337.0'
+2026-10-12T07:55:48.2275667Z ##[group]Runner Image Provisioner
+2026-10-12T07:55:48.2277057Z Hosted Compute Agent
+2026-10-12T07:55:48.2278292Z Version: 20261002.596
+2026-10-12T07:55:48.2279457Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-12T07:55:48.2281110Z Build Date: 2026-10-02T22:28:27Z
+2026-10-12T07:55:48.2282329Z Worker ID: {5260c5b0-9c7a-4734-b9c0-4657cf930e13}
+2026-10-12T07:55:48.2283567Z Region: westcentralus
+2026-10-12T07:55:48.2284824Z Cloud: Azure
+2026-10-12T07:55:48.2285855Z ##[endgroup]
+2026-10-12T07:55:48.2288538Z ##[group]Operating System
+2026-10-12T07:55:48.2289600Z Ubuntu
+2026-10-12T07:55:48.2290731Z 24.04.5
+2026-10-12T07:55:48.2291703Z LTS
+2026-10-12T07:55:48.2292595Z ##[endgroup]
+2026-10-12T07:55:48.2293486Z ##[group]Runner Image
+2026-10-12T07:55:48.2294597Z Image: ubuntu-24.04
+2026-10-12T07:55:48.2295528Z Version: 20261004.327.1
+2026-10-12T07:55:48.2297906Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-12T07:55:48.2301008Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-12T07:55:48.2302880Z ##[endgroup]
+2026-10-12T07:55:48.2304774Z ##[group]GITHUB_TOKEN Permissions
+2026-10-12T07:55:48.2307709Z Contents: read
+2026-10-12T07:55:48.2308725Z Metadata: read
+2026-10-12T07:55:48.2309885Z ##[endgroup]
+2026-10-12T07:55:48.2313443Z Secret source: Actions
+2026-10-12T07:55:48.2315019Z Cache mode: write
+2026-10-12T07:55:48.2316333Z Prepare workflow directory
+2026-10-12T07:55:48.2698448Z Prepare all required actions
+2026-10-12T07:55:48.2749855Z Getting action download info
+2026-10-12T07:55:48.5701086Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-12T07:55:48.6677500Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-12T07:55:48.7687776Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-12T07:55:48.9790644Z Complete job name: lab
+2026-10-12T07:55:49.0599424Z ##[group]Run actions/checkout@v4
+2026-10-12T07:55:49.0600622Z with:
+2026-10-12T07:55:49.0601097Z   repository: karahaNx/Lumenfall
+2026-10-12T07:55:49.0604788Z   token: ***
+2026-10-12T07:55:49.0605227Z   ssh-strict: true
+2026-10-12T07:55:49.0605671Z   ssh-user: git
+2026-10-12T07:55:49.0606123Z   persist-credentials: true
+2026-10-12T07:55:49.0606610Z   clean: true
+2026-10-12T07:55:49.0607054Z   sparse-checkout-cone-mode: true
+2026-10-12T07:55:49.0607603Z   fetch-depth: 1
+2026-10-12T07:55:49.0608039Z   fetch-tags: false
+2026-10-12T07:55:49.0608493Z   show-progress: true
+2026-10-12T07:55:49.0608945Z   lfs: false
+2026-10-12T07:55:49.0609359Z   submodules: false
+2026-10-12T07:55:49.0609809Z   set-safe-directory: true
+2026-10-12T07:55:49.0610500Z   allow-unsafe-pr-checkout: false
+2026-10-12T07:55:49.0611415Z ##[endgroup]
+2026-10-12T07:55:49.1716511Z Syncing repository: karahaNx/Lumenfall
+2026-10-12T07:55:49.1719013Z ##[group]Getting Git version info
+2026-10-12T07:55:49.1719907Z Working directory is '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-12T07:55:49.1721419Z [command]/usr/bin/git version
+2026-10-12T07:55:49.1813641Z git version 2.55.0
+2026-10-12T07:55:49.1844380Z ##[endgroup]
+2026-10-12T07:55:49.1852178Z Temporarily overriding HOME='/home/runner/work/_temp/db735884-a73c-4896-8d3a-ba4ea75003d3' before making global git config changes
+2026-10-12T07:55:49.1855014Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T07:55:49.1865674Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-12T07:55:49.1932588Z Deleting the contents of '/home/runner/work/Lumenfall/Lumenfall'
+2026-10-12T07:55:49.1934672Z ##[group]Initializing the repository
+2026-10-12T07:55:49.1938572Z [command]/usr/bin/git init /home/runner/work/Lumenfall/Lumenfall
+2026-10-12T07:55:49.2066920Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-12T07:55:49.2069736Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-12T07:55:49.2072046Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-12T07:55:49.2073773Z hint: call:
+2026-10-12T07:55:49.2075171Z hint:
+2026-10-12T07:55:49.2075932Z hint: 	git config --global init.defaultBranch <name>
+2026-10-12T07:55:49.2076735Z hint:
+2026-10-12T07:55:49.2077519Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-12T07:55:49.2078656Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-12T07:55:49.2079945Z hint:
+2026-10-12T07:55:49.2081317Z hint: 	git branch -m <name>
+2026-10-12T07:55:49.2082112Z hint:
+2026-10-12T07:55:49.2083132Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-12T07:55:49.2084347Z Initialized empty Git repository in /home/runner/work/Lumenfall/Lumenfall/.git/
+2026-10-12T07:55:49.2086679Z [command]/usr/bin/git remote add origin https://github.com/karahaNx/Lumenfall
+2026-10-12T07:55:49.2140054Z ##[endgroup]
+2026-10-12T07:55:49.2141346Z ##[group]Disabling automatic garbage collection
+2026-10-12T07:55:49.2145626Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-12T07:55:49.2186065Z ##[endgroup]
+2026-10-12T07:55:49.2187582Z ##[group]Setting up auth
+2026-10-12T07:55:49.2195500Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T07:55:49.2237546Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T07:55:49.2679310Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T07:55:49.2733731Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T07:55:49.2983264Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T07:55:49.3024636Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T07:55:49.3278034Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-12T07:55:49.3321842Z ##[endgroup]
+2026-10-12T07:55:49.3323370Z ##[group]Fetching the repository
+2026-10-12T07:55:49.3334316Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +37f630de4022ac0e3a40af202845c12122c05861:refs/remotes/pull/114/merge
+2026-10-12T07:55:58.7954399Z From https://github.com/karahaNx/Lumenfall
+2026-10-12T07:55:58.7955610Z  * [new ref]         37f630de4022ac0e3a40af202845c12122c05861 -> pull/114/merge
+2026-10-12T07:55:58.7971878Z ##[endgroup]
+2026-10-12T07:55:58.7972850Z ##[group]Determining the checkout info
+2026-10-12T07:55:58.7973874Z ##[endgroup]
+2026-10-12T07:55:58.7974470Z [command]/usr/bin/git sparse-checkout disable
+2026-10-12T07:55:58.8032185Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-12T07:55:58.8079854Z ##[group]Checking out the ref
+2026-10-12T07:55:58.8083912Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/114/merge
+2026-10-12T07:55:59.8214421Z Updating files:  52% (3902/7371)
+2026-10-12T07:55:59.8392710Z Updating files:  53% (3907/7371)
+2026-10-12T07:55:59.8594438Z Updating files:  54% (3981/7371)
+2026-10-12T07:55:59.8777093Z Updating files:  55% (4055/7371)
+2026-10-12T07:55:59.8919987Z Updating files:  56% (4128/7371)
+2026-10-12T07:55:59.9086284Z Updating files:  57% (4202/7371)
+2026-10-12T07:55:59.9272338Z Updating files:  58% (4276/7371)
+2026-10-12T07:55:59.9365605Z Updating files:  59% (4349/7371)
+2026-10-12T07:55:59.9446903Z Updating files:  60% (4423/7371)
+2026-10-12T07:55:59.9560830Z Updating files:  61% (4497/7371)
+2026-10-12T07:55:59.9822396Z Updating files:  62% (4571/7371)
+2026-10-12T07:55:59.9941184Z Updating files:  63% (4644/7371)
+2026-10-12T07:56:00.0000063Z Updating files:  64% (4718/7371)
+2026-10-12T07:56:00.0047868Z Updating files:  65% (4792/7371)
+2026-10-12T07:56:00.0105775Z Updating files:  66% (4865/7371)
+2026-10-12T07:56:00.0149932Z Updating files:  67% (4939/7371)
+2026-10-12T07:56:00.0207046Z Updating files:  68% (5013/7371)
+2026-10-12T07:56:00.0261392Z Updating files:  69% (5086/7371)
+2026-10-12T07:56:00.0298191Z Updating files:  70% (5160/7371)
+2026-10-12T07:56:00.0382048Z Updating files:  71% (5234/7371)
+2026-10-12T07:56:00.0448391Z Updating files:  72% (5308/7371)
+2026-10-12T07:56:00.0534431Z Updating files:  73% (5381/7371)
+2026-10-12T07:56:00.0617070Z Updating files:  74% (5455/7371)
+2026-10-12T07:56:00.0741527Z Updating files:  75% (5529/7371)
+2026-10-12T07:56:00.0841932Z Updating files:  76% (5602/7371)
+2026-10-12T07:56:00.0868179Z Updating files:  77% (5676/7371)
+2026-10-12T07:56:00.1056354Z Updating files:  78% (5750/7371)
+2026-10-12T07:56:00.1635394Z Updating files:  79% (5824/7371)
+2026-10-12T07:56:00.2139952Z Updating files:  80% (5897/7371)
+2026-10-12T07:56:00.3009513Z Updating files:  81% (5971/7371)
+2026-10-12T07:56:00.3953341Z Updating files:  82% (6045/7371)
+2026-10-12T07:56:00.4160120Z Updating files:  83% (6118/7371)
+2026-10-12T07:56:00.4245579Z Updating files:  84% (6192/7371)
+2026-10-12T07:56:00.4332438Z Updating files:  85% (6266/7371)
+2026-10-12T07:56:00.4461571Z Updating files:  86% (6340/7371)
+2026-10-12T07:56:00.4535983Z Updating files:  87% (6413/7371)
+2026-10-12T07:56:00.4662777Z Updating files:  88% (6487/7371)
+2026-10-12T07:56:00.4732750Z Updating files:  89% (6561/7371)
+2026-10-12T07:56:00.4934313Z Updating files:  90% (6634/7371)
+2026-10-12T07:56:00.4996907Z Updating files:  91% (6708/7371)
+2026-10-12T07:56:00.5283776Z Updating files:  92% (6782/7371)
+2026-10-12T07:56:00.5355045Z Updating files:  93% (6856/7371)
+2026-10-12T07:56:00.5393642Z Updating files:  94% (6929/7371)
+2026-10-12T07:56:00.5434792Z Updating files:  95% (7003/7371)
+2026-10-12T07:56:00.5484393Z Updating files:  96% (7077/7371)
+2026-10-12T07:56:00.5559682Z Updating files:  97% (7150/7371)
+2026-10-12T07:56:00.5663376Z Updating files:  98% (7224/7371)
+2026-10-12T07:56:00.5754371Z Updating files:  99% (7298/7371)
+2026-10-12T07:56:00.5755052Z Updating files: 100% (7371/7371)
+2026-10-12T07:56:00.5755651Z Updating files: 100% (7371/7371), done.
+2026-10-12T07:56:00.6284538Z Note: switching to 'refs/remotes/pull/114/merge'.
+2026-10-12T07:56:00.6285850Z 
+2026-10-12T07:56:00.6286669Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-12T07:56:00.6288043Z changes and commit them, and you can discard any commits you make in this
+2026-10-12T07:56:00.6289109Z state without impacting any branches by switching back to a branch.
+2026-10-12T07:56:00.6289883Z 
+2026-10-12T07:56:00.6290767Z If you want to create a new branch to retain commits you create, you may
+2026-10-12T07:56:00.6292084Z do so (now or later) by using -c with the switch command. Example:
+2026-10-12T07:56:00.6292872Z 
+2026-10-12T07:56:00.6293328Z   git switch -c <new-branch-name>
+2026-10-12T07:56:00.6293826Z 
+2026-10-12T07:56:00.6294183Z Or undo this operation with:
+2026-10-12T07:56:00.6294635Z 
+2026-10-12T07:56:00.6294950Z   git switch -
+2026-10-12T07:56:00.6295363Z 
+2026-10-12T07:56:00.6295949Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-12T07:56:00.6296739Z 
+2026-10-12T07:56:00.6297568Z HEAD is now at 37f630d Merge 002dc1a771551675a0d570d3f4656906e852abda into 21394fff1bf67d954f77cd790cbd30f3f0cdd3f7
+2026-10-12T07:56:00.6778539Z ##[endgroup]
+2026-10-12T07:56:00.6844300Z [command]/usr/bin/git log -1 --format=%H
+2026-10-12T07:56:00.6893032Z 37f630de4022ac0e3a40af202845c12122c05861
+2026-10-12T07:56:00.7233989Z ##[group]Run actions/setup-node@v4
+2026-10-12T07:56:00.7234290Z with:
+2026-10-12T07:56:00.7234490Z   node-version: 20
+2026-10-12T07:56:00.7234712Z   always-auth: false
+2026-10-12T07:56:00.7234944Z   check-latest: false
+2026-10-12T07:56:00.7237412Z   token: ***
+2026-10-12T07:56:00.7237619Z ##[endgroup]
+2026-10-12T07:56:00.8795865Z Attempting to download 20...
+2026-10-12T07:56:00.8909765Z (node:2374) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T07:56:00.8910949Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T07:56:01.8662659Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+2026-10-12T07:56:02.5272733Z Extracting ...
+2026-10-12T07:56:02.5395916Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/5254115e-a7b8-4228-9c22-cbf9a1e9c4cb -f /home/runner/work/_temp/e05a221d-169c-48fd-961c-a934f582ce10
+2026-10-12T07:56:03.6468208Z Adding to the cache ...
+2026-10-12T07:56:07.3127847Z ##[group]Environment details
+2026-10-12T07:56:07.5489261Z node: v20.20.2
+2026-10-12T07:56:07.5489755Z npm: 10.8.2
+2026-10-12T07:56:07.5490118Z yarn: 1.22.22
+2026-10-12T07:56:07.5491162Z ##[endgroup]
+2026-10-12T07:56:07.5709606Z ##[group]Run set -euo pipefail
+2026-10-12T07:56:07.5710031Z [36;1mset -euo pipefail[0m
+2026-10-12T07:56:07.5710531Z [36;1mmkdir -p lab-validation[0m
+2026-10-12T07:56:07.5710877Z [36;1mgit rev-parse HEAD > lab-validation/commit.txt[0m
+2026-10-12T07:56:07.5711310Z [36;1msha256sum index.html > lab-validation/source-sha256.txt[0m
+2026-10-12T07:56:07.5711790Z [36;1mnode scripts/ci/validate_source.cjs | tee lab-validation/source.txt[0m
+2026-10-12T07:56:07.5712446Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/LAB_EXPANSION_001.md | tee lab-validation/context.txt[0m
+2026-10-12T07:56:07.6003770Z shell: /usr/bin/bash -e {0}
+2026-10-12T07:56:07.6004162Z ##[endgroup]
+2026-10-12T07:56:07.7270952Z QA passed: 2 scripts syntax-checked, 16 unique IDs verified, cache/state lifecycle guards present.
+2026-10-12T07:56:07.7725306Z PASS: 29 entrypoints, 88 local Markdown links, shared startup 31045 bytes; startup with docs/tasks/LAB_EXPANSION_001.md 32479 bytes
+2026-10-12T07:56:07.7803899Z ##[group]Run set -euo pipefail
+2026-10-12T07:56:07.7804236Z [36;1mset -euo pipefail[0m
+2026-10-12T07:56:07.7804729Z [36;1mnode tests/behavioral/lab-expansion.cjs index.html --negative | tee lab-validation/core.json[0m
+2026-10-12T07:56:07.7805494Z [36;1mnode tests/behavioral/lab-expansion-boundary.cjs index.html --negative | tee lab-validation/boundary.json[0m
+2026-10-12T07:56:07.7806266Z [36;1mnode tests/behavioral/lab-expansion-stress.cjs index.html | tee lab-validation/boundary-stress.json[0m
+2026-10-12T07:56:07.7806995Z [36;1mnode tests/behavioral/prism-earning-state.cjs index.html | tee lab-validation/prism-state.json[0m
+2026-10-12T07:56:07.7876045Z shell: /usr/bin/bash -e {0}
+2026-10-12T07:56:07.7876360Z ##[endgroup]
+2026-10-12T07:56:10.8343953Z {"status":"pass","sourceSha256":"f5a998427fa032e3f8ad8010246fa296d2f6b91e1b1ac0db4fb72ab3a39c0131","checks":2465,"projects":14,"projectCases":[{"id":"labcapacity","cap":2,"unlock":40,"base":{"lumen":20000,"shard":2000},"work":1800},{"id":"procurement","cap":10,"unlock":25,"base":{"lumen":12000,"shard":600},"work":900},{"id":"catalysis","cap":10,"unlock":60,"base":{"lumen":40000,"shard":1500},"work":1200},{"id":"focusprotocol","cap":5,"unlock":40,"base":{"lumen":20000,"shard":800},"work":1200},{"id":"fieldnotes","cap":10,"unlock":15,"base":{"lumen":6000,"shard":300},"work":600},{"id":"curriculum","cap":3,"unlock":60,"base":{"lumen":60000,"shard":2000},"work":1500},{"id":"bossledger","cap":10,"unlock":20,"base":{"lumen":14000,"shard":500},"work":720},{"id":"luminousdistill","cap":10,"unlock":35,"base":{"lumen":25000,"shard":800},"work":960},{"id":"sigilcartography","cap":5,"unlock":60,"base":{"lumen":80000,"shard":3000},"work":1500},{"id":"rarityappraisal","cap":10,"unlock":15,"base":{"lumen":8000,"shard":500},"work":600},{"id":"modulefabrication","cap":10,"unlock":30,"base":{"lumen":20000,"shard":1000},"work":900},{"id":"ultimateanalysis","cap":10,"unlock":70,"base":{"lumen":100000,"shard":4000},"work":1200},{"id":"resonantefficiency","cap":5,"unlock":50,"base":{"lumen":30000,"shard":1200},"work":1000},{"id":"adaptivegrowth","cap":5,"unlock":45,"base":{"lumen":30000,"shard":1600},"work":1000}],"scope":"complete production logic; presentation stubbed, browser and native Android are separate","negativeControls":[{"name":"lost-capacity","caught":"capacity curve\n\n2 !== 3\n"},{"name":"free-start","caught":"exact Lumen debit\n\n20000 !== 0\n"},{"name":"early-level","caught":"no early bonus\n\n1 !== 0\n"},{"name":"lost-seventh-paid-record","caught":"eighth slot rejected\n\ntrue !== false\n"},{"name":"ascend-drops-paid-slots","caught":"manual preserves activeStudies\n+ actual - expected ... Lines skipped\n\n  [\n    {\n...\n      speedMult: 5,\n      totalDurationSec: 2940\n-   },\n-   {\n-     id: 'focusprotocol',\n-     remainingSec: 2100,\n-     speedMult: 6,\n-     totalDurationSec: 3000\n-   },\n-   {\n-     id: 'bossledger',\n-     remainingSec: 2160,\n-     speedMult: 8,\n-     totalDurationSec: 3060\n    }\n  ]"},{"name":"ascend-drops-earned-capacity","caught":"manual preserves longStudyLevels\n+ actual - expected ... Lines skipped\n\n  {\n    adaptivegrowth: 1,\n...\n    formationstudy: 5,\n    guardmastery: 0,\n+   labcapacity: 0,\n-   labcapacity: 2,\n    lumenstudy: 0,\n...\n    ultimateanalysis: 1,\n    wispascend: 3\n  }"},{"name":"double-notes","caught":"earned completion Motes\n\n10012 !== 10006\n"},{"name":"no-procurement","caught":"future prices reduced20%\n+ actual - expected\n\n  {\n+   lumen: 600,\n+   shard: 40\n-   lumen: 480,\n-   shard: 32\n  }"},{"name":"missed-luminous-purchase","caught":"first affordable kill counts Luminous material rewards\n\n2 !== 1\n"},{"name":"erased-old-value","caught":"old value preserved research\n+ actual - expected ... Lines skipped\n\n  {\n    amplifiertrim: 0,\n    arcanecal: 0,\n    cauterize: 0,\n+   charge: 0,\n-   charge: 28,\n    conduction: 0,\n...\n    tapconduit: 0,\n    victorycharge: 0\n  }"}]}
+2026-10-12T07:56:11.7603401Z node:assert:90
+2026-10-12T07:56:11.7605118Z   throw new AssertionError(obj);
+2026-10-12T07:56:11.7605942Z   ^
+2026-10-12T07:56:11.7606321Z 
+2026-10-12T07:56:11.7607136Z AssertionError [ERR_ASSERTION]: one production wallet/batch boundary anchor
+2026-10-12T07:56:11.7607847Z 
+2026-10-12T07:56:11.7608079Z 1 !== 2
+2026-10-12T07:56:11.7608291Z 
+2026-10-12T07:56:11.7609495Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion-boundary.cjs:133:10)
+2026-10-12T07:56:11.7611644Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2026-10-12T07:56:11.7612918Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2026-10-12T07:56:11.7614081Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2026-10-12T07:56:11.7615009Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2026-10-12T07:56:11.7616250Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2026-10-12T07:56:11.7617395Z     at node:internal/main/run_main_module:28:49 {
+2026-10-12T07:56:11.7618079Z   generatedMessage: false,
+2026-10-12T07:56:11.7618608Z   code: 'ERR_ASSERTION',
+2026-10-12T07:56:11.7619104Z   actual: 1,
+2026-10-12T07:56:11.7619531Z   expected: 2,
+2026-10-12T07:56:11.7620013Z   operator: 'strictEqual'
+2026-10-12T07:56:11.7620661Z }
+2026-10-12T07:56:11.7620866Z 
+2026-10-12T07:56:11.7621055Z Node.js v20.20.2
+2026-10-12T07:56:11.7661875Z ##[error]Process completed with exit code 1.
+2026-10-12T07:56:11.7716672Z ##[group]Run node tests/behavioral/lab-expansion-ui.cjs index.html lab-validation/mobile
+2026-10-12T07:56:11.7717342Z [36;1mnode tests/behavioral/lab-expansion-ui.cjs index.html lab-validation/mobile[0m
+2026-10-12T07:56:11.7782831Z shell: /usr/bin/bash -e {0}
+2026-10-12T07:56:11.7783099Z ##[endgroup]
+2026-10-12T07:57:34.7502284Z {"status":"pass","sourceSha256":"f5a998427fa032e3f8ad8010246fa296d2f6b91e1b1ac0db4fb72ab3a39c0131","node":"v20.20.2","browser":"google-chrome","profiles":[{"width":320,"scale":1,"motion":"no-preference","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":320,"scale":1,"motion":"reduce","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":320,"scale":2,"motion":"no-preference","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":320,"scale":2,"motion":"reduce","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":390,"scale":1,"motion":"no-preference","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":390,"scale":1,"motion":"reduce","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":390,"scale":2,"motion":"no-preference","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":390,"scale":2,"motion":"reduce","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":430,"scale":1,"motion":"no-preference","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":430,"scale":1,"motion":"reduce","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":430,"scale":2,"motion":"no-preference","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]},{"width":430,"scale":2,"motion":"reduce","samples":[{"id":"labcapacity","price":{"lumen":20000,"shard":2000},"work":1800,"cap":2},{"id":"procurement","price":{"lumen":12000,"shard":600},"work":900,"cap":10},{"id":"catalysis","price":{"lumen":40000,"shard":1500},"work":1200,"cap":10},{"id":"focusprotocol","price":{"lumen":20000,"shard":800},"work":1200,"cap":5},{"id":"fieldnotes","price":{"lumen":6000,"shard":300},"work":600,"cap":10},{"id":"curriculum","price":{"lumen":60000,"shard":2000},"work":1500,"cap":3},{"id":"bossledger","price":{"lumen":14000,"shard":500},"work":720,"cap":10},{"id":"luminousdistill","price":{"lumen":25000,"shard":800},"work":960,"cap":10},{"id":"sigilcartography","price":{"lumen":80000,"shard":3000},"work":1500,"cap":5},{"id":"rarityappraisal","price":{"lumen":8000,"shard":500},"work":600,"cap":10},{"id":"modulefabrication","price":{"lumen":20000,"shard":1000},"work":900,"cap":10},{"id":"ultimateanalysis","price":{"lumen":100000,"shard":4000},"work":1200,"cap":10},{"id":"resonantefficiency","price":{"lumen":30000,"shard":1200},"work":1000,"cap":5},{"id":"adaptivegrowth","price":{"lumen":30000,"shard":1600},"work":1000,"cap":5}],"input":[]}],"exit":{"code":0,"signal":null},"checks":6588,"stderr":"[2486:2511:1012/075612.309204:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2511:1012/075612.310702:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2511:1012/075612.434214:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2511:1012/075612.497604:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2486:1012/075612.757823:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2486:1012/075612.757886:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2511:1012/075612.757902:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2511:1012/075612.757912:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2486:1012/075612.760076:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2486:1012/075612.764858:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2511:1012/075612.765796:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2486:1012/075612.830123:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2486:1012/075612.831209:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2511:1012/075612.831496:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2486:1012/075612.836852:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2486:1012/075612.923821:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files\n[2486:2486:1012/075612.924010:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2511:1012/075612.926319:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2486:1012/075612.969453:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2511:1012/075612.970882:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2486:2486:1012/075613.025406:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[2486:2512:1012/075616.398306:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT\nCreated TensorFlow Lite XNNPACK delegate for CPU.\n[2486:2512:1012/075644.121615:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT\n[2486:2512:1012/075725.457104:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT\n"}
+2026-10-12T07:57:34.7613044Z ##[group]Run set -euo pipefail
+2026-10-12T07:57:34.7613398Z [36;1mset -euo pipefail[0m
+2026-10-12T07:57:34.7613667Z [36;1mmkdir -p /tmp/lab-node8[0m
+2026-10-12T07:57:34.7613924Z [36;1mcd /tmp/lab-node8[0m
+2026-10-12T07:57:34.7614336Z [36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt[0m
+2026-10-12T07:57:34.7615030Z [36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz[0m
+2026-10-12T07:57:34.7615678Z [36;1mgrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -[0m
+2026-10-12T07:57:34.7616113Z [36;1mtar -xf node-v8.3.0-linux-x64.tar.xz[0m
+2026-10-12T07:57:34.7616407Z [36;1mcd "$GITHUB_WORKSPACE"[0m
+2026-10-12T07:57:34.7616986Z [36;1m/tmp/lab-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/lab-expansion-legacy.cjs index.html | tee lab-validation/v8.json[0m
+2026-10-12T07:57:34.7686580Z shell: /usr/bin/bash -e {0}
+2026-10-12T07:57:34.7686883Z ##[endgroup]
+2026-10-12T07:57:34.7868188Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-12T07:57:34.7869168Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-12T07:57:34.7869627Z 
+2026-10-12T07:57:34.9173402Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-12T07:57:34.9175068Z 100  3865  100  3865    0     0  29593      0 --:--:-- --:--:-- --:--:-- 29730
+2026-10-12T07:57:34.9240052Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-12T07:57:34.9241298Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-12T07:57:34.9242022Z 
+2026-10-12T07:57:35.2190167Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-12T07:57:35.2191409Z 100 10.9M  100 10.9M    0     0  37.2M      0 --:--:-- --:--:-- --:--:-- 37.2M
+2026-10-12T07:57:35.2316482Z node-v8.3.0-linux-x64.tar.xz: OK
+2026-10-12T07:57:36.4712607Z {"status":"pass","sourceSha256":"f5a998427fa032e3f8ad8010246fa296d2f6b91e1b1ac0db4fb72ab3a39c0131","node":"v8.3.0","v8":"6.0.286.52","checks":580,"scriptsParsed":2,"writes":84,"scope":"actual V8 6.0 complete-source purchase/completion/storage logic; not Android/browser layout"}
+2026-10-12T07:57:36.4878991Z ##[group]Run actions/upload-artifact@v4
+2026-10-12T07:57:36.4879310Z with:
+2026-10-12T07:57:36.4879525Z   name: lab-expansion-38220512105
+2026-10-12T07:57:36.4879790Z   retention-days: 14
+2026-10-12T07:57:36.4880186Z   path: lab-validation/
+tests/behavioral/lab-expansion*.cjs
+docs/qa/lab-expansion-001/
+
+2026-10-12T07:57:36.4881037Z   if-no-files-found: warn
+2026-10-12T07:57:36.4881283Z   compression-level: 6
+2026-10-12T07:57:36.4881512Z   overwrite: false
+2026-10-12T07:57:36.4881747Z   include-hidden-files: false
+2026-10-12T07:57:36.4882000Z ##[endgroup]
+2026-10-12T07:57:36.6533753Z (node:3404) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T07:57:36.6534871Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T07:57:36.6819812Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-12T07:57:36.6823034Z The least common ancestor is /home/runner/work/Lumenfall/Lumenfall. This will be the root directory of the artifact
+2026-10-12T07:57:36.6824523Z With the provided path, there will be 56 files uploaded
+2026-10-12T07:57:36.6828262Z Artifact name is valid!
+2026-10-12T07:57:36.6829277Z Root directory input is valid!
+2026-10-12T07:57:37.0024886Z Beginning upload of artifact content to blob storage
+2026-10-12T07:57:37.2405788Z (node:3404) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-12T07:57:37.9444701Z Uploaded bytes 5195813
+2026-10-12T07:57:38.0026366Z Finished uploading artifact content to blob storage!
+2026-10-12T07:57:38.0028567Z SHA256 digest of uploaded artifact zip is 8511db9ae6fe4ca1b0579d30148f725068b8ded3fcc9d828fd8c9d80627a1dad
+2026-10-12T07:57:38.0030614Z Finalizing artifact upload
+2026-10-12T07:57:38.2665390Z Artifact lab-expansion-38220512105.zip successfully finalized. Artifact ID 11734076537
+2026-10-12T07:57:38.2667808Z Artifact lab-expansion-38220512105 has been successfully uploaded! Final size is 5195813 bytes. Artifact ID is 11734076537
+2026-10-12T07:57:38.2675698Z Artifact download URL: https://github.com/karahaNx/Lumenfall/actions/runs/38220512105/artifacts/11734076537
+2026-10-12T07:57:38.2878151Z Post job cleanup.
+2026-10-12T07:57:38.3728721Z [command]/usr/bin/git version
+2026-10-12T07:57:38.3772342Z git version 2.55.0
+2026-10-12T07:57:38.3811884Z Temporarily overriding HOME='/home/runner/work/_temp/e6302f9f-d528-49c4-a427-ac0b7631b063' before making global git config changes
+2026-10-12T07:57:38.3813573Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T07:57:38.3818973Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-10-12T07:57:38.3858153Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T07:57:38.3894813Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T07:57:38.4163588Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T07:57:38.4191437Z http.https://github.com/.extraheader
+2026-10-12T07:57:38.4203599Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-12T07:57:38.4240540Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T07:57:38.4497617Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T07:57:38.4539495Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T07:57:38.4978123Z Cleaning up orphan processes
+2026-10-12T07:57:38.5355877Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

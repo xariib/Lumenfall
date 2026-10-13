@@ -1,0 +1,109 @@
+{
+  "name": "ascend-prisms-contract",
+  "occurrence": 13,
+  "rawLogSection": {
+    "byteOffset": 10981329,
+    "bytes": 6653,
+    "sha256": "6f9cf00aed9263578aa87b251b87e78e44c62c005d09e658a395099e758e72b5"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 1.277992178000044,
+    "timeout_sec": 25
+  },
+  "detail": {
+    "route": "ascend-prisms-save-reload",
+    "reward": 21,
+    "benchmark": 219,
+    "tree": 17,
+    "completedLab": 18,
+    "schema": 2
+  },
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/process.json",
+      "bytes": 936,
+      "sha256": "dab6ec76f45dd83613c8eadcd89ac42f56382c50e2feabba48f2e2ba9d2d3268",
+      "zipCrc32": "6e728e40"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stderr.log",
+      "bytes": 4021,
+      "sha256": "a197995c4d9c91b63394a45678d6999fbc9c295c2763253482072e7e7f4e853e",
+      "zipCrc32": "f245c13c"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stdout.html",
+      "bytes": 1460846,
+      "sha256": "cac74cf8232285d9ce705b0235c6f75ed534dc8e3e4e0de62007df09e2880cf9",
+      "zipCrc32": "a7406c7f"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-ascend-prisms-contract-erwWOM",
+      "--dump-dom",
+      "http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.277992178000044,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "ascend-prisms-contract",
+      "json_status": "fail",
+      "json_scenario": "ascend-prisms-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "ascend-prisms-contract",
+      "json_status": "fail",
+      "json_scenario": "ascend-prisms-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "ascend-prisms-contract",
+      "status": "fail",
+      "detail": {
+        "message": "manual payout equals preview/oracle",
+        "stack": "Error: manual payout equals preview/oracle\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:15077:61)\n    at ok (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:11359:29)\n    at check (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:11375:33)\n    at window.runAscendPrismsContract (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:11400:20)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=ascend-prisms-contract&qaFixture=fresh:17235:32)"
+      },
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/ascend-prisms-contract-X670pH/stdout.html",
+    "bytes": 1460846,
+    "sha256": "cac74cf8232285d9ce705b0235c6f75ed534dc8e3e4e0de62007df09e2880cf9",
+    "zipCrc32": "a7406c7f"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/13-ascend-prisms-contract"
+}

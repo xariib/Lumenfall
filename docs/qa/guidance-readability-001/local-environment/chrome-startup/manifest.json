@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "scope": "Immutable runtime diagnosis raw evidence; no game execution",
+  "closedUtc": "2026-10-11 11:45:21 UTC",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2022,
+      "sha256": "8a2326a3fd1591414edfeefedb88d1daf46cc85d9e18ac5b6816155847f63f6f",
+      "mode": "0644"
+    },
+    {
+      "path": "about-blank.process.json",
+      "bytes": 1207,
+      "sha256": "31115391098552777f0d76edd22815db69d771cad2999f7cf71c2fac8c5ae9a2",
+      "mode": "0644"
+    },
+    {
+      "path": "about-blank.stderr.log",
+      "bytes": 629,
+      "sha256": "7b5b348d387d8215078b53e6ac1ee6161a23e639ffa0824183a91b9ae163d49c",
+      "mode": "0644"
+    },
+    {
+      "path": "about-blank.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "diagnostic-progress.json",
+      "bytes": 10750,
+      "sha256": "8886dbfa390b7097b4dc112fedbd41451c79e3ca43bff328127ded04d6205797",
+      "mode": "0644"
+    },
+    {
+      "path": "disk.process.json",
+      "bytes": 908,
+      "sha256": "5c1a3c68dd7f7eaad8d428546abc2f05b02798ac5180f738747386b3ec2ef50b",
+      "mode": "0644"
+    },
+    {
+      "path": "disk.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "disk.stdout.log",
+      "bytes": 176,
+      "sha256": "8672c262153662d0b8a6493d80e966a12cf6d1ccbd7e163ef5a04c8a699e9329",
+      "mode": "0644"
+    },
+    {
+      "path": "extract.process.json",
+      "bytes": 989,
+      "sha256": "eb188754441578fda9e97f35bd40bbd925a047f901f81e46caf6441f5079b0aa",
+      "mode": "0644"
+    },
+    {
+      "path": "extract.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "extract.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "final-diagnosis.json",
+      "bytes": 4413,
+      "sha256": "cce3b03d86b30d6ad2de0a95c629bd03065e80b0690094d7e1e96e9ab471b24d",
+      "mode": "0644"
+    },
+    {
+      "path": "kernel.process.json",
+      "bytes": 808,
+      "sha256": "9ce9703cc61a37e33c434d78dca1f63f023224dabbd736e60765967fbfc93fa4",
+      "mode": "0644"
+    },
+    {
+      "path": "kernel.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "kernel.stdout.log",
+      "bytes": 94,
+      "sha256": "20411ece762bf204eee7de5b607619c77bfe4c5ce3698d5807eb55dd0b29ff3e",
+      "mode": "0644"
+    },
+    {
+      "path": "proc-self-cgroup.txt",
+      "bytes": 5,
+      "sha256": "e57fd7b21104f091de366ace1464596378a498b0a5e63f1b21147a8998c20107",
+      "mode": "0644"
+    },
+    {
+      "path": "proc-self-limits.txt",
+      "bytes": 1323,
+      "sha256": "c69ddd854d2e6d1aa0a34b8ec906607bf5b2a67bd4e90c7786a360ed028f1fa1",
+      "mode": "0644"
+    },
+    {
+      "path": "proc-self-mountinfo.txt",
+      "bytes": 2047,
+      "sha256": "8407c3aa4dc2488f323e28875660fac017159b652444dd016ba6c0931fca5da2",
+      "mode": "0644"
+    },
+    {
+      "path": "proc-self-status.txt",
+      "bytes": 1150,
+      "sha256": "fa36619cc3f64fe51490d84120293685723f65fea34fac2243a77577e2260692",
+      "mode": "0644"
+    },
+    {
+      "path": "ps.process.json",
+      "bytes": 825,
+      "sha256": "066b449dde8dc3e311463e6e7fbd50fdd6d921f3f7e1642d3898ee4b4f5e61a5",
+      "mode": "0644"
+    },
+    {
+      "path": "ps.stderr.log",
+      "bytes": 33,
+      "sha256": "a55c6a5e4fa226e987190d56b156a177b1cf3e0e382d4d652fc9a63bc2345f5b",
+      "mode": "0644"
+    },
+    {
+      "path": "ps.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "root-original-runtime-receipt.json",
+      "bytes": 2957,
+      "sha256": "611eb2990b361f25b8cc4c99e024cddeaa1c30470d2380e97374c0813417d466",
+      "mode": "0644"
+    },
+    {
+      "path": "run-diagnostic.cjs",
+      "bytes": 5203,
+      "sha256": "ab29b87cd1587c48323747fa83d1ab2620e6d5b578cde9478821f5fe06a101a6",
+      "mode": "0644"
+    },
+    {
+      "path": "version.process.json",
+      "bytes": 923,
+      "sha256": "1d40bd4ff3ab5338664039f59388398c6c0bd92896474e862f191b70a69df3d1",
+      "mode": "0644"
+    },
+    {
+      "path": "version.stderr.log",
+      "bytes": 209,
+      "sha256": "def0a820edb70802e8a88788de902ed6af37d8099cd60d62dbc7c4a699ccd799",
+      "mode": "0644"
+    },
+    {
+      "path": "version.stdout.log",
+      "bytes": 29,
+      "sha256": "1d28eea0e6a41c2c043b348936d84628c86fc0d043a65835aff20c8350aad070",
+      "mode": "0644"
+    }
+  ],
+  "totalFiles": 27,
+  "totalBytes": 36700
+}

@@ -1,0 +1,798 @@
+{
+  "status": "READ_ONLY_PLAN_NOT_EXECUTED_NOT_AN_ACCEPTED_MERGE_CONFIGURATION",
+  "clock": {
+    "current_time": "2026-10-11 14:06:54 UTC"
+  },
+  "candidate": {
+    "head": "bfed924be57a3b25e06c2f6e4ba3a38e9fc940b6",
+    "base": "684bfc52bb2ca523124fe63981188b9a8004d747",
+    "tree": "381a7951d3b45a1a0a64e49b7dd13ed11d6022c6",
+    "source": {
+      "path": "index.html",
+      "bytes": 657955,
+      "sha256": "dd81757378880ef42052cf6b175ea06721043e0ba7213cd135d5661367a743f1",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "4c36cc5a8c6413d76856a56a46a999e5ff2a9e20",
+      "gitEntry": "100644 blob 4c36cc5a8c6413d76856a56a46a999e5ff2a9e20\tindex.html"
+    },
+    "futureMerge": null,
+    "futureIntegratedWorktree": null
+  },
+  "authority": {
+    "priorAcceptedMerge": "fe2a7b32859ebe04ecd3382d7b74ef285f683771",
+    "durableCommit": "3def290cb0c125295620cf74c6e69fa4b3287904",
+    "durablePath": "docs/qa/comet-expansion-001/closeout-010-transport/README.md",
+    "localBody": {
+      "bytes": 7734,
+      "sha256": "b63cd5494b09cc7a252a2235b478ed89a8b364618db995989d2ab3d88d712dce",
+      "mode": "0644"
+    },
+    "derivation": "The immutable committed closeout identifies the exact thirteen logical command records/counts. Current workflow commands and each CLI source resolve exact filenames and arguments; native accepted-fe2 versus candidate ls-tree and all current body/blob hashes match for every one of the thirteen tests. No unavailable Shared postmerge receipt was reconstructed."
+  },
+  "runtimes": [
+    {
+      "kind": "modern-node24",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "bytes": 125989464,
+      "sha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+      "mode": "0755",
+      "node": "v24.19.0",
+      "v8": "13.6.233.17-node.51",
+      "versionObservation": "Actual metadata process in this preparation only; no game/test execution.",
+      "arch": "x64",
+      "platform": "linux"
+    },
+    {
+      "kind": "actual-node8",
+      "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "bytes": 35945397,
+      "sha256": "04f42eb73bd609b5a53df1e15b101feb6db93419f6697e684377dae07327ed0f",
+      "mode": "0775",
+      "node": "v8.3.0",
+      "v8": "6.0.286.52",
+      "versionObservation": "Actual metadata process in this preparation only; no game/test execution.",
+      "arch": "x64",
+      "platform": "linux"
+    }
+  ],
+  "commands": [
+    {
+      "group": "lab-forge",
+      "id": "lab-core",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/lab-expansion.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/lab-expansion.cjs",
+        "bytes": 27796,
+        "sha256": "4a3c8a2d523f8d739dc9b2b69fc4abc384d751904a644cc2e1657757f5b9f00d",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "23b368f87bed283d5527464e8a4baee18e2adee8",
+        "gitEntry": "100644 blob 23b368f87bed283d5527464e8a4baee18e2adee8\ttests/behavioral/lab-expansion.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 2464,
+        "declaredCausalControls": 10
+      },
+      "coverage": "Actual complete-IIFE Lab catalogue, paid transactions, save/recovery, queue/Ascend and ten causal controls"
+    },
+    {
+      "group": "lab-forge",
+      "id": "lab-boundary",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/lab-expansion-boundary.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/lab-expansion-boundary.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/lab-expansion-boundary.cjs",
+        "bytes": 9803,
+        "sha256": "4ba37b0b37723a37accb3051d82861a87fc101ae24dfdb231e2accaf2f73484d",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "93e3b2cae86f700fbbfe95c041b68f6c42292172",
+        "gitEntry": "100644 blob 93e3b2cae86f700fbbfe95c041b68f6c42292172\ttests/behavioral/lab-expansion-boundary.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 2344,
+        "declaredCausalControls": 5
+      },
+      "coverage": "Owned-Luminous next-purchase boundary against actual batch arithmetic, including floating precision and five causal controls"
+    },
+    {
+      "group": "lab-forge",
+      "id": "prism-state",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/prism-earning-state.cjs",
+        "index.html"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/prism-earning-state.cjs index.html",
+      "input": {
+        "path": "tests/behavioral/prism-earning-state.cjs",
+        "bytes": 8465,
+        "sha256": "bbaa33852a9d90f5829df61d6b6be9326f769046a676fe2e4b94800273aa044e",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "6cf0b6a156080eee70be57c4a1fbc4347c6bca66",
+        "gitEntry": "100644 blob 6cf0b6a156080eee70be57c4a1fbc4347c6bca66\ttests/behavioral/prism-earning-state.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 3506,
+        "declaredCausalControls": 0
+      },
+      "coverage": "Actual Prism earning: manual/live/offline/restore/corruption/write-fault/purchase/atomic rollback routes"
+    },
+    {
+      "group": "lab-forge",
+      "id": "forge-core",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/forge-expansion.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/forge-expansion.cjs",
+        "bytes": 59493,
+        "sha256": "3fd3575a50fbf5f01277f1c509feb0a7c5ee9f19c3c91789caf5496c0056487e",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "26a6ec0885b35fbb6a2de8501900f9774c2fa2cd",
+        "gitEntry": "100644 blob 26a6ec0885b35fbb6a2de8501900f9774c2fa2cd\ttests/behavioral/forge-expansion.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 9315,
+        "declaredCausalControls": 25
+      },
+      "coverage": "Catalogue and exact prices, purchases/effects, queue/Resonate/save/Ascend, unsafe counters/run tokens, analytical controller"
+    },
+    {
+      "group": "lab-forge",
+      "id": "forge-v8",
+      "runtime": "actual-node8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/forge-expansion-legacy.cjs",
+        "index.html"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node tests/behavioral/forge-expansion-legacy.cjs index.html",
+      "input": {
+        "path": "tests/behavioral/forge-expansion-legacy.cjs",
+        "bytes": 22552,
+        "sha256": "5f97700df5f19f535cb84de75b2b39fe9826cc9672184d1493afb274297630e0",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "66573cb10f68494d4b8ac0e7b82ea464f610c900",
+        "gitEntry": "100644 blob 66573cb10f68494d4b8ac0e7b82ea464f610c900\ttests/behavioral/forge-expansion-legacy.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 2452,
+        "declaredCausalControls": 0
+      },
+      "coverage": "Actual V8 6.0 complete production IIFE: prices/effects/purchases, saved state/faults/unsafe Ascend paths"
+    },
+    {
+      "group": "tree",
+      "id": "core",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/tree-expansion-core.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/tree-expansion-core.cjs",
+        "bytes": 55087,
+        "sha256": "4706213bb31c4ba08902292892273fcb02642cbf49ebe5b793d9cf656e5cec29",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "e340e4960ac1f67b1d8502657fd4710317a77631",
+        "gitEntry": "100644 blob e340e4960ac1f67b1d8502657fd4710317a77631\ttests/behavioral/tree-expansion-core.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 5278,
+        "declaredCausalControls": 28
+      },
+      "coverage": "20-node catalogue and purchases, formation capacity, state/migration/save/Ascend and causal mutation checks"
+    },
+    {
+      "group": "tree",
+      "id": "offline",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/tree-expansion-offline.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/tree-expansion-offline.cjs",
+        "bytes": 24517,
+        "sha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "9f119445195099d9d1e38db6a1e0ad001767ca6f",
+        "gitEntry": "100644 blob 9f119445195099d9d1e38db6a1e0ad001767ca6f\ttests/behavioral/tree-expansion-offline.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 7691,
+        "declaredCausalControls": 4
+      },
+      "coverage": "Actual offline chronology/Auto-Ascend, multiple batch sizes, six-party/Support bounds, ending-hit cases"
+    },
+    {
+      "group": "tree",
+      "id": "economy",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-economy.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/tree-expansion-economy.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/tree-expansion-economy.cjs",
+        "bytes": 28283,
+        "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "d03c34aae1f201010dbf523fcc5e99655781b4d9",
+        "gitEntry": "100644 blob d03c34aae1f201010dbf523fcc5e99655781b4d9\ttests/behavioral/tree-expansion-economy.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 16802,
+        "declaredCausalControls": 6
+      },
+      "coverage": "Independent exact Charter/Patient Growth prices and paid boundaries, Dust/Frontier rewards and causal controls"
+    },
+    {
+      "group": "tree",
+      "id": "v8",
+      "runtime": "actual-node8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/tree-expansion-v8.cjs",
+        "index.html"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node tests/behavioral/tree-expansion-v8.cjs index.html",
+      "input": {
+        "path": "tests/behavioral/tree-expansion-v8.cjs",
+        "bytes": 24964,
+        "sha256": "2fe14d008b05288e118d390892832e59b828fc976f4c30bd00a8cdb887010da6",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "149e3a698f91fb3fae951612928a2ffa3fc88cb4",
+        "gitEntry": "100644 blob 149e3a698f91fb3fae951612928a2ffa3fc88cb4\ttests/behavioral/tree-expansion-v8.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 2862,
+        "declaredCausalControls": null
+      },
+      "coverage": "Actual V8 6.0 full production IIFE, Tree20 effects/paid migration and protected old systems; historical receipt has no negative-count field"
+    },
+    {
+      "group": "comet",
+      "id": "core",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-core.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/comet-expansion-core.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/comet-expansion-core.cjs",
+        "bytes": 58714,
+        "sha256": "5bda9de4f7ac58a3b510c6f1acc4120aa211f045e92b4c2e6ba55ce640a7f2d6",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "6014e90ad56f729f4413dff9a1042e6c6d194ab7",
+        "gitEntry": "100644 blob 6014e90ad56f729f4413dff9a1042e6c6d194ab7\ttests/behavioral/comet-expansion-core.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 10490,
+        "declaredCausalControls": 18
+      },
+      "coverage": "Real schema3 claims/ledger, paid shop/commands, save faults, ending hits, run-token identity and eighteen causal controls"
+    },
+    {
+      "group": "comet",
+      "id": "numerical",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-numerical.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/comet-expansion-numerical.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/comet-expansion-numerical.cjs",
+        "bytes": 21869,
+        "sha256": "8dad842c0bf81ab5eaa9e34849d6d6f1916fb92b004a52ddd5a0e018f09551fe",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "34b68931a32c93df30fee6a2ad6b59b419c48f69",
+        "gitEntry": "100644 blob 34b68931a32c93df30fee6a2ad6b59b419c48f69\ttests/behavioral/comet-expansion-numerical.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 681747,
+        "declaredCausalControls": 8
+      },
+      "coverage": "Independent exact Meteor/HP and bilateral credit/debit oracles, unsafe/fractional values and eight causal controls"
+    },
+    {
+      "group": "comet",
+      "id": "offline",
+      "runtime": "modern-node24",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-offline.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/behavioral/comet-expansion-offline.cjs index.html --negative",
+      "input": {
+        "path": "tests/behavioral/comet-expansion-offline.cjs",
+        "bytes": 25516,
+        "sha256": "31d544bf30951e90234508c1a61e8d7f57ace2e0f3477e99e7991335c6aee911",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "49c164d038333f518acf633df254f70334ff4fab",
+        "gitEntry": "100644 blob 49c164d038333f518acf633df254f70334ff4fab\ttests/behavioral/comet-expansion-offline.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 96885,
+        "declaredCausalControls": 7
+      },
+      "coverage": "Command charge/defeat chronology, lifecycle/offline/Ascend, one-pass claim settlement and seven causal controls"
+    },
+    {
+      "group": "comet",
+      "id": "v8",
+      "runtime": "actual-node8",
+      "executable": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node",
+      "args": [
+        "tests/behavioral/comet-expansion-v8.cjs",
+        "index.html"
+      ],
+      "cleanEnvironment": [
+        "NODE_OPTIONS",
+        "NODE_PATH"
+      ],
+      "shellCommand": "env -u NODE_OPTIONS -u NODE_PATH /workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/bin/node tests/behavioral/comet-expansion-v8.cjs index.html",
+      "input": {
+        "path": "tests/behavioral/comet-expansion-v8.cjs",
+        "bytes": 41602,
+        "sha256": "1de2726eaae0f209c053cebceb15832fff54b199ed34652032731b5da43d7b7a",
+        "mode": "0644",
+        "gitMode": "100644",
+        "gitBlob": "8b2d98d7245cda27e101af81fd9980f601cd78de",
+        "gitEntry": "100644 blob 8b2d98d7245cda27e101af81fd9980f601cd78de\ttests/behavioral/comet-expansion-v8.cjs"
+      },
+      "exactAcceptedFe2BlobAndMode": true,
+      "historicalExpected": {
+        "checks": 1362,
+        "declaredCausalControls": 0
+      },
+      "coverage": "Actual Node8.3/V8 6.0 shared full-IIFE harness, numerical vectors, schema migrations, paid claims/commands and storage faults"
+    }
+  ],
+  "totals": {
+    "commands": 13,
+    "modern": 10,
+    "actualV8": 3,
+    "historicalAssertions": 843198,
+    "declaredCausalControls": 111
+  },
+  "workflows": [
+    {
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "bytes": 2681,
+      "sha256": "8dd81626af8d3a3c0e3519387060f3015adbbd220ce48d30732555291a3eda02",
+      "mode": "0644",
+      "gitEntry": "100644 blob d5e5778bc4819fa5bc1d162a9c9362ed68051199\t.github/workflows/lab-expansion-validation.yml",
+      "originalRelevantLines": [
+        {
+          "line": 30,
+          "text": "          node tests/behavioral/lab-expansion.cjs index.html --negative | tee lab-validation/core.json"
+        },
+        {
+          "line": 31,
+          "text": "          node tests/behavioral/lab-expansion-boundary.cjs index.html --negative | tee lab-validation/boundary.json"
+        },
+        {
+          "line": 33,
+          "text": "          node tests/behavioral/prism-earning-state.cjs index.html | tee lab-validation/prism-state.json"
+        }
+      ],
+      "gitMode": "100644",
+      "gitBlob": "d5e5778bc4819fa5bc1d162a9c9362ed68051199"
+    },
+    {
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "bytes": 2889,
+      "sha256": "a611890e612a80b72e964dd86f228c9fd8a4ef2ff9f99f36333dd2c7c47fb9de",
+      "mode": "0644",
+      "gitEntry": "100644 blob 5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196\t.github/workflows/forge-expansion-validation.yml",
+      "originalRelevantLines": [
+        {
+          "line": 30,
+          "text": "          node tests/behavioral/forge-expansion.cjs index.html --negative | tee forge-validation/core.json"
+        },
+        {
+          "line": 53,
+          "text": "          /tmp/forge-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/forge-expansion-legacy.cjs index.html | tee forge-validation/v8.json"
+        }
+      ],
+      "gitMode": "100644",
+      "gitBlob": "5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196"
+    },
+    {
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "bytes": 4967,
+      "sha256": "4d8778abab15f004fdddb8a3580976d131767ef381515b50a6449f81be25e554",
+      "mode": "0644",
+      "gitEntry": "100644 blob 9740959a724547d1cefed6952762a15da2e09fab\t.github/workflows/tree-focused-qa.yml",
+      "originalRelevantLines": [
+        {
+          "line": 43,
+          "text": "          node tests/behavioral/tree-expansion-core.cjs index.html --negative 2>&1 | tee tree-validation/core.json"
+        },
+        {
+          "line": 47,
+          "text": "          node tests/behavioral/tree-expansion-offline.cjs index.html --negative 2>&1 | tee tree-validation/offline.json"
+        },
+        {
+          "line": 51,
+          "text": "          node tests/behavioral/tree-expansion-economy.cjs index.html --negative 2>&1 | tee tree-validation/economy.json"
+        },
+        {
+          "line": 55,
+          "text": "          node tests/behavioral/prism-earning-state.cjs index.html 2>&1 | tee tree-validation/prism-state.json"
+        },
+        {
+          "line": 82,
+          "text": "          /tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/tree-expansion-v8.cjs index.html 2>&1 | tee tree-validation/v8.json"
+        },
+        {
+          "line": 96,
+          "text": "            tests/behavioral/prism-earning-state.cjs"
+        }
+      ],
+      "gitMode": "100644",
+      "gitBlob": "9740959a724547d1cefed6952762a15da2e09fab"
+    },
+    {
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "bytes": 4540,
+      "sha256": "74912b2297d5d3197ebb2728a41bd53053eeb676a9ccab6f3851a3e98801f4cb",
+      "mode": "0644",
+      "gitEntry": "100644 blob 0f378bd29860d1118cf1fe18ed066716f26366a3\t.github/workflows/comet-expansion-validation.yml",
+      "originalRelevantLines": [
+        {
+          "line": 40,
+          "text": "          node tests/behavioral/comet-expansion-core.cjs index.html --negative 2>&1 | tee comet-validation/core.log"
+        },
+        {
+          "line": 44,
+          "text": "          node tests/behavioral/comet-expansion-numerical.cjs index.html --negative 2>&1 | tee comet-validation/numerical.log"
+        },
+        {
+          "line": 48,
+          "text": "          node tests/behavioral/comet-expansion-offline.cjs index.html --negative 2>&1 | tee comet-validation/offline.log"
+        },
+        {
+          "line": 72,
+          "text": "          env -u NODE_OPTIONS -u NODE_PATH /tmp/comet-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/comet-expansion-v8.cjs index.html 2>&1 | tee comet-validation/v8.log"
+        }
+      ],
+      "gitMode": "100644",
+      "gitBlob": "0f378bd29860d1118cf1fe18ed066716f26366a3"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "tests/behavioral/comet-expansion-core.cjs",
+      "bytes": 58714,
+      "sha256": "5bda9de4f7ac58a3b510c6f1acc4120aa211f045e92b4c2e6ba55ce640a7f2d6",
+      "mode": "0644",
+      "gitEntry": "100644 blob 6014e90ad56f729f4413dff9a1042e6c6d194ab7\ttests/behavioral/comet-expansion-core.cjs",
+      "gitMode": "100644",
+      "gitBlob": "6014e90ad56f729f4413dff9a1042e6c6d194ab7"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-harness.cjs",
+      "bytes": 15743,
+      "sha256": "aeccdff0583636396da3a214336f5cfce41b607765b458c51ca105637c00298e",
+      "mode": "0644",
+      "gitEntry": "100644 blob 4b9657bba0d1d6b18dfad25ed16a7e73de1ce2e0\ttests/behavioral/comet-expansion-harness.cjs",
+      "gitMode": "100644",
+      "gitBlob": "4b9657bba0d1d6b18dfad25ed16a7e73de1ce2e0"
+    },
+    {
+      "path": "tests/behavioral/comet-expansion-numerical.cjs",
+      "bytes": 21869,
+      "sha256": "8dad842c0bf81ab5eaa9e34849d6d6f1916fb92b004a52ddd5a0e018f09551fe",
+      "mode": "0644",
+      "gitEntry": "100644 blob 34b68931a32c93df30fee6a2ad6b59b419c48f69\ttests/behavioral/comet-expansion-numerical.cjs",
+      "gitMode": "100644",
+      "gitBlob": "34b68931a32c93df30fee6a2ad6b59b419c48f69"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-calibration.cjs",
+      "bytes": 26059,
+      "sha256": "ea5787eb14d63237c3cbe4687914c67935703cf81d1c176042c4473c40bad3f4",
+      "mode": "0644",
+      "gitEntry": "100644 blob b4b432ae1c5afcd46ac57d6579a0613d8d9f18ca\ttests/behavioral/forge-expansion-calibration.cjs",
+      "gitMode": "100644",
+      "gitBlob": "b4b432ae1c5afcd46ac57d6579a0613d8d9f18ca"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-harness.cjs",
+      "bytes": 10916,
+      "sha256": "185feb9242a3c8b5fac48871be20f61a119e2881e78191ecd832d12da16d9724",
+      "mode": "0644",
+      "gitEntry": "100644 blob 80570d355f0909e7e153a7111552e4308a05e61c\ttests/behavioral/forge-expansion-harness.cjs",
+      "gitMode": "100644",
+      "gitBlob": "80570d355f0909e7e153a7111552e4308a05e61c"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-harness.cjs",
+      "bytes": 5153,
+      "sha256": "5221a2c2125077edabca1d2577a616d0e8cd0514c0c18c53ff321d9eaff4f659",
+      "mode": "0644",
+      "gitEntry": "100644 blob 58c24cd3803905766e9f705275550fc60e383b26\ttests/behavioral/lab-expansion-harness.cjs",
+      "gitMode": "100644",
+      "gitBlob": "58c24cd3803905766e9f705275550fc60e383b26"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-reference.cjs",
+      "bytes": 1956,
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+      "mode": "0644",
+      "gitEntry": "100644 blob 82699e9a8f57f1a2f6609e8b68de4c67254f338e\ttests/behavioral/prism-earning-reference.cjs",
+      "gitMode": "100644",
+      "gitBlob": "82699e9a8f57f1a2f6609e8b68de4c67254f338e"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-economy.cjs",
+      "bytes": 28283,
+      "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a",
+      "mode": "0644",
+      "gitEntry": "100644 blob d03c34aae1f201010dbf523fcc5e99655781b4d9\ttests/behavioral/tree-expansion-economy.cjs",
+      "gitMode": "100644",
+      "gitBlob": "d03c34aae1f201010dbf523fcc5e99655781b4d9"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-harness.cjs",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463",
+      "mode": "0644",
+      "gitEntry": "100644 blob 3027844dcf5f804de8e5090c69a59517be1155b1\ttests/behavioral/tree-expansion-harness.cjs",
+      "gitMode": "100644",
+      "gitBlob": "3027844dcf5f804de8e5090c69a59517be1155b1"
+    }
+  ],
+  "documents": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 7590,
+      "sha256": "d2569fd40996892731651ddf213092b263727268f5fc34168fc33dda84b4dff6",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "07902c39869b6e7df1e4e551de1de06c57b11c4e",
+      "gitEntry": "100644 blob 07902c39869b6e7df1e4e551de1de06c57b11c4e\tAGENTS.md",
+      "prior003Sha256": "d2569fd40996892731651ddf213092b263727268f5fc34168fc33dda84b4dff6",
+      "changedSince003": false
+    },
+    {
+      "path": "PROJECT_BOOTSTRAP.txt",
+      "bytes": 2177,
+      "sha256": "151ce10bc5aeac170d46962030ccf939c7911b8097c50531a7bb7e276d1e69e4",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "04b557bfa2ec78f0d239884ae94d38ce74119a71",
+      "gitEntry": "100644 blob 04b557bfa2ec78f0d239884ae94d38ce74119a71\tPROJECT_BOOTSTRAP.txt",
+      "prior003Sha256": "151ce10bc5aeac170d46962030ccf939c7911b8097c50531a7bb7e276d1e69e4",
+      "changedSince003": false
+    },
+    {
+      "path": "docs/PROJECT_STATE.md",
+      "bytes": 21305,
+      "sha256": "ff3df91f0ab885aeee273abfef68e57d802094518f6d39a5b5f7977bfff6cf30",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "e2f66a30db5c4ffb80c78f2cb5d2129eb7a4c416",
+      "gitEntry": "100644 blob e2f66a30db5c4ffb80c78f2cb5d2129eb7a4c416\tdocs/PROJECT_STATE.md",
+      "prior003Sha256": "ff3df91f0ab885aeee273abfef68e57d802094518f6d39a5b5f7977bfff6cf30",
+      "changedSince003": false
+    },
+    {
+      "path": "docs/tasks/GUIDANCE_READABILITY_001.md",
+      "bytes": 1403,
+      "sha256": "355a334730d9dd3037665758c11b7190373701cf2a4e408cc1f5452912b27b97",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "74cd2850654248d3f6dd7d591ecbf7518ff37836",
+      "gitEntry": "100644 blob 74cd2850654248d3f6dd7d591ecbf7518ff37836\tdocs/tasks/GUIDANCE_READABILITY_001.md",
+      "prior003Sha256": "355a334730d9dd3037665758c11b7190373701cf2a4e408cc1f5452912b27b97",
+      "changedSince003": false
+    },
+    {
+      "path": "docs/qa/guidance-readability-001/ACCEPTANCE.md",
+      "bytes": 6114,
+      "sha256": "f6bf154771980f2b3935cfbfac2433d687a67995aaf127ea1e6f6105f23341e6",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "fdaf28b0aa65958cc0f4cb467e2bf0ab28cca617",
+      "gitEntry": "100644 blob fdaf28b0aa65958cc0f4cb467e2bf0ab28cca617\tdocs/qa/guidance-readability-001/ACCEPTANCE.md",
+      "prior003Sha256": "35e368c818e9747561cef92c4e516520e83ba1ecb8677d21d357c6f76c794d24",
+      "changedSince003": true
+    },
+    {
+      "path": "docs/qa/guidance-readability-001/README.md",
+      "bytes": 7087,
+      "sha256": "0a19c39f46e81b428bde006645ac7f5e8e42341f56a74b97c9178795795654e0",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "3c613a4ae96e6c73c5c4ada7463a6bded396375e",
+      "gitEntry": "100644 blob 3c613a4ae96e6c73c5c4ada7463a6bded396375e\tdocs/qa/guidance-readability-001/README.md",
+      "prior003Sha256": "b9a0480992ea449ca80ceb52966d428eb3a03f69115f921de1944bcd88dfcc19",
+      "changedSince003": true
+    },
+    {
+      "path": "docs/project/FEATURE_WORKFLOW.md",
+      "bytes": 5326,
+      "sha256": "01167bd2fa2c95b2bc16493f355f9fa6db6da3ad76d229091583294b5b435ca6",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "eb496b138cc95f2f44a44411ed526ce54f6e9dcf",
+      "gitEntry": "100644 blob eb496b138cc95f2f44a44411ed526ce54f6e9dcf\tdocs/project/FEATURE_WORKFLOW.md",
+      "prior003Sha256": "01167bd2fa2c95b2bc16493f355f9fa6db6da3ad76d229091583294b5b435ca6",
+      "changedSince003": false
+    },
+    {
+      "path": "docs/tasks/COMET_EXPANSION_001.md",
+      "bytes": 1460,
+      "sha256": "0444b5efa25849f6d11ecc27965d56c3ee673aff08aa25536407f1706a183070",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "1219c717983c742ac5deac4c1b6a9253b3370bd5",
+      "gitEntry": "100644 blob 1219c717983c742ac5deac4c1b6a9253b3370bd5\tdocs/tasks/COMET_EXPANSION_001.md",
+      "prior003Sha256": "0444b5efa25849f6d11ecc27965d56c3ee673aff08aa25536407f1706a183070",
+      "changedSince003": false
+    },
+    {
+      "path": "docs/qa/comet-expansion-001/README.md",
+      "bytes": 3566,
+      "sha256": "f6053e243a8aeecb5eeb9fa842b52d5a70a60b2a39b4c3d101ceb17078274dfc",
+      "mode": "0644",
+      "gitMode": "100644",
+      "gitBlob": "34a5f01c312a9ded91a608593e874f99e7075513",
+      "gitEntry": "100644 blob 34a5f01c312a9ded91a608593e874f99e7075513\tdocs/qa/comet-expansion-001/README.md",
+      "prior003Sha256": "f6053e243a8aeecb5eeb9fa842b52d5a70a60b2a39b4c3d101ceb17078274dfc",
+      "changedSince003": false
+    }
+  ],
+  "executionRequirements": [
+    "Await actual integration and root-verified immutable merge configuration before execution.",
+    "CWD must be that verified complete integrated repository; source is its index.html.",
+    "Use clean environment with NODE_OPTIONS and NODE_PATH absent, absolute Node binaries and immutable runner/config inputs.",
+    "Run each of the thirteen exactly once in its assigned group, preserve stdout/stderr/process/semantic control results and input/runtime/whole-tree identities before/between/after.",
+    "Record trusted UTC before start and after actual completion; any failure remains original evidence and requires an explicit scoped disposition.",
+    "These are the numerical postmerge checks; they do not replace the separate six exact-head CI gates, Full182/212/22, original Guidance16/160 plus16Ascend cases and causal browser controls."
+  ],
+  "checkpoint003": {
+    "existence": "The prior003 requirements are preserved as provenance; the current publication is004 and creates no extra game-test command.",
+    "requiredContent": [
+      "Current PR/head/source/fixtures and actual merged development commit, tree and ordered parents, with main/PR102 state.",
+      "Links and exact pins for all six original current-head CI raw acceptance scopes and current Full182 IDs/212 attempts/22 mandatory controls.",
+      "Actual Guidance baseline/readability/CSS/title inverse evidence, preserved original16profiles/160samples and16extraAscend cases, healthy teardown/fonts, screenshot and native-input/state/storage coverage.",
+      "All thirteen fresh integrated command outputs, runtimes/inputs, original failures if any, control completeness, trusted clocks and merged-tree verification.",
+      "Superseded8be/3f failure history and separate current acceptance, published evidence inventories and explicit private-only exclusions.",
+      "Task/PROJECT_STATE supported status, decisions, limitations and next action; preserve valid task context budget after documentation updates.",
+      "Keep unrecovered prior Shared raw gap/recovery006 explicit; no reconstructed historical pass evidence.",
+      "No main change/APK/signing/release; native Android/textZoom/TalkBack/installed-app acceptance remains separate."
+    ]
+  },
+  "limitations": [
+    "Historical843198/111 counts are a preserved regression expectation, not a newbfed postmerge pass.",
+    "TreeV8 does not declare a causal-control count; null is preserved.",
+    "Runtime versions and elapsed wall time are distinct: no duration estimate or execution has been asserted.",
+    "Scope contains no dispatch, Git mutation, game/browser execution, source/test edit or reconstruction of missing Shared outputs."
+  ],
+  "schema": "lumenfall.guidance-integrated-plan/v4",
+  "provenance": {
+    "priorCommit": "f98754111bf5f08021646c08c82f935665b8daf7",
+    "priorPath": "docs/qa/guidance-readability-001/evidence/current-ci/postmerge-plan-003/plan.json",
+    "priorSha256": "37442cb6a95a4463c529f6aee7373eb27728c844d518b1e1bf61a414a2955a97",
+    "derivation": "New Node-only metadata plan bound to final bfed candidate. Thirteen commands and all game/test/dependency/workflow bytes are unchanged from the published003 plan. No missing original execution receipt is reconstructed."
+  },
+  "runtimeRecovery": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/node8/recovered-runtime.json",
+    "bytes": 3375,
+    "sha256": "8ad5276ef746e7f9539b58c401fcd31c649ed7eebe20f61f14f774f86868b205",
+    "mode": "0644",
+    "note": "Official archive and binary verified; original ownership-only tar failure and corrected extraction retained."
+  }
+}

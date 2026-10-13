@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "status": "PASS_FINAL_DOCUMENTATION_CANDIDATE_PREPUBLICATION",
+  "basis": "b11567aac6a2d52145fe86c522b36fb559062cf9",
+  "productAndDriver": "Unchanged from the successful focused diagnostic; only documentation and exact frozen review copies are added.",
+  "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+  "driverSha256": "a2d4346daa8da30d61ef39135cb22399fc7b9b3cce40da9813d70c1fbcdf058c",
+  "checks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "098801",
+        "wall_time_seconds": 0.000029558,
+        "exit_code": 0,
+        "original_token_count": 32,
+        "output": "PASS: 29 entrypoints, 87 local Markdown links, shared startup 31107 bytes; startup with docs/tasks/SHARED_UI_001.md 32752 bytes\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "a266a2",
+        "wall_time_seconds": 0.502947147,
+        "exit_code": 0,
+        "original_token_count": 67,
+        "output": "{\"status\":\"PASS\",\"baseline\":\"fe2a7b32859ebe04ecd3382d7b74ef285f683771\",\"protectedOriginalFiles\":125,\"gameScripts\":2,\"onlyStyleChanges\":true,\"sourceSha256\":\"38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f\",\"sourceBytes\":657751,\"sourceByteDelta\":124}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "f09790",
+        "wall_time_seconds": 0.000025975,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ],
+  "focusedRawManifest": "7f84345e2acdcd75b7ec394017d14205286ced7d3d1fb7efee6f15f87078ab07",
+  "focusedBrowserReviewManifest": "145054763900dd3c8e13a227210bee2ed040c6af5316465e959c80293cf6f7fd",
+  "integrationAccepted": false
+}

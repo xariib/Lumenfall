@@ -1,0 +1,101 @@
+{
+  "observedAt": "2026-10-11 23:42:29 UTC",
+  "head": "8a457b6e23da8d39b32693d9089435c930d8b418",
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "type": "Self-review with automated inline findings; no independent final-head review",
+  "threads": [
+    {
+      "id": "PRRT_kwDOUF0Vls6rSNJr",
+      "is_resolved": false,
+      "is_outdated": true,
+      "path": "index.html",
+      "line": null,
+      "diff_side": "RIGHT",
+      "start_line": null,
+      "start_diff_side": "RIGHT",
+      "original_line": 4854,
+      "original_start_line": 4853,
+      "resolved_by": null,
+      "comments": [
+        {
+          "id": "PRRC_kwDOUF0Vls787uqF",
+          "database_id": 4243516037,
+          "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reject audited refunds even when history is missing**\n\nWhen an already-migrated overcap save has `echoCreditAuditVersion: 1` but loses both its `node.echo` receipt and `history.echo`, this guard is skipped because it requires the history objects to exist. Execution then reaches the refund path and credits the entire original-value refund again—for example, a level-7 save with 33 Prisms becomes 49 instead of selecting recovery. Treat the audit version plus `raw > 6` as sufficient evidence that a missing receipt is invalid, regardless of whether history also survived.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/4ef0608988e9d809f5214857192e48ae95aba4d5/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+          "created_at": "2026-10-11T22:27:49Z",
+          "updated_at": "2026-10-11T22:27:50Z",
+          "author": {
+            "login": "chatgpt-codex-connector",
+            "name": "chatgpt-codex-connector",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+            "id": null
+          },
+          "viewer_did_author": false
+        }
+      ]
+    },
+    {
+      "id": "PRRT_kwDOUF0Vls6rSdnZ",
+      "is_resolved": false,
+      "is_outdated": true,
+      "path": "index.html",
+      "line": null,
+      "diff_side": "RIGHT",
+      "start_line": null,
+      "start_diff_side": null,
+      "original_line": 4840,
+      "original_start_line": null,
+      "resolved_by": null,
+      "comments": [
+        {
+          "id": "PRRC_kwDOUF0Vls788I8T",
+          "database_id": 4243623699,
+          "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Avoid overflowing the Echo receipt tolerance**\n\nFor overcap saves containing purchase index 2085 or later, `value` is still finite but the intermediate `value * level` overflows, making `allowance` infinite and the stored validation bounds `[-Infinity, Infinity]`. Consequently, any positive finite integer in that suffix of `receipt.amounts.prisms` is accepted rather than selecting recovery (for example, a raw-2100 receipt still canonicalizes after its final price is changed to `1`). Compute the relative-error factor before multiplying by `value`, as the Recruitment implementation does, so damaged high-level receipts cannot silently pass validation.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/3ad4751c683938313f0bed7c8e612dd76a9b3bbb/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+          "created_at": "2026-10-11T23:04:10Z",
+          "updated_at": "2026-10-11T23:04:10Z",
+          "author": {
+            "login": "chatgpt-codex-connector",
+            "name": "chatgpt-codex-connector",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+            "id": null
+          },
+          "viewer_did_author": false
+        }
+      ]
+    },
+    {
+      "id": "PRRT_kwDOUF0Vls6rSdnb",
+      "is_resolved": false,
+      "is_outdated": true,
+      "path": "index.html",
+      "line": null,
+      "diff_side": "RIGHT",
+      "start_line": null,
+      "start_diff_side": null,
+      "original_line": 4838,
+      "original_start_line": null,
+      "resolved_by": null,
+      "comments": [
+        {
+          "id": "PRRC_kwDOUF0Vls788I8X",
+          "database_id": 4243623703,
+          "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Canonicalize Echo refunds across JavaScript engines**\n\nWhen the same unrefunded overcap save is first loaded on different supported JavaScript engines, this runtime `Math.pow` calculation produces different refund amounts. The committed compatibility fixture demonstrates that V8 6 and modern V8 diverge beginning at index 93; by raw level 95, the otherwise identical save receives two fewer Prisms on the legacy engine, with much larger absolute divergence at higher levels. Receipt tolerance preserves an already-migrated value but does not make the initial migration deterministic, so derive new receipts from one canonical price schedule rather than the host engine's `Math.pow` result.\n\nAGENTS.md reference: [AGENTS.md:L64-L67](https://github.com/karahaNx/Lumenfall/blob/3ad4751c683938313f0bed7c8e612dd76a9b3bbb/AGENTS.md#L64-L67)\n\nUseful? React with 👍 / 👎.",
+          "created_at": "2026-10-11T23:04:10Z",
+          "updated_at": "2026-10-11T23:04:10Z",
+          "author": {
+            "login": "chatgpt-codex-connector",
+            "name": "chatgpt-codex-connector",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+            "id": null
+          },
+          "viewer_did_author": false
+        }
+      ]
+    }
+  ],
+  "disposition": "All three automated findings fixed: either surviving proof rejects missing receipts; finite relative factor avoids value*level overflow; frozen original reference makes both initial refunds deterministic across Node20/Node24 and actual V8.6.0. Four actual older-engine refund field cases retain original issued values; empty/inverted receipt ranges also select recovery. 619/13 core,206 integration,573 browser assertions/17 controls and12 engine parity/2 controls pass locally on recorded current source. Full586 failed old host Math.pow oracle; SHA-pinned pre-change original expectations and verified same Node20 runtime now pass; no assertion removed. Threads mechanically unresolved/outdated; no new final-head review approval claim.",
+  "diffCheck": "Product, test, workflow and task/README diff check passes. Raw decoded job logs retain timestamp trailing whitespace unchanged; not normalized to satisfy code whitespace checks.",
+  "limits": "Native capabilities remain unavailable. Published APK asset623317405/main67373faa unchanged; evidence-only native checkpoint remains separate from development. Current Full CI required."
+}

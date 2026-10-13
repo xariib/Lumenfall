@@ -1,0 +1,109 @@
+{
+  "status": "pass",
+  "source": "/workspace/Lumenfall-swift-current/index.html",
+  "sourceSha256": "36c6fcb44987812409d10956481b232a2dc2274a29e5761ccb9ff88c886955ef",
+  "cases": 16,
+  "purchaseBoundaryCases": 110,
+  "records": [
+    "cap and effective cycle at 0..10, huge legacy levels and direct forged-node handler",
+    "paid current Forge route reaches both original Deeds; history, rewards and unlocks stay sticky",
+    "single/bulk/Max exact price and partial affordability at every boundary",
+    "queue stops at cap and retains ON intent without spending or incrementing counters",
+    "raw history, Deeds, queues and paid work retained; original single-price compensation",
+    "refund keeps exact spendable value beside huge wallets, above Number capacity and after many purchases",
+    "primary/recovery/backup idempotence, restoration replaces full wallet and Ascend retains permanent credit",
+    "receipt and money remain one canonical transaction on storage failure",
+    "precision credits pay through real Forge, queued Forge, Rarity, Module and Study handlers",
+    "price colors include spendable exact Shard credits and remain read-only",
+    "damaged receipt selects recovery, original old-save migration and Reset remain supported",
+    "actual casts before/exact/after floor, immediate-ready semantics, purchase preserves current percent",
+    "whole/split live/offline charge and cast chronology match at legacy overlevels",
+    "Support durations remain independent; natural-cycle ratios exclude external charge",
+    "capped Farm cadence crosses tiny clock boundaries and retains whole/split parity",
+    "paid Study work follows the canonical clock across combat events and Ascend copies"
+  ],
+  "controls": [
+    {
+      "id": "cap",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n11 !== 10\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:64:26\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:63:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 11,\n  expected: 10,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "floor",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:internal/assert/utils:77\n    throw err;\n    ^\n\nAssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(b.cycle()>=10/3)\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:65:185\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:63:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "refund",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n43n !== 2445n\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:113:21\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:110:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 43n,\n  expected: 2445n,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "deeds",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:80:31\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:69:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "price",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2444n !== 2445n\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:113:21\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:110:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 2444n,\n  expected: 2445n,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "free-debit",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2402n !== 2401n\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:121:123\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:118:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 2402n,\n  expected: 2401n,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "audit",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Missing expected exception.\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:170:12\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:158:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: undefined,\n  expected: { code: 'invalid-swift-refund' },\n  operator: 'throws',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "credit-color",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'var(--danger)'\n- 'var(--ink)'\n         ^\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:154:37\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:152:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'var(--danger)',\n  expected: 'var(--ink)',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "clock",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: capped Farm grid advances without discarding tiny elapsed steps\n+ actual - expected\n\n+ Error: Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":3,\"elapsedWholeSec\":3,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":57,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":3,\"riftMode\":\"farm\",\"candidates\":{\"ability\":1,\"autoTap\":1,\"autoEmpower\":1,\"study\":57,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}\n+     at run (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:49:3), <anonymous>:7517:13)\n+     at run.next (<anonymous>)\n+     at Object.advanceAuthoritativeTime [as advance] (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:49:3), <anonymous>:7541:21)\n+     at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:198:11\n+     at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n+     at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:193:1)\n+     at Module._compile (node:internal/modules/cjs/loader:1872:14)\n+     at Object..js (node:internal/modules/cjs/loader:2003:10)\n+     at Module.load (node:internal/modules/cjs/loader:1594:32)\n+     at Module._load (node:internal/modules/cjs/loader:1396:12)\n- null\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:199:12\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:193:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: Error: Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":3,\"elapsedWholeSec\":3,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":57,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":3,\"riftMode\":\"farm\",\"candidates\":{\"ability\":1,\"autoTap\":1,\"autoEmpower\":1,\"study\":57,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}\n      at run (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:49:3), <anonymous>:7517:13)\n      at run.next (<anonymous>)\n      at Object.advanceAuthoritativeTime [as advance] (eval at app (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:49:3), <anonymous>:7541:21)\n      at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:198:11\n      at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n      at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:193:1)\n      at Module._compile (node:internal/modules/cjs/loader:1872:14)\n      at Object..js (node:internal/modules/cjs/loader:2003:10)\n      at Module.load (node:internal/modules/cjs/loader:1594:32)\n      at Module._load (node:internal/modules/cjs/loader:1396:12),\n  expected: null,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "study-clock",
+      "status": "killed",
+      "failure": "ERR_ASSERTION",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: exact representable paid work, no event-subtraction drift\n+ actual - expected\n\n+ 999999999520.0078\n- 999999999520\n              ^\n\n    at /workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:210:12\n    at test (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:54:100)\n    at Object.<anonymous> (/workspace/Lumenfall-swift-current/tests/behavioral/swift-current-core.cjs:203:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 999999999520.0078,\n  expected: 999999999520,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    }
+  ],
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51"
+}

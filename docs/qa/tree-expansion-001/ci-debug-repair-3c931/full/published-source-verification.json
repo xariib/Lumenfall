@@ -1,0 +1,918 @@
+{
+  "head": "3c931a26bbcf7b009dee03e7411ed41faeb971f8",
+  "tree": "d11120bc250a6ac90fac1f5e598042a5572e5650",
+  "method": "Read-only verification of local bytes against exact published GitHub API tree entries; no game/test execution",
+  "sourceSha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef",
+  "defaultScenarios": [
+    "resonate-clarity",
+    "upgrade-identity-contracts",
+    "upgrade-identity-chronology",
+    "upgrade-identity-farm-clock",
+    "upgrade-identity-save-reload",
+    "upgrade-identity-backup-restore",
+    "upgrade-identity-recovery",
+    "upgrade-identity-ui",
+    "upgrade-identity-reduced-motion",
+    "wisp-upgrade-display",
+    "comet-unlocks-core",
+    "comet-unlocks-mobile",
+    "comet-unlocks-reduced-motion",
+    "lab-motes-offline-integration",
+    "lab-motes-numerical",
+    "lab-motes-runtime",
+    "lab-motes-conservation",
+    "lab-motes-contracts",
+    "lab-motes-chronology",
+    "lab-motes-ui",
+    "lab-motes-native",
+    "lab-motes-reduced-motion",
+    "lab-motes-save-reload",
+    "lab-motes-backup-restore",
+    "lab-motes-recovery",
+    "lab-motes-reset",
+    "save-backup-ui",
+    "offline-catchup-core",
+    "offline-12h-core",
+    "offline-12h-ui",
+    "offline-catchup-ui",
+    "offline-catchup-legacy-dom",
+    "nav-workshop-contract",
+    "inquiry-contracts",
+    "inquiry-chronology",
+    "inquiry-ui",
+    "inquiry-ui-reduced-motion",
+    "inquiry-save-reload",
+    "inquiry-backup-restore",
+    "inquiry-recovery",
+    "inquiry-reset",
+    "raw-process-contract",
+    "support-stacking",
+    "auto-ascend-target-contract",
+    "auto-ascend-target-legacy16",
+    "auto-ascend-target-legacy44",
+    "auto-ascend-target-legacy56",
+    "auto-ascend-target-legacy130",
+    "auto-ascend-target-recovery",
+    "auto-ascend-target-resume",
+    "auto-ascend-target-reset",
+    "auto-ascend-target-manual-reload",
+    "auto-ascend-target-cold-resume",
+    "auto-ascend-target-mobile",
+    "auto-ascend-target-reduced-motion",
+    "rift-status-stacking-mobile",
+    "rift-status-stacking-reduced-motion",
+    "support-save-reload",
+    "support-backup-restore",
+    "support-recovery",
+    "support-resume",
+    "support-recovery-resume",
+    "support-visibility-resume",
+    "support-reset",
+    "upgrade-effects-and-deeds",
+    "tree-purchase-contract",
+    "tree-purchase-ui",
+    "tree-purchase-ui-reduced-motion",
+    "rift-status-contract",
+    "bond-text-contract",
+    "rift-status-mobile",
+    "rift-guidance-mobile",
+    "rift-status-reduced-motion",
+    "forge-ui-process-contract",
+    "forge-ui-mobile",
+    "forge-ui-reduced-motion",
+    "buff-timing",
+    "buff-save-reload",
+    "forge-contracts",
+    "forge-effects",
+    "forge-chronology",
+    "forge-save-reload",
+    "loadout-memory-core",
+    "loadout-memory-mobile",
+    "forge-backup-restore",
+    "forge-recovery",
+    "forge-baseline",
+    "forge-balance",
+    "r3-destinations",
+    "r3-save-reload",
+    "research-duration",
+    "research-duration-reduced-motion",
+    "p2-07a-persistence-review",
+    "p2-07a-persist-save-reload",
+    "p2-07a-persist-backup-restore",
+    "p2-07a-persist-recovery",
+    "p2-07a-persist-reset",
+    "p2-07a-formation-reconstruction",
+    "p2-07a-save-reload",
+    "p2-07a-backup-restore",
+    "p2-07a-recovery",
+    "p2-07a-chronology",
+    "layout-p2-07a-reconstruction",
+    "p2-06b-live-feedback",
+    "p2-06b-reduced-motion",
+    "layout-fresh",
+    "layout-dense",
+    "layout-boss",
+    "layout-accessibility-states",
+    "p1-05-accessibility-baseline",
+    "p1-05-accessibility-contract",
+    "p1-05-control-regressions",
+    "p1-05-reduced-motion",
+    "fresh-load",
+    "midgame-load",
+    "mature-load",
+    "legacy-load",
+    "corrupted-load",
+    "malformed-daily-load",
+    "farm-load",
+    "farm-roundtrip",
+    "enemy-normal-reload",
+    "enemy-boss-reload",
+    "active-studies-load",
+    "auto-ascend-load",
+    "reset-roundtrip",
+    "restore-roundtrip",
+    "malformed-backup-rejection",
+    "recovery-from-corrupt-primary",
+    "unsupported-future-load",
+    "legacy-backup-restore",
+    "future-backup-rejection",
+    "recovery-offline-once",
+    "save-failure-warning",
+    "parity-short",
+    "parity-medium-farm",
+    "p2-07a-farm-retention",
+    "p2-07a-timer-boundary",
+    "parity-long-high-power",
+    "parity-boss-short",
+    "parity-boss-retry",
+    "parity-auto-ascend",
+    "chronology-research-mid-window",
+    "chronology-study-mid-window",
+    "chronology-auto-empower-mid-window",
+    "chronology-auto-ascend-mid-window",
+    "chronology-boss-retry",
+    "chronology-simultaneous-order",
+    "lifecycle-background-resume",
+    "lifecycle-repeated-resume",
+    "lifecycle-cold-restart",
+    "lifecycle-partial-enemy",
+    "lifecycle-boss-background-short",
+    "lifecycle-boss-retry",
+    "lifecycle-auto-ascend",
+    "p2-ascend-integrity",
+    "p2-03b-auto-ascend-integrity",
+    "p2-wisp-progression-pacing",
+    "p2-endgame-currency-utility",
+    "p2-03a-wisp-role-integrity",
+    "p2-03a-wisp-role-integrity-mature",
+    "p2-03a-wisp-role-integrity-endgame",
+    "p2-02a-core-qol",
+    "p2-02b-wisp-hierarchy",
+    "p2-02b-lab-hierarchy",
+    "lifecycle-long-study",
+    "lifecycle-lab-queue",
+    "lifecycle-daily-rollover",
+    "wisp-formula-contract",
+    "formation-bonds-core",
+    "formation-bonds-mobile",
+    "auto-ascend-target-backup-restore",
+    "formation-autosave-contract",
+    "formation-autosave-native",
+    "formation-autosave-reduced-motion",
+    "formation-autosave-save-reload",
+    "formation-autosave-backup-restore",
+    "formation-autosave-recovery",
+    "ascend-prisms-contract",
+    "ascend-prisms-save-reload",
+    "ascend-prisms-backup-restore",
+    "ascend-prisms-recovery"
+  ],
+  "originalWorkflowNegatives": [
+    "self-test-bad-assertion",
+    "self-test-uncaught-error",
+    "self-test-unhandled-rejection",
+    "self-test-parity-regression",
+    "self-test-chronology-regression",
+    "self-test-wisp-formula-regression",
+    "self-test-wisp-pacing-regression",
+    "self-test-endgame-currency-regression",
+    "self-test-wisp-role-regression",
+    "self-test-p1-05-selected",
+    "self-test-p1-05-focus-return",
+    "self-test-lifecycle-duplicate",
+    "self-test-save-backup-placement",
+    "self-test-save-backup-confirmation",
+    "self-test-upgrade-identity-buy",
+    "self-test-upgrade-identity-value",
+    "self-test-upgrade-identity-clock",
+    "self-test-ascend-prisms-tree",
+    "self-test-ascend-prisms-lab",
+    "self-test-ascend-prisms-payout",
+    "self-test-ascend-prisms-repeat",
+    "self-test-ascend-prisms-rounding"
+  ],
+  "files": [
+    {
+      "path": "index.html",
+      "gitBlobSha1": "c7094e9c84f057d9d76d37e51772ac20ac73596a",
+      "bytes": 618571,
+      "sha256": "4e4707afca6672ea46aad03ebd05cd7341ad61d7316a9636fed6172dbfed96ef"
+    },
+    {
+      "path": "tests/behavioral/accessibility-controls.js",
+      "gitBlobSha1": "2b37aa761b3503b1d48daaad793cda4917376a5d",
+      "bytes": 9908,
+      "sha256": "f892dc67759700bdb96429184ec4e31ac17d0f805f4a908430e98c72da148c28"
+    },
+    {
+      "path": "tests/behavioral/accessibility.js",
+      "gitBlobSha1": "52b8796b9e9917e5d96cd79d14b3ed154c7c7a2c",
+      "bytes": 16352,
+      "sha256": "a5c48c5cb8e6fde5c7af45738efd08b80756f6304481a7e8f684780bcf31998c"
+    },
+    {
+      "path": "tests/behavioral/ascend-prisms.js",
+      "gitBlobSha1": "67c321697152b7ec9c1c1236d70c86d80a46d853",
+      "bytes": 10680,
+      "sha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482"
+    },
+    {
+      "path": "tests/behavioral/auto-ascend-target.cjs",
+      "gitBlobSha1": "43db5d9d34fb4430d81dce85f629cb81464cc541",
+      "bytes": 18373,
+      "sha256": "4d6b1eea78c5a1492cf43ed4176cb1a70808832d7448755874e8a045fb74c6e0"
+    },
+    {
+      "path": "tests/behavioral/auto-ascend-target.js",
+      "gitBlobSha1": "2d6bad39ea58967e119ef30d69cb78d6829df133",
+      "bytes": 17411,
+      "sha256": "e22b3dca9f084d2950ce0edf2cc6604d8540fb90173b506794131c909fbd7bc7"
+    },
+    {
+      "path": "tests/behavioral/bond-text.js",
+      "gitBlobSha1": "8846d1800ebbdfacde7df41b6ad3db301aee561d",
+      "bytes": 3813,
+      "sha256": "eabc43a1d766f41c0d15c9e3ce77b797acc2b097800929e76998aa36c8992715"
+    },
+    {
+      "path": "tests/behavioral/bridge.js",
+      "gitBlobSha1": "4520d19707041984d7e50a439b1198435ea582a8",
+      "bytes": 52321,
+      "sha256": "3a7e96895d982f005ed075334c5159b8a5e00c138475f1bc4e34b1790e978c3c"
+    },
+    {
+      "path": "tests/behavioral/browser-dom.cjs",
+      "gitBlobSha1": "5b2888027220ddde1f2bcf79d85c891a13d30bcb",
+      "bytes": 3697,
+      "sha256": "516ccccf3abe118d0ae9d28a23db03198ddd29128861516ac7bd6d03101b4d87"
+    },
+    {
+      "path": "tests/behavioral/buff-timing.js",
+      "gitBlobSha1": "ba78235e7479547289596e2378452e21192d6df8",
+      "bytes": 7838,
+      "sha256": "2bd2fab7f188d5f0e27e13c1796bcd3125a31aaaf3bbd6a04cf1fbf77fe6886e"
+    },
+    {
+      "path": "tests/behavioral/collection-price-ui.cjs",
+      "gitBlobSha1": "0aba332113224213341fa23494fd7446409bddca",
+      "bytes": 10385,
+      "sha256": "54332a7807c6c484fe7beacdfcd415ac6dab491f7bc15a5dd48edaf30c921994"
+    },
+    {
+      "path": "tests/behavioral/comet-unlocks-core.cjs",
+      "gitBlobSha1": "611e27355718772bf5cc95314f4cef2116344c48",
+      "bytes": 13840,
+      "sha256": "a67f67fa07e84f2299d44b5ea5553a1bf9f415556d5fc122845b39e679e925b5"
+    },
+    {
+      "path": "tests/behavioral/comet-unlocks-ui.cjs",
+      "gitBlobSha1": "8fa9408e0efcb45813ae9a0f13a3678b9ac2661b",
+      "bytes": 11899,
+      "sha256": "44aee041f3806187022f26bcc73dd70af4d26bfe4de98002dcbc710305528092"
+    },
+    {
+      "path": "tests/behavioral/farm-conservation.js",
+      "gitBlobSha1": "cebd1a3f7d668349072e59398a009fcd1221e970",
+      "bytes": 5744,
+      "sha256": "f038872066ef232a523b31cb93ea3129f7b8ab6448b5e45bb3f24ef58f919558"
+    },
+    {
+      "path": "tests/behavioral/farm-numerical.js",
+      "gitBlobSha1": "0cb03983e84b611ed05d9a82ba9edd54f513e1d0",
+      "bytes": 6740,
+      "sha256": "d7de5e281b33669d6c5a7daa577324d9917730863af2851b29dc0d36fcdd18ab"
+    },
+    {
+      "path": "tests/behavioral/farm-runtime.cjs",
+      "gitBlobSha1": "ac19cfecd6269e46077158bc29743efe65907ff1",
+      "bytes": 12134,
+      "sha256": "091160ea0a170ed18bb8307e5b1c235548e7c4c9a59681b0dc1ea60d24b009d1"
+    },
+    {
+      "path": "tests/behavioral/feedback.js",
+      "gitBlobSha1": "d8ceb44b389d73d321987c983517e580740e029a",
+      "bytes": 5311,
+      "sha256": "8c9dfd4d96f34817c5d4fbe2a34407d1616c6f66e5e0287f990eef4d217cb294"
+    },
+    {
+      "path": "tests/behavioral/fixtures-offline-refund-interop.json",
+      "gitBlobSha1": "41da5c4606b7de16aae6a2f710d32e30dc688299",
+      "bytes": 71316,
+      "sha256": "8f48490641769fd005d3eb071cfb3e3f7301eed6470f669b7d8a38b670ea2a9e"
+    },
+    {
+      "path": "tests/behavioral/fixtures.json",
+      "gitBlobSha1": "5bc34425a9e745e6b656d5b8a173fddcb4b16194",
+      "bytes": 84610,
+      "sha256": "ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-calibration.cjs",
+      "gitBlobSha1": "b4b432ae1c5afcd46ac57d6579a0613d8d9f18ca",
+      "bytes": 26059,
+      "sha256": "ea5787eb14d63237c3cbe4687914c67935703cf81d1c176042c4473c40bad3f4"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-harness.cjs",
+      "gitBlobSha1": "80570d355f0909e7e153a7111552e4308a05e61c",
+      "bytes": 10916,
+      "sha256": "185feb9242a3c8b5fac48871be20f61a119e2881e78191ecd832d12da16d9724"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-legacy.cjs",
+      "gitBlobSha1": "66573cb10f68494d4b8ac0e7b82ea464f610c900",
+      "bytes": 22552,
+      "sha256": "5f97700df5f19f535cb84de75b2b39fe9826cc9672184d1493afb274297630e0"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion-ui.cjs",
+      "gitBlobSha1": "08934b20006f808fa635cf466a9b3ee631ae78f2",
+      "bytes": 23212,
+      "sha256": "72311ef88c417e89ab70321a12119279d598392456343c25d4102e2c6e0aca7b"
+    },
+    {
+      "path": "tests/behavioral/forge-expansion.cjs",
+      "gitBlobSha1": "0188d609ee353a0856e2215f07df6fdffbdd5a58",
+      "bytes": 59184,
+      "sha256": "64fc2471bac4b8ba2efd9adaa79c92e4091aa9f5c16a632096556bc539bd0e89"
+    },
+    {
+      "path": "tests/behavioral/forge-ui.cjs",
+      "gitBlobSha1": "0734ecd66575dec5c232f25d04037c0f8fbb2d14",
+      "bytes": 12034,
+      "sha256": "d61bb2e34f1e5af76c181ab7698da8ce007ac45d685a8cf6dff67adc25915d3e"
+    },
+    {
+      "path": "tests/behavioral/forge-ui.js",
+      "gitBlobSha1": "d125f04e2e2147573a2c3f54d7fcbcf1a24b13f9",
+      "bytes": 8529,
+      "sha256": "defa835adbbfe180898920961396356c38953e64c27665eec29569f8c18b167c"
+    },
+    {
+      "path": "tests/behavioral/forge.js",
+      "gitBlobSha1": "beba8c337d3aaa72f0c574a922cbd8dffabb5cc6",
+      "bytes": 28053,
+      "sha256": "0a8799898096ce1b3307c13c320e92e0c80ff851cc016a657b7f606b23fa0387"
+    },
+    {
+      "path": "tests/behavioral/formation-autosave.cjs",
+      "gitBlobSha1": "c66088667d556afb264897a64fcbd7a750789a27",
+      "bytes": 13185,
+      "sha256": "b4abd978f63ca506c55b32ab80d22a0634d61f0907d582bb6a12371331665aea"
+    },
+    {
+      "path": "tests/behavioral/formation-autosave.js",
+      "gitBlobSha1": "d62722e2fa2068583b26a93b30eff52ae3ac1b64",
+      "bytes": 10586,
+      "sha256": "ddc860c47fc0952d2d08e25c143931c055e9a06e605d52d73ef9d09690df31d5"
+    },
+    {
+      "path": "tests/behavioral/formation-bonds-budget.cjs",
+      "gitBlobSha1": "f30067e6feb0ed5236579749f0f940b4e84b0bc8",
+      "bytes": 5406,
+      "sha256": "25b67d774e209755b5f10b0cbdbb0b689272dcd42e416bdde79fe575adfcfca4"
+    },
+    {
+      "path": "tests/behavioral/formation-bonds-ui.cjs",
+      "gitBlobSha1": "35b317a13a5ebc1bafa78f030154e795ef88c924",
+      "bytes": 11377,
+      "sha256": "4c10aa227a8ced6e66e88e44a2bed6486dcefbd5546c887f2a12c8d26559d4b1"
+    },
+    {
+      "path": "tests/behavioral/formation-bonds.cjs",
+      "gitBlobSha1": "5816da63479341a9187649b5bf38c53d97660ba7",
+      "bytes": 11234,
+      "sha256": "29c75ca85d754f6e04c76e452ab0c10dd9c76dbf31621ebc948f5ed5a93a95ed"
+    },
+    {
+      "path": "tests/behavioral/formation.js",
+      "gitBlobSha1": "ed720eba56826cc06d9aa5153e6a4eacb7fc5486",
+      "bytes": 29739,
+      "sha256": "3464976af2dd02c8cc8dfc95510a6c7a2f347209ea355b5bd62f568e513b444e"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-boundary.cjs",
+      "gitBlobSha1": "93e3b2cae86f700fbbfe95c041b68f6c42292172",
+      "bytes": 9803,
+      "sha256": "4ba37b0b37723a37accb3051d82861a87fc101ae24dfdb231e2accaf2f73484d"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-harness.cjs",
+      "gitBlobSha1": "58c24cd3803905766e9f705275550fc60e383b26",
+      "bytes": 5153,
+      "sha256": "5221a2c2125077edabca1d2577a616d0e8cd0514c0c18c53ff321d9eaff4f659"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-legacy.cjs",
+      "gitBlobSha1": "ce8b5664aa11d19dde3ce23eb1c0f1e8deda5d13",
+      "bytes": 5372,
+      "sha256": "a683bf60b0993cdb4ce40687005d778e5f26c777f093a8633524694b88285078"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-stress.cjs",
+      "gitBlobSha1": "0ee9f7156c2019f3ecbc39e594d9595da3909b97",
+      "bytes": 4269,
+      "sha256": "00022e87f3c7fd4d5d4c748faa64156e78cda35504eec3362f31145ab36a14a8"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion-ui.cjs",
+      "gitBlobSha1": "2f605d9e0d8b24233cd8cb89075e4e4ccdb9a284",
+      "bytes": 11710,
+      "sha256": "70e61e93a83bd4a340ae4e707a45067a9f36434d7bdd6da78c5f62a57084b179"
+    },
+    {
+      "path": "tests/behavioral/lab-expansion.cjs",
+      "gitBlobSha1": "d8afaf81e0919c5ee148cbeb633b41c873cfc9b1",
+      "bytes": 27320,
+      "sha256": "1efa11715a25c17efff19fb3a903b5a474004e12bf11fd4a448b08e6fecf0d72"
+    },
+    {
+      "path": "tests/behavioral/lab-motes-offline.cjs",
+      "gitBlobSha1": "fba1db91bfc5080541d26d31d6a500121d59094e",
+      "bytes": 6971,
+      "sha256": "31d468af05d10727dfbd4e831b04b4c445e95bbd687bb7c19d0e127461f53c75"
+    },
+    {
+      "path": "tests/behavioral/lab-motes.cjs",
+      "gitBlobSha1": "c6be4e2bc7c184011aa68058af03b08898089284",
+      "bytes": 14561,
+      "sha256": "92d7f9c6c502c912aac14ca925a6a9325a809074af5db96afc6b79e9fa5f0bf5"
+    },
+    {
+      "path": "tests/behavioral/lab-motes.js",
+      "gitBlobSha1": "d4940914894d49d15789e6c8867c1e4fab051899",
+      "bytes": 20827,
+      "sha256": "29ed00dfb8b2499277a503523973b71c21e68b2763106a4921c70bf2e231608b"
+    },
+    {
+      "path": "tests/behavioral/lab-ui-regression.cjs",
+      "gitBlobSha1": "cd4065148be3cc944ff6cdb9eaf87649f779d753",
+      "bytes": 5925,
+      "sha256": "85693fca453f2deb2818f22041d5ca8f3f0bd461b67162b9c35acf9b72fa3d5f"
+    },
+    {
+      "path": "tests/behavioral/lab-ui.js",
+      "gitBlobSha1": "979b950f1b0669956072907f6e3c36ade1f2d9a7",
+      "bytes": 10793,
+      "sha256": "a1fe37040ab215b568edcf42757958d07c38d8dbb20526b69731312fbe943221"
+    },
+    {
+      "path": "tests/behavioral/layout-host.html",
+      "gitBlobSha1": "d19040982519f3c0902ce9773ef2ae60df79f614",
+      "bytes": 682,
+      "sha256": "94d0fb5c0e2a6f178a2727358db83cef3b6b28248ded145c820383de17607f99"
+    },
+    {
+      "path": "tests/behavioral/layout.js",
+      "gitBlobSha1": "3f6223c2c03a5cc342dca0c2bd195f3b04f9349b",
+      "bytes": 11914,
+      "sha256": "85ae598382186c14dde0e0488c9d0a02748997dc1bab4b748245670a161959f1"
+    },
+    {
+      "path": "tests/behavioral/loadout-memory.cjs",
+      "gitBlobSha1": "9c9439f74245fba99b3c6bcb09e33079d3cea692",
+      "bytes": 19275,
+      "sha256": "992e82ffdf62580f338754e3e51ddd506b32aa164a50cfff011d95a65efdf85e"
+    },
+    {
+      "path": "tests/behavioral/measured-inquiry.js",
+      "gitBlobSha1": "3a1bf5bab3043d654a5e13891c30b7ccd2ebe005",
+      "bytes": 22267,
+      "sha256": "71ebec88516738509276c2e3ddb07e6bcc0a18e6f46805ebdb5b4b2e227767c3"
+    },
+    {
+      "path": "tests/behavioral/nav-workshop.js",
+      "gitBlobSha1": "938e1c0ad1fd1d644da0e1304959a1f16e8a655b",
+      "bytes": 6069,
+      "sha256": "d069a9bafaeee6864421f762ddee2c641d91a58234d4a3aedb4d997b1f689adb"
+    },
+    {
+      "path": "tests/behavioral/offline-12h-ui.cjs",
+      "gitBlobSha1": "c50339abfcc41c70888c667b330dbb35f1a481f5",
+      "bytes": 10258,
+      "sha256": "5ad506c3baa88b12ff0f45d13da9c15ea967f982223e6ddf013387883842b70c"
+    },
+    {
+      "path": "tests/behavioral/offline-12h-webview60.cjs",
+      "gitBlobSha1": "89d4a68064d19aa17b6b58cb09c0630b1723bc98",
+      "bytes": 3467,
+      "sha256": "9d3e3b457c89c396f9bbd21f826a5b07b7ff585d74d5f586bdd06bfd1aaa99d5"
+    },
+    {
+      "path": "tests/behavioral/offline-12h.cjs",
+      "gitBlobSha1": "a68772b0ff1d56bc17eea851b1a09234bb1b8a8f",
+      "bytes": 16063,
+      "sha256": "a258d4348bafd43b15be57947e34fb494c91bfecefbcdcc6c6805fb81a166d6c"
+    },
+    {
+      "path": "tests/behavioral/offline-catchup-ui.cjs",
+      "gitBlobSha1": "2915574e2bc0e744d89bfb715a42b5a1bebb922c",
+      "bytes": 15793,
+      "sha256": "a572928111ef67048cde42faaa730e3219145efb596803607e01dd95760cda6e"
+    },
+    {
+      "path": "tests/behavioral/offline-catchup-v8.cjs",
+      "gitBlobSha1": "88260aee20f44c189d34efac58dd71f603ab4be5",
+      "bytes": 2539,
+      "sha256": "0d04293a4b01c0240c6c935a104c5ffb69f6b6dfaeb1031a6c175986f373c996"
+    },
+    {
+      "path": "tests/behavioral/offline-catchup.cjs",
+      "gitBlobSha1": "1fe02665350f0626972f116fb652977c6ea00587",
+      "bytes": 22354,
+      "sha256": "694850f3fd284636eed83bade7a18dcf2148abc97a437ffa8b20555d3a0b2f84"
+    },
+    {
+      "path": "tests/behavioral/prelude.js",
+      "gitBlobSha1": "414d2ca5d28df72b3b5a5741b65213055a064b6e",
+      "bytes": 8792,
+      "sha256": "f8c2ccd4f01587d07b52c07d6d6d8756c144e94a4f1998e2807054add33f7bdb"
+    },
+    {
+      "path": "tests/behavioral/prism-acceptance.cjs",
+      "gitBlobSha1": "837c85faaea8758df256185287f9eab59b17cc74",
+      "bytes": 13167,
+      "sha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd"
+    },
+    {
+      "path": "tests/behavioral/prism-closeout-data.cjs",
+      "gitBlobSha1": "6cc0a284c9e5a910894d73c699b5679e7d35eb57",
+      "bytes": 3860,
+      "sha256": "3d809e42d59d32b4add58034520148b97797a689fe2f45f013062cc39d9a4dff"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-focused.cjs",
+      "gitBlobSha1": "b2247b09dd17f2119eaf61a411b43da89b521848",
+      "bytes": 3603,
+      "sha256": "7a5de7d99703f80255d125fc369f8ca1c9bfc8b89ef9f00eafb99255b555b41f"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-reference.cjs",
+      "gitBlobSha1": "82699e9a8f57f1a2f6609e8b68de4c67254f338e",
+      "bytes": 1956,
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2"
+    },
+    {
+      "path": "tests/behavioral/prism-earning-state.cjs",
+      "gitBlobSha1": "6cf0b6a156080eee70be57c4a1fbc4347c6bca66",
+      "bytes": 8465,
+      "sha256": "bbaa33852a9d90f5829df61d6b6be9326f769046a676fe2e4b94800273aa044e"
+    },
+    {
+      "path": "tests/behavioral/prism-earning.cjs",
+      "gitBlobSha1": "56917a559ab8e3badadcd26da34b86c25a838f84",
+      "bytes": 8351,
+      "sha256": "26d75f5d303febb56dda2c67c24ae7371f84c8e32cc0be2ac24bf4cb7186236f"
+    },
+    {
+      "path": "tests/behavioral/prism-legacy-runtime.cjs",
+      "gitBlobSha1": "2266e18b2ba3196bf986a99811de433528d84424",
+      "bytes": 3282,
+      "sha256": "b3cc6e5fe8c02f52f3e4d7180bb38bde85ffd10cfbc0640169959168534a9484"
+    },
+    {
+      "path": "tests/behavioral/process_contract.cjs",
+      "gitBlobSha1": "1e2a83082060b02c8b7aedca39faaa1ac8ef7bfe",
+      "bytes": 9488,
+      "sha256": "00ca2f77a6989ba70ced834171c7ad80834b6dd627f6d1a2d6008c671fe44462"
+    },
+    {
+      "path": "tests/behavioral/r3-destinations.js",
+      "gitBlobSha1": "a9e4564221f94052f3f88e8b5b19c2ddbec7337d",
+      "bytes": 11943,
+      "sha256": "1fbac7358a44a8f511e6f17b0f6d56d75e76e8ba85e31f65464dc37c2b07829c"
+    },
+    {
+      "path": "tests/behavioral/raw-result.cjs",
+      "gitBlobSha1": "24e6d72b9e5ff621d5e71053e36462ade547553c",
+      "bytes": 4523,
+      "sha256": "5ccb3939a1386aac32eee5803fd732198dbf73f354d21bc0f1c8459da478c25b"
+    },
+    {
+      "path": "tests/behavioral/research-duration.js",
+      "gitBlobSha1": "45584ba12ea40a6f02ffa2bc6e6c8149f9e48765",
+      "bytes": 7129,
+      "sha256": "091bbb3f40e8e6d96a36b6bce12fc14b9aed37618c63178cc27a9e3cd7fdc7eb"
+    },
+    {
+      "path": "tests/behavioral/resonate-clarity.cjs",
+      "gitBlobSha1": "d481939907eeef3ef09206d978ee7b1b7735a22e",
+      "bytes": 19957,
+      "sha256": "e757478e4d5f65bdc6eeec9f054ab0e03f878db79464927f8c0da357f074abe4"
+    },
+    {
+      "path": "tests/behavioral/rift-cast-text.cjs",
+      "gitBlobSha1": "564c3b6b5399f8ba1154519eac8d2110f7f5b85a",
+      "bytes": 12564,
+      "sha256": "13a9d7e92e1228bbe9b5ff122b4245c9e8686b597f988c7b6894b5246acb7453"
+    },
+    {
+      "path": "tests/behavioral/rift-cosmetics.cjs",
+      "gitBlobSha1": "69f508755f1b864defb0464cbe9efe0dc4a3d52e",
+      "bytes": 21838,
+      "sha256": "1d25c04ab3fa99206d1bdc3e0861a6091645f96acd0ec57490fa9b2c36d2e7f1"
+    },
+    {
+      "path": "tests/behavioral/rift-guidance.cjs",
+      "gitBlobSha1": "d417aaf87dc149112ef644aacda6404bf3e5b657",
+      "bytes": 26807,
+      "sha256": "3f3349404e1561a22a9db118c0c7fa55571f2b0ec5d1b9ee22d36cd1fe0f9bfa"
+    },
+    {
+      "path": "tests/behavioral/rift-status.cjs",
+      "gitBlobSha1": "5b7ce4c4a4d1fc957a1d5ef5576ad00407bb0629",
+      "bytes": 21096,
+      "sha256": "0634b0a2368e1c9cfafa321bd344b65aa105318dc5e817eb911df93cc7aca788"
+    },
+    {
+      "path": "tests/behavioral/rift-status.js",
+      "gitBlobSha1": "2c21d77f7071ad40eab4c3a65d38585b255c2e06",
+      "bytes": 46160,
+      "sha256": "879a7a0ab5c71dbf398694ed76dd036fe44351f44294643a58002ab3a903df42"
+    },
+    {
+      "path": "tests/behavioral/run-auto-ascend-ui.cjs",
+      "gitBlobSha1": "86372547e953d00ba8183314a9353d86e4e50dbe",
+      "bytes": 3983,
+      "sha256": "b95902b736bb70451e2da370c1fbb4dc221ff0873ce7a382a5303af9f98d1f6c"
+    },
+    {
+      "path": "tests/behavioral/run.cjs",
+      "gitBlobSha1": "3b0ef91cec0965cf50b9a0630e488e87f6c6fc53",
+      "bytes": 20903,
+      "sha256": "3e52c9a021f650ea9d52fcc55aa6e7ad50ce4bd467848f69e0aa81bfffd1ec81"
+    },
+    {
+      "path": "tests/behavioral/runner.js",
+      "gitBlobSha1": "8d8e2a47c4cadf9ab1b6dfff867b943be8b7853c",
+      "bytes": 158493,
+      "sha256": "0fd30cee20407ebf51a8b25fb589545c20f2612c68f0f68fdab72ff26a341ab1"
+    },
+    {
+      "path": "tests/behavioral/save-backup-ui.cjs",
+      "gitBlobSha1": "e06a383bf56eec78dede59c1068cfdb7c36b964f",
+      "bytes": 22440,
+      "sha256": "6c6d4799d144b57c37a5620fdb5cf07f3305de0acca2dad88ce9447097c8e40d"
+    },
+    {
+      "path": "tests/behavioral/scenarios.json",
+      "gitBlobSha1": "b43b07284f67cecceb7e10727c7fca75869e5ed7",
+      "bytes": 9882,
+      "sha256": "469dcca1f352a476fe150d7f0a009c2f545ff8e60e6835f6a1bb6de211fee1d2"
+    },
+    {
+      "path": "tests/behavioral/support-stacking.js",
+      "gitBlobSha1": "9788660584348130015435ffcc647e397f0fd589",
+      "bytes": 14386,
+      "sha256": "403b29fcabd9d68ae338486f0550e90f172a7b66f1307e8a967cada4139060e0"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-core.cjs",
+      "gitBlobSha1": "d0e23a760fcef067460f573546c780e6b7997b4f",
+      "bytes": 54294,
+      "sha256": "43c0c8bf9931411bd8af4e9a2ef591521d29e050cfc9a929b94f2fbf3f78d441"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-economy.cjs",
+      "gitBlobSha1": "d03c34aae1f201010dbf523fcc5e99655781b4d9",
+      "bytes": 28283,
+      "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-harness.cjs",
+      "gitBlobSha1": "3027844dcf5f804de8e5090c69a59517be1155b1",
+      "bytes": 14440,
+      "sha256": "bcf080ce494ee1a2df450241dbd6a087fb6880239c3d2e711d1d2116f4ce3463"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-mobile.cjs",
+      "gitBlobSha1": "2e35a63c97394bbdd1ef1c667a0e0579c0d6566e",
+      "bytes": 30776,
+      "sha256": "8ffec748df96ec66558385fbf6da1a07d7d41f8f3a1980b38baa020b5e0f36de"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-offline.cjs",
+      "gitBlobSha1": "9f119445195099d9d1e38db6a1e0ad001767ca6f",
+      "bytes": 24517,
+      "sha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71"
+    },
+    {
+      "path": "tests/behavioral/tree-expansion-v8.cjs",
+      "gitBlobSha1": "06a5da71efb947e6d861a12db60206a56e15d4f1",
+      "bytes": 24937,
+      "sha256": "7ed1f234a07f846fb52b99cb7df02542fe49e621864089e4927354587225fcf4"
+    },
+    {
+      "path": "tests/behavioral/tree-purchases.js",
+      "gitBlobSha1": "917cd14410b4f6bd598bc4414a9ba0d61918133c",
+      "bytes": 12937,
+      "sha256": "d91b8d4774061e9b7586a852eabc2fa12f8ce80dc15b535004eedbd41f4b2684"
+    },
+    {
+      "path": "tests/behavioral/upgrade-clarity.js",
+      "gitBlobSha1": "ff3cddaea2a87a3d138b38cc0b57ae766993e8b6",
+      "bytes": 10441,
+      "sha256": "ada9467943284db320598f87a4f82d6b40c4c3e5e9781b1fa4416854ec62589f"
+    },
+    {
+      "path": "tests/behavioral/upgrade-identity.js",
+      "gitBlobSha1": "9f1e54f49e9cbfa8cad7a061c4fe43304428d227",
+      "bytes": 15572,
+      "sha256": "a92845db4043185d4de465b849dbebf9e58f5bfe68f551f80924e23fde05b9e5"
+    },
+    {
+      "path": "tests/behavioral/wisp-upgrades-bridge.js",
+      "gitBlobSha1": "d3724e730d322358d767092e248ee51323caf72a",
+      "bytes": 1609,
+      "sha256": "8ffb74750c63fd81417ea1e46f4b0eee2164cd71e94a8744e4c67f6da3461793"
+    },
+    {
+      "path": "tests/behavioral/wisp-upgrades.cjs",
+      "gitBlobSha1": "42b35bbc8daa215009bb14653956ece977be17bc",
+      "bytes": 11046,
+      "sha256": "4c07a5b96e5ef667289774dc34c307987253ae0df254deec198c2ed8c2f8d03d"
+    },
+    {
+      "path": "tests/behavioral/wisp-upgrades.js",
+      "gitBlobSha1": "4ab352987df478993f1c8777729237741b17c6d6",
+      "bytes": 7985,
+      "sha256": "f0d85db9e4783efb725f1265929d23b9ca75ca324057fa73a933276c3b810f9c"
+    },
+    {
+      "path": "tests/tooling/run.cjs",
+      "gitBlobSha1": "2bdf40ce8b2725c65274cbb0138f9d4e151c88f3",
+      "bytes": 10090,
+      "sha256": "5b51f143c48881570d2b8cca2d474c4c7fe4f44bfb727acb5401dbb8925a7bf2"
+    },
+    {
+      "path": "scripts/analysis/tree-exclusive-inventory.cjs",
+      "gitBlobSha1": "8bab989e32f59f929770615307b00a41051b105f",
+      "bytes": 4548,
+      "sha256": "5341f7e4afe94a89afb95c7cc14118dec55a656a91351e9e9cdd56ccd53345d5"
+    },
+    {
+      "path": "scripts/ci/set_android_version.cjs",
+      "gitBlobSha1": "8da8c7f43b5ecd44c51809defd9b9abcea814b7a",
+      "bytes": 1147,
+      "sha256": "2cfe4496d42bc7e25330007f048a4b9e7a833061f6e52dafd40a146d09e88d25"
+    },
+    {
+      "path": "scripts/ci/smoke.cjs",
+      "gitBlobSha1": "9b3410a646df8b338b42e7d14bffee5bdc704c1a",
+      "bytes": 2691,
+      "sha256": "e6fc07a21a63d1cf15db35fb85dd31b508eca93efa7a73f050b8043fdf15c26b"
+    },
+    {
+      "path": "scripts/ci/source-contract.json",
+      "gitBlobSha1": "ab08620c2530f8e33d7f062f266bbc638426ad66",
+      "bytes": 1854,
+      "sha256": "1acbeb46a14654ba6e5f7531a4d39dc55a28a8c3ec01000b07c805f3d928de88"
+    },
+    {
+      "path": "scripts/ci/validate_source.cjs",
+      "gitBlobSha1": "aef64427bf3464ccb4e02d8c6106e83b1e9c2b53",
+      "bytes": 3765,
+      "sha256": "f9edc59536f4d9ed6c7b12a9c90c906c86a1b5ea497ba59c6fad81f26d27f044"
+    },
+    {
+      "path": "scripts/codex/check_context.cjs",
+      "gitBlobSha1": "3f5e0e46403c8e8b89e0cabdd7dccc4f1af3b722",
+      "bytes": 6108,
+      "sha256": "890aeefb221d5709b283aa3d74f56ea6f47989cee08c080ba3e544c74786d8ba"
+    },
+    {
+      "path": "scripts/codex/setup.sh",
+      "gitBlobSha1": "6c5a8f28429666a431f1cbf0275d73aacaed73c8",
+      "bytes": 2072,
+      "sha256": "610f61ee0cf436186cb0f60a65446dadf00349455cb51120fcd1fcb75bb5dd3f"
+    },
+    {
+      "path": "scripts/lib/cli.cjs",
+      "gitBlobSha1": "743762819d833f59fcd2905e5092d402ced90e54",
+      "bytes": 2211,
+      "sha256": "872f6e4307325db2587076488723aa60e8e63ee6524224d8df9f299bf1c3596b"
+    },
+    {
+      "path": "scripts/lib/process.cjs",
+      "gitBlobSha1": "773add55b0a124980ee117e4e97ea434eb15deeb",
+      "bytes": 1069,
+      "sha256": "f69e5f758bc301952a9f54c4bfe9ed39b919d0d12cc26a52d46bd78e8b4037de"
+    },
+    {
+      "path": "scripts/lib/static-server.cjs",
+      "gitBlobSha1": "66dfa122844559bf172df7d736aa9b91b85bb087",
+      "bytes": 1258,
+      "sha256": "4f518f541632a8e14b422bc0750b58f46f1ca34f1fef618fb328b8de338a0533"
+    },
+    {
+      "path": "scripts/lib/zip.cjs",
+      "gitBlobSha1": "2993f7389b26fb91ff2ddc62069764154733c67b",
+      "bytes": 2796,
+      "sha256": "b71b0e34d29fe82c2c617a469e277e5399d47cd132aa178178eb26c52b791e82"
+    },
+    {
+      "path": "scripts/qa/check-formation-autosave.cjs",
+      "gitBlobSha1": "cb8db597dc78807da1e73f9fe7e1655474f9d43b",
+      "bytes": 6198,
+      "sha256": "7f8beca81c6b074c2fc6cf84f1ca86adfc4e2b6fc55ff7f6a980658201abbc5c"
+    },
+    {
+      "path": "scripts/recovery/restore_candidate.cjs",
+      "gitBlobSha1": "cd28e02f907ac45a5141feec64cc07d63a4022ff",
+      "bytes": 4772,
+      "sha256": "d073128eb27efb54aef75443af78c625e20b510777e4f6e85b6bce9209d38bb6"
+    },
+    {
+      "path": "scripts/recovery/restore_package.cjs",
+      "gitBlobSha1": "64bb2db104d09041b7195e4bc3462929ee45c777",
+      "bytes": 2202,
+      "sha256": "3a16bf79b0c57ce2041a0a11de3779bc480dcddfe356cc8def6afdd8cb0fe191"
+    },
+    {
+      "path": "scripts/serve.cjs",
+      "gitBlobSha1": "503224cac23448b42e7dcf95df3549e09334ff1d",
+      "bytes": 770,
+      "sha256": "8d0c0b972f33600f7bcac084da762f7c4d1cce06eb86f326f1703e0dd4b154a2"
+    },
+    {
+      "path": "scripts/verify_apk_identity.cjs",
+      "gitBlobSha1": "8307b9de1bed20e25c264e9081cad5343611471c",
+      "bytes": 7061,
+      "sha256": "f2b4a1439d4fd0a4311b9bb6bfb34586b52691fe7be90c13d8feb327e61841c3"
+    },
+    {
+      "path": ".github/workflows/build-android.yml",
+      "gitBlobSha1": "054f02751551b68a6959c9ed24cca55ec97bd15b",
+      "bytes": 12089,
+      "sha256": "70993746220fcd24c0dc091b59e5fc2442a354e752b29c4b46945c6a312a0e6b"
+    },
+    {
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "gitBlobSha1": "5e4fe1d5bdaee84a811f4e9339f695fa5a9c3196",
+      "bytes": 2889,
+      "sha256": "a611890e612a80b72e964dd86f228c9fd8a4ef2ff9f99f36333dd2c7c47fb9de"
+    },
+    {
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "gitBlobSha1": "d5e5778bc4819fa5bc1d162a9c9362ed68051199",
+      "bytes": 2681,
+      "sha256": "8dd81626af8d3a3c0e3519387060f3015adbbd220ce48d30732555291a3eda02"
+    },
+    {
+      "path": ".github/workflows/lab-scroll-diagnostic.yml",
+      "gitBlobSha1": "68d76113f069a4af4a8100047b0dd2aac3918094",
+      "bytes": 1744,
+      "sha256": "2cbc89cbd022a3ba023a638af078733f35a5ae630680fa4d4343c7f2b1f465fd"
+    },
+    {
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "gitBlobSha1": "4c67564c7d30a51f618eb76f286cc34a4bf4f6d0",
+      "bytes": 5691,
+      "sha256": "f0218e6b818970a8bacdf0f43431c89c94b8a7a85343be29b79bc1b99b23e818"
+    },
+    {
+      "path": ".github/workflows/prism-closeout.yml",
+      "gitBlobSha1": "1821f79dd833cf619cf6230b8f6a6670735f8381",
+      "bytes": 2291,
+      "sha256": "ab911d665a9e8f54a13b8ccde7e506b212dde6e56d4127c0164b290250304ee9"
+    },
+    {
+      "path": ".github/workflows/prism-earning-validation.yml",
+      "gitBlobSha1": "9ce8ab30ac31dad9f9cc64e56b456e91a3bd418f",
+      "bytes": 2315,
+      "sha256": "c4231b7ac02fc25a57c77b850d3c380b4af40a92b3b4cccd3c5fba9478c92f79"
+    },
+    {
+      "path": ".github/workflows/prism-integration-recheck.yml",
+      "gitBlobSha1": "d6df708140f8b492117fd813e26ac08bad611f94",
+      "bytes": 3920,
+      "sha256": "90f53b5e8e0de82b732eb1b765d0b268c7fb3c4ec54944c0835e7591da3b8c97"
+    },
+    {
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "gitBlobSha1": "9740959a724547d1cefed6952762a15da2e09fab",
+      "bytes": 4967,
+      "sha256": "4d8778abab15f004fdddb8a3580976d131767ef381515b50a6449f81be25e554"
+    }
+  ]
+}

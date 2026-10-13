@@ -1,0 +1,102 @@
+{
+  "status": "FROZEN_DESIGN_CLOSURE_NOT_GAMEPLAY_ACCEPTANCE",
+  "frozenAt": "2026-10-10 22:35:11 UTC",
+  "clockSource": "clock__curr_time UTC supplied as argument; no executor wall-clock timestamp",
+  "node": "v24.19.0",
+  "source": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+    "bytes": 619788,
+    "sha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+    "head": "768050d7cca586ea724e7ac677804a5ed7d6a3f5",
+    "tree": "30213b2ae877ff64db08e3d06b087d040fe72ca2",
+    "blob": "2e6485650f2b5a5d5105ee14e3c19a9b7419f6c7",
+    "sourceWorktreeStatus": ""
+  },
+  "inputs": [
+    {
+      "path": "/workspace/scratch/0848c4e4f365/comet-work/design-proposal.md",
+      "bytes": 36221,
+      "sha256": "95b239ade7a80f2fa2a3d05f11ba15a89575f2634f027e27c158907e258fa1e5"
+    },
+    {
+      "path": "/workspace/scratch/0848c4e4f365/comet-work/root-design-review.md",
+      "bytes": 22308,
+      "sha256": "f138ddb6204972e4d6e965c1c6d4a3c26d8c6ed369beb8ae003e4dd52c82ba51"
+    }
+  ],
+  "observedCommands": [
+    {
+      "argv": [
+        "node",
+        "prove-meteor.cjs",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+        "2026-10-10 22:26:47 UTC"
+      ],
+      "exitCode": 0,
+      "execWallSeconds": 0.532402103,
+      "stdout": "meteor-proof.json",
+      "stderr": "meteor-proof.stderr.txt",
+      "origin": "actual exec tool completion; preserved stdout/stderr"
+    },
+    {
+      "argv": [
+        "node",
+        "prove-ledger.cjs",
+        "/workspace/scratch/0848c4e4f365/Lumenfall-tree/index.html",
+        "2026-10-10 22:34:52 UTC"
+      ],
+      "exitCode": 0,
+      "execWallSeconds": 0.077720037,
+      "stdout": "ledger-proof.json",
+      "stderr": "ledger-proof.stderr.txt",
+      "origin": "actual exec tool completion; preserved stdout/stderr; final run includes the five immediate-new-award cases"
+    },
+    {
+      "commands": [
+        "node --check meteor-candidate.cjs",
+        "node --check exact-oracle.cjs",
+        "node --check prove-meteor.cjs",
+        "node --check prove-ledger.cjs",
+        "node --check freeze.cjs"
+      ],
+      "exitCode": 0,
+      "origin": "actual sequential syntax-only exec completion; followed by read-only summary printing; no syntax errors"
+    }
+  ],
+  "counts": {
+    "meteor": {
+      "checks": 156704,
+      "budgetVectors": 35110,
+      "hpPlanVectors": 6048,
+      "explicitExamples": 15,
+      "invalidInputs": 13,
+      "discriminatingCounterexamples": 6
+    },
+    "ledger": {
+      "checks": 142967,
+      "walletVectors": 5468,
+      "creditVectors": 87488,
+      "debitVectors": 54680,
+      "settlementPasses": 46,
+      "claims": 30,
+      "oldDeeds": 23,
+      "newDeeds": 4,
+      "retirementClaims": 3,
+      "oldDeedComets": 683,
+      "newDeedComets": 50,
+      "retirementComets": 350,
+      "maximumKnownDue": 1083
+    }
+  },
+  "noChanges": [
+    "game source",
+    "tracked tests",
+    "repo documentation",
+    "staging",
+    "commits",
+    "remote branches/PRs",
+    "user saves",
+    "APK"
+  ],
+  "acceptanceLimit": "Only pure candidate/oracle/model proofs plus isolated original F26 and epsilon-branch observations. Actual Node8, UI, Comet integration, persistence faults, rewards and timing regressions remain future implementation gates."
+}

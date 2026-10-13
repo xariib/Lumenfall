@@ -1,0 +1,69 @@
+{
+  "status": "NO_NEW_SCOPE_BLOCKER_OBSERVED",
+  "attribution": "Direct view by this owner chat using view_image; self-review",
+  "directViews": 11,
+  "source": "dd81757378880ef42052cf6b175ea06721043e0ba7213cd135d5661367a743f1",
+  "images": [
+    {
+      "path": "raw/rift-guidance-mobile/320x640-safe0-text2-no-preference-ascend-readability.png",
+      "sha256": "199110ab4ef2622532c28854bfec3e34d7ca392f50054ef900889f1119f06656",
+      "bytes": 161635
+    },
+    {
+      "path": "raw/rift-guidance-mobile/320x640-safe0-text2-no-preference-readability-inverse.png",
+      "sha256": "5b5e75b13ad18e8fa31d4a3b55b74eec8bc03180c0edd913cd241158ca5f1f89",
+      "bytes": 152053
+    },
+    {
+      "path": "raw/rift-guidance-mobile/320x640-safe0-text2-no-preference-readability-normal.png",
+      "sha256": "f2ea927b54a9266211b455eef760ed0ae75f416648d366e011114ed9828c19c4",
+      "bytes": 154539
+    },
+    {
+      "path": "raw/rift-guidance-mobile/390x844-safe24-text1-reduce-hidden.png",
+      "sha256": "3bb407b9be468e73a8694a74ae4c32e12803ae7e5a8a256e54d8edd281bb1979",
+      "bytes": 233754
+    },
+    {
+      "path": "raw/rift-guidance-mobile/390x844-safe24-text1-reduce-long.png",
+      "sha256": "b58e517c5b0d4aa93962779e95e9e27b98b8dc46717d580426be3b4086152b61",
+      "bytes": 240959
+    },
+    {
+      "path": "raw/rift-guidance-mobile/390x844-safe24-text1-reduce-normal.png",
+      "sha256": "7877fa5d48eb5339d96c73cbb4878904a12d5212891a29a3750a49faf4662ed4",
+      "bytes": 240057
+    },
+    {
+      "path": "raw/rift-guidance-mobile/390x844-safe24-text2-reduce-hidden.png",
+      "sha256": "99919c6704214effc4f0a55cf8efde6aaf724f3eb31fb1a0e6811deeda3e9cce",
+      "bytes": 241158
+    },
+    {
+      "path": "raw/rift-guidance-mobile/390x844-safe24-text2-reduce-long.png",
+      "sha256": "a3ce69a699cb7e38bf2dee26950392f9bcff319837ce0f0dcdf312446ba54545",
+      "bytes": 244276
+    },
+    {
+      "path": "raw/rift-guidance-mobile/390x844-safe24-text2-reduce-normal.png",
+      "sha256": "1bcbc7d0cd159ad41276895073e8992a127921cc4703b66794dace4d639f3401",
+      "bytes": 236311
+    },
+    {
+      "path": "guidance-readability/baseline/failure.png",
+      "bytes": 152478,
+      "sha256": "c251a3274127ba9c75a1570a374e16cbd7f4efcfac25273ad2e80622adfd8fea"
+    },
+    {
+      "path": "guidance-readability/old-copy/failure.png",
+      "bytes": 159138,
+      "sha256": "367adfb17969488a27b3ea654361511d18bb4423ddf222f9867482887c7d30c6"
+    }
+  ],
+  "observation": "Corrected Awaken/Ascend/Recruit words are complete; baseline, width-only and title inverses show intended fragmentation. Native control labels are complete. Long text remains within the bounded scroll area. Toast overlays and existing Wisp card limitations are retained.",
+  "limitations": [
+    "Static images do not establish input, storage purity, accessibility or complete scroll reachability.",
+    "Not every CI PNG was newly viewed; focused published reviews retain their original direct-view scopes.",
+    "CSS root32 is not native WebView textZoom."
+  ]
+}

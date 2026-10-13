@@ -1,0 +1,16 @@
+--- /workspace/scratch/0848c4e4f365/shared-ui-work/repair-002/before/shared-layout-ui.cjs	2026-10-11 06:10:37.486021076 +0200
++++ /workspace/scratch/0848c4e4f365/shared-ui-work/repair-002/after/shared-layout-ui.cjs	2026-10-11 06:10:48.950599129 +0200
+@@ -315,8 +315,12 @@
+   ok(d.button.rect.width>=44&&d.button.rect.height>=44,'Wisp native 44px control '+spec[0]);
+   const glyphs=d.name.glyphs.concat(d.classTag.glyphs);
+   geometry(!glyphs.some(g=>intersect(g.rect,d.button.rect)),'wisp-glyph-intersects-toggle',{id:spec[0],measurement:d});
+-  geometry(glyphs.every(g=>contains(d.identity.rect,g.rect)),'wisp-glyph-outside-identity',{id:spec[0],measurement:d});
++  // Visible font metrics can exceed a transparent line box vertically. The
++  // identity column still bounds x; clipping owners and header/card bound y.
++  geometry(glyphs.every(g=>g.rect.left>=d.identity.rect.left-.5&&g.rect.right<=d.identity.rect.right+.5),'wisp-glyph-outside-identity',{id:spec[0],measurement:d});
+   geometry(glyphs.every(g=>contains(d.header.rect,g.rect)&&g.rect.left>=-.5&&g.rect.right<=width+.5),'wisp-glyph-outside-header',{id:spec[0],measurement:d});
++  geometry(d.identity.overflowY==='visible'||glyphs.every(g=>g.rect.top>=d.identity.rect.top-.5&&g.rect.bottom<=d.identity.rect.bottom+.5),'wisp-glyph-clipped-by-identity',{id:spec[0],measurement:d});
++  geometry(glyphs.every(g=>contains(d.card.rect,g.rect)),'wisp-glyph-outside-card',{id:spec[0],measurement:d});
+   geometry(!d.name.glyphs.some(a=>d.classTag.glyphs.some(b=>intersect(a.rect,b.rect))),'wisp-name-class-glyphs-intersect',{id:spec[0],measurement:d});
+   geometry(!glyphs.some(g=>intersect(g.rect,d.portrait.rect)),'wisp-glyph-intersects-portrait',{id:spec[0],measurement:d});
+   ok(d.header.rect.top>=d.context.main.top-.5&&d.header.rect.bottom<=Math.min(d.context.main.bottom,d.context.nav.top)+.5,'observed Wisp header visible '+spec[0]);

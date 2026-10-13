@@ -1,0 +1,78 @@
+{
+  "id": "v8",
+  "command": "/tmp/lumenfall-node830/bin/node tests/behavioral/tree-expansion-v8.cjs index.html",
+  "binary": "/tmp/lumenfall-node830/bin/node",
+  "argv": [
+    "tests/behavioral/tree-expansion-v8.cjs",
+    "index.html"
+  ],
+  "cwd": "/workspace/scratch/0848c4e4f365/Lumenfall-tree",
+  "startedAt": "2026-10-10T21:22:08.691Z",
+  "finishedAt": "2026-10-10T21:22:09.740Z",
+  "exitCode": 0,
+  "signal": null,
+  "error": null,
+  "runtime": {
+    "node": "v8.3.0",
+    "v8": "6.0.286.52",
+    "execPath": "/tmp/lumenfall-node830/bin/node"
+  },
+  "test": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-v8.cjs",
+    "bytes": 24937,
+    "sha256": "7ed1f234a07f846fb52b99cb7df02542fe49e621864089e4927354587225fcf4"
+  },
+  "testAfter": {
+    "path": "/workspace/scratch/0848c4e4f365/Lumenfall-tree/tests/behavioral/tree-expansion-v8.cjs",
+    "bytes": 24937,
+    "sha256": "7ed1f234a07f846fb52b99cb7df02542fe49e621864089e4927354587225fcf4"
+  },
+  "testUnchanged": true,
+  "stdout": {
+    "path": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/v8.stdout.json",
+    "bytes": 905,
+    "sha256": "369e4ea2df8f237aac8849733dcd9308b0ca09b89cbab752e4959f0a5f887fb7"
+  },
+  "stderr": {
+    "path": "/workspace/scratch/0848c4e4f365/tree-work/viewport-fix-local/v8.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "reported": {
+    "status": "pass",
+    "checks": 2862,
+    "inlineScriptsParsed": 2,
+    "completeIifeInstances": 339,
+    "priceCases": 94,
+    "faultCases": 34,
+    "effects": [
+      "echo",
+      "bonds",
+      "swift",
+      "swiftcharter",
+      "lumenmemory",
+      "veteranrecruits",
+      "rosterrecall",
+      "chargememory",
+      "supportmemory",
+      "phasememory",
+      "riftstep",
+      "frontier",
+      "stardust",
+      "gentlegrowth",
+      "formationseat",
+      "benchmentor",
+      "empowerbatch",
+      "wallwisdom",
+      "invitations",
+      "recruitreserve"
+    ],
+    "bigIntAvailable": false,
+    "scope": "Actual V8 6.0 complete-IIFE engine, purchases, migration and persistence; browser layout/native Android are separate gates.",
+    "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+    "testSha256": "7ed1f234a07f846fb52b99cb7df02542fe49e621864089e4927354587225fcf4",
+    "node": "v8.3.0",
+    "v8": "6.0.286.52"
+  },
+  "accepted": true
+}

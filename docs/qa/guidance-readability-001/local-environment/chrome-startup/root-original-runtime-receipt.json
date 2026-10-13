@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "scope": "Guidance browser runtime preparation; no APK or game test",
+  "trustedStartedUtc": "2026-10-11 11:30:53 UTC",
+  "source": "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
+  "steps": [
+    {
+      "id": "download",
+      "command": "curl",
+      "args": [
+        "--fail",
+        "--location",
+        "--connect-timeout",
+        "15",
+        "--max-time",
+        "180",
+        "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
+        "-o",
+        "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedSeconds": 10.150644407,
+      "stdout": {
+        "path": "download.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "download.stderr.log",
+        "bytes": 1107,
+        "sha256": "831e69516bac5cc1777fb984b8e9640ffd5ea0bff524c8f749c2c7405688cae2"
+      }
+    },
+    {
+      "id": "extract",
+      "command": "dpkg-deb",
+      "args": [
+        "--extract",
+        "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+        "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedSeconds": 6.583454829,
+      "stdout": {
+        "path": "extract.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "extract.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "version",
+      "command": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked/opt/google/chrome/chrome",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "elapsedSeconds": 0.037408843,
+      "stdout": {
+        "path": "version.stdout.log",
+        "bytes": 29,
+        "sha256": "1d28eea0e6a41c2c043b348936d84628c86fc0d043a65835aff20c8350aad070"
+      },
+      "stderr": {
+        "path": "version.stderr.log",
+        "bytes": 191,
+        "sha256": "99d9ce6c589431df0a19b0578e4e7e98852f72d679c11956cc881c9d87db1aa8"
+      }
+    }
+  ],
+  "package": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/google-chrome.deb",
+    "bytes": 143552428,
+    "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38"
+  },
+  "binary": {
+    "path": "/workspace/scratch/0848c4e4f365/guidance-work/runtime/unpacked/opt/google/chrome/chrome",
+    "bytes": 297798984,
+    "sha256": "9bfb381296dffe75f3419d07b6cc64525105ed117d1453a4ef3b291cb97d2b58"
+  },
+  "version": "Google Chrome 155.0.8059.39",
+  "status": "READY",
+  "elapsedSeconds": 17.189279801
+}

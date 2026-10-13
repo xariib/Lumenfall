@@ -1,0 +1,102 @@
+{
+  "name": "p2-07a-chronology",
+  "occurrence": 7,
+  "rawLogSection": {
+    "byteOffset": 10863065,
+    "bytes": 6506,
+    "sha256": "f20acfc277eb0b94db2b725bb2952e13122ba8f2be92324b076c2d4f3197f1e6"
+  },
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 1.1044447670001536,
+    "timeout_sec": 25
+  },
+  "detail": null,
+  "rawArtifactDirectory": "/home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx",
+  "artifactFiles": [
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/process.json",
+      "bytes": 917,
+      "sha256": "f8f630e0cda9053d7c77bbdcee203a93acbe21514cecb6ed394f77444b00bd7d",
+      "zipCrc32": "7900f6ec"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stderr.log",
+      "bytes": 4021,
+      "sha256": "4a4ce92c4eca276a313bedc841d223e30151e1e5129ec3bf4910ece565046668",
+      "zipCrc32": "4a87a29e"
+    },
+    {
+      "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stdout.html",
+      "bytes": 1371009,
+      "sha256": "433d01e0067fb667d45b40541726f126ea563fe9d6a9479eaebbffa546c5b5bd",
+      "zipCrc32": "91071f2f"
+    }
+  ],
+  "rawProcess": {
+    "command": [
+      "/usr/bin/google-chrome",
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--no-first-run",
+      "--window-size=390,844",
+      "--virtual-time-budget=1500",
+      "--user-data-dir=/tmp/lumenfall-qa-p2-07a-chronology-t2xSdX",
+      "--dump-dom",
+      "http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 1.1044447670001536,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "p2-07a-chronology",
+      "json_status": "fail",
+      "json_scenario": "p2-07a-chronology",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "qa": {
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "p2-07a-chronology",
+      "json_status": "fail",
+      "json_scenario": "p2-07a-chronology",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "payload": {
+      "scenario": "p2-07a-chronology",
+      "status": "fail",
+      "detail": {
+        "message": "no purchase before existing 1-second cadence",
+        "stack": "Error: no purchase before existing 1-second cadence\n    at assert (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh:15077:61)\n    at window.runP207ChronologyQa (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh:13532:53)\n    at HTMLDocument.run (http://127.0.0.1:36039/index.html?qaScenario=p2-07a-chronology&qaFixture=fresh:15637:32)"
+      },
+      "runtimeErrors": []
+    }
+  },
+  "domProvenance": {
+    "path": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/raw/p2-07a-chronology-yDmlbx/stdout.html",
+    "bytes": 1371009,
+    "sha256": "433d01e0067fb667d45b40541726f126ea563fe9d6a9479eaebbffa546c5b5bd",
+    "zipCrc32": "91071f2f"
+  },
+  "diagnosticDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/repair/full/failed-scenarios/07-p2-07a-chronology"
+}

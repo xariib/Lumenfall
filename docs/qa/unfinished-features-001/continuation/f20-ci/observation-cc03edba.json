@@ -1,0 +1,69 @@
+{
+  "observedAt": "2026-10-12 01:09:50 UTC",
+  "head": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+  "sourceSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+  "checks": [
+    {
+      "name": "Lumenfall pre-merge validation",
+      "id": 114620832924,
+      "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090675/job/114620832924",
+      "completed": null
+    },
+    {
+      "name": "tree",
+      "id": 114620776753,
+      "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090697/job/114620776753",
+      "completed": "2026-10-12T01:03:04Z"
+    },
+    {
+      "name": "shared-ui",
+      "id": 114620776731,
+      "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090733/job/114620776731",
+      "completed": "2026-10-12T01:02:34Z"
+    },
+    {
+      "name": "lab",
+      "id": 114620776664,
+      "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090690/job/114620776664",
+      "completed": "2026-10-12T01:00:52Z"
+    },
+    {
+      "name": "comet",
+      "id": 114620776449,
+      "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090661/job/114620776449",
+      "completed": "2026-10-12T01:03:09Z"
+    },
+    {
+      "name": "forge",
+      "id": 114620776308,
+      "head_sha": "cc03edbae59042a705cff17a1a1a0a4a3bfcd808",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/karahaNx/Lumenfall/actions/runs/38190090640/job/114620776308",
+      "completed": "2026-10-12T01:04:44Z"
+    }
+  ],
+  "decodedLogs": [
+    "tree-cc03edba-job.txt",
+    "shared-ui-cc03edba-job.txt",
+    "lab-cc03edba-job.txt",
+    "comet-cc03edba-job.txt",
+    "forge-cc03edba-job.txt"
+  ],
+  "limits": "Five exact-head lanes passed, Full in progress. No final Full counts/integration claim. Historical raw gaps remain. Local broad run on earlier instrumented fixtures remains open; corrected cases passed separately without changing game source."
+}

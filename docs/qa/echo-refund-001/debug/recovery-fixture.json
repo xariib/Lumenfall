@@ -1,0 +1,296 @@
+{
+  "status": "FAIL",
+  "sourcePath": "/workspace/Lumenfall-echo-refund/index.html",
+  "sourceSha256": "9b899ca458c4a4559437bf33e101408bebb0a1a3ca5e2574b5e821f1585a97c3",
+  "browserIdentity": {
+    "selected": "/usr/bin/chromium",
+    "resolved": "/usr/bin/chromium",
+    "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)"
+  },
+  "mutation": "none",
+  "observedAt": "2026-10-11T21:49:27.960Z",
+  "records": [
+    {
+      "kind": "refund-contracts",
+      "result": {
+        "checks": 182,
+        "records": [
+          {
+            "raw": 19,
+            "wallet": 1234,
+            "creditEntries": 0,
+            "retainedValue": "1234",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 20,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "0",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "3376",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 40,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "12655538",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 1e+30,
+            "creditEntries": 1,
+            "retainedValue": "1000000000000000019884624842032",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 2000,
+            "wallet": 1000000,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445289096194",
+            "unpricedFrom": 1910
+          },
+          {
+            "raw": 1e+300,
+            "wallet": 0,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316020346374805022355282317780449426181363160303338266762162525661395694676831500690685622528529603255164132549785994972331229476147011586874768732691769709368441918306677540259696361594196651871027864015140465356943618210621957308488438697056853198063751717235222524750980854410475681046445288096194",
+            "unpricedFrom": 1910
+          },
+          {
+            "kind": "large-ledger-quotes",
+            "raw": 2000,
+            "result": {
+              "quotes": 2000,
+              "quoteCopies": 0,
+              "purchaseCopies": 1,
+              "unchanged": true,
+              "elapsedMs": 12.700000000186265
+            }
+          },
+          {
+            "kind": "completed-refund-boundaries",
+            "raw": 2000,
+            "boundaries": 100,
+            "priceCalculations": 0,
+            "elapsedMs": 548
+          },
+          {
+            "kind": "actual-auto-ascend-boundaries",
+            "raw": 2000,
+            "result": {
+              "boundaries": 14400,
+              "refundNormalizations": 0,
+              "recordsRetained": true,
+              "canonicalParity": true
+            },
+            "elapsedMs": 858.8999999994412
+          }
+        ],
+        "receipt": "feedbackMigration.receipts[node.bonds]",
+        "rawHistoryRetained": true,
+        "exactCreditDebit": true
+      }
+    },
+    {
+      "kind": "contracts",
+      "result": {
+        "checks": 389,
+        "purchaseCap": 20,
+        "finalPrice": 2329,
+        "pricesThroughCap": 7507,
+        "legacyLevels": [
+          21,
+          40,
+          2000
+        ],
+        "migration": "one-time original-curve Prism restitution; raw levels retained"
+      }
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 320,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        72,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 390,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 100,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        48
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "no-preference",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    },
+    {
+      "kind": "echo-mobile",
+      "width": 430,
+      "fontPercent": 200,
+      "motion": "reduce",
+      "contrastMinimum": 9.09870030710368,
+      "target": [
+        78,
+        64
+      ],
+      "realTouch": true,
+      "realKeyboard": true,
+      "refundFit": true
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  },
+  "failure": "Error: deleted Echo receipt selects actual recovery\n    at assert (/workspace/Lumenfall-echo-refund/tests/behavioral/cheaper-recruitment.cjs:68:34)\n    at run (/workspace/Lumenfall-echo-refund/tests/behavioral/cheaper-recruitment.cjs:108:216)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async /workspace/Lumenfall-echo-refund/tests/behavioral/cheaper-recruitment.cjs:207:6",
+  "stderr": " (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[22342:22342:1011/214916.305712:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22367:1011/214916.305794:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[22342:22342:1011/214916.314555:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22342:1011/214916.318738:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22342:1011/214916.320861:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22367:1011/214916.320923:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[22342:22367:1011/214916.320964:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[22342:22342:1011/214916.321037:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22367:1011/214916.321383:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n\n(process:22342): dconf-CRITICAL **: 21:49:16.330: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n\n(process:22342): dconf-CRITICAL **: 21:49:16.330: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n\n(process:22342): dconf-CRITICAL **: 21:49:16.330: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n[22342:22380:1011/214916.392606:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 22428: Read-only file system (30)\n[22342:22380:1011/214916.460628:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 22437: Read-only file system (30)\n[22342:22380:1011/214916.472215:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 22444: Read-only file system (30)\n[22342:22380:1011/214916.539359:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 22455: Read-only file system (30)\n[22342:22342:1011/214916.552604:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[22342:22342:1011/214916.552901:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22367:1011/214916.553290:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[22342:22342:1011/214916.580392:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[22342:22367:1011/214916.580509:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[22342:22342:1011/214916.600525:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}

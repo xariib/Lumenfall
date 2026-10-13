@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_PRODUCT_CSS_BLOCKER_FOUND_BROWSER_ACCEPTANCE_PENDING",
+  "reviewedUtc": "2026-10-11 03:42:39 UTC",
+  "scope": "Independent read-only review; no game or browser suites executed, no repository or remote changes.",
+  "checkout": "/workspace/scratch/0848c4e4f365/Lumenfall-shared-ui",
+  "baseCommit": "fe2a7b32859ebe04ecd3382d7b74ef285f683771",
+  "baseSourceSha256": "da32710b666e12399ea6b87a1dd951d0810fb84d0b0e49f8f060406391f829ca",
+  "candidateSourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+  "candidateSourceBytes": 657751,
+  "taskSha256": "5d0d3c7b4af4b4d9dc7656b62b38230364d189bf2ee1b36063929b6abfae87c9",
+  "acceptanceSha256": "85b80976cd8d6fe4c8fb2847c3d0355a5b9a28bf39785cce85eb4dbd709677cb",
+  "sourceProof": {
+    "exactThreeApprovedCssTransformations": true,
+    "allNonStyleBytesIdentical": true,
+    "scriptBodySha256": [
+      "78f8116f8fbb1c31038ce0e52fb4bbf0d9d76a4a24422b37a75f859c5668be00",
+      "002cf9dec93becfe1e66d07cd9e9a08124168f62e12ea6e56b3546422f21fca2"
+    ],
+    "execution": "Read-only string reconstruction and byte/hash comparisons, not game/test execution."
+  },
+  "findings": [
+    {
+      "change": "Brand spacing",
+      "anchors": [
+        "index.html:68-77",
+        "index.html:687-689",
+        "index.html:1532-1534",
+        "index.html:1669-1680"
+      ],
+      "observation": "At viewport widths <=360 CSS px, the final same-specificity letter-spacing is .04em. Above360 the accepted .12em remains. No later rule changes it; brand stays Cinzel700/1rem, sigil30px, inner gap9px, title gap8px, Settings44x44px. The battle-only uppercase declaration is retained.",
+      "limit": "The brand still has flex:1/min-width:0 and a single unbroken word. Static cascade review cannot prove actual glyph clearance with loaded fonts; original per-glyph/gear browser measurement must decide. Header height remains44px."
+    },
+    {
+      "change": "Wisp identity and Field/Bench wrapping",
+      "anchors": [
+        "index.html:215-221",
+        "index.html:243-245",
+        "index.html:947-950",
+        "index.html:1734",
+        "index.html:1757-1758",
+        "index.html:1945-1947",
+        "index.html:7744-7751",
+        "index.html:7803-7811"
+      ],
+      "observation": "The scoped flex-wrap and intrinsic identity minimum win over the original min-width:0. Portrait remains58px, identity name16px, class.6rem with.065em tracking, action font.6875rem and min48x48px. An action may wrap to the next flex line when required; DOM order and all actual handlers remain identical. Locked/unrecruited cards use the same scoped identity rule without a toggle.",
+      "limit": "Actual font-dependent line breaking and all eight class/role glyph boundaries require browser proof. No CSS order property, clipping, hidden text or font reduction was introduced."
+    },
+    {
+      "change": "Toast leading",
+      "anchors": [
+        "index.html:643-650",
+        "index.html:1997",
+        "index.html:6206-6215",
+        "index.html:7515-7520"
+      ],
+      "observation": "Unitless1.4 is not overridden later. At root16 toast text.76rem is12.16px with17.024px line-height; at root32 it is24.32px with34.048px line-height, replacing the old fixed16px. Native text, pointer behavior, role/aria, 2200ms timeout and last-chosen refusal handler are unchanged.",
+      "limit": "This is computed CSS arithmetic, not measured glyph spacing or browser acceptance; immediate/settled adjacent line rectangles still need actual checks."
+    }
+  ],
+  "preservation": {
+    "gameplayAndSaveHandlersByteIdentical": true,
+    "domAndNativeListenersByteIdentical": true,
+    "priceCssUnchanged": true,
+    "originalWorkflowsAndExistingTestsNotEditedByThisAgent": true
+  },
+  "driverReview": "Pending frozen shared-layout-ui.cjs from its owner; actual-startup/font readiness, glyph assertions, native input, state purity and exact inverse-CSS controls will be reviewed separately.",
+  "blockers": [],
+  "limitations": [
+    "No actual Chrome, Android WebView60, native textZoom, physical device or TalkBack results established by this review.",
+    "Root32 scales rem-relative text only; the Wisp name16px remains pixel-sized.",
+    "No font dependency was installed; absent optional font metric parsers were not replaced with speculative browser measurements."
+  ]
+}

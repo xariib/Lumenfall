@@ -1,0 +1,242 @@
+{
+  "status": "PASS",
+  "identity": {
+    "android": "8.1.0",
+    "api": "27",
+    "package": [
+      "versionCode=158 minSdk=22 targetSdk=34",
+      "versionName=0.1.158"
+    ],
+    "ua": "Mozilla/5.0 (Linux; Android 8.1.0; Android SDK built for x86 Build/OSM1.180201.023; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.98 Mobile Safari/537.36",
+    "page": "https://localhost/",
+    "nativeBounds": {
+      "attached": true,
+      "empty": false,
+      "height": 772,
+      "screenX": 0,
+      "screenY": 24,
+      "visible": true,
+      "width": 430
+    },
+    "viewport": {
+      "width": 430,
+      "height": 772,
+      "dpr": 1
+    }
+  },
+  "artifactIdentity": {
+    "installedApkPath": "/data/app/com.lumenfall.app-V5nE6Ho_YdTUVs-zXddTjA==/base.apk",
+    "installedApkSha256": "daa99edbca84cfd65d7d9e683ce01e4a52f4d1084f929cd0d70e832a95239dc0",
+    "providedApkSha256": "daa99edbca84cfd65d7d9e683ce01e4a52f4d1084f929cd0d70e832a95239dc0",
+    "sourceSha256": "678a1d4348ac9b99e18f9ec8aa26dec3ffdb147e5ef707014247ae10c0c430fc"
+  },
+  "records": [
+    {
+      "kind": "signed-update",
+      "baseline": {
+        "installedApkPath": "/data/app/com.lumenfall.app-lqL0vlivmMGuZxnx0hZuoQ==/base.apk",
+        "installedApkSha256": "45d1032ae6e77362d3540db740c6cfbdc4d275f2e3f6b98f4cecb1229e3205e7",
+        "providedApkSha256": "45d1032ae6e77362d3540db740c6cfbdc4d275f2e3f6b98f4cecb1229e3205e7",
+        "sourceSha256": "5c4b3dacfed70a25c4aed45496e84af7ae8efe310eed43ec002988e854d7091c"
+      },
+      "install": "Success\n",
+      "storageBytes": 112128,
+      "beforeSha256": "80e219d5f4a1014f9338638a2dec5bad4abf775ce8b27887984bd170502b9f9d",
+      "afterSha256": "80e219d5f4a1014f9338638a2dec5bad4abf775ce8b27887984bd170502b9f9d"
+    },
+    {
+      "kind": "old-save-migration",
+      "prisms": 19997671,
+      "raw": 40,
+      "receipt": {
+        "from": 20,
+        "to": 40,
+        "unpricedFrom": 0,
+        "amounts": {
+          "prisms": [
+            3376,
+            4896,
+            7098,
+            10292,
+            14924,
+            21639,
+            31377,
+            45496,
+            65969,
+            95654,
+            138698,
+            201113,
+            291613,
+            422839,
+            613116,
+            889018,
+            1289075,
+            1869159,
+            2710280,
+            3929906
+          ]
+        },
+        "creditAuditVersion": 1,
+        "remainingCredits": []
+      },
+      "refund": 12655538,
+      "coldReloadOnce": true
+    },
+    {
+      "kind": "native-cap-no-debit",
+      "raw": 40,
+      "blockedAttempts": 100,
+      "prisms": 19997671
+    },
+    {
+      "kind": "native-mobile-touch",
+      "width": 320,
+      "minimumContrast": 9.09870030710368,
+      "target": [
+        72,
+        46
+      ],
+      "finalLevel": 20,
+      "noMaxedDebit": true
+    },
+    {
+      "kind": "native-accessibility",
+      "node": {
+        "nodeId": "1",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "button"
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Cheaper Recruitment — Maxed",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "value": {
+                "type": "computedString",
+                "value": "Cheaper Recruitment — Maxed"
+              },
+              "attribute": "aria-label",
+              "attributeValue": {
+                "type": "string",
+                "value": "Cheaper Recruitment — Maxed"
+              }
+            },
+            {
+              "type": "relatedElement",
+              "superseded": true,
+              "nativeSource": "label"
+            },
+            {
+              "type": "contents",
+              "value": {
+                "type": "computedString",
+                "value": "MAXED"
+              },
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "disabled",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          {
+            "name": "invalid",
+            "value": {
+              "type": "token",
+              "value": "false"
+            }
+          }
+        ],
+        "childIds": [],
+        "backendDOMNodeId": 166
+      }
+    },
+    {
+      "kind": "native-mobile-touch",
+      "width": 390,
+      "minimumContrast": 9.09870030710368,
+      "target": [
+        78,
+        46
+      ],
+      "finalLevel": 20,
+      "noMaxedDebit": true
+    },
+    {
+      "kind": "native-mobile-touch",
+      "width": 430,
+      "minimumContrast": 9.09870030710368,
+      "target": [
+        78,
+        46
+      ],
+      "finalLevel": 20,
+      "noMaxedDebit": true
+    },
+    {
+      "kind": "native-keyboard",
+      "tabToBonds": true,
+      "outline": "auto",
+      "enterFinalPurchase": true
+    },
+    {
+      "kind": "native-large-refund-usable",
+      "raw": 95,
+      "price": 3,
+      "exactConservation": true
+    },
+    {
+      "kind": "native-mature-wallet-rejection",
+      "prisms": 1e+30,
+      "noDebit": true
+    },
+    {
+      "kind": "native-old-backup-confirmed",
+      "restoreAttempt": 0,
+      "prisms": 19997671,
+      "raw": 40
+    },
+    {
+      "kind": "native-old-backup-confirmed",
+      "restoreAttempt": 1,
+      "prisms": 19997671,
+      "raw": 40
+    },
+    {
+      "kind": "native-exact-credit",
+      "before": 3376,
+      "afterPurchaseAndColdReload": 3373,
+      "wallet": 1e+30
+    },
+    {
+      "kind": "native-system-font",
+      "scale": 2,
+      "fontBefore": 11.52,
+      "fontAfter": 23.04,
+      "fit": true,
+      "raw": 40
+    }
+  ],
+  "runtimeErrors": [],
+  "limitations": [
+    "Isolated software emulator, not physical device or TalkBack.",
+    "Native runtime WebView61; exact V8 6.0/ES2017 and modern reduced-motion/200% layout are checked separately."
+  ]
+}

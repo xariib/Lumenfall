@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/tmp/lumenfall-node20/node-v20.20.2-linux-x64/bin/node",
+    "/workspace/Lumenfall-swift-current/tests/behavioral/browser-dom.cjs",
+    "/usr/bin/chromium",
+    "http://127.0.0.1:34447/index.html?qaScenario=upgrade-identity-contracts&qaFixture=fresh",
+    "/tmp/lumenfall-qa-upgrade-identity-contracts-KcTQTw",
+    "no-preference"
+  ],
+  "fixture": "fresh",
+  "viewport": null,
+  "process": {
+    "exitcode": 0,
+    "timed_out": false,
+    "elapsed_sec": 3.604351159,
+    "timeout_sec": 25
+  },
+  "qa": {
+    "qa_count": 1,
+    "qa_status": "fail",
+    "qa_scenario": "upgrade-identity-contracts",
+    "json_status": "fail",
+    "json_scenario": "upgrade-identity-contracts",
+    "runtime_markers": [],
+    "runtime_error_count": 0,
+    "json_error": null,
+    "valid": true
+  }
+}

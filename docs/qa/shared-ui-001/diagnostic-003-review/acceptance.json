@@ -1,0 +1,228 @@
+{
+  "status": "PASS_INDEPENDENT_DIAGNOSTIC_BROWSER_SUBAUDIT",
+  "candidate": "b11567aac6a2d52145fe86c522b36fb559062cf9",
+  "run": 38111828759,
+  "artifact": {
+    "id": 11691069774,
+    "run": 38111828759,
+    "head": "b11567aac6a2d52145fe86c522b36fb559062cf9",
+    "bytes": 61535025,
+    "sha256": "d3cce420e3e195bfe2cd1f88f9c56abfa18a0b0cfefc552fb5d49c77c4b0a5fb"
+  },
+  "sourceTree": "c9b173671946e4fecfeaffc3305813b9e75911c5",
+  "identity": {
+    "testSha256": "a2d4346daa8da30d61ef39135cb22399fc7b9b3cce40da9813d70c1fbcdf058c",
+    "transportSha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd",
+    "referenceSha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+    "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+  },
+  "generatedDriverSha256": "d7ae33bf404009191d0dbe726f9d7ed6b2fa9eaa633413174da4863b011f82f5",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/154.0.8037.97",
+    "revision": "@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+    "jsVersion": "15.4.80.20"
+  },
+  "actual": {
+    "checks": 6985,
+    "profiles": 12,
+    "exactInverseCauses": 3,
+    "normalProcessExit": 0,
+    "chromeExit": {
+      "code": 0,
+      "signal": null
+    },
+    "wispRows": 96,
+    "wispImmediateAndSettledObservations": 192,
+    "glyphMeasurements": 5736,
+    "clippingOwnerObservations": 1536,
+    "nativeActionRows": 84,
+    "settingsActionRows": 48,
+    "nativeWispTabRows": 12,
+    "lastWispRefusals": 24,
+    "refusalTouch": 12,
+    "refusalEnter": 12,
+    "completeStateAndRawSlotComparisons": 168,
+    "saveWritesDuringObservedActions": 0,
+    "runtimeErrors": []
+  },
+  "negativeControls": [
+    {
+      "id": "brand-spacing",
+      "sourceSha256": "2226ae1faf31ffc3d68aeab4c8b0f80b4a8fffcfe2e06bb171f2fe99ce189d06",
+      "exactSourceOnlyInverse": true,
+      "cause": "brand-glyph-intersects-settings",
+      "checks": 1176,
+      "completedPrefixProfiles": 2,
+      "assertionExit": 1,
+      "chromeExit": {
+        "code": 0,
+        "signal": null
+      },
+      "proof": {
+        "glyphs": [
+          {
+            "text": "l",
+            "rect": {
+              "left": 263.796875,
+              "right": 287.390625,
+              "top": 4.5,
+              "bottom": 47.5,
+              "width": 23.59375,
+              "height": 43
+            }
+          }
+        ],
+        "gear": {
+          "left": 264.984375,
+          "right": 308.984375,
+          "top": 4,
+          "bottom": 48,
+          "width": 44,
+          "height": 44
+        },
+        "horizontalOverlap": 22.40625
+      },
+      "rawReceiptSha256": "e5c8c210eb4144861e8f5cbbe838ae4c039bd726c3a1d78c69f841559321c14c"
+    },
+    {
+      "id": "wisp-header",
+      "sourceSha256": "beda64ddea4ec7314e1a6c3bc58763cf8dedb5a24d79189715b53117e446cd01",
+      "exactSourceOnlyInverse": true,
+      "cause": "wisp-glyph-intersects-toggle",
+      "checks": 1268,
+      "completedPrefixProfiles": 2,
+      "assertionExit": 1,
+      "chromeExit": {
+        "code": 0,
+        "signal": null
+      },
+      "proof": {
+        "glyphs": [
+          {
+            "text": "e",
+            "rect": {
+              "left": 197.015625,
+              "right": 209.5,
+              "top": 440.796875,
+              "bottom": 466.796875,
+              "width": 12.484375,
+              "height": 26
+            }
+          },
+          {
+            "text": "r",
+            "rect": {
+              "left": 209.484375,
+              "right": 223.421875,
+              "top": 440.796875,
+              "bottom": 466.796875,
+              "width": 13.9375,
+              "height": 26
+            }
+          }
+        ],
+        "button": {
+          "left": 208.203125,
+          "right": 297,
+          "top": 431.890625,
+          "bottom": 479.890625,
+          "width": 88.796875,
+          "height": 48
+        },
+        "identity": {
+          "left": 91,
+          "right": 198.203125,
+          "top": 419,
+          "bottom": 492.796875,
+          "width": 107.203125,
+          "height": 73.796875
+        }
+      },
+      "rawReceiptSha256": "759e3b1ded5b289b2c3a94546030c78df0a28e44fc34106b1bce142e5b770c9d"
+    },
+    {
+      "id": "toast-leading",
+      "sourceSha256": "f85d17cd7d6d6e6eb2ad94637a4c54929a3013977612a4310903622c63950c24",
+      "exactSourceOnlyInverse": true,
+      "cause": "toast-adjacent-glyph-lines-intersect",
+      "checks": 1699,
+      "completedPrefixProfiles": 2,
+      "assertionExit": 1,
+      "chromeExit": {
+        "code": 0,
+        "signal": null
+      },
+      "proof": {
+        "lines": [
+          {
+            "left": 36.8125,
+            "right": 283.171875,
+            "top": 732,
+            "bottom": 765,
+            "text": "Youneedatleastone"
+          },
+          {
+            "left": 83,
+            "right": 236.984375,
+            "top": 748,
+            "bottom": 781,
+            "text": "chosenWisp."
+          }
+        ],
+        "overlap": 17,
+        "container": {
+          "left": 16,
+          "right": 304,
+          "top": 732,
+          "bottom": 782,
+          "width": 288,
+          "height": 50
+        }
+      },
+      "rawReceiptSha256": "1ba2a6db90538f4caa2990db19354f17c59c7b50e2299546be6b3c352f99d9eb"
+    }
+  ],
+  "imageScope": {
+    "total": 118,
+    "uniqueHashes": 116,
+    "directlyViewed": 75,
+    "allNormal72": true,
+    "allCausalFailure3": true,
+    "otherNegativePrefixNotSeparatelyViewed": 43
+  },
+  "rawManifest": {
+    "path": "../raw/manifest.json",
+    "sha256": "7f84345e2acdcd75b7ec394017d14205286ced7d3d1fb7efee6f15f87078ab07"
+  },
+  "details": [
+    {
+      "originalPath": "browser-subaudit.json",
+      "originalBytes": 1236250,
+      "originalSha256": "143a0c6f33dee145c4335bfbe69780a6299d430982d84ee077cdf86945c97c5d",
+      "storedPath": "browser-subaudit.json.gz",
+      "storedBytes": 48450,
+      "storedSha256": "e6f64fb8037966caddf09412dc7ddbb0ba34c71792af2193334a1b6028ad0770",
+      "encoding": "gzip"
+    },
+    {
+      "originalPath": "causal-geometry.json",
+      "originalBytes": 98535,
+      "originalSha256": "e434062ee848c53288878634c2a2aa483ebe6f450b7a6ad4e62e3efcc75b62f6",
+      "storedPath": "causal-geometry.json.gz",
+      "storedBytes": 4358,
+      "storedSha256": "e80e431e4129489bc5cd09a99823638772302aa5fdabbebde72b680f9dfa925c",
+      "encoding": "gzip"
+    }
+  ],
+  "limitations": [
+    "This is the separate successful Diagnostic003 candidate, not the required final PR six-gate or postmerge acceptance.",
+    "Only CSS root-font16/32 emulation is measured; actual Android/WebView60 CSS, native textZoom, physical-device input and TalkBack remain untested.",
+    "Ambient setInterval is paused in the inherited transport; original native RAF, fonts, startup timers and action handlers execute.",
+    "Range rectangles are typographic font metrics, not pixel-level ink masks. Actual clipping ancestors/client boxes, visible main, card and overlapping controls remain measured.",
+    "Original fixed-height F07 guidance is a separate accepted contract and later readability follow-up; this audit adds no fourth layout fix.",
+    "The43 other negative-prefix PNG bodies are preserved/hash-bound; only the72 normal matrix images and3 causal failure images were directly viewed.",
+    "No all-body Settings-scroll, whole-application contrast or arbitrary save coverage is inferred from these scoped screenshots and synthetic fixtures."
+  ]
+}

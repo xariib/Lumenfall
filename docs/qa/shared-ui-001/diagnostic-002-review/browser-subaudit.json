@@ -1,0 +1,1425 @@
+{
+  "status": "FAILED_DIAGNOSTIC_TRANSPARENT_HEADER_BOUNDARY_IDENTIFIED",
+  "auditKind": "Re-read original bytes/measurements/input; no browser or gameplay execution",
+  "candidate": "33153db7a59dbf0d69412241a33ac076177dee7f",
+  "run": 38111030896,
+  "artifact": {
+    "id": 11691103802,
+    "run": 38111030896,
+    "head": "33153db7a59dbf0d69412241a33ac076177dee7f",
+    "bytes": 23472597,
+    "sha256": "1397f3880d34ed905c83508611983faf8b67a79edc08a820c4e37ae75164deae"
+  },
+  "identity": {
+    "testSha256": "d95e30aa66b101bcfb8afcde023697e12acad581544964ece39a8304aa714abe",
+    "transportSha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd",
+    "referenceSha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+    "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+  },
+  "generatedDriverSha256": "2ced1d8acdcee42c3c15985f09fdbc59114747051d2145275b9e15f902da9125",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/154.0.8037.97",
+    "revision": "@b510e9d7cd3a2fbd78d0ddc42234103206c5f78d",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+    "jsVersion": "15.4.80.20"
+  },
+  "actual": {
+    "checks": 982,
+    "completedProfiles": 2,
+    "completedNegativeControls": 0,
+    "negativeDisposition": "All three unexecuted because normal failed.",
+    "failureProfile": {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference"
+    },
+    "failureWisp": "ember",
+    "processExit": 1,
+    "chromeExit": {
+      "code": 0,
+      "signal": null
+    },
+    "runtimeErrors": []
+  },
+  "finding": {
+    "classification": "The identity sets the enlarged flex-header height; the same transparent nonclipping Cinzel Range overhang lies1px above that header.",
+    "header": {
+      "left": 23,
+      "right": 297,
+      "top": 348,
+      "bottom": 479.796875,
+      "width": 274,
+      "height": 131.796875
+    },
+    "headerOverflowY": "visible",
+    "identity": {
+      "left": 91,
+      "right": 297,
+      "top": 348,
+      "bottom": 421.796875,
+      "width": 206,
+      "height": 73.796875
+    },
+    "identityOverflowY": "visible",
+    "nameBox": {
+      "left": 91,
+      "right": 297,
+      "top": 348,
+      "bottom": 368.796875,
+      "width": 206,
+      "height": 20.796875
+    },
+    "nameGlyphLine": {
+      "left": 91,
+      "right": 186.578125,
+      "top": 347,
+      "bottom": 369,
+      "text": "EmberWisp"
+    },
+    "classGlyphLines": [
+      {
+        "left": 91,
+        "right": 234.859375,
+        "top": 369.796875,
+        "bottom": 395.796875,
+        "text": "Starcaller·"
+      },
+      {
+        "left": 91,
+        "right": 160.09375,
+        "top": 395.796875,
+        "bottom": 421.796875,
+        "text": "Burst"
+      }
+    ],
+    "card": {
+      "left": 10,
+      "right": 310,
+      "top": 335,
+      "bottom": 1342.140625,
+      "width": 300,
+      "height": 1007.140625
+    },
+    "cardOverflowY": "hidden",
+    "main": {
+      "left": 1,
+      "right": 319,
+      "top": 129,
+      "bottom": 782,
+      "width": 318,
+      "height": 653
+    },
+    "button": {
+      "left": 23,
+      "right": 111.796875,
+      "top": 431.796875,
+      "bottom": 479.796875,
+      "width": 88.796875,
+      "height": 48
+    },
+    "overhangs": [
+      {
+        "text": "E",
+        "rect": {
+          "left": 91,
+          "right": 101.125,
+          "top": 347,
+          "bottom": 369,
+          "width": 10.125,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "m",
+        "rect": {
+          "left": 101.109375,
+          "right": 114.921875,
+          "top": 347,
+          "bottom": 369,
+          "width": 13.8125,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "b",
+        "rect": {
+          "left": 114.90625,
+          "right": 124.59375,
+          "top": 347,
+          "bottom": 369,
+          "width": 9.6875,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "e",
+        "rect": {
+          "left": 124.578125,
+          "right": 133.546875,
+          "top": 347,
+          "bottom": 369,
+          "width": 8.96875,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "r",
+        "rect": {
+          "left": 133.53125,
+          "right": 144.078125,
+          "top": 347,
+          "bottom": 369,
+          "width": 10.546875,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "W",
+        "rect": {
+          "left": 148.0625,
+          "right": 163.421875,
+          "top": 347,
+          "bottom": 369,
+          "width": 15.359375,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "i",
+        "rect": {
+          "left": 163.40625,
+          "right": 169.0625,
+          "top": 347,
+          "bottom": 369,
+          "width": 5.65625,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "s",
+        "rect": {
+          "left": 169.046875,
+          "right": 177.203125,
+          "top": 347,
+          "bottom": 369,
+          "width": 8.15625,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      {
+        "text": "p",
+        "rect": {
+          "left": 177.1875,
+          "right": 186.578125,
+          "top": 347,
+          "bottom": 369,
+          "width": 9.390625,
+          "height": 22
+        },
+        "top": 1,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      }
+    ],
+    "horizontalHeaderContainment": true,
+    "fullCardAndVisibleMainRectContainment": true,
+    "allRelevantOverlapTestsClear": true
+  },
+  "repairDirection": "Keep structural identity/header x limits and the0.5px tolerance. Observe actual per-axis overflow clipping ancestors using inner client boxes; require glyphs inside those owners and the visible main/viewport/card. Keep all overlap/input/focus/save/inverse assertions. Do not alter product typography.",
+  "readiness": [
+    {
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "no-preference"
+      },
+      "phase": "initial-navigation",
+      "status": "ready",
+      "elapsedMs": 6116,
+      "probes": 192,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    },
+    {
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "no-preference"
+      },
+      "phase": "startup-confirmed",
+      "status": "ready",
+      "elapsedMs": 1,
+      "probes": 1,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    },
+    {
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "phase": "initial-navigation",
+      "status": "ready",
+      "elapsedMs": 3868,
+      "probes": 121,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    },
+    {
+      "profile": {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      "phase": "startup-confirmed",
+      "status": "ready",
+      "elapsedMs": 1,
+      "probes": 1,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    },
+    {
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "no-preference"
+      },
+      "phase": "initial-navigation",
+      "status": "ready",
+      "elapsedMs": 6054,
+      "probes": 192,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    },
+    {
+      "profile": {
+        "width": 320,
+        "scale": 2,
+        "motion": "no-preference"
+      },
+      "phase": "startup-confirmed",
+      "status": "ready",
+      "elapsedMs": 0,
+      "probes": 1,
+      "final": {
+        "initialized": true,
+        "newGame": false,
+        "startup": false,
+        "hasStartupFinish": false,
+        "resume": false,
+        "offline": false,
+        "offlinePending": false,
+        "reload": false,
+        "reset": false,
+        "blocked": false,
+        "hidden": false,
+        "inert": false,
+        "overlays": [],
+        "milestones": 0,
+        "toastShown": false,
+        "errors": []
+      }
+    }
+  ],
+  "partialProfiles": [
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference",
+      "wisps": [
+        "ember",
+        "tide",
+        "stone",
+        "gale",
+        "thorn",
+        "void",
+        "aurora",
+        "titan"
+      ],
+      "actions": [
+        {
+          "label": "open Settings by touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "native Escape closes Settings",
+          "kind": "Escape",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Escape",
+              "control": {
+                "id": "settings-close",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "open Settings by Enter",
+          "kind": "Enter",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Enter",
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            },
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "Close Settings by touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-close",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "navigate to Wisps",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "nav-spirits",
+                "toggle": null,
+                "tab": "spirits"
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          },
+          "settledFocus": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          }
+        },
+        {
+          "label": "last-Wisp refusal touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": null,
+                "toggle": "ember",
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          },
+          "settledFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          }
+        },
+        {
+          "label": "last-Wisp refusal Enter",
+          "kind": "Enter",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Enter",
+              "control": {
+                "id": null,
+                "toggle": "ember",
+                "tab": null
+              }
+            },
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": null,
+                "toggle": "ember",
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          },
+          "settledFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          }
+        }
+      ],
+      "refusals": [
+        {
+          "kind": "touch",
+          "text": "You need at least one chosen Wisp.",
+          "lines": [
+            {
+              "left": 58.6953125,
+              "right": 261.3046875,
+              "top": 747.984375,
+              "bottom": 764.984375,
+              "text": "YouneedatleastonechosenWisp."
+            }
+          ],
+          "shown": true
+        },
+        {
+          "kind": "Enter",
+          "text": "You need at least one chosen Wisp.",
+          "lines": [
+            {
+              "left": 58.6953125,
+              "right": 261.3046875,
+              "top": 747.984375,
+              "bottom": 764.984375,
+              "text": "YouneedatleastonechosenWisp."
+            }
+          ],
+          "shown": true
+        }
+      ],
+      "images": [
+        "shared-320-1-no-preference-brand-rift.png",
+        "shared-320-1-no-preference-settings.png",
+        "shared-320-1-no-preference-wisp-ember.png",
+        "shared-320-1-no-preference-wisp-gale.png",
+        "shared-320-1-no-preference-wisp-titan.png",
+        "shared-320-1-no-preference-last-wisp-toast.png"
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "reduce",
+      "wisps": [
+        "ember",
+        "tide",
+        "stone",
+        "gale",
+        "thorn",
+        "void",
+        "aurora",
+        "titan"
+      ],
+      "actions": [
+        {
+          "label": "open Settings by touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "native Escape closes Settings",
+          "kind": "Escape",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Escape",
+              "control": {
+                "id": "settings-close",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "open Settings by Enter",
+          "kind": "Enter",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Enter",
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            },
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "Close Settings by touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-close",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "navigate to Wisps",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "nav-spirits",
+                "toggle": null,
+                "tab": "spirits"
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          },
+          "settledFocus": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          }
+        },
+        {
+          "label": "last-Wisp refusal touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": null,
+                "toggle": "ember",
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          },
+          "settledFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          }
+        },
+        {
+          "label": "last-Wisp refusal Enter",
+          "kind": "Enter",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Enter",
+              "control": {
+                "id": null,
+                "toggle": "ember",
+                "tab": null
+              }
+            },
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": null,
+                "toggle": "ember",
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          },
+          "settledFocus": {
+            "id": null,
+            "toggle": "ember",
+            "tab": null
+          }
+        }
+      ],
+      "refusals": [
+        {
+          "kind": "touch",
+          "text": "You need at least one chosen Wisp.",
+          "lines": [
+            {
+              "left": 58.6953125,
+              "right": 261.3046875,
+              "top": 747.984375,
+              "bottom": 764.984375,
+              "text": "YouneedatleastonechosenWisp."
+            }
+          ],
+          "shown": true
+        },
+        {
+          "kind": "Enter",
+          "text": "You need at least one chosen Wisp.",
+          "lines": [
+            {
+              "left": 58.6953125,
+              "right": 261.3046875,
+              "top": 747.984375,
+              "bottom": 764.984375,
+              "text": "YouneedatleastonechosenWisp."
+            }
+          ],
+          "shown": true
+        }
+      ],
+      "images": [
+        "shared-320-1-reduce-brand-rift.png",
+        "shared-320-1-reduce-settings.png",
+        "shared-320-1-reduce-wisp-ember.png",
+        "shared-320-1-reduce-wisp-gale.png",
+        "shared-320-1-reduce-wisp-titan.png",
+        "shared-320-1-reduce-last-wisp-toast.png"
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference",
+      "wisps": [
+        "ember"
+      ],
+      "actions": [
+        {
+          "label": "open Settings by touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "native Escape closes Settings",
+          "kind": "Escape",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Escape",
+              "control": {
+                "id": "settings-close",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "open Settings by Enter",
+          "kind": "Enter",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "keydown",
+              "key": "Enter",
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            },
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-btn",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-close",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "Close Settings by touch",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "settings-close",
+                "toggle": null,
+                "tab": null
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          },
+          "settledFocus": {
+            "id": "settings-btn",
+            "toggle": null,
+            "tab": null
+          }
+        },
+        {
+          "label": "navigate to Wisps",
+          "kind": "touch",
+          "completeStateAndBothSlotsUnchanged": true,
+          "saveWrites": 0,
+          "trusted": [
+            {
+              "type": "click",
+              "key": null,
+              "control": {
+                "id": "nav-spirits",
+                "toggle": null,
+                "tab": "spirits"
+              }
+            }
+          ],
+          "immediateFocus": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          },
+          "settledFocus": {
+            "id": "nav-spirits",
+            "toggle": null,
+            "tab": "spirits"
+          }
+        }
+      ],
+      "refusals": [],
+      "images": [
+        "shared-320-2-no-preference-brand-rift.png",
+        "shared-320-2-no-preference-settings.png"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "path": "artifact/layout/normal/failure.png",
+      "bytes": 185762,
+      "sha256": "f0dcd8cf279bac8ab85ec9f76137daec3491a78018b18ef1566470dc8b7e2dc8",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed enlarged Ember: full name and two class lines are clear; Bench occupies its own next row, without intersection. The one-pixel typographic overhang is inside the visible card. Lower ability content continues below the viewport through normal scrolling."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-brand-rift.png",
+      "bytes": 214949,
+      "sha256": "cea19899307f68a950f4abdb8a13367776134ab63fffd6f4e9bab899b9605b91",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed root16 wordmark, sigil and Settings remain separated; Rift and navigation fit."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-last-wisp-toast.png",
+      "bytes": 172938,
+      "sha256": "6fa069ba15227a1abebba4daea6012f19ca58cd0b88a2dcb0cf78c031b1c5ec2",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed actual last-Wisp refusal as a clear single-line toast above navigation. This root16 image does not prove enlarged multiline toast behavior."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-settings.png",
+      "bytes": 182400,
+      "sha256": "ae90342758cb4fa49ca90f63c99b4b9e017c2867afd3b823206f7a38fc4690fb",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed Settings title/Close and ordinary body fit the modal; native focus and close behavior are separately bound to actual input records."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-wisp-ember.png",
+      "bytes": 179306,
+      "sha256": "51ccce664e56df627243efe66ee15a46af6d5d637242402863cc435cce9a6518",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed Ember name/class separated from portrait and Bench; no identity clipping."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-wisp-gale.png",
+      "bytes": 180669,
+      "sha256": "e55b14680d533c47c85d0aab9eccacab645ad346e2d8169c4c30efe0d6b72d0c",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed Gale name and wrapped Windrunner/Shard Utility class separated from portrait and Bench."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-wisp-titan.png",
+      "bytes": 158928,
+      "sha256": "8013cfc72b7d511c719dc5eed27a12abf110c51ed4be63b355b4068484734b30",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed two-line Starforged Titan name, Duskguard/Breaker class and Field control, all separated."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-brand-rift.png",
+      "bytes": 212651,
+      "sha256": "50f1af4494abc2779e0d414cf7348dd19445de44e17312bb83014eb1358d427b",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed root16 wordmark, sigil and Settings remain separated; Rift and navigation fit."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-last-wisp-toast.png",
+      "bytes": 172996,
+      "sha256": "9280319ece3eab8ce8737e00a11306d193406f61f01c3c64fb3c4e61c2a08988",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed actual last-Wisp refusal as a clear single-line toast above navigation. This root16 image does not prove enlarged multiline toast behavior."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-settings.png",
+      "bytes": 182386,
+      "sha256": "d4108645d804c71599a03c64fb2ccada18237ee585888fe6f5618bcdfd6b4345",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed Settings title/Close and ordinary body fit the modal; native focus and close behavior are separately bound to actual input records."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-wisp-ember.png",
+      "bytes": 179231,
+      "sha256": "b1a09b3ed53e066fe8ac9b8218158495f1c2bf7e8b878f4f342645173e43d242",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed Ember name/class separated from portrait and Bench; no identity clipping."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-wisp-gale.png",
+      "bytes": 180721,
+      "sha256": "b68e70c1449a7a8c794ad661f101b9561c8915daf5fc130762889dfeb0626d61",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed Gale name and wrapped Windrunner/Shard Utility class separated from portrait and Bench."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-wisp-titan.png",
+      "bytes": 159031,
+      "sha256": "0621fd0067e0b901f09138c6467a205348f3fec237236f034242f2f6d51884a5",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed two-line Starforged Titan name, Duskguard/Breaker class and Field control, all separated."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-2-no-preference-brand-rift.png",
+      "bytes": 219538,
+      "sha256": "e1b8f4f3ec4c065c741ccca36a997df0b24c596fc3b4e56a12ceaa639cee79bd",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed root32 wordmark close to but separate from Settings; original visible gear44px and native Rift remain. Fixed guidance shows a partial ordinary label, an explicitly excluded later readability topic."
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-2-no-preference-settings.png",
+      "bytes": 166495,
+      "sha256": "90520dba4922852f0150bc0f0f7c156ab71b9ee09bdb1291e9525cf2bad74181",
+      "width": 320,
+      "height": 844,
+      "directlyViewed": true,
+      "observation": "Directly viewed enlarged Settings title and Close fit; body wraps and continues below the scrollable modal. No enlarged body/full-scroll acceptance is inferred from this still image."
+    }
+  ],
+  "limitations": [
+    "Only the two320/root16 profiles completed; all12 and all3 causal controls remain required.",
+    "New ancestor/client-box observation code was not present in this run and awaits actual browser execution.",
+    "Arithmetic here re-evaluates previously captured measurements; it is not a repaired browser PASS.",
+    "Range boxes are typographic metrics rather than raster ink masks.",
+    "Native Android/WebView60/textZoom/physical input/TalkBack remain untested."
+  ],
+  "dependencies": [
+    {
+      "path": "artifact-verification.json",
+      "bytes": 16540,
+      "sha256": "aebb6ca1acff3c74d76b193d26fe87ab3f20aaff672193ebc8a1926fca1bf35a"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 187188,
+      "sha256": "cdf5e73860b67bd874eb6c3e4ea3afc7dc688afc6f74b0c72e58da72a16e273e"
+    },
+    {
+      "path": "source-audit.json",
+      "bytes": 201599,
+      "sha256": "4683e8aeeb1ff0f47d18ca12eb340f2a5ecaf8875aab23a0c74645a3033dfefe"
+    },
+    {
+      "path": "artifact/layout/normal/receipt.json",
+      "bytes": 10003337,
+      "sha256": "09fd6f9c90df523cc681d6bd4364b633b523639c0eae3ca2e995fe42b1496ce1"
+    },
+    {
+      "path": "artifact/layout/normal/process.json",
+      "bytes": 756,
+      "sha256": "716ba49ea8b751b51022f85024f7028ea1f0bcad7ff5c631ad547551f9676a82"
+    },
+    {
+      "path": "artifact/layout/summary.json",
+      "bytes": 2241,
+      "sha256": "09642f35c7383028d832dda677d5cbe1236d1181ad25c4fec9ba4828649dc24a"
+    },
+    {
+      "path": "artifact/layout/normal/stdout.log",
+      "bytes": 5848291,
+      "sha256": "4d85f434df134e0dd6c428404bdfd5118f97b7d4787026e3f0cc1aa16d791363"
+    },
+    {
+      "path": "artifact/layout/normal/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifact/layout/normal/failure-dom.html",
+      "bytes": 909366,
+      "sha256": "8cc9789f0e455cc32279a8880f8d75abc432058db7e35b3c80a2b0b3f24024b7"
+    },
+    {
+      "path": "artifact/layout/normal/source.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+    },
+    {
+      "path": "artifact/layout/instrumented-driver.cjs",
+      "bytes": 35910,
+      "sha256": "2ced1d8acdcee42c3c15985f09fdbc59114747051d2145275b9e15f902da9125"
+    },
+    {
+      "path": "artifact/layout/candidate-source.html",
+      "bytes": 657751,
+      "sha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f"
+    },
+    {
+      "path": "artifact/layout/preparation.json",
+      "bytes": 4978,
+      "sha256": "c53a749e06908d6cd44edb21af3cce2cc3a5c90589cdc41e1db8c364dca485de"
+    },
+    {
+      "path": "artifact/layout/brand-spacing-inverse.json",
+      "bytes": 264,
+      "sha256": "75333be9b32d7d386a0df0c3f6fb700ac4298ab31db3c8a632a070137513c18d"
+    },
+    {
+      "path": "artifact/layout/wisp-header-inverse.json",
+      "bytes": 357,
+      "sha256": "64b3ea2471b6cf8bcbb5b41f7e6cbd38abd2b560a2029861607b57d8228ca895"
+    },
+    {
+      "path": "artifact/layout/toast-leading-inverse.json",
+      "bytes": 284,
+      "sha256": "5384dbe3f3d341043ee6a9d84ae2e83e004f41e1200222dec659327ddc41907e"
+    },
+    {
+      "path": "artifact/layout/normal/failure.png",
+      "bytes": 185762,
+      "sha256": "f0dcd8cf279bac8ab85ec9f76137daec3491a78018b18ef1566470dc8b7e2dc8"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-brand-rift.png",
+      "bytes": 214949,
+      "sha256": "cea19899307f68a950f4abdb8a13367776134ab63fffd6f4e9bab899b9605b91"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-last-wisp-toast.png",
+      "bytes": 172938,
+      "sha256": "6fa069ba15227a1abebba4daea6012f19ca58cd0b88a2dcb0cf78c031b1c5ec2"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-settings.png",
+      "bytes": 182400,
+      "sha256": "ae90342758cb4fa49ca90f63c99b4b9e017c2867afd3b823206f7a38fc4690fb"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-wisp-ember.png",
+      "bytes": 179306,
+      "sha256": "51ccce664e56df627243efe66ee15a46af6d5d637242402863cc435cce9a6518"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-wisp-gale.png",
+      "bytes": 180669,
+      "sha256": "e55b14680d533c47c85d0aab9eccacab645ad346e2d8169c4c30efe0d6b72d0c"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-no-preference-wisp-titan.png",
+      "bytes": 158928,
+      "sha256": "8013cfc72b7d511c719dc5eed27a12abf110c51ed4be63b355b4068484734b30"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-brand-rift.png",
+      "bytes": 212651,
+      "sha256": "50f1af4494abc2779e0d414cf7348dd19445de44e17312bb83014eb1358d427b"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-last-wisp-toast.png",
+      "bytes": 172996,
+      "sha256": "9280319ece3eab8ce8737e00a11306d193406f61f01c3c64fb3c4e61c2a08988"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-settings.png",
+      "bytes": 182386,
+      "sha256": "d4108645d804c71599a03c64fb2ccada18237ee585888fe6f5618bcdfd6b4345"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-wisp-ember.png",
+      "bytes": 179231,
+      "sha256": "b1a09b3ed53e066fe8ac9b8218158495f1c2bf7e8b878f4f342645173e43d242"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-wisp-gale.png",
+      "bytes": 180721,
+      "sha256": "b68e70c1449a7a8c794ad661f101b9561c8915daf5fc130762889dfeb0626d61"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-1-reduce-wisp-titan.png",
+      "bytes": 159031,
+      "sha256": "0621fd0067e0b901f09138c6467a205348f3fec237236f034242f2f6d51884a5"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-2-no-preference-brand-rift.png",
+      "bytes": 219538,
+      "sha256": "e1b8f4f3ec4c065c741ccca36a997df0b24c596fc3b4e56a12ceaa639cee79bd"
+    },
+    {
+      "path": "artifact/layout/normal/shared-320-2-no-preference-settings.png",
+      "bytes": 166495,
+      "sha256": "90520dba4922852f0150bc0f0f7c156ab71b9ee09bdb1291e9525cf2bad74181"
+    }
+  ]
+}

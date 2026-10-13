@@ -1,0 +1,39 @@
+{
+  "status": "FROZEN_EVIDENCE_PACKAGED",
+  "clockToolObservedAtUTC": "2026-10-10 22:02:24 UTC",
+  "packager": "/root/lab_code_review",
+  "node": "v24.19.0",
+  "sourceDirectory": "/workspace/scratch/0848c4e4f365/tree-ci/scroll-diagnostic/readiness-repair",
+  "sourceOwnerManifest": {
+    "bytes": 2338,
+    "sha256": "44c794ebab5ecda447b599157dc2904f9e554d72919257711ebe3ca978e69503"
+  },
+  "sourceIndependentReview": {
+    "bytes": 5883,
+    "sha256": "5451e99181bb34f1900aa553ed237af9c3b7f660bd0c7e7204d63cddc0494991"
+  },
+  "sourceFileCount": 13,
+  "ownerManifestFilesVerified": 11,
+  "sourceSha256": "ccef4db42c2d2d5f91c68c0fa7c150bfa8115983249d276925c68613268846e3",
+  "mobileSha256": "45d8b66546b48318586eb1c045fe95cd373fd386601d17e4984a1eda4b3818ee",
+  "sharedTransportSha256": "8009b22eb4d4551f4aef2c3f0db82507e595d8f434db000327cb95805291d6dd",
+  "ownerReportedInstrumentedHtmlSha256": "2c37a177f59f4679010b5f79bfe0cebb405006c1d18847d48f7e91a720153c51",
+  "recordedFiniteCases": 15,
+  "recordedCausalControls": 3,
+  "recordedReadinessDeadlineMs": 10000,
+  "recordedMaximumProbes": 334,
+  "existingOwnerResultsOnly": true,
+  "syntheticClock": true,
+  "browserAcceptance": false,
+  "helperOrTestExecutionsByPackager": 0,
+  "browserExecutionsByPackager": 0,
+  "productChangesByPackager": false,
+  "historicalPackagesChanged": false,
+  "stagingChanges": false,
+  "remoteChanges": false,
+  "limitations": [
+    "The historical wire error omitted CDP method metadata.",
+    "This package verifies stored evidence, not actual browser readiness.",
+    "Native Android/WebView integration and TalkBack are untested by this proof."
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "status": "FAIL",
+  "sourcePath": "/workspace/CHEAPER_BONDS_CAP_001/index.html",
+  "sourceSha256": "eebd7a26e1b75dc3019e7ca4f2b66da6cfc04cf6d21676ac5de103bf48fb72eb",
+  "browserIdentity": {
+    "selected": "/usr/bin/chromium",
+    "resolved": "/usr/bin/chromium",
+    "version": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)"
+  },
+  "mutation": "handler",
+  "observedAt": "2026-10-11T23:03:09.234Z",
+  "records": [
+    {
+      "kind": "refund-contracts",
+      "result": {
+        "checks": 197,
+        "records": [
+          {
+            "raw": 19,
+            "wallet": 1234,
+            "creditEntries": 0,
+            "retainedValue": "1234",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 20,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "0",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "3376",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 40,
+            "wallet": 0,
+            "creditEntries": 0,
+            "retainedValue": "12655538",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 21,
+            "wallet": 1e+30,
+            "creditEntries": 1,
+            "retainedValue": "1000000000000000019884624842032",
+            "unpricedFrom": 0
+          },
+          {
+            "raw": 2000,
+            "wallet": 1000000,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534644397160",
+            "unpricedFrom": 1910
+          },
+          {
+            "raw": 1e+300,
+            "wallet": 0,
+            "creditEntries": 1815,
+            "retainedValue": "500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534643397160",
+            "unpricedFrom": 1910
+          },
+          {
+            "kind": "completed-refund-boundaries",
+            "raw": 2000,
+            "boundaries": 100,
+            "priceCalculations": 0,
+            "elapsedMs": 188.80000000074506
+          },
+          {
+            "kind": "actual-auto-ascend-boundaries",
+            "raw": 2000,
+            "result": {
+              "boundaries": 14400,
+              "refundNormalizations": 0,
+              "recordsRetained": true,
+              "canonicalParity": true
+            },
+            "elapsedMs": 281
+          }
+        ],
+        "receipt": "feedbackMigration.receipts[node.bonds]",
+        "rawHistoryRetained": true,
+        "exactCreditDebit": true
+      }
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  },
+  "failure": "Error: Error: cap prevents direct/repeated debit at raw level 20\n    at ok (http://127.0.0.1:38277/index.html:9339:41)\n    at same (http://127.0.0.1:38277/index.html:9340:24)\n    at http://127.0.0.1:38277/index.html:9346:5\n    at Array.forEach (<anonymous>)\n    at window.runCheaperRecruitmentContracts (http://127.0.0.1:38277/index.html:9343:19)\n    at <anonymous>:1:1\n    at evaluate (/workspace/CHEAPER_BONDS_CAP_001/tests/behavioral/cheaper-recruitment.cjs:68:154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/CHEAPER_BONDS_CAP_001/tests/behavioral/cheaper-recruitment.cjs:91:40)\n    at async /workspace/CHEAPER_BONDS_CAP_001/tests/behavioral/cheaper-recruitment.cjs:194:6",
+  "stderr": "rg/freedesktop/DBus: unknown error type: \n[41762:41791:1011/230307.669093:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[41762:41791:1011/230307.669106:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[41762:41762:1011/230307.669293:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[41762:41762:1011/230307.673955:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[41762:41791:1011/230307.676116:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[41762:41791:1011/230307.676150:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[41762:41762:1011/230307.678554:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[41762:41762:1011/230307.678679:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[41762:41791:1011/230307.678739:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n\n(process:41762): dconf-CRITICAL **: 23:03:07.685: unable to create file '/home/agent/.cache/dconf/user': Read-only file system.  dconf will not work properly.\n\n(process:41762): dconf-CRITICAL **: 23:03:07.685: unable to create file '/home/agent/.cache/dconf/user': Read-only file system.  dconf will not work properly.\n\n(process:41762): dconf-CRITICAL **: 23:03:07.685: unable to create file '/home/agent/.cache/dconf/user': Read-only file system.  dconf will not work properly.\n[41762:41803:1011/230307.707865:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 41851: Read-only file system (30)\n[41762:41803:1011/230307.740814:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 41860: Read-only file system (30)\n[41762:41803:1011/230307.742053:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 41861: Read-only file system (30)\n[41762:41803:1011/230307.758665:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:279] Failed to adjust OOM score of renderer with pid 41874: Read-only file system (30)\n[41762:41762:1011/230307.768820:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[41762:41762:1011/230307.770013:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[41762:41791:1011/230307.770526:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[41762:41762:1011/230307.785435:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[41762:41791:1011/230307.786393:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[41762:41762:1011/230307.798710:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}
