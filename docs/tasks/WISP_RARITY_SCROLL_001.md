@@ -66,3 +66,25 @@ files: existing product/test/task/state/queue and actions-* evidence. Self-revie
 only. Local checkpoint committed on local/full-debug; latest feature commit is
 the continuation baseline. Required full/transport/Android acceptance stays OPEN.
 Next: refresh/review preview, then task3 can continue from this local checkpoint.
+
+## Second user correction — live preview
+User still reported unaffordable Empower jumping. Started clean ac7ca7c. Both
+open tabs initially ran the older rarity-only script. Refreshed both, then a
+longer live check found a second problem: scroll884 stayed fixed while Ember's
+button shifted from285.890625 to262.390625. Earlier scroll-only acceptance was
+incomplete. A production-DOM baseline reproduces19.5px movement during a full
+background Wisp refresh.
+
+Compensate for changed layout above the same action during passive full/role
+updates. Use layout offsets to exclude reward pulses; retain original exact-scroll
+purchase checks and capped fallbacks. Purchase/save/balance code unchanged except
+explicit UI-render mode arguments. No tests weakened.
+[Final commands and evidence](../qa/wisp-rarity-scroll-001/role-README.md).
+Source2fa40008:3229 registered assertions, all168 prior cases plus144 refresh
+transitions with mouse/touch/Enter PASS. Three causal controls fail as expected.
+Existing Wisp8099/curve2798/Support1594/Lab166/quest1081/navigation443, formulas
+and actual reload PASS. Both already-open preview tabs were reloaded and their
+complete scripts hash-match current source; source/assets staged and HTTP-verified.
+Self-review only; final full/Prism/transport/Android acceptance remains OPEN.
+Latest local feature checkpoint is the continuation baseline. Next: user retries
+the already-refreshed preview; task3 follows after review. No remote/APK/signing.

@@ -2,13 +2,16 @@
 
 13 October 2026: [WISP_RARITY_SCROLL_001](tasks/WISP_RARITY_SCROLL_001.md)
 has a verified local fix on `local/full-debug`, continuing accepted86f5779.
-Empower and all Wisp-card actions preserve exact scroll and same-card focus when
-the following purchase is affordable, unaffordable or capped, including later
-rendering and denied pointer input. User correction continued from ddb709d.
-Focused2797/168 cases and both causal controls, existing Wisp8099/curve2798/
+Second user correction from ac7ca7c found stale preview tabs plus a visible
+button shift during background content changes despite stable scrollTop.
+Passive updates now keep the same action at its screen position; manual purchase
+scroll/focus and paid behavior are preserved. Both existing previews reloaded
+and complete loaded scripts match current source.
+Focused3229 assertions/168 prior cases/144 refresh transitions and three causal
+controls, existing Wisp8099/curve2798/
 Support1594, Lab166/quest1081, navigation443, formulas and real reload PASS.
 Prices, effects, rewards, paid value and saves preserved.
-[Evidence](qa/wisp-rarity-scroll-001/actions-README.md). Current source28e2ffeb and
+[Evidence](qa/wisp-rarity-scroll-001/role-README.md). Current source2fa40008 and
 fonts/branding staged and byte-verified at http://127.0.0.1:4174/index.html.
 Local checkpoint only; full-suite/Prism/standard transport and Android acceptance
 remain open. Next local improvement: FORMATION_COLLAPSE_001.

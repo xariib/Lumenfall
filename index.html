@@ -6618,7 +6618,7 @@ function buySpirit(sp){
     var newest=changed[changed.length-1];
     showToast(cometDeedMessage(newest));
   }
-  renderSpirits();
+  renderSpirits(true);
   if(plan.wasZero){
     showToast(sp.name+' joined your roster.');
     pulseWispCard(sp.id,'recruit');
@@ -6640,7 +6640,7 @@ function buyRarity(sp){
   state.heroRarity[sp.id] = tier+1;
   checkAchievements();
   saveState();
-  renderSpirits();
+  renderSpirits(true);
   showToast(sp.name+' reached '+RARITY_NAMES[tier+1]+'.');
   pulseWispCard(sp.id,'rarity');
   updateBattleFast();
@@ -6729,7 +6729,7 @@ function buyModule(sp){
   spendShards(cost.shard);
   state.wispModules[sp.id] = level+1;
   saveState();
-  renderSpirits();
+  renderSpirits(true);
   if(level+1>=MODULE_MAX_LEVEL){
     showToast(sp.name+' Module perfected.');
     pulseWispCard(sp.id,'rarity');
@@ -6746,7 +6746,7 @@ function buyUltimate(sp){
   state.wispUltimate[sp.id] = true;
   checkAchievements();
   saveState();
-  renderSpirits();
+  renderSpirits(true);
   showToast(sp.name+' Ultimate awakened — '+sp.abilityName+' doubled.');
   pulseWispCard(sp.id,'ultimate');
   updateBattleFast();
@@ -8184,6 +8184,7 @@ function roleValueLine(label,value){
 var wispRoleLastRenderMs=0;
 function renderWispRoles(){
   if(!els['wisp-role-summary']) return;
+  var roleView=captureWispActionView();
   wispRoleLastRenderMs=Date.now();
   var report=wispRoleComparison(state.depth,wispRoleLastRenderMs),steady=report.steady,current=report.current;
   var html='<h3>Formation contribution · Rift '+state.depth+'</h3><p class="wisp-role-note">Sustained preview includes natural ability cycles, Forge charge transfers and Auto-Tap. First casts, victory charge, Resonate, overkill and boss regeneration affect actual clear time.</p>'+
@@ -8217,10 +8218,17 @@ function renderWispRoles(){
     var earned=current.rows[i].supportDps;
     if(earned>0) el.innerHTML+=roleValueLine('Earned boost now',formatNum(earned)+' /s');
   });
+  restoreWispActionView(roleView);
 }
 // Purchases can disable their own control. Keep the same Wisp and exact scroll
 // instead of moving focus and the viewport to another enabled action.
 var WISP_ACTION_KEYS=['empower','rarity','module','ultimate','sigil-resonate','empower-queue','toggle'];
+function wispActionLayoutTop(el){
+  // Layout offsets exclude the temporary transforms used by reward pulses.
+  var top=0;
+  while(el){top+=el.offsetTop;el=el.offsetParent;}
+  return top;
+}
 function captureWispActionView(){
   var active=document.activeElement;
   if(!active || !els['spirit-list'].contains(active)) return null;
@@ -8231,7 +8239,11 @@ function captureWispActionView(){
     action=key;id=active.getAttribute('data-'+key);return true;
   });
   var main=document.querySelector('main');
-  return id && action && main ? {id:id,action:action,main:main,top:main.scrollTop,left:main.scrollLeft} : null;
+  if(!id || !action || !main) return null;
+  var button=els['spirit-list'].querySelector('[data-'+action+'="'+id+'"]');
+  var anchor=button || active,rect=anchor.getBoundingClientRect();
+  return {id:id,action:action,main:main,top:main.scrollTop,left:main.scrollLeft,
+    anchorTop:rect.height ? wispActionLayoutTop(anchor) : null,anchorIsButton:!!button};
 }
 function restoreWispActionView(view){
   if(!view) return;
@@ -8248,9 +8260,19 @@ function restoreWispActionView(view){
     if(document.activeElement!==target) target.focus({preventScroll:true});
   }
   view.main.scrollTop=view.top;view.main.scrollLeft=view.left;
+  // Keep the same action at its screen position when content above it changes.
+  // If the purchased control disappeared at its cap, retain the original scroll.
+  var anchor=button || (!view.anchorIsButton && target);
+  if(anchor && Number.isFinite(view.anchorTop)){
+    var rect=anchor.getBoundingClientRect();
+    if(rect.height) view.main.scrollTop+=wispActionLayoutTop(anchor)-view.anchorTop;
+  }
 }
-function renderSpirits(){
+function renderSpirits(keepScroll){
   var actionView=captureWispActionView();
+  // Manual purchases retain the original scroll; passive refreshes compensate
+  // for content-height changes above the visible action.
+  if(keepScroll && actionView) actionView.anchorTop=null;
   var spiritViewport=captureControlViewport(document.getElementById('tab-spirits'));
   var openProgression=Array.from(els['spirit-list'].querySelectorAll('[data-wisp-progression]')).filter(function(el){
     return el.tagName!=='DETAILS' || el.open;

@@ -1,6 +1,7 @@
 # Wisp rarity scroll evidence
 
-Current Empower/all-Wisp-action follow-up: [evidence](actions-README.md).
+Current visible-action/background-refresh correction: [evidence](role-README.md).
+Earlier Empower/all-Wisp-action follow-up: [evidence](actions-README.md).
 The original rarity checkpoint below is retained with its original source hash.
 
 13 October 2026. Source SHA-256
