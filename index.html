@@ -8218,26 +8218,39 @@ function renderWispRoles(){
     if(earned>0) el.innerHTML+=roleValueLine('Earned boost now',formatNum(earned)+' /s');
   });
 }
-// A rarity purchase can disable its own button. Keep its card and exact scroll,
-// rather than anchoring the viewport to an unrelated enabled control.
-function captureWispRarityView(){
+// Purchases can disable their own control. Keep the same Wisp and exact scroll
+// instead of moving focus and the viewport to another enabled action.
+var WISP_ACTION_KEYS=['empower','rarity','module','ultimate','sigil-resonate','empower-queue','toggle'];
+function captureWispActionView(){
   var active=document.activeElement;
-  var id=active && (active.getAttribute('data-rarity') || active.getAttribute('data-wisp-rarity-focus'));
+  if(!active || !els['spirit-list'].contains(active)) return null;
+  var action=active.getAttribute('data-wisp-action-focus');
+  var id=active.getAttribute('data-wisp-details') || active.getAttribute('data-wisp-card');
+  WISP_ACTION_KEYS.some(function(key){
+    if(!active.hasAttribute('data-'+key)) return false;
+    action=key;id=active.getAttribute('data-'+key);return true;
+  });
   var main=document.querySelector('main');
-  return id && els['spirit-list'].contains(active) && main ? {id:id,main:main,top:main.scrollTop,left:main.scrollLeft} : null;
+  return id && action && main ? {id:id,action:action,main:main,top:main.scrollTop,left:main.scrollLeft} : null;
 }
-function restoreWispRarityView(view){
+function restoreWispActionView(view){
   if(!view) return;
-  var button=els['spirit-list'].querySelector('[data-rarity="'+view.id+'"]');
+  var button=els['spirit-list'].querySelector('[data-'+view.action+'="'+view.id+'"]');
   var target=button && !button.disabled ? button : els['spirit-list'].querySelector('[data-wisp-details="'+view.id+'"]');
+  // A fully perfected card uses a collapsible summary. Its fallback must not
+  // toggle that section on repeated Enter, so focus the card itself instead.
+  if(!target || target.tagName==='SUMMARY'){
+    target=els['spirit-list'].querySelector('[data-wisp-card="'+view.id+'"]');
+    if(target) target.tabIndex=-1;
+  }
   if(target){
-    if(target!==button) target.setAttribute('data-wisp-rarity-focus',view.id);
-    target.focus({preventScroll:true});
+    if(target!==button) target.setAttribute('data-wisp-action-focus',view.action);
+    if(document.activeElement!==target) target.focus({preventScroll:true});
   }
   view.main.scrollTop=view.top;view.main.scrollLeft=view.left;
 }
 function renderSpirits(){
-  var rarityView=captureWispRarityView();
+  var actionView=captureWispActionView();
   var spiritViewport=captureControlViewport(document.getElementById('tab-spirits'));
   var openProgression=Array.from(els['spirit-list'].querySelectorAll('[data-wisp-progression]')).filter(function(el){
     return el.tagName!=='DETAILS' || el.open;
@@ -8344,10 +8357,10 @@ function renderSpirits(){
       ultimateHtml +
     (upgradesMaxed ? '</details>' : '</section>')+'</div>';
   });
-  replaceControlMarkup(els['spirit-list'],html,false,!!rarityView);
+  replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   renderWispRoles();
-  if(rarityView){
-    restoreWispRarityView(rarityView);
+  if(actionView){
+    restoreWispActionView(actionView);
   } else if(focusedProgression){
     var restoredSummary=els['spirit-list'].querySelector('[data-wisp-details="'+focusedProgression+'"]');
     if(restoredSummary) restoredSummary.focus({preventScroll:true});
@@ -8355,6 +8368,21 @@ function renderSpirits(){
     var completedSummary=els['spirit-list'].querySelector('[data-wisp-details="'+focusedFinalUpgrade+'"]');
     if(completedSummary) completedSummary.focus({preventScroll:true});
   }
+  var actionSelector=WISP_ACTION_KEYS.map(function(key){return '[data-'+key+']';}).join(',');
+  els['spirit-list'].querySelectorAll(actionSelector).forEach(function(btn){
+    btn.addEventListener('pointerdown',function(e){
+      if(!btn.disabled) return;
+      var key=WISP_ACTION_KEYS.find(function(key){return btn.hasAttribute('data-'+key);});
+      var main=document.querySelector('main');
+      e.preventDefault();
+      restoreWispActionView({id:btn.getAttribute('data-'+key),action:key,main:main,top:main.scrollTop,left:main.scrollLeft});
+    });
+    btn.addEventListener('click',function(){
+      // Establish focus on touch WebViews before the purchase replaces markup.
+      var main=document.querySelector('main'),top=main.scrollTop,left=main.scrollLeft;
+      btn.focus({preventScroll:true});main.scrollTop=top;main.scrollLeft=left;
+    });
+  });
   els['spirit-list'].querySelectorAll('[data-empower]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-empower'); });
@@ -8362,16 +8390,8 @@ function renderSpirits(){
     });
   });
   els['spirit-list'].querySelectorAll('[data-rarity]').forEach(function(btn){
-    btn.addEventListener('pointerdown',function(e){
-      var view=captureWispRarityView();
-      // Repeated touches on this disabled upgrade must not blur its fallback.
-      if(btn.disabled && view && view.id===btn.getAttribute('data-rarity')) e.preventDefault();
-    });
     btn.addEventListener('click', function(){
       var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-rarity'); });
-      // Touch activation does not focus buttons on every WebView.
-      var main=document.querySelector('main'),top=main.scrollTop,left=main.scrollLeft;
-      btn.focus({preventScroll:true});main.scrollTop=top;main.scrollLeft=left;
       buyRarity(sp);
     });
   });
@@ -8405,7 +8425,7 @@ function renderSpirits(){
       renderSpirits();
     });
   });
-  if(rarityView) restoreWispRarityView(rarityView);
+  if(actionView) restoreWispActionView(actionView);
   else restoreControlViewport(spiritViewport);
 }
 
@@ -10908,6 +10928,7 @@ function checkAffordability(){
   if(now-lastAffordabilityAt < AFFORDABILITY_REFRESH_MS) return;
   lastAffordabilityAt = now;
   renderLabCapacityBadge();
+  var actionView=captureWispActionView();
   els['spirit-list'].querySelectorAll('[data-empower]').forEach(function(btn){
     var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-empower'); });
     if(!sp) return;
@@ -10915,7 +10936,6 @@ function checkAffordability(){
     btn.disabled=!plan.affordable;
     if(label) label.textContent=plan.reason==='unavailable'?'Unavailable':(state.spirits[sp.id]||0)>0?'Empower':'Recruit';
   });
-  var rarityView=captureWispRarityView();
   els['spirit-list'].querySelectorAll('[data-rarity]').forEach(function(btn){
     var id = btn.getAttribute('data-rarity');
     var sp = SPIRITS.find(function(s){ return s.id===id; });
@@ -10927,7 +10947,6 @@ function checkAffordability(){
     var cost = rarityCost(sp, tier);
     btn.disabled = !(level>=req && canSpendShards(cost.shard) && state.lumen>=cost.lumen);
   });
-  restoreWispRarityView(rarityView);
   els['spirit-list'].querySelectorAll('[data-module]').forEach(function(btn){
     var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-module'); });
     if(!sp) return;
@@ -10941,6 +10960,7 @@ function checkAffordability(){
     if(!sp) return;
     btn.disabled = (state.heroRarity[sp.id]||0)<RARITY_NAMES.length-1 || state.sigils<ultimateSigilCost(sp);
   });
+  restoreWispActionView(actionView);
   els['research-list'].querySelectorAll('[data-research]').forEach(function(btn){
     var node = RESEARCH.find(function(n){ return n.id===btn.getAttribute('data-research'); });
     if(!node) return;

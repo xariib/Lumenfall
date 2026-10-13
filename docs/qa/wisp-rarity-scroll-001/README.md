@@ -1,5 +1,8 @@
 # Wisp rarity scroll evidence
 
+Current Empower/all-Wisp-action follow-up: [evidence](actions-README.md).
+The original rarity checkpoint below is retained with its original source hash.
+
 13 October 2026. Source SHA-256
 `41a2b753db052ea22c8be3ade5002251399a188014cb5cc6c9d42a3361404b83`.
 Node24.19.0; Chrome151.0.7922.34. Automated checks and local self-review.

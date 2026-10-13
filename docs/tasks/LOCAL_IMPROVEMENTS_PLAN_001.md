@@ -81,7 +81,8 @@ pending while unavailable; no APK/signing/remote work is part of this plan.
 Status: [LAB_AFFORDABLE_ALERT_001](LAB_AFFORDABLE_ALERT_001.md) local implementation,
 focused checks and preview verified on `local/full-debug`; release/device and
 standard transport acceptance pending. [WISP_RARITY_SCROLL_001](WISP_RARITY_SCROLL_001.md) local implementation and
-focused preservation checks verified; final/device acceptance pending. Tasks3–7
+focused preservation checks verified, including the Empower/all-Wisp-action
+follow-up from ddb709d; final/device acceptance pending. Tasks3–7
 implementation NOT STARTED.
 Next action: user reviews the current preview, then starts FORMATION_COLLAPSE_001
 using the saved guide and latest local checkpoint. No chat created automatically.

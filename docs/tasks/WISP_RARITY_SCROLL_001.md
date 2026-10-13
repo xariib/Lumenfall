@@ -28,7 +28,7 @@ Changed: root index.html; tests/behavioral/wisp-rarity-scroll.cjs, run.cjs and
 scenarios.json; this task, queue, project state and docs/qa/wisp-rarity-scroll-001.
 Ignored mobile/www refreshed from current source/fonts/branding.
 
-## Checks and continuation
+## Original rarity checkpoint checks and continuation
 [Commands, versions and raw evidence](../qa/wisp-rarity-scroll-001/README.md).
 Source hash `41a2b753db052ea22c8be3ade5002251399a188014cb5cc6c9d42a3361404b83`.
 Node24.19.0 / Chrome151.0.7922.34. Focused1573/72 cases PASS and both causal
@@ -47,3 +47,22 @@ WebView60/TalkBack. Browser results do not prove Android acceptance. No new
 unrelated gameplay finding; no release/signing/remote actions. Keep task open.
 Next: user reviews preview; continue FORMATION_COLLAPSE_001 from this saved local
 checkpoint. Eventual final validation and device acceptance remain separate work.
+
+## User correction — Empower
+User: “Also when pressing empower and its not affordable it scrolls away, nothing
+should do that”. Continued from clean ddb709d on local/full-debug. Empower
+reproduced scroll1504 →697, Stone →Ember focus. Shared the exact-scroll/same-card
+helper across all Wisp-card actions, including disabled touches starting outside
+the card and noninteractive fallbacks for fully perfected cards. No purchase,
+balance, reward, paid-value or save logic changed.
+
+[Follow-up commands and evidence](../qa/wisp-rarity-scroll-001/actions-README.md).
+Current source28e2ffeb. Registered2797 checks/168 cases PASS, including all original
+rarity cases,48 Empower and48 Module/Ultimate/perfected-card cases. Both causal
+controls fail correctly. Existing Wisp8099, curve2798, Support1594, Lab166,
+quest1081, navigation443, formulas and real reload PASS on current source.
+Source/context/diff review and exact live preview assets verified. Extra changed
+files: existing product/test/task/state/queue and actions-* evidence. Self-review
+only. Local checkpoint committed on local/full-debug; latest feature commit is
+the continuation baseline. Required full/transport/Android acceptance stays OPEN.
+Next: refresh/review preview, then task3 can continue from this local checkpoint.
