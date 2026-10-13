@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
 13 October 2026: [FORMATION_COLLAPSE_001](tasks/FORMATION_COLLAPSE_001.md)
-LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted9ad4b6f.
+LOCAL IMPLEMENTATION VERIFIED at `678ccd7` on `local/full-debug`, continuing accepted9ad4b6f.
 Formation contribution defaults to collapsed. Its native Expand/Collapse button
 exposes expanded state and retains choice/focus through full/periodic renders,
 party changes and tab return. Calculations and saves are unchanged.
@@ -14,6 +14,19 @@ No known unresolved task-introduced failure remains in these scoped checks.
 Local milestone only: final combined suite/CI, inherited Prism/standard transport
 limitations and Android/device/WebView60/TalkBack acceptance remain open.
 No remote, APK, signing or archive actions. Next queue item: LAB_SPEED_CONTROLS_001.
+
+User follow-up: leave the Formation chat OPEN; final combined validation and
+Android acceptance will be handled after the improvements. The
+[task handoff](tasks/FORMATION_COLLAPSE_001.md#saved-local-handoff-and-deferred-combined-acceptance)
+records remaining full behavioral/required CI gates on the final combined source,
+Formation/contribution/Wisp-scroll/save regression reruns, inherited Prism/
+Windows transport/tooling limitations, final staged-asset verification and later
+authorized Android package/signing/assets, installed-device/WebView60/TalkBack
+acceptance. No product regression was demonstrated in the verified scoped checks;
+initial test/environment diagnostics were corrected, and the intentional causal
+mutation failed as expected. Unrun combined/native checks remain unknown and
+pending, not established as failures introduced by this task. Implementation and
+source-bound evidence are saved locally; this follow-up changes documentation only.
 
 13 October 2026: [WISP_RARITY_SCROLL_001](tasks/WISP_RARITY_SCROLL_001.md)
 LOCAL IMPLEMENTATION VERIFIED and saved in `9ad4b6f` on `local/full-debug`.

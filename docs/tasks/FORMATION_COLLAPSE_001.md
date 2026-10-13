@@ -46,8 +46,47 @@ Self-review only, no independent review claimed.
 During testing, other owners saved docs-only commits57bbd38/b331cef. Their Lab/
 Wisp status and decisions are preserved; product bytes did not change. Final
 checkpoint builds onb331cef. No concurrent overlapping product edit observed.
-Local coherent checkpoint: the commit containing this task/evidence on
-`local/full-debug` (resolve with git log -1 -- docs/tasks/FORMATION_COLLAPSE_001.md).
+Verified implementation checkpoint: `678ccd7` on `local/full-debug`.
 Final full-suite/remote/Android acceptance stays open; no APK/signing/release.
 Next: user reviews playable local preview, then proceeds to LAB_SPEED_CONTROLS_001
 from this accepted local checkpoint. Feature stays open for combined acceptance.
+
+## Saved local handoff and deferred combined acceptance
+
+13 October 2026 user follow-up: save the verified implementation, clearly record
+remaining checks, confirm task-introduced failure status, and leave this chat
+OPEN. Final combined validation and Android acceptance will be handled after
+the improvements. This documentation checkpoint preserves implementation678ccd7
+and its exact source/evidence; it changes no product or tests.
+
+Failure attribution: no product regression or unresolved task-introduced failure
+was demonstrated in the scoped checks on678ccd7. The sandbox launch restriction,
+unsettled tab-animation measurement and unknown-scenario invocation were test/
+environment diagnostics, corrected before local delivery. The deliberately reset
+disclosure mutation fails as expected and is not present in the product.
+Inherited Prism deadline, standard Windows dump-DOM transport and tooling
+limitations were already open; their causes are not attributed to this change.
+Untested final combined/native paths remain unknown, not claimed PASS.
+
+Remaining checks, deferred until the improvements are finished:
+
+- Validate the exact final combined source with the full behavioral suite and
+  relevant required gates in `.github/workflows/pre-merge-validation.yml`.
+  Rerun Formation collapse529, contribution core/mobile and Wisp scroll3229,
+  Formation autosave/save/recovery and navigation checks on those final bytes.
+- Resolve or explicitly disposition inherited Prism-contract deadline, Windows
+  dump-DOM transport and POSIX symlink/tooling limitations without weakening
+  assertions; record exact environment and results. Existing CDP receipts remain
+  scoped browser evidence, not a replacement claim for unrun full gates.
+- Refresh mobile/www from the final source/assets and verify exact staged bytes.
+  When Android work is subsequently authorized, verify built package/version,
+  existing signing identity/assets and installed-device behavior, including
+  collapsed/expanded states, formation changes, periodic refresh, touch/keyboard,
+  large text, exact WebView60 compatibility and TalkBack accessibility.
+- Save final combined evidence and any later authorized remote integration/
+  release delivery status. Current work remains local; no APK/signing/remote
+  action follows from this documentation request.
+
+Next action: continue the queued improvements from the verified local checkpoint;
+return to these checks after the final improvement. Keep this chat open and
+unarchived until the later acceptance decision.
