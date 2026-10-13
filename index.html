@@ -8218,7 +8218,26 @@ function renderWispRoles(){
     if(earned>0) el.innerHTML+=roleValueLine('Earned boost now',formatNum(earned)+' /s');
   });
 }
+// A rarity purchase can disable its own button. Keep its card and exact scroll,
+// rather than anchoring the viewport to an unrelated enabled control.
+function captureWispRarityView(){
+  var active=document.activeElement;
+  var id=active && (active.getAttribute('data-rarity') || active.getAttribute('data-wisp-rarity-focus'));
+  var main=document.querySelector('main');
+  return id && els['spirit-list'].contains(active) && main ? {id:id,main:main,top:main.scrollTop,left:main.scrollLeft} : null;
+}
+function restoreWispRarityView(view){
+  if(!view) return;
+  var button=els['spirit-list'].querySelector('[data-rarity="'+view.id+'"]');
+  var target=button && !button.disabled ? button : els['spirit-list'].querySelector('[data-wisp-details="'+view.id+'"]');
+  if(target){
+    if(target!==button) target.setAttribute('data-wisp-rarity-focus',view.id);
+    target.focus({preventScroll:true});
+  }
+  view.main.scrollTop=view.top;view.main.scrollLeft=view.left;
+}
 function renderSpirits(){
+  var rarityView=captureWispRarityView();
   var spiritViewport=captureControlViewport(document.getElementById('tab-spirits'));
   var openProgression=Array.from(els['spirit-list'].querySelectorAll('[data-wisp-progression]')).filter(function(el){
     return el.tagName!=='DETAILS' || el.open;
@@ -8325,9 +8344,11 @@ function renderSpirits(){
       ultimateHtml +
     (upgradesMaxed ? '</details>' : '</section>')+'</div>';
   });
-  replaceControlMarkup(els['spirit-list'],html);
+  replaceControlMarkup(els['spirit-list'],html,false,!!rarityView);
   renderWispRoles();
-  if(focusedProgression){
+  if(rarityView){
+    restoreWispRarityView(rarityView);
+  } else if(focusedProgression){
     var restoredSummary=els['spirit-list'].querySelector('[data-wisp-details="'+focusedProgression+'"]');
     if(restoredSummary) restoredSummary.focus({preventScroll:true});
   } else if(focusedFinalUpgrade && wispUpgradesMaxed(focusedFinalUpgrade)){
@@ -8341,8 +8362,16 @@ function renderSpirits(){
     });
   });
   els['spirit-list'].querySelectorAll('[data-rarity]').forEach(function(btn){
+    btn.addEventListener('pointerdown',function(e){
+      var view=captureWispRarityView();
+      // Repeated touches on this disabled upgrade must not blur its fallback.
+      if(btn.disabled && view && view.id===btn.getAttribute('data-rarity')) e.preventDefault();
+    });
     btn.addEventListener('click', function(){
       var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-rarity'); });
+      // Touch activation does not focus buttons on every WebView.
+      var main=document.querySelector('main'),top=main.scrollTop,left=main.scrollLeft;
+      btn.focus({preventScroll:true});main.scrollTop=top;main.scrollLeft=left;
       buyRarity(sp);
     });
   });
@@ -8376,7 +8405,8 @@ function renderSpirits(){
       renderSpirits();
     });
   });
-  restoreControlViewport(spiritViewport);
+  if(rarityView) restoreWispRarityView(rarityView);
+  else restoreControlViewport(spiritViewport);
 }
 
 function renderResearch(){
@@ -10885,6 +10915,7 @@ function checkAffordability(){
     btn.disabled=!plan.affordable;
     if(label) label.textContent=plan.reason==='unavailable'?'Unavailable':(state.spirits[sp.id]||0)>0?'Empower':'Recruit';
   });
+  var rarityView=captureWispRarityView();
   els['spirit-list'].querySelectorAll('[data-rarity]').forEach(function(btn){
     var id = btn.getAttribute('data-rarity');
     var sp = SPIRITS.find(function(s){ return s.id===id; });
@@ -10896,6 +10927,7 @@ function checkAffordability(){
     var cost = rarityCost(sp, tier);
     btn.disabled = !(level>=req && canSpendShards(cost.shard) && state.lumen>=cost.lumen);
   });
+  restoreWispRarityView(rarityView);
   els['spirit-list'].querySelectorAll('[data-module]').forEach(function(btn){
     var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-module'); });
     if(!sp) return;

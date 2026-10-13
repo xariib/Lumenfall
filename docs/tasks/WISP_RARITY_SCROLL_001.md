@@ -1,0 +1,49 @@
+# WISP_RARITY_SCROLL_001
+
+13 October 2026. Owner: this feature chat. LOCAL VERIFIED; final acceptance OPEN.
+
+## Original requirements and baseline
+Fix page movement after Rarity Up, especially when the next upgrade is
+unaffordable. Preserve scroll and same-card focus through purchase and periodic
+refresh. Test touch/keyboard, affordable/unaffordable following upgrade, capped
+state and repeated input. Preserve costs, effects, rewards, paid value and saves.
+No balance, progression or save-schema change. No remote push, APK or signing.
+
+Started from clean `local/full-debug` HEAD `86f5779`, accepted local checkpoint;
+retained LAB_AFFORDABLE_ALERT_001. Read [queue](LOCAL_IMPROVEMENTS_PLAN_001.md),
+[state](../PROJECT_STATE.md), [startup](../project/CODEX_START.md) and
+[workflow](../project/FEATURE_WORKFLOW.md). No overlapping dirty changes, chats or
+agents. Reproduction on exact baseline: touch purchase scroll1975 →704; focus
+Stone →Ember because the generic disabled-control fallback picked another card.
+
+## Implementation and decisions
+Same-card enabled rarity button retains focus; an unavailable/capped upgrade
+returns focus to that card's progression heading. Preserve exact main scroll and
+DOM-only identity across full rendering and affordability refreshes. Explicit
+focus capture supports touch WebViews that do not focus buttons on activation.
+Repeated disabled pointer input keeps that fallback focused.
+No gameplay decision or new binding rule was needed. Purchase/save logic untouched.
+
+Changed: root index.html; tests/behavioral/wisp-rarity-scroll.cjs, run.cjs and
+scenarios.json; this task, queue, project state and docs/qa/wisp-rarity-scroll-001.
+Ignored mobile/www refreshed from current source/fonts/branding.
+
+## Checks and continuation
+[Commands, versions and raw evidence](../qa/wisp-rarity-scroll-001/README.md).
+Source hash `41a2b753db052ea22c8be3ade5002251399a188014cb5cc6c9d42a3361404b83`.
+Node24.19.0 / Chrome151.0.7922.34. Focused1573/72 cases PASS and both causal
+controls fail correctly. Registered scenario PASS. Existing Wisp8099, curve2798,
+Support1594, Lab166, quest1081, navigation443, Wisp formula and real save reload
+PASS. Source/context/identity self-test and diff checks PASS. Complete diff
+self-reviewed for scope/removals; no independent review claimed.
+
+Local checkpoint recorded in Git on `local/full-debug`; exact commit available
+from `git log -1` for this task's commit. Live preview source/fonts/branding match
+root bytes at http://127.0.0.1:4174/index.html; browser-panel opening queued.
+
+Final acceptance pending: full-suite/Prism-contract deadline, previous standard
+Windows dump-DOM transport limitation, remote CI/integration and Android/device/
+WebView60/TalkBack. Browser results do not prove Android acceptance. No new
+unrelated gameplay finding; no release/signing/remote actions. Keep task open.
+Next: user reviews preview; continue FORMATION_COLLAPSE_001 from this saved local
+checkpoint. Eventual final validation and device acceptance remain separate work.

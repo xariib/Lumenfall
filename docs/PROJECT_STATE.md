@@ -1,16 +1,28 @@
 # Lumenfall — current delivery status
 
+13 October 2026: [WISP_RARITY_SCROLL_001](tasks/WISP_RARITY_SCROLL_001.md)
+has a verified local fix on `local/full-debug`, continuing accepted86f5779.
+Rarity purchases preserve exact scroll and same-card focus when the following
+upgrade is affordable, unaffordable or capped, including later rendering.
+Focused1573/72 cases and both causal controls, existing Wisp8099/curve2798/
+Support1594, Lab166/quest1081, navigation443, formulas and real reload PASS.
+Prices, effects, rewards, paid value and saves preserved.
+[Evidence](qa/wisp-rarity-scroll-001/README.md). Current source41a2b753 and
+fonts/branding staged and byte-verified at http://127.0.0.1:4174/index.html.
+Local checkpoint only; full-suite/Prism/standard transport and Android acceptance
+remain open. Next local improvement: FORMATION_COLLAPSE_001.
+
 13 October 2026: [LAB_AFFORDABLE_ALERT_001](tasks/LAB_AFFORDABLE_ALERT_001.md)
 has a verified local implementation on `local/full-debug`: both Lab notifications
 require free capacity AND an affordable eligible start. Prices, scheduling and
 saves are preserved. Focused browser166, Lab core2465, actual V8.6.0 legacy580,
 navigation443, Rift1736 and real reload/completion checks PASS; two causal
 controls are rejected. [Evidence and transport limitation](qa/lab-affordable-alert-001/README.md).
-Current source `f2da7446` is staged and served at http://127.0.0.1:4174/index.html.
+That checkpoint source `f2da7446` was staged and served at http://127.0.0.1:4174/index.html.
 Full-suite/standard dump-DOM transport and Android/release acceptance remain open.
 
 The remaining [sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
-are recorded from the user's browser observations; tasks2–7 have not started.
+are recorded from the user's browser observations; task2 is locally verified; tasks3–7 have not started.
 Each improvement has one owner chat, starting
 from the latest accepted local checkpoint. High Forge/Lab caps require specific
 balance choices first. The full debugging task and release acceptance remain open.
