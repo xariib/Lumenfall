@@ -1,5 +1,20 @@
 # Lumenfall — current delivery status
 
+13 October 2026: [FORMATION_COLLAPSE_001](tasks/FORMATION_COLLAPSE_001.md)
+LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted9ad4b6f.
+Formation contribution defaults to collapsed. Its native Expand/Collapse button
+exposes expanded state and retains choice/focus through full/periodic renders,
+party changes and tab return. Calculations and saves are unchanged.
+Focused529/12 mobile/live-timer checks, Wisp core8099/mobile151/scroll3229,
+Formation autosave133/save-reload, navigation443 and real reload PASS.
+[Evidence](qa/formation-collapse-001/README.md). Current source `0bf0505f`, fonts
+and branding byte-verified in mobile/www at http://127.0.0.1:4174/index.html;
+the open playable preview's complete script matches current source.
+No known unresolved task-introduced failure remains in these scoped checks.
+Local milestone only: final combined suite/CI, inherited Prism/standard transport
+limitations and Android/device/WebView60/TalkBack acceptance remain open.
+No remote, APK, signing or archive actions. Next queue item: LAB_SPEED_CONTROLS_001.
+
 13 October 2026: [WISP_RARITY_SCROLL_001](tasks/WISP_RARITY_SCROLL_001.md)
 LOCAL IMPLEMENTATION VERIFIED and saved in `9ad4b6f` on `local/full-debug`.
 Source SHA-256: `2fa400081743625d1f4cc6bda176ca299615950d38739d839098d6e12742764c`.
@@ -25,10 +40,10 @@ TalkBack acceptance; later authorized remote integration/release delivery.
 These are pending, not claimed PASS and not established as new task regressions.
 Browser results do not prove Android acceptance. No APK/signing/remote action here.
 
-FORMATION_COLLAPSE_001 now has uncommitted product/test work in this checkout.
-This Wisp verification is bound to 9ad4b6f, not that unfinished combined source.
-Preserve the active work, continue the improvements, then validate the exact final
-combination including the Wisp regression suite. No chat archive action.
+The Wisp checkpoint evidence above remains bound to9ad4b6f. Its complete3229
+focused regression suite also passes on the current Formation source0bf0505f.
+Continue the improvements, then validate the exact final combination including
+the Wisp regression suite. No chat archive action.
 
 13 October 2026: [LAB_AFFORDABLE_ALERT_001](tasks/LAB_AFFORDABLE_ALERT_001.md)
 has a verified local implementation at `86f5779` on `local/full-debug`: both Lab notifications
@@ -49,7 +64,7 @@ this local milestone is not a final release acceptance claim.
 
 The remaining [sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
 are recorded from the user's browser observations; task2 is locally verified and
-task3 has active local work. Later task status is maintained by its feature owner.
+task3 is locally verified. Later task status is maintained by its feature owner.
 Each improvement has one owner chat, starting
 from the latest accepted local checkpoint. High Forge/Lab caps require specific
 balance choices first. The full debugging task and release acceptance remain open.

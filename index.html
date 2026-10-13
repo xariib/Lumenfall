@@ -246,6 +246,9 @@
   }
   .active-toggle.is-active{background:var(--good);color:#08210f;border-color:var(--good);}
   .wisp-role-summary{margin-bottom:12px;}
+  .formation-contribution-toggle{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg-elev);color:var(--ink);font-size:1rem;line-height:1.4;text-align:left;white-space:normal;cursor:pointer;}
+  #formation-contribution-panel{margin-top:8px;}
+  #formation-contribution-panel[hidden]{display:none;}
   .wisp-role-summary h3{font-size:1rem;line-height:1.4;margin:0 0 8px;}
   .wisp-role-readout{margin:8px 0;padding:8px 0;border-top:1px solid var(--line);}
   .wisp-role-line{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin:5px 0;font-size:.8125rem;line-height:1.5;}
@@ -2794,7 +2797,10 @@
         <div class="section-sub">Up to <span id="formation-capacity">5</span> Wisps can be Active at once. Pair specific powered Wisps to activate simple Formation Bonds for Push, Farm or Boss fights.</div>
         <div class="card bond-card" id="bond-card"></div>
       </details>
-      <section class="card wisp-role-summary" aria-label="Formation contribution" id="wisp-role-summary"></section>
+      <section class="card wisp-role-summary" aria-label="Formation contribution" id="wisp-role-summary">
+        <button type="button" class="formation-contribution-toggle" id="formation-contribution-toggle" aria-expanded="false" aria-controls="formation-contribution-panel"><span>Formation contribution</span><span id="formation-contribution-action">Expand</span></button>
+        <div id="formation-contribution-panel" hidden></div>
+      </section>
       <div class="hero-grid" id="spirit-list"></div>
       <div class="roster-journey" id="roster-journey"></div>
     </section>
@@ -8196,7 +8202,8 @@ function renderWispRoles(){
     roleValueLine('Passive damage now',formatNum(current.passiveDps)+' /s')+roleValueLine('Guardian Tap now',formatNum(tapDamage())+' /tap');
   if(current.legacyDps>0) html+=roleValueLine('Saved legacy boost added',formatNum(current.legacyDps)+' /s');
   html+='<p class="wisp-role-note">Removing one Wisp keeps all other levels and permanent purchases. These comparisons overlap through Bonds, buffs and charge transfers; do not add them.</p>';
-  els['wisp-role-summary'].innerHTML=html;
+  // Only refresh the readout; the disclosure and its focused button stay intact.
+  document.getElementById('formation-contribution-panel').innerHTML=html;
   steady.rows.forEach(function(row,i){
     var el=els['spirit-list'].querySelector('[data-wisp-role="'+row.id+'"]');if(!el) return;
     if(!row.active){
@@ -11358,6 +11365,12 @@ function init(){
     if(target) activateTab(target);
   });
   document.getElementById('rift-hints-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
+  document.getElementById('formation-contribution-toggle').addEventListener('click',function(){
+    var expanded=this.getAttribute('aria-expanded')!=='true';
+    this.setAttribute('aria-expanded',String(expanded));
+    document.getElementById('formation-contribution-panel').hidden=!expanded;
+    document.getElementById('formation-contribution-action').textContent=expanded ? 'Collapse' : 'Expand';
+  });
   document.getElementById('rift-guidance-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
   document.getElementById('ascend-btn').addEventListener('click', function(){ doAscend(false); });
 

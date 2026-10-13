@@ -84,6 +84,7 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
   const log = options.log || console.log;
   const urlFor = page => baseUrl + page + '?' + new URLSearchParams({ qaScenario: scenario, qaFixture: fixture });
   if (scenario === 'wisp-rarity-scroll') return runNativeProcess([process.execPath, path.join(ROOT, 'wisp-rarity-scroll.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
+  if (scenario === 'formation-collapse') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-collapse.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), path.join(options.rawArtifactRoot || os.tmpdir(), 'formation-collapse')], scenario, 90000, options);
   if (scenario === 'lab-affordable-alert') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-affordable-alert.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (scenario === 'formation-bonds-core') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-bonds.cjs')], scenario, 90000, options);
   if (scenario === 'resonate-clarity') return runNativeProcess([process.execPath, path.join(ROOT, 'resonate-clarity.cjs'), '--chrome', process.env.LUMENFALL_QA_CDP_CHROME || chrome, '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 150000, options);
