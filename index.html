@@ -7072,9 +7072,10 @@ function renderLabCapacityBadge(){
   var badge=els['lab-capacity-badge'];
   var btn=document.getElementById('nav-research');
   var free=Math.max(0,studySlotCount()-state.activeStudies.length);
+  var canStart=free>0 && LONG_STUDIES.some(function(node){return getStudyStartPlan(node).affordable;});
   var text=String(free);
   if(badge.textContent!==text) badge.textContent=text;
-  badge.hidden=free===0;
+  badge.hidden=!canStart;
   var label='Lab — '+free+' Study slot'+(free===1?'':'s')+' available';
   if(btn.getAttribute('aria-label')!==label) btn.setAttribute('aria-label',label);
   var secondary=document.getElementById('workshop-lab-badge');
@@ -10876,6 +10877,7 @@ function checkAffordability(){
   var now = Date.now();
   if(now-lastAffordabilityAt < AFFORDABILITY_REFRESH_MS) return;
   lastAffordabilityAt = now;
+  renderLabCapacityBadge();
   els['spirit-list'].querySelectorAll('[data-empower]').forEach(function(btn){
     var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-empower'); });
     if(!sp) return;

@@ -1,8 +1,17 @@
 # Lumenfall — current delivery status
 
-13 October 2026: [seven sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
-are recorded from the user's browser observations. Requirements/planning only;
-no implementation has started. Each improvement has one owner chat, starting
+13 October 2026: [LAB_AFFORDABLE_ALERT_001](tasks/LAB_AFFORDABLE_ALERT_001.md)
+has a verified local implementation on `local/full-debug`: both Lab notifications
+require free capacity AND an affordable eligible start. Prices, scheduling and
+saves are preserved. Focused browser166, Lab core2465, actual V8.6.0 legacy580,
+navigation443, Rift1736 and real reload/completion checks PASS; two causal
+controls are rejected. [Evidence and transport limitation](qa/lab-affordable-alert-001/README.md).
+Current source `f2da7446` is staged and served at http://127.0.0.1:4174/index.html.
+Full-suite/standard dump-DOM transport and Android/release acceptance remain open.
+
+The remaining [sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
+are recorded from the user's browser observations; tasks2–7 have not started.
+Each improvement has one owner chat, starting
 from the latest accepted local checkpoint. High Forge/Lab caps require specific
 balance choices first. The full debugging task and release acceptance remain open.
 

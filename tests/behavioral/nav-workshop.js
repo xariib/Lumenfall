@@ -40,7 +40,7 @@ window.runNavWorkshopQa = function(b,ctx,assert){
     b.setState(s);b.renderLayout();go('research');q('#nav-research').focus();
     var prior=snapshot();b.renderLayout();
     var free=b.riftStatus.slots()-count;
-    ['#lab-capacity-badge','#workshop-lab-badge'].forEach(function(sel){ok(q(sel).textContent===String(free)&&q(sel).hidden===(free===0),'both badges show actual free slots');});
+    ['#lab-capacity-badge','#workshop-lab-badge'].forEach(function(sel){ok(q(sel).textContent===String(free)&&q(sel).hidden===!b.riftStatus.canStartStudy(),'both badges show actual free slots only when a Study can start');});
     ok(q('#nav-workshop').getAttribute('aria-label').includes('Lab — '+free+' Study slot'),'Workshop name describes Lab capacity');
     ok(document.activeElement===q('#nav-research'),'badge refresh retains subtab focus');same(snapshot(),prior,'badge refresh leaves state/saves/events unchanged');
   });

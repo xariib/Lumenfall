@@ -1,0 +1,10 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "f2da7446bbd3844eb601741feb3f4928b6496269cfca28d694cf2386a9f9158c", "instrumented_sha256": "20448a4df7fd921de66a05619a5e6e8e4461f1555eba445599f462b86632c25b" }
+FAIL nav-workshop-contract
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 25.2691862, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-qa-raw-IuwjJM\nav-workshop-contract-J5BUNl
+  Chromium stderr tail:
+[10840:13968:1013/125122.304:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[10840:13968:1013/125122.400:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT

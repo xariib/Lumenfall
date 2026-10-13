@@ -78,6 +78,8 @@ limitations and next action. Local implementation/preview acceptance is a
 milestone, not a completed Android release. Keep remote/final release acceptance
 pending while unavailable; no APK/signing/remote work is part of this plan.
 
-Status: requirements and guide recorded. Product implementation NOT STARTED.
-Next action: user starts LAB_AFFORDABLE_ALERT_001 in a new feature chat using the
-saved guide. No new chat has been created automatically.
+Status: [LAB_AFFORDABLE_ALERT_001](LAB_AFFORDABLE_ALERT_001.md) local implementation,
+focused checks and preview verified on `local/full-debug`; release/device and
+standard transport acceptance pending. Tasks2–7 implementation NOT STARTED.
+Next action: user reviews the current preview, then starts WISP_RARITY_SCROLL_001
+using the saved guide and latest local checkpoint. No chat created automatically.

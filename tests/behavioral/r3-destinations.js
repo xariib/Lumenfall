@@ -136,7 +136,7 @@ window.checkR3Reload = function(b,ctx,assert,expected){
   assert(document.querySelector('[data-mult="5"]').getAttribute('aria-pressed')==='true','remembered bulk restores in Forge');
   document.querySelector('[data-tab="research"]').click();
   var badge=document.querySelector('#lab-capacity-badge'),free=b.riftStatus.slots()-s.activeStudies.length;
-  assert(badge.hidden===(free===0)&&badge.textContent===String(free),'capacity badge restores from actual loaded Study state');
+  assert(badge.hidden===!b.riftStatus.canStartStudy()&&badge.textContent===String(free),'affordable capacity badge restores from actual loaded Study state');
   assert(document.querySelector('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','active project countdown after reload');
   var count=0;
   while(b.getState().activeStudies.length && count++<750)b.feedbackTick(false);

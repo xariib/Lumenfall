@@ -455,6 +455,7 @@ window.__lumenfallQaBridge = {
     visualMetrics: function(){return {regen:state.enemyMaxHp*bossRegenRate(state.depth),dps:sustainedCombatDps(state.depth),cycle:abilityCycleSeconds()};},
     emit: function(id){emitCombatVfx('ability','#abcdef',id);},
     slots: function(){return studySlotCount();},
+    canStartStudy: function(){return LONG_STUDIES.some(function(n){return getStudyStartPlan(n).affordable;});},
     projects: function(){return LONG_STUDIES.map(function(n){return {id:n.id,unlock:n.unlockDepth||1};});},
     bonds: function(){return JSON.parse(JSON.stringify(FORMATION_BONDS));},
     powered: function(){return poweredActiveIds();},

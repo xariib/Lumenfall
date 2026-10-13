@@ -60,7 +60,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   }
   function badge(){
     var free=Math.max(0,b.riftStatus.slots()-b.getState().activeStudies.length),el=q('#lab-capacity-badge');
-    ok(el.hidden===(free===0)&&el.textContent===String(free),'Lab capacity badge matches committed free slots');
+    ok(el.hidden===!b.riftStatus.canStartStudy()&&el.textContent===String(free),'Lab badge matches committed affordable start and free slots');
     ok(q('[data-tab="research"]').getAttribute('aria-label')==='Lab — '+free+' Study slot'+(free===1?'':'s')+' available','Lab capacity has an accessible count');
     ok(el.tabIndex<0 && el.getAttribute('aria-hidden')==='true','badge adds no control/tabstop');return free;
   }
