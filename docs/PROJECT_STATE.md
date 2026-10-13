@@ -1,20 +1,34 @@
 # Lumenfall — current delivery status
 
 13 October 2026: [WISP_RARITY_SCROLL_001](tasks/WISP_RARITY_SCROLL_001.md)
-has a verified local fix on `local/full-debug`, continuing accepted86f5779.
-Second user correction from ac7ca7c found stale preview tabs plus a visible
-button shift during background content changes despite stable scrollTop.
-Passive updates now keep the same action at its screen position; manual purchase
-scroll/focus and paid behavior are preserved. Both existing previews reloaded
-and complete loaded scripts match current source.
-Focused3229 assertions/168 prior cases/144 refresh transitions and three causal
-controls, existing Wisp8099/curve2798/
-Support1594, Lab166/quest1081, navigation443, formulas and real reload PASS.
-Prices, effects, rewards, paid value and saves preserved.
-[Evidence](qa/wisp-rarity-scroll-001/role-README.md). Current source2fa40008 and
-fonts/branding staged and byte-verified at http://127.0.0.1:4174/index.html.
-Local checkpoint only; full-suite/Prism/standard transport and Android acceptance
-remain open. Next local improvement: FORMATION_COLLAPSE_001.
+LOCAL IMPLEMENTATION VERIFIED and saved in `9ad4b6f` on `local/full-debug`.
+Source SHA-256: `2fa400081743625d1f4cc6bda176ca299615950d38739d839098d6e12742764c`.
+Purchases retain scroll and same-card focus; passive updates compensate for
+content-height changes above the visible action. Both preview tabs were reloaded
+and complete loaded scripts verified against that source. Source/fonts/branding
+were staged and HTTP-verified at http://127.0.0.1:4174/index.html.
+
+[Evidence](qa/wisp-rarity-scroll-001/role-README.md): 3,229 focused assertions,
+168 retained purchase cases and 144 refresh transitions PASS; three causal
+mutations fail as expected. Wisp8099/curve2798/Support1594, Lab166/quest1081,
+navigation443, formulas and real reload PASS. Prices, effects, rewards, paid value
+and saves are preserved. **No known unresolved task-introduced failure remains
+in this verified checkpoint.** An intermediate rarity-repeat regression and the
+missed background-position path were fixed before 9ad4b6f; no tests were weakened.
+
+User decision: leave this chat OPEN and handle final combined validation and
+Android acceptance after the improvements. Remaining checks are explicitly
+[recorded in the task](tasks/WISP_RARITY_SCROLL_001.md#saved-local-handoff-and-deferred-combined-acceptance):
+final combined full behavioral/CI gates; inherited Prism-contract deadline and
+Windows dump-DOM transport limitations; Android installed-device/WebView60/
+TalkBack acceptance; later authorized remote integration/release delivery.
+These are pending, not claimed PASS and not established as new task regressions.
+Browser results do not prove Android acceptance. No APK/signing/remote action here.
+
+FORMATION_COLLAPSE_001 now has uncommitted product/test work in this checkout.
+This Wisp verification is bound to 9ad4b6f, not that unfinished combined source.
+Preserve the active work, continue the improvements, then validate the exact final
+combination including the Wisp regression suite. No chat archive action.
 
 13 October 2026: [LAB_AFFORDABLE_ALERT_001](tasks/LAB_AFFORDABLE_ALERT_001.md)
 has a verified local implementation at `86f5779` on `local/full-debug`: both Lab notifications
@@ -34,7 +48,8 @@ Rerun Lab preservation/notification checks on that final combined checkpoint;
 this local milestone is not a final release acceptance claim.
 
 The remaining [sequential local improvements](tasks/LOCAL_IMPROVEMENTS_PLAN_001.md)
-are recorded from the user's browser observations; task2 is locally verified; tasks3–7 have not started.
+are recorded from the user's browser observations; task2 is locally verified and
+task3 has active local work. Later task status is maintained by its feature owner.
 Each improvement has one owner chat, starting
 from the latest accepted local checkpoint. High Forge/Lab caps require specific
 balance choices first. The full debugging task and release acceptance remain open.

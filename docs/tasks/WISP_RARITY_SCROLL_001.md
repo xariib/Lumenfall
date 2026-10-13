@@ -1,6 +1,7 @@
 # WISP_RARITY_SCROLL_001
 
-13 October 2026. Owner: this feature chat. LOCAL VERIFIED; final acceptance OPEN.
+13 October 2026. Owner: this feature chat. LOCAL IMPLEMENTATION VERIFIED.
+Final combined validation and Android acceptance DEFERRED; leave this chat OPEN.
 
 ## Original requirements and baseline
 Fix page movement after Rarity Up, especially when the next upgrade is
@@ -86,5 +87,42 @@ Existing Wisp8099/curve2798/Support1594/Lab166/quest1081/navigation443, formulas
 and actual reload PASS. Both already-open preview tabs were reloaded and their
 complete scripts hash-match current source; source/assets staged and HTTP-verified.
 Self-review only; final full/Prism/transport/Android acceptance remains OPEN.
-Latest local feature checkpoint is the continuation baseline. Next: user retries
-the already-refreshed preview; task3 follows after review. No remote/APK/signing.
+Verified implementation checkpoint: `9ad4b6f` on `local/full-debug`.
+No remote/APK/signing actions. See the current handoff below for remaining work.
+
+## Saved local handoff and deferred combined acceptance
+
+User decision: save this verified local implementation, record outstanding checks,
+leave this chat open, and handle final combined validation and Android acceptance
+after the improvements. This supersedes any earlier suggestion to wait for those
+release checks before continuing the local improvement queue.
+
+Implementation is saved in commit `9ad4b6f4d6e80416324152bd1c7ac22bd1465eb5` on
+`local/full-debug`, source SHA-256
+`2fa400081743625d1f4cc6bda176ca299615950d38739d839098d6e12742764c`.
+[Source-bound commands and receipts](../qa/wisp-rarity-scroll-001/role-README.md)
+record 3,229 focused assertions and the relevant preservation checks passing.
+This documentation checkpoint changes no product or test code.
+
+Failure assessment: **no known unresolved failure introduced by this task remains
+in the verified implementation**. An intermediate anchoring variant introduced
+a repeated-affordable-rarity scroll regression; the original assertion caught it
+and it was fixed before 9ad4b6f. Earlier iterations also missed the background
+visible-position defect, which was reproduced and corrected. Expected failures
+of the three causal mutations demonstrate coverage; they are not final-source
+failures. This scoped evidence does not certify unrun combined or Android checks.
+
+| Remaining check | Status and next action after the improvements |
+| --- | --- |
+| Final combined source, complete behavioral suite and applicable CI gates | Not run on the final combination. Run against its exact checkpoint/assets, retaining all gates. |
+| Prism-contract completion deadline | Inherited unresolved limitation, recorded before this task. Diagnose/recheck in combined validation; do not raise deadlines merely to pass. |
+| Standard Windows dump-DOM transport | Inherited timeout limitation. Recheck/resolve the standard transport; saved CDP adapter results are alternative evidence, not a standard-gate PASS. |
+| Android app/device acceptance | Not performed here. Later verify the combined app/assets, package/signing identity, installed device behavior, WebView60 and accessibility/TalkBack. Browser PASS does not establish these. |
+| Remote integration/CI and release delivery | Not performed in this local-only task. Handle only within the later combined delivery authorization; no APK release or new signing key is authorized here. |
+
+At this handoff, FORMATION_COLLAPSE_001 has uncommitted product/test work in the
+same checkout. It was not modified, staged or included in this task's verification.
+Continue from the latest accepted improvement checkpoint, preserving those edits;
+recheck the Wisp regressions on the eventual final combined source. No known
+remaining Wisp-specific fix is identified in 9ad4b6f. Keep this chat open; do not
+archive it. Final combined validation and Android acceptance remain deferred.
