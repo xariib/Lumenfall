@@ -63,7 +63,7 @@ window.runLabMotesQa=function(b,ctx,assert,protectedParity,summaryParity){
   var q=function(s){return document.querySelector(s);},s=paid(seed(),'guardmastery',150);s.motes=0;s.studyUseMotes.guardmastery=false;install(s);q('[data-tab="research"]').click();
   var before=b.getState();b.renderLayout();same(b.getState(),before,'render cannot pay');
   window.runLabUiQa(b,ctx,assert);
-  install(s);q('[data-study-details="guardmastery"]').click();
+  install(s);
   var select=q('[data-study-speed-target="guardmastery"]');select.focus();select.value='3';select.dispatchEvent(new Event('change',{bubbles:true}));ok(document.activeElement.dataset.studySpeedTarget==='guardmastery','select focus survives target change');ok(b.getState().studySpeedTargets.guardmastery===3&&b.getState().motes===0,'target selectable without money');
   var button=q('[data-study-use-motes="guardmastery"]');button.focus();button.click();ok(document.activeElement.dataset.studyUseMotes==='guardmastery','toggle focus survives');ok(q('[data-study-use-motes="guardmastery"]').getAttribute('aria-pressed')==='true'&&!b.getState().studyQueue.guardmastery,'Use Motes aria ON independent of queue');
   var snapshot=b.getState(),save=b.rawSave(),recovery=b.rawRecovery(),events=b.lifecycleTrace();b.renderLayout();same(b.getState(),snapshot,'render state purity');same([b.rawSave(),b.rawRecovery(),b.lifecycleTrace()],[save,recovery,events],'render save/observer purity');

@@ -97,13 +97,12 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
       var choose=q('[data-study-choose]');
       if(choose) assert(choose.getBoundingClientRect().height>=44,'Study choice shortcut has a practical target');
       assert(q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'Lab Study content does not overflow horizontally');
-      var speedIds=Array.from(document.querySelectorAll('[data-study-details]')).map(function(el){
-        assert(el.getBoundingClientRect().height>=44,'Speed up disclosure has a practical target');return el.dataset.studyDetails;
+      var speedIds=Array.from(document.querySelectorAll('[data-study-speed-target]')).map(function(el){
+        assert(el.getBoundingClientRect().height>=44,'Speed selector has a practical target');return el.dataset.studySpeedTarget;
       });
       speedIds.forEach(function(id){
-        q('[data-study-details="'+id+'"]').click();
         var panel=q('[data-study-inspection="'+id+'"]');
-        assert(!panel.hidden,'Speed up controls can be disclosed');
+        assert(!panel.hidden,'Speed controls are directly visible');
         var prices=Array.from(panel.querySelectorAll('.cost-icon'));
         prices.forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0&&r.width<=16&&r.height<=16,'disclosed speed price icon sizing');});
       });

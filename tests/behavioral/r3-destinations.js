@@ -104,7 +104,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   ok(active.lumen===prior.lumen-project.cost.lumen && active.shards===prior.shards-project.cost.shard,'project uses exact original start price');
   ok(active.activeStudies[0].remainingSec===project.duration,'project uses original duration');
   same(active.research,prior.research,'project start never buys Forge levels');
-  q('[data-study-details="guardmastery"]').click();q('[data-speed-study="guardmastery"][data-speed="2"]').click();
+  window.selectLabSpeed('guardmastery',2);q('[data-speed-study="guardmastery"][data-speed="2"]').click();
   go('forge');go('research');
   ok(q('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','speed and countdown survive destination changes');
   b.feedbackTick(false);go('forge');go('research');
@@ -123,7 +123,7 @@ window.prepareR3Reload = function(b,ctx,assert){
   document.querySelector('[data-tab="forge"]').click();document.querySelector('[data-mult="5"]').click();
   document.querySelector('[data-research="charge"]').click();
   document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study="guardmastery"]').click();
-  document.querySelector('[data-study-details="guardmastery"]').click();document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
+  window.selectLabSpeed('guardmastery',2);document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
   b.feedbackTick(false);
   assert(b.getState().activeStudies[0].speedMult===2,'paid speed before real reload');
 };

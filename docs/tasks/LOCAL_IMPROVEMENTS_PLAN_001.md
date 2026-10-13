@@ -87,6 +87,9 @@ ac7ca7c. Existing preview tabs reloaded and exact current script verified;
 final/device acceptance pending. [FORMATION_COLLAPSE_001](FORMATION_COLLAPSE_001.md)
 local implementation and focused browser/core checks verified; default collapsed
 and current choice/focus retained, calculations/saves unchanged. Final/device
-acceptance pending. Tasks4–7 implementation NOT STARTED.
-Next action: user reviews the current preview, then starts LAB_SPEED_CONTROLS_001
+acceptance pending. [LAB_SPEED_CONTROLS_001](LAB_SPEED_CONTROLS_001.md) locally
+verified: inline speed/price, immediate purchase and separate queue choice; scoped
+preservation and native checks PASS, final/device acceptance pending.
+Tasks5–7 implementation NOT STARTED.
+Next action: user reviews the current preview, then starts RIFT_HINT_LAYOUT_001
 using the saved guide and latest local checkpoint. No chat created automatically.

@@ -20,7 +20,7 @@ async function run(){
   const context=await send('Target.createBrowserContext',{},null),tab=await send('Target.createTarget',{url:'about:blank',browserContextId:context.browserContextId},null);
   session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
   await send('Page.enable');await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
-  if(name.includes('reduced-motion'))await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:name.includes('reduced-motion')?'reduce':'no-preference'}]});
   const target=new URL(url);target.searchParams.set('qaScenario',name);target.searchParams.set('qaFixture',name==='p2-02b-lab-hierarchy'?'accessibility-mixed-states':'fresh');
   await send('Page.navigate',{url:target.href});
   let result=null;const deadline=Date.now()+20000;

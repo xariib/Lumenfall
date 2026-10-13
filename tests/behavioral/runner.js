@@ -1973,7 +1973,7 @@
             if(count){
               assert(running[0].dataset.runningStudy==='shardstudy','next completion accounts for speed, without mutating queue order');
               assert(running[0].querySelector('[data-study-text]').textContent==='5m 50s remaining · 2x','remaining display preserves seconds from authoritative work divided by speed');
-              window.checkLabSpeedDisclosure(bridge,assert,'shardstudy');
+              window.checkLabSpeedControls(bridge,assert,'shardstudy');
             }
             var choose=document.querySelector('[data-study-choose]');
             assert(!!choose===(count<3),'choose action is offered when a slot is free');

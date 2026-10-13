@@ -1,5 +1,22 @@
 # Lumenfall — current delivery status
 
+13 October 2026: [LAB_SPEED_CONTROLS_001](tasks/LAB_SPEED_CONTROLS_001.md)
+LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted `678ccd7` and Formation docs checkpoint `e3fc6c8`.
+Compact speed selection, priced Buy now and speed queue sit beside Study Queue;
+paid speed and automatic target remain explicit. Existing prices/discounts/work,
+scheduler/saves/offline simulation preserved. Native selectors retain attachment,
+focus and scroll; repeated input cannot charge twice.
+[Evidence](qa/lab-speed-controls-001/README.md): focused890/12 profiles, two causal
+controls, expansion mobile6588, Lab core2465, offline transaction/retry checks,
+19 existing Lab/Inquiry/duration/persistence/navigation cases, native/reduced
+live-timer checks, Lab alert166, Wisp scroll3229 and Formation529 PASS.
+Source `639b5426`, fonts and branding byte-verified in mobile/www and HTTP;
+playable preview open on Lab at http://127.0.0.1:4174/index.html, loaded script
+matches source. Self-review only. No known unresolved scoped failure remains.
+Combined suite/CI, inherited Prism/transport and Android/device/WebView60/TalkBack
+acceptance remain pending. Local milestone only; no remote/APK/signing/archive.
+Next queue item: RIFT_HINT_LAYOUT_001; keep feature open for combined acceptance.
+
 13 October 2026: [FORMATION_COLLAPSE_001](tasks/FORMATION_COLLAPSE_001.md)
 LOCAL IMPLEMENTATION VERIFIED at `678ccd7` on `local/full-debug`, continuing accepted9ad4b6f.
 Formation contribution defaults to collapsed. Its native Expand/Collapse button
@@ -13,7 +30,7 @@ the open playable preview's complete script matches current source.
 No known unresolved task-introduced failure remains in these scoped checks.
 Local milestone only: final combined suite/CI, inherited Prism/standard transport
 limitations and Android/device/WebView60/TalkBack acceptance remain open.
-No remote, APK, signing or archive actions. Next queue item: LAB_SPEED_CONTROLS_001.
+No remote, APK, signing or archive actions. Its next queue item was LAB_SPEED_CONTROLS_001 (now verified above).
 
 User follow-up: leave the Formation chat OPEN; final combined validation and
 Android acceptance will be handled after the improvements. The

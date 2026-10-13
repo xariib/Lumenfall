@@ -58,7 +58,7 @@ window.runResearchDurationQa = function(b,ctx,assert){
   same(b.getState(),committed,'countdown update is observer-only');observer.disconnect();
 
   // The existing paid speed action changes only its usual state; UI reads it.
-  document.querySelector('[data-study-details="guardmastery"]').click();
+  window.selectLabSpeed('guardmastery',1.5);
   document.querySelector('[data-speed-study="guardmastery"][data-speed="1.5"]').click();
   var accelerated=b.getState();
   ok(accelerated.activeStudies[0].speedMult===1.5,'real speed-tier action applied');

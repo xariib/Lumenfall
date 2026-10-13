@@ -84,8 +84,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
     q('[data-tab="'+entry[0]+'"]').click();
     if(entry[0]==='research'){
       var selected=q('.speed-btn.active');assert(selected,'selected speed fixture exists');
-      var panel=selected.closest('[data-study-inspection]');
-      if(panel.hidden)q('[data-study-details="'+panel.dataset.studyInspection+'"]').click();
+
     }
     var selector=entry[1];
     var el=q(selector);assert(el&&el.getClientRects().length,selector+' visible fixture exists');var style=getComputedStyle(el);
@@ -95,8 +94,8 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   });
   document.querySelectorAll('[data-speed-study]').forEach(function(el){
     var active=bridge.getState().activeStudies.find(function(s){return s.id===el.dataset.speedStudy;});
-    assert(el.getAttribute('aria-pressed')===String(Number(el.dataset.speed)===active.speedMult),'only current speed selected');
-    if(Number(el.dataset.speed)<=active.speedMult) assert(el.disabled,'acquired speed cannot be bought again');
+    assert(el.getAttribute('aria-pressed')===String(Number(el.dataset.speed)===(active&&active.speedMult)),'only current speed selected');
+    if(Number(el.dataset.speed)<=(active&&active.speedMult)) assert(el.disabled,'acquired speed cannot be bought again');
   });
 
   var completed=bridge.getState();completed.activeStudies=[];bridge.setState(completed);bridge.refreshAffordability();
