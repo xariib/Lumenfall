@@ -40,6 +40,8 @@ mobile151/12, Formation541/12, hierarchy/nav/controls PASS. Byte preservation,
 source/context/whitespace and actual V8 6.0 parsing PASS. Node24.19.0/Chrome151.
 Normal/200% screens reviewed; Ember390px635→480px. Self-review only.
 Only accessible names changed after combined checks; final layout rechecks them.
-Next: fast-forward the clean local checkout, verify its staged/HTTP assets and
-record integration. User review, full combined CI/GitHub/main and Android/
+Integrated locally at `57b99ce` on `local/full-debug`; all15 source/staged/HTTP
+assets match4174 ([receipt](../qa/wisp-card-simplicity-001/final-preview.json)).
+App opening queued; actual user-tab reload unclaimed. Next: user preview review,
+then final combined acceptance. Full combined CI/GitHub/main and Android/
 WebView60/textZoom/TalkBack/device acceptance remain pending. No remote/APK/archive.

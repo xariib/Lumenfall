@@ -3,6 +3,9 @@
 14 October 2026. LOCAL IMPLEMENTATION VERIFIED, combined with Formation follow-up
 `c16fc35`. Self-review and automated checks only; release acceptance remains OPEN.
 Final source: `3ebf0632351e1d554d7bc9f5d8be8c5c3d7776b96a9877b3cdc08e44173a2cb3`.
+Integrated locally at `57b99ce` on `local/full-debug`. [Current preview receipt](final-preview.json)
+verifies all15 source/staged/HTTP assets at http://127.0.0.1:4174/index.html.
+App opening returned queued; reload the preview to review the new cards.
 
 Final [registered layout](final-layout.txt):17,592 checks/12 profiles PASS,
 including Wisp-specific accessible names on the shorter headings/disclosures.

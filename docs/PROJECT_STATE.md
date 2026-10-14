@@ -8,6 +8,7 @@ visible; game rules/saves and the revised Formation UI are preserved.
 [Evidence](qa/wisp-card-simplicity-001/README.md): layout17,592/12, upgrades12,912,
 scroll3229, core8099/mobile151, Formation541/12 and hierarchy/nav/controls PASS;
 source/context/byte preservation/V8 syntax PASS. Ember390px635→480px. Self-review.
+Integrated locally `57b99ce` on `local/full-debug`; all15 preview4174 assets match.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 
