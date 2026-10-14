@@ -84,11 +84,11 @@ function checks(html=source){const a=app(html),b=a.b,records=[];function test(na
 }
 function main(){const records=checks(),negativeControls=[];
  for(const [name,from,to] of [
-  ['Kindling',"(bondActive('kindling') ? 1.25 : 1)","1"],['Vanguard',"(bondActive('vanguard') ? 0.8 : 1)","1"],
-  ['Quarry',"(bondActive('quarry',ids)?1.20:1)","1"],['Harvest',"(bondActive('harvest',ids)?1.20:1)","1"],
+  ['Kindling',"bondActive('kindling') ? 1.25 : 1","1"],['Vanguard',"(bondActive('vanguard') ? 0.8 : 1)","1"],
+  ['Quarry',"bondActive('quarry',ids)?1.20:1","1"],['Harvest',"bondActive('harvest',ids)?1.20:1","1"],
   ['Autosave','commitFormationMembers(members);','state.formationRebuild = null;'],
   ['Farm clock','farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore','elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore']]){
-  assert(source.includes(from),name+' mutation anchor');let detected=false;try{let mutated=source.replace(from,to);if(name==='Farm clock')mutated=mutated.replace('var gridCrossingsBefore = farmGridCrossings;\n    var gridRemainingBefore = farmGridRemainingSec;', 'var elapsedWholeBefore = elapsedWholeSec;\n    var elapsedFractionBefore = elapsedFractionSec;');checks(mutated);}catch(error){if(!(error instanceof assert.AssertionError)&&!(name==='Farm clock'&&error.message.startsWith('Authoritative simulation stalled without elapsed-time or state progress |')))throw error;detected=true;negativeControls.push({name,error:error.message,failure:error instanceof assert.AssertionError?'ERR_ASSERTION':'authoritative-stall'});}assert(detected,name+' real mutation must fail');
+  assert(source.includes(from),name+' mutation anchor');let detected=false;try{let mutated=source.replace(from,to);if(name==='Farm clock')mutated=mutated.replace(' && !Amount.lt(state.enemyHp,hpBeforeAdvance)','').replace('var gridCrossingsBefore = farmGridCrossings;\n    var gridRemainingBefore = farmGridRemainingSec;', 'var elapsedWholeBefore = elapsedWholeSec;\n    var elapsedFractionBefore = elapsedFractionSec;');checks(mutated);}catch(error){if(!(error instanceof assert.AssertionError)&&!(name==='Farm clock'&&error.message.startsWith('Authoritative simulation stalled without elapsed-time or state progress |')))throw error;detected=true;negativeControls.push({name,error:error.message,failure:error instanceof assert.AssertionError?'ERR_ASSERTION':'authoritative-stall'});}assert(detected,name+' real mutation must fail');
  }
  console.log(JSON.stringify({status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),records,negativeControls}));
 }

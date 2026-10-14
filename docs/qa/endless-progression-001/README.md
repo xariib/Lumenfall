@@ -237,3 +237,65 @@ The connector can read the empty xariib/Lumenfall repository with admin/push
 permissions. A destination clarification is pending; no repo/remote changed,
 no publication, import, merge or APK launch. This is a concrete delivery blocker,
 not an automatic approval rejection. Continue unaffected implementation/checks.
+
+15 October checkpoint: source c6229a12 core136/wide53 PASS. Amount412
+includes chunk-boundary independent integer oracles. Mobile469 PASS across
+12 profiles/48 cases including Ultimate Current/Next display. Recruitment and
+rarity now read independent price tables; six checks isolate mutations.
+Formation Bonds and offline12h complete regressions/controls PASS on these
+bytes. Original a4f82 baseline offline-core PASS separately; current full
+offline-core rerun pending after adapting only approved balance inputs in the
+immutable historical counterfactual. Full browser suite current run72846 is
+open; first new failure is Formation best-now interval focus/availability,
+under investigation. No full-suite PASS claimed.
+
+CandidateZ (a9dc2712, policy5042fd3b) adds Titan Lab24, final-tier Lab31,
+Ultimate Lab32 (later Wisps +2index), 10m–120m Sigils/Ultimate, and Mastery
+20k+1000r Prisms/500k+50kr Sigils. Future work cap10base days; existing paid
+work/speed retained. This is isolated calibration, not applied product balance.
+Budgeted resumable runs regular18218/casual54958/frequent19039/efficient45921.
+First regular21days: Rift2678/Lab23; Titan not yet. Day1 early milestones
+meet the primary target. Recruits21–28/Mythic42–56 are elapsed-day targets.
+No final numeric acceptance yet; casual5.5day midgame wall remains a finding.
+
+High-rank candidateX complete replay PASS: rank10000, Rift1 Push,2seconds
+physical time,341222 kills/341223 endpoint in1379 batches,341704.5ms host
+runtime. Functional overflow/underflow evidence only; no mobile performance
+or earned-campaign acceptance inferred. The source and result are preserved
+in candidate-x.html and candidate-x-push-complete.json.
+
+Continuation checkpoint: Z was deliberately stopped at saved daily checkpoints
+(regular25days, casual22, frequent24, efficient25 approximately; inspect actual
+files). Its regular roster milestone is22 elapsed days and longest closed gap
+1.33374days. Frequent roster21.6667d; efficient18d (secondary policy, faster).
+No Mythic/Ultimate result inferred. Original Z HTML/metadata/checkpoints retained.
+
+AA changes only the exact Patient Growth numerator cursor, retaining the same
+numeric model. Bounded one-cursor-per-Wisp cache copies its pre-discount digits;
+level/rank/base changes are keyed and restarting/jumping is covered. Independent
+BigInt fraction oracle13,416 prices PASS, Tree5923, earlyCurve2801/5, parity305
+and actual V8 6.0 Mastery/price25 PASS (root7176c104). One-hour AA/Z full state
+and summary equality PASS:10,690kills/3Ascends, old9425ms/new2388ms on this host.
+This is comparative host timing, not a mobile benchmark. Fresh AA campaigns
+95269/58421/82799/66607 run regular/casual/frequent/efficient, all decisions
+unchanged and no invented funds. They restart fresh rather than relabel old
+checkpoints. AA candidate source/policy hashes remain in snapshots.
+
+Browser fixture corrections: Formation disclosure541 and best-now1299 native
+checks PASS after using the game's local-date helper instead of UTC date. The
+untouched baseline reproduces the prior midnight focus failure. Chronology
+fixtures were deliberately retuned (Ember50 Research/30 Study,5->10 initial
+Lumen for Auto-Empower, Ember8 and2600s Boss replay,90s Auto-Ascend) to keep
+their original causal assertions active under the approved HP rebalance.
+All six chronology scenarios PASS across focused runs. Long Study/Lab queue
+lifecycle PASS; Boss lifecycle PASS after freezing host processing clock, which
+was previously real while Date was frozen. Intervals are held separately.
+Nonzero/slow host processing remains exercised by offline-core and Lab offline
+integration. Lab speed cap102 checks PASS with exact3s paid work left; that
+fixture also isolates host processing rather than denying legitimate live work.
+
+Current offline-core PASS (159237ms), including original hash-protected archived
+counterfactual, one-second/current split chronology, rollback and nonzero host
+processing. Full browser run72846 is still open on c6229a12/earlier fixtures;
+its failures and stale source-bound golden are retained, no complete PASS.
+Final source-bound full run and Android/integration remain required.

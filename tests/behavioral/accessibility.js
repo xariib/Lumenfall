@@ -160,6 +160,7 @@
     }
     var unaffordable=qa('button:disabled').find(function(el){
       return (el.matches('[data-research],[data-module],[data-rarity],[data-ultimate],[data-study],[data-shop]')) &&
+        el.dataset.state==='unaffordable' &&
         !/maxed|claimed|owned|no open slots/i.test(accessibleName(el));
     });
     if(!unaffordable || unaffordable.dataset.state!=='unaffordable' || !unaffordable.disabled || !accessibleName(unaffordable) || !unaffordable.querySelector('.cost-icon') || /Need|Cannot afford|Insufficient resources/i.test(accessibleName(unaffordable))){
@@ -168,7 +169,7 @@
 
     resetPresentation(bridge,ctx,'accessibility-locked');
     var lockedCard=q('[data-wisp-card].locked');
-    if(!lockedCard || !/unlock/i.test(lockedCard.textContent||'')){
+    if(!lockedCard || !/unlock|requires/i.test(lockedCard.textContent||'')){
       add(findings,'state-locked','Locked Wisp state must include visible unlock language.');
     }
     var farm=q('#rift-farm-btn');

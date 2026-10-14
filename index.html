@@ -3050,6 +3050,7 @@
 // ---------------------------------------------------------------
 function createGameAmount(){
   var SAFE=9007199254740991;
+  var nativePartsCache=Object.create(null),nativePartsKeys=[];
   function clean(p){
     p.d=p.d.replace(/^0+/,'')||'0';
     if(p.d==='0')return {d:'0',e:0,s:1};
@@ -3058,13 +3059,15 @@ function createGameAmount(){
     p.e+=p.d.length-end;p.d=p.d.slice(0,end);return p;
   }
   function digitAdd(a,b){
-    var out=[],i=a.length-1,j=b.length-1,c=0;
-    while(i>=0||j>=0||c){var n=(i>=0?Number(a.charAt(i--)):0)+(j>=0?Number(b.charAt(j--)):0)+c;out.push(n%10);c=Math.floor(n/10);}
-    return out.reverse().join('');
+    var out=[],i=a.length,j=b.length,c=0;
+    // Seven decimal digits keep every chunk/carry exactly representable and
+    // avoid one allocation/conversion per digit on mature currency wallets.
+    while(i>0||j>0||c){var ai=Math.max(0,i-7),bi=Math.max(0,j-7),n=Number(a.slice(ai,i)||0)+Number(b.slice(bi,j)||0)+c;out.push(String(n%10000000).padStart(7,'0'));c=Math.floor(n/10000000);i=ai;j=bi;}
+    return out.reverse().join('').replace(/^0+/,'')||'0';
   }
   function digitSub(a,b){
-    var out=[],i=a.length-1,j=b.length-1,c=0;
-    while(i>=0){var n=Number(a.charAt(i--))-(j>=0?Number(b.charAt(j--)):0)-c;c=n<0?1:0;out.push(n+c*10);}
+    var out=[],i=a.length,j=b.length,c=0;
+    while(i>0){var ai=Math.max(0,i-7),bi=Math.max(0,j-7),n=Number(a.slice(ai,i)||0)-Number(b.slice(bi,j)||0)-c;c=n<0?1:0;out.push(String(n+c*10000000).padStart(7,'0'));i=ai;j=bi;}
     return out.reverse().join('').replace(/^0+/,'')||'0';
   }
   function digitMul(a,b){
@@ -3078,6 +3081,7 @@ function createGameAmount(){
   function nativeInteger(n){
     // Reconstruct the actual IEEE-754 integer, rather than its shortened
     // display string. Old large wallets therefore retain their actual value.
+    var key=String(n),cached=nativePartsCache[key];if(cached)return {d:cached.d,e:cached.e,s:cached.s};
     var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,Math.abs(n));
     var hi=v.getUint32(0),lo=v.getUint32(4),shift=((hi>>>20)&2047)-1023-52;
     var d=String((hi&1048575)*4294967296+lo+4503599627370496);
@@ -3085,7 +3089,9 @@ function createGameAmount(){
     // combat values does not perform hundreds of decimal multiplications.
     while(shift>=26){d=digitMul(d,'67108864');shift-=26;}
     if(shift>0)d=digitMul(d,String(Math.pow(2,shift)));
-    return clean({d:d,e:0,s:n<0?-1:1});
+    var p=clean({d:d,e:0,s:n<0?-1:1});nativePartsCache[key]=p;nativePartsKeys.push(key);
+    if(nativePartsKeys.length>128)delete nativePartsCache[nativePartsKeys.shift()];
+    return {d:p.d,e:p.e,s:p.s};
   }
   function parts(value){
     if(typeof value==='number'){
@@ -3126,7 +3132,7 @@ function createGameAmount(){
     return exactAdd(a,b);
   }
   function exactAdd(a,b){
-    var x=parts(a),y=parts(b),e=Math.min(x.e,y.e);
+    var x=parts(a),y=parts(b);if(x.d==='0')return encode(y);if(y.d==='0')return encode(x);var e=Math.min(x.e,y.e);
     var xd=x.d+'0'.repeat(x.e-e),yd=y.d+'0'.repeat(y.e-e);
     var d,s=x.s;
     if(x.s===y.s)d=digitAdd(xd,yd);
@@ -3225,6 +3231,7 @@ var Amount=createGameAmount();
 var ENDLESS_PROGRESSION = {
   recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:15},thorn:{depth:35,lab:18},void:{depth:55,lab:20},aurora:{depth:75,lab:21},titan:{depth:100,lab:22}},
   recruitLumen:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
+  rarityLumenBase:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,29],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
   ultimate:{sigils:{ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000},module:15,depth:120,lab:30,forge:10,ascends:50},
   mastery:{prismBase:200,prismStep:10,sigilBase:5000,sigilStep:500,depthBase:200,depthStep:25,labBase:30,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
@@ -6125,7 +6132,7 @@ function totalActivePartyPower(){
   });
   return sum;
 }
-var treeEmpowerPriceCache=Object.create(null),treeEmpowerPriceKeys=[];
+var treeEmpowerPriceCache=Object.create(null),treeEmpowerPriceKeys=[],treeEmpowerNumerators=Object.create(null);
 function treeRationalEmpowerCost(sp,level,rank){
   var discountPercent=Amount.sub(100,Amount.min(60,Amount.mul(3,nodeLevel('bonds'))));
   var key=(sp.id + ':' + level + ':' + rank + ':' + discountPercent);
@@ -6135,7 +6142,13 @@ function treeRationalEmpowerCost(sp,level,rank){
   if(Amount.valid(estimate) && Amount.le(estimate,Number.MAX_SAFE_INTEGER)){
     // Decimal limbs: denominator is 100^(level+1), so integer rounding needs
     // only a decimal split. No BigInt syntax/runtime dependency on WebView60.
-    var digits=String(sp.baseCost).split('').reverse().map(Number);
+    // Consecutive Empower quotes share the exact integer numerator. Keep one
+    // cursor per Wisp, before the discount, to avoid rebuilding every power
+    // after each level in repeated Ascend runs. Values and rounding are identical.
+    var prior=treeEmpowerNumerators[sp.id],from=0;
+    var reusable=prior && prior.base===sp.baseCost && prior.rank===rank && prior.level<=level;
+    var digits=reusable?prior.digits.slice():String(sp.baseCost).split('').reverse().map(Number);
+    if(reusable)from=prior.level;
     function multiply(factor){
       var carry=0;
       for(var j=0;j<digits.length;j++){
@@ -6144,7 +6157,8 @@ function treeRationalEmpowerCost(sp,level,rank){
       }
       while(carry){digits.push(carry%10);carry=Math.floor(carry/10);}
     }
-    for(var i=0;Amount.lt(i,level);i++) multiply(Amount.lt(i,25) ? 113 : Amount.sub(113,rank));
+    for(var i=from;Amount.lt(i,level);i++) multiply(Amount.lt(i,25) ? 113 : Amount.sub(113,rank));
+    treeEmpowerNumerators[sp.id]={base:sp.baseCost,rank:rank,level:level,digits:digits.slice()};
     multiply(discountPercent);
     var decimal=digits.reverse().join(''),places=Amount.mul(2,Amount.add(level,1)),cut=Amount.sub(decimal.length,places);
     result=Amount.gt(cut,0) ? Number(decimal.slice(0,cut)) : 0;
@@ -6191,7 +6205,7 @@ function rarityCost(sp, tier){
   tier = Amount.max(0,Amount.min(Amount.sub(RARITY_SHARD_COSTS.length,1),tier));
   return {
     shard: labDiscountCost(RARITY_SHARD_COSTS[tier],Amount.mul(2,labExpansionLevel('rarityappraisal'))),
-    lumen: Amount.round(Amount.mul(sp.baseCost,RARITY_LUMEN_BASE_MULTS[tier]),'round')
+    lumen: Amount.round(Amount.mul(ENDLESS_PROGRESSION.rarityLumenBase[sp.id],RARITY_LUMEN_BASE_MULTS[tier]),'round')
   };
 }
 
@@ -8252,7 +8266,7 @@ function nextRiftObjective(){
   }
   SPIRITS.forEach(function(sp){
     var unlock=treeWispUnlockDepth(sp);
-    if(unlock>p) candidates.push({depth:unlock,kind:'WISP',title:'Awaken '+sp.shortName,detail:sp.heroClass+' · Rift '+unlock});
+    if(!wispRecruitmentUnlocked(sp) && unlock>p) candidates.push({depth:unlock,kind:'WISP',title:'Awaken '+sp.shortName,detail:sp.heroClass+' · Requires '+wispRecruitmentRequirementText(sp)});
   });
 
   var nextBoss = Math.ceil((p+1)/10)*10;
@@ -8714,12 +8728,17 @@ function wispRarityEffectsMarkup(tier){
   return '<div class="ability-effects rarity-effects"><div><span class="ability-effect-label">Current</span><p data-rarity-current>'+effect(tier)+'</p></div>'+
     '<div><span class="ability-effect-label">Next</span><p data-rarity-next>'+(tier>=5?'Maxed':effect(tier+1))+'</p></div></div>';
 }
+function wispUltimateEffectsMarkup(sp){
+  var current=sp.abilityType==='support' ? 'Support buff +'+(25+forgeLevel('amplifiertrim'))+'% for 1s'+(forgeLevel('resonantedge')?'; Resonant Edge hit ×1':'') : sp.abilityType==='ranged' ? 'Ability damage and Shards ×1' : sp.abilityType==='druid' ? 'Ability damage and Lumen ×1' : 'Ability damage ×1';
+  return '<div class="ability-effects ultimate-effects"><div><span class="ability-effect-label">Current</span><p data-ultimate-current>'+current+'</p></div>'+
+    '<div><span class="ability-effect-label">Next</span><p data-ultimate-next>'+ultimateEffectText(sp)+'</p></div></div>';
+}
 function wispMasteryMarkup(sp){
   if(!wispUpgradesMaxed(sp.id))return '';
   var p=getWispMasteryPlan(sp),helpId='wisp-mastery-requirement-'+sp.id;
   return '<section class="wisp-mastery-section" aria-label="'+sp.name+' Mastery"><div><h3>Mastery <span class="wisp-mastery-rank">Rank '+p.rank+'</span></h3>'+
     '<p data-mastery-current>Current: Own Power ×'+masteryFactorText(p.rank)+'</p><p data-mastery-next>Next: Own Power ×'+masteryFactorText(p.rank+1)+'</p>'+
-    '<p>Permanent growth. Keeps all Wisp upgrades through Ascend.</p><p id="'+helpId+'">'+(p.ready?'Requires '+wispRequirementText(p.requirements):'Recruit this Wisp first.')+'</p></div>'+
+    '<p>Permanent growth. Keeps all Wisp upgrades through Ascend.</p><p id="'+helpId+'">'+(p.ready?'':'Recruit this Wisp first. ')+'Requires '+wispRequirementText(p.requirements)+'</p></div>'+
     '<div class="hero-actions"><button class="mini-btn mastery-btn" data-mastery="'+sp.id+'" aria-describedby="'+helpId+'" '+(p.affordable?'':'disabled')+'>Mastery Up'+purchasePriceMarkup('prism',p.cost.prism,'wisp-upgrade-price')+purchasePriceMarkup('sigil',p.cost.sigil,'wisp-upgrade-price')+'</button></div></section>';
 }
 function renderSpirits(keepScroll){
@@ -8779,7 +8798,7 @@ function renderSpirits(keepScroll){
       ((resonanceOwned ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="',sp.id),'" aria-describedby="'),resonanceHelpId),'" '),resonanceDisabled?'disabled':''),'>Resonate — Fill ability to 100'),'<span>'),sigilResonanceCost()),' Sigils</span></button>') : '') + '<p class="sigil-resonance-help" id="' + resonanceHelpId + '">Spend ' + sigilResonanceCost() + ' Sigils to fill this Active Wisp\'s ability resource to 100. This is a refill, not a permanent upgrade. ' + 'Requires all Wisp Ultimates. ' + Amount.sub(sigilResonanceLimit(),resonanceUses) + ' of ' + sigilResonanceLimit() + ' uses left this run, shared across all Wisps. Resets on Ascend.' + forgeResonanceBonusText() + '</p>') : '';
     var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
-      : '<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
+      : wispUltimateEffectsMarkup(sp)+'<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
         '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" aria-describedby="wisp-ultimate-requirement-'+sp.id+'" '+(ultimatePlan.affordable?'':'disabled')+'>Unlock Ultimate'+purchasePriceMarkup('sigil',ultCost,'wisp-upgrade-price')+'</button>')+'</div>';
     var empowerOn = state.empowerQueue[sp.id]!==false;
     var pendingRebuild = intendedFormationIds().indexOf(sp.id)!==-1 && !recruited;

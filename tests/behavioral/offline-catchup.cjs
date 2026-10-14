@@ -13,7 +13,7 @@ const baseline=fs.readFileSync(path.join(root,'docs/recovery/2026-10-07/lead_con
 assert.equal(require('node:crypto').createHash('sha1').update('blob '+Buffer.byteLength(baseline)+'\0'+baseline).digest('hex'),'ea44431c163569548973d9e489f75345749a07ee','original product oracle blob');
 // Replace only the two historical reward bodies. A span between named functions
 // also erased later Tree helpers that the unchanged Ascend path still calls.
-function legacyPrismPolicy(current,frozen){
+function legacyPrismPolicy(current,frozen,names){
  function body(html,name){
   const pattern=new RegExp('^function '+name+'\\([^\\n]*\\)\\{\\n([\\s\\S]*?)^\\}','gm');
   const matches=Array.from(html.matchAll(pattern));
@@ -21,9 +21,13 @@ function legacyPrismPolicy(current,frozen){
   const match=matches[0],header=match[0].slice(0,match[0].indexOf('\n')+1);
   return {header,text:match[1],start:match.index+header.length};
  }
- for(const name of ['ascendFullPrismGainForCleared','ascendPrismBreakdown']){
+ for(const name of names||['ascendFullPrismGainForCleared','ascendPrismBreakdown']){
   const actual=body(current,name),original=body(frozen,name);
-  assert.equal(actual.header,original.header,'unchanged reward signature '+name);
+  if(names){
+   // The current reward helpers also accept luminous context. The historical
+   // body intentionally ignores that optional operand in this counterfactual.
+   assert.equal(actual.header.replace(/,\s*luminous(?=\))/,'').replace(/\s/g,''),original.header.replace(/\s/g,''),'compatible reference signature '+name);
+  }else assert.equal(actual.header,original.header,'unchanged reference signature '+name);
   current=current.slice(0,actual.start)+original.text+current.slice(actual.start+actual.text.length);
  }
  return current;
@@ -133,6 +137,10 @@ function baselineState(actual,expected,seed,label){
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
+ const wispIds=['ember','tide','stone','gale','thorn','void','aurora','titan'],oldDepths=[1,3,6,9,12,18,24,32],newDepths=[1,3,6,15,35,55,75,100],newLabs=[0,0,0,15,18,20,21,22];
+ assert.deepEqual(actual.wispMastery,Object.fromEntries(wispIds.map(id=>[id,0])),label+' no invented Mastery');
+ assert.deepEqual(actual.recruitmentEntitlements,Object.fromEntries(wispIds.map((id,i)=>[id,id==='ember'||(seed.spirits?.[id]||0)>0||(seed.heroRarity?.[id]||0)>0||(seed.wispModules?.[id]||0)>0||seed.wispUltimate?.[id]===true||seed.maxDepthEver>=oldDepths[i]||(actual.maxDepthEver>=newDepths[i]&&(actual.longStudyLevels.wispascend||0)>=newLabs[i])])),label+' retained old or earned new recruitment access');
+ delete actual.wispMastery;delete actual.recruitmentEntitlements;
  assert(seed.research.charge<=10&&!seed.researchQueue.charge,label+' historical comparison exercises unchanged Swift route');
  assert.equal(actual.swiftRecoveryRefund,null,label+' no overcap refund');assert.equal(actual.swiftRecoveryRefundAudit,null,label+' no overcap audit');
  delete actual.swiftRecoveryRefund;delete actual.swiftRecoveryRefundAudit;
@@ -163,7 +171,7 @@ function baselineState(actual,expected,seed,label){
  }
  assert.equal(actual.treeTrainingProgress,0,label+' exact unpurchased Tree training default');
  delete actual.treeTrainingProgress;
- const newForgeIds=['cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
+ const newForgeIds=['masterwork','cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
  for(const [field,value] of [['research',0],['researchQueue',false]])for(const id of newForgeIds){
   assert.equal(actual[field][id],value,label+' exact unpurchased Forge default '+field+'.'+id);
   delete actual[field][id];
@@ -195,8 +203,8 @@ function baselineState(actual,expected,seed,label){
    expected.formationPresets[intent.preset].join(',')===intent.members.join(',')
    ? intent.preset : expected.activeFormationPreset;
  let refund=0;for(let i=0;i<(seed.nodes?.reserves||0);i++)refund+=Math.ceil(6*Math.pow(1.6,i));
- assert.equal(actual.schemaVersion,4,label+' migrated schema');
- assert.deepEqual(existing,{...expected,schemaVersion:4,owned:oldOwnership,activeFormationPreset:selected,
+ assert.equal(actual.schemaVersion,5,label+' migrated schema');
+ assert.deepEqual(existing,{...expected,schemaVersion:5,owned:oldOwnership,activeFormationPreset:selected,
   prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0)},label);
 }
 function runAsync(seed,seconds,batch=256){
@@ -288,12 +296,17 @@ const samePaidWork=runAsync(beyond,12*3600);assert.equal(long.result.kills,sameP
 // as a four-Bond counterfactual; actual eight-Bond long/split checks stay intact.
 // Preserve the legacy four-Bond AND legacy Prism policy for the frozen
 // scheduler oracle. Actual eight-Bond/new-Prism full-window tests above remain.
-const legacyBondAnchor=oldRewardSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
+// User-approved progression balance changes the old encounter/reward/work
+// inputs. Freeze only those inputs on this explicitly historical comparison;
+// all actual-current long/whole/split, transaction and cap checks remain above.
+// The original archived HTML is still byte-checked and never edited.
+const legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration']);
+const legacyBondAnchor=legacyBalanceSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
 assert(legacyBondAnchor,'legacy Bond control function');
-assert.equal(oldRewardSource.split(legacyBondAnchor[0]).length,2,'one legacy Bond control anchor');
-const legacyBondSource=oldRewardSource.replace(legacyBondAnchor[0],
+assert.equal(legacyBalanceSource.split(legacyBondAnchor[0]).length,2,'one legacy Bond control anchor');
+const legacyBondSource=legacyBalanceSource.replace(legacyBondAnchor[0],
  legacyBondAnchor[0]+"\n  if(['kindling','vanguard','quarry','harvest'].indexOf(bondId)!==-1) return false;");
-assert.notEqual(legacyBondSource,oldRewardSource,'legacy Bond control anchor');
+assert.notEqual(legacyBondSource,legacyBalanceSource,'legacy Bond control anchor');
 for(const rawSeed of [original,clear20,off]){
  const seed=copy(rawSeed);seed.research.charge=9;seed.researchQueue.charge=false;
  for(const id of ['focus','sense','formation','resolve'])seed.researchQueue[id]=false;

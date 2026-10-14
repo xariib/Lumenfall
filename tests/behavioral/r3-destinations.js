@@ -15,7 +15,8 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   ok(!b.getFlags().reloadInProgress,'timer-only test pause leaves production persistence enabled');
   b.setState(seed);b.renderLayout();
   var addedForge=['cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
-  same(catalogue.upgrades,['focus','sense','formation','resolve','charge','arcanecal','conduction','luminoustracking'].concat(addedForge),'eight retained direct upgrades followed by sixteen Forge additions');
+  same(catalogue.upgrades.filter(function(id){return id!=='masterwork';}),['focus','sense','formation','resolve','charge','arcanecal','conduction','luminoustracking'].concat(addedForge),'eight retained direct upgrades followed by sixteen Forge additions');
+  ok(catalogue.upgrades.filter(function(id){return id==='masterwork';}).length===1,'one additive Masterwork path');
   same(catalogue.projects,['wispascend','guardmastery','riftattune','shardstudy','lumenstudy','formationstudy','motestudy','prismstudy','measuredinquiry','labcapacity','procurement','catalysis','focusprotocol','fieldnotes','curriculum','bossledger','luminousdistill','sigilcartography','rarityappraisal','modulefabrication','ultimateanalysis','resonantefficiency','adaptivegrowth'],'nine retained IDs plus fourteen distinct timed expansion projects');
   var nav=Array.from(document.querySelectorAll('nav.tabbar .tab-btn'));
   same(nav.map(function(n){return n.dataset.tab;}),['spirits','workshop','battle','ascend','deeds'],'five ordered main destinations');

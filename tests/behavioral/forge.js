@@ -11,6 +11,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
   var f=b.forge,copy=function(s){return JSON.parse(JSON.stringify(s));},checks=0;
   function ok(v,m){checks++;assert(v,m);}
   function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
+  function exactInteger(value){if(typeof value==='number')return BigInt(value);var p=value.split('e');return BigInt(p[0])*10n**BigInt(p[1]);}
   function seed(){return window.forgeSeed(b,ctx);}
   function saved(raw){var s=Object.assign(seed(),raw);if(raw.schemaVersion===undefined)delete s.schemaVersion;if(raw.researchQueue===undefined)delete s.researchQueue;return s;}
   var ids=['arcanecal','conduction','luminoustracking'],legacy=['focus','sense','formation','resolve','charge'],expansion=window.forgeExpansionIds;
@@ -21,9 +22,10 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
   function noEnemyChange(a,c,label){['enemyDepth','enemyHp','enemyMaxHp','enemyIsLuminous','luminousAccum'].forEach(function(k){same(a[k],c[k],label+' '+k);});}
   if(ctx.scenario==='forge-contracts'){
     ok(!b.getFlags().reloadInProgress,'timer-only test pause leaves production persistence enabled');
-    same(nodes.map(function(n){return n.id;}),legacy.concat(ids,expansion),'eight retained IDs followed by sixteen approved Forge additions');
-    ok(new Set(nodes.map(function(n){return n.id;})).size===24,'twenty-four unique retained catalogue IDs');
-    ok(nodes.filter(function(n){return !n.retiredTo;}).length===20,'twenty active Forge tracks');
+    same(nodes.filter(function(n){return n.id!=='masterwork';}).map(function(n){return n.id;}),legacy.concat(ids,expansion),'eight retained IDs followed by sixteen approved Forge additions');
+    ok(nodes.filter(function(n){return n.id==='masterwork';}).length===1,'one additive Masterwork path');
+    ok(new Set(nodes.filter(function(n){return n.id!=='masterwork';}).map(function(n){return n.id;})).size===24,'twenty-four unique retained catalogue IDs');
+    ok(nodes.filter(function(n){return !n.retiredTo&&n.id!=='masterwork';}).length===20,'twenty retained active Forge tracks');
     [b.freshStateSnapshot(),{schemaVersion:1,research:{focus:123},researchQueue:{focus:true,charge:false}},{labQueueOn:true,research:{sense:42}}].forEach(function(raw,i){
       var s=f.canonical(saved(raw));ids.concat(expansion).forEach(function(id){ok(s.research[id]===0 && s.researchQueue[id]===false,'missing IDs 0/OFF '+i+' '+id);});
       if(i===1)ok(s.research.focus===123 && s.researchQueue.focus && !s.researchQueue.charge,'v1 legacy values retained');
@@ -49,7 +51,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
     });
     legacy.forEach(function(id){var s=seed();var one=f.cost(id,0,1);s.lumen=one.lumen;s.shards=one.shard;b.setState(s);var before=b.getState();f.buy(id,5);if(id==='charge'){ok(b.getState().research.charge===1,'capped Swift partial affordable count');ok(b.getState().shards===before.shards-one.shard,'capped Swift pays actual one-level quote');}else same(b.getState(),before,'retired tracks remain unchanged '+id);
       s.schemaVersion=3;s.research[id]=11;var funded=f.cost(id,11,1);s.lumen=funded.lumen;s.shards=funded.shard;b.setState(s);ok(f.plan(id,1).maxed===(id==='charge'),'Swift is capped; retirement remains distinct');var capped=b.getState();f.buy(id,1);ok(b.getState().research[id]===11,'historical raw ownership stays11');same(b.getState(),capped,'overcap/retired purchase changes no value');if(id!=='charge')ok(f.plan(id,1).reason==='retired','closed purchase is distinct from an effect cap');});
-    nodes.filter(function(n){return !n.retiredTo;}).forEach(function(n){var s=seed();s.lumen=1e30;s.shards=1e30;b.setState(s);var before=b.getState();ok(!f.plan(n.id,1).affordable,'huge wallet cannot represent an exact debit '+n.id);f.buy(n.id,1);same(b.getState(),before,'unrepresentable purchase preserves every field '+n.id);});
+    nodes.filter(function(n){return !n.retiredTo;}).forEach(function(n){var s=seed();s.maxDepthEver=200;s.lumen=1e30;s.shards=1e30;b.setState(s);var before=b.getState(),price=f.cost(n.id,0,1);ok(f.plan(n.id,1).affordable,'large wallet funds an exact debit '+n.id);f.buy(n.id,1);var after=b.getState();ok(exactInteger(before.lumen)-exactInteger(after.lumen)===exactInteger(price.lumen),'independent exact large Lumen debit '+n.id);ok(exactInteger(before.shards)-exactInteger(after.shards)===exactInteger(price.shard),'independent exact large Shard debit '+n.id);ok(after.research[n.id]===1,'one funded level '+n.id);noEnemyChange(after,before,'large wallet cannot reroll');});
     [19,20,59,60].forEach(function(n){var s=seed();s.research.focus=n;ids.concat(expansion).forEach(function(id){s.research[id]=100;});b.setState(s);b.upgradeClarity.render();var d=f.deeds();ok(d.total===683,'one-time Comet pool');['labmaster','labqueue'].forEach(function(id){var item=d.items.find(function(a){return a.id===id;}),target=id==='labmaster'?20:60;ok(item.eligible===(n+(ids.length+expansion.length)*100>=target) && item.progress.current===n+(ids.length+expansion.length)*100,'all paid Forge threshold '+n+' '+id);var progress=document.querySelector('[data-deed-progress="'+id+'"]'),scope=progress.closest('.ach-card').querySelector('.deed-scope');ok(scope.textContent==='Counts paid levels in all current and historical Forge upgrades. Historical levels above a current cap still count. Lab Project levels do not count.','Deed explains current and historical Forge levels');ok(item.text.endsWith('Forge levels')&&!item.text.includes('Swift Recovery'),'Deed progress stays short with explicit Forge unit');});});
     var s=seed();s.achieved.labmaster=true;s.achieved.labqueue=true;s.research.focus=0;b.setState(s);var before=b.getState();f.achievements();var once=b.getState();f.achievements();ok(b.getState().comets===once.comets,'no double rewards');ok(once.achieved.labmaster && once.achieved.labqueue,'earned Deeds not revoked');
     // Pure previews and real UI purchase: displayed plan equals the actual debit.

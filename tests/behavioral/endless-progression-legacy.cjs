@@ -28,4 +28,8 @@ var paid=q.advance(0,{kind:'offline',clockStartMs:compiled.exports.CLOCK});eq(b.
 q.set(s);s.depth=s.enemyDepth=1;s.enemyMaxHp=s.enemyHp=b.amount.mul(q.passive(1),'11e-324');Object.keys(s.empowerQueue).forEach(function(id){s.empowerQueue[id]=false;});q.set(s);
 var partial=q.advance(.001,{kind:'live',clockStartMs:compiled.exports.CLOCK,resumable:true});partial.next();ok(b.amount.ge(q.get().totalKills,1),'subnormal partial damage resolves in actual V8');partial.return();
 eq(q.get().recruitmentEntitlements.ember,true,'recruitment entitlement kept');
+var prices=q.fresh();prices.nodes.gentlegrowth=5;prices.nodes.bonds=7;q.set(prices);
+[[26,181],[27,196],[28,211],[160,5455005],[30,246],[120,251099],[321,1312259732725],[35,362]].forEach(function(row){
+  q.get().spirits.ember=row[0];eq(q.empowerCost('ember'),row[1],'exact cached price in actual V8 '+row[0]);
+});
 console.log(JSON.stringify({status:'PASS',checks:checks,node:process.version,v8:process.versions.v8,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),limits:'JavaScript engine evidence; Android/WebView DOM and device acceptance remain separate.'}));

@@ -153,7 +153,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   ok(!over.textContent.includes('level 14')&&!over.textContent.includes('Lv.14')&&over.textContent.includes('without another level or bonus'),'neutral overcap paid-record presentation');
   ok(Array.from(over.querySelectorAll('[data-speed-study]')).every(function(el){return el.disabled;}),'no new paid acceleration for maxed record');
   var speed=seed();speed.longStudyLevels.measuredinquiry=10;install(speed);ok(t.start('guardmastery'),'real legacy start at Inquiry cap');window.selectLabSpeed('guardmastery',8);
-  var prior=b.getState();q('[data-speed-study="guardmastery"][data-speed="8"]').click();var accelerated=b.getState();
+  var prior=b.getState();b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="8"]').click();});var accelerated=b.getState();
   ok(t.speedCost(8)===473&&accelerated.motes===prior.motes-473&&active('guardmastery').speedMult===8,'8x unchanged473 actual debit');
   ok(active('guardmastery').remainingSec===120&&active('guardmastery').totalDurationSec===120,'speed preserves discounted snapshot');
   ok(q('[data-study-text="guardmastery"]').textContent==='15s remaining · 8x','capdiscount plus8x actual countdown');

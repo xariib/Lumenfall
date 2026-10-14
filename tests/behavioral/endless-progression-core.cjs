@@ -8,6 +8,7 @@ const source=original.replace("if(document.readyState==='loading'){",`window.end
   ultimatePlan:getWispUltimatePlan,masteryPlan:getWispMasteryPlan,mastery:buyWispMastery,
   farm:enterFarmMode,curve:endlessCurveDepth,studyWork:studyDuration,studyPrice:studyCost,
   factor:wispMasteryFactor,requirements:wispRequirementText,
+  recruitmentPrice:function(id,price){ENDLESS_PROGRESSION.recruitLumen[id]=price;},rarityPrice:rarityCost,
   start:function(id){return startStudy(LONG_STUDIES.find(function(n){return n.id===id;}));},speed:applySpeedTier,
   speedPrice:function(id,mult){return speedTierCost(mult,LONG_STUDIES.find(function(n){return n.id===id;}));},speedGrowth:function(growth){ENDLESS_PROGRESSION.speedMoteGrowth=growth;}
 };if(document.readyState==='loading'){`);
@@ -26,6 +27,11 @@ function game(){const x=app(source);return {x,q:x.q,b:x.q.endless};}
  q.ascend();for(const id of Object.keys(q.get().spirits))ok(b.unlocked(q.sp(id)),'old entitlements survive Ascend '+id);
 }
 function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthEver=200;s.depth=100;s.ascendCount=50;s.heroRarity.ember=4;s.wispModules.ember=20;s.longStudyLevels.wispascend=30;s.research.arcanecal=10;s.research.masterwork=1;s.nodes.swift=10;s.lumen=1e12;s.shards=1e12;s.prisms=1000;s.sigils=50000;return {x,q,b,s};}
+{
+ const {q,b}=game(),s=q.fresh();s.maxDepthEver=200;s.longStudyLevels.wispascend=30;q.set(s);const sp=q.sp('void');
+ eq(q.empowerCost('void'),70000,'independent recruitment base');eq(b.rarityPrice(sp,0).lumen,560000,'independent rarity base');eq(b.ultimatePlan(sp).cost,45000,'independent Ultimate table');
+ b.recruitmentPrice('void',700000);eq(q.empowerCost('void'),700000,'recruitment table changes its own quote');eq(b.rarityPrice(sp,0).lumen,560000,'recruitment price cannot reprice rarity');eq(b.ultimatePlan(sp).cost,45000,'recruitment price cannot reprice Ultimate');
+}
 {
  const {q,b,s}=late();q.set(s);const sp=q.sp('ember');ok(b.rarityPlan(sp).affordable,'Mythic full requirements');
  for(const [field,value]of [['level',139],['depth',99],['ascends',39],['lab',28],['forge',9]]){

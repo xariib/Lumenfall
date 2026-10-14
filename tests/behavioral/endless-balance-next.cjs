@@ -9,10 +9,14 @@ assert(moteGrowth===0||moteGrowth>=1&&moteGrowth<=3,'supported calibration range
 const maxWorkSec=Number(process.argv[5]||777600);
 assert(Number.isSafeInteger(maxWorkSec)&&maxWorkSec>=86400&&maxWorkSec<=7776000,'bounded calibration work');
 const finalLabShift=Number(process.argv[6]||0);assert(Number.isInteger(finalLabShift)&&finalLabShift>=0&&finalLabShift<=5);
+const lastRecruitLab=Number(process.argv[7]||22),ultimateScale=Number(process.argv[8]||1),masteryPrismScale=Number(process.argv[9]||1);
+assert(Number.isInteger(lastRecruitLab)&&lastRecruitLab>=22&&lastRecruitLab<=30);assert(Number.isInteger(ultimateScale)&&ultimateScale>=1&&ultimateScale<=100);assert(Number.isInteger(masteryPrismScale)&&masteryPrismScale>=1&&masteryPrismScale<=1000);
 function replace(from,to){assert.equal(source.split(from).length,2,'one calibration anchor '+from);source=source.replace(from,to);}
 replace('masterworkPowerGrowth:1,','masterworkPowerGrowth:1.25,tailStart:1000,tailSlope:.03,');
 if(maxWorkSec!==777600)replace('maxStudyWorkSec:777600','maxStudyWorkSec:'+maxWorkSec);
 if(finalLabShift){replace('lab:[0,5,12,20,29]','lab:[0,5,12,20,'+(29+finalLabShift)+']');replace('module:15,depth:120,lab:30','module:15,depth:120,lab:'+(30+finalLabShift));replace('labBase:30','labBase:'+(30+finalLabShift));}
+if(lastRecruitLab!==22)replace('titan:{depth:100,lab:22}','titan:{depth:100,lab:'+lastRecruitLab+'}');
+if(masteryPrismScale!==1)replace('prismBase:200,prismStep:10','prismBase:'+(200*masteryPrismScale)+',prismStep:'+(10*masteryPrismScale));
 replace('unlockDepth:120,lumenBase:50000000,lumenGrowth:1.35,shardBase:500000','unlockDepth:70,lumenBase:1000000,lumenGrowth:1.35,shardBase:25000');
 replace('function endlessCurveDepth(depth){return depth<=ENDLESS_PROGRESSION.curveStart?depth:ENDLESS_PROGRESSION.curveStart+ENDLESS_PROGRESSION.curveWidth*Math.log1p((depth-ENDLESS_PROGRESSION.curveStart)/ENDLESS_PROGRESSION.curveWidth);}',`function endlessCurveDepth(depth){
  var g=ENDLESS_PROGRESSION;if(depth>1e9)return endlessCurveDepth(1e9)+g.curveWidth*Math.log(depth/1e9);
@@ -24,9 +28,12 @@ replace("longStudyLevel('wispascend'),g.lab)","longStudyLevel('wispascend'),g.la
 // Price adjustment applies to future uncapped starts only; paid work remains.
 replace('return Amount.pow(growth,level);','return Amount.pow(node.levelCap===undefined?1.6:growth,level);');
 replace('return Amount.mul(Amount.pow(growth,ENDLESS_PROGRESSION.lateStudyCostStart),','return Amount.mul(Amount.pow(1.6,ENDLESS_PROGRESSION.lateStudyCostStart),');
-replace('ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000','ember:500000,tide:750000,stone:1000000,gale:1500000,thorn:2000000,void:3000000,aurora:4000000,titan:6000000');
+replace('ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000',['ember','tide','stone','gale','thorn','void','aurora','titan'].map((id,i)=>id+':'+[500000,750000,1000000,1500000,2000000,3000000,4000000,6000000][i]*ultimateScale).join(','));
 replace('sigilBase:5000,sigilStep:500','sigilBase:500000,sigilStep:50000');
 if(moteGrowth){
  replace('speedMoteGrowth:1,','speedMoteGrowth:'+moteGrowth+',');
 }
-fs.writeFileSync(output,source);fs.writeFileSync(output.replace(/\.html$/,'.json'),JSON.stringify({status:'EXPERIMENT',baseSourceSha256:crypto.createHash('sha256').update(original).digest('hex'),sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),moteGrowth,maxWorkSec,finalLabShift,changes:['Masterwork opens five ranks and compounds all own Wisp Power by25%/level, including abilities but no Support buff change','Masterwork unlock70, costs1m Lumen/25k Shards, growth1.35','effective depth linear .03 per Rift after1000, logarithmic again above1e9 for representable exponents','future uncapped Lab base growth1.6 through30, then1.35; original capped prices/paid work/speed untouched','later Wisps require up to14 more completed Wisp Ascendancy levels for Mythic/Ultimate','Ultimate500k–6m Sigils, Mastery500k+50kr Sigils','optional future uncapped speed Mote prices scale by completed project level; existing speed values/paid work unchanged'],limits:'Calibration proposal; not applied or accepted. Contextual speed UI prices are implemented; balance and release acceptance remain open.'},null,2));
+const metadata={status:'EXPERIMENT',baseSourceSha256:crypto.createHash('sha256').update(original).digest('hex'),sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),moteGrowth,maxWorkSec,finalLabShift,lastRecruitLab,ultimateScale,masteryPrismScale,
+ changes:['Masterwork opens five ranks and compounds own Wisp Power by25%/level; Support buffs unchanged','Masterwork unlock70, costs1m Lumen/25k Shards, growth1.35','effective depth linear .03 per Rift after1000, logarithmic again above1e9','future uncapped Lab base growth1.6 through30, then1.35; capped prices and paid work/speed untouched','later Wisps need up to14 more completed Lab levels for final rarity/Ultimate','Ultimate base500k–6m Sigils times ultimateScale; Mastery500k+50kr Sigils','Mastery Prisms (200+10r) times masteryPrismScale','future uncapped speed prices scale by completed project level; bought speed/work unchanged'],
+ limits:'Calibration proposal; not applied or accepted. Balance and release acceptance remain open.'};
+fs.writeFileSync(output,source);fs.writeFileSync(output.replace(/\.html$/,'.json'),JSON.stringify(metadata,null,2));

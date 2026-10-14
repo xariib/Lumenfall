@@ -355,7 +355,7 @@
     });
     parityApprox(actual.totalOfflineSeconds,expected.totalOfflineSeconds,label+' totalOfflineSeconds');
     parityApprox(actual.lastSeen,expected.lastSeen,label+' lastSeen');
-    assert(actual.schemaVersion===4,label+' must preserve current save schema v3');
+    assert(actual.schemaVersion===5,label+' must preserve current save schema v5');
   }
   function expectedLifecycleState(baseline,seconds,startMs){
     var preview = window.__lumenfallQaBridge.previewOffline(baseline,seconds,startMs);
@@ -475,7 +475,7 @@
     assert(s.activeParty.length===1 && s.activeParty[0]==='ember','fresh party must contain only Ember');
     assert(s.spirits.ember===1,'fresh Ember level must be 1');
     assert(s.enemyDepth===1,'fresh enemy must belong to Rift 1');
-    assert(s.schemaVersion===4,'fresh state must use current save schema');
+    assert(s.schemaVersion===5,'fresh state must use current save schema');
     assert(s.activeFormationPreset==='push' && s.formationPresets.push.join(',')==='ember','fresh formation preset defaults must preserve Ember without a schema bump');
   }
   async function run(){
@@ -625,7 +625,7 @@
           }
           var expected=JSON.parse(localStorage.getItem('p207-expected'));
           ['formationRebuild','activeParty','activeFormationPreset','formationPresets','spirits','empowerQueue','lumen','shards','prisms','comets','motes','sigils','heroResource'].forEach(function(key){assertJsonEqual(state()[key],expected[key],ctx.scenario+' '+key);});
-          assert(state().schemaVersion===4,'partial reconstruction remains on current schema-v4');
+          assert(state().schemaVersion===5,'partial reconstruction remains on current schema-v5');
           assertJsonEqual(JSON.parse(bridge.rawRecovery()).formationRebuild,expected.formationRebuild,'recovery intent');
           finish('pass',{intent:state().formationRebuild,active:state().activeParty});return;
         }
@@ -676,12 +676,12 @@
           assert(s.depth===17 && s.maxDepthEver===17,'mid-game depth must load intact');
           assert(s.lumen===12500 && s.shards===420,'mid-game currencies must load intact');
           assert(s.activeParty.join(',')==='ember,tide,stone','mid-game active party must load intact');
-          assert(s.schemaVersion===4,'schema-v1 fixture must migrate through schema 2 and 3 to schema 4');
+          assert(s.schemaVersion===5,'schema-v1 fixture must migrate through the earlier schemas to schema 5');
           assert(typeof s.research.focus==='number','missing research entries must be normalized');
           assert(s.enemyDepth===17 && s.enemyHp>0,'mid-game enemy must be restored/spawned at the saved depth');
           bridge.save();
-          assert(JSON.parse(bridge.rawSave()).schemaVersion===4,'current save must serialize schema version');
-          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===4,'successful save must refresh bounded recovery');
+          assert(JSON.parse(bridge.rawSave()).schemaVersion===5,'current save must serialize schema version');
+          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===5,'successful save must refresh bounded recovery');
           finish('pass',{depth:s.depth,party:s.activeParty});
           return;
 
@@ -713,8 +713,8 @@
           assert(s.studyQueue.measuredinquiry===false,'legacy autostudy must not activate Measured Inquiry');
           assert(s.autoAscendEnabled===true && s.autoAscendTargetDepth>=22,'legacy auto-ascend ownership must migrate to enabled target');
           assert(!Object.prototype.hasOwnProperty.call(s.owned,'autostudy'),'legacy owned.autostudy must be removed');
-          assert(s.schemaVersion===4,'legacy save must migrate to current schema');
-          assert(JSON.parse(bridge.rawSave()).schemaVersion===4,'migrated legacy save must round-trip as current schema');
+          assert(s.schemaVersion===5,'legacy save must migrate to current schema');
+          assert(JSON.parse(bridge.rawSave()).schemaVersion===5,'migrated legacy save must round-trip as current schema');
           finish('pass',{activeStudies:s.activeStudies.length,autoAscendTargetDepth:s.autoAscendTargetDepth,schemaVersion:s.schemaVersion});
           return;
 
@@ -841,7 +841,7 @@
           assert(s.depth===33 && s.maxDepthEver===44,'restored progression must be authoritative after reload');
           assert(s.lumen===777777 && s.prisms===31,'restored currencies must replace original state');
           assert(s.activeParty.join(',')==='ember,void','restored party must replace original party');
-          assert(s.schemaVersion===4,'current backup restore must remain on current schema');
+          assert(s.schemaVersion===5,'current backup restore must remain on current schema');
           assert(JSON.parse(bridge.rawRecovery()).depth===33,'successful Restore must establish restored state in recovery slot');
           finish('pass',{depth:s.depth,lumen:s.lumen,schemaVersion:s.schemaVersion});
           return;
@@ -862,8 +862,8 @@
           assert(bridge.persistenceStatus().recovered===true,'recovery path must be observable');
           var repairedPrimary = JSON.parse(bridge.rawSave());
           var goodRecovery = JSON.parse(bridge.rawRecovery());
-          assert(repairedPrimary.schemaVersion===4 && repairedPrimary.depth===17,'malformed primary must be repaired from validated recovery');
-          assert(goodRecovery.schemaVersion===4 && goodRecovery.depth===17,'good recovery must never be overwritten by malformed primary');
+          assert(repairedPrimary.schemaVersion===5 && repairedPrimary.depth===17,'malformed primary must be repaired from validated recovery');
+          assert(goodRecovery.schemaVersion===5 && goodRecovery.depth===17,'good recovery must never be overwritten by malformed primary');
           finish('pass',{recovered:true,depth:s.depth});
           return;
         }
@@ -884,9 +884,9 @@
             var legacyTarget = ctx.fixtures['legacy'].save;
             nextPhase(1); bridge.restoreBackup(backupCode(legacyTarget)); return;
           }
-          assert(s.schemaVersion===4,'legacy backup must migrate to current schema before acceptance');
+          assert(s.schemaVersion===5,'legacy backup must migrate to current schema before acceptance');
           assert(s.depth===22 && s.activeStudies.length===1,'legacy backup progression and migrated study must restore');
-          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===4,'legacy restore must establish current-schema recovery');
+          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===5,'legacy restore must establish current-schema recovery');
           finish('pass',{schemaVersion:s.schemaVersion,depth:s.depth});
           return;
 
@@ -1143,13 +1143,13 @@
 
         case 'chronology-auto-ascend-mid-window': {
           var ascendBaseline = state();
-          var ascendDirect = bridge.simulateTimeline(30,'offline',PARITY_CLOCK_MS);
+          var ascendDirect = bridge.simulateTimeline(90,'offline',PARITY_CLOCK_MS);
           var ascendEvent = firstTimelineEvent(ascendDirect,'autoAscend');
           assert(ascendEvent,'Auto-Ascend must occur when the current target rule becomes satisfied');
-          assert(ascendEvent.elapsedSec>0 && ascendEvent.elapsedSec<30,'Auto-Ascend must occur mid-window');
+          assert(ascendEvent.elapsedSec>0 && ascendEvent.elapsedSec<90,'Auto-Ascend must occur mid-window');
           assert(ascendDirect.state.ascendCount===ascendBaseline.ascendCount+1,'fixture must perform exactly one Auto-Ascend');
           var ascendSplit = assertChronologicalSplit(
-            ascendBaseline,30,ascendEvent.elapsedSec,ascendDirect,
+            ascendBaseline,90,ascendEvent.elapsedSec,ascendDirect,
             'mid-window Auto-Ascend'
           );
           assert(
@@ -1167,7 +1167,7 @@
 
         case 'chronology-boss-retry': {
           var bossBaseline = state();
-          var bossDirect = bridge.simulateTimeline(720,'offline',PARITY_CLOCK_MS);
+          var bossDirect = bridge.simulateTimeline(2600,'offline',PARITY_CLOCK_MS);
           var retreatEvent = firstTimelineEvent(bossDirect,'bossRetreat');
           var bossEmpowerEvent = firstTimelineEvent(bossDirect,'autoEmpower');
           var retryEvent = firstTimelineEvent(bossDirect,'bossRetry');
@@ -1180,7 +1180,7 @@
           );
           assert(bossDirect.summary.bossKills>=1,'retried Boss must be defeated inside the fixture window');
           assert(bossDirect.summary.sigilsGained>=2,'retried Boss must preserve Sigil rewards');
-          assertChronologicalSplit(bossBaseline,720,retryEvent.elapsedSec,bossDirect,'Boss retreat/progression/retry');
+          assertChronologicalSplit(bossBaseline,2600,retryEvent.elapsedSec,bossDirect,'Boss retreat/progression/retry');
           finish('pass',{
             retreatSec:retreatEvent.elapsedSec,
             firstEmpowerSec:bossEmpowerEvent.elapsedSec,
@@ -1286,8 +1286,8 @@
           bridge.dispatchVisibility(false);
           assertLifecycleState(state(),beforeColdVisible,'cold restart stray visible signal');
           assertOfflineExactlyOnce(bridge.lifecycleTrace(),45,'cold restart stray visible signal');
-          assert(JSON.parse(bridge.rawSave()).schemaVersion===4,'cold restart must preserve canonical primary schema');
-          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===4,'cold restart must preserve bounded recovery schema');
+          assert(JSON.parse(bridge.rawSave()).schemaVersion===5,'cold restart must preserve canonical primary schema');
+          assert(JSON.parse(bridge.rawRecovery()).schemaVersion===5,'cold restart must preserve bounded recovery schema');
           finish('pass',{
             elapsedSec:45,
             offlineApplications:consumedOfflineEvents(bridge.lifecycleTrace()).length,
@@ -1336,7 +1336,7 @@
         }
 
         case 'lifecycle-boss-retry': {
-          var bossLife = await runResumeWindow(720,'boss retreat/Farm/retry lifecycle');
+          var bossLife = await runResumeWindow(2600,'boss retreat/Farm/retry lifecycle');
           var retreat = firstTimelineEvent(bossLife.expected,'bossRetreat');
           var retry = firstTimelineEvent(bossLife.expected,'bossRetry');
           assert(retreat && retry,'lifecycle Boss reference must retreat and retry');
@@ -2341,9 +2341,9 @@
 
           assert(emberCurve.rarity[0].req===8,'first Rarity must remain available at Wisp Lv.8');
           assert(emberCurve.rarity[0].shard===15 && emberCurve.rarity[0].lumen===80,'Ember first Rarity must retain the previous 15 Shard / 80 Lumen entry price');
-          assert(emberCurve.rarity[4].req===65,'Mythic must require deliberate Wisp investment through Lv.65');
-          assert(emberCurve.rarity[4].shard===500000,'Mythic Shard investment contract must remain 500,000');
-          assert(emberCurve.rarity[4].lumen===24000,'Ember Mythic Lumen price must use the 2400× base-cost tier');
+          assert(emberCurve.rarity[4].req===140,'Mythic requires Wisp level140');
+          assert(emberCurve.rarity[4].shard===250000000,'Mythic Shard investment is250million');
+          assert(emberCurve.rarity[4].lumen===25000000,'Ember Mythic Lumen price uses the independent2.5million multiplier');
           assert(emberCurve.rarity[4].shard>emberCurve.rarity[2].shard*500,'late Rarity must be materially more serious than early/mid Rarity');
 
           for(var earlyModule=0;earlyModule<5;earlyModule++){
@@ -2364,7 +2364,7 @@
           var maxable = cloneJson(state());
           maxable.lumen = 1e15;
           maxable.shards = 1e15;
-          maxable.spirits.ember = 65;
+          maxable.spirits.ember = 140;maxable.maxDepthEver=250;maxable.ascendCount=50;maxable.longStudyLevels.wispascend=32;maxable.research.arcanecal=10;
           maxable.activeParty = ['ember'];
           maxable.heroRarity.ember = 0;
           maxable.wispModules.ember = 0;
@@ -2386,7 +2386,7 @@
           assert(acceptedGrandfathered.heroRarity.ember===5 && acceptedGrandfathered.wispModules.ember===20,'existing maxed Ember progression must never be downgraded by new requirements');
           assert(acceptedGrandfathered.heroRarity.titan===5 && acceptedGrandfathered.wispModules.titan===20,'existing maxed Titan progression must never be downgraded by new requirements');
 
-          assert(emberCurve.ultimateSigils===7 && titanCurve.ultimateSigils===69,'Ultimate/Sigil costs must remain unchanged by P2-01B');
+          assert(emberCurve.ultimateSigils===15000 && titanCurve.ultimateSigils===75000,'independent candidate Ultimate prices');
 
           finish('pass',{
             rarityRequirements:emberCurve.rarity.map(function(x){return x.req;}),
@@ -2402,7 +2402,7 @@
 
         case 'p2-endgame-currency-utility': {
           var economy=bridge.endgameEconomyContract();
-          assert(economy.ultimateSigilTotal===250,'all current Wisp Ultimates must retain the documented 250-Sigil total');
+          assert(economy.ultimateSigilTotal===303750,'candidate roster Ultimate investment is303750 Sigils');
           assert(economy.sigilsThroughRift220===253,'first-clear boss sequence through Rift 220 must yield 253 Sigils before repeated runs');
           assert(economy.restStopCometTotal===450,'the historical four Rest Stop purchases retain their independent 450-Comet value');
           assert(economy.retirementCometTotal===350&&economy.retiredEntitlements.every(function(v){return v===true;}),'actual migration preserves all three retired entitlements and their 350-Comet compensation');

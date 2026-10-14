@@ -73,7 +73,7 @@ for(const [level,prisms] of [[0,0],[1,6],[2,16],[3,32],[4,57],[5,97],[8,423],[12
     const seed=legacy(level,a,b), x=app(seed), m=clone(x.b.get());
     assert.equal(m.prisms,100+prisms); assert.equal(m.comets,100+(a?140:0)+(b?160:0));
     assert.equal(m.nodes.reserves,level); assert.equal(m.legacyCometPurchases.offline24, a?true:undefined); assert.equal(m.legacyCometPurchases.offline48,b?true:undefined);
-    assert.equal(m.schemaVersion,4); assert.equal(m.lastSeen,seed.lastSeen);
+    assert.equal(m.schemaVersion,5); assert.equal(m.lastSeen,seed.lastSeen);
     assert.deepEqual(x.b.accept(m),m,'normalization idempotent');
     assert.deepEqual(x.b.decode(x.b.backup(m)),m,'new backup does not refund again');
     assert.deepEqual(x.b.decode(x.b.backup(seed)),m,'old backup deterministic replacement');
@@ -201,7 +201,7 @@ const bad=clone(hist); bad.offline12hRefund.prismsExact='33'; assert.throws(()=>
 // Negative controls against complete entry, migration and restored production.
 for(const [name,oldText,newText] of [
   ['cap','return PRODUCTIVE_OFFLINE_CAP_SEC / 3600;','return 24;'],
-  ['tail','  state.totalOfflineSeconds += effectiveSec;','  yield* advanceStudyOnlyTime(elapsedSec-effectiveSec,lastSeen+effectiveSec*1000,sim,true);\n  state.totalOfflineSeconds += effectiveSec;',null],
+  ['tail','  state.totalOfflineSeconds=Amount.add(state.totalOfflineSeconds,effectiveSec);','  yield* advanceStudyOnlyTime(elapsedSec-effectiveSec,lastSeen+effectiveSec*1000,sim,true);\n  state.totalOfflineSeconds=Amount.add(state.totalOfflineSeconds,effectiveSec);',null],
   ['refund','out[currency]=result;paid[index]=true;','paid[index]=true;',null]
 ]) {
   assert(source.includes(oldText),name+' mutation marker'); const mutant=source.replace(oldText,newText);

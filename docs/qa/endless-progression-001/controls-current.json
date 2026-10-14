@@ -6,68 +6,68 @@
       "name": "wrong-mastery-power",
       "status": "KILLED",
       "assertion": "own Power compounded10%",
-      "sourceSha256": "5c82b6fb52db46a31bf4f5c70ebaa21c08313a434d10aa62f7e632d2509d917a"
+      "sourceSha256": "2320517556b339ccd46e3f19548c02bff5bc36d722055ffdb70670e141a12200"
     },
     {
       "name": "missing-next-record",
       "status": "KILLED",
       "assertion": "next rank needs deeper record",
-      "sourceSha256": "e87dccb4a9b3ef0c820aeb28423c35f2c5ab0b3f01ee44163284ae5be593e4b4"
+      "sourceSha256": "8c6256e2020ce8b2eac49a6aa012b823608ec2b1dc2162501b5e8cab08c4e9b0"
     },
     {
       "name": "free-mastery-sigils",
       "status": "KILLED",
       "assertion": "Mastery Sigil debit",
-      "sourceSha256": "57657e0b2fd655313e2c05bc857792528d7e1d09edc1df0d4d7a6239226807ee"
+      "sourceSha256": "9eabf18663191b5cf3315440ed920c42cc16f7cb848e24d90c365d2488cc9f44"
     },
     {
       "name": "lost-mastery-on-ascend",
       "status": "KILLED",
       "assertion": "Mastery survives Ascend",
-      "sourceSha256": "01490848bbbf1f246dad1db10b921a9f0a52f08a6b578b8e1f0bb22054820845"
+      "sourceSha256": "ee4a5c9d9f1b50768ca8c5b62ca6d088d47f07c685676742c19ef49491ad1638"
     },
     {
       "name": "leaked-paid-mutation",
       "status": "KILLED",
       "assertion": "failed primary Mastery rolls back everything",
-      "sourceSha256": "8abb1269addbad0b9e414da03d6c3d30e77d96e2da560256b4f0342aa3fb672a"
+      "sourceSha256": "ce4246f944556edd922220d2012798629aca7331eb5ccd3b8fb933006061a99b"
     },
     {
       "name": "lost-paid-clock",
       "status": "KILLED",
       "assertion": "failed purchase preserves paid-work clock continuity",
-      "sourceSha256": "b6b8599a96120d6404cabfea5302359eb2b19e3a7bc3eb43a8749d0e6f6878ae"
+      "sourceSha256": "2c4e00f83af2d20a8cdae6bd399ce29cf13593cd54227dc377e347fc50f58d8a"
     },
     {
       "name": "free-queued-speed",
       "status": "KILLED",
       "assertion": "queued speed exactly debits a wide Mote wallet",
-      "sourceSha256": "34390e6ec2ce82477d233d6e484d538edcad96fb751256ecadfc33952c9ca68f"
+      "sourceSha256": "b7ba33c0c8b059d013d1fe8377fcca8ca5ea7dd3e744bfc6e7e39cff3896f2a7"
     },
     {
       "name": "discarded-physical-progress",
       "status": "KILLED",
       "assertion": "Authoritative simulation stalled",
-      "sourceSha256": "b35a19936f8cd3589c498df60de5f19e9f021357fc4297d204e96db2a05ad8be"
+      "sourceSha256": "9df48ebb5d048bd1e723350db6a1e5026b32ea1591a350a0cc0e059b4cf981e8"
     },
     {
       "name": "unbounded-future-work",
       "status": "KILLED",
       "assertion": "bounded future work",
-      "sourceSha256": "c35c27340c298f1c5494c05a398cd0d73e50504cd7299ff63e527c17aaf328ae"
+      "sourceSha256": "025da41f39bac9f53e7c9d73a77085ee4596faec4ff9842a092992ed7fc28f1a"
     },
     {
       "name": "lost-old-titan-entitlement",
       "status": "KILLED",
       "assertion": "old unlocked roster preserved titan",
-      "sourceSha256": "7160d098754d6f96b1f6b6d294f943c289d707c8e10fc1ea7218a1437b7735a9"
+      "sourceSha256": "6f895c9644a5f8863dec284c015ac56007ce58ffcc8f6c74cfb0f4e81ddfbf60"
     },
     {
       "name": "early-ultimate",
       "status": "KILLED",
       "assertion": "Ultimate needs ability15",
-      "sourceSha256": "bae3e95a5afd058b1be7e02632e97bf4b0e0a41242b8eb98063dfe793eb157ec"
+      "sourceSha256": "0a380adeaa3498cc621701a1f22c085043065d273a9d3a81bc876857a48cfd34"
     }
   ],
-  "sourceSha256": "7f5ad8aca0887129e5e818eb6dfc4626acdb0ebef87e8bcd9926366acc5fe7f2"
+  "sourceSha256": "92ceadcc5fbbb40f40ab4d0f340fbd514e8daa628deef7af6e9967c29c41fb26"
 }

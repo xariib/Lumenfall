@@ -1,5 +1,12 @@
 
 var qaLifecycleEvents = [];
+// Lifecycle fixtures advance Date explicitly and compare that exact interval.
+// Keep their host processing clock deterministic too. Actual nonzero processing
+// replay, paid work and slow yielding are covered in offline-catchup.cjs and
+// lab-motes-offline.cjs; machine load must not add unrequested live time here.
+if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-')){
+  offlineProcessingClock=function(){return 0;};
+}
 // Frozen pre-Comet-expansion Deed identities. Historical reward tests keep
 // their original 683C oracle while the new event Deeds are checked separately.
 var qaOriginalDeedIds=['d10','d25','d50','d100','d250','tap100','tap1000','tap10000','fullparty','asc1','asc5','asc10','all','mythic','idle8','autotap','labmaster','study1','study25','allstudies','labqueue','firstultimate','modulemax'];
@@ -79,6 +86,7 @@ window.__lumenfallQaBridge = {
     failNext:function(){var original=simulationResolveTimestamp;simulationResolveTimestamp=function(){simulationResolveTimestamp=original;throw new Error('injected offline failure');};}
   },
   labMotes: {
+    withoutProcessingTime: function(fn){var old=offlineProcessingClock;offlineProcessingClock=function(){return 0;};try{return fn();}finally{offlineProcessingClock=old;}},
     // UI fixtures pause reload/autosave; explicit input still uses the real
     // save transaction with production's normal, interactive reload flag.
     input: function(fn){var old=reloadInProgress;reloadInProgress=false;try{return fn();}finally{reloadInProgress=old;}},

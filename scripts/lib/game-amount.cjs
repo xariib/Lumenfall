@@ -4,6 +4,7 @@
 // No BigInt, eval, external dependency or prototype mutation in game runtime.
 function createGameAmount(){
   var SAFE=9007199254740991;
+  var nativePartsCache=Object.create(null),nativePartsKeys=[];
   function clean(p){
     p.d=p.d.replace(/^0+/,'')||'0';
     if(p.d==='0')return {d:'0',e:0,s:1};
@@ -12,13 +13,15 @@ function createGameAmount(){
     p.e+=p.d.length-end;p.d=p.d.slice(0,end);return p;
   }
   function digitAdd(a,b){
-    var out=[],i=a.length-1,j=b.length-1,c=0;
-    while(i>=0||j>=0||c){var n=(i>=0?Number(a.charAt(i--)):0)+(j>=0?Number(b.charAt(j--)):0)+c;out.push(n%10);c=Math.floor(n/10);}
-    return out.reverse().join('');
+    var out=[],i=a.length,j=b.length,c=0;
+    // Seven decimal digits keep every chunk/carry exactly representable and
+    // avoid one allocation/conversion per digit on mature currency wallets.
+    while(i>0||j>0||c){var ai=Math.max(0,i-7),bi=Math.max(0,j-7),n=Number(a.slice(ai,i)||0)+Number(b.slice(bi,j)||0)+c;out.push(String(n%10000000).padStart(7,'0'));c=Math.floor(n/10000000);i=ai;j=bi;}
+    return out.reverse().join('').replace(/^0+/,'')||'0';
   }
   function digitSub(a,b){
-    var out=[],i=a.length-1,j=b.length-1,c=0;
-    while(i>=0){var n=Number(a.charAt(i--))-(j>=0?Number(b.charAt(j--)):0)-c;c=n<0?1:0;out.push(n+c*10);}
+    var out=[],i=a.length,j=b.length,c=0;
+    while(i>0){var ai=Math.max(0,i-7),bi=Math.max(0,j-7),n=Number(a.slice(ai,i)||0)-Number(b.slice(bi,j)||0)-c;c=n<0?1:0;out.push(String(n+c*10000000).padStart(7,'0'));i=ai;j=bi;}
     return out.reverse().join('').replace(/^0+/,'')||'0';
   }
   function digitMul(a,b){
@@ -32,6 +35,7 @@ function createGameAmount(){
   function nativeInteger(n){
     // Reconstruct the actual IEEE-754 integer, rather than its shortened
     // display string. Old large wallets therefore retain their actual value.
+    var key=String(n),cached=nativePartsCache[key];if(cached)return {d:cached.d,e:cached.e,s:cached.s};
     var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,Math.abs(n));
     var hi=v.getUint32(0),lo=v.getUint32(4),shift=((hi>>>20)&2047)-1023-52;
     var d=String((hi&1048575)*4294967296+lo+4503599627370496);
@@ -39,7 +43,9 @@ function createGameAmount(){
     // combat values does not perform hundreds of decimal multiplications.
     while(shift>=26){d=digitMul(d,'67108864');shift-=26;}
     if(shift>0)d=digitMul(d,String(Math.pow(2,shift)));
-    return clean({d:d,e:0,s:n<0?-1:1});
+    var p=clean({d:d,e:0,s:n<0?-1:1});nativePartsCache[key]=p;nativePartsKeys.push(key);
+    if(nativePartsKeys.length>128)delete nativePartsCache[nativePartsKeys.shift()];
+    return {d:p.d,e:p.e,s:p.s};
   }
   function parts(value){
     if(typeof value==='number'){
@@ -80,7 +86,7 @@ function createGameAmount(){
     return exactAdd(a,b);
   }
   function exactAdd(a,b){
-    var x=parts(a),y=parts(b),e=Math.min(x.e,y.e);
+    var x=parts(a),y=parts(b);if(x.d==='0')return encode(y);if(y.d==='0')return encode(x);var e=Math.min(x.e,y.e);
     var xd=x.d+'0'.repeat(x.e-e),yd=y.d+'0'.repeat(y.e-e);
     var d,s=x.s;
     if(x.s===y.s)d=digitAdd(xd,yd);

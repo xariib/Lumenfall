@@ -26,6 +26,7 @@ eq(asBig(a.add(Number.MAX_VALUE,Number.MAX_VALUE)),BigInt(Number.MAX_VALUE)*2n);
 eq(asBig(a.sub(-Number.MAX_VALUE,Number.MAX_VALUE)),-BigInt(Number.MAX_VALUE)*2n);
 for(const n of [9007199254740991,1e20,1e30,Number.MAX_VALUE]){eq(asBig(a.exactAdd(n,1)),BigInt(n)+1n);eq(asBig(a.exactSub(n,1)),BigInt(n)-1n);}
 for(const exp of [16,100,400]){const x=10n**BigInt(exp)+37n,hex=x.toString(16);eq(asBig(a.fromHex(hex)),x);eq(a.toHex(a.fromHex(hex)),hex);}
+let seed=12345;for(const size of [6,7,8,13,14,15,16,17,70,71,1000]){let left='1',right='2';for(let i=1;i<size;i++){seed=(seed*1664525+1013904223)>>>0;left+=seed%10;right+=(seed>>>5)%10;}const x=BigInt(left),y=BigInt(right);eq(asBig(a.exactAdd(left+'e0',right+'e0')),x+y);eq(asBig(a.exactSub(left+'e0',right+'e0')),x-y);eq(asBig(a.exactAdd(left+'e0',0)),x);}
 for(const n of [0,1,.7,Math.PI,12345])for(const m of [0,1,.7,3.25]){
   eq(a.add(n,m),n+m);eq(a.sub(n,m),n-m);eq(a.mul(n,m),n*m);
 }

@@ -53,7 +53,9 @@ async function run(){
    records.push({width,scale,motion,mode,geometry});
    check(!geometry.overflow&&!geometry.cardOverflow,'fits '+width+'/'+scale+'/'+mode);check(geometry.errors.length===0,'no runtime errors');for(const c of geometry.controls)check(c.w>=44&&c.h>=44,'44px visible controls '+mode);
    if(mode==='early'){check(await ev('document.querySelector("[data-wisp-card=titan]").textContent.includes("Wisp Ascendancy")'),'locked recruit explains Lab requirement');check(await ev('document.querySelector("[data-rarity-current]").textContent.includes("Power ×1")&&document.querySelector("[data-rarity-next]").textContent.includes("Power ×1.5")'),'rarity Current/Next effects shown');}
-   if(mode==='gates'){check(geometry.requirements.includes('Ascends')&&geometry.requirements.includes('Arcane Calibration'),'all rarity development requirements shown');check(geometry.ultimate.includes('Mythic rarity')&&geometry.ultimate.includes('Ability Lv. 15'),'Ultimate requirements clear');}
+   if(mode==='gates'){check(geometry.requirements.includes('Ascends')&&geometry.requirements.includes('Arcane Calibration'),'all rarity development requirements shown');check(geometry.ultimate.includes('Mythic rarity')&&geometry.ultimate.includes('Ability Lv. 15'),'Ultimate requirements clear');
+    check(await ev('document.querySelector("[data-ultimate-current]").textContent.includes("Ability damage ×1")&&document.querySelector("[data-ultimate-next]").textContent.includes("×2")'),'Ultimate Current/Next effects shown');
+   }
    if(mode==='mastery'){
     check(geometry.mastery.includes('Rank 0')&&geometry.mastery.includes('Next: Own Power ×1.10'),'Mastery current/next clear');
     const before=await ev('endlessUi.get()');await ev('var b=document.querySelector("[data-mastery=ember]");b.scrollIntoView({block:"center"});b.focus({preventScroll:true})');await key();await pause(80);

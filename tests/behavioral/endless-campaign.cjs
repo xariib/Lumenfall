@@ -18,6 +18,7 @@ window.endlessQa={
   unlocked:function(sp){return typeof wispRecruitmentUnlocked==='function'?wispRecruitmentUnlocked(sp):state.maxDepthEver>=treeWispUnlockDepth(sp);},
   rarity:function(sp){return buyRarity(sp);},module:function(sp){return buyModule(sp);},
   moduleCost:moduleCost,rarityCost:rarityCost,rarityReq:rarityReq,
+  ultimateCost:ultimateSigilCost,masteryPlan:getWispMasteryPlan,
   buyNode:buyNode,nodePlan:getNodeBuyPlan,studyPlan:getStudyStartPlan,
   farm:enterFarmMode,push:enterPushMode,eligible:ascendEligible,
   day:ensureDaily,
@@ -54,6 +55,7 @@ const instrumented=source.replace(marker,bridge+marker);
 const policies={casual:{sessions:2,activeSec:300,decisionSec:10,speed:8,budget:.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},frequent:{sessions:6,activeSec:600,decisionSec:10,speed:8,budget:.5},regular_fast:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8,budget:.9}};
 const days=Number(process.argv[3]||7),name=process.argv[4]||'regular';
 assert(policies[name]&&Number.isInteger(days)&&days>0&&days<=730);
+const runBudgetMs=Number(process.env.LUMENFALL_CAMPAIGN_RUN_MS||0),runStarted=performance.now();assert(Number.isFinite(runBudgetMs)&&runBudgetMs>=0);
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 const resumePath=process.env.LUMENFALL_CAMPAIGN_RESUME;
 const checkpoint=resumePath?JSON.parse(fs.readFileSync(resumePath,'utf8')):null;
@@ -70,6 +72,7 @@ function campaign(){
   // Bridge is observed through a test-only function returning its closure.
   const b=q.endless;
   const policy=policies[name],milestones=checkpoint?checkpoint.milestones:{},history=checkpoint?checkpoint.history:[],walls=checkpoint?checkpoint.walls:[];
+  const purchases=checkpoint?checkpoint.purchases||[]:[];
   let elapsed=checkpoint?checkpoint.elapsed:0,lastRecordAt=checkpoint?checkpoint.lastRecordAt:0,lastRecord=checkpoint?checkpoint.lastRecord:1,lastAscendAt=checkpoint?checkpoint.lastAscendAt:-Infinity,lastSaving=checkpoint?checkpoint.lastSaving:false;
   if(checkpoint){q.set(checkpoint.state);x.clock(CLOCK+elapsed*1000);}
   diagnostic=()=>({elapsed,milestones,state:q.get()});
@@ -103,6 +106,8 @@ function campaign(){
       lastRecord=state.maxDepthEver;lastRecordAt=elapsed;
     }
   };
+  function funds(){const s=q.get();return {lumen:s.lumen,shards:s.shards,sigils:s.sigils,prisms:s.prisms};}
+  function receipt(kind,id,before,cost){const after=funds();purchases.push({kind,id,at:elapsed,price:cost,before,after,shareOfWallet:Object.fromEntries(Object.entries(cost).map(([key,value])=>[key,amount.ratio(value,before[key])]))});}
   function advance(seconds,kind){
     x.clock(CLOCK+elapsed*1000);
     const result=q.advance(seconds,{kind:kind,clockStartMs:CLOCK+elapsed*1000,offlineWindowStartMs:CLOCK+elapsed*1000});
@@ -132,8 +137,12 @@ function campaign(){
     b.auto(false);
     for(const sp of b.wisps()){
       if(!b.unlocked(sp))continue;
-      if(q.get().spirits[sp.id]===0)q.empower(sp.id);
-      if(q.get().spirits[sp.id]>0){b.rarity(sp);q.ultimate(sp.id);b.mastery(sp);}
+      if(q.get().spirits[sp.id]===0){const before=funds(),price=q.empowerCost(sp.id);if(q.empower(sp.id))receipt('recruit',sp.id,before,{lumen:price});}
+      if(q.get().spirits[sp.id]>0){
+        let before=funds(),price=b.rarityCost(sp,q.get().heroRarity[sp.id]||0);if(b.rarity(sp))receipt('rarity',sp.id,before,{lumen:price.lumen,shards:price.shard});
+        before=funds();price=b.ultimateCost(sp);if(q.ultimate(sp.id))receipt('ultimate',sp.id,before,{sigils:price});
+        before=funds();price=b.masteryPlan(sp).cost;if(b.mastery(sp))receipt('mastery',sp.id,before,{prisms:price.prism,sigils:price.sigil});
+      }
     }
     // Fewer cheap purchases per check than the old 20-per-second fixture.
     for(let i=0;i<(saving?0:5);i++){
@@ -151,7 +160,7 @@ function campaign(){
     const unlocked=b.wisps().filter(sp=>q.get().spirits[sp.id]>0);
     for(const sp of unlocked){
       const state=q.get(),cost=b.moduleCost(sp,state.wispModules[sp.id]||0);
-      if((!saving||sp.id==='thorn'||sp.id==='gale')&&amount.le(cost.lumen,amount.mul(state.lumen,saving?.05:.15))&&amount.le(cost.shard,amount.mul(state.shards,.15)))b.module(sp);
+      if((!saving||sp.id==='thorn'||sp.id==='gale')&&amount.le(cost.lumen,amount.mul(state.lumen,saving?.05:.15))&&amount.le(cost.shard,amount.mul(state.shards,.15))){const before=funds();if(b.module(sp))receipt('ability',sp.id,before,{lumen:cost.lumen,shards:cost.shard});}
     }
     const nodes=b.nodes().filter(n=>b.nodePlan(n).affordable);
     // Swift is a repeat-farming investment; later buy other affordable paths.
@@ -202,14 +211,15 @@ function campaign(){
     if(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT){
       fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT,JSON.stringify({milestones,history,walls},null,2));
       fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT+'.endpoint.json',JSON.stringify(q.get()));
-      fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT+'.checkpoint.json',JSON.stringify({sourceSha256,policySha256,policy:name,elapsed,lastRecordAt,lastRecord,lastAscendAt,lastSaving,milestones,history,walls,state:q.get()}));
+      fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT+'.checkpoint.json',JSON.stringify({sourceSha256,policySha256,policy:name,elapsed,lastRecordAt,lastRecord,lastAscendAt,lastSaving,milestones,history,walls,purchases,state:q.get()}));
     }
     // Retained write evidence is not the campaign's history; release its memory.
     x.writes.length=0;
+    if(runBudgetMs&&performance.now()-runStarted>=runBudgetMs)break;
   }
-  if(elapsed-lastRecordAt>=3600)walls.push({from:lastRecord,to:null,open:true,seconds:elapsed-lastRecordAt});
-  return {milestones,walls,history};
+  const reportedWalls=walls.slice();if(elapsed-lastRecordAt>=3600)reportedWalls.push({from:lastRecord,to:null,open:true,seconds:elapsed-lastRecordAt});
+  return {milestones,walls:reportedWalls,history,purchases};
 }
 const result=campaign();
-console.log(JSON.stringify({status:'MEASURED',sourceSha256,policySha256:policySha256,policy:name,policyDetails:policies[name],days,resumedFrom:resumePath||null,
+console.log(JSON.stringify({status:result.history.length===days?'MEASURED':'MEASURED_PARTIAL',sourceSha256,policySha256:policySha256,policy:name,policyDetails:policies[name],days:result.history.length,targetDays:days,resumedFrom:resumePath||null,
   limits:'Deterministic real-engine sessions and offline chronology; only earned currencies fund automation/speed; not human/device acceptance.',...result},null,2));

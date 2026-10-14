@@ -59,7 +59,7 @@ window.runResearchDurationQa = function(b,ctx,assert){
 
   // The existing paid speed action changes only its usual state; UI reads it.
   window.selectLabSpeed('guardmastery',1.5);
-  document.querySelector('[data-speed-study="guardmastery"][data-speed="1.5"]').click();
+  b.labMotes.input(function(){document.querySelector('[data-speed-study="guardmastery"][data-speed="1.5"]').click();});
   var accelerated=b.getState();
   ok(accelerated.activeStudies[0].speedMult===1.5,'real speed-tier action applied');
   ok(accelerated.activeStudies[0].remainingSec===committed.activeStudies[0].remainingSec,'speed purchase does not rewrite remaining work');
