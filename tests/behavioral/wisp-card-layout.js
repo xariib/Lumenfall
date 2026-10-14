@@ -38,6 +38,7 @@ window.runWispCardLayoutQa=function(baseline){
       ok(a.borderLeftWidth==='0px'&&a.backgroundColor==='rgba(0, 0, 0, 0)','ability uses plain card surface');
       ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','Module uses plain card surface');
       ok(card.querySelector('[data-wisp-details]').textContent==='Upgrades','short progression heading');
+      ok(card.querySelector('[data-wisp-details]').getAttribute('aria-label')===b.spirit(id).name+' upgrades','heading/disclosure retains Wisp context for assistive technology');
       var button=card.querySelector('[data-module]');if(button)ok(getComputedStyle(button).flexDirection==='row','inline Module prices');
     }
     observations.push({id:id,stage:stage,height:card.getBoundingClientRect().height,moduleColumns:m.gridTemplateColumns});

@@ -8392,8 +8392,8 @@ function renderSpirits(keepScroll){
       '<button class="mini-btn wisp-empower-action" data-empower="'+sp.id+'" '+(empowerPlan.affordable?'':'disabled')+'><strong>'+(empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit')+'</strong><span class="mono">'+costIcon('lumen')+formatNum(cost)+'</span></button>' +
       '<div class="wisp-role-readout" data-wisp-role="'+sp.id+'"></div>' +
       (upgradesMaxed ?
-        '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'">Upgrades</summary>' :
-        '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'"><h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" tabindex="-1">Upgrades</h3>') +
+        '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades">Upgrades</summary>' :
+        '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'"><h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades" tabindex="-1">Upgrades</h3>') +
       '<div class="hero-ability"><span class="ability-label">Ability</span><strong>'+sp.abilityName+'</strong><span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
       moduleHtml +
       '<div class="wisp-final-actions"><div class="hero-actions">' +

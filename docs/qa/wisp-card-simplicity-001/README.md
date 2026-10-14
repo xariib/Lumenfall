@@ -1,7 +1,19 @@
 # Simpler Wisp cards
 
-14 October 2026. Local candidate from `89337a5`; integration with the concurrent
-Formation follow-up is next. Self-review and automated checks only.
+14 October 2026. LOCAL IMPLEMENTATION VERIFIED, combined with Formation follow-up
+`c16fc35`. Self-review and automated checks only; release acceptance remains OPEN.
+Final source: `3ebf0632351e1d554d7bc9f5d8be8c5c3d7776b96a9877b3cdc08e44173a2cb3`.
+
+Final [registered layout](final-layout.txt):17,592 checks/12 profiles PASS,
+including Wisp-specific accessible names on the shorter headings/disclosures.
+[Combined receipts](combined/) preserve Formation541/12, Wisp upgrades12,912/12,
+scroll/purchases3,229, contribution core8,099/mobile151/12, hierarchy/navigation/
+controls PASS. Those regressions use source `51f9a986`; the only later product
+change adds two aria-label attributes. [Exact preservation](final-preservation.json)
+proves no visible text, geometry, actions or calculations changed afterward;
+final layout/accessibility was rerun on final bytes. [Source](final-source.txt)
+and [actual V8 6.0 parsing](final-legacy-syntax.json) PASS. Both complete product
+scripts parse. No claim of native Android accessibility follows from DOM checks.
 
 The Wisp card uses one surface instead of nested ability/Module panels. Level
 and power use plain text; rarity keeps its badge. The heading is “Upgrades”.
@@ -32,7 +44,7 @@ at320px,480.03px at390/430px (24.4% shorter at390px). Same starting fixture.
 - [Byte preservation](preservation.json): all product bytes outside scoped Wisp
   CSS, heading/rarity text and the action wrapper match baseline. No gameplay,
   payments, scheduler, saves or unlock changes. Source/context/whitespace PASS.
-- [Preview](preview.json):15 source/staged/HTTP assets match on isolated4175.
+- [Initial preview](preview.json):15 source/staged/HTTP assets matched on isolated4175.
   App opening returned queued; actual user-tab loading is not claimed.
 
 Normal screenshots and320px/200% text/actions screenshots were visually reviewed.
@@ -46,4 +58,4 @@ No assertion/deadline was weakened. Combined final checks, GitHub/main/required
 CI and Android/WebView60/native textZoom/TalkBack/device acceptance are pending.
 No APK, remote publication or archive. Chat stays OPEN.
 
-![Simplified Ember card](registered/wisp-card-simplicity/wisp-390-card.png)
+![Simplified Ember card](final-layout/wisp-card-simplicity/wisp-390-card.png)

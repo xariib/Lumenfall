@@ -32,9 +32,14 @@ Implementation is isolated on `codex/wisp-card-simplicity` in
 Shared Formation/product/test edits remain untouched. Integrate serially only
 after that owner commits; an isolated preview can be reviewed independently.
 
-Status: IN PROGRESS. Existing baseline upgrade checks:12 profiles/12,912 PASS.
-Focused layout:12 profiles/17,304 checks PASS, all8 Wisps at starting/funded/
-completed stages. Ember normal390px height635.34→480.03px;320px676.84→587.84px.
-Modern mobile normal/200% text and reduced motion fit without clipped content.
-Source/context pass. Next: finish purchase/scroll/contribution regressions,
-visually inspect large text, save the exact preview and checkpoint.
+Status: LOCAL IMPLEMENTATION VERIFIED; delivery acceptance OPEN. Rebased onto
+committed Formation `c16fc35` without conflicts. Final source `3ebf0632`.
+[Evidence and exact source hashes](../qa/wisp-card-simplicity-001/README.md):
+final layout17,592/12 profiles; combined upgrades12,912, scroll3,229, core8,099,
+mobile151/12, Formation541/12, hierarchy/nav/controls PASS. Byte preservation,
+source/context/whitespace and actual V8 6.0 parsing PASS. Node24.19.0/Chrome151.
+Normal/200% screens reviewed; Ember390px635→480px. Self-review only.
+Only accessible names changed after combined checks; final layout rechecks them.
+Next: fast-forward the clean local checkout, verify its staged/HTTP assets and
+record integration. User review, full combined CI/GitHub/main and Android/
+WebView60/textZoom/TalkBack/device acceptance remain pending. No remote/APK/archive.
