@@ -85,7 +85,8 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
   const urlFor = page => baseUrl + page + '?' + new URLSearchParams({ qaScenario: scenario, qaFixture: fixture });
   if (scenario === 'wisp-rarity-scroll') return runNativeProcess([process.execPath, path.join(ROOT, 'wisp-rarity-scroll.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (scenario === 'wisp-card-simplicity') return runNativeProcess([process.execPath, path.join(ROOT, 'wisp-upgrades.cjs'), '--card-layout', '--chrome', chrome, '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), '--evidence', path.join(options.rawArtifactRoot || os.tmpdir(), 'wisp-card-simplicity')], scenario, 90000, options);
-  if (scenario === 'lab-speed-controls') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-speed-controls.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
+  if (scenario === 'lab-speed-controls') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-speed-controls.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 240000, options);
+  if (scenario === 'lab-timed-boosts') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-timed-boosts.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), '--negative'], scenario, 240000, options);
   if (scenario === 'formation-collapse') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-collapse.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), path.join(options.rawArtifactRoot || os.tmpdir(), 'formation-collapse')], scenario, 90000, options);
   if (scenario === 'formation-best-now-core') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-best-now-core.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (scenario === 'formation-best-now') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-best-now.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), path.join(options.rawArtifactRoot || os.tmpdir(), 'formation-best-now')], scenario, 90000, options);
@@ -120,7 +121,7 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
   if (scenario === 'lab-motes-runtime') driver = 'farm-runtime.cjs';
   if (scenario === 'lab-ui-regression') driver = 'lab-ui-regression.cjs';
   if (['lab-motes-native', 'lab-motes-reduced-motion'].includes(scenario)) driver = 'lab-motes.cjs';
-  if (driver) return runNativeProcess([process.execPath, path.join(ROOT, driver), chrome, urlFor('/index.html'), scenario], scenario, driver === 'rift-status.cjs' ? 300000 : 90000, options);
+  if (driver) return runNativeProcess([process.execPath, path.join(ROOT, driver), chrome, urlFor('/index.html'), scenario], scenario, driver === 'rift-status.cjs' ? 300000 : driver === 'lab-ui-regression.cjs' ? 240000 : 90000, options);
   if (scenario === 'offline-12h-ui') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-12h-ui.cjs'), chrome, path.join(options.rawArtifactRoot || temporary('offline-12h-ui-'), scenario)], scenario, 180000, options);
   if (scenario === 'offline-12h-core') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-12h.cjs')], scenario, 300000, options);
   const profile = temporary('lumenfall-qa-' + scenario + '-');

@@ -1,0 +1,468 @@
+{
+  "status": "local-focused-pass",
+  "sourceSha256": "419f650df46177142b97364f141f4ab420b15879dda11d11ed76584662038450",
+  "node": "v24.19.0",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/151.0.7922.34",
+    "revision": "@782af9cb30a53f54487e5d2e44738645a8ec457c",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "jsVersion": "15.1.206.8"
+  },
+  "checks": [
+    {
+      "name": "timed core",
+      "status": "pass",
+      "receipt": "core.json",
+      "checks": 1480,
+      "controls": [
+        {
+          "name": "free-after-expiry",
+          "detected": "expiry integrates exact paid floor: 9956785 vs 9956790"
+        },
+        {
+          "name": "unlimited-motes",
+          "detected": "cooldown rejects early reward\n\n11 !== 0\n"
+        },
+        {
+          "name": "double-charge",
+          "detected": "rich duplicate activation rejected"
+        }
+      ]
+    },
+    {
+      "name": "Lab expansion core",
+      "status": "pass",
+      "receipt": "expansion-core.json",
+      "checks": 2676,
+      "controls": [
+        {
+          "name": "lost-capacity",
+          "caught": "capacity curve\n\n2 !== 3\n"
+        },
+        {
+          "name": "free-start",
+          "caught": "exact Lumen debit\n\n20000 !== 0\n"
+        },
+        {
+          "name": "early-level",
+          "caught": "no early bonus\n\n1 !== 0\n"
+        },
+        {
+          "name": "lost-seventh-paid-record",
+          "caught": "eighth slot rejected\n\ntrue !== false\n"
+        },
+        {
+          "name": "ascend-drops-paid-slots",
+          "caught": "manual preserves activeStudies\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      id: 'wispascend',\n      remainingSec: 1800,\n      speedMult: 1.5,\n...\n    },\n-   {\n-     id: 'focusprotocol',\n-     remainingSec: 2100,\n-     speedMult: 6,\n-     totalDurationSec: 3000\n-   },\n-   {\n-     id: 'bossledger',\n-     remainingSec: 2160,\n-     speedMult: 8,\n-     totalDurationSec: 3060\n-   }\n  ]\n"
+        },
+        {
+          "name": "ascend-drops-earned-capacity",
+          "caught": "manual preserves longStudyLevels\n+ actual - expected\n... Skipped lines\n\n  {\n    adaptivegrowth: 1,\n    bossledger: 1,\n    catalysis: 1,\n    curriculum: 1,\n...\n    guardmastery: 0,\n+   labcapacity: 0,\n-   labcapacity: 2,\n    lumenstudy: 0,\n    luminousdistill: 1,\n    measuredinquiry: 0,\n    modulefabrication: 1,\n    motestudy: 0,\n"
+        },
+        {
+          "name": "double-notes",
+          "caught": "earned completion Motes\n\n10012 !== 10006\n"
+        },
+        {
+          "name": "no-procurement",
+          "caught": "future prices reduced20%\n+ actual - expected\n\n  {\n+   lumen: 600,\n+   shard: 40\n-   lumen: 480,\n-   shard: 32\n  }\n"
+        },
+        {
+          "name": "missed-luminous-purchase",
+          "caught": "first affordable kill counts Luminous material rewards\n\n2 !== 1\n"
+        },
+        {
+          "name": "erased-old-value",
+          "caught": "old value preserved research\n+ actual - expected\n\n  {\n    amplifiertrim: 0,\n    arcanecal: 0,\n    cauterize: 0,\n+   charge: 0,\n-   charge: 28,\n    conduction: 0,\n    dualchannel: 0,\n    focus: 0,\n    formation: 0,\n    fracturekey: 0,\n"
+        }
+      ]
+    },
+    {
+      "name": "caps/old paid value",
+      "status": "pass",
+      "receipt": "caps-core.json",
+      "checks": 2179,
+      "controls": [
+        {
+          "name": "old-Arcane-cap",
+          "caught": "only agreed Forge cap changes: arcanecal\n+ actual - expected\n\n  {\n    desc: '+3 percentage points to the damaging Wisp ability factor per level. Burst, Breaker, Gale and Thorn only; no passive or Tap bonus.',\n    effectPerLevel: 0.03,\n    id: 'arcanecal',\n+   levelCap: 10,\n-   levelCap: 20,\n    lumenBase: 15000,\n    lumenGrowth: 1.6,\n    name: 'Arcane Calibration',\n    retiredTo: '',\n    shardBase: 120,\n"
+        },
+        {
+          "name": "old-effective-Forge-cap",
+          "caught": "approved cap20 source factor arcanecal"
+        },
+        {
+          "name": "double-earned-Lab-level",
+          "caught": "one real completion\n\n12 !== 11\n"
+        }
+      ]
+    },
+    {
+      "name": "V8 6.0 Lab engine",
+      "status": "pass",
+      "receipt": "v8-lab.json",
+      "checks": 580
+    },
+    {
+      "name": "offline transaction",
+      "status": "pass",
+      "receipt": "offline-integration.json",
+      "records": [
+        {
+          "case": "yielding",
+          "budget": 1,
+          "batches": 29,
+          "purchases": 0,
+          "spent": 0
+        },
+        {
+          "case": "yielding",
+          "budget": 2,
+          "batches": 14,
+          "purchases": 0,
+          "spent": 0
+        },
+        {
+          "case": "yielding",
+          "budget": 31,
+          "batches": 0,
+          "purchases": 0,
+          "spent": 0
+        },
+        {
+          "case": "yielding",
+          "budget": 256,
+          "batches": 0,
+          "purchases": 0,
+          "spent": 0
+        },
+        {
+          "case": "primary-failure-and-retry",
+          "purchases": 0,
+          "spent": 0
+        },
+        {
+          "case": "simulation-failure-and-retry",
+          "purchases": 0,
+          "spent": 0
+        }
+      ]
+    },
+    {
+      "name": "native slider/duration/activation",
+      "status": "pass",
+      "receipt": "native-ui.json",
+      "checks": 1062,
+      "profiles": 12
+    },
+    {
+      "name": "existing Lab catalog mobile",
+      "status": "pass",
+      "receipt": "expansion-ui.json",
+      "checks": 6588,
+      "profiles": 12
+    },
+    {
+      "name": "existing browser regressions",
+      "status": "pass",
+      "scenarios": [
+        {
+          "scenario": "lab-motes-contracts",
+          "status": "pass",
+          "checks": 248
+        },
+        {
+          "scenario": "lab-motes-chronology",
+          "status": "pass",
+          "checks": 55
+        },
+        {
+          "scenario": "lab-motes-conservation",
+          "status": "pass",
+          "checks": 15899,
+          "fixtures": 826
+        },
+        {
+          "scenario": "lab-motes-save-reload",
+          "status": "pass"
+        },
+        {
+          "scenario": "lab-motes-backup-restore",
+          "status": "pass"
+        },
+        {
+          "scenario": "lab-motes-recovery",
+          "status": "pass"
+        },
+        {
+          "scenario": "lab-motes-reset",
+          "status": "pass"
+        },
+        {
+          "scenario": "inquiry-contracts",
+          "status": "pass",
+          "checks": 231
+        },
+        {
+          "scenario": "inquiry-chronology",
+          "status": "pass",
+          "checks": 39
+        },
+        {
+          "scenario": "inquiry-ui",
+          "status": "pass",
+          "checks": 49
+        },
+        {
+          "scenario": "inquiry-ui-reduced-motion",
+          "status": "pass",
+          "checks": 49
+        },
+        {
+          "scenario": "inquiry-save-reload",
+          "status": "pass"
+        },
+        {
+          "scenario": "inquiry-backup-restore",
+          "status": "pass"
+        },
+        {
+          "scenario": "inquiry-recovery",
+          "status": "pass"
+        },
+        {
+          "scenario": "research-duration",
+          "status": "pass",
+          "checks": 91
+        },
+        {
+          "scenario": "research-duration-reduced-motion",
+          "status": "pass",
+          "checks": 92
+        },
+        {
+          "scenario": "upgrade-effects-and-deeds",
+          "status": "pass",
+          "checks": 1065
+        },
+        {
+          "scenario": "p2-02b-lab-hierarchy",
+          "status": "pass"
+        },
+        {
+          "scenario": "nav-workshop-contract",
+          "status": "pass",
+          "checks": 415
+        },
+        {
+          "scenario": "p1-05-control-regressions",
+          "status": "pass"
+        },
+        {
+          "scenario": "r3-destinations",
+          "status": "pass",
+          "checks": 179
+        },
+        {
+          "scenario": "r3-save-reload",
+          "status": "pass"
+        }
+      ],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "name": "final-lab-motes-native.log",
+      "status": "pass",
+      "profiles": 6,
+      "details": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "no-preference",
+          "presentationChecks": 686
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "no-preference",
+          "presentationChecks": 686
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "no-preference",
+          "presentationChecks": 686
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "no-preference",
+          "presentationChecks": 686
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "no-preference",
+          "presentationChecks": 686
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "no-preference",
+          "presentationChecks": 686
+        }
+      ],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "name": "final-lab-motes-reduced-motion.log",
+      "status": "pass",
+      "profiles": 6,
+      "details": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "reduce",
+          "presentationChecks": 690
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "reduce",
+          "presentationChecks": 690
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "reduce",
+          "presentationChecks": 690
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "reduce",
+          "presentationChecks": 690
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "reduce",
+          "presentationChecks": 690
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "reduce",
+          "presentationChecks": 690
+        }
+      ],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "name": "final-lab-motes-numerical.log",
+      "status": "pass",
+      "checks": 316,
+      "causalControl": "both exact old-R2 minima rejected; undo passes"
+    },
+    {
+      "name": "final-lab-motes-runtime.log",
+      "status": "pass",
+      "checks": 847,
+      "profiles": 40,
+      "details": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "name": "mutate-selection.json",
+      "status": "expected-failure",
+      "assertion": "AssertionError [ERR_ASSERTION]: selection/old scheduler cannot activate or spend"
+    },
+    {
+      "name": "mutate-select.json",
+      "status": "expected-failure",
+      "assertion": "AssertionError [ERR_ASSERTION]: drag preview pure/attached across refresh 1"
+    }
+  ],
+  "limits": [
+    "Self-review; no independent review",
+    "Synthetic income fixtures, not player telemetry",
+    "Full combined/main/CI/GitHub acceptance pending",
+    "No APK/build/signing or physical Android/WebView60/TalkBack acceptance",
+    "Wall-clock deadlines are not a trusted or tamper-resistant server clock"
+  ],
+  "findings": [
+    "Optional Windows dump-dom/CDP-DOM transport sometimes returns valid PASS DOM but fails browser teardown; same assertions pass via the existing native CDP regression driver. Process exit requirements were retained.",
+    "Existing numerical fixtures refer to absent summary.abilityCasts; their exact kill/damage/currency assertions and causal controls pass. A separate test cleanup can use recorded ability timeline events.",
+    "Do not pass the entire repository as --web-root: the runner copies that tree. Use source/assets-only staging. Unrelated validation-evidence remains untouched."
+  ]
+}

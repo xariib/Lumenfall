@@ -1,103 +1,75 @@
-# Timed Lab speed revision — 15 October 2026
+# Timed Lab boosts — 15 October 2026
 
-IN PROGRESS. Pricing is a proposal awaiting the user's decision, not implemented
-balance. Parent7598c86/local/full-debug; index.html SHA-256
-084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae.
-Tracked source clean at startup; unrelated validation-evidence/ is untouched.
-[Prior task checkpoint](previous-checkpoint.md) retains the accepted slider
-history, exact source/checks and deferred final acceptance. user-before.png is
-the new supplied screenshot, not an independent browser execution receipt.
+Local candidate VERIFIED on local/full-debug, starting at7598c86;
+proposal-only checkpoint6670216. No remote, APK or signing. Unrelated
+validation-evidence/ remains untouched. [Prior checkpoint](previous-checkpoint.md)
+preserves earlier acceptance evidence. user-before.png is the user's supplied
+reference, not an independent browser receipt.
 
-## Accepted user changes
+## User requirements and decisions
 
-Simplify this Lab card, remove Buy now, replace speed payments per level with
-8/12/24-hour boosts and a modest longer-duration discount. User confirmed in this
-chat: each boost applies only to the selected project, across successive levels;
-the timer counts continuously, including idle and offline time. User requested
-a price proposal. Keep all existing1.5x–8x multipliers, name/level badge,
-Current/Next effects and independent Study Queue. The new request explicitly
-supersedes the old per-level charging rule; historical requirements are not a
-mandate to retain that charging model in the new feature.
+Original task4 requested compact speed controls, direct multiplier selection,
+independent Lab and speed queue intent, visible prices and duplicate protection.
+The user subsequently requested a stepped1.5x–8x slider; a prominent project
+name with a level badge beneath; Current/Next effect labels; no repeated status
+paragraph or Buy now; and then8/12/24-hour speed instead of per-level payment.
+The last request supersedes immediate/per-level speed purchases and their queue.
 
-## Proposed pricing — NOT APPROVED
+User confirmed selected-project scope across successive levels, with continuous
+elapsed time including idle and offline time. Rejected14/20/38 Motes as too cheap
+and asked for slower earning. After another proposal, said “Find a good balance
+between motes earning and speedup cost”, delegating numerical tuning. No further
+price permission is pending. [Balance and measurements](economy-review.md).
+The rejected first table remains in proposed-prices.json for historical context.
 
-Use the current undiscounted speed-tier price as the8-hour package price.
-The12-hour package is proportional minus5%;24 hours minus10%. Round the package
-price up to whole Motes once, then apply existing Mote Catalysis using its current
-whole-currency rounding. Prices below exclude Catalysis. Proposed numbers are
-not established game balance or production behavior.
+Announced exact earning rule before applying it: “Luminous kills can award Motes
+once every60 seconds; eligible payouts retain the current depth and purchased
+bonuses.” AGENTS.md and in-game help now describe it. Current prices for1.5x:
+800/1140/2160 Motes before Catalysis;12h5%,24h10% off proportional8h price,
+rounded up once, then existing Catalysis. All eight multipliers remain.
 
-| Speed | 8h | 12h, 5% off | 24h, 10% off |
-| --- | ---: | ---: | ---: |
-| 1.5x | 14 | 20 | 38 |
-| 2x | 26 | 38 | 71 |
-| 3x | 60 | 86 | 162 |
-| 4x | 110 | 157 | 297 |
-| 5x | 176 | 251 | 476 |
-| 6x | 258 | 368 | 697 |
-| 7x | 357 | 509 | 964 |
-| 8x | 473 | 675 | 1278 |
+## Implementation and protection
 
-Exact formula before Catalysis:
-ceil(round(6 * multiplier^2.1) * hours * (100-discount) / 800).
-proposed-prices.json records the same integer arithmetic. Longer bundles reduce
-the effective hourly price after whole-Mote rounding. This preserves familiar
-entry prices and relative speed-tier curve, not the old per-level economy:
-multiple early completions can now share one payment; long late-game levels
-may need multiple timed packages. User pricing confirmation is required under
-AGENTS.md: "clarify missing gameplay decisions before implementing."
+Name/badge and independent Lab Queue lead the card. One grouped slider/duration
+choice has one explicit activation with total price; it becomes a countdown.
+Choices never spend. No renewal, overlapping timer or overwrite of paid time.
+Activation requires an eligible running project. Timer continues idle between
+levels and offline. Existing active.speedMult is retained as a paid floor.
+New boosts never rewrite remaining work/duration or that old floor.
 
-## Implementation design after price decision
+Additive saves retain strict known-project deadlines, choices and payout clock.
+Old speed queue migrates OFF, selected multiplier remains, no free timer grant.
+Expired history remains available for chronological offline replay. Simulation
+splits at boost start/expiry and uses the old shared12h productive cap. Timers
+consume wall time even beyond that cap. Completion estimates account for expiry.
 
-- Name and badge remain at top, Lab Queue at right. Speed target and duration
-  are one grouped choice with visible total Mote price; no Buy now/per-level
-  cost/speed queue boxes. One explicit activation starts the paid timer.
-- During a boost, replace the activation action with multiplier and remaining
-  time. Do not automatically renew, overlap or replace unexpired paid time.
-  Slider/duration previews never spend; repeat activation cannot charge twice.
-- Continue the same boost across this project's future starts while its deadline
-  remains valid. Study Queue and its Lumen/Shard costs remain independent.
-  Starting a new boost requires an eligible active project, as current paid speed
-  does. A running timer continues during idle intervals after a completion.
-- Preserve already purchased per-level active.speedMult as a separate paid floor.
-  Timed speed affects effective progress only until expiry; never erase that
-  legacy floor or retroactively change remainingSec/totalDurationSec. Keep old
-  target preference where valid, but migrate old future auto-spending OFF without
-  granting free timed hours. No player reset or refunds invented.
-- Persist strict known-project boost deadlines and selected duration additively;
-  preserve backup/recovery/Ascend/Reset contracts. Normalization must not spend or
-  drop expired records before chronological offline replay has accounted for
-  their past valid interval. Real-time expiry does not extend offline simulation
-  beyond the existing shared cap.
-- Add expiry as an authoritative boundary in live, Farm, push and Study-only
-  scheduling and precise work anchors. Resolve actual progress at the old speed
-  up to expiry, then use the remaining eligible speed. Idle/large absence still
-  consume wall time. Keep transaction retry/yield behavior deterministic.
-- Respect current red insufficient-resource amounts and disabled purchase rules;
-  refresh quotes, timers and eligibility without moving focused controls.
+Global Mote eligibility spans Rifts, Farm/push/manual kills and offline replay;
+only an actual Luminous kill awards the existing fixed reward/bonuses. Other
+Luminous kills retain Lumen/Shards/counts. Field Notes, Ascension Dust, balances,
+paid upgrades, work, Study Queue, caps and other game systems remain intact.
 
-## Baseline/checks and remaining work
+## Verification and delivery
 
-Verified current source: speedTierCost gives14 Motes at1.5x; markup shows /level
-and Buy now; studyMotesPlan/simulationBuyStudySpeeds debit on each eligible level.
-Current snapshot reproduces the user's reported presentation/charging model.
-Baseline node tests/behavioral/lab-expansion.cjs index.html PASS2675 (source above).
-No timed feature or UI was implemented in the game yet. Prior checks do not prove
-new timer correctness. Initial check_context failed the32KiB startup budget due
-to shared state growth; compacted only this task and retained its prior text here.
+Baseline per-level/Buy now reproduced in source and supplied screenshot;
+Lab expansion core2675 PASS on084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae.
+Updated tests replace superseded per-level assertions with prepaid timer/cooldown
+oracles while retaining material, kill, damage, purchased-value and save checks.
+Negative controls cover free time, unlimited payouts, duplicate debit, selection
+spending and detached controls. All tier/duration/Catalysis quotes, funding,
+expiry/carry/collisions, legacy floors, recovery/backup/Reset/Ascend, yielding/
+retry and live/offline/split parity remain required. Native browser profiles cover
+320/390/430px,100/200% text and both motion settings, focus and scroll.
 
-Required new coverage: all tier/duration/Catalysis quotes, one-short/exact funds,
-duplicate/rapid activation, active/capped/locked/idle behavior, final-only price
-selection, expiry within/at completion, next-level carry before/after deadline,
-legacy paid floors, cold load/backup/recovery/Reset/Ascend, strict invalid saves,
-clock rollback/large absence, online/offline/split/yield/retry parity and shared
-cap. Existing Lab, economy, save and affordability regressions stay relevant;
-old per-level assertions must be updated only where the user changed that rule.
-Touch/keyboard,320–430px,200% text, contrast and stable focus/scroll remain required.
-
-Next: obtain price decision, implement, reproduce/fix failures, review full diff,
-record exact source-bound checks, commit local checkpoint, refresh mobile/www
-source/fonts/branding and show the playable game preview. No GitHub/push/APK/
-signing or new chats/agents. Combined/main/CI and Android/device/WebView60/
-TalkBack acceptance remain open. Product remains unchanged while prices await
-confirmation; a design proposal is not implementation acceptance.
+[verification.json](verification.json) records14 source-bound groups on419f650d,
+including22 existing browser scenarios,1480 timed-core checks,2676 expansion,
+2179 caps/old-value,580 actual V8 6.0,1062 native UI/12 profiles and6588 catalog
+checks. Two UI mutants and three timed-core mutants are rejected. Original damage
+and material/save conservation oracles remain; no tolerance was increased.
+The fractional carried Study clock and active/idle focus regressions were fixed.
+Self-review found no unintended game removals. The optional Windows DOM transport
+returned valid PASS assertions but sometimes failed browser teardown; the same
+assertions pass through the existing CDP driver with real zero exit required.
+Timers use local wall-clock deadlines, not a trusted server clock. Required combined/main/CI/GitHub and Android/device/WebView60/
+TalkBack acceptance remain open. Browser checks do not prove Android acceptance.
+Next: checkpoint the reviewed diff, refresh mobile/www
+from current source/fonts/branding and show the real playable preview.

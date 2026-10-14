@@ -14,11 +14,11 @@ window.checkLabSpeedControls = function(b,assert,id){
 window.runLabUiQa = function(b,ctx,assert){
   var checks=0,records=[],q=function(selector){return document.querySelector(selector);};
   function ok(value,message){checks++;assert(value,'LAB_UI_001: '+message);}
-  function seed(){var s=window.labMotesSeed(b,ctx);s.motes=1000;s.studyUseMotes.guardmastery=false;s.activeStudies=[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}];return s;}
+  function seed(){var s=window.labMotesSeed(b,ctx);s.motes=100000;s.studyUseMotes.guardmastery=false;s.activeStudies=[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}];return s;}
   function install(s){b.setState(s);b.renderLayout();q('[data-tab="research"]').click();}
   function fit(){
     ok(document.documentElement.scrollWidth<=innerWidth+1&&q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'no horizontal overflow');
-    Array.from(q('#study-list').querySelectorAll('button,input')).filter(function(el){return el.getClientRects().length;}).forEach(function(el){
+    Array.from(q('#study-list').querySelectorAll('button,input,select')).filter(function(el){return el.getClientRects().length;}).forEach(function(el){
       ok(el.offsetWidth>=44&&el.offsetHeight>=44,'controls have 44px layout targets: '+el.outerHTML.slice(0,180));
     });
   }
@@ -62,20 +62,19 @@ window.runLabUiQa = function(b,ctx,assert){
 
   install(seed());
   var select=q('[data-study-speed-target="guardmastery"]');window.selectLabSpeed('guardmastery',3);
-  var saved=b.getState();ok(saved.studySpeedTargets.guardmastery===3&&saved.motes===1000&&saved.activeStudies[0].speedMult===1,'selection alone never buys');
+  var saved=b.getState();ok(saved.studySpeedTargets.guardmastery===3&&saved.motes===100000&&saved.activeStudies[0].speedMult===1,'selection alone never buys');
   var buy=q('[data-speed-study="guardmastery"][data-speed="3"]');buy.focus();b.renderLayout();
   ok(document.activeElement.dataset.speed==='3'&&document.activeElement.dataset.speedStudy==='guardmastery','unrelated rendering preserves an available purchase focus');
   q('[data-speed-study="guardmastery"][data-speed="3"]').click();
-  var paid=b.getState();ok(paid.motes===940&&paid.activeStudies[0].speedMult===3,'real button charges exactly 60 Motes');
-  ok(document.activeElement.dataset.studySpeedTarget==='guardmastery','purchase returns usable focus to same Study selector');
-  ok(!q('[data-study-inspection="guardmastery"]').hidden&&q('[data-speed-study="guardmastery"][data-speed="3"]').disabled&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline purchase marks current speed');
+  var paid=b.getState();ok(paid.motes===96500&&paid.studyBoosts.guardmastery.mult===3&&paid.activeStudies[0].speedMult===1,'real button charges exactly3500 Motes without rewriting paid floor');
+  ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','purchase returns focus to same Study timer');
+  ok(!q('[data-study-inspection="guardmastery"]').hidden&&!q('[data-speed-study="guardmastery"]')&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline countdown marks current speed');
   ok(q('[data-study-inspection="wispascend"] [data-speed-study]').disabled,'idle controls cannot purchase a nonexistent level');
-  window.selectLabSpeed('guardmastery',2);
   var finish=seed();finish.activeStudies[0].remainingSec=.1;install(finish);window.selectLabSpeed('guardmastery',2);
   q('[data-speed-study="guardmastery"][data-speed="2"]').focus();b.inquiry.tail(.1);b.renderLayout();
   ok(!b.getState().activeStudies.length&&document.activeElement.dataset.studySpeedTarget==='guardmastery','completion leaves focus on the same Study selector');
   ok(q('[data-study-inspection="guardmastery"] [data-speed-study]').disabled,'completed record cannot be bought again');
-  ['[data-study-use-motes="riftattune"]','[data-speed-study="riftattune"][data-speed="3"]','[data-study-speed-target="riftattune"]'].forEach(function(control){
+  ['[data-study-boost-hours="riftattune"]','[data-speed-study="riftattune"][data-speed="3"]','[data-study-speed-target="riftattune"]'].forEach(function(control){
     var legacy=seed();legacy.longStudyLevels.riftattune=2;legacy.studyUseMotes.riftattune=false;legacy.activeStudies=[{id:'riftattune',remainingSec:.1,totalDurationSec:150,speedMult:2}];install(legacy);
     window.selectLabSpeed('riftattune',3);
     var target=q(control);ok(target.getClientRects().length,'retired focus fixture visible '+control);target.focus();

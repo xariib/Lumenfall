@@ -61,7 +61,7 @@ window.runResearchDurationQa = function(b,ctx,assert){
   window.selectLabSpeed('guardmastery',1.5);
   document.querySelector('[data-speed-study="guardmastery"][data-speed="1.5"]').click();
   var accelerated=b.getState();
-  ok(accelerated.activeStudies[0].speedMult===1.5,'real speed-tier action applied');
+  ok(accelerated.studyBoosts.guardmastery.mult===1.5&&accelerated.activeStudies[0].speedMult===1,'real timed speed action preserves legacy floor');
   ok(accelerated.activeStudies[0].remainingSec===committed.activeStudies[0].remainingSec,'speed purchase does not rewrite remaining work');
   ok(document.querySelector('[data-study-text="guardmastery"]').textContent==='8m 06s remaining · 1.5x','speed change updates actual card immediately');
 

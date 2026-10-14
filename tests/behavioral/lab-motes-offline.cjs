@@ -26,15 +26,15 @@ function fixture(motes=59){
   const s=engine(null).b.fresh();
   Object.assign(s,{lastSeen:start,riftMode:'farm',depth:1,enemyDepth:1,farmDepth:1,farmReturnDepth:2,maxDepthEver:130,enemyMaxHp:11,enemyHp:8.03,enemyIsLuminous:false,luminousAccum:.975,motes,lumen:0,shards:0});
   s.activeStudies=[{id:'guardmastery',remainingSec:300,totalDurationSec:600,speedMult:1}];
-  s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=3;
+  s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=3;s.studyBoosts.guardmastery={mult:3,startedAtMs:start-28800000+20000,expiresAtMs:start+20000};
   return s;
 }
 function complete(x){let result,error,calls=0;x.b.apply((r,e)=>{result=r;error=e;calls++;});const batches=x.drain();assert.equal(calls,1,'one completion callback');return {result,error,batches};}
 function near(a,b,label){assert(Math.abs(a-b)<1e-7,label+': '+a+' vs '+b);}
 const seed=fixture(),reference=engine(seed,30),sync=reference.b.apply();
 assert.equal(sync.kills,3000,'independent damage/HP kill ledger');
-assert.equal(sync.studySpeedPurchases,1);assert.equal(sync.studyMotesSpent,60);
-near(reference.b.get().activeStudies[0].remainingSec,300-.0173-(30-.0173)*3,'payment follows the first enabling reward');
+assert.equal(sync.studySpeedPurchases,0);assert.equal(sync.studyMotesSpent,0);
+near(reference.b.get().activeStudies[0].remainingSec,230,'20s prepaid3x then10s base after expiry');
 for(const budget of [1,2,31,256]){
   const x=engine(seed,30),before=copy(x.b.get());x.b.batch(budget);
   let result,error;x.b.apply((r,e)=>{result=r;error=e;});
@@ -52,8 +52,8 @@ for(const failure of ['primary','simulation']){
   records.push({case:failure+'-failure-and-retry',purchases:retried.result.studySpeedPurchases,spent:retried.result.studyMotesSpent});
 }
 const recovery=engine(seed,30);recovery.recovery(true);const committed=complete(recovery);assert.ifError(committed.error);assert.deepEqual(committed.result,sync);assert.deepEqual(recovery.b.get(),reference.b.get(),'recovery failure does not refund a committed primary payment');
-const old=copy(seed);delete old.studyUseMotes;delete old.studySpeedTargets;const legacy=engine(old,30),legacyResult=legacy.b.apply();assert.equal(legacyResult.studySpeedPurchases,0);assert.equal(legacyResult.studyMotesSpent,0);assert.equal(legacy.b.get().studyUseMotes.guardmastery,false);near(legacy.b.get().activeStudies[0].remainingSec,270,'old-save intent defaults OFF');
-const processing=engine(fixture(60),30);processing.b.batch(1);processing.processing(1000);let processingResult,processingError;processing.b.apply((r,e)=>{processingResult=r;processingError=e;});processing.processing(2000);processing.drain();assert.ifError(processingError);assert.equal(processingResult.studySpeedPurchases,1);assert.equal(processingResult.studyMotesSpent,60);near(processing.b.get().activeStudies[0].remainingSec,207,'foreground processing time uses paid speed');
-const tailSeed=fixture(60);tailSeed.activeStudies[0].remainingSec=129615;tailSeed.activeStudies[0].totalDurationSec=129615;
-const tail=engine(tailSeed,43210),tailResult=tail.b.apply();assert.equal(tailResult.effectiveSec,43200,'existing combat cap');assert.equal(tailResult.studySpeedPurchases,1);assert.equal(tailResult.studyMotesSpent,60);assert.equal(tail.b.get().longStudyLevels.guardmastery,0,'paid Study cannot complete beyond the shared cap');assert.equal(tail.b.get().activeStudies[0].remainingSec,15);
+const old=copy(seed);delete old.studyUseMotes;delete old.studySpeedTargets;delete old.studyBoosts;const legacy=engine(old,30),legacyResult=legacy.b.apply();assert.equal(legacyResult.studySpeedPurchases,0);assert.equal(legacyResult.studyMotesSpent,0);assert.equal(legacy.b.get().studyUseMotes.guardmastery,false);near(legacy.b.get().activeStudies[0].remainingSec,270,'old-save intent defaults OFF');
+const processing=engine(fixture(60),30);processing.b.batch(1);processing.processing(1000);let processingResult,processingError;processing.b.apply((r,e)=>{processingResult=r;processingError=e;});processing.processing(2000);processing.drain();assert.ifError(processingError);assert.equal(processingResult.studySpeedPurchases,0);assert.equal(processingResult.studyMotesSpent,0);near(processing.b.get().activeStudies[0].remainingSec,229,'processing time after expiry uses base speed');
+const tailSeed=fixture(60);tailSeed.activeStudies[0].remainingSec=43255;tailSeed.activeStudies[0].totalDurationSec=43255;
+const tail=engine(tailSeed,43210),tailResult=tail.b.apply();assert.equal(tailResult.effectiveSec,43200,'existing combat cap');assert.equal(tailResult.studySpeedPurchases,0);assert.equal(tailResult.studyMotesSpent,0);assert.equal(tail.b.get().longStudyLevels.guardmastery,0,'paid Study cannot complete beyond the shared cap');assert.equal(tail.b.get().activeStudies[0].remainingSec,15);
 console.log(JSON.stringify({status:'pass',scenario:'lab-motes-offline-integration',records,recoveryFailure:'committed primary retained',legacy:'OFF',processing:'paid speed retained',tail:'shared 12h cap preserves paid work'}));

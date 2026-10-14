@@ -26,6 +26,7 @@ function verify(html){
   for(const node of l.projects()){
     const old=JSON.parse(JSON.stringify(bl.projects().find(n=>n.id===node.id)));
     if(labIds.includes(node.id)){old.levelCap=20;old.desc=old.desc.replace(node.id==='bossledger'?'up to 50%':'up to 100%',node.id==='bossledger'?'up to 100%':'up to 200%');}
+    if(node.id==='catalysis')old.desc='2% lower Mote prices per level for future timed Lab boosts, up to 20%. Existing paid speed and boost time are retained; project levels share unexpired boost time.';
     eq(node,old,'only agreed Lab cap/endpoint wording changes: '+node.id);
   }
   for(const id of forgeIds){
@@ -73,7 +74,7 @@ function verify(html){
       }else eq(l.get(),prior,'maxed start preserves paid state');
     }
     const discounted=labSeed();discounted.longStudyLevels[id]=19;discounted.longStudyLevels.procurement=10;discounted.longStudyLevels.catalysis=10;l.set(discounted);bl.set(discounted);
-    eq(l.cost(id,19),bl.cost(id,19),'existing discounts apply to added level');eq(l.speedCost(8),379,'existing discounted speed price');
+    eq(l.cost(id,19),bl.cost(id,19),'existing discounts apply to added level');eq(l.speedCost(8),22000,'discount applies to new timed speed price');
   }
   // Schema1/2/3, old levels10, retained raw overcaps and retired value all
   // normalize exactly as the accepted baseline; upward caps need no refund.
@@ -81,7 +82,12 @@ function verify(html){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});
     s.longStudyLevels.labcapacity=2;s.activeStudies=[{id:'bossledger',remainingSec:12.5,totalDurationSec:123.75,speedMult:8},{id:'prismstudy',remainingSec:17,totalDurationSec:90,speedMult:3}];
-    f.set(s);bf.set(s);eq(f.get(),bf.get(),'old/current save normalized value identical '+schema+'/'+level);
+    f.set(s);bf.set(s);const expected=F.clone(bf.get());
+    // The timed-speed revision adds empty/default metadata and retires old
+    // recurring consent. All earlier paid/progression values still match.
+    expected.studyBoosts={};expected.studyBoostHours=l.fresh().studyBoostHours;expected.moteNextAtMs=0;
+    Object.keys(expected.studyUseMotes).forEach(id=>expected.studyUseMotes[id]=false);
+    eq(f.get(),expected,'old save paid value retained with explicit timed migration '+schema+'/'+level);
     const canonical=F.clone(f.get());f.set(canonical);eq(f.get(),canonical,'idempotent normalization');
     f.save();eq(F.app(html,fx.storage).q.get(),canonical,'actual cold save reload');
     eq(f.accept(f.decode(f.export())),canonical,'backup roundtrip keeps raw progress/paid work');

@@ -1,0 +1,157 @@
+{
+  "status": "observed-current-source",
+  "sourceSha256": "084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae",
+  "scope": "synthetic fixture observations, not player telemetry or acceptance of proposed balance",
+  "perThousand": [
+    {
+      "depth": 9,
+      "chance": 0.03,
+      "fixedMoteReward": 2,
+      "kills": 1000,
+      "luminous": 29,
+      "motes": 58
+    },
+    {
+      "depth": 39,
+      "chance": 0.09,
+      "fixedMoteReward": 6,
+      "kills": 1000,
+      "luminous": 89,
+      "motes": 534
+    },
+    {
+      "depth": 79,
+      "chance": 0.17,
+      "fixedMoteReward": 11,
+      "kills": 1000,
+      "luminous": 169,
+      "motes": 1859
+    },
+    {
+      "depth": 149,
+      "chance": 0.3,
+      "fixedMoteReward": 20,
+      "kills": 1000,
+      "luminous": 299,
+      "motes": 5980
+    },
+    {
+      "depth": 249,
+      "chance": 0.3,
+      "fixedMoteReward": 32,
+      "kills": 1000,
+      "luminous": 299,
+      "motes": 9568
+    }
+  ],
+  "samples": [
+    {
+      "fixture": "mid-game",
+      "depth": 17,
+      "canonicalHp": 100,
+      "seconds": 60,
+      "kills": 269,
+      "luminous": 13,
+      "motes": 39
+    },
+    {
+      "fixture": "farm-mode",
+      "depth": 3,
+      "canonicalHp": 15,
+      "seconds": 60,
+      "kills": 6644,
+      "luminous": 199,
+      "motes": 199
+    },
+    {
+      "fixture": "parity-medium-farm",
+      "depth": 89,
+      "canonicalHp": 1712728,
+      "seconds": 60,
+      "kills": 1850,
+      "luminous": 351,
+      "motes": 9477
+    },
+    {
+      "fixture": "mature-high-power",
+      "depth": 95,
+      "canonicalHp": 3859413,
+      "seconds": 60,
+      "kills": 829,
+      "luminous": 173,
+      "motes": 4671
+    }
+  ],
+  "revisedProposal": {
+    "status": "not-approved",
+    "luminousMotePayoutIntervalSeconds": 60,
+    "keepCurrentFixedEligiblePayoutAndBonusPercentages": true,
+    "otherMoteSources": "Field Notes and Ascension Dust unchanged; assess bypass income before final balance acceptance",
+    "prices": [
+      {
+        "mult": 1.5,
+        "prices": [
+          1500,
+          2138,
+          4050
+        ]
+      },
+      {
+        "mult": 2,
+        "prices": [
+          3000,
+          4275,
+          8100
+        ]
+      },
+      {
+        "mult": 3,
+        "prices": [
+          6500,
+          9263,
+          17550
+        ]
+      },
+      {
+        "mult": 4,
+        "prices": [
+          12000,
+          17100,
+          32400
+        ]
+      },
+      {
+        "mult": 5,
+        "prices": [
+          19000,
+          27075,
+          51300
+        ]
+      },
+      {
+        "mult": 6,
+        "prices": [
+          27500,
+          39188,
+          74250
+        ]
+      },
+      {
+        "mult": 7,
+        "prices": [
+          38000,
+          54150,
+          102600
+        ]
+      },
+      {
+        "mult": 8,
+        "prices": [
+          50000,
+          71250,
+          135000
+        ]
+      }
+    ]
+  }
+}

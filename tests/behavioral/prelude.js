@@ -22,7 +22,7 @@
   var uiMeasurementPaused=scenario.startsWith('offline-catchup-')||scenario==='formation-bonds-mobile';
   // These older purchase scenarios now exercise real committed transactions.
   // Their runner pauses timers instead of setting the production reload flag.
-  var forgeTransactionScenario=scenario.startsWith('forge-') || scenario==='r3-destinations' || scenario==='self-test-r3-shortcut' || scenario==='r3-save-reload';
+  var forgeTransactionScenario=scenario.startsWith('forge-') || scenario.startsWith('lab-motes-') || scenario.startsWith('inquiry-') || scenario.includes('research-duration') || scenario==='r3-destinations' || scenario==='self-test-r3-shortcut' || scenario==='r3-save-reload';
   if(forgeTransactionScenario || scenario.startsWith('tree-purchase-ui') || scenario==='formation-bonds-mobile' || scenario.startsWith('formation-autosave-') || scenario.startsWith('comet-unlocks-') || scenario==='lab-motes-native' || scenario==='lab-motes-reduced-motion' || scenario.startsWith('offline-catchup-') || scenario.startsWith('support-') || scenario==='rift-status-contract' || scenario==='auto-ascend-target-mobile' || scenario==='auto-ascend-target-reduced-motion' || scenario.startsWith('forge-ui-') || scenario.startsWith('self-test-forge-ui-') || scenario.startsWith('rift-status-stacking') || scenario.startsWith('rift-status-mobile') || scenario.startsWith('rift-status-reduced') || scenario.startsWith('self-test-rift-status-line')){
     // Observe actual registered Queue callbacks, without changing event dispatch.
     var realAddEventListener=EventTarget.prototype.addEventListener;
