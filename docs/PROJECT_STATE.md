@@ -1,5 +1,19 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [HELP_COPY_001](tasks/HELP_COPY_001.md) locally verified from
+`c834e16` on `local/full-debug`, source `f3321623`. Encyclopedia now explains
+current currency sources, Forge/charge/roles, Farm, Ascend, queues/paid speed,
+automation, combined upgrade paths, Comet commands and backups. Six tutorial
+pages;29 mechanics with all existing Wisps/Bonds/currencies. Fair Play offline
+rate clarified: current Echoing Rest purchases, preserved old Lab bonuses.
+Baseline enlarged-text Encyclopedia clipping reproduced and fixed with six help
+CSS rules. [Evidence](qa/help-copy-001/README.md):457/12 browser profiles, existing
+controls/navigation/save-backup12, source/context and V8 syntax PASS; full state
+and both save slots preserved. Only help text/rendering/CSS changes; gameplay
+unchanged. All15 staged/HTTP assets match preview4174; app opening queued.
+Screens visually reviewed; self-review. User review/main/GitHub/combined CI and
+Android/device acceptance pending. No remote/APK/release/archive; chat OPEN.
+
 14 October 2026: [FAIR_PLAY_COPY_001](tasks/FAIR_PLAY_COPY_001.md) locally verified
 on `local/full-debug` from `dea1d16`. Seven Settings cards now explain Ascend,
 offline limits/rates, fixed Mote rewards versus encounter chance, Wisp roles and

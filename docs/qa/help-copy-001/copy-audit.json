@@ -1,0 +1,216 @@
+{
+  "status": "PASS",
+  "baseline": "c834e16",
+  "sourceSha256": "f3321623ea6189502d56f4030df18c350f89e021727fe94dd92fe3213d2c4b7a",
+  "unchangedOutsideHelp": true,
+  "allowedArrays": [
+    "MANIFESTO",
+    "TUTORIAL_STEPS",
+    "CURRENCIES",
+    "ENCYCLOPEDIA_MECHANICS"
+  ],
+  "allowedPresentationFunctions": [
+    "forgeSigilDescription",
+    "forgeMechanicDescription"
+  ],
+  "counts": {
+    "fairPlay": 7,
+    "tutorial": 6,
+    "currencies": 6,
+    "mechanics": 29
+  },
+  "cards": [
+    {
+      "name": "Push",
+      "meta": "Rift mode",
+      "desc": "Climb toward new Rifts and bosses. Your saved Push point is preserved if you switch to Farm."
+    },
+    {
+      "name": "Rift Regions",
+      "meta": "World progression",
+      "desc": "The Rift changes region every 25 levels, moving through the Starlit Verge, Ashen Canopy, Glass Wastes, Drowned Observatory, Void Basilica and Crown of Night before deeper echoes begin."
+    },
+    {
+      "name": "Farm",
+      "meta": "Rift mode",
+      "desc": "Repeat the highest non-boss Rift cleared in your current run for resources. Push returns to your saved progression Rift with a fresh enemy; it does not preserve that enemy’s partially depleted HP. Auto-Ascend waits while you Farm."
+    },
+    {
+      "name": "Formation & Presets",
+      "meta": "Wisp selection",
+      "desc": "Choose up to five Active Wisps; Sixth Companion in the Tree raises this to six. Only recruited Active Wisps fight and activate Bonds. Push, Farm and Boss presets save your chosen lineups, but do not switch automatically when Rift mode changes. After Ascend, remembered members return as they are recruited again."
+    },
+    {
+      "name": "Wisp Power",
+      "meta": "Combat stat",
+      "desc": "Level and Rarity set each Wisp’s Power. It feeds passive damage and damaging or resource abilities. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus."
+    },
+    {
+      "name": "Passive Wisp Damage",
+      "meta": "Combat rule",
+      "desc": "Active Wisp Power is multiplied by passive-only permanent upgrades, applicable damage Bonds and active Support buffs. Modules and Ultimates do not increase passive damage."
+    },
+    {
+      "name": "Ability Charge",
+      "meta": "Automatic combat",
+      "desc": "Recruited Active Wisps fill their resource bars automatically. At 100 charge, an eligible ability fires without a manual ability button. Charge Rate speeds the natural fill up to its cap; some Forge upgrades grant extra charge. Support still has a minimum interval between its own casts, even with extra charge."
+    },
+    {
+      "name": "Ability Output",
+      "meta": "Combat / economy rule",
+      "desc": "Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources."
+    },
+    {
+      "name": "Tap damage (Guardian Tap)",
+      "meta": "Damage from tapping the enemy",
+      "desc": "A tap starts at 5 damage plus 2% of general Active-party passive power. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored."
+    },
+    {
+      "name": "Rarity",
+      "meta": "Wisp progression",
+      "desc": "Rarity Up requires the shown current Wisp level and both Lumen and Shards. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs."
+    },
+    {
+      "name": "Modules & Ultimates",
+      "meta": "Wisp progression",
+      "desc": "Modules cost Lumen and Shards and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. A Mythic Wisp can buy its Ultimate with Sigils. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend."
+    },
+    {
+      "name": "Endgame Currency Utility",
+      "meta": "Sigils and Quest Refresh",
+      "desc": "After all eight Ultimates are owned, Resonate fills an eligible Active Wisp’s charge. Resonance Efficiency reduces the Sigil price; Resonance Cells adds shared uses per run and Resonance Reclaim can restore spent uses after a boss kill. Quest Refresh unlocks with Auto-Ascend Ritual and Called Light; previously earned access remains. It spends Comets to replace an unclaimed quest while retaining daily progress."
+    },
+    {
+      "name": "Wisp Roles",
+      "meta": "Build label",
+      "desc": "Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles."
+    },
+    {
+      "name": "Ascend",
+      "meta": "Permanent progression",
+      "desc": "Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Rarity, Modules, Ultimates, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once. New cleared depth beyond your rewarded benchmark adds a bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending."
+    },
+    {
+      "name": "Rift Forge",
+      "meta": "Workshop · immediate upgrades",
+      "desc": "Pay the shown Lumen and Shards for an immediate permanent upgrade. Current and purchase effects are shown beside the price. Queue ON authorizes automatic affordable purchases, including offline; it does not make upgrades free. Unlock requirements and level caps still apply."
+    },
+    {
+      "name": "Research Lab",
+      "meta": "Workshop · timed projects",
+      "desc": "Pay Lumen and Shards when starting a project level. Its permanent bonus arrives only when that level completes. Slot capacity grows with your original project unlocks; Expanded Apparatus adds up to two slots. Lab Queue ON allows affordable starts in free slots. Paid running work and completed bonuses survive Ascend."
+    },
+    {
+      "name": "Lab Speed",
+      "meta": "Mote purchases",
+      "desc": "The slider selects one of the 1.5x–8x speed targets. Moving it does not buy a boost. Buy now pays the shown Motes to raise a running level’s speed; that speed lasts until the level completes. Speed queue ON authorizes automatic purchases toward the selected target whenever eligible and affordable, including on later project levels. Lab Queue and Speed queue are separate permissions."
+    },
+    {
+      "name": "Ascension Tree",
+      "meta": "Permanent Prism upgrades",
+      "desc": "Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply."
+    },
+    {
+      "name": "Preserved Upgrades",
+      "meta": "Earlier purchases",
+      "desc": "Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired."
+    },
+    {
+      "name": "Auto-Tap & Auto-Empower",
+      "meta": "Deed unlocks",
+      "desc": "Tireless Vigil unlocks Auto-Tap after 12 Ascends. The Forge Never Sleeps unlocks Auto-Empower after 20 total Forge levels. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded."
+    },
+    {
+      "name": "Auto-Ascend",
+      "meta": "Comet unlock",
+      "desc": "Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline."
+    },
+    {
+      "name": "Luminous Enemies",
+      "meta": "Mote encounters",
+      "desc": "Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Luminous Call can turn the current ordinary enemy Luminous. Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. The amount is fixed for those bonuses, rather than randomly rolled."
+    },
+    {
+      "name": "Boss Traits",
+      "meta": "Boss mechanic",
+      "desc": "A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier."
+    },
+    {
+      "name": "Comet Commands",
+      "meta": "Manual Rift actions",
+      "desc": "Meteor Strike and Luminous Call each spend one shared command charge after their unlock purchase. Enemy defeats recharge that shared pool; Orbital Reserve adds capacity and Orbital Engine speeds recharge. Meteor is limited by both enemy max HP and passive Wisp power, works once per encounter, and Meteor Core raises only its HP ceiling. Luminous Call needs an ordinary non-boss enemy; defeat it to receive its rewards. Commands are not used automatically while offline."
+    },
+    {
+      "name": "Deeds & Daily Quests",
+      "meta": "Comet rewards",
+      "desc": "Deeds are one-time milestones and unlocks. Daily Quests pay their displayed Comets when you press Claim; earned daily progress can count toward a refreshed quest. Login streak rewards cycle through seven days, with Prisms on the seventh reward. Quest Refresh replaces an unclaimed quest for the shown Comet price after its unlock; it retains daily progress."
+    },
+    {
+      "name": "Collection & Journal",
+      "meta": "Appearance and earlier unlocks",
+      "desc": "Deeds unlock Rift themes in Collection. Theme: Starlight is the default appearance; themes do not change combat. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic."
+    },
+    {
+      "name": "Formation Contribution",
+      "meta": "Combat estimates",
+      "desc": "Expand Formation contribution to inspect passive damage, abilities, Support, Bonds and separate resource rewards. Some rows compare the party with one Wisp removed; those effects overlap and must not be added together. Sustained estimates describe automatic combat, exclude manual taps and Comet commands, and can differ from an individual fight’s burst timing."
+    },
+    {
+      "name": "Offline Progress",
+      "meta": "Idle system",
+      "desc": "Combat, abilities, unlocked Auto-Tap/Auto-Empower, queues, Auto-Ascend and paid Lab work share up to 12 productive hours per absence. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode."
+    },
+    {
+      "name": "Save Backup",
+      "meta": "Settings · save protection",
+      "desc": "Progress is stored in this device or browser’s local save. Copy Current Save exports a backup code before reinstalling or changing device. Restoring requires confirmation and replaces the current save; old backup time cannot grant extra offline earnings. Reset Save permanently deletes progress. Settings and this guide do not pause combat."
+    }
+  ],
+  "tutorial": [
+    {
+      "title": "Fight & recruit",
+      "body": "Ember starts fighting for you. Tap the enemy for extra Guardian damage. In Wisps, spend Lumen to Recruit new Wisps or Empower their levels as you reach their Rift unlocks. Active Wisps use their abilities automatically."
+    },
+    {
+      "title": "Choose your Formation",
+      "body": "Only recruited Active Wisps fight. Choose pairs to activate Formation Bonds, and save separate Push, Farm and Boss lineups. If a boss stops you, switch Rift to Farm for resources; Push returns you to your saved Rift."
+    },
+    {
+      "title": "Upgrade your Wisps",
+      "body": "Rarity Up costs Lumen and Shards and requires the shown Wisp level. Modules improve each role’s ability or Mote rewards. At Mythic Rarity, Sigils buy that Wisp’s Ultimate. These upgrades stay after Ascend."
+    },
+    {
+      "title": "Use Forge & Lab",
+      "body": "Workshop contains Rift Forge for immediate upgrades and Research Lab for timed projects. Lab bonuses apply when a level completes. Queue ON permits automatic spending when affordable. The speed slider selects a target; Buy now spends the shown Motes, while Speed queue ON permits automatic speed purchases."
+    },
+    {
+      "title": "Ascend & automate",
+      "body": "Clear Rift 15 to unlock Ascend. Check the Prism reward before restarting your Rift run, Wisp levels and Lumen; Tree upgrades can improve that restart. Permanent upgrades, other currencies and paid Lab work stay. Spend Prisms in the Tree. Comets buy Auto-Ascend; Deeds unlock Auto-Tap and Auto-Empower."
+    },
+    {
+      "title": "Return & keep a backup",
+      "body": "Offline combat and paid Lab work share up to 12 hours of productive time per absence. Offline Lumen and Shard rewards start at 70%; Echoing Rest improves that rate. In Settings, Save Backup lets you copy progress before reinstalling or changing device. Restoring replaces the current save. You can replay this guide without resetting progress."
+    }
+  ],
+  "mechanicsEvidence": {
+    "motes": "motesDropFor, finishStudyRecord/fieldnotes, treeAscendMotes/stardust",
+    "prisms": "ascendPrismBreakdown, DAILY_LOGIN_REWARDS[6]",
+    "retiredUpgradePaths": "UPGRADE_FUSIONS, legacyUpgradeMarkup, getStudyStartPlan.retired",
+    "combat": "abilityRawBurst, abilityRewardPerCast, guardianTapDamageAt, supportAbilityProfile",
+    "formation": "treeFormationCapacity, commitFormationMembers, applyFormationPreset, reconcileFormationRebuild",
+    "queues": "autoLabQueueTick, autoFillStudySlots, studyMotesPlan, simulationBuyStudySpeeds",
+    "resonate": "canSigilResonate, useSigilResonance, sigilResonanceCost/Limit",
+    "offline": "PRODUCTIVE_OFFLINE_CAP_SEC, offlineRate, simulationMaybeRetreatFromBoss/RetryBoss",
+    "deeds": "ACHIEVEMENTS, restStopComplete, cometRecordDefeats, refreshDailyQuest",
+    "saves": "saveState, requestSaveRestore, restoreSaveBackup"
+  },
+  "allowedHelpSelectors": [
+    ".settings-head h2",
+    ".ency-top",
+    ".ency-main",
+    ".ency-name",
+    ".ency-meta",
+    ".ency-status"
+  ],
+  "layoutBaseline": "c834e16 reproduced Wisp title/meta clipping at 320px/200% text"
+}
