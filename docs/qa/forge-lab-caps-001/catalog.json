@@ -1,0 +1,2165 @@
+{
+  "status": "PASS",
+  "phase": "read-only proposal; no cap implementation",
+  "sourceSha256": "f8f787fd4a520ec277b350f40c6caeefa519c48cb55ddeb9bbe486e4cd0200b6",
+  "node": "v24.19.0",
+  "forge": [
+    {
+      "id": "charge",
+      "effectPerLevel": 0.08,
+      "levelCap": 10,
+      "name": "Swift Recovery",
+      "desc": "+8% faster natural Wisp ability charge per level, up to level 10. Natural ability cycle: at least 3.33 seconds.",
+      "lumenBase": 0,
+      "lumenGrowth": 1,
+      "shardBase": 30,
+      "shardGrowth": 1.55,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 0,
+        "shard": 30
+      },
+      "lastPrice": {
+        "lumen": 0,
+        "shard": 1550
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 0,
+        "shard": 4312
+      },
+      "effectAtCap": {
+        "factor": 1.8,
+        "bonus": 0.8,
+        "cycle": 3.3333333333333335
+      }
+    },
+    {
+      "id": "arcanecal",
+      "name": "Arcane Calibration",
+      "desc": "+3 percentage points to the damaging Wisp ability factor per level. Burst, Breaker, Gale and Thorn only; no passive or Tap bonus.",
+      "unlockDepth": 12,
+      "levelCap": 10,
+      "effectPerLevel": 0.03,
+      "lumenBase": 15000,
+      "lumenGrowth": 1.6,
+      "shardBase": 120,
+      "shardGrowth": 1.6,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 15000,
+        "shard": 120
+      },
+      "lastPrice": {
+        "lumen": 1030793,
+        "shard": 8247
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 2723780,
+        "shard": 21791
+      },
+      "effectAtCap": {
+        "factor": 1.3,
+        "bonus": 0.3
+      }
+    },
+    {
+      "id": "conduction",
+      "name": "Resource Conduction",
+      "desc": "+4 percentage points to the ability resource factor per level. Gale Shards and Thorn Lumen only; rounded per cast, not kill rewards.",
+      "unlockDepth": 18,
+      "levelCap": 10,
+      "effectPerLevel": 0.04,
+      "lumenBase": 90000,
+      "lumenGrowth": 1.6,
+      "shardBase": 280,
+      "shardGrowth": 1.6,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 90000,
+        "shard": 280
+      },
+      "lastPrice": {
+        "lumen": 6184753,
+        "shard": 19242
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 16342675,
+        "shard": 50844
+      },
+      "effectAtCap": {
+        "factor": 1.4,
+        "bonus": 0.4,
+        "casts": {
+          "gale": {
+            "lumen": 0,
+            "shards": 0
+          },
+          "thorn": {
+            "lumen": 0,
+            "shards": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "luminoustracking",
+      "name": "Luminous Tracking",
+      "desc": "+0.5 percentage points Luminous chance per level for future eligible encounters; total chance at most 35%. No extra Motes per kill.",
+      "unlockDepth": 32,
+      "levelCap": 10,
+      "effectPerLevel": 0.005,
+      "lumenBase": 2500000,
+      "lumenGrowth": 1.6,
+      "shardBase": 1500,
+      "shardGrowth": 1.6,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 2500000,
+        "shard": 1500
+      },
+      "lastPrice": {
+        "lumen": 171798692,
+        "shard": 103080
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 453963179,
+        "shard": 272378
+      },
+      "effectAtCap": {
+        "factor": 1.05,
+        "bonus": 0.05,
+        "chance": 0.28,
+        "depth": 101,
+        "boss": false
+      }
+    },
+    {
+      "id": "cauterize",
+      "name": "Cauterize",
+      "forgeGroup": "Boss craft",
+      "desc": "Each level reduces boss regeneration by 2%, up to 20%. Multiplies with the Vanguard Bond.",
+      "unlockDepth": 20,
+      "levelCap": 10,
+      "effectPerLevel": 0.02,
+      "lumenBase": 36000,
+      "lumenGrowth": 1.65,
+      "shardBase": 2500,
+      "shardGrowth": 1.65,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 36000,
+        "shard": 2500
+      },
+      "lastPrice": {
+        "lumen": 3263308,
+        "shard": 226619
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 8228396,
+        "shard": 571417
+      },
+      "effectAtCap": {
+        "factor": 1.2,
+        "bonus": 0.2,
+        "level": 10
+      }
+    },
+    {
+      "id": "fracturekey",
+      "name": "Fracture Key",
+      "forgeGroup": "Boss craft",
+      "desc": "Each level adds 0.025 to the Fractured Core boss ability multiplier, from 1.75 up to 2. Other enemies are unchanged.",
+      "unlockDepth": 30,
+      "levelCap": 10,
+      "effectPerLevel": 0.025,
+      "lumenBase": 103000,
+      "lumenGrowth": 1.65,
+      "shardBase": 6000,
+      "shardGrowth": 1.65,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 103000,
+        "shard": 6000
+      },
+      "lastPrice": {
+        "lumen": 9336686,
+        "shard": 543885
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 23542356,
+        "shard": 1371400
+      },
+      "effectAtCap": {
+        "factor": 1.25,
+        "bonus": 0.25,
+        "level": 10
+      }
+    },
+    {
+      "id": "guardianseal",
+      "name": "Guardian Seal",
+      "forgeGroup": "Boss craft",
+      "desc": "Each level adds 0.10 to Guardian’s Mark tap damage, from 3 times up to 3.5 times. Applies to manual and Auto-Tap hits.",
+      "unlockDepth": 40,
+      "levelCap": 5,
+      "effectPerLevel": 0.1,
+      "lumenBase": 293000,
+      "lumenGrowth": 1.7,
+      "shardBase": 14500,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 293000,
+        "shard": 14500
+      },
+      "lastPrice": {
+        "lumen": 2447166,
+        "shard": 121106
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 5524545,
+        "shard": 273399
+      },
+      "effectAtCap": {
+        "factor": 1.5,
+        "bonus": 0.5,
+        "level": 5
+      }
+    },
+    {
+      "id": "spillway",
+      "name": "Rift Spillway",
+      "forgeGroup": "Boss craft",
+      "desc": "Carry 4% of tap or ability overkill per level into the immediately following non-boss. Overkill is bounded by the original hit; never chains or crosses Ascend.",
+      "unlockDepth": 60,
+      "levelCap": 5,
+      "effectPerLevel": 0.04,
+      "lumenBase": 2361000,
+      "lumenGrowth": 1.7,
+      "shardBase": 80500,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 2361000,
+        "shard": 80500
+      },
+      "lastPrice": {
+        "lumen": 19719309,
+        "shard": 672345
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 44516892,
+        "shard": 1517836
+      },
+      "effectAtCap": {
+        "factor": 1.2,
+        "bonus": 0.2,
+        "level": 5
+      }
+    },
+    {
+      "id": "sustainedchannel",
+      "name": "Sustained Channel",
+      "forgeGroup": "Boss craft",
+      "desc": "After a damaging non-Support ability leaves the same boss alive, return 2 charge per level to its caster, up to 10.",
+      "unlockDepth": 70,
+      "levelCap": 5,
+      "effectPerLevel": 2,
+      "lumenBase": 6703000,
+      "lumenGrowth": 1.75,
+      "shardBase": 191000,
+      "shardGrowth": 1.75,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 6703000,
+        "shard": 191000
+      },
+      "lastPrice": {
+        "lumen": 62866809,
+        "shard": 1791372
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 137751887,
+        "shard": 3925200
+      },
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      }
+    },
+    {
+      "id": "tapconduit",
+      "name": "Tap Conduit",
+      "forgeGroup": "Rhythm",
+      "desc": "Each manual or Auto-Tap hit gives 2 charge per level to the first powered Active Wisp, up to 10. Charge stops at 100.",
+      "unlockDepth": 25,
+      "levelCap": 5,
+      "effectPerLevel": 2,
+      "lumenBase": 61000,
+      "lumenGrowth": 1.65,
+      "shardBase": 4000,
+      "shardGrowth": 1.65,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 61000,
+        "shard": 4000
+      },
+      "lastPrice": {
+        "lumen": 452133,
+        "shard": 29649
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 1053875,
+        "shard": 69107
+      },
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      }
+    },
+    {
+      "id": "guardiancadence",
+      "name": "Guardian Cadence",
+      "forgeGroup": "Rhythm",
+      "desc": "Every fifth lifetime tap deals 10% extra damage per level, up to 50%. Manual and Auto-Tap share the same count, including across Ascend.",
+      "unlockDepth": 35,
+      "levelCap": 5,
+      "effectPerLevel": 0.1,
+      "lumenBase": 174000,
+      "lumenGrowth": 1.7,
+      "shardBase": 9500,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 174000,
+        "shard": 9500
+      },
+      "lastPrice": {
+        "lumen": 1453266,
+        "shard": 79345
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 3280788,
+        "shard": 179124
+      },
+      "effectAtCap": {
+        "factor": 1.5,
+        "bonus": 0.5,
+        "level": 5
+      }
+    },
+    {
+      "id": "relay",
+      "name": "Resonance Relay",
+      "forgeGroup": "Rhythm",
+      "desc": "Support casts give 2 charge per level to each powered non-Support Active Wisp, after ready abilities have fired. Charge stops at 100.",
+      "unlockDepth": 45,
+      "levelCap": 5,
+      "effectPerLevel": 2,
+      "lumenBase": 493000,
+      "lumenGrowth": 1.7,
+      "shardBase": 22000,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 493000,
+        "shard": 22000
+      },
+      "lastPrice": {
+        "lumen": 4117586,
+        "shard": 183747
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 9295565,
+        "shard": 414813
+      },
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      }
+    },
+    {
+      "id": "resonantedge",
+      "name": "Resonant Edge",
+      "forgeGroup": "Rhythm",
+      "desc": "Support casts also strike for 10% of their own Wisp Power per level. Ability factors apply; Ultimate doubles the hit. Support buffs and its Mote Module do not boost this hit.",
+      "unlockDepth": 50,
+      "levelCap": 5,
+      "effectPerLevel": 0.1,
+      "lumenBase": 831000,
+      "lumenGrowth": 1.7,
+      "shardBase": 34000,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 831000,
+        "shard": 34000
+      },
+      "lastPrice": {
+        "lumen": 6940596,
+        "shard": 283972
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 15668589,
+        "shard": 641074
+      },
+      "effectAtCap": {
+        "factor": 1.5,
+        "bonus": 0.5,
+        "level": 5
+      }
+    },
+    {
+      "id": "victorycharge",
+      "name": "Victory Charge",
+      "forgeGroup": "Rhythm",
+      "desc": "Each boss kill gives 4 charge per level to every powered Active Wisp, up to 20. Ascend clears it unless Tree Charge Memory carries a share.",
+      "unlockDepth": 55,
+      "levelCap": 5,
+      "effectPerLevel": 4,
+      "lumenBase": 1401000,
+      "lumenGrowth": 1.7,
+      "shardBase": 52500,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 1401000,
+        "shard": 52500
+      },
+      "lastPrice": {
+        "lumen": 11701293,
+        "shard": 438486
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 26415996,
+        "shard": 989893
+      },
+      "effectAtCap": {
+        "factor": 21,
+        "bonus": 20,
+        "level": 5
+      }
+    },
+    {
+      "id": "amplifiertrim",
+      "name": "Amplifier Trim",
+      "forgeGroup": "Rhythm",
+      "desc": "Future Support casts gain 1 percentage point of buff strength per level, up to 5. Their durations and already-cast buffs stay unchanged.",
+      "unlockDepth": 60,
+      "levelCap": 5,
+      "effectPerLevel": 0.01,
+      "lumenBase": 2361000,
+      "lumenGrowth": 1.7,
+      "shardBase": 80500,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 2361000,
+        "shard": 80500
+      },
+      "lastPrice": {
+        "lumen": 19719309,
+        "shard": 672345
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 44516892,
+        "shard": 1517836
+      },
+      "effectAtCap": {
+        "factor": 1.05,
+        "bonus": 0.05,
+        "level": 5
+      }
+    },
+    {
+      "id": "dualchannel",
+      "name": "Dual Channel",
+      "forgeGroup": "Resources",
+      "desc": "Gale also gives Lumen equal to 20% of its native Shards per level; Thorn also gives Shards equal to 2% of its native Lumen per level. Each extra payout rounds down; no repeated conversion.",
+      "unlockDepth": 55,
+      "levelCap": 5,
+      "effectPerLevel": 0.2,
+      "lumenBase": 1401000,
+      "lumenGrowth": 1.7,
+      "shardBase": 52500,
+      "shardGrowth": 1.7,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 1401000,
+        "shard": 52500
+      },
+      "lastPrice": {
+        "lumen": 11701293,
+        "shard": 438486
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 26415996,
+        "shard": 989893
+      },
+      "effectAtCap": {
+        "factor": 2,
+        "bonus": 1,
+        "level": 5
+      }
+    },
+    {
+      "id": "overflowconduit",
+      "name": "Overflow Conduit",
+      "forgeGroup": "Resources",
+      "desc": "Gale and Thorn gain up to 2% extra native cast resources per level from their original hit’s overkill. The reward fraction cannot exceed overkill divided by that hit; rounds down.",
+      "unlockDepth": 65,
+      "levelCap": 5,
+      "effectPerLevel": 0.02,
+      "lumenBase": 3978000,
+      "lumenGrowth": 1.75,
+      "shardBase": 124000,
+      "shardGrowth": 1.75,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 3978000,
+        "shard": 124000
+      },
+      "lastPrice": {
+        "lumen": 37309290,
+        "shard": 1162985
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 81751008,
+        "shard": 2548297
+      },
+      "effectAtCap": {
+        "factor": 1.1,
+        "bonus": 0.1,
+        "level": 5
+      }
+    },
+    {
+      "id": "resonancecells",
+      "name": "Resonance Cells",
+      "forgeGroup": "Resonance",
+      "desc": "Each level adds one shared Resonate use per Ascension run, from 3 up to 5. Buying capacity keeps already-spent uses.",
+      "unlockDepth": 80,
+      "levelCap": 2,
+      "effectPerLevel": 1,
+      "lumenBase": 19032000,
+      "lumenGrowth": 2.5,
+      "shardBase": 452500,
+      "shardGrowth": 2.5,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 19032000,
+        "shard": 452500
+      },
+      "lastPrice": {
+        "lumen": 47580000,
+        "shard": 1131250
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 66612000,
+        "shard": 1583750
+      },
+      "effectAtCap": {
+        "factor": 3,
+        "bonus": 2,
+        "level": 2
+      }
+    },
+    {
+      "id": "resonancecascade",
+      "name": "Resonance Cascade",
+      "forgeGroup": "Resonance",
+      "desc": "A paid Resonate refill also gives 2 charge per level to each other powered Active Wisp, up to 10. The selected Wisp still fills to 100.",
+      "unlockDepth": 90,
+      "levelCap": 5,
+      "effectPerLevel": 2,
+      "lumenBase": 54040000,
+      "lumenGrowth": 1.8,
+      "shardBase": 1071500,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 54040000,
+        "shard": 1071500
+      },
+      "lastPrice": {
+        "lumen": 567290304,
+        "shard": 11248179
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 1208853184,
+        "shard": 23969027
+      },
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      }
+    },
+    {
+      "id": "resonancereclaim",
+      "name": "Resonance Reclaim",
+      "forgeGroup": "Resonance",
+      "desc": "Each boss kill restores up to one already-spent Resonate use per level, up to 3. Cannot store extra uses beyond the current run capacity.",
+      "unlockDepth": 100,
+      "levelCap": 3,
+      "effectPerLevel": 1,
+      "lumenBase": 153442000,
+      "lumenGrowth": 2,
+      "shardBase": 2536500,
+      "shardGrowth": 2,
+      "retiredTo": "",
+      "firstPrice": {
+        "lumen": 153442000,
+        "shard": 2536500
+      },
+      "lastPrice": {
+        "lumen": 613768000,
+        "shard": 10146000
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 1074094000,
+        "shard": 17755500
+      },
+      "effectAtCap": {
+        "factor": 4,
+        "bonus": 3,
+        "level": 3
+      }
+    }
+  ],
+  "lab": [
+    {
+      "id": "wispascend",
+      "name": "Wisp Ascendancy",
+      "desc": "+15% passive Wisp damage permanently; also raises the Wisp-powered part of your tap damage.",
+      "unlockDepth": 1,
+      "baseDurationSec": 180,
+      "durationGrowth": 1.6,
+      "lumenBase": 800,
+      "lumenGrowth": 1.8,
+      "shardBase": 80,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "cap": "none",
+      "firstPrice": {
+        "lumen": 800,
+        "shard": 80
+      },
+      "firstWorkSec": 180,
+      "level20Price": {
+        "lumen": 56658828,
+        "shard": 5665883
+      },
+      "level20WorkSec": 1360042,
+      "level20Effect": "+300% passive Wisp damage and Wisp-powered tap base"
+    },
+    {
+      "id": "guardmastery",
+      "name": "Guardian's Mastery",
+      "desc": "+20% tap damage, permanently.",
+      "unlockDepth": 1,
+      "baseDurationSec": 150,
+      "durationGrowth": 1.6,
+      "lumenBase": 600,
+      "lumenGrowth": 1.8,
+      "shardBase": 40,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "cap": "none",
+      "firstPrice": {
+        "lumen": 600,
+        "shard": 40
+      },
+      "firstWorkSec": 150,
+      "level20Price": {
+        "lumen": 42494121,
+        "shard": 2832941
+      },
+      "level20WorkSec": 1133368,
+      "level20Effect": "+400% tap damage"
+    },
+    {
+      "id": "shardstudy",
+      "name": "Shard Attunement",
+      "desc": "+8% Shards earned per kill, permanently.",
+      "unlockDepth": 15,
+      "baseDurationSec": 200,
+      "durationGrowth": 1.6,
+      "lumenBase": 400,
+      "lumenGrowth": 1.8,
+      "shardBase": 150,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "cap": "none",
+      "firstPrice": {
+        "lumen": 400,
+        "shard": 150
+      },
+      "firstWorkSec": 200,
+      "level20Price": {
+        "lumen": 28329414,
+        "shard": 10623530
+      },
+      "level20WorkSec": 1511157,
+      "level20Effect": "+160% Shards per kill"
+    },
+    {
+      "id": "lumenstudy",
+      "name": "Lumen Wellspring",
+      "desc": "+8% Lumen earned per kill, permanently.",
+      "unlockDepth": 25,
+      "baseDurationSec": 260,
+      "durationGrowth": 1.6,
+      "lumenBase": 1400,
+      "lumenGrowth": 1.8,
+      "shardBase": 120,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "cap": "none",
+      "firstPrice": {
+        "lumen": 1400,
+        "shard": 120
+      },
+      "firstWorkSec": 260,
+      "level20Price": {
+        "lumen": 99152948,
+        "shard": 8498824
+      },
+      "level20WorkSec": 1964504,
+      "level20Effect": "+160% Lumen per kill"
+    },
+    {
+      "id": "motestudy",
+      "name": "Luminous Sense",
+      "desc": "+10% Motes gained from Luminous enemies, permanently.",
+      "unlockDepth": 60,
+      "baseDurationSec": 380,
+      "durationGrowth": 1.6,
+      "lumenBase": 3200,
+      "lumenGrowth": 1.8,
+      "shardBase": 320,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "cap": "none",
+      "firstPrice": {
+        "lumen": 3200,
+        "shard": 320
+      },
+      "firstWorkSec": 380,
+      "level20Price": {
+        "lumen": 226635311,
+        "shard": 22663531
+      },
+      "level20WorkSec": 2871199,
+      "level20Effect": "+200% Motes from Luminous enemies"
+    },
+    {
+      "id": "measuredinquiry",
+      "name": "Measured Inquiry",
+      "desc": "2% less work per completed level, up to 20%, for future starts of Wisp Ascendancy, Guardian’s Mastery, Shard Attunement, Lumen Wellspring and Luminous Sense. Running Studies and Measured Inquiry itself are unchanged.",
+      "unlockDepth": 60,
+      "levelCap": 10,
+      "baseDurationSec": 600,
+      "durationGrowth": 1.6,
+      "lumenBase": 30000,
+      "lumenGrowth": 1.8,
+      "shardBase": 1200,
+      "shardGrowth": 1.8,
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 30000,
+        "shard": 1200
+      },
+      "firstWorkSec": 600,
+      "lastPrice": {
+        "lumen": 5950779,
+        "shard": 238031
+      },
+      "lastWorkSec": 41232,
+      "effectAtCap": "20% less work for future starts of the 5 foundation Studies; running work and Measured Inquiry are unchanged"
+    },
+    {
+      "id": "labcapacity",
+      "name": "Expanded Apparatus",
+      "labGroup": "Laboratory",
+      "unlockDepth": 40,
+      "levelCap": 2,
+      "baseDurationSec": 1800,
+      "durationGrowth": 2,
+      "lumenBase": 20000,
+      "lumenGrowth": 2,
+      "shardBase": 2000,
+      "shardGrowth": 2,
+      "desc": "One extra concurrent Study slot per completed level, up to two extra. Existing slots and already-paid work stay.",
+      "retiredTo": "",
+      "cap": 2,
+      "firstPrice": {
+        "lumen": 20000,
+        "shard": 2000
+      },
+      "firstWorkSec": 1800,
+      "lastPrice": {
+        "lumen": 40000,
+        "shard": 4000
+      },
+      "lastWorkSec": 3600,
+      "effectAtCap": "+2 concurrent Study slots (up to 2 extra)"
+    },
+    {
+      "id": "procurement",
+      "name": "Research Procurement",
+      "labGroup": "Laboratory",
+      "unlockDepth": 25,
+      "levelCap": 10,
+      "baseDurationSec": 900,
+      "durationGrowth": 1.45,
+      "lumenBase": 12000,
+      "lumenGrowth": 1.55,
+      "shardBase": 600,
+      "shardGrowth": 1.55,
+      "desc": "2% lower Lumen and Shard prices per level for future Lab starts, up to 20%. Does not discount Research Procurement itself or refund running work.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 12000,
+        "shard": 600
+      },
+      "firstWorkSec": 900,
+      "lastPrice": {
+        "lumen": 619679,
+        "shard": 30984
+      },
+      "lastWorkSec": 25501,
+      "effectAtCap": "20% lower future Lab Lumen and Shard costs; excludes itself"
+    },
+    {
+      "id": "catalysis",
+      "name": "Mote Catalysis",
+      "labGroup": "Laboratory",
+      "unlockDepth": 60,
+      "levelCap": 10,
+      "baseDurationSec": 1200,
+      "durationGrowth": 1.45,
+      "lumenBase": 40000,
+      "lumenGrowth": 1.55,
+      "shardBase": 1500,
+      "shardGrowth": 1.55,
+      "desc": "2% lower Mote prices per level for future Lab speed purchases, up to 20%. Paid speed is retained; each new Study level still pays its selected tier.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 40000,
+        "shard": 1500
+      },
+      "firstWorkSec": 1200,
+      "lastPrice": {
+        "lumen": 2065595,
+        "shard": 77460
+      },
+      "lastWorkSec": 34001,
+      "effectAtCap": "20% lower Mote prices for future Lab speed purchases"
+    },
+    {
+      "id": "focusprotocol",
+      "name": "Focused Apparatus",
+      "labGroup": "Laboratory",
+      "unlockDepth": 40,
+      "levelCap": 5,
+      "baseDurationSec": 1200,
+      "durationGrowth": 1.5,
+      "lumenBase": 20000,
+      "lumenGrowth": 1.6,
+      "shardBase": 800,
+      "shardGrowth": 1.6,
+      "desc": "At the start of another Study, each unused slot saves 1% work per level, up to 30%. Work is then fixed: filling those slots later cannot change paid work. Does not shorten this project.",
+      "retiredTo": "",
+      "cap": 5,
+      "firstPrice": {
+        "lumen": 20000,
+        "shard": 800
+      },
+      "firstWorkSec": 1200,
+      "lastPrice": {
+        "lumen": 131072,
+        "shard": 5243
+      },
+      "lastWorkSec": 6075,
+      "effectAtCap": "5% less future work per unused slot after start, up to 30%; excludes itself"
+    },
+    {
+      "id": "fieldnotes",
+      "name": "Field Notes",
+      "labGroup": "Laboratory",
+      "unlockDepth": 15,
+      "levelCap": 10,
+      "baseDurationSec": 600,
+      "durationGrowth": 1.45,
+      "lumenBase": 6000,
+      "lumenGrowth": 1.55,
+      "shardBase": 300,
+      "shardGrowth": 1.55,
+      "desc": "Each earned completion of another Study grants 2 Motes per completed Field Notes level. No reward from this project, rendering, loading or closing over-cap paid work.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 6000,
+        "shard": 300
+      },
+      "firstWorkSec": 600,
+      "lastPrice": {
+        "lumen": 309839,
+        "shard": 15492
+      },
+      "lastWorkSec": 17001,
+      "effectAtCap": "+20 Motes on each other earned Study completion"
+    },
+    {
+      "id": "curriculum",
+      "name": "Balanced Curriculum",
+      "labGroup": "Laboratory",
+      "unlockDepth": 60,
+      "levelCap": 3,
+      "baseDurationSec": 1500,
+      "durationGrowth": 1.6,
+      "lumenBase": 60000,
+      "lumenGrowth": 1.75,
+      "shardBase": 2000,
+      "shardGrowth": 1.75,
+      "desc": "Each different expansion project with an earned level saves 1% future work per Curriculum level, counting at most ten subjects. Maximum 30%; this project and running work are unchanged.",
+      "retiredTo": "",
+      "cap": 3,
+      "firstPrice": {
+        "lumen": 60000,
+        "shard": 2000
+      },
+      "firstWorkSec": 1500,
+      "lastPrice": {
+        "lumen": 183750,
+        "shard": 6125
+      },
+      "lastWorkSec": 3840,
+      "effectAtCap": "3% less future work per completed expansion subject, up to ten subjects; excludes itself"
+    },
+    {
+      "id": "bossledger",
+      "name": "Boss Survey",
+      "labGroup": "Expedition",
+      "unlockDepth": 20,
+      "levelCap": 10,
+      "baseDurationSec": 720,
+      "durationGrowth": 1.45,
+      "lumenBase": 14000,
+      "lumenGrowth": 1.55,
+      "shardBase": 500,
+      "shardGrowth": 1.55,
+      "desc": "5% more Lumen and Shards from boss kills per level, up to 50%. Does not change ordinary kills, Sigils, Motes or ability rewards.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 14000,
+        "shard": 500
+      },
+      "firstWorkSec": 720,
+      "lastPrice": {
+        "lumen": 722958,
+        "shard": 25820
+      },
+      "lastWorkSec": 20401,
+      "effectAtCap": "+50% Lumen and Shards from bosses only"
+    },
+    {
+      "id": "luminousdistill",
+      "name": "Luminous Distillation",
+      "labGroup": "Expedition",
+      "unlockDepth": 35,
+      "levelCap": 10,
+      "baseDurationSec": 960,
+      "durationGrowth": 1.45,
+      "lumenBase": 25000,
+      "lumenGrowth": 1.55,
+      "shardBase": 800,
+      "shardGrowth": 1.55,
+      "desc": "10% more Lumen and Shards from Luminous kills per level, up to 100%. Does not change encounter chance, Motes, bosses or ability rewards.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 25000,
+        "shard": 800
+      },
+      "firstWorkSec": 960,
+      "lastPrice": {
+        "lumen": 1290997,
+        "shard": 41312
+      },
+      "lastWorkSec": 27201,
+      "effectAtCap": "+100% Lumen and Shards from Luminous kills only"
+    },
+    {
+      "id": "sigilcartography",
+      "name": "Sigil Cartography",
+      "labGroup": "Expedition",
+      "unlockDepth": 60,
+      "levelCap": 5,
+      "baseDurationSec": 1500,
+      "durationGrowth": 1.6,
+      "lumenBase": 80000,
+      "lumenGrowth": 1.7,
+      "shardBase": 3000,
+      "shardGrowth": 1.7,
+      "desc": "One additional Sigil per boss kill per completed level, up to five. No Sigils from ordinary enemies or ability casts.",
+      "retiredTo": "",
+      "cap": 5,
+      "firstPrice": {
+        "lumen": 80000,
+        "shard": 3000
+      },
+      "firstWorkSec": 1500,
+      "lastPrice": {
+        "lumen": 668168,
+        "shard": 25056
+      },
+      "lastWorkSec": 9830,
+      "effectAtCap": "+5 Sigils per boss kill"
+    },
+    {
+      "id": "rarityappraisal",
+      "name": "Rarity Appraisal",
+      "labGroup": "Refinement",
+      "unlockDepth": 15,
+      "levelCap": 10,
+      "baseDurationSec": 600,
+      "durationGrowth": 1.45,
+      "lumenBase": 8000,
+      "lumenGrowth": 1.55,
+      "shardBase": 500,
+      "shardGrowth": 1.55,
+      "desc": "2% fewer Shards for future Wisp Rarity upgrades per level, up to 20%. Lumen prices, earned tiers and their effects are unchanged.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 8000,
+        "shard": 500
+      },
+      "firstWorkSec": 600,
+      "lastPrice": {
+        "lumen": 413119,
+        "shard": 25820
+      },
+      "lastWorkSec": 17001,
+      "effectAtCap": "20% lower Shard prices for future Rarity upgrades"
+    },
+    {
+      "id": "modulefabrication",
+      "name": "Module Fabrication",
+      "labGroup": "Refinement",
+      "unlockDepth": 30,
+      "levelCap": 10,
+      "baseDurationSec": 900,
+      "durationGrowth": 1.45,
+      "lumenBase": 20000,
+      "lumenGrowth": 1.55,
+      "shardBase": 1000,
+      "shardGrowth": 1.55,
+      "desc": "2% lower Lumen and Shard prices for future Wisp Module upgrades per level, up to 20%. Existing Module levels and effects are unchanged.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 20000,
+        "shard": 1000
+      },
+      "firstWorkSec": 900,
+      "lastPrice": {
+        "lumen": 1032798,
+        "shard": 51640
+      },
+      "lastWorkSec": 25501,
+      "effectAtCap": "20% lower Lumen and Shard prices for future Module upgrades"
+    },
+    {
+      "id": "ultimateanalysis",
+      "name": "Ultimate Analysis",
+      "labGroup": "Refinement",
+      "unlockDepth": 70,
+      "levelCap": 10,
+      "baseDurationSec": 1200,
+      "durationGrowth": 1.45,
+      "lumenBase": 100000,
+      "lumenGrowth": 1.6,
+      "shardBase": 4000,
+      "shardGrowth": 1.6,
+      "desc": "2% fewer Sigils for future Wisp Ultimate unlocks per level, up to 20%. Mythic requirement and Ultimate effects are unchanged.",
+      "retiredTo": "",
+      "cap": 10,
+      "firstPrice": {
+        "lumen": 100000,
+        "shard": 4000
+      },
+      "firstWorkSec": 1200,
+      "lastPrice": {
+        "lumen": 6871948,
+        "shard": 274878
+      },
+      "lastWorkSec": 34001,
+      "effectAtCap": "20% lower Sigil prices for future Ultimate unlocks"
+    },
+    {
+      "id": "resonantefficiency",
+      "name": "Resonance Efficiency",
+      "labGroup": "Refinement",
+      "unlockDepth": 50,
+      "levelCap": 5,
+      "baseDurationSec": 1000,
+      "durationGrowth": 1.5,
+      "lumenBase": 30000,
+      "lumenGrowth": 1.6,
+      "shardBase": 1200,
+      "shardGrowth": 1.6,
+      "desc": "Each completed level reduces an in-run Resonate refill by 2 Sigils, from 25 down to 15. Unlock conditions, refill amount and run limit are unchanged.",
+      "retiredTo": "",
+      "cap": 5,
+      "firstPrice": {
+        "lumen": 30000,
+        "shard": 1200
+      },
+      "firstWorkSec": 1000,
+      "lastPrice": {
+        "lumen": 196608,
+        "shard": 7864
+      },
+      "lastWorkSec": 5063,
+      "effectAtCap": "15 Sigils per in-run Resonate refill"
+    },
+    {
+      "id": "adaptivegrowth",
+      "name": "Adaptive Growth",
+      "labGroup": "Refinement",
+      "unlockDepth": 45,
+      "levelCap": 5,
+      "baseDurationSec": 1000,
+      "durationGrowth": 1.5,
+      "lumenBase": 30000,
+      "lumenGrowth": 1.6,
+      "shardBase": 1600,
+      "shardGrowth": 1.6,
+      "desc": "Each completed level reduces the Wisp level required for a future Rarity upgrade by one, up to five fewer levels. Never below level one; prices and Rarity bonuses are separate.",
+      "retiredTo": "",
+      "cap": 5,
+      "firstPrice": {
+        "lumen": 30000,
+        "shard": 1600
+      },
+      "firstWorkSec": 1000,
+      "lastPrice": {
+        "lumen": 196608,
+        "shard": 10486
+      },
+      "lastWorkSec": 5063,
+      "effectAtCap": "5 fewer Wisp levels required for a Rarity upgrade, never below level 1"
+    }
+  ],
+  "capReproduction": [
+    {
+      "system": "Forge",
+      "id": "charge",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "arcanecal",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "conduction",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "luminoustracking",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "cauterize",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "fracturekey",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "guardianseal",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "spillway",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "sustainedchannel",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "tapconduit",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "guardiancadence",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "relay",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "resonantedge",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "victorycharge",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "amplifiertrim",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "dualchannel",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "overflowconduit",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "resonancecells",
+      "cap": 2,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "resonancecascade",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Forge",
+      "id": "resonancereclaim",
+      "cap": 3,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "measuredinquiry",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "labcapacity",
+      "cap": 2,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "procurement",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "catalysis",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "focusprotocol",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "fieldnotes",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "curriculum",
+      "cap": 3,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "bossledger",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "luminousdistill",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "sigilcartography",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "rarityappraisal",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "modulefabrication",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "ultimateanalysis",
+      "cap": 10,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "resonantefficiency",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    },
+    {
+      "system": "Lab",
+      "id": "adaptivegrowth",
+      "cap": 5,
+      "reason": "maxed",
+      "rejected": true,
+      "stateUnchanged": true
+    }
+  ],
+  "proposals": [
+    {
+      "system": "Forge",
+      "id": "arcanecal",
+      "name": "Arcane Calibration",
+      "currentCap": 10,
+      "proposedCap": 10,
+      "implemented": false,
+      "effectBonus": 0.3,
+      "effectFactor": 1.3,
+      "factorRelativeToCap10": 1,
+      "lastPrice": {
+        "lumen": 1030793,
+        "shard": 8247
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 2723780,
+        "shard": 21791
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 0,
+        "shard": 0
+      },
+      "lastPriceSafeIntegers": true,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "arcanecal",
+      "name": "Arcane Calibration",
+      "currentCap": 10,
+      "proposedCap": 20,
+      "implemented": false,
+      "effectBonus": 0.6,
+      "effectFactor": 1.6,
+      "factorRelativeToCap10": 1.2307692307692308,
+      "lastPrice": {
+        "lumen": 113336796,
+        "shard": 906695
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 302206455,
+        "shard": 2417652
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 299482676,
+        "shard": 2395862
+      },
+      "lastPriceSafeIntegers": true,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "arcanecal",
+      "name": "Arcane Calibration",
+      "currentCap": 10,
+      "proposedCap": 50,
+      "implemented": false,
+      "effectBonus": 1.5,
+      "effectFactor": 2.5,
+      "factorRelativeToCap10": 1.923076923076923,
+      "lastPrice": {
+        "lumen": 150650441649281,
+        "shard": 1205203533195
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 401734511039749,
+        "shard": 3213876088318
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 401734508315970,
+        "shard": 3213876066528
+      },
+      "lastPriceSafeIntegers": true,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "arcanecal",
+      "name": "Arcane Calibration",
+      "currentCap": 10,
+      "proposedCap": 100,
+      "implemented": false,
+      "effectBonus": 3,
+      "effectFactor": 4,
+      "factorRelativeToCap10": 3.0769230769230766,
+      "lastPrice": {
+        "lumen": 2.4208592607064903e+24,
+        "shard": 1.936687408565192e+22
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 6.455624695217307e+24,
+        "shard": 5.164499756173845e+22
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 6.455624695217307e+24,
+        "shard": 5.164499756173845e+22
+      },
+      "lastPriceSafeIntegers": false,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "conduction",
+      "name": "Resource Conduction",
+      "currentCap": 10,
+      "proposedCap": 10,
+      "implemented": false,
+      "effectBonus": 0.4,
+      "effectFactor": 1.4,
+      "factorRelativeToCap10": 1,
+      "lastPrice": {
+        "lumen": 6184753,
+        "shard": 19242
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 16342675,
+        "shard": 50844
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 0,
+        "shard": 0
+      },
+      "lastPriceSafeIntegers": true,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "conduction",
+      "name": "Resource Conduction",
+      "currentCap": 10,
+      "proposedCap": 20,
+      "implemented": false,
+      "effectBonus": 0.8,
+      "effectFactor": 1.8,
+      "factorRelativeToCap10": 1.2857142857142858,
+      "lastPrice": {
+        "lumen": 680020774,
+        "shard": 2115621
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 1813238730,
+        "shard": 5641188
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 1796896056,
+        "shard": 5590344
+      },
+      "lastPriceSafeIntegers": true,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "conduction",
+      "name": "Resource Conduction",
+      "currentCap": 10,
+      "proposedCap": 50,
+      "implemented": false,
+      "effectBonus": 2,
+      "effectFactor": 3,
+      "factorRelativeToCap10": 2.142857142857143,
+      "lastPrice": {
+        "lumen": 903902649895685,
+        "shard": 2812141577454
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 2410407066238492,
+        "shard": 7499044206076
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 2410407049895817,
+        "shard": 7499044155232
+      },
+      "lastPriceSafeIntegers": true,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Forge",
+      "id": "conduction",
+      "name": "Resource Conduction",
+      "currentCap": 10,
+      "proposedCap": 100,
+      "implemented": false,
+      "effectBonus": 4,
+      "effectFactor": 5,
+      "factorRelativeToCap10": 3.5714285714285716,
+      "lastPrice": {
+        "lumen": 1.452515556423894e+25,
+        "shard": 4.518937286652115e+22
+      },
+      "zeroToCapBulkPrice": {
+        "lumen": 3.873374817130384e+25,
+        "shard": 1.2050499431072306e+23
+      },
+      "tenToCapBulkPrice": {
+        "lumen": 3.873374817130384e+25,
+        "shard": 1.2050499431072306e+23
+      },
+      "lastPriceSafeIntegers": false,
+      "notes": "Existing generic geometric price path extrapolated; live purchase remains capped at10. No time-to-afford claim."
+    },
+    {
+      "system": "Lab",
+      "id": "bossledger",
+      "name": "Boss Survey",
+      "currentCap": 10,
+      "proposedCap": 10,
+      "implemented": false,
+      "effectBonus": 0.5,
+      "effectFactor": 1.5,
+      "factorRelativeToCap10": 1,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 722958,
+            "shard": 25820
+          },
+          "finalWorkSec": 20401,
+          "finalWallSecondsAt8x": 2550.125,
+          "tenToCapStartPrices": {
+            "lumen": 0,
+            "shard": 0
+          },
+          "tenToCapWorkSec": 0,
+          "tenToCapWallSecondsAt8x": 0,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 0,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 578367,
+            "shard": 20656
+          },
+          "finalWorkSec": 9996,
+          "finalWallSecondsAt8x": 1249.5,
+          "tenToCapStartPrices": {
+            "lumen": 0,
+            "shard": 0
+          },
+          "tenToCapWorkSec": 0,
+          "tenToCapWallSecondsAt8x": 0,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 0,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "bossledger",
+      "name": "Boss Survey",
+      "currentCap": 10,
+      "proposedCap": 20,
+      "implemented": false,
+      "effectBonus": 1,
+      "effectFactor": 2,
+      "factorRelativeToCap10": 1.3333333333333333,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "finalWorkSec": 838155,
+          "finalWallSecondsAt8x": 104769.375,
+          "tenToCapStartPrices": {
+            "lumen": 161042050,
+            "shard": 5751501
+          },
+          "tenToCapWorkSec": 2634986,
+          "tenToCapWallSecondsAt8x": 329373.25,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 4730,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 46293529,
+            "shard": 1653340
+          },
+          "finalWorkSec": 410696,
+          "finalWallSecondsAt8x": 51337,
+          "tenToCapStartPrices": {
+            "lumen": 128833644,
+            "shard": 4601204
+          },
+          "tenToCapWorkSec": 1291144,
+          "tenToCapWallSecondsAt8x": 161393,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 3790,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "bossledger",
+      "name": "Boss Survey",
+      "currentCap": 10,
+      "proposedCap": 50,
+      "implemented": false,
+      "effectBonus": 2.5,
+      "effectFactor": 3.5,
+      "factorRelativeToCap10": 2.3333333333333335,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 29674352136529,
+            "shard": 1059798290590
+          },
+          "finalWorkSec": 58125219501,
+          "finalWallSecondsAt8x": 7265652437.625,
+          "tenToCapStartPrices": {
+            "lumen": 83627717620065,
+            "shard": 2986704200717
+          },
+          "tenToCapWorkSec": 187292308207,
+          "tenToCapWallSecondsAt8x": 23411538525.875,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 18920,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 23739481709224,
+            "shard": 847838632472
+          },
+          "finalWorkSec": 28481357555,
+          "finalWallSecondsAt8x": 3560169694.375,
+          "tenToCapStartPrices": {
+            "lumen": 66902174096071,
+            "shard": 2389363360589
+          },
+          "tenToCapWorkSec": 91773231019,
+          "tenToCapWallSecondsAt8x": 11471653877.375,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 15160,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "bossledger",
+      "name": "Boss Survey",
+      "currentCap": 10,
+      "proposedCap": 100,
+      "implemented": false,
+      "effectBonus": 5,
+      "effectFactor": 6,
+      "factorRelativeToCap10": 4,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 9.749136577287288e+22,
+            "shard": 3.4818344918883175e+21
+          },
+          "finalWorkSec": 6804006466521139000,
+          "finalWallSecondsAt8x": 850500808315142400,
+          "tenToCapStartPrices": {
+            "lumen": 2.7474839445082354e+23,
+            "shard": 9.812442658957985e+21
+          },
+          "tenToCapWorkSec": 21924020836568050000,
+          "tenToCapWallSecondsAt8x": 2740502604571006500,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 42570,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 7.79930926182983e+22,
+            "shard": 2.785467593510654e+21
+          },
+          "finalWorkSec": 3333963168595357700,
+          "finalWallSecondsAt8x": 416745396074419700,
+          "tenToCapStartPrices": {
+            "lumen": 2.1979871556065884e+23,
+            "shard": 7.849954127166388e+21
+          },
+          "tenToCapWorkSec": 10742770209918343000,
+          "tenToCapWallSecondsAt8x": 1342846276239793000,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 34110,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "luminousdistill",
+      "name": "Luminous Distillation",
+      "currentCap": 10,
+      "proposedCap": 10,
+      "implemented": false,
+      "effectBonus": 1,
+      "effectFactor": 2,
+      "factorRelativeToCap10": 1,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 1290997,
+            "shard": 41312
+          },
+          "finalWorkSec": 27201,
+          "finalWallSecondsAt8x": 3400.125,
+          "tenToCapStartPrices": {
+            "lumen": 0,
+            "shard": 0
+          },
+          "tenToCapWorkSec": 0,
+          "tenToCapWallSecondsAt8x": 0,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 0,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 1032798,
+            "shard": 33050
+          },
+          "finalWorkSec": 13328,
+          "finalWallSecondsAt8x": 1666,
+          "tenToCapStartPrices": {
+            "lumen": 0,
+            "shard": 0
+          },
+          "tenToCapWorkSec": 0,
+          "tenToCapWallSecondsAt8x": 0,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 0,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "luminousdistill",
+      "name": "Luminous Distillation",
+      "currentCap": 10,
+      "proposedCap": 20,
+      "implemented": false,
+      "effectBonus": 2,
+      "effectFactor": 3,
+      "factorRelativeToCap10": 1.5,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "finalWorkSec": 1117541,
+          "finalWallSecondsAt8x": 139692.625,
+          "tenToCapStartPrices": {
+            "lumen": 287575087,
+            "shard": 9202403
+          },
+          "tenToCapWorkSec": 3513317,
+          "tenToCapWallSecondsAt8x": 439164.625,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 4730,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 82667016,
+            "shard": 2645345
+          },
+          "finalWorkSec": 547595,
+          "finalWallSecondsAt8x": 68449.375,
+          "tenToCapStartPrices": {
+            "lumen": 230060074,
+            "shard": 7361926
+          },
+          "tenToCapWorkSec": 1721525,
+          "tenToCapWallSecondsAt8x": 215190.625,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 3790,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "luminousdistill",
+      "name": "Luminous Distillation",
+      "currentCap": 10,
+      "proposedCap": 50,
+      "implemented": false,
+      "effectBonus": 5,
+      "effectFactor": 6,
+      "factorRelativeToCap10": 3,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 52989914529516,
+            "shard": 1695677264945
+          },
+          "finalWorkSec": 77500292668,
+          "finalWallSecondsAt8x": 9687536583.5,
+          "tenToCapStartPrices": {
+            "lumen": 149335210035824,
+            "shard": 4778726721148
+          },
+          "tenToCapWorkSec": 249723077616,
+          "tenToCapWallSecondsAt8x": 31215384702,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 18920,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 42391931623613,
+            "shard": 1356541811956
+          },
+          "finalWorkSec": 37975143407,
+          "finalWallSecondsAt8x": 4746892925.875,
+          "tenToCapStartPrices": {
+            "lumen": 119468168028674,
+            "shard": 3822981376932
+          },
+          "tenToCapWorkSec": 122364308030,
+          "tenToCapWallSecondsAt8x": 15295538503.75,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 15160,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    },
+    {
+      "system": "Lab",
+      "id": "luminousdistill",
+      "name": "Luminous Distillation",
+      "currentCap": 10,
+      "proposedCap": 100,
+      "implemented": false,
+      "effectBonus": 10,
+      "effectFactor": 11,
+      "factorRelativeToCap10": 5.5,
+      "scenarios": [
+        {
+          "optimized": false,
+          "finalPrice": {
+            "lumen": 1.7409172459441588e+23,
+            "shard": 5.570935187021308e+21
+          },
+          "finalWorkSec": 9072008622028186000,
+          "finalWallSecondsAt8x": 1134001077753523200,
+          "tenToCapStartPrices": {
+            "lumen": 4.9062213294789926e+23,
+            "shard": 1.5699908254332774e+22
+          },
+          "tenToCapWorkSec": 29232027782090736000,
+          "tenToCapWallSecondsAt8x": 3654003472761342000,
+          "speed8xMotesPerLevel": 473,
+          "speed8xMotesForExtension": 42570,
+          "assumptions": "No Procurement/Focus/Curriculum discounts; each level buys 8x separately. No time to acquire material or Motes included."
+        },
+        {
+          "optimized": true,
+          "finalPrice": {
+            "lumen": 1.3927337967553272e+23,
+            "shard": 4.4567481496170466e+21
+          },
+          "finalWorkSec": 4445284224793810400,
+          "finalWallSecondsAt8x": 555660528099226300,
+          "tenToCapStartPrices": {
+            "lumen": 3.924977063583194e+23,
+            "shard": 1.2559926603466221e+22
+          },
+          "tenToCapWorkSec": 14323693613224458000,
+          "tenToCapWallSecondsAt8x": 1790461701653057300,
+          "speed8xMotesPerLevel": 379,
+          "speed8xMotesForExtension": 34110,
+          "assumptions": "Procurement10, Catalysis10, Focus5, Curriculum3, Capacity2, ten counted subjects, no other active work: cost80%, work49%. All these helpers already earned. Each level buys 8x."
+        }
+      ],
+      "notes": "Future price/work formula extrapolation, not permission to start or simulated campaign reach time. Offline productive time remains capped at12h per catch-up."
+    }
+  ],
+  "roundingDiagnostics": [
+    {
+      "id": "arcanecal",
+      "cap": 10,
+      "baselineMismatchQueries": 11,
+      "extensionMismatchQueries": 0,
+      "maximumCurrencyDifference": 1,
+      "first": {
+        "start": 0,
+        "qty": 2,
+        "actual": {
+          "lumen": 39001,
+          "shard": 313
+        },
+        "rational": {
+          "lumen": 39000,
+          "shard": 312
+        }
+      }
+    },
+    {
+      "id": "arcanecal",
+      "cap": 20,
+      "baselineMismatchQueries": 11,
+      "extensionMismatchQueries": 0,
+      "maximumCurrencyDifference": 1,
+      "first": {
+        "start": 0,
+        "qty": 2,
+        "actual": {
+          "lumen": 39001,
+          "shard": 313
+        },
+        "rational": {
+          "lumen": 39000,
+          "shard": 312
+        }
+      }
+    },
+    {
+      "id": "arcanecal",
+      "cap": 50,
+      "baselineMismatchQueries": 11,
+      "extensionMismatchQueries": 123,
+      "maximumCurrencyDifference": 2,
+      "first": {
+        "start": 0,
+        "qty": 2,
+        "actual": {
+          "lumen": 39001,
+          "shard": 313
+        },
+        "rational": {
+          "lumen": 39000,
+          "shard": 312
+        }
+      }
+    },
+    {
+      "id": "conduction",
+      "cap": 10,
+      "baselineMismatchQueries": 13,
+      "extensionMismatchQueries": 0,
+      "maximumCurrencyDifference": 1,
+      "first": {
+        "start": 0,
+        "qty": 2,
+        "actual": {
+          "lumen": 234001,
+          "shard": 729
+        },
+        "rational": {
+          "lumen": 234000,
+          "shard": 728
+        }
+      }
+    },
+    {
+      "id": "conduction",
+      "cap": 20,
+      "baselineMismatchQueries": 13,
+      "extensionMismatchQueries": 0,
+      "maximumCurrencyDifference": 1,
+      "first": {
+        "start": 0,
+        "qty": 2,
+        "actual": {
+          "lumen": 234001,
+          "shard": 729
+        },
+        "rational": {
+          "lumen": 234000,
+          "shard": 728
+        }
+      }
+    },
+    {
+      "id": "conduction",
+      "cap": 50,
+      "baselineMismatchQueries": 13,
+      "extensionMismatchQueries": 286,
+      "maximumCurrencyDifference": 7,
+      "first": {
+        "start": 0,
+        "qty": 2,
+        "actual": {
+          "lumen": 234001,
+          "shard": 729
+        },
+        "rational": {
+          "lumen": 234000,
+          "shard": 728
+        }
+      }
+    }
+  ],
+  "checks": 403
+}

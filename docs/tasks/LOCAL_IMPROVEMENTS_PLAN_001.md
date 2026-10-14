@@ -97,6 +97,10 @@ navigation and focused geometry/input checks PASS; user/final/device acceptance
 pending. [RIFT_THEME_LABEL_001](RIFT_THEME_LABEL_001.md) locally verified: Theme:
 prefix for all six appearances, unchanged cosmetics/unlocks/saves/balance;
 baseline/candidate mobile/large-text and existing cosmetics/Guidance/Rift/nav PASS.
-Preview opening queued; user/final/device acceptance pending. Task7 NOT STARTED.
-Next action: user reviews the current preview, then starts FORGE_LAB_CAPS_001
-using the saved guide and latest local checkpoint. No chat created automatically.
+Preview opening queued; user/final/device acceptance pending.
+[FORGE_LAB_CAPS_001](FORGE_LAB_CAPS_001.md) catalog/current-cap review and numeric
+proposal locally verified; user balance decision required, implementation NOT
+STARTED. Options and cost/work implications are saved; product remains unchanged.
+Next action: user chooses named caps (recommended four tracks20, extended
+Forge50/Lab20, or retain current rules) before the owner implements. No chat
+created automatically; final combined/native acceptance stays pending.

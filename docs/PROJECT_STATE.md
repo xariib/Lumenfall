@@ -1,5 +1,20 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [FORGE_LAB_CAPS_001](tasks/FORGE_LAB_CAPS_001.md)
+PROPOSAL VERIFIED, USER BALANCE DECISION REQUIRED on `local/full-debug`, continuing
+`27f433d`. [Full catalog/options/cost/work evidence](qa/forge-lab-caps-001/PROPOSAL.md).
+All 20 active Forge tracks cap2–10; Lab has15 capped projects and5 uncapped
+foundations. Recommended A: Arcane Calibration, Resource Conduction, Boss Survey
+and Luminous Distillation cap20; B: same Forge50/Lab20; C: retain current caps.
+No selection or product change. Existing curves make final Lab50 work113/150
+productive years even with best existing discounts and8x, so not recommended.
+Catalog/current-cap reproduction403 checks, Forge9315/25 causal controls,
+Lab2465/10 and reward/boundary2344/5 PASS; source/context/whitespace PASS.
+Original Forge bulk one-unit rounding diagnostics recorded; old quotes untouched.
+Exact product remains `f8f787fd`; paid value/saves/balance retained. Local proposal
+checkpoint only; user choice precedes implementation. Combined CI/Android and
+inherited Prism/transport/tooling acceptance remain pending; no remote/APK/signing.
+
 14 October 2026: [RIFT_THEME_LABEL_001](tasks/RIFT_THEME_LABEL_001.md)
 LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted23074a9.
 Rift caption now says Theme: Starlight (and Theme: for every other selected name).
