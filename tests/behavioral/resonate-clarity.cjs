@@ -57,7 +57,7 @@ const server=http.createServer((req,res)=>{
  fs.createReadStream(file).pipe(res);
 });
 let browser,session,buffer='',seq=0,closed=false,stderr='';const pending=new Map(),records=[];
-let profile,completion;
+let profile,completion,browserVersion;
 function rejectPending(message){for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error(message+' '+p.method));}pending.clear();}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{
  const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP timeout '+method+' '+stderr));},15000);
@@ -79,6 +79,7 @@ async function run(){
  browser.stderr.on('data',b=>{stderr=(stderr+b).slice(-4000);});
  for(const stream of [browser.stdio[3],browser.stdio[4]])stream.on('error',error=>rejectPending(error.message));
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))!==-1){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw);if(m.id&&pending.has(m.id)){const p=pending.get(m.id);pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
+ browserVersion=await send('Browser.getVersion',{},null);
  for(const width of [320,390,430])for(const scale of [1,2])for(const motion of ['no-preference','reduce']){
   const context=await send('Target.createBrowserContext',{},null),tab=await send('Target.createTarget',{url:'about:blank',browserContextId:context.browserContextId},null);
   session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
@@ -182,8 +183,11 @@ async function run(){
 }
 (async()=>{
  let result;
- const identity={source:sourcePath,sourceSha256,node:process.version,browser:chrome&&spawnSync(chrome,['--version'],{encoding:'utf8'}).stdout.trim()};
+ // Windows Chromium --version can launch a persistent GUI process and never
+ // return. Identify the actual isolated test browser through bounded CDP instead.
+ const identity={source:sourcePath,sourceSha256,node:process.version,browser:chrome};
  try{await run();result={status:'pass',...identity,records};}catch(error){result={status:'fail',message:error.stack,...identity,records};}
+ result.browserVersion=browserVersion||null;
  try{
   if(browser){assert(pending.size===0,'no pending protocol operations');if(!closed)await send('Browser.close',{},null).catch(()=>{});
    let exit;try{exit=await bounded(completion,5000);}catch(error){browser.kill('SIGKILL');exit=await bounded(completion,2000);throw error;}

@@ -81,21 +81,24 @@ one(hook,String.raw`
  treeCapacity:function(){return treeFormationCapacity(state);},
  treeViewportFunction:function(kind){
   if(kind!=='summary'&&kind!=='formation')throw Error('unknown viewport function');
-  return Function.prototype.toString.call(kind==='summary'?renderAscendSummary:renderSpirits);},
+  return Function.prototype.toString.call(kind==='summary'?renderAscendSummary:restoreWispActionView);},
  treeViewportMutation:function(kind){
   if(this.treeViewportOriginal)throw Error('viewport control already installed');
   if(kind!=='summary'&&kind!=='formation')throw Error('unknown viewport mutation');
-  var original=kind==='summary'?renderAscendSummary:renderSpirits,text=Function.prototype.toString.call(original);
-  var anchor=kind==='summary'?'restoreControlViewport(treeViewport);':'restoreControlViewport(spiritViewport);';
-  var replacement='/* QA negative: '+kind+' viewport restoration disabled. */';
+  var original=kind==='summary'?renderAscendSummary:restoreWispActionView,text=Function.prototype.toString.call(original);
+  // WISP_RARITY_SCROLL_001 now restores reordered controls through this shared
+  // helper at multiple render stages. Disable its actual anchor compensation;
+  // removing one obsolete call would either break syntax or leave another repair.
+  var anchor=kind==='summary'?'restoreControlViewport(treeViewport);':'view.main.scrollTop+=wispActionLayoutTop(anchor)-view.anchorTop;';
+  var replacement='/* QA negative: '+kind+' viewport restoration disabled. */;';
   if(text.split(anchor).length!==2)throw Error('one exact viewport restoration call required');
   var mutated=text.replace(anchor,replacement),fn=eval('('+mutated+')');
-  if(kind==='summary')renderAscendSummary=fn;else renderSpirits=fn;
+  if(kind==='summary')renderAscendSummary=fn;else restoreWispActionView=fn;
   this.treeViewportOriginal={kind:kind,fn:original};
   return {original:text,mutated:Function.prototype.toString.call(fn),from:anchor,to:replacement};},
  treeViewportRestore:function(){
   var original=this.treeViewportOriginal;if(!original)throw Error('viewport control is not installed');
-  if(original.kind==='summary')renderAscendSummary=original.fn;else renderSpirits=original.fn;
+  if(original.kind==='summary')renderAscendSummary=original.fn;else restoreWispActionView=original.fn;
   delete this.treeViewportOriginal;return Function.prototype.toString.call(original.fn);},
  `+hook);
 one("const result={status:'fail',sourceSha256:","const result={status:'fail',migrationDiagnostics:treeMigrationDiagnostics,fundedPurchaseDiagnostics:treeFundedDiagnostics,formationDiagnostics:treeFormationDiagnostics,viewportControls:treeViewportControls,readinessDiagnostics:treeReadinessDiagnostics,treeTestSha256:"+JSON.stringify(selfHash)+",transportSha256:"+JSON.stringify(transportHash)+",sourceSha256:");

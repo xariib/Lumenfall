@@ -5,7 +5,9 @@ let html=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const baseline=fs.readFileSync(require('node:path').join(__dirname,'../../docs/qa/finish-development-release-001/early-wisps/baseline-support.html'),'utf8');
 assert.equal(crypto.createHash('sha256').update(baseline).digest('hex'),'d81ae87e388b52a0cd575fe45534ac85236dbab9374adb91bbde9be6878bd735');
 if(process.env.EARLY_WISP_MUTANT){
- const changes={missing:['352*Math.pow(Math.max(0,level-70),2)','0'],boundary:['level-70','level-69'],titan:["sp.id==='stone'","sp.id==='stone' || sp.id==='titan'"]};
+ const changes={missing:['352*Math.pow(Math.max(0,level-70),2)','0'],boundary:['level-70','level-69'],titan:["sp.id==='stone'","sp.id==='stone' || sp.id==='titan'"],
+  'forge-cap':['unlockDepth:12, levelCap:20, effectPerLevel:0.03','unlockDepth:12, levelCap:10, effectPerLevel:0.03'],
+  'forge-price':['lumenBase:15000, lumenGrowth:1.60, shardBase:120','lumenBase:15001, lumenGrowth:1.60, shardBase:120']};
  const p=changes[process.env.EARLY_WISP_MUTANT];assert(p);assert.equal(html.split(p[0]).length,2);html=html.replace(p[0],p[1]);
 }
 // Observe unchanged pre-curve pricing directly from the frozen whole game.
@@ -33,10 +35,20 @@ for(const id of ids)for(const level of levels)for(let tier=0;tier<6;tier++){
  if(tier===0)prices.push({id,level,power:q.power(id),cost:q.empowerCost(id)});
 }
 eq(q.sp('titan'),p.sp('titan'),'Titan definition unchanged');
-eq(q.defs(),p.defs(),'Forge prices/caps/definitions unchanged');
+// FORGE_LAB_CAPS_001 subsequently approved exactly two Forge cap increases.
+// Keep the frozen pre-curve oracle and compare every other catalog field exactly.
+const expectedForge=clone(p.defs());
+for(const id of ['arcanecal','conduction']){
+ const node=expectedForge.find(n=>n.id===id);
+ eq(node.levelCap,10,'frozen Forge cap before the approved increase: '+id);
+ node.levelCap=20;
+}
+eq(q.defs(),expectedForge,'Forge definitions preserved except the two approved cap20 values');
 const controls=[];
-if(process.argv.includes('--negative'))for(const id of ['missing','boundary','titan']){
+if(process.argv.includes('--negative'))for(const id of ['missing','boundary','titan','forge-cap','forge-price']){
  const r=require('node:child_process').spawnSync(process.execPath,[__filename,process.argv[2]||'index.html'],{encoding:'utf8',env:{...process.env,EARLY_WISP_MUTANT:id}});
- assert(!r.error);assert.equal(r.status,1);assert(r.stderr.includes('AssertionError'));controls.push(id);
+ assert(!r.error);assert.equal(r.status,1);assert(r.stderr.includes('AssertionError'));
+ assert(r.stderr.includes(id.startsWith('forge-')?'Forge definitions preserved except the two approved cap20 values':'independent approved power'),'expected causal assertion: '+id);
+ controls.push(id);
 }
 console.log(JSON.stringify({status:'PASS',checks,controls,prices,sourceSha256:crypto.createHash('sha256').update(html).digest('hex')}));

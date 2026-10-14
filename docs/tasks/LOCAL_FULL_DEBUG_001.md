@@ -71,23 +71,44 @@ Final actual Comet suite passes12738 checks/12 profiles/10 causal controls, and
 all four formerly failing Rift native variants pass on current source. Earlier
 unsuccessful flag/timer experiments were not retained; their evidence remains.
 
-The Prism contract still exceeds the unchanged25-second transport gate. Separate
-120/300-second diagnostics also timed out and are not acceptance passes. Debugger
-samples show ongoing full-menu rendering through its synthetic matrix, not one
-fixed stopped instruction. No timeout was extended in the committed harness.
-Resolve its execution cost/transport before claiming final full-suite acceptance.
+The earlier Prism contract exceeded25s; its120/300s diagnostics also timed out.
+Debugger samples showed ongoing full-menu rendering, not a stopped instruction.
+No committed deadline changed. The14 October receipts below supersede those
+diagnostics, while required gate acceptance remains open.
 
-Chromium is isolated under sibling `work/browsers/`; the official Node8.3 runtime
-was SHA-256 verified and used only for old-engine tests. All detailed raw logs,
-diagnostics and screenshots remain under sibling `work/full-debug/`. Automated
-offline UI output formerly overwrote historical screenshots; new output is now
-isolated, generated pictures were preserved externally, originals restored.
+Earlier raw logs/screens remain in sibling `work/full-debug/`; isolated Chromium
+is under `work/browsers/`. Official Node8.3 bytes were SHA-256 verified. Current
+offline pictures use isolated output directories; historical originals are intact.
 
 ## Continuation / status OPEN
 
-Next: reconcile the Prism-contract deadline,
-then complete a final-source full/scoped run and review any actual assertions
-that fail. Preserve all existing gates, source-labelled failures and paid value.
+### 14 October 2026 renewed full-debug request
+
+User: “Work locally in [this checkout]. Do a FULL DEBUG of the game”. Continue
+this task locally without agents, push or release actions. Clean baseline `8630555` on
+`local/full-debug`, including all seven local improvements. Product SHA-256
+`509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050`.
+Current combined acceptance is pending. Investigate the existing Prism contract
+deadline first; run full behavioral, numerical/save/offline, focused mobile and
+legacy-engine checks against final bytes. Modern browser launch requires leaving
+the restricted Windows sandbox. Initial sandbox launch exited before game load;
+this is environment evidence, not a game assertion. Save new receipts under
+`docs/qa/local-full-debug-2026-10-14/`, raw outputs under
+`validation-evidence/full-debug-2026-10-14/`. Preserve earlier receipts unchanged.
+
+[Current debugging findings](../qa/local-full-debug-2026-10-14/README.md): strict
+approved-cap/Wisp completion-focus expectations repaired; Resonate version launch
+hang fixed and registered PASS. Tree mobile26660/12 profiles and both causal
+viewport controls PASS after targeting the current shared compensation helper.
+Four independent8h oracle phases regenerated; every phase hash/reward is identical
+to the old reference, so only the source stamp changed. Legacy8/8 and guarded
+startup PASS. Full186-scenario run ended;22+17 defect controls PASS. Timed-out
+Wisp/Rift/offline/Prism gates and missing Guidance baseline/Windows POSIX tooling
+remain unresolved. Product bytes unchanged; isolated render experiments are
+diagnostics only. Continue from raw summaries, not previous intermediate counts.
+
+Next: restore baseline/CI access, rerun required Linux gates and native acceptance.
+Preserve all existing gates, source-labelled failures and paid value.
 Native installed APK, physical phone, exact WebView60 and TalkBack acceptance
 remain unavailable/unverified. The user supplied an app version, not device/OS
 details. No APK, signing changes, remote writes or release occurred.

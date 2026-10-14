@@ -1,5 +1,14 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [LOCAL_FULL_DEBUG_001](tasks/LOCAL_FULL_DEBUG_001.md) resumed
+locally from clean8630555; game509b2dcb unchanged. Strict cap/focus expectations,
+Resonate Windows version launch and Tree viewport controls repaired; Tree26660/12,
+legacy8/8, offline UI/legacy-DOM, guarded startup and22 harness/17 refund controls
+PASS. Independent four8h oracle phases unchanged; source stamp refreshed.
+[Debug evidence](qa/local-full-debug-2026-10-14/README.md). Full186/216 run ended:
+175 scenarios PASS; four failures repaired. Wisp/Rift/offline/Prism deadlines, missing Guidance baseline, Windows
+POSIX tooling and native/device acceptance remain OPEN. No push/APK/release.
+
 14 October 2026: FORGE_LAB_CAPS_001 continuation reverified clean `2cbcbf2`
 on `local/full-debug`, retaining saved A/cap20 decision. Same `509b2dcb` source;
 19,647 core/focused assertions and50 causal controls, source/context PASS;

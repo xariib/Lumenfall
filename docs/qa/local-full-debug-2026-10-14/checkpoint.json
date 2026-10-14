@@ -1,0 +1,1667 @@
+{
+  "status": "LOCAL AUDIT SAVED; FULL ACCEPTANCE OPEN",
+  "savedUtc": "2026-10-14T09:48:15.705Z",
+  "baseline": "86305555297281c7cab7b5af50d4a66011170e55",
+  "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+  "productUnchanged": true,
+  "groups": {
+    "core": {
+      "started": "2026-10-14T08:27:28.312Z",
+      "finished": "2026-10-14T08:37:20.144Z",
+      "passed": false,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "transport": "default",
+      "runtime": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "browser": null,
+      "results": [
+        {
+          "name": "context",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 0.473
+        },
+        {
+          "name": "source",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 0.543
+        },
+        {
+          "name": "tooling",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 0.301
+        },
+        {
+          "name": "apk-identity",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 0.218
+        },
+        {
+          "name": "lab-expansion",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 5.97
+        },
+        {
+          "name": "lab-expansion-boundary",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.029
+        },
+        {
+          "name": "forge-expansion",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.656
+        },
+        {
+          "name": "forge-expansion-calibration",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 55.666
+        },
+        {
+          "name": "tree-expansion-core",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 3.274
+        },
+        {
+          "name": "tree-expansion-offline",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 24.709
+        },
+        {
+          "name": "tree-expansion-economy",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 5.176
+        },
+        {
+          "name": "comet-expansion-core",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.189
+        },
+        {
+          "name": "comet-expansion-numerical",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.606
+        },
+        {
+          "name": "comet-expansion-offline",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.874
+        },
+        {
+          "name": "echo-refund-core",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 5.834
+        },
+        {
+          "name": "swift-current-core",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 29.928
+        },
+        {
+          "name": "support-recast-current",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.168
+        },
+        {
+          "name": "early-wisp-curve-current",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 1.342
+        },
+        {
+          "name": "wisp-contribution-core",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 70.547
+        },
+        {
+          "name": "lab-expansion-stress",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.366
+        },
+        {
+          "name": "prism-earning-state",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 3.342
+        },
+        {
+          "name": "forge-lab-caps",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 0.972
+        },
+        {
+          "name": "prism-exact",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 6.627
+        },
+        {
+          "name": "payment",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.245
+        },
+        {
+          "name": "f21-integration",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 0.523
+        },
+        {
+          "name": "offline-catchup",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 360.119
+        }
+      ]
+    },
+    "legacy": {
+      "started": "2026-10-14T08:28:35.062Z",
+      "finished": "2026-10-14T08:29:35.354Z",
+      "passed": true,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "transport": "default",
+      "runtime": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\node8\\node.exe",
+      "browser": null,
+      "results": [
+        {
+          "name": "lab-expansion-legacy",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.338
+        },
+        {
+          "name": "forge-expansion-legacy",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.631
+        },
+        {
+          "name": "tree-expansion-v8",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.737
+        },
+        {
+          "name": "comet-expansion-v8",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.762
+        },
+        {
+          "name": "cheaper-recruitment-v8",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 0.792
+        },
+        {
+          "name": "echo-refund-v8",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 2.364
+        },
+        {
+          "name": "swift-v8",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 1.109
+        },
+        {
+          "name": "wisp-v8",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 48.451
+        }
+      ]
+    },
+    "ui": {
+      "started": "2026-10-14T08:31:19.392Z",
+      "finished": "2026-10-14T08:46:57.335Z",
+      "passed": false,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "transport": "pipe",
+      "runtime": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe",
+      "results": [
+        {
+          "name": "prism-acceptance",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 29.061
+        },
+        {
+          "name": "lab-expansion-ui",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 139.903
+        },
+        {
+          "name": "forge-expansion-ui",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 164.22
+        },
+        {
+          "name": "tree-expansion-mobile",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 17.903
+        },
+        {
+          "name": "comet-expansion-mobile",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 267.768
+        },
+        {
+          "name": "wisp-contribution-mobile",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 7.946
+        },
+        {
+          "name": "shared-layout-ui",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 106.534
+        },
+        {
+          "name": "collection-price-ui",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 47.134
+        },
+        {
+          "name": "ui-attention-quest",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 57.923
+        },
+        {
+          "name": "forge-lab-caps-mobile",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 35.453
+        },
+        {
+          "name": "guidance",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 15.873
+        },
+        {
+          "name": "rift-cosmetics",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 11.963
+        },
+        {
+          "name": "refund-browser",
+          "code": 0,
+          "timedOut": false,
+          "seconds": 36.16
+        }
+      ]
+    },
+    "full": {
+      "started": "2026-10-14T08:28:24.222Z",
+      "finished": "2026-10-14T09:27:24.672Z",
+      "passed": false,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "transport": "pipe",
+      "runtime": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe",
+      "results": [
+        {
+          "name": "behavioral-suite",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 3540.377
+        }
+      ]
+    },
+    "negative": {
+      "started": "2026-10-14T09:05:32.438Z",
+      "finished": "2026-10-14T09:06:41.817Z",
+      "passed": true,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "transport": "pipe",
+      "runtime": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe",
+      "results": [
+        {
+          "name": "self-test-bad-assertion",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 3.019,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-uncaught-error",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.283,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-unhandled-rejection",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.441,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-parity-regression",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.54,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-chronology-regression",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.593,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-wisp-formula-regression",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.593,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-wisp-pacing-regression",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.534,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-endgame-currency-regression",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.499,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-wisp-role-regression",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.732,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-p1-05-selected",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.512,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-p1-05-focus-return",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.851,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-lifecycle-duplicate",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.605,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-save-backup-placement",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 7.042,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-save-backup-confirmation",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 7.638,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-upgrade-identity-buy",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.854,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-upgrade-identity-value",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.513,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-upgrade-identity-clock",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 3.04,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-ascend-prisms-tree",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.797,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-ascend-prisms-lab",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.648,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-ascend-prisms-payout",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.525,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-ascend-prisms-repeat",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.558,
+          "completedNegative": true
+        },
+        {
+          "name": "self-test-ascend-prisms-rounding",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.459,
+          "completedNegative": true
+        }
+      ]
+    },
+    "refund-negative": {
+      "started": "2026-10-14T09:10:58.194Z",
+      "finished": "2026-10-14T09:12:00.375Z",
+      "passed": true,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "transport": "default",
+      "runtime": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe",
+      "results": [
+        {
+          "name": "handler",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.894,
+          "completedNegative": true,
+          "refundFailure": "UI maxed even with affordable wallet"
+        },
+        {
+          "name": "refund",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.855,
+          "completedNegative": true,
+          "refundFailure": "refund receipt prevents a second credit"
+        },
+        {
+          "name": "credit",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.699,
+          "completedNegative": true,
+          "refundFailure": "fractional original wallet retains exact refund value"
+        },
+        {
+          "name": "free-credit",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.868,
+          "completedNegative": true,
+          "refundFailure": "unrepresentable credit subtraction cannot buy a free level"
+        },
+        {
+          "name": "wallet",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.709,
+          "completedNegative": true,
+          "refundFailure": "unrepresentable wallet debit cannot buy a free level"
+        },
+        {
+          "name": "receipt",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.703,
+          "completedNegative": true,
+          "refundFailure": "wrong receipt amount rejects for recovery"
+        },
+        {
+          "name": "cache",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 3.062,
+          "completedNegative": true,
+          "refundFailure": "completed large refund avoids repeated price calculation at Ascend boundaries"
+        },
+        {
+          "name": "credit-record",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.173,
+          "completedNegative": true,
+          "refundFailure": "malformed persisted Prism credit rejects for recovery"
+        },
+        {
+          "name": "ascend-copy",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 3.08,
+          "completedNegative": true,
+          "refundFailure": "actual auto-Ascends avoid repeated refund cloning and validation"
+        },
+        {
+          "name": "version-check",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.06,
+          "completedNegative": true,
+          "refundFailure": "unsupported migration version rejects before any early return"
+        },
+        {
+          "name": "credit-reconcile",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.118,
+          "completedNegative": true,
+          "refundFailure": "own credit sequence reconciles with saved receipt"
+        },
+        {
+          "name": "below-cap-receipt",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.005,
+          "completedNegative": true,
+          "refundFailure": "below-cap receipt rejects before legitimate purchase"
+        },
+        {
+          "name": "missing-receipt",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.136,
+          "completedNegative": true,
+          "refundFailure": "completed marker cannot refund again after receipt deletion"
+        },
+        {
+          "name": "canonical-price",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 2.56,
+          "completedNegative": true,
+          "refundFailure": "all finite original purchase value retained"
+        },
+        {
+          "name": "mixed-payment",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.395,
+          "completedNegative": true,
+          "refundFailure": "exact wallet-only allocation keeps small credit"
+        },
+        {
+          "name": "power-spacing",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 4.094,
+          "completedNegative": true,
+          "refundFailure": "downward ULP at power of two supports exact mixed payment"
+        },
+        {
+          "name": "funding-sources",
+          "code": 1,
+          "timedOut": false,
+          "seconds": 3.672,
+          "completedNegative": true,
+          "refundFailure": "best exact available contribution finds payable Tree price"
+        }
+      ]
+    }
+  },
+  "isolatedRuns": [
+    {
+      "scenario": "offline-catchup-core",
+      "result": "FAIL",
+      "process": {
+        "exitcode": null,
+        "timed_out": true
+      },
+      "traceAddsObservations": false
+    },
+    {
+      "scenario": "wisp-rarity-scroll",
+      "result": "FAIL",
+      "process": {
+        "exitcode": null,
+        "timed_out": true
+      },
+      "traceAddsObservations": false
+    },
+    {
+      "scenario": "ascend-prisms-contract",
+      "result": "FAIL",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 24.474068900000002
+      },
+      "traceAddsObservations": false
+    },
+    {
+      "scenario": "rift-status-mobile",
+      "result": "FAIL",
+      "process": {
+        "exitcode": null,
+        "timed_out": true
+      },
+      "traceAddsObservations": true
+    }
+  ],
+  "riftTrace": {
+    "diagnosticOnly": true,
+    "traceAddsProtocolObservations": true,
+    "process": {
+      "exitcode": null,
+      "timed_out": true
+    },
+    "events": 467,
+    "views": [
+      {
+        "seconds": 4.91,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "fresh",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 2.153,
+        "swipes": 2
+      },
+      {
+        "seconds": 16.117,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "fresh",
+        "view": "forge",
+        "phase": "end",
+        "duration": 11.207,
+        "swipes": 17
+      },
+      {
+        "seconds": 18.897,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "fresh",
+        "view": "research",
+        "phase": "end",
+        "duration": 2.78,
+        "swipes": 3
+      },
+      {
+        "seconds": 31.262,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "dense",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 10.974,
+        "swipes": 16
+      },
+      {
+        "seconds": 43.231,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "dense",
+        "view": "forge",
+        "phase": "end",
+        "duration": 11.969,
+        "swipes": 18
+      },
+      {
+        "seconds": 73.151,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "dense",
+        "view": "research",
+        "phase": "end",
+        "duration": 29.92,
+        "swipes": 46
+      },
+      {
+        "seconds": 85.626,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "boss",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 11.048,
+        "swipes": 16
+      },
+      {
+        "seconds": 97.785,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "boss",
+        "view": "forge",
+        "phase": "end",
+        "duration": 12.159,
+        "swipes": 18
+      },
+      {
+        "seconds": 127.898,
+        "profile": "360x640-safe0-no-preference",
+        "kind": "boss",
+        "view": "research",
+        "phase": "end",
+        "duration": 30.113,
+        "swipes": 46
+      },
+      {
+        "seconds": 134.289,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "fresh",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 2.224,
+        "swipes": 2
+      },
+      {
+        "seconds": 146.706,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "fresh",
+        "view": "forge",
+        "phase": "end",
+        "duration": 12.417,
+        "swipes": 19
+      },
+      {
+        "seconds": 149.54,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "fresh",
+        "view": "research",
+        "phase": "end",
+        "duration": 2.834,
+        "swipes": 3
+      },
+      {
+        "seconds": 163.418,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "dense",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 12.552,
+        "swipes": 18
+      },
+      {
+        "seconds": 176.662,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "dense",
+        "view": "forge",
+        "phase": "end",
+        "duration": 13.244,
+        "swipes": 20
+      },
+      {
+        "seconds": 209.086,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "dense",
+        "view": "research",
+        "phase": "end",
+        "duration": 32.424,
+        "swipes": 51
+      },
+      {
+        "seconds": 223.102,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "boss",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 12.615,
+        "swipes": 18
+      },
+      {
+        "seconds": 236.226,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "boss",
+        "view": "forge",
+        "phase": "end",
+        "duration": 13.124,
+        "swipes": 20
+      },
+      {
+        "seconds": 269.247,
+        "profile": "360x640-safe24-no-preference",
+        "kind": "boss",
+        "view": "research",
+        "phase": "end",
+        "duration": 33.021,
+        "swipes": 51
+      },
+      {
+        "seconds": 274.238,
+        "profile": "390x844-safe24-no-preference",
+        "kind": "fresh",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 0.91,
+        "swipes": 0
+      },
+      {
+        "seconds": 282.38,
+        "profile": "390x844-safe24-no-preference",
+        "kind": "fresh",
+        "view": "forge",
+        "phase": "end",
+        "duration": 8.142,
+        "swipes": 12
+      },
+      {
+        "seconds": 283.955,
+        "profile": "390x844-safe24-no-preference",
+        "kind": "fresh",
+        "view": "research",
+        "phase": "end",
+        "duration": 1.575,
+        "swipes": 1
+      },
+      {
+        "seconds": 294.431,
+        "profile": "390x844-safe24-no-preference",
+        "kind": "dense",
+        "view": "spirits",
+        "phase": "end",
+        "duration": 9.154,
+        "swipes": 13
+      }
+    ],
+    "last": [
+      {
+        "seconds": 297.707,
+        "phase": "native-swipe",
+        "count": 415,
+        "delta": -3960.015625,
+        "y": 734,
+        "dy": -557,
+        "before": 2168,
+        "after": 2710,
+        "touched": "DIV.desc"
+      },
+      {
+        "seconds": 298.294,
+        "phase": "native-swipe",
+        "count": 416,
+        "delta": -3418.015625,
+        "y": 734,
+        "dy": -557,
+        "before": 2710,
+        "after": 3252,
+        "touched": "DIV.desc forge-description"
+      },
+      {
+        "seconds": 298.923,
+        "phase": "native-swipe",
+        "count": 417,
+        "delta": -2876.015625,
+        "y": 734,
+        "dy": -557,
+        "before": 3252,
+        "after": 3794,
+        "touched": "DIV.forge-head"
+      },
+      {
+        "seconds": 299.534,
+        "phase": "native-swipe",
+        "count": 418,
+        "delta": -2334.015625,
+        "y": 734,
+        "dy": -557,
+        "before": 3794,
+        "after": 4336,
+        "touched": "DIV.desc"
+      }
+    ]
+  },
+  "broadRun": {
+    "completed": true,
+    "recordedExecutions": 216,
+    "passedExecutions": 205,
+    "failures": [
+      "FAIL wisp-rarity-scroll",
+      "FAIL resonate-clarity",
+      "FAIL wisp-upgrade-display",
+      "FAIL offline-catchup-core",
+      "FAIL offline-catchup-ui",
+      "FAIL offline-catchup-legacy-dom",
+      "FAIL rift-status-stacking-mobile",
+      "FAIL rift-status-stacking-reduced-motion",
+      "FAIL rift-status-mobile",
+      "FAIL rift-status-reduced-motion",
+      "FAIL ascend-prisms-contract"
+    ],
+    "lastRecorded": "PASS ascend-prisms-recovery"
+  },
+  "verified": {
+    "curve": {
+      "checks": 2800,
+      "controls": [
+        "missing",
+        "boundary",
+        "titan",
+        "forge-cap",
+        "forge-price"
+      ]
+    },
+    "tree": {
+      "checks": 26660,
+      "profiles": 12,
+      "testSha256": "379d5b2580f0f465162915878d0c6cf35e490265d6516b6a156dfbfda5a0063b",
+      "transportSha256": "71b53389cb80391115dce9c9485aabede52943dd5c75fe635feb8a44f3d16e86",
+      "controls": [
+        {
+          "id": "frontier-summary-viewport",
+          "status": "pass",
+          "caught": [
+            {
+              "phase": "immediate",
+              "name": "AssertionError",
+              "message": "viewport top stable frontier-summary-viewport-mutated immediate"
+            },
+            {
+              "phase": "settled",
+              "name": "AssertionError",
+              "message": "viewport top stable frontier-summary-viewport-mutated settled"
+            }
+          ]
+        },
+        {
+          "id": "formation-reorder-viewport",
+          "status": "pass",
+          "caught": [
+            {
+              "phase": "immediate",
+              "name": "AssertionError",
+              "message": "viewport top stable formation-reorder-viewport-mutated immediate"
+            },
+            {
+              "phase": "settled",
+              "name": "AssertionError",
+              "message": "viewport top stable formation-reorder-viewport-mutated settled"
+            }
+          ]
+        }
+      ]
+    },
+    "prismNumerical": {
+      "assertions": 341654,
+      "formulaCases": 277916,
+      "payoutCases": 3780,
+      "negativeControls": [
+        "old-repeat-penalizes-bonus",
+        "drop-tree",
+        "drop-completed-lab",
+        "floating-full-floor",
+        "floating-progress-ceil",
+        "displayed-vs-cleared-rift",
+        "count-bonus-twice"
+      ]
+    },
+    "resonate": {
+      "status": "pass",
+      "source": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\mobile\\www\\index.html",
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "node": "v24.19.0",
+      "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe",
+      "records": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "no-preference",
+          "layout": {
+            "button": {
+              "width": 273.49981689453125,
+              "height": 48.9105224609375
+            },
+            "font": "12px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "reduce",
+          "layout": {
+            "button": {
+              "width": 274,
+              "height": 49
+            },
+            "font": "12px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "no-preference",
+          "layout": {
+            "button": {
+              "width": 273.8028564453125,
+              "height": 111.91943359375
+            },
+            "font": "24px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "reduce",
+          "layout": {
+            "button": {
+              "width": 274,
+              "height": 112
+            },
+            "font": "24px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "no-preference",
+          "layout": {
+            "button": {
+              "width": 337.52117919921875,
+              "height": 48.9305419921875
+            },
+            "font": "12px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "reduce",
+          "layout": {
+            "button": {
+              "width": 338,
+              "height": 49
+            },
+            "font": "12px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "no-preference",
+          "layout": {
+            "button": {
+              "width": 337.97607421875,
+              "height": 80.9942626953125
+            },
+            "font": "24px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "reduce",
+          "layout": {
+            "button": {
+              "width": 338,
+              "height": 81
+            },
+            "font": "24px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "no-preference",
+          "layout": {
+            "button": {
+              "width": 377.1405029296875,
+              "height": 48.888671875
+            },
+            "font": "12px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "reduce",
+          "layout": {
+            "button": {
+              "width": 378,
+              "height": 49
+            },
+            "font": "12px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "no-preference",
+          "layout": {
+            "button": {
+              "width": 377.6043395996094,
+              "height": 80.9151611328125
+            },
+            "font": "24px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "reduce",
+          "layout": {
+            "button": {
+              "width": 378,
+              "height": 81
+            },
+            "font": "24px",
+            "help": "Spend 25 Sigils to fill this Active Wisp's ability resource to 100. This is a refill, not a permanent upgrade. Requires all Wisp Ultimates. 3 of 3 uses left this run, shared across all Wisps. Resets on Ascend."
+          },
+          "input": {
+            "sigils": 75,
+            "uses": 1,
+            "resource": 100,
+            "focus": null
+          },
+          "contrast": {
+            "copy": 9.36965935510638,
+            "label": 16.688550461750392,
+            "focus": 8.23241595850323,
+            "outline": "2px"
+          },
+          "timersPausedForFixtures": true,
+          "ordinaryIntervalMs": 350
+        },
+        {
+          "gates": [
+            "missing Ultimate",
+            "reserve",
+            "unrecruited",
+            "full resource",
+            "24 Sigils",
+            "three uses"
+          ],
+          "folding": {
+            "maxedInitiallyFolded": true,
+            "openFocusPreserved": true,
+            "refill": true
+          },
+          "shared": {
+            "sigils": 25,
+            "uses": 3
+          },
+          "persistence": [
+            "reload",
+            "backup restore with reload",
+            "canonical corruption/recovery"
+          ],
+          "ascend": {
+            "sigils": 25,
+            "uses": 0
+          },
+          "boundary": {
+            "sigils": 0,
+            "resource": 100,
+            "uses": 3
+          }
+        }
+      ],
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/151.0.7922.34",
+        "revision": "@782af9cb30a53f54487e5d2e44738645a8ec457c",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+        "jsVersion": "15.1.206.8"
+      },
+      "teardown": {
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "profileRemoved": true
+      }
+    },
+    "offlineModern": "pass",
+    "offlineLegacyDom": "pass",
+    "wispDisplay": "PASS registered unchanged25s gate",
+    "oracle": {
+      "historicalSource": "b3eca6661042a7245100d9dcd0a6fbbb2e38a01e99b305102b5307abb52db7a9",
+      "identicalPhases": true,
+      "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+      "oracle": "Independent one-second advance calls, fixed whole-window start",
+      "phases": [
+        {
+          "kills": 277629,
+          "ascends": 13220,
+          "prisms": 304060,
+          "stateSha256": "9fe807cb0f860dfaf3d5fccbff63799e44fff3b2c2d389240b6ae0912787a0cb"
+        },
+        {
+          "kills": 277620,
+          "ascends": 13220,
+          "prisms": 304060,
+          "stateSha256": "e67b0528588bae9cf64375635325bbed9f5fd69a1bb026dfbafe1d026af05494"
+        },
+        {
+          "kills": 277767,
+          "ascends": 13227,
+          "prisms": 304221,
+          "stateSha256": "05598b1edc0727478338e69f6f154ec70b6e755fa5b0179c315ced1e0e616fff"
+        },
+        {
+          "kills": 278193,
+          "ascends": 13247,
+          "prisms": 304681,
+          "stateSha256": "d0a844d664da27ffa9f32e8ce7b4d83f11ab301b1fdbcfbfcfde4859f2746848"
+        }
+      ]
+    },
+    "assets": [
+      {
+        "file": "index.html",
+        "match": true,
+        "sha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050"
+      },
+      {
+        "file": "fonts\\cinzel-500.woff2",
+        "match": true,
+        "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+      },
+      {
+        "file": "fonts\\cinzel-600.woff2",
+        "match": true,
+        "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+      },
+      {
+        "file": "fonts\\cinzel-700.woff2",
+        "match": true,
+        "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+      },
+      {
+        "file": "fonts\\fonts.css",
+        "match": true,
+        "sha256": "befd8e42d48b477c567ba3ce469ff475c12a1f8724c98258469dea11b15065d7"
+      },
+      {
+        "file": "fonts\\ibm-plex-mono-400.woff2",
+        "match": true,
+        "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+      },
+      {
+        "file": "fonts\\ibm-plex-mono-500.woff2",
+        "match": true,
+        "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+      },
+      {
+        "file": "fonts\\ibm-plex-mono-600.woff2",
+        "match": true,
+        "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+      },
+      {
+        "file": "fonts\\manrope-400.woff2",
+        "match": true,
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "file": "fonts\\manrope-500.woff2",
+        "match": true,
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "file": "fonts\\manrope-600.woff2",
+        "match": true,
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "file": "fonts\\manrope-700.woff2",
+        "match": true,
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "file": "fonts\\manrope-800.woff2",
+        "match": true,
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "file": "branding\\lumenfall-mark.svg",
+        "match": true,
+        "sha256": "976398b0e662181ae6dbb3430ce74d606a9db3a3f6c451818d5fda9e0f9395e4"
+      },
+      {
+        "file": "branding\\README.md",
+        "match": true,
+        "sha256": "2ec43b9b11efdf98f802942dfb09740ebdbb08bb3a1364be2bb29f1a7bc19050"
+      }
+    ],
+    "negativeMessages": [
+      {
+        "scenario": "self-test-bad-assertion",
+        "completed": true,
+        "message": "intentional harness self-test assertion"
+      },
+      {
+        "scenario": "self-test-uncaught-error",
+        "completed": true,
+        "message": "uncaught error was not detected"
+      },
+      {
+        "scenario": "self-test-unhandled-rejection",
+        "completed": true,
+        "message": "unhandled rejection was not detected"
+      },
+      {
+        "scenario": "self-test-parity-regression",
+        "completed": true,
+        "message": "intentional parity regression totalKills must match exactly (expected 42, got 43)"
+      },
+      {
+        "scenario": "self-test-chronology-regression",
+        "completed": true,
+        "message": "intentional chronology regression: Study incorrectly expected before Research"
+      },
+      {
+        "scenario": "self-test-wisp-formula-regression",
+        "completed": true,
+        "message": "intentional Wisp formula regression: passive-only Formation Training incorrectly expected to scale ability damage"
+      },
+      {
+        "scenario": "self-test-wisp-pacing-regression",
+        "completed": true,
+        "message": "intentional Wisp pacing regression: Mythic cost compression was not detected"
+      },
+      {
+        "scenario": "self-test-endgame-currency-regression",
+        "completed": true,
+        "message": "intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected"
+      },
+      {
+        "scenario": "self-test-wisp-role-regression",
+        "completed": true,
+        "message": "intentional Wisp role regression: stale Tank semantics were not detected"
+      },
+      {
+        "scenario": "self-test-p1-05-selected",
+        "completed": true,
+        "message": "intentional selected semantics regression"
+      },
+      {
+        "scenario": "self-test-p1-05-focus-return",
+        "completed": true,
+        "message": "intentional overlay focus-return regression"
+      },
+      {
+        "scenario": "self-test-lifecycle-duplicate",
+        "completed": true,
+        "message": "intentional duplicate lifecycle regression must consume exactly one offline window, got 2"
+      },
+      {
+        "scenario": "self-test-save-backup-placement",
+        "completed": true,
+        "message": "Backup is under Save immediately before separate Reset"
+      },
+      {
+        "scenario": "self-test-save-backup-confirmation",
+        "completed": true,
+        "message": "Restore request waits for confirmation: primary\n+ actual - expected\n\n+ '{\"schemaVersion\":4,\"offline12hRefund\":{\"policy\":\"OFFLINE_12H_001:140/160:sum-ceil-6x1.6^level\",\"offline24\":false,\"offline48\":false,\"reservesLevel\":0,\"comets\":0,\"prismPrices\":[],\"prismsExact\":\"0\",\"cometsPaid\":[true,true],\"prismsPaid\":[]},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":0},\"echo\":{\"levels\":0}},\"receipts\":{},\"echoCreditAuditVersion\":1},\"refundCredits\":{\"prisms\":[]},\"lumen\":777777,\"shards\":12345,\"prisms\":31,\"comets\":99,\"motes\":44,\"sigils\":11,\"depth\":33,\"maxDepthEver\":44,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"enemyDepth\":33,\"enemyHp\":1,\"enemyMaxHp\":1,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":28,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":12,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"activeParty\":[\"ember\",\"void\"],\"formationPresets\":{\"push\":[\"ember\",\"void\"],\"farm\":[\"ember\",\"void\"],\"boss\":[\"ember\",\"void\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":0,\"steady\":0,\"echo\":0,\"bonds\":0,\"swift\":0,\"momentum\":0,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":0,\"sense\":0,\"formation\":0,\"resolve\":0,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":0,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":0,\"measuredinquiry\":0,\"labcapacity\":0,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{},\"owned\":{\"meteor\":false,\"starcall\":false},\"riftTheme\":\"default\",\"cometUpgrades\":{\"cometreservoir\":0,\"cometcycle\":0,\"meteorcore\":0},\"cometCharges\":0,\"cometWork\":0,\"cometMeteorUsed\":false,\"cometCalled\":false,\"cometEvents\":{\"firstCommand\":false,\"firstRecharge\":false,\"bossStrike\":false,\"calledKill\":false},\"cometClaims\":{\"policy\":\"comet-commands-001\",\"retired\":{\"comettrials\":\"absent\",\"rifttrail\":\"absent\",\"starfallcrest\":\"absent\"},\"deeds\":{}},\"cometTrial\":null,\"cometTrialMarks\":{},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":1234,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":16,\"loginStreak\":0,\"questDay\":\"2035-01-15\",\"questIds\":[],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":0,\"kills\":0,\"empowers\":0,\"research\":0,\"bossKills\":0,\"luminousKills\":0,\"ascends\":0},\"lastSeen\":2052471600000,\"_autoTapAccum\":0,\"_autoEmpowerAccum\":0}'\n- '{\"schemaVersion\":4,\"offline12hRefund\":{\"policy\":\"OFFLINE_12H_001:140/160:sum-ceil-6x1.6^level\",\"offline24\":false,\"offline48\":false,\"reservesLevel\":0,\"comets\":0,\"prismPrices\":[],\"prismsExact\":\"0\",\"cometsPaid\":[true,true],\"prismsPaid\":[]},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":0},\"echo\":{\"levels\":0}},\"receipts\":{},\"echoCreditAuditVersion\":1},\"refundCredits\":{\"prisms\":[]},\"lumen\":12500,\"shards\":420,\"prisms\":7,\"comets\":55,\"motes\":18,\"sigils\":3,\"depth\":17,\"maxDepthEver\":17,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"enemyDepth\":17,\"enemyHp\":100,\"enemyMaxHp\":100,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":18,\"tide\":10,\"stone\":7,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":1,\"tide\":1,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":25,\"tide\":60,\"stone\":10,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":2,\"tide\":1,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"activeParty\":[\"ember\",\"tide\",\"stone\"],\"formationPresets\":{\"push\":[\"ember\",\"tide\",\"stone\"],\"farm\":[\"ember\",\"tide\",\"stone\"],\"boss\":[\"ember\",\"tide\",\"stone\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":2,\"steady\":1,\"echo\":0,\"bonds\":0,\"swift\":0,\"momentum\":0,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":4,\"sense\":3,\"formation\":2,\"resolve\":2,\"charge\":1,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false},\"longStudyLevels\":{\"wispascend\":1,\"guardmastery\":1,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":0,\"measuredinquiry\":0,\"labcapacity\":0,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true},\"owned\":{\"meteor\":false,\"starcall\":false},\"riftTheme\":\"default\",\"cometUpgrades\":{\"cometreservoir\":0,\"cometcycle\":0,\"meteorcore\":0},\"cometCharges\":0,\"cometWork\":0,\"cometMeteorUsed\":false,\"cometCalled\":false,\"cometEvents\":{\"firstCommand\":false,\"firstRecharge\":false,\"bossStrike\":false,\"calledKill\":false},\"cometClaims\":{\"policy\":\"comet-commands-001\",\"retired\":{\"comettrials\":\"absent\",\"rifttrail\":\"absent\",\"starfallcrest\":\"absent\"},\"deeds\":{}},\"cometTrial\":null,\"cometTrialMarks\":{},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":1,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":350,\"totalKills\":140,\"totalOfflineSeconds\":3600,\"luminousAccum\":0.45,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":17,\"loginStreak\":3,\"questDay\":\"2035-01-15\",\"questIds\":[\"q_tap_small\",\"q_kill_small\",\"q_empower\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":50,\"kills\":12,\"empowers\":2,\"research\":0,\"bossKills\":0,\"luminousKills\":0,\"ascends\":0},\"lastSeen\":2052471600000,\"_autoTapAccum\":0,\"_autoEmpowerAccum\":0}'\n"
+      },
+      {
+        "scenario": "self-test-upgrade-identity-buy",
+        "completed": true,
+        "message": "closed bulk focus 1"
+      },
+      {
+        "scenario": "self-test-upgrade-identity-value",
+        "completed": true,
+        "message": "exact old Formation factors 1"
+      },
+      {
+        "scenario": "self-test-upgrade-identity-clock",
+        "completed": true,
+        "message": "Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":3,\"elapsedWholeSec\":3,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":57,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":3,\"riftMode\":\"farm\",\"candidates\":{\"ability\":1,\"autoTap\":1,\"autoEmpower\":1,\"study\":87,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}"
+      },
+      {
+        "scenario": "self-test-ascend-prisms-tree",
+        "completed": true,
+        "message": "reward oracle 15,0,1,0,full expected 8 got 7"
+      },
+      {
+        "scenario": "self-test-ascend-prisms-lab",
+        "completed": true,
+        "message": "reward oracle 16,15,0,1,reserve expected 2 got 1"
+      },
+      {
+        "scenario": "self-test-ascend-prisms-payout",
+        "completed": true,
+        "message": "manual payout equals preview/oracle"
+      },
+      {
+        "scenario": "self-test-ascend-prisms-repeat",
+        "completed": true,
+        "message": "reward oracle 16,15,0,0,reserve expected 1 got 2"
+      },
+      {
+        "scenario": "self-test-ascend-prisms-rounding",
+        "completed": true,
+        "message": "reward oracle 16,15,1,0,progressBonus expected 1 got 0"
+      }
+    ]
+  },
+  "testFiles": [
+    {
+      "file": "tests/behavioral/early-wisp-curve-current.cjs",
+      "sha256": "d82123fb07349cc1f6b87b1df561cd6202e6b35c74c0a0d230455100a42451df"
+    },
+    {
+      "file": "tests/behavioral/resonate-clarity.cjs",
+      "sha256": "e37705a118af0a22b24a5fee237148904489672df383b4a479d4b497b20104e0"
+    },
+    {
+      "file": "tests/behavioral/tree-expansion-mobile.cjs",
+      "sha256": "379d5b2580f0f465162915878d0c6cf35e490265d6516b6a156dfbfda5a0063b"
+    },
+    {
+      "file": "tests/behavioral/wisp-upgrades.js",
+      "sha256": "1dc7f68864c889af87c865585cdd95e4b6c4a6a7a7bafb5fa5b59f28ab2039d6"
+    },
+    {
+      "file": "tests/behavioral/offline-swift-current-golden.json",
+      "sha256": "3a4f679cbe838734a4a22e261de22726878023ff08eae3230b1f9ff6f1eb784e"
+    }
+  ],
+  "limitations": [
+    "Required Prism25s gate unresolved; longer diagnostic is not acceptance",
+    "Wisp90s/offline-core300s isolated reruns still fail their deadlines; Rift300s trace is diagnostic and adds protocol observations",
+    "Missing exact Guidance baseline object; read-only fetch returned Repository not found",
+    "POSIX tooling unsupported on this Windows session",
+    "Standard Windows dump-DOM transport unresolved; current browser evidence uses existing pipe adapter",
+    "No physical Android/WebView60/textZoom/TalkBack or remote CI/integration acceptance"
+  ],
+  "rawEvidence": "validation-evidence/full-debug-2026-10-14/"
+}

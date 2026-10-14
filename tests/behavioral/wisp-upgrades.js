@@ -65,7 +65,11 @@ window.runWispUpgradeQa = function(){
     ok(after.heroRarity.ember===5 && after.wispModules.ember===20 && after.wispUltimate.ember,'last '+action+' completes existing purchase');
     ok(after.lumen===before.lumen-(cost.lumen||0) && after.shards===before.shards-(cost.shard||0) && after.sigils===before.sigils-(cost.sigil||0),'existing deterministic '+action+' debit');
     ok(p.tagName==='DETAILS' && p.open,'last purchase preserves open progression');
-    ok(document.activeElement===p.querySelector('summary'),'last '+action+' purchase focus goes to same Wisp summary: '+document.activeElement.outerHTML);
+    // WISP_RARITY_SCROLL_001 deliberately keeps completed actions on a
+    // noninteractive same-card fallback so repeated Enter cannot fold the card.
+    var card=p.closest('[data-wisp-card]');
+    ok(document.activeElement===card && card.tabIndex===-1 && card.getAttribute('data-wisp-action-focus')===action,
+      'last '+action+' purchase focus stays on noninteractive same Wisp card: '+document.activeElement.outerHTML);
     var frozen=b.get(),slots=b.slots();p.open=false;b.render();
     ok(!progression('ember').open,'chosen fold survives render');
     same(b.get(),frozen,'fold preserves state');same(b.slots(),slots,'fold does not save');
