@@ -1,5 +1,7 @@
 # Lumenfall — current delivery status
 
+15 October2026: [Lab timed-speed revision](tasks/LAB_SPEED_CONTROLS_001.md) IN PROGRESS; selected-project/continuous timer confirmed, pricing pending. Product084f2995 unchanged.
+
 14 October2026: [UPGRADE_AFFORDABILITY_001](tasks/UPGRADE_AFFORDABILITY_001.md)
 integrated1553d44 locally, source084f2995: upgrade prices red per missing currency;
 Resonate also refreshes native disabled state. Existing purchase/save rules
