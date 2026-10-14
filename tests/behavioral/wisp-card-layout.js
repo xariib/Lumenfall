@@ -35,6 +35,11 @@ window.runWispCardLayoutQa=function(baseline){
     if(stage<2){
       ['module','rarity','ultimate'].forEach(function(action){var e=card.querySelector('[data-'+action+']');ok(e&&e.getBoundingClientRect().height>=44,'unfinished '+action+' visible');});
       ok(card.querySelector('[data-module]').querySelectorAll('.cost-icon').length===2,'both Module prices retained');
+      if(!baseline){
+        var upgrade=card.querySelector('[data-module]'),label=['dps','breaker'].indexOf(b.spirit(id).abilityType)!==-1?'Upgrade Ability':'Upgrade Rewards';
+        ok(upgrade.textContent.includes(label)&&!upgrade.textContent.includes('Upgrade Module'),'purchase label explains actual improvement '+id);
+        ok(upgrade.getAttribute('aria-label').includes(label)&&upgrade.getAttribute('aria-label').includes(b.spirit(id).name),'accessible purchase name identifies effect and Wisp '+id);
+      }
       ok(card.querySelector('[data-ultimate]').textContent.includes('Mythic required'),'Ultimate prerequisite retained');
       ok(card.querySelector('[data-rarity]').textContent.includes('Lv.'+b.rarityRequirement(0)+' req')||stage!==0,'Rarity prerequisite retained');
     }

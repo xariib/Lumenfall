@@ -1,5 +1,7 @@
 # Simpler Wisp cards
 
+Latest follow-up: [clear Upgrade Ability / Upgrade Rewards labels](labels/README.md).
+
 Latest user revision: [remove previews, boxed levels, simpler headings](revision/README.md).
 That revision supersedes this first layout milestone; the receipts below remain
 historical evidence for the initial request.

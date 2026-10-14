@@ -3087,11 +3087,11 @@ var RARITY_LEVEL_REQUIREMENTS = [8,18,30,45,65];
 var RARITY_SHARD_COSTS = [15,90,900,15000,500000];
 var RARITY_LUMEN_BASE_MULTS = [8,20,80,400,2400];
 var MODULE_INFO = {
-  dps:     {name:'Overcharge Core',  effect:function(lvl){ return '+'+Math.round(lvl*5)+'% ability burst damage'; }},
-  breaker: {name:'Impact Core',      effect:function(lvl){ return '+'+Math.round(lvl*5)+'% ability burst damage'; }},
-  ranged:  {name:'Piercing Lens',    effect:function(lvl){ return '+'+Math.round(lvl*5)+'% bonus Shards from its ability'; }},
-  druid:   {name:'Bloom Catalyst',   effect:function(lvl){ return '+'+Math.round(lvl*5)+'% bonus Lumen from its ability'; }},
-  support: {name:'Resonant Focus',   effect:function(lvl){ return '+'+Math.round(lvl*5)+'% Motes from Luminous kills while Active'; }}
+  dps:     {name:'Overcharge Core',  upgradeLabel:'Upgrade Ability', effect:function(lvl){ return '+'+Math.round(lvl*5)+'% ability burst damage'; }},
+  breaker: {name:'Impact Core',      upgradeLabel:'Upgrade Ability', effect:function(lvl){ return '+'+Math.round(lvl*5)+'% ability burst damage'; }},
+  ranged:  {name:'Piercing Lens',    upgradeLabel:'Upgrade Rewards', effect:function(lvl){ return '+'+Math.round(lvl*5)+'% bonus Shards from its ability'; }},
+  druid:   {name:'Bloom Catalyst',   upgradeLabel:'Upgrade Rewards', effect:function(lvl){ return '+'+Math.round(lvl*5)+'% bonus Lumen from its ability'; }},
+  support: {name:'Resonant Focus',   upgradeLabel:'Upgrade Rewards', effect:function(lvl){ return '+'+Math.round(lvl*5)+'% Motes from Luminous kills while Active'; }}
 };
 var RARITY_NAMES  = ['Common','Uncommon','Rare','Epic','Legendary','Mythic'];
 var RARITY_COLORS = ['#9aa0b4','#4fae5e','#3d8fd6','#a860e0','#e0a730','#e0475f'];
@@ -8046,7 +8046,7 @@ function showToast(msg){
 var TUTORIAL_STEPS = [
   {title:'Fight & recruit', body:'Ember starts fighting for you. Tap the enemy for extra Guardian damage. In Wisps, spend Lumen to Recruit new Wisps or Empower their levels as you reach their Rift unlocks. Active Wisps use their abilities automatically.'},
   {title:'Choose your Formation', body:'Only recruited Active Wisps fight. Choose pairs to activate Formation Bonds, and save separate Push, Farm and Boss lineups. If a boss stops you, switch Rift to Farm for resources; Push returns you to your saved Rift.'},
-  {title:'Upgrade your Wisps', body:'Rarity Up costs Lumen and Shards and requires the shown Wisp level. Modules improve each role’s ability or Mote rewards. At Mythic Rarity, Sigils buy that Wisp’s Ultimate. These upgrades stay after Ascend.'},
+  {title:'Upgrade your Wisps', body:'Rarity Up costs Lumen and Shards and requires the shown Wisp level. Upgrade Ability increases burst damage; Upgrade Rewards increases Shards, Lumen or Motes, as shown on the card. These permanent upgrades are called Modules. At Mythic Rarity, Sigils buy that Wisp’s Ultimate. These upgrades stay after Ascend.'},
   {title:'Use Forge & Lab', body:'Workshop contains Rift Forge for immediate upgrades and Research Lab for timed projects. Lab bonuses apply when a level completes. Queue ON permits automatic spending when affordable. The speed slider selects a target; Buy now spends the shown Motes, while Speed queue ON permits automatic speed purchases.'},
   {title:'Ascend & automate', body:'Clear Rift 15 to unlock Ascend. Check the Prism reward before restarting your Rift run, Wisp levels and Lumen; Tree upgrades can improve that restart. Permanent upgrades, other currencies and paid Lab work stay. Spend Prisms in the Tree. Comets buy Auto-Ascend; Deeds unlock Auto-Tap and Auto-Empower.'},
   {title:'Return & keep a backup', body:'Offline combat and paid Lab work share up to 12 hours of productive time per absence. Offline Lumen and Shard rewards start at 70%; Echoing Rest improves that rate. In Settings, Save Backup lets you copy progress before reinstalling or changing device. Restoring replaces the current save. You can replay this guide without resetting progress.'}
@@ -8399,7 +8399,7 @@ function renderSpirits(keepScroll){
         '<div class="module-name">'+modInfo.name+' <span style="color:var(--shard);">Lv.'+modLvl+'/'+MODULE_MAX_LEVEL+(modMaxed?' · Maxed':'')+'</span></div>' +
         '<div class="module-effect">'+modInfo.effect(modLvl)+'</div>' +
         (modMaxed ? '' :
-          '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>Upgrade Module' +
+          '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>'+modInfo.upgradeLabel +
             '<span style="font-size:.6875rem;">'+costIcon('lumen')+formatNum(modCost.lumen)+'</span>' +
             '<span style="font-size:.6875rem;">'+costIcon('shard')+formatNum(modCost.shard)+'</span>' +
           '</button>') +
@@ -9295,7 +9295,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
   {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 5 damage plus 2% of general Active-party passive power. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
   {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown current Wisp level and both Lumen and Shards. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
-  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Modules cost Lumen and Shards and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. A Mythic Wisp can buy its Ultimate with Sigils. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
+  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage; Upgrade Rewards improves Shards, Lumen or Motes, as shown on the card. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. A Mythic Wisp can buy its Ultimate with Sigils. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
   {name:'Endgame Currency Utility', meta:'Sigils and Quest Refresh', desc:'After all eight Ultimates are owned, Resonate fills an eligible Active Wisp’s charge. Resonance Efficiency reduces the Sigil price; Resonance Cells adds shared uses per run and Resonance Reclaim can restore spent uses after a boss kill. Quest Refresh unlocks with Auto-Ascend Ritual and Called Light; previously earned access remains. It spends Comets to replace an unclaimed quest while retaining daily progress.'},
   {name:'Wisp Roles', meta:'Build label', desc:'Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles.'},
   {name:'Ascend', meta:'Permanent progression', desc:'Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Rarity, Modules, Ultimates, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once. New cleared depth beyond your rewarded benchmark adds a bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending.'},
