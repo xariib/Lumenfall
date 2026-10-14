@@ -1700,7 +1700,9 @@
   .stage .rift-heading .rift-mode-row{height:46px;min-height:46px;margin:0;gap:3px;padding:1px;background:#090f20a6;border-radius:12px;}
   .stage .rift-mode-btn{min-width:44px;min-height:44px;font-size:12px;padding:3px 6px;letter-spacing:.09em;white-space:nowrap;}
   /* F07: the hint body has the same reserved space when hidden or scrollable. */
-  #rift-guidance-slot{display:flex;height:46px;flex:none;margin:0;color:#f0effb;background:#141d30;border:1px solid #52617e;border-radius:11px;box-sizing:border-box;}
+  #rift-guidance-slot{position:relative;display:flex;height:46px;flex:none;margin:0 10px;color:#f0effb;background:#141d30;border:1px solid #52617e;border-radius:11px;box-sizing:border-box;box-shadow:0 3px 10px #050a1666;}
+  /* Paint behind the inset strip into the arena gap without changing its tracks. */
+  #rift-guidance-slot::before{content:'';position:absolute;top:-1px;right:-11px;bottom:-7px;left:-11px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#171930 0%,#0d0f1f 100%);}
   #rift-guidance-slot[hidden],#rift-objective-row[hidden]{display:none;}
 #rift-hints-toggle{display:block;flex:none;width:auto;max-width:70%;min-width:44px;height:44px;min-height:44px;padding:2px;border:0;border-right:1px solid #52617e;border-radius:10px 0 0 10px;background:#1c2339;color:#f0effb;font:inherit;font-size:.875rem;line-height:1.1;font-weight:700;white-space:nowrap;cursor:pointer;}
 /* Reserve both labels' intrinsic width without consuming hint space in ems. */

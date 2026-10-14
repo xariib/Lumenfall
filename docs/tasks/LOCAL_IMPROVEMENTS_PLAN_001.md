@@ -91,6 +91,9 @@ acceptance pending. [LAB_SPEED_CONTROLS_001](LAB_SPEED_CONTROLS_001.md) locally
 verified: stepped speed slider/price, separate queue toggle and explicit immediate
 purchase; prominent name/level badge and Current/Next effects; scoped
 preservation and native checks PASS, final/device acceptance pending.
-Tasks5–7 implementation NOT STARTED.
-Next action: user reviews the current preview, then starts RIFT_HINT_LAYOUT_001
+[RIFT_HINT_LAYOUT_001](RIFT_HINT_LAYOUT_001.md) locally verified: inset hint strip,
+background fade, before/after mobile/large-text screens, existing Guidance/Rift/
+navigation and focused geometry/input checks PASS; user/final/device acceptance
+pending. Tasks6–7 implementation NOT STARTED.
+Next action: user reviews the current preview, then starts RIFT_THEME_LABEL_001
 using the saved guide and latest local checkpoint. No chat created automatically.

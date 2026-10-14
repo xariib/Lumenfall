@@ -4,6 +4,8 @@
  * --baseline-probe records the original hide-induced geometry shift.
  * --existing-contract runs the existing Rift contract with the CDP driver.
  * --readability-probe runs the five ordinary hints plus Ascend-ready at 320px/200% text.
+ * --layout-before / --layout-probe capture the inset/fade baseline and candidate.
+ * --layout-reference=PATH compares protected geometry with that baseline report.
  */
 'use strict';
 const {spawn}=require('node:child_process'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
@@ -15,6 +17,9 @@ const {measureGuidanceWord,assertGuidanceWord}=require('./rift-guidance-readabil
 fs.cpSync(sourceRoot,root,{recursive:true});fs.writeFileSync(path.join(root,'index.html'),instrumentHtml(source,loadFixtures()));
 fs.mkdirSync(out,{recursive:true});
 const profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-rift-guidance-'));
+const layoutBefore=flags.includes('--layout-before'),layoutProbe=layoutBefore||flags.includes('--layout-probe');
+const referenceFlag=flags.find(flag=>flag.startsWith('--layout-reference='));
+const layoutReference=referenceFlag?JSON.parse(fs.readFileSync(referenceFlag.slice('--layout-reference='.length),'utf8')):null;
 const server=http.createServer((request,response)=>{
  const name=decodeURIComponent(new URL(request.url,'http://localhost').pathname),file=path.resolve(root,'.'+name);
  if(!file.startsWith(root+path.sep)){response.writeHead(403).end();return;}
@@ -115,6 +120,51 @@ async function inspectContent(){return evaluate(`(()=>{
  if(getComputedStyle(slot).animationName!=='none'||getComputedStyle(row).animationName!=='none')throw Error('guidance must not animate geometry');
  return {slotHeight:sr.height,rowHeight:rr.height,contentHeight:row.scrollHeight,contrast,hintContrasts,fontSize:style.fontSize,actionable};
 })()`);}
+async function inspectInset(){return evaluate(`(()=>{
+ const slot=document.querySelector('#rift-guidance-slot'),topbar=document.querySelector('.topbar');
+ const r=slot.getBoundingClientRect(),p=topbar.getBoundingClientRect(),s=getComputedStyle(slot,'::before');
+ return {left:r.left-p.left,right:p.right-r.right,height:r.height,fade:s.backgroundImage,background:s.backgroundColor,fadeContent:s.content,fadeHitTest:s.pointerEvents,
+  overflow:document.documentElement.scrollWidth>innerWidth,focus:getComputedStyle(document.querySelector('#rift-hints-toggle')).outlineStyle};
+})()`);}
+function assertInset(m){
+ assert(Math.abs(m.left-10)<.1&&Math.abs(m.right-10)<.1,'hint strip has symmetric 10px inset');
+ assert(m.height===46&&!m.overflow,'inset preserves reservation and viewport fit');
+ assert(m.fade.includes('linear-gradient')&&m.fade.includes('23, 25, 48')&&m.fade.includes('13, 15, 31'),'Rift header fades from HUD into arena surroundings');
+ assert(m.fadeHitTest==='none','decorative fade cannot intercept input');
+}
+async function layoutSample(record,name,inset){
+ for(const kind of ['fresh','boss']){
+  await evaluate(`riftStatusMobile.setup(${inset},${JSON.stringify(kind)});document.querySelector('#toast').classList.remove('show')`);
+  const shown=await snapshot(),content=await inspectContent(),readability=await wordReadability();assertGuidanceWord(readability);
+  const style=await inspectInset(),sample={kind,shown:shown.boxes,content,readability,inset:style};record.samples.push(sample);
+  if(layoutBefore){assert(style.left===0&&style.right===0,'baseline reproduces edge-to-edge hint strip');assert(style.fade==='none','baseline has no surrounding header fade');}
+  else {
+   assertInset(style);
+   if(layoutReference){
+    const original=layoutReference.records.find(r=>r.profile===record.profile)?.samples.find(s=>s.kind===kind);assert(original,'same baseline profile exists');
+    const before={...original.shown},after={...shown.boxes};delete before['#rift-guidance-slot'];delete after['#rift-guidance-slot'];delete before['#rift-hints-toggle'];delete after['#rift-hints-toggle'];
+    sameGeometry({boxes:before},{boxes:after},'inset versus baseline currencies/combat');
+    assert(original.shown['#rift-guidance-slot'].y===shown.boxes['#rift-guidance-slot'].y,'inset retains slot vertical position');
+   }
+  }
+  if(name.endsWith('no-preference')&&(kind==='fresh'||name.startsWith('390'))){await screenshot(name+'-'+kind);sample.screenshot=name+'-'+kind+'.png';}
+  await toggleWithInput();sameGeometry(shown,await snapshot(),'layout hide');sameData(shown,await snapshot(),'layout hide');
+  if(!layoutBefore){const hidden=await inspectInset();assertInset(hidden);assert(hidden.focus==='solid','keyboard focus stays visible');}
+  await toggleWithInput(true);sameGeometry(shown,await snapshot(),'layout touch show');sameData(shown,await snapshot(),'layout touch show');
+  if(name.endsWith('no-preference')&&kind==='fresh'){await toggleWithInput();await screenshot(name+'-hidden');await toggleWithInput();}
+ }
+ if(!layoutBefore&&records.length===1){
+  for(const [property,value] of [['margin','0'],['background','none']]){
+   await evaluate(`window.layoutControl=document.createElement('style');layoutControl.textContent='#rift-guidance-slot${property==='background'?'::before':''}{${property}:${value}!important}';document.head.appendChild(layoutControl)`);
+   let rejection;try{assertInset(await inspectInset());}catch(e){rejection=e.message;}
+   assert(rejection,'layout oracle rejects reverted '+property);(record.controls||(record.controls=[])).push({property,value,rejection});
+   await evaluate('layoutControl.remove();delete window.layoutControl');assertInset(await inspectInset());
+  }
+ }
+ await evaluate('document.querySelector("[data-tab=spirits]").click()');
+ assert(await evaluate('document.querySelector("#rift-guidance-slot").hidden'),'hint strip absent outside Rift');
+ if(!layoutBefore)assert(await evaluate('document.querySelector("#rift-guidance-slot").getClientRects().length===0'),'hidden Rift strip also removes its decorative fade');
+}
 async function checkAscendReadability(record,name,inset,capture){
  const a={};record.ascendReadability=a;
  a.fixture=await evaluate(`(()=>{
@@ -188,6 +238,7 @@ async function run(url){
   const context=await send('Target.createBrowserContext',{},null),target=await send('Target.createTarget',{url:'about:blank',browserContextId:context.browserContextId},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;
   await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await send('Page.enable');await send('Runtime.enable');await send('Page.navigate',{url});await ready();
   await evaluate(`document.documentElement.style.fontSize=(parseFloat(getComputedStyle(document.documentElement).fontSize)*${scale})+'px'`);
+  if(layoutProbe){await layoutSample(record,name,inset);await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(contract){record.existingContract=await evaluate('(()=>{const b=__lumenfallQaBridge;b.freeze();return runRiftStatusQa(b,__lumenfallQaContext,(value,message)=>{if(!value)throw Error(message);});})()');await reload();record.navContract=await evaluate('(()=>{__lumenfallQaBridge.freeze();return runNavWorkshopQa(__lumenfallQaBridge,__lumenfallQaContext,(value,message)=>{if(!value)throw Error(message);});})()');await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(baseline){await evaluate(`riftStatusMobile.setup(${inset},'boss')`);const shown=await snapshot();await touch('#rift-objective-dismiss');const hidden=await snapshot();record.shown=shown.boxes;record.hidden=hidden.boxes;record.tapDelta={y:hidden.boxes['#enemy-stage'].y-shown.boxes['#enemy-stage'].y,height:hidden.boxes['#enemy-stage'].height-shown.boxes['#enemy-stage'].height};assert(Math.abs(record.tapDelta.y)>1||Math.abs(record.tapDelta.height)>1,'original baseline exposes the reported layout shift');await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   for(const kind of ['fresh','dense','boss','boss-conditional','farm'])for(const longHint of (readabilityProbe?[false]:[false,true])){

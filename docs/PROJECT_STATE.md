@@ -1,5 +1,23 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [RIFT_HINT_LAYOUT_001](tasks/RIFT_HINT_LAYOUT_001.md)
+LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing acceptedfd046ec.
+The hint strip now has10px inset edges aligned with the enemy panel, a subtle
+shadow and a noninteractive background fade into the arena gap. Same46px slot,
+44px controls, hint text/fonts/contrast, preferences, keyboard/touch and stable
+combat geometry. Product scripts/markup, gameplay/saves/value are unchanged.
+[Before/after screens and checks](qa/rift-hint-layout-001/README.md): baseline
+and candidate each16 profiles/32 samples, two layout defect controls, existing
+Guidance16 profiles/160 samples, Rift1738 and navigation415 assertions PASS.
+Current source `db843a8b`, fonts and branding refreshed in mobile/www; all15 files
+match source/staging/HTTP at http://127.0.0.1:4174/index.html. App preview opening
+queued; browser UI inspection blocked by tool URL policy, so actual visible-tab
+inspection is not claimed. Screenshots visually reviewed; self-review only.
+User preview/final combined CI and Android/device/WebView60/textZoom/TalkBack
+acceptance remain pending with inherited Prism/transport/tooling limitations.
+Local milestone; chat OPEN, no remote/APK/signing/archive action.
+Next queue item: RIFT_THEME_LABEL_001 after review of this preview.
+
 13 October 2026: [LAB_SPEED_CONTROLS_001](tasks/LAB_SPEED_CONTROLS_001.md)
 LOCAL FOLLOW-UP VERIFIED on local/full-debug, continuing6a694f4.
 Latest user corrections: native1.5x–8x stepped slider with adjacent speed queue
