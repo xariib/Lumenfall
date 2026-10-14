@@ -1,5 +1,7 @@
 # Simpler Wisp cards
 
+Latest follow-up: [one ability identity, no secondary upgrade name](one-name/README.md).
+
 Latest follow-up: [clear Upgrade Ability / Upgrade Rewards labels](labels/README.md).
 
 Latest user revision: [remove previews, boxed levels, simpler headings](revision/README.md).

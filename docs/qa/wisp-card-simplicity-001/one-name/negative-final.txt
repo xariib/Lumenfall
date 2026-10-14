@@ -1,0 +1,48 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "33a128e0bfc5261d43a4c0dce4c67f5a12e69865e07bb9cf826c86396b37ab8a", "instrumented_sha256": "34ba4e0ccd16d8251ce76a5b3067d476d9d73afbff201bb06546f44e64a286ce" }
+FAIL self-test-bond-text-ability
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.7650252, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-bond-text-ability", "json_status": "fail", "json_scenario": "self-test-bond-text-ability", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "stone ability does not repeat Bond partnerships", "stack": "Error: stone ability does not repeat Bond partnerships\n    at assert (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&qaFixture=fresh:16529:61)\n    at ok (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&qaFixture=fresh:13391:30)\n    at http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&qaFixture=fresh:13428:5\n    at Array.forEach (<anonymous>)\n    at window.runBondTextQa (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&qaFixture=fresh:13420:9)\n    at HTMLDocument.run (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&qaFixture=fresh:18047:48)" }
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-wisp-card-simplicity\docs\qa\wisp-card-simplicity-001\one-name\negative-final\self-test-bond-text-ability-W8ppeB
+  stdout tail:
+ssion: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-bond-text-ability">{
+  "scenario": "self-test-bond-text-ability",
+  "status": "fail",
+  "detail": {
+    "message": "stone ability does not repeat Bond partnerships",
+    "stack": "Error: stone ability does not repeat Bond partnerships\n    at assert (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&amp;qaFixture=fresh:16529:61)\n    at ok (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&amp;qaFixture=fresh:13391:30)\n    at http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&amp;qaFixture=fresh:13428:5\n    at Array.forEach (&lt;anonymous&gt;)\n    at window.runBondTextQa (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&amp;qaFixture=fresh:13420:9)\n    at HTMLDocument.run (http://127.0.0.1:60139/index.html?qaScenario=self-test-bond-text-ability&amp;qaFixture=fresh:18047:48)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

@@ -2034,10 +2034,12 @@
   .wisp-progression .ability-desc{font-size:12px;line-height:1.5;}
   .wisp-progression .ability-label{font-size:9px;}
   .wisp-progression .hero-ability strong{font-size:13px;}
-  #tab-spirits .module-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,.8fr);gap:2px 12px;align-items:center;margin:0;padding:10px 0;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent;}
+  .wisp-ability-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 10px;}
+  .ability-upgrades{font-size:.6875rem;color:var(--ink-dim);white-space:nowrap;}
+  #tab-spirits .module-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,.8fr);gap:2px 12px;align-items:center;margin:0;padding:0 0 8px;border:0;border-radius:0;background:transparent;}
   .wisp-progression .module-name{min-width:0;overflow-wrap:break-word;}
   .wisp-progression .module-effect{line-height:1.5;}
-  .wisp-progression .module-row .mini-btn{grid-column:2;grid-row:1 / span 2;width:auto;margin:0;}
+  .wisp-progression .module-row .mini-btn{grid-column:2;grid-row:1;width:auto;margin:0;}
   .wisp-progression .mini-btn{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:8px 10px;white-space:normal;}
   .wisp-progression .mini-btn .control-state{flex-basis:100%;}
   .wisp-final-actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin-top:4px;}
@@ -3043,10 +3045,10 @@ var SPIRITS = [
 ];
 
 var ABILITY_DESC = {
-  breaker: 'Heavy ability damage. Its Module boosts the hit; its Ultimate doubles it.',
-  dps: 'Focused burst ability damage. Its Module boosts the hit; its Ultimate doubles it.',
-  ranged: 'Ability damage + Shards. Module boosts the Shards; Ultimate doubles both.',
-  druid: 'Ability damage + Lumen. Module boosts the Lumen; Ultimate doubles both.',
+  breaker: 'Heavy ability damage. Ultimate doubles it.',
+  dps: 'Focused burst ability damage. Ultimate doubles it.',
+  ranged: 'Ability damage + Shards. Ultimate doubles both.',
+  druid: 'Ability damage + Lumen. Ultimate doubles both.',
   support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 1s. Ultimate: +50% for 1.5s. Each Support has a minimum interval between casts, even with extra charge.'
 };
 
@@ -8396,7 +8398,6 @@ function renderSpirits(keepScroll){
     var canModule = recruited && !modMaxed && state.lumen>=modCost.lumen && canSpendShards(modCost.shard);
     var moduleHtml =
       '<div class="module-row">' +
-        '<div class="module-name">'+modInfo.name+' <span style="color:var(--shard);">Lv.'+modLvl+'/'+MODULE_MAX_LEVEL+(modMaxed?' · Maxed':'')+'</span></div>' +
         '<div class="module-effect">'+modInfo.effect(modLvl)+'</div>' +
         (modMaxed ? '' :
           '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>'+modInfo.upgradeLabel +
@@ -8446,7 +8447,7 @@ function renderSpirits(keepScroll){
       (upgradesMaxed ?
         '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades">Upgrades</summary>' :
         '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'">') +
-      '<div class="hero-ability">'+(upgradesMaxed ? '<strong>'+sp.abilityName+'</strong>' : '<h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' ability and upgrades" tabindex="-1">'+sp.abilityName+'</h3>')+'<span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
+      '<div class="hero-ability"><div class="wisp-ability-head">'+(upgradesMaxed ? '<strong>'+sp.abilityName+'</strong>' : '<h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' ability and upgrades" tabindex="-1">'+sp.abilityName+'</h3>')+'<span class="ability-upgrades">Upgrades '+modLvl+'/'+MODULE_MAX_LEVEL+(modMaxed?' · Maxed':'')+'</span></div><span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
       moduleHtml +
       '<div class="wisp-final-actions"><div class="hero-actions">' +
         '<button class="mini-btn rarity-btn" data-rarity="'+sp.id+'" '+(canRarity?'':'disabled')+'>'+rarityLabel+'</button>' +

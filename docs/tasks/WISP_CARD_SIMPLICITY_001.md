@@ -1,33 +1,33 @@
 # Simpler Wisp cards
 
-14 October 2026. Goal: clear, compact cards. Original request: simplify Ember’s
-card. Follow-up: remove Raw damage/Party preview and box Wisp level. Those changes
-are locally verified; retain them and the latest Best now Formation improvement.
-[Initial evidence](../qa/wisp-card-simplicity-001/README.md),
-[revision requirements/results](../qa/wisp-card-simplicity-001/revision/README.md).
+14 October 2026. One goal: clear, compact Wisp cards. Earlier user decisions:
+remove Raw damage/Party preview, box Wisp levels, use Upgrade Ability/Rewards.
+Preserve these and Best now Formation. [History](../qa/wisp-card-simplicity-001/README.md).
 
-Latest user: “The Upgrade Module should maybe be upgrade ability or something
-like that, right now it hard to guess what upgrade module means”.
-Use Upgrade Ability for Burst/Breaker damage and Upgrade Rewards for Gale/Thorn
-resources and Amplifier Motes. Help/tutorial link these labels to permanent
-Modules. No change to effects, prices, caps, saves, purchase/focus behavior or
-[unfinished upgrade visibility](WISP_UPGRADE_DISPLAY_001.md). No new rules.
+Latest user: “The ability is called Nova burst on Ember wisp, then its saying
+overcharge core and upgrade ability? isnt it a little clutter”. Show one ability
+name; remove the secondary Module identity from cards. Put Upgrades0/20 beside
+the ability name and keep the existing effect, purchase label and both prices
+below. Shorten descriptions that repeat upgrade information. The level is upgrade
+count, not an assertion that the base ability starts locked. Internal catalog/
+Module save identities remain. No effects, balance, prices, caps or save changes.
 
-Baseline6c81b01 on local/full-debug, sourcee655c775; tracked checkout clean.
-Untracked validation-evidence/ retained. Isolated codex/wisp-card-simplicity in
-C:/Users/xarib/AppData/Local/Temp/lumenfall-wisp-card-simplicity updated to baseline.
-Prior mobile/upgrades/scroll/core/Formation checks are saved in linked receipts.
+Baseline45fb848/source9f382d3f; local/full-debug tracked clean, untracked
+validation-evidence/ preserved. Reuse isolated codex/wisp-card-simplicity at
+C:/Users/xarib/AppData/Local/Temp/lumenfall-wisp-card-simplicity.
+Prior source-bound checks: [labels](../qa/wisp-card-simplicity-001/labels/README.md).
 
-Acceptance: correct labels for all8 Wisps and accessible purchase names; both
-prices/effects visible; normal/200% text at320/390/430px;44px controls; no overflow.
-Existing layout/upgrades checks, source/context/byte preservation/diff review;
-verify exact staged/HTTP preview after serial local integration.
+Acceptance: all8 Wisps have one ability identity with correct upgrade progress;
+no secondary Core/Lens/Catalyst/Focus names. Keep exact purchases/focus/scroll,
+completed folding and [unfinished visibility](WISP_UPGRADE_DISPLAY_001.md).
+Check320/390/430px,100/200% text/motion,44px controls, layout/upgrades/scroll and
+related role/text checks. Keep causal negative coverage after changed text.
+Source/context/preservation/diff review; integrate serially and verify preview.
 
-Status: LABEL REVISION VERIFIED, source9f382d3f. [Evidence](../qa/wisp-card-simplicity-001/labels/README.md):
-layout16,344/12, upgrades12,912/12, source/context/byte preservation/V8 PASS.
-Screens reviewed. Integratedb7233dc on local/full-debug; all15 source/staged/HTTP
-assets match4174 ([receipt](../qa/wisp-card-simplicity-001/labels/preview.json)).
-App opening queued; reload unclaimed. Next: user review/final acceptance. Self-review.
-Local development mandate persists; user review,
-full combined CI/GitHub/main and Android/WebView60/textZoom/TalkBack/device
-acceptance remain OPEN. No remote/APK/release/archive; keep chat open.
+Status: ONE-NAME REVISION VERIFIED, source43e158bb.
+[Evidence](../qa/wisp-card-simplicity-001/one-name/README.md):layout16,920/12,
+upgrades12,912/12, scroll3229, hierarchy/roles/text253 and causal negative PASS.
+Source/context/byte preservation/V8 PASS; screenshots reviewed. Next: integrate
+and verify preview4174. Self-review only. User/final combined CI/GitHub/main
+and Android/WebView60/textZoom/TalkBack/device acceptance remain OPEN.
+Local-only mandate; no remote/APK/release/archive. Keep chat open.

@@ -51,6 +51,9 @@ window.runWispCardLayoutQa=function(baseline){
       ok(heading.textContent===(stage===2?'Upgrades':b.spirit(id).abilityName),'ability leads unfinished section without extra heading');
       ok(heading.getAttribute('aria-label')===b.spirit(id).name+(stage===2?' upgrades':' ability and upgrades'),'heading/disclosure retains Wisp context for assistive technology');
       ok(!card.querySelector('.ability-label'),'no redundant Ability label');
+      ok(['Overcharge Core','Impact Core','Piercing Lens','Bloom Catalyst','Resonant Focus'].every(function(name){return !card.textContent.includes(name);}),'no second upgrade identity on card '+id);
+      var progress=card.querySelector('.hero-ability .ability-upgrades');
+      ok(progress&&progress.textContent==='Upgrades '+b.get().wispModules[id]+'/20'+(stage===2?' · Maxed':''),'upgrade progress belongs to named ability '+id);
       ok(level&&level.textContent==='Lv. '+b.get().spirits[id]&&parseFloat(levelStyle.borderLeftWidth)>0&&levelStyle.backgroundColor!=='rgba(0, 0, 0, 0)','saved Wisp level in a little box');
       var button=card.querySelector('[data-module]');if(button)ok(getComputedStyle(button).flexDirection==='row','inline Module prices');
     }

@@ -1,0 +1,14 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "33a128e0bfc5261d43a4c0dce4c67f5a12e69865e07bb9cf826c86396b37ab8a", "instrumented_sha256": "1f0e45719cba00e750dfba69855958508973ee1e4647eb386d657f3055adc6be" }
+FAIL self-test-bond-text-ability
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 25.4066229, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-wisp-card-simplicity\docs\qa\wisp-card-simplicity-001\one-name\negative\self-test-bond-text-ability-mC6hmB
+  Chromium stderr tail:
+[8140:21512:1014/133939.292:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[8140:21512:1014/133939.329:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[8140:21512:1014/133939.344:ERROR:google_apis\gcm\engine\mcs_client.cc:702]   Error code: 401  Error message: Authentication Failed: wrong_secret
+[8140:21512:1014/133939.344:ERROR:google_apis\gcm\engine\mcs_client.cc:704] Failed to log in to GCM, resetting connection.
+[8140:21512:1014/133939.369:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+

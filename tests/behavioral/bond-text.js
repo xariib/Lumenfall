@@ -6,7 +6,7 @@ window.runBondTextQa=function(b,assert){
     s.depth=101;s.enemyDepth=101;s.maxDepthEver=101;
     s.enemyMaxHp=b.enemyHpFor(101);s.enemyHp=s.enemyMaxHp;
     s.activeParty=ids.slice();
-    wisps.forEach(function(sp){s.spirits[sp.id]=10;});
+    wisps.forEach(function(sp){s.spirits[sp.id]=10;s.wispModules[sp.id]=20;});
     if(zero)s.spirits[zero]=0;
     b.setState(s);
   }
@@ -32,18 +32,20 @@ window.runBondTextQa=function(b,assert){
   wisps.forEach(function(sp){
     var desc=sp.description;
     var row=document.querySelector('[data-wisp-card="'+sp.id+'"] .ability-desc');
+    var upgradeEffect=document.querySelector('[data-wisp-card="'+sp.id+'"] .module-effect');
     var encyclopedia=document.querySelector('[data-ency-wisp="'+sp.id+'"] .ency-desc');
     ok(row&&row.textContent===desc,sp.id+' Wisp ability uses its explanation');
     ok(encyclopedia&&encyclopedia.textContent.endsWith(desc),sp.id+' Encyclopedia ability uses its explanation');
+    ok(upgradeEffect&&upgradeEffect.textContent===sp.moduleEffect20,sp.id+' shows its full permanent upgrade effect beside the ability');
     ok(!/bond|formation|\+.*(?:Stone|Titan)/i.test(desc),sp.id+' ability does not repeat Bond partnerships');
     wisps.forEach(function(partner){ok(!desc.includes(partner.name),sp.id+' ability does not list partner '+partner.id);});
     if(sp.abilityType==='support'){
       ok(/passive Wisp damage/.test(desc)&&/Guardian Tap/.test(desc)&&/\+25% for 1s/.test(desc)&&/\+50% for 1\.5s/.test(desc),sp.id+' retains buff duration and targets');
     }else{
-      ok(/ability damage/i.test(desc)&&/Module/.test(desc)&&/Ultimate doubles/.test(desc),sp.id+' retains ability damage and progression effects');
+      ok(/ability damage/i.test(desc)&&/Ultimate doubles/.test(desc),sp.id+' retains ability damage and Ultimate explanation');
       if(sp.abilityType==='ranged')ok(/Shards/.test(desc)&&/doubles both/.test(desc),sp.id+' retains Shard generation');
       if(sp.abilityType==='druid')ok(/Lumen/.test(desc)&&/doubles both/.test(desc),sp.id+' retains Lumen generation');
-      if(sp.abilityType==='breaker')ok(/Heavy/.test(desc)&&/boosts the hit/.test(desc),sp.id+' retains heavy-hit role');
+      if(sp.abilityType==='breaker')ok(/Heavy/.test(desc)&&/ability burst damage/.test(upgradeEffect.textContent),sp.id+' retains heavy-hit role and visible upgrade effect');
     }
   });
   var before=JSON.stringify(b.getState());render();

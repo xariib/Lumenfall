@@ -10,21 +10,13 @@ Current assets/live preview verified. Local milestone; chat OPEN, user/final
 combined/native acceptance pending, no remote/APK/signing/archive.
 
 14 October 2026: [WISP_CARD_SIMPLICITY_001](tasks/WISP_CARD_SIMPLICITY_001.md)
-label follow-up from6c81b01, source9f382d3f: Upgrade Ability for damage roles,
-Upgrade Rewards for currency roles; help/tutorial explain the Module track.
-[Evidence](qa/wisp-card-simplicity-001/labels/README.md): layout16,344/12 and
-upgrades12,912/12 PASS; copy-only byte preservation/source/context/V8 PASS.
-Integratedb7233dc locally; all15 preview4174 assets match. App opening queued.
-Prices/effects/saves and latest Formation retained.
-Earlier
-user revision from49403e2, source `35846c8f`: Raw damage/Party preview removed,
-levels boxed and ability names replace redundant headings. Role effects/rewards,
-all purchases/folding, saves and revised Formation UI remain.
-[Evidence](qa/wisp-card-simplicity-001/revision/README.md):layout15,960/12,
-upgrades12,912, scroll3229, core8099/role UI163, Formation541/12 and hierarchy/
-role/nav/controls PASS; source/context/preservation/V8 syntax PASS. Ember390px
-480→379px. Self-review. Integrated9da5370 on local/full-debug; all15 source/
-staged/HTTP assets match preview4174; app opening queued, reload unclaimed.
+one-name follow-up from45fb848/source43e158bb: no secondary Module names;
+Nova Burst and other ability titles carry upgrade count, effects/button below.
+Prior boxed levels, removed damage/previews and Upgrade Ability/Rewards retained.
+[Evidence](qa/wisp-card-simplicity-001/one-name/README.md):layout16,920/12,
+upgrades12,912/12, scroll3229, hierarchy/roles/text253 and causal negative PASS;
+source/context/preservation/V8 PASS. Effects/prices/saves/Formation unchanged.
+Self-review. Local integration/preview4174 verification next.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 
