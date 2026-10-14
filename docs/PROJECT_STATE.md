@@ -16,7 +16,8 @@ Prior boxed levels, removed damage/previews and Upgrade Ability/Rewards retained
 [Evidence](qa/wisp-card-simplicity-001/one-name/README.md):layout16,920/12,
 upgrades12,912/12, scroll3229, hierarchy/roles/text253 and causal negative PASS;
 source/context/preservation/V8 PASS. Effects/prices/saves/Formation unchanged.
-Self-review. Local integration/preview4174 verification next.
+Self-review. Integrated55acf1a locally; all15 preview4174 source/staged/HTTP assets
+match. App opening queued; actual user-tab reload unclaimed.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 

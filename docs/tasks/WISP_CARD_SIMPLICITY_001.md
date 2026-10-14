@@ -27,7 +27,9 @@ Source/context/preservation/diff review; integrate serially and verify preview.
 Status: ONE-NAME REVISION VERIFIED, source43e158bb.
 [Evidence](../qa/wisp-card-simplicity-001/one-name/README.md):layout16,920/12,
 upgrades12,912/12, scroll3229, hierarchy/roles/text253 and causal negative PASS.
-Source/context/byte preservation/V8 PASS; screenshots reviewed. Next: integrate
-and verify preview4174. Self-review only. User/final combined CI/GitHub/main
+Source/context/byte preservation/V8 PASS; screenshots reviewed. Integrated55acf1a
+on local/full-debug; all15 source/staged/HTTP assets match4174 ([receipt](../qa/wisp-card-simplicity-001/one-name/preview.json)).
+App opening queued, reload unclaimed. Next: user review/final acceptance.
+Self-review only. User/final combined CI/GitHub/main
 and Android/WebView60/textZoom/TalkBack/device acceptance remain OPEN.
 Local-only mandate; no remote/APK/release/archive. Keep chat open.

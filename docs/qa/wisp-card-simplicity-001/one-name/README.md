@@ -8,6 +8,8 @@ sentences. Upgrade count0/20 preserves the already-usable base ability.
 
 Baseline45fb848/source9f382d3f. Final source SHA256:
 `43e158bb2395fdb78affd8541e3fc78f5c3d86b4125740cf410d58be4589fbc9`.
+Integrated55acf1a on local/full-debug. [Preview receipt](preview.json): all15
+source/staged/HTTP assets match4174. App opening queued; reload unclaimed.
 [Preservation](preservation.json): CSS, four descriptions and two rendering
 fragments only. Catalog/save identities, effects, caps, all prices, formulas,
 purchase/focus handlers and the latest Formation behavior are byte-identical.
