@@ -7,6 +7,8 @@ track; the displayed effects still identify the exact improvement.
 
 Baseline6c81b01/sourcee655c775. Final source SHA256:
 `9f382d3fde54263098bfdbcd2e79227dadeb8941b54c9459d57c6d4c55a8caba`.
+Integratedb7233dc on local/full-debug. [Preview receipt](preview.json) verifies
+all15 source/staged/HTTP assets at4174. App opening queued; actual reload unclaimed.
 [Byte preservation](preservation.json): five display-label fields, the rendered
 button text and two help entries are the only product changes. Effects, levels,
 caps, prices, purchase code, saves and the latest Best now Formation are unchanged.

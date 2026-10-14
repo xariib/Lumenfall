@@ -14,7 +14,8 @@ label follow-up from6c81b01, source9f382d3f: Upgrade Ability for damage roles,
 Upgrade Rewards for currency roles; help/tutorial explain the Module track.
 [Evidence](qa/wisp-card-simplicity-001/labels/README.md): layout16,344/12 and
 upgrades12,912/12 PASS; copy-only byte preservation/source/context/V8 PASS.
-Integration/preview next. Prices/effects/saves and latest Formation retained.
+Integratedb7233dc locally; all15 preview4174 assets match. App opening queued.
+Prices/effects/saves and latest Formation retained.
 Earlier
 user revision from49403e2, source `35846c8f`: Raw damage/Party preview removed,
 levels boxed and ability names replace redundant headings. Role effects/rewards,

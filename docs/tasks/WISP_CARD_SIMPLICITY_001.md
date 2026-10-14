@@ -25,7 +25,9 @@ verify exact staged/HTTP preview after serial local integration.
 
 Status: LABEL REVISION VERIFIED, source9f382d3f. [Evidence](../qa/wisp-card-simplicity-001/labels/README.md):
 layout16,344/12, upgrades12,912/12, source/context/byte preservation/V8 PASS.
-Screens reviewed. Next: integrate and verify preview4174. Self-review only.
+Screens reviewed. Integratedb7233dc on local/full-debug; all15 source/staged/HTTP
+assets match4174 ([receipt](../qa/wisp-card-simplicity-001/labels/preview.json)).
+App opening queued; reload unclaimed. Next: user review/final acceptance. Self-review.
 Local development mandate persists; user review,
 full combined CI/GitHub/main and Android/WebView60/textZoom/TalkBack/device
 acceptance remain OPEN. No remote/APK/release/archive; keep chat open.
