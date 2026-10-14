@@ -1,6 +1,6 @@
 # Lumenfall — current delivery status
 
-15 October2026: [Lab timed-speed revision](tasks/LAB_SPEED_CONTROLS_001.md) locally verified on419f650d: per-project8/12/24h boosts and calibrated Mote pacing; focused/core/mobile/save checks PASS. Preview refresh next; combined/native acceptance OPEN.
+15 October2026: [Lab timed-speed revision](tasks/LAB_SPEED_CONTROLS_001.md) locally verified on419f650d: per-project8/12/24h boosts and calibrated Mote pacing; focused/core/mobile/save checks PASS. Playable4174 refreshed; combined/native acceptance OPEN.
 
 14 October2026: [UPGRADE_AFFORDABILITY_001](tasks/UPGRADE_AFFORDABILITY_001.md)
 integrated1553d44 locally, source084f2995: upgrade prices red per missing currency;

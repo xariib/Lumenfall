@@ -23,6 +23,7 @@ index.html, affected Lab/Mote checks, AGENTS and task/QA docs; full self-review.
 core/expiry/carry, offline split/yield/retry, migration/recovery/Reset/Ascend,
 22 browser scenarios,12 native profiles, catalog/caps, V8 6.0 and damage ledgers.
 Income fixture174 Motes/h, about4h36m for800. Self-review only.
-Next: commit, refresh mobile/www/current assets, verify playable4174 preview.
+Checkpoint ee1c769; playable4174 refreshed,15 assets and loaded scripts match.
+Next: user review and combined/device acceptance.
 Combined CI/main/GitHub and Android/WebView60/TalkBack OPEN. No remote/push/
 APK/signing/archive. Required acceptance remains pending.

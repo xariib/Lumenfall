@@ -9,7 +9,7 @@ function log(p){const lines=fs.readFileSync(file(p),'utf8').split('\n'),line=lin
  const bound=JSON.parse(lines.find(s=>s.startsWith('Staged source: ')).slice(15));assert.equal(bound.source_sha256,sourceSha256,p+' source');
  const result=JSON.parse(line.slice(9));assert(!result.status||result.status==='pass',p+' driver result');return result;}
 const checks=[];
-for(const [name,p]of [['timed core','core.json'],['Lab expansion core','expansion-core.json'],['caps/old paid value','caps-core.json'],['V8 6.0 Lab engine','v8-lab.json'],['offline transaction','offline-integration.json'],['native slider/duration/activation','native-ui.json'],['existing Lab catalog mobile','expansion-ui.json']]){
+for(const [name,p]of [['timed core','core.json'],['Lab expansion core','expansion-core.json'],['caps/old paid value','caps-core.json'],['V8 6.0 Lab engine','v8-lab.json'],['offline transaction','offline-integration.json'],['native slider/duration/activation','native-ui.json'],['existing Lab catalog mobile','expansion-ui/receipt.json']]){
  const r=json(p);assert.equal(r.status,'pass',name);assert.equal(r.sourceSha256,sourceSha256,name+' source');checks.push({name,status:r.status,receipt:p,checks:r.checks,profiles:r.profiles?.length,controls:r.controls||r.negativeControls,records:name==='offline transaction'?r.records:undefined});
 }
 const regression=log('regression-final.log');assert.equal(regression.records.length,22);assert(regression.records.every(r=>r.status==='pass'));

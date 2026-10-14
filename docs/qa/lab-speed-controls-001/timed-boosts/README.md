@@ -71,5 +71,11 @@ returned valid PASS assertions but sometimes failed browser teardown; the same
 assertions pass through the existing CDP driver with real zero exit required.
 Timers use local wall-clock deadlines, not a trusted server clock. Required combined/main/CI/GitHub and Android/device/WebView60/
 TalkBack acceptance remain open. Browser checks do not prove Android acceptance.
-Next: checkpoint the reviewed diff, refresh mobile/www
-from current source/fonts/branding and show the real playable preview.
+Product checkpoint ee1c769. Refreshed mobile/www from current source/fonts/branding;
+all15 files match locally and over HTTP at4174 ([manifest](preview-assets.json)).
+Both complete loaded scripts match current source after browser newline
+normalization ([receipt](preview-loaded-scripts.json)); large script text was read
+in64KiB DOM chunks because the browser tool truncates single strings at200KiB.
+The real current save remains in the playable Lab preview; no injected test bridge,
+funding or reset was used there. [Screenshot](playable-preview.png).
+Next: user review of pacing/UI, then combined and physical-device acceptance.
