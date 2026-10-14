@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [FORMATION_COLLAPSE_001](tasks/FORMATION_COLLAPSE_001.md)
+user revision removes the Contribution panel and boxes Formation Bonds & guidance
+with the former card appearance. Native disclosure stays closed by default and
+retains choice/focus; per-Wisp readouts/calculations/saves are unchanged. Help
+entry updated. Source `db2f6dba`;541/12 mobile/live-timer, core8099/preservation8592,
+Wisp mobile151/scroll3229, Formation8/autosave133, nav415 and real reload PASS.
+[Evidence](qa/formation-collapse-001/bonds-box/README.md). Current assets staged;
+live preview refreshed on Wisps. This supersedes the13 October Contribution UI
+milestone below. Local candidate only; chat OPEN, user review/final combined CI/
+inherited debugging limitations and Android/device acceptance remain pending.
+
 14 October 2026: [HELP_COPY_001](tasks/HELP_COPY_001.md) locally verified from
 `c834e16` on `local/full-debug`, source `f3321623`. Encyclopedia now explains
 current currency sources, Forge/charge/roles, Farm, Ascend, queues/paid speed,

@@ -245,16 +245,11 @@
     border:1px solid var(--line);background:var(--bg-elev);color:var(--ink-dim);cursor:pointer;
   }
   .active-toggle.is-active{background:var(--good);color:#08210f;border-color:var(--good);}
-  .wisp-role-summary{margin-bottom:12px;}
-  .formation-contribution-toggle{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg-elev);color:var(--ink);font-size:1rem;line-height:1.4;text-align:left;white-space:normal;cursor:pointer;}
-  #formation-contribution-panel{margin-top:8px;}
-  #formation-contribution-panel[hidden]{display:none;}
-  .wisp-role-summary h3{font-size:1rem;line-height:1.4;margin:0 0 8px;}
   .wisp-role-readout{margin:8px 0;padding:8px 0;border-top:1px solid var(--line);}
   .wisp-role-line{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin:5px 0;font-size:.8125rem;line-height:1.5;}
   .wisp-role-line strong{max-width:100%;overflow-wrap:break-word;}
   .wisp-role-note{margin:6px 0;font-size:.8125rem;line-height:1.5;color:var(--ink);}
-  .wisp-role-summary,.wisp-role-readout,.wisp-role-line,.wisp-role-note{animation:none!important;transition:none!important;}
+  .wisp-role-readout,.wisp-role-line,.wisp-role-note{animation:none!important;transition:none!important;}
   .hero-stats{font-size:.72rem;color:var(--ink-dim);margin:8px 0 6px;}
   .hero-ability{font-size:.7rem;color:var(--ink-dim);margin-bottom:8px;line-height:1.4;}
   .bond-card{margin-bottom:12px;padding:12px;}
@@ -1776,8 +1771,12 @@
   .wisp-progression>summary,.wisp-progression-title{min-height:44px;padding:12px 0;margin:0;font-size:.75rem;color:var(--ink-dim);font-weight:700;}
   .wisp-progression>summary{cursor:pointer;}
   .wisp-progression>summary:focus-visible{outline:2px solid var(--lumen);outline-offset:2px;}
-  .formation-help{margin-top:12px;}
-  .formation-help>summary{min-height:44px;cursor:pointer;padding:12px 2px;font-size:13px;font-weight:700;}
+  .formation-help{margin:12px 0;animation:none!important;transition:none!important;}
+  .formation-help>summary{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;width:100%;min-height:44px;cursor:pointer;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg-elev);color:var(--ink);font-size:1rem;line-height:1.4;list-style:none;}
+  .formation-help>summary::-webkit-details-marker{display:none;}
+  .formation-help .formation-help-collapse,.formation-help[open] .formation-help-expand{display:none;}
+  .formation-help[open] .formation-help-collapse{display:inline;}
+  .formation-help>.section-sub{margin-top:12px;}
   .formation-help>summary:focus-visible{outline:2px solid var(--lumen);outline-offset:2px;}
   @media(max-height:650px){
     .hud .chip{height:30px;padding-top:1px;padding-bottom:1px;}
@@ -2804,14 +2803,10 @@
     <section class="tab-panel" id="tab-spirits">
       <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">Formation &amp; collection</span><h2>Wisps</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-wisps"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
       <div id="formation-presets"></div>
-      <details class="formation-help"><summary>Formation Bonds &amp; guidance</summary>
+      <details class="card formation-help"><summary><span>Formation Bonds &amp; guidance</span><span aria-hidden="true"><span class="formation-help-expand">Expand</span><span class="formation-help-collapse">Collapse</span></span></summary>
         <div class="section-sub">Up to <span id="formation-capacity">5</span> Wisps can be Active at once. Pair specific powered Wisps to activate simple Formation Bonds for Push, Farm or Boss fights.</div>
         <div class="card bond-card" id="bond-card"></div>
       </details>
-      <section class="card wisp-role-summary" aria-label="Formation contribution" id="wisp-role-summary">
-        <button type="button" class="formation-contribution-toggle" id="formation-contribution-toggle" aria-expanded="false" aria-controls="formation-contribution-panel"><span>Formation contribution</span><span id="formation-contribution-action">Expand</span></button>
-        <div id="formation-contribution-panel" hidden></div>
-      </section>
       <div class="hero-grid" id="spirit-list"></div>
       <div class="roster-journey" id="roster-journey"></div>
     </section>
@@ -7750,7 +7745,7 @@ function setupOverlayFocus(){
 
 function cacheEls(){
   ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-push-btn','rift-farm-btn','rift-objective','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
-   'hp-fill','hp-text','stat-tap','stat-idle','spirit-list','wisp-role-summary','formation-presets','bond-card','bond-summary','rift-bond-effects','rift-party','boss-combat','research-list','study-list',
+   'hp-fill','hp-text','stat-tap','stat-idle','spirit-list','formation-presets','bond-card','bond-summary','rift-bond-effects','rift-party','boss-combat','research-list','study-list',
    'prism-preview','ascend-btn','ascend-note','auto-ascend-controls','node-list','ach-list','roster-journey','shop-list','comet-commands','comet-journal','legacy-comet-trials','comet-claim-history','theme-list','manifesto','toast',
    'daily-streak-badge','daily-quest-list','settings-overlay','settings-home','settings-encyclopedia','settings-title','settings-back','encyclopedia-content'
   ].forEach(function(id){ els[id]=document.getElementById(id); });
@@ -8205,21 +8200,10 @@ function roleValueLine(label,value){
 }
 var wispRoleLastRenderMs=0;
 function renderWispRoles(){
-  if(!els['wisp-role-summary']) return;
+  if(!els['spirit-list']) return;
   var roleView=captureWispActionView();
   wispRoleLastRenderMs=Date.now();
   var report=wispRoleComparison(state.depth,wispRoleLastRenderMs),steady=report.steady,current=report.current;
-  var html='<h3>Formation contribution · Rift '+state.depth+'</h3><p class="wisp-role-note">Sustained preview includes natural ability cycles, Forge charge transfers and Auto-Tap. First casts, victory charge, Resonate, overkill and boss regeneration affect actual clear time.</p>'+
-    roleValueLine('Raw damage',formatNum(steady.rawDps)+' /s')+roleValueLine('Bonds added',formatNum(steady.bondDps)+' /s')+
-    roleValueLine('Support added',formatNum(steady.supportDps)+' /s')+roleValueLine('Total preview',formatNum(steady.totalDps)+' /s');
-  steady.bonds.forEach(function(b){html+=roleValueLine(b.name,b.damageDps>0 ? '+'+formatNum(b.damageDps)+' /s' : b.effect);});
-  var moteReward=Math.max(1,Math.round(motesDropFor(state.depth)*(1+supportMoteBonus())));
-  html+='<p class="wisp-role-note">Resources stay separate from damage. '+(isBoss(state.depth) ? 'This Boss drops no Luminous Motes.' : 'Luminous reward at this Rift: '+formatNum(moteReward)+' Motes per Luminous kill.')+'</p>'+
-    roleValueLine('Passive damage now',formatNum(current.passiveDps)+' /s')+roleValueLine('Guardian Tap now',formatNum(tapDamage())+' /tap');
-  if(current.legacyDps>0) html+=roleValueLine('Saved legacy boost added',formatNum(current.legacyDps)+' /s');
-  html+='<p class="wisp-role-note">Removing one Wisp keeps all other levels and permanent purchases. These comparisons overlap through Bonds, buffs and charge transfers; do not add them.</p>';
-  // Only refresh the readout; the disclosure and its focused button stay intact.
-  document.getElementById('formation-contribution-panel').innerHTML=html;
   steady.rows.forEach(function(row,i){
     var el=els['spirit-list'].querySelector('[data-wisp-role="'+row.id+'"]');if(!el) return;
     if(!row.active){
@@ -9259,7 +9243,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Comet Commands', meta:'Manual Rift actions', desc:'Meteor Strike and Luminous Call each spend one shared command charge after their unlock purchase. Enemy defeats recharge that shared pool; Orbital Reserve adds capacity and Orbital Engine speeds recharge. Meteor is limited by both enemy max HP and passive Wisp power, works once per encounter, and Meteor Core raises only its HP ceiling. Luminous Call needs an ordinary non-boss enemy; defeat it to receive its rewards. Commands are not used automatically while offline.'},
   {name:'Deeds & Daily Quests', meta:'Comet rewards', desc:'Deeds are one-time milestones and unlocks. Daily Quests pay their displayed Comets when you press Claim; earned daily progress can count toward a refreshed quest. Login streak rewards cycle through seven days, with Prisms on the seventh reward. Quest Refresh replaces an unclaimed quest for the shown Comet price after its unlock; it retains daily progress.'},
   {name:'Collection & Journal', meta:'Appearance and earlier unlocks', desc:'Deeds unlock Rift themes in Collection. Theme: Starlight is the default appearance; themes do not change combat. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic.'},
-  {name:'Formation Contribution', meta:'Combat estimates', desc:'Expand Formation contribution to inspect passive damage, abilities, Support, Bonds and separate resource rewards. Some rows compare the party with one Wisp removed; those effects overlap and must not be added together. Sustained estimates describe automatic combat, exclude manual taps and Comet commands, and can differ from an individual fight’s burst timing.'},
+  {name:'Wisp combat readouts', meta:'Combat estimates', desc:'Each Wisp card shows its raw damage, Support or resource rewards and enabled Bonds. Party preview lost if removed compares the party with that Wisp benched; these effects overlap and must not be added together. Sustained estimates describe automatic combat, exclude manual taps and Comet commands, and can differ from an individual fight’s burst timing. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
   {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, queues, Auto-Ascend and paid Lab work share up to 12 productive hours per absence. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
   {name:'Save Backup', meta:'Settings · save protection', desc:'Progress is stored in this device or browser’s local save. Copy Current Save exports a backup code before reinstalling or changing device. Restoring requires confirmation and replaces the current save; old backup time cannot grant extra offline earnings. Reset Save permanently deletes progress. Settings and this guide do not pause combat.'}
 ];
@@ -11408,12 +11392,6 @@ function init(){
     if(target) activateTab(target);
   });
   document.getElementById('rift-hints-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
-  document.getElementById('formation-contribution-toggle').addEventListener('click',function(){
-    var expanded=this.getAttribute('aria-expanded')!=='true';
-    this.setAttribute('aria-expanded',String(expanded));
-    document.getElementById('formation-contribution-panel').hidden=!expanded;
-    document.getElementById('formation-contribution-action').textContent=expanded ? 'Collapse' : 'Expand';
-  });
   document.getElementById('rift-guidance-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
   document.getElementById('ascend-btn').addEventListener('click', function(){ doAscend(false); });
 

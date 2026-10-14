@@ -4,7 +4,7 @@ const {spawn,execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'/tmp/wisp-contribution-mobile');
 const baseline=process.argv.includes('--baseline');
 let source=fs.readFileSync(file,'utf8');
-if(process.argv.includes('--mutate-choice')){const anchor="document.getElementById('formation-contribution-panel').innerHTML=html;";assert.equal(source.split(anchor).length,2);source=source.replace(anchor,anchor+"document.getElementById('formation-contribution-toggle').setAttribute('aria-expanded','false');document.getElementById('formation-contribution-panel').hidden=true;");}
+if(process.argv.includes('--mutate-choice')){const anchor='var roleView=captureWispActionView();';assert.equal(source.split(anchor).length,2);source=source.replace(anchor,anchor+"document.querySelector('.formation-help').open=false;");}
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 const marker="if(document.readyState==='loading'){";assert.equal(source.split(marker).length,2);
 source=source.replace('<head>',`<head><script>window.roleErrors=[];addEventListener('error',e=>roleErrors.push(e.message));addEventListener('unhandledrejection',e=>roleErrors.push(String(e.reason)));var roleInterval=setInterval;window.setInterval=function(fn,ms){return roleInterval(function(){if(window.roleRunIntervals)fn();},ms);};</script>`).replace(marker,`
@@ -33,18 +33,18 @@ async function run(){
 
  if(baseline){
   await ev('document.querySelector("[data-tab=spirits]").click()');
-  const observed=await ev('({toggle:!!document.getElementById("formation-contribution-toggle"),visible:document.getElementById("wisp-role-summary").getBoundingClientRect().height>0,text:document.getElementById("wisp-role-summary").textContent})');
-  ok(!observed.toggle&&observed.visible&&observed.text.includes('Total preview'),'baseline reproduces always-visible contribution without toggle');records.push(observed);
+  const observed=await ev('({contribution:!!document.getElementById("wisp-role-summary"),helpCard:document.querySelector(".formation-help").classList.contains("card"),helpText:document.querySelector(".formation-help summary").textContent})');
+  ok(observed.contribution&&!observed.helpCard,'baseline reproduces unwanted contribution panel and unboxed Bonds guidance');records.push(observed);
  }else{
  for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Runtime.enable');await send('DOM.enable');
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
   await send('Page.reload');await pause(150);for(let i=0;i<200;i++){try{if(await ev('!!window.roleQa&&!!document.querySelector("[data-wisp-role=ember]")'))break;}catch(e){if(!/context|navigated/.test(e.message))throw e;}await pause(20);}
   await ev('document.fonts.ready');
-  await ev(`(()=>{var q=roleQa,s=q.fresh();s.questDay=new Date().toISOString().slice(0,10);s.maxDepthEver=250;s.depth=101;s.activeParty=['ember','tide','gale','thorn','aurora'];Object.keys(s.spirits).forEach(function(id){s.spirits[id]=100;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});q.set(s);q.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab=spirits]').click();window.originalToggle=document.getElementById('formation-contribution-toggle');})()`);
+  await ev(`(()=>{var q=roleQa,s=q.fresh();s.questDay=new Date().toISOString().slice(0,10);s.maxDepthEver=250;s.depth=101;s.activeParty=['ember','tide','gale','thorn','aurora'];Object.keys(s.spirits).forEach(function(id){s.spirits[id]=100;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});q.set(s);q.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab=spirits]').click();window.originalToggle=document.querySelector('.formation-help>summary');})()`);
   await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');
-  const observe=()=>ev(`(()=>{var b=document.getElementById('formation-contribution-toggle'),p=document.getElementById(b.getAttribute('aria-controls')),r=b.getBoundingClientRect();return {expanded:b.getAttribute('aria-expanded'),hidden:p.hidden,visible:p.getBoundingClientRect().height>0,focus:document.activeElement===b,same:b===originalToggle,label:b.textContent,fit:r.left>=0&&r.right<=innerWidth+1&&b.scrollWidth<=b.clientWidth+1,target:r.width>=44&&r.height>=44,rect:{x:r.x,width:r.width,height:r.height,scroll:b.scrollWidth,client:b.clientWidth},text:p.textContent,errors:roleErrors};})()`);
-  let o=await observe();ok(o.expanded==='false'&&o.hidden&&!o.visible,'collapsed by default after load');
+  const observe=()=>ev(`(()=>{var p=document.querySelector('.formation-help'),b=p.querySelector('summary'),r=b.getBoundingClientRect(),content=document.getElementById('bond-card');return {expanded:String(p.open),hidden:!p.open,visible:content.checkVisibility(),focus:document.activeElement===b,same:b===originalToggle,label:b.innerText,fit:r.left>=0&&r.right<=innerWidth+1&&b.scrollWidth<=b.clientWidth+1,target:r.width>=44&&r.height>=44,text:content.innerHTML,removed:!document.getElementById('wisp-role-summary')&&!document.getElementById('formation-contribution-toggle')&&!document.getElementById('formation-contribution-panel'),boxed:p.classList.contains('card'),errors:roleErrors};})()`);
+  let o=await observe();ok(o.expanded==='false'&&o.hidden&&!o.visible,'Bonds collapsed by default after load');ok(o.removed&&o.boxed,'Contribution removed and Bonds boxed');
   const key=async(name)=>{await send('Input.dispatchKeyEvent',{type:name==='Enter'?'keyDown':'rawKeyDown',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13,...(name==='Enter'?{text:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13});};
   const touch=async()=>{await ev('originalToggle.scrollIntoView({block:"center"});originalToggle.blur()');await pause(50);const r=await ev('(()=>{var r=originalToggle.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(30);};
   for(const input of ['Enter','Space','touch']){
@@ -55,10 +55,10 @@ async function run(){
    const before=await ev('JSON.stringify(roleQa.get())');
    await ev('originalToggle.focus();roleQa.readout();roleQa.render();roleQa.readout()');
    o=await observe();ok(o.same&&o.focus&&o.expanded==='true'&&o.visible,'expanded/focus retained through role and full renders');ok(await ev('JSON.stringify(roleQa.get())')===before,'render/disclosure leaves complete save state unchanged');
-   ok(['Raw damage','Bonds added','Support added','Total preview','do not add them','Resonate'].every(t=>o.text.includes(t)),'all calculation readouts retained');ok(o.fit&&o.target,'toggle fits and has 44px touch target '+JSON.stringify({width,fontPercent,motion,o}));
+   ok(o.text.includes('Formation Bonds')&&o.text.includes('Kindling')&&o.text.includes('Pathfinder'),'existing Bond guidance retained');ok(o.fit&&o.target,'toggle fits and has 44px touch target '+JSON.stringify({width,fontPercent,motion,o}));
    const previousSummary=o.text;
    await ev('document.querySelector("[data-toggle=tide]").click();originalToggle.focus();roleQa.readout()');
-   o=await observe();ok(o.expanded==='true'&&o.same&&o.focus,'formation change keeps expanded control');ok(o.text!==previousSummary,'formation change updates aggregate contribution');ok(await ev('document.querySelector("[data-wisp-role=tide]").textContent.includes("Benched")'),'formation change updates per-Wisp readout');
+   o=await observe();ok(o.expanded==='true'&&o.same&&o.focus,'formation change keeps expanded control');ok(o.text!==previousSummary,'formation change updates Bond guidance');ok(await ev('document.querySelector("[data-wisp-role=tide]").textContent.includes("Benched")'),'formation change updates per-Wisp readout');
    await ev('document.querySelector("[data-tab=battle]").click();document.querySelector("[data-tab=spirits]").click();originalToggle.focus()');await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');ok((await observe()).expanded==='true','tab return keeps expanded choice');
    if(input==='touch')await touch();else await key(input);
    o=await observe();ok(o.expanded==='false'&&o.hidden&&!o.visible&&o.label.includes('Expand'),'native '+input+' collapses');
@@ -67,7 +67,7 @@ async function run(){
   }
   await ev('originalToggle.scrollIntoView({block:"start"})');
   if(width===390&&motion==='reduce'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'collapsed-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));await ev('originalToggle.click();originalToggle.scrollIntoView({block:"start"})');const expanded=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,'expanded-'+fontPercent+'.png'),Buffer.from(expanded.data,'base64'));}
-  for(const expanded of [false,true]){await ev('originalToggle.setAttribute("aria-expanded","'+expanded+'");document.getElementById("formation-contribution-panel").hidden='+!expanded+';originalToggle.focus();window.roleRunIntervals=true');const start=await ev('roleQa.lastRender()');await pause(1200);await ev('window.roleRunIntervals=false');const observed=await observe();ok(await ev('roleQa.lastRender()')>start,'actual periodic role render ran');ok(observed.expanded===String(expanded)&&observed.hidden===!expanded&&observed.same&&observed.focus,'live interval preserves choice and focus');}
+  for(const expanded of [false,true]){await ev('if(document.querySelector(".formation-help").open!=='+expanded+')originalToggle.click();originalToggle.focus();window.roleRunIntervals=true');const start=await ev('roleQa.lastRender()');await pause(1200);await ev('window.roleRunIntervals=false');const observed=await observe();ok(await ev('roleQa.lastRender()')>start,'actual periodic role render ran');ok(observed.expanded===String(expanded)&&observed.hidden===!expanded&&observed.same&&observed.focus,'live interval preserves choice and focus');}
   records.push({width,fontPercent,motion,nativeInputs:['Enter','Space','touch']});
  }
  }
