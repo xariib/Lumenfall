@@ -5,7 +5,7 @@ let html=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const baseline=fs.readFileSync(require('node:path').join(__dirname,'../../docs/qa/finish-development-release-001/early-wisps/baseline-support.html'),'utf8');
 assert.equal(crypto.createHash('sha256').update(baseline).digest('hex'),'d81ae87e388b52a0cd575fe45534ac85236dbab9374adb91bbde9be6878bd735');
 if(process.env.EARLY_WISP_MUTANT){
- const changes={missing:['352*Math.pow(Math.max(0,level-70),2)','0'],boundary:['level-70','level-69'],titan:["sp.id==='stone'","sp.id==='stone' || sp.id==='titan'"],
+ const changes={missing:['Amount.mul(352,Amount.pow(Amount.max(0,Amount.sub(level,70)),2))','0'],boundary:['Amount.sub(level,70)','Amount.sub(level,69)'],titan:["sp.id==='stone'","sp.id==='stone' || sp.id==='titan'"],
   'forge-cap':['unlockDepth:12, levelCap:20, effectPerLevel:0.03','unlockDepth:12, levelCap:10, effectPerLevel:0.03'],
   'forge-price':['lumenBase:15000, lumenGrowth:1.60, shardBase:120','lumenBase:15001, lumenGrowth:1.60, shardBase:120']};
  const p=changes[process.env.EARLY_WISP_MUTANT];assert(p);assert.equal(html.split(p[0]).length,2);html=html.replace(p[0],p[1]);
@@ -15,12 +15,13 @@ const previous=app(baseline);
 const current=app(html),q=current.q,p=previous.q;
 let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);};
 const ids=['ember','tide','stone','gale','thorn','void','aurora','titan'];
+function oldState(s){const old=clone(s);old.schemaVersion=4;return old;}
 const levels=[0,1,25,69,70,71,72,80,100,170,250,500];
 const rarity=[1,1.5,2.25,3.5,5.5,9];
 const prices=[];
 for(const id of ids)for(const level of levels)for(let tier=0;tier<6;tier++){
  const s=q.fresh();s.maxDepthEver=250;s.spirits[id]=level;s.heroRarity[id]=tier;
- s.activeParty=[id];q.set(s);p.set(s);
+ s.activeParty=[id];q.set(s);p.set(oldState(s));
  const before=clone(q.get()),base=q.sp(id).basePower;
  const bonus=(id==='ember'||id==='stone')&&level>70?352*(level-70)*(level-70):0;
  const expected=level>0?(base*level*(1+.01*(level-1))+bonus)*rarity[tier]:0;
@@ -29,7 +30,7 @@ for(const id of ids)for(const level of levels)for(let tier=0;tier<6;tier++){
  eq(q.get(),before,'power lookup does not alter any saved field');
  // Compare real cost paths including Tree discounts and Gentle Growth.
  for(const rank of [0,5]){
-  const state=q.get();state.nodes.gentlegrowth=rank;state.nodes.bonds=20;q.set(state);p.set(state);
+  const state=q.get();state.nodes.gentlegrowth=rank;state.nodes.bonds=20;q.set(state);p.set(oldState(state));
   eq(q.empowerCost(id),p.empowerCost(id),'unchanged real Empower price '+id+'/'+level+'/'+rank);
  }
  if(tier===0)prices.push({id,level,power:q.power(id),cost:q.empowerCost(id)});

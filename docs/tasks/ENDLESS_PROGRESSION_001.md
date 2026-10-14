@@ -28,13 +28,14 @@ Existing full-debug transport/native/tooling limitations stay recorded.
 
 Baseline source validation/Support/campaign PASS, Node24.19.0; regular v1 all
 recruits/Mythic/Ultimate16h. [Evidence/status](../qa/endless-progression-001/README.md).
-Wide arithmetic257 independent checks PASS; not yet connected to game.
+Arithmetic/schema5, central gates, Mastery/Forge and UI candidate implemented.
+Core99/amount290/wide32 and mobile445/12 profiles PASS on their stamped bytes.
 Forge foundations are retired: add repeatable Masterwork Tempering opening5
-Mastery ranks/level, retain all existing caps. No product edits yet.
+Mastery ranks/level, retain existing caps. Current coefficients still calibrating.
 GitHub connector repo read404; remote access/integration unverified. Main push
 triggers APK; integration deferred until acceptance. Regular calibration running.
 
-Next: extend real-engine daily-session campaign, calibrate explicit progression
-tables before editing game balance, then implement migration/Mastery/UI and
-large-value arithmetic with parity and exact-debit coverage. Feature stays OPEN
+Next: checkpoint candidate; verify exact financial promotion/legacy gates, finish
+free-automation calibration and break excessive walls; add causal/parity/legacy
+coverage, help/CI and combined delivery. Feature stays OPEN
 until all required acceptance; no APK/main/remote/archive claimed.

@@ -8,9 +8,15 @@ const data={
  recruitment:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:15},thorn:{depth:35,lab:18},void:{depth:55,lab:20},aurora:{depth:75,lab:21},titan:{depth:100,lab:22}},
  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,29],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
  ultimate:{sigils:{ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000},module:15,depth:120,lab:30,forge:10,ascends:50},
- maxStudyWorkSec:604800
+ maxStudyWorkSec:475200,
+ hpBase:60,curveStart:100,curveWidth:40
 };
 edit('var SPIRITS = [','var ENDLESS_PROTOTYPE = '+JSON.stringify(data)+';\nvar SPIRITS = [');
+edit('function enemyHpFor(depth){',`function endlessCurveDepth(depth){return depth<=ENDLESS_PROTOTYPE.curveStart?depth:ENDLESS_PROTOTYPE.curveStart+ENDLESS_PROTOTYPE.curveWidth*Math.log1p((depth-ENDLESS_PROTOTYPE.curveStart)/ENDLESS_PROTOTYPE.curveWidth);}
+function enemyHpFor(depth){`);
+edit('Math.round(10 * Math.pow(1.145, depth)', 'Math.round(ENDLESS_PROTOTYPE.hpBase * Math.pow(1.145, endlessCurveDepth(depth))');
+edit('5 * Math.pow(1.11, depth)', '5 * Math.pow(1.11, endlessCurveDepth(depth))');
+edit('1 * Math.pow(1.09, depth)', '1 * Math.pow(1.09, endlessCurveDepth(depth))');
 edit("function treeWispUnlockDepth(sp,snapshot){return Math.max(1,sp.unlockDepth-treeLevel('invitations',snapshot));}",
  "function treeWispUnlockDepth(sp,snapshot){var s=snapshot||state,g=ENDLESS_PROTOTYPE.recruitment[sp.id];return (s.longStudyLevels.wispascend||0)<g.lab?Infinity:Math.max(1,g.depth-treeLevel('invitations',s));}");
 edit('var RARITY_LEVEL_REQUIREMENTS = [8,18,30,45,65];','var RARITY_LEVEL_REQUIREMENTS = ENDLESS_PROTOTYPE.rarity.level;');
