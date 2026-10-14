@@ -1,0 +1,2534 @@
+{
+  "status": "FAIL",
+  "sourceSha256": "999390122eda981b8ea2b8ad48b86ec4976219284e78dc98f2c305d92398aff2",
+  "instrumentedSha256": "e94a362946ce44acccb434c5d0ddcd3deebd689b54bf99b2a44e4feffed6528e",
+  "limits": "Earlier source and fixture copies. Later focused fixes are separate runs; final complete suite still required.",
+  "cases": [
+    {
+      "status": "PASS",
+      "scenario": "formation-best-now-core",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-best-now",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-speed-controls",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-collapse",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "wisp-rarity-scroll",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "wisp-card-simplicity",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-affordable-alert",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "resonate-clarity",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-contracts"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-chronology"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-farm-clock"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-recovery"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-ui [320,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-ui [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-ui [430,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-reduced-motion [320,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-reduced-motion [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-reduced-motion [430,844,0,0]"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "wisp-upgrade-display",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 4.9710002000000095,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "wisp-upgrade-display",
+        "json_status": "fail",
+        "json_scenario": "wisp-upgrade-display",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Ultimate rarity gate and route labelled",
+        "stack": "Error: Ultimate rarity gate and route labelled\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=wisp-upgrade-display&qaFixture=fresh:16687:56)\n    at window.runWispUpgradeQa (http://127.0.0.1:56732/index.html?qaScenario=wisp-upgrade-display&qaFixture=fresh:16726:3)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=wisp-upgrade-display&qaFixture=fresh:17362:32)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "comet-unlocks-core",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: inexact manual payment refused\r\n\r\ntrue !== false\r\n\r\n    at C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-unlocks-core.cjs:107:14\r\n    at test (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-unlocks-core.cjs:38:24)\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-unlocks-core.cjs:97:1)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: true,\r\n  expected: false,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "comet-unlocks-mobile",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "comet-unlocks-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-offline-integration",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: independent damage/HP kill ledger\r\n\r\n479 !== 3000\r\n\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\lab-motes-offline.cjs:35:8)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 479,\r\n  expected: 3000,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-numerical",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.1947547000000487,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lab-motes-numerical",
+        "json_status": "fail",
+        "json_scenario": "lab-motes-numerical",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "B2 exact damage oracle: documented safe kill count",
+        "stack": "Error: B2 exact damage oracle: documented safe kill count\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16616:29)\n    at run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16665:5)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16678:180\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16678:156\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16678:114\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:16678:73"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-runtime",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-conservation",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.9328802000000143,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lab-motes-conservation",
+        "json_status": "fail",
+        "json_scenario": "lab-motes-conservation",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "B1 conservation oracle: exact old double-round implementation must fail oracle",
+        "stack": "Error: B1 conservation oracle: exact old double-round implementation must fail oracle\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-conservation&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-conservation&qaFixture=fresh:16549:29)\n    at window.runFarmConservationQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-conservation&qaFixture=fresh:16600:3)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-conservation&qaFixture=fresh:17323:74)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-contracts",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.4823673999999882,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lab-motes-contracts",
+        "json_status": "fail",
+        "json_scenario": "lab-motes-contracts",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "LAB oracle: manual start allowed",
+        "stack": "Error: LAB oracle: manual start allowed\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-contracts&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-contracts&qaFixture=fresh:16371:29)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-contracts&qaFixture=fresh:16389:400\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-contracts&qaFixture=fresh:16389:55\n    at Array.forEach (<anonymous>)\n    at window.runLabMotesQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-contracts&qaFixture=fresh:16389:18)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-contracts&qaFixture=fresh:17328:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-chronology",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 4.862669199999946,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lab-motes-chronology",
+        "json_status": "fail",
+        "json_scenario": "lab-motes-chronology",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "LAB oracle: shared offline cap pays speed but cannot complete beyond 12h",
+        "stack": "Error: LAB oracle: shared offline cap pays speed but cannot complete beyond 12h\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:16371:29)\n    at window.runLabMotesQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:16425:168)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:17328:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-ui",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.697781799999997,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": null,
+        "json_status": "fail",
+        "json_scenario": "lab-motes-ui",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "LAB_UI_001: Begin Study starts the selected Study",
+        "stack": "Error: LAB_UI_001: Begin Study starts the selected Study\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=320&height=844&safeTop=0&safeBottom=0:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=320&height=844&safeTop=0&safeBottom=0:16465:39)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=320&height=844&safeTop=0&safeBottom=0:16507:5\n    at Array.forEach (<anonymous>)\n    at window.runLabUiQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=320&height=844&safeTop=0&safeBottom=0:16504:33)\n    at window.runLabMotesQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=320&height=844&safeTop=0&safeBottom=0:16431:10)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=320&height=844&safeTop=0&safeBottom=0:17328:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-ui",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.9003224999999513,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": null,
+        "json_status": "fail",
+        "json_scenario": "lab-motes-ui",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "LAB_UI_001: Begin Study starts the selected Study",
+        "stack": "Error: LAB_UI_001: Begin Study starts the selected Study\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0:16465:39)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0:16507:5\n    at Array.forEach (<anonymous>)\n    at window.runLabUiQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0:16504:33)\n    at window.runLabMotesQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0:16431:10)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=390&height=844&safeTop=0&safeBottom=0:17328:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-ui",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.426679200000013,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": null,
+        "json_status": "fail",
+        "json_scenario": "lab-motes-ui",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "LAB_UI_001: Begin Study starts the selected Study",
+        "stack": "Error: LAB_UI_001: Begin Study starts the selected Study\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=430&height=844&safeTop=0&safeBottom=0:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=430&height=844&safeTop=0&safeBottom=0:16465:39)\n    at http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=430&height=844&safeTop=0&safeBottom=0:16507:5\n    at Array.forEach (<anonymous>)\n    at window.runLabUiQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=430&height=844&safeTop=0&safeBottom=0:16504:33)\n    at window.runLabMotesQa (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=430&height=844&safeTop=0&safeBottom=0:16431:10)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-ui&qaFixture=fresh&width=430&height=844&safeTop=0&safeBottom=0:17328:30)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-native",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-recovery"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-reset",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.015654899999965,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lab-motes-reset",
+        "json_status": "fail",
+        "json_scenario": "lab-motes-reset",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "actual Reset clears intent, targets and work",
+        "stack": "Error: actual Reset clears intent, targets and work\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-reset&qaFixture=fresh:16802:61)\n    at window.runLabMotesPersistence (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-reset&qaFixture=fresh:16445:40)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lab-motes-reset&qaFixture=fresh:17326:18)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "save-backup-ui",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "offline-catchup-core",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: unchanged baseline summary 60\r\n+ actual - expected\r\n... Skipped lines\r\n\r\n  {\r\n    achievements: [],\r\n    ascendGains: [\r\n      6,\r\n      6,\r\n...\r\n      6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6,\r\n-     6\r\n    ],\r\n+   ascends: 8,\r\n+   autoTaps: 60,\r\n+   bossKills: 17,\r\n-   ascends: 27,\r\n-   autoTaps: 55,\r\n-   bossKills: 55,\r\n    clockEndMs: 1791361624477,\r\n    closedStudies: [],\r\n    completedStudies: [],\r\n    elapsedSec: 60,\r\n    empowers: 0,\r\n+   endDepth: 18,\r\n-   endDepth: 20,\r\n    fastForwardedKills: 0,\r\n+   iterations: 210,\r\n+   kills: 185,\r\n+   lumenGained: 756348.0000000008,\r\n+   luminousKills: 15,\r\n+   motesGained: 72,\r\n+   pushDepth: 18,\r\n-   iterations: 587,\r\n-   kills: 586,\r\n-   lumenGained: 2466405.5999999964,\r\n-   luminousKills: 48,\r\n-   motesGained: 233,\r\n-   pushDepth: 20,\r\n    researchBought: 0,\r\n    retreated: false,\r\n    retreats: 0,\r\n    retries: 0,\r\n+   shardGained: 30957.59999999999,\r\n+   sigilsGained: 25,\r\n-   shardGained: 100286.40000000014,\r\n-   sigilsGained: 82,\r\n    studiesStarted: 0\r\n  }\r\n\r\n    at baselineSummary (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup.cjs:130:9)\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup.cjs:305:3)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: {\r\n    elapsedSec: 60,\r\n    lumenGained: 756348.0000000008,\r\n    shardGained: 30957.59999999999,\r\n    sigilsGained: 25,\r\n    motesGained: 72,\r\n    kills: 185,\r\n    bossKills: 17,\r\n    luminousKills: 15,\r\n    ascends: 8,\r\n    autoTaps: 60,\r\n    empowers: 0,\r\n    researchBought: 0,\r\n    studiesStarted: 0,\r\n    completedStudies: [],\r\n    closedStudies: [],\r\n    achievements: [],\r\n    retreated: false,\r\n    retreats: 0,\r\n    retries: 0,\r\n    fastForwardedKills: 0,\r\n    iterations: 210,\r\n    ascendGains: [\r\n      6, 6, 6, 6,\r\n      6, 6, 6, 6\r\n    ],\r\n    endDepth: 18,\r\n    pushDepth: 18,\r\n    clockEndMs: 1791361624477\r\n  },\r\n  expected: {\r\n    elapsedSec: 60,\r\n    lumenGained: 2466405.5999999964,\r\n    shardGained: 100286.40000000014,\r\n    sigilsGained: 82,\r\n    motesGained: 233,"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "offline-12h-core",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n\r\n5 !== 4\r\n\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-12h.cjs:76:12)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 5,\r\n  expected: 4,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "offline-12h-ui",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "offline-catchup-ui",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6\r\nif(require('node:crypto').createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'../../index.html'))).digest('hex')!==swiftGolden.sourceSha256)throw Error('Regenerate one-second windows after product changes');\r\n                                                                                                                                                            ^\r\n\r\nError: Regenerate one-second windows after product changes\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6:163)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "offline-catchup-legacy-dom",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6\r\nif(require('node:crypto').createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'../../index.html'))).digest('hex')!==swiftGolden.sourceSha256)throw Error('Regenerate one-second windows after product changes');\r\n                                                                                                                                                            ^\r\n\r\nError: Regenerate one-second windows after product changes\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6:163)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "nav-workshop-contract",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.8975628000000726,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "nav-workshop-contract",
+        "json_status": "fail",
+        "json_scenario": "nav-workshop-contract",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "silent shortage exercised for ultimate",
+        "stack": "Error: silent shortage exercised for ultimate\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=nav-workshop-contract&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=nav-workshop-contract&qaFixture=fresh:14334:29)\n    at http://127.0.0.1:56732/index.html?qaScenario=nav-workshop-contract&qaFixture=fresh:14394:105\n    at Array.forEach (<anonymous>)\n    at window.runNavWorkshopQa (http://127.0.0.1:56732/index.html?qaScenario=nav-workshop-contract&qaFixture=fresh:14394:82)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=nav-workshop-contract&qaFixture=fresh:17415:48)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "inquiry-contracts",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.7889120999999577,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "inquiry-contracts",
+        "json_status": "fail",
+        "json_scenario": "inquiry-contracts",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "v0 InquiryOFF, current schema4",
+        "stack": "Error: v0 InquiryOFF, current schema4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16186:29)\n    at window.runInquiryQa (http://127.0.0.1:56732/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16211:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:17342:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "inquiry-chronology",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.1952134000000076,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "inquiry-chronology",
+        "json_status": "fail",
+        "json_scenario": "inquiry-chronology",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "alternate auto-fill starts after completion",
+        "stack": "Error: alternate auto-fill starts after completion\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=inquiry-chronology&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=inquiry-chronology&qaFixture=fresh:16186:29)\n    at window.runInquiryQa (http://127.0.0.1:56732/index.html?qaScenario=inquiry-chronology&qaFixture=fresh:16280:157)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=inquiry-chronology&qaFixture=fresh:17342:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "inquiry-ui",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.7319451999999584,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "inquiry-ui",
+        "json_status": "fail",
+        "json_scenario": "inquiry-ui",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real legacy start at Inquiry cap",
+        "stack": "Error: real legacy start at Inquiry cap\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui&qaFixture=fresh:16186:29)\n    at window.runInquiryQa (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui&qaFixture=fresh:16327:76)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui&qaFixture=fresh:17342:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "inquiry-ui-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.587190399999963,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "inquiry-ui-reduced-motion",
+        "json_status": "fail",
+        "json_scenario": "inquiry-ui-reduced-motion",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real legacy start at Inquiry cap",
+        "stack": "Error: real legacy start at Inquiry cap\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui-reduced-motion&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui-reduced-motion&qaFixture=fresh:16186:29)\n    at window.runInquiryQa (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui-reduced-motion&qaFixture=fresh:16327:76)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=inquiry-ui-reduced-motion&qaFixture=fresh:17342:30)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-recovery"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "inquiry-reset",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.998842100000009,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "inquiry-reset",
+        "json_status": "fail",
+        "json_scenario": "inquiry-reset",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Reset new fields0/OFF and no paid work",
+        "stack": "Error: Reset new fields0/OFF and no paid work\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=inquiry-reset&qaFixture=fresh:16802:61)\n    at window.runInquiryPersistence (http://127.0.0.1:56732/index.html?qaScenario=inquiry-reset&qaFixture=fresh:16355:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=inquiry-reset&qaFixture=fresh:17340:18)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "raw-process-contract: 31 result controls, real timeout, artifact bounds, two causal negatives/undo"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-stacking"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-contract"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy16"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy44"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy56"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy130"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-recovery"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-resume"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-reset"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-manual-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-cold-resume"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-mobile",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-stacking-mobile",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-stacking-reduced-motion",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-recovery"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-resume"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-recovery-resume"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-visibility-resume"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-reset"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-effects-and-deeds"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "tree-purchase-contract",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "elapsed_sec": 25.1457490999999,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui [320,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui [430,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui-reduced-motion [320,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui-reduced-motion [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui-reduced-motion [430,844,0,0]"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-contract",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 6.742876999999862,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "rift-status-contract",
+        "json_status": "fail",
+        "json_scenario": "rift-status-contract",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": "real start consumes capacity"
+    },
+    {
+      "status": "PASS",
+      "scenario": "bond-text-contract"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-mobile",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-guidance-mobile",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-reduced-motion",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-ui-process-contract"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-ui-mobile",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-ui-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "buff-timing"
+    },
+    {
+      "status": "PASS",
+      "scenario": "buff-save-reload"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "forge-contracts",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.2956591999996454,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "forge-contracts",
+        "json_status": "fail",
+        "json_scenario": "forge-contracts",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "eight retained IDs followed by sixteen approved Forge additions",
+        "stack": "Error: eight retained IDs followed by sixteen approved Forge additions\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=forge-contracts&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=forge-contracts&qaFixture=fresh:15582:29)\n    at same (http://127.0.0.1:56732/index.html?qaScenario=forge-contracts&qaFixture=fresh:15583:24)\n    at window.runForgeQa (http://127.0.0.1:56732/index.html?qaScenario=forge-contracts&qaFixture=fresh:15594:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=forge-contracts&qaFixture=fresh:17350:30)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-effects"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-chronology"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "loadout-memory-core",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "loadout-memory-mobile",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-recovery"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-baseline"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "forge-balance",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.362354200000409,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "forge-balance",
+        "json_status": "fail",
+        "json_scenario": "forge-balance",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real mid/mature manual purchase with earned resources",
+        "stack": "Error: real mid/mature manual purchase with earned resources\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:15682:29)\n    at http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:15784:26\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:15757:122\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:15757:80\n    at Array.forEach (<anonymous>)\n    at window.runForgeExtended (http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:15757:38)\n    at window.runForgeQa (http://127.0.0.1:56732/index.html?qaScenario=forge-balance&qaFixture=fresh:15657:17)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "r3-destinations",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.2977738999999127,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "r3-destinations",
+        "json_status": "fail",
+        "json_scenario": "r3-destinations",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "eight retained direct upgrades followed by sixteen Forge additions",
+        "stack": "Error: eight retained direct upgrades followed by sixteen Forge additions\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=r3-destinations&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=r3-destinations&qaFixture=fresh:14408:29)\n    at same (http://127.0.0.1:56732/index.html?qaScenario=r3-destinations&qaFixture=fresh:14409:24)\n    at window.runR3DestinationsQa (http://127.0.0.1:56732/index.html?qaScenario=r3-destinations&qaFixture=fresh:14415:3)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=r3-destinations&qaFixture=fresh:17419:32)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "r3-save-reload"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "research-duration",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.719056199999992,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "research-duration",
+        "json_status": "fail",
+        "json_scenario": "research-duration",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real speed-tier action applied",
+        "stack": "Error: real speed-tier action applied\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=research-duration&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=research-duration&qaFixture=fresh:14549:39)\n    at window.runResearchDurationQa (http://127.0.0.1:56732/index.html?qaScenario=research-duration&qaFixture=fresh:14609:3)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=research-duration&qaFixture=fresh:17444:32)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "research-duration-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.3166313999998382,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "research-duration-reduced-motion",
+        "json_status": "fail",
+        "json_scenario": "research-duration-reduced-motion",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real speed-tier action applied",
+        "stack": "Error: real speed-tier action applied\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=research-duration-reduced-motion&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=research-duration-reduced-motion&qaFixture=fresh:14549:39)\n    at window.runResearchDurationQa (http://127.0.0.1:56732/index.html?qaScenario=research-duration-reduced-motion&qaFixture=fresh:14609:3)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=research-duration-reduced-motion&qaFixture=fresh:17444:32)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-persistence-review"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-persist-save-reload",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.805099200000055,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-persist-save-reload",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-persist-save-reload",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial reconstruction remains on current schema-v4",
+        "stack": "Error: partial reconstruction remains on current schema-v4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-save-reload&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-save-reload&qaFixture=fresh:17410:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-persist-backup-restore",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.5874843999999575,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-persist-backup-restore",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-persist-backup-restore",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial reconstruction remains on current schema-v4",
+        "stack": "Error: partial reconstruction remains on current schema-v4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-backup-restore&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-backup-restore&qaFixture=fresh:17410:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-persist-recovery",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.9785822999998928,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-persist-recovery",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-persist-recovery",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial reconstruction remains on current schema-v4",
+        "stack": "Error: partial reconstruction remains on current schema-v4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-recovery&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-recovery&qaFixture=fresh:17410:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-persist-reset",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.40207470000023,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-persist-reset",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-persist-reset",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "fresh state must use current save schema",
+        "stack": "Error: fresh state must use current save schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-reset&qaFixture=fresh:16802:61)\n    at assertFresh (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-reset&qaFixture=fresh:17260:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-persist-reset&qaFixture=fresh:17378:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-formation-reconstruction",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.841267099999823,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-formation-reconstruction",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-formation-reconstruction",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "bounded ordered sanitized intent {\"members\":[\"tide\",\"stone\"],\"preset\":\"\"}",
+        "stack": "Error: bounded ordered sanitized intent {\"members\":[\"tide\",\"stone\"],\"preset\":\"\"}\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:16802:61)\n    at ok (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15181:31)\n    at same (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15182:26)\n    at window.runP207FormationQa (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:15232:3)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-formation-reconstruction&qaFixture=fresh:17369:32)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-save-reload",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.834880900000222,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-save-reload",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-save-reload",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial reconstruction remains on current schema-v4",
+        "stack": "Error: partial reconstruction remains on current schema-v4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-save-reload&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-save-reload&qaFixture=fresh:17410:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-backup-restore",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.619994899999816,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-backup-restore",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-backup-restore",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial reconstruction remains on current schema-v4",
+        "stack": "Error: partial reconstruction remains on current schema-v4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-backup-restore&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-backup-restore&qaFixture=fresh:17410:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-recovery",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.335439300000202,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-07a-recovery",
+        "json_status": "fail",
+        "json_scenario": "p2-07a-recovery",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial reconstruction remains on current schema-v4",
+        "stack": "Error: partial reconstruction remains on current schema-v4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-recovery&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-07a-recovery&qaFixture=fresh:17410:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-chronology"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [360,800,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [360,780,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [412,915,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [360,640,24,24]"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-06b-live-feedback",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.1967590000000783,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-06b-live-feedback",
+        "json_status": "fail",
+        "json_scenario": "p2-06b-live-feedback",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real live tick defeats intended enemy 10 -> 10",
+        "stack": "Error: real live tick defeats intended enemy 10 -> 10\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:16802:61)\n    at http://127.0.0.1:56732/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:15117:5\n    at Array.forEach (<anonymous>)\n    at window.runP206FeedbackQa (http://127.0.0.1:56732/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:15110:9)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:17449:32)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-06b-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.144534500000067,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-06b-reduced-motion",
+        "json_status": "fail",
+        "json_scenario": "p2-06b-reduced-motion",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "real live tick defeats intended enemy 10 -> 10",
+        "stack": "Error: real live tick defeats intended enemy 10 -> 10\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-06b-reduced-motion&qaFixture=fresh:16802:61)\n    at http://127.0.0.1:56732/index.html?qaScenario=p2-06b-reduced-motion&qaFixture=fresh:15117:5\n    at Array.forEach (<anonymous>)\n    at window.runP206FeedbackQa (http://127.0.0.1:56732/index.html?qaScenario=p2-06b-reduced-motion&qaFixture=fresh:15110:9)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-06b-reduced-motion&qaFixture=fresh:17449:32)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-fresh [360,800,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-fresh [360,780,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-fresh [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-fresh [412,915,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-fresh [360,640,24,24]"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-dense",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 14.615273700000252,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-dense",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 14.392810499999673,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-dense",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.830084600000177,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-dense",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.21051919999998,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-dense",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.92571169999987,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-boss",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.473668700000271,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-boss",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.399548099999782,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-boss",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.087273300000001,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-boss",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.340386000000406,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "FAIL",
+      "scenario": "layout-boss",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.636488899999764,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-accessibility-states [360,800,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-accessibility-states [360,780,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-accessibility-states [390,844,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-accessibility-states [412,915,0,0]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-accessibility-states [360,640,24,24]"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p1-05-accessibility-baseline"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p1-05-accessibility-contract",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.32093629999971,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p1-05-accessibility-contract",
+        "json_status": "fail",
+        "json_scenario": "p1-05-accessibility-contract",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "P1-05 accessibility contract failed: [{\"code\":\"state-unaffordable\",\"detail\":\"An unaffordable purchase must retain native disabled, data-state, accessible action/price and no currency-shortage warning.\"},{\"code\":\"state-locked\",\"detail\":\"Locked Wisp state must include visible unlock language.\"}]",
+        "stack": "Error: P1-05 accessibility contract failed: [{\"code\":\"state-unaffordable\",\"detail\":\"An unaffordable purchase must retain native disabled, data-state, accessible action/price and no currency-shortage warning.\"},{\"code\":\"state-locked\",\"detail\":\"Locked Wisp state must include visible unlock language.\"}]\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p1-05-accessibility-contract&qaFixture=accessibility-mixed-states:16802:61)\n    at Object.runAcceptance (http://127.0.0.1:56732/index.html?qaScenario=p1-05-accessibility-contract&qaFixture=accessibility-mixed-states:14151:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p1-05-accessibility-contract&qaFixture=accessibility-mixed-states:18536:66)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "p1-05-control-regressions"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p1-05-reduced-motion"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "fresh-load",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.897526499999687,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "fresh-load",
+        "json_status": "fail",
+        "json_scenario": "fresh-load",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "fresh state must use current save schema",
+        "stack": "Error: fresh state must use current save schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=fresh-load&qaFixture=fresh:16802:61)\n    at assertFresh (http://127.0.0.1:56732/index.html?qaScenario=fresh-load&qaFixture=fresh:17260:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=fresh-load&qaFixture=fresh:17452:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "midgame-load",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.1128318000002766,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "midgame-load",
+        "json_status": "fail",
+        "json_scenario": "midgame-load",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "schema-v1 fixture must migrate through schema 2 and 3 to schema 4",
+        "stack": "Error: schema-v1 fixture must migrate through schema 2 and 3 to schema 4\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=midgame-load&qaFixture=mid-game:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=midgame-load&qaFixture=mid-game:17461:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "mature-load"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "legacy-load",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.9433489000000992,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "legacy-load",
+        "json_status": "fail",
+        "json_scenario": "legacy-load",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "legacy save must migrate to current schema",
+        "stack": "Error: legacy save must migrate to current schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=legacy-load&qaFixture=legacy:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=legacy-load&qaFixture=legacy:17498:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "corrupted-load",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.215752400000114,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "corrupted-load",
+        "json_status": "fail",
+        "json_scenario": "corrupted-load",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "fresh state must use current save schema",
+        "stack": "Error: fresh state must use current save schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=corrupted-load&qaFixture=corrupted-json:16802:61)\n    at assertFresh (http://127.0.0.1:56732/index.html?qaScenario=corrupted-load&qaFixture=corrupted-json:17260:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=corrupted-load&qaFixture=corrupted-json:17504:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "malformed-daily-load"
+    },
+    {
+      "status": "PASS",
+      "scenario": "farm-load"
+    },
+    {
+      "status": "PASS",
+      "scenario": "farm-roundtrip"
+    },
+    {
+      "status": "PASS",
+      "scenario": "enemy-normal-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "enemy-boss-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "active-studies-load"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-load"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "reset-roundtrip",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.311764200000092,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "reset-roundtrip",
+        "json_status": "fail",
+        "json_scenario": "reset-roundtrip",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "fresh state must use current save schema",
+        "stack": "Error: fresh state must use current save schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=reset-roundtrip&qaFixture=mid-game:16802:61)\n    at assertFresh (http://127.0.0.1:56732/index.html?qaScenario=reset-roundtrip&qaFixture=mid-game:17260:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=reset-roundtrip&qaFixture=mid-game:17604:13)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "restore-roundtrip",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.357045999999624,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "restore-roundtrip",
+        "json_status": "fail",
+        "json_scenario": "restore-roundtrip",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "current backup restore must remain on current schema",
+        "stack": "Error: current backup restore must remain on current schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=restore-roundtrip&qaFixture=mid-game:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=restore-roundtrip&qaFixture=mid-game:17626:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "malformed-backup-rejection"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "recovery-from-corrupt-primary",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.953559599999804,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "recovery-from-corrupt-primary",
+        "json_status": "fail",
+        "json_scenario": "recovery-from-corrupt-primary",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "malformed primary must be repaired from validated recovery",
+        "stack": "Error: malformed primary must be repaired from validated recovery\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=recovery-from-corrupt-primary&qaFixture=corrupted-with-recovery:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=recovery-from-corrupt-primary&qaFixture=corrupted-with-recovery:17647:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "unsupported-future-load",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.2479312999998218,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "unsupported-future-load",
+        "json_status": "fail",
+        "json_scenario": "unsupported-future-load",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "fresh state must use current save schema",
+        "stack": "Error: fresh state must use current save schema\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=unsupported-future-load&qaFixture=future-schema:16802:61)\n    at assertFresh (http://127.0.0.1:56732/index.html?qaScenario=unsupported-future-load&qaFixture=future-schema:17260:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=unsupported-future-load&qaFixture=future-schema:17654:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "legacy-backup-restore",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.474027799999807,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "legacy-backup-restore",
+        "json_status": "fail",
+        "json_scenario": "legacy-backup-restore",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "legacy backup must migrate to current schema before acceptance",
+        "stack": "Error: legacy backup must migrate to current schema before acceptance\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=legacy-backup-restore&qaFixture=mid-game:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=legacy-backup-restore&qaFixture=mid-game:17669:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "future-backup-rejection"
+    },
+    {
+      "status": "PASS",
+      "scenario": "recovery-offline-once"
+    },
+    {
+      "status": "PASS",
+      "scenario": "save-failure-warning"
+    },
+    {
+      "status": "PASS",
+      "scenario": "parity-short"
+    },
+    {
+      "status": "PASS",
+      "scenario": "parity-medium-farm"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-farm-retention"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-timer-boundary"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "parity-long-high-power",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 11.609924699999858,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "PASS",
+      "scenario": "parity-boss-short"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "parity-boss-retry",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.295831699999981,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "parity-boss-retry",
+        "json_status": "fail",
+        "json_scenario": "parity-boss-retry",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Auto-Empower must permit a later Boss retry once sustained damage is positive",
+        "stack": "Error: Auto-Empower must permit a later Boss retry once sustained damage is positive\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:17799:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "parity-auto-ascend"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "chronology-research-mid-window",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.0504375,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "chronology-research-mid-window",
+        "json_status": "fail",
+        "json_scenario": "chronology-research-mid-window",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Swift Recovery earns exactly two individually paid levels in this fixture",
+        "stack": "Error: Swift Recovery earns exactly two individually paid levels in this fixture\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=chronology-research-mid-window&qaFixture=chronology-research-mid-window:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=chronology-research-mid-window&qaFixture=chronology-research-mid-window:17832:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "chronology-study-mid-window",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.6050214999997987,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "chronology-study-mid-window",
+        "json_status": "fail",
+        "json_scenario": "chronology-study-mid-window",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "completed Wisp Ascendancy must increase combat for the remainder of the same window",
+        "stack": "Error: completed Wisp Ascendancy must increase combat for the remainder of the same window\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=chronology-study-mid-window&qaFixture=chronology-study-mid-window:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=chronology-study-mid-window&qaFixture=chronology-study-mid-window:17883:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "chronology-auto-empower-mid-window",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.148794400000013,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "chronology-auto-empower-mid-window",
+        "json_status": "fail",
+        "json_scenario": "chronology-auto-empower-mid-window",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Auto-Empower must purchase after Farm income makes a level affordable",
+        "stack": "Error: Auto-Empower must purchase after Farm income makes a level affordable\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=chronology-auto-empower-mid-window&qaFixture=chronology-auto-empower-mid-window:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=chronology-auto-empower-mid-window&qaFixture=chronology-auto-empower-mid-window:17900:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "chronology-auto-ascend-mid-window",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.7053085000002755,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "chronology-auto-ascend-mid-window",
+        "json_status": "fail",
+        "json_scenario": "chronology-auto-ascend-mid-window",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "offline simulation must continue from the post-Ascend state for the remaining time",
+        "stack": "Error: offline simulation must continue from the post-Ascend state for the remaining time\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=chronology-auto-ascend-mid-window&qaFixture=chronology-auto-ascend-mid-window:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=chronology-auto-ascend-mid-window&qaFixture=chronology-auto-ascend-mid-window:17937:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "chronology-boss-retry",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.1640789000000806,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "chronology-boss-retry",
+        "json_status": "fail",
+        "json_scenario": "chronology-boss-retry",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Boss chronology must include retreat, progression gain and retry",
+        "stack": "Error: Boss chronology must include retreat, progression gain and retry\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=chronology-boss-retry&qaFixture=chronology-boss-retry:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=chronology-boss-retry&qaFixture=chronology-boss-retry:17956:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "chronology-simultaneous-order"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-background-resume",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.2807337000002152,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-background-resume",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-background-resume",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "background/resume must preserve current save schema v3",
+        "stack": "Error: background/resume must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-background-resume&qaFixture=lifecycle-basic:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-background-resume&qaFixture=lifecycle-basic:17140:5)\n    at runResumeWindow (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-background-resume&qaFixture=lifecycle-basic:17183:5)\n    at async HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-background-resume&qaFixture=lifecycle-basic:18005:24)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-repeated-resume",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.069406000000425,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-repeated-resume",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-repeated-resume",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "resume cycle 1 must preserve current save schema v3",
+        "stack": "Error: resume cycle 1 must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-repeated-resume&qaFixture=lifecycle-basic:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-repeated-resume&qaFixture=lifecycle-basic:17140:5)\n    at runResumeWindow (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-repeated-resume&qaFixture=lifecycle-basic:17183:5)\n    at async HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-repeated-resume&qaFixture=lifecycle-basic:18026:25)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-cold-restart",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.443278400000185,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-cold-restart",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-cold-restart",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "cold restart must preserve current save schema v3",
+        "stack": "Error: cold restart must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-cold-restart&qaFixture=lifecycle-basic:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-cold-restart&qaFixture=lifecycle-basic:17140:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-cold-restart&qaFixture=lifecycle-basic:18060:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-partial-enemy",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.9932256999998352,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-partial-enemy",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-partial-enemy",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "partial enemy resume must preserve current save schema v3",
+        "stack": "Error: partial enemy resume must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-partial-enemy&qaFixture=lifecycle-partial-enemy:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-partial-enemy&qaFixture=lifecycle-partial-enemy:17140:5)\n    at runResumeWindow (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-partial-enemy&qaFixture=lifecycle-partial-enemy:17183:5)\n    at async HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-partial-enemy&qaFixture=lifecycle-partial-enemy:18083:25)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-boss-background-short",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.247309599999804,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-boss-background-short",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-boss-background-short",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "short Boss background intent must preserve current save schema v3",
+        "stack": "Error: short Boss background intent must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-background-short&qaFixture=chronology-boss-retry:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-background-short&qaFixture=chronology-boss-retry:17140:5)\n    at runResumeWindow (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-background-short&qaFixture=chronology-boss-retry:17183:5)\n    at async HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-background-short&qaFixture=chronology-boss-retry:18104:31)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-boss-retry",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.2159229000001215,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-boss-retry",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-boss-retry",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 15.999999999999938, got 15.851399999998447, tolerance 0.000001)",
+        "stack": "Error: boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 15.999999999999938, got 15.851399999998447, tolerance 0.000001)\n    at parityApprox (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16821:13)\n    at http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16846:7\n    at Array.forEach (<anonymous>)\n    at assertProtectedParity (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16845:122)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:17134:5)\n    at runResumeWindow (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:17183:5)\n    at async HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:18121:26)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-auto-ascend",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.1403312000003645,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-auto-ascend",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-auto-ascend",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Auto-Ascend offline lifecycle must preserve current save schema v3",
+        "stack": "Error: Auto-Ascend offline lifecycle must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-auto-ascend&qaFixture=chronology-auto-ascend-mid-window:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-auto-ascend&qaFixture=chronology-auto-ascend-mid-window:17140:5)\n    at runResumeWindow (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-auto-ascend&qaFixture=chronology-auto-ascend-mid-window:17183:5)\n    at async HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-auto-ascend&qaFixture=chronology-auto-ascend-mid-window:18148:28)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-ascend-integrity"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-03b-auto-ascend-integrity"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-wisp-progression-pacing",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 1.861339699999895,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-wisp-progression-pacing",
+        "json_status": "fail",
+        "json_scenario": "p2-wisp-progression-pacing",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Mythic must require deliberate Wisp investment through Lv.65",
+        "stack": "Error: Mythic must require deliberate Wisp investment through Lv.65\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-wisp-progression-pacing&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-wisp-progression-pacing&qaFixture=fresh:19126:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-endgame-currency-utility",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.3860123000000604,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "p2-endgame-currency-utility",
+        "json_status": "fail",
+        "json_scenario": "p2-endgame-currency-utility",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "all current Wisp Ultimates must retain the documented 250-Sigil total",
+        "stack": "Error: all current Wisp Ultimates must retain the documented 250-Sigil total\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=p2-endgame-currency-utility&qaFixture=fresh:16802:61)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=p2-endgame-currency-utility&qaFixture=fresh:19187:11)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-03a-wisp-role-integrity"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-03a-wisp-role-integrity-mature"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-03a-wisp-role-integrity-endgame"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-02a-core-qol"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-02b-wisp-hierarchy"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-02b-lab-hierarchy"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-long-study",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.322121599999722,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-long-study",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-long-study",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Long Study cold restart must preserve current save schema v3",
+        "stack": "Error: Long Study cold restart must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-long-study&qaFixture=chronology-study-mid-window:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-long-study&qaFixture=chronology-study-mid-window:17140:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-long-study&qaFixture=chronology-study-mid-window:18181:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-lab-queue",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.3430417999997735,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-lab-queue",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-lab-queue",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "Lab queue cold restart must preserve current save schema v3",
+        "stack": "Error: Lab queue cold restart must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-lab-queue&qaFixture=chronology-research-mid-window:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-lab-queue&qaFixture=chronology-research-mid-window:17140:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-lab-queue&qaFixture=chronology-research-mid-window:18218:11)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lifecycle-daily-rollover",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 2.26974310000008,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lifecycle-daily-rollover",
+        "json_status": "fail",
+        "json_scenario": "lifecycle-daily-rollover",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "same-day duplicate visible after daily rollover must preserve current save schema v3",
+        "stack": "Error: same-day duplicate visible after daily rollover must preserve current save schema v3\n    at assert (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-daily-rollover&qaFixture=lifecycle-daily:16802:61)\n    at assertLifecycleState (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-daily-rollover&qaFixture=lifecycle-daily:17140:5)\n    at HTMLDocument.run (http://127.0.0.1:56732/index.html?qaScenario=lifecycle-daily-rollover&qaFixture=lifecycle-daily:18264:13)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "wisp-formula-contract"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "formation-bonds-core",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "node:internal/assert/utils:77\r\n    throw err;\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Kindling mutation anchor\r\n    at main (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\formation-bonds.cjs:91:3)\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\formation-bonds.cjs:95:71)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: '==',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-bonds-mobile",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-autosave-contract"
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-autosave-native",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-autosave-reduced-motion",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-autosave-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-autosave-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "formation-autosave-recovery"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "ascend-prisms-contract",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "elapsed_sec": 25.12457890000008,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      },
+      "failure": null
+    },
+    {
+      "status": "PASS",
+      "scenario": "ascend-prisms-save-reload"
+    },
+    {
+      "status": "PASS",
+      "scenario": "ascend-prisms-backup-restore"
+    },
+    {
+      "status": "PASS",
+      "scenario": "ascend-prisms-recovery"
+    }
+  ]
+}

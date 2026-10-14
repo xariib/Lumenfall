@@ -43,10 +43,12 @@ window.runWispCardLayoutQa=function(baseline){
       if(baseline){
         ok(card.querySelector('[data-ultimate]').textContent.includes('Mythic required'),'baseline Ultimate prerequisite retained');
       }else{
-        var ultimateText=card.querySelector('[data-ultimate]').textContent;
+        var ultimateButton=card.querySelector('[data-ultimate]'),ultimateHelp=card.querySelector('.ultimate-requirements');
+        ok(ultimateHelp&&ultimateButton.getAttribute('aria-describedby')===ultimateHelp.id,'Ultimate associates its full requirements for assistive technology');
+        var ultimateText=ultimateHelp.textContent;
         ok(ultimateText.includes('Requires Mythic rarity')&&ultimateText.includes('highest rarity')&&ultimateText.includes('Use Rarity Up'),'Ultimate explains rarity requirement and route');
         var rarity=card.querySelector('.wisp-rarity-section'),requirement=rarity.querySelector('.rarity-level-requirement');
-        ok(requirement.textContent==='Requires Wisp Lv. '+b.rarityRequirement(0),'Rarity requirement explicitly uses Wisp level');
+        ok(requirement.textContent.includes('Requires Wisp Lv. '+b.rarityRequirement(0))&&requirement.textContent.includes('Rift'),'Rarity requirement explicitly uses Wisp level and Rift');
         ok(rarity.querySelector('[data-rarity]').getAttribute('aria-describedby')===requirement.id,'Rarity button associates its Wisp-level requirement');
       }
     }

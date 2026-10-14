@@ -114,7 +114,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
       }
     });
     var s=seed();s.maxDepthEver=1;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;s.lumen=1e8;s.shards=1e8;install(s);
-    q('[data-tab="research"]').click();var free=badge();q('[data-study="guardmastery"]').click();ok(badge()===free-1,'real start consumes capacity');
+    q('[data-tab="research"]').click();var free=badge();b.labMotes.input(function(){q('[data-study="guardmastery"]').click();});ok(badge()===free-1,'real start consumes capacity');
     s=b.getState();s.activeStudies[0].remainingSec=.05;install(s);b.feedbackTick(false);ok(badge()===free,'authoritative completion frees slot');
     s=seed();s.maxDepthEver=1;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;s.lumen=1e9;s.shards=1e9;
     install(s);var capacity=b.riftStatus.slots();s.activeStudies=b.riftStatus.projects().filter(x=>x.unlock<=1).slice(0,capacity).map(x=>({id:x.id,totalDurationSec:200,remainingSec:100,speedMult:1}));s.activeStudies[0].remainingSec=.05;s.studyQueue.wispascend=true;install(s);b.feedbackTick(false);

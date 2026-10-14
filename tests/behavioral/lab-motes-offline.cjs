@@ -13,8 +13,9 @@ function engine(seed,seconds=0){
     if((primaryFailure&&k==='lumenfall_save_v2')||(recoveryFailure&&k==='lumenfall_save_recovery_v1'))throw Error('injected storage failure');
     storage.set(k,v);writes.push(k);
   }};
-  // Fixed damage and zero ability charge isolate the reward/payment timeline.
-  const bridge=`window.qa={fresh:freshState,set:s=>state=acceptPersistedState(s),get:()=>state,apply:applyOfflineProgress,save:saveState,load:loadState,batch:n=>SIM_BATCH_EVENTS=n,clock:offlineProcessingClock,flags:()=>({busy:!!offlineCatchup,pending:offlinePending}),fault:()=>{var original=simulationResolveTimestamp;simulationResolveTimestamp=function(){simulationResolveTimestamp=original;throw Error('injected simulation failure');};}};simulationPassiveDps=function(){return 1100;};fillRateMult=function(){return 0;};`;
+  // Fixed HP/damage and zero ability charge isolate reward/payment chronology
+  // from the separately tested campaign HP curve and save HP-ratio migration.
+  const bridge=`window.qa={fresh:freshState,set:s=>state=acceptPersistedState(s),get:()=>state,apply:applyOfflineProgress,save:saveState,load:loadState,batch:n=>SIM_BATCH_EVENTS=n,clock:offlineProcessingClock,flags:()=>({busy:!!offlineCatchup,pending:offlinePending}),fault:()=>{var original=simulationResolveTimestamp;simulationResolveTimestamp=function(){simulationResolveTimestamp=original;throw Error('injected simulation failure');};}};enemyHpFor=function(){return 11;};simulationPassiveDps=function(){return 1100;};fillRateMult=function(){return 0;};`;
   const script=source.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+"if(document.readyState==='loading'){");
   const Clock=class extends Date{static now(){return now;}};
   new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,Clock,fn=>{queue.push(fn);return queue.length;},()=>{},{now:()=>monotonic});

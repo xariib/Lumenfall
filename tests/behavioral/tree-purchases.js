@@ -11,6 +11,7 @@ window.runTreePurchaseQa=function(b,ctx,assert){
     b.setState(s);b.feedbackSave();b.treePurchases.render();return b.getState();}
   function button(id){return document.querySelector('[data-node="'+id+'"]');}
   function rejected(id,message){var before=observer();ok(b.treePurchases.buy(id)===false,message);same(observer(),before,message+' is a pure rejection');}
+  function exactInteger(value){if(typeof value==='number')return BigInt(value);var p=value.split('e');return BigInt(p[0])*10n**BigInt(p[1]);}
 
   // The last effective levels use the existing individually rounded prices:
   // Echo level 5 -> 6 costs 11; Bonds level 19 -> 20 costs 2329.
@@ -76,18 +77,18 @@ window.runTreePurchaseQa=function(b,ctx,assert){
 
   seed('swift',0,1000);
   [undefined,null,'unknown',{id:'starlight',baseCost:0,growth:1}].forEach(function(id){rejected(id,'invalid or forged node');});
-  seed('swift',1000000,1000);ok(button('swift').disabled&&button('swift').textContent==='Unavailable','nonfinite price disabled');
-  rejected('swift','nonfinite price cannot debit');
+  seed('swift',1000000,1000);ok(button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.includes('e176091'),'very large finite price stays visible while unaffordable');
+  rejected('swift','unaffordable wide price cannot debit');
   seed('swift',0,Number.MAX_VALUE);
-  ok(button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.trim()==='3','unrepresentable payment preserves the finite visible price and currency icon');
-  rejected('swift','unrepresentable payment cannot grant a free level');
+  ok(!button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.trim()==='3','large wallet keeps the exact visible price and currency icon');
+  ok(b.treePurchases.buy('swift'),'large wallet funds an exact purchase');ok(exactInteger(b.getState().prisms)===BigInt(Number.MAX_VALUE)-3n&&b.getState().nodes.swift===1,'independent exact three-Prism debit from native maximum');
   seed('swift',0,1e16);
-  ok(button('swift').disabled&&button('swift').querySelector('.cost').textContent.trim()==='3','partially rounded payment keeps its visible price but is disabled');
-  rejected('swift','a displayed three-Prism price cannot charge four');
+  ok(!button('swift').disabled&&button('swift').querySelector('.cost').textContent.trim()==='3','promoted payment keeps its visible three-Prism price');
+  ok(b.treePurchases.buy('swift'),'promoted payment succeeds');ok(exactInteger(b.getState().prisms)===BigInt(1e16)-3n&&b.getState().nodes.swift===1,'displayed three-Prism price charges exactly three');
   seed('echo',0,1e16);
   ok(!button('echo').disabled,'an exactly representable large-wallet payment remains available');
   ok(b.treePurchases.buy('echo'),'exact large-wallet payment succeeds');
-  ok(b.getState().nodes.echo===1&&b.getState().prisms===1e16-2,'exactly two Prisms charged');
+  ok(b.getState().nodes.echo===1&&exactInteger(b.getState().prisms)===BigInt(1e16)-2n,'exactly two Prisms charged');
   // Equal-price buttons must remain distinguishable after shared presentation
   // and affordability refresh, including the two initial two-Prism upgrades.
   seed('swift',0,1000);

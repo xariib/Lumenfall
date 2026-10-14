@@ -54,7 +54,7 @@ window.runLabUiQa = function(b,ctx,assert){
 
   ['guardmastery','wispascend'].forEach(function(id){
     var beginning=seed();beginning.activeStudies=[];install(beginning);
-    var begin=q('[data-study="'+id+'"]');begin.focus();begin.click();
+    var begin=q('[data-study="'+id+'"]');begin.focus();b.labMotes.input(function(){begin.click();});
     ok(b.getState().activeStudies.some(function(active){return active.id===id;}),'Begin Study starts the selected Study');
     ok(document.activeElement.dataset.studySpeedTarget===id&&document.activeElement.getClientRects().length,'beginning a Study restores focus to its visible speed selector');
     ok(!q('[data-study-inspection="'+id+'"]').hidden,'beginning a Study keeps controls visible');
@@ -65,7 +65,7 @@ window.runLabUiQa = function(b,ctx,assert){
   var saved=b.getState();ok(saved.studySpeedTargets.guardmastery===3&&saved.motes===1000&&saved.activeStudies[0].speedMult===1,'selection alone never buys');
   var buy=q('[data-speed-study="guardmastery"][data-speed="3"]');buy.focus();b.renderLayout();
   ok(document.activeElement.dataset.speed==='3'&&document.activeElement.dataset.speedStudy==='guardmastery','unrelated rendering preserves an available purchase focus');
-  q('[data-speed-study="guardmastery"][data-speed="3"]').click();
+  b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="3"]').click();});
   var paid=b.getState();ok(paid.motes===940&&paid.activeStudies[0].speedMult===3,'real button charges exactly 60 Motes');
   ok(document.activeElement.dataset.studySpeedTarget==='guardmastery','purchase returns usable focus to same Study selector');
   ok(!q('[data-study-inspection="guardmastery"]').hidden&&q('[data-speed-study="guardmastery"][data-speed="3"]').disabled&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline purchase marks current speed');

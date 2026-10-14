@@ -35,7 +35,10 @@ function createGameAmount(){
     var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,Math.abs(n));
     var hi=v.getUint32(0),lo=v.getUint32(4),shift=((hi>>>20)&2047)-1023-52;
     var d=String((hi&1048575)*4294967296+lo+4503599627370496);
-    for(var i=0;i<shift;i++)d=digitMul(d,'2');
+    // Multiply in exact 26-bit chunks so repeatedly inspecting large native
+    // combat values does not perform hundreds of decimal multiplications.
+    while(shift>=26){d=digitMul(d,'67108864');shift-=26;}
+    if(shift>0)d=digitMul(d,String(Math.pow(2,shift)));
     return clean({d:d,e:0,s:n<0?-1:1});
   }
   function parts(value){
@@ -55,7 +58,7 @@ function createGameAmount(){
     return Number.isFinite(n)&&Math.abs(n)<=SAFE?n:text;
   }
   function wide(value){return typeof value==='string'&&/^-?\d+e-?\d+$/.test(value);}
-  function valid(value){if(typeof value!=='number'&&!wide(value))return false;try{parts(value);return true;}catch(e){return false;}}
+  function valid(value){if(typeof value==='number')return Number.isFinite(value);if(!wide(value))return false;try{parts(value);return true;}catch(e){return false;}}
   function compareParts(a,b){
     if(a.d==='0'&&b.d==='0')return 0;
     if(a.d==='0')return -b.s;if(b.d==='0')return a.s;
@@ -72,7 +75,7 @@ function createGameAmount(){
   }
   function add(a,b){
     if((typeof a==='string'&&!wide(a))||(typeof b==='string'&&!wide(b)))return a+b;
-    if(!wide(a)&&!wide(b)&&(typeof a!=='number'||typeof b!=='number'||!Number.isFinite(a+b)))return a+b;
+    if(!wide(a)&&!wide(b)&&(typeof a!=='number'||typeof b!=='number'||!Number.isFinite(a)||!Number.isFinite(b)))return a+b;
     if(!wide(a)&&!wide(b)&&Number.isFinite(a+b))return a+b;
     return exactAdd(a,b);
   }
@@ -112,7 +115,11 @@ function createGameAmount(){
     var x=parts(a),y=parts(b);if(y.d==='0')return x.d==='0'?NaN:x.s*Infinity;if(x.d==='0')return 0;
     var ax=Number(x.d.slice(0,16))/Math.pow(10,Math.min(16,x.d.length)-1);
     var by=Number(y.d.slice(0,16))/Math.pow(10,Math.min(16,y.d.length)-1);
-    var result=x.s*y.s*(ax/by)*Math.pow(10,(x.d.length+x.e)-(y.d.length+y.e));
+    var exponent=(x.d.length+x.e)-(y.d.length+y.e);
+    var result=x.s*y.s*(ax/by)*Math.pow(10,exponent);
+    // 10^-324 underflows before multiplying its mantissa, even when the
+    // complete quotient (e.g. 9e-324) is representable. Parse the full value.
+    if(result===0)result=Number(String(x.s*y.s*(ax/by))+'e'+exponent);
     // A nonzero physical interval must not disappear at the native underflow
     // boundary. The scheduler can then resolve a state event at that interval.
     return result===0 ? x.s*y.s*Number.MIN_VALUE : result;
@@ -147,7 +154,7 @@ function createGameAmount(){
     else {var first=cut>=0?Number(p.d.charAt(cut)||0):0;up=first>5||(first===5&&(p.s>0||/[1-9]/.test(rest.slice(1))));}
     return encode({d:up?digitAdd(integer,'1'):integer,e:0,s:p.s});
   }
-  function integer(a){return valid(a)&&cmp(a,round(a,'floor'))===0;}
+  function integer(a){return typeof a==='number'?Number.isInteger(a):valid(a)&&cmp(a,round(a,'floor'))===0;}
   function min(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.min.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)<=0?a:b;},Infinity);}
   function max(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.max.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)>=0?a:b;},-Infinity);}
   function text(a){var p=parts(a),e=p.d.length-1+p.e;return (p.s<0?'-':'')+p.d.charAt(0)+(p.d.length>1?'.'+p.d.slice(1,4):'')+'e'+e;}

@@ -54,32 +54,50 @@ const instrumented=source.replace(marker,bridge+marker);
 const policies={casual:{sessions:2,activeSec:300,decisionSec:10,speed:8,budget:.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},frequent:{sessions:6,activeSec:600,decisionSec:10,speed:8,budget:.5},regular_fast:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8,budget:.9}};
 const days=Number(process.argv[3]||7),name=process.argv[4]||'regular';
 assert(policies[name]&&Number.isInteger(days)&&days>0&&days<=730);
+const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
+const resumePath=process.env.LUMENFALL_CAMPAIGN_RESUME;
+const checkpoint=resumePath?JSON.parse(fs.readFileSync(resumePath,'utf8')):null;
+if(checkpoint){assert.equal(checkpoint.sourceSha256,sourceSha256,'resume uses the exact measured source');assert.equal(checkpoint.policySha256,policySha256,'resume uses the exact measured policy');assert.equal(checkpoint.policy,name);assert(checkpoint.history.length<days,'resume extends a campaign');}
+let diagnostic=()=>({});
+process.once('uncaughtException',error=>{
+ const failure={status:'FAIL',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),policySha256,policy:name,error:error.stack,...diagnostic()};
+ if(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT)fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT+'.failure.json',JSON.stringify(failure,null,2));
+ process.stderr.write(error.stack+'\n');process.exitCode=1;
+});
 
 function campaign(){
   const x=app(instrumented,undefined,{clockDate:true}),q=x.q;
   // Bridge is observed through a test-only function returning its closure.
   const b=q.endless;
-  const policy=policies[name],milestones={},history=[],walls=[];
-  let elapsed=0,lastRecordAt=0,lastRecord=1,lastAscendAt=-Infinity,lastSaving=false;
+  const policy=policies[name],milestones=checkpoint?checkpoint.milestones:{},history=checkpoint?checkpoint.history:[],walls=checkpoint?checkpoint.walls:[];
+  let elapsed=checkpoint?checkpoint.elapsed:0,lastRecordAt=checkpoint?checkpoint.lastRecordAt:0,lastRecord=checkpoint?checkpoint.lastRecord:1,lastAscendAt=checkpoint?checkpoint.lastAscendAt:-Infinity,lastSaving=checkpoint?checkpoint.lastSaving:false;
+  if(checkpoint){q.set(checkpoint.state);x.clock(CLOCK+elapsed*1000);}
+  diagnostic=()=>({elapsed,milestones,state:q.get()});
   const s=q.get();
   // Automation remains gated by earned Deeds in the production scheduler.
+  if(!checkpoint){
   Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=true);
   for(const study of q.projects())s.studyQueue[study.id]=study.id==='wispascend';
   // Speed is paid only from earned Motes, at the actual per-project price.
   for(const study of q.projects()){s.studyUseMotes[study.id]=study.id==='wispascend';s.studySpeedTargets[study.id]=policy.speed;}
   // Only useful repeatable foundations and charge are automatically purchased.
   for(const node of q.defs())s.researchQueue[node.id]=!node.retiredTo&&node.levelCap!==undefined;
+  }
   const note=()=>{
     const state=q.get();
     for(const sp of b.wisps()){
       if(state.spirits[sp.id]>0&&milestones['recruit.'+sp.id]===undefined)milestones['recruit.'+sp.id]=elapsed;
       if(state.heroRarity[sp.id]>0&&milestones.firstRarity===undefined)milestones.firstRarity=elapsed;
       if(state.heroRarity[sp.id]>=5&&milestones.firstMythic===undefined)milestones.firstMythic=elapsed;
+      if(state.heroRarity[sp.id]>=5&&milestones['mythic.'+sp.id]===undefined)milestones['mythic.'+sp.id]=elapsed;
       if(state.wispUltimate[sp.id]&&milestones.firstUltimate===undefined)milestones.firstUltimate=elapsed;
+      if(state.wispUltimate[sp.id]&&milestones['ultimate.'+sp.id]===undefined)milestones['ultimate.'+sp.id]=elapsed;
       if(state.wispMastery&&state.wispMastery[sp.id]>0&&milestones.firstMastery===undefined)milestones.firstMastery=elapsed;
+      if(state.wispMastery&&state.wispMastery[sp.id]>0&&milestones['mastery.'+sp.id]===undefined)milestones['mastery.'+sp.id]=elapsed;
     }
     if(state.ascendCount>0&&milestones.firstAscend===undefined)milestones.firstAscend=elapsed;
     if(b.wisps().every(sp=>milestones['recruit.'+sp.id]!==undefined)&&milestones.allRecruits===undefined)milestones.allRecruits=elapsed;
+    if(b.wisps().every(sp=>state.heroRarity[sp.id]>=5&&state.wispModules[sp.id]>=20&&state.wispUltimate[sp.id])&&milestones.fullRosterDevelopment===undefined)milestones.fullRosterDevelopment=elapsed;
     if(state.maxDepthEver>lastRecord){
       if(elapsed-lastRecordAt>=3600)walls.push({from:lastRecord,to:state.maxDepthEver,seconds:elapsed-lastRecordAt});
       lastRecord=state.maxDepthEver;lastRecordAt=elapsed;
@@ -155,7 +173,7 @@ function campaign(){
       q.ascend();lastAscendAt=elapsed;note();
     }
   }
-  for(let day=0;day<days;day++){
+  for(let day=history.length;day<days;day++){
     for(let session=0;session<policy.sessions;session++){
       decisions();
       for(let t=0;t<policy.activeSec;t+=policy.decisionSec){
@@ -177,10 +195,15 @@ function campaign(){
     history.push({day:day+1,maxDepth:state.maxDepthEver,ascends:state.ascendCount,
       levels:JSON.parse(JSON.stringify(state.spirits)),rarity:JSON.parse(JSON.stringify(state.heroRarity)),
       modules:JSON.parse(JSON.stringify(state.wispModules)),labs:JSON.parse(JSON.stringify(state.longStudyLevels)),
+      ultimates:JSON.parse(JSON.stringify(state.wispUltimate)),mastery:JSON.parse(JSON.stringify(state.wispMastery)),
       forge:JSON.parse(JSON.stringify(state.research)),tree:JSON.parse(JSON.stringify(state.nodes)),
       lumen:state.lumen,shards:state.shards,prisms:state.prisms,sigils:state.sigils,motes:state.motes,owned:JSON.parse(JSON.stringify(state.owned)),active:JSON.parse(JSON.stringify(state.activeStudies)),autoAscend:state.autoAscendEnabled});
     if(process.env.LUMENFALL_CAMPAIGN_PROGRESS==='1')process.stderr.write(name+' day '+(day+1)+' Rift '+state.maxDepthEver+' Lab '+state.longStudyLevels.wispascend+'\n');
-    if(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT)fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT,JSON.stringify({milestones,history,walls},null,2));
+    if(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT){
+      fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT,JSON.stringify({milestones,history,walls},null,2));
+      fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT+'.endpoint.json',JSON.stringify(q.get()));
+      fs.writeFileSync(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT+'.checkpoint.json',JSON.stringify({sourceSha256,policySha256,policy:name,elapsed,lastRecordAt,lastRecord,lastAscendAt,lastSaving,milestones,history,walls,state:q.get()}));
+    }
     // Retained write evidence is not the campaign's history; release its memory.
     x.writes.length=0;
   }
@@ -188,5 +211,5 @@ function campaign(){
   return {milestones,walls,history};
 }
 const result=campaign();
-console.log(JSON.stringify({status:'MEASURED',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),policySha256:policySha256,policy:name,policyDetails:policies[name],days,
+console.log(JSON.stringify({status:'MEASURED',sourceSha256,policySha256:policySha256,policy:name,policyDetails:policies[name],days,resumedFrom:resumePath||null,
   limits:'Deterministic real-engine sessions and offline chronology; only earned currencies fund automation/speed; not human/device acceptance.',...result},null,2));

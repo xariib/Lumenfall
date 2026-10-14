@@ -180,3 +180,60 @@ index.html. Existing paid work and purchased speeds remain byte-for-byte tuples.
 Next: complete matched casual/regular/efficient/extended measurements, repair
 remaining walls and extreme Push cost, freeze accepted tables, update all new
 UI/golden contracts, run required full CI/native checks, then combined delivery.
+
+Checkpoint after full-suite expansion: the supported Windows CDP pipe transport
+gets real results rather than dump-dom timeouts. Legacy upgrade contracts,
+chronology, persistence/recovery and mobile/enlarged layouts pass. Wisp scroll
+now3229, layout/simplicity and Resonate pass. Lab numerical/826 conservation
+fixtures retain their original quotient counterexamples using explicitly fixed
+HP while campaign HP changes; exact large-wallet credits now have an independent
+BigInt decimal oracle. Runtime Farm arithmetic passes without BigInt in the app.
+Some paused UI fixtures intentionally set reloadInProgress; explicit input now
+temporarily restores the normal interactive flag for atomic Lab transactions.
+This does not bypass save failures. Existing full-suite assertions/gates remain.
+Full-suite run32675 finished FAIL; it started on999390 source and older fixture
+copies. Its219 result records are saved in full-regression-pipe-summary.json.
+Focused replacements are source-bound separately. Stale schema4 assertions,
+old recruitment/cost/formula fixtures and chronology scenarios still require
+targeted updates and regression fixes; the full suite must be rerun afterward.
+Tree/Rift contract transport deadlines and stacking driver timeouts remain open.
+
+Core130 covers failed purchases retaining paid-work clock continuity, with a
+causal lost-clock control. Amount379 adds exact finite native overflow and
+subnormal mantissa reconstruction. Wide53 covers queued native/wide Mote-price
+debits, Auto-Ascend reports, wide offline totals and subnormal partial damage.
+Controls11 includes free queued speed and discarded physical progress defects.
+Own-Power caching is bounded to one immutable value per Wisp and keys every
+input; early-curve2801/5 controls, Support1674/4 and parity305 pass after it.
+The complete high-rank replay on U/V exposed a real underflow stall, not merely
+a performance timeout: 10^-324 vanished before its representable mantissa, and
+partial damage was incorrectly treated as no state progress. Both repaired;
+the independent partial-damage fixture and its causal control pass. Full
+rank10000 replay performance still needs a final-source run and remains OPEN.
+Actual V8 6.0 now passes17 Mastery/queue/subnormal checks; no BigInt runtime.
+Locked recruitment cards now show the real disabled price and Current/Next own
+Power alongside their complete gate text. Mobile457 passes, including200% text.
+
+S snapshots are experimental measurements, not final-source acceptance:
+regular56days: roster16.67,Mythic36.33,Ultimate/Mastery41.33; closed gaps max2.33d.
+Casual: roster19,Mythic39,Ultimate44.5, with one5.5d midgame gap. Frequent:
+roster17.67,Mythic39.83,Ultimate44.83. Efficient: roster13.67,Mythic36.67,
+Ultimate41.67. Regular S was stopped at56days; other S runs remain underway.
+The original target is now explicitly audited as42-56 elapsed days, rather than
+calling day36 calendar week6. CandidateW raises final rarity/Ultimate/Mastery
+completed-Lab gates by2, keeping early tiers/recruits unchanged. It is generated
+with moteGrowth1.8,maxWork864000,finalLabShift2. Regular180days run91596; U180day
+82662 remains the comparison. New campaigns track every Wisp's Mythic/Ultimate/
+Mastery and full-roster development, save complete daily earned checkpoints,
+and permit same-source/same-policy cold-load continuation. No invented funds.
+W predates the latest subnormal arithmetic repair, so final-byte validation is
+still required even when its numeric model is calibrated. No S/W tables applied.
+calibration-s-partial.json freezes the snapshots with source/policy hashes;
+its matching policy/harness/amount bytes are under policies/81a4632a… .
+
+Delivery access: connector login xariib; karahaNx/Lumenfall returns404. Read-only
+Git ls-remote succeeds at network access when elevated but has no credentials.
+The connector can read the empty xariib/Lumenfall repository with admin/push
+permissions. A destination clarification is pending; no repo/remote changed,
+no publication, import, merge or APK launch. This is a concrete delivery blocker,
+not an automatic approval rejection. Continue unaffected implementation/checks.

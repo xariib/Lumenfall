@@ -3081,7 +3081,10 @@ function createGameAmount(){
     var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,Math.abs(n));
     var hi=v.getUint32(0),lo=v.getUint32(4),shift=((hi>>>20)&2047)-1023-52;
     var d=String((hi&1048575)*4294967296+lo+4503599627370496);
-    for(var i=0;i<shift;i++)d=digitMul(d,'2');
+    // Multiply in exact 26-bit chunks so repeatedly inspecting large native
+    // combat values does not perform hundreds of decimal multiplications.
+    while(shift>=26){d=digitMul(d,'67108864');shift-=26;}
+    if(shift>0)d=digitMul(d,String(Math.pow(2,shift)));
     return clean({d:d,e:0,s:n<0?-1:1});
   }
   function parts(value){
@@ -3101,7 +3104,7 @@ function createGameAmount(){
     return Number.isFinite(n)&&Math.abs(n)<=SAFE?n:text;
   }
   function wide(value){return typeof value==='string'&&/^-?\d+e-?\d+$/.test(value);}
-  function valid(value){if(typeof value!=='number'&&!wide(value))return false;try{parts(value);return true;}catch(e){return false;}}
+  function valid(value){if(typeof value==='number')return Number.isFinite(value);if(!wide(value))return false;try{parts(value);return true;}catch(e){return false;}}
   function compareParts(a,b){
     if(a.d==='0'&&b.d==='0')return 0;
     if(a.d==='0')return -b.s;if(b.d==='0')return a.s;
@@ -3118,7 +3121,7 @@ function createGameAmount(){
   }
   function add(a,b){
     if((typeof a==='string'&&!wide(a))||(typeof b==='string'&&!wide(b)))return a+b;
-    if(!wide(a)&&!wide(b)&&(typeof a!=='number'||typeof b!=='number'||!Number.isFinite(a+b)))return a+b;
+    if(!wide(a)&&!wide(b)&&(typeof a!=='number'||typeof b!=='number'||!Number.isFinite(a)||!Number.isFinite(b)))return a+b;
     if(!wide(a)&&!wide(b)&&Number.isFinite(a+b))return a+b;
     return exactAdd(a,b);
   }
@@ -3158,7 +3161,11 @@ function createGameAmount(){
     var x=parts(a),y=parts(b);if(y.d==='0')return x.d==='0'?NaN:x.s*Infinity;if(x.d==='0')return 0;
     var ax=Number(x.d.slice(0,16))/Math.pow(10,Math.min(16,x.d.length)-1);
     var by=Number(y.d.slice(0,16))/Math.pow(10,Math.min(16,y.d.length)-1);
-    var result=x.s*y.s*(ax/by)*Math.pow(10,(x.d.length+x.e)-(y.d.length+y.e));
+    var exponent=(x.d.length+x.e)-(y.d.length+y.e);
+    var result=x.s*y.s*(ax/by)*Math.pow(10,exponent);
+    // 10^-324 underflows before multiplying its mantissa, even when the
+    // complete quotient (e.g. 9e-324) is representable. Parse the full value.
+    if(result===0)result=Number(String(x.s*y.s*(ax/by))+'e'+exponent);
     // A nonzero physical interval must not disappear at the native underflow
     // boundary. The scheduler can then resolve a state event at that interval.
     return result===0 ? x.s*y.s*Number.MIN_VALUE : result;
@@ -3193,7 +3200,7 @@ function createGameAmount(){
     else {var first=cut>=0?Number(p.d.charAt(cut)||0):0;up=first>5||(first===5&&(p.s>0||/[1-9]/.test(rest.slice(1))));}
     return encode({d:up?digitAdd(integer,'1'):integer,e:0,s:p.s});
   }
-  function integer(a){return valid(a)&&cmp(a,round(a,'floor'))===0;}
+  function integer(a){return typeof a==='number'?Number.isInteger(a):valid(a)&&cmp(a,round(a,'floor'))===0;}
   function min(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.min.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)<=0?a:b;},Infinity);}
   function max(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.max.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)>=0?a:b;},-Infinity);}
   function text(a){var p=parts(a),e=p.d.length-1+p.e;return (p.s<0?'-':'')+p.d.charAt(0)+(p.d.length>1?'.'+p.d.slice(1,4):'')+'e'+e;}
@@ -3221,7 +3228,7 @@ var ENDLESS_PROGRESSION = {
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,29],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
   ultimate:{sigils:{ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000},module:15,depth:120,lab:30,forge:10,ascends:50},
   mastery:{prismBase:200,prismStep:10,sigilBase:5000,sigilStep:500,depthBase:200,depthStep:25,labBase:30,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
-  speedMoteGrowth:1,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:777600,lateStudyCostStart:30,lateStudyCostGrowth:1.35
+  masterworkPowerGrowth:1,speedMoteGrowth:1,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:777600,lateStudyCostStart:30,lateStudyCostGrowth:1.35
 };
 var SPIRITS = [
   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
@@ -4994,7 +5001,7 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
   );
   out.totalTaps = persistedAmountInteger(source.totalTaps,fresh.totalTaps);
   out.totalKills = persistedAmountInteger(source.totalKills,fresh.totalKills);
-  out.totalOfflineSeconds = finiteNonNegative(source.totalOfflineSeconds,fresh.totalOfflineSeconds);
+  out.totalOfflineSeconds = persistedAmount(source.totalOfflineSeconds,fresh.totalOfflineSeconds);
   out.luminousAccum = Math.max(0,Math.min(0.999999,finiteNonNegative(source.luminousAccum,fresh.luminousAccum)));
   out._autoTapAccum = Math.max(0,Math.min(999.999,finiteNonNegative(source._autoTapAccum,0)));
   out._autoEmpowerAccum = Math.max(0,Math.min(999.999,finiteNonNegative(source._autoEmpowerAccum,0)));
@@ -5817,13 +5824,13 @@ function creditAmount(wallet,gain){
   return Amount.exactAdd(wallet,gain);
 }
 function forgeCommitPaidMutation(apply){
-  var base=state;
+  var base=state,memoWasBase=studyClockMemo && studyClockMemo.state===state;
   state=clonePersistedValue(base);
   apply();
   if(studyClockMemo && studyClockMemo.state===base) studyClockMemo.state=state;
   var working=state,saved=saveState();
   // saveState replaces state only after primary storage owns the endpoint.
-  if(!saved && state===working){state=base;return false;}
+  if(!saved && state===working){state=base;if(memoWasBase)studyClockMemo.state=base;return false;}
   return true;
 }
 function forgeGiveCharge(id,amount){
@@ -5866,6 +5873,7 @@ function forgeHasChargeGrants(){
   return !!(forgeLevel('tapconduit') || forgeLevel('relay') || forgeLevel('sustainedchannel') || forgeLevel('victorycharge') || forgeLevel('resonancecascade'));
 }
 function forgeBossPolicyActive(){
+  if(ENDLESS_PROGRESSION.masterworkPowerGrowth>1 && researchLevel('masterwork')>0)return true;
   return ['cauterize','fracturekey','guardianseal','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','resonancecascade'].some(function(id){return forgeLevel(id)>0;});
 }
 function sigilResonanceLimit(snapshot){return SIGIL_RESONANCE_RUN_LIMIT+forgeLevel('resonancecells',snapshot);}
@@ -6097,10 +6105,16 @@ function spiritPower(sp, level){
   var earlyBonus=(sp.id==='ember' || sp.id==='stone') ? Amount.mul(352,Amount.pow(Amount.max(0,Amount.sub(level,70)),2)) : 0;
   return Amount.add(Amount.mul(Amount.mul(sp.basePower,level),Amount.add(1,Amount.mul(0.01,Amount.sub(level,1)))),earlyBonus);
 }
+var wispPowerCache={};
 function wispPower(sp,level){
   if(!sp || Amount.le(level,0)) return 0;
   var tier = state.heroRarity[sp.id]||0;
-  return Amount.mul(Amount.mul(spiritPower(sp,level),RARITY_MULT[tier]),wispMasteryFactor(sp.id));
+  // A rank can produce hundreds of digits. Reuse its immutable own-Power
+  // value until an actual input changes, including bought Forge development.
+  var key=[level,sp.basePower,tier,RARITY_MULT[tier],wispMasteryLevel(sp.id),researchLevel('masterwork'),ENDLESS_PROGRESSION.masterworkPowerGrowth].join('|');
+  var cached=wispPowerCache[sp.id];if(cached && cached.key===key)return cached.value;
+  var value=Amount.mul(Amount.mul(Amount.mul(spiritPower(sp,level),RARITY_MULT[tier]),wispMasteryFactor(sp.id)),Amount.pow(ENDLESS_PROGRESSION.masterworkPowerGrowth,researchLevel('masterwork')));
+  wispPowerCache[sp.id]={key:key,value:value};return value;
 }
 function totalActivePartyPower(){
   var sum = 0;
@@ -7355,7 +7369,7 @@ function forgeMechanicDescription(m){
 }
 
 function researchEffectPreview(node,level){
-  if(node.id==='masterwork')return {level:level,capacity:level*ENDLESS_PROGRESSION.mastery.ranksPerForge,factor:1,bonus:0};
+  if(node.id==='masterwork')return {level:level,capacity:level*ENDLESS_PROGRESSION.mastery.ranksPerForge,factor:Amount.pow(ENDLESS_PROGRESSION.masterworkPowerGrowth,level),bonus:0};
   var value = {factor:researchFactor(node.id,level),bonus:researchBonus(node.id,level)};
   if(node.forgeGroup) value.level=researchEffectiveLevel(node,level);
   if(node.id==='charge'){value.cycle=abilityCycleSeconds(level);}
@@ -7376,7 +7390,7 @@ function researchPreview(node,requested){
     purchase:researchEffectPreview(node,Amount.add(level,plan.buyCount))};
 }
 function researchEffectText(node,value){
-  if(node.id==='masterwork')return value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened';
+  if(node.id==='masterwork')return (ENDLESS_PROGRESSION.masterworkPowerGrowth>1?'Own Wisp Power ×'+formatRiftNumber(value.factor)+'; ':'')+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
   if(node.forgeGroup) return forgeEffectText(node.id,value.level);
   function decimal(n){return Number(n.toFixed(4)).toString();}
   if(node.id==='luminoustracking') return '+'+decimal(value.bonus*100)+' percentage points; '+
@@ -7577,7 +7591,7 @@ function autoFillStudySlots(){
   candidates.sort(function(a,b){
     var ca = studyCost(a, state.longStudyLevels[a.id]||0);
     var cb = studyCost(b, state.longStudyLevels[b.id]||0);
-    return (ca.lumen+ca.shard) - (cb.lumen+cb.shard);
+    return Amount.cmp(Amount.add(ca.lumen,ca.shard),Amount.add(cb.lumen,cb.shard));
   });
   var started = false;
   for(var i=0; i<candidates.length && state.activeStudies.length<studySlotCount(); i++){
@@ -8734,7 +8748,7 @@ function renderSpirits(keepScroll){
     var level = state.spirits[sp.id];
     var unlocked = wispRecruitmentUnlocked(sp);
     if(!unlocked){
-      html=(html + '<div class="card hero-card locked" data-state="locked" aria-disabled="true" data-wisp-card="' + sp.id + '">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id"><div class="name">???</div><div class="class-tag lock-note">Requires ' + wispRecruitmentRequirementText(sp) + '</div></div>' + '</div></div>');
+      html=(html + '<div class="card hero-card locked" data-state="locked" aria-disabled="true" data-wisp-card="' + sp.id + '">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id"><div class="name">???</div><div class="class-tag lock-note" id="wisp-recruit-requirement-'+sp.id+'">Requires ' + wispRecruitmentRequirementText(sp) + '</div></div></div>'+ '<div class="ability-effects"><div><span class="ability-effect-label">Current</span><div>0 Wisp Power</div></div><div><span class="ability-effect-label">Next</span><div>'+formatNum(wispPower(sp,1))+' Wisp Power at Lv. 1</div></div></div>'+'<button class="mini-btn wisp-empower-action" data-empower="'+sp.id+'" aria-describedby="wisp-recruit-requirement-'+sp.id+'" disabled><strong>Recruit</strong>'+purchasePriceMarkup('lumen',spiritCost(sp),'mono')+'</button></div>');
       return;
     }
     var recruited = Amount.gt(level,0);
@@ -8765,8 +8779,8 @@ function renderSpirits(keepScroll){
       ((resonanceOwned ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="',sp.id),'" aria-describedby="'),resonanceHelpId),'" '),resonanceDisabled?'disabled':''),'>Resonate — Fill ability to 100'),'<span>'),sigilResonanceCost()),' Sigils</span></button>') : '') + '<p class="sigil-resonance-help" id="' + resonanceHelpId + '">Spend ' + sigilResonanceCost() + ' Sigils to fill this Active Wisp\'s ability resource to 100. This is a refill, not a permanent upgrade. ' + 'Requires all Wisp Ultimates. ' + Amount.sub(sigilResonanceLimit(),resonanceUses) + ' of ' + sigilResonanceLimit() + ' uses left this run, shared across all Wisps. Resets on Ascend.' + forgeResonanceBonusText() + '</p>') : '';
     var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
-      : '<p class="ultimate-requirements">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
-        '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" '+(ultimatePlan.affordable?'':'disabled')+'>Unlock Ultimate'+purchasePriceMarkup('sigil',ultCost,'wisp-upgrade-price')+'</button>')+'</div>';
+      : '<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
+        '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" aria-describedby="wisp-ultimate-requirement-'+sp.id+'" '+(ultimatePlan.affordable?'':'disabled')+'>Unlock Ultimate'+purchasePriceMarkup('sigil',ultCost,'wisp-upgrade-price')+'</button>')+'</div>';
     var empowerOn = state.empowerQueue[sp.id]!==false;
     var pendingRebuild = intendedFormationIds().indexOf(sp.id)!==-1 && !recruited;
     var chosen = chosenMembers.indexOf(sp.id)!==-1;
@@ -10120,7 +10134,7 @@ function simulationCompleteDueStudies(summary){
     var active = state.activeStudies[i];
     if(active.remainingSec>SIM_EPS) continue;
     var result=finishStudyRecord(i);
-    if(result.earned){summary.completedStudies.push(result.name);summary.motesGained+=result.moteBonus||0;earned++;}
+    if(result.earned){summary.completedStudies.push(result.name);summary.motesGained=Amount.add(summary.motesGained,result.moteBonus||0);earned++;}
     else summary.closedStudies.push(result.name);
     handled++;
   }
@@ -10135,7 +10149,7 @@ function simulationStartQueuedStudies(summary){
   candidates.sort(function(a,b){
     var ca = studyCost(a,state.longStudyLevels[a.id]||0);
     var cb = studyCost(b,state.longStudyLevels[b.id]||0);
-    return (ca.lumen+ca.shard)-(cb.lumen+cb.shard);
+    return Amount.cmp(Amount.add(ca.lumen,ca.shard),Amount.add(cb.lumen,cb.shard));
   });
   for(var i=0;i<candidates.length && state.activeStudies.length<studySlotCount();i++){
     var node = candidates[i];
@@ -10177,11 +10191,11 @@ function simulationBuyStudySpeeds(summary,elapsedSec){
   // Shared Motes follow catalogue order, independent of active/UI ordering.
   LONG_STUDIES.forEach(function(node){
     var plan=studyMotesPlan(node);
-    if(!plan || state.motes<plan.cost) return;
-    state.motes-=plan.cost;
+    if(!plan || Amount.lt(state.motes,plan.cost)) return;
+    state.motes=debitAmount(state.motes,plan.cost);
     plan.active.speedMult=plan.target;
     summary.studySpeedPurchases++;
-    summary.studyMotesSpent+=plan.cost;
+    summary.studyMotesSpent=Amount.add(summary.studyMotesSpent,plan.cost);
     simulationTimelinePush(summary,elapsedSec,'studySpeed',{id:node.id,speed:plan.target,cost:plan.cost});
     bought++;
   });
@@ -10196,10 +10210,10 @@ function simulationKillsUntilStudyMotes(){
   LONG_STUDIES.forEach(function(node){
     var plan=studyMotesPlan(node);
     if(!plan) return;
-    var deficit=plan.cost-state.motes;
-    if(deficit<=0){best=0;return;}
+    var deficit=Amount.sub(plan.cost,state.motes);
+    if(Amount.le(deficit,0)){best=0;return;}
     // Any positive deficit needs a real Luminous reward, however small it is.
-    var luminousNeeded=Math.max(1,Math.ceil(deficit/reward));
+    var luminousNeeded=Math.max(1,Math.ceil(Amount.ratio(deficit,reward)));
     if(luminousNeeded<=first){best=Math.min(best,1);return;}
     if(chance<=0) return;
     var crossings=luminousNeeded-first;
@@ -10228,8 +10242,8 @@ function simulationLabCurrencyKillsNeeded(cost,lumenPerKill,shardPerKill,rewardS
     // Match the actual batch credit: wallet + (normal gain + Luminous gain).
     // Adding the wallet first can round a fractional offline balance below the
     // price and postpone an already-affordable queued purchase by one kill.
-    return state.lumen+(lumenPerKill*count+extraLumen*luminous)>=cost.lumen &&
-      canSpendShardsWithWallet(cost.shard,state.shards+(shardPerKill*count+extraShard*luminous));
+    return Amount.ge(creditAmount(state.lumen,Amount.add(Amount.mul(lumenPerKill,count),Amount.mul(extraLumen,luminous))),cost.lumen) &&
+      canSpendShardsWithWallet(cost.shard,creditAmount(state.shards,Amount.add(Amount.mul(shardPerKill,count),Amount.mul(extraShard,luminous))));
   }
   var low=1,high=Amount.min(Number.MAX_SAFE_INTEGER,upper);
   // The legacy deficit estimate contains an epsilon and is only a hint. First
@@ -10281,7 +10295,7 @@ function simulationApplyAutoAscend(summary){
   var gain = applyAscendMutation();
   summary.ascends++;
   summary.ascendGains.push(gain);
-  summary.motesGained+=state.motes-motesBeforeAscend;
+  summary.motesGained=Amount.add(summary.motesGained,Amount.sub(state.motes,motesBeforeAscend));
   // Normalize gameplay as a live save while retaining untouched canonical
   // refund records across repeated offline Auto-Ascend boundaries.
 
@@ -11036,6 +11050,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     };
 
     var killsBefore = summary.kills;
+    var hpBeforeAdvance=state.enemyHp;
     var ascendsBeforeAdvance = summary.ascends;
     var gridCrossingsBefore = farmGridCrossings;
     var gridRemainingBefore = farmGridRemainingSec;
@@ -11134,7 +11149,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     }
 
     // A real grid crossing can leave the derived elapsed value rounded unchanged.
-    if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0){
+    if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)){
       throw new Error(('Authoritative simulation stalled without elapsed-time or state progress | ' + JSON.stringify({
         elapsedInRun:elapsedInRun,
         elapsedWholeSec:elapsedWholeSec,
@@ -11471,7 +11486,7 @@ function* offlineProgressSteps(now,lastSeen,elapsedSec,effectiveSec,processingSt
   });
   // Every productive system shares this interval; consume the rest of the
   // absence without a productive Study-only tail. Foreground replay stays live.
-  state.totalOfflineSeconds += effectiveSec;
+  state.totalOfflineSeconds=Amount.add(state.totalOfflineSeconds,effectiveSec);
   // Input and live ticks were suspended while the offline transaction ran.
   // Replay that foreground time with the existing live policy before committing.
   // Stop at normal live-tick granularity rather than chasing a moving clock.
@@ -11482,7 +11497,7 @@ function* offlineProgressSteps(now,lastSeen,elapsedSec,effectiveSec,processingSt
       kind:'live',visual:false,clockStartMs:now+processedMs,resumable:true
     });
     ['lumenGained','shardGained','sigilsGained','motesGained','studySpeedPurchases','studyMotesSpent','ascends','kills','iterations','fastForwardedKills'].forEach(function(key){
-      sim[key] += processing[key];
+      sim[key]=Amount.add(sim[key],processing[key]);
     });
     sim.completedStudies = sim.completedStudies.concat(processing.completedStudies);
     sim.closedStudies = sim.closedStudies.concat(processing.closedStudies);

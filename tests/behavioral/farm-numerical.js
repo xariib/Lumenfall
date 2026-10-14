@@ -3,6 +3,8 @@ window.runFarmNumericalQa=function(b,ctx,assert){
   var t=b.labMotes,checks=0,rows=[],clock=2000000000000;
   function ok(v,m){checks++;assert(v,'B2 exact damage oracle: '+m);}
   function near(a,c,m){ok(Math.abs(a-c)<1e-7,m+' ('+a+' vs '+c+')');}
+  function walletParts(value){if(typeof value==='number'&&Math.abs(value)>Number.MAX_SAFE_INTEGER)return {d:BigInt(value),e:0};var m=String(value).match(/^(-?)(\d+)(?:\.(\d+))?(?:e([+-]?\d+))?$/);return {d:BigInt(m[1]+m[2]+(m[3]||'')),e:Number(m[4]||0)-(m[3]||'').length};}
+  function exactCredit(before,gain,after){if(typeof after==='number')return after===before+gain;var a=walletParts(before),c=walletParts(gain),d=walletParts(after),e=Math.min(a.e,c.e,d.e);return a.d*10n**BigInt(a.e-e)+c.d*10n**BigInt(c.e-e)===d.d*10n**BigInt(d.e-e);}
   function units(x){
     var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,x);
     var bits=v.getBigUint64(0),e=Number((bits>>52n)&2047n);
@@ -38,12 +40,17 @@ window.runFarmNumericalQa=function(b,ctx,assert){
       near(r.after.luminousAccum,Math.max(0,Math.min(.999999999999,final)),'spawn accumulator');
       ok(r.after.enemyIsLuminous===(Math.floor(after+1e-12)>Math.floor(acc+Math.max(0,count-1)*chance+1e-12)),'next luminous enemy');
       var scale=kind==='offline'?.7:1;
+      ok(exactCredit(r.before.lumen,6*scale*count,r.after.lumen),'independent exact Lumen wallet credit');
+      ok(exactCredit(r.before.shards,scale*count,r.after.shards),'independent exact Shards wallet credit');
       total+=count;luminous+=lk;lumen+=6*scale*count;shards+=scale*count;motes+=lk;damage+=D;
     });
     return {kills:total,luminous:luminous,lumen:lumen,shards:shards,motes:motes,damageUnits:String(damage)};
   }
   function run(natural,use,kind,split){
-    var s=seed(natural,use),normalized=b.setState(s),dps=natural?t.naturalDps():2**55+16,seconds=natural?.9:1;
+    return t.withHp(11,function(){
+    // Keep the independent HP=11 quotient counterexamples while the campaign
+    // curve changes; no purchase/reward/charge arithmetic is replaced.
+    var s=seed(natural,use),normalized=t.withHp(11,function(){return b.setState(s);}),dps=natural?t.naturalDps():2**55+16,seconds=natural?.9:1;
     if(natural){ok(dps===40052722017724424,'actual natural product DPS');var costs=t.numericCosts();Object.values(costs).forEach(function(c){if(typeof c==='object')Object.values(c).forEach(function(v){ok(Number.isFinite(v)&&v>=0,'finite normalized next price');});else ok(Number.isFinite(c)&&c>0,'finite normalized next price');});ok(normalized.spirits.titan===1635&&normalized.research.formation===500,'normalization preserves stress investments');}
     var trace=t.traceFarm(function(){
       function execute(){var a=t.direct(split||seconds,kind,clock);if(!split)return a;var z=t.direct(seconds-split,kind,clock+split*1000);['kills','luminousKills','lumenGained','shardGained','motesGained','studySpeedPurchases','studyMotesSpent'].forEach(function(k){z.summary[k]+=a.summary[k];});z.summary.timeline=a.summary.timeline.concat(z.summary.timeline.map(function(e){return Object.assign({},e,{elapsedSec:e.elapsedSec+split});}));return z;}
@@ -52,8 +59,8 @@ window.runFarmNumericalQa=function(b,ctx,assert){
     var r=trace.result,o=verifySegments(trace,kind),expected=natural?3277040892359271:3275345183542180;
     ok(r.summary.kills===expected&&r.state.totalKills===expected,'documented safe kill count');
     ok(r.summary.kills===o.kills&&r.summary.luminousKills===o.luminous,'segment kill and spawn ledger');
-    ok(r.summary.lumenGained===o.lumen&&r.state.lumen===o.lumen,'represented Lumen policy and sum');
-    ok(r.summary.shardGained===o.shards&&r.state.shards===o.shards,'represented Shard policy and sum');
+    ok(r.summary.lumenGained===o.lumen&&r.state.lumen===trace.rows[trace.rows.length-1].after.lumen,'represented Lumen summary and independently credited final wallet');
+    ok(r.summary.shardGained===o.shards&&r.state.shards===trace.rows[trace.rows.length-1].after.shards,'represented Shard summary and independently credited final wallet');
     var buys=natural&&use?1:0;
     ok(r.summary.studySpeedPurchases===buys&&r.summary.studyMotesSpent===buys*60,'one full-price actual Motes purchase');
     ok(r.state.motes===s.motes+o.motes-buys*60,'Motes ledger');
@@ -62,6 +69,7 @@ window.runFarmNumericalQa=function(b,ctx,assert){
     near(r.state.activeStudies[0].remainingSec,300-seconds-(buys?(seconds-payment)*2:0),'only post-payment Study work');
     ok(!r.summary.abilityCasts&&!r.summary.ascends&&!r.summary.completedStudies.length,'no unrelated economy event');
     var out={natural:natural,use:use,kind:kind,split:split,expected:expected,kills:r.summary.kills,hp:r.state.enemyHp,motes:r.state.motes,work:r.state.activeStudies[0].remainingSec,representedDamageExact:(dps*seconds).toFixed(0),ledger:o,segments:trace.rows.length};rows.push(out);return out;
+    });
   }
   [false,true].forEach(function(natural){(natural?[false,true]:[false]).forEach(function(use){['live','offline'].forEach(function(kind){[0,natural?.01:.5].forEach(function(split){run(natural,use,kind,split);});});});});
   // The actual old R2 function is embedded byte-for-byte in the private bridge.

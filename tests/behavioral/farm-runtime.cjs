@@ -15,6 +15,10 @@ function assert(v,m){if(!v)throw Error(m);}
 let checks=0;
 function ok(value,message){checks++;assert(value,message);}
 function near(a,b,message){ok(Math.abs(a-b)<1e-7,message+' '+a+' vs '+b);}
+// Independent decimal wallet oracle; large native integers retain their actual
+// IEEE value. Ordinary wallets keep the established native addition policy.
+function walletParts(value){if(typeof value==='number'&&Math.abs(value)>Number.MAX_SAFE_INTEGER)return {d:BigInt(value),e:0};const m=String(value).match(/^(-?)(\d+)(?:\.(\d+))?(?:e([+-]?\d+))?$/);return {d:BigInt(m[1]+m[2]+(m[3]||'')),e:Number(m[4]||0)-(m[3]||'').length};}
+function exactCredit(before,gain,after){if(typeof after==='number')return after===before+gain;const a=walletParts(before),b=walletParts(gain),c=walletParts(after),e=Math.min(a.e,b.e,c.e);return a.d*10n**BigInt(a.e-e)+b.d*10n**BigInt(b.e-e)===c.d*10n**BigInt(c.e-e);}
 function units(x){const v=new DataView(new ArrayBuffer(8));v.setFloat64(0,x);const n=v.getBigUint64(0),e=Number(n>>52n&2047n);return ((n&((1n<<52n)-1n))+(e?1n<<52n:0n))<<BigInt(e?e-1:0);}
 function represented(u){const shift=Math.max(0,u.toString(2).length-53);return Number(u>>BigInt(shift))*2**(shift-1074);}
 function audit(r,strictMinimum=true){
@@ -32,8 +36,8 @@ function audit(r,strictMinimum=true){
   ok(row.luminous===lk,'actual spawn count');
   if(k){const sum=acc+k*chance;near(after.luminousAccum,Math.max(0,Math.min(.999999999999,sum-Math.floor(sum+1e-12))),'spawn accumulator');ok(after.enemyIsLuminous===(Math.floor(sum+1e-12)>Math.floor(acc+Math.max(0,k-1)*chance+1e-12)),'next luminous flag');}
   const scale=kind==='offline'?.7:1;
-  ok(after.lumen===before.lumen+6*scale*k,'represented Lumen policy');
-  ok(after.shards===before.shards+scale*k,'represented Shards policy');
+  ok(exactCredit(before.lumen,6*scale*k,after.lumen),'exact Lumen wallet credit from represented reward');
+  ok(exactCredit(before.shards,scale*k,after.shards),'exact Shards wallet credit from represented reward');
   kills+=k;luminous+=lk;lumen+=6*scale*k;shards+=scale*k;motes+=lk;damage+=D;elapsed+=row.seconds;
  }
  const state=parts.at(-1).state,summary={};

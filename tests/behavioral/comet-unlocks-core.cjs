@@ -5,6 +5,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const copy=value=>JSON.parse(JSON.stringify(value)),records=[];
+function exactInteger(value){if(typeof value==='number')return BigInt(value);const p=value.split('e');return BigInt(p[0])*10n**BigInt(p[1]);}
 function app(seed){
   let now=2000000000000,sequence=0,failPrimary=false;
   const queue=[],storage=new Map(),writes=[];
@@ -101,19 +102,10 @@ test('Single Star sees recruit, toggle, preset and reconstruction without changi
       s.spirits.void=0;
       assert(Object.values(s.nodes).every(level=>level===0),'manual recruitment has zero Tree ownership');
       assert.equal(a.b.recruitCost('void'),70000,'independent original Void recruitment price');
-      // Preserve the old oversized wallet as a rejection boundary: 70,000 is
-      // not exactly debitable from 1e20, so it cannot prove a funded purchase.
-      const oversized=copy(s),saved=Array.from(a.storage),writes=a.writes.length;
-      assert.equal(a.b.recruit('void'),false,'inexact manual payment refused');
-      assert.deepEqual(a.b.get(),oversized,'refused manual payment preserves complete state and Trial');
-      assert.deepEqual(Array.from(a.storage),saved,'refused manual payment preserves saved slots');
-      assert.equal(a.writes.length,writes,'refused manual payment performs no save writes');
-      s.lumen=70000;
-      const funded=s.lumen;
-      assert.equal(a.b.recruit('void'),true,'exactly funded manual recruitment succeeds');
+      const funded=exactInteger(s.lumen);
+      assert.equal(a.b.recruit('void'),true,'large-wallet manual recruitment succeeds');
       s=a.b.get(); // A committed staged purchase installs the canonical state.
-      assert.equal(funded-s.lumen,70000,'exact manual Lumen debit');
-      assert.equal(s.lumen,0,'exact-wallet manual purchase leaves zero Lumen');
+      assert.equal(funded-exactInteger(s.lumen),70000n,'independent exact large-wallet manual Lumen debit');
       assert.equal(s.spirits.void,1,'manual payment recruits exactly one original level');
     }
     if(action==='toggle')a.b.toggle('void');
@@ -131,18 +123,20 @@ test('Auto-Empower reconstruction latches Single Star failure at the purchase bo
   s.spirits.void=0;s.formationRebuild={members:['ember','void'],preset:''};
   assert(Object.values(s.nodes).every(level=>level===0),'automatic recruitment has zero Tree ownership');
   assert.equal(a.b.recruitCost('void'),70000,'independent automatic Void recruitment price');
-  const oversized=copy(s),saved=Array.from(a.storage),writes=a.writes.length;
-  assert.equal(a.b.autoEmpower(),false,'inexact automatic payment refused');
-  assert.deepEqual(a.b.get(),oversized,'refused automatic payment preserves complete state and Trial');
-  assert.deepEqual(Array.from(a.storage),saved,'refused automatic payment preserves saved slots');
-  assert.equal(a.writes.length,writes,'refused automatic payment performs no save writes');
-  s.lumen=70000;const funded=s.lumen;
+  const funded=exactInteger(s.lumen);
   assert(a.b.autoEmpower());s=a.b.get();
-  assert.equal(funded-s.lumen,70000,'exact automatic Lumen debit');
-  assert.equal(s.lumen,0,'exact-wallet automatic purchase leaves zero Lumen');
+  assert.equal(funded-exactInteger(s.lumen),70000n,'independent exact large-wallet automatic Lumen debit');
   assert.deepEqual(s.activeParty,['ember','void']);
   assert.equal(s.cometTrial.reason,'party');assert.equal(s.spirits.void,1);
   clear(a);assert.equal(a.b.get().cometTrialResult.outcome,'failed');
+});
+test('exact-wallet manual and automatic recruits debit to zero and retain Trial latch',()=>{
+  for(const automatic of [false,true]){
+    const a=trial('single'),s=a.b.get();s.spirits.void=0;s.lumen=70000;
+    if(automatic){s.achieved.labmaster=true;Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);s.empowerQueue.void=true;s.formationRebuild={members:['ember','void'],preset:''};}
+    assert(automatic?a.b.autoEmpower():a.b.recruit('void'));
+    assert.equal(a.b.get().lumen,0);assert.equal(a.b.get().spirits.void,1);assert.equal(a.b.get().cometTrial.reason,'party');
+  }
 });
 test('legacy ownership archive, normalized saves and full-snapshot backup restore',()=>{
   const a=ready(),old=copy(a.b.get());old.schemaVersion=1;delete old.offline12hRefund;old.owned={autoascend:true,rememberbulk:true,offline24:true,offline48:true};old.nodes.reserves=6;old.comets=789;

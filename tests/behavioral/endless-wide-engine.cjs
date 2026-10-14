@@ -3,7 +3,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require(
 const {app,clone,P,R,CLOCK}=require('./forge-expansion-harness.cjs');
 const a=require('../../scripts/lib/game-amount.cjs');
 const original=fs.readFileSync(process.argv[2]||'index.html','utf8');
-const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode};if(document.readyState==='loading'){`);
+const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode,speedCost:function(id,mult){return speedTierCost(mult,LONG_STUDIES.find(function(n){return n.id===id;}));},speedGrowth:function(growth){ENDLESS_PROGRESSION.speedMoteGrowth=growth;}};if(document.readyState==='loading'){`);
 let checks=0;function eq(x,y,m){checks++;assert.deepEqual(x,y,m);}function ok(value,m){checks++;assert(value,m);}
 function big(value){if(typeof value==='number')return BigInt(value);const [d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 let x=app(source),q=x.q,b=q.endless;
@@ -43,5 +43,23 @@ ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load 
  const s=q.fresh();s.schemaVersion=3;s.research.charge=2000;s.shards=Number.MAX_VALUE;q.set(s);
  const credit=BigInt('0x'+q.get().swiftRecoveryRefund.remainingShardsHex),expected=BigInt(Number.MAX_VALUE)+credit;
  eq(big(b.shardsAvailable()),expected,'available Shards include every retained credit beyond native capacity');ok(a.wide(b.shardsAvailable()),'combined available Shards remain displayable');
+}
+{
+ const x=app(source),q=x.q,b=q.endless,s=hugeState();s.maxDepthEver=130;s.activeStudies=[{id:'guardmastery',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=3;q.set(s);
+ const result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});
+ eq(big(q.get().motes),10n**400n-60n,'queued speed exactly debits a wide Mote wallet');eq(result.studyMotesSpent,60,'queued speed reports exact paid price');eq(q.get().activeStudies[0].speedMult,3,'queued paid speed retained');
+ s.longStudyLevels.wispascend=1500;s.activeStudies=[{id:'wispascend',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.wispascend=true;s.studySpeedTargets.wispascend=8;b.speedGrowth(1.8);q.set(s);const cost=b.speedCost('wispascend',8);ok(a.wide(cost),'future speed cost crosses native overflow');
+ const wide=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(big(q.get().motes),10n**400n-big(cost),'queued wide price exact debit');eq(wide.studyMotesSpent,cost,'queued wide price remains a valid report');ok(q.save(),'queued wide speed endpoint saves');
+}
+{
+ const x=app(source),q=x.q,s=hugeState();s.depth=s.enemyDepth=17;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=16;q.set(s);q.restoreEnemy();
+ const result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(result.ascends,1,'real automatic Ascend with wide currencies');ok(a.valid(result.motesGained),'wide Ascend reports valid Mote gain');eq(big(q.get().motes),10n**400n+big(result.motesGained),'wide Mote Ascend credit exact');
+ s.depth=s.enemyDepth=1;s.owned.autoascend=false;s.autoAscendEnabled=false;s.lastSeen=CLOCK-6000;s.totalOfflineSeconds='1e400';q.set(s);q.restoreEnemy();const offline=q.offline();eq(offline.effectiveSec,6,'wide offline accumulator processes the real window');eq(big(q.get().totalOfflineSeconds),10n**400n+6n,'wide offline time accumulator remains exact');ok(q.save(),'wide offline endpoint saves');
+}
+{
+ const x=app(source),q=x.q,s=hugeState();s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;s.wispMastery.ember=10000;s.longStudyLevels.wispascend=2030;
+ Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);q.set(s);
+ s.enemyDepth=s.depth=1;s.enemyMaxHp=s.enemyHp=a.mul(q.passive(1),'11e-324');q.set(s);
+ const cursor=q.advance(.001,{kind:'live',clockStartMs:CLOCK,resumable:true});cursor.next();ok(a.ge(q.get().totalKills,1),'subnormal partial damage completes an encounter without a false stall');cursor.return();
 }
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

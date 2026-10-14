@@ -27,6 +27,7 @@ window.runFarmConservationQa=function(b,ctx,assert){
     return {kills:kills,luminous:luminous,hp:hp-damage,accum:acc,payment:payment};
   }
   function run(f,seconds,use,kind,split){
+    return t.withHp(f.s.enemyMaxHp,function(){
     var s=JSON.parse(JSON.stringify(f.s));s.studyUseMotes.guardmastery=use;b.setState(s);
     return t.withDps(f.dps,function(){
       if(!split)return t.direct(seconds,kind||'live',clock);
@@ -34,13 +35,15 @@ window.runFarmConservationQa=function(b,ctx,assert){
       ['kills','luminousKills','motesGained','studySpeedPurchases','studyMotesSpent','lumenGained','shardGained'].forEach(function(k){c.summary[k]+=a.summary[k];});
       c.summary.timeline=a.summary.timeline.concat(c.summary.timeline.map(function(e){var copy=Object.assign({},e);copy.elapsedSec+=split;return copy;}));return c;
     });
+    });
   }
   function verify(f,seconds,r,use,kind){
     var o=ledger(f,seconds),scale=kind==='offline'?.7:1;
     ok(r.summary.kills===o.kills,'one reward per actually defeated enemy');ok(r.summary.luminousKills===o.luminous,'spawn-by-spawn luminous kills');
     near(r.state.enemyHp/r.state.enemyMaxHp,o.hp,'remaining HP fraction');near(r.state.luminousAccum,o.accum,'spawn accumulator');
-    near(r.summary.lumenGained,Math.round(5*Math.pow(1.11,f.s.depth))*o.kills*scale,'Lumen ledger');
-    near(r.summary.shardGained,Math.round(Math.pow(1.09,f.s.depth))*o.kills*scale,'Shard ledger');
+    var depth=f.s.depth<=100?f.s.depth:100+40*Math.log1p((f.s.depth-100)/40);
+    near(r.summary.lumenGained,Math.round(5*Math.pow(1.11,depth))*o.kills*scale,'Lumen ledger');
+    near(r.summary.shardGained,Math.round(Math.pow(1.09,depth))*o.kills*scale,'Shard ledger');
     var buys=use&&o.payment!==null?1:0;
     ok(r.summary.studySpeedPurchases===buys&&r.summary.studyMotesSpent===buys*f.cost,'exact full-price purchases');
     near(r.state.motes,f.s.motes+o.luminous*f.reward-buys*f.cost,'Motes ledger');
@@ -48,7 +51,7 @@ window.runFarmConservationQa=function(b,ctx,assert){
     if(buys)near(r.summary.timeline.find(function(e){return e.type==='studySpeed';}).elapsedSec,o.payment,'actual reward payment time');
     return o;
   }
-  var main=fixture(1,.73,false,.975,1);
+  var main=t.withHp(11,function(){return fixture(1,.73,false,.975,1);});
   function mainContract(){var r=run(main,.9,true);verify(main,.9,r,true);ok(r.summary.kills===90&&r.state.lumen===1000000540&&r.state.shards===1000000090,'documented B1 economy');near(r.state.activeStudies[0].remainingSec,297.3346,'documented B1 work');return r;}
   var positive=mainContract(),undo=t.mutate('double-round'),caught=false;
   try{mainContract();}catch(e){caught=/B1 conservation oracle/.test(e.message);}finally{undo();}

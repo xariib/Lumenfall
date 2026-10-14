@@ -89,6 +89,7 @@ async function run(){
   await send('Page.enable');await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});await ready();
   await evaluate('document.fonts.ready.then(()=>true)');await fresh();
   await evaluate(`document.documentElement.style.fontSize=${JSON.stringify(16*scale+'px')};resonateQa.button('ember').scrollIntoView({block:'center'});`);
+  await evaluate('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');
   const layout=await evaluate(`(function(){
    function ok(v,m){if(!v)throw Error(m);}
    var b=resonateQa.button('ember'),h=resonateQa.help('ember');

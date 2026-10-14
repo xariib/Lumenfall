@@ -7,7 +7,7 @@ window.runWispUpgradeQa = function(){
   function visible(el){return !!el && el.getBoundingClientRect().width>0 && el.getBoundingClientRect().height>0;}
   function progression(id){return q('[data-wisp-progression="'+id+'"]');}
   function seed(id,rarity,module,ultimate,funded){
-    var s=b.fresh();s.maxDepthEver=101;s.tutorialDone=true;
+    var s=b.fresh();s.maxDepthEver=250;s.ascendCount=50;s.longStudyLevels.wispascend=50;s.research.arcanecal=10;s.tutorialDone=true;
     s.spirits[id]=1;s.heroRarity[id]=rarity;s.wispModules[id]=module;s.wispUltimate[id]=ultimate;
     s.lumen=s.shards=s.sigils=funded?1e12:0;s.activeParty=[id];return s;
   }
@@ -40,7 +40,7 @@ window.runWispUpgradeQa = function(){
   var p=progression('tide');
   ['module','rarity','ultimate'].forEach(function(action){var el=p.querySelector('[data-'+action+']');ok(visible(el)&&el.disabled,'unrecruited '+action+' visible/disabled');});
   ok(p.querySelector('[data-module]').dataset.state==='locked','Module recruit gate labelled');
-  ok(p.querySelector('[data-ultimate]').textContent.includes('Requires Mythic rarity')&&p.querySelector('[data-ultimate]').textContent.includes('Use Rarity Up'),'Ultimate rarity gate and route labelled');
+  ok(p.querySelector('.ultimate-requirements').textContent.includes('Mythic')&&p.querySelector('[data-ultimate]').getAttribute('aria-describedby')===p.querySelector('.ultimate-requirements').id,'Ultimate visible rarity gate is linked to its control');
   s.lumen=s.shards=s.sigils=1e12;b.set(s);b.render();b.refresh();
   ['module','rarity','ultimate'].forEach(function(action){ok(progression('tide').querySelector('[data-'+action+']').disabled,'funded unrecruited '+action+' stays disabled after affordability refresh');});
   var lockedBefore=b.get();progression('tide').querySelector('[data-module]').click();

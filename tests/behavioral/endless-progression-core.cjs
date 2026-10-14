@@ -66,6 +66,16 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
  const running=clone(q.get());x.fail(true,false);eq(b.speed('wispascend',1.5),false,'failed primary paid speed');eq(q.get(),running,'paid speed rolls back Motes, target and project');x.fail(false,false);ok(b.speed('wispascend',1.5),'paid speed retry succeeds');eq(q.get().activeStudies[0].speedMult,1.5,'one paid speed retained');
 }
 {
+ const endpoints=[];
+ for(const fail of [false,true]){
+  const {x,q,b,s}=late();s.heroRarity.ember=5;s.wispUltimate.ember=true;s.activeStudies=[{id:'wispascend',remainingSec:10000,totalDurationSec:20000,speedMult:8}];q.set(s);q.restoreEnemy();
+  q.advance(.0003,{kind:'live',clockStartMs:CLOCK});
+  if(fail){const before=clone(q.get());x.fail(true,false);eq(b.mastery(q.sp('ember')),false,'failed purchase within paid chronological work');eq(q.get(),before,'failure retains the chronological endpoint');x.fail(false,false);}
+  q.advance(.0003,{kind:'live',clockStartMs:CLOCK+.3});endpoints.push(clone(q.get().activeStudies));
+ }
+ eq(endpoints[0],endpoints[1],'failed purchase preserves paid-work clock continuity');
+}
+{
  const {q,s}=late();s.heroRarity.ember=5;s.wispUltimate.ember=true;s.wispMastery.ember=1;
  for(const rank of [-1,.5,'2',Infinity]){const f=clone(s);f.wispMastery.ember=rank;checks++;assert.throws(()=>q.accept(f),/Invalid Wisp Mastery/,'malformed rank rejects for recovery');}
  const f=clone(s);f.wispModules.ember=19;checks++;assert.throws(()=>q.accept(f),/Incomplete Wisp Mastery/,'malformed prerequisites reject for recovery');

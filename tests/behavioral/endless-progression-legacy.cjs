@@ -22,5 +22,10 @@ q.restoreEnemy();q.manualTap();ok(q.get().depth>200,'wide damage reaches a real 
 ok(q.save(),'wide primary and recovery write');var endpoint=JSON.stringify(q.get());q.load();eq(JSON.stringify(q.get()),endpoint,'wide cold normalization');
 q.ascend();eq(q.get().wispMastery.ember,10001,'Mastery kept through Ascend');
 eq(q.get().wispModules.ember,20,'ability kept');eq(q.get().wispUltimate.ember,true,'Ultimate kept');
+eq(b.amount.ratio('9e400','1e724'),Number('9e-324'),'subnormal mantissa retained in actual V8');
+var speed=q.fresh();speed.maxDepthEver=130;speed.motes='1e400';speed.activeStudies=[{id:'guardmastery',remainingSec:100,totalDurationSec:100,speedMult:1}];speed.studyUseMotes.guardmastery=true;speed.studySpeedTargets.guardmastery=3;q.set(speed);
+var paid=q.advance(0,{kind:'offline',clockStartMs:compiled.exports.CLOCK});eq(b.amount.exactAdd(q.get().motes,60),'1e400','queued wide Mote debit in actual V8');eq(paid.studyMotesSpent,60,'queued price report in actual V8');
+q.set(s);s.depth=s.enemyDepth=1;s.enemyMaxHp=s.enemyHp=b.amount.mul(q.passive(1),'11e-324');Object.keys(s.empowerQueue).forEach(function(id){s.empowerQueue[id]=false;});q.set(s);
+var partial=q.advance(.001,{kind:'live',clockStartMs:compiled.exports.CLOCK,resumable:true});partial.next();ok(b.amount.ge(q.get().totalKills,1),'subnormal partial damage resolves in actual V8');partial.return();
 eq(q.get().recruitmentEntitlements.ember,true,'recruitment entitlement kept');
 console.log(JSON.stringify({status:'PASS',checks:checks,node:process.version,v8:process.versions.v8,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),limits:'JavaScript engine evidence; Android/WebView DOM and device acceptance remain separate.'}));

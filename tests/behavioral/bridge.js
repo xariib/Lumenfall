@@ -79,6 +79,9 @@ window.__lumenfallQaBridge = {
     failNext:function(){var original=simulationResolveTimestamp;simulationResolveTimestamp=function(){simulationResolveTimestamp=original;throw new Error('injected offline failure');};}
   },
   labMotes: {
+    // UI fixtures pause reload/autosave; explicit input still uses the real
+    // save transaction with production's normal, interactive reload flag.
+    input: function(fn){var old=reloadInProgress;reloadInProgress=false;try{return fn();}finally{reloadInProgress=old;}},
     withHp: function(hp,fn){var original=enemyHpFor;enemyHpFor=function(){return hp;};try{return fn();}finally{enemyHpFor=original;}},
     naturalDps: function(){return simulationPassiveDps(2000000000000);},
     numericCosts: function(){return {titan:spiritCost(SPIRITS.find(function(s){return s.id==='titan';})),formation:researchCostForLevels(RESEARCH.find(function(s){return s.id==='formation';}),state.research.formation,1),momentum:nodeCost(NODES.find(function(s){return s.id==='momentum';})),formationStudy:studyCost(LONG_STUDIES.find(function(s){return s.id==='formationstudy';}),state.longStudyLevels.formationstudy),wispAscend:studyCost(LONG_STUDIES.find(function(s){return s.id==='wispascend';}),state.longStudyLevels.wispascend)};},
@@ -91,7 +94,7 @@ window.__lumenfallQaBridge = {
       };
       try{return {result:fn(),rows:rows};}finally{simulationApplyFarmPassive=original;}
     },
-    manual: function(id,speed){return applySpeedTier(id,speed);},
+    manual: function(id,speed){return window.__lumenfallQaBridge.labMotes.input(function(){return applySpeedTier(id,speed);});},
     direct: function(seconds,kind,start){var result=advanceAuthoritativeTime(seconds,{kind:kind||'live',visual:false,clockStartMs:start||2000000000000,offlineWindowStartMs:start||2000000000000,captureTimeline:true});return {state:JSON.parse(JSON.stringify(state)),summary:result};},
     withDps: function(dps,fn){var original=simulationPassiveDps;simulationPassiveDps=function(){return dps;};try{return fn();}finally{simulationPassiveDps=original;}},
     mutate: function(kind){
@@ -170,8 +173,8 @@ window.__lumenfallQaBridge = {
     nodes: function(){return JSON.parse(JSON.stringify(LONG_STUDIES));},
     originals: function(){return LEGACY_STUDY_IDS.slice();},
     plan: function(id){return getStudyStartPlan(typeof id==='string'?LONG_STUDIES.find(function(n){return n.id===id;}):id);},
-    start: function(id){return startStudy(typeof id==='string'?LONG_STUDIES.find(function(n){return n.id===id;}):id);},
-    autoFill: function(){return autoFillStudySlots();},
+    start: function(id){return window.__lumenfallQaBridge.labMotes.input(function(){return startStudy(typeof id==='string'?LONG_STUDIES.find(function(n){return n.id===id;}):id);});},
+    autoFill: function(){return window.__lumenfallQaBridge.labMotes.input(function(){return autoFillStudySlots();});},
     queued: function(){var summary=simulationSummary(0);simulationStartQueuedStudies(summary);return summary;},
     tail: function(seconds){var summary=simulationSummary(seconds);advanceStudyOnlyTime(seconds,2000000000000,summary);return {state:JSON.parse(JSON.stringify(state)),summary:summary};},
     due: function(){var summary=simulationSummary(0);return {handled:simulationCompleteDueStudies(summary),summary:summary};},
