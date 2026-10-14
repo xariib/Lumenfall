@@ -21,7 +21,12 @@ window.runWispCardLayoutQa=function(baseline){
     ok((p.tagName==='DETAILS')===(stage===2),'unfinished upgrades remain visible '+id+'/'+stage);
     ok(card.textContent.includes(b.spirit(id).abilityName),'ability retained '+id);
     ok(card.textContent.includes('Wisp Power')&&card.querySelector('.rarity-badge'),'power/rarity retained '+id);
-    ok(card.querySelector('[data-wisp-role]').textContent.includes('Party preview lost if removed'),'contribution retained '+id);
+    var readout=card.querySelector('[data-wisp-role]');
+    if(baseline)ok(readout.textContent.includes('Party preview lost if removed'),'baseline has party preview '+id);
+    else{
+      ok(!card.textContent.includes('Raw damage')&&!card.textContent.includes('Party preview'),'requested preview rows removed '+id);
+      if(!readout.textContent.trim())ok(readout.getBoundingClientRect().height===0,'empty readout leaves no gap '+id);
+    }
     var nodes=Array.from(card.querySelectorAll('div,span,strong,h3,button,summary'));
     nodes.forEach(function(e){var r=e.getBoundingClientRect();if(!r.width||!r.height)return;
       ok(e.scrollWidth<=e.clientWidth+1&&r.left>=-1&&r.right<=innerWidth+1,'no clipped card text '+id+'/'+stage+': '+e.outerHTML.slice(0,200));
@@ -37,8 +42,11 @@ window.runWispCardLayoutQa=function(baseline){
     if(!baseline){
       ok(a.borderLeftWidth==='0px'&&a.backgroundColor==='rgba(0, 0, 0, 0)','ability uses plain card surface');
       ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','Module uses plain card surface');
-      ok(card.querySelector('[data-wisp-details]').textContent==='Upgrades','short progression heading');
-      ok(card.querySelector('[data-wisp-details]').getAttribute('aria-label')===b.spirit(id).name+' upgrades','heading/disclosure retains Wisp context for assistive technology');
+      var heading=card.querySelector('[data-wisp-details]'),level=card.querySelector('.wisp-level'),levelStyle=level&&getComputedStyle(level);
+      ok(heading.textContent===(stage===2?'Upgrades':b.spirit(id).abilityName),'ability leads unfinished section without extra heading');
+      ok(heading.getAttribute('aria-label')===b.spirit(id).name+(stage===2?' upgrades':' ability and upgrades'),'heading/disclosure retains Wisp context for assistive technology');
+      ok(!card.querySelector('.ability-label'),'no redundant Ability label');
+      ok(level&&level.textContent==='Lv. '+b.get().spirits[id]&&parseFloat(levelStyle.borderLeftWidth)>0&&levelStyle.backgroundColor!=='rgba(0, 0, 0, 0)','saved Wisp level in a little box');
       var button=card.querySelector('[data-module]');if(button)ok(getComputedStyle(button).flexDirection==='row','inline Module prices');
     }
     observations.push({id:id,stage:stage,height:card.getBoundingClientRect().height,moduleColumns:m.gridTemplateColumns});

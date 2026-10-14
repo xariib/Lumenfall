@@ -1,14 +1,13 @@
 # Lumenfall — current delivery status
 
 14 October 2026: [WISP_CARD_SIMPLICITY_001](tasks/WISP_CARD_SIMPLICITY_001.md)
-locally verified from Formation checkpoint `c16fc35`, final source `3ebf0632`.
-Flat ability/Module sections, plain level/power text, short accessible headings,
-inline costs and responsive Rarity/Ultimate actions. Unfinished upgrades remain
-visible; game rules/saves and the revised Formation UI are preserved.
-[Evidence](qa/wisp-card-simplicity-001/README.md): layout17,592/12, upgrades12,912,
-scroll3229, core8099/mobile151, Formation541/12 and hierarchy/nav/controls PASS;
-source/context/byte preservation/V8 syntax PASS. Ember390px635→480px. Self-review.
-Integrated locally `57b99ce` on `local/full-debug`; all15 preview4174 assets match.
+user revision from49403e2, source `35846c8f`: Raw damage/Party preview removed,
+levels boxed and ability names replace redundant headings. Role effects/rewards,
+all purchases/folding, saves and revised Formation UI remain.
+[Evidence](qa/wisp-card-simplicity-001/revision/README.md):layout15,960/12,
+upgrades12,912, scroll3229, core8099/role UI163, Formation541/12 and hierarchy/
+role/nav/controls PASS; source/context/preservation/V8 syntax PASS. Ember390px
+480→379px. Self-review. Local integration/preview verification next.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 

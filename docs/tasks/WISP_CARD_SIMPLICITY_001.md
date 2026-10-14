@@ -1,47 +1,40 @@
 # Simpler Wisp cards
 
-14 October 2026. User: “I dont like the view of Wisp cards, it should be more
-simple.” Attached Ember card shows stacked bordered panels, repeated headings,
-vertical prices and tall locked actions. The image is a visual reference.
+14 October 2026. Original: “I dont like the view of Wisp cards, it should be
+more simple.” Ember screenshot was a visual reference. Initial local milestone
+49403e2, source3ebf0632, is preserved in [prior evidence](../qa/wisp-card-simplicity-001/README.md).
 
-Goal: simplify the existing Wisp card hierarchy, panels and purchase layout.
-Keep names, roles, levels, power, rarity, contribution readouts, ability effects,
-Module progress, all actions/prices and prerequisite reasons available.
-Preserve [unfinished upgrades visibility](WISP_UPGRADE_DISPLAY_001.md), exact
-purchase rules, focus/scroll, saves, accessibility and completed-card folding.
-No gameplay/balance/save changes or new binding rules.
+Latest user correction: “Is wisp power and raw damage not the same, maybe we just
+can remove the raw damage and party preview. Also try to make it more simple.
+The lvl of a wisp, should be inside a little box.” This supersedes the initial
+requirement to retain those two readouts. Remove them from all Wisp cards; retain
+Wisp Power, role-specific effects/rewards and enabled Bonds. Box the level; use
+the ability name as the unfinished section heading instead of Upgrades/Ability.
+Update corresponding help text.
 
-Baseline: `89337a5` on `local/full-debug`; tracked checkout clean. Existing
-untracked `validation-evidence/` is unrelated and preserved. Only one local
-worktree is registered; no concurrent tracked edits observed. Continue the local
-candidate described in [project status](../PROJECT_STATE.md) and the
-[local improvement plan](LOCAL_IMPROVEMENTS_PLAN_001.md); GitHub access/combined
-integration and release acceptance remain pending. No remote/APK action planned.
+Verified distinction: wispPower is level/rarity power; wispRoleSnapshot.rawDps
+adds passive bonuses, averaged ability damage and attributable Auto-Tap. Display
+removal does not change either calculation.
 
-Acceptance: reduce nested boxes and repeated headings; show compact readable
-prices beside actions with responsive wrapping. Unfinished tracks remain open.
-Check 320/390/430px, normal/200% text and normal/reduced motion; touch targets at
-least44px, no card overflow. Run existing Wisp upgrades/scroll/contribution and
-navigation coverage, source/context validation. Review screenshots and full diff.
-Stage exact source for the existing playable preview. Modern browser checks do
-not establish Android/WebView60/textZoom/TalkBack/device acceptance.
+Baseline:49403e2 on local/full-debug, source3ebf0632; tracked checkout clean.
+Existing untracked validation-evidence/ retained. Reuse isolated branch
+codex/wisp-card-simplicity at C:/Users/xarib/AppData/Local/Temp/lumenfall-wisp-card-simplicity.
+No concurrent tracked edits observed. Local-only development mandate persists;
+GitHub/main, combined CI and Android release acceptance remain pending.
 
-Isolation: concurrent Formation UI edits appeared after the clean startup.
-Implementation is isolated on `codex/wisp-card-simplicity` in
-`C:/Users/xarib/AppData/Local/Temp/lumenfall-wisp-card-simplicity`, from `89337a5`.
-Shared Formation/product/test edits remain untouched. Integrate serially only
-after that owner commits; an isolated preview can be reviewed independently.
+Acceptance: neither removed row on any card; boxed levels match saved levels;
+no empty readout spacing; other stats/actions/prices/effects remain. Preserve
+[unfinished upgrade visibility](WISP_UPGRADE_DISPLAY_001.md), completed folding,
+exact purchases/progression/saves and focus/scroll. Check all8 Wisps,320/390/430px,
+100/200% text, motion settings and44px controls; existing upgrade, scroll, role/
+core, Formation and navigation checks. Source/context/diff review. No gameplay,
+balance/save changes, new rules or remote/APK/release/archive actions.
 
-Status: LOCAL IMPLEMENTATION VERIFIED; delivery acceptance OPEN. Rebased onto
-committed Formation `c16fc35` without conflicts. Final source `3ebf0632`.
-[Evidence and exact source hashes](../qa/wisp-card-simplicity-001/README.md):
-final layout17,592/12 profiles; combined upgrades12,912, scroll3,229, core8,099,
-mobile151/12, Formation541/12, hierarchy/nav/controls PASS. Byte preservation,
-source/context/whitespace and actual V8 6.0 parsing PASS. Node24.19.0/Chrome151.
-Normal/200% screens reviewed; Ember390px635→480px. Self-review only.
-Only accessible names changed after combined checks; final layout rechecks them.
-Integrated locally at `57b99ce` on `local/full-debug`; all15 source/staged/HTTP
-assets match4174 ([receipt](../qa/wisp-card-simplicity-001/final-preview.json)).
-App opening queued; actual user-tab reload unclaimed. Next: user preview review,
-then final combined acceptance. Full combined CI/GitHub/main and Android/
-WebView60/textZoom/TalkBack/device acceptance remain pending. No remote/APK/archive.
+Status: LOCAL REVISION VERIFIED, source35846c8f.
+[Revision evidence](../qa/wisp-card-simplicity-001/revision/README.md):layout15,960/12,
+upgrades12,912/12, scroll3229, core8099/role UI163, Formation541/12, hierarchy/
+role/nav/controls PASS. Source/context/byte preservation/V8 syntax PASS.
+Screens reviewed; Ember390px480→379px. Next: local integration and preview4174
+source/staged/HTTP verification, then user review/final combined acceptance.
+Self-review only. Final combined CI/GitHub/main and Android/WebView60/native
+textZoom/TalkBack/device acceptance remain OPEN; keep this chat open.

@@ -1,5 +1,9 @@
 # Simpler Wisp cards
 
+Latest user revision: [remove previews, boxed levels, simpler headings](revision/README.md).
+That revision supersedes this first layout milestone; the receipts below remain
+historical evidence for the initial request.
+
 14 October 2026. LOCAL IMPLEMENTATION VERIFIED, combined with Formation follow-up
 `c16fc35`. Self-review and automated checks only; release acceptance remains OPEN.
 Final source: `3ebf0632351e1d554d7bc9f5d8be8c5c3d7776b96a9877b3cdc08e44173a2cb3`.

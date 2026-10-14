@@ -246,6 +246,7 @@
   }
   .active-toggle.is-active{background:var(--good);color:#08210f;border-color:var(--good);}
   .wisp-role-readout{margin:8px 0;padding:8px 0;border-top:1px solid var(--line);}
+  .wisp-role-readout:empty{display:none;}
   .wisp-role-line{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin:5px 0;font-size:.8125rem;line-height:1.5;}
   .wisp-role-line strong{max-width:100%;overflow-wrap:break-word;}
   .wisp-role-note{margin:6px 0;font-size:.8125rem;line-height:1.5;color:var(--ink);}
@@ -2021,7 +2022,8 @@
 
   /* Wisp cards use one surface, with plain information and compact actions. */
   #tab-spirits .hero-stat-pill{padding:0 6px 0 0;border:0;background:transparent;box-shadow:none;font-size:.6875rem;}
-  #tab-spirits .wisp-progression-title{min-height:0;padding:8px 0 0;font-family:'Manrope',sans-serif;font-size:.75rem;}
+  #tab-spirits .hero-stat-pill.wisp-level{min-height:24px;padding:3px 7px;border:1px solid #596881;border-radius:6px;background:#0f1b2e;line-height:1.3;}
+  #tab-spirits .wisp-progression-title{min-height:0;padding:0;font-family:'Manrope',sans-serif;font-size:13px;color:var(--ink);}
   .wisp-progression .hero-ability{display:block;padding:8px 0;margin:0;border:0;border-radius:0;background:transparent;}
   .wisp-progression .ability-label{display:inline;border:0;padding:0;margin-right:6px;}
   .wisp-progression .ability-desc{display:block;margin-top:3px;}
@@ -8225,7 +8227,7 @@ function renderWispRoles(){
     if(!row.active){
       el.innerHTML='<p class="wisp-role-note">'+((state.spirits[row.id]||0)>0 ? 'Benched · no sustained party contribution.' : 'Not recruited · no power, Bonds or rewards.')+'</p>';
     }else{
-      var text=roleValueLine('Raw damage',formatNum(row.rawDps)+' /s');
+      var text='';
       if(SPIRITS[i].abilityType==='support'){
         text+=roleValueLine('Support added to party',formatNum(row.supportDps)+' /s')+
           '<p class="wisp-role-note">'+Math.round(row.supportUptime*100)+'% preview uptime · actual boost begins when cast.</p>';
@@ -8235,7 +8237,6 @@ function renderWispRoles(){
       if(row.shardsPerCast>0) text+=roleValueLine('Shards per cast',formatNum(row.shardsPerCast));
       if(row.lumenPerCast>0 || row.shardsPerCast>0) text+='<p class="wisp-role-note">Before any overkill reward.</p>';
       if(row.bondNames.length) text+='<p class="wisp-role-note">Enables '+row.bondNames.join(' · ')+'</p>';
-      text+=roleValueLine('Party preview lost if removed',formatNum(row.removalDps)+' /s ('+(steady.totalDps>0 ? (100*row.removalDps/steady.totalDps).toFixed(1) : '0.0')+'%)');
       el.innerHTML=text;
     }
     var earned=current.rows[i].supportDps;
@@ -8384,7 +8385,7 @@ function renderSpirits(keepScroll){
       '</div>' +
       (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') +
       '<div class="hero-stats">' +
-        '<span class="hero-stat-pill">Lv. '+level+'</span>' +
+        '<span class="hero-stat-pill wisp-level">Lv. '+level+'</span>' +
         '<span class="hero-stat-pill mono">'+formatNum(power)+' Wisp Power</span>' +
         '<span class="rarity-badge" style="--badge-color:'+RARITY_COLORS[tier]+';">'+RARITY_NAMES[tier]+'</span>' +
         empowerHtml +
@@ -8393,8 +8394,8 @@ function renderSpirits(keepScroll){
       '<div class="wisp-role-readout" data-wisp-role="'+sp.id+'"></div>' +
       (upgradesMaxed ?
         '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades">Upgrades</summary>' :
-        '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'"><h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades" tabindex="-1">Upgrades</h3>') +
-      '<div class="hero-ability"><span class="ability-label">Ability</span><strong>'+sp.abilityName+'</strong><span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
+        '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'">') +
+      '<div class="hero-ability">'+(upgradesMaxed ? '<strong>'+sp.abilityName+'</strong>' : '<h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' ability and upgrades" tabindex="-1">'+sp.abilityName+'</h3>')+'<span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
       moduleHtml +
       '<div class="wisp-final-actions"><div class="hero-actions">' +
         '<button class="mini-btn rarity-btn" data-rarity="'+sp.id+'" '+(canRarity?'':'disabled')+'>'+rarityLabel+'</button>' +
@@ -9259,7 +9260,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Comet Commands', meta:'Manual Rift actions', desc:'Meteor Strike and Luminous Call each spend one shared command charge after their unlock purchase. Enemy defeats recharge that shared pool; Orbital Reserve adds capacity and Orbital Engine speeds recharge. Meteor is limited by both enemy max HP and passive Wisp power, works once per encounter, and Meteor Core raises only its HP ceiling. Luminous Call needs an ordinary non-boss enemy; defeat it to receive its rewards. Commands are not used automatically while offline.'},
   {name:'Deeds & Daily Quests', meta:'Comet rewards', desc:'Deeds are one-time milestones and unlocks. Daily Quests pay their displayed Comets when you press Claim; earned daily progress can count toward a refreshed quest. Login streak rewards cycle through seven days, with Prisms on the seventh reward. Quest Refresh replaces an unclaimed quest for the shown Comet price after its unlock; it retains daily progress.'},
   {name:'Collection & Journal', meta:'Appearance and earlier unlocks', desc:'Deeds unlock Rift themes in Collection. Theme: Starlight is the default appearance; themes do not change combat. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic.'},
-  {name:'Wisp combat readouts', meta:'Combat estimates', desc:'Each Wisp card shows its raw damage, Support or resource rewards and enabled Bonds. Party preview lost if removed compares the party with that Wisp benched; these effects overlap and must not be added together. Sustained estimates describe automatic combat, exclude manual taps and Comet commands, and can differ from an individual fight’s burst timing. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
+  {name:'Wisp Power & effects', meta:'Wisp cards', desc:'Wisp Power comes from a Wisp’s level and rarity. Combat also depends on abilities, Forge and Lab bonuses, Support and Bonds. Active Wisp cards show their Support or resource effects and enabled Bonds where relevant. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
   {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, queues, Auto-Ascend and paid Lab work share up to 12 productive hours per absence. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
   {name:'Save Backup', meta:'Settings · save protection', desc:'Progress is stored in this device or browser’s local save. Copy Current Save exports a backup code before reinstalling or changing device. Restoring requires confirmation and replaces the current save; old backup time cannot grant extra offline earnings. Reset Save permanently deletes progress. Settings and this guide do not pause combat.'}
 ];
