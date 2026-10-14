@@ -1,36 +1,35 @@
 # Simpler Wisp cards
 
-14 October 2026. One goal: clear compact cards. Preserve earlier user decisions:
-no Raw damage/Party preview, boxed Wisp levels, one ability name with upgrade
-count, clear purchase labels. [History](../qa/wisp-card-simplicity-001/README.md).
+14 October 2026. Goal: clear compact cards. Preserve prior decisions: boxed Wisp
+levels, no Raw damage/Party preview, one named ability, Ability badge and specific
+Upgrade Ability/Shards/Lumen/Motes labels. [History](../qa/wisp-card-simplicity-001/README.md).
 
-Latest user: “MAke a little boks like the lvl box left side of the Ability, so
-its easy to see its an ability. I dont understand the upgrade rewards here at
-gale dancer?” Gale screenshot shows unrecruited0/20 and Recruit first.
-Add an Ability badge matching the level box immediately left of each ability
-name. Replace generic Upgrade Rewards with Upgrade Shards (Gale), Upgrade Lumen
-(Thorn), Upgrade Motes (Tide/Aurora); retain Upgrade Ability for damage roles.
-Update help/tutorial. Verified moduleMult=1+level*0.05 and abilityRewardRaw:
-Gale levels raise Shards per cast, not its hit; recruiting remains required.
+Latest user: Mythic required is unclear; players cannot know this is rarity.
+Separate Rarity Up from ability upgrades because it requires Wisp level, not
+ability level. Replace Upgrades0/20 with ability level left of the Ability box;
+show Current and Next effects. Two visual sections: Rarity with current/next tier
+and explicit Wisp-level requirement; Ability with Lv.0/20, badge/name, current/
+next upgrade effects, purchase and Ultimate. Ultimate says Mythic is the highest
+rarity and directs to Rarity Up. Cap shows Next: Maxed. Level0 is existing base
+ability; no starting-level, requirement, cap, balance or save changes.
 
-Baselinee9db86e/source43e158bb; tracked local/full-debug clean, untracked
-validation-evidence/ retained. Reuse isolated codex/wisp-card-simplicity at
+Baseline5ef250a/sourcedfa26453; tracked local/full-debug clean, untracked
+validation-evidence/ preserved. Reuse isolated codex/wisp-card-simplicity at
 C:/Users/xarib/AppData/Local/Temp/lumenfall-wisp-card-simplicity.
-No concurrent tracked edits observed. No effects, prices, caps, purchases,
-progression/save or Formation changes. No new rules.
+No concurrent tracked edits observed. Preserve formulas, exact prices/purchases,
+progression, focus/scroll and Formation. No new rules.
 
-Acceptance: all8 badges boxed and left of ability names; role-specific labels/
-accessible names, all prices/effects and eligibility correct. All8 Wisps at
-320/390/430px,100/200% text/motion;44px controls, no clipping. Existing layout/
-upgrades and source/context/preservation/diff review. Preserve
-[unfinished visibility](WISP_UPGRADE_DISPLAY_001.md), folding and focus/scroll.
+Acceptance: eight distinct rarity/ability sections; Rarity references Wisp level;
+ability level left of badge, accurate Current/Next including19→20 and cap; clear
+Ultimate route.320/390/430px,100/200% text/motion,44px controls/no clipping.
+Existing layout/upgrades/scroll and relevant role/text checks, source/context/
+preservation/diff review. Keep [unfinished visibility](WISP_UPGRADE_DISPLAY_001.md)
+and completed folding. Integrate serially; verify exact preview4174 assets.
 
-Status: BADGE/REWARD REVISION VERIFIED, sourcedfa26453.
-[Evidence](../qa/wisp-card-simplicity-001/ability-badge/README.md):layout18,072/12,
-upgrades12,912/12, scroll3229, source/context/preservation/V8 PASS. Gale normal/
-200% screens reviewed. Integrateda39a5a1 on local/full-debug; all15 source/staged/
-HTTP assets match4174 ([receipt](../qa/wisp-card-simplicity-001/ability-badge/preview.json)).
-Existing tab retained; actual reload unclaimed. Next: user review/final acceptance.
-Prior checks remain saved. Self-review only. User/final CI/GitHub/main and Android/
-WebView60/textZoom/TalkBack/device acceptance OPEN. Local-only mandate;
-no remote/APK/release/archive. Keep this chat open.
+Status: SPLIT PROGRESSION VERIFIED, sourcee110f182.
+[Evidence](../qa/wisp-card-simplicity-001/split-progression/README.md):layout21,528/12,
+upgrades12,912/12, scroll3229, five existing cases, source/context/preservation/
+V8 PASS; normal/200% screens reviewed. Next: integrate/verify preview4174.
+Prior receipts remain saved. Self-review only. User/final CI/GitHub/main and Android/
+WebView60/textZoom/TalkBack/device acceptance OPEN. Local-only; no remote/APK/
+release/archive. Keep this chat open.

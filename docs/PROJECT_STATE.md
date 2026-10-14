@@ -10,14 +10,13 @@ Current assets/live preview verified. Local milestone; chat OPEN, user/final
 combined/native acceptance pending, no remote/APK/signing/archive.
 
 14 October 2026: [WISP_CARD_SIMPLICITY_001](tasks/WISP_CARD_SIMPLICITY_001.md)
-badge/reward follow-up frome9db86e/sourcedfa26453: boxed Ability beside each
-ability name; Upgrade Shards for Gale, Upgrade Lumen for Thorn, Upgrade Motes for
-Tide/Aurora. Help/tutorial updated; prior one-name layout and boxed levels retained.
-[Evidence](qa/wisp-card-simplicity-001/ability-badge/README.md):layout18,072/12,
-upgrades12,912/12, scroll3229, source/context/preservation/V8 PASS. Gale normal/
-200% screens reviewed. Effects/prices/saves/Formation byte-identical. Self-review.
-Integrateda39a5a1 locally; all15 source/staged/HTTP assets match4174. Existing
-browser tab retained; actual user-tab reload unclaimed.
+split progression from5ef250a/sourcee110f182: separate Rarity/Ability sections,
+explicit Wisp-level rarity gate, ability-level badge left of Ability, Current/
+Next bonuses and a clear Mythic-rarity route for Ultimate. Existing badge/labels,
+game rules, all purchases/saves/focus and Formation retained.
+[Evidence](qa/wisp-card-simplicity-001/split-progression/README.md):layout21,528/12,
+upgrades12,912/12, scroll3229, five existing cases and source/context/preservation/
+V8 PASS; normal/200% screens reviewed. Self-review. Integration/preview4174 next.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 

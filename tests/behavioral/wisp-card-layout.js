@@ -7,7 +7,7 @@ window.runWispCardLayoutQa=function(baseline){
   function seed(id,stage){
     var s=b.fresh();s.maxDepthEver=250;s.tutorialDone=true;s.activeParty=[id];
     s.spirits[id]=stage===0?1:100;s.heroRarity[id]=stage===2?5:0;
-    s.wispModules[id]=stage===2?20:0;s.wispUltimate[id]=stage===2;
+    s.wispModules[id]=stage===2?b.moduleCap():(stage===1?b.moduleCap()-1:0);s.wispUltimate[id]=stage===2;
     s.lumen=s.shards=s.sigils=stage===0?0:1e20;return s;
   }
   b.prepare();
@@ -40,8 +40,15 @@ window.runWispCardLayoutQa=function(baseline){
         ok(upgrade.textContent.includes(label)&&!upgrade.textContent.includes('Upgrade Module')&&!upgrade.textContent.includes('Upgrade Rewards'),'purchase label names the exact improvement '+id);
         ok(upgrade.getAttribute('aria-label').includes(label)&&upgrade.getAttribute('aria-label').includes(b.spirit(id).name),'accessible purchase name identifies effect and Wisp '+id);
       }
-      ok(card.querySelector('[data-ultimate]').textContent.includes('Mythic required'),'Ultimate prerequisite retained');
-      ok(card.querySelector('[data-rarity]').textContent.includes('Lv.'+b.rarityRequirement(0)+' req')||stage!==0,'Rarity prerequisite retained');
+      if(baseline){
+        ok(card.querySelector('[data-ultimate]').textContent.includes('Mythic required'),'baseline Ultimate prerequisite retained');
+      }else{
+        var ultimateText=card.querySelector('[data-ultimate]').textContent;
+        ok(ultimateText.includes('Requires Mythic rarity')&&ultimateText.includes('highest rarity')&&ultimateText.includes('Use Rarity Up'),'Ultimate explains rarity requirement and route');
+        var rarity=card.querySelector('.wisp-rarity-section'),requirement=rarity.querySelector('.rarity-level-requirement');
+        ok(requirement.textContent==='Requires Wisp Lv. '+b.rarityRequirement(0),'Rarity requirement explicitly uses Wisp level');
+        ok(rarity.querySelector('[data-rarity]').getAttribute('aria-describedby')===requirement.id,'Rarity button associates its Wisp-level requirement');
+      }
     }
     var a=getComputedStyle(card.querySelector('.hero-ability')),m=getComputedStyle(card.querySelector('.module-row'));
     if(!baseline){
@@ -55,13 +62,24 @@ window.runWispCardLayoutQa=function(baseline){
       ok(badge&&badge.textContent==='Ability'&&parseFloat(badgeStyle.borderLeftWidth)>0&&badgeStyle.borderLeftColor===levelStyle.borderLeftColor&&badgeStyle.backgroundColor===levelStyle.backgroundColor,'Ability badge matches level box '+id);
       ok(badge.getBoundingClientRect().right<=abilityTitle.getBoundingClientRect().left+1,'Ability badge stays left of the name '+id);
       ok(['Overcharge Core','Impact Core','Piercing Lens','Bloom Catalyst','Resonant Focus'].every(function(name){return !card.textContent.includes(name);}),'no second upgrade identity on card '+id);
-      var progress=card.querySelector('.hero-ability .ability-upgrades');
-      ok(progress&&progress.textContent==='Upgrades '+b.get().wispModules[id]+'/20'+(stage===2?' · Maxed':''),'upgrade progress belongs to named ability '+id);
+      var progress=card.querySelector('.ability-level'),savedLevel=b.get().wispModules[id],cap=b.moduleCap();
+      ok(progress&&progress.textContent==='Lv. '+savedLevel+'/'+cap&&!card.querySelector('.ability-upgrades'),'ability level has a clear badge '+id);
+      ok(progress.getAttribute('aria-label')==='Ability upgrade level '+savedLevel+' of '+cap&&progress.getBoundingClientRect().right<=badge.getBoundingClientRect().left+1,'ability level is left of Ability badge with distinct accessible name '+id);
+      var raritySection=card.querySelector('.wisp-rarity-section'),abilitySection=card.querySelector('.wisp-ability-section');
+      ok(raritySection&&abilitySection&&raritySection!==abilitySection&&raritySection.contains(card.querySelector('[data-rarity]'))&&!abilitySection.querySelector('[data-rarity]'),'Rarity purchase is separate from ability upgrades '+id);
+      ok(abilitySection.querySelector('[data-ability-current]').textContent===b.moduleEffect(id,savedLevel),'Current matches purchased upgrade level '+id);
+      ok(abilitySection.querySelector('[data-ability-next]').textContent===(savedLevel>=cap?'Maxed':b.moduleEffect(id,savedLevel+1)),'Next shows exact next level or Maxed without exceeding cap '+id);
       ok(level&&level.textContent==='Lv. '+b.get().spirits[id]&&parseFloat(levelStyle.borderLeftWidth)>0&&levelStyle.backgroundColor!=='rgba(0, 0, 0, 0)','saved Wisp level in a little box');
       var button=card.querySelector('[data-module]');if(button)ok(getComputedStyle(button).flexDirection==='row','inline Module prices');
     }
     observations.push({id:id,stage:stage,height:card.getBoundingClientRect().height,moduleColumns:m.gridTemplateColumns});
   });});
+  if(!baseline){
+    var gateState=seed('ember',1);gateState.spirits.ember=1;b.set(gateState);b.render();
+    ok(document.querySelector('[data-rarity=ember]').disabled,'high ability level cannot bypass low Wisp-level rarity gate');
+    gateState.spirits.ember=100;gateState.wispModules.ember=0;b.set(gateState);b.render();
+    ok(!document.querySelector('[data-rarity=ember]').disabled,'zero ability upgrades do not block funded Wisp-level rarity purchase');
+  }
   // Leave a representative starting card for the driver's geometry and screenshots.
   b.set(seed('ember',0));b.render();b.refresh();b.present();
   return {checks:checks,fixtures:observations.length,observations:observations};

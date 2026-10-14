@@ -40,7 +40,7 @@ window.runWispUpgradeQa = function(){
   var p=progression('tide');
   ['module','rarity','ultimate'].forEach(function(action){var el=p.querySelector('[data-'+action+']');ok(visible(el)&&el.disabled,'unrecruited '+action+' visible/disabled');});
   ok(p.querySelector('[data-module]').dataset.state==='locked','Module recruit gate labelled');
-  ok(p.querySelector('[data-ultimate]').textContent.includes('Mythic required'),'Ultimate rarity gate labelled');
+  ok(p.querySelector('[data-ultimate]').textContent.includes('Requires Mythic rarity')&&p.querySelector('[data-ultimate]').textContent.includes('Use Rarity Up'),'Ultimate rarity gate and route labelled');
   s.lumen=s.shards=s.sigils=1e12;b.set(s);b.render();b.refresh();
   ['module','rarity','ultimate'].forEach(function(action){ok(progression('tide').querySelector('[data-'+action+']').disabled,'funded unrecruited '+action+' stays disabled after affordability refresh');});
   var lockedBefore=b.get();progression('tide').querySelector('[data-module]').click();
@@ -90,7 +90,7 @@ window.runWispUpgradeQa = function(){
       var before=b.get();b.roundTrip(route);b.render();
       var after=b.get();['spirits','heroRarity','wispModules','wispUltimate','lumen','shards','sigils','schemaVersion'].forEach(function(key){same(after[key],before[key],route+' preserves '+key);});
       ok((progression('ember').tagName==='DETAILS')===complete,route+' derives fold from saved progress');
-      if(complete){progression('ember').open=false;var old=progression('ember').querySelector('summary');old.focus();s.wispModules.ember=19;b.set(s);b.render();ok(progression('ember').tagName==='SECTION'&&visible(progression('ember').querySelector('[data-module]')),'stale fold discarded on incomplete restore');ok(document.activeElement===progression('ember').querySelector('h3'),'restore preserves same Wisp focus');}
+      if(complete){progression('ember').open=false;var old=progression('ember').querySelector('summary');old.focus();s.wispModules.ember=19;b.set(s);b.render();ok(progression('ember').tagName==='SECTION'&&visible(progression('ember').querySelector('[data-module]')),'stale fold discarded on incomplete restore');ok(document.activeElement===progression('ember').querySelector('[data-wisp-details]'),'restore preserves same Wisp focus');}
     });
   });
   b.set(seed('ember',0,0,false,false));b.render();

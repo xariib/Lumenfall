@@ -6,6 +6,7 @@ window.__wispQa={
  refresh:function(){lastAffordabilityAt=0;checkAffordability();},
  rarityRequirement:function(t){return rarityReq(t);},rarityCost:function(id,t){return rarityCost(this.spirit(id),t);},
  render:function(){renderSpirits();},cap:function(n){MODULE_MAX_LEVEL=n;},
+ moduleCap:function(){return MODULE_MAX_LEVEL;},moduleEffect:function(id,n){return MODULE_INFO[this.spirit(id).abilityType].effect(n);},
  present:function(id){renderHud();document.activeElement.blur();document.querySelector('[data-wisp-card="'+(id||'ember')+'"]').scrollIntoView({block:'start',behavior:'instant'});document.getElementById('toast').classList.remove('show');},
  spirit:function(id){return SPIRITS.find(function(sp){return sp.id===id;});},
  moduleCost:function(id,n){return moduleCost(this.spirit(id),n);},ultimateCost:function(id){return ultimateSigilCost(this.spirit(id));},

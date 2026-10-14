@@ -1,0 +1,131 @@
+{
+  "status": "pass",
+  "source": "C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-wisp-card-simplicity\\index.html",
+  "existingAssertions": true,
+  "records": [
+    {
+      "scenario": "p2-02b-wisp-hierarchy",
+      "status": "pass",
+      "detail": {
+        "activeFirst": true,
+        "empowerFirst": true,
+        "stateUnchanged": true
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "p2-03a-wisp-role-integrity",
+      "status": "pass",
+      "detail": {
+        "roles": [
+          [
+            "ember",
+            "Burst",
+            5
+          ],
+          [
+            "tide",
+            "Amplifier",
+            0
+          ],
+          [
+            "stone",
+            "Breaker",
+            4
+          ],
+          [
+            "gale",
+            "Shard Utility",
+            3
+          ],
+          [
+            "thorn",
+            "Lumen Utility",
+            3
+          ],
+          [
+            "void",
+            "Burst",
+            5
+          ],
+          [
+            "aurora",
+            "Amplifier",
+            0
+          ],
+          [
+            "titan",
+            "Breaker",
+            4
+          ]
+        ],
+        "pushMult": 1.416,
+        "farmMult": 1.2,
+        "farmRewardMult": 1.25,
+        "bossMult": 1.593,
+        "earlyKills": 6,
+        "presetsPreserved": true,
+        "liveOfflineBreakerDamage": -769
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "bond-text-contract",
+      "status": "pass",
+      "detail": {
+        "checks": 253,
+        "bonds": 8,
+        "statesPerBond": 3,
+        "wisps": 8
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "p1-05-control-regressions",
+      "status": "pass",
+      "detail": {
+        "selectedContrast": {
+          ".mult-btn.active": 10.820790238811385,
+          ".study-level": 7.514016275792294,
+          ".study-speed-row .node-queue-toggle.active": 10.106313906184967
+        },
+        "liveStates": true,
+        "focus": true,
+        "untrustedTapGuard": true,
+        "affordabilityFunding": {
+          "multiplier": "5",
+          "price": {
+            "lumen": 15000,
+            "shard": 120
+          },
+          "wallet": {
+            "lumen": 15000,
+            "shards": 120
+          }
+        }
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "nav-workshop-contract",
+      "status": "pass",
+      "detail": {
+        "checks": 415,
+        "mainDestinations": 5,
+        "workshopSections": 2,
+        "wholeStatePurity": true,
+        "silentPurchaseTypes": [
+          "empower",
+          "module",
+          "ultimate",
+          "research",
+          "speed-study",
+          "study",
+          "node",
+          "shop"
+        ]
+      },
+      "runtimeErrors": []
+    }
+  ]
+}

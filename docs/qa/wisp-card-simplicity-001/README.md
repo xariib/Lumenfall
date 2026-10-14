@@ -1,5 +1,7 @@
 # Simpler Wisp cards
 
+Latest follow-up: [separate Rarity/Ability, clear levels and Current/Next](split-progression/README.md).
+
 Latest follow-up: [boxed Ability badge and exact currency upgrade names](ability-badge/README.md).
 
 Latest follow-up: [one ability identity, no secondary upgrade name](one-name/README.md).

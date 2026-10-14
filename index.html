@@ -2027,8 +2027,10 @@
   /* Wisp cards use one surface, with plain information and compact actions. */
   #tab-spirits .hero-stat-pill{padding:0 6px 0 0;border:0;background:transparent;box-shadow:none;font-size:.6875rem;}
   #tab-spirits .hero-stat-pill.wisp-level{min-height:24px;padding:3px 7px;border:1px solid #596881;border-radius:6px;background:#0f1b2e;line-height:1.3;}
-  .ability-badge{display:inline-flex;align-items:center;min-height:24px;padding:3px 7px;border:1px solid #596881;border-radius:6px;background:#0f1b2e;font-size:.6875rem;font-weight:850;line-height:1.3;color:var(--ink);}
-  .wisp-ability-title{display:flex;align-items:center;gap:6px;min-width:0;}
+  .ability-badge,.ability-level{display:inline-flex;align-items:center;min-height:24px;padding:3px 7px;border:1px solid #596881;border-radius:6px;background:#0f1b2e;font-size:.6875rem;font-weight:850;line-height:1.3;color:var(--ink);}
+  .ability-level{white-space:nowrap;}
+  .wisp-ability-title{display:flex;align-items:center;gap:6px;min-width:0;width:100%;}
+  .wisp-ability-title .wisp-progression-title,.wisp-ability-title>strong{flex:1;min-width:0;overflow-wrap:break-word;}
   #tab-spirits .wisp-progression-title{min-height:0;padding:0;font-family:'Manrope',sans-serif;font-size:13px;color:var(--ink);}
   .wisp-progression .hero-ability{display:block;padding:8px 0;margin:0;border:0;border-radius:0;background:transparent;}
   .wisp-progression .ability-label{display:inline;border:0;padding:0;margin-right:6px;}
@@ -2037,19 +2039,22 @@
   .wisp-progression .ability-label{font-size:9px;}
   .wisp-progression .hero-ability strong{font-size:13px;}
   .wisp-ability-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 10px;}
-  .ability-upgrades{font-size:.6875rem;color:var(--ink-dim);white-space:nowrap;}
-  #tab-spirits .module-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,.8fr);gap:2px 12px;align-items:center;margin:0;padding:0 0 8px;border:0;border-radius:0;background:transparent;}
+  .wisp-rarity-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,.8fr);align-items:center;gap:8px 12px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .wisp-rarity-info h3{margin:0 0 4px;font:700 13px 'Manrope',sans-serif;color:var(--ink);}
+  .wisp-rarity-info p{margin:3px 0;font-size:.75rem;line-height:1.5;color:var(--ink-dim);}
+  .wisp-rarity-section .hero-actions{min-width:0;}
+  .ability-effects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:2px 0 8px;}
+  .ability-effect-label{display:block;margin-bottom:3px;font-size:.6875rem;font-weight:700;color:var(--ink-dim);}
+  .ability-effect-next{font-size:.68rem;line-height:1.5;color:var(--ink);}
+  #tab-spirits .module-row{display:block;margin:0;padding:0 0 8px;border:0;border-radius:0;background:transparent;}
   .wisp-progression .module-name{min-width:0;overflow-wrap:break-word;}
   .wisp-progression .module-effect{line-height:1.5;}
-  .wisp-progression .module-row .mini-btn{grid-column:2;grid-row:1;width:auto;margin:0;}
+  .wisp-progression .module-row .mini-btn{width:100%;margin:0;}
   .wisp-progression .mini-btn{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:8px 10px;white-space:normal;}
   .wisp-progression .mini-btn .control-state{flex-basis:100%;}
-  .wisp-final-actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin-top:4px;}
-  .wisp-final-actions .hero-actions,.wisp-final-actions .ultimate-row{display:flex;flex:1 1 140px;min-width:0;margin:0;}
-  .has-ultimate .wisp-final-actions .ultimate-row{display:block;flex-basis:100%;}
+  .wisp-ability-section .ultimate-row{margin-top:0;}
   @media(max-width:360px){
-    #tab-spirits .module-row{grid-template-columns:minmax(0,1fr);}
-    .wisp-progression .module-row .mini-btn{grid-column:1;grid-row:auto;width:100%;margin-top:4px;}
+    .wisp-rarity-section{grid-template-columns:minmax(0,1fr);}
   }
   .study-card .study-meta{padding:8px 10px;border-radius:8px;background:#0c1b2c;border:1px solid #365365;line-height:1.5;}
   #tab-ascend .node-card{position:relative;align-items:flex-start;border-left:3px solid #9c8bc4;}
@@ -7634,7 +7639,7 @@ function presentControlStates(root){
       }
       if(btn.hasAttribute('data-ultimate')){
         cost.sigil=ultimateSigilCost(sp);
-        if((state.heroRarity[sp.id]||0)<RARITY_NAMES.length-1){kind='locked';reason='Mythic required';}
+        if((state.heroRarity[sp.id]||0)<RARITY_NAMES.length-1){kind='locked';reason='Requires Mythic rarity (highest rarity). Use Rarity Up.';}
       }
       if(btn.hasAttribute('data-sigil-resonate')){
         cost.sigil=sigilResonanceCost();
@@ -8389,7 +8394,7 @@ function renderSpirits(keepScroll){
     var req = rarityReq(tier);
     var rc = rarityCost(sp, tier);
     var canRarity = recruited && tier<5 && level>=req && canSpendShards(rc.shard) && state.lumen>=rc.lumen;
-    var rarityLabel = tier>=5 ? 'Rarity maxed' : (level<req ? ('Rarity Up · Lv.'+req+' req') :
+    var rarityLabel = tier>=5 ? 'Rarity maxed' : (level<req ? ('Rarity Up') :
       ('<span style="font-size:.6875rem;">Rarity Up</span>' +
        '<span style="font-size:.6875rem;">'+costIcon('lumen')+formatNum(rc.lumen)+'</span>' +
        '<span style="font-size:.6875rem;">'+costIcon('shard')+formatNum(rc.shard)+'</span>'));
@@ -8400,7 +8405,8 @@ function renderSpirits(keepScroll){
     var canModule = recruited && !modMaxed && state.lumen>=modCost.lumen && canSpendShards(modCost.shard);
     var moduleHtml =
       '<div class="module-row">' +
-        '<div class="module-effect">'+modInfo.effect(modLvl)+'</div>' +
+        '<div class="ability-effects"><div><span class="ability-effect-label">Current</span><div class="module-effect" data-ability-current>'+modInfo.effect(modLvl)+'</div></div>' +
+          '<div><span class="ability-effect-label">Next</span><div class="ability-effect-next" data-ability-next>'+(modMaxed?'Maxed':modInfo.effect(modLvl+1))+'</div></div></div>' +
         (modMaxed ? '' :
           '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>'+modInfo.upgradeLabel +
             '<span style="font-size:.6875rem;">'+costIcon('lumen')+formatNum(modCost.lumen)+'</span>' +
@@ -8449,12 +8455,12 @@ function renderSpirits(keepScroll){
       (upgradesMaxed ?
         '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades">Upgrades</summary>' :
         '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'">') +
-      '<div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-badge">Ability</span>'+(upgradesMaxed ? '<strong>'+sp.abilityName+'</strong>' : '<h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' ability and upgrades" tabindex="-1">'+sp.abilityName+'</h3>')+'</div><span class="ability-upgrades">Upgrades '+modLvl+'/'+MODULE_MAX_LEVEL+(modMaxed?' · Maxed':'')+'</span></div><span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
-      moduleHtml +
-      '<div class="wisp-final-actions"><div class="hero-actions">' +
-        '<button class="mini-btn rarity-btn" data-rarity="'+sp.id+'" '+(canRarity?'':'disabled')+'>'+rarityLabel+'</button>' +
-      '</div>' +
-      ultimateHtml + '</div>' +
+      '<section class="wisp-rarity-section" aria-label="'+sp.name+' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' +
+        '<p>'+RARITY_NAMES[tier]+(tier>=5?' · Maxed':' → '+RARITY_NAMES[tier+1])+'</p>' +
+        (tier>=5?'':'<p class="rarity-level-requirement" id="wisp-rarity-requirement-'+sp.id+'">Requires Wisp Lv. '+req+'</p>') +
+        '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="'+sp.id+'" '+(tier>=5?'':'aria-describedby="wisp-rarity-requirement-'+sp.id+'" ')+(canRarity?'':'disabled')+'>'+rarityLabel+'</button></div></section>' +
+      '<section class="wisp-ability-section" aria-label="'+sp.name+' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level '+modLvl+' of '+MODULE_MAX_LEVEL+'">Lv. '+modLvl+'/'+MODULE_MAX_LEVEL+'</span><span class="ability-badge">Ability</span>'+(upgradesMaxed ? '<strong>'+sp.abilityName+'</strong>' : '<h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' ability and upgrades" tabindex="-1">'+sp.abilityName+'</h3>')+'</div></div><span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
+      moduleHtml + ultimateHtml + '</section>' +
     (upgradesMaxed ? '</details>' : '</section>')+'</div>';
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
