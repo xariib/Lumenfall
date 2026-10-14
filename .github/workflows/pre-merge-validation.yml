@@ -92,6 +92,7 @@ jobs:
           node scripts/codex/check_context.cjs --task docs/tasks/PRISM_EARNING_001.md
           node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_EXPANSION_001.md
           node tests/behavioral/collection-price-ui.cjs index.html /tmp/lumenfall-collection-price --negative
+          node tests/behavioral/upgrade-affordability.cjs index.html validation-evidence/upgrade-affordability --negative
 
       - name: Read Ascend alerts and stationary daily quest claims
         shell: bash

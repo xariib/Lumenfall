@@ -1670,6 +1670,7 @@
   @keyframes creatureStrike{0%{transform:scale(.88) rotate(-4deg);filter:brightness(1.7);}100%{transform:scale(1);filter:brightness(1);}}
   @keyframes dustRise{0%{transform:translate3d(0,15px,0);opacity:0;}30%,65%{opacity:.6;}100%{transform:translate3d(12px,-70px,0);opacity:0;}}
   .cost-icon,.shape.cost-icon{width:.85em;height:.85em;min-width:.85em;max-width:.85em;flex:none;display:inline-block;vertical-align:-.05em;}
+  .wisp-upgrade-price{font-size:.6875rem;}
 
   /* Fixed HUD tracks and bounded Rift chrome protect the interaction region. */
   .hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:calc(4px + var(--safe-top)) 10px 4px;}
@@ -5415,9 +5416,9 @@ function purchasePriceColor(kind,amount){
   var missing=kind==='prism' ? state.prisms+prismRefundCreditTotal()<amount : kind==='shard' && state.swiftRecoveryRefund ? !canSpendShardsWithWallet(amount,state.shards) : key && state[key]<amount;
   return key && Number.isFinite(amount) && missing ? 'var(--danger)' : 'var(--ink)';
 }
-function purchasePriceMarkup(kind,amount,classes,numberFirst){
+function purchasePriceMarkup(kind,amount,classes,numberFirst,currencyLabel){
   return '<span'+(classes?' class="'+classes+'"':'')+' data-price-currency="'+kind+'" data-price-amount="'+amount+'" style="color:'+purchasePriceColor(kind,amount)+'">'+
-    (numberFirst?formatNum(amount)+' '+costIcon(kind):costIcon(kind)+formatNum(amount))+'</span>';
+    (currencyLabel?formatNum(amount)+' '+COST_ICON_MAP[kind].name:numberFirst?formatNum(amount)+' '+costIcon(kind):costIcon(kind)+formatNum(amount))+'</span>';
 }
 function updatePurchasePriceColors(root){
   root.querySelectorAll('[data-price-currency]').forEach(function(el){
@@ -8396,8 +8397,8 @@ function renderSpirits(keepScroll){
     var canRarity = recruited && tier<5 && level>=req && canSpendShards(rc.shard) && state.lumen>=rc.lumen;
     var rarityLabel = tier>=5 ? 'Rarity maxed' : (level<req ? ('Rarity Up') :
       ('<span style="font-size:.6875rem;">Rarity Up</span>' +
-       '<span style="font-size:.6875rem;">'+costIcon('lumen')+formatNum(rc.lumen)+'</span>' +
-       '<span style="font-size:.6875rem;">'+costIcon('shard')+formatNum(rc.shard)+'</span>'));
+       purchasePriceMarkup('lumen',rc.lumen,'wisp-upgrade-price') +
+       purchasePriceMarkup('shard',rc.shard,'wisp-upgrade-price')));
     var modInfo = MODULE_INFO[sp.abilityType];
     var modLvl = moduleLevel(sp.id);
     var modMaxed = modLvl>=MODULE_MAX_LEVEL;
@@ -8409,8 +8410,8 @@ function renderSpirits(keepScroll){
           '<div><span class="ability-effect-label">Next</span><div class="ability-effect-next" data-ability-next>'+(modMaxed?'Maxed':modInfo.effect(modLvl+1))+'</div></div></div>' +
         (modMaxed ? '' :
           '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>'+modInfo.upgradeLabel +
-            '<span style="font-size:.6875rem;">'+costIcon('lumen')+formatNum(modCost.lumen)+'</span>' +
-            '<span style="font-size:.6875rem;">'+costIcon('shard')+formatNum(modCost.shard)+'</span>' +
+            purchasePriceMarkup('lumen',modCost.lumen,'wisp-upgrade-price') +
+            purchasePriceMarkup('shard',modCost.shard,'wisp-upgrade-price') +
           '</button>') +
       '</div>';
     var ultCost = ultimateSigilCost(sp);
@@ -8420,14 +8421,14 @@ function renderSpirits(keepScroll){
     var resonanceHelpId = 'sigil-resonance-help-'+sp.id;
     var resonanceHtml = ultimateUnlocked(sp.id) ?
       (resonanceOwned ? '<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="'+sp.id+'" aria-describedby="'+resonanceHelpId+'" '+(resonanceDisabled?'disabled':'')+'>Resonate — Fill ability to 100'+
-        '<span>'+sigilResonanceCost()+' Sigils</span></button>' : '')+
+        purchasePriceMarkup('sigil',sigilResonanceCost(),'',false,true)+'</button>' : '')+
       '<p class="sigil-resonance-help" id="'+resonanceHelpId+'">Spend '+sigilResonanceCost()+' Sigils to fill this Active Wisp\'s ability resource to 100. This is a refill, not a permanent upgrade. '+
         'Requires all Wisp Ultimates. '+(sigilResonanceLimit()-resonanceUses)+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText()+'</p>' : '';
     var ultimateHtml =
       '<div class="ultimate-row">' +
         (ultimateUnlocked(sp.id) ?
           '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml :
-          '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" '+(tier<RARITY_NAMES.length-1 || state.sigils<ultCost?'disabled':'')+'>Unlock Ultimate<span style="font-size:.6875rem;">'+costIcon('sigil')+ultCost+'</span></button>') +
+          '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" '+(tier<RARITY_NAMES.length-1 || state.sigils<ultCost?'disabled':'')+'>Unlock Ultimate'+purchasePriceMarkup('sigil',ultCost,'wisp-upgrade-price')+'</button>') +
       '</div>';
     var empowerOn = state.empowerQueue[sp.id]!==false;
     var pendingRebuild = intendedFormationIds().indexOf(sp.id)!==-1 && !recruited;
@@ -8450,7 +8451,7 @@ function renderSpirits(keepScroll){
         '<span class="rarity-badge" style="--badge-color:'+RARITY_COLORS[tier]+';">'+RARITY_NAMES[tier]+'</span>' +
         empowerHtml +
       '</div>' +
-      '<button class="mini-btn wisp-empower-action" data-empower="'+sp.id+'" '+(empowerPlan.affordable?'':'disabled')+'><strong>'+(empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit')+'</strong><span class="mono">'+costIcon('lumen')+formatNum(cost)+'</span></button>' +
+      '<button class="mini-btn wisp-empower-action" data-empower="'+sp.id+'" '+(empowerPlan.affordable?'':'disabled')+'><strong>'+(empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit')+'</strong>'+purchasePriceMarkup('lumen',cost,'mono')+'</button>' +
       '<div class="wisp-role-readout" data-wisp-role="'+sp.id+'"></div>' +
       (upgradesMaxed ?
         '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades">Upgrades</summary>' :
@@ -11092,6 +11093,10 @@ function checkAffordability(){
     var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-ultimate'); });
     if(!sp) return;
     btn.disabled = (state.heroRarity[sp.id]||0)<RARITY_NAMES.length-1 || state.sigils<ultimateSigilCost(sp);
+  });
+  els['spirit-list'].querySelectorAll('[data-sigil-resonate]').forEach(function(btn){
+    var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-sigil-resonate');});
+    btn.disabled=!canSigilResonate(sp);
   });
   restoreWispActionView(actionView);
   els['research-list'].querySelectorAll('[data-research]').forEach(function(btn){

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "base": "a4f82f4",
+  "sourceSha256": "084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae",
+  "unchangedOutside": [
+    "purchasePriceMarkup",
+    "renderSpirits",
+    "checkAffordability",
+    "one font-size CSS rule"
+  ],
+  "testInputs": [
+    {
+      "file": "index.html",
+      "sha256": "084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae"
+    },
+    {
+      "file": "tests/behavioral/upgrade-affordability.cjs",
+      "sha256": "6301e9ea588ccb5c61f978cc6504b2451802f1930a96c4ed8464d2c4a60307dd"
+    },
+    {
+      "file": "tests/behavioral/resonate-clarity.cjs",
+      "sha256": "d0abdd63127c434f957b2483f745a0344ff7d2a1eca61faaaca2a3025ff62a96"
+    }
+  ],
+  "wispUpgrades": {
+    "status": "pass",
+    "profiles": 12,
+    "checks": 12912
+  },
+  "wispLayout": {
+    "status": "pass",
+    "profiles": 12,
+    "checks": 21528
+  }
+}

@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+14 October2026: [UPGRADE_AFFORDABILITY_001](tasks/UPGRADE_AFFORDABILITY_001.md)
+local candidate084f2995: Wisp upgrade prices turn red per missing currency;
+Resonate also refreshes native disabled state. Existing purchase/save rules
+retained. [Evidence](qa/upgrade-affordability-001/README.md):new26844/12 profiles,
+two controls; collection5808, Wisp upgrades/layout/scroll, Lab speed, Resonate,
+core/preservation and V8 6.0 PASS. Local integration/preview next; combined
+CI/GitHub/main/native acceptance OPEN. No remote/APK/archive.
+
 14 October 2026: [FORMATION_BEST_NOW_001](tasks/FORMATION_BEST_NOW_001.md)
 adds Field Best now for existing recommended Bonds. User chose recruitment of
 required members only. Team/preset preview, missing/already-fielded gating,
