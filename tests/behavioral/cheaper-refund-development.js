@@ -9,7 +9,8 @@ window.runCheaperRefundContracts=function(){
   var b=__cheaperRecruitment,checks=0,records=[];
   function ok(v,m){checks++;if(!v)throw Error(m);}
   function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
-  function balance(s){return BigInt(s.prisms)+(s.refundCredits.prisms||[]).reduce(function(n,e){return n+BigInt(e.amount);},BigInt(0));}
+  function integer(value){if(typeof value==='number')return BigInt(value);var p=/^(\d+)e(\d+)$/.exec(value);ok(!!p,'canonical wide integer');return BigInt(p[1])*BigInt(10)**BigInt(p[2]);}
+  function balance(s){return integer(s.prisms)+(s.refundCredits.prisms||[]).reduce(function(n,e){return n+integer(e.amount);},BigInt(0));}
   // Independent original modern reference predates production tables; all
   // exact-value assertions use that fixed curve rather than the host engine.
   function owed(level){return cheaperReceiptCanonicalPrices.slice(0,Math.max(0,level-20)).reduce(function(total,cost){return total+BigInt(cost);},BigInt(0));}
@@ -29,10 +30,10 @@ window.runCheaperRefundContracts=function(){
   s=b.canonical(cheaperLegacySeed(40,0));ok(s.prisms===12655538,'documented level40 refund exactly 12655538');
   s=b.canonical(cheaperLegacySeed(21,0.1));ok(s.prisms===0.1&&s.refundCredits.prisms[0].amount===3376,'fractional original wallet retains exact refund value');
   var v0=cheaperLegacySeed(21,17);delete v0.schemaVersion;s=b.canonical(v0);
-  ok(s.prisms===3393&&s.schemaVersion===4,'v0 migrates before one-time restitution');
+  ok(s.prisms===3393&&s.schemaVersion===5,'v0 migrates before one-time restitution');
   var both=cheaperLegacySeed(21,7);both.nodes.reserves=4;both.owned.offline24=true;both.owned.offline48=true;s=b.canonical(both);
   ok(s.prisms===3440&&s.comets===300,'old schema1 preserves both original-currency refunds');
-  ok(s.nodes.bonds===21&&s.nodes.reserves===4&&s.schemaVersion===4,'both migrations retain raw purchase history');
+  ok(s.nodes.bonds===21&&s.nodes.reserves===4&&s.schemaVersion===5,'both migrations retain raw purchase history');
   same(b.canonical(s),s,'both migration receipts prevent repeated refunds');
   same(b.decode(b.encode(s)),s,'both refund records survive actual backup encoding');
   var beforeOffline=cheaperLegacySeed(21,3376);beforeOffline.feedbackMigration={version:1,applied:true,receipts:{'node.bonds':{from:20,to:21,unpricedFrom:0,amounts:{prisms:[3376]}}},history:{bonds:{levels:21}}};beforeOffline.refundCredits={prisms:[]};beforeOffline.nodes.reserves=4;s=b.canonical(beforeOffline);
@@ -49,16 +50,16 @@ window.runCheaperRefundContracts=function(){
   s=b.canonical(cheaperLegacySeed(200,1e100));var large=s.refundCredits.prisms.find(function(e){return e.amount>1e25;});
   ok(!!large,'large-credit fixture is an actual originally-priced refund');
   s.prisms=0;s.refundCredits.prisms=[large];s.feedbackMigration.receipts['node.bonds'].remainingCredits=[large.amount];b.set(s);var before=b.get();
-  ok(!b.payment(1),'unrepresentable credit subtraction cannot buy a free level');
-  b.buy({id:'swift'});same(b.get(),before,'unspendable small debit retains entire credit');
+  var quote=b.payment(1);ok(quote&&integer(quote.credits[0].amount)===integer(large.amount)-BigInt(1),'large credit quote conserves exact value');
   ok(b.payment(large.amount).prisms===0&&b.payment(large.amount).credits.length===0,'whole large credit can pay exactly');
+  var creditBefore=balance(before);b.buy({id:'swift'});ok(b.get().nodes.swift===1&&balance(b.get())===creditBefore-BigInt(3),'large credit purchase pays exact Swift price');same(b.get().activeStudies,before.activeStudies,'wide credit preserves paid work');
   s=b.canonical(cheaperLegacySeed(95,0));
   ok(s.prisms<=Number.MAX_SAFE_INTEGER&&s.refundCredits.prisms.length>0,'large restitution stays spendable as exact credits');
   b.set(s);var refunded=balance(b.get());b.buy({id:'swift'});
   ok(b.get().nodes.swift===1&&balance(b.get())===refunded-BigInt(3),'actual raw95 refund pays original Swift price exactly');
   s=b.canonical(cheaperLegacySeed(21,1e30));s.refundCredits.prisms=[];s.feedbackMigration.receipts['node.bonds'].remainingCredits=[];b.set(s);before=b.get();var disk=b.disk();
-  ok(!b.payment(1),'unrepresentable wallet debit cannot buy a free level');
-  b.buy({id:'swift'});same(b.get(),before,'wallet rejection retains exact original value');same(b.disk(),disk,'wallet rejection never saves');
+  var quote=b.payment(1);ok(quote&&integer(quote.prisms)===integer(before.prisms)-BigInt(1),'large wallet quote conserves exact value');
+  var walletBefore=balance(before);b.buy({id:'swift'});ok(b.get().nodes.swift===1&&balance(b.get())===walletBefore-BigInt(3),'large wallet purchase pays exact Swift price');ok(JSON.stringify(b.disk())!==JSON.stringify(disk),'funded wide purchase saves its exact debit');
   s.prisms=9007199254740992;b.set(s);var value=balance(b.get());b.buy({id:'echo'});
   ok(b.get().nodes.echo===1&&balance(b.get())===value-BigInt(2),'representable large-wallet debit pays exactly');
   // Preserve receipts actually generated by V8 6.0 across engine transitions.

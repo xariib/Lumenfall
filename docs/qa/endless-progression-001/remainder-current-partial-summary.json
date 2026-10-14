@@ -1,0 +1,612 @@
+{
+  "status": "IN_PROGRESS",
+  "limits": "Intermediate bytes and fixtures. Partial evidence only; source is recorded per case. Native helpers may read current root; no integrated/final acceptance inferred.",
+  "cases": [
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-stacking-mobile",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-stacking-reduced-motion",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "Forge UI teardown failed: Error: browser close timeout 2000ms\n    at Timeout.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\rift-status.cjs:18:150)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)\n"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "support-save-reload",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 16.207043200000015,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "pass",
+        "qa_scenario": "support-save-reload",
+        "json_status": "pass",
+        "json_scenario": "support-save-reload",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "route": "support-save-reload",
+        "sources": {
+          "version": 1,
+          "sources": {
+            "tide": {
+              "until": 2052471612345.625,
+              "mult": 1.25
+            },
+            "aurora": {
+              "until": 2052471609234.375,
+              "mult": 1.5
+            }
+          }
+        },
+        "legacy": {
+          "until": 2052471608000,
+          "mult": 1.8
+        }
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "support-backup-restore",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 11.451738899999997,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "pass",
+        "qa_scenario": "support-backup-restore",
+        "json_status": "pass",
+        "json_scenario": "support-backup-restore",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "route": "support-backup-restore",
+        "sources": {
+          "version": 1,
+          "sources": {
+            "tide": {
+              "until": 2052471612345.625,
+              "mult": 1.25
+            },
+            "aurora": {
+              "until": 2052471609234.375,
+              "mult": 1.5
+            }
+          }
+        },
+        "legacy": {
+          "until": 2052471608000,
+          "mult": 1.8
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-recovery",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "support-resume",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 8.760313100000028,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "pass",
+        "qa_scenario": "support-resume",
+        "json_status": "pass",
+        "json_scenario": "support-resume",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "coldResumeSeconds": 15,
+        "expiredSources": {
+          "version": 1,
+          "sources": {}
+        },
+        "schema": 5
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-recovery-resume",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "support-visibility-resume",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 13.106077500000014,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "pass",
+        "qa_scenario": "support-visibility-resume",
+        "json_status": "pass",
+        "json_scenario": "support-visibility-resume",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "visibilityResumeSeconds": 15,
+        "sources": {
+          "version": 1,
+          "sources": {}
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-reset",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-effects-and-deeds",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "tree-purchase-contract",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 21.06377629999997,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui [320,844,0,0]",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui [390,844,0,0]",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui [430,844,0,0]",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui-reduced-motion [320,844,0,0]",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui-reduced-motion [390,844,0,0]",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "tree-purchase-ui-reduced-motion [430,844,0,0]",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-contract",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 12.452787499999976,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 0,
+        "qa_status": null,
+        "qa_scenario": null,
+        "json_status": null,
+        "json_scenario": null,
+        "runtime_markers": [],
+        "runtime_error_count": null,
+        "json_error": "Expected exactly one completed QA result",
+        "valid": false
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "bond-text-contract",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-mobile",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-guidance-mobile",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-reduced-motion",
+      "sourceSha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "Forge UI teardown failed: Error: browser close timeout 2000ms\n    at Timeout.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\rift-status.cjs:18:150)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)\n"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-ui-process-contract",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-ui-mobile",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-ui-reduced-motion",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "buff-timing",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "buff-save-reload",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-contracts",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-effects",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-chronology",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-save-reload",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "loadout-memory-core",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "loadout-memory-mobile",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-backup-restore",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "forge-recovery",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 9.414738099999958,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "pass",
+        "qa_scenario": "forge-recovery",
+        "json_status": "pass",
+        "json_scenario": "forge-recovery",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "storedOverCap": 13,
+        "newStoredOverCap": 13,
+        "expansionTracks": 16,
+        "explicitQueues": {
+          "focus": false,
+          "sense": false,
+          "formation": false,
+          "resolve": false,
+          "charge": false,
+          "arcanecal": true,
+          "conduction": false,
+          "luminoustracking": true,
+          "masterwork": false,
+          "cauterize": true,
+          "fracturekey": false,
+          "guardianseal": true,
+          "spillway": false,
+          "sustainedchannel": true,
+          "tapconduit": false,
+          "guardiancadence": true,
+          "relay": false,
+          "resonantedge": true,
+          "victorycharge": false,
+          "amplifiertrim": true,
+          "dualchannel": false,
+          "overflowconduit": true,
+          "resonancecells": false,
+          "resonancecascade": true,
+          "resonancereclaim": false
+        },
+        "activeStudy": {
+          "id": "guardmastery",
+          "remainingSec": 123,
+          "totalDurationSec": 150,
+          "speedMult": 2
+        },
+        "formation": {
+          "members": [
+            "tide",
+            "stone"
+          ],
+          "preset": ""
+        },
+        "enemyRetained": true
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-baseline",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "forge-balance",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "r3-destinations",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "r3-save-reload",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "research-duration",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "research-duration-reduced-motion",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-persistence-review",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-persist-save-reload",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-persist-backup-restore",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-persist-recovery",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-persist-reset",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "p2-07a-formation-reconstruction",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "elapsed_sec": 11.105681700000074,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "pass",
+        "qa_scenario": "p2-07a-formation-reconstruction",
+        "json_status": "pass",
+        "json_scenario": "p2-07a-formation-reconstruction",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "checks": 323,
+        "targets": [
+          [
+            "stone",
+            "ember",
+            "tide"
+          ],
+          [
+            "tide",
+            "stone",
+            "gale",
+            "thorn",
+            "void"
+          ],
+          [
+            "void",
+            "tide"
+          ],
+          [
+            "stone",
+            "tide",
+            "gale"
+          ],
+          [
+            "ember"
+          ]
+        ],
+        "negativeControls": [
+          "intent",
+          "powered"
+        ],
+        "schema": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-save-reload",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-backup-restore",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-recovery",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-07a-chronology",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [360,800,0,0]",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [360,780,0,0]",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [390,844,0,0]",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [412,915,0,0]",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "layout-p2-07a-reconstruction [360,640,24,24]",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-06b-live-feedback",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    },
+    {
+      "status": "PASS",
+      "scenario": "p2-06b-reduced-motion",
+      "sourceSha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5"
+    }
+  ]
+}

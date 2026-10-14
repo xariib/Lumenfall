@@ -9,6 +9,8 @@ const specs=[
  ['lost-mastery-on-ascend','state.ascendCount++;','state.ascendCount++;Object.keys(state.wispMastery).forEach(function(id){state.wispMastery[id]=0;});','Mastery survives Ascend'],
  ['leaked-paid-mutation',transactionPrefix+'  state=clonePersistedValue(base);',transactionPrefix+'  state=base;','failed primary Mastery rolls back everything'],
  ['lost-paid-clock','if(memoWasBase)studyClockMemo.state=base;','', 'failed purchase preserves paid-work clock continuity'],
+ ['wide-quote-copy','if(!quoteOnly)credits=clonePersistedValue(credits);','credits=clonePersistedValue(credits);','wide price quotes never clone or mutate paid ledgers'],
+ ['stale-refund-total','if(prismRefundCreditMemo.key===key)','if(prismRefundCreditMemo.key!==null)','in-place held-credit change updates total'],
  ['free-queued-speed','state.motes=debitAmount(state.motes,plan.cost);','', 'queued speed exactly debits a wide Mote wallet','endless-wide-engine.cjs'],
  ['discarded-physical-progress',' && !Amount.lt(state.enemyHp,hpBeforeAdvance)','', 'Authoritative simulation stalled','endless-wide-engine.cjs','runtime'],
  ['unbounded-future-work','Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level))','node.baseDurationSec * Math.pow(node.durationGrowth, level)','bounded future work'],

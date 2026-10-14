@@ -29,7 +29,7 @@ Existing full-debug transport/native/tooling limitations stay recorded.
 Baseline source validation/Support/campaign PASS, Node24.19.0; regular v1 all
 recruits/Mythic/Ultimate16h. [Evidence/status](../qa/endless-progression-001/README.md).
 Arithmetic/schema5, central gates, Mastery/Forge and UI candidate implemented.
-Core136/amount412/wide53/parity305/11 controls and mobile469/12 profiles PASS.
+Core142/amount412/wide53/parity305/13 controls and mobile469/12 profiles PASS.
 Forge9319/25 controls, Tree5923/28, Lab2676; V8 Forge2486/Lab580/Mastery17 PASS.
 Forge foundations are retired: add repeatable Masterwork Tempering opening5
 Mastery ranks/level, retain existing caps. Current coefficients still calibrating.

@@ -187,7 +187,12 @@ window.runForgeExtended = function(b,ctx,assert,parity,summaryParity,near){
   if(ctx.scenario==='forge-balance'){
     var records=[];
     ['mid-game','mature-high-power'].forEach(function(name){['manual','queue'].forEach(function(mode){['live','offline'].forEach(function(kind){
-      var s=copy(ctx.fixtures[name].save);b.setState(s);s=allOff(b.getState());b.setState(s);
+      var s=copy(ctx.fixtures[name].save);
+      // The new encounter curve makes the historical level-18 early profile
+      // too weak to earn this price in60s. Retarget combat development only;
+      // the wallet and the complete earned-income/debit oracle stay unchanged.
+      if(name==='mid-game')s.spirits.ember=75;
+      b.setState(s);s=allOff(b.getState());b.setState(s);
       var start=b.getState();
       if(mode==='queue'){var q=b.getState();ids.forEach(function(id){q.researchQueue[id]=true;});b.setState(q);}
       function execute(chunk){

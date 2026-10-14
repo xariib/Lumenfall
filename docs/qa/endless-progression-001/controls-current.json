@@ -1,73 +1,85 @@
 {
   "status": "PASS",
-  "controls": 11,
+  "controls": 13,
   "records": [
     {
       "name": "wrong-mastery-power",
       "status": "KILLED",
       "assertion": "own Power compounded10%",
-      "sourceSha256": "2320517556b339ccd46e3f19548c02bff5bc36d722055ffdb70670e141a12200"
+      "sourceSha256": "92d0952517e32ed48448f9672a5499f98dfd8836b57c1f7d9849a53fad25a84b"
     },
     {
       "name": "missing-next-record",
       "status": "KILLED",
       "assertion": "next rank needs deeper record",
-      "sourceSha256": "8c6256e2020ce8b2eac49a6aa012b823608ec2b1dc2162501b5e8cab08c4e9b0"
+      "sourceSha256": "70769edd11657da7be8ae9c0a1a19f465a195592fe5c706deef874899a45be5a"
     },
     {
       "name": "free-mastery-sigils",
       "status": "KILLED",
       "assertion": "Mastery Sigil debit",
-      "sourceSha256": "9eabf18663191b5cf3315440ed920c42cc16f7cb848e24d90c365d2488cc9f44"
+      "sourceSha256": "8f5cea1671141bcbe1767059b0a646d41b4a23d5e6b1b72754da35f2c68d523c"
     },
     {
       "name": "lost-mastery-on-ascend",
       "status": "KILLED",
       "assertion": "Mastery survives Ascend",
-      "sourceSha256": "ee4a5c9d9f1b50768ca8c5b62ca6d088d47f07c685676742c19ef49491ad1638"
+      "sourceSha256": "faff90e1f6b86cfacb7d3832acb91ec79431678e9ac99b83958a73920240e7e3"
     },
     {
       "name": "leaked-paid-mutation",
       "status": "KILLED",
       "assertion": "failed primary Mastery rolls back everything",
-      "sourceSha256": "ce4246f944556edd922220d2012798629aca7331eb5ccd3b8fb933006061a99b"
+      "sourceSha256": "73a68a7b511e83267e995a80f8981938100b5ddd3c3566bda5ee40d8c79e8794"
     },
     {
       "name": "lost-paid-clock",
       "status": "KILLED",
       "assertion": "failed purchase preserves paid-work clock continuity",
-      "sourceSha256": "2c4e00f83af2d20a8cdae6bd399ce29cf13593cd54227dc377e347fc50f58d8a"
+      "sourceSha256": "21141bc685422ad90493f2326c74270d6596efaed566fecf12831f2c18f0c93e"
+    },
+    {
+      "name": "wide-quote-copy",
+      "status": "KILLED",
+      "assertion": "wide price quotes never clone or mutate paid ledgers",
+      "sourceSha256": "d7899c9c4a12b506d7a0046060835ea107f5affaa8009b252c1ebcb7b3a0120f"
+    },
+    {
+      "name": "stale-refund-total",
+      "status": "KILLED",
+      "assertion": "in-place held-credit change updates total",
+      "sourceSha256": "2cdb908d8a6d6a3a88ac980092251290a27b73379de74a464db8c534bb83b665"
     },
     {
       "name": "free-queued-speed",
       "status": "KILLED",
       "assertion": "queued speed exactly debits a wide Mote wallet",
-      "sourceSha256": "b7ba33c0c8b059d013d1fe8377fcca8ca5ea7dd3e744bfc6e7e39cff3896f2a7"
+      "sourceSha256": "d67d27b2c99e77f8e67fd935c71f6686295e0ccc0f8e5b00e0d9a3933af194b9"
     },
     {
       "name": "discarded-physical-progress",
       "status": "KILLED",
       "assertion": "Authoritative simulation stalled",
-      "sourceSha256": "9df48ebb5d048bd1e723350db6a1e5026b32ea1591a350a0cc0e059b4cf981e8"
+      "sourceSha256": "4f4b1b148df8e79d0f1d2d5a54ed4c74cdd95282a56f9689176658d35088884d"
     },
     {
       "name": "unbounded-future-work",
       "status": "KILLED",
       "assertion": "bounded future work",
-      "sourceSha256": "025da41f39bac9f53e7c9d73a77085ee4596faec4ff9842a092992ed7fc28f1a"
+      "sourceSha256": "427e0f050fa3b61d6f6d4fff8afca9ec0abeaa5b8c03df9d6af1e5da3a8f9ac4"
     },
     {
       "name": "lost-old-titan-entitlement",
       "status": "KILLED",
       "assertion": "old unlocked roster preserved titan",
-      "sourceSha256": "6f895c9644a5f8863dec284c015ac56007ce58ffcc8f6c74cfb0f4e81ddfbf60"
+      "sourceSha256": "4478111ae3273ebeb6ede6433bbe65b3e6519bdc36fdc55146eb6f5306bd7b6f"
     },
     {
       "name": "early-ultimate",
       "status": "KILLED",
       "assertion": "Ultimate needs ability15",
-      "sourceSha256": "0a380adeaa3498cc621701a1f22c085043065d273a9d3a81bc876857a48cfd34"
+      "sourceSha256": "2988170f88c50ef8501bdb14bc4a2a124b6a994c6f2e4336f478477a1d68b387"
     }
   ],
-  "sourceSha256": "92ceadcc5fbbb40f40ab4d0f340fbd514e8daa628deef7af6e9967c29c41fb26"
+  "sourceSha256": "440a7efdf28ebbeba538bd8237c9f0d74ee4e0d49667b2320a458cb0a2169b22"
 }

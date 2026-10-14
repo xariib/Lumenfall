@@ -299,3 +299,70 @@ counterfactual, one-second/current split chronology, rollback and nonzero host
 processing. Full browser run72846 is still open on c6229a12/earlier fixtures;
 its failures and stale source-bound golden are retained, no complete PASS.
 Final source-bound full run and Android/integration remain required.
+
+Current root8c3a46ea: core138/wide53 PASS; controls12 includes materializing
+wide quotes by mistake. Wide Prism quotes now avoid cloning/mutating paid
+refund ledgers. Independent funding oracle3360 cases PASS:126 formerly
+unrepresentable allocations now pay exactly,524 shortages still reject.
+Existing F21 browser assertions are being adapted to exact wide debits, schema5
+and independent canonical integer parsing; their native controls remain OPEN.
+
+Live feedback regression fixed: candidate selection previously chose a late
+Wisp whose completed-Lab gate was unmet, suppressing a valid milestone. Require
+actual recruitment eligibility before selecting it. Both feedback motion modes
+PASS after combat fixtures were retuned to Ember20 and rapid150 (same event,
+state-purity, coalescing and no-backlog assertions). The prior million-level
+rapid fixture crossed enormous numbers of encounters under the new curve.
+
+Proposed final-UI numeric model AB8621f670: core136,wide53,parity305 and
+mobile469 PASS across12 profiles/48 cases (including200% text). One earlier
+zero-check Page.navigate timeout/forced cleanup is preserved separately. AB
+predates the latest presentation/quote optimization only; no numeric difference
+from AA. The balance tables have still NOT been applied to root.
+
+Windows timeout infrastructure: process-tree.cjs7 checks and existing raw
+process contract31 controls PASS. Deadline now terminates the owned process
+tree (Windows taskkill/Linux process group), preserving failure status. Some
+native Chrome cases still timeout or fail graceful teardown. A CDP request was
+also expiring at8s before the unchanged25s scenario gate; Runtime.evaluate now
+uses20s within that same gate. Rift contract1738 and Forge balance36 assertions
+complete, but their process/teardown gates still FAIL, so no overall PASS.
+Chrome140 and151 both show transport/close limitations.
+
+The former full run was stopped after69 outcomes; full-current-partial-summary
+records it as INTERRUPTED. Remainder18303 uses per-case source hashes and is
+IN_PROGRESS; current raw DOM bodies can pass while process/teardown fails.
+The actual Guidance destination test now seeds a clearly affordable Tide at
+Rift3, rather than assuming dense late-roster recruitment eligibility. Final
+full/CI still required. Primary AA run74831 resumes day26 to56; secondary
+AA campaigns were deliberately stopped at valid saved checkpoints (casual21,
+frequent21,efficient18) to reduce resource contention during browser work.
+Do not mistake completed bounded chunks for an ongoing simulation.
+
+New retained-value evidence: current440a7efd core142/wide53/13 causal controls
+PASS, plus actual V8 6.0 checks25. The quote defect control initially survived
+because the fixture was not reaching its wide path; it now migrates an actual
+old ledger first and then assigns a valid current wide wallet. The control is
+caught by the intended no-cloning assertion.
+
+An actual1815-entry original refund ledger took32025.9842ms for20 repeated
+total queries before the new memo, versus1826.0869ms including the cold sum
+afterward. Both produce the identical exact represented integer above native
+overflow. Memo fingerprints every amount, so in-place edits and normalized
+copies cannot give stale totals; a causal stale-total control proves it.
+No balance, receipt or price change is made by either performance cache.
+After this repair, Cheaper Recruitment native31 result groups PASS on Chrome140
+(including206 refund and389 contract assertions,12 mobile profiles, cold old
+saves, recovery and imports). The previous19-group CDP timeout is preserved in
+cheaper-current-timeout.json. Echo/defect-control run continues separately.
+
+AA regular has reached day38/Lab28 with all recruits22d; first Mythic/Ultimate
+remain pending. Primary bounded continuation is74831, target56days. Additional
+frozen regular_two runtime6393 measures two600s sessions/day from fresh to70
+days; original active policy bytes remain unchanged. Secondary AA checkpoints
+remain deliberately stopped. Final measurement/model application still OPEN.
+Potential mature-policy issue to audit: early Support auto-Empower is held at10
+for efficiency; verify actual Bench Mentorship allows their later rarity level
+gates, or introduce an explicitly recorded mature policy after first Ultimate
+that develops affordable eligible roster members. Do not infer full-roster
+months from an unsuccessful player policy or from seeded stress fixtures.

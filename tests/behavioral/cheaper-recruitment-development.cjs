@@ -16,7 +16,7 @@ if(mutation==='free-credit')source=source.replace('left=exactPrismArithmetic(bal
 if(mutation==='wallet')source=source.replace('if(source.index===-1) wallet=debit.left;','if(source.index===-1) wallet=wallet;');
 if(mutation==='receipt')source=source.replace(' || !cheaperRecruitmentReceiptPriceMatches(n,20+index)','');
 if(mutation==='cache')source=source.replace('var entry=cheaperRecruitmentRefundPrices[level-20];','var value=2*Math.pow(1.45,level),allowance=value*level*Number.EPSILON/(1-level*Number.EPSILON); var entry={min:Math.ceil(value-allowance),max:Math.ceil(value+allowance)};');
-if(mutation==='credit-record')source=source.replace("if(!isPlainObject(entry) || typeof entry.id!=='string' || !entry.id || !Number.isFinite(entry.amount) || entry.amount<=0 || Math.floor(entry.amount)!==entry.amount || (entry.id===id && !hasReceipt)){",'if(entry && entry.id===id && !hasReceipt){');
+if(mutation==='credit-record')source=source.replace("if(!isPlainObject(entry) || typeof entry.id!=='string' || !entry.id || !Amount.valid(entry.amount) || Amount.le(entry.amount,0) || !Amount.integer(entry.amount) || (entry.id===id && !hasReceipt)){",'if(entry && entry.id===id && !hasReceipt){');
 if(mutation==='ascend-copy')source=source.replace('state = normalizeCurrentSave(state,true);',"state = acceptPersistedState(state,'simulation-ascend');");
 if(mutation==='version-check')source=source.replace("if(out.feedbackMigration.version!==1) throw persistenceError('invalid-bonds-refund','Recruitment refund version needs recovery');",'');
 if(mutation==='credit-reconcile')source=source.replace('validateCheaperRecruitmentCreditAudit(receipt,credits,saved.bondsCreditAuditVersion===1);','');

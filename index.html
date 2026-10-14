@@ -5405,10 +5405,11 @@ function prismFundPurchase(cost,coarseFirst,quoteOnly){
 // allocation when greedily spending a small credit prevents the wallet debit.
 function prismExactAmountPlan(cost,quoteOnly){
     if(!Amount.integer(cost)||Amount.lt(cost,0))return null;
-    var credits=clonePersistedValue((state.refundCredits&&state.refundCredits.prisms)||[]),remaining=cost;
+    var credits=(state.refundCredits&&state.refundCredits.prisms)||[],remaining=cost;
+    if(!quoteOnly)credits=clonePersistedValue(credits);
     for(var i=0;i<credits.length&&Amount.gt(remaining,0);i++){
       var entry=credits[i],take=Amount.min(entry.amount,remaining);
-      entry.amount=debitAmount(entry.amount,take);remaining=debitAmount(remaining,take);
+      if(!quoteOnly)entry.amount=debitAmount(entry.amount,take);remaining=debitAmount(remaining,take);
     }
     if(Amount.lt(state.prisms,remaining))return null;
     var wallet=debitAmount(state.prisms,remaining);
@@ -5423,10 +5424,17 @@ function prismPurchasePlan(cost,quoteOnly){
   return preferred || prismFundPurchase(cost,1,quoteOnly) || prismFundPurchase(cost,2,quoteOnly) || prismFundPurchase(cost,3,quoteOnly) || prismExactAmountPlan(cost,quoteOnly);
 
 }
+var prismRefundCreditMemo={key:null,value:0};
 function prismRefundCreditTotal(){
-  return ((state.refundCredits && state.refundCredits.prisms)||[]).reduce(function(total,entry){
+  var credits=(state.refundCredits && state.refundCredits.prisms)||[];
+  // Exact summation of old ledgers can involve hundreds of large integers.
+  // Fingerprint values too, so in-place changes and normalized copies are safe.
+  var key=credits.length+':'+credits.map(function(entry){return entry?typeof entry.amount+':'+entry.amount:'null';}).join('|');
+  if(prismRefundCreditMemo.key===key)return prismRefundCreditMemo.value;
+  var value=credits.reduce(function(total,entry){
     return creditAmount(total,entry && Amount.valid(entry.amount) && Amount.gt(entry.amount,0)?entry.amount:0);
   },0);
+  prismRefundCreditMemo={key:key,value:value};return value;
 }
 function acceptPersistedState(input,sourceName){
   assertPersistedRootShape(input);
@@ -11250,7 +11258,7 @@ function presentLiveRiftResult(before,sim){
     // entrance is relevant only if it is still the current encounter.
     SPIRITS.forEach(function(sp){
       var unlock=treeWispUnlockDepth(sp);
-      if(unlock>before.maxDepth && unlock<=state.maxDepthEver) milestone=unlock;
+      if(unlock>before.maxDepth && unlock<=state.maxDepthEver && wispRecruitmentUnlocked(sp)) milestone=unlock;
     });
     if(!milestone){
       var regionStart = Math.floor((state.maxDepthEver-1)/RIFT_ZONE_SPAN)*RIFT_ZONE_SPAN+1;

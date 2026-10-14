@@ -4,6 +4,7 @@ const {spawn}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'docs/qa/endless-progression-001/mobile');
+const calibrated=process.argv.includes('--calibrated'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=calibrated?32:30;
 const source=fs.readFileSync(file,'utf8'),marker="if(document.readyState==='loading'){";
 const bridge=`window.endlessUi={
  fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},
@@ -39,10 +40,10 @@ async function run(){
  for(const width of [320,390,430])for(const scale of [1,2])for(const motion of ['no-preference','reduce']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize='+16*scale+'+"px"');
   for(const mode of ['early','gates','mastery','huge']){
-   await ev(`(()=>{var s=endlessUi.fresh();s.depth=20;s.maxDepthEver=32;s.lumen=1e12;s.shards=1e12;s.prisms=1000;s.sigils=50000;
-    if('${mode}'!=='early'){s.spirits.ember=140;s.heroRarity.ember=4;s.wispModules.ember=20;s.maxDepthEver=200;s.ascendCount=50;s.longStudyLevels.wispascend=30;s.research.arcanecal=10;s.research.masterwork=1;s.nodes.swift=10;}
+   await ev(`(()=>{var s=endlessUi.fresh();s.depth=20;s.maxDepthEver=32;s.lumen=1e12;s.shards=1e12;s.prisms=${calibrated?100000:1000};s.sigils=${calibrated?100000000:50000};
+    if('${mode}'!=='early'){s.spirits.ember=140;s.heroRarity.ember=4;s.wispModules.ember=20;s.maxDepthEver=200;s.ascendCount=50;s.longStudyLevels.wispascend=${labBase};s.research.arcanecal=10;s.research.masterwork=1;s.nodes.swift=10;}
     if('${mode}'==='mastery'||'${mode}'==='huge'){s.heroRarity.ember=5;s.wispUltimate.ember=true;}
-    if('${mode}'==='huge'){s.wispMastery.ember=10000;s.maxDepthEver=250200;s.longStudyLevels.wispascend=2030;s.research.masterwork=2001;s.nodes.swift=1010;s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';}
+    if('${mode}'==='huge'){s.wispMastery.ember=10000;s.maxDepthEver=250200;s.longStudyLevels.wispascend=${2000+labBase};s.research.masterwork=2001;s.nodes.swift=1010;s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';}
     endlessUi.set(s);document.querySelector('[data-wisp-card=ember]').scrollIntoView({block:'start'});})()`);
    await pause(80);
    // Measure the settled target, after the existing panelIn scale animation.
@@ -59,7 +60,7 @@ async function run(){
    if(mode==='mastery'){
     check(geometry.mastery.includes('Rank 0')&&geometry.mastery.includes('Next: Own Power ×1.10'),'Mastery current/next clear');
     const before=await ev('endlessUi.get()');await ev('var b=document.querySelector("[data-mastery=ember]");b.scrollIntoView({block:"center"});b.focus({preventScroll:true})');await key();await pause(80);
-    const after=await ev('({s:endlessUi.get(),card:document.activeElement.closest("[data-wisp-card]")?.dataset.wispCard})');check(after.s.wispMastery.ember===1,'native keyboard buys a rank');check(after.s.prisms===before.prisms-200&&after.s.sigils===before.sigils-5000,'native keyboard exact spend');check(after.card==='ember','stable purchase focus');
+    const after=await ev('({s:endlessUi.get(),card:document.activeElement.closest("[data-wisp-card]")?.dataset.wispCard})');check(after.s.wispMastery.ember===1,'native keyboard buys a rank');check(after.s.prisms===before.prisms-prismPrice&&after.s.sigils===before.sigils-sigilPrice,'native keyboard exact spend');check(after.card==='ember','stable purchase focus');
    }
    if(mode==='huge'){check(!geometry.mastery.includes('Infinity')&&!geometry.mastery.includes('NaN'),'wide growth displays compactly');}
    const purity=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('endlessUi.render();endlessUi.refresh()');check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===purity,'render/refresh does not mutate save');

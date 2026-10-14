@@ -1,0 +1,1 @@
+Frozen additional regular policy: two ten-minute check-ins daily. Actual engine, earned currencies, same model as AA; independent source/policy hashes in output. Original active campaign runner remains unchanged.

@@ -19,7 +19,7 @@ if(mutation==='free-credit')mutate('left=exactPrismArithmetic(balance,-take)','l
 if(mutation==='wallet')mutate('function prismPurchasePlan(cost,quoteOnly){',"function prismPurchasePlan(cost,quoteOnly){if(!state.refundCredits.prisms.length && state.prisms>=cost)return {prisms:state.prisms-cost,credits:[],remainingOwnCredits:[],remainingEchoCredits:[]};");
 if(mutation==='receipt')mutate(' || !cheaperRecruitmentReceiptPriceMatches(n,20+index)','');
 if(mutation==='cache')mutate('var entry=cheaperRecruitmentRefundPrices[level-20];','var value=2*Math.pow(1.45,level),allowance=value*level*Number.EPSILON/(1-level*Number.EPSILON); var entry={min:Math.ceil(value-allowance),max:Math.ceil(value+allowance)};');
-if(mutation==='credit-record')mutate("if(!isPlainObject(entry) || typeof entry.id!=='string' || !entry.id || !Number.isFinite(entry.amount) || entry.amount<=0 || Math.floor(entry.amount)!==entry.amount || (entry.id===id && !hasReceipt)){",'if(entry && entry.id===id && !hasReceipt){');
+if(mutation==='credit-record')mutate("if(!isPlainObject(entry) || typeof entry.id!=='string' || !entry.id || !Amount.valid(entry.amount) || Amount.le(entry.amount,0) || !Amount.integer(entry.amount) || (entry.id===id && !hasReceipt)){",'if(entry && entry.id===id && !hasReceipt){');
 if(mutation==='ascend-copy')mutate('state = normalizeCurrentSave(state,true);',"state = acceptPersistedState(state,'simulation-ascend');");
 if(mutation==='version-check')mutate("if(out.feedbackMigration.version!==1) throw persistenceError('invalid-bonds-refund','Recruitment refund version needs recovery');",'');
 if(mutation==='credit-reconcile')mutate('validateCheaperRecruitmentCreditAudit(receipt,credits,saved.bondsCreditAuditVersion===1);','');
@@ -28,7 +28,7 @@ if(mutation==='missing-receipt')mutate('if(!hasReceipt && ((saved.bondsCreditAud
 if(mutation==='canonical-price'){mutate('price=cheaperRecruitmentCanonicalPrices[level-20]','price=Math.ceil(value)');mutate('if(price===undefined)','if(!Number.isFinite(price))');}
 if(mutation==='power-spacing')mutate('if(actual>limit) remaining=nextPrismFloat(remaining);','if(actual>limit && total!==Math.pow(2,Math.floor(Math.log(total)/Math.LN2))) remaining=nextPrismFloat(remaining);');
 if(mutation==='funding-sources')mutate(' || prismFundPurchase(cost,3,quoteOnly)','');
-if(mutation==='mixed-payment')mutate('return preferred || prismFundPurchase(cost,1,quoteOnly) || prismFundPurchase(cost,2,quoteOnly) || prismFundPurchase(cost,3,quoteOnly);','return preferred;');
+if(mutation==='mixed-payment')mutate('return preferred || prismFundPurchase(cost,1,quoteOnly) || prismFundPurchase(cost,2,quoteOnly) || prismFundPurchase(cost,3,quoteOnly) || prismExactAmountPlan(cost,quoteOnly);','return preferred || prismExactAmountPlan(cost,quoteOnly);');
 if(!['none','handler','ui','raw','refund','credit','free-credit','wallet','receipt','cache','credit-record','ascend-copy','version-check','credit-reconcile','below-cap-receipt','missing-receipt','canonical-price','mixed-payment','power-spacing','funding-sources'].includes(mutation))throw Error('unknown mutation');
 const mutationSha256=createHash('sha256').update(source).digest('hex');
 const bridge=`

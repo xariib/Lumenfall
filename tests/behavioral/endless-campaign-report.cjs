@@ -6,7 +6,7 @@ const prefix=process.argv[2]||'docs/qa/endless-progression-001/candidate-z',outp
 const day=86400,records=[];
 let checks=0;
 function equal(a,b,label){checks++;assert(amount.cmp(a,b)===0,label);}
-for(const policy of ['regular','casual','frequent','efficient']){
+for(const policy of ['regular','regular_two','casual','frequent','efficient']){
  const file=prefix+'-'+policy+'-snapshot.json.checkpoint.json';
  if(!fs.existsSync(file))continue;
  const c=JSON.parse(fs.readFileSync(file,'utf8'));

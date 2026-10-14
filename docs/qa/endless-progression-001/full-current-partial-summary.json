@@ -1,0 +1,492 @@
+{
+  "status": "INTERRUPTED",
+  "limits": "Intermediate bytes and fixtures. Partial evidence only; source is recorded per case. Native helpers may read current root; no integrated/final acceptance inferred.",
+  "cases": [
+    {
+      "status": "PASS",
+      "scenario": "formation-best-now-core",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "formation-best-now",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "AssertionError [ERR_ASSERTION]: live interval keeps same disabled action focus\n    at ok (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\formation-best-now.cjs:20:27)\n    at run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\formation-best-now.cjs:69:266)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-speed-controls",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "formation-collapse",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "AssertionError [ERR_ASSERTION]: native Enter expands\n    at ok (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\formation-collapse.cjs:21:27)\n    at run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\formation-collapse.cjs:54:22)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "wisp-rarity-scroll",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "wisp-card-simplicity",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-affordable-alert",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "resonate-clarity",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-contracts",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-chronology",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-farm-clock",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-save-reload",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-backup-restore",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-recovery",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-ui [320,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-ui [390,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-ui [430,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-reduced-motion [320,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-reduced-motion [390,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "upgrade-identity-reduced-motion [430,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "wisp-upgrade-display",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "comet-unlocks-core",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "comet-unlocks-mobile",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "comet-unlocks-reduced-motion",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-offline-integration",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-numerical",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-runtime",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-conservation",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-contracts",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "FAIL",
+      "scenario": "lab-motes-chronology",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "elapsed_sec": 4.998043999999995,
+        "timeout_sec": 25
+      },
+      "observed QA": {
+        "qa_count": 1,
+        "qa_status": "fail",
+        "qa_scenario": "lab-motes-chronology",
+        "json_status": "fail",
+        "json_scenario": "lab-motes-chronology",
+        "runtime_markers": [],
+        "runtime_error_count": 0,
+        "json_error": null,
+        "valid": true
+      },
+      "failure": {
+        "message": "LAB oracle: shared offline cap pays speed but cannot complete beyond 12h {\"effective\":43200,\"purchases\":1,\"level\":1,\"active\":[]}",
+        "stack": "Error: LAB oracle: shared offline cap pays speed but cannot complete beyond 12h {\"effective\":43200,\"purchases\":1,\"level\":1,\"active\":[]}\n    at assert (http://127.0.0.1:57758/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:16848:61)\n    at ok (http://127.0.0.1:57758/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:16406:29)\n    at window.runLabMotesQa (http://127.0.0.1:57758/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:16460:197)\n    at HTMLDocument.run (http://127.0.0.1:57758/index.html?qaScenario=lab-motes-chronology&qaFixture=fresh:17374:30)"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-ui [320,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-ui [390,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-ui [430,844,0,0]",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-native",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-reduced-motion",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-save-reload",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-backup-restore",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-recovery",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "lab-motes-reset",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "save-backup-ui",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "offline-catchup-core",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "offline-12h-core",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "offline-12h-ui",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "offline-catchup-ui",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6\r\nif(require('node:crypto').createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'../../index.html'))).digest('hex')!==swiftGolden.sourceSha256)throw Error('Regenerate one-second windows after product changes');\r\n                                                                                                                                                            ^\r\n\r\nError: Regenerate one-second windows after product changes\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6:163)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "offline-catchup-legacy-dom",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6\r\nif(require('node:crypto').createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'../../index.html'))).digest('hex')!==swiftGolden.sourceSha256)throw Error('Regenerate one-second windows after product changes');\r\n                                                                                                                                                            ^\r\n\r\nError: Regenerate one-second windows after product changes\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\offline-catchup-ui.cjs:6:163)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47\r\n\r\nNode.js v24.19.0\r\n"
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "nav-workshop-contract",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-contracts",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-chronology",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-ui",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-ui-reduced-motion",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-save-reload",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-backup-restore",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-recovery",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "inquiry-reset",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "raw-process-contract: 31 result controls, real timeout, artifact bounds, two causal negatives/undo",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "support-stacking",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-contract",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy16",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy44",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy56",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-legacy130",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-recovery",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-resume",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-reset",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-manual-reload",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-cold-resume",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853"
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-mobile",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "PASS",
+      "scenario": "auto-ascend-target-reduced-motion",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      }
+    },
+    {
+      "status": "FAIL",
+      "scenario": "rift-status-stacking-mobile",
+      "sourceSha256": "c6229a1262d95c18890148c3a0a0727e99030b0d794ab77f1696e4f6bb476853",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      }
+    }
+  ]
+}

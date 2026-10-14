@@ -10,7 +10,7 @@ window.runP206FeedbackQa = function(bridge,ctx,assert){
     s.depth=depth;s.enemyDepth=depth;s.maxDepthEver=depth;
     s.enemyMaxHp=bridge.enemyHpFor(depth);s.enemyHp=0.0001;
     s.riftMode=mode||'push';s.farmDepth=depth;s.enemyIsLuminous=false;
-    s.spirits.ember=10;s.activeParty=['ember'];
+    s.spirits.ember=20;s.activeParty=['ember'];
     if(mode==='farm'){s.maxDepthEver=depth+1;s.farmReturnDepth=depth+1;}
     bridge.setState(s);bridge.renderLayout();
   }
@@ -41,7 +41,7 @@ window.runP206FeedbackQa = function(bridge,ctx,assert){
   bridge.advanceTime(2000);first.remove();seed(3);bridge.feedbackTick(true);
   assert(!banner(),'discarded milestones do not replay after cooldown');
   bridge.resetFeedback();seed(1);
-  var rapid=bridge.getState();rapid.spirits.ember=1000000;bridge.setState(rapid);
+  var rapid=bridge.getState();rapid.spirits.ember=150;bridge.setState(rapid);
   var rapidInput=bridge.getState(),rapidWithout=bridge.feedbackTick(false);
   bridge.setState(rapidInput);var rapidWith=bridge.feedbackTick(true);
   assert(JSON.stringify(rapidWithout)===JSON.stringify(rapidWith),'multi-kill tick state remains exact');
