@@ -7,7 +7,8 @@ all purchases/folding, saves and revised Formation UI remain.
 [Evidence](qa/wisp-card-simplicity-001/revision/README.md):layout15,960/12,
 upgrades12,912, scroll3229, core8099/role UI163, Formation541/12 and hierarchy/
 role/nav/controls PASS; source/context/preservation/V8 syntax PASS. Ember390px
-480→379px. Self-review. Local integration/preview verification next.
+480→379px. Self-review. Integrated9da5370 on local/full-debug; all15 source/
+staged/HTTP assets match preview4174; app opening queued, reload unclaimed.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 

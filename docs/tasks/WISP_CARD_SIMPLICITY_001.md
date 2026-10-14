@@ -34,7 +34,8 @@ Status: LOCAL REVISION VERIFIED, source35846c8f.
 [Revision evidence](../qa/wisp-card-simplicity-001/revision/README.md):layout15,960/12,
 upgrades12,912/12, scroll3229, core8099/role UI163, Formation541/12, hierarchy/
 role/nav/controls PASS. Source/context/byte preservation/V8 syntax PASS.
-Screens reviewed; Ember390px480→379px. Next: local integration and preview4174
-source/staged/HTTP verification, then user review/final combined acceptance.
+Screens reviewed; Ember390px480→379px. Integrated9da5370 on local/full-debug;
+all15 source/staged/HTTP assets match4174 ([receipt](../qa/wisp-card-simplicity-001/revision/preview.json)).
+App opening queued; actual reload unclaimed. Next: user review/final acceptance.
 Self-review only. Final combined CI/GitHub/main and Android/WebView60/native
 textZoom/TalkBack/device acceptance remain OPEN; keep this chat open.

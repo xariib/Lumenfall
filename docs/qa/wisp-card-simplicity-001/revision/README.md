@@ -6,6 +6,9 @@ display-preservation requirement for those two rows.
 
 Baseline49403e2/source3ebf0632. Candidate source SHA256:
 `35846c8f2a1bdb4d8ea2a50ffa1cad83303b18f2d8ba21a087e5d737e08e8580`.
+Integrated locally9da5370 on local/full-debug. [Preview receipt](preview.json)
+verifies all15 source/staged/HTTP assets at http://127.0.0.1:4174/index.html.
+App opening queued; actual visible-tab reload is not claimed.
 
 Removed both rows from every card; empty readouts take no space. Support/resource
 effects and enabled Bonds remain. Levels have a bordered badge. The ability name
