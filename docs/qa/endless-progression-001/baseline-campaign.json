@@ -1,0 +1,1402 @@
+{
+  "status": "PASS",
+  "policy": "One manual tap/second until Auto-Tap; up to20 cheapest affordable Wisp levels/second; one affordable Forge level/second; attempt paid Studies every10s; first fresh Ascend when ready. Existing automatic behavior retained.",
+  "limits": "Deterministic standard fixtures; gameplay measurements, not human or Android acceptance. No arbitrary economy/price rebalance.",
+  "before": [
+    {
+      "fixture": "fresh",
+      "seconds": 7200,
+      "startDepth": 1,
+      "endDepth": 70,
+      "maxDepth": 70,
+      "kills": 68,
+      "measuredSecondsPerKill": 105.88235294117646,
+      "medianKillInterval": 11,
+      "secondsSinceLastKill": 4839,
+      "empowers": 114,
+      "forge": 10,
+      "studies": 9,
+      "ascendReadySeconds": 54,
+      "firstAscend": {
+        "at": 54,
+        "prisms": 8
+      },
+      "upgradeWaitMedian": 4,
+      "upgradeWaitP95": 38,
+      "spent": {
+        "empower": 85345,
+        "forgeLumen": 0,
+        "forgeShards": 4317,
+        "studyLumen": 9680,
+        "studyShards": 1492
+      },
+      "samples": [
+        {
+          "seconds": 300,
+          "depth": 40,
+          "maxDepth": 40,
+          "lumen": 20,
+          "shards": 30,
+          "levels": {
+            "ember": 28,
+            "tide": 13,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 600,
+          "depth": 40,
+          "maxDepth": 40,
+          "lumen": 20,
+          "shards": 30,
+          "levels": {
+            "ember": 28,
+            "tide": 13,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 900,
+          "depth": 54,
+          "maxDepth": 54,
+          "lumen": 132,
+          "shards": 313,
+          "levels": {
+            "ember": 38,
+            "tide": 23,
+            "stone": 9,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1200,
+          "depth": 60,
+          "maxDepth": 60,
+          "lumen": 173,
+          "shards": 179,
+          "levels": {
+            "ember": 41,
+            "tide": 26,
+            "stone": 11,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1500,
+          "depth": 60,
+          "maxDepth": 60,
+          "lumen": 173,
+          "shards": 179,
+          "levels": {
+            "ember": 41,
+            "tide": 26,
+            "stone": 11,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1800,
+          "depth": 60,
+          "maxDepth": 60,
+          "lumen": 173,
+          "shards": 179,
+          "levels": {
+            "ember": 41,
+            "tide": 26,
+            "stone": 11,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 2100,
+          "depth": 62,
+          "maxDepth": 62,
+          "lumen": 990,
+          "shards": 487,
+          "levels": {
+            "ember": 45,
+            "tide": 30,
+            "stone": 15,
+            "gale": 1,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 2400,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 2347,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 2700,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 5227,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3000,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 8107,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3300,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 10987,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3600,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 13867,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3900,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 16747,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 4200,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 19627,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 4500,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 22507,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 4800,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 25387,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 5100,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 28267,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 5400,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 31147,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 5700,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 34027,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6000,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 36907,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6300,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 39787,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6600,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 42667,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6900,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 45547,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 7200,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 48427,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "mid-game",
+      "seconds": 1800,
+      "startDepth": 17,
+      "endDepth": 90,
+      "maxDepth": 90,
+      "kills": 71,
+      "measuredSecondsPerKill": 25.35211267605634,
+      "medianKillInterval": 10,
+      "secondsSinceLastKill": 4,
+      "empowers": 124,
+      "forge": 10,
+      "studies": 15,
+      "ascendReadySeconds": 1,
+      "firstAscend": null,
+      "upgradeWaitMedian": 0,
+      "upgradeWaitP95": 33,
+      "spent": {
+        "empower": 771526,
+        "forgeLumen": 15000,
+        "forgeShards": 4407,
+        "studyLumen": 37925,
+        "studyShards": 4551
+      },
+      "samples": [
+        {
+          "seconds": 300,
+          "depth": 65,
+          "maxDepth": 65,
+          "lumen": 3272,
+          "shards": 2465,
+          "levels": {
+            "ember": 49,
+            "tide": 34,
+            "stone": 19,
+            "gale": 9,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 600,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 333,
+          "shards": 15074,
+          "levels": {
+            "ember": 49,
+            "tide": 34,
+            "stone": 20,
+            "gale": 14,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 900,
+          "depth": 79,
+          "maxDepth": 79,
+          "lumen": 3984,
+          "shards": 38344,
+          "levels": {
+            "ember": 55,
+            "tide": 41,
+            "stone": 26,
+            "gale": 22,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1200,
+          "depth": 80,
+          "maxDepth": 80,
+          "lumen": 1107,
+          "shards": 58890,
+          "levels": {
+            "ember": 55,
+            "tide": 41,
+            "stone": 26,
+            "gale": 23,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1500,
+          "depth": 80,
+          "maxDepth": 80,
+          "lumen": 1107,
+          "shards": 78600,
+          "levels": {
+            "ember": 55,
+            "tide": 41,
+            "stone": 26,
+            "gale": 23,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1800,
+          "depth": 90,
+          "maxDepth": 90,
+          "lumen": 18901,
+          "shards": 126312,
+          "levels": {
+            "ember": 66,
+            "tide": 51,
+            "stone": 37,
+            "gale": 26,
+            "thorn": 11,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "mature-high-power",
+      "seconds": 1800,
+      "startDepth": 95,
+      "endDepth": 150,
+      "maxDepth": 150,
+      "kills": 55,
+      "measuredSecondsPerKill": 32.72727272727273,
+      "medianKillInterval": 6,
+      "secondsSinceLastKill": 1154,
+      "empowers": 174,
+      "forge": 102,
+      "studies": 6,
+      "ascendReadySeconds": 1,
+      "firstAscend": null,
+      "upgradeWaitMedian": 0,
+      "upgradeWaitP95": 25,
+      "spent": {
+        "empower": 3398041444,
+        "forgeLumen": 540675472,
+        "forgeShards": 12684969,
+        "studyLumen": 293896,
+        "studyShards": 30549
+      },
+      "samples": [
+        {
+          "seconds": 300,
+          "depth": 140,
+          "maxDepth": 140,
+          "lumen": 2926374,
+          "shards": 6579596,
+          "levels": {
+            "ember": 127,
+            "tide": 113,
+            "stone": 98,
+            "gale": 84,
+            "thorn": 69,
+            "void": 55,
+            "aurora": 48,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 600,
+          "depth": 149,
+          "maxDepth": 149,
+          "lumen": 6103434,
+          "shards": 16724942,
+          "levels": {
+            "ember": 132,
+            "tide": 117,
+            "stone": 102,
+            "gale": 88,
+            "thorn": 73,
+            "void": 59,
+            "aurora": 48,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 900,
+          "depth": 150,
+          "maxDepth": 150,
+          "lumen": 24527581,
+          "shards": 19023016,
+          "levels": {
+            "ember": 132,
+            "tide": 117,
+            "stone": 103,
+            "gale": 88,
+            "thorn": 74,
+            "void": 59,
+            "aurora": 48,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 1200,
+          "depth": 150,
+          "maxDepth": 150,
+          "lumen": 26323535,
+          "shards": 20835766,
+          "levels": {
+            "ember": 132,
+            "tide": 117,
+            "stone": 103,
+            "gale": 88,
+            "thorn": 74,
+            "void": 59,
+            "aurora": 48,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 1500,
+          "depth": 150,
+          "maxDepth": 150,
+          "lumen": 28121349,
+          "shards": 22633580,
+          "levels": {
+            "ember": 132,
+            "tide": 117,
+            "stone": 103,
+            "gale": 88,
+            "thorn": 74,
+            "void": 59,
+            "aurora": 48,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 1800,
+          "depth": 150,
+          "maxDepth": 150,
+          "lumen": 29919163,
+          "shards": 24431394,
+          "levels": {
+            "ember": 132,
+            "tide": 117,
+            "stone": 103,
+            "gale": 88,
+            "thorn": 74,
+            "void": 59,
+            "aurora": 48,
+            "titan": 42
+          }
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "fixture": "fresh",
+      "seconds": 7200,
+      "startDepth": 1,
+      "endDepth": 70,
+      "maxDepth": 70,
+      "kills": 68,
+      "measuredSecondsPerKill": 105.88235294117646,
+      "medianKillInterval": 11,
+      "secondsSinceLastKill": 4839,
+      "empowers": 114,
+      "forge": 10,
+      "studies": 9,
+      "ascendReadySeconds": 54,
+      "firstAscend": {
+        "at": 54,
+        "prisms": 8
+      },
+      "upgradeWaitMedian": 4,
+      "upgradeWaitP95": 38,
+      "spent": {
+        "empower": 85345,
+        "forgeLumen": 0,
+        "forgeShards": 4317,
+        "studyLumen": 9680,
+        "studyShards": 1492
+      },
+      "samples": [
+        {
+          "seconds": 300,
+          "depth": 40,
+          "maxDepth": 40,
+          "lumen": 20,
+          "shards": 30,
+          "levels": {
+            "ember": 28,
+            "tide": 13,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 600,
+          "depth": 40,
+          "maxDepth": 40,
+          "lumen": 20,
+          "shards": 30,
+          "levels": {
+            "ember": 28,
+            "tide": 13,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 900,
+          "depth": 54,
+          "maxDepth": 54,
+          "lumen": 132,
+          "shards": 313,
+          "levels": {
+            "ember": 38,
+            "tide": 23,
+            "stone": 9,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1200,
+          "depth": 60,
+          "maxDepth": 60,
+          "lumen": 173,
+          "shards": 179,
+          "levels": {
+            "ember": 41,
+            "tide": 26,
+            "stone": 11,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1500,
+          "depth": 60,
+          "maxDepth": 60,
+          "lumen": 173,
+          "shards": 179,
+          "levels": {
+            "ember": 41,
+            "tide": 26,
+            "stone": 11,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1800,
+          "depth": 60,
+          "maxDepth": 60,
+          "lumen": 173,
+          "shards": 179,
+          "levels": {
+            "ember": 41,
+            "tide": 26,
+            "stone": 11,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 2100,
+          "depth": 62,
+          "maxDepth": 62,
+          "lumen": 990,
+          "shards": 487,
+          "levels": {
+            "ember": 45,
+            "tide": 30,
+            "stone": 15,
+            "gale": 1,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 2400,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 2347,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 2700,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 5227,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3000,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 8107,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3300,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 10987,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3600,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 13867,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 3900,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 16747,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 4200,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 19627,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 4500,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 22507,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 4800,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 25387,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 5100,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 28267,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 5400,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 31147,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 5700,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 34027,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6000,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 36907,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6300,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 39787,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6600,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 42667,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 6900,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 45547,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 7200,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 1113,
+          "shards": 48427,
+          "levels": {
+            "ember": 48,
+            "tide": 33,
+            "stone": 18,
+            "gale": 4,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "mid-game",
+      "seconds": 1800,
+      "startDepth": 17,
+      "endDepth": 90,
+      "maxDepth": 90,
+      "kills": 71,
+      "measuredSecondsPerKill": 25.35211267605634,
+      "medianKillInterval": 10,
+      "secondsSinceLastKill": 4,
+      "empowers": 124,
+      "forge": 10,
+      "studies": 15,
+      "ascendReadySeconds": 1,
+      "firstAscend": null,
+      "upgradeWaitMedian": 0,
+      "upgradeWaitP95": 33,
+      "spent": {
+        "empower": 771526,
+        "forgeLumen": 15000,
+        "forgeShards": 4407,
+        "studyLumen": 37925,
+        "studyShards": 4551
+      },
+      "samples": [
+        {
+          "seconds": 300,
+          "depth": 65,
+          "maxDepth": 65,
+          "lumen": 3272,
+          "shards": 2465,
+          "levels": {
+            "ember": 49,
+            "tide": 34,
+            "stone": 19,
+            "gale": 9,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 600,
+          "depth": 70,
+          "maxDepth": 70,
+          "lumen": 333,
+          "shards": 15074,
+          "levels": {
+            "ember": 49,
+            "tide": 34,
+            "stone": 20,
+            "gale": 14,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 900,
+          "depth": 79,
+          "maxDepth": 79,
+          "lumen": 3984,
+          "shards": 38344,
+          "levels": {
+            "ember": 55,
+            "tide": 41,
+            "stone": 26,
+            "gale": 22,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1200,
+          "depth": 80,
+          "maxDepth": 80,
+          "lumen": 1107,
+          "shards": 58890,
+          "levels": {
+            "ember": 55,
+            "tide": 41,
+            "stone": 26,
+            "gale": 23,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1500,
+          "depth": 80,
+          "maxDepth": 80,
+          "lumen": 1107,
+          "shards": 78600,
+          "levels": {
+            "ember": 55,
+            "tide": 41,
+            "stone": 26,
+            "gale": 23,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        },
+        {
+          "seconds": 1800,
+          "depth": 90,
+          "maxDepth": 90,
+          "lumen": 18901,
+          "shards": 126312,
+          "levels": {
+            "ember": 66,
+            "tide": 51,
+            "stone": 37,
+            "gale": 26,
+            "thorn": 11,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "mature-high-power",
+      "seconds": 1800,
+      "startDepth": 95,
+      "endDepth": 160,
+      "maxDepth": 160,
+      "kills": 65,
+      "measuredSecondsPerKill": 27.692307692307693,
+      "medianKillInterval": 3,
+      "secondsSinceLastKill": 1451,
+      "empowers": 216,
+      "forge": 113,
+      "studies": 6,
+      "ascendReadySeconds": 1,
+      "firstAscend": null,
+      "upgradeWaitMedian": 0,
+      "upgradeWaitP95": 10,
+      "spent": {
+        "empower": 8558931617,
+        "forgeLumen": 893150361,
+        "forgeShards": 11779800,
+        "studyLumen": 287234,
+        "studyShards": 29283
+      },
+      "samples": [
+        {
+          "seconds": 300,
+          "depth": 158,
+          "maxDepth": 158,
+          "lumen": 9108508,
+          "shards": 45161076,
+          "levels": {
+            "ember": 137,
+            "tide": 123,
+            "stone": 108,
+            "gale": 94,
+            "thorn": 79,
+            "void": 65,
+            "aurora": 51,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 600,
+          "depth": 160,
+          "maxDepth": 160,
+          "lumen": 16898777,
+          "shards": 51874023,
+          "levels": {
+            "ember": 138,
+            "tide": 124,
+            "stone": 109,
+            "gale": 94,
+            "thorn": 80,
+            "void": 66,
+            "aurora": 52,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 900,
+          "depth": 160,
+          "maxDepth": 160,
+          "lumen": 19079287,
+          "shards": 54054533,
+          "levels": {
+            "ember": 138,
+            "tide": 124,
+            "stone": 109,
+            "gale": 94,
+            "thorn": 80,
+            "void": 66,
+            "aurora": 52,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 1200,
+          "depth": 160,
+          "maxDepth": 160,
+          "lumen": 1528488,
+          "shards": 55562098,
+          "levels": {
+            "ember": 138,
+            "tide": 124,
+            "stone": 109,
+            "gale": 94,
+            "thorn": 80,
+            "void": 66,
+            "aurora": 52,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 1500,
+          "depth": 160,
+          "maxDepth": 160,
+          "lumen": 3708998,
+          "shards": 57742608,
+          "levels": {
+            "ember": 138,
+            "tide": 124,
+            "stone": 109,
+            "gale": 94,
+            "thorn": 80,
+            "void": 66,
+            "aurora": 52,
+            "titan": 42
+          }
+        },
+        {
+          "seconds": 1800,
+          "depth": 160,
+          "maxDepth": 160,
+          "lumen": 5889508,
+          "shards": 59923118,
+          "levels": {
+            "ember": 138,
+            "tide": 124,
+            "stone": 109,
+            "gale": 94,
+            "thorn": 80,
+            "void": 66,
+            "aurora": 52,
+            "titan": 42
+          }
+        }
+      ]
+    }
+  ],
+  "sourceSha256": "e110f182e500eed4bbb0382d182471c93110da28fda97fff4856b5931791a9ac"
+}

@@ -6,7 +6,7 @@ const P = 'lumenfall_save_v2', R = 'lumenfall_save_recovery_v1';
 const CLOCK = 2000000000000;
 const clone = value => JSON.parse(JSON.stringify(value));
 
-function app(source, saved) {
+function app(source, saved, options) {
   let now = CLOCK, next = 0, failPrimary = false, failRecovery = false, reloads = 0;
   const timers = [], writes = [], storage = new Map(saved || []), area = {value: ''};
   const localStorage = {
@@ -32,6 +32,7 @@ function app(source, saved) {
   function qaSpirit(id){return SPIRITS.find(function(sp){return sp.id===id;});}
   function qaResearch(id){return RESEARCH.find(function(node){return node.id===id;});}
   window.qa={
+    endless:window.endlessQa,
     fresh:freshState,get:function(){return state;},set:function(s){state=acceptPersistedState(s);},accept:acceptPersistedState,load:function(){state=loadState();},day:todayStr,
     defs:function(){return RESEARCH;},projects:function(){return LONG_STUDIES;},node:qaResearch,sp:qaSpirit,
     level:function(id,s){return forgeLevel(id,s);},
@@ -137,7 +138,10 @@ function app(source, saved) {
   const marker = "if(document.readyState==='loading'){";
   assert.equal(script.split(marker).length, 2, 'one complete-game observation hook');
   new Function('window', 'document', 'localStorage', 'Date', 'setTimeout', 'clearTimeout', 'performance', 'BigInt', 'location', 'navigator', 'qaStage', script.replace(marker, hooks + marker))(
-    window, document, localStorage, class extends Date { static now() { return now; } },
+    window, document, localStorage, class extends Date {
+      constructor(value) { super(arguments.length ? value : options && options.clockDate ? now : Date.now()); }
+      static now() { return now; }
+    },
     fn => { timers.push({id: ++next, fn}); return next; },
     id => { const i = timers.findIndex(timer => timer.id === id); if (i >= 0) timers.splice(i, 1); },
     {now: () => 0}, undefined, {reload: () => reloads++}, {}, stage
