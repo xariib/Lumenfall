@@ -1,0 +1,80 @@
+{
+  "featureId": "FORGE_LAB_CAPS_001",
+  "date": "2026-10-14",
+  "phase": "local continuation revalidation; no new product changes",
+  "branch": "local/full-debug",
+  "baselineHead": "2cbcbf27329567d9d5f2b88e6c7401dac0961829",
+  "startupWorkingTree": "clean",
+  "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+  "node": "24.19.0",
+  "decision": "Previously saved A: arcanecal/conduction/bossledger/luminousdistill cap20; no new balance authorization inferred",
+  "checks": [
+    {
+      "command": "node tests/behavioral/forge-lab-caps.cjs index.html --negative",
+      "result": "PASS",
+      "assertions": 2179,
+      "causalControls": 3
+    },
+    {
+      "command": "node tests/behavioral/forge-expansion.cjs index.html --negative",
+      "result": "PASS",
+      "assertions": 9315,
+      "causalControls": 25
+    },
+    {
+      "command": "node tests/behavioral/lab-expansion.cjs index.html --negative",
+      "result": "PASS",
+      "assertions": 2675,
+      "causalControls": 10
+    },
+    {
+      "command": "node tests/behavioral/lab-expansion-boundary.cjs index.html --negative",
+      "result": "PASS",
+      "assertions": 2344,
+      "causalControls": 5
+    },
+    {
+      "command": "node tests/behavioral/forge-expansion-calibration.cjs index.html --negative",
+      "result": "PASS",
+      "assertions": 3134,
+      "causalControls": 7
+    },
+    {
+      "command": "node scripts/ci/validate_source.cjs",
+      "result": "PASS",
+      "scripts": 2,
+      "ids": 16
+    },
+    {
+      "command": "node scripts/codex/check_context.cjs --task docs/tasks/FORGE_LAB_CAPS_001.md",
+      "result": "PASS"
+    },
+    {
+      "command": "node docs/qa/forge-lab-caps-001/verify-preview.cjs",
+      "result": "PASS",
+      "assets": 15,
+      "note": "Initial sandbox loopback EACCES; same verifier passed outside sandbox"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    }
+  ],
+  "preview": {
+    "url": "http://127.0.0.1:4174/index.html",
+    "openInCodex": "queued",
+    "assets": "current source/fonts/branding refreshed; all15 source/staging/HTTP hashes match",
+    "freshVisibleBrowserInspection": false
+  },
+  "review": "Self-review of implementation catalog and relevant regression diff; documentation-only continuation. Prior browser/mobile receipts retained for unchanged exact source.",
+  "limitations": [
+    "User preview acceptance pending",
+    "Final combined full behavioral/required CI pending",
+    "Inherited Prism deadline and Windows dump-DOM/POSIX tooling limitations",
+    "Android/device/WebView60/native textZoom/TalkBack pending; browser/VM checks do not prove Android"
+  ],
+  "nextAction": "Review playable preview, then final combined acceptance under existing debugging scope; no further balance changes without specific user decision",
+  "remotePush": false,
+  "apkRelease": false,
+  "signingChange": false
+}

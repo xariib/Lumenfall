@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+14 October 2026: FORGE_LAB_CAPS_001 continuation reverified clean `2cbcbf2`
+on `local/full-debug`, retaining saved A/cap20 decision. Same `509b2dcb` source;
+19,647 core/focused assertions and50 causal controls, source/context PASS;
+all15 current source/staged/HTTP assets match. Preview opening queued; no fresh
+visible-browser inspection claimed. [Revalidation](qa/forge-lab-caps-001/revalidation.json).
+Documentation-only continuation; user/final combined/native acceptance pending.
+
 14 October 2026: [FORGE_LAB_CAPS_001](tasks/FORGE_LAB_CAPS_001.md)
 LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing reviewed `fe42861`.
 User chose A: Arcane Calibration, Resource Conduction, Boss Survey and Luminous

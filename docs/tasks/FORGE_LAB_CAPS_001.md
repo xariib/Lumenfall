@@ -103,6 +103,20 @@ and docs/qa/forge-lab-caps-001 evidence/preview helper. No archived code promote
 
 ## Next action and deferred acceptance
 
+### Local continuation revalidation — 14 October 2026
+
+Repeated TASK7 startup resumed clean `local/full-debug` at `2cbcbf2`, retaining
+the saved A decision and implementation; no new balance choice inferred.
+Source remains `509b2dcb` above. [Revalidation receipt](../qa/forge-lab-caps-001/revalidation.json):
+caps2179/3, Forge9315/25, Lab2675/10, boundary2344/5 and calibration3134/7 PASS
+on Node24.19.0; source/context/whitespace PASS. Current source/assets refreshed;
+all15 source/staged/HTTP files match. Restricted loopback initially returned
+EACCES; the same read-only verifier passed outside sandbox. Preview open returned
+queued; this continuation does not claim a fresh visible-tab/browser inspection.
+Reviewed implementation diff and current documentation; no product/tests changed.
+Saved implementation/browser receipts remain historical evidence for exact source.
+User/final combined/native acceptance stays pending; no remote/APK/signing action.
+
 Next: user reviews the playable preview. Rerun focused caps (using immutable
 fe42861 baseline history), Forge/Lab/calibration/boundary/mobile and earlier
 improvement preservation checks on the eventual final combined source, with
