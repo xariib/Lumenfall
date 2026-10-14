@@ -1,5 +1,7 @@
 # Simpler Wisp cards
 
+Latest follow-up: [boxed Ability badge and exact currency upgrade names](ability-badge/README.md).
+
 Latest follow-up: [one ability identity, no secondary upgrade name](one-name/README.md).
 
 Latest follow-up: [clear Upgrade Ability / Upgrade Rewards labels](labels/README.md).

@@ -1,35 +1,34 @@
 # Simpler Wisp cards
 
-14 October 2026. One goal: clear, compact Wisp cards. Earlier user decisions:
-remove Raw damage/Party preview, box Wisp levels, use Upgrade Ability/Rewards.
-Preserve these and Best now Formation. [History](../qa/wisp-card-simplicity-001/README.md).
+14 October 2026. One goal: clear compact cards. Preserve earlier user decisions:
+no Raw damage/Party preview, boxed Wisp levels, one ability name with upgrade
+count, clear purchase labels. [History](../qa/wisp-card-simplicity-001/README.md).
 
-Latest user: “The ability is called Nova burst on Ember wisp, then its saying
-overcharge core and upgrade ability? isnt it a little clutter”. Show one ability
-name; remove the secondary Module identity from cards. Put Upgrades0/20 beside
-the ability name and keep the existing effect, purchase label and both prices
-below. Shorten descriptions that repeat upgrade information. The level is upgrade
-count, not an assertion that the base ability starts locked. Internal catalog/
-Module save identities remain. No effects, balance, prices, caps or save changes.
+Latest user: “MAke a little boks like the lvl box left side of the Ability, so
+its easy to see its an ability. I dont understand the upgrade rewards here at
+gale dancer?” Gale screenshot shows unrecruited0/20 and Recruit first.
+Add an Ability badge matching the level box immediately left of each ability
+name. Replace generic Upgrade Rewards with Upgrade Shards (Gale), Upgrade Lumen
+(Thorn), Upgrade Motes (Tide/Aurora); retain Upgrade Ability for damage roles.
+Update help/tutorial. Verified moduleMult=1+level*0.05 and abilityRewardRaw:
+Gale levels raise Shards per cast, not its hit; recruiting remains required.
 
-Baseline45fb848/source9f382d3f; local/full-debug tracked clean, untracked
-validation-evidence/ preserved. Reuse isolated codex/wisp-card-simplicity at
+Baselinee9db86e/source43e158bb; tracked local/full-debug clean, untracked
+validation-evidence/ retained. Reuse isolated codex/wisp-card-simplicity at
 C:/Users/xarib/AppData/Local/Temp/lumenfall-wisp-card-simplicity.
-Prior source-bound checks: [labels](../qa/wisp-card-simplicity-001/labels/README.md).
+No concurrent tracked edits observed. No effects, prices, caps, purchases,
+progression/save or Formation changes. No new rules.
 
-Acceptance: all8 Wisps have one ability identity with correct upgrade progress;
-no secondary Core/Lens/Catalyst/Focus names. Keep exact purchases/focus/scroll,
-completed folding and [unfinished visibility](WISP_UPGRADE_DISPLAY_001.md).
-Check320/390/430px,100/200% text/motion,44px controls, layout/upgrades/scroll and
-related role/text checks. Keep causal negative coverage after changed text.
-Source/context/preservation/diff review; integrate serially and verify preview.
+Acceptance: all8 badges boxed and left of ability names; role-specific labels/
+accessible names, all prices/effects and eligibility correct. All8 Wisps at
+320/390/430px,100/200% text/motion;44px controls, no clipping. Existing layout/
+upgrades and source/context/preservation/diff review. Preserve
+[unfinished visibility](WISP_UPGRADE_DISPLAY_001.md), folding and focus/scroll.
 
-Status: ONE-NAME REVISION VERIFIED, source43e158bb.
-[Evidence](../qa/wisp-card-simplicity-001/one-name/README.md):layout16,920/12,
-upgrades12,912/12, scroll3229, hierarchy/roles/text253 and causal negative PASS.
-Source/context/byte preservation/V8 PASS; screenshots reviewed. Integrated55acf1a
-on local/full-debug; all15 source/staged/HTTP assets match4174 ([receipt](../qa/wisp-card-simplicity-001/one-name/preview.json)).
-App opening queued, reload unclaimed. Next: user review/final acceptance.
-Self-review only. User/final combined CI/GitHub/main
-and Android/WebView60/textZoom/TalkBack/device acceptance remain OPEN.
-Local-only mandate; no remote/APK/release/archive. Keep chat open.
+Status: BADGE/REWARD REVISION VERIFIED, sourcedfa26453.
+[Evidence](../qa/wisp-card-simplicity-001/ability-badge/README.md):layout18,072/12,
+upgrades12,912/12, scroll3229, source/context/preservation/V8 PASS. Gale normal/
+200% screens reviewed. Next: serial integration and exact preview4174 receipts.
+Prior checks remain saved. Self-review only. User/final CI/GitHub/main and Android/
+WebView60/textZoom/TalkBack/device acceptance OPEN. Local-only mandate;
+no remote/APK/release/archive. Keep this chat open.

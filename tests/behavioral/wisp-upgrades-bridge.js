@@ -6,7 +6,7 @@ window.__wispQa={
  refresh:function(){lastAffordabilityAt=0;checkAffordability();},
  rarityRequirement:function(t){return rarityReq(t);},rarityCost:function(id,t){return rarityCost(this.spirit(id),t);},
  render:function(){renderSpirits();},cap:function(n){MODULE_MAX_LEVEL=n;},
- present:function(){renderHud();document.activeElement.blur();document.querySelector('[data-wisp-card="ember"]').scrollIntoView({block:'start',behavior:'instant'});document.getElementById('toast').classList.remove('show');},
+ present:function(id){renderHud();document.activeElement.blur();document.querySelector('[data-wisp-card="'+(id||'ember')+'"]').scrollIntoView({block:'start',behavior:'instant'});document.getElementById('toast').classList.remove('show');},
  spirit:function(id){return SPIRITS.find(function(sp){return sp.id===id;});},
  moduleCost:function(id,n){return moduleCost(this.spirit(id),n);},ultimateCost:function(id){return ultimateSigilCost(this.spirit(id));},
  slots:function(){return [localStorage.getItem(SAVE_KEY),localStorage.getItem(RECOVERY_SAVE_KEY)];},

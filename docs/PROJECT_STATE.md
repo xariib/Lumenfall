@@ -10,14 +10,13 @@ Current assets/live preview verified. Local milestone; chat OPEN, user/final
 combined/native acceptance pending, no remote/APK/signing/archive.
 
 14 October 2026: [WISP_CARD_SIMPLICITY_001](tasks/WISP_CARD_SIMPLICITY_001.md)
-one-name follow-up from45fb848/source43e158bb: no secondary Module names;
-Nova Burst and other ability titles carry upgrade count, effects/button below.
-Prior boxed levels, removed damage/previews and Upgrade Ability/Rewards retained.
-[Evidence](qa/wisp-card-simplicity-001/one-name/README.md):layout16,920/12,
-upgrades12,912/12, scroll3229, hierarchy/roles/text253 and causal negative PASS;
-source/context/preservation/V8 PASS. Effects/prices/saves/Formation unchanged.
-Self-review. Integrated55acf1a locally; all15 preview4174 source/staged/HTTP assets
-match. App opening queued; actual user-tab reload unclaimed.
+badge/reward follow-up frome9db86e/sourcedfa26453: boxed Ability beside each
+ability name; Upgrade Shards for Gale, Upgrade Lumen for Thorn, Upgrade Motes for
+Tide/Aurora. Help/tutorial updated; prior one-name layout and boxed levels retained.
+[Evidence](qa/wisp-card-simplicity-001/ability-badge/README.md):layout18,072/12,
+upgrades12,912/12, scroll3229, source/context/preservation/V8 PASS. Gale normal/
+200% screens reviewed. Effects/prices/saves/Formation byte-identical. Self-review.
+Local integration and preview4174 verification next.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 

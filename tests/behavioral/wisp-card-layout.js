@@ -36,8 +36,8 @@ window.runWispCardLayoutQa=function(baseline){
       ['module','rarity','ultimate'].forEach(function(action){var e=card.querySelector('[data-'+action+']');ok(e&&e.getBoundingClientRect().height>=44,'unfinished '+action+' visible');});
       ok(card.querySelector('[data-module]').querySelectorAll('.cost-icon').length===2,'both Module prices retained');
       if(!baseline){
-        var upgrade=card.querySelector('[data-module]'),label=['dps','breaker'].indexOf(b.spirit(id).abilityType)!==-1?'Upgrade Ability':'Upgrade Rewards';
-        ok(upgrade.textContent.includes(label)&&!upgrade.textContent.includes('Upgrade Module'),'purchase label explains actual improvement '+id);
+        var upgrade=card.querySelector('[data-module]'),label={dps:'Upgrade Ability',breaker:'Upgrade Ability',ranged:'Upgrade Shards',druid:'Upgrade Lumen',support:'Upgrade Motes'}[b.spirit(id).abilityType];
+        ok(upgrade.textContent.includes(label)&&!upgrade.textContent.includes('Upgrade Module')&&!upgrade.textContent.includes('Upgrade Rewards'),'purchase label names the exact improvement '+id);
         ok(upgrade.getAttribute('aria-label').includes(label)&&upgrade.getAttribute('aria-label').includes(b.spirit(id).name),'accessible purchase name identifies effect and Wisp '+id);
       }
       ok(card.querySelector('[data-ultimate]').textContent.includes('Mythic required'),'Ultimate prerequisite retained');
@@ -51,6 +51,9 @@ window.runWispCardLayoutQa=function(baseline){
       ok(heading.textContent===(stage===2?'Upgrades':b.spirit(id).abilityName),'ability leads unfinished section without extra heading');
       ok(heading.getAttribute('aria-label')===b.spirit(id).name+(stage===2?' upgrades':' ability and upgrades'),'heading/disclosure retains Wisp context for assistive technology');
       ok(!card.querySelector('.ability-label'),'no redundant Ability label');
+      var badge=card.querySelector('.ability-badge'),abilityTitle=card.querySelector('.wisp-ability-title h3,.wisp-ability-title strong'),badgeStyle=badge&&getComputedStyle(badge);
+      ok(badge&&badge.textContent==='Ability'&&parseFloat(badgeStyle.borderLeftWidth)>0&&badgeStyle.borderLeftColor===levelStyle.borderLeftColor&&badgeStyle.backgroundColor===levelStyle.backgroundColor,'Ability badge matches level box '+id);
+      ok(badge.getBoundingClientRect().right<=abilityTitle.getBoundingClientRect().left+1,'Ability badge stays left of the name '+id);
       ok(['Overcharge Core','Impact Core','Piercing Lens','Bloom Catalyst','Resonant Focus'].every(function(name){return !card.textContent.includes(name);}),'no second upgrade identity on card '+id);
       var progress=card.querySelector('.hero-ability .ability-upgrades');
       ok(progress&&progress.textContent==='Upgrades '+b.get().wispModules[id]+'/20'+(stage===2?' · Maxed':''),'upgrade progress belongs to named ability '+id);

@@ -2,6 +2,7 @@
  * node tests/behavioral/wisp-upgrades.cjs [--source FILE] [--evidence DIR]
  * --card-layout runs Wisp card layout/preservation checks; --baseline measures
  * the original design without requiring the new flat surfaces/short heading.
+ * --present-wisp ID selects the screenshot subject; fixtures remain unchanged.
  * --existing comma-separated-scenarios runs the existing embedded JS assertions
  * over CDP when this browser's dump-dom process cannot complete.
  * Existing engine/lifecycle assertions come from the active Node.js harness.
@@ -13,6 +14,7 @@ const root=path.resolve(__dirname,'../..'),args=process.argv.slice(2);
 function option(name,fallback){const i=args.indexOf(name);return i<0?fallback:args[i+1];}
 const source=path.resolve(option('--source',path.join(root,'index.html'))),evidence=option('--evidence',null);
 const cardLayout=args.includes('--card-layout');
+const pictureId=option('--present-wisp','ember'); // Select screenshot subject only; all fixtures still run.
 const code=fs.readFileSync(source,'utf8'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
 assert(code.split(marker).length===2,'one game closure for test bridge');
@@ -75,11 +77,12 @@ async function run(){
     const geometry=await evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]'),r=p.getBoundingClientRect();return {width:innerWidth,fit:document.documentElement.scrollWidth<=innerWidth&&p.scrollWidth<=p.clientWidth+1,controls:Array.from(p.querySelectorAll('button')).map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height,disabled:e.disabled};}),title:getComputedStyle(p.querySelector('[data-wisp-details]')).color,motion:matchMedia('(prefers-reduced-motion:reduce)').matches,errors:window.__wispErrors};})()`);
     assert(geometry.fit,'progression fits '+width+' large='+large);assert(geometry.controls.every(r=>r.w>=44&&r.h>=44),'all upgrade controls >=44px: '+JSON.stringify(geometry));assert(!geometry.errors.length,'no browser runtime errors');
     if(evidence && (!large || cardLayout) && motion==='no-preference'){
-      await evaluate('window.__wispQa.present()');fs.mkdirSync(evidence,{recursive:true});
-      const prefix='wisp-'+width+(large?'-large':'');
+      assert(await evaluate('window.__wispQa.ids.includes('+JSON.stringify(pictureId)+')'),'known screenshot Wisp');
+      await evaluate('window.__wispQa.present('+JSON.stringify(pictureId)+')');fs.mkdirSync(evidence,{recursive:true});
+      const prefix='wisp-'+width+(large?'-large':'')+(pictureId==='ember'?'':'-'+pictureId);
       const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,prefix+'.png'),Buffer.from(shot.data,'base64'));
-      if(cardLayout && !large){const clip=await evaluate('(()=>{const r=document.querySelector("[data-wisp-card=ember]").getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,scale:1};})()');const card=await send('Page.captureScreenshot',{format:'png',clip});fs.writeFileSync(path.join(evidence,prefix+'-card.png'),Buffer.from(card.data,'base64'));}
-      if(cardLayout && large){await evaluate('document.querySelector("[data-ultimate=ember]").scrollIntoView({block:"end"})');const lower=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,prefix+'-actions.png'),Buffer.from(lower.data,'base64'));}
+      if(cardLayout && !large){const clip=await evaluate('(()=>{const r=document.querySelector('+JSON.stringify('[data-wisp-card="'+pictureId+'"]')+').getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,scale:1};})()');const card=await send('Page.captureScreenshot',{format:'png',clip});fs.writeFileSync(path.join(evidence,prefix+'-card.png'),Buffer.from(card.data,'base64'));}
+      if(cardLayout && large){await evaluate('document.querySelector('+JSON.stringify('[data-ultimate="'+pictureId+'"]')+').scrollIntoView({block:"end"})');const lower=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,prefix+'-actions.png'),Buffer.from(lower.data,'base64'));}
     }
     // Real keyboard activation of the completed disclosure and native focus.
     await evaluate(`(()=>{const b=window.__wispQa,s=b.fresh();s.maxDepthEver=101;s.spirits.ember=1;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;b.set(s);b.render();const p=document.querySelector('[data-wisp-progression="ember"]');p.open=true;p.querySelector('summary').scrollIntoView({block:'center'});p.querySelector('summary').focus();})()`);
