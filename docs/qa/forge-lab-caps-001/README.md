@@ -1,5 +1,9 @@
 # Forge/Lab cap review — local baseline evidence
 
+User subsequently chose A. [Verified cap20 implementation](IMPLEMENTATION.md)
+records current source/checks/preview. This page and its baseline receipts retain
+the pre-decision review; proposals are historical, not pending choices.
+
 14 October 2026. Read-only proposal checkpoint on `local/full-debug`, continuing
 `27f433da85d367d195fe743be29706d0f1905462`. Node24.19.0. Owner self-review only.
 Source `f8f787fd4a520ec277b350f40c6caeefa519c48cb55ddeb9bbe486e4cd0200b6`.

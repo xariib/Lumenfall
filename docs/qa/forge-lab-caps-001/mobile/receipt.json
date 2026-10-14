@@ -1,0 +1,1262 @@
+{
+  "status": "pass",
+  "sourceSha256": "509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050",
+  "node": "v24.19.0",
+  "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe",
+  "profiles": [
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "reduce",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "reduce",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Upgrade ×1</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "reduce",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Upgrade ×1</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "reduce",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1,
+      "motion": "reduce",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 2,
+      "motion": "no-preference",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<span class=\"label\">Upgrade ×1</span>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 2,
+      "motion": "reduce",
+      "samples": [
+        {
+          "id": "arcanecal",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 113336796,
+            "shard": 906695
+          },
+          "work": null
+        },
+        {
+          "id": "conduction",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 680020774,
+            "shard": 2115621
+          },
+          "work": null
+        },
+        {
+          "id": "bossledger",
+          "cap": 20,
+          "input": "touch",
+          "price": {
+            "lumen": 57866911,
+            "shard": 2066675
+          },
+          "work": 838155
+        },
+        {
+          "id": "luminousdistill",
+          "cap": 20,
+          "input": "Enter",
+          "price": {
+            "lumen": 103333770,
+            "shard": 3306681
+          },
+          "work": 1117541
+        }
+      ],
+      "reload": true,
+      "input": [
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;113336796&quot; style=&quot;color:v",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mult-btn active\" data-mult=\"1\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Forge multiplier — 1x\">1x</button>",
+          "trusted": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"buy-btn\" data-research=\"conduction\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;680020774&quot; style=&quot;color:",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<button class=\"node-queue-toggle \" data-queue=\"conduction\" aria-pressed=\"false\" data-state=\"available\" aria-label=\"Resource Conduction — Queue OFF\">Queue OFF</button>",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"bossledger\" aria-describedby=\"study-price-bossledger\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Boss Survey — Begin Study\">Begin Study",
+          "trusted": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "click",
+          "target": "<button class=\"mini-btn\" data-study=\"luminousdistill\" aria-describedby=\"study-price-luminousdistill\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Luminous Distillation — Begi",
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "target": "<input type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" data-study-speed-target=\"luminousdistill\" aria-label=\"Luminous Distillation — Speed target\" aria-valuetext=\"1.5x · 14 Motes per level\" aria-descr",
+          "trusted": true
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 552,
+  "stderr": "[21480:3496:1014/095645.201:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\r\n[21480:3496:1014/095712.885:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT\r\n"
+}

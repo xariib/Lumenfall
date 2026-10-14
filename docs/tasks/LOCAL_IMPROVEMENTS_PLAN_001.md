@@ -98,9 +98,11 @@ pending. [RIFT_THEME_LABEL_001](RIFT_THEME_LABEL_001.md) locally verified: Theme
 prefix for all six appearances, unchanged cosmetics/unlocks/saves/balance;
 baseline/candidate mobile/large-text and existing cosmetics/Guidance/Rift/nav PASS.
 Preview opening queued; user/final/device acceptance pending.
-[FORGE_LAB_CAPS_001](FORGE_LAB_CAPS_001.md) catalog/current-cap review and numeric
-proposal locally verified; user balance decision required, implementation NOT
-STARTED. Options and cost/work implications are saved; product remains unchanged.
-Next action: user chooses named caps (recommended four tracks20, extended
-Forge50/Lab20, or retain current rules) before the owner implements. No chat
-created automatically; final combined/native acceptance stays pending.
+[FORGE_LAB_CAPS_001](FORGE_LAB_CAPS_001.md) user chose A, now locally verified:
+Arcane Calibration, Resource Conduction, Boss Survey and Luminous Distillation
+cap20; other rules/caps and paid value/saves retained. Focused caps/old saves/
+quotes/queues/live-offline, existing Forge/Lab/boundary/calibration/mobile/Rift/nav
+PASS. Current playable preview reloaded and complete scripts verified.
+Next action: review the cap20 preview, then final combined validation under the
+existing debugging/release scope, retaining each feature's regression checks.
+No chat created automatically; full required CI and native acceptance stay pending.

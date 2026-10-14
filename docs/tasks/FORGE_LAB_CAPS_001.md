@@ -1,7 +1,7 @@
 # FORGE_LAB_CAPS_001 — explicit high-cap decision
 
-14 October 2026. Owner: this chat. Status: proposal locally verified; user
-balance decision REQUIRED before implementation. Local work only; no delegation,
+14 October 2026. Owner: this chat. Status: LOCAL IMPLEMENTATION VERIFIED for A.
+User balance decision saved below. Local work only; no delegation,
 new chat, remote/push, APK release or signing change.
 
 ## Original requirement
@@ -41,64 +41,73 @@ older queue wording; the current request is to consider allowing high caps.
   diff, update task/state, commit local checkpoint, refresh current mobile/www
   assets and show playable preview. Keep any required blocked acceptance pending.
 
-## Verified proposal checkpoint
+## Verified pre-decision proposal
 
-Read live affected catalogs, prices/effects, study work/modifiers, purchase/cap/
-scheduler and normalization paths, current Forge/Lab expansion requirements and
-designs, plus campaign evidence. Historical requirements do not add new gates.
-No product/assets/test implementation change. No cap or blanket rebalance chosen.
-
-[Full proposal and implications](../qa/forge-lab-caps-001/PROPOSAL.md),
-[40-entry live catalog](../qa/forge-lab-caps-001/CATALOG.md) and
-[source-bound receipts/commands](../qa/forge-lab-caps-001/README.md) are saved.
-Suggested choices (subject to user decision):
-
-- A recommended: Arcane Calibration/arcanecal=20, Resource Conduction/conduction=20,
-  Boss Survey/bossledger=20, Luminous Distillation/luminousdistill=20.
-- B: same four IDs, Forge=50 and Lab=20. Very late Forge material sinks, new
-  reachable quote precision requires additional handling/coverage.
-- C: current caps10 for those IDs. Explicit named subsets/caps are also allowed.
-
-Other caps/rules remain in all choices; five current Lab foundations are
-uncapped and are not silently capped. Existing per-level effects, unlocks,
-cost/work growth, speed tiers, discounts, running paid work, current refund/value
-records and productive offline cap remain. Upward caps retain raw historical
-levels, including effective effects under the newly chosen cap; no erasure or
-new refund. No independent-review claim; complete diff self-reviewed.
-
-Cap20 costs and times are formula estimates, not campaign reach guarantees.
-Boss Survey/Luminous Distillation final cap20 levels require9.70/12.93 days of
-neutral work, or14.26/19.01 hours with existing maximum work reductions and8x.
-Final Lab50 alone would require113/150 productive years even in that optimized
-case, so it is not recommended without a separate work-curve decision.
-
-Node24.19.0. Exact current product source remains the baseline hash above.
-Catalog review403 assertions PASS;35 capped IDs reject next purchase/start with
-unchanged state; all20+20 active entries recorded. Existing Forge9315/25 causal
-controls, Lab2465/10, reward/purchase-boundary2344/5 PASS on this exact source.
-Source syntax/16 IDs/lifecycle and actual task context/links/budget/whitespace PASS.
-These results cover current rules, not an unchosen extension or Android.
-
-Unrelated baseline finding saved in evidence: the original Forge generic bulk
-price path has one-unit discrepancies versus rational ceil for11 Arcane and13
-Conduction queries within the existing cap10. Exact quoted debits still pass.
-No old quote repricing or refund is introduced. Extended cap50 queries show
-additional differences up to2/7 units; handle new reachability if B is selected.
-
-Changed files: this task, PROJECT_STATE, local queue and docs/qa/forge-lab-caps-001/
-catalog review helper/generated catalog/proposal/baseline receipts/preview manifest.
-Current index.html/fonts/branding refreshed in ignored mobile/www; all 15 files
-match source/staging/HTTP. [Preview manifest](../qa/forge-lab-caps-001/preview-assets.json).
-The playable preview stays the accepted game at http://127.0.0.1:4174/index.html.
-App opening returned queued; visible-tab inspection is not claimed.
+Review saved at `fe42861`: [full proposal](../qa/forge-lab-caps-001/PROPOSAL.md),
+[original 40-entry catalog](../qa/forge-lab-caps-001/CATALOG.md),
+[source-bound receipts](../qa/forge-lab-caps-001/README.md). Reproduced 35 old cap
+gates with 403 checks; existing Forge9315/25 controls, Lab2465/10 and boundary2344/5
+PASS on baseline f8f787fd. Recommended A20 for four IDs; B Forge50/Lab20; C unchanged.
+High Lab50 work takes113/150 productive years for the final level under best
+existing reductions/8x; no work-curve retune was authorized. Five foundations
+stay uncapped. Existing one-unit original Forge quote discrepancies are recorded
+as a separate baseline finding; no old quote repricing/refund.
 
 ## Required decision and continuation
 
-Next: user selects A, B, C or explicit named IDs/numeric caps. TASK7 itself requires
-this gameplay decision; do not infer approval from elapsed time or the earlier
-comment. Save the decision here before implementation. Then only agreed IDs may
-change; run the acceptance matrix above plus current Forge/Lab suites, relevant
-mobile/core/source gates and source/asset checks before a new local checkpoint.
+### User decision — 14 October 2026
+
+User selected **A: All four to 20 (Recommended)** in the explicit choice prompt.
+Implement arcanecal=20, conduction=20, bossledger=20, luminousdistill=20 only.
+Other caps and price/effect/work curves remain unchanged. Saved levels/paid work,
+speed, queues and existing refund/value records must be retained. No blanket
+rebalance, downward cap/refund or other catalog change is authorized.
+Decision baseline: clean `fe42861fce2895c24b9e24de18714606973481ea` proposal
+checkpoint on `local/full-debug`; product hash still `f8f787fd` above.
+The choice fulfills TASK7's gameplay decision requirement; no repeated permission
+request is needed for the selected implementation.
+
+## Verified implementation checkpoint
+
+Candidate source SHA-256:
+`509b2dcb98f45207d4b9125cbf39f194adcb58e05690381d306352c733b0b050`.
+Node24.19.0 / Chrome151.0.7922.34. [Current evidence](../qa/forge-lab-caps-001/IMPLEMENTATION.md).
+Only six product lines change: four cap fields and two Lab endpoint descriptions.
+Arcane source factor now caps1.60; Conduction1.80; Boss Survey+100% Lumen/Shards;
+Luminous Distillation+200% Lumen/Shards. All other catalog properties match the
+accepted baseline. Prices/work/per-level effects unchanged. Saves/paid active
+work/speeds/queues/refund records retained; upward caps need no new migration/refund.
+
+Focused2179/3 causal controls; existing Forge9315/25, Lab2675/10, boundary2344/5,
+charge/combat calibration3134/7 PASS. Existing eight Forge browser scenarios PASS
+(contracts6105/effects1952/chronology13/balance36 plus save/restore/recovery/baseline).
+Focused mobile552/12 profiles and full existing Lab mobile6588/12 PASS,320/390/430px,
+normal/200% root text and both motion modes. Rift1738/navigation415 PASS.
+Source syntax/IDs/lifecycle, context/startup links/budget and whitespace PASS.
+Complete diff self-reviewed; no independent review. Tests retain all original
+assertions, update only approved cap expectations and add boundary coverage.
+
+Two test diagnostics corrected before acceptance: an unquoted numeric selector
+in the new mobile driver, and the old chronology fixture treating10 as maxed.
+Receipts saved; final source-bound checks pass. No product regression established.
+
+Current source/fonts/branding staged in ignored mobile/www; all15 files match
+source/staging/HTTP. The open playable preview reloaded; both complete scripts
+match current source (`22ed0bd0` combined hash), both Forge20 caps observed.
+No user save/queue/balance preferences edited in the preview; production keeps
+running normally. [Preview](http://127.0.0.1:4174/index.html).
+
+Changed: index.html; tests/behavioral/forge-lab-caps.cjs and mobile driver;
+forge.js/bridge.js/lab-expansion.cjs approved cap expectations; task/state/queue
+and docs/qa/forge-lab-caps-001 evidence/preview helper. No archived code promoted.
+
+## Next action and deferred acceptance
+
+Next: user reviews the playable preview. Rerun focused caps (using immutable
+fe42861 baseline history), Forge/Lab/calibration/boundary/mobile and earlier
+improvement preservation checks on the eventual final combined source, with
+full behavioral/required CI and staged-asset verification. Keep original quote
+diagnostics separate; selected cap20 creates no new rational price discrepancy.
 
 Keep task/chat OPEN. Inherited Prism deadline, Windows standard dump-DOM/POSIX
 tooling, final combined/full required CI and Android/device/WebView60/textZoom/

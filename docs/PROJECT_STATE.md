@@ -1,19 +1,23 @@
 # Lumenfall — current delivery status
 
 14 October 2026: [FORGE_LAB_CAPS_001](tasks/FORGE_LAB_CAPS_001.md)
-PROPOSAL VERIFIED, USER BALANCE DECISION REQUIRED on `local/full-debug`, continuing
-`27f433d`. [Full catalog/options/cost/work evidence](qa/forge-lab-caps-001/PROPOSAL.md).
-All 20 active Forge tracks cap2–10; Lab has15 capped projects and5 uncapped
-foundations. Recommended A: Arcane Calibration, Resource Conduction, Boss Survey
-and Luminous Distillation cap20; B: same Forge50/Lab20; C: retain current caps.
-No selection or product change. Existing curves make final Lab50 work113/150
-productive years even with best existing discounts and8x, so not recommended.
-Catalog/current-cap reproduction403 checks, Forge9315/25 causal controls,
-Lab2465/10 and reward/boundary2344/5 PASS; source/context/whitespace PASS.
-Original Forge bulk one-unit rounding diagnostics recorded; old quotes untouched.
-Exact product remains `f8f787fd`; paid value/saves/balance retained. Local proposal
-checkpoint only; user choice precedes implementation. Combined CI/Android and
-inherited Prism/transport/tooling acceptance remain pending; no remote/APK/signing.
+LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing reviewed `fe42861`.
+User chose A: Arcane Calibration, Resource Conduction, Boss Survey and Luminous
+Distillation cap10→20. Six product lines (four caps/two descriptions); other
+catalog entries, per-level effects, prices/work curves, paid value, saves/queues/
+running work/speed and refund records retained. [Current evidence](qa/forge-lab-caps-001/IMPLEMENTATION.md).
+Focused2179/3 controls, Forge9315/25, Lab2675/10, boundary2344/5 and calibration3134/7
+PASS. Existing eight Forge browser scenarios PASS, including contracts6105 and
+effects1952; focused mobile552/12, existing Lab mobile6588/12, Rift1738/nav415 PASS.
+Source/context/whitespace PASS. Original Forge quote diagnostics remain separate;
+all newly reachable cap20 prices match rational totals. Source `509b2dcb`, all15
+assets refreshed/HTTP verified. Real playable preview reloaded on Forge at
+http://127.0.0.1:4174/index.html; both complete scripts match source (`22ed0bd0`),
+visible cap20 rows inspected, no user progress/preferences replaced. Self-review.
+Local milestone; chat OPEN. User preview/final combined CI and Android/device/
+WebView60/textZoom/TalkBack plus inherited Prism/transport/tooling remain pending.
+No remote/APK/signing/archive. Next: review preview, then final combined acceptance
+under existing release/debugging scope; all seven local improvements have milestones.
 
 14 October 2026: [RIFT_THEME_LABEL_001](tasks/RIFT_THEME_LABEL_001.md)
 LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted23074a9.

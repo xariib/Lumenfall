@@ -301,7 +301,7 @@ window.__lumenfallQaBridge = {
     mutate: function(kind){
       var saved={plan:getResearchBuyPlan,migrate:migrateSaveV0ToV1,deed:legacyResearchLevels,passive:passiveWispDpsAt};
       if(kind==='cap') getResearchBuyPlan=function(node,n){
-        if(node.id==='arcanecal' && researchLevel(node.id)>=10)return {affordable:true,buyCount:1,count:1,cost:researchCostForLevels(node,researchLevel(node.id),1)};
+        if(node.id==='arcanecal' && researchLevel(node.id)>=20)return {affordable:true,buyCount:1,count:1,cost:researchCostForLevels(node,researchLevel(node.id),1)};
         return saved.plan(node,n);
       };
       if(kind==='migration') SAVE_MIGRATIONS[0]=function(s){var n=saved.migrate(s);if(s.labQueueOn && s.researchQueue===undefined)n.researchQueue.arcanecal=true;return n;};
