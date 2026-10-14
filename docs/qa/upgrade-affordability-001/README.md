@@ -59,7 +59,12 @@ node scripts/ci/validate_source.cjs
 node scripts/codex/check_context.cjs --task docs/tasks/UPGRADE_AFFORDABILITY_001.md
 ```
 
-Local integration/preview receipt and the final test-driver run are pending.
+Integrated locally at1553d44 on local/full-debug. The final CI-registered command
+passes on the integrated source with26,844 assertions/12 profiles and both
+causal controls rejected ([results](integrated-results.json)). All15 source,
+staged and HTTP preview assets match at http://127.0.0.1:4174/index.html
+([receipt](preview.json)). App opening queued; actual visible-tab reload is
+unclaimed. Neither player storage nor settings was changed to prepare preview.
 Main/GitHub/combined CI and Android/device/WebView60/textZoom/TalkBack acceptance
 remain OPEN with the inherited debugging limitations. No push, APK, signing,
 release or archive action is part of this local milestone.

@@ -6,36 +6,31 @@ resource numbers in red and disable unaffordable purchase buttons everywhere.
 Original user requirement:
 > If the user does not have sufficient resources for the upgrades, show the numbers in red everywhere where upgrades applies. The buttons should be in disabled state as well.
 
-Baseline: `a4f82f4` on `local/full-debug`, tracked files clean; untracked
-validation-evidence preserved. Isolated branch `codex/upgrade-affordability` in
-validation-evidence/upgrade-affordability-worktree. Other features' worktrees
-remain untouched. Continue the existing local-only improvement workflow; GitHub,
-combined CI and Android acceptance remain pending. No new binding rules.
+Baseline:a4f82f4/sourcee110f182, clean tracked local/full-debug; untracked
+validation-evidence preserved. Isolated codex/upgrade-affordability, integrated
+serially at1553d44. No other worktree changed. Existing local improvement/release
+scope retained; no new rule or save migration.
 
-Inspection: Forge/Lab/Tree/Comet prices already use purchasePriceMarkup and
-500ms wallet refresh. Wisp Empower/Recruit, Rarity, Ability and Ultimate prices
-bypass that helper. Resonate also lacks live eligibility refresh. Preserve each
-currency's independent shortage state, paid/refund credit rules, prerequisites,
-caps, purchases, queues, progression, saves and focus/scroll. No migration.
+Wisp Empower/Recruit, Rarity, Ability, Ultimate and Resonate now use shared
+independent currency colors; Resonate refreshes eligibility. Existing Forge/Lab/
+Tree/Comet behavior retained. Preserve prices, handlers, caps, prerequisites,
+refund-credit rules, queues, progress, saves and focus/scroll.
 
-Acceptance: all upgrade families use current wallet colors; only deficient
-amounts are red. Unaffordable actions are natively disabled and cannot spend.
-Initial rendering, wallet gain/loss, partial two-currency funding, purchases,
-locked/capped states and mobile/200% text remain correct. Existing collection,
-Wisp upgrades/layout/scroll, Lab speed and relevant preservation gates pass.
-Task links/startup budget and source validation pass. Review full diff; stage
-and verify exact local preview assets after serial integration.
+Acceptance: red deficient amounts, disabled actions; initial/refresh/rerender,
+wallet gain/loss, each missing currency, purchases/caps/prerequisites and mobile/
+200% text correct. Preserve state/saves/focus. Context/source/diff checks pass.
 
-Status: local candidate verified, source084f2995. All8 Wisps now use shared
-price coloring; Resonate refreshes eligibility. Product scope is three UI
-functions/one font rule; other bytes identical. New26,844/12-profile checks,
-collection5808/3 controls, Wisp12912/layout21528/scroll3229, Lab speed1118,
-Resonate original/candidate13 records, core8099/preservation8592 and actual
-V8 6.0 PASS. Two new causal controls rejected. Test-only Resonate animation
-wait fixes reproduced baseline43.83px transient; strict44px gate retained.
+Status: LOCAL INTEGRATION VERIFIED, source084f2995. Three UI functions/one font
+rule; other bytes identical. New26844/12 profiles, two controls; existing
+collection/Wisp/Lab/Resonate/core/preservation and V8 6.0 PASS. Test-only animation
+wait fixes baseline43.83px transient; strict44px check retained.
 [Evidence and commands](../qa/upgrade-affordability-001/README.md).
-Next: serial local integration, final driver/preview verification.
-Final main/GitHub/CI/native acceptance OPEN; keep chat open.
+All15 staged/HTTP preview assets match4174; app opening queued, actual visible
+tab reload unclaimed. Final driver26844/12 profiles/two controls PASS on integrated
+source. Next: user preview review, then existing final combined acceptance.
+User/final combined CI/GitHub/main and Android/WebView60/textZoom/TalkBack/device
+acceptance OPEN with inherited debugging limitations. No push/APK/release/archive.
+Keep chat open.
 [Workflow](../project/FEATURE_WORKFLOW.md),
 [prior Wisp design](WISP_CARD_SIMPLICITY_001.md),
 [current status](../PROJECT_STATE.md).
