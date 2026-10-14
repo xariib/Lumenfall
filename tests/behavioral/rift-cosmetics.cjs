@@ -1,12 +1,14 @@
 /* Isolated F24 browser checks. Node built-ins only; no product test hooks.
  * node tests/behavioral/rift-cosmetics.cjs --out /tmp/rift-cosmetics-evidence
  * --source /path/to/baseline/index.html --baseline captures the same fixtures.
+ * --label-before checks original wording; --label-reference PATH compares
+ * candidate combat geometry with the actual captured baseline.
  */
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
 const http = require('node:http');
-const {spawn, spawnSync} = require('node:child_process');
+const {spawn} = require('node:child_process');
 const crypto = require('node:crypto');
 const args = process.argv.slice(2);
 function option(name, fallback) { const i = args.indexOf(name); return i < 0 ? fallback : args[i + 1]; }
@@ -15,10 +17,13 @@ const source = path.resolve(option('--source', path.join(root, 'index.html')));
 const out = path.resolve(option('--out', '/tmp/lumenfall-rift-cosmetics'));
 const baseline = args.includes('--baseline');
 const negative = args.includes('--negative');
-const selectedChrome = option('--chrome', process.env.LUMENFALL_QA_CDP_CHROME || ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser'].find(name => spawnSync('which', [name]).status === 0));
-const chrome = selectedChrome && spawnSync('which', [selectedChrome], {encoding:'utf8'}).stdout.trim();
-if (!chrome) throw Error('Chromium is required');
-const browserIdentity = {selected:chrome,resolved:fs.realpathSync(chrome),version:spawnSync(chrome,['--version'],{encoding:'utf8',timeout:5000}).stdout.trim()};
+const labelBefore = args.includes('--label-before');
+const labelReferenceFile = option('--label-reference', null);
+const labelReference = labelReferenceFile && JSON.parse(fs.readFileSync(labelReferenceFile,'utf8'));
+const {resolveBrowser,findChrome} = require('../../scripts/lib/browser.cjs');
+const selectedChrome = option('--chrome', process.env.LUMENFALL_QA_CDP_CHROME);
+const chrome = selectedChrome ? resolveBrowser(selectedChrome) : findChrome();
+const browserIdentity = {selected:chrome,resolved:fs.realpathSync(chrome)};
 console.log('Browser identity: '+JSON.stringify(browserIdentity));
 fs.mkdirSync(out, {recursive: true});
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'lumenfall-cosmetics-'));
@@ -107,7 +112,8 @@ const setup = `window.cosmeticQa = {
     var a=this.assert, stage=document.getElementById('enemy-stage'), halo=stage.querySelector('.rift-cosmetic-aura'), caption=document.getElementById('rift-cosmetic-name');
     a(stage.dataset.riftTheme===id,'selected effect applied to tap area');
     a(document.querySelector('#tab-battle .stage').dataset.riftTheme===id,'selected effect applied to landscape');
-    a(caption.textContent===RIFT_THEMES.find(function(t){return t.id===id;}).name,'visible theme name');
+    var names={default:'Starlight',ember:'Ember Veil',void:'Void Bloom',aurora:'Aurora Pulse',solar:'Solar Crown',radiant:'Radiant'};
+    a(caption.textContent===${JSON.stringify(labelBefore ? '' : 'Theme: ')}+names[id],'visible cosmetic theme label');
     a(getComputedStyle(caption).color==='rgb(241, 237, 255)' && getComputedStyle(caption).backgroundColor==='rgb(16, 24, 43)','opaque readable caption');
     a(halo.getAttribute('aria-hidden')==='true' && getComputedStyle(halo).pointerEvents==='none','decorations cannot capture taps or screen reader focus');
     ['trail','crest'].forEach(function(slot){
@@ -127,11 +133,18 @@ const setup = `window.cosmeticQa = {
     a(r.width>=44 && r.height>=44,'tap target at least 44px');
     a(c.bottom<=r.bottom && hp.top>=r.bottom-1,'cosmetic does not cover HP');
     a(c.right<=r.right && c.top>=r.top,'caption stays within tap area');
+    a(caption.scrollWidth<=caption.clientWidth && caption.scrollHeight<=caption.clientHeight,'complete theme label fits without clipping');
+    var range=document.createRange();range.selectNodeContents(caption);
+    Array.from(range.getClientRects()).forEach(function(line){
+      a(line.left>=c.left && line.right<=c.right && line.top>=c.top && line.bottom<=c.bottom,'complete theme label fits without clipping');
+    });
     a(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2).closest('#enemy-stage')===stage,'center remains tappable');
-    return {id,geometry:this.geometry(),visiblePatterns:visible.map(function(g){return g.getAttribute('class');}),animation:visible.map(function(g){return getComputedStyle(g).animationName;}),landLight:getComputedStyle(document.querySelector('#tab-battle .stage')).getPropertyValue('--land-light')};
+    return {id,caption:caption.textContent,captionBox:[c.x,c.y,c.width,c.height],geometry:this.geometry(),visiblePatterns:visible.map(function(g){return g.getAttribute('class');}),animation:visible.map(function(g){return getComputedStyle(g).animationName;}),landLight:getComputedStyle(document.querySelector('#tab-battle .stage')).getPropertyValue('--land-light')};
   }
 };`;
 async function run() {
+  const initialCaption=/<span[^>]*id="rift-cosmetic-name"[^>]*>([^<]*)<\/span>/.exec(sourceBytes.toString('utf8'));
+  if(!baseline) assert(initialCaption && initialCaption[1]===(labelBefore?'Starlight':'Theme: Starlight'),'initial markup identifies selected cosmetic theme');
   await new Promise((resolve,reject) => {server.once('error',reject);server.listen(0, '127.0.0.1', resolve);});
   const url = 'http://127.0.0.1:' + server.address().port + '/index.html';
   browser = spawn(chrome, ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--remote-debugging-pipe', '--user-data-dir=' + profile, 'about:blank'], {stdio: ['ignore', 'ignore', 'pipe', 'pipe', 'pipe']});
@@ -176,6 +189,7 @@ async function run() {
         state.maxDepthEver=50;checkAchievements();renderCosmetics();
         a(themeUnlocked(RIFT_THEMES.find(function(t){return t.id==='ember';})) && state.riftTheme==='default' && activeRiftTheme().id==='default','earning a Deed unlocks without selecting its cosmetic');
         state.riftTheme='radiant';renderCosmetics();a(state.riftTheme==='radiant' && activeRiftTheme().id==='default','stale locked preference preserved but not granted');
+        a(document.getElementById('rift-cosmetic-name').textContent===${JSON.stringify(labelBefore?'Starlight':'Theme: Starlight')},'locked preference caption describes effective default theme');
         a(document.querySelectorAll('[data-theme-select][aria-pressed="true"]').length===1,'exactly one effective selection');
         q.fixture('normal',true);state=acceptPersistedState(state,'runtime');
         var before=JSON.stringify(state);renderCosmetics();a(JSON.stringify(state)===before,'render has no save mutation');
@@ -218,8 +232,12 @@ async function run() {
           await evaluate(`selectRiftTheme(${JSON.stringify(id)})`);
           const measurement = baseline ? {id, geometry: await evaluate('cosmeticQa.geometry()')} : await evaluate(`cosmeticQa.measure(${JSON.stringify(id)},${motion === 'reduce'})`);
           assert(JSON.stringify(before) === JSON.stringify(measurement.geometry), 'HP/tap geometry unchanged by ' + id);
+          if(labelReference){
+            const prior=labelReference.records.find(r=>r.width===width&&r.height===height&&r.scale===scale&&r.motion===motion&&r.kind===kind&&r.id===id);
+            assert(prior && JSON.stringify(prior.geometry)===JSON.stringify(measurement.geometry),'combat geometry matches actual label baseline: '+id);
+          }
           records.push({width, height, scale, motion, kind, ...measurement});
-          if ((width === 390 && scale === 1 && kind === 'normal') || (width === 320 && scale > 1 && kind === 'boss' && ['aurora','radiant'].includes(id))) await screenshot(`${width}-${motion}-${kind}-${id}`);
+          if ((width === 390 && scale === 1 && kind === 'normal') || (width === 320 && scale === 2 && kind === 'boss')) await screenshot(`${width}-text${scale}-${motion}-${kind}-${id}`);
         }
       }
     }
@@ -262,6 +280,14 @@ async function run() {
         const reason = await evaluate(`(function(){cosmeticQa.fixture('normal',true);selectRiftTheme('radiant');document.querySelector('.cosmetic-radiant').style.display='none';try{cosmeticQa.measure('radiant',true);return null;}catch(error){return error.message;}})()`);
         assert(reason === 'one visible pattern for selected theme','negative catches missing visible aura');
         records.push({contract:'negative-hidden-aura',caught:reason});
+        for(const mutation of ['meaning','clipping']){
+          const caught=await evaluate(`(function(){cosmeticQa.fixture('normal',true);selectRiftTheme('aurora');var c=document.getElementById('rift-cosmetic-name');
+            ${mutation==='meaning'?"c.textContent='Aurora Pulse';":"c.style.width='18px';c.style.whiteSpace='nowrap';c.style.overflow='hidden';"}
+            try{cosmeticQa.measure('aurora',true);return null;}catch(error){return error.message;}})()`);
+          assert(caught===(mutation==='meaning'?'visible cosmetic theme label':'complete theme label fits without clipping'),'negative catches theme label '+mutation);
+          records.push({contract:'negative-label-'+mutation,caught});
+          await evaluate(`var c=document.getElementById('rift-cosmetic-name');c.removeAttribute('style');applyRiftTheme();cosmeticQa.measure('aurora',true)`);
+        }
       }
     }
     assert(runtimeErrors.length === 0, 'no browser runtime errors');
@@ -276,7 +302,7 @@ async function run() {
   }
 }
 run().catch(error=>{failure=error.stack;}).finally(()=>{
-  const result={status:failure?'fail':'pass',baseline,negative,source,sourceSHA256:crypto.createHash('sha256').update(sourceBytes).digest('hex'),browser:spawnSync(chrome,['--version'],{encoding:'utf8'}).stdout.trim(),chromeExecutable:chrome,node:process.version,records,runtimeErrors,exitInfo,failure,stderr};
+  const result={status:failure?'fail':'pass',baseline,labelBefore,labelReferenceFile,negative,source,sourceSHA256:crypto.createHash('sha256').update(sourceBytes).digest('hex'),browser:browserIdentity.protocol?.product,chromeExecutable:chrome,node:process.version,records,runtimeErrors,exitInfo,failure,stderr};
   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(result,null,2)+'\n');
   console.log(JSON.stringify({status:result.status,samples:records.length,out,browserIdentity,exitInfo,failure,stderr:failure?stderr:undefined}));
   if(failure)process.exitCode=1;

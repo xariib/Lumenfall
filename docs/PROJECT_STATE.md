@@ -1,5 +1,22 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [RIFT_THEME_LABEL_001](tasks/RIFT_THEME_LABEL_001.md)
+LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing accepted23074a9.
+Rift caption now says Theme: Starlight (and Theme: for every other selected name).
+Only static/runtime caption text changes; unlocks, selection, cosmetics, game
+balance, paid value and saves retained. [Evidence](qa/rift-theme-label-001/README.md):
+baseline167/candidate170 samples across all six themes,320/390/430px and up to200%
+text; exact combat geometry, persistence/recovery/backup/reload and causal label
+controls PASS. Existing Guidance16 profiles/160 samples, Rift1738 and nav415 PASS.
+Source `f8f787fd`, current fonts/branding refreshed; all15 assets match source,
+mobile/www and HTTP at http://127.0.0.1:4174/index.html. App preview opening queued;
+screens visually reviewed, actual visible-tab inspection not claimed. Self-review.
+User preview/final combined CI and Android/device/WebView60/textZoom/TalkBack
+acceptance remain pending with inherited Prism/transport/tooling limitations.
+Local checkpoint only; chat OPEN, no remote/APK/signing/archive action.
+Next queue item: FORGE_LAB_CAPS_001 after preview review; numeric balance choices
+must be supplied before changing any caps.
+
 14 October 2026: [RIFT_HINT_LAYOUT_001](tasks/RIFT_HINT_LAYOUT_001.md)
 LOCAL IMPLEMENTATION VERIFIED on `local/full-debug`, continuing acceptedfd046ec.
 The hint strip now has10px inset edges aligned with the enemy panel, a subtle

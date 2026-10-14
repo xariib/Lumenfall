@@ -2774,7 +2774,7 @@
                   <circle cx="160" cy="160" r="138" stroke="#ded7fb" stroke-width="1" opacity=".55"/>
                 </g>
               </svg>
-              <span class="rift-cosmetic-name" id="rift-cosmetic-name" aria-hidden="true">Starlight</span>
+              <span class="rift-cosmetic-name" id="rift-cosmetic-name" aria-hidden="true">Theme: Starlight</span>
               <div class="enemy-glyph" id="enemy-glyph"><svg class="creature-art" viewBox="0 0 160 160" aria-hidden="true"><use href="#creature-prowler"/></svg><svg class="boss-regalia" viewBox="0 0 160 160" aria-hidden="true" fill="var(--creature-color)" stroke="var(--creature-rim)" stroke-width="1.5">
                 <g class="boss-crest boss-crest-regrowth"><path d="M18 116Q3 90 11 61 M142 116Q157 90 149 61"/><path d="M10 78Q1 70 8 60Q17 69 10 78Z M11 99Q4 90 17 84Q20 94 11 99Z M150 78Q159 70 152 60Q143 69 150 78Z M149 99Q156 90 143 84Q140 94 149 99Z" fill="var(--creature-rim)" stroke="var(--creature-eye)"/></g>
                 <g class="boss-crest boss-crest-fractured"><path d="M11 52 17 62 11 72 5 62Z M8 83 14 93 8 103 2 93Z M149 52 155 62 149 72 143 62Z M152 83 158 93 152 103 146 93Z" fill="var(--creature-color)"/><path d="M11 58V66 M8 89V97 M149 58V66 M152 89V97" stroke="var(--creature-eye)"/></g>
@@ -6791,7 +6791,7 @@ function applyRiftTheme(){
   var battleStage = document.querySelector('#tab-battle .stage');
   if(battleStage) battleStage.setAttribute('data-rift-theme',theme.id);
   var caption = document.getElementById('rift-cosmetic-name');
-  if(caption) caption.textContent = theme.name;
+  if(caption) caption.textContent = 'Theme: '+theme.name;
   stageEl.classList.toggle('theme-radiant', theme.id==='radiant');
   stageEl.classList.toggle('comet-trail-equipped',!!state.cometCosmetics.trail);
   stageEl.classList.toggle('comet-crest-equipped',!!state.cometCosmetics.crest);
