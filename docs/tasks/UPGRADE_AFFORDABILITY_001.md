@@ -9,7 +9,11 @@ Original user requirement:
 Baseline:a4f82f4/sourcee110f182, clean tracked local/full-debug; untracked
 validation-evidence preserved. Isolated codex/upgrade-affordability, integrated
 serially at1553d44. No other worktree changed. Existing local improvement/release
-scope retained; no new rule or save migration.
+scope retained; no save migration.
+
+15 October2026: user requested this as a standing rule to avoid repeating it.
+Saved in root AGENTS.md under Game contracts; applies to all future upgrade UI.
+Context/whitespace checks PASS.
 
 Wisp Empower/Recruit, Rarity, Ability, Ultimate and Resonate now use shared
 independent currency colors; Resonate refreshes eligibility. Existing Forge/Lab/

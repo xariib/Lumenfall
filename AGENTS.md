@@ -63,6 +63,9 @@ Read archives and technical guides only when needed.
   in the app's WebView.
 - Deterministic progression and purchases with visible prices/effects, no loot
   boxes/gacha, and the established fixed Luminous Motes rewards.
+- Every upgrade UI must show each insufficient resource amount in red and
+  disable the purchase button when the upgrade is unaffordable. Refresh both
+  as resources change.
 - Preserve chronological simulation, online/offline parity, automation and save/
   recovery. `docs/project/KNOWN_ISSUES.md` records limitations; a contract does
   not prove every current path passes.
