@@ -4,7 +4,7 @@ const source=fs.readFileSync(path.resolve(__dirname,'../../index.html'),'utf8');
 const copy=x=>JSON.parse(JSON.stringify(x));
 // Execute the actual product closure. Only DOM presentation and the clock are
 // replaced; authoritative purchases, chronology and persistence stay intact.
-function app(html=source){
+function app(html=source,extraBridge=''){
  let now=2000000000000,seq=0,primaryFailure=false;const queue=[],storage=new Map();
  const document={readyState:'loading',hidden:false,addEventListener(){},getElementById:()=>null};
  const window={addEventListener(){},matchMedia:()=>({matches:true})};
@@ -21,7 +21,7 @@ function app(html=source){
  cast:(id,kind)=>simulationTriggerAbility(SPIRITS.find(s=>s.id===id),state.spirits[id],Date.now(),simulationPolicy(kind,{visual:false}),simulationSummary(0)),
  advance:(seconds,kind,start)=>advanceAuthoritativeTime(seconds,{kind:kind,visual:false,clockStartMs:start,offlineWindowStartMs:2000000000000}),
  save:saveState,load:loadState,backup:currentSaveBackup,decode:decodeSaveBackup,manual:()=>doTap({classList:{add(){},remove(){}}})};`;
- const script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+"if(document.readyState==='loading'){");
+ const script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+extraBridge+"if(document.readyState==='loading'){");
  new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,class extends Date{static now(){return now;}},fn=>{queue.push({id:++seq,fn});return seq;},id=>{const i=queue.findIndex(x=>x.id===id);if(i>=0)queue.splice(i,1);},{now:()=>0});
  const b=window.qa;b.set(b.fresh());return {b,storage,clock:t=>now=t,fail:v=>primaryFailure=v};
 }

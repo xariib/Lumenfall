@@ -1,5 +1,14 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [FORMATION_BEST_NOW_001](tasks/FORMATION_BEST_NOW_001.md)
+adds Field Best now for existing recommended Bonds. User chose recruitment of
+required members only. Team/preset preview, missing/already-fielded gating,
+owned5/6 slots, atomic save and stable focus; no spend/balance/schema change.
+Source `e655c775`;core1408/4 controls, browser1299/108, Formation541/12,
+Wisp/core/scroll, autosave/nav PASS. [Evidence](qa/formation-best-now-001/README.md).
+Current assets/live preview verified. Local milestone; chat OPEN, user/final
+combined/native acceptance pending, no remote/APK/signing/archive.
+
 14 October 2026: [WISP_CARD_SIMPLICITY_001](tasks/WISP_CARD_SIMPLICITY_001.md)
 user revision from49403e2, source `35846c8f`: Raw damage/Party preview removed,
 levels boxed and ability names replace redundant headings. Role effects/rewards,

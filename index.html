@@ -1778,6 +1778,10 @@
   .formation-help .formation-help-collapse,.formation-help[open] .formation-help-expand{display:none;}
   .formation-help[open] .formation-help-collapse{display:inline;}
   .formation-help>.section-sub{margin-top:12px;}
+  .formation-best-now{margin:12px 0;}
+  .formation-best-now button{width:100%;min-height:44px;white-space:normal;}
+  .formation-best-now button[aria-disabled="true"]{opacity:.6;cursor:default;}
+  .formation-best-now p{margin:8px 0;font-size:.8125rem;line-height:1.5;overflow-wrap:break-word;}
   .formation-help>summary:focus-visible{outline:2px solid var(--lumen);outline-offset:2px;}
   @media(max-height:650px){
     .hud .chip{height:30px;padding-top:1px;padding-bottom:1px;}
@@ -2823,6 +2827,11 @@
       <div id="formation-presets"></div>
       <details class="card formation-help"><summary><span>Formation Bonds &amp; guidance</span><span aria-hidden="true"><span class="formation-help-expand">Expand</span><span class="formation-help-collapse">Collapse</span></span></summary>
         <div class="section-sub">Up to <span id="formation-capacity">5</span> Wisps can be Active at once. Pair specific powered Wisps to activate simple Formation Bonds for Push, Farm or Boss fights.</div>
+        <div class="formation-best-now">
+          <button type="button" class="mini-btn" id="formation-best-now-btn" aria-disabled="true" aria-describedby="formation-best-now-team formation-best-now-status">Field Best now</button>
+          <p id="formation-best-now-team"></p>
+          <p id="formation-best-now-status"></p>
+        </div>
         <div class="card bond-card" id="bond-card"></div>
       </details>
       <div class="hero-grid" id="spirit-list"></div>
@@ -5700,6 +5709,22 @@ function formationRecommendationText(){
   }).filter(Boolean);
   return focus.label + ': ' + names.join(' + ');
 }
+function bestNowFormationPlan(){
+  var focus=currentFormationFocus(),required=[];
+  focus.bonds.forEach(function(id){
+    var bond=FORMATION_BONDS.find(function(b){return b.id===id;});
+    if(bond) bond.ids.forEach(function(id){if(required.indexOf(id)===-1) required.push(id);});
+  });
+  var capacity=treeFormationCapacity();
+  var missing=required.filter(function(id){return (state.spirits[id]||0)<=0;});
+  var members=required.slice();
+  chosenFormationMembers().forEach(function(id){
+    if(members.length<capacity && members.indexOf(id)===-1 && (state.spirits[id]||0)>0) members.push(id);
+  });
+  var already=required.every(function(id){return state.activeParty.indexOf(id)!==-1 && (state.spirits[id]||0)>0;});
+  return {focus:focus,required:required,members:members,missing:missing,capacity:capacity,
+    already:already,available:required.length>0 && required.length<=capacity && missing.length===0 && !already};
+}
 
 /*
  * P1-03 Wisp power / gameplay-language contract
@@ -6719,6 +6744,18 @@ function commitFormationMembers(members){
   state.activeParty = members.filter(function(id){return (state.spirits[id]||0)>0;});
   state.formationRebuild = normalizeFormationRebuild({members:members,preset:preset},state);
   reconcileFormationRebuild(state);
+}
+function fieldBestNowFormation(){
+  var plan=bestNowFormationPlan();
+  if(!plan.available) return false;
+  if(!forgeCommitPaidMutation(function(){
+    commitFormationMembers(plan.members);
+    validateCometTrialParty(state);
+  })) return false;
+  renderSpirits();
+  updateBattleFast();
+  showToast(plan.focus.label+' Best now formation fielded.');
+  return true;
 }
 function applyFormationPreset(name){
   if(FORMATION_PRESET_IDS.indexOf(name)===-1) return false;
@@ -8161,6 +8198,20 @@ function renderFormationPresets(){
 }
 function renderFormationBonds(){
   renderFormationPresets();
+  var bestNow=document.getElementById('formation-best-now-btn');
+  if(bestNow){
+    var plan=bestNowFormationPlan();
+    var names=function(ids){return ids.map(function(id){return SPIRITS.find(function(sp){return sp.id===id;}).name;}).join(' + ');};
+    bestNow.textContent='Field Best now · '+plan.focus.label;
+    bestNow.setAttribute('aria-disabled',String(!plan.available));
+    document.getElementById('formation-best-now-team').textContent='Team: '+names(plan.members);
+    var destination=FORMATION_PRESET_LABELS[state.activeFormationPreset];
+    var note=plan.missing.length ? 'Recruit first: '+names(plan.missing)+'.' :
+      plan.required.length>plan.capacity ? 'This formation needs '+plan.required.length+' slots.' :
+      plan.already ? 'Best now Bonds are already fielded.' :
+      'Fields this team'+(destination ? ' and saves it to '+destination+'.' : '.')+' No currencies spent.';
+    document.getElementById('formation-best-now-status').textContent=note;
+  }
   if(els['bond-card']){
     var focus = currentFormationFocus();
     var rows = FORMATION_BONDS.map(function(bond){
@@ -11409,6 +11460,7 @@ function init(){
     if(target) activateTab(target);
   });
   document.getElementById('rift-hints-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
+  document.getElementById('formation-best-now-btn').addEventListener('click',fieldBestNowFormation);
   document.getElementById('rift-guidance-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
   document.getElementById('ascend-btn').addEventListener('click', function(){ doAscend(false); });
 
