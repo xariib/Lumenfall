@@ -28,7 +28,9 @@ upgrades and source/context/preservation/diff review. Preserve
 Status: BADGE/REWARD REVISION VERIFIED, sourcedfa26453.
 [Evidence](../qa/wisp-card-simplicity-001/ability-badge/README.md):layout18,072/12,
 upgrades12,912/12, scroll3229, source/context/preservation/V8 PASS. Gale normal/
-200% screens reviewed. Next: serial integration and exact preview4174 receipts.
+200% screens reviewed. Integrateda39a5a1 on local/full-debug; all15 source/staged/
+HTTP assets match4174 ([receipt](../qa/wisp-card-simplicity-001/ability-badge/preview.json)).
+Existing tab retained; actual reload unclaimed. Next: user review/final acceptance.
 Prior checks remain saved. Self-review only. User/final CI/GitHub/main and Android/
 WebView60/textZoom/TalkBack/device acceptance OPEN. Local-only mandate;
 no remote/APK/release/archive. Keep this chat open.

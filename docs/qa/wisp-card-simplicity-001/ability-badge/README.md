@@ -16,6 +16,8 @@ all existing prices/eligibility remain unchanged.
 
 Baselinee9db86e/source43e158bb. Final source SHA256:
 `dfa264535cca75913cc04b3d93fa231be0149246d52429ab1a52ac167b74ca54`.
+Integrateda39a5a1 on local/full-debug. [Preview receipt](preview.json) verifies
+all15 source/staged/HTTP assets at4174. Existing tab retained; reload unclaimed.
 [Byte preservation](preservation.json) proves only two CSS rules, three label
 strings, two help entries and one rendered header changed. Effects, formulas,
 rounding, prices, save/purchase/focus and latest Formation code are identical.

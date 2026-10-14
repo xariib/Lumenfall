@@ -16,7 +16,8 @@ Tide/Aurora. Help/tutorial updated; prior one-name layout and boxed levels retai
 [Evidence](qa/wisp-card-simplicity-001/ability-badge/README.md):layout18,072/12,
 upgrades12,912/12, scroll3229, source/context/preservation/V8 PASS. Gale normal/
 200% screens reviewed. Effects/prices/saves/Formation byte-identical. Self-review.
-Local integration and preview4174 verification next.
+Integrateda39a5a1 locally; all15 source/staged/HTTP assets match4174. Existing
+browser tab retained; actual user-tab reload unclaimed.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 
