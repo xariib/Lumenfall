@@ -1,0 +1,105 @@
+{
+  "status": "fail",
+  "source": "C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-wisp-card-simplicity\\index.html",
+  "message": "Error: known existing scenario ui-navigation-end-to-end\n    at assert (C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-wisp-card-simplicity\\tests\\behavioral\\wisp-upgrades.cjs:15:34)\n    at run (C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-wisp-card-simplicity\\tests\\behavioral\\wisp-upgrades.cjs:51:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-wisp-card-simplicity\\tests\\behavioral\\wisp-upgrades.cjs:92:25",
+  "records": [
+    {
+      "scenario": "p2-02b-wisp-hierarchy",
+      "status": "pass",
+      "detail": {
+        "activeFirst": true,
+        "empowerFirst": true,
+        "stateUnchanged": true
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "p2-03a-wisp-role-integrity",
+      "status": "pass",
+      "detail": {
+        "roles": [
+          [
+            "ember",
+            "Burst",
+            5
+          ],
+          [
+            "tide",
+            "Amplifier",
+            0
+          ],
+          [
+            "stone",
+            "Breaker",
+            4
+          ],
+          [
+            "gale",
+            "Shard Utility",
+            3
+          ],
+          [
+            "thorn",
+            "Lumen Utility",
+            3
+          ],
+          [
+            "void",
+            "Burst",
+            5
+          ],
+          [
+            "aurora",
+            "Amplifier",
+            0
+          ],
+          [
+            "titan",
+            "Breaker",
+            4
+          ]
+        ],
+        "pushMult": 1.416,
+        "farmMult": 1.2,
+        "farmRewardMult": 1.25,
+        "bossMult": 1.593,
+        "earlyKills": 6,
+        "presetsPreserved": true,
+        "liveOfflineBreakerDamage": -769
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "p2-03a-wisp-role-integrity-mature",
+      "status": "pass",
+      "detail": {
+        "depth": 95,
+        "kills": 39,
+        "party": [
+          "ember",
+          "tide",
+          "stone",
+          "gale",
+          "void"
+        ]
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "p2-03a-wisp-role-integrity-endgame",
+      "status": "pass",
+      "detail": {
+        "depth": 3,
+        "kills": 352387625,
+        "party": [
+          "ember",
+          "tide",
+          "stone",
+          "gale",
+          "void"
+        ]
+      },
+      "runtimeErrors": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+# Simpler Wisp cards
+
+14 October 2026. Local candidate from `89337a5`; integration with the concurrent
+Formation follow-up is next. Self-review and automated checks only.
+
+The Wisp card uses one surface instead of nested ability/Module panels. Level
+and power use plain text; rarity keeps its badge. The heading is “Upgrades”.
+Module purchases show inline prices beside the effect where space permits.
+Rarity/Ultimate actions share a row and wrap on narrow screens. Locked Rarity
+now identifies the action as well as its level requirement. Unfinished upgrades
+stay visible; completed cards retain native folding. All readouts/effects remain.
+
+Baseline Ember height:676.84px at320px,635.34px at390/430px. Candidate:587.84px
+at320px,480.03px at390/430px (24.4% shorter at390px). Same starting fixture.
+
+- [Baseline upgrades](baseline/wisp-upgrades-result.json):12 profiles/12,912 PASS.
+- [Before layout](layout-before/wisp-upgrades-result.json):12 profiles/15,960 PASS.
+- [Registered layout](registered.txt):12 profiles/17,304 checks PASS. Eight Wisps,
+  starting/funded/completed stages,320/390/430px,100/200% text, normal/reduced
+  motion. Full state/both save slots retained;44px controls and no clipped text.
+- [Upgrade regression](upgrades/wisp-upgrades-result.json):12/12,912 PASS.
+- [Scroll/purchases](scroll.json):3,229 PASS, including native touch/keyboard,
+  exact spending/rewards/save state, final purchases, focus and repeated input.
+- [Contribution core](contribution-core.json):8,099/56 teams PASS;
+  [mobile](contribution-mobile/results.json):151/12 profiles PASS.
+- [Existing hierarchy/roles](existing/wisp-upgrades-result.json):four scenarios
+  PASS. Its initial invocation then stopped on an incorrect navigation scenario
+  name; [correct navigation/control checks](navigation/wisp-upgrades-result.json)
+  pass with unchanged assertions. This was a command selection error.
+- [Original-design negative](negative-original-layout/wisp-upgrades-result.json)
+  rejects the crowded original design at the plain ability-surface assertion.
+- [Byte preservation](preservation.json): all product bytes outside scoped Wisp
+  CSS, heading/rarity text and the action wrapper match baseline. No gameplay,
+  payments, scheduler, saves or unlock changes. Source/context/whitespace PASS.
+- [Preview](preview.json):15 source/staged/HTTP assets match on isolated4175.
+  App opening returned queued; actual user-tab loading is not claimed.
+
+Normal screenshots and320px/200% text/actions screenshots were visually reviewed.
+The runner pauses intervals only in throwaway layout/F04 profiles; the playable
+preview retains normal game execution. Existing scroll/input coverage retains
+its production lifecycle instrumentation.
+
+Node24.19.0, Chromium151.0.7922.34. Windows sandbox prevented initial browser
+launches; successful checks used the existing executable outside the sandbox.
+No assertion/deadline was weakened. Combined final checks, GitHub/main/required
+CI and Android/WebView60/native textZoom/TalkBack/device acceptance are pending.
+No APK, remote publication or archive. Chat stays OPEN.
+
+![Simplified Ember card](registered/wisp-card-simplicity/wisp-390-card.png)

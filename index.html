@@ -2019,12 +2019,28 @@
   @media(prefers-reduced-motion:reduce){.tab-panel.active .chapter-art .scene-sparks{animation:none;}}
 
 
-  /* Collection and progression: legible inset panels with distinct materials. */
-  .wisp-progression .hero-ability{padding:10px;border:1px solid #475473;border-radius:9px;background:#101c30;}
+  /* Wisp cards use one surface, with plain information and compact actions. */
+  #tab-spirits .hero-stat-pill{padding:0 6px 0 0;border:0;background:transparent;box-shadow:none;font-size:.6875rem;}
+  #tab-spirits .wisp-progression-title{min-height:0;padding:8px 0 0;font-family:'Manrope',sans-serif;font-size:.75rem;}
+  .wisp-progression .hero-ability{display:block;padding:8px 0;margin:0;border:0;border-radius:0;background:transparent;}
+  .wisp-progression .ability-label{display:inline;border:0;padding:0;margin-right:6px;}
+  .wisp-progression .ability-desc{display:block;margin-top:3px;}
   .wisp-progression .ability-desc{font-size:12px;line-height:1.5;}
   .wisp-progression .ability-label{font-size:9px;}
   .wisp-progression .hero-ability strong{font-size:13px;}
+  #tab-spirits .module-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,.8fr);gap:2px 12px;align-items:center;margin:0;padding:10px 0;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent;}
+  .wisp-progression .module-name{min-width:0;overflow-wrap:break-word;}
   .wisp-progression .module-effect{line-height:1.5;}
+  .wisp-progression .module-row .mini-btn{grid-column:2;grid-row:1 / span 2;width:auto;margin:0;}
+  .wisp-progression .mini-btn{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:8px 10px;white-space:normal;}
+  .wisp-progression .mini-btn .control-state{flex-basis:100%;}
+  .wisp-final-actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin-top:4px;}
+  .wisp-final-actions .hero-actions,.wisp-final-actions .ultimate-row{display:flex;flex:1 1 140px;min-width:0;margin:0;}
+  .has-ultimate .wisp-final-actions .ultimate-row{display:block;flex-basis:100%;}
+  @media(max-width:360px){
+    #tab-spirits .module-row{grid-template-columns:minmax(0,1fr);}
+    .wisp-progression .module-row .mini-btn{grid-column:1;grid-row:auto;width:100%;margin-top:4px;}
+  }
   .study-card .study-meta{padding:8px 10px;border-radius:8px;background:#0c1b2c;border:1px solid #365365;line-height:1.5;}
   #tab-ascend .node-card{position:relative;align-items:flex-start;border-left:3px solid #9c8bc4;}
   #tab-ascend .node-info{min-width:0;overflow-wrap:break-word;word-break:break-word;overflow-wrap:anywhere;}
@@ -8317,7 +8333,7 @@ function renderSpirits(keepScroll){
     var req = rarityReq(tier);
     var rc = rarityCost(sp, tier);
     var canRarity = recruited && tier<5 && level>=req && canSpendShards(rc.shard) && state.lumen>=rc.lumen;
-    var rarityLabel = tier>=5 ? 'Maxed' : (level<req ? ('Lv.'+req+' req') :
+    var rarityLabel = tier>=5 ? 'Rarity maxed' : (level<req ? ('Rarity Up · Lv.'+req+' req') :
       ('<span style="font-size:.6875rem;">Rarity Up</span>' +
        '<span style="font-size:.6875rem;">'+costIcon('lumen')+formatNum(rc.lumen)+'</span>' +
        '<span style="font-size:.6875rem;">'+costIcon('shard')+formatNum(rc.shard)+'</span>'));
@@ -8376,14 +8392,14 @@ function renderSpirits(keepScroll){
       '<button class="mini-btn wisp-empower-action" data-empower="'+sp.id+'" '+(empowerPlan.affordable?'':'disabled')+'><strong>'+(empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit')+'</strong><span class="mono">'+costIcon('lumen')+formatNum(cost)+'</span></button>' +
       '<div class="wisp-role-readout" data-wisp-role="'+sp.id+'"></div>' +
       (upgradesMaxed ?
-        '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'">'+sp.shortName+' · Ability, Rarity, Module &amp; Ultimate</summary>' :
-        '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'"><h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" tabindex="-1">'+sp.shortName+' · Ability, Rarity, Module &amp; Ultimate</h3>') +
+        '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'">Upgrades</summary>' :
+        '<section class="wisp-progression" data-wisp-progression="'+sp.id+'" aria-labelledby="wisp-progression-'+sp.id+'"><h3 class="wisp-progression-title" id="wisp-progression-'+sp.id+'" data-wisp-details="'+sp.id+'" tabindex="-1">Upgrades</h3>') +
       '<div class="hero-ability"><span class="ability-label">Ability</span><strong>'+sp.abilityName+'</strong><span class="ability-desc">'+forgeAbilityDescription(sp)+'</span></div>' +
       moduleHtml +
-      '<div class="hero-actions">' +
+      '<div class="wisp-final-actions"><div class="hero-actions">' +
         '<button class="mini-btn rarity-btn" data-rarity="'+sp.id+'" '+(canRarity?'':'disabled')+'>'+rarityLabel+'</button>' +
       '</div>' +
-      ultimateHtml +
+      ultimateHtml + '</div>' +
     (upgradesMaxed ? '</details>' : '</section>')+'</div>';
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);

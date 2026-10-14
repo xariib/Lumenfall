@@ -1,0 +1,54 @@
+{
+  "status": "pass",
+  "source": "C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-wisp-card-simplicity\\index.html",
+  "existingAssertions": true,
+  "records": [
+    {
+      "scenario": "nav-workshop-contract",
+      "status": "pass",
+      "detail": {
+        "checks": 415,
+        "mainDestinations": 5,
+        "workshopSections": 2,
+        "wholeStatePurity": true,
+        "silentPurchaseTypes": [
+          "empower",
+          "module",
+          "ultimate",
+          "research",
+          "speed-study",
+          "study",
+          "node",
+          "shop"
+        ]
+      },
+      "runtimeErrors": []
+    },
+    {
+      "scenario": "p1-05-control-regressions",
+      "status": "pass",
+      "detail": {
+        "selectedContrast": {
+          ".mult-btn.active": 10.820790238811385,
+          ".study-level": 7.514016275792294,
+          ".study-speed-row .node-queue-toggle.active": 10.106313906184967
+        },
+        "liveStates": true,
+        "focus": true,
+        "untrustedTapGuard": true,
+        "affordabilityFunding": {
+          "multiplier": "5",
+          "price": {
+            "lumen": 15000,
+            "shard": 120
+          },
+          "wallet": {
+            "lumen": 15000,
+            "shards": 120
+          }
+        }
+      },
+      "runtimeErrors": []
+    }
+  ]
+}
