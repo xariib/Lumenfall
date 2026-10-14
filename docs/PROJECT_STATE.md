@@ -1,5 +1,17 @@
 # Lumenfall — current delivery status
 
+14 October 2026: [FAIR_PLAY_COPY_001](tasks/FAIR_PLAY_COPY_001.md) locally verified
+on `local/full-debug` from `dea1d16`. Seven Settings cards now explain Ascend,
+offline limits/rates, fixed Mote rewards versus encounter chance, Wisp roles and
+manual/Auto-Tap accurately; removed unrelated comparisons and absolute promises.
+Only MANIFESTO text changes; remainder of product byte-identical. Source `b6b860e7`.
+[Evidence](qa/fair-play-copy-001/README.md): source/context/preservation PASS,
+layout6985/12 profiles, Settings/save-backup12 profiles and navigation PASS.
+Normal/large-text screens visually reviewed; self-review. Exact staged/HTTP HTML
+verified on restarted http://127.0.0.1:4174/index.html. App opening queued;
+direct in-app inspection blocked by connection/error-page policy. User review,
+combined CI/main/GitHub and Android/device acceptance pending. No APK/push/release.
+
 14 October 2026: [LOCAL_FULL_DEBUG_001](tasks/LOCAL_FULL_DEBUG_001.md) resumed
 locally from clean8630555; game509b2dcb unchanged. Strict cap/focus expectations,
 Resonate Windows version launch and Tree viewport controls repaired; Tree26660/12,
