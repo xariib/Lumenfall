@@ -29,7 +29,9 @@ and completed folding. Integrate serially; verify exact preview4174 assets.
 Status: SPLIT PROGRESSION VERIFIED, sourcee110f182.
 [Evidence](../qa/wisp-card-simplicity-001/split-progression/README.md):layout21,528/12,
 upgrades12,912/12, scroll3229, five existing cases, source/context/preservation/
-V8 PASS; normal/200% screens reviewed. Next: integrate/verify preview4174.
+V8 PASS; normal/200% screens reviewed. Integrated49f0919 on local/full-debug;
+all15 source/staged/HTTP assets match4174 ([receipt](../qa/wisp-card-simplicity-001/split-progression/preview.json)).
+Existing tab retained, actual reload unclaimed. Next: user review/final acceptance.
 Prior receipts remain saved. Self-review only. User/final CI/GitHub/main and Android/
 WebView60/textZoom/TalkBack/device acceptance OPEN. Local-only; no remote/APK/
 release/archive. Keep this chat open.

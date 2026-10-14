@@ -16,7 +16,8 @@ Next bonuses and a clear Mythic-rarity route for Ultimate. Existing badge/labels
 game rules, all purchases/saves/focus and Formation retained.
 [Evidence](qa/wisp-card-simplicity-001/split-progression/README.md):layout21,528/12,
 upgrades12,912/12, scroll3229, five existing cases and source/context/preservation/
-V8 PASS; normal/200% screens reviewed. Self-review. Integration/preview4174 next.
+V8 PASS; normal/200% screens reviewed. Self-review. Integrated49f0919 locally;
+all15 source/staged/HTTP assets match4174. Existing tab retained; reload unclaimed.
 Local milestone; user/final combined CI/GitHub/main and Android/device acceptance
 remain OPEN. No APK/remote/release/archive action.
 

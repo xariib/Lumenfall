@@ -12,6 +12,8 @@ Up.” Maxed ability shows Next: Maxed. Level0 remains the existing base ability
 
 Baseline5ef250a/sourcedfa26453. Candidate source SHA256:
 `e110f182e500eed4bbb0382d182471c93110da28fda97fff4856b5931791a9ac`.
+Integrated49f0919 on local/full-debug. [Preview receipt](preview.json) verifies
+all15 source/staged/HTTP assets at4174. Existing tab retained; reload unclaimed.
 [Byte preservation](preservation.json) proves CSS/UI markup and prerequisite text
 only; all actual gates, effect functions, prices, purchases, progression, saves,
 focus handlers and latest Formation code remain unchanged. No migration/reset.
