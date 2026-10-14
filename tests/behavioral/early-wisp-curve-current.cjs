@@ -44,7 +44,8 @@ for(const id of ['arcanecal','conduction']){
  eq(node.levelCap,10,'frozen Forge cap before the approved increase: '+id);
  node.levelCap=20;
 }
-eq(q.defs(),expectedForge,'Forge definitions preserved except the two approved cap20 values');
+eq(q.defs().filter(n=>n.id!=='masterwork'),expectedForge,'Forge definitions preserved except the two approved cap20 values');
+eq(q.defs().filter(n=>n.id==='masterwork').length,1,'one new Masterwork track; no duplicate legacy entries');
 const controls=[];
 if(process.argv.includes('--negative'))for(const id of ['missing','boundary','titan','forge-cap','forge-price']){
  const r=require('node:child_process').spawnSync(process.execPath,[__filename,process.argv[2]||'index.html'],{encoding:'utf8',env:{...process.env,EARLY_WISP_MUTANT:id}});

@@ -2,14 +2,20 @@
 // Real complete engine, real purchases; deterministic player decisions only.
 const fs=require('node:fs'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const {app,CLOCK}=require('./forge-expansion-harness.cjs');
+const amount=require('../../scripts/lib/game-amount.cjs');
 const sourcePath=process.argv[2]||'index.html';
 const source=fs.readFileSync(sourcePath,'utf8');
-const policySha256=crypto.createHash('sha256').update(fs.readFileSync(__filename)).update(fs.readFileSync(require.resolve('./forge-expansion-harness.cjs'))).digest('hex');
+const policyBytes=fs.readFileSync(__filename),harnessBytes=fs.readFileSync(require.resolve('./forge-expansion-harness.cjs')),amountBytes=fs.readFileSync(require.resolve('../../scripts/lib/game-amount.cjs'));
+const policySha256=crypto.createHash('sha256').update(policyBytes).update(harnessBytes).update(amountBytes).digest('hex');
+if(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT){
+ const path=require('node:path'),dir=path.join(path.dirname(process.env.LUMENFALL_CAMPAIGN_SNAPSHOT),'policies',policySha256);fs.mkdirSync(dir,{recursive:true});
+ for(const [name,bytes]of [['endless-campaign.cjs',policyBytes],['forge-expansion-harness.cjs',harnessBytes],['game-amount.cjs',amountBytes]])fs.writeFileSync(path.join(dir,name),bytes);
+}
 const marker="if(document.readyState==='loading'){";
 const bridge=`
 window.endlessQa={
   wisps:function(){return SPIRITS;},nodes:function(){return NODES;},
-  unlocked:function(sp){return state.maxDepthEver>=treeWispUnlockDepth(sp);},
+  unlocked:function(sp){return typeof wispRecruitmentUnlocked==='function'?wispRecruitmentUnlocked(sp):state.maxDepthEver>=treeWispUnlockDepth(sp);},
   rarity:function(sp){return buyRarity(sp);},module:function(sp){return buyModule(sp);},
   moduleCost:moduleCost,rarityCost:rarityCost,rarityReq:rarityReq,
   buyNode:buyNode,nodePlan:getNodeBuyPlan,studyPlan:getStudyStartPlan,
@@ -17,7 +23,7 @@ window.endlessQa={
   day:ensureDaily,
   best:function(mode){
     var owned=SPIRITS.filter(function(sp){return state.spirits[sp.id]>0;});
-    owned.sort(function(a,b){return wispPower(b,state.spirits[b.id])-wispPower(a,state.spirits[a.id]);});
+    owned.sort(function(a,b){return Amount.cmp(wispPower(b,state.spirits[b.id]),wispPower(a,state.spirits[a.id]));});
     var support=owned.filter(function(sp){return sp.abilityType==='support';})[0];
     var forced=mode==='farm'?['tide','aurora','gale','thorn'].filter(function(id){return state.spirits[id]>0;}):support?[support.id]:[];
     var chosen=owned.filter(function(sp){return forced.indexOf(sp.id)===-1;}).slice(0,treeFormationCapacity()-forced.length).map(function(sp){return sp.id;}).concat(forced);
@@ -25,8 +31,18 @@ window.endlessQa={
   },
   claim:function(){(state.questIds||[]).forEach(function(id){claimQuest(id);});},
   mastery:function(sp){return typeof buyWispMastery==='function' && buyWispMastery(sp);},
+  masterworkPower:function(){return ENDLESS_PROGRESSION.masterworkPowerGrowth||1;},
+  speed:function(preferred,budget){
+    var node=LONG_STUDIES.find(function(n){return n.id==='wispascend';}),active=findActiveStudy('wispascend');
+    if(!active)return false;
+    for(var i=LAB_SPEED_TIERS.length-1;i>=0;i--){var tier=LAB_SPEED_TIERS[i];
+      if(tier<=preferred && tier>active.speedMult && Amount.le(speedTierCost(tier,node),Amount.mul(state.motes,budget)))return applySpeedTier(node.id,tier);
+    }
+    return false;
+  },
   auto:function(enabled){
     var item=SHOP.find(function(row){return row.id==='autoascend';});
+    if(!enabled){state.autoAscendEnabled=false;return;}
     if(!state.owned.autoascend)buyShopItem(item);
     if(!state.owned.autoascend)return;
     setAutoAscendClearedTarget(String(Math.max(15,state.maxDepthEver-1)));
@@ -35,7 +51,7 @@ window.endlessQa={
 };
 `;
 const instrumented=source.replace(marker,bridge+marker);
-const policies={casual:{sessions:2,activeSec:300,decisionSec:10,speed:1.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:1.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8}};
+const policies={casual:{sessions:2,activeSec:300,decisionSec:10,speed:8,budget:.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},frequent:{sessions:6,activeSec:600,decisionSec:10,speed:8,budget:.5},regular_fast:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8,budget:.9}};
 const days=Number(process.argv[3]||7),name=process.argv[4]||'regular';
 assert(policies[name]&&Number.isInteger(days)&&days>0&&days<=730);
 
@@ -74,19 +90,25 @@ function campaign(){
     const result=q.advance(seconds,{kind:kind,clockStartMs:CLOCK+elapsed*1000,offlineWindowStartMs:CLOCK+elapsed*1000});
     elapsed+=seconds;x.clock(CLOCK+elapsed*1000);note();
     assert.equal(result.processedSec===undefined||result.processedSec>=0,true);
-    assert(Number.isFinite(q.get().lumen)&&Number.isFinite(q.get().enemyHp),'finite engine campaign state');
+    assert(amount.valid(q.get().lumen)&&amount.valid(q.get().enemyHp),'finite represented engine campaign state');
   }
   function decisions(){
     b.day();
     b.push();
     const growth=q.projects().find(study=>study.id==='wispascend');
     if(growth)q.startStudy(growth.id);
+    b.speed(policy.speed,policy.budget);
     const growthPlan=growth&&b.studyPlan(growth);
-    const saving=growthPlan&&!q.get().activeStudies.some(study=>study.id==='wispascend')&&growthPlan.cost.lumen>q.get().lumen&&(q.get().longStudyLevels.wispascend||0)>=10&&(q.get().spirits.ember||0)>=80;
+    const growthSaving=growthPlan&&!q.get().activeStudies.some(study=>study.id==='wispascend')&&amount.gt(growthPlan.cost.lumen,q.get().lumen)&&(q.get().longStudyLevels.wispascend||0)>=5&&(q.get().spirits.ember||0)>=80;
+    const forgeMasterwork=q.defs().find(node=>node.id==='masterwork'),forgeGoal=forgeMasterwork&&q.plan('masterwork',1);
+    const wantsForge=b.masterworkPower()>1&&elapsed-lastRecordAt>=43200&&q.get().maxDepthEver>=70&&(q.get().spirits.ember||0)>=80;
+    const forgeSaving=!growthSaving&&wantsForge&&forgeGoal&&amount.gt(forgeGoal.needed.lumen,q.get().lumen);
+    const saving=growthSaving||forgeSaving;
     lastSaving=!!saving;
     // Save for the visible next development goal, rather than repeatedly
     // discarding its Lumen budget at Ascend or spending it on run levels.
     for(const sp of b.wisps())q.get().empowerQueue[sp.id]=!saving;
+    for(const node of q.defs())q.get().researchQueue[node.id]=!saving&&!node.retiredTo&&node.levelCap!==undefined;
     if(q.get().spirits.tide>=10)q.get().empowerQueue.tide=false;
     if(q.get().spirits.aurora>=10)q.get().empowerQueue.aurora=false;
     b.auto(false);
@@ -98,28 +120,35 @@ function campaign(){
     // Fewer cheap purchases per check than the old 20-per-second fixture.
     for(let i=0;i<(saving?0:5);i++){
       const options=b.wisps().filter(sp=>b.unlocked(sp)&&q.get().empowerQueue[sp.id]!==false).map(sp=>({sp,cost:q.empowerCost(sp.id)}))
-        .filter(v=>v.cost<=q.get().lumen).sort((a,b)=>a.cost-b.cost);
+        .filter(v=>amount.le(v.cost,q.get().lumen)).sort((a,b)=>amount.cmp(a.cost,b.cost));
       if(!options.length||!q.empower(options[0].sp.id))break;
     }
     if(saving)for(const id of ['thorn','gale']){
       const sp=b.wisps().find(sp=>sp.id===id);if(!sp||q.get().spirits[id]===0)continue;
       for(let n=0;n<5&&q.get().spirits[id]<50;n++){
-        const cost=q.empowerCost(id);if(cost>q.get().lumen*.25||cost>growthPlan.cost.lumen*.02)break;q.empower(id);
+        const cost=q.empowerCost(id);if(amount.gt(cost,amount.mul(q.get().lumen,.25))||amount.gt(cost,amount.mul(growthPlan.cost.lumen,.02)))break;q.empower(id);
       }
     }
     b.best();
     const unlocked=b.wisps().filter(sp=>q.get().spirits[sp.id]>0);
     for(const sp of unlocked){
       const state=q.get(),cost=b.moduleCost(sp,state.wispModules[sp.id]||0);
-      if((!saving||sp.id==='thorn'||sp.id==='gale')&&cost.lumen<=state.lumen*(saving?.05:.15)&&cost.shard<=state.shards*.15)b.module(sp);
+      if((!saving||sp.id==='thorn'||sp.id==='gale')&&amount.le(cost.lumen,amount.mul(state.lumen,saving?.05:.15))&&amount.le(cost.shard,amount.mul(state.shards,.15)))b.module(sp);
     }
     const nodes=b.nodes().filter(n=>b.nodePlan(n).affordable);
     // Swift is a repeat-farming investment; later buy other affordable paths.
-    nodes.sort((a,c)=>Number(c.id==='swift')-Number(a.id==='swift')||b.nodePlan(a).cost-b.nodePlan(c).cost);
+    nodes.sort((a,c)=>Number(c.id==='swift')-Number(a.id==='swift')||amount.cmp(b.nodePlan(a).cost,b.nodePlan(c).cost));
     if(nodes.length)b.buyNode(nodes[0]);
-    const forgeMasterwork=q.defs().find(node=>node.id==='masterwork');
-    if(!saving&&forgeMasterwork){const p=q.plan('masterwork',1);if(p.buyCount===1&&p.cost.lumen<=q.get().lumen*.2&&p.cost.shard<=q.get().shards*.2)q.buy('masterwork',1);}
-    if(!saving)for(const study of q.projects())if(!study.retiredTo)q.startStudy(study.id);
+    if(!growthSaving&&forgeMasterwork){const p=q.plan('masterwork',wantsForge?5:1);if(p.buyCount>0&&(wantsForge||amount.le(p.cost.lumen,amount.mul(q.get().lumen,.2)))&&amount.le(p.cost.shard,amount.mul(q.get().shards,.2)))q.buy('masterwork',wantsForge?5:1);}
+    if(!saving){
+      const priorities=['labcapacity','measuredinquiry','focusprotocol','curriculum','procurement','catalysis'];
+      const studies=q.projects().filter(study=>!study.retiredTo&&study.id!=='wispascend');
+      studies.sort((a,c)=>{
+        const rank=s=>priorities.includes(s.id)?priorities.indexOf(s.id):s.levelCap!==undefined?priorities.length:priorities.length+1;
+        return rank(a)-rank(c);
+      });
+      for(const study of studies)q.startStudy(study.id);
+    }
     b.claim();note();
     const state=q.get();
     if(!state.owned.autoascend&&!saving&&b.eligible()&&(state.ascendCount===0||elapsed-lastRecordAt>3600)&&elapsed-lastAscendAt>=3600){
@@ -136,8 +165,10 @@ function campaign(){
       }
       // Each absence is below the established 12h productive cap.
       const gap=86400/policy.sessions-policy.activeSec;
-      b.best('farm');
-      b.auto(!lastSaving&&(q.get().longStudyLevels.wispascend||0)>=15&&(q.get().spirits.ember||0)>=80);
+      const repeat=!lastSaving&&(q.get().longStudyLevels.wispascend||0)>=15&&(q.get().spirits.ember||0)>=80;
+      b.auto(repeat);
+      if(repeat&&q.get().autoAscendEnabled){b.best('push');b.push();}
+      else{b.best('farm');b.farm();}
       advance(Math.min(gap,43200),'offline');
       // Nonproductive remainder would still advance wall-clock time.
       if(gap>43200)elapsed+=gap-43200;
@@ -153,6 +184,7 @@ function campaign(){
     // Retained write evidence is not the campaign's history; release its memory.
     x.writes.length=0;
   }
+  if(elapsed-lastRecordAt>=3600)walls.push({from:lastRecord,to:null,open:true,seconds:elapsed-lastRecordAt});
   return {milestones,walls,history};
 }
 const result=campaign();

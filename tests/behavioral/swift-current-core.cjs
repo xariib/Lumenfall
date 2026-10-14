@@ -12,7 +12,7 @@ if(mutant==='cap')mutate("effectPerLevel:0.08, levelCap:10, name:'Swift Recovery
 if(mutant==='floor')mutate('Math.max(ABILITY_MIN_CYCLE_SEC,ABILITY_BASE_CYCLE_SEC / researchFactor(\'charge\',level))','ABILITY_BASE_CYCLE_SEC / (1+0.08*(level===undefined?researchLevel(\'charge\'):level))');
 if(mutant==='refund')mutate('    normalizeSwiftRecoveryRefund(source,out,initializeSwiftRefund);','');
 if(mutant==='current-missing-proofs')mutate('  if(!initialize) invalid();','');
-if(mutant==='schema-downgrade'){mutate('var SAVE_SCHEMA_VERSION = 4;','var SAVE_SCHEMA_VERSION = 3;');mutate('  if(!initialize) invalid();','');}
+if(mutant==='schema-downgrade'){mutate('var SAVE_SCHEMA_VERSION = 5;','var SAVE_SCHEMA_VERSION = 3;');mutate('  if(!initialize) invalid();','');}
 if(mutant==='deeds')mutate('return RESEARCH.reduce(function(sum,node){return sum+(s.research[node.id]||0);},0);','return LEGACY_RESEARCH_IDS.reduce(function(sum,id){return sum+(s.research[id]||0);},0);');
 if(mutant==='price')mutate('shardIntegerHex(Math.ceil(swiftOriginalValues[index]))','shardIntegerHex(Math.floor(swiftOriginalValues[index]))');
 if(mutant==='free-debit')mutate('var remaining=shardHexSubtract(shardBudgetHex(state),shardIntegerHex(cost));','var remaining=shardBudgetHex(state);');
@@ -68,7 +68,7 @@ if(process.env.SWIFT_QA_BASELINE){
 }else{
 test('schema4 protects exact refunds from old schema3 readers and rejects lost current receipts',()=>{
   const b=app().b,s=seed(b,11);s.shards=1e30;b.set(s);const accepted=copy(b.get());
-  assert.equal(accepted.schemaVersion,4);assert.equal(accepted.swiftRecoveryMigrationPending,undefined);
+  assert.equal(accepted.schemaVersion,5);assert.equal(accepted.swiftRecoveryMigrationPending,undefined);
   const oldHtml=fs.readFileSync(path.resolve(__dirname,'../../docs/qa/swift-current-001/baseline-21394fff.html'),'utf8');
   assert.equal(crypto.createHash('sha256').update(oldHtml).digest('hex'),'941a70beb8b41008077fbca0af2a568968dfbdd6a8c1c1f4333b83f0ffdd9a1c');
   const old=app(oldHtml);assert.throws(()=>old.b.normalize(accepted),{code:'unsupported-future-schema'});
@@ -77,7 +77,7 @@ test('schema4 protects exact refunds from old schema3 readers and rejects lost c
   const lost=copy(accepted);delete lost.swiftRecoveryRefund;delete lost.swiftRecoveryRefundAudit;
   assert.throws(()=>b.normalize(lost),{code:'invalid-swift-refund'},'current schema cannot initialize another refund after both proofs disappear');
   const historical=b.fresh();historical.schemaVersion=3;historical.research.charge=11;historical.shards=43;b.set(historical);
-  assert.equal(b.get().shards,2445);assert.equal(b.get().schemaVersion,4);assert.deepEqual(b.normalize(b.get()),b.get());
+  assert.equal(b.get().shards,2445);assert.equal(b.get().schemaVersion,5);assert.deepEqual(b.normalize(b.get()),b.get());
 });
 test('cap and effective cycle at 0..10, huge legacy levels and direct forged-node handler',()=>{
   const b=app().b;assert.equal(b.node().levelCap,10);

@@ -3,7 +3,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require(
 const {app,clone,P,R,CLOCK}=require('./forge-expansion-harness.cjs');
 const a=require('../../scripts/lib/game-amount.cjs');
 const original=fs.readFileSync(process.argv[2]||'index.html','utf8');
-const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode};if(document.readyState==='loading'){`);
+const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode};if(document.readyState==='loading'){`);
 let checks=0;function eq(x,y,m){checks++;assert.deepEqual(x,y,m);}function ok(value,m){checks++;assert(value,m);}
 function big(value){if(typeof value==='number')return BigInt(value);const [d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 let x=app(source),q=x.q,b=q.endless;
@@ -25,8 +25,23 @@ legacy.maxDepthEver=32;legacy.nodes.invitations=0;q.set(legacy);
 for(const id of Object.keys(q.get().spirits))eq(q.get().recruitmentEntitlements[id],true,'legacy unlocked Wisp retained '+id);
 eq(q.get().lumen,123,'legacy native wallet retained');eq(q.get().wispMastery.ember,0,'migration grants no Mastery');
 const migrated=clone(q.get());q.set(migrated);eq(q.get(),migrated,'migration repeats safely');
+{
+ const old=q.fresh();old.schemaVersion=4;old.maxDepthEver=100;old.nodes.bonds=2000;old.prisms=0;delete old.feedbackMigration.bondsCreditAuditVersion;delete old.feedbackMigration.echoCreditAuditVersion;q.set(old);
+ // A valid historical endpoint after the smaller refund allocations were spent.
+ const held=clone(q.get());held.prisms=0;held.refundCredits.prisms=held.refundCredits.prisms.filter(e=>e.amount>1e20);
+ const receipt=held.feedbackMigration.receipts['node.bonds'];receipt.remainingCredits=held.refundCredits.prisms.filter(e=>e.id==='node.bonds').map(e=>e.amount);
+ q.set(held);const balance=()=>q.get().refundCredits.prisms.reduce((sum,e)=>sum+big(e.amount),big(q.get().prisms));
+ const before=balance();ok(b.buyNode(b.node('swift')),'real small Tree price funded by a huge old credit');eq(balance(),before-3n,'independent exact old-credit debit');
+ ok(q.get().refundCredits.prisms.some(e=>a.wide(e.amount)),'partial debit promotes the held credit');
+ ok(q.save(),'held credit saves with matching original-value receipt');const saved=clone(q.get());q.load();eq(q.get(),saved,'held-credit audit survives cold load');
+}
 const deep=q.fresh();deep.depth=6001;deep.maxDepthEver=6001;deep.spirits.ember=100;q.set(deep);q.restoreEnemy();
 ok(a.valid(q.get().enemyMaxHp),'health past former overflow is represented');ok(a.valid(q.get().enemyHp),'deep health finite representation');
 q.advance(1,{kind:'live',clockStartMs:CLOCK});ok(a.valid(q.get().enemyHp),'deep live combat advances');
 ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load preserves health');
+{
+ const s=q.fresh();s.schemaVersion=3;s.research.charge=2000;s.shards=Number.MAX_VALUE;q.set(s);
+ const credit=BigInt('0x'+q.get().swiftRecoveryRefund.remainingShardsHex),expected=BigInt(Number.MAX_VALUE)+credit;
+ eq(big(b.shardsAvailable()),expected,'available Shards include every retained credit beyond native capacity');ok(a.wide(b.shardsAvailable()),'combined available Shards remain displayable');
+}
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

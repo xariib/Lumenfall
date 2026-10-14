@@ -12,7 +12,7 @@ function verify(html){
  eq(q.projects().filter(n=>n.retiredTo).map(n=>n.id),['riftattune','formationstudy','prismstudy'],'old paid identities stay retired, not erased');
  const record=[];
  const discount=(v,p)=>Number((BigInt(v)*BigInt(100-p)+99n)/100n);
- const work=(d,l)=>Math.round(d.baseDurationSec*Math.pow(d.durationGrowth,l));
+ const work=(d,l)=>Math.round(Math.min(777600,d.baseDurationSec*Math.pow(d.durationGrowth,l)));
  const costs=(d,l)=>({lumen:Math.round(d.lumenBase*Math.pow(d.lumenGrowth,l)),shard:Math.round(d.shardBase*Math.pow(d.shardGrowth,l))});
  // Every project: named unlock, independent base curve, pure rejection, delayed
  // actual completion, exact price, cap, future queue intent and two-slot storage.
@@ -136,8 +136,9 @@ function verify(html){
   q.get().longStudyLevels.procurement=10;q.get().longStudyLevels.focusprotocol=5;q.get().longStudyLevels.curriculum=3;q.get().longStudyLevels.labcapacity=2;
   eq(q.get().activeStudies,running,'new research never rewrites purchased work');
   eq(q.cost('guardmastery',0),{lumen:480,shard:32},'future prices reduced20%');eq(q.cost('procurement',1),costs(defs.find(n=>n.id==='procurement'),1),'procurement cannot discount itself');
-  const raw=seed(q);raw.longStudyLevels.procurement=10;raw.lumen=Number.MAX_VALUE;q.set(raw);const before=clone(q.get());eq(q.start('bossledger'),false,'unrepresentable price refused');eq(q.get(),before,'unsafe payment pure');
-  raw.lumen=1e9;raw.shards=Number.MAX_VALUE;q.set(raw);eq(q.start('bossledger'),false,'unrepresentable Shard price refused');
+  const integerAmount=value=>{if(typeof value==='number')return BigInt(value);const[d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));};
+  const raw=seed(q);raw.longStudyLevels.procurement=10;raw.lumen=Number.MAX_VALUE;q.set(raw);const before=clone(q.get()),price=q.cost('bossledger',0);eq(q.start('bossledger'),true,'large native balance funds a real Study');eq(integerAmount(q.get().lumen),BigInt(before.lumen)-BigInt(price.lumen),'independent exact promoted Study Lumen debit');
+  raw.lumen=1e9;raw.shards=Number.MAX_VALUE;q.set(raw);eq(q.start('bossledger'),true,'large native Shards fund a real Study');eq(integerAmount(q.get().shards),BigInt(raw.shards)-BigInt(price.shard),'independent exact promoted Study Shard debit');
  }
  // Focus/breadth discounts snapshot at each actual start; active work is immutable.
  {
@@ -167,13 +168,14 @@ function verify(html){
   eq([q.burst(sp,50),q.power(),q.tap(),q.preview(21).gain],[before.burst,before.power,before.tap,before.prism],'material research cannot add combat or Prism multipliers');
   q.get().wispModules.ember=0;const c=q.moduleCost(sp,0);q.get().lumen=c.lumen;q.get().shards=c.shard;q.module(sp);eq(q.get().wispModules.ember,1,'actual discounted Module purchase');eq([q.get().lumen,q.get().shards],[0,0],'actual Module debit');
   q.get().heroRarity.ember=0;q.get().spirits.ember=q.rarityReq(0);const rc=q.rarityCost(sp,0);q.get().lumen=rc.lumen;q.get().shards=rc.shard;q.rarity(sp);eq(q.get().heroRarity.ember,1,'actual discounted Rarity at lower gate');eq([q.get().lumen,q.get().shards],[0,0],'actual Rarity debit');
-  q.get().heroRarity.ember=5;q.get().sigils=q.ultimateCost(sp);q.ultimate(sp);eq(q.get().wispUltimate.ember,true,'actual Ultimate unlock');eq(q.get().sigils,0,'actual Ultimate debit');
+  q.get().heroRarity.ember=5;q.get().wispModules.ember=15;q.get().longStudyLevels.wispascend=30;q.get().research.arcanecal=10;q.get().ascendCount=50;q.get().sigils=q.ultimateCost(sp);q.ultimate(sp);eq(q.get().wispUltimate.ember,true,'actual Ultimate unlock at complete development gates');eq(q.get().sigils,0,'actual Ultimate debit');
   Object.keys(q.get().wispUltimate).forEach(id=>q.get().wispUltimate[id]=true);q.get().sigils=15;q.get().heroResource.ember=0;eq(q.resonate(sp),true,'actual cheaper Resonate');eq(q.get().sigils,0,'actual Resonate debit');eq(q.get().heroResource.ember,100,'refill amount unchanged');
  }
  // Encounter-specific effects and exact actual kill payouts.
  for(const depth of [10,19,20,39,60,119,120])for(const luminous of [false,true])for(const level of [0,1,5,10,19,20,21,1000000]){
   const s=seed(q);s.depth=depth;s.enemyDepth=depth;s.enemyIsLuminous=luminous;s.longStudyLevels.bossledger=level;s.longStudyLevels.luminousdistill=level;s.longStudyLevels.sigilcartography=level;q.set(s);
-  const baseL=Math.round(5*Math.pow(1.11,depth)*(depth%10===0?8:1)),baseS=Math.round(Math.pow(1.09,depth)*(depth%10===0?5:1)),p=depth%10===0?Math.min(20,level)*5:luminous?Math.min(20,level)*10:0;
+  const curve=depth<=100?depth:100+40*Math.log1p((depth-100)/40);
+  const baseL=Math.round(5*Math.pow(1.11,curve)*(depth%10===0?8:1)),baseS=Math.round(Math.pow(1.09,curve)*(depth%10===0?5:1)),p=depth%10===0?Math.min(20,level)*5:luminous?Math.min(20,level)*10:0;
   const bonus=v=>Number((BigInt(v)*BigInt(p)+50n)/100n);const L=baseL+bonus(baseL),S=baseS+bonus(baseS);
   eq(q.lumen(depth,luminous),L,'conditional Lumen oracle');eq(q.shards(depth,luminous),S,'conditional Shard oracle');
   const sum=q.kill();eq(sum.lumenGained,L,'authoritative kill Lumen');eq(sum.shardGained,S,'authoritative kill Shards');eq(sum.sigilsGained,depth%10===0?Math.floor(depth/10)+Math.min(5,level):0,'boss-only Sigils');

@@ -93,10 +93,10 @@ function app(source, saved) {
       var old=treeFrontierBonus;treeFrontierBonus=function(cleared,benchmark){return old(cleared,0);};return function(){treeFrontierBonus=old;};
     },
     bypassNodeExactDebit:function(){
-      var old=getNodeBuyPlan;getNodeBuyPlan=function(node,materialize){var plan=old(node,materialize);if(plan.reason==='unavailable' && Number.isFinite(plan.cost) && plan.cost>=1 && state.prisms>=plan.cost){plan.affordable=true;plan.reason='available';plan.payment={prisms:state.prisms-plan.cost,credits:clonePersistedValue(state.refundCredits.prisms),remainingOwnCredits:cheaperRecruitmentOwnedCredits(state.refundCredits.prisms)};}return plan;};return function(){getNodeBuyPlan=old;};
+      var old=getNodeBuyPlan;getNodeBuyPlan=function(node,materialize){var plan=old(node,materialize);if(plan.affordable && typeof state.prisms==='number' && state.prisms>Number.MAX_SAFE_INTEGER){plan.payment.prisms=state.prisms-plan.cost;}return plan;};return function(){getNodeBuyPlan=old;};
     },
     bypassSpiritExactDebit:function(){
-      var old=forgeExactDebit;forgeExactDebit=function(wallet,cost){return Number.isFinite(wallet) && Number.isFinite(cost) && cost>=0 && wallet>=cost;};return function(){forgeExactDebit=old;};
+      var old=forgeExactDebit,oldDebit=debitAmount;forgeExactDebit=function(wallet,cost){return Number.isFinite(wallet) && Number.isFinite(cost) && cost>=0 && wallet>=cost;};debitAmount=function(wallet,cost){return wallet-cost;};return function(){forgeExactDebit=old;debitAmount=oldDebit;};
     },
     leakPrimaryMutation:function(){
       var old=forgeCommitPaidMutation;forgeCommitPaidMutation=function(apply){apply();return saveState();};return function(){forgeCommitPaidMutation=old;};

@@ -2049,6 +2049,7 @@
   .wisp-mastery-section .hero-actions{min-width:0;}
   .wisp-mastery-rank{color:var(--prism);font-size:.75rem;}
   .wisp-upgrade-price{font-size:.6875rem;}
+  .ultimate-requirements{margin:6px 0;font-size:.75rem;line-height:1.5;color:var(--ink-dim);overflow-wrap:anywhere;}
   @media(max-width:390px){.wisp-mastery-section{grid-template-columns:minmax(0,1fr);}}
   .ability-effects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:2px 0 8px;}
   .ability-effect-label{display:block;margin-bottom:3px;font-size:.6875rem;font-weight:700;color:var(--ink-dim);}
@@ -2060,7 +2061,7 @@
   .wisp-progression .mini-btn{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:8px 10px;white-space:normal;}
   .wisp-progression .mini-btn .control-state{flex-basis:100%;}
   .wisp-ability-section .ultimate-row{margin-top:0;}
-  @media(max-width:360px){
+  @media(max-width:480px){
     .wisp-rarity-section{grid-template-columns:minmax(0,1fr);}
   }
   .study-card .study-meta{padding:8px 10px;border-radius:8px;background:#0c1b2c;border:1px solid #365365;line-height:1.5;}
@@ -2872,7 +2873,7 @@
         <div style="font-size:.8rem;color:var(--ink-dim);width:100%;text-align:left;">Each Ascend earns Prisms. Repeat runs keep 20% of the base reward plus the full earned upgrade bonus. Clearing beyond your best rewarded Rift adds a new-depth bonus. The current run resets; permanent progression stays.</div>
         <div class="ascend-breakdown">
           <div class="ab-col ab-reset"><div class="ab-head">Resets</div><ul><li>Rift depth</li><li>Wisp levels</li><li>Current Lumen</li></ul></div>
-          <div class="ab-col ab-keep"><div class="ab-head">Keeps</div><ul><li>Wisp Rarity, Modules &amp; Ultimates</li><li>Rift Forge upgrades</li><li>Research Lab progress</li><li>Prisms &amp; this tree</li><li>Comets, Motes, Sigils &amp; Deeds</li></ul></div>
+          <div class="ab-col ab-keep"><div class="ab-head">Keeps</div><ul><li>Wisp Rarity, Modules, Ultimates &amp; Mastery</li><li>Recruitment entitlements</li><li>Rift Forge upgrades</li><li>Research Lab progress</li><li>Prisms &amp; this tree</li><li>Comets, Motes, Sigils &amp; Deeds</li></ul></div>
         </div>
         <div class="prism-preview mono" id="prism-preview">+0 Prisms</div>
         <button class="big-btn" id="ascend-btn">Ascend</button>
@@ -3157,7 +3158,10 @@ function createGameAmount(){
     var x=parts(a),y=parts(b);if(y.d==='0')return x.d==='0'?NaN:x.s*Infinity;if(x.d==='0')return 0;
     var ax=Number(x.d.slice(0,16))/Math.pow(10,Math.min(16,x.d.length)-1);
     var by=Number(y.d.slice(0,16))/Math.pow(10,Math.min(16,y.d.length)-1);
-    return x.s*y.s*(ax/by)*Math.pow(10,(x.d.length+x.e)-(y.d.length+y.e));
+    var result=x.s*y.s*(ax/by)*Math.pow(10,(x.d.length+x.e)-(y.d.length+y.e));
+    // A nonzero physical interval must not disappear at the native underflow
+    // boundary. The scheduler can then resolve a state event at that interval.
+    return result===0 ? x.s*y.s*Number.MIN_VALUE : result;
   }
   function div(a,b){
     var n=ratio(a,b);
@@ -3217,7 +3221,7 @@ var ENDLESS_PROGRESSION = {
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,29],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
   ultimate:{sigils:{ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000},module:15,depth:120,lab:30,forge:10,ascends:50},
   mastery:{prismBase:200,prismStep:10,sigilBase:5000,sigilStep:500,depthBase:200,depthStep:25,labBase:30,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
-  hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:777600,lateStudyCostStart:30,lateStudyCostGrowth:1.35
+  speedMoteGrowth:1,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:777600,lateStudyCostStart:30,lateStudyCostGrowth:1.35
 };
 var SPIRITS = [
   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
@@ -3764,7 +3768,7 @@ function labDiscountCost(value,percent){
   return Amount.max(1,Amount.round(Amount.div(Amount.mul(value,Amount.sub(100,percent)),100),'ceil'));
 }
 function labCanPay(wallet,amount){
-  return Amount.valid(wallet) && Amount.valid(amount) && Amount.ge(amount,0) && Amount.ge(wallet,amount) && Amount.sub(wallet,Amount.sub(wallet,amount))===amount;
+  return forgeExactDebit(wallet,amount);
 }
 function labCurriculumSubjects(){
   return Math.min(10,LAB_EXPANSION_IDS.filter(function(id){return id!=='curriculum' && labExpansionLevel(id)>0;}).length);
@@ -3819,7 +3823,11 @@ function legacyUpgradeMarkup(node,effect){
 function legacyUpgradeSection(html){
   return html ? '<section class="legacy-upgrades" aria-label="Preserved upgrades"><h3>Preserved upgrades</h3>'+html+'</section>' : '';
 }
-function speedTierCost(mult){
+function speedTierCost(mult,node){
+  if(node && node.levelCap===undefined && ENDLESS_PROGRESSION.speedMoteGrowth!==1){
+    var price=Amount.round(Amount.mul(6*Math.pow(mult,2.1),Amount.pow(ENDLESS_PROGRESSION.speedMoteGrowth,longStudyLevel(node.id))),'round');
+    return labDiscountCost(price,2*labExpansionLevel('catalysis'));
+  }
   return labDiscountCost(Math.round(6 * Math.pow(mult, 2.1)),2*labExpansionLevel('catalysis'));
 }
 
@@ -4643,6 +4651,9 @@ function settleOffline12hRefund(out){
   if(!receipt) return;
   function credit(currency,amount,paid,index){
     if(paid[index]) return;
+    if(Amount.wide(out[currency])){
+      out[currency]=creditAmount(out[currency],amount);paid[index]=true;return;
+    }
     var result=out[currency]+amount;
     // Preserve an unrepresentable deposit in its original currency. Try again
     // on the next canonical save after spending; never round away or overpay it.
@@ -4852,6 +4863,8 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
     out.wispModules[sp.id] = boundedInt(wispModules[sp.id],fresh.wispModules[sp.id],0,MODULE_MAX_LEVEL);
     out.wispUltimate[sp.id] = strictBool(wispUltimate[sp.id],fresh.wispUltimate[sp.id]);
     out.wispMastery[sp.id]=nonNegativeInt(wispMastery[sp.id],0);
+    if(wispMastery[sp.id]!==undefined && (!Number.isSafeInteger(wispMastery[sp.id]) || wispMastery[sp.id]<0)) throw new Error('Invalid Wisp Mastery rank: '+sp.id);
+    if(out.wispMastery[sp.id]>0 && (out.heroRarity[sp.id]!==5 || out.wispModules[sp.id]!==MODULE_MAX_LEVEL || !out.wispUltimate[sp.id])) throw new Error('Incomplete Wisp Mastery prerequisites: '+sp.id);
     out.recruitmentEntitlements[sp.id]=entitlements[sp.id]===true || out.spirits[sp.id]>0 || sp.id==='ember';
     if(out.heroRarity[sp.id]<RARITY_NAMES.length-1) out.wispUltimate[sp.id] = false;
     out.empowerQueue[sp.id] = strictBool(empowerQueue[sp.id],fresh.empowerQueue[sp.id]);
@@ -5073,7 +5086,7 @@ function shardHexSubtract(a,b){
 function swiftShardCredit(s){ return s.swiftRecoveryRefund ? s.swiftRecoveryRefund.remainingShardsHex : '0'; }
 function shardBudgetHex(s){ return shardHexAdd(shardIntegerHex(s.shards),swiftShardCredit(s)); }
 function shardCanPayExactly(cost){ return state.swiftRecoveryRefund ? canSpendShards(cost) : forgeExactDebit(state.shards,cost); }
-function shardsAvailable(){ return Amount.wide(state.shards)?Amount.add(state.shards,Amount.fromHex(swiftShardCredit(state))):Math.min(Number.MAX_VALUE,state.shards+parseInt(swiftShardCredit(state),16)); }
+function shardsAvailable(){ return creditAmount(state.shards,Amount.fromHex(swiftShardCredit(state))); }
 function canSpendShardsWithWallet(cost,wallet){
   if(Amount.wide(cost)||Amount.wide(wallet))return Amount.valid(cost)&&Amount.ge(cost,0)&&Amount.ge(Amount.add(wallet,Amount.fromHex(swiftShardCredit(state))),cost);
   if(!Number.isFinite(cost) || cost<0) return false;
@@ -7386,8 +7399,8 @@ function updateResearchCard(node,card){
   if(preview.textContent!==text) preview.textContent=text;
   var label=p.reason==='locked'?'Reach Rift '+node.unlockDepth:p.maxed?'Maxed':p.reason==='unavailable'?'Unavailable':p.buyCount?'Upgrade ×'+p.buyCount:'Upgrade';
   var displayed=p.buyCount?p.cost:p.needed;
-  var html=(node.lumenBase && Number.isFinite(displayed.lumen)?purchasePriceMarkup('lumen',displayed.lumen,'cost mono'):'')+
-    (node.shardBase && Number.isFinite(displayed.shard)?purchasePriceMarkup('shard',displayed.shard,'cost mono'):'')+'<span class="label">'+label+'</span>';
+  var html=(node.lumenBase && Amount.valid(displayed.lumen)?purchasePriceMarkup('lumen',displayed.lumen,'cost mono'):'')+
+    (node.shardBase && Amount.valid(displayed.shard)?purchasePriceMarkup('shard',displayed.shard,'cost mono'):'')+'<span class="label">'+label+'</span>';
   if(btn.dataset.planHtml!==html){btn.innerHTML=html;btn.dataset.planHtml=html;}
   btn.disabled=!p.affordable;
 }
@@ -7502,8 +7515,8 @@ function commitStudyStart(node){
   return true;
 }
 function startStudy(node){
-  if(!commitStudyStart(node)) return false;
-  saveState();
+  if(!getStudyStartPlan(node).affordable) return false;
+  if(!forgeCommitPaidMutation(function(){commitStudyStart(node);})) return false;
   renderLongStudies();
   updateBattleFast();
   return true;
@@ -7514,12 +7527,13 @@ function applySpeedTier(studyId, mult){
   if(!node || !active || Amount.le(active.remainingSec,SIM_EPS) || Amount.lt(state.maxDepthEver,node.unlockDepth||1) || LAB_SPEED_TIERS.indexOf(mult)===-1) return false;
   if(node.levelCap!==undefined && Amount.ge(longStudyLevel(studyId),node.levelCap)) return false;
   if(Amount.le(mult,active.speedMult)) return false;
-  var cost = speedTierCost(mult);
+  var cost = speedTierCost(mult,node);
   if(!labCanPay(state.motes,cost)) return false;
-  state.motes=debitAmount(state.motes,cost);
-  active.speedMult = mult;
-  state.studySpeedTargets[studyId] = mult;
-  saveState();
+  if(!forgeCommitPaidMutation(function(){
+    state.motes=debitAmount(state.motes,cost);
+    findActiveStudy(studyId).speedMult=mult;
+    state.studySpeedTargets[studyId]=mult;
+  })) return false;
   renderLongStudies();
   renderHud();
   return true;
@@ -7527,7 +7541,7 @@ function applySpeedTier(studyId, mult){
 function studyMotesPlan(node){
   var active=findActiveStudy(node.id),target=state.studySpeedTargets[node.id];
   if(state.studyUseMotes[node.id]!==true || LAB_SPEED_TIERS.indexOf(target)===-1 || !active || Amount.le(active.remainingSec,SIM_EPS) || Amount.lt(state.maxDepthEver,node.unlockDepth||1) || (node.levelCap!==undefined && Amount.ge(longStudyLevel(node.id),node.levelCap)) || Amount.ge(active.speedMult,target)) return null;
-  var cost=speedTierCost(target);
+  var cost=speedTierCost(target,node);
   if(Amount.ge(state.motes,cost) && !labCanPay(state.motes,cost)) return null;
   return {active:active,target:target,cost:cost};
 }
@@ -7931,7 +7945,7 @@ function presentControlStates(root){
       var mult=Number(btn.getAttribute('data-speed'));
       var speedNode=LONG_STUDIES.find(function(n){return n.id===btn.getAttribute('data-speed-study');});
       subject=(speedNode?speedNode.name+' — ':'')+'Study speed';
-      if(btn.classList.contains('study-speed-buy')){btn.removeAttribute('aria-pressed');subject+=(' '+mult+'x · '+speedTierCost(mult)+' Motes');}
+      if(btn.classList.contains('study-speed-buy')){btn.removeAttribute('aria-pressed');subject+=(' '+mult+'x · '+formatRiftNumber(speedTierCost(mult,speedNode))+' Motes');}
       else btn.setAttribute('aria-pressed',String(!!study && study.speedMult===mult));
       if(!study){btn.disabled=true;kind='completed';reason='';}
       else if(study.speedMult>=mult) kind='completed';
@@ -8011,11 +8025,12 @@ function presentControlStates(root){
       if(kind==='unavailable') reason='In progress';
     }
     btn.setAttribute('data-state',kind);
-    if(reason && !btn.hasAttribute('data-empower') && btn.textContent.toLowerCase().indexOf(reason.toLowerCase())===-1){
+    var adjacentWispRequirements=btn.matches('[data-rarity],[data-ultimate],[data-mastery]');
+    if(reason && !btn.hasAttribute('data-empower') && !adjacentWispRequirements && btn.textContent.toLowerCase().indexOf(reason.toLowerCase())===-1){
       var label=document.createElement('span');label.className='control-state';label.textContent=reason;btn.appendChild(label);
     }
     var name=(subject?subject+' — ':'')+controlText(btn).replace(/\s+/g,' ').trim();
-    if(btn.hasAttribute('data-empower') && reason && name.toLowerCase().indexOf(reason.toLowerCase())===-1) name+=' — '+reason;
+    if((btn.hasAttribute('data-empower')||adjacentWispRequirements) && reason && name.toLowerCase().indexOf(reason.toLowerCase())===-1) name+=' — '+reason;
     if(btn.getAttribute('aria-label')!==name) btn.setAttribute('aria-label',name);
   });
 }
@@ -8300,7 +8315,8 @@ function updateBattleFast(){
   renderBondSummary();
   renderRiftParty();
   renderLabCapacityBadge();
-  els['hp-fill'].style.width = (Amount.max(0,Amount.mul(Amount.div(state.enemyHp,state.enemyMaxHp),100)) + '%');
+  var hpPercent=Amount.gt(state.enemyMaxHp,0)?Math.max(0,100*Amount.ratio(state.enemyHp,state.enemyMaxHp)):0;
+  els['hp-fill'].style.width=hpPercent+'%';
   els['hp-text'].textContent = (formatRiftNumber(Amount.max(0,state.enemyHp)) + ' / ' + formatRiftNumber(state.enemyMaxHp));
   var zone = riftZoneFor(state.depth);
   applyRiftZoneVisual(state.depth);
@@ -8679,6 +8695,11 @@ function restoreWispActionView(view){
   }
 }
 function masteryFactorText(rank){var value=Amount.pow(1.1,rank);return typeof value==='number'&&value<1000?value.toFixed(2):formatRiftNumber(value);}
+function wispRarityEffectsMarkup(tier){
+  function effect(level){return 'Power ×'+RARITY_MULT[level]+'<br>+'+(level*2)+'% party passive';}
+  return '<div class="ability-effects rarity-effects"><div><span class="ability-effect-label">Current</span><p data-rarity-current>'+effect(tier)+'</p></div>'+
+    '<div><span class="ability-effect-label">Next</span><p data-rarity-next>'+(tier>=5?'Maxed':effect(tier+1))+'</p></div></div>';
+}
 function wispMasteryMarkup(sp){
   if(!wispUpgradesMaxed(sp.id))return '';
   var p=getWispMasteryPlan(sp),helpId='wisp-mastery-requirement-'+sp.id;
@@ -8753,7 +8774,7 @@ function renderSpirits(keepScroll){
       (' <button class="node-queue-toggle ' + (empowerOn?'active':'') + '" data-empower-queue="' + sp.id + '">Auto-Empower ' + (empowerOn?'ON':'OFF') + '</button>') : '';
     html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatNum(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong><span class="mono">' + costIcon('lumen') + formatNum(cost) + '</span></button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + (upgradesMaxed ?
         Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<details class="wisp-progression" data-wisp-progression="',sp.id),'" '),openProgression.indexOf(sp.id)!==-1?'open':''),'><summary data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' upgrades">Upgrades</summary>') :
-        Amount.add(Amount.add(Amount.add(Amount.add('<section class="wisp-progression" data-wisp-progression="',sp.id),'" aria-labelledby="wisp-progression-'),sp.id),'">')) + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span><span class="ability-badge">Ability</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div><span class="ability-desc">' + forgeAbilityDescription(sp) + '</span></div>' + moduleHtml + ultimateHtml + '</section>' + (upgradesMaxed ? '</details>' : '</section>') + wispMasteryMarkup(sp) + '</div>');
+        Amount.add(Amount.add(Amount.add(Amount.add('<section class="wisp-progression" data-wisp-progression="',sp.id),'" aria-labelledby="wisp-progression-'),sp.id),'">')) + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span><span class="ability-badge">Ability</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div><span class="ability-desc">' + forgeAbilityDescription(sp) + '</span></div>' + moduleHtml + ultimateHtml + '</section>' + (upgradesMaxed ? '</details>' : '</section>') + wispMasteryMarkup(sp) + '</div>');
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   renderWispRoles();
@@ -8902,7 +8923,7 @@ function renderResearch(){
 }
 
 function studySpeedMarkup(node,active,maxed){
-  var target=state.studySpeedTargets[node.id],index=LAB_SPEED_TIERS.indexOf(target),cost=speedTierCost(target);
+  var target=state.studySpeedTargets[node.id],index=LAB_SPEED_TIERS.indexOf(target),cost=speedTierCost(target,node);
   var on=state.studyUseMotes[node.id]===true;
   var disabled=!active || maxed || active.remainingSec<=SIM_EPS || active.speedMult>=target || !labCanPay(state.motes,cost);
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
@@ -8928,9 +8949,9 @@ function replaceStudyMarkup(html){
   if(input.studyPreview!==undefined){
     var preview=LAB_SPEED_TIERS[input.studyPreview];
     nextControls.querySelector('[data-study-speed-value]').textContent=preview+'x';
-    nextControls.querySelector('[data-study-speed-price]').innerHTML=purchasePriceMarkup('mote',speedTierCost(preview));
     var buy=nextControls.querySelector('[data-speed-study]'),active=findActiveStudy(card.getAttribute(attr)),node=LONG_STUDIES.find(function(n){return n.id===card.getAttribute(attr);});
-    buy.setAttribute('data-speed',preview);buy.disabled=!active || active.remainingSec<=SIM_EPS || active.speedMult>=preview || (node.levelCap!==undefined && longStudyLevel(node.id)>=node.levelCap) || !labCanPay(state.motes,speedTierCost(preview));
+    nextControls.querySelector('[data-study-speed-price]').innerHTML=purchasePriceMarkup('mote',speedTierCost(preview,node));
+    buy.setAttribute('data-speed',preview);buy.disabled=!active || active.remainingSec<=SIM_EPS || active.speedMult>=preview || (node.levelCap!==undefined && longStudyLevel(node.id)>=node.levelCap) || !labCanPay(state.motes,speedTierCost(preview,node));
   }
   controls.querySelectorAll('button').forEach(function(button){
     var key=Array.from(button.attributes).find(function(a){return a.name==='data-study-queue'||a.name==='data-study-use-motes'||a.name==='data-speed-study';});
@@ -8940,7 +8961,8 @@ function replaceStudyMarkup(html){
   controls.querySelector('[data-study-speed-value]').textContent=nextControls.querySelector('[data-study-speed-value]').textContent;
   controls.querySelector('[data-study-speed-price]').innerHTML=nextControls.querySelector('[data-study-speed-price]').innerHTML;
   input.value=input.studyPreview!==undefined ? input.studyPreview : LAB_SPEED_TIERS.indexOf(state.studySpeedTargets[input.getAttribute('data-study-speed-target')]);
-  input.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(input.value)]+'x · '+speedTierCost(LAB_SPEED_TIERS[Number(input.value)])+' Motes per level');
+  var inputNode=LONG_STUDIES.find(function(n){return n.id===input.getAttribute('data-study-speed-target');});
+  input.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(input.value)]+'x · '+formatRiftNumber(speedTierCost(LAB_SPEED_TIERS[Number(input.value)],inputNode))+' Motes per level');
   input.style.backgroundSize=(Number(input.value)/7*100)+'% 8px';
   Array.from(card.children).forEach(function(child){if(child!==controls)card.removeChild(child);});
   var nextChildren=Array.from(next.children),rowIndex=nextChildren.indexOf(nextControls);
@@ -9533,16 +9555,17 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Rift Regions', meta:'World progression', desc:'The Rift changes region every 25 levels, moving through the Starlit Verge, Ashen Canopy, Glass Wastes, Drowned Observatory, Void Basilica and Crown of Night before deeper echoes begin.'},
   {name:'Farm', meta:'Rift mode', desc:'Repeat the highest non-boss Rift cleared in your current run for resources. Push returns to your saved progression Rift with a fresh enemy; it does not preserve that enemy’s partially depleted HP. Auto-Ascend waits while you Farm.'},
   {name:'Formation & Presets', meta:'Wisp selection', desc:'Choose up to five Active Wisps; Sixth Companion in the Tree raises this to six. Only recruited Active Wisps fight and activate Bonds. Push, Farm and Boss presets save your chosen lineups, but do not switch automatically when Rift mode changes. After Ascend, remembered members return as they are recruited again.'},
-  {name:'Wisp Power', meta:'Combat stat', desc:'Level and Rarity set each Wisp’s Power. It feeds passive damage and damaging or resource abilities. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
+  {name:'Wisp Power', meta:'Combat stat', desc:'Level, Rarity and permanent Mastery set each Wisp’s Power. It feeds passive damage and damaging or resource abilities. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
   {name:'Passive Wisp Damage', meta:'Combat rule', desc:'Active Wisp Power is multiplied by passive-only permanent upgrades, applicable damage Bonds and active Support buffs. Modules and Ultimates do not increase passive damage.'},
   {name:'Ability Charge', meta:'Automatic combat', desc:'Recruited Active Wisps fill their resource bars automatically. At 100 charge, an eligible ability fires without a manual ability button. Charge Rate speeds the natural fill up to its cap; some Forge upgrades grant extra charge. Support still has a minimum interval between its own casts, even with extra charge.'},
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
   {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 5 damage plus 2% of general Active-party passive power. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
-  {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown current Wisp level and both Lumen and Shards. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
-  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. A Mythic Wisp can buy its Ultimate with Sigils. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
+  {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown Wisp level, Rift record, Ascends, completed Wisp Ascendancy and Arcane Calibration, plus Lumen and Shards. The first tier is an early goal; later tiers require repeated permanent development. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
+  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
+  {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, uncapped Masterwork Tempering and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
   {name:'Endgame Currency Utility', meta:'Sigils and Quest Refresh', desc:'After all eight Ultimates are owned, Resonate fills an eligible Active Wisp’s charge. Resonance Efficiency reduces the Sigil price; Resonance Cells adds shared uses per run and Resonance Reclaim can restore spent uses after a boss kill. Quest Refresh unlocks with Auto-Ascend Ritual and Called Light; previously earned access remains. It spends Comets to replace an unclaimed quest while retaining daily progress.'},
   {name:'Wisp Roles', meta:'Build label', desc:'Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles.'},
-  {name:'Ascend', meta:'Permanent progression', desc:'Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Rarity, Modules, Ultimates, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once. New cleared depth beyond your rewarded benchmark adds a bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending.'},
+  {name:'Ascend', meta:'Permanent progression', desc:'Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Earned recruitment access, Rarity, Modules, Ultimates, Mastery, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once. New cleared depth beyond your rewarded benchmark adds a bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending.'},
   {name:'Rift Forge', meta:'Workshop · immediate upgrades', desc:'Pay the shown Lumen and Shards for an immediate permanent upgrade. Current and purchase effects are shown beside the price. Queue ON authorizes automatic affordable purchases, including offline; it does not make upgrades free. Unlock requirements and level caps still apply.'},
   {name:'Research Lab', meta:'Workshop · timed projects', desc:'Pay Lumen and Shards when starting a project level. Its permanent bonus arrives only when that level completes. Slot capacity grows with your original project unlocks; Expanded Apparatus adds up to two slots. Lab Queue ON allows affordable starts in free slots. Paid running work and completed bonuses survive Ascend.'},
   {name:'Lab Speed', meta:'Mote purchases', desc:'The slider selects one of the 1.5x–8x speed targets. Moving it does not buy a boost. Buy now pays the shown Motes to raise a running level’s speed; that speed lasts until the level completes. Speed queue ON authorizes automatic purchases toward the selected target whenever eligible and affordable, including on later project levels. Lab Queue and Speed queue are separate permissions.'},
@@ -9570,7 +9593,7 @@ function renderEncyclopedia(){
     var unlocked = wispRecruitmentUnlocked(sp);
     html += '<div class="ency-card" data-ency-wisp="'+sp.id+'"><div class="ency-top">' +
       wispPortrait(sp) +
-      '<div class="ency-main"><div class="ency-name">'+sp.name+'</div><div class="ency-meta">'+sp.heroClass+' · '+sp.role+' · Unlock Rift '+treeWispUnlockDepth(sp)+'</div></div>' +
+      '<div class="ency-main"><div class="ency-name">'+sp.name+'</div><div class="ency-meta">'+sp.heroClass+' · '+sp.role+' · '+wispRecruitmentRequirementText(sp)+'</div></div>' +
       '<span class="ency-status '+(recruited?'on':'')+'">'+(recruited?'Recruited':(unlocked?'Available':'Locked'))+'</span>' +
       '</div><div class="ency-desc"><strong>'+sp.abilityName+':</strong> '+forgeAbilityDescription(sp)+'</div></div>';
   });
@@ -10385,13 +10408,13 @@ function simulationApplyFarmPassive(elapsedSec,dps,policy,summary){
   // Retain the existing 1e-12 quotient and SIM_EPS HP boundary tolerances,
   // applying a carry once to this shared decomposition, never twice.
   if(Amount.ge(remainder,Amount.sub(maxHp,SIM_EPS)) || Amount.ge(Amount.add(Amount.div(remainder,maxHp),1e-12),1)){
-    kills++;
+    kills=Amount.add(kills,1);
     remainder=0;
   }
   var difference = Amount.sub(remainder,state.enemyHp);
   var leftover;
   if(Amount.ge(difference,-SIM_EPS) || Amount.ge(Amount.div(difference,maxHp),-1e-12)){
-    kills++;
+    kills=Amount.add(kills,1);
     leftover=Amount.max(0,difference);
   } else {
     leftover=Amount.add(maxHp,difference);
@@ -11351,7 +11374,7 @@ function checkAffordability(){
     var acquired = Amount.ge(active.speedMult,mult);
     var node=LONG_STUDIES.find(function(n){return n.id===active.id;});
     var maxed=node && node.levelCap!==undefined && Amount.ge(longStudyLevel(active.id),node.levelCap);
-    btn.disabled = acquired || maxed || Amount.le(active.remainingSec,SIM_EPS) || !labCanPay(state.motes,speedTierCost(mult));
+    btn.disabled = acquired || maxed || Amount.le(active.remainingSec,SIM_EPS) || !labCanPay(state.motes,speedTierCost(mult,node));
   });
   els['node-list'].querySelectorAll('[data-node]').forEach(function(btn){
     var node=NODES.find(function(n){return n.id===btn.getAttribute('data-node');});

@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "controls": 8,
+  "records": [
+    {
+      "name": "wrong-mastery-power",
+      "status": "KILLED",
+      "assertion": "own Power compounded10%",
+      "sourceSha256": "328481696f4188d916870ecf6530955bfafd2fa77d4afc36973d49e50f0b4a76"
+    },
+    {
+      "name": "missing-next-record",
+      "status": "KILLED",
+      "assertion": "next rank needs deeper record",
+      "sourceSha256": "9efb610d6afe40ce0b587570c3b41938394affa32f5a72fb360eaa6ecc414f42"
+    },
+    {
+      "name": "free-mastery-sigils",
+      "status": "KILLED",
+      "assertion": "Mastery Sigil debit",
+      "sourceSha256": "8822f05f621306d7e00431112c734127df7c317462e70e94d8b5c9f45670c79e"
+    },
+    {
+      "name": "lost-mastery-on-ascend",
+      "status": "KILLED",
+      "assertion": "Mastery survives Ascend",
+      "sourceSha256": "f6d902919c85c2e41ff2308f370a94f9c004fd05d29e899b8a20cc8dd79e174e"
+    },
+    {
+      "name": "leaked-paid-mutation",
+      "status": "KILLED",
+      "assertion": "failed primary Mastery rolls back everything",
+      "sourceSha256": "8d211c626f6bb73fa5759f1c04ab03b005e6f0020d4dca03924c173ae860937c"
+    },
+    {
+      "name": "unbounded-future-work",
+      "status": "KILLED",
+      "assertion": "bounded future work",
+      "sourceSha256": "dd4d224b29af7af3933b2bf097e7ff945be0dcaa0cd4dc3e44ed1331bea12fa7"
+    },
+    {
+      "name": "lost-old-titan-entitlement",
+      "status": "KILLED",
+      "assertion": "old unlocked roster preserved titan",
+      "sourceSha256": "3cc4411dbe1b040a6e6c88c15d3065d651e62d29d8fc549ca02eb745fc142185"
+    },
+    {
+      "name": "early-ultimate",
+      "status": "KILLED",
+      "assertion": "Ultimate needs ability15",
+      "sourceSha256": "855143884cbcf0355b0b927af20fda3006d4c26763d54e05760927d7be0d6ff9"
+    }
+  ],
+  "sourceSha256": "ecc2e19e80ea6db5a4be68e38f26c5bac209a51bb8e3f6e76129a40b43747fdb"
+}

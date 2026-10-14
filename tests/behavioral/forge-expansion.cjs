@@ -26,6 +26,7 @@ const CATALOGUE = [
 ].map(([id, unlock, cap, lumen, shard, growth]) => ({id, unlock, cap, lumen, shard, growth}));
 const IDS = CATALOGUE.map(d => d.id);
 const OLD_IDS = ['focus', 'sense', 'formation', 'resolve', 'charge', 'arcanecal', 'conduction', 'luminoustracking'];
+function integerAmount(value){if(typeof value==='number')return BigInt(value);const [d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 const OLD = [
   ['focus', 200, 1.5, 0, 1], ['sense', 150, 1.5, 20, 1.5],
   ['formation', 0, 1, 40, 1.6], ['resolve', 150, 1.45, 0, 1],
@@ -79,8 +80,8 @@ function prepareResonate(q, levels = {}) {
 
 function catalogueCases(html, a) {
   const x = app(html), q = x.q, defs = q.defs();
-  a.eq(defs.map(d => d.id), OLD_IDS.concat(IDS), 'stable original8 followed by approved grouped16');
-  a.eq(defs.filter(d => !d.retiredTo).length, 20, 'twenty active Forge choices');
+  a.eq(defs.map(d => d.id), OLD_IDS.concat(['masterwork'],IDS), 'stable original8, repeatable Masterwork, approved grouped16');
+  a.eq(defs.filter(d => !d.retiredTo).length, 21, 'twenty-one active Forge choices');
   a.eq(defs.filter(d => d.retiredTo).map(d => d.id), OLD_IDS.slice(0, 4), 'retired paid identities retained');
   let priceCases = 0, purchases = 0;
   for (const d of CATALOGUE) {
@@ -124,9 +125,11 @@ function catalogueCases(html, a) {
       if (budget === 'huge-lumen' || budget === 'huge-both') s.lumen = 1e30;
       if (budget === 'huge-shards' || budget === 'huge-both') s.shards = 1e30;
       q.set(s); const before = clone(q.get()), disk = Array.from(x.storage);
-      a.eq(q.plan(d.id, 1).buyCount, 0, 'exact eligibility refuses ' + d.id + '/' + budget);
-      q.buy(d.id, 1); a.eq(q.get(), before, 'rejected purchase pure ' + budget); a.eq(Array.from(x.storage), disk, 'rejected purchase no writes');
-      q.get().researchQueue[d.id] = true; const queued = clone(q.get()); q.queue(); a.eq(q.get(), queued, 'queue shares exact affordability ' + budget);
+      const allowed=budget.startsWith('huge');
+      a.eq(q.plan(d.id, 1).buyCount, allowed?1:0, 'exact eligibility '+d.id+'/'+budget);
+      q.buy(d.id, 1);
+      if(allowed){a.eq(integerAmount(q.get().lumen),integerAmount(before.lumen)-BigInt(cost.lumen),'large Lumen exact debit');a.eq(integerAmount(q.get().shards),integerAmount(before.shards)-BigInt(cost.shard),'large Shard exact debit');a.eq(q.get().research[d.id],1,'one paid level');}
+      else{a.eq(q.get(),before,'rejected purchase pure '+budget);a.eq(Array.from(x.storage),disk,'rejected purchase no writes');q.get().researchQueue[d.id]=true;const queued=clone(q.get());q.queue();a.eq(q.get(),queued,'queue shares exact affordability '+budget);}
     }
     const locked = seed(q); locked.depth = locked.enemyDepth = 1; locked.enemyHp = locked.enemyMaxHp = q.enemyHp(1); locked.maxDepthEver = d.unlock - 1; q.set(locked);
     const before = clone(q.get()); a.eq(q.plan(d.id, 1).reason, 'locked', 'named unlock boundary ' + d.id); q.buy(d.id, 1); a.eq(q.get(), before, 'locked handler pure');
@@ -282,9 +285,10 @@ function manualTransactionCases(html, a) {
     for (let n = 2; n <= d.cap - level; n++) if (payable(exactCost(d, level, n))) count = n;
     if (!count) continue;
     const x = app(html), q = x.q, s = seed(q); s.lumen = s.shards = wallet; s.research[d.id] = level; q.set(s);
-    a.eq(q.plan(d.id, 'max').buyCount, count, 'later representable exact bulk remains eligible ' + d.id + '/' + level);
+    count=d.cap-level;
+    a.eq(q.plan(d.id, 'max').buyCount, count, 'large exact balances fund every affordable bulk level ' + d.id + '/' + level);
     const cost = exactCost(d, level, count); q.buy(d.id, 'max');
-    a.eq(q.get().research[d.id], level + count, 'actual representable bulk count'); a.eq([wallet - q.get().lumen, wallet - q.get().shards], [cost.lumen, cost.shard], 'representable bulk debits quoted amounts');
+    a.eq(q.get().research[d.id], level + count, 'actual paid bulk count');a.eq([BigInt(wallet)-integerAmount(q.get().lumen),BigInt(wallet)-integerAmount(q.get().shards)],[BigInt(cost.lumen),BigInt(cost.shard)],'large bulk exact debit oracle');
     representableLater++;
   }
   a.eq(representableLater, 28, 'independent nonmonotone representability corpus');
@@ -360,7 +364,7 @@ function resonanceTransactions(html, a) {
     const accepted=clone(q.get());a.eq(JSON.parse(x.storage.get(P)),accepted,'primary owns committed Resonate');q.resonate('ember');a.eq(q.get(),accepted,'already-full repeated Resonate is pure');
     x.fail(false,false);a.eq(app(html,x.storage).q.get(),accepted,'fourth use and Cascade cold reload');q.save();x.storage.set(P,'broken');a.eq(app(html,x.storage).q.get(),accepted,'fourth use and Cascade recovery');
   }
-  const x=app(html),q=x.q,s=prepareResonate(q,{resonancecells:2,resonancecascade:5});s.sigils=1e30;q.set(s);const before=clone(q.get());q.resonate('ember');a.eq(q.get(),before,'huge Sigil wallet cannot obtain a free charge refill');
+  const x=app(html),q=x.q,s=prepareResonate(q,{resonancecells:2,resonancecascade:5});s.sigils=1e30;q.set(s);const before=clone(q.get()),price=q.resonanceCost();q.resonate('ember');a.eq(integerAmount(q.get().sigils),BigInt(before.sigils)-BigInt(price),'large Sigil wallet pays exact charge refill');a.eq(q.get().sigilResonanceUses,1,'one paid use');
   for(const level of [0,1,2,1000000]){
     const state=prepareResonate(q,{resonancecells:level});state.sigilResonanceUses=5;q.set(state);a.eq(q.get().sigilResonanceUses,3+Math.min(2,level),'spent-use normalization follows purchased capacity');
   }
@@ -543,7 +547,7 @@ function unsafeRunCase(html,a,route) {
   if(summary){a.eq(summary.ascends,1,'unsafe counter still performs actual authoritative Ascend');a.eq(summary.bossKills,1,'unsafe run fixture actually kills its source boss');}
   a.eq(after.depth,1,'unsafe run really resets depth '+route);a.eq(after.totalKills,before.totalKills+(route==='manual'?0:1),'unsafe run has only the intended source kill');
   a.eq(after.prisms,before.prisms+prismReward(20,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),'unsafe run actual independent Prism payout');
-  a.eq(after.ascendCount,1e30,'unsafe raw Ascend counter retained');a.eq([after.enemyHp,after.enemyMaxHp],[11,11],'unsafe run blocks old Spillway damage '+route);
+  a.eq(after.ascendCount,1e30,'unsafe raw Ascend counter retained');a.eq([after.enemyHp,after.enemyMaxHp],[69,69],'unsafe run blocks old Spillway damage '+route);
   Object.keys(after.heroResource).forEach(id=>a.eq(after.heroResource[id],0,'unsafe run blocks old charge/time credit '+route+'/'+id));
   a.eq(after.supportBuffs,null,'unsafe run clears old Support cast');a.eq(after.sigilResonanceUses,0,'unsafe run resets shared uses');a.eq(after.research,before.research,'unsafe run preserves all paid Forge levels');
   a.eq(Object.keys(q.accept(after)).sort(),Object.keys(q.accept(before)).sort(),'runtime run identity adds no persisted field');
@@ -617,7 +621,7 @@ function exactPaymentCase(x,a) {
   a.eq(q.get().research.relay,1,'exact approved price must buy the real Relay level');a.eq([q.get().lumen,q.get().shards],[0,0],'exact Relay quoted debit');
 }
 function hugePaymentCase(x,a) {
-  const q=x.q,s=seed(q);s.lumen=s.shards=1e30;q.set(s);const before=clone(q.get());q.buy('relay',1);a.eq(q.get(),before,'huge wallet refuses actual free Forge purchase');
+  const q=x.q,s=seed(q);s.lumen=s.shards=1e30;q.set(s);const before=clone(q.get()),cost=exactCost(CATALOGUE.find(d=>d.id==='relay'),0,1);q.buy('relay',1);a.eq(integerAmount(q.get().lumen),BigInt(before.lumen)-BigInt(cost.lumen),'huge wallet prevents actual free Forge purchase');a.eq(integerAmount(q.get().shards),BigInt(before.shards)-BigInt(cost.shard),'huge Shard wallet prevents free Forge purchase');a.eq(q.get().research.relay,1,'one exact paid Forge level');
 }
 function primaryPaymentCase(x,a,resonate=false) {
   const q=x.q,s=resonate?prepareResonate(q,{resonancecascade:5}):seed(q);q.set(s);q.save();const before=clone(q.get());x.fail(true,false);
@@ -635,7 +639,7 @@ function negativeCases(html) {
   const expected={cauterize:'Cauterize multiplies',fracturekey:'fracturekey actual contextual hit 20',guardianseal:'guardianseal actual contextual hit 30',spillway:'Spillway real next nonboss',sustainedchannel:'Sustained Channel actual eligible refund',tapconduit:'Tap Conduit first powered Active',guardiancadence:'actual shared cadence ordinal 5',relay:'post-pass two-Support relay',resonantedge:'Support now delivers a real pulse',victorycharge:'boss victory grants caster charge',amplifiertrim:'actual stronger Support snapshot',dualchannel:'Dual Channel real Lumen cast gale',overflowconduit:'Overflow Conduit actual source overkill gale/true',resonancecells:'purchased extra actual Resonate use',resonancecascade:'manual Resonate cascades',resonancereclaim:'actual boss restores bounded spent uses'};
   for(const id of IDS)reject('disabled-effect-'+id,()=>{const x=app(html);x.q.disable(id);effectCase(id,x,assertions());},expected[id]);
   reject('one-unit-price-drift',()=>{const x=app(html);x.q.corruptPrice();exactPaymentCase(x,assertions());},'exact approved price must buy');
-  reject('inexact-wallet-free-purchase',()=>{const x=app(html);x.q.bypassExactDebit();hugePaymentCase(x,assertions());},'huge wallet refuses');
+  reject('inexact-wallet-free-purchase',()=>{const x=app(html);x.q.bypassExactDebit();hugePaymentCase(x,assertions());},'huge wallet prevents');
   for(const resonate of [false,true])reject('primary-mutation-leak-'+(resonate?'resonate':'forge'),()=>{const x=app(html);x.q.leakPrimaryMutation();primaryPaymentCase(x,assertions(),resonate);},'primary failure prevents leaked');
   reject('paid-relay-lost-on-real-ascend',()=>ascendCases(html,assertions(),true),'manual retains research');
   reject('finite-burst-false-wall',()=>controllerCases(html,assertions(),true),'finite remaining burst prevents automatic wall retreat');

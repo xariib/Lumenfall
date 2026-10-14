@@ -21,6 +21,7 @@ for(const exp of [16,30,100,308,309,400,1000,6000]){
   eq(asBig(a.floorRatio(str,3)),x/3n);
 }
 for(const n of [9007199254740992,1e20,1e30,Number.MAX_VALUE])eq(asBig(a.normalize(n)),BigInt(n));
+for(const n of [9007199254740991,1e20,1e30,Number.MAX_VALUE]){eq(asBig(a.exactAdd(n,1)),BigInt(n)+1n);eq(asBig(a.exactSub(n,1)),BigInt(n)-1n);}
 for(const exp of [16,100,400]){const x=10n**BigInt(exp)+37n,hex=x.toString(16);eq(asBig(a.fromHex(hex)),x);eq(a.toHex(a.fromHex(hex)),hex);}
 for(const n of [0,1,.7,Math.PI,12345])for(const m of [0,1,.7,3.25]){
   eq(a.add(n,m),n+m);eq(a.sub(n,m),n-m);eq(a.mul(n,m),n*m);
@@ -28,6 +29,7 @@ for(const n of [0,1,.7,Math.PI,12345])for(const m of [0,1,.7,3.25]){
 eq(a.round('123456789012345678901e-2','floor'),'1234567890123456789e0');
 eq(a.round('123456789012345678999e-2','ceil'),'123456789012345679e1');
 eq(a.ratio('1e400','1e399'),10);eq(a.integer('1e400'),true);
+eq(a.ratio('1e400','1e1000'),Number.MIN_VALUE);eq(a.ratio('-1e400','1e1000'),-Number.MIN_VALUE);
 eq(a.valid('Infinity'),false);eq(a.valid('1eNaN'),false);eq(a.valid('1e9007199254740992'),false);
 eq(a.valid('2'),false);eq(a.add('Rank ',4),'Rank 4');eq(a.mod('1e400',5),0);
 eq(a.cmp(a.pow(1.145,6000),'1e309'),1);

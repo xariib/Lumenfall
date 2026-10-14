@@ -45,12 +45,14 @@ async function run(){
     if('${mode}'==='huge'){s.wispMastery.ember=10000;s.maxDepthEver=250200;s.longStudyLevels.wispascend=2030;s.research.masterwork=2001;s.nodes.swift=1010;s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';}
     endlessUi.set(s);document.querySelector('[data-wisp-card=ember]').scrollIntoView({block:'start'});})()`);
    await pause(80);
+   // Measure the settled target, after the existing panelIn scale animation.
+   await ev('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');
    // The established card has a clipped ::after circle at right:-44px; its
    // scrollWidth is not a content-fit measurement. Check actual text/controls.
    const geometry=await ev(`(()=>{var card=document.querySelector('[data-wisp-card=ember]'),clipped=Array.from(card.querySelectorAll('div,span,strong,h3,p,button,summary')).filter(e=>{var r=e.getBoundingClientRect();return r.width&&r.height&&(e.scrollWidth>e.clientWidth+1||r.left< -1||r.right>innerWidth+1);}).map(e=>e.outerHTML.slice(0,200));return {overflow:document.documentElement.scrollWidth>innerWidth,cardOverflow:clipped.length>0,clipped:clipped,requirements:card.querySelector('.rarity-level-requirement')?.textContent,ultimate:card.querySelector('.ultimate-requirements')?.textContent,mastery:card.querySelector('.wisp-mastery-section')?.textContent,controls:Array.from(card.querySelectorAll('button')).filter(e=>e.getBoundingClientRect().height>0).map(e=>{var r=e.getBoundingClientRect();return {w:r.width,h:r.height,id:e.getAttribute('data-mastery')};}),errors:endlessErrors};})()`);
    records.push({width,scale,motion,mode,geometry});
    check(!geometry.overflow&&!geometry.cardOverflow,'fits '+width+'/'+scale+'/'+mode);check(geometry.errors.length===0,'no runtime errors');for(const c of geometry.controls)check(c.w>=44&&c.h>=44,'44px visible controls '+mode);
-   if(mode==='early'){check(await ev('document.querySelector("[data-wisp-card=titan]").textContent.includes("Wisp Ascendancy")'),'locked recruit explains Lab requirement');}
+   if(mode==='early'){check(await ev('document.querySelector("[data-wisp-card=titan]").textContent.includes("Wisp Ascendancy")'),'locked recruit explains Lab requirement');check(await ev('document.querySelector("[data-rarity-current]").textContent.includes("Power ×1")&&document.querySelector("[data-rarity-next]").textContent.includes("Power ×1.5")'),'rarity Current/Next effects shown');}
    if(mode==='gates'){check(geometry.requirements.includes('Ascends')&&geometry.requirements.includes('Arcane Calibration'),'all rarity development requirements shown');check(geometry.ultimate.includes('Mythic rarity')&&geometry.ultimate.includes('Ability Lv. 15'),'Ultimate requirements clear');}
    if(mode==='mastery'){
     check(geometry.mastery.includes('Rank 0')&&geometry.mastery.includes('Next: Own Power ×1.10'),'Mastery current/next clear');
@@ -60,7 +62,9 @@ async function run(){
    if(mode==='huge'){check(!geometry.mastery.includes('Infinity')&&!geometry.mastery.includes('NaN'),'wide growth displays compactly');}
    const purity=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('endlessUi.render();endlessUi.refresh()');check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===purity,'render/refresh does not mutate save');
    if(width===320&&motion==='no-preference'&&['gates','mastery'].includes(mode)){
-    await ev('document.querySelector("[data-wisp-card=ember]").scrollIntoView({block:"start"})');const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(out,mode+'-'+scale+'.png'),Buffer.from(shot.data,'base64'));
+    await ev('document.querySelectorAll(".toast").forEach(e=>e.style.visibility="hidden");document.querySelector("'+(mode==='mastery'?'.wisp-mastery-section':'[data-wisp-card=ember]')+'").scrollIntoView({block:"start"})');const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(out,mode+'-'+scale+'.png'),Buffer.from(shot.data,'base64'));
+    if(mode==='mastery'){await ev('document.querySelector("[data-mastery=ember]").scrollIntoView({block:"end"})');const controls=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(out,mode+'-controls-'+scale+'.png'),Buffer.from(controls.data,'base64'));}
+    await ev('document.querySelectorAll(".toast").forEach(e=>e.style.visibility="")');
    }
   }
  }

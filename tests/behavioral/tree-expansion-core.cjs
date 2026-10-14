@@ -26,6 +26,7 @@ const CATALOG = [
   ['recruitreserve','Recruitment Reserve',25,5,[8,16,28,44,64]]
 ].map(([id,name,unlock,cap,prices]) => ({id,name,unlock,cap,prices}));
 const IDS = CATALOG.map(d => d.id), OLD_IDS = ['starlight','steady','echo','bonds','swift','momentum','reserves'];
+function integerAmount(value){if(typeof value==='number')return BigInt(value);const[d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 const SPIRITS = [
   ['ember',1,10],['tide',3,60],['stone',6,360],['gale',9,2100],
   ['thorn',12,12000],['void',18,70000],['aurora',24,400000],['titan',32,2200000]
@@ -49,10 +50,12 @@ function counter(name) {
 }
 function world(q, overrides={}) {
   const s=seed(q);s.nodes.swift=10;
+  Object.keys(s.recruitmentEntitlements).forEach(id=>s.recruitmentEntitlements[id]=true);
   return Object.assign(s,overrides);
 }
 function lowWorld(q,maxDepth) {
   const s=world(q);s.depth=s.enemyDepth=1;s.enemyHp=s.enemyMaxHp=100;s.maxDepthEver=maxDepth;
+  Object.keys(s.recruitmentEntitlements).forEach(id=>s.recruitmentEntitlements[id]=id==='ember');
   return s;
 }
 function atCleared(q,clear=50) {
@@ -110,11 +113,11 @@ function catalogue(t,mutate) {
         t.eq(q.get(),before,'explicit quote restores state '+d.id+'/'+raw);
         for(const wallet of [d.prices[raw]-1,d.prices[raw],2**40,1e30]) {
           const paid=clone(s);paid.prisms=wallet;q.set(paid);const start=clone(q.get());
-          const allowed=wallet>=d.prices[raw]&&wallet-(wallet-d.prices[raw])===d.prices[raw];
+          const allowed=wallet>=d.prices[raw];
           t.eq(q.plan(d.id).affordable,allowed,'quoted debit eligibility '+d.id+'/'+raw+'/'+wallet);
           t.eq(q.buy(d.id),allowed,'actual exact purchase '+d.id+'/'+raw+'/'+wallet);
           if(!allowed) {t.eq(q.get(),start,'refused payment changes nothing '+d.id);continue;}
-          t.eq(q.get().prisms,wallet-d.prices[raw],'exact Prism debit '+d.id+'/'+raw);
+          t.eq(integerAmount(q.get().prisms),BigInt(wallet)-BigInt(d.prices[raw]),'independent exact Prism debit '+d.id+'/'+raw);
           t.eq(q.get().nodes[d.id],raw+1,'one paid level '+d.id+'/'+raw);
           for(const key of ['lumen','shards','sigils','motes','spirits','heroResource','treeTrainingProgress']) t.eq(q.get()[key],start[key],'purchase has no run-event grant '+d.id+'/'+key);
           t.eq(JSON.parse(a.storage.get(P)).nodes[d.id],raw+1,'primary commits paid level '+d.id);
@@ -160,7 +163,7 @@ function nodeFaults(t,mutate) {
 
 function nodeHugeDebit(t,mutate) {
   const a=app(source),q=a.q,s=world(q);s.prisms=1e30;q.set(s);const before=clone(q.get()),end=useMutation(q,mutate);
-  try {t.eq(q.buy('lumenmemory'),false,'unrepresentable Tree price refused');t.eq(q.get(),before,'huge Prism wallet gains no free ownership');} finally {end();}
+  try {t.eq(q.buy('lumenmemory'),true,'large Tree price funds real ownership');t.eq(integerAmount(q.get().prisms),BigInt(before.prisms)-8n,'huge Prism wallet gains no free ownership');t.eq(q.get().nodes.lumenmemory,1,'one paid Tree level');} finally {end();}
 }
 
 function deferredRefund(t,mutate) {
@@ -175,7 +178,7 @@ function deferredRefund(t,mutate) {
       const result=q.buy('bonds');
       if(fault==='primary') {t.eq(result,false,'failed refund/debit commit');t.eq(q.get(),before,'refund ledger and paid level roll back together');a.fail(false,false);t.eq(q.buy('bonds'),true,'refund transaction retry');}
       else t.eq(result,true,'refund/debit commits');
-      t.eq(q.get().prisms,before.prisms-40+16,'separate 40 debit and 16 old refund');
+      t.eq(integerAmount(q.get().prisms),BigInt(before.prisms)-40n+16n,'separate exact 40 debit and 16 old refund');
       t.eq(q.get().nodes.bonds,9,'one Bonds level only');t.eq(q.get().nodes.reserves,2,'raw retired purchase record kept');
       t.eq(q.get().offline12hRefund.prismsPaid,[true,true],'both old ledger bits paid once');
       const loaded=app(source,a.storage);t.eq(loaded.q.get().prisms,q.get().prisms,'reload cannot repeat refund');
@@ -277,8 +280,8 @@ function empowerHugeDebit(t,mutate) {
     const a=app(source),q=a.q,s=world(q);s.nodes.benchmentor=5;s.treeTrainingProgress=9;s.lumen=1e30;s.spirits.stone=2;s.activeParty=['ember'];s.achieved.labmaster=true;s.empowerQueue.ember=true;q.set(s);
     const before=clone(q.get()),end=useMutation(q,mutate);
     try {
-      t.eq(automatic?q.autoEmpower():q.buySpirit('ember'),false,'unrepresentable '+(automatic?'automatic':'manual')+' Wisp price refused');
-      t.eq(q.get(),before,'no free paid levels or Bench awards from huge wallet');
+      const cost=q.spiritCost('ember');t.eq(automatic?q.autoEmpower():q.buySpirit('ember'),true,'large '+(automatic?'automatic':'manual')+' Wisp purchase');
+      t.eq(integerAmount(q.get().lumen),BigInt(before.lumen)-BigInt(cost),'no free paid levels or Bench awards from huge wallet');t.eq(q.get().spirits.ember,before.spirits.ember+1,'one paid Empower');t.eq(q.get().treeTrainingProgress,0,'one paid training action closes the ten-purchase cycle');
     } finally {end();}
   }
 }
@@ -306,7 +309,7 @@ function formation(t,mutate) {
     const global=world(q);global.nodes.formationseat=globalOwned;global.nodes.invitations=globalOwned?3:0;q.set(global);
     const other=world(q);other.nodes.formationseat=owned;other.nodes.invitations=owned?3:0;
     t.eq(q.capacity(other),5+owned,'Formation helper reads supplied snapshot');
-    t.eq(q.unlock('titan',other),32-(owned?3:0),'recruitment helper reads supplied snapshot');
+    t.eq(q.unlock('titan',other),100-(owned?3:0),'recruitment helper reads supplied snapshot');
   }
 }
 
@@ -377,11 +380,12 @@ function reserve(t,mutate) {
 }
 
 function invitations(t,mutate) {
+  const gates={ember:[1,0],tide:[3,0],stone:[6,0],gale:[15,15],thorn:[35,18],void:[55,20],aurora:[75,21],titan:[100,22]};
   for(const raw of ranksFor('invitations')) for(const sp of SPIRITS) {
-    const a=app(source),q=a.q,s=lowWorld(q,Math.max(1,sp.unlock-effective('invitations',raw)));s.nodes.invitations=raw;s.spirits[sp.id]=0;q.set(s);
+    const a=app(source),q=a.q,s=lowWorld(q,Math.max(1,gates[sp.id][0]-effective('invitations',raw)));s.nodes.invitations=raw;s.spirits[sp.id]=0;s.longStudyLevels.wispascend=gates[sp.id][1];q.set(s);
     const immutable=[q.sp(sp.id).unlockDepth,q.rarityCost(sp.id,0),q.moduleCost(sp.id,0),q.ultimateCost(sp.id)],end=useMutation(q,mutate);
     try {
-      const depth=Math.max(1,sp.unlock-effective('invitations',raw));
+      const depth=Math.max(1,gates[sp.id][0]-effective('invitations',raw));
       t.eq(q.unlock(sp.id),depth,'earlier future recruitment depth '+sp.id+'/'+raw);
       if(sp.id!=='ember') {t.eq(q.buySpirit(sp.id),true,'actual recruitment at earlier gate '+sp.id);t.eq(q.get().spirits[sp.id],1,'one normal paid recruit level');}
       t.eq([q.sp(sp.id).unlockDepth,q.rarityCost(sp.id,0),q.moduleCost(sp.id,0),q.ultimateCost(sp.id)],immutable,'raw permanent-price anchor unchanged '+sp.id);

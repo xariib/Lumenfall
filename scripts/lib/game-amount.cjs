@@ -112,7 +112,10 @@ function createGameAmount(){
     var x=parts(a),y=parts(b);if(y.d==='0')return x.d==='0'?NaN:x.s*Infinity;if(x.d==='0')return 0;
     var ax=Number(x.d.slice(0,16))/Math.pow(10,Math.min(16,x.d.length)-1);
     var by=Number(y.d.slice(0,16))/Math.pow(10,Math.min(16,y.d.length)-1);
-    return x.s*y.s*(ax/by)*Math.pow(10,(x.d.length+x.e)-(y.d.length+y.e));
+    var result=x.s*y.s*(ax/by)*Math.pow(10,(x.d.length+x.e)-(y.d.length+y.e));
+    // A nonzero physical interval must not disappear at the native underflow
+    // boundary. The scheduler can then resolve a state event at that interval.
+    return result===0 ? x.s*y.s*Number.MIN_VALUE : result;
   }
   function div(a,b){
     var n=ratio(a,b);

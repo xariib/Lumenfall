@@ -29,13 +29,16 @@ Existing full-debug transport/native/tooling limitations stay recorded.
 Baseline source validation/Support/campaign PASS, Node24.19.0; regular v1 all
 recruits/Mythic/Ultimate16h. [Evidence/status](../qa/endless-progression-001/README.md).
 Arithmetic/schema5, central gates, Mastery/Forge and UI candidate implemented.
-Core99/amount290/wide32 and mobile445/12 profiles PASS on their stamped bytes.
+Core127/amount300/wide39/parity305/8 controls and mobile457/12 profiles PASS.
+Forge9319/25 controls, Tree5923/28, Lab2676; V8 Forge2486/Lab580/Mastery13 PASS.
 Forge foundations are retired: add repeatable Masterwork Tempering opening5
 Mastery ranks/level, retain existing caps. Current coefficients still calibrating.
 GitHub connector repo read404; remote access/integration unverified. Main push
-triggers APK; integration deferred until acceptance. Regular calibration running.
+triggers APK; integration deferred until acceptance. Current regular: recruits27,
+Mythic50.33/Ultimate53.33days; walls up to11days FAIL. Rank10000 Push yields but
+cannot yet complete practical windows. Experiments remain separate from product.
 
-Next: checkpoint candidate; verify exact financial promotion/legacy gates, finish
-free-automation calibration and break excessive walls; add causal/parity/legacy
-coverage, help/CI and combined delivery. Feature stays OPEN
+Next: finish policy9/candidateS calibration, break walls/extended Push cost,
+measure all policies/roster months, freeze tables, update UI/golden contracts,
+run full CI and combined/native delivery. Feature stays OPEN
 until all required acceptance; no APK/main/remote/archive claimed.

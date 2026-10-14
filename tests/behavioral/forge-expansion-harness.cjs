@@ -90,9 +90,10 @@ function app(source, saved, options) {
       return function(){forgeBossAssessment=old;};
     },
     bypassExactDebit:function(){
-      var old=forgeExactDebit;
+      var old=forgeExactDebit,oldDebit=debitAmount;
       forgeExactDebit=function(wallet,cost){return Number.isFinite(wallet) && Number.isFinite(cost) && cost>=0 && wallet>=cost;};
-      return function(){forgeExactDebit=old;};
+      debitAmount=function(wallet,cost){return wallet-cost;};
+      return function(){forgeExactDebit=old;debitAmount=oldDebit;};
     },
     corruptPrice:function(){
       var old=researchCostForLevels;

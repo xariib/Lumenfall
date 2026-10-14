@@ -38,8 +38,10 @@ var specs=[
 ];
 var ids=specs.map(function(d){return d[0];}),old=['focus','sense','formation','resolve','charge','arcanecal','conduction','luminoustracking'];
 var initial=app(),q=initial.q;
-eq(q.defs().map(function(n){return n.id;}),old.concat(ids),'eight retained IDs followed by sixteen approved IDs');
-eq(q.defs().filter(function(n){return !n.retiredTo;}).length,20,'twenty active Forge tracks');
+eq(q.defs().map(function(n){return n.id;}),old.concat(['masterwork'],ids),'eight retained IDs, Masterwork and sixteen approved IDs');
+eq(q.defs().filter(function(n){return !n.retiredTo;}).length,21,'twenty-one active Forge tracks');
+// Independent decimal oracle: the exact IEEE integer represented by 1e30.
+function subtractLarge(price){var digits='1000000000000000019884624838656'.split(''),carry=price;for(var i=digits.length-1;i>=0;i--){var n=Number(digits[i])-carry%10;carry=Math.floor(carry/10);if(n<0){n+=10;carry++;}digits[i]=String(n);}return digits.join('')+'e0';}
 var legacy=seed(q);ids.forEach(function(id){delete legacy.research[id];delete legacy.researchQueue[id];});legacy.labQueueOn=true;delete legacy.researchQueue;
 q.set(legacy);ids.forEach(function(id){eq(q.get().research[id],0,'missing level zero '+id);eq(q.get().researchQueue[id],false,'missing Queue OFF '+id);});
 
@@ -60,7 +62,9 @@ specs.forEach(function(d){
  [0,1,cap,cap+3,1000000].forEach(function(level){var s=seed(q);s.research[id]=level;q.set(s);eq(q.level(id),Math.min(level,cap),'effective cap '+id);eq(q.get().research[id],level,'raw ownership retained '+id);if(level>=cap){var before=clone(q.get());eq(q.buy(id,1),false,'capped buy refused');eq(q.get(),before,'cap refuses payment');}});
  ['lumen-short','shard-short','huge-lumen','huge-shards'].forEach(function(kind){
   var s=seed(q);s.lumen=d[3];s.shards=d[4];if(kind==='lumen-short')s.lumen--;if(kind==='shard-short')s.shards--;if(kind==='huge-lumen')s.lumen=1e30;if(kind==='huge-shards')s.shards=1e30;q.set(s);
-  var before=clone(q.get()),writes=x.writes.length;eq(q.plan(id,1).buyCount,0,'unpayable quote '+kind+' '+id);eq(q.buy(id,1),false,'unpayable buy refused');eq(q.get(),before,'rejection preserves all fields');eq(x.writes.length,writes,'rejection has no writes');
+  var before=clone(q.get()),writes=x.writes.length,allowed=kind.indexOf('huge')===0;eq(q.plan(id,1).buyCount,allowed?1:0,'exact payable quote '+kind+' '+id);eq(q.buy(id,1),allowed,'exact purchase result');
+  if(allowed){eq(q.get().lumen,kind==='huge-lumen'?subtractLarge(d[3]):0,'independent wide Lumen debit');eq(q.get().shards,kind==='huge-shards'?subtractLarge(d[4]):0,'independent wide Shard debit');eq(q.get().research[id],1,'one paid level');}
+  else{eq(q.get(),before,'rejection preserves all fields');eq(x.writes.length,writes,'rejection has no writes');}
  });
  var locked=seed(q);locked.maxDepthEver=unlock-1;locked.depth=locked.enemyDepth=1;locked.enemyHp=locked.enemyMaxHp=q.enemyHp(1);q.set(locked);var before=clone(q.get());eq(q.plan(id,1).reason,'locked','unlock-1 locked');eq(q.buy(id,1),false,'locked handler');eq(q.get(),before,'locked no mutation');
  // A funded, unlocked state ensures malformed counts cannot pass by being
@@ -153,7 +157,7 @@ specs.forEach(function(d){[0,1,d[2],d[2]+3].forEach(function(level){effect(d[0],
  s.research.relay=5;s.research.spillway=5;s.research.resonantedge=5;q.set(s);q.get().heroResource.tide=100;q.get().enemyHp=q.abilityDamage('tide',20)/2;
  eq(q.get().ascendCount+1,q.get().ascendCount,'accepted raw counter really has a stagnant increment');
  var before=clone(q.get()),summary=run(q,0,route);eq(summary.bossKills,1,'actual Support pulse kills target boss');eq(summary.ascends,1,'actual Auto-Ascend occurs despite stagnant counter');
- eq(q.get().ascendCount,1e30,'raw historical counter preserved');eq(q.get().depth,1,'new run starts at Rift1');eq([q.get().enemyHp,q.get().enemyMaxHp],[11,11],'old overkill cannot cross into new Rift1');
+ eq(q.get().ascendCount,1e30,'raw historical counter preserved');eq(q.get().depth,1,'new run starts at Rift1');eq([q.get().enemyHp,q.get().enemyMaxHp],[69,69],'old overkill cannot cross into new Rift1');
  eq(Object.keys(q.get().heroResource).map(function(id){return q.get().heroResource[id];}),Object.keys(q.get().heroResource).map(function(){return 0;}),'old Support relay cannot charge new-run Wisps');
  eq(q.get().supportBuffs,null,'old Support buff cleared by real reset');eq(q.get().research,before.research,'paid effects remain owned through reset');eq(q.get().autoAscendEnabled,true,'Auto-Ascend remains enabled');
  q.save();eq(app(x.storage).q.get().ascendCount,1e30,'cold save retains raw counter');unsafeRunCases++;
@@ -162,8 +166,8 @@ specs.forEach(function(d){[0,1,d[2],d[2]+3].forEach(function(level){effect(d[0],
 ['primary','recovery','huge-wallet'].forEach(function(failure){
  phase='Resonate '+failure;
  var x=app(),q=x.q,s=readyResonate(q,{resonancecells:2,resonancecascade:5});s.sigilResonanceUses=3;if(failure==='huge-wallet')s.sigils=1e30;q.set(s);q.save();var before=clone(q.get());x.fail(failure==='primary',failure==='recovery');
- eq(q.resonate('ember'),failure==='recovery','Resonate fault/guard result '+failure);if(failure!=='recovery')eq(q.get(),before,'failed Resonate preserves currency/charge/uses');else{eq(q.get().sigilResonanceUses,4,'committed fourth use retained');eq(app(x.storage).q.get().sigilResonanceUses,4,'cold primary owns fourth use');}
- x.fail(false,false);q.save();eq(q.get().sigilResonanceUses,failure==='recovery'?4:3,'repair never duplicates use');faultCases++;
+ eq(q.resonate('ember'),failure!=='primary','Resonate fault/guard result '+failure);if(failure==='primary')eq(q.get(),before,'failed Resonate preserves currency/charge/uses');else{eq(q.get().sigilResonanceUses,4,'committed fourth use retained');eq(app(x.storage).q.get().sigilResonanceUses,4,'cold primary owns fourth use');if(failure==='huge-wallet')eq(q.get().sigils,subtractLarge(25),'independent large Sigil debit');}
+ x.fail(false,false);q.save();eq(q.get().sigilResonanceUses,failure==='primary'?3:4,'repair never duplicates use');faultCases++;
 });
 var estimation=app(),e=estimation.q,s=battle(e,['tide','ember'],20);s.research.relay=5;s.research.tapconduit=5;s.research.sustainedchannel=5;s.achieved.autotap=true;e.set(s);var before=clone(e.get()),profile=e.profile(20);ok(profile&&profile.eventCount>0&&profile.eventCount<=12000,'bounded charge estimate executes on actual V8');eq(e.get(),before,'charge estimate preserves whole state');eq(e.profile(20),profile,'cached estimate same value');
 var receipt={status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),harnessSha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),node:process.version,v8:process.versions.v8,scriptsParsed:scripts.length,checks:checks,priceCurrencyExamples:priceCases,purchases:purchaseCases,effectCases:effectCases,storageFaultCases:faultCases,invalidRequestCases:invalidCases,unsafeAscendRunCases:unsafeRunCases,storageWrites:apps.reduce(function(n,x){return n+x.writes.length;},0),ids:ids,scope:'actual V8 6.0 complete-source sixteen mechanics at0/1/cap/overcap; exact purchases, queued offline rollback, primary/recovery/backup, actual Ascend including stagnant historical counters, and pure estimates; not native WebView/browser layout'};
