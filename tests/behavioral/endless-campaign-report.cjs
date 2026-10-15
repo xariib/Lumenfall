@@ -31,11 +31,19 @@ for(const policy of ['regular','regular_two','casual','frequent','efficient','ma
  const last=c.history[c.history.length-1];
  const ids=Object.keys(last.rarity),fullRoster=row=>ids.every(id=>row.rarity[id]>=5&&row.modules[id]>=20&&row.ultimates[id]);
  const firstFull=c.history.find(fullRoster);
+ for(let i=1;i<c.history.length;i++){
+  const before=c.history[i-1],after=c.history[i];
+  for(const field of ['rarity','modules','ultimates','mastery','labs','forge','tree'])for(const id of Object.keys(before[field])){
+   checks++;assert(amount.ge(Number(before[field][id]),0)&&amount.ge(Number(after[field][id]),Number(before[field][id])),policy+' permanent '+field+'/'+id+' never decreases on day'+after.day);
+  }
+  for(const field of ['ascends','maxDepth']){checks++;assert(amount.ge(after[field],before[field]),policy+' permanent '+field+' never decreases on day'+after.day);}
+ }
+ const postRoster=firstFull?{daysObserved:last.day-firstFull.day,firstRanks:firstFull.mastery,endpointRanks:last.mastery,advancedWisps:ids.filter(id=>last.mastery[id]>firstFull.mastery[id])}:null;
  const roster={mythics:ids.filter(id=>last.rarity[id]>=5).length,abilities20:ids.filter(id=>last.modules[id]>=20).length,ultimates:ids.filter(id=>last.ultimates[id]).length,mastered:ids.filter(id=>last.mastery[id]>0).length,
   fullDevelopmentDay:milestones.fullRosterDevelopment,firstFullDayEndpoint:firstFull&&firstFull.day,status:fullRoster(last)?'FULL_ROSTER_OBSERVED':'DEVELOPING'};
  if(milestones.fullRosterDevelopment!==undefined){checks++;assert(firstFull&&Math.abs(firstFull.day-milestones.fullRosterDevelopment)<=1,'full roster milestone agrees with the saved daily endpoint');}
  records.push({policy,phases:c.phases,sourceSha256:c.sourceSha256,policySha256:c.policySha256,days:c.history.length,status:c.history.length>=56?'MILESTONE_WINDOW_MEASURED':'PARTIAL',milestones,firstDay,targets,
-  roster,endpoint:{rift:last.maxDepth,ascends:last.ascends,lab:last.labs.wispascend,masterwork:last.forge.masterwork,mastery:last.mastery},
+  roster,postRoster,endpoint:{rift:last.maxDepth,ascends:last.ascends,lab:last.labs.wispascend,masterwork:last.forge.masterwork,mastery:last.mastery},
   longestClosedWallDays:Math.max(0,...gaps.map(w=>w.days)),walls:gaps,wholeDayPlateaus:plateaus,investments,purchaseReceiptCount:(c.purchases||[]).length});
 }
 assert(records.length>0,'saved campaigns required');
@@ -44,6 +52,7 @@ for(const [policy,flag]of [['regular','--require-primary'],['regular_two','--req
  assert(primary.firstDay.every(t=>t.met),policy+' Day1 targets');assert(primary.targets.every(t=>t.status==='MET'),policy+' elapsed-day targets');
 }
 if(process.argv.includes('--require-roster'))assert(records.find(r=>r.policy==='regular')?.roster.status==='FULL_ROSTER_OBSERVED','regular campaign must actually develop all eight Wisps');
+if(process.argv.includes('--require-post-roster'))assert(records.find(r=>r.policy==='regular')?.postRoster?.advancedWisps.length>0,'regular campaign must purchase further Mastery after full roster development');
 const result={status:records.every(r=>r.days>=56)?'MEASURED':'PARTIAL',checks,limits:'Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.',records};
 if(output)fs.writeFileSync(output,JSON.stringify(result,null,2));
 console.log(JSON.stringify({status:result.status,checks,policies:records.map(r=>({policy:r.policy,days:r.days,milestones:r.milestones,targets:r.targets,longestClosedWallDays:r.longestClosedWallDays}))}));
