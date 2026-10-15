@@ -14,7 +14,7 @@ function app(source, saved, options) {
     removeItem: key => storage.delete(key),
     setItem(key, value) {
       if ((failPrimary && key === P) || (failRecovery && key === R)) throw Error('injected write failure');
-      writes.push({key, value: String(value)});
+      if(!options||options.retainWrites!==false)writes.push({key, value: String(value)});
       storage.set(key, String(value));
     }
   };

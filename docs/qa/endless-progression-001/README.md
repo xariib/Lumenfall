@@ -1,5 +1,18 @@
 # Endless progression — work in progress
 
+Latest [checked-resource checkpoint](experiments/resource-replay-design.json) freezes
+7a2bf385. Exact checked native ability programs now cover Charge Memory transients,
+with bounded caches, observer cleanup and ordered half-ULP credits. Twelve concrete
+defects are caught; core235/parity305/boundaries136/persistence24/resource87 and
+actualV8 59 PASS. Focused mature60s live frames pass; developing10s HP comparison
+fails tolerance while currencies/counters agree. Literal isolation is running.
+Earned8h now completes4.6min, full saved endpoint identical to21min predecessor;
+1471 independent reward/paid-work checks pass. This throughput remains too slow.
+D low policy earned4d and reinvest180d (full roster114.67d) are archived. Final
+fresh calibration/walls, UI/CI, remote and native acceptance remain OPEN. Product
+index.html db1e62af unchanged. Older running statements below are historical.
+
+
 Newest [native-credit checkpoint](experiments/connected-native-receipts.json):
 frozen1ad7e208 retains exact per-credit native rounding inside certified binades,
 stops before precision changes, and replays short Lumen prefixes from the actual

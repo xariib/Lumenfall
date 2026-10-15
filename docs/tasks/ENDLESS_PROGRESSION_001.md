@@ -11,7 +11,7 @@ endless-progression-worktree. Original checkout preserved. Schema5 entitlements/
 Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 AK180d remains historical. New frozen D/b2babd53: both regular60d targets met;
-three visits recruits21.33d/MY44/ULT48; two21.5/44.5/48.5. Roster180d now resumes earned60d; prior Support-hold run stopped114d.
+three visits recruits21.33d/MY44/ULT48; two21.5/44.5/48.5. Reinvest180d full roster114.67d; prior Support-hold stopped114d.
 Productdb1e62af retains prior tables pending calibration. V8/core rechecks PASS;
 Windows tooling/Linux CI, whole UI and native/device acceptance remain OPEN.
 
@@ -22,8 +22,8 @@ Remeasure balance and rerun core/legacy/mobile/CI after reconciliation.
 Preserve paid work/speed/timers, saves, Support/Formation and exact chronology.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
-Frozen1ad7:235 core/305 parity/67 wide/10 controls/V8 59 PASS; Native wallets54.
-8h completed45min; early low-Rift/tie rounding throughput and acceptance OPEN.
+Frozen7a2bf385 checked-bar/parity:235 core/305 parity/12 controls/V8 59 PASS.
+8h4.6min endpoint matches;1471 reward/work checks. Low policy earned4d;
+frame HP parity and throughput OPEN. Details in evidence resource-replay design.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive delivery. Next: certify native fractional credits,
-prove overnight paths, finish D campaigns, calibrate and rerun gates.
+No shared/main/remote/APK/archive delivery. Next: resolve live-frame HP parity/throughput, finish D campaigns and gates.

@@ -77,6 +77,20 @@ function createLuminousOrbit(A,settings){
     }
     return {complete:true,cycles:done,phase:phase,flag:flag,counts:counts,blocks:blocks,jumps:jumps};
   }
-  return {advance:advance};
+  function word(chances,cycles,phase,flag){
+    if(!Number.isSafeInteger(cycles)||cycles<0||!Number.isFinite(phase)||phase<0||phase>=1)throw new RangeError('Invalid native orbit word');
+    var rows=[],size=chances.length-1;
+    for(var n=0;n<cycles;n++){
+      var row=[];
+      for(var j=0;j<chances.length;j++){
+        if(j<size)row.push(flag);
+        if(chances[j]===null){flag=false;continue;}
+        phase+=chances[j];flag=phase>=1;if(flag)phase-=1;
+      }
+      if(phase>ceiling)phase=ceiling;rows.push(row);
+    }
+    return rows;
+  }
+  return {advance:advance,word:word};
 }
 module.exports=createLuminousOrbit;

@@ -23,7 +23,7 @@ module.exports=function(source){
         binaryAnchor:binaryStudyClock.absoluteSnapshot()};
     });
   }
-  function fastRepeatedPush(kill){return state.riftMode==='push'&&state.owned.autoascend&&state.autoAscendEnabled&&autoAscendClearedTarget()<=256&&kill>0&&kill<.001;}
+  function fastRepeatedPush(kill){return state.riftMode==='push'&&state.owned.autoascend&&state.autoAscendEnabled&&autoAscendClearedTarget()<=256&&kill>0&&kill<.05;}
   function currentElapsedSec(){
     if(binaryClock)return binaryClock.elapsedNumber();`);
  edit('    var crossingDelta = targetFarmGridCrossings-farmGridCrossings;','    if(binaryClock)return binaryClock.remaining();\n    var crossingDelta = targetFarmGridCrossings-farmGridCrossings;');
