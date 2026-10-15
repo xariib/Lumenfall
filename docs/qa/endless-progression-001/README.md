@@ -15,7 +15,7 @@ and defer exact cooldown rewards to the separate timed1480-check oracle. Old
 per-level speed tests now assert explicit prepaid activation, no automatic renewal,
 retained paid floor/work, exact wide debits and timers. Wide Farm intervals may
 not project payouts past the real batch endpoint; a finite causal control catches
-that defect. New combined B/C campaigns are running; their timings are pending.
+that defect. New combined B/C timings are retained as rejected calibration.
 Model C changes only future completed-Lab gates, never the accepted boost prices.
 No combined acceptance or release is claimed. The records below are historical.
 
@@ -23,20 +23,25 @@ Newest calibration D/b2babd53: regular and two-visit60d campaigns meet all prima
 targets:21.33/44/48d and21.5/44.5/48.5d for recruits/Mythic/Ultimate. D raises
 Titan's completed-Lab gate40 to43; its frozen policy50285709 buys12h packages
 for12h absences,8h otherwise. No free grants, price change or automatic renewal.
-Regular180d and casual/frequent/efficient60d are running on immutable D/runtime.
+All five60d cohorts now meet the recruit/Mythic/Ultimate windows, with10276
+exact receipt checks; regular180d continues beyond104d. Frozen inputs and
+[report](combined-d-milestones-report.json) separate measurements from acceptance.
 B60 fails with recruits10d/Mythic15/Ultimate30.67; C60 recruits19.33d, while
 two-visit8h packages give Mythic59d. These rejected measurements remain separate.
 
-Unrestricted Ascend optimization is exploratory and absent from index.html.
-A literal200-cycle probe on the earned AK mature save finds a stable five-cycle
-hero-resource pattern after cycle5, with individual cycles about1.1e-19 seconds.
-The floating-pity orbit prototype preserves literal Number additions, uses
-certified even-ULP translations within unchanged binades, and matches100000-cycle
-ordinary references. Its initial10000-region huge-work gate FAILS;100000-region
-experiments complete1e25 cycles for the mature .08/.1 spawn pattern but not the
-.03/.05 pattern. No full-engine batch, completed catch-up or mobile performance
-acceptance is claimed. Next: reusable orbit transitions and complete combat-cycle
-accounting, timers, saved wide counters and compact reward summaries.
+Unrestricted Ascend work is partial. Product db1e62af now keeps exact Ascend,
+victory and daily counters, including paid Trial identity, rollback and backup.
+56 focused checks,235 core,67 wide,305 parity and actualV8 56 PASS; Comet
+10491/18 controls and actualV8 1362 PASS after replacing obsolete stagnant-counter
+expectations with exact independent oracles. No reset cooldown or target limit.
+The reusable floating orbit includes the real per-Ascend0.999999 normalization;
+104 checks pass for both1e25-cycle patterns. Mature4493 regions~1.8s, low71~41ms;
+actualV8 gives the same saved phase. Earlier unclamped failure remains historical.
+A chronological earned-save50-cycle transcript confirms period5; its Lumen
+component matches42 actual endpoints and refuses unproven reconstruction.
+These math components are not connected to combat. Full catch-up, timer/purchase
+bounds, compressed summaries and mobile performance remain OPEN.
+[Design](experiments/auto-cycle-design.json) and [receipts](experiments/counter-orbit-receipts.json).
 
 Prior frozen source1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c:
 selected AK balance, native Comet debit fix and exact Masterwork preview. Regular free milestones

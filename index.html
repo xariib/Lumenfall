@@ -4611,7 +4611,7 @@ function refreshDailyQuest(id){
 }
 function trackDaily(metric, n){
   if(!state.dailyStats) state.dailyStats = {};
-  state.dailyStats[metric] = Amount.add(state.dailyStats[metric]||0,n||1);
+  state.dailyStats[metric] = creditAmount(state.dailyStats[metric]||0,n||1);
 }
 var pendingDailyReward = null;
 var pendingDailyRewardQueue = [];
@@ -5120,7 +5120,7 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
       out.supportRecastUntil[id]=until;
     });
   }
-  out.ascendCount = nonNegativeInt(source.ascendCount,fresh.ascendCount);
+  out.ascendCount = persistedAmountInteger(source.ascendCount,fresh.ascendCount);
   out.sigilResonanceUses = boundedInt(source.sigilResonanceUses,fresh.sigilResonanceUses,0,sigilResonanceLimit(out));
   // Schema v1 remains compatible: older saves simply have no reward benchmark
   // and receive one final full first reward before future repeats diminish.
@@ -6881,7 +6881,7 @@ function defeatEnemy(){
   }
 
   cometRecordDefeats(1,state.cometCalled);
-  state.totalKills=Amount.add(state.totalKills,1);
+  state.totalKills=creditAmount(state.totalKills,1);
   trackDaily('kills');
 
   if(state.riftMode==='farm'){
@@ -7050,8 +7050,8 @@ function normalizeCometTrials(source,out){
   if(cometHasLegacy('comettrials',out) && isPlainObject(raw) && cometTrialDefinition(raw.id) &&
     Number.isInteger(raw.target) && raw.target>=15 && raw.target<out.maxDepthEver){
     if(raw.phase==='pending') out.cometTrial={id:raw.id,target:raw.target,phase:'pending'};
-    else if(raw.phase==='active' && raw.startedAscend===out.ascendCount && out.ascendCount>0){
-      out.cometTrial={id:raw.id,target:raw.target,phase:'active',startedAscend:raw.startedAscend,
+    else if(raw.phase==='active' && Amount.integer(raw.startedAscend) && Amount.cmp(raw.startedAscend,out.ascendCount)===0 && Amount.gt(out.ascendCount,0)){
+      out.cometTrial={id:raw.id,target:raw.target,phase:'active',startedAscend:out.ascendCount,
         failed:raw.failed===true,reason:raw.reason==='manual' || raw.reason==='party' ? raw.reason : ''};
     }
   }
@@ -7094,7 +7094,7 @@ function finishCometTrial(cleared){
   var trial=state.cometTrial;
   if(!trial || trial.phase!=='active') return;
   validateCometTrialParty(state);
-  var success=!trial.failed && trial.startedAscend===state.ascendCount && cleared>=trial.target;
+  var success=!trial.failed && Amount.cmp(trial.startedAscend,state.ascendCount)===0 && cleared>=trial.target;
   if(success) state.cometTrialMarks[trial.id]=true;
   state.cometTrialResult={id:trial.id,target:trial.target,outcome:success?'completed':'failed'};
   state.cometTrial=null;
@@ -7944,7 +7944,7 @@ function applyAscendMutation(){
   state.prisms=creditAmount(state.prisms,gain);
   state.motes=creditAmount(state.motes,dust);
   state.ascendRewardedDepth = Amount.max(state.ascendRewardedDepth||0,cleared);
-  state.ascendCount++;
+  state.ascendCount=creditAmount(state.ascendCount,1);
   trackDaily('ascends');
   state.depth = Amount.add(1,treeLevel('riftstep'));
   state.riftMode = 'push';
@@ -10489,7 +10489,7 @@ function simulationDefeatEnemy(policy,summary){
   }
 
   cometRecordDefeats(1,state.cometCalled);
-  state.totalKills=Amount.add(state.totalKills,1);
+  state.totalKills=creditAmount(state.totalKills,1);
   summary.kills=Amount.add(summary.kills,1);
   trackDaily('kills');
 
@@ -10545,7 +10545,7 @@ function simulationBatchFarmKills(count,policy,summary){
   }
 
   cometRecordDefeats(count,state.cometCalled);
-  state.totalKills=Amount.add(state.totalKills,count);
+  state.totalKills=creditAmount(state.totalKills,count);
   summary.kills=Amount.add(summary.kills,count);
   if(Amount.gt(count,1)) summary.fastForwardedKills=Amount.add(summary.fastForwardedKills,Amount.sub(count,1));
   trackDaily('kills',count);

@@ -2,7 +2,10 @@
 // Exact jumps through the existing floating-point spawn recurrence. Each
 // region is certified by the actual intermediate binades and an even-ULP
 // translation; no rationalized replacement for the saved pity counter.
-function createLuminousOrbit(A){
+function createLuminousOrbit(A,settings){
+  settings=settings||{};
+  var ceiling=settings.phaseCeiling===undefined?1:settings.phaseCeiling;
+  if(!Number.isFinite(ceiling)||ceiling<=0||ceiling>1)throw new RangeError('Invalid phase ceiling');
   var QUANTUM=Math.pow(2,-51);
   function product(a,b){return A.mul(typeof a==='number'?String(a)+'e0':a,typeof b==='number'?String(b)+'e0':b);}
   function advance(chances,total,phase,flag,options){
@@ -25,11 +28,17 @@ function createLuminousOrbit(A){
         var ulp=Math.pow(2,exponent-52);
         low=Math.max(low,base+2*ulp-value);high=Math.min(high,base*2-2*ulp-value);
       }
-      for(var n=0;n<cycles;n++)for(var j=0;j<chances.length;j++){
+      for(var n=0;n<cycles;n++){
+      for(var j=0;j<chances.length;j++){
         if(j<size&&flag)values[j]++;
         if(chances[j]===null){flag=false;continue;}
         bound(phase);phase+=chances[j];bound(phase);
         flag=phase>=1;if(flag)phase-=1;bound(phase);
+      }
+      // Ascend normalizes the saved accumulator after its reset spawn. A
+      // translated block must neither introduce nor remove that clamp.
+      if(phase>ceiling){phase=ceiling;low=0;high=0;}
+      else high=Math.min(high,ceiling-phase);
       }
       return {start:start,startFlag:startFlag,phase:phase,flag:flag,delta:phase-start,low:low,high:high,counts:values};
     }
@@ -60,7 +69,7 @@ function createLuminousOrbit(A){
           if(repetitions>1)phase=b.start+Number(repetitions)*b.delta;
         }
       }
-      if(options.observe)options.observe({phase:b.start,delta:b.delta,low:b.low,high:b.high,repetitions:repetitions});
+      if(options.observe)options.observe({phase:b.start,flag:b.startFlag,delta:b.delta,low:b.low,high:b.high,repetitions:repetitions,primitiveCycles:cycles,counts:b.counts.slice(),endFlag:b.flag});
       addCounts(b.counts,repetitions);done=A.exactAdd(done,product(cycles,repetitions));
       if(A.gt(repetitions,1))jumps++;
       if(options.maxBlocks&&blocks>=options.maxBlocks&&A.lt(done,total))return {complete:false,cycles:done,phase:phase,flag:flag,counts:counts,blocks:blocks,jumps:jumps};

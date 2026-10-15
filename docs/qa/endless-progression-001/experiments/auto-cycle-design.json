@@ -1,7 +1,7 @@
 {
-  "status": "EXPERIMENT; no optimization in index.html",
+  "status": "EXPERIMENT; wide persisted counters in product, no repeated-combat optimization",
   "decision": "User explicitly chose unrestricted Ascends with repeated-cycle optimization; no cooldown or target restriction.",
-  "source": "82a05d93f0e8f689c9bc5571dd9d040a372f1d8f7c36ba22880231ae77ae1857",
+  "source": "db1e62af0bb378338eed480b047c7509115ed8f382514ab0d65ccde4eb6a8a8c",
   "observed": {
     "save": "candidate-ak-mature-snapshot.json.endpoint.json",
     "riftstep": 5,
@@ -33,7 +33,8 @@
     "proof": "Literal floating adds/subtracts within a block; even maximum-ULP translations only while all actual operands/results remain inside their certified binades. Rational sum used ONLY to select block length.",
     "matureHuge": "1e25 cycles completes about43425 regions, exact phase0.43136104858527186 agrees with independent block100 acceleration. Initial10000-region gate still FAIL.",
     "otherHuge": ".03/.05 remains incomplete at100000 regions. Need retain failure honestly.",
-    "next": "Compile reusable certified region edges. Cache edge membership by phase/flag with exact integer t=(phase-start)/delta and start+t*delta===phase. Weighted cycle prefix counts allow cycle quotient and binary-search remainder, avoiding rebuilding ~43000 regions per each second. Cursor yields must preserve local recurrence state. Do not approximate saved pity or impose a gameplay cap."
+    "next": "Use indexed prefix reads for last-tail reconstruction and first eligible Mote payout. Full engine compiler, purchase bounds and timer ordering remain open.",
+    "session": "Reusable weighted prefix index implemented. Every Ascend normalization clamps phase to0.999999; this must be part of the recurrence. Both chance patterns complete1e25,104 independent/composition checks; mature4493 regions~1.8s, low71regions~41ms. Original unclamped10000-region failure is retained; it is not full game acceptance."
   },
   "combatCompiler": {
     "strategy": "Observe real production Ascend boundaries and native per-step times, then detect recurring hero/party/permanent/buff state. Existing probe finds period5. Build a guarded macro recipe only after proving ignored state cannot alter combat within next chronological event.",
@@ -49,12 +50,15 @@
       "Huge summaries cannot append one ascendGains element per cycle. Add lossless run-length receipts only for bulk cases, preserving all ordinary summary shapes/UI last reward behavior.",
       "Use exact Prism/Sigil/Mote and integer counter accounting; new bulk income must match the established analytical Farm arithmetic and rounding. Test normal and failed persistence/rollback/restore.",
       "Initially target15 with strict algorithm eligibility is acceptable as optimization selection; fallback must retain gameplay and is not a target restriction. Broaden and measure unsupported extreme configurations."
-    ]
+    ],
+    "observation": "New chronological50-cycle transcript uses the earned180d endpoint clock2015552000000, exact period5 after warmup4; checksum receipt and raw gzip retained. Gale Lumen~7.6e18 saturates the retained250000 cap every5cycles.",
+    "component": "Pure Lumen component matches42 observed endpoints, compares64/128-cycle huge tails, refuses unproven noncontractive paths. No combat compiler or completed catch-up yet."
   },
   "acceptance": [
     "Finite literal-engine reference with batching disabled, common corrected tiny-clock semantics.",
     "Exact spawn sequence/counts; independent integer reward/debit oracles; chronological online/offline/split/yield parity.",
     "Earned mature .001s stress must complete and then full8h/12h; high Mastery/overflow/wide saves; actual V8 6.0.",
     "No prototype or passing math subtest may be labelled completed Auto-Ascend acceptance."
-  ]
+  ],
+  "counters": "Product exact Ascend, victory and daily counters now retain increments past2^53. Exact Comet trial run identity, rollback/save/recovery/backup tested; no new cap/timer. Existing Comet Number-stagnation expectations updated to independent exact-count oracles, all command/reward/debit assertions retained."
 }

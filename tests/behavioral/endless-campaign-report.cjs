@@ -8,7 +8,7 @@ const day=86400,records=[];
 let checks=0;
 function equal(a,b,label){checks++;assert(amount.cmp(a,b)===0,label);}
 for(const policy of ['regular','regular_two','casual','frequent','efficient','mature']){
- const file=prefix+'-'+policy+'-snapshot.json.checkpoint.json';
+ const file=prefix+'-'+policy+(process.argv.includes('--frozen-day60')?'-day60.json':'-snapshot.json.checkpoint.json');
  if(!fs.existsSync(file))continue;
  const c=JSON.parse(fs.readFileSync(file,'utf8'));
  assert.equal(c.policy,policy==='mature'?'regular':policy);assert(c.history.length>0);assert.equal(c.elapsed,c.history.length*day);

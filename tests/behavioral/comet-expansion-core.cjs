@@ -6,6 +6,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const {app,seed,clone,P,R,CLOCK}=require('./comet-expansion-harness.cjs');
+const {integer}=require('./amount-oracle.cjs');
 const {oracle,OLD_DEEDS,NEW_DEEDS,RETIRED,CATALOG,CLAIMS,POLICY,replaceFunction,replaceOne,pendingIds}=require('./comet-expansion-numerical.cjs');
 const EVENT_IDS={comet_first_command:'firstCommand',comet_first_recharge:'firstRecharge',comet_boss_strike:'bossStrike',comet_called_kill:'calledKill'};
 const NEW_FIELDS=['cometUpgrades','cometCharges','cometWork','cometMeteorUsed','cometCalled','cometEvents','cometClaims'];
@@ -308,7 +309,7 @@ function runCore(source,options={}){
       if(fault==='primary'){
         eq(result,false,'primary failure refuses ending-hit command');unchanged(e,before,'ending-hit rollback',false);e.fail(false,false);eq(q.command('meteor'),true,'one later successful ending-hit retry');
       }else eq(result,true,'primary known committed ending-hit');
-      ok(q.runToken()!==before.token,'actual run token changes even for unsafe count');eq(q.get().ascendCount,unsafe?1e30:4,'existing lifetime counter semantics unchanged');
+      ok(q.runToken()!==before.token,'actual run token changes even for unsafe count');eq(integer(q.get().ascendCount),integer(before.state.ascendCount)+1n,'exact lifetime Ascend count retains the ending-hit victory');
       eq(q.get().depth,1,'new run started');eq(q.get().cometCharges,0,'spent charge survives Ascend');eq(q.get().cometWork,3990,'actual one kill work survives Ascend');eq(q.get().cometMeteorUsed,false,'new enemy clears use');
       eq(JSON.parse(e.storage.get(P)),q.get(),'current replaced endpoint owns primary commit');
       report.witnesses.push({id:'ending-hit-'+fault+(unsafe?'-unsafe-count':''),result,ascends:ascends.length,saves:saves.length,after:{depth:q.get().depth,ascendCount:q.get().ascendCount,charges:q.get().cometCharges,work:q.get().cometWork},tokenChanged:q.runToken()!==before.token});
@@ -348,7 +349,7 @@ function runCore(source,options={}){
       s.riftMode='farm';s.farmDepth=s.depth;s.totalKills=1e30;q.set(s);const rate=[20,25,32,40][rank],need=Math.ceil(((reserve+1)*4000-work)/rate);
       const first=q.batch(need-1);eq(first.kills,need-1,'actual unsaturated batch count');
       const total=work+(need-1)*rate;eq(q.get().cometCharges,Math.floor(total/4000),'exact unsaturated bank');eq(q.get().cometWork,total%4000,'exact unsaturated residual');
-      q.batch(1);eq(q.get().cometCharges,reserve+1,'next actual defeat fills bank');eq(q.get().cometWork,0,'full bank discards residual');eq(q.get().totalKills,1e30,'unsafe lifetime counter stays unchanged without controlling bank');
+      q.batch(1);eq(q.get().cometCharges,reserve+1,'next actual defeat fills bank');eq(q.get().cometWork,0,'full bank discards residual');eq(integer(q.get().totalKills),integer(1e30)+BigInt(need),'exact huge lifetime count retains every threshold victory');
       const bank=commandOnlyFields(clone(q.get()));q.batch(1e30);eq(q.get().cometCharges,bank.charges,'huge count saturates bounded bank');eq(q.get().cometWork,0,'no overflowing work accumulation');eq(q.save(),true,'earned bank persists with unsafe lifetime count');
     }
     const e=prepared(source),q=e.q,s=ownedFixture(q);s.cometCharges=0;s.cometWork=0;s.riftMode='farm';s.farmDepth=s.depth;q.set(s);

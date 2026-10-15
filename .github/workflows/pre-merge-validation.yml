@@ -50,6 +50,7 @@ jobs:
           node tests/behavioral/endless-comet-amount.cjs index.html > validation-evidence/endless-progression/comet-amount.json
           node tests/behavioral/endless-mote-batch.cjs index.html > validation-evidence/endless-progression/mote-batch.json
           node tests/behavioral/endless-wide-engine.cjs index.html > validation-evidence/endless-progression/wide.json
+          node tests/behavioral/endless-ascend-counters.cjs index.html > validation-evidence/endless-progression/ascend-counters.json
           node tests/behavioral/endless-progression-core.cjs index.html > validation-evidence/endless-progression/core.json
           node tests/behavioral/endless-controls.cjs index.html > validation-evidence/endless-progression/controls.json
           node tests/behavioral/endless-parity.cjs index.html > validation-evidence/endless-progression/parity.json
