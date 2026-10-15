@@ -1,6 +1,23 @@
 # Endless progression — work in progress
 
 Latest connected-cycle experiment (15 October): product db1e62af is unchanged.
+Follow-up: exact native rounding now uses binary limbs (642 independent checks)
+and orbit preparation yields every16 regions. Cancellation, partial-cache retry,
+primary rollback, recovery failure, reload and normal backup/import pass24 focused
+checks. Fractional per-credit aggregation uses an integer decimal lattice only
+after affected credited wallets and summaries are wide;109 exact comparisons
+PASS. Native fractional recurrence still falls back. Current core235/parity305/
+wide67 PASS, with integrated V8 6.0 batching checked separately. The earlier
+24-check persistence test needed its harness corrected: backup restore reads the
+textarea and publishes on disk for reload; it does not return or swap live state.
+An earned8h workload is running on the preceding frozen997f70da experiment;
+it is not acceptance of later source edits. Timed-roster180d is complete,
+full roster150.3333d; bounded Masterwork reinvestment is a distinct earned60d
+phase dd1a86b9 now running. Preserve all source and policy hashes.
+[Frozen wide-credit candidate and receipts](experiments/connected-wide-receipts.json)
+pin70190101, including actualV8 integrated59 checks. A later automation-horizon
+experiment admits fast, non-tiny cycles and stops before due native timer actions;
+it is not covered by701 acceptance. Its phase component passes65 direct checks.
 The separate builder now connects exact clock, observed combat periods, indexed
 native pity, wallet/counter aggregation, paid-work and purchase horizons, native
 Phase Memory and compressed Ascend receipts to the complete game. Finite reward

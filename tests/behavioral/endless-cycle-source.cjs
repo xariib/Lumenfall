@@ -49,13 +49,14 @@ module.exports=function(source){
   function currentElapsedSec(){`);
  edit('    policy.clock=simulationClockPosition();',`    policy.clock=simulationClockPosition();
     if(binaryClock)captureStudyProgressAnchors();
-    var bulk=summary._cycle.prepare(binaryClock);
+    var bulk=yield* summary._cycle.prepare(binaryClock);
     if(bulk){
       captureStudyProgressAnchors();advanceCycleClock(bulk.duration);bulk.apply();advanceStudyProgressToClock();
       elapsedInRun=currentElapsedSec();remaining=simulationRemainingSec();policy.clock=simulationClockPosition();policy.nowMs=simulationNowMs();
       simulationResolveTimestamp(policy.nowMs,elapsedInRun,policy,summary,policy.clock);continue;
     }`);
  edit('  summary.endDepth = state.depth;','  delete summary._cycle;\n  summary.endDepth = state.depth;');
+ edit('  offlineCatchup = null;\n  offlinePending = true;\n  resumeFlowBusy = false;','  offlineCatchup = null;\n  if(job.cursor&&job.cursor.return)job.cursor.return();\n  offlinePending = true;\n  resumeFlowBusy = false;');
  edit('if(summary.ascends>ascendsBefore){','if(Amount.gt(summary.ascends,ascendsBefore)){',2);
  edit('count:summary.ascends-ascendsBefore','count:Amount.exactSub(summary.ascends,ascendsBefore)',2);
  edit("offline.ascends + ' time'","(Amount.wide(offline.ascends)?formatNum(offline.ascends):offline.ascends) + ' time'");

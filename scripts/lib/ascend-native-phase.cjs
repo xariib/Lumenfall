@@ -1,12 +1,13 @@
 'use strict';
 // Exact repeated native additions with the existing per-Ascend Phase Memory
 // ceiling. No timer is advanced by replacing its recurrence with elapsed*time.
-module.exports=function(A,program,total,value,cap){
+module.exports=function(A,program,total,value,cap,options){
   if(!A.integer(total)||A.lt(total,0)||!Number.isFinite(value)||value<0||!Number.isFinite(cap)||cap<value||!program.length||program[program.length-1]!==null)throw new RangeError('Invalid native phase');
   total=A.exactAdd(total,0);
   program.forEach(function(n){if(n!==null&&(!Number.isFinite(n)||n<0))throw new RangeError('Invalid native phase increment');});
   function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
-  var done=0,blocks=0;
+  var done=0,blocks=0,threshold=options&&options.threshold;
+  if(threshold!==undefined&&(!Number.isFinite(threshold)||threshold<=cap))throw new RangeError('Invalid native phase threshold');
   function block(n){
     var start=value,low=-Infinity,high=Infinity,maxUlp=Number.MIN_VALUE;
     function bound(x){
@@ -19,13 +20,14 @@ module.exports=function(A,program,total,value,cap){
     }
     for(var i=0;i<n;i++)for(var j=0;j<program.length;j++){
       if(program[j]===null){if(value>cap){value=cap;low=0;high=0;}else high=Math.min(high,cap-value);}
-      else{bound(value);value+=program[j];if(!Number.isFinite(value))throw new RangeError('Native phase overflow');bound(value);}
+      else{bound(value);value+=program[j];if(!Number.isFinite(value))throw new RangeError('Native phase overflow');bound(value);if(threshold!==undefined){if(value>=threshold){value=start;return {crossed:true,start:start};}high=Math.min(high,threshold-value-2*maxUlp);}}
     }
     return {start:start,delta:value-start,low:low,high:high,quantum:2*maxUlp};
   }
   while(A.lt(done,total)){
     var left=A.exactSub(total,done),n=1,b=block(n);blocks++;
-    while(n<8&&A.ge(left,n*2)&&b.delta!==0&&!Number.isInteger(b.delta/b.quantum)&&b.low<=0&&b.high>=0){value=b.start;n*=2;b=block(n);}
+    if(b.crossed)return {value:value,blocks:blocks,cycles:done,stopped:true};
+    while(n<8&&A.ge(left,n*2)&&b.delta!==0&&!Number.isInteger(b.delta/b.quantum)&&b.low<=0&&b.high>=0){var previous=b;value=b.start;n*=2;b=block(n);if(b.crossed){n/=2;b=previous;value=b.start+b.delta;break;}}
     var repetitions=1;
     if(b.delta===0)repetitions=A.floorRatio(left,n);
     else if(Number.isInteger(b.delta/b.quantum)&&b.low<=0&&b.high>=0){

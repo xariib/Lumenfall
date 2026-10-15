@@ -35,14 +35,38 @@ module.exports=function(A,startMs,budgetSec,options){
     coefficient=product(coefficient,d.e>=0?pow2(d.e):power(5,k,powers5));
     var text=typeof coefficient==='number'?String(coefficient)+'e0':coefficient,parts=text.split('e');return parts[0]+'e'+(Number(parts[1])+exponent);
   }
-  function nativeDyad(d){
+  function nativeDyad(d,denominator){
     if(A.cmp(d.n,0)===0)return 0;
-    var bits=Math.floor(A.log10(d.n)/(Math.LN2/Math.LN10))+1,lower=pow2(Math.max(0,bits-1));
-    while(A.lt(d.n,lower)){bits--;lower=pow2(bits-1);}
-    while(A.ge(d.n,product(lower,2))){bits++;lower=product(lower,2);}
-    var shift=Math.max(0,bits-53,-1074-d.e),scale=pow2(shift),parts=A.divmod(d.n,scale),q=Number(parts.q),half=shift?pow2(shift-1):0;
-    if(shift&&(A.gt(parts.r,half)||(A.cmp(parts.r,half)===0&&q%2)))q++;
-    return q*Math.pow(2,d.e+shift);
+    // Convert the integer coefficient to base2^26 limbs. Each decimal chunk
+    // multiply/carry stays below2^50, so every operation is exact on V8 6.0.
+    // Read the top53 bits plus guard/sticky directly instead of decimal long
+    // division by an often hundreds-of-digits power of two on every kill.
+    var sign=A.cmp(d.n,0)<0?-1:1,exact=A.exactAdd(A.abs(d.n),0),parts=String(exact).split('e'),text=parts[0]+'0'.repeat(Number(parts[1]||0)),limbs=[0],base=67108864,e=d.e,fraction=0;
+    for(var at=0;at<text.length;at+=7){
+      var chunk=text.slice(at,at+7),scale=Math.pow(10,chunk.length),carry=Number(chunk);
+      for(var k=0;k<limbs.length;k++){var value=limbs[k]*scale+carry;carry=Math.floor(value/base);limbs[k]=value-carry*base;}
+      if(carry)limbs.push(carry);
+    }
+    var bits=(limbs.length-1)*26+32-Math.clz32(limbs[limbs.length-1]);
+    if(denominator===125){
+      // Generate at least53 quotient bits before the one final rounding. The
+      // remainder from this small integer division contributes to sticky.
+      var extra=Math.max(0,60-bits);e-=extra;
+      while(extra){var step=Math.min(26,extra),factor=Math.pow(2,step),carry=0;for(var l=0;l<limbs.length;l++){var shifted=limbs[l]*factor+carry;carry=Math.floor(shifted/base);limbs[l]=shifted-carry*base;}if(carry)limbs.push(carry);extra-=step;}
+      for(var l=limbs.length-1;l>=0;l--){var divided=fraction*base+limbs[l];limbs[l]=Math.floor(divided/125);fraction=divided-limbs[l]*125;}
+      while(limbs.length>1&&!limbs[limbs.length-1])limbs.pop();
+      bits=(limbs.length-1)*26+32-Math.clz32(limbs[limbs.length-1]);
+    }
+    var shift=Math.max(0,bits-53,-1074-e),word=Math.floor(shift/26),offset=shift%26,q=0;
+    for(var i=limbs.length-1;i>word;i--)q=q*base+limbs[i];
+    q=q*Math.pow(2,26-offset)+Math.floor((limbs[word]||0)/Math.pow(2,offset));
+    if(shift){
+      var guardWord=Math.floor((shift-1)/26),guardOffset=(shift-1)%26,guard=Math.floor((limbs[guardWord]||0)/Math.pow(2,guardOffset))%2,sticky=fraction!==0;
+      for(var j=0;j<Math.min(guardWord,limbs.length);j++)if(limbs[j])sticky=true;
+      if((limbs[guardWord]||0)%Math.pow(2,guardOffset))sticky=true;
+      if(guard&&(sticky||q%2))q++;
+    }else if(fraction>=63)q++;
+    return sign*q*Math.pow(2,e+shift);
   }
   function create(originD,budgetD){
     var unit=Math.min(originD.n?originD.e:0,budgetD.n?budgetD.e:0),origin=scaled(originD,unit),target=scaled(budgetD,unit),elapsed=0;
@@ -69,8 +93,10 @@ module.exports=function(A,startMs,budgetSec,options){
       latticeAfter:function(point,delay){var d=duration(delay),common=Math.min(point.e,d.e),targetPoint={n:A.exactAdd(scaled(point,common),scaled(d,common)),e:common},left=difference(targetPoint);return {ticks:left.n,unit:left.e,scale:125};},
       compareDuration:function(a,b){var common=Math.min(a.unit,b.unit);return A.cmp(scaled({n:a.ticks,e:a.unit},common),scaled({n:b.ticks,e:b.unit},common));},
       since:function(point){var current=absolute(),common=Math.min(current.e,point.e);return exactSeconds({n:A.exactSub(scaled(current,common),scaled(point,common)),e:common});},
+      sinceNumber:function(point){var current=absolute(),common=Math.min(current.e,point.e);return nativeDyad({n:A.exactSub(scaled(current,common),scaled(point,common)),e:common},125);},
       remaining:function(){if(remainingCache===undefined)remainingCache=exactSeconds({n:A.exactSub(target,elapsed),e:unit});return remainingCache;},
       elapsed:function(){if(elapsedCache===undefined)elapsedCache=exactSeconds({n:elapsed,e:unit});return elapsedCache;},
+      elapsedNumber:function(){return nativeDyad({n:elapsed,e:unit},125);},
       nowMs:function(){if(nowCache===undefined){var d=absolute();nowCache=nativeDyad({n:product(d.n,8),e:d.e});}return nowCache;},
       nextWindow:function(value,settings){return create(absolute(),budget(value,settings));},
       project:function(value){var clock=create(absolute(),seconds(value));clock.advance(value);return clock;},

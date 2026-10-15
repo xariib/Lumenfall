@@ -1,0 +1,94 @@
+{
+  "status": "PARTIAL_EXPERIMENT",
+  "frozenSource": "connected-wide-70190101.html.gz",
+  "sourceSha256": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d",
+  "receipts": [
+    {
+      "file": "connected-wide-0.json.gz",
+      "input": "endless-cycle-fractions-first.json",
+      "sha256": "bf7acf5b6319845deca3e3ae36f9edffd388ef972369454a3dd4a45bc211f119",
+      "status": "PASS",
+      "checks": 109,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-1.json.gz",
+      "input": "endless-cycle-boundaries-lattice.json",
+      "sha256": "abd7948599658eca2ac5ad1fccdb3b657796b816518cf01bf54edd0c5f0a3090",
+      "status": "PASS",
+      "checks": 136,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-2.json.gz",
+      "input": "endless-cycle-persistence-lattice.json",
+      "sha256": "3afe56a23ad54c791531cc88f14ec33ef1d14529e580bacd229aa71263597a97",
+      "status": "PASS",
+      "checks": 24,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-3.json.gz",
+      "input": "endless-cycle-clock-limbs.json",
+      "sha256": "7097ab8cf11278590279d5fbdc8ba3493171d5a6b1aedea77bb7f8b5270b912e",
+      "status": "PASS",
+      "checks": 642
+    },
+    {
+      "file": "connected-wide-4.json.gz",
+      "input": "endless-cycle-controls-lattice/summary.json",
+      "sha256": "fae37f0720c9f2556ded12850dafa15b17310e1ffa87878e7f5d0c437736c676",
+      "status": "PASS",
+      "controls": 8
+    },
+    {
+      "file": "connected-wide-5.json.gz",
+      "input": "endless-cycle-legacy-first.json",
+      "sha256": "ef365216a22c023ae49e20d3d90019cc89ba8265b17d82cb0e8f44bea6d2b537",
+      "status": "PASS",
+      "checks": 59,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-6.json.gz",
+      "input": "endless-cycle-current-core.json",
+      "sha256": "f7919468079d555dba7fabd50cd412f302c01d2071c1fee953424c4046b91113",
+      "status": "PASS",
+      "checks": 235,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-7.json.gz",
+      "input": "endless-cycle-current-parity.json",
+      "sha256": "3bd2a9e28188f9534045ed2a0fdb6b63f5fa8d1d92b3e25d37d1ffee9219474f",
+      "status": "PASS",
+      "checks": 305,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-8.json.gz",
+      "input": "endless-cycle-current-wide.json",
+      "sha256": "e17cd02124735f2adb1b9611302ad0501bcbf547eec999b01b3194671a2f2ebd",
+      "status": "PASS",
+      "checks": 67,
+      "source": "701901013b37aae0be9cb8680ed82158da5157d969b006618ffc74e1a232dc2d"
+    },
+    {
+      "file": "connected-wide-9.json.gz",
+      "input": "endless-phase-horizon.json",
+      "sha256": "5a723bf8d74f7c765190f17dbb331e1c9be56f98a2a2b8d644f009675fce4a10",
+      "status": "PASS",
+      "checks": 65
+    }
+  ],
+  "workInProgress": "Current test builder extends automation timer horizons and fast-but-non-tiny cycle admission; these later edits have not inherited frozen701 acceptance.",
+  "persistenceFixtureRepairs": "Initial test mistakenly expected restoreSaveBackup to return success and swap live state. Corrected to supply its textarea, invoke normal transaction, then reload its persisted endpoint. No product change or weakened field comparisons.",
+  "nativeEngine": "V8 6.0 uses its literal reference for exact finite comparisons. Native Math implementation produces a slightly different huge interval count from modern V8; protected credits remain exact per engine.",
+  "open": [
+    "Overnight throughput and exact whole-window acceptance",
+    "Small native fractional recurrence fast path",
+    "General fast-cycle automation and efficient low-target campaigns",
+    "Final numeric tables, UI and whole CI",
+    "Remote destination and Android/device/signing acceptance"
+  ]
+}

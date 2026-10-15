@@ -23,8 +23,9 @@ module.exports=function(source){
         binaryAnchor:binaryStudyClock.absoluteSnapshot()};
     });
   }
+  function fastRepeatedPush(kill){return state.riftMode==='push'&&state.owned.autoascend&&state.autoAscendEnabled&&autoAscendClearedTarget()<=256&&kill>0&&kill<.001;}
   function currentElapsedSec(){
-    if(binaryClock)return Number(binaryClock.elapsed());`);
+    if(binaryClock)return binaryClock.elapsedNumber();`);
  edit('    var crossingDelta = targetFarmGridCrossings-farmGridCrossings;','    if(binaryClock)return binaryClock.remaining();\n    var crossingDelta = targetFarmGridCrossings-farmGridCrossings;');
  edit('    return {wholeSec:clockStartWholeSec+farmGridCrossings,remainingSec:farmGridRemainingSec};','    return {wholeSec:clockStartWholeSec+farmGridCrossings,remainingSec:farmGridRemainingSec,binary:binaryClock};');
  edit('    var absoluteWholeSec = clockStartWholeSec + farmGridCrossings;','    if(binaryClock)return binaryClock.nowMs();\n    var absoluteWholeSec = clockStartWholeSec + farmGridCrossings;');
@@ -35,20 +36,20 @@ module.exports=function(source){
       farmGridCrossings=whole-clockStartWholeSec;farmGridRemainingSec=fraction===0?1:1-fraction;return farmGridCrossings-before;
     }
     if(stepSec<farmGridRemainingSec){`);
- edit('    // The grid countdown is the canonical sub-second clock. Derive logical','    if(binaryClock){var elapsed=Number(binaryClock.elapsed());elapsedWholeSec=Math.floor(elapsed);elapsedFractionSec=elapsed-elapsedWholeSec;return;}\n    // The grid countdown is the canonical sub-second clock. Derive logical');
+ edit('    // The grid countdown is the canonical sub-second clock. Derive logical','    if(binaryClock){var elapsed=binaryClock.elapsedNumber();elapsedWholeSec=Math.floor(elapsed);elapsedFractionSec=elapsed-elapsedWholeSec;return;}\n    // The grid countdown is the canonical sub-second clock. Derive logical');
  edit('    if(!continuousStudyClock) return simulationClockPosition();','    if(binaryClock){var p=simulationClockPosition();p.binary=binaryStudyClock;return p;}\n    if(!continuousStudyClock) return simulationClockPosition();');
  edit('studyEffectiveSpeed(active,simulationNowMs())','studyEffectiveSpeed(active,simulationNowMs(),simulationClockPosition())',2);
  edit('wholeSec:studyClockPosition().wholeSec,gridRemaining:studyClockPosition().remainingSec','wholeSec:studyClockPosition().wholeSec,gridRemaining:studyClockPosition().remainingSec,\n          binaryAnchor:binaryStudyClock?binaryStudyClock.absoluteSnapshot():null');
- edit('var workSeconds = (position.wholeSec-anchor.wholeSec)+(anchor.gridRemaining-position.remainingSec);','var workSeconds = binaryStudyClock&&anchor.binaryAnchor?Number(binaryStudyClock.since(anchor.binaryAnchor)):(position.wholeSec-anchor.wholeSec)+(anchor.gridRemaining-position.remainingSec);');
+ edit('var workSeconds = (position.wholeSec-anchor.wholeSec)+(anchor.gridRemaining-position.remainingSec);','var workSeconds = binaryStudyClock&&anchor.binaryAnchor?binaryStudyClock.sinceNumber(anchor.binaryAnchor):(position.wholeSec-anchor.wholeSec)+(anchor.gridRemaining-position.remainingSec);');
  edit('  var initialNowMs = simulationNowMs();',`  if(elapsedSec>0&&state.riftMode==='push'){
     var firstKill=simulationPassiveKillSeconds(simulationPassiveDps(simulationNowMs(),simulationClockPosition()));
-    if(firstKill>0&&farmGridRemainingSec-firstKill===farmGridRemainingSec)activateBinaryClock();
+    if(firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
   }
   var initialNowMs = simulationNowMs();`);
  edit('    var dps = simulationPassiveDps(nowMs,simulationClockPosition());',`    var dps = simulationPassiveDps(nowMs,simulationClockPosition());
     if(!binaryClock&&state.riftMode==='push'){
       var tinyKill=simulationPassiveKillSeconds(dps);
-      if(tinyKill>0&&farmGridRemainingSec-tinyKill===farmGridRemainingSec){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
+      if(tinyKill>0&&(farmGridRemainingSec-tinyKill===farmGridRemainingSec||fastRepeatedPush(tinyKill))){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
     }
     policy.clock=simulationClockPosition();`);
  edit('    policy.nowMs=nowMs;','    policy.nowMs=nowMs;policy.clock=simulationClockPosition();');
