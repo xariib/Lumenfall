@@ -24,7 +24,10 @@ targets:21.33/44/48d and21.5/44.5/48.5d for recruits/Mythic/Ultimate. D raises
 Titan's completed-Lab gate40 to43; its frozen policy50285709 buys12h packages
 for12h absences,8h otherwise. No free grants, price change or automatic renewal.
 All five60d cohorts now meet the recruit/Mythic/Ultimate windows, with10276
-exact receipt checks; regular180d continues beyond104d. Frozen inputs and
+exact receipt checks. The timed adapter omitted prior post-Ultimate Support
+leveling and purchase reserves; its Support-hold continuation stopped at114d.
+A separate earned day60 roster phaseae4e9476 now continues180d with those player
+choices restored, preserving both phase hashes. Frozen inputs and
 [report](combined-d-milestones-report.json) separate measurements from acceptance.
 B60 fails with recruits10d/Mythic15/Ultimate30.67; C60 recruits19.33d, while
 two-visit8h packages give Mythic59d. These rejected measurements remain separate.
@@ -42,6 +45,13 @@ component matches42 actual endpoints and refuses unproven reconstruction.
 These math components are not connected to combat. Full catch-up, timer/purchase
 bounds, compressed summaries and mobile performance remain OPEN.
 [Design](experiments/auto-cycle-design.json) and [receipts](experiments/counter-orbit-receipts.json).
+
+New separate micro-clock candidate6ba6b32b processes83 Ascends in1e-17s where
+the old countdown loses the interval after one.20 finite/causal checks,235 core,
+305 parity,1778 Support and actualV8 56 PASS. Aggregate467, exact dyadic clock62
+and compressed receipts20 are separate components. Their integration, queue and
+timer proof and full8h catch-up remain OPEN; productdb is unchanged.
+[Checkpoint](experiments/clock-aggregate-receipts.json).
 
 Prior frozen source1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c:
 selected AK balance, native Comet debit fix and exact Masterwork preview. Regular free milestones

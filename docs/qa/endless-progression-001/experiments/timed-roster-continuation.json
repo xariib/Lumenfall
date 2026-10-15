@@ -1,0 +1,28 @@
+{
+  "status": "MEASURED_PARTIAL",
+  "sourceSha256": "b2babd53da3a04987226cd825bb16c290aaca690a78bfce80821303a2acbf5df",
+  "policySha256": "ae4e9476a168cefc8d0537880200363cd4f8b4e9c89d805dbd38cafb8e56a295",
+  "phases": [
+    {
+      "policySha256": "50285709c5f7eba59854aca11a0ca20f479351c4c757bfa9e8636974896e812c",
+      "throughDay": 60
+    },
+    {
+      "policySha256": "ae4e9476a168cefc8d0537880200363cd4f8b4e9c89d805dbd38cafb8e56a295",
+      "fromDay": 60,
+      "changes": "Restore previously accepted post-Ultimate Support leveling, next-Ultimate Sigil reserve and eligible-Mastery Prism reserve after identifying omitted rules in the timed adaptation. No grants or balance changes."
+    }
+  ],
+  "bootstrapDays": 62,
+  "earnedParent": "checkpoints/combined-d-regular-day60.json",
+  "parentSha256": "2ae6f64bca7cb952db37da938271eaf9ac8ef5c72447c1142eb3b67c7efea02a",
+  "interruptedSupportHold": {
+    "days": 114,
+    "reason": "Timed adaptation omitted post-Ultimate Support leveling and resource reserves. This player policy cannot establish full-roster timing; interrupted local parent19632, child21668 finished. Original day60 milestones preserved; no balance/grant changes.",
+    "checkpointSha256": "c67864dc6087b7f165de15f10c5d82b154d62e249e0c9987d55312c0278fceee",
+    "file": "checkpoints/combined-d-support-hold-day114.json.gz",
+    "storedSha256": "3d77830ca357ff181622c1e9d674eaad096229ac0701e84cd75ca06971798018"
+  },
+  "bootstrapCheckpoint": "checkpoints/combined-d-roster-day62.json",
+  "bootstrapSha256": "1ba0f59eebd291197cc377a65653c1f5ea68f37e76e2dbd40368115c8684b9de"
+}

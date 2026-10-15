@@ -1,0 +1,88 @@
+{
+  "status": "EXPERIMENT; no production cycle batching or compensated clock",
+  "baseSourceSha256": "db1e62af0bb378338eed480b047c7509115ed8f382514ab0d65ccde4eb6a8a8c",
+  "microCandidateSha256": "6ba6b32b8011aa744c96f66d11c1833119719ac4b25e0cd1500b9388134672e6",
+  "sources": [
+    {
+      "file": "scripts/lib/ascend-cycle-aggregate.cjs",
+      "sha256": "a8965ac6fbab1cb6f4cf2860f19a55417de3b2b0c2cbfc40bdb181d54dd1e187"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-clock.cjs",
+      "sha256": "204d040ba1179273f52472a2300f4db01950f97191a94619b37f1ef98ebbc28a"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-receipts.cjs",
+      "sha256": "8133106e6d47398b5472747511d69b1f1fc5cd5756cb478819dd19080dd231a0"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-aggregate.cjs",
+      "sha256": "62ab78fd322713495ecc6ed7bc828e6839ed059f7e19f1ca675f66b5c648ef4f"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-clock.cjs",
+      "sha256": "35b0e31d3440ce9db31c054320d08d8087c94f7204ca723be6753deea3630701"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-receipts.cjs",
+      "sha256": "d4395b50dc055d5dd1abdf8e18d856407ee7fa430ab699c515ab1e6c3bc44a87"
+    },
+    {
+      "file": "tests/behavioral/endless-microclock-source.cjs",
+      "sha256": "31c03bc02aadb60c7b16c6ca6b7f90fbc21b83dc136fb09ca181ec33d6beafb7"
+    },
+    {
+      "file": "tests/behavioral/endless-microclock.cjs",
+      "sha256": "3675fa943adfe896d367214450711d1b289db843857447b775eb201d79207082"
+    }
+  ],
+  "files": [
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-aggregate.json",
+      "sha256": "731230ff17bacc046049c9c3b41cfce027340114152801ab0aee3b8113db657c"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-clock.json",
+      "sha256": "f3e40af30ad5e6c55d05096e24845f55731c56929ef42a85485a5bf1fe040583"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-receipts.json",
+      "sha256": "ecd55bb3d9e0d36ddcb8e5427f14daf17d44abcc961b3985117007d85c3b6178"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-clock-receipts-v8.json",
+      "sha256": "876645e7d68919563fe37f9f91dd46a68b72df399626ba497c3bc895fe819436"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/microclock-finite.json",
+      "sha256": "060c2cb355172c80f1d3cbebae1d144414c1106b1a714028608f74a0115cd03b"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/microclock-parity.json",
+      "sha256": "aae68095d1dbc9bb90afffa21879eef0c10aa79488eccfb14507fa677f229a2b"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/microclock-support.json",
+      "sha256": "3a22951743742aa324b733132e54a58e67ddc0d364f9126797b5de059102419e"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/microclock-v8.json",
+      "sha256": "a655c77bf6f8c37436d2f889a026d8b6aff4510bc9f6c53e0379801c7306d904"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/microclock-core.json",
+      "sha256": "45876b39d6ad5a7fa1f6a5b0614898e6894fb98626c0dedc0d08bda9c321ad04"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/timed-roster-offline-paired.json",
+      "sha256": "469d9f43410ada2b23418236c80894e856cabfdfea40057d565291b5d2d80556"
+    }
+  ],
+  "notes": [
+    "Aggregate467 checks match46 real earned endpoints and independent1e25 counters. Lumen177 remains separate.",
+    "Periodic clock62 checks use independent BigInt IEEE dyads and conserve the final material sub-cycle residual. ActualV8 clock/receipt fixed vectors PASS.",
+    "Micro candidate20 checks processes83 Ascends over1e-17sec; original loses interval after one. Both Support deadline sides pass; existing235 core,305 parity,1778 Support and actualV8 56 pass. Not integrated, whole regression and full8h incomplete.",
+    "A finite whole/split1e-17 probe retained all state fields exactly except native enemyHP:246.5828028541176 vs246.58280285259585. Preserve this measured limit; no bitwise-HP parity claim.",
+    "Timed policy502 omitted prior accepted post-Ultimate Support leveling and Sigil/Prism reserves. Its114d continuation was interrupted; frozen60d milestone results remain. Explicit earned60d roster phaseae4e9476a168cefc8d0537880200363cd4f8b4e9c89d805dbd38cafb8e56a295 continues180d. No save grants or balance change."
+  ]
+}

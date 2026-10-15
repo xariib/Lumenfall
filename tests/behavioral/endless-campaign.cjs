@@ -18,7 +18,7 @@ window.endlessQa={
   unlocked:function(sp){return typeof wispRecruitmentUnlocked==='function'?wispRecruitmentUnlocked(sp):state.maxDepthEver>=treeWispUnlockDepth(sp);},
   rarity:function(sp){return buyRarity(sp);},module:function(sp){return buyModule(sp);},
   moduleCost:moduleCost,rarityCost:rarityCost,rarityReq:rarityReq,
-  ultimateCost:ultimateSigilCost,masteryPlan:getWispMasteryPlan,
+  ultimateCost:ultimateSigilCost,ultimatePlan:getWispUltimatePlan,masteryPlan:getWispMasteryPlan,
   buyNode:buyNode,nodePlan:getNodeBuyPlan,studyPlan:getStudyStartPlan,
   farm:enterFarmMode,push:enterPushMode,eligible:ascendEligible,
   day:ensureDaily,
@@ -112,8 +112,7 @@ function campaign(){
     x.clock(CLOCK+elapsed*1000);
     const result=q.advance(seconds,{kind:kind,clockStartMs:CLOCK+elapsed*1000,offlineWindowStartMs:CLOCK+elapsed*1000});
     elapsed+=seconds;x.clock(CLOCK+elapsed*1000);
-    // The authoritative engine advances productive systems; the offline
-    // lifecycle adapter credits this statistic and then checks its Deed.
+    // Credit the offline lifecycle statistic after productive simulation.
     if(kind==='offline'){q.get().totalOfflineSeconds=amount.add(q.get().totalOfflineSeconds,seconds);q.achievements();}
     note();
     assert.equal(result.processedSec===undefined||result.processedSec>=0,true);
@@ -136,8 +135,8 @@ function campaign(){
     // discarding its Lumen budget at Ascend or spending it on run levels.
     for(const sp of b.wisps())q.get().empowerQueue[sp.id]=!saving;
     for(const node of q.defs())q.get().researchQueue[node.id]=!saving&&!node.retiredTo&&node.levelCap!==undefined;
-    if(q.get().spirits.tide>=10)q.get().empowerQueue.tide=false;
-    if(q.get().spirits.aurora>=10)q.get().empowerQueue.aurora=false;
+    if(!q.get().wispUltimate.ember&&q.get().spirits.tide>=10)q.get().empowerQueue.tide=false;
+    if(!q.get().wispUltimate.ember&&q.get().spirits.aurora>=10)q.get().empowerQueue.aurora=false;
     b.auto(false);
     for(const sp of b.wisps()){
       if(!b.unlocked(sp))continue;
@@ -145,7 +144,10 @@ function campaign(){
       if(q.get().spirits[sp.id]>0){
         let before=funds(),price=b.rarityCost(sp,q.get().heroRarity[sp.id]||0);if(b.rarity(sp))receipt('rarity',sp.id,before,{lumen:price.lumen,shards:price.shard});
         before=funds();price=b.ultimateCost(sp);if(q.ultimate(sp.id))receipt('ultimate',sp.id,before,{sigils:price});
-        before=funds();price=b.masteryPlan(sp).cost;if(b.mastery(sp))receipt('mastery',sp.id,before,{prisms:price.prism,sigils:price.sigil});
+        before=funds();price=b.masteryPlan(sp).cost;
+        const pendingUltimates=b.wisps().map(w=>b.ultimatePlan(w)).filter(p=>p.eligible);
+        const reserve=pendingUltimates.length?pendingUltimates.reduce((least,p)=>amount.min(least,p.cost),pendingUltimates[0].cost):0;
+        if(amount.ge(amount.sub(q.get().sigils,price.sigil),reserve)&&b.mastery(sp))receipt('mastery',sp.id,before,{prisms:price.prism,sigils:price.sigil});
       }
     }
     // Fewer cheap purchases per check than the old 20-per-second fixture.
@@ -169,7 +171,9 @@ function campaign(){
     const nodes=b.nodes().filter(n=>b.nodePlan(n).affordable);
     // Swift is a repeat-farming investment; later buy other affordable paths.
     nodes.sort((a,c)=>Number(c.id==='swift')-Number(a.id==='swift')||amount.cmp(b.nodePlan(a).cost,b.nodePlan(c).cost));
-    if(nodes.length)b.buyNode(nodes[0]);
+    const readyMasteries=b.wisps().map(sp=>b.masteryPlan(sp)).filter(p=>p.eligible);
+    const prismReserve=readyMasteries.length?readyMasteries.reduce((least,p)=>amount.min(least,p.cost.prism),readyMasteries[0].cost.prism):0;
+    if(nodes.length&&amount.ge(amount.sub(q.get().prisms,b.nodePlan(nodes[0]).cost),prismReserve))b.buyNode(nodes[0]);
     if(!growthSaving&&forgeMasterwork){const p=q.plan('masterwork',wantsForge?5:1);if(p.buyCount>0&&(wantsForge||amount.le(p.cost.lumen,amount.mul(q.get().lumen,.2)))&&amount.le(p.cost.shard,amount.mul(q.get().shards,.2)))q.buy('masterwork',wantsForge?5:1);}
     if(!saving){
       const priorities=['labcapacity','measuredinquiry','focusprotocol','curriculum','procurement','catalysis'];
@@ -226,4 +230,4 @@ function campaign(){
 }
 const result=campaign();
 console.log(JSON.stringify({status:result.history.length===days?'MEASURED':'MEASURED_PARTIAL',sourceSha256,policySha256:policySha256,policy:name,policyDetails:policies[name],days:result.history.length,targetDays:days,resumedFrom:resumePath||null,
-  limits:'Deterministic real-engine sessions and offline chronology; only earned currencies fund automation/speed; not human/device acceptance.',...result},null,2));
+  policyNotes:'Early Support level10 focus ends at first Ultimate; save for eligible Ultimates before optional Mastery and reserve an eligible Mastery price before Tree spending.',limits:'Deterministic real-engine sessions and offline chronology; only earned currencies fund automation/speed; not human/device acceptance.',...result},null,2));

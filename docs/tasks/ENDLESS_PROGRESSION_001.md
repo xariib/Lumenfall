@@ -11,7 +11,7 @@ endless-progression-worktree. Original checkout preserved. Schema5 entitlements/
 Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 AK180d remains historical. New frozen D/b2babd53: both regular60d targets met;
-three visits recruits21.33d/MY44/ULT48; two21.5/44.5/48.5. Roster180d running.
+three visits recruits21.33d/MY44/ULT48; two21.5/44.5/48.5. Roster180d now resumes earned60d; prior Support-hold run stopped114d.
 Productdb1e62af retains prior tables pending calibration. V8/core rechecks PASS;
 Windows tooling/Linux CI, whole UI and native/device acceptance remain OPEN.
 
