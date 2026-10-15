@@ -1,0 +1,106 @@
+{
+  "status": "DIAGNOSTIC_ONLY",
+  "limits": "60-second instrumented observation and CPU profiling. This does not pass or replace the unchanged25-second required gate, which failed on the candidate; baseline normal driver also failed cleanup.",
+  "rows": [
+    {
+      "name": "current",
+      "sourceSha256": "70a6fdfd4efa84c8ea6eb03438886454e9ff59b366615a75f26bd370fed2c773",
+      "profileSha256": "3056c834bbb1a24552d80dbde6dea2d663396aba1a0acc734b837ba1288a678e",
+      "diagnosticSeconds": 51.414237,
+      "bodyStatus": "pass",
+      "checks": 6651,
+      "topSelfSeconds": [
+        {
+          "name": "replaceControlMarkup@8303",
+          "seconds": 10.064257
+        },
+        {
+          "name": "renderResearch@9103",
+          "seconds": 7.955054
+        },
+        {
+          "name": "@8158",
+          "seconds": 3.248911
+        },
+        {
+          "name": "replaceStudyMarkup@9189",
+          "seconds": 3.085321
+        },
+        {
+          "name": "controlText@8149",
+          "seconds": 2.858663
+        },
+        {
+          "name": "overlayVisible@8344",
+          "seconds": 2.408687
+        },
+        {
+          "name": "renderLongStudies@9226",
+          "seconds": 1.659949
+        },
+        {
+          "name": "(idle)@-1",
+          "seconds": 1.269825
+        },
+        {
+          "name": "querySelector@-1",
+          "seconds": 1.161928
+        },
+        {
+          "name": "renderEncyclopedia@9835",
+          "seconds": 1.106546
+        }
+      ]
+    },
+    {
+      "name": "baseline",
+      "sourceSha256": "e110f182e500eed4bbb0382d182471c93110da28fda97fff4856b5931791a9ac",
+      "profileSha256": "ace6aba61838a2d8286126be46582a10d438ada406509149c5151826821c6ba6",
+      "diagnosticSeconds": 44.743445,
+      "bodyStatus": "pass",
+      "checks": 6651,
+      "topSelfSeconds": [
+        {
+          "name": "replaceControlMarkup@7908",
+          "seconds": 9.1449
+        },
+        {
+          "name": "renderResearch@8727",
+          "seconds": 6.896619
+        },
+        {
+          "name": "replaceStudyMarkup@8823",
+          "seconds": 3.133866
+        },
+        {
+          "name": "@7770",
+          "seconds": 2.787674
+        },
+        {
+          "name": "controlText@7761",
+          "seconds": 2.55
+        },
+        {
+          "name": "overlayVisible@7949",
+          "seconds": 2.006128
+        },
+        {
+          "name": "(idle)@-1",
+          "seconds": 1.682863
+        },
+        {
+          "name": "renderEncyclopedia@9517",
+          "seconds": 1.23127
+        },
+        {
+          "name": "renderLongStudies@8859",
+          "seconds": 1.158415
+        },
+        {
+          "name": "querySelector@-1",
+          "seconds": 1.044882
+        }
+      ]
+    }
+  ]
+}

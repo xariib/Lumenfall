@@ -173,7 +173,8 @@ function mutateSource(source, scenario) {
   if (scenario === 'self-test-upgrade-identity-value') replaceOnce("function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }", "function formationMult(){ return researchFactor('formation'); }");
   if (scenario === 'self-test-upgrade-identity-clock') {
     replaceOnce('    var gridCrossingsBefore = farmGridCrossings;\n    var gridRemainingBefore = farmGridRemainingSec;', '    var elapsedWholeBefore = elapsedWholeSec;\n    var elapsedFractionBefore = elapsedFractionSec;');
-    replaceOnce('if(remaining>0 && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0){', 'if(remaining>0 && elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0){');
+    const wideGuard='if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)){';
+    replaceOnce(source.includes(wideGuard)?wideGuard:'if(remaining>0 && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0){', 'if(remaining>0 && elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0){');
   }
   if (scenario === 'self-test-bond-text-ability') replaceOnce('Heavy ability damage. Ultimate doubles it.', 'Heavy ability damage. Stone + Titan activate the Duskguard Bond. Ultimate doubles it.');
   if (scenario === 'self-test-bond-text-partners') replaceOnce("return SPIRITS.find(function(sp){ return sp.id===id; }).name;", "return SPIRITS.find(function(sp){ return sp.id===id; }).shortName;");
@@ -201,7 +202,9 @@ function mutateSource(source, scenario) {
   const prismMutations = {
     'tree': ["var tree = nodeLevel('swift');", "var tree = 0;"],
     'lab': ["var lab = longStudyLevel('prismstudy');", "var lab = 0;"],
-    'payout': ["  state.prisms += gain;", "  state.prisms += gain + 1;"],
+    'payout': source.includes('  state.prisms=creditAmount(state.prisms,gain);')
+      ? ['  state.prisms=creditAmount(state.prisms,gain);','  state.prisms=creditAmount(state.prisms,Amount.exactAdd(gain,1));']
+      : ["  state.prisms += gain;", "  state.prisms += gain + 1;"],
     'repeat': ["var ASCEND_REPEAT_REWARD_RATE = 0.20;", "var ASCEND_REPEAT_REWARD_RATE = 0.25;"],
     'rounding': ["  var progressBonus = ascendProgressPrismBonusForCleared(cleared,benchmark);", "  var progressBonus = cleared>benchmark ? Math.max(0,full-ascendFullPrismGainForCleared(benchmark)) : 0;"]
   };

@@ -1,0 +1,242 @@
+{
+  "status": "MIXED_SOURCE_PASSES_AND_RETAINED_FAILURES",
+  "limits": "Serial native passes cover the unchanged Rift UI on0cbe and70a6; this is not full final-source CI or device acceptance. Parallel300s timeouts and the intentional blocked-scroll failure remain failures. The control must fail at reachability and tear down cleanly.",
+  "records": [
+    {
+      "name": "atomic-rift-manual-window",
+      "logSha256": "95de980c18f7f78af1b082e1e8836c27771a55d1693543824be4b1884a0cfa38",
+      "sourceSha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "bodyStatus": "pass",
+      "requiredGateMs": 300000,
+      "profiles": [
+        "360x640-safe0-no-preference",
+        "360x640-safe24-no-preference",
+        "390x844-safe24-no-preference"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "normalCompletion": true
+    },
+    {
+      "name": "current-rift-reduced-motion",
+      "logSha256": "8823d02459bd98cb302159cee2870fa90c07c7490983f273e4d2c39d196d3080",
+      "sourceSha256": "70a6fdfd4efa84c8ea6eb03438886454e9ff59b366615a75f26bd370fed2c773",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "bodyStatus": "pass",
+      "requiredGateMs": 300000,
+      "profiles": [
+        "360x640-safe0-reduce",
+        "360x640-safe24-reduce",
+        "390x844-safe24-reduce"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "normalCompletion": true
+    },
+    {
+      "name": "current-rift-status-mobile",
+      "logSha256": "271023bf52c4b7f2d548f176752df51ea1bf3710bdf0dadf14f649885c561f84",
+      "sourceSha256": "70a6fdfd4efa84c8ea6eb03438886454e9ff59b366615a75f26bd370fed2c773",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "bodyStatus": "pass",
+      "requiredGateMs": 300000,
+      "profiles": [
+        "360x640-safe0-no-preference",
+        "360x640-safe24-no-preference",
+        "390x844-safe24-no-preference"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "normalCompletion": true
+    },
+    {
+      "name": "current-rift-status-stacking-reduced-motion",
+      "logSha256": "973ff67b7baf13c2656cbcf07d6f61b6a5e25a6d6d8c2b33f7da55b83a3ee997",
+      "sourceSha256": "70a6fdfd4efa84c8ea6eb03438886454e9ff59b366615a75f26bd370fed2c773",
+      "process": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "bodyStatus": "pass",
+      "requiredGateMs": 300000,
+      "profiles": [
+        "360x640-safe0-reduce",
+        "360x640-safe24-reduce",
+        "390x844-safe24-reduce"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "normalCompletion": true
+    },
+    {
+      "name": "atomic-rift-manual-control",
+      "logSha256": "7de9ea1d4b5234339b2e2b9d8a616b8c85e562eb826426889f08ccd5c92ef1b6",
+      "sourceSha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56",
+      "process": {
+        "exitcode": 1,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "bodyStatus": "fail",
+      "requiredGateMs": 300000,
+      "profiles": [
+        "360x640-safe0-no-preference"
+      ],
+      "message": "Error: native touch scroll reaches last spirits control {\"top\":555,\"bottom\":603,\"area\":[121,584],\"scroll\":0,\"text\":\"Bench\",\"mainClass\":\"\",\"overflow\":\"hidden\",\"content\":2774,\"client\":463,\"tabs\":[\"tab-spirits\"],\"atStart\":{\"tag\":\"DIV\",\"classes\":\"hero-top\",\"touch\":\"auto\",\"parent\":\"card hero-card rarity-0 active-wisp\",\"ancestors\":[[\"DIV\",\"\",\"hero-top\",\"auto\"],[\"DIV\",\"\",\"card hero-card rarity-0 active-wisp\",\"auto\"],[\"DIV\",\"spirit-list\",\"hero-grid\",\"auto\"],[\"SECTION\",\"tab-spirits\",\"tab-panel active\",\"auto\"],[\"MAIN\",\"\",\"\",\"auto\"],[\"DIV\",\"\",\"shell\",\"auto\"],[\"BODY\",\"\",\"\",\"auto\"],[\"HTML\",\"\",\"\",\"auto\"]]}}\n    at ok (http://127.0.0.1:64521/index.html?qaScenario=rift-status-stacking-mobile&qaFixture=fresh:13616:31)\n    at Object.last (http://127.0.0.1:64521/index.html?qaScenario=rift-status-stacking-mobile&qaFixture=fresh:13717:3)\n    at <anonymous>:1:18",
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "normalCompletion": false
+    },
+    {
+      "name": "rift-status-mobile-window",
+      "logSha256": "95784bf8454e367f5443ad97396256a13fab2a6d0c319789d74be720e1dfeea9",
+      "sourceSha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      },
+      "bodyStatus": "fail",
+      "requiredGateMs": 300000,
+      "message": "Invalid driver JSON: Unexpected end of JSON input",
+      "normalCompletion": false
+    },
+    {
+      "name": "rift-status-reduced-motion-window",
+      "logSha256": "ffcafa5195d6314836a080d20f2f2e03779d7fcf07cd6fda52816f0fdb438473",
+      "sourceSha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      },
+      "bodyStatus": "fail",
+      "requiredGateMs": 300000,
+      "message": "Invalid driver JSON: Unexpected end of JSON input",
+      "normalCompletion": false
+    },
+    {
+      "name": "rift-status-stacking-reduced-motion-window",
+      "logSha256": "1bf9bdc9a044d8c24fd8fd4470189eba5972299d9ecbd25856419c7ab5663bc0",
+      "sourceSha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56",
+      "process": {
+        "exitcode": null,
+        "timed_out": true,
+        "stderr": ""
+      },
+      "bodyStatus": "fail",
+      "requiredGateMs": 300000,
+      "message": "Invalid driver JSON: Unexpected end of JSON input",
+      "normalCompletion": false
+    }
+  ]
+}

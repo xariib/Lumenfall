@@ -7,6 +7,7 @@ const args=process.argv.slice(2),positionals=args.filter((arg,i)=>!arg.startsWit
 const [runner,source,daysText,policy,prefix]=positionals,days=Number(daysText);
 function option(name,fallback){const i=args.indexOf(name);return i<0?fallback:args[i+1];}
 const chunks=Number(option('--chunks',24)),runMs=Number(option('--run-ms',45000));
+const pauseFile=option('--pause-file',null);let yieldedForQa=false;
 assert(runner&&source&&policy&&prefix&&Number.isInteger(days)&&days>0);
 assert(Number.isInteger(chunks)&&chunks>0&&chunks<=730);
 assert(Number.isFinite(runMs)&&runMs>0);
@@ -19,6 +20,7 @@ function status(kind,extra){
  return result;
 }
 for(let chunk=0;chunk<chunks&&(!checkpoint||checkpoint.history.length<days);chunk++){
+ if(pauseFile&&fs.existsSync(pauseFile)){yieldedForQa=true;break;}
  const env={...process.env,LUMENFALL_CAMPAIGN_RUN_MS:String(runMs),LUMENFALL_CAMPAIGN_SNAPSHOT:snapshot};
  if(checkpoint)env.LUMENFALL_CAMPAIGN_RESUME=checkpointFile;
  else delete env.LUMENFALL_CAMPAIGN_RESUME;
@@ -35,4 +37,4 @@ for(let chunk=0;chunk<chunks&&(!checkpoint||checkpoint.history.length<days);chun
  checkpoint=next;fs.renameSync(pending,output);
  status('MEASURED_PARTIAL',{chunk:chunk+1});
 }
-if(!process.exitCode)console.log(JSON.stringify(status(checkpoint&&checkpoint.history.length>=days?'MEASURED_TARGET_REACHED':'MEASURED_PARTIAL')));
+if(!process.exitCode)console.log(JSON.stringify(status(yieldedForQa?'YIELDED_FOR_FOREGROUND_QA':checkpoint&&checkpoint.history.length>=days?'MEASURED_TARGET_REACHED':'MEASURED_PARTIAL')));

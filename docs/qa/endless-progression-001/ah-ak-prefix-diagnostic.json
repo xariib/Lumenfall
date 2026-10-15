@@ -1,0 +1,230 @@
+{
+  "status": "DIAGNOSTIC_DIFFERENCES",
+  "limits": "No checkpoint hashes were rebased and no exact-equivalence acceptance is claimed. These are fresh campaigns with independently timed whole-day resumptions; the cause of small pre6000 differences needs review. Purchase accounting uses separate exact oracles.",
+  "rows": [
+    {
+      "policy": "regular",
+      "daysCompared": 41,
+      "status": "EXACTLY_EQUAL",
+      "differenceCount": 0,
+      "maxRelative": 0,
+      "firstDifferences": []
+    },
+    {
+      "policy": "regular_two",
+      "daysCompared": 40,
+      "status": "EXACT_DIFFERENCES",
+      "differenceCount": 6,
+      "maxRelative": 4.570468033261316e-16,
+      "firstDifferences": [
+        {
+          "path": "history.9.active.0.remainingSec",
+          "actual": 56886.952957085596,
+          "expected": 56886.95295708557,
+          "relative": 4.570468033261316e-16
+        },
+        {
+          "path": "history.18.lumen",
+          "actual": "29218785265591002562e0",
+          "expected": "2921878526559100243e1",
+          "relative": 4.517641606252795e-18
+        },
+        {
+          "path": "history.19.active.2.remainingSec",
+          "actual": 175922.31765236193,
+          "expected": 175922.31765236187,
+          "relative": 3.4105962677552546e-16
+        },
+        {
+          "path": "history.20.active.5.remainingSec",
+          "actual": 400562.31765236193,
+          "expected": 400562.3176523619,
+          "relative": 7.489471345139423e-17
+        },
+        {
+          "path": "history.21.lumen",
+          "actual": "243860909819694539915e0",
+          "expected": "243860909819694543792e0",
+          "relative": 1.5898407017617424e-17
+        },
+        {
+          "path": "history.21.active.3.remainingSec",
+          "actual": 141362.31765236193,
+          "expected": 141362.31765236187,
+          "relative": 4.2444125843742843e-16
+        }
+      ]
+    },
+    {
+      "policy": "casual",
+      "daysCompared": 40,
+      "status": "EXACT_DIFFERENCES",
+      "differenceCount": 8,
+      "maxRelative": 4.364536782758492e-15,
+      "firstDifferences": [
+        {
+          "path": "history.18.active.2.remainingSec",
+          "actual": 384602.7736487781,
+          "expected": 384602.7736487782,
+          "relative": 2.6000852529295763e-16
+        },
+        {
+          "path": "history.19.active.0.remainingSec",
+          "actual": 125402.7736487781,
+          "expected": 125402.77364877821,
+          "relative": 8.77173580770091e-16
+        },
+        {
+          "path": "history.24.active.2.remainingSec",
+          "actual": 13288.924549592775,
+          "expected": 13288.924549592717,
+          "relative": 4.364536782758492e-15
+        },
+        {
+          "path": "history.34.active.4.remainingSec",
+          "actual": 408529.7337519239,
+          "expected": 408529.73375192384,
+          "relative": 1.4686813478412437e-16
+        },
+        {
+          "path": "history.35.active.4.remainingSec",
+          "actual": 278929.7337519239,
+          "expected": 278929.73375192384,
+          "relative": 2.1510793845077536e-16
+        },
+        {
+          "path": "history.36.active.3.remainingSec",
+          "actual": 149329.7337519239,
+          "expected": 149329.73375192384,
+          "relative": 4.017953992985472e-16
+        },
+        {
+          "path": "history.37.active.1.remainingSec",
+          "actual": 19729.733751923894,
+          "expected": 19729.733751923835,
+          "relative": 2.9904103492651934e-15
+        },
+        {
+          "path": "history.38.active.3.remainingSec",
+          "actual": 362209.1558346159,
+          "expected": 362209.15583461587,
+          "relative": 8.282507362596308e-17
+        }
+      ]
+    },
+    {
+      "policy": "frequent",
+      "daysCompared": 44,
+      "status": "EXACT_DIFFERENCES",
+      "differenceCount": 6,
+      "maxRelative": 2.6120719211755485e-14,
+      "firstDifferences": [
+        {
+          "path": "history.7.active.0.remainingSec",
+          "actual": 6388.563244095771,
+          "expected": 6388.5632440957415,
+          "relative": 4.617626667038716e-15
+        },
+        {
+          "path": "history.9.active.0.remainingSec",
+          "actual": 188074.83625535155,
+          "expected": 188074.83625535152,
+          "relative": 1.5951097231991538e-16
+        },
+        {
+          "path": "history.10.active.0.remainingSec",
+          "actual": 15274.836255351547,
+          "expected": 15274.836255351518,
+          "relative": 1.8985473569210823e-15
+        },
+        {
+          "path": "history.11.active.3.remainingSec",
+          "actual": 347828.11629068037,
+          "expected": 347828.1162906803,
+          "relative": 2.0124882584678958e-16
+        },
+        {
+          "path": "history.12.active.0.remainingSec",
+          "actual": 175028.11629068037,
+          "expected": 175028.1162906803,
+          "relative": 3.9993574451630695e-16
+        },
+        {
+          "path": "history.13.active.0.remainingSec",
+          "actual": 2228.1162906803656,
+          "expected": 2228.1162906803074,
+          "relative": 2.6120719211755485e-14
+        }
+      ]
+    },
+    {
+      "policy": "efficient",
+      "daysCompared": 41,
+      "status": "EXACT_DIFFERENCES",
+      "differenceCount": 10,
+      "maxRelative": 2.844762894568264e-15,
+      "firstDifferences": [
+        {
+          "path": "history.30.active.1.remainingSec",
+          "actual": 155525.79834874114,
+          "expected": 155525.7983487411,
+          "relative": 2.5719205703935076e-16
+        },
+        {
+          "path": "history.31.active.1.remainingSec",
+          "actual": 25925.79834874114,
+          "expected": 25925.79834874111,
+          "relative": 1.1571485512791042e-15
+        },
+        {
+          "path": "history.33.active.2.remainingSec",
+          "actual": 279939.86556582747,
+          "expected": 279939.8655658274,
+          "relative": 2.5005370299265075e-16
+        },
+        {
+          "path": "history.34.active.1.remainingSec",
+          "actual": 193539.86556582747,
+          "expected": 193539.8655658274,
+          "relative": 3.616825907951835e-16
+        },
+        {
+          "path": "history.35.active.0.remainingSec",
+          "actual": 107139.86556582747,
+          "expected": 107139.86556582741,
+          "relative": 5.60015636412532e-16
+        },
+        {
+          "path": "history.36.active.0.remainingSec",
+          "actual": 20739.865565827466,
+          "expected": 20739.865565827407,
+          "relative": 2.844762894568264e-15
+        },
+        {
+          "path": "history.37.active.3.remainingSec",
+          "actual": 369795.86556582747,
+          "expected": 369795.8655658274,
+          "relative": 1.89293625262393e-16
+        },
+        {
+          "path": "history.38.active.2.remainingSec",
+          "actual": 283395.86556582747,
+          "expected": 283395.8655658274,
+          "relative": 2.470043091850976e-16
+        },
+        {
+          "path": "history.39.active.1.remainingSec",
+          "actual": 196995.86556582747,
+          "expected": 196995.8655658274,
+          "relative": 3.553374066960255e-16
+        },
+        {
+          "path": "history.40.active.0.remainingSec",
+          "actual": 110595.86556582747,
+          "expected": 110595.86556582741,
+          "relative": 5.425157594547471e-16
+        }
+      ]
+    }
+  ]
+}

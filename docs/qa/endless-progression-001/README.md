@@ -539,3 +539,59 @@ AH first Ultimate costs32million after Analysis, using56.8%/53.3%/73.8%/72.5%
 of earned held Sigils for regular/two-visit/casual/efficient respectively, while
 retaining their measured first-Ultimate days53.33/50.5/53/52.5. Fresh180d roster
 measurement is still running. Frozen partial checkpoints retain exact provenance.
+
+Checkpoint root0db26141: prepared Forge cards move directly into the live root,
+instead of serializing their HTML and parsing it a second time. All other generic
+replacement/focus paths remain. The exact AJ proposal equals the current root.
+The original25s Prism contract now PASSes; native Forge regular/reduced-motion
+and the90s Lab speed wrapper PASS. Core230 and15 causal controls PASS. No shared
+markup cache was applied; the larger AI cache proposal is rejected as unnecessary.
+Serial Rift mobile and both motion variants also PASS on70a6, in addition to the
+0cbe stacking-mobile pass and causal overflow:hidden control. These are explicitly
+mixed-source UI evidence; final-source full acceptance still remains.
+AH regular has only2 Ultimates at day124 despite all Mythics approaching completion.
+A fresh AK experiment changes only Sigil curve width300→100 beyond Rift6000, keeping
+all prices, progression gates, effects and policies identical. It uses frozen
+runtimes/ah and fresh earned regular180d plus four60d cohorts. AH180d continues as
+comparison evidence. These numeric proposals are not applied to the root. The
+low-target AutoAscend decision and GitHub destination remain pending. No new rule,
+minimum run time, integration, signing, APK or device acceptance has been claimed.
+
+Latest UI verification on0db26141: quiet serial Prism focused run passes all four
+positive scenarios (6651 contract assertions plus save/reload, backup and recovery)
+and five strict causal controls together. No gate or protocol timeout changed.
+Under concurrent campaigns the same full contract hit its20s CDP deadline; those
+failures are retained. Campaigns were stopped only after backing up and validating
+all six actual day checkpoints (AH152; AK25–27), then resumed unchanged. The batch
+helper now supports --pause-file and yields between whole-day chunks; its smoke
+check preserves the checkpoint byte-for-byte. No user/game state is affected.
+AJ and the larger AL Forge-reuse proposal both completed the quiet contract in
+about9.4s (file-timestamp observation); AL provides no measured benefit and is not
+applied. Root retains only the smaller direct prepared-card adoption. AI/AL stay
+experimental. Native Forge both motion modes and Lab speed90s wrapper PASS.
+The Prism payout negative anchor now mutates the real exact-credit path; the
+historical clock negative accepts the current guard and causally reproduces its
+stalled-clock defect with no runtime errors. All40 negative routes accept their
+text anchors; that setup audit is not40 causal passes.
+A strict AH/AK pre6000 daily-history comparison found small timer/Lumen differences
+(max relative2.7e-14 across four policies; regular exact). Source difference is
+only the unused pre6000 Sigil width, but attribution to resumption/physics remains
+unconfirmed. No exact-equivalence claim or checkpoint-hash rebasing is used;
+all AK campaigns remain fresh actual simulations. Existing separate currency
+purchase oracles stay exact. A limited native-HP reload diagnostic did not reproduce
+a cause. Record and investigate this diagnostic if stronger bitwise replay is needed;
+no assertion, balance, tolerance or product rounding was changed to hide it.
+All resumed AH/AK jobs use --pause-file validation-evidence/endless-foreground-qa.flag.
+Clear this task-owned marker only after foreground gates finish, then resume the
+same immutable sources/policy/runtime/checkpoints. Final numeric/whole-suite,
+golden regeneration and native release acceptance are still open.
+
+AH completed180d with3 Ultimates: late roster acceptance remains unmet. AK reaches
+week8 with the original milestone times; continue its180d regular campaign and
+finish the four60d cohorts. Active resumed jobs: AH67608 (now complete), AK regular
+26782, two-visits70497, casual37666, frequent48138, efficient96017. These IDs are
+local session handles, not durable identities; use saved source/policy hashes and
+checkpoint files when resuming. No live-root Sigil curve or Ultimate price switch
+is accepted yet. Rebuild source-bound Swift goldens only after the final numeric
+model is selected; never patch hashes without actual replay. The low AutoAscend
+choice and remote destination are still pending user replies. No archive.

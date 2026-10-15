@@ -37,9 +37,9 @@ requires acceptance. AA primary56d: recruits22d/Mythic48.33d/Ultimate53.33d
 PASS. Two visits: recruits21d/Mythic45.5d/Ultimate50.5d/Mastery52d. Explicit mature policy from day56
 reserves earned Prisms and trains the roster; first Mastery57.33d.
 13,416 prices and actual V8 checks32 PASS. Rank10000 replay functional
-PASS; mobile performance OPEN. Root70a6fdfd optimizes exact arithmetic/Dust.
+PASS; mobile performance OPEN. Root0db26141: arithmetic/Dust and prepared Forge DOM.
 
-Next: resolve low-target AutoAscend stress; AH roster calibration,
+Next: resolve low-target AutoAscend stress; AH/AK roster calibration,
 finish broad regressions and source-bound UI/golden checks,
 run full CI and combined/native delivery. Feature stays OPEN
 until all required acceptance; no APK/main/remote/archive claimed.

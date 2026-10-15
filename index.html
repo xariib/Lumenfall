@@ -8111,14 +8111,19 @@ function restoreControlViewport(snapshot){
   // Measuring flushes layout and any browser anchoring before the correction.
   snapshot.main.scrollTop+=rect.top-snapshot.top;
 }
-function replaceControlMarkup(root,html,keepAutoAscend,focusHandled){
+function replaceControlMarkup(root,html,keepAutoAscend,focusHandled,preparedMarkup){
   var focused=document.activeElement;
   var previous=root.contains(focused) ? focused : null;
   var keys=previous ? Array.from(previous.attributes).filter(function(a){return a.name.startsWith('data-') && a.name!=='data-state';}) : [];
   var index=previous ? Array.from(root.querySelectorAll('button,select,input')).indexOf(previous) : -1;
   var stable=keepAutoAscend && root.querySelector('[data-autoascend-card]');
   var trialCard=keepAutoAscend && previous && previous.matches('input,select') && previous.closest('[data-comet-trial-card]');
-  if(stable || trialCard){
+  if(preparedMarkup){
+    // Adopt fully prepared off-DOM cards without serializing and parsing again.
+    var fragment=document.createDocumentFragment();
+    while(preparedMarkup.firstChild)fragment.appendChild(preparedMarkup.firstChild);
+    root.textContent='';root.appendChild(fragment);
+  } else if(stable || trialCard){
     // Keep the real native select attached while unrelated shop cards refresh.
     var prepared=document.createElement('div');prepared.innerHTML=html;
     var children=Array.from(prepared.children),nextCard=prepared.querySelector('[data-autoascend-card]');
@@ -8137,7 +8142,7 @@ function replaceControlMarkup(root,html,keepAutoAscend,focusHandled){
       while(root.children.length>children.length) root.lastElementChild.remove();
     } else root.innerHTML=html;
   } else root.innerHTML=html;
-  presentControlStates(root);
+  if(!preparedMarkup)presentControlStates(root);
   if(previous && !previous.isConnected && !focusHandled){
     var buttons=Array.from(root.querySelectorAll('button,select,input'));
     var replacement=keys.length && buttons.find(function(btn){return keys.every(function(a){return btn.getAttribute(a.name)===a.value;});});
@@ -8941,7 +8946,7 @@ function renderResearch(){
   prepared.innerHTML=('<div class="section-sub">Forge: shape boss fights, tap rhythm, Support casts, resources and Resonate.</div>' + multHtml + html);
   RESEARCH.filter(function(node){return !node.retiredTo;}).forEach(function(node){updateResearchCard(node,prepared.querySelector(('[data-forge-card="' + node.id + '"]')));});
   presentControlStates(prepared);
-  replaceControlMarkup(root,prepared.innerHTML);
+  replaceControlMarkup(root,null,false,false,prepared);
   main.scrollTop=scrollTop;
   if(focusAttr){
     var target=root.querySelector(('[' + focusAttr + '="' + focusId + '"]'));

@@ -1,0 +1,45 @@
+{
+  "status": "CAUSAL_FAIL_OBSERVED",
+  "record": {
+    "command": [
+      "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\browser-dom.cjs",
+      "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe",
+      "http://127.0.0.1:57882/index.html?qaScenario=self-test-upgrade-identity-clock&qaFixture=fresh",
+      "C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-qa-self-test-upgrade-identity-clock-HRtza4",
+      "no-preference"
+    ],
+    "fixture": "fresh",
+    "viewport": null,
+    "process": {
+      "exitcode": 0,
+      "timed_out": false,
+      "elapsed_sec": 3.681274,
+      "timeout_sec": 25
+    },
+    "qa": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "self-test-upgrade-identity-clock",
+      "json_status": "fail",
+      "json_scenario": "self-test-upgrade-identity-clock",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    }
+  },
+  "observation": {
+    "qa_count": 1,
+    "qa_status": "fail",
+    "qa_scenario": "self-test-upgrade-identity-clock",
+    "json_status": "fail",
+    "json_scenario": "self-test-upgrade-identity-clock",
+    "runtime_markers": [],
+    "runtime_error_count": 0,
+    "json_error": null,
+    "valid": true
+  },
+  "detail": "Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":3,\"elapsedWholeSec\":3,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":57,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":3,\"riftMode\":\"farm\",\"candidates\":{\"ability\":1,\"autoTap\":1,\"autoEmpower\":1,\"study\":87,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}",
+  "htmlSha256": "5f53583fea5dddee5cf4d52119fe034395c69ce39ef59ba16628b518fa108ac4"
+}

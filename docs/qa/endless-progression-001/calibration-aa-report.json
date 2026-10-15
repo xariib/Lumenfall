@@ -1,6 +1,6 @@
 {
-  "status": "PARTIAL",
-  "checks": 7916,
+  "status": "MEASURED",
+  "checks": 9208,
   "limits": "Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.",
   "records": [
     {
@@ -71,6 +71,13 @@
           "status": "MET"
         }
       ],
+      "roster": {
+        "mythics": 1,
+        "abilities20": 8,
+        "ultimates": 1,
+        "mastered": 0,
+        "status": "DEVELOPING"
+      },
       "endpoint": {
         "rift": 5965,
         "ascends": 1311,
@@ -654,6 +661,13 @@
           "status": "MET"
         }
       ],
+      "roster": {
+        "mythics": 3,
+        "abilities20": 8,
+        "ultimates": 2,
+        "mastered": 2,
+        "status": "DEVELOPING"
+      },
       "endpoint": {
         "rift": 6716,
         "ascends": 1114,
@@ -1380,7 +1394,7 @@
       "policy": "casual",
       "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
       "policySha256": "5042fd3b5a440f929b208e63ee77bc9ca75d92f9b7bf512016dcbfc83186635a",
-      "days": 58,
+      "days": 60,
       "status": "MILESTONE_WINDOW_MEASURED",
       "milestones": {
         "recruit.ember": 0,
@@ -1399,7 +1413,8 @@
         "firstUltimate": 53,
         "ultimate.ember": 53,
         "firstMastery": 53,
-        "mastery.ember": 53
+        "mastery.ember": 53,
+        "mythic.tide": 58.5
       },
       "firstDay": [
         {
@@ -1446,13 +1461,20 @@
           "status": "MET"
         }
       ],
+      "roster": {
+        "mythics": 2,
+        "abilities20": 8,
+        "ultimates": 1,
+        "mastered": 1,
+        "status": "DEVELOPING"
+      },
       "endpoint": {
-        "rift": 6530,
-        "ascends": 1361,
-        "lab": 32,
-        "masterwork": 132,
+        "rift": 6620,
+        "ascends": 1367,
+        "lab": 33,
+        "masterwork": 133,
         "mastery": {
-          "ember": 2,
+          "ember": 3,
           "tide": 0,
           "stone": 0,
           "gale": 0,
@@ -1727,6 +1749,12 @@
           "to": 6520,
           "seconds": 172510,
           "days": 1.9966435185185185
+        },
+        {
+          "from": 6530,
+          "to": 6610,
+          "seconds": 388540,
+          "days": 4.496990740740741
         }
       ],
       "wholeDayPlateaus": [
@@ -2021,16 +2049,29 @@
             "prisms": 0.9242957746478874,
             "sigils": 0.015349876574433352
           }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 59.5,
+          "price": {
+            "prisms": 22000,
+            "sigils": 600000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9532475410546384,
+            "sigils": 0.0163976298428555
+          }
         }
       ],
-      "purchaseReceiptCount": 142
+      "purchaseReceiptCount": 147
     },
     {
       "policy": "frequent",
       "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
       "policySha256": "5042fd3b5a440f929b208e63ee77bc9ca75d92f9b7bf512016dcbfc83186635a",
-      "days": 55,
-      "status": "PARTIAL",
+      "days": 60,
+      "status": "MILESTONE_WINDOW_MEASURED",
       "milestones": {
         "recruit.ember": 0,
         "recruit.tide": 0.005208333333333333,
@@ -2046,7 +2087,8 @@
         "firstMythic": 47.833333333333336,
         "mythic.ember": 47.833333333333336,
         "firstUltimate": 52.833333333333336,
-        "ultimate.ember": 52.833333333333336
+        "ultimate.ember": 52.833333333333336,
+        "mythic.tide": 57.5
       },
       "firstDay": [
         {
@@ -2093,11 +2135,18 @@
           "status": "MET"
         }
       ],
+      "roster": {
+        "mythics": 2,
+        "abilities20": 8,
+        "ultimates": 1,
+        "mastered": 0,
+        "status": "DEVELOPING"
+      },
       "endpoint": {
-        "rift": 5611,
-        "ascends": 1515,
-        "lab": 32,
-        "masterwork": 116,
+        "rift": 5720,
+        "ascends": 1536,
+        "lab": 33,
+        "masterwork": 117,
         "mastery": {
           "ember": 0,
           "tide": 0,
@@ -2109,7 +2158,7 @@
           "titan": 0
         }
       },
-      "longestClosedWallDays": 1.3318287037037038,
+      "longestClosedWallDays": 1.6597222222222223,
       "walls": [
         {
           "from": 16,
@@ -2740,6 +2789,30 @@
           "to": 5590,
           "seconds": 100220,
           "days": 1.1599537037037038
+        },
+        {
+          "from": 5611,
+          "to": 5650,
+          "seconds": 143400,
+          "days": 1.6597222222222223
+        },
+        {
+          "from": 5672,
+          "to": 5680,
+          "seconds": 71400,
+          "days": 0.8263888888888888
+        },
+        {
+          "from": 5699,
+          "to": 5700,
+          "seconds": 85830,
+          "days": 0.9934027777777777
+        },
+        {
+          "from": 5715,
+          "to": 5716,
+          "seconds": 115070,
+          "days": 1.3318287037037038
         }
       ],
       "wholeDayPlateaus": [
@@ -2750,6 +2823,17 @@
           "labs": [
             "guardmastery"
           ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 60,
+          "rift": 5720,
+          "ascends": 3,
+          "labs": [],
           "forge": [],
           "tree": [
             "swift"
@@ -2770,14 +2854,14 @@
           }
         }
       ],
-      "purchaseReceiptCount": 518
+      "purchaseReceiptCount": 555
     },
     {
       "policy": "efficient",
       "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
       "policySha256": "5042fd3b5a440f929b208e63ee77bc9ca75d92f9b7bf512016dcbfc83186635a",
-      "days": 50,
-      "status": "PARTIAL",
+      "days": 60,
+      "status": "MILESTONE_WINDOW_MEASURED",
       "milestones": {
         "recruit.ember": 0,
         "recruit.tide": 0.005092592592592593,
@@ -2791,7 +2875,10 @@
         "recruit.titan": 18,
         "allRecruits": 18,
         "firstMythic": 47.333333333333336,
-        "mythic.ember": 47.333333333333336
+        "mythic.ember": 47.333333333333336,
+        "firstUltimate": 52.5,
+        "ultimate.ember": 52.5,
+        "mythic.tide": 57.50277777777778
       },
       "firstDay": [
         {
@@ -2834,14 +2921,22 @@
           "key": "firstUltimate",
           "min": 42,
           "max": 56,
-          "status": "PENDING"
+          "day": 52.5,
+          "status": "MET"
         }
       ],
+      "roster": {
+        "mythics": 2,
+        "abilities20": 8,
+        "ultimates": 1,
+        "mastered": 0,
+        "status": "DEVELOPING"
+      },
       "endpoint": {
-        "rift": 5430,
-        "ascends": 802,
-        "lab": 31,
-        "masterwork": 112,
+        "rift": 5570,
+        "ascends": 837,
+        "lab": 33,
+        "masterwork": 113,
         "mastery": {
           "ember": 0,
           "tide": 0,
@@ -3376,6 +3471,72 @@
           "to": 5425,
           "seconds": 71815,
           "days": 0.8311921296296296
+        },
+        {
+          "from": 5430,
+          "to": 5431,
+          "seconds": 100245,
+          "days": 1.1602430555555556
+        },
+        {
+          "from": 5443,
+          "to": 5444,
+          "seconds": 115170,
+          "days": 1.3329861111111112
+        },
+        {
+          "from": 5445,
+          "to": 5446,
+          "seconds": 71670,
+          "days": 0.8295138888888889
+        },
+        {
+          "from": 5456,
+          "to": 5457,
+          "seconds": 85530,
+          "days": 0.9899305555555555
+        },
+        {
+          "from": 5473,
+          "to": 5474,
+          "seconds": 114705,
+          "days": 1.3276041666666667
+        },
+        {
+          "from": 5489,
+          "to": 5490,
+          "seconds": 13950,
+          "days": 0.16145833333333334
+        },
+        {
+          "from": 5498,
+          "to": 5499,
+          "seconds": 56735,
+          "days": 0.6566550925925926
+        },
+        {
+          "from": 5507,
+          "to": 5508,
+          "seconds": 86235,
+          "days": 0.9980902777777778
+        },
+        {
+          "from": 5510,
+          "to": 5530,
+          "seconds": 71220,
+          "days": 0.8243055555555555
+        },
+        {
+          "from": 5546,
+          "to": 5547,
+          "seconds": 13605,
+          "days": 0.15746527777777777
+        },
+        {
+          "from": 5560,
+          "to": 5561,
+          "seconds": 57500,
+          "days": 0.6655092592592593
         }
       ],
       "wholeDayPlateaus": [
@@ -3391,10 +3552,36 @@
             "swift"
           ],
           "mastery": []
+        },
+        {
+          "day": 51,
+          "rift": 5430,
+          "ascends": 2,
+          "labs": [
+            "lumenstudy",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
         }
       ],
-      "investments": [],
-      "purchaseReceiptCount": 476
+      "investments": [
+        {
+          "kind": "ultimate",
+          "id": "ember",
+          "day": 52.5,
+          "price": {
+            "sigils": 8000000
+          },
+          "shareOfWallet": {
+            "sigils": 0.18128343688016643
+          }
+        }
+      ],
+      "purchaseReceiptCount": 574
     },
     {
       "policy": "mature",
@@ -3411,7 +3598,7 @@
       ],
       "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
       "policySha256": "5ec7e138f2bc113520cd36e697d0b39e83bb6bbc900a374eebd314e6dae5a9f6",
-      "days": 95,
+      "days": 180,
       "status": "MILESTONE_WINDOW_MEASURED",
       "milestones": {
         "recruit.ember": 0,
@@ -3440,7 +3627,10 @@
         "mythic.gale": 77.33796296296296,
         "ultimate.gale": 82.33333333333333,
         "mythic.thorn": 87.33506944444444,
-        "mastery.gale": 89.33333333333333
+        "mastery.gale": 89.33333333333333,
+        "mythic.void": 97.66666666666667,
+        "mythic.aurora": 107.66666666666667,
+        "mythic.titan": 117.33333333333333
       },
       "firstDay": [
         {
@@ -3487,23 +3677,30 @@
           "status": "MET"
         }
       ],
+      "roster": {
+        "mythics": 8,
+        "abilities20": 8,
+        "ultimates": 4,
+        "mastered": 4,
+        "status": "DEVELOPING"
+      },
       "endpoint": {
-        "rift": 6503,
-        "ascends": 1488,
-        "lab": 40,
-        "masterwork": 125,
+        "rift": 7390,
+        "ascends": 1686,
+        "lab": 57,
+        "masterwork": 135,
         "mastery": {
-          "ember": 14,
-          "tide": 12,
-          "stone": 4,
-          "gale": 1,
+          "ember": 20,
+          "tide": 18,
+          "stone": 14,
+          "gale": 11,
           "thorn": 0,
           "void": 0,
           "aurora": 0,
           "titan": 0
         }
       },
-      "longestClosedWallDays": 2.999652777777778,
+      "longestClosedWallDays": 7.672800925925926,
       "walls": [
         {
           "from": 16,
@@ -4032,6 +4229,228 @@
           "to": 6491,
           "seconds": 201400,
           "days": 2.3310185185185186
+        },
+        {
+          "from": 6503,
+          "to": 6520,
+          "seconds": 143410,
+          "days": 1.659837962962963
+        },
+        {
+          "from": 6537,
+          "to": 6538,
+          "seconds": 28470,
+          "days": 0.3295138888888889
+        },
+        {
+          "from": 6547,
+          "to": 6610,
+          "seconds": 143400,
+          "days": 1.6597222222222223
+        },
+        {
+          "from": 6625,
+          "to": 6626,
+          "seconds": 143740,
+          "days": 1.6636574074074073
+        },
+        {
+          "from": 6633,
+          "to": 6634,
+          "seconds": 172520,
+          "days": 1.9967592592592593
+        },
+        {
+          "from": 6640,
+          "to": 6670,
+          "seconds": 114740,
+          "days": 1.3280092592592592
+        },
+        {
+          "from": 6686,
+          "to": 6687,
+          "seconds": 28450,
+          "days": 0.3292824074074074
+        },
+        {
+          "from": 6696,
+          "to": 6697,
+          "seconds": 114950,
+          "days": 1.3304398148148149
+        },
+        {
+          "from": 6700,
+          "to": 6701,
+          "seconds": 86300,
+          "days": 0.9988425925925926
+        },
+        {
+          "from": 6710,
+          "to": 6730,
+          "seconds": 85860,
+          "days": 0.99375
+        },
+        {
+          "from": 6746,
+          "to": 6790,
+          "seconds": 85820,
+          "days": 0.993287037037037
+        },
+        {
+          "from": 6809,
+          "to": 6810,
+          "seconds": 86170,
+          "days": 0.997337962962963
+        },
+        {
+          "from": 6817,
+          "to": 6910,
+          "seconds": 143410,
+          "days": 1.659837962962963
+        },
+        {
+          "from": 6923,
+          "to": 6970,
+          "seconds": 143410,
+          "days": 1.659837962962963
+        },
+        {
+          "from": 6984,
+          "to": 7030,
+          "seconds": 114610,
+          "days": 1.3265046296296297
+        },
+        {
+          "from": 7043,
+          "to": 7044,
+          "seconds": 201320,
+          "days": 2.3300925925925924
+        },
+        {
+          "from": 7051,
+          "to": 7090,
+          "seconds": 114610,
+          "days": 1.3265046296296297
+        },
+        {
+          "from": 7100,
+          "to": 7120,
+          "seconds": 143470,
+          "days": 1.6605324074074075
+        },
+        {
+          "from": 7134,
+          "to": 7135,
+          "seconds": 172540,
+          "days": 1.9969907407407408
+        },
+        {
+          "from": 7141,
+          "to": 7150,
+          "seconds": 114610,
+          "days": 1.3265046296296297
+        },
+        {
+          "from": 7168,
+          "to": 7240,
+          "seconds": 114600,
+          "days": 1.3263888888888888
+        },
+        {
+          "from": 7249,
+          "to": 7250,
+          "seconds": 172780,
+          "days": 1.9997685185185186
+        },
+        {
+          "from": 7250,
+          "to": 7270,
+          "seconds": 201030,
+          "days": 2.326736111111111
+        },
+        {
+          "from": 7276,
+          "to": 7277,
+          "seconds": 172750,
+          "days": 1.9994212962962963
+        },
+        {
+          "from": 7278,
+          "to": 7279,
+          "seconds": 316760,
+          "days": 3.6662037037037036
+        },
+        {
+          "from": 7280,
+          "to": 7281,
+          "seconds": 143650,
+          "days": 1.6626157407407407
+        },
+        {
+          "from": 7290,
+          "to": 7300,
+          "seconds": 287520,
+          "days": 3.327777777777778
+        },
+        {
+          "from": 7308,
+          "to": 7309,
+          "seconds": 172280,
+          "days": 1.9939814814814816
+        },
+        {
+          "from": 7320,
+          "to": 7330,
+          "seconds": 201120,
+          "days": 2.327777777777778
+        },
+        {
+          "from": 7331,
+          "to": 7332,
+          "seconds": 229850,
+          "days": 2.660300925925926
+        },
+        {
+          "from": 7346,
+          "to": 7347,
+          "seconds": 229850,
+          "days": 2.660300925925926
+        },
+        {
+          "from": 7358,
+          "to": 7359,
+          "seconds": 258670,
+          "days": 2.9938657407407407
+        },
+        {
+          "from": 7360,
+          "to": 7361,
+          "seconds": 662930,
+          "days": 7.672800925925926
+        },
+        {
+          "from": 7361,
+          "to": 7362,
+          "seconds": 402640,
+          "days": 4.660185185185185
+        },
+        {
+          "from": 7376,
+          "to": 7377,
+          "seconds": 402640,
+          "days": 4.660185185185185
+        },
+        {
+          "from": 7388,
+          "to": 7389,
+          "seconds": 374420,
+          "days": 4.333564814814815
+        },
+        {
+          "from": 7389,
+          "to": 7390,
+          "seconds": 460720,
+          "days": 5.332407407407407
         }
       ],
       "wholeDayPlateaus": [
@@ -4290,6 +4709,536 @@
         {
           "day": 94,
           "rift": 6490,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 96,
+          "rift": 6503,
+          "ascends": 3,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "stone"
+          ]
+        },
+        {
+          "day": 98,
+          "rift": 6547,
+          "ascends": 3,
+          "labs": [
+            "wispascend"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "tide"
+          ]
+        },
+        {
+          "day": 100,
+          "rift": 6625,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "stone"
+          ]
+        },
+        {
+          "day": 102,
+          "rift": 6633,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 105,
+          "rift": 6696,
+          "ascends": 3,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "stone"
+          ]
+        },
+        {
+          "day": 112,
+          "rift": 6923,
+          "ascends": 3,
+          "labs": [
+            "lumenstudy",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "stone"
+          ]
+        },
+        {
+          "day": 115,
+          "rift": 7043,
+          "ascends": 3,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "gale"
+          ]
+        },
+        {
+          "day": 116,
+          "rift": 7043,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 121,
+          "rift": 7134,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 125,
+          "rift": 7249,
+          "ascends": 2,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "gale"
+          ]
+        },
+        {
+          "day": 127,
+          "rift": 7250,
+          "ascends": 2,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 130,
+          "rift": 7276,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 132,
+          "rift": 7278,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 133,
+          "rift": 7278,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "lumenstudy",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 135,
+          "rift": 7280,
+          "ascends": 2,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 137,
+          "rift": 7290,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 138,
+          "rift": 7290,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "lumenstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 140,
+          "rift": 7308,
+          "ascends": 2,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "stone"
+          ]
+        },
+        {
+          "day": 142,
+          "rift": 7320,
+          "ascends": 2,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "gale"
+          ]
+        },
+        {
+          "day": 145,
+          "rift": 7331,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 147,
+          "rift": 7346,
+          "ascends": 2,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "gale"
+          ]
+        },
+        {
+          "day": 148,
+          "rift": 7346,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 150,
+          "rift": 7358,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "gale"
+          ]
+        },
+        {
+          "day": 151,
+          "rift": 7358,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 153,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 154,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [
+            "lumenstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 155,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 156,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 157,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 158,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 159,
+          "rift": 7360,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 161,
+          "rift": 7361,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 162,
+          "rift": 7361,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 163,
+          "rift": 7361,
+          "ascends": 0,
+          "labs": [
+            "wispascend"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 165,
+          "rift": 7376,
+          "ascends": 2,
+          "labs": [
+            "lumenstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "gale"
+          ]
+        },
+        {
+          "day": 166,
+          "rift": 7376,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 167,
+          "rift": 7376,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 168,
+          "rift": 7376,
+          "ascends": 0,
+          "labs": [
+            "wispascend"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 170,
+          "rift": 7388,
+          "ascends": 0,
+          "labs": [
+            "lumenstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 171,
+          "rift": 7388,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 172,
+          "rift": 7388,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 174,
+          "rift": 7389,
+          "ascends": 2,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "tide"
+          ]
+        },
+        {
+          "day": 175,
+          "rift": 7389,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 176,
+          "rift": 7389,
+          "ascends": 0,
+          "labs": [
+            "lumenstudy",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 177,
+          "rift": 7389,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 178,
+          "rift": 7389,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 180,
+          "rift": 7390,
           "ascends": 0,
           "labs": [
             "guardmastery"
@@ -4746,9 +5695,425 @@
             "prisms": 0.9352843566148741,
             "sigils": 0.09841661722403278
           }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 95,
+          "price": {
+            "prisms": 24000,
+            "sigils": 700000
+          },
+          "shareOfWallet": {
+            "prisms": 0.7978192939299249,
+            "sigils": 0.06421592402632376
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 96.66666666666667,
+          "price": {
+            "prisms": 34000,
+            "sigils": 1200000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9977111332824696,
+            "sigils": 0.10430526047066184
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 97.33333333333333,
+          "price": {
+            "prisms": 32000,
+            "sigils": 1100000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9757287474082205,
+            "sigils": 0.09325785551187414
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 99,
+          "price": {
+            "prisms": 25000,
+            "sigils": 750000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8608815426997245,
+            "sigils": 0.06216105132737466
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 100.66666666666667,
+          "price": {
+            "prisms": 26000,
+            "sigils": 800000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8058017727639001,
+            "sigils": 0.06321432683181884
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 102.66666666666667,
+          "price": {
+            "prisms": 33000,
+            "sigils": 1150000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9563831328792929,
+            "sigils": 0.08714362519754133
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 104,
+          "price": {
+            "prisms": 27000,
+            "sigils": 850000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9035237425961249,
+            "sigils": 0.06335719489522881
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 105.33333333333333,
+          "price": {
+            "prisms": 28000,
+            "sigils": 900000
+          },
+          "shareOfWallet": {
+            "prisms": 0.896172065036487,
+            "sigils": 0.06460213090846603
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 106.33333333333333,
+          "price": {
+            "prisms": 29000,
+            "sigils": 950000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9169380592531697,
+            "sigils": 0.06598348065360875
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 107.33333333333333,
+          "price": {
+            "prisms": 35000,
+            "sigils": 1250000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9773533271899696,
+            "sigils": 0.08318127242192788
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 108.33333333333333,
+          "price": {
+            "prisms": 34000,
+            "sigils": 1200000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9959575839240729,
+            "sigils": 0.0777623671486659
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 109.33333333333333,
+          "price": {
+            "prisms": 30000,
+            "sigils": 1000000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8953085830249493,
+            "sigils": 0.0629973125976419
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 111,
+          "price": {
+            "prisms": 31000,
+            "sigils": 1050000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9601090188305252,
+            "sigils": 0.06428128412456145
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 112.66666666666667,
+          "price": {
+            "prisms": 21000,
+            "sigils": 550000
+          },
+          "shareOfWallet": {
+            "prisms": 0.6949500297835727,
+            "sigils": 0.032810861134771385
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 113,
+          "price": {
+            "prisms": 22000,
+            "sigils": 600000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9284267386900743,
+            "sigils": 0.03539492029801343
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 114.33333333333333,
+          "price": {
+            "prisms": 23000,
+            "sigils": 650000
+          },
+          "shareOfWallet": {
+            "prisms": 0.7465351033788828,
+            "sigils": 0.036385117322691264
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 116.66666666666667,
+          "price": {
+            "prisms": 36000,
+            "sigils": 1300000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9753190105930482,
+            "sigils": 0.06942987233074853
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 118,
+          "price": {
+            "prisms": 24000,
+            "sigils": 700000
+          },
+          "shareOfWallet": {
+            "prisms": 0.7964689874887997,
+            "sigils": 0.03697223390515471
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 119.66666666666667,
+          "price": {
+            "prisms": 35000,
+            "sigils": 1250000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9880586059904581,
+            "sigils": 0.06307618518259672
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 121.66666666666667,
+          "price": {
+            "prisms": 25000,
+            "sigils": 750000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8415808254224736,
+            "sigils": 0.03728372457051138
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 123,
+          "price": {
+            "prisms": 37000,
+            "sigils": 1350000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9500821692686935,
+            "sigils": 0.0637220111686277
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 124.33333333333333,
+          "price": {
+            "prisms": 26000,
+            "sigils": 800000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9784367591163964,
+            "sigils": 0.03776831733884436
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 128.33333333333334,
+          "price": {
+            "prisms": 38000,
+            "sigils": 1400000
+          },
+          "shareOfWallet": {
+            "prisms": 0.950950950950951,
+            "sigils": 0.062331951389448206
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 130.66666666666666,
+          "price": {
+            "prisms": 36000,
+            "sigils": 1300000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9877085162423178,
+            "sigils": 0.056550523346818315
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 135.66666666666666,
+          "price": {
+            "prisms": 39000,
+            "sigils": 1450000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9778357235984355,
+            "sigils": 0.06088085784067773
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 139.33333333333334,
+          "price": {
+            "prisms": 32000,
+            "sigils": 1100000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9027816961011116,
+            "sigils": 0.04532507867506554
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 141.33333333333334,
+          "price": {
+            "prisms": 27000,
+            "sigils": 850000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9589430316806364,
+            "sigils": 0.03466327483124083
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 146,
+          "price": {
+            "prisms": 28000,
+            "sigils": 900000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9074998379464575,
+            "sigils": 0.03552305888586425
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 149,
+          "price": {
+            "prisms": 29000,
+            "sigils": 950000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8901166359729895,
+            "sigils": 0.036433760719243855
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "stone",
+          "day": 159.33333333333334,
+          "price": {
+            "prisms": 33000,
+            "sigils": 1150000
+          },
+          "shareOfWallet": {
+            "prisms": 0.990663744708955,
+            "sigils": 0.042953210246365045
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "gale",
+          "day": 164.33333333333334,
+          "price": {
+            "prisms": 30000,
+            "sigils": 1000000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9975062344139651,
+            "sigils": 0.03667732350752727
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 173.33333333333334,
+          "price": {
+            "prisms": 37000,
+            "sigils": 1350000
+          },
+          "shareOfWallet": {
+            "prisms": 0.929741682581164,
+            "sigils": 0.04740620296470668
+          }
         }
       ],
-      "purchaseReceiptCount": 399
+      "purchaseReceiptCount": 582
     }
   ]
 }
