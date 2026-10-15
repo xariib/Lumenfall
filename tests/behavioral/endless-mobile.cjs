@@ -4,7 +4,7 @@ const {spawn}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'docs/qa/endless-progression-001/mobile');
-const calibrated=!process.argv.includes('--initial-proposal'),dailyCalibration=calibrated&&!process.argv.includes('--prior-ak'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=dailyCalibration?84:calibrated?32:30;
+const calibrated=!process.argv.includes('--initial-proposal'),dailyCalibration=calibrated&&!process.argv.includes('--prior-ak'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=dailyCalibration?(process.argv.includes('--focus-f')?92:84):calibrated?32:30;
 assert(!dailyCalibration||calibrated,'daily calibration uses the measured investment table');
 const source=fs.readFileSync(file,'utf8'),marker="if(document.readyState==='loading'){";
 const bridge=`window.endlessUi={
@@ -60,6 +60,13 @@ async function run(){
    }
    if(mode==='mastery'){
     check(geometry.mastery.includes('Rank 0')&&geometry.mastery.includes('Next: Own Power ×1.10'),'Mastery current/next clear');
+    const eligible=await ev('endlessUi.get()');
+    await ev('(()=>{var s=endlessUi.get();s.longStudyLevels.wispascend='+(labBase-1)+';endlessUi.set(s);})()');
+    check(await ev('document.querySelector("[data-mastery=ember]").disabled'),'one Lab short disables native Mastery control');
+    const blockedBefore=await ev('endlessUi.get()');await ev('document.querySelector("[data-mastery=ember]").click()');
+    const blockedAfter=await ev('endlessUi.get()');check(blockedAfter.wispMastery.ember===0&&blockedAfter.prisms===blockedBefore.prisms&&blockedAfter.sigils===blockedBefore.sigils,'disabled Mastery preserves rank and both currencies');
+    await ev('endlessUi.set('+JSON.stringify(eligible)+')');
+    await ev('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');
     const before=await ev('endlessUi.get()');await ev('var b=document.querySelector("[data-mastery=ember]");b.scrollIntoView({block:"center"});b.focus({preventScroll:true})');await key();await pause(80);
     const after=await ev('({s:endlessUi.get(),card:document.activeElement.closest("[data-wisp-card]")?.dataset.wispCard})');check(after.s.wispMastery.ember===1,'native keyboard buys a rank');check(after.s.prisms===before.prisms-prismPrice&&after.s.sigils===before.sigils-sigilPrice,'native keyboard exact spend');check(after.card==='ember','stable purchase focus');
    }

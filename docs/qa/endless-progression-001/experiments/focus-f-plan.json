@@ -1,13 +1,13 @@
 {
-  "status": "PRIMARY_60D_VALIDATED_OTHER_POLICIES_AND_MATURE_OPEN_NOT_APPLIED",
+  "status": "APPLIED_ISOLATED_CALIBRATED_RELEASE_ACCEPTANCE_OPEN",
   "baseSourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
   "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
   "changes": [
     "Mythic base Wisp Lab90→91; all other E values unchanged"
   ],
   "reason": "E focused first Mythic41.6721d is below the retained42–56d audit; Ultimate42.6667d and both two-visit targets already meet it. Do not relax the audit.",
-  "limits": "F remains a separate candidate. Two fresh primary60d windows pass; four other policy windows, full roster and extended Mastery, final combined CI, GitHub and Android/device acceptance remain open. Current product still source2719.",
-  "reproducible": "Current D source2719 + tests/behavioral/endless-balance-focus.cjs with final argument91",
+  "limits": "All six fresh60d main milestones meet retained windows. Primary Day1 audits pass. Full roster and extended Mastery, final combined CI and human/device acceptance remain open.",
+  "reproducible": "git show7a564a2:index.html (D2719) plus tests/behavioral/endless-balance-focus.cjs, final argument91, reproduces F4b052487",
   "campaigns": [
     {
       "kind": "focused",
@@ -275,5 +275,19 @@
     }
   ],
   "foregroundPauseFile": "validation-evidence/endless-foreground-qa.pause",
-  "fixtureMode": "F literals are selected explicitly with --focus-f in core, boundary, income and causal-control suites. Existing D default remains until product application; assertions are unchanged."
+  "fixtureMode": "F literals are selected explicitly with --focus-f in core, boundary, income and causal-control suites. Existing D default remains until product application; assertions are unchanged.",
+  "progressionV8": {
+    "status": "PASS",
+    "checks": 56,
+    "version": "6.0.286.52",
+    "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+    "fixture": "--focus-f exact rank10000 Lab2092",
+    "receipt": "activation/focus-f-progression-v8.json.gz"
+  },
+  "productApplication": {
+    "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+    "edits": 4,
+    "assets": 15,
+    "scope": "Nested feature worktree only; no shared/main/remote integration"
+  }
 }

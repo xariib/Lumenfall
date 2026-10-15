@@ -1,53 +1,19 @@
 # Endless progression continuation
 
-Feature remains OPEN. Work only in the nested isolated
-`validation-evidence/endless-progression-worktree`, branch
-`codex/endless-progression`. Shared checkout is clean at d2ae094 and untouched.
+Feature OPEN. Use only the nested isolated validation-evidence/endless-progression-worktree, branch codex/endless-progression. Shared checkout is clean at d2ae094 and untouched.
 
-- Current product is D/source2719debe. Proposed F/source4b052487 is separate:
-  Titan Lab48, Mythic Lab91, Ultimate/Mastery Lab92. Other prices/effects match.
-  Reproduce with `endless-balance-focus.cjs` on current D, final argument91.
-- Two fresh F60d primary campaigns pass the retained strict pacing audit:
-  focused3 visits: recruits21.333d/MY42.333d/ULT42.667d;
-  broader2 visits:23.5d/51d/51.5d. Immutable60d endpoints are in activation/.
-  They now continue to180d, same source/policy/state, to measure full roster and
-  extended Mastery. Do not overwrite the frozen60d files.
-- Four F60d policies remain running: broader regular, casual, frequent,
-  efficient. Outputs are `validation-evidence/focus-f-aware-<policy>*`.
-  The two180d prefixes are `focus-f-focused-regular` and
-  `focus-f-aware-regular_two`. Transient tool bindings are in
-  `validation-evidence/endless-active-jobs.json`; verify actual identity before
-  stopping any process. The180d runners yield after a chunk when
-  `validation-evidence/endless-foreground-qa.pause` exists.
-- F exact checks already pass:235 core,2528 boundaries,632726 income,
-  21 causal controls,13416 prices,1782 Support,2801 early Wisps,173 Swift,
-  actual V8.6.0 143. New independent F fixtures use explicit `--focus-f`;
-  existing D defaults also pass. No assertion or HP tolerance was relaxed.
-- F controlled12h mature run:2193 accounting checks PASS; eight hours plus
-  cold save/load and four hours:471 PASS. Instrumented sourced1424762 is F
-  plus diagnostic wrappers. Loaded Windows times612.8s/505.3s and max slice674ms
-  are not isolated or Android acceptance. A pure orbit memo was correct but
-  slower and is explicitly rejected; do not integrate that prototype.
-- Previous D focused and E focused balances failed pacing and are preserved.
-  E MY41.672d stayed outside the42d lower bound; F adds one Lab level.
-  The three-day early plateau of a conservative policy reduces to1.501d when
-  its player tries60s combat before a later manual Ascend. This is a simulation
-  decision control, never a gameplay cooldown. All game Ascends stay unrestricted.
-- After remaining measurements, apply only the four verified numeric edits to
-  the actual product; do not replace it with a prototype. Update active fixtures
-  to exact new requirements: core/income/boundaries/controls `--focus-f` in CI,
-  p2 funded Mythic Lab91, Stone Ultimate fixtures Lab116, all-ULT fixtures176,
-  high-rank legacy fixture2092. Keep archived originals unchanged. Recheck other
-  relevant fixtures rather than broadly replacing numbers.
-- Stage15 assets, regenerate source-qualified four8h references and verify their
-  outcomes, then run final full/scoped required gates and mobile/accessibility.
-  Pause long campaigns for bounded browser gates and resume afterward. Current
-  D full run217 PASS/3 failed attempts; two stale references and one Page.navigate
-  failure passed separate targeted reruns. It is not a green whole-run claim.
-- Required local mature/full-roster work, final combined CI and human/device
-  acceptance remain. GitHub karahaNx/Lumenfall last returned404 under xariib;
-  destination clarification is pending. No Java/SDK/adb/signing build available.
-  No shared/main/remote integration, PR, APK, release or chat archive occurred.
+- Product is now F/source4b052487 (root and staged): Titan Lab48, Mythic Lab91, Ultimate/Mastery Lab92. Four targeted numeric lines changed from D2719; all other product bytes match. Rebuild from7a564a2:index.html with endless-balance-focus.cjs final argument91.
+- Six fresh60d policies now meet all main milestones: recruits21.333–26d; MY42.333–53.333d; ULT42.667–54d. Primary2/3-visit Day1 audits pass. Casual5-minute visits first rarity at24h remains recorded. No pacing bound or HP tolerance relaxed.
+- Two same-policy earned F campaigns continue to180d. They yielded at86d/87d for foreground QA because validation-evidence/endless-foreground-qa.pause exists. Pausing exits the batch runner. After foreground QA, remove that file and rerun the same batch commands (target180, chunks128, run-ms30000, same pause file). Do not run two writers on a prefix.
+- Long prefixes: validation-evidence/focus-f-focused-regular (runtime lab-work-focused, policy regular) and focus-f-aware-regular_two (runtime lab-work-aware, policy regular_two). Both use immutable validation-evidence/endless-focus-f-game.html. Four other F60d prefixes are complete. Frozen60d endpoints and policy/source hashes must remain unchanged.
+- F exact checks PASS:235 core,2528 boundaries,632726 income,21 controls,13416 prices,1782 Support,2801 early Wisps,173 Swift; actual V8.6 engine143 plus progression56. Independent F fixtures use --focus-f, including CI/mobile; D defaults remain available.
+- Current F warm953/cold953, storage29, parity305, wide67, counters56, Comets290, cycle94/136/112/24, clock383,14 controls PASS. Mobile493/12 profiles/48 cases and Wisp163/12 PASS. Viewed320px/200% text captures; no horizontal clipping. One-Lab-short disabled/currency-preservation controls also pass. Initial mobile fixture Lab84 could not buy at new92; repaired minimum without changing assertions.
+- All15 assets match source/staged/HTTP preview4175. Four independently regenerated8h states remain byte-identical to previous references; only qualifying source hash changed to4b052487.
+- Final F whole browser run is ACTIVE: tool session50529, log validation-evidence/final-f-full-browser.txt, raw final-f-browser-raw. Do not change product bytes while it runs. It started19:16UTC15Oct, and has no known failures at last inspection. D prior full217/3 failed attempts and targeted repairs remain historical, not a green final whole run.
+- F controlled12h audit2193 PASS and8h+cold4h471 PASS. Instrumented sourced1424762 is F plus diagnostic wrappers. Concurrent Windows times612.8s/505.3s, max slice674ms; isolated/device performance remains open. Orbit memo prototype was exact but slower; explicitly rejected and NOT integrated.
+- Current UI fixtures now use funded Mythic91, Stone Ultimate116, all-ULT176; legacy rank10000 uses2092 with --focus-f. Active CI core/income/boundary/control/mobile commands select F. Keep archived originals unchanged.
+- Next: finish final whole browser and required scoped/negative gates on F, record causal failures honestly, then resume180d campaigns and measure full roster/extended Mastery. Available current source/receipts: applied-f-checkpoint.json, focus-f-plan.json and applied-f/.
+- Earlier D focused all8/MY/ULT18.667/36/39d was rejected; E focused MY41.672d remained below42d. All six E60d results are retained. Conservative early3d plateau reduces to1.501d when the simulated player tries60s before optional later manual Ascend. This never changes gameplay or unrestricted automatic Ascends.
+- Full roster/extended Mastery, final combined CI and human/device acceptance remain OPEN. GitHub karahaNx/Lumenfall last returned404 as xariib; destination clarification pending. No SDK/JDK/adb or signing build. No shared/main/remote integration, PR, APK, release or archive. Self-review only.
 
-Read the task, README, focus-f-plan.json and source before editing. Keep the
-task startup under32KiB. Preserve fe14b2d timed Lab/Mote rules and67e7d3e Lab UI.
+Read the task, README and affected source before editing. Preserve fe14b2d timed Lab/60s Mote rules,67e7d3e Lab UI, fixed effects, paid work, saves and strict remaining-HP checks. Keep startup below32KiB.

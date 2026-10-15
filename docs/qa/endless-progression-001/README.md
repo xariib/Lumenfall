@@ -1,5 +1,20 @@
 # Endless progression — work in progress
 
+Applied isolated [F checkpoint](experiments/applied-f-checkpoint.json), source4b052487.
+Six fresh60d policies meet recruitment/Mythic/Ultimate target windows:
+21.333–26d /42.333–53.333d /42.667–54d. Primary2/3-visit Day1 audits pass.
+Only four measured numeric table lines changed. Root/staged/HTTP15 assets match.
+Current warm/cold953 each, timer29, parity305, mobile469/12, Wisp163/12,
+cycle94/136/112/24/383 and14 controls PASS. Final whole browser RUNNING.
+Original-price, Support and ability effects retained. New gates are independently
+covered by2528 boundaries,235 core,632726 income and21 causal controls.
+The earlier mobile fixture incorrectly used Lab84; F requires92. Repaired
+fixture passes unchanged geometry, keyboard, debit and focus assertions.
+Mature campaigns paused at86d/87d for foreground QA; roster/extended acceptance
+still OPEN. No shared/main/remote/APK/release/archive delivery.
+
+Historical implementation and experiment checkpoints follow.
+
 Newest isolated [activation checkpoint](experiments/activation-checkpoint.json),
 source2719debe. Full prior5739 run:217 PASS/3 FAIL. All three targeted repairs
 now PASS: exact grid operands survive clock activation; funded Mythic fixture

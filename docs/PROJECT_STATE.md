@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
 15 October: [ENDLESS_PROGRESSION_001](tasks/ENDLESS_PROGRESSION_001.md) local
-candidate. D180d measured; strict automation/cold parity verified. Release OPEN.
+F candidate: daily/overnight verified; mature campaigns and final CI OPEN.
 
 15 October: [Lab controls](tasks/LAB_SPEED_CONTROLS_001.md),67e7d3e locally verified;
 idle boost action removed/current levels shown. Combined/native acceptance OPEN.

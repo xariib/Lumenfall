@@ -7,7 +7,7 @@ window.runWispUpgradeQa = function(){
   function visible(el){return !!el && el.getBoundingClientRect().width>0 && el.getBoundingClientRect().height>0;}
   function progression(id){return q('[data-wisp-progression="'+id+'"]');}
   function seed(id,rarity,module,ultimate,funded){
-    var s=b.fresh();s.maxDepthEver=250;s.ascendCount=50;s.longStudyLevels.wispascend=168;s.research.arcanecal=10;s.tutorialDone=true;
+    var s=b.fresh();s.maxDepthEver=250;s.ascendCount=50;s.longStudyLevels.wispascend=176;s.research.arcanecal=10;s.tutorialDone=true;
     s.spirits[id]=1;s.heroRarity[id]=rarity;s.wispModules[id]=module;s.wispUltimate[id]=ultimate;
     s.lumen=s.shards=s.sigils=funded?1e12:0;s.activeParty=[id];return s;
   }
