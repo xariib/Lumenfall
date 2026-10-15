@@ -1,5 +1,5 @@
 {
-  "status": "APPLIED_ISOLATED_ACCEPTANCE_OPEN",
+  "status": "IMPLEMENTED_LOCAL_MEASUREMENTS_COMPLETE_RELEASE_ACCEPTANCE_OPEN",
   "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
   "productChanges": "Only four measured table lines from prior2719; all other source bytes retained.",
   "assets": "15 source/staged/HTTP assets match",
@@ -39,12 +39,17 @@
     "startedUtc": "2026-10-15T19:16:32Z",
     "completedByUtc": "2026-10-15T20:02:48.013Z"
   },
-  "matureCampaigns": "Resumed unchanged earned campaigns from86d/87d toward180d after foreground QA. Full roster and extended Mastery still open.",
+  "matureCampaigns": {
+    "status": "BOTH180D_COMPLETE",
+    "checks": 42590,
+    "receipt": "applied-f-final-campaigns.json",
+    "recordPlateauCaveat": "Open30.33/41.49d record gaps in conservative Lab-saving policies retained; not a late-wall target PASS."
+  },
   "limits": [
-    "Both180d Mastery endpoints still being measured",
-    "GitHub404; no remote/main integration",
-    "Android SDK/JDK/signing/device checks unavailable",
-    "Self-review only"
+    "Human late-pacing acceptance remains open; conservative-policy record plateau outliers are preserved.",
+    "GitHub404 prevents required remote CI and integration; historical Guidance baseline object absent locally.",
+    "No Android tools/signing build/installed-save/device/TalkBack acceptance.",
+    "Self-review only; no main/remote/APK/release/archive."
   ],
   "receipts": [
     {
@@ -292,5 +297,18 @@
     "regular2": 133.5,
     "postRosterGrowth": "Both observed",
     "receipt": "applied-f-both-full.json"
+  },
+  "lateChoices": {
+    "sourceQualified": true,
+    "burstContinuationDays": 7,
+    "startingDay": 138,
+    "visits": 2,
+    "minutesPerVisit": 10,
+    "riftBefore": 9022,
+    "riftAfter": 9430,
+    "masteryPurchases": 84,
+    "ledgerChecks": 56,
+    "causalControls": 3,
+    "limits": "Separate earned-checkpoint continuation and diagnostic controls; no primary-run rebase or human/device acceptance."
   }
 }

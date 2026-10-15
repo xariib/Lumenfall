@@ -1,5 +1,7 @@
 # Endless progression — work in progress
 
+[Readable current results and limits](RESULTS.md).
+
 Applied isolated [F checkpoint](experiments/applied-f-checkpoint.json), source4b052487.
 Six fresh60d policies meet recruitment/Mythic/Ultimate target windows:
 21.333–26d /42.333–53.333d /42.667–54d. Primary2/3-visit Day1 audits pass.
@@ -12,11 +14,11 @@ covered by2528 boundaries,235 core,632726 income and21 causal controls.
 The earlier mobile fixture incorrectly used Lab84; F requires92. Repaired
 fixture passes unchanged geometry, keyboard, debit and focus assertions.
 Foreground12h296s/max slice281ms,2195 exact checks PASS; Android performance remains unverified.
-Both [primary full rosters125.67/133.5d](experiments/applied-f-both-full.json) and post-roster growth observed; both180d extended acceptance
-still OPEN. No shared/main/remote/APK/release/archive delivery.
+Both [primary full rosters125.67/133.5d](experiments/applied-f-both-full.json) and post-roster growth observed.
+Both180d runs completed; [final receipts](experiments/applied-f-final-campaigns.json) retain30.33/41.49d open record plateaus and source-qualified choice controls. Human pacing acceptance remains OPEN. No shared/main/remote/APK/release/archive delivery.
 
 [Android/human acceptance](DEVICE_ACCEPTANCE.md) remains separate from desktop results.
-Fixed [102/101-day development receipts](experiments/applied-f-mid-mature.json) retain exact investments and plateau work; both earned campaigns continue.
+Fixed [102/101-day development receipts](experiments/applied-f-mid-mature.json) retain exact investments and plateau work before the completed180d endpoints.
 
 Historical implementation and experiment checkpoints follow.
 

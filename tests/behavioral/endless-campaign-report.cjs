@@ -27,6 +27,8 @@ for(const policy of ['regular','regular_two','casual','frequent','efficient','ma
   plateaus.push({day:b.day,rift:b.maxDepth,ascends:b.ascends-a.ascends,labs:increased(a.labs,b.labs),forge:increased(a.forge,b.forge),tree:increased(a.tree,b.tree),mastery:increased(a.mastery,b.mastery)});
  }
  const gaps=(c.walls||[]).map(w=>({...w,days:w.seconds/day}));
+ const openRecordGapDays=Number.isFinite(c.lastRecordAt)&&c.lastRecordAt>=0&&c.lastRecordAt<=c.elapsed?(c.elapsed-c.lastRecordAt)/day:null;
+ const longestClosedWallDays=Math.max(0,...gaps.map(w=>w.days)),longestObservedRecordGapDays=openRecordGapDays===null?null:Math.max(longestClosedWallDays,openRecordGapDays);
  const investments=(c.purchases||[]).filter(p=>p.kind==='ultimate'||p.kind==='mastery').map(p=>({kind:p.kind,id:p.id,day:p.at/day,price:p.price,shareOfWallet:p.shareOfWallet}));
  const last=c.history[c.history.length-1];
  const ids=Object.keys(last.rarity),fullRoster=row=>ids.every(id=>row.rarity[id]>=5&&row.modules[id]>=20&&row.ultimates[id]);
@@ -44,7 +46,7 @@ for(const policy of ['regular','regular_two','casual','frequent','efficient','ma
  if(milestones.fullRosterDevelopment!==undefined){checks++;assert(firstFull&&Math.abs(firstFull.day-milestones.fullRosterDevelopment)<=1,'full roster milestone agrees with the saved daily endpoint');}
  records.push({policy,phases:c.phases,sourceSha256:c.sourceSha256,policySha256:c.policySha256,days:c.history.length,status:c.history.length>=56?'MILESTONE_WINDOW_MEASURED':'PARTIAL',milestones,firstDay,targets,
   roster,postRoster,endpoint:{rift:last.maxDepth,ascends:last.ascends,lab:last.labs.wispascend,masterwork:last.forge.masterwork,mastery:last.mastery},
-  longestClosedWallDays:Math.max(0,...gaps.map(w=>w.days)),walls:gaps,wholeDayPlateaus:plateaus,investments,purchaseReceiptCount:(c.purchases||[]).length});
+  longestClosedWallDays,openRecordGapDays,longestObservedRecordGapDays,walls:gaps,wholeDayPlateaus:plateaus,investments,purchaseReceiptCount:(c.purchases||[]).length});
 }
 assert(records.length>0,'saved campaigns required');
 for(const [policy,flag]of [['regular','--require-primary'],['regular_two','--require-regular-two']])if(process.argv.includes(flag)){
@@ -57,4 +59,4 @@ if(process.argv.includes('--require-regular-two-roster'))assert(records.find(r=>
 if(process.argv.includes('--require-regular-two-post-roster'))assert(records.find(r=>r.policy==='regular_two')?.postRoster?.advancedWisps.length>0,'regular_two campaign must purchase further Mastery after full roster development');
 const result={status:records.every(r=>r.days>=56)?'MEASURED':'PARTIAL',checks,limits:'Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.',records};
 if(output)fs.writeFileSync(output,JSON.stringify(result,null,2));
-console.log(JSON.stringify({status:result.status,checks,policies:records.map(r=>({policy:r.policy,days:r.days,milestones:r.milestones,targets:r.targets,longestClosedWallDays:r.longestClosedWallDays}))}));
+console.log(JSON.stringify({status:result.status,checks,policies:records.map(r=>({policy:r.policy,days:r.days,milestones:r.milestones,targets:r.targets,longestClosedWallDays:r.longestClosedWallDays,openRecordGapDays:r.openRecordGapDays,longestObservedRecordGapDays:r.longestObservedRecordGapDays}))}));

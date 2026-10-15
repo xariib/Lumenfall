@@ -1,19 +1,48 @@
 # Endless progression continuation
 
-Feature OPEN. Use only the nested isolated validation-evidence/endless-progression-worktree, branch codex/endless-progression. Shared checkout is clean at d2ae094 and untouched.
+Feature OPEN. Use only nested validation-evidence/endless-progression-worktree,
+branch codex/endless-progression. Shared checkout preserved. No agents/chats/messages.
 
-- Product is now F/source4b052487 (root and staged): Titan Lab48, Mythic Lab91, Ultimate/Mastery Lab92. Four targeted numeric lines changed from D2719; all other product bytes match. Rebuild from7a564a2:index.html with endless-balance-focus.cjs final argument91.
-- Six fresh60d policies now meet all main milestones: recruits21.333–26d; MY42.333–53.333d; ULT42.667–54d. Primary2/3-visit Day1 audits pass. Casual5-minute visits first rarity at24h remains recorded. No pacing bound or HP tolerance relaxed.
-- Two same-policy earned F campaigns resumed toward180d from86d/87d after foreground QA; pause file removed. Current tool sessions61729 focused and40911 two-visits. Never run two writers per prefix. Each batch preserves immutable source/policy hashes.
-- Long prefixes: validation-evidence/focus-f-focused-regular (runtime lab-work-focused, policy regular) and focus-f-aware-regular_two (runtime lab-work-aware, policy regular_two). Both use immutable validation-evidence/endless-focus-f-game.html. Four other F60d prefixes are complete. Frozen60d endpoints and policy/source hashes must remain unchanged.
-- F exact checks PASS:235 core,2528 boundaries,632726 income,21 controls,13416 prices,1782 Support,2801 early Wisps,173 Swift; actual V8.6 engine143 plus progression56. Independent F fixtures use --focus-f, including CI/mobile; D defaults remain available.
-- Current F warm953/cold953, storage29, parity305, wide67, counters56, Comets290, cycle94/136/112/24, clock383,14 controls PASS. Mobile493/12 profiles/48 cases and Wisp163/12 PASS. Viewed320px/200% text captures; no horizontal clipping. One-Lab-short disabled/currency-preservation controls also pass. Initial mobile fixture Lab84 could not buy at new92; repaired minimum without changing assertions.
-- All15 assets match source/staged/HTTP preview4175. Four independently regenerated8h states remain byte-identical to previous references; only qualifying source hash changed to4b052487.
-- Final F whole browser PASS:220 executions/190 scenarios, exit0, source4b; archived applied-f/full-browser.txt.gz.50529 complete. Foreground12h also completed296028ms/max slice280.57ms;2195 accounting and exact prior state/summary checks PASS. Desktop cost remains substantial, no Android performance claim.99604 complete.
-- F controlled12h audit2193 PASS and8h+cold4h471 PASS. Instrumented sourced1424762 is F plus diagnostic wrappers. Concurrent Windows times612.8s/505.3s, max slice674ms; isolated/device performance remains open. Orbit memo prototype was exact but slower; explicitly rejected and NOT integrated.
-- Current UI fixtures now use funded Mythic91, Stone Ultimate116, all-ULT176; legacy rank10000 uses2092 with --focus-f. Active CI core/income/boundary/control/mobile commands select F. Keep archived originals unchanged.
-- Next: finish both resumed180d campaigns and measure full roster/extended Mastery. The campaign report now checks all permanent paths/counters never decrease, reports post-roster rank growth and supports --require-post-roster. Two exact history-defect controls PASS. Scoped paid-value, affordability26844, collection5892 plus4 controls, generic22 and payment17 strict controls PASS. Standalone test summary repaired; initial exception runs rejected. Guidance baseline/inverse blocked by missing historical Git object684bfc52 and repo404; current Guidance browser passed.
-- Earlier D focused all8/MY/ULT18.667/36/39d was rejected; E focused MY41.672d remained below42d. All six E60d results are retained. Conservative early3d plateau reduces to1.501d when the simulated player tries60s before optional later manual Ascend. This never changes gameplay or unrestricted automatic Ascends.
-- Both primary full rosters observed: focused3 at125.666667d; broad2 at133.5d. Both have subsequent Mastery growth, fixed145d/138d snapshots/report (applied-f-both-full.json). Use --require-regular-two-roster and --require-regular-two-post-roster alongside the existing regular flags. Both180d endpoints and combined/native/human acceptance remain OPEN. GitHub404, missing baseline object and absent SDK unchanged.
-
-Read the task, README and affected source before editing. Preserve fe14b2d timed Lab/60s Mote rules,67e7d3e Lab UI, fixed effects, paid work, saves and strict remaining-HP checks. Keep startup below32KiB.
+- Root/staged game source4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45.
+  F tables/exact cycle engine applied locally; fe14 timed Lab/60s Motes and67e Lab
+  UI retained. Probes do not modify product bytes.
+- Read ../RESULTS.md, ../DEVICE_ACCEPTANCE.md, applied-f-checkpoint.json,
+  applied-f-final-campaigns.json and original ../REQUIREMENTS.md.
+- Six fresh60d free policies: all8 recruits21.33-26d, firstMY42.33-53.33d,
+  firstULT42.67-54d. Primary2/3-visit Day1 pass; casual5min rarity exactly24h disclosed.
+- Both original earned campaigns completed180d without source/policy rebase.
+  Focused3 full roster125.666667d; broad2 at133.5d. Permanent paths/counters and
+  purchase receipts audited42,590 checks, post-roster Mastery growth observed.
+- Conservative policies end with30.33/41.49d open record gaps. Report now exposes
+  open gaps. Do not call all late walls passed: policies disable empowerment
+  while saving beyond current Mastery needs; raw outliers are retained.
+- Choice probes: focused day166 empowerment breaks9691 to9794 within1h, Lab same;
+  two-visit day156 reaches9340 within12h, or9400 with one affordable Forge purchase,
+  Lab178 same. Low-level combat diagnostics are not lifetime-offline-stat acceptance.
+- Separate earned day138 continuation: two10min visits/day, one60s low-Rift Prism
+  burst when needed, explicit Mastery and pushing. Daily records9100/9160/9220/
+  9280/9310/9370/9430;84 Mastery purchases. Independent ledger/rank/retention/clock
+  audit56 plus3 defect controls PASS. No grants, timer/balance changes or primary
+  rebase. An incomplete offline-stat driver was rejected/preserved; corrected
+  daily-Ascend comparison is separate. Existing running work is never cancelled.
+- Helpers: endless-late-priority-probe.cjs (--burst-prisms), audit.cjs in tests/
+  behavioral. Campaign report has retention/post-roster flags for both regular
+  policies and reports open gaps. Archived policy sources/hashes are in applied-f/.
+- Current browser220 executions/190 scenarios PASS, exit0; mobile493/12 profiles,
+  affordability26844/12, collection5892/12 plus4 controls, generic22/payment17
+  controls PASS. Warm/cold953 each, storage29, boundaries2528/core235, income632726,
+  prices13416, Support1782, earlyWisps2801, Formation1408 PASS. Actual V8 6.0.286.52
+  engine143/progression56 includes rank10000 purchase.
+- Foreground12h296028ms/max slice280.57ms;2195 accounting/exact prior state+summary
+  checks PASS. Cold8h+4h471 PASS. Substantial desktop cost, no phone performance
+  claim. Orbit memo experiment was slower, rejected/unintegrated.
+- All test/campaign workers completed, or rejected probe explicitly stopped.
+  Read-only preview4175/session8241 retained; shared4174 untouched.
+- External: login xariib, karahaNx/Lumenfall AGENTS404. No java/javac/adb/keytool/
+  aapt/apksigner on PATH. Configcom.lumenfall.app. Historical Guidance Git object
+  684bfc52 absent and unavailable for fetch; current Guidance browser checks PASS.
+  Linux tooling/remote CI, native/signing/installed-upgrade and human acceptance OPEN.
+- Next: restore authorized repo access, required Linux/Guidance gates, review
+  late-pacing evidence, then combined/native/human acceptance and approved APK
+  identity/signing/assets/device checks. No shared/main/remote integration, PR,
+  APK/release/archive. Self-review only. Keep feature OPEN.

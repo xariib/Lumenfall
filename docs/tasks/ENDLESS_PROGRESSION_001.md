@@ -16,7 +16,7 @@ Product4b052487 has measured F gates/exact cycle engine; Lab UI67e retained.
 Full browser220/190 PASS; Linux CI/Guidance baseline/native acceptance OPEN.
 
 Preserve fe14b2d timed Lab boosts/60s Motes and67e7d3e idle Lab UI.
-Reconciled labels with wide arithmetic retained. Running campaigns stay frozen.
+Reconciled labels with wide arithmetic retained. Campaign source/policy records stay frozen.
 Human/CI acceptance OPEN; paid value, saves and Support/Formation protected.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
@@ -25,4 +25,4 @@ Exact window selection fixes12h overrun; exact saved basis retains decimal bits.
 Prior engine12h2193/cold-split471 PASS. Fresh D regular32d/all recruits22.33d;
 two-visits13d partial. D full217/3 failed attempts; targeted reruns PASS. F full220/190 PASS.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive. Next: finish180d and final CI; both rosters/post-roster growth observed.
+No shared/main/remote/APK/archive. 180d complete; late-policy caveat retained. Next: CI/native/human acceptance.
