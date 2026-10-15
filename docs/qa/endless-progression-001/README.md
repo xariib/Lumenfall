@@ -15,6 +15,9 @@ Foreground12h296s/max slice281ms,2195 exact checks PASS; Android performance rem
 Mature campaigns resumed from86d/87d toward180d; roster/extended acceptance
 still OPEN. No shared/main/remote/APK/release/archive delivery.
 
+[Android/human acceptance](DEVICE_ACCEPTANCE.md) remains separate from desktop results.
+Fixed [102/101-day development receipts](experiments/applied-f-mid-mature.json) retain exact investments and plateau work; both earned campaigns continue.
+
 Historical implementation and experiment checkpoints follow.
 
 Newest isolated [activation checkpoint](experiments/activation-checkpoint.json),
