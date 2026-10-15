@@ -118,6 +118,120 @@
     {
       "file": "final-f-mobile-v3.json.gz",
       "sha256": "7a4c9f9941cca84108416b1bf9c30ded5d51b542b42ee1b8267c11f2f4511075"
+    },
+    {
+      "file": "final-f-negative.json.gz",
+      "sha256": "08b94846272fe61b6664e475e9915848ed12d0bd579c230dbf9924dad795ff11"
+    },
+    {
+      "file": "final-f-high-mastery.json.gz",
+      "sha256": "8209dc89ed73098c04fb7ef835193809743c04af1732680667bffd5d87fb6dad"
+    },
+    {
+      "file": "final-f-amounts.json.gz",
+      "sha256": "d8d576725a5c218d6148747a4a51fb1c756dc1abab9bfaf7d172b6bc52d81494"
+    },
+    {
+      "file": "final-f-multiplication.json.gz",
+      "sha256": "f918aafb03b4804b2ad9696c7fa2b45720f721c9408e98a10795842a37dc5af0"
+    },
+    {
+      "file": "final-f-prism.json.gz",
+      "sha256": "8ca0ec0f9723c881a7ea5caef0c3ac6b6f0e902b41418eae50420737d7aa6b7c"
+    },
+    {
+      "file": "final-f-echo.json.gz",
+      "sha256": "23655de6e12903fa540282efdd711ad1a73d944406f3b2733397b218b8f5817f"
+    },
+    {
+      "file": "final-f-formation.json.gz",
+      "sha256": "00c45ad116742ac7c35addf02a2720246db33f7cfb5452acf97ffb9edce5e703"
+    },
+    {
+      "file": "final-f-contribution.json.gz",
+      "sha256": "a7b75caccb93b0e5dc6b748f6f659164dc506fd53b1da8bbc3f1b457cc66bea0"
+    },
+    {
+      "file": "final-f-recruitment-integrated.json.gz",
+      "sha256": "b1c6f7e621ed588898748ffa1c56cf6ed1f1b992299780db99ac4fd28dd1385b"
+    },
+    {
+      "file": "final-f-payment-oracle.json.gz",
+      "sha256": "b1f5a11d8f01657441a7a184047bb4e927a4203f73c405a88efaca0bfda265e5"
+    },
+    {
+      "file": "collection-price-before-wide-fixture.json.gz",
+      "sha256": "c99edb2eaeae891bfffbe5dc34026cb6f9036e2f6b360050dce78cda794e97ab"
+    },
+    {
+      "file": "collection-price.json.gz",
+      "sha256": "5c9522fa92c2aada070e54a7ad633dcdf27e2f160e1289a274317a1d23ebffee"
+    },
+    {
+      "file": "collection-price-strict.json.gz",
+      "sha256": "e4906c2154146a11d2848dbe7eeb162e31f0b70cdeb947d6be77d3a0b8b901dd"
+    },
+    {
+      "file": "affordability.json.gz",
+      "sha256": "1654b3b3a6151c3706740b5362c58f03459f012d60141167f94b410c3fa12092"
+    },
+    {
+      "file": "recruitment-development-browser.json.gz",
+      "sha256": "32a318a7bde4ff6e99680fadf3ddf168244a05a752e4f3d75f9cf0bf452a4789"
+    },
+    {
+      "file": "recruitment-development-controls.json.gz",
+      "sha256": "0097ec2e822280df6d32bd4d04fc4064c3dcead33c4579edec71e497aba8a435"
+    },
+    {
+      "file": "recruitment-standalone-before-summary.json.gz",
+      "sha256": "0369db61101af3afcd0175bf6904e52d8d5d8909e8504f890441bb565aff433f"
+    },
+    {
+      "file": "recruitment-standalone.json.gz",
+      "sha256": "509f9cc35689b58eaa18ab40ba12ae7f808575be0a6eac8679e96436a714eab0"
+    },
+    {
+      "file": "payment-controls-before-summary.json.gz",
+      "sha256": "666b5f2f580976a99c90580b9dbd1905b4e74f58168cc31f398ec16d568db749"
+    },
+    {
+      "file": "payment-controls-strict.json.gz",
+      "sha256": "13c0ce29ac70bbe3c55e1f41d78a7f0e1877d01fe5c0d0bc96c7aab94098a61d"
+    },
+    {
+      "file": "transitions.json.gz",
+      "sha256": "0cc3f34c591201018cda4297dc943c136d8d21297bdf1a9bff452461c9aaee13"
+    },
+    {
+      "file": "resource-replay.json.gz",
+      "sha256": "9bf33afbd772f26c1057617a9fafed3987083cf81aee6d94b4d8a8d7cf5ab9d3"
+    },
+    {
+      "file": "native-wallets.json.gz",
+      "sha256": "8fd0f25f871a7ec13d248ba9349585b95508eae38bd5cc0e3cdf4dae8dbcd330"
     }
-  ]
+  ],
+  "retainedContracts": {
+    "prisms": 341654,
+    "echoRefund": 627,
+    "formation": 1408,
+    "wispContribution": 8099,
+    "paidFormulaPreservation": 15352,
+    "recruitmentRefund": 206,
+    "paymentOracle": 3360,
+    "amounts": 412,
+    "multiplication": 36502,
+    "genericCausalControls": 22,
+    "highMastery": 10000,
+    "collectionPrice": 5892,
+    "collectionControls": 4,
+    "affordability": 26844,
+    "affordabilityControls": 2,
+    "developmentRefundControls": 17,
+    "paymentControls": 17
+  },
+  "collectionFixture": "The old test refused an exact debit that now has a wide representation. Replaced with independent BigInt equality for 1e16 minus3, both saved slots and one purchased level. Rounded native debit control fails specifically on exact wallet accounting. No product change.",
+  "remote": "15Oct19:38UTC: connected login xariib; karahaNx/Lumenfall AGENTS fetch404NOT_FOUND.",
+  "paymentFixture": "Standalone helper now uses production simulationSummary(0); unchanged normal assertions pass31 records, including14400 real Auto-Ascend boundaries. Strict17 CI mutants all caught with clean teardown; free-credit expected message now identifies the earlier exact mixed-funding assertion. Initial exception-based diagnostics rejected and preserved."
 }

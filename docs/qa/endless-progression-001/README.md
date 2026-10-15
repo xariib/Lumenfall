@@ -4,8 +4,9 @@ Applied isolated [F checkpoint](experiments/applied-f-checkpoint.json), source4b
 Six fresh60d policies meet recruitment/Mythic/Ultimate target windows:
 21.333–26d /42.333–53.333d /42.667–54d. Primary2/3-visit Day1 audits pass.
 Only four measured numeric table lines changed. Root/staged/HTTP15 assets match.
-Current warm/cold953 each, timer29, parity305, mobile469/12, Wisp163/12,
+Current warm/cold953 each, timer29, parity305, mobile493/12, Wisp163/12,
 cycle94/136/112/24/383 and14 controls PASS. Final whole browser RUNNING.
+Scoped F gates: Prism341654, refunds627/206, Formation1408, Wisp8099 plus15352 preservation; affordability26844/12, collection5892/12,22 generic and17 payment controls PASS. Exact1e16−3 native-touch purchase/save added with a rounding mutant. Standalone refund helper now uses the authoritative summary; initial fixture exceptions are rejected evidence.
 Original-price, Support and ability effects retained. New gates are independently
 covered by2528 boundaries,235 core,632726 income and21 causal controls.
 The earlier mobile fixture incorrectly used Lab84; F requires92. Repaired

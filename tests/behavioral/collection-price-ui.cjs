@@ -66,8 +66,15 @@ const cases=String.raw`
    if(spec.id==='autoascend')ok(after.autoAscendEnabled===true&&after.autoAscendTargetDepth>=16,'Auto-Ascend unlock behavior retained');
   }
   await ev("prismQa.set(prismQa.collectionSeed());prismQa.ready();prismQa.wallets({prisms:1e16});prismQa.refreshCosts()");
-  ok(await ev("document.querySelector('[data-node=\"swift\"]').disabled"),'unrepresentable debit still refused');
+  ok(await ev("!document.querySelector('[data-node=\"swift\"]').disabled"),'wide wallet exact purchase is available');
   ok(await ev("document.querySelector('[data-node=\"swift\"] .cost').style.color==='var(--ink)'"),'sufficient wallet stays white despite other purchase guard');
+  await tap('[data-node="swift"]');
+  const wideAfter=await ev('prismQa.get()');
+  const exactInteger=value=>{const [coefficient,exponent='0']=String(value).split('e');return BigInt(coefficient)*10n**BigInt(exponent);};
+  ok(exactInteger(wideAfter.prisms)===10000000000000000n-3n,'wide wallet exact debit retains every Prism');
+  ok(wideAfter.nodes.swift===1,'wide wallet grants exactly one upgrade');
+  const wideSaved=await ev('prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k));})');
+  ok(wideSaved.every(s=>exactInteger(s.prisms)===10000000000000000n-3n&&s.nodes.swift===1),'wide wallet exact debit saved in both slots');
   ok((await ev('window.__prismErrors')).length===0,'no runtime error');records.push({width,scale,motion,samples,input:await ev('window.__prismInput')});
 `;
 driver=driver.slice(0,start)+cases+driver.slice(end);
@@ -80,7 +87,8 @@ function execute(name,text,shouldFail){
   fs.writeFileSync(path.join(dir,'stdout.log'),r.stdout||'');fs.writeFileSync(path.join(dir,'stderr.log'),r.stderr||'');
   const receipt=path.join(dir,'receipt.json');assert(fs.existsSync(receipt),'missing actual browser receipt '+name);
   const v=JSON.parse(fs.readFileSync(receipt,'utf8'));
-  const accepted=shouldFail?r.status===1&&v.status==='fail'&&v.checks>0&&/wallet color|legacy shop cards must remain absent/.test(v.error||''):
+  const expectedDefect=name==='rounded-wide-debit'?/wide wallet exact debit/:name==='retired-card-returns'?/legacy shop cards must remain absent/:/wallet color|legacy shop cards must remain absent/;
+  const accepted=shouldFail?r.status===1&&v.status==='fail'&&v.checks>0&&expectedDefect.test(v.error||''):
     r.status===0&&v.status==='pass'&&v.profiles.length===12;
   const summary={name,accepted,exitcode:r.status,checks:v.checks,sourceSha256:v.sourceSha256,profiles:v.profiles.length,error:v.error||null};summaries.push(summary);console.log(JSON.stringify(summary));
   assert(accepted,'actual price/visibility '+name+' acceptance failed');
@@ -92,8 +100,9 @@ try{
   execute('normal',source,false);
   if(negatives){
    const pairs=[['stale-refresh',"function updatePurchasePriceColors(root){","function updatePurchasePriceColors(root){ return;"],
-    ['all-white',"Number.isFinite(amount) && missing ? 'var(--danger)' : 'var(--ink)'","Number.isFinite(amount) && false ? 'var(--danger)' : 'var(--ink)'"],
-    ['retired-card-returns',"replaceControlMarkup(els['node-list'],html);","replaceControlMarkup(els['node-list'],html+legacyUpgradeSection(legacyHtml));"]];
+    ['all-white',"Amount.valid(amount) && missing ? 'var(--danger)' : 'var(--ink)'","Amount.valid(amount) && false ? 'var(--danger)' : 'var(--ink)'"],
+    ['retired-card-returns',"replaceControlMarkup(els['node-list'],html);","replaceControlMarkup(els['node-list'],html+legacyUpgradeSection(legacyHtml));"],
+    ['rounded-wide-debit','function prismExactAmountPlan(cost,quoteOnly){','function prismExactAmountPlan(cost,quoteOnly){ if(state.prisms===1e16&&cost===3)return {prisms:state.prisms-cost,credits:[],remainingOwnCredits:0,remainingEchoCredits:0};']];
    for(const [name,from,to] of pairs){assert.equal(source.split(from).length,2,'unique real mutant marker');execute(name,source.replace(from,to),true);}
   }
  }
