@@ -11,7 +11,7 @@ endless-progression-worktree. Original checkout preserved. Schema5 entitlements/
 Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 Historical D60d/180d receipts are in README; all8 at21-22d, MY44d/ULT48d,
-full roster114.67d. Focused policy all8 at18.67d: F refinement applied only in isolation.
+D roster114.67d; early18.67d recruits rejected. F roster125.67d observed.
 Product4b052487 has measured F gates/exact cycle engine; Lab UI67e retained.
 Full browser220/190 PASS; Linux CI/Guidance baseline/native acceptance OPEN.
 

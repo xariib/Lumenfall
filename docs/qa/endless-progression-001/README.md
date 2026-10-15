@@ -12,7 +12,7 @@ covered by2528 boundaries,235 core,632726 income and21 causal controls.
 The earlier mobile fixture incorrectly used Lab84; F requires92. Repaired
 fixture passes unchanged geometry, keyboard, debit and focus assertions.
 Foreground12h296s/max slice281ms,2195 exact checks PASS; Android performance remains unverified.
-Mature campaigns resumed from86d/87d toward180d; roster/extended acceptance
+Focused [full roster observed125.67d](experiments/applied-f-first-full.json); two-visit roster and both180d extended acceptance
 still OPEN. No shared/main/remote/APK/release/archive delivery.
 
 [Android/human acceptance](DEVICE_ACCEPTANCE.md) remains separate from desktop results.
