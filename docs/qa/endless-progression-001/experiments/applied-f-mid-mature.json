@@ -1,0 +1,76 @@
+{
+  "status": "MEASURED_DEVELOPMENT_PARTIAL_NOT_FULL_ROSTER",
+  "capturedUtc": "2026-10-15T20:19:23.462Z",
+  "checks": 3876,
+  "receipts": [
+    {
+      "file": "mature-regular-day102.checkpoint.json.gz",
+      "rawSha256": "4533f01bfe0b53443e10188e8e8ba9b74a2f673de3d23eab57c3eb45d2dd5409",
+      "days": 102,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7"
+    },
+    {
+      "file": "mature-regular_two-day101.checkpoint.json.gz",
+      "rawSha256": "d0923625f16c95e57cdd16b7db322116a7a0891c1dbde5ffae6a8b53c8aafaf3",
+      "days": 101,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89"
+    },
+    {
+      "file": "mature-development-report.json.gz",
+      "sha256": "e56e21f71364fed145d2f0a81a2161961dca8f2db0f4788ce1c8503f8368519e"
+    }
+  ],
+  "policies": [
+    {
+      "policy": "regular",
+      "days": 102,
+      "roster": {
+        "mythics": 8,
+        "abilities20": 8,
+        "ultimates": 6,
+        "mastered": 5,
+        "status": "DEVELOPING"
+      },
+      "longestClosedWallDays": 3.6597222222222223,
+      "purchaseReceiptCount": 566,
+      "firstUltimate": {
+        "kind": "ultimate",
+        "id": "ember",
+        "day": 42.666666666666664,
+        "price": {
+          "sigils": 40000000
+        },
+        "shareOfWallet": {
+          "sigils": 0.7463476219657494
+        }
+      }
+    },
+    {
+      "policy": "regular_two",
+      "days": 101,
+      "roster": {
+        "mythics": 8,
+        "abilities20": 8,
+        "ultimates": 6,
+        "mastered": 4,
+        "status": "DEVELOPING"
+      },
+      "longestClosedWallDays": 4.994212962962963,
+      "purchaseReceiptCount": 403,
+      "firstUltimate": {
+        "kind": "ultimate",
+        "id": "ember",
+        "day": 51.5,
+        "price": {
+          "sigils": 32000000
+        },
+        "shareOfWallet": {
+          "sigils": 0.6445148263586423
+        }
+      }
+    }
+  ],
+  "limits": "Both original earned campaigns continue toward180d. This fixed checkpoint proves development, exact purchase receipts and useful plateau work, not full-roster or device acceptance."
+}
