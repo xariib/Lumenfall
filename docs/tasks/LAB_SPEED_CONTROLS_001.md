@@ -1,29 +1,27 @@
 # LAB_SPEED_CONTROLS_001
 
-15 October 2026. Same owner; no agents. Local candidate VERIFIED; release OPEN.
-Branch local/full-debug; baseline7598c86/source084f2995, proposal6670216.
-Current product419f650d. Unrelated validation-evidence/ untouched.
-Read [state](../PROJECT_STATE.md), [queue](LOCAL_IMPROVEMENTS_PLAN_001.md),
-[requirements/design](../qa/lab-speed-controls-001/timed-boosts/README.md),
-[prior checkpoint](../qa/lab-speed-controls-001/timed-boosts/previous-checkpoint.md).
+15 October 2026. Same owner; no agents. Local candidate verified; release OPEN.
+Branch local/full-debug. Baseline fe14b2d/source419f650d; current source2d162943.
+Unrelated validation-evidence/ untouched. Read [state](../PROJECT_STATE.md),
+[queue](LOCAL_IMPROVEMENTS_PLAN_001.md),
+[current follow-up](../qa/lab-speed-controls-001/idle-current-level/README.md),
+[timed requirements/history](../qa/lab-speed-controls-001/timed-boosts/README.md).
 
-User: simpler card, name/badge/Current/Next,1.5x–8x slider, no Buy now. Replaced
-per-level spending with8/12/24h boosts for the selected project across levels;
-continuous idle/offline time, modest discounts. Rejected cheap prices and delegated
-balancing. Chosen1.5x800/1140/2160 before Catalysis; global60s Luminous payout
-cooldown retains eligible fixed bonuses, balances, Field Notes and Dust.
+Latest user: remove idle “Start a Study to boost” box; show speed/hours only
+until Study starts. Display current earned level on idle/running cards.
+Implemented: no unpaid idle action; priced activation appears on start; earned
+Lv.0/5 etc. stays until completion. Paid timer remains visible between levels.
+Native choices, focus/scroll and selected quote survive card transitions.
+Changed index.html and affected UI regression expectations; full self-review.
+
+Prior accepted design retained:1.5x–8x,8/12/24h per-project elapsed-time boost,
+no Buy now or renewal; name/badge/Current/Next. Delegated prices1.5x800/1140/2160
+before Catalysis and60s qualifying Luminous payouts. Preserve balances, bonuses,
+Field Notes/Dust, paid work/speed, queues, caps, saves/recovery and12h offline cap.
 [Balance](../qa/lab-speed-controls-001/timed-boosts/economy-review.md).
 
-Preserved paid speed/work, Study Queue, caps, saves/recovery and12h offline cap.
-Old speed queue migrates OFF; no free timer/overlap/renewal. Quotes, red shortages,
-funding refresh, one debit and stable touch/keyboard focus/scroll. Changed
-index.html, affected Lab/Mote checks, AGENTS and task/QA docs; full self-review.
-
-[Exact hashes, versions and14 passing check groups](../qa/lab-speed-controls-001/timed-boosts/verification.json):
-core/expiry/carry, offline split/yield/retry, migration/recovery/Reset/Ascend,
-22 browser scenarios,12 native profiles, catalog/caps, V8 6.0 and damage ledgers.
-Income fixture174 Motes/h, about4h36m for800. Self-review only.
-Checkpoint ee1c769; playable4174 refreshed,15 assets and loaded scripts match.
-Next: user review and combined/device acceptance.
-Combined CI/main/GitHub and Android/WebView60/TalkBack OPEN. No remote/push/
-APK/signing/archive. Required acceptance remains pending.
+Reproduced baseline; syntax PASS; UI1206/12 mobile/text/motion profiles,
+22 existing browser regressions, timed core1480 and actual V8 6.0 Lab580 PASS.
+Receipts/versions in current follow-up. Browser checks do not prove Android.
+Next: commit, refresh15 source/assets in mobile/www, verify/play preview4174.
+No remote/push/APK/signing/archive; combined/main/CI/GitHub/device acceptance OPEN.

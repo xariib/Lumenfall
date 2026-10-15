@@ -1,10 +1,10 @@
 # Lumenfall — current delivery status
 
 15 October: [ENDLESS_PROGRESSION_001](tasks/ENDLESS_PROGRESSION_001.md) local
-candidate. AK180d measured; reconciling fe14b2d Lab/UI. AutoAscend/release OPEN.
+candidate. D180d measured; strict automation/cold parity verified. Release OPEN.
 
-15 October: [Lab timed boosts](tasks/LAB_SPEED_CONTROLS_001.md),419f650d locally
-verified;8/12/24h project boosts,60s Mote payouts. Preview4174; release OPEN.
+15 October: [Lab controls](tasks/LAB_SPEED_CONTROLS_001.md),67e7d3e locally verified;
+idle boost action removed/current levels shown. Combined/native acceptance OPEN.
 
 14 October2026: [UPGRADE_AFFORDABILITY_001](tasks/UPGRADE_AFFORDABILITY_001.md)
 locally integrated1553d44/source084f2995: red shortages and disabled actions.

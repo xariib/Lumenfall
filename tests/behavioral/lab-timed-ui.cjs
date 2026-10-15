@@ -15,11 +15,25 @@ module.exports=async function({send,ev,pause,check,records,args}){
  await send('Runtime.enable');await send('DOM.enable');
  for(const width of [320,390,430])for(const scale of [100,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
+  // Idle choices are useful without a disabled activation box. Levels always
+  // identify earned progress, including zero and the level currently running.
+  for(const level of [0,5]){
+   const idle=seed();idle.activeStudies=[];idle.longStudyLevels.guardmastery=level;await install(idle);
+   check(await ev('!'+buy+' && !/Start a Study to boost/.test(document.querySelector("[data-study-card=guardmastery]").textContent)'),'idle Study has no boost action box');
+   check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+'"'),'idle badge shows current earned level '+level);
+   await choose(2,12);await ev(range+'.focus();window.idleRange='+range+';window.idleWallet=uiRegression.get().motes;uiRegression.render();uiRegression.render()');
+   check(await ev(range+'===idleRange&&document.activeElement===idleRange&&'+hours+'.value==="12"&&!'+buy+'&&uiRegression.get().motes===idleWallet'),'idle choices/focus survive refresh without spending');
+   await ev('document.querySelector("[data-study=guardmastery]").focus()');await key('Enter');
+   check(await ev(buy+' && '+buy+'.dataset.speed==="2"&&'+buy+'.dataset.hours==="12"&&uiRegression.get().motes===idleWallet'),'Begin Study reveals selected boost quote without spending Motes');
+   check(await ev('document.querySelector("[data-running-study=guardmastery] .study-level").textContent==="Lv. '+level+'"'),'running badge retains earned level');
+   await ev(range+'.focus();uiRegression.finish()');
+   check(await ev('!'+buy+'&&document.activeElement==='+range+'&&document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+(level+1)+'"'),'completion hides unpaid action, increments current badge and retains focus');
+  }
   await install(seed());
   check(await ev(range+'.getClientRects().length>0 && '+hours+'.getClientRects().length>0 && !document.querySelector("[data-study-use-motes],[data-study-details]")'),'direct controls, no old panel/recurring toggle');
   check(await ev('(()=>{var r=document.querySelector("[data-running-study=guardmastery]"),bad=[];r.querySelectorAll("button,input,select,.effect-note").forEach(e=>{var b=e.getBoundingClientRect();if(b.left<0||b.right>innerWidth+1||e.scrollWidth>e.clientWidth+1)bad.push(e.outerHTML);if(e.matches("button,input,select")&&(b.width<44||b.height<44))bad.push(e.outerHTML)});return !bad.length&&document.documentElement.scrollWidth<=innerWidth+1;})()'),'fit and44px targets '+JSON.stringify({width,scale,motion}));
   check(await ev(range+'.type==="range"&&'+range+'.min==="0"&&'+range+'.max==="7"&&'+range+'.step==="1"'),'exact eight speed steps');
-  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv.1"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, badge and concise effects; obsolete copy absent');
+  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
   await ev(range+'.focus();window.originalRange='+range+';window.beforePreview=JSON.stringify(uiRegression.get());window.beforeSaves=JSON.stringify(uiRegression.saves())');
   for(const index of [1,2,3,4,5,6,7]){
    await ev(range+'.value='+index+';'+range+'.dispatchEvent(new Event("input",{bubbles:true}));uiRegression.render();uiRegression.render()');

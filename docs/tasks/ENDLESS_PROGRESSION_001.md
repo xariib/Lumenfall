@@ -12,14 +12,12 @@ Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 AK180d remains historical. New frozen D/b2babd53: both regular60d targets met;
 three visits recruits21.33d/MY44/ULT48; two21.5/44.5/48.5. Reinvest180d full roster114.67d; prior Support-hold stopped114d.
-Productdb1e62af retains prior tables pending calibration. V8/core rechecks PASS;
+Productaaaa3eb6 retains prior tables; Lab UI67e reconciled. V8/core rechecks PASS;
 Windows tooling/Linux CI, whole UI and native/device acceptance remain OPEN.
 
-Newer fe14b2d overlaps: timed Lab boosts/global60s Mote cooldown/red shortages.
-Reconciliation active; first combined timed-core1480/3 controls PASS. Old whole
-browser run stopped after40 PASS executions; not a completed acceptance run.
-Remeasure balance and rerun core/legacy/mobile/CI after reconciliation.
-Preserve paid work/speed/timers, saves, Support/Formation and exact chronology.
+Preserve fe14b2d timed Lab boosts/60s Motes and67e7d3e idle Lab UI.
+Reconciled labels with wide arithmetic retained. Running campaigns stay frozen.
+Final UI/CI acceptance OPEN; paid value, saves and Support/Formation protected.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
 User chose strict HP;604a warm/cold953, timer storage24, V8 143 and14 controls PASS.

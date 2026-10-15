@@ -1,0 +1,54 @@
+{
+  "status": "LOCAL_RECONCILIATION_NOT_RELEASE",
+  "upstreamCommit": "67e7d3ea78a757e14b4ecc75960cf84e1f6047b9",
+  "sharedHeadObserved": "d2ae094",
+  "sourceSha256": "aaaa3eb64f831925fd71bb226e6ed4dcd9d85298e75a9b8fa654136f819592a2",
+  "conflicts": "Resolved two Lab markup regions by retaining exact Amount expressions and updating only current-level badges; kept feature status in PROJECT_STATE.",
+  "checks": [
+    {
+      "status": "PASS",
+      "checks": 235,
+      "sourceSha256": "aaaa3eb64f831925fd71bb226e6ed4dcd9d85298e75a9b8fa654136f819592a2"
+    },
+    {
+      "status": "pass",
+      "sourceSha256": "aaaa3eb64f831925fd71bb226e6ed4dcd9d85298e75a9b8fa654136f819592a2",
+      "checks": 1480,
+      "prices": [
+        800,
+        1500,
+        3500,
+        6500,
+        10000,
+        15000,
+        20500,
+        27500
+      ],
+      "midgame600secMotes": 27,
+      "liveOfflineSplit": true,
+      "controls": [
+        {
+          "name": "free-after-expiry",
+          "detected": "expiry integrates exact paid floor: 9956785 vs 9956790"
+        },
+        {
+          "name": "unlimited-motes",
+          "detected": "cooldown rejects early reward\n\n11 !== 0\n"
+        },
+        {
+          "name": "double-charge",
+          "detected": "rich duplicate activation rejected"
+        }
+      ]
+    },
+    {
+      "status": "PASS",
+      "checks": 56,
+      "node": "v8.3.0",
+      "v8": "6.0.286.52",
+      "sourceSha256": "aaaa3eb64f831925fd71bb226e6ed4dcd9d85298e75a9b8fa654136f819592a2",
+      "limits": "JavaScript engine evidence; Android/WebView DOM and device acceptance remain separate."
+    }
+  ],
+  "limitations": "Browser regression on reconciled UI pending. Frozen604a/D campaigns continue unchanged; no new balance or engine applied to product."
+}

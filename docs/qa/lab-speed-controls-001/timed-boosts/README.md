@@ -1,3 +1,5 @@
+> Latest UI correction: [idle action/current level follow-up](../idle-current-level/README.md). Evidence below records the earlier timed-boost checkpoint.
+
 # Timed Lab boosts — 15 October 2026
 
 Local candidate VERIFIED on local/full-debug, starting at7598c86;

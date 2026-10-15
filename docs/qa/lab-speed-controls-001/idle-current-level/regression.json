@@ -1,0 +1,593 @@
+{
+  "status": "pass",
+  "sourceSha256": "2d162943544713074e9a484937565e1b1dbca7d0a6e035a47658e988da51b27c",
+  "scenarios": [
+    {
+      "scenario": "lab-motes-contracts",
+      "status": "pass",
+      "details": {
+        "checks": 248,
+        "tiers": [
+          1.5,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "prices": [
+          800,
+          1500,
+          3500,
+          6500,
+          10000,
+          15000,
+          20500,
+          27500
+        ],
+        "migration": true
+      }
+    },
+    {
+      "scenario": "lab-motes-chronology",
+      "status": "pass",
+      "details": {
+        "checks": 55,
+        "oracle": [
+          {
+            "first": false,
+            "accum": 0.01,
+            "tracking": 0,
+            "payouts": 3,
+            "next": 2000000180205
+          },
+          {
+            "first": false,
+            "accum": 0.01,
+            "tracking": 10,
+            "payouts": 3,
+            "next": 2000000180105
+          },
+          {
+            "first": false,
+            "accum": 0.37,
+            "tracking": 0,
+            "payouts": 3,
+            "next": 2000000180135
+          },
+          {
+            "first": false,
+            "accum": 0.37,
+            "tracking": 10,
+            "payouts": 3,
+            "next": 2000000180075
+          },
+          {
+            "first": false,
+            "accum": 0.95,
+            "tracking": 0,
+            "payouts": 3,
+            "next": 2000000180015
+          },
+          {
+            "first": false,
+            "accum": 0.95,
+            "tracking": 10,
+            "payouts": 3,
+            "next": 2000000180015
+          },
+          {
+            "first": true,
+            "accum": 0.01,
+            "tracking": 0,
+            "payouts": 3,
+            "next": 2000000180005
+          },
+          {
+            "first": true,
+            "accum": 0.01,
+            "tracking": 10,
+            "payouts": 3,
+            "next": 2000000180005
+          },
+          {
+            "first": true,
+            "accum": 0.37,
+            "tracking": 0,
+            "payouts": 3,
+            "next": 2000000180135
+          },
+          {
+            "first": true,
+            "accum": 0.37,
+            "tracking": 10,
+            "payouts": 3,
+            "next": 2000000180075
+          },
+          {
+            "first": true,
+            "accum": 0.95,
+            "tracking": 0,
+            "payouts": 3,
+            "next": 2000000180015
+          },
+          {
+            "first": true,
+            "accum": 0.95,
+            "tracking": 10,
+            "payouts": 3,
+            "next": 2000000180015
+          }
+        ],
+        "liveOfflineSplit": true
+      }
+    },
+    {
+      "scenario": "lab-motes-conservation",
+      "status": "pass",
+      "details": {
+        "checks": 15899,
+        "fixtures": 826,
+        "causalControl": "old-double-round rejected; undo passes",
+        "boundaryRows": [
+          {
+            "seconds": 0.01729999,
+            "use": false,
+            "kind": "live",
+            "kills": 1,
+            "motes": 3501,
+            "work": 299.98270001
+          },
+          {
+            "seconds": 0.01729999,
+            "use": false,
+            "kind": "offline",
+            "kills": 1,
+            "motes": 3501,
+            "work": 299.98270001
+          },
+          {
+            "seconds": 0.01729999,
+            "use": true,
+            "kind": "live",
+            "kills": 1,
+            "motes": 1,
+            "work": 299.94810003
+          },
+          {
+            "seconds": 0.01729999,
+            "use": true,
+            "kind": "offline",
+            "kills": 1,
+            "motes": 1,
+            "work": 299.94810003
+          },
+          {
+            "seconds": 0.0173,
+            "use": false,
+            "kind": "live",
+            "kills": 2,
+            "motes": 3502,
+            "work": 299.9827
+          },
+          {
+            "seconds": 0.0173,
+            "use": false,
+            "kind": "offline",
+            "kills": 2,
+            "motes": 3502,
+            "work": 299.9827
+          },
+          {
+            "seconds": 0.0173,
+            "use": true,
+            "kind": "live",
+            "kills": 2,
+            "motes": 2,
+            "work": 299.9481
+          },
+          {
+            "seconds": 0.0173,
+            "use": true,
+            "kind": "offline",
+            "kills": 2,
+            "motes": 2,
+            "work": 299.9481
+          },
+          {
+            "seconds": 0.01730001,
+            "use": false,
+            "kind": "live",
+            "kills": 2,
+            "motes": 3502,
+            "work": 299.98269999
+          },
+          {
+            "seconds": 0.01730001,
+            "use": false,
+            "kind": "offline",
+            "kills": 2,
+            "motes": 3502,
+            "work": 299.98269999
+          },
+          {
+            "seconds": 0.01730001,
+            "use": true,
+            "kind": "live",
+            "kills": 2,
+            "motes": 2,
+            "work": 299.94809997
+          },
+          {
+            "seconds": 0.01730001,
+            "use": true,
+            "kind": "offline",
+            "kills": 2,
+            "motes": 2,
+            "work": 299.94809997
+          },
+          {
+            "seconds": 0.9,
+            "use": false,
+            "kind": "live",
+            "kills": 90,
+            "motes": 3502,
+            "work": 299.1
+          },
+          {
+            "seconds": 0.9,
+            "use": false,
+            "kind": "offline",
+            "kills": 90,
+            "motes": 3502,
+            "work": 299.1
+          },
+          {
+            "seconds": 0.9,
+            "use": true,
+            "kind": "live",
+            "kills": 90,
+            "motes": 2,
+            "work": 297.3
+          },
+          {
+            "seconds": 0.9,
+            "use": true,
+            "kind": "offline",
+            "kills": 90,
+            "motes": 2,
+            "work": 297.3
+          }
+        ],
+        "minimum": {
+          "kills": 90,
+          "luminous": 3,
+          "motes": 3502,
+          "work": 299.1
+        }
+      }
+    },
+    {
+      "scenario": "lab-motes-save-reload",
+      "status": "pass",
+      "details": {
+        "keys": [
+          "schemaVersion",
+          "studyQueue",
+          "studyUseMotes",
+          "studySpeedTargets",
+          "activeStudies",
+          "motes",
+          "studyBoosts",
+          "studyBoostHours",
+          "moteNextAtMs"
+        ],
+        "ascend": true,
+        "activeSpeed": 4,
+        "independentTarget": 3
+      }
+    },
+    {
+      "scenario": "lab-motes-backup-restore",
+      "status": "pass",
+      "details": {
+        "keys": [
+          "schemaVersion",
+          "studyQueue",
+          "studyUseMotes",
+          "studySpeedTargets",
+          "activeStudies",
+          "motes",
+          "studyBoosts",
+          "studyBoostHours",
+          "moteNextAtMs"
+        ],
+        "ascend": true,
+        "activeSpeed": 4,
+        "independentTarget": 3
+      }
+    },
+    {
+      "scenario": "lab-motes-recovery",
+      "status": "pass",
+      "details": {
+        "keys": [
+          "schemaVersion",
+          "studyQueue",
+          "studyUseMotes",
+          "studySpeedTargets",
+          "activeStudies",
+          "motes",
+          "studyBoosts",
+          "studyBoostHours",
+          "moteNextAtMs"
+        ],
+        "ascend": true,
+        "activeSpeed": 4,
+        "independentTarget": 3
+      }
+    },
+    {
+      "scenario": "lab-motes-reset",
+      "status": "pass",
+      "details": {
+        "reset": true
+      }
+    },
+    {
+      "scenario": "inquiry-contracts",
+      "status": "pass",
+      "details": {
+        "checks": 231,
+        "catalogue": 9,
+        "originals": 8,
+        "cap": 10,
+        "finiteGuards": true,
+        "negativeControls": 1
+      }
+    },
+    {
+      "scenario": "inquiry-chronology",
+      "status": "pass",
+      "details": {
+        "checks": 39,
+        "negativeControls": 2,
+        "capCompletion": true,
+        "overcapTail": true,
+        "dueEntry": true,
+        "arrayOrder": true,
+        "liveOfflineChunkParity": true,
+        "actual12hCommonCap": true,
+        "timelineEvents": 0
+      }
+    },
+    {
+      "scenario": "inquiry-ui",
+      "status": "pass",
+      "details": {
+        "checks": 49,
+        "viewport": [
+          390,
+          844
+        ],
+        "nativeStates": true,
+        "observerPurity": true,
+        "speed8": 27500,
+        "capQueue": true,
+        "reducedMotion": false
+      }
+    },
+    {
+      "scenario": "inquiry-ui-reduced-motion",
+      "status": "pass",
+      "details": {
+        "checks": 49,
+        "viewport": [
+          390,
+          844
+        ],
+        "nativeStates": true,
+        "observerPurity": true,
+        "speed8": 27500,
+        "capQueue": true,
+        "reducedMotion": true
+      }
+    },
+    {
+      "scenario": "inquiry-save-reload",
+      "status": "pass",
+      "details": {
+        "keys": [
+          "schemaVersion",
+          "longStudyLevels",
+          "studyQueue",
+          "activeStudies",
+          "lumen",
+          "shards",
+          "motes",
+          "comets"
+        ],
+        "raw": 13,
+        "schema": 1,
+        "snapshots": true,
+        "ascension": true,
+        "restore": false,
+        "recovery": false
+      }
+    },
+    {
+      "scenario": "inquiry-backup-restore",
+      "status": "pass",
+      "details": {
+        "keys": [
+          "schemaVersion",
+          "longStudyLevels",
+          "studyQueue",
+          "activeStudies",
+          "lumen",
+          "shards",
+          "motes",
+          "comets"
+        ],
+        "raw": 13,
+        "schema": 1,
+        "snapshots": true,
+        "ascension": true,
+        "restore": true,
+        "recovery": false
+      }
+    },
+    {
+      "scenario": "inquiry-recovery",
+      "status": "pass",
+      "details": {
+        "keys": [
+          "schemaVersion",
+          "longStudyLevels",
+          "studyQueue",
+          "activeStudies",
+          "lumen",
+          "shards",
+          "motes",
+          "comets"
+        ],
+        "raw": 13,
+        "schema": 1,
+        "snapshots": true,
+        "ascension": true,
+        "restore": false,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "research-duration",
+      "status": "pass",
+      "details": {
+        "checks": 91,
+        "boundaries": 22,
+        "ceil": true,
+        "observerOnly": true,
+        "noCatalogueRebuild": true,
+        "negativeControls": 2,
+        "reducedMotion": false
+      }
+    },
+    {
+      "scenario": "research-duration-reduced-motion",
+      "status": "pass",
+      "details": {
+        "checks": 92,
+        "boundaries": 22,
+        "ceil": true,
+        "observerOnly": true,
+        "noCatalogueRebuild": true,
+        "negativeControls": 2,
+        "reducedMotion": true
+      }
+    },
+    {
+      "scenario": "upgrade-effects-and-deeds",
+      "status": "pass",
+      "details": {
+        "checks": 1065,
+        "nodeLevels": 9,
+        "projectLevels": 4,
+        "deeds": 23,
+        "exactObserverPurity": true
+      }
+    },
+    {
+      "scenario": "p2-02b-lab-hierarchy",
+      "status": "pass",
+      "details": {
+        "occupancy": [
+          0,
+          2,
+          3
+        ],
+        "nextCompletion": "shardstudy",
+        "focus": true,
+        "stateUnchanged": true
+      }
+    },
+    {
+      "scenario": "nav-workshop-contract",
+      "status": "pass",
+      "details": {
+        "checks": 415,
+        "mainDestinations": 5,
+        "workshopSections": 2,
+        "wholeStatePurity": true,
+        "silentPurchaseTypes": [
+          "empower",
+          "module",
+          "ultimate",
+          "research",
+          "speed-study",
+          "study",
+          "node",
+          "shop"
+        ]
+      }
+    },
+    {
+      "scenario": "p1-05-control-regressions",
+      "status": "pass",
+      "details": {
+        "selectedContrast": {
+          ".mult-btn.active": 10.820790238811385,
+          ".study-level": 7.514016275792294,
+          ".study-boost-start": 10.315572422793789
+        },
+        "liveStates": true,
+        "focus": true,
+        "untrustedTapGuard": true,
+        "affordabilityFunding": {
+          "multiplier": "5",
+          "price": {
+            "lumen": 15000,
+            "shard": 120
+          },
+          "wallet": {
+            "lumen": 15000,
+            "shards": 120
+          }
+        }
+      }
+    },
+    {
+      "scenario": "r3-destinations",
+      "status": "pass",
+      "details": {
+        "checks": 179,
+        "mainDestinations": 5,
+        "workshopSections": 2,
+        "bulkOptions": 7,
+        "exactState": true,
+        "liveTickEquality": true,
+        "negativeControl": true
+      }
+    },
+    {
+      "scenario": "r3-save-reload",
+      "status": "pass",
+      "details": {
+        "reload": true,
+        "originalSaveIds": true,
+        "speed": 2,
+        "completion": 1,
+        "liveTicks": 750
+      }
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  }
+}

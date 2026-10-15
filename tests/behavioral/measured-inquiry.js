@@ -140,7 +140,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     ok(button.disabled===(k>=10)&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native disabled and accessible label '+k);
     if(k>=10)ok(button.dataset.state==='maxed'&&!button.getAttribute('aria-label').includes('Need'),'cap accessible state has no affordability claim');
     if(k>=10){ok(!card.querySelector('.study-meta')&&!/Next: level (11|14)/.test(card.textContent),'no cap next price or fake nextlevel');ok(card.textContent.includes('Queue ON retained; no new starts.'),'cap retained queue status');}
-    else ok(card.textContent.includes('Next Lv.'+(k+1))&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'pending next distinct from earned');
+    else ok(card.querySelector('.study-level').textContent==='Lv. '+k&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');
     if(k===13)ok(earned.textContent.includes('Saved purchases preserved; effect capped.'),'overcap ownership explained');
     var before=b.getState(),raw=b.rawSave();b.renderLayout();b.refreshAffordability();same(b.getState(),before,'render/affordability pure');ok(b.rawSave()===raw,'render cannot save/complete');
     ok(q('#tab-research').scrollWidth<=q('#tab-research').clientWidth,'Lab no horizontal overflow '+k);

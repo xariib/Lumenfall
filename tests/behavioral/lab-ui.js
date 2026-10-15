@@ -69,11 +69,11 @@ window.runLabUiQa = function(b,ctx,assert){
   var paid=b.getState();ok(paid.motes===96500&&paid.studyBoosts.guardmastery.mult===3&&paid.activeStudies[0].speedMult===1,'real button charges exactly3500 Motes without rewriting paid floor');
   ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','purchase returns focus to same Study timer');
   ok(!q('[data-study-inspection="guardmastery"]').hidden&&!q('[data-speed-study="guardmastery"]')&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline countdown marks current speed');
-  ok(q('[data-study-inspection="wispascend"] [data-speed-study]').disabled,'idle controls cannot purchase a nonexistent level');
+  ok(!q('[data-study-inspection="wispascend"] [data-speed-study]'),'idle controls omit the boost purchase action');
   var finish=seed();finish.activeStudies[0].remainingSec=.1;install(finish);window.selectLabSpeed('guardmastery',2);
   q('[data-speed-study="guardmastery"][data-speed="2"]').focus();b.inquiry.tail(.1);b.renderLayout();
   ok(!b.getState().activeStudies.length&&document.activeElement.dataset.studySpeedTarget==='guardmastery','completion leaves focus on the same Study selector');
-  ok(q('[data-study-inspection="guardmastery"] [data-speed-study]').disabled,'completed record cannot be bought again');
+  ok(!q('[data-study-inspection="guardmastery"] [data-speed-study]'),'completed record removes the unpaid boost action');
   ['[data-study-boost-hours="riftattune"]','[data-speed-study="riftattune"][data-speed="3"]','[data-study-speed-target="riftattune"]'].forEach(function(control){
     var legacy=seed();legacy.longStudyLevels.riftattune=2;legacy.studyUseMotes.riftattune=false;legacy.activeStudies=[{id:'riftattune',remainingSec:.1,totalDurationSec:150,speedMult:2}];install(legacy);
     window.selectLabSpeed('riftattune',3);
