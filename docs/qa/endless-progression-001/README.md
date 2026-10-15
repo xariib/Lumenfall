@@ -4,7 +4,9 @@ Newest isolated [activation checkpoint](experiments/activation-checkpoint.json),
 source2719debe. Full prior5739 run:217 PASS/3 FAIL. All three targeted repairs
 now PASS: exact grid operands survive clock activation; funded Mythic fixture
 meets intentional78-Lab gate. Clock383 includes the actual causal stall control.
-Strict warm/cold953 each, storage29, actualV8.6 143 PASS; full current rerun RUNNING.
+Strict warm/cold953 each, storage29, actualV8.6 143 PASS. Full current run:
+217 PASS/3 failed attempts (two stale references, one Page.navigate deadline).
+Both reference cases and all five layout profiles pass targeted reruns.
 Generic negative clock now proves the intended failure rather than an anchor error.
 HP tolerance remains1e-9 remaining-HP scale. Full acceptance remains OPEN.
 Fresh baseline pacing is still regular32d/all recruits22.333d and two-visits13d.
@@ -14,8 +16,8 @@ earlier than target. Separate [E experiment](experiments/focus-e-plan.json)
 (Titan Lab48, Mythic90, Ultimate/Mastery92) is running fresh focused3-visit and
 work-aware2-visit campaigns. These numbers are provisional and not applied.
 Four8h reference states remain byte-identical; offline UI/legacy both pass after
-source-qualified regeneration. Current whole browser still running; source-guard
-failures and repaired targeted results remain separate.
+source-qualified regeneration. Whole-run failures and targeted repaired results
+remain separate; final combined CI is still required.
 No shared/main/remote/APK/archive. Older checkpoints below are historical.
 
 Current isolated implementation [b645b6a3 checkpoint](experiments/integrated-checkpoint.json).

@@ -23,6 +23,6 @@ User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
 User strict HP retained: current warm/cold953, storage29, V8 143,14 controls PASS.
 Exact window selection fixes12h overrun; exact saved basis retains decimal bits.
 Prior engine12h2193/cold-split471 PASS. Fresh D regular32d/all recruits22.33d;
-two-visits13d partial. Prior full217 PASS/3 FAIL; repaired3 now PASS; full rerun running.
+two-visits13d partial. Current full217 PASS/3 setup/transport fails; targeted reruns PASS; final CI open.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
 No shared/main/remote/APK/archive. Next: full browser, E pacing comparisons and remaining CI.

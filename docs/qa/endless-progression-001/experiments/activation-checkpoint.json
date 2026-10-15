@@ -18,7 +18,28 @@
     "timerStorage": 29,
     "clockActivation": 383,
     "actualV8_6": 143,
-    "fullBrowser": "RUNNING; two stale-reference setup failures repaired in separate targeted runs. No whole-run PASS claimed.",
+    "fullBrowser": {
+      "status": "COMPLETED_WITH_FAILED_ATTEMPTS",
+      "passes": 217,
+      "failures": [
+        {
+          "scenario": "offline-catchup-ui",
+          "cause": "Stale source hash in one-second reference",
+          "followUp": "PASS; four8h outcomes unchanged"
+        },
+        {
+          "scenario": "offline-catchup-legacy-dom",
+          "cause": "Same reference qualification",
+          "followUp": "PASS"
+        },
+        {
+          "scenario": "layout-dense [412,915,0,0]",
+          "cause": "CDP deadline Page.navigate before QA result; root cause unknown",
+          "followUp": "All five viewport profiles PASS with unchanged deadlines"
+        }
+      ],
+      "limits": "Targeted repaired results are separate from the red whole-run result. Final combined CI remains required."
+    },
     "negativeClock": "actual intended false stall detected; no anchor/setup error",
     "sourceRebuild": "569de01:index.html + current cycle builder + timed balance43, byte-identical",
     "boundaries": 2528,
@@ -276,6 +297,16 @@
       "originalPath": "validation-evidence/endless-activation-offline-legacy.txt",
       "file": "endless-activation-offline-legacy.txt.gz",
       "rawSha256": "44d5bf0b16c1e8a9fc3018bb13a601cea21d5bbf0d176a5bf410dc37bb144094"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-full-browser.txt",
+      "file": "endless-activation-full-browser.txt.gz",
+      "rawSha256": "727a4060f7ca9212c66cb0a8565b5c66c64c4639c1ae3f7fd41834214edafe4d"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-layout-dense.txt",
+      "file": "endless-activation-layout-dense.txt.gz",
+      "rawSha256": "f1ccca80a01a5063214b7e45a02243b9ae5b9d3d8785380a309299fda51ccb7b"
     }
   ]
 }

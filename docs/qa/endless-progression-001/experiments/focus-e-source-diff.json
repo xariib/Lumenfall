@@ -1,0 +1,28 @@
+{
+  "status": "EXPERIMENT_NOT_APPLIED",
+  "baseSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53",
+  "candidateSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
+  "rootStillBase": true,
+  "edits": [
+    {
+      "line": 3252,
+      "before": "  recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:18},thorn:{depth:35,lab:24},void:{depth:55,lab:30},aurora:{depth:75,lab:35},titan:{depth:100,lab:43}},",
+      "after": "  recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:18},thorn:{depth:35,lab:24},void:{depth:55,lab:30},aurora:{depth:75,lab:35},titan:{depth:100,lab:48}},"
+    },
+    {
+      "line": 3255,
+      "before": "  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,15,40,78],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},",
+      "after": "  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,15,40,90],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},"
+    },
+    {
+      "line": 3256,
+      "before": "  ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:84,forge:10,ascends:50},",
+      "after": "  ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:92,forge:10,ascends:50},"
+    },
+    {
+      "line": 3257,
+      "before": "  mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:84,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},",
+      "after": "  mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:92,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},"
+    }
+  ]
+}

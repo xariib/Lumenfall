@@ -14,23 +14,124 @@
     "Running projects, speed benefits and resource affordability",
     "Unrestricted Ascend and exact engine"
   ],
-  "limits": "Provisional numeric model only. Fresh complete-engine measurements are required before application.",
+  "limits": "Provisional model, not applied. Recruitment may be observed at the next check-in after an automatic buy. First Mythic/Ultimate/Mastery are explicit purchases. Human/device acceptance remains separate.",
   "campaigns": [
     {
       "policyKind": "focused",
       "policy": "regular",
       "prefix": "validation-evidence/focus-e-focused-regular",
-      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-focused/tests/behavioral/endless-campaign.cjs"
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-focused/tests/behavioral/endless-campaign.cjs",
+      "status": "MEASURED_PARTIAL",
+      "days": 28,
+      "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.3333333333333333,
+        "firstRarity": 0.3334490740740741,
+        "recruit.gale": 4,
+        "recruit.thorn": 9,
+        "recruit.void": 12.333333333333334,
+        "recruit.aurora": 15,
+        "recruit.titan": 21.333333333333332,
+        "allRecruits": 21.333333333333332
+      }
     },
     {
       "policyKind": "work-aware",
       "policy": "regular_two",
       "prefix": "validation-evidence/focus-e-aware-regular_two",
-      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs"
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "status": "MEASURED_PARTIAL",
+      "days": 25,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.5,
+        "firstRarity": 0.5002314814814814,
+        "recruit.gale": 5,
+        "recruit.thorn": 9,
+        "recruit.void": 12,
+        "recruit.aurora": 15,
+        "recruit.titan": 23.5,
+        "allRecruits": 23.5
+      }
+    },
+    {
+      "policyKind": "work-aware",
+      "policy": "regular",
+      "prefix": "validation-evidence/focus-e-aware-regular",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "status": "MEASURED_PARTIAL",
+      "days": 5,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.3333333333333333,
+        "firstRarity": 0.3334490740740741,
+        "recruit.gale": 4.666666666666667
+      }
+    },
+    {
+      "policyKind": "work-aware",
+      "policy": "casual",
+      "prefix": "validation-evidence/focus-e-aware-casual",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "status": "MEASURED_PARTIAL",
+      "days": 6,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.5,
+        "recruit.stone": 0.5,
+        "firstAscend": 0.5,
+        "firstRarity": 1,
+        "recruit.gale": 5
+      }
+    },
+    {
+      "policyKind": "work-aware",
+      "policy": "frequent",
+      "prefix": "validation-evidence/focus-e-aware-frequent",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "status": "MEASURED_PARTIAL",
+      "days": 4,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.16666666666666666,
+        "firstRarity": 0.16712962962962963,
+        "recruit.gale": 3.5
+      }
+    },
+    {
+      "policyKind": "work-aware",
+      "policy": "efficient",
+      "prefix": "validation-evidence/focus-e-aware-efficient",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "status": "MEASURED_PARTIAL",
+      "days": 4,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005092592592592593,
+        "firstAscend": 0.005787037037037037,
+        "recruit.stone": 0.16666666666666666,
+        "firstRarity": 0.16707175925925927,
+        "recruit.gale": 3.6666666666666665
+      }
     }
   ],
   "originalFocusedEvidence": {
     "file": "activation/work-focused-regular-day24.checkpoint.json.gz",
     "allRecruitsDay": 18.666666666666668
-  }
+  },
+  "milestoneUnits": "elapsed days at explicit decisions/absence boundaries"
 }
