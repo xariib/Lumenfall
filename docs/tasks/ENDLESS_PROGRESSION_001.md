@@ -30,12 +30,13 @@ Frozen source1a840eaa fixes native Comet debits and shows exact Masterwork
 Current/Next. Core233,Comet290,20 controls,V8 6.0 checks44/Comet15 families PASS.
 Final core25/26: all game checks PASS; NTFS mode438/420 blocks tooling/Linux CI.
 Prior82fa full216/219,three FAIL; focused price/Wisp3277/3 controls PASS.
-Final whole browser run active; integration/native/device acceptance OPEN.
+Final whole run interrupted after newer overlapping fe14b2d Lab/UI work found;
+retain receipts, reconcile timed boosts/Mote pacing and measure again.
 
 Low-target AutoAscend stress cannot finish; gameplay choice pending. Rank10000
 Push finishes, mobile performance OPEN. No cooldown added. karahaNx repo404;
 xariib/Lumenfall empty, destination pending. No SDK/Java/adb: APK/signing/device
 acceptance unavailable. No remote/main/APK/archive claimed.
 
-Next: preserve final180d/core evidence; finish frozen final-source browser gates,
+Next: reconcile newer combined Lab/UI work; remeasure and rerun browser gates,
 resolve AutoAscend/destination, then combined/native delivery after acceptance.

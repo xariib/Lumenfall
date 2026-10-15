@@ -41,7 +41,12 @@ continuations passed on ae49. Final1a840 core233, income632726, amounts412,
 multiplication36502, prices13416, wide57, parity305, Comet290,20 causal controls,
 actual V8 6.0 endless44/Comet1362 pass. Final core group25/26: all game checks
 pass; tooling fails NTFS mode438 versus420 after real archive/link controls.
-This gate remains open for Linux CI. The final frozen full browser run is active.
+This gate remains open for Linux CI. The final frozen full browser run was stopped
+after discovering newer overlapping local/full-debug commits through fe14b2d:
+timed Lab boosts, global60s Luminous Mote payout cooldown and red shortage UI.
+The interrupted-1a840-combined-update receipts preserve the partial run. Those
+features need reconciliation and the resulting balance needs new measurement;
+the prior AK timings remain evidence for their exact frozen model only.
 The earned day180 low-target stress performs292 Ascensions in10 batches but
 cannot advance0.001 seconds; no cooldown or reward change has been applied.
 
