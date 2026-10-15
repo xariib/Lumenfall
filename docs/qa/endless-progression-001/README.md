@@ -11,7 +11,8 @@ Original-price, Support and ability effects retained. New gates are independentl
 covered by2528 boundaries,235 core,632726 income and21 causal controls.
 The earlier mobile fixture incorrectly used Lab84; F requires92. Repaired
 fixture passes unchanged geometry, keyboard, debit and focus assertions.
-Mature campaigns paused at86d/87d for foreground QA; roster/extended acceptance
+Foreground12h296s/max slice281ms,2195 exact checks PASS; Android performance remains unverified.
+Mature campaigns resumed from86d/87d toward180d; roster/extended acceptance
 still OPEN. No shared/main/remote/APK/release/archive delivery.
 
 Historical implementation and experiment checkpoints follow.

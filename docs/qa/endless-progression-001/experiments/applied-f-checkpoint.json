@@ -39,7 +39,7 @@
     "startedUtc": "2026-10-15T19:16:32Z",
     "completedByUtc": "2026-10-15T20:02:48.013Z"
   },
-  "matureCampaigns": "Paused at86d/87d for bounded foreground QA; resume after the suite.",
+  "matureCampaigns": "Resumed unchanged earned campaigns from86d/87d toward180d after foreground QA. Full roster and extended Mastery still open.",
   "limits": [
     "Full roster and extended Mastery still being measured",
     "GitHub404; no remote/main integration",
@@ -234,6 +234,14 @@
     {
       "file": "full-browser.txt.gz",
       "sha256": "f0a60491de10998c5b96a68ebef314311008a149f0605facd5b2fc1ee887fda2"
+    },
+    {
+      "file": "final-f-foreground-12h.json.gz",
+      "sha256": "e25d07bc441cb280e623662a561c1d71eb56d4bdb03872dc627a60f03962ce47"
+    },
+    {
+      "file": "final-f-foreground-12h-audit.json.gz",
+      "sha256": "6ecb8c137480842ba9b889754ec894cdfdbcb1e6c12f2559e27610a6257601ce"
     }
   ],
   "retainedContracts": {
@@ -262,5 +270,15 @@
   "remote": "15Oct19:38UTC: connected login xariib; karahaNx/Lumenfall AGENTS fetch404NOT_FOUND.",
   "paymentFixture": "Standalone helper now uses production simulationSummary(0); unchanged normal assertions pass31 records, including14400 real Auto-Ascend boundaries. Strict17 CI mutants all caught with clean teardown; free-credit expected message now identifies the earlier exact mixed-funding assertion. Initial exception-based diagnostics rejected and preserved.",
   "smoke": "Guarded390x844 startup PASS in temporary copy, no product/stage mutation",
-  "requiredBaselineGate": "BLOCKED: git cat-file -e684bfc52bb2ca523124fe63981188b9a8004d747 exits1. Required Guidance baseline object absent; repo404 prevents retrieval. Current full Guidance browser checks passed separately; historical/inverse gate not substituted."
+  "requiredBaselineGate": "BLOCKED: git cat-file -e684bfc52bb2ca523124fe63981188b9a8004d747 exits1. Required Guidance baseline object absent; repo404 prevents retrieval. Current full Guidance browser checks passed separately; historical/inverse gate not substituted.",
+  "foregroundWorkload": {
+    "status": "PASS",
+    "seconds": 43200,
+    "wallMs": 296028.135,
+    "maxSliceMs": 280.5714999999982,
+    "checks": 2195,
+    "sourceSha256": "d142476250de16e14edad7da38d19c175c3ed3b9793f30fbc134cbfeec6be631",
+    "exactPriorStateAndSummary": true,
+    "limits": "Other owned QA workers stopped; Windows desktop only.296s is substantial catch-up cost; Android throughput/responsiveness remains unverified."
+  }
 }
