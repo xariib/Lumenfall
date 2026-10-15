@@ -3246,9 +3246,9 @@ var ENDLESS_PROGRESSION = {
   recruitLumen:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
   rarityLumenBase:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,31],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
-  ultimate:{sigils:{ember:10000000,tide:15000000,stone:20000000,gale:30000000,thorn:40000000,void:60000000,aurora:80000000,titan:120000000},module:15,depth:120,lab:32,forge:10,ascends:50},
+  ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:32,forge:10,ascends:50},
   mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:32,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
-  masterworkPowerGrowth:1.25,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35
+  masterworkPowerGrowth:1.25,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
 };
 var SPIRITS = [
   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
@@ -5940,7 +5940,11 @@ function costReduction(){ return Math.min(0.6, nodeLevel('bonds')*0.03); }
 function offlineCapHours(){ return PRODUCTIVE_OFFLINE_CAP_SEC / 3600; }
 function eliteChance(depth,level){ return Math.min(0.35, Math.min(0.30, 0.03 + Math.floor(depth/10)*0.02) + researchBonus('luminoustracking',level)); }
 function motesDropFor(depth){ return Math.max(1, Math.round((1 + depth/8) * longStudyMoteMult() * formationRewardMult())); }
-function sigilsFromBoss(depth){ return Math.max(1, Math.floor(depth/10)) + labExpansionLevel('sigilcartography'); }
+function sigilsFromBoss(depth){
+  var base=Math.max(1,Math.floor(depth/10)),extra=Math.max(0,depth-ENDLESS_PROGRESSION.sigilCurveStart);
+  var factor=extra?creditAmount(1,Amount.pow(extra/ENDLESS_PROGRESSION.sigilCurveWidth,2)):1;
+  return creditAmount(Amount.round(Amount.mul(base,factor),'floor'),labExpansionLevel('sigilcartography'));
+}
 
 function moduleLevel(id){ return (state.wispModules && state.wispModules[id]) || 0; }
 function moduleMult(id){ return 1 + moduleLevel(id)*0.05; }
@@ -7395,7 +7399,7 @@ function forgeResonanceBonusText(){
   return text;
 }
 function forgeSigilDescription(){
-  return 'Earned from boss defeats. Buy each Wisp’s Ultimate at Mythic Rarity. After all eight Ultimates are owned, Resonate spends '+sigilResonanceCost()+' Sigils to fill one recruited Active Wisp’s charge to 100. It uses one of '+sigilResonanceLimit()+' shared uses per Ascension run; ability timing and Support recast limits still apply.'+forgeResonanceBonusText();
+  return 'Earned from boss defeats. Push through bosses again after Ascend to earn more; rewards accelerate beyond Rift '+ENDLESS_PROGRESSION.sigilCurveStart+'. Unlock Ultimates at Mythic after the shown ability and development requirements. Completed Wisps spend Prisms and Sigils on permanent Mastery. After all eight Ultimates are owned, Resonate spends '+sigilResonanceCost()+' Sigils to fill one recruited Active Wisp’s charge to 100. It uses one of '+sigilResonanceLimit()+' shared uses per Ascension run; ability timing and Support recast limits still apply.'+forgeResonanceBonusText();
 }
 function forgeCurrencyDescription(c){
   return c.name==='Sigils' ? forgeSigilDescription() : c.desc;

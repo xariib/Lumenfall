@@ -17,7 +17,11 @@ const specs=[
  ['unbounded-future-work','Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level))','node.baseDurationSec * Math.pow(node.durationGrowth, level)','bounded future work'],
  ['lost-old-titan-entitlement','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:32}','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:100}','old unlocked roster preserved titan'],
  ['ability-live-leak','if(!forgeCommitPaidMutation(function(){'+eol+'    state.lumen=debitAmount(state.lumen,cost.lumen);','if(!(function(apply){apply();return false;})(function(){'+eol+'    state.lumen=debitAmount(state.lumen,cost.lumen);','failed ability rolls back wallet and rank ember'],
- ['early-ultimate','module:15,depth:120','module:14,depth:120','Ultimate needs ability15']
+ ['early-ultimate','module:15,depth:120','module:14,depth:120','Ultimate needs ability15'],
+ ['lost-deep-sigils','sigilCurveWidth:100','sigilCurveWidth:300','independent late Sigil amount','endless-income.cjs'],
+ ['wrong-final-ultimate','titan:240000000','titan:120000000','independent Ultimate price titan','endless-income.cjs'],
+ ['sigil-rounding',"Amount.round(Amount.mul(base,factor),'floor')","Amount.round(Amount.mul(base,factor),'round')",'independent late Sigil amount','endless-income.cjs'],
+ ['cartography-percent',"return creditAmount(Amount.round(Amount.mul(base,factor),'floor'),labExpansionLevel('sigilcartography'));","return Amount.round(Amount.mul(Amount.round(Amount.mul(base,factor),'floor'),1+labExpansionLevel('sigilcartography')/100),'floor');",'Cartography retains flat added Sigils','endless-income.cjs']
 ];
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-endless-controls-')),records=[];
 try{

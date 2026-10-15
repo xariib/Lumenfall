@@ -1,11 +1,10 @@
 # Endless progression and daily pacing
 
 15 October 2026. Owner: this chat; no delegation. Status: IN PROGRESS.
-User explicitly requested implementation of the approved plan. [Requirements](../qa/endless-progression-001/REQUIREMENTS.md).
+Approved [requirements](../qa/endless-progression-001/REQUIREMENTS.md).
 
-Baseline a4f82f47 on local/full-debug, isolated codex/endless-progression in
-validation-evidence/endless-progression-worktree. Original checkout and its
-untracked evidence preserved. Combined changes retained; native Git isolation.
+Baseline a4f82f47 local/full-debug; isolated codex/endless-progression in
+validation-evidence/endless-progression-worktree. Original preserved.
 
 Goal: daily push/farm/Ascend/develop loop, later recruitment and rarity/Ultimate,
 permanent uncapped Wisp Mastery (+10% compounded own Power/rank), no ending.
@@ -19,27 +18,29 @@ fixed Mote rewards, chronological online/offline parity, automation, Support
 timing, Formation, assets/package/signing, mobile and WebView60 compatibility.
 Measured rebalance authorized; no progress reset/new currency/blanket cap removal.
 
-Acceptance: source-bound daily/free/frequent/efficient and long-run simulations;
-gates/costs/migrations/atomicity/recovery/Ascend/rank/large-value regressions and
-causal controls; existing relevant/full CI, mobile accessibility and Android
-release acceptance on integrated bytes. Simulation is not human/device proof.
-Existing platform limits recorded.
+Acceptance: campaigns/walls; gates, exact costs, migrations, rollback,
+recovery, Ascend, large values and causal controls; full CI, mobile accessibility,
+integrated/native acceptance. Simulation is separate from human/device proof.
 
 Baseline source validation/Support/campaign PASS, Node24.19.0; regular v1 all
 recruits/Mythic/Ultimate16h. [Evidence/status](../qa/endless-progression-001/README.md).
-Arithmetic/schema5, central gates, Mastery/Forge and UI candidate implemented.
-Core230/amount412/wide57/parity305/15 controls and mobile469/12 profiles PASS.
-Forge9319/25 controls, Tree5923/28, Lab2676; V8 Forge2486/Lab580/Mastery17 PASS.
-Forge foundations retired; Masterwork Tempering opens5
-Mastery ranks/level, retain existing caps. Calibrated AA tables applied; acceptance OPEN.
-karahaNx repo404; xariib/Lumenfall empty, destination pending. Integration
-requires acceptance. AA primary56d: recruits22d/Mythic48.33d/Ultimate53.33d
-PASS. Two visits: recruits21d/Mythic45.5d/Ultimate50.5d/Mastery52d. Explicit mature policy from day56
-reserves earned Prisms and trains the roster; first Mastery57.33d.
-13,416 prices and actual V8 checks32 PASS. Rank10000 replay functional
-PASS; mobile performance OPEN. Root0db26141: arithmetic/Dust and prepared Forge DOM.
+Schema5, Mastery/entitlements, independent gates/prices, wide arithmetic and UI
+implemented. Selected AK: recruits22d,MY48.33d,ULT53.33d; two visits21/45.5/50.5d.
+All eight MY/ability20/ULT at138.33d; first Mastery54d. Five60d policies measured;
+Regular/investor180d campaigns continue.
+Root82fa86dc applies40-240million base Ultimate Sigils and deep boss growth after
+Rift6000. Same earned8h state/summary as model, including an actual Auto-Ascend.
+Core230,amount412,multiply36502,income632726,wide57,parity305,19 controls,
+prices13416,V8 6.0 checks38/offline replay, mobile469/12 profiles PASS.
+Standalone Wisp scroll PASS; whole-suite90s deadline FAIL, suite continues.
+Four8h goldens regenerated from actual replay. Campaign Idle8 omission under audit.
+Prior broad continuation149 PASS/6 FAIL; focused fixes/quiet Prism controls PASS.
+Final full source/CI/integration/native acceptance remains OPEN.
 
-Next: resolve low-target AutoAscend stress; AH/AK roster calibration,
-finish broad regressions and source-bound UI/golden checks,
-run full CI and combined/native delivery. Feature stays OPEN
-until all required acceptance; no APK/main/remote/archive claimed.
+Low-target AutoAscend stress cannot finish; requested gameplay choice pending.
+Rank10000 Push completes but mobile performance OPEN. No new cooldown added.
+karahaNx repo404; xariib/Lumenfall empty, destination pending. No SDK/Java/adb;
+APK/signing/device acceptance unavailable. No remote/main/APK/archive claimed.
+
+Next: final full regressions, finish180d/investor measurements; resolve
+AutoAscend choice and destination, then combined/native delivery after acceptance.

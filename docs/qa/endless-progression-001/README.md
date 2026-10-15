@@ -1,5 +1,23 @@
 # Endless progression — work in progress
 
+Current source82fa86dc: selected AK balance applied. Regular free milestones
+22d recruits/48.33d Mythic/53.33d Ultimate; two visits21/45.5/50.5d. Full roster
+observed138.33d. Exact purchase/income and model-continuation checks pass. Low-target
+AutoAscend, final whole-suite/CI, remote integration and native/device acceptance
+remain open. The detailed checkpoints below retain earlier proposals and failures.
+
+15 October current checkpoint: final source82fa86dc passes independent income
+632726, exact multiplication36502, prices13416, core230, amounts412, wide57,
+parity305 and19 causal controls. Actual V8 6.0 passes38 plus the regenerated
+8h offline replay. Mobile469 checks/12 profiles and standalone Wisp scroll3229
+pass. Full default189-scenario run is still running: Wisp scroll body passes
+3229 but its process exceeds90s, so that gate is FAIL. No deadline was raised.
+Campaigns are explicitly yielded during foreground performance checks; regular
+177d reaches full roster138.33d and Mastery20/10/6/3/1/1/0/0. Investor134d is
+still developing. Original campaign adapters omit the offline-hours Deed15
+Comets; first Auto-Ascend affordability audit is pending. These simulations
+remain distinct from lifecycle, human, Android and device acceptance.
+
 Baseline: a4f82f47, game SHA e110f182e500eed4bbb0382d182471c93110da28fda97fff4856b5931791a9ac.
 Local branch codex/endless-progression; release acceptance remains OPEN.
 
@@ -595,3 +613,15 @@ checkpoint files when resuming. No live-root Sigil curve or Ultimate price switc
 is accepted yet. Rebuild source-bound Swift goldens only after the final numeric
 model is selected; never patch hashes without actual replay. The low AutoAscend
 choice and remote destination are still pending user replies. No archive.
+
+Additional mature strategy: frozen runtimes/investor branches explicitly from the
+actual AK day58 checkpoint, preserving source and earned state. The parent policy
+hash cad4be5d… is accepted only at day58 with first Mastery already observed; later
+resumptions require its exact new policy hash. Both phases are saved in each
+checkpoint. It spends up to15% of current Sigils per affordable Mastery action
+while saving, and reserves the entire next Ultimate price once funded. No game
+rule, currency, upgrade or timer is changed. Compare this mature investor policy
+with the unchanged full-Ultimate-reserve regular policy. Bootstrap session3551
+continues in the strict batch helper after its first measured chunk. Output prefix
+candidate-ak-mature, actual source ded37b76; target180d. This is a separate player
+strategy, not a changed balance model or an unreported mid-campaign alteration.

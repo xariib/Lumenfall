@@ -46,6 +46,7 @@ jobs:
           node tests/behavioral/game-amount.cjs > validation-evidence/endless-progression/amounts.json
           node tests/behavioral/game-amount-multiplication.cjs > validation-evidence/endless-progression/amount-multiplication.json
           node tests/behavioral/endless-price-cache.cjs index.html > validation-evidence/endless-progression/prices.json
+          node tests/behavioral/endless-income.cjs index.html > validation-evidence/endless-progression/income.json
           node tests/behavioral/endless-wide-engine.cjs index.html > validation-evidence/endless-progression/wide.json
           node tests/behavioral/endless-progression-core.cjs index.html > validation-evidence/endless-progression/core.json
           node tests/behavioral/endless-controls.cjs index.html > validation-evidence/endless-progression/controls.json
