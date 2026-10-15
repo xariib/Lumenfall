@@ -1,0 +1,22 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "sourcePath": "validation-evidence/endless-physical-game.html",
+  "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890",
+  "runner": "docs/qa/endless-progression-001/runtimes/canonical-basis-daily/tests/behavioral/endless-campaign.cjs",
+  "policySha256": "2222de05d1163efcd61b4db03177582a37b5249cf832f89ccd942d2406e2cd58",
+  "days": 60,
+  "policies": [
+    "regular",
+    "regular_two",
+    "casual",
+    "frequent",
+    "efficient"
+  ],
+  "prefix": "docs/qa/endless-progression-001/physical-d",
+  "notes": [
+    "Fresh0 final-source campaigns; old32d/13d checkpoints retained separately.",
+    "Use existing whole-day batch runner,45s chunks, no grants or source/policy mixing.",
+    "Start after browser acceptance to avoid corrupting bounded browser timing evidence.",
+    "Extended Mastery campaigns and low Auto-Ascend15 policy remain separate required evidence."
+  ]
+}

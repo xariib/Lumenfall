@@ -11762,10 +11762,14 @@ function advanceAuthoritativeTime(elapsedSec,options){
     if(binaryClock)return;
     var previous=currentElapsedSec(),durationMs=elapsedSec*1000,settings=Number.isInteger(durationMs)&&durationMs>0?{budgetMs:durationMs}:undefined;
     binaryClock=createBinarySimulationClock(Amount,clockStartMs,elapsedSec,settings);
-    if(previous>0)binaryClock.advance(previous);
+    // Retain the Native grid operands: their rounded sum can already equal
+    // the endpoint while a representable sub-second remainder still exists.
+    var gridPoint=binaryClock.pointAfter(binaryClock.pointAfter(binaryClock.pointBefore(farmGridRemainingSec),firstFarmGridSec),farmGridCrossings);
+    var previousDuration=binaryClock.latticeAfter(gridPoint,0);
+    binaryClock.advanceLattice(previousDuration);remaining=binaryClock.remaining();
     var prior=continuousStudyClock&&studyStartPosition.binary;
     binaryStudyClock=prior?prior.nextWindow(elapsedSec,settings):createBinarySimulationClock(Amount,clockStartMs,elapsedSec,settings);
-    if(previous>0)binaryStudyClock.advance(previous);
+    binaryStudyClock.advanceLattice(previousDuration);
     state.activeStudies.forEach(function(active){
       var anchor=studyProgressAnchors[active.id];
       if(anchor&&anchor.binaryAnchor)return;

@@ -1,0 +1,214 @@
+{
+  "status": "ISOLATED_ACCEPTANCE_OPEN",
+  "sourceSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53",
+  "previousSourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890",
+  "fullPrevious": {
+    "passes": 217,
+    "failures": [
+      "forge-baseline",
+      "forge-balance",
+      "p2-wisp-progression-pacing"
+    ]
+  },
+  "fix": "Initialize exact clocks from original grid operands, preserve the representable endpoint fraction; refresh remaining budget.",
+  "current": {
+    "targetedBrowser": "3/3 PASS",
+    "strictWarm": 953,
+    "strictCold": 953,
+    "timerStorage": 29,
+    "clockActivation": 383,
+    "actualV8_6": 143,
+    "fullBrowser": "RUNNING; no current full PASS claim",
+    "negativeClock": "actual intended false stall detected; no anchor/setup error",
+    "sourceRebuild": "569de01:index.html + current cycle builder + timed balance43, byte-identical",
+    "boundaries": 2528,
+    "progressionControls": 21,
+    "clockOracle": 989,
+    "clockAPI": 1885,
+    "requiredNegativeControls": 22,
+    "negativeEvidence": "activation/negative-summary.json"
+  },
+  "pacing": "New work-aware policy not yet measured. Historical campaign results do not establish current numeric acceptance.",
+  "limits": [
+    "No shared/main or remote integration",
+    "GitHub karahaNx/Lumenfall remains404",
+    "No JDK/SDK/adb or physical Android/TalkBack acceptance"
+  ],
+  "receipts": [
+    {
+      "originalPath": "validation-evidence/endless-physical-full-browser.txt",
+      "file": "endless-physical-full-browser.txt.gz",
+      "rawSha256": "81bedc1d71f7024a4a8049c28efd81eecf1e40138fc9b2f340f70e60a590a925"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-forge-baseline.txt",
+      "file": "endless-activation-forge-baseline.txt.gz",
+      "rawSha256": "6ce3255b238d96416cf974511ba518eb392b24a3d0a4954518746aa0b3887dce"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-forge-balance.txt",
+      "file": "endless-activation-forge-balance.txt.gz",
+      "rawSha256": "4e870cb67f76f971c6ce429bf0085eab532e5c4a7990ca21a5d388c525cb4138"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-pacing.txt",
+      "file": "endless-activation-pacing.txt.gz",
+      "rawSha256": "02c5a753ccd93c3b30bc7f83c150a94e9576981d3fdbfa282eab236795e879ec"
+    },
+    {
+      "originalPath": "validation-evidence/endless-negative-clock-current.txt",
+      "file": "endless-negative-clock-current.txt.gz",
+      "rawSha256": "0f354037708acb0d59d4668c9e616b3133d25eb7cde83837940b9f02d13c55ea"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-regression.json",
+      "file": "endless-activation-regression.json.gz",
+      "rawSha256": "de9a667c0cd77126d20bcb0ebf3542eb79cc5a87d436c375f92b288fd1caaf7d"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-cold.json",
+      "file": "endless-activation-cold.json.gz",
+      "rawSha256": "5f92b2739b645ae5e2a9caae0f37df4d012f0a01fae209680b57c3ba9f82f55e"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-transitions.json",
+      "file": "endless-activation-transitions.json.gz",
+      "rawSha256": "ea31b04aa69606568c8ba58d384e0a829565c7cdb68cbff50d713a26b30d9ad1"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-v8.json",
+      "file": "endless-activation-v8.json.gz",
+      "rawSha256": "04fd56d680948811078a33ab9ad1110c72dadf18b911c3872d5b6bc800e37ee0"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-boundaries.json",
+      "file": "endless-activation-boundaries.json.gz",
+      "rawSha256": "f6e04f1bb6f499d6add717dc6f53ff625698762f37a069e8f14b20dae5b6b6a3"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-controls.json",
+      "file": "endless-activation-controls.json.gz",
+      "rawSha256": "00f58215099d7ffe275ef111629669c04e3efde1022211c715ca6445af45a14b"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-clock-oracle.json",
+      "file": "endless-activation-clock-oracle.json.gz",
+      "rawSha256": "ea541572aa03cad600b7b7abad1895263e543fc68ec6c8fa300ce444f8dcaca6"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-clock-api.json",
+      "file": "endless-activation-clock-api.json.gz",
+      "rawSha256": "47236a3a3527df97349d9796e9c90cff1e24ca3bdf229a3db4ab5a375b51f838"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-bad-assertion.txt",
+      "file": "self-test-bad-assertion.txt.gz",
+      "rawSha256": "0fa56f0b46a698ecdb01b56d455b2544cfbbd9a111fc1dff4cede34e2db8d3ca"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-uncaught-error.txt",
+      "file": "self-test-uncaught-error.txt.gz",
+      "rawSha256": "64bf3f99a6573c132a00d203022564f69c558a48b85790871455181cc7c11439"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-unhandled-rejection.txt",
+      "file": "self-test-unhandled-rejection.txt.gz",
+      "rawSha256": "f35316d65306c20dafc4b9137b32de8b2aa571d72e6e6eeeca4d2ac31648b156"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-parity-regression.txt",
+      "file": "self-test-parity-regression.txt.gz",
+      "rawSha256": "52a6fdb6b5e457d4e1a3d9ccb49ab9fb5613b98ac6db3be46993735551834ed6"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-chronology-regression.txt",
+      "file": "self-test-chronology-regression.txt.gz",
+      "rawSha256": "ba798b8cd4708d37db105ee3fcfadcfc482a3a8bb6cdd6313daffe40c4926433"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-wisp-formula-regression.txt",
+      "file": "self-test-wisp-formula-regression.txt.gz",
+      "rawSha256": "0c3812558a9273a9e3ad169fafbf6f37886d7bac669a0e1d62466dfb85a4f71a"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-wisp-pacing-regression.txt",
+      "file": "self-test-wisp-pacing-regression.txt.gz",
+      "rawSha256": "7e9383fea0daa31da6b1cb8d00bc9a605ae011275ce58cd2aa55a9b05847878c"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-endgame-currency-regression.txt",
+      "file": "self-test-endgame-currency-regression.txt.gz",
+      "rawSha256": "b1f0a2e17b7ff36305dee96dcf8d3b3ee4f2fd31c786d3c198073f8a604fd4ca"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-wisp-role-regression.txt",
+      "file": "self-test-wisp-role-regression.txt.gz",
+      "rawSha256": "10afbfd967d431bd1de5bf54d9b603afaaccba31019a6c83f250d8d04165a1f5"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-p1-05-selected.txt",
+      "file": "self-test-p1-05-selected.txt.gz",
+      "rawSha256": "9ce313dcda1baf6ca6e6aad99fc7f30ec1bad8706dc2cbdc7464fd3165b04117"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-p1-05-focus-return.txt",
+      "file": "self-test-p1-05-focus-return.txt.gz",
+      "rawSha256": "7b11a08194e2e5171fbdacf1c4e8ee4344dc1c1c6400bffca1f90f09f1d55f1c"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-lifecycle-duplicate.txt",
+      "file": "self-test-lifecycle-duplicate.txt.gz",
+      "rawSha256": "95c926099d8f2f4ed6f26cd3010a582d3dd5e8f21554d2f3abd2eed26f301c57"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-save-backup-placement.txt",
+      "file": "self-test-save-backup-placement.txt.gz",
+      "rawSha256": "e1dcf930b065a76a5e319a1d6e13df580791c72c77e877e8e8450973fa0895bb"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-save-backup-confirmation.txt",
+      "file": "self-test-save-backup-confirmation.txt.gz",
+      "rawSha256": "f9b4e2a4cbee42eaedb468da3fe9e866d2a342a95968ee24ff29787d364f0bd7"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-upgrade-identity-buy.txt",
+      "file": "self-test-upgrade-identity-buy.txt.gz",
+      "rawSha256": "d448e803cab68e6c438b9dba0aca2f094a9cee69039bcfa513dab1775b4accd8"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-upgrade-identity-value.txt",
+      "file": "self-test-upgrade-identity-value.txt.gz",
+      "rawSha256": "42a9c5ebc86e72ddc1444c0e916935992752e20ab8d6435fbd85ecbe15b4172b"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-upgrade-identity-clock.txt",
+      "file": "self-test-upgrade-identity-clock.txt.gz",
+      "rawSha256": "9f2dbfdb7ad6b13b26b83a11904e6a0b09e739120c58ea904d4dc9b17aa939b7"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-ascend-prisms-tree.txt",
+      "file": "self-test-ascend-prisms-tree.txt.gz",
+      "rawSha256": "0390387b1d6bb9fda270b866e79299075781461f6ea94b3b9d09e658bd95f92b"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-ascend-prisms-lab.txt",
+      "file": "self-test-ascend-prisms-lab.txt.gz",
+      "rawSha256": "d6dc3a33570c44dac9b995738e9b25fe216513dd350fbd06dd4ddebe639175ae"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-ascend-prisms-payout.txt",
+      "file": "self-test-ascend-prisms-payout.txt.gz",
+      "rawSha256": "dd72b0dba884d3c9a81cbdb3e4946e0ba6f89e94f0dd77123daf605eb6df291b"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-ascend-prisms-repeat.txt",
+      "file": "self-test-ascend-prisms-repeat.txt.gz",
+      "rawSha256": "01d23380bd504e70c048e4f5dc97ba6aa868b54c8ac241bf41538efd70937a27"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-negative/self-test-ascend-prisms-rounding.txt",
+      "file": "self-test-ascend-prisms-rounding.txt.gz",
+      "rawSha256": "3d2d2a84c9a0951b7d645ef86cbf39b385c2831ef0bc0578e21bbb2d58523231"
+    }
+  ]
+}

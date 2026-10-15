@@ -1,0 +1,8 @@
+{
+  "status": "HARNESS_UPDATE_REQUIRED",
+  "scenario": "self-test-upgrade-identity-clock",
+  "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890",
+  "observed": "Expected values to be strictly equal:\n\n1 !== 2\n",
+  "reason": "Old mutator does not recognize the added exact-clock progress witness; this is not an accepted causal-control pass.",
+  "next": "After the current positive full run, update only this negative mutation to recognize the exact guard and verify the intended false-stall failure."
+}

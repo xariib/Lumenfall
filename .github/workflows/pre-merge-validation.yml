@@ -61,6 +61,7 @@ jobs:
         run: |
           node tests/behavioral/simulation-binary-clock.cjs ../../scripts/lib/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-oracle.json
           node tests/behavioral/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-compatibility.json
+          node tests/behavioral/endless-clock-activation.cjs index.html > validation-evidence/endless-progression/clock-activation.json
           node tests/behavioral/endless-requirement-boundaries.cjs index.html > validation-evidence/endless-progression/requirement-boundaries.json
           node tests/behavioral/endless-cycle-batch.cjs > validation-evidence/endless-progression/cycle-batch.json
           node tests/behavioral/endless-cycle-boundaries.cjs > validation-evidence/endless-progression/cycle-boundaries.json

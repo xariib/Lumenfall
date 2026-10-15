@@ -2364,7 +2364,7 @@
           var maxable = cloneJson(state());
           maxable.lumen = 1e15;
           maxable.shards = 1e15;
-          maxable.spirits.ember = 140;maxable.maxDepthEver=250;maxable.ascendCount=50;maxable.longStudyLevels.wispascend=32;maxable.research.arcanecal=10;
+          maxable.spirits.ember = 140;maxable.maxDepthEver=250;maxable.ascendCount=50;maxable.longStudyLevels.wispascend=78;maxable.research.arcanecal=10;
           maxable.activeParty = ['ember'];
           maxable.heroRarity.ember = 0;
           maxable.wispModules.ember = 0;

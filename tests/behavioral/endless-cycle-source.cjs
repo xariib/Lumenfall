@@ -8,6 +8,7 @@ module.exports=function(source){
   const runtime=require('./endless-cycle-runtime.cjs').toString().replace('function nativeProgram(recipe){return recipe.intervals.map(function(n){return n*1000;}).concat([null]);}','function nativeProgram(recipe){return [canonicalAutomationMillis(recipe.intervals),null];}').replace('state.luminousAccum=spawns.phase;state.enemyIsLuminous=spawns.flag;ascendRunToken={};','state.luminousAccum=spawns.phase;state.enemyIsLuminous=spawns.flag;state.canonicalAutomationClock={};ascendRunToken={};');
   assert(source.includes('var createEndlessCycleRuntime='+runtime+';'),'current embedded cycle runtime with canonical timer connection');
   assert(source.includes('function persistCanonicalAutomation(clock)'),'saved canonical timer basis');
+  assert(source.includes('binaryClock.advanceLattice(previousDuration);remaining=binaryClock.remaining();'),'exact Native-grid clock activation');
   for(const [name,file]of [['createLuminousOrbit','luminous-orbit'],['cycleAggregate','ascend-cycle-aggregate'],['cycleTailLumen','ascend-cycle-lumen'],['cycleLatticeClock','ascend-cycle-lattice-clock'],['cycleNativePhase','ascend-native-phase'],['cycleEconomyBound','ascend-cycle-economy-bound'],['cycleNativeCredit','native-credit-prefix'],['cycleResources','checked-resource-cycles']])assert(source.includes('var '+name+'='+require('../../scripts/lib/'+file+'.cjs').toString()+';'),'current embedded '+name);
   return source;
  }

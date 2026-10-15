@@ -10,9 +10,9 @@ Baseline a4f82f47; isolated codex/endless-progression under validation-evidence/
 endless-progression-worktree. Original checkout preserved. Schema5 entitlements/
 Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
-AK180d remains historical. New frozen D/b2babd53: both regular60d targets met;
-three visits recruits21.33d/MY44/ULT48; two21.5/44.5/48.5. Reinvest180d full roster114.67d; prior Support-hold stopped114d.
-Product5739a892 has D gates/exact cycle engine; Lab UI67e retained.
+Historical D60d/180d receipts are in README; all8 at21-22d, MY44d/ULT48d,
+full roster114.67d. Work-aware Lab investment needs measurement before acceptance.
+Product2719debe has D gates/exact cycle engine; Lab UI67e retained.
 Windows tooling/Linux CI, whole UI and native/device acceptance remain OPEN.
 
 Preserve fe14b2d timed Lab boosts/60s Motes and67e7d3e idle Lab UI.
@@ -23,6 +23,6 @@ User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
 User strict HP retained: current warm/cold953, storage29, V8 143,14 controls PASS.
 Exact window selection fixes12h overrun; exact saved basis retains decimal bits.
 Prior engine12h2193/cold-split471 PASS. Fresh D regular32d/all recruits22.33d;
-two-visits13d partial. Current offline18/cap34/boundaries2528 and21+14 controls PASS.
+two-visits13d partial. Prior full217 PASS/3 FAIL; repaired3 now PASS; full rerun running.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive delivery. Next: finish running full browser suite, fresh D60d and remaining CI.
+No shared/main/remote/APK/archive. Next: full browser, work-aware pacing and remaining CI.

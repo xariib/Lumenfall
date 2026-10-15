@@ -1,16 +1,15 @@
 # Endless progression — work in progress
 
-Newest isolated [physical window checkpoint](experiments/physical-window-checkpoint.json),
-source5739a892. Exact event ordering fixes a captured12h clock overrun. Zero timer
-bases normalize consistently; exact decimal elapsed values retain their saved type.
-Clock989, warm/cold953 each, storage29, actualV8.6 143 and14 controls PASS.
-Final source offline core18/cap34 and21 progression controls PASS. Repaired
-navigation/offline UI/legacy DOM pass; complete browser rerun RUNNING. No HP tolerance relaxed; generic
-current-clock HP now also uses strict1e-9 remaining-HP scale. Historical Native
-counterfactual stays bit-identical. All-Push clock expansion failed Mote parity
-and was reverted. Initial full browser pass stopped69 cases/11 failures to fix
-introduced compatibility issues; repaired Farm/Wisp targets pass. Full acceptance
-is OPEN. Fresh pacing still regular32d/all recruits22.333d and two-visits13d.
+Newest isolated [activation checkpoint](experiments/activation-checkpoint.json),
+source2719debe. Full prior5739 run:217 PASS/3 FAIL. All three targeted repairs
+now PASS: exact grid operands survive clock activation; funded Mythic fixture
+meets intentional78-Lab gate. Clock383 includes the actual causal stall control.
+Strict warm/cold953 each, storage29, actualV8.6 143 PASS; full current rerun RUNNING.
+Generic negative clock now proves the intended failure rather than an anchor error.
+HP tolerance remains1e-9 remaining-HP scale. Full acceptance remains OPEN.
+Fresh baseline pacing is still regular32d/all recruits22.333d and two-visits13d.
+Additional [work-aware policy](experiments/lab-work-aware-plan.json) is prepared:
+cheap permanent work reductions and breadth need measurement before numeric acceptance.
 No shared/main/remote/APK/archive. Older checkpoints below are historical.
 
 Current isolated implementation [b645b6a3 checkpoint](experiments/integrated-checkpoint.json).

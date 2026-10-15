@@ -175,7 +175,8 @@ function mutateSource(source, scenario) {
   if (scenario === 'self-test-upgrade-identity-clock') {
     replaceOnce('    var gridCrossingsBefore = farmGridCrossings;\n    var gridRemainingBefore = farmGridRemainingSec;', '    var elapsedWholeBefore = elapsedWholeSec;\n    var elapsedFractionBefore = elapsedFractionSec;');
     const wideGuard='if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)){';
-    replaceOnce(source.includes(wideGuard)?wideGuard:'if(remaining>0 && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0){', 'if(remaining>0 && elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0){');
+    const exactGuard=wideGuard.replace(' && actions===0',' && (!binaryClock||binaryClock.elapsed()===binaryElapsedBefore) && actions===0');
+    replaceOnce(source.includes(exactGuard)?exactGuard:source.includes(wideGuard)?wideGuard:'if(remaining>0 && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0){', 'if(remaining>0 && elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0){');
   }
   if (scenario === 'self-test-bond-text-ability') replaceOnce('Heavy ability damage. Ultimate doubles it.', 'Heavy ability damage. Stone + Titan activate the Duskguard Bond. Ultimate doubles it.');
   if (scenario === 'self-test-bond-text-partners') replaceOnce("return SPIRITS.find(function(sp){ return sp.id===id; }).name;", "return SPIRITS.find(function(sp){ return sp.id===id; }).shortName;");
