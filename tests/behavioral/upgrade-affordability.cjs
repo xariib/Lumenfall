@@ -9,10 +9,10 @@ let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 const marker='breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}';
 assert.equal(driver.split(marker).length,2);
 driver=driver.replace(marker,`upgradeIds:SPIRITS.map(function(sp){return sp.id;}),
- upgradeSeed:function(id,action){var s=freshState();s.maxDepthEver=250;s.questDay=todayStr();s.lastSeen=Date.now();s.activeParty=[id];
- SPIRITS.forEach(function(sp){s.spirits[sp.id]=100;s.heroRarity[sp.id]=5;s.wispUltimate[sp.id]=true;s.empowerQueue[sp.id]=false;s.heroResource[sp.id]=0;});
+ upgradeSeed:function(id,action){var s=freshState();s.maxDepthEver=250;s.ascendCount=100;s.longStudyLevels.wispascend=250;s.research.arcanecal=10;s.questDay=todayStr();s.lastSeen=Date.now();s.activeParty=[id];
+ SPIRITS.forEach(function(sp){s.spirits[sp.id]=100;s.heroRarity[sp.id]=5;s.wispModules[sp.id]=20;s.wispUltimate[sp.id]=true;s.empowerQueue[sp.id]=false;s.heroResource[sp.id]=0;});
  s.lumen=0;s.shards=0;s.sigils=0;s.sigilResonanceUses=0;
- if(action==='rarity')s.heroRarity[id]=0;if(action==='ultimate')s.wispUltimate[id]=false;return s;},
+ if(action==='rarity')s.heroRarity[id]=0;if(action==='module')s.wispModules[id]=0;if(action==='ultimate')s.wispUltimate[id]=false;return s;},
  upgradePrices:function(id,action){var sp=SPIRITS.find(function(sp){return sp.id===id;});
  if(action==='empower')return {lumen:getSpiritBuyPlan(sp).cost};if(action==='rarity')return rarityCost(sp,state.heroRarity[id]);
  if(action==='module')return moduleCost(sp,moduleLevel(id));return {sigil:action==='ultimate'?ultimateSigilCost(sp):sigilResonanceCost()};},
@@ -70,7 +70,7 @@ driver=driver.slice(0,start)+String.raw`
   // Prerequisites and caps remain distinct from affordability.
   await ev('prismQa.set(prismQa.upgradeSeed("ember","rarity"));prismQa.upgradeWallet({lumen:1e12,shards:1e12,sigils:1e6});var s=prismQa.get();s.spirits.ember=1;prismQa.set(s);prismQa.tab("spirits");prismQa.upgradeRefresh()');
   ok(await ev('document.querySelector("[data-rarity=ember]").disabled'),'funded rarity still requires Wisp level');
-  ok(await ev('document.querySelector("[data-rarity=ember] [data-price-currency]")===null'),'level-locked rarity keeps original no-price display');
+  ok(await ev('document.querySelectorAll("[data-rarity=ember] [data-price-currency]").length===2'),'level-locked rarity still discloses both upgrade prices');
   await ev('var s=prismQa.get();s.wispModules.ember=20;s.heroRarity.ember=5;prismQa.set(s);prismQa.upgradeRefresh()');
   ok(await ev('!document.querySelector("[data-module=ember]")'),'capped ability cannot be repurchased');
   ok(await ev('document.querySelector("[data-rarity=ember]").disabled'),'capped rarity remains disabled');
@@ -92,7 +92,7 @@ function execute(file,dir,expectedFailure){
 try{
  if(!process.argv.includes('--controls-only'))execute(sourcePath,evidence,baseline?/all upgrade prices instrumented|wallet color|native disabled affordability/:null);
  if(process.argv.includes('--negative')||process.argv.includes('--controls-only')){
-  const controls=[['all-white',"Number.isFinite(amount) && missing ? 'var(--danger)' : 'var(--ink)'","Number.isFinite(amount) && false ? 'var(--danger)' : 'var(--ink)'",/wallet color/],
+  const controls=[['all-white',"Amount.valid(amount) && missing ? 'var(--danger)' : 'var(--ink)'","Amount.valid(amount) && false ? 'var(--danger)' : 'var(--ink)'",/wallet color/],
    ['stale-resonate',"    btn.disabled=!canSigilResonate(sp);","    /* defect control: omit live Resonate eligibility */",/native disabled affordability.*sigil-resonate funded/]];
   for(const [name,from,to,error] of controls){
    assert.equal(source.split(from).length,2,'unique control '+name);

@@ -33,11 +33,11 @@ window.endlessQa={
   claim:function(){(state.questIds||[]).forEach(function(id){claimQuest(id);});},
   mastery:function(sp){return typeof buyWispMastery==='function' && buyWispMastery(sp);},
   masterworkPower:function(){return ENDLESS_PROGRESSION.masterworkPowerGrowth||1;},
-  speed:function(preferred,budget){
+  speed:function(preferred,budget,hours){
     var node=LONG_STUDIES.find(function(n){return n.id==='wispascend';}),active=findActiveStudy('wispascend');
     if(!active)return false;
     for(var i=LAB_SPEED_TIERS.length-1;i>=0;i--){var tier=LAB_SPEED_TIERS[i];
-      if(tier<=preferred && tier>active.speedMult && Amount.le(speedTierCost(tier,node),Amount.mul(state.motes,budget)))return applySpeedTier(node.id,tier);
+      if(tier<=preferred && tier>active.speedMult && Amount.le(studyBoostCost(tier,hours),Amount.mul(state.motes,budget)))return activateStudyBoost(node.id,tier,hours);
     }
     return false;
   },
@@ -52,7 +52,7 @@ window.endlessQa={
 };
 `;
 const instrumented=source.replace(marker,bridge+marker);
-const policies={casual:{sessions:2,activeSec:300,decisionSec:10,speed:8,budget:.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},frequent:{sessions:6,activeSec:600,decisionSec:10,speed:8,budget:.5},regular_fast:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8,budget:.9}};
+const policies={regular_two:{sessions:2,activeSec:600,decisionSec:10,speed:8,budget:.5},casual:{sessions:2,activeSec:300,decisionSec:10,speed:8,budget:.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},frequent:{sessions:6,activeSec:600,decisionSec:10,speed:8,budget:.5},regular_fast:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8,budget:.9}};
 const days=Number(process.argv[3]||7),name=process.argv[4]||'regular';
 assert(policies[name]&&Number.isInteger(days)&&days>0&&days<=730);
 const runBudgetMs=Number(process.env.LUMENFALL_CAMPAIGN_RUN_MS||0),runStarted=performance.now();assert(Number.isFinite(runBudgetMs)&&runBudgetMs>=0);
@@ -124,7 +124,7 @@ function campaign(){
     b.push();
     const growth=q.projects().find(study=>study.id==='wispascend');
     if(growth)q.startStudy(growth.id);
-    b.speed(policy.speed,policy.budget);
+    b.speed(policy.speed,policy.budget,policy.sessions===2?12:8);
     const growthPlan=growth&&b.studyPlan(growth);
     const growthSaving=growthPlan&&!q.get().activeStudies.some(study=>study.id==='wispascend')&&amount.gt(growthPlan.cost.lumen,q.get().lumen)&&(q.get().longStudyLevels.wispascend||0)>=5&&(q.get().spirits.ember||0)>=80;
     const forgeMasterwork=q.defs().find(node=>node.id==='masterwork'),forgeGoal=forgeMasterwork&&q.plan('masterwork',1);

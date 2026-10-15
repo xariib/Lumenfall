@@ -1,0 +1,60 @@
+{
+  "status": "EXPERIMENT; no optimization in index.html",
+  "decision": "User explicitly chose unrestricted Ascends with repeated-cycle optimization; no cooldown or target restriction.",
+  "source": "82a05d93f0e8f689c9bc5571dd9d040a372f1d8f7c36ba22880231ae77ae1857",
+  "observed": {
+    "save": "candidate-ak-mature-snapshot.json.endpoint.json",
+    "riftstep": 5,
+    "startRift": 6,
+    "targetCleared": 15,
+    "heroPeriod": 5,
+    "warmupCycles": 5,
+    "cycleSeconds": [
+      1.1253228311721586e-19,
+      1.3218842678804187e-19
+    ],
+    "spawnEdges": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      6
+    ],
+    "note": "Boss10 does not roll; spawn16 is discarded by Ascend but still advances pity, then reset spawn6 rolls. Not an immediate-ready reset loop."
+  },
+  "pity": {
+    "prototype": "scripts/lib/luminous-orbit.cjs; not used by product",
+    "proof": "Literal floating adds/subtracts within a block; even maximum-ULP translations only while all actual operands/results remain inside their certified binades. Rational sum used ONLY to select block length.",
+    "matureHuge": "1e25 cycles completes about43425 regions, exact phase0.43136104858527186 agrees with independent block100 acceleration. Initial10000-region gate still FAIL.",
+    "otherHuge": ".03/.05 remains incomplete at100000 regions. Need retain failure honestly.",
+    "next": "Compile reusable certified region edges. Cache edge membership by phase/flag with exact integer t=(phase-start)/delta and start+t*delta===phase. Weighted cycle prefix counts allow cycle quotient and binary-search remainder, avoiding rebuilding ~43000 regions per each second. Cursor yields must preserve local recurrence state. Do not approximate saved pity or impose a gameplay cap."
+  },
+  "combatCompiler": {
+    "strategy": "Observe real production Ascend boundaries and native per-step times, then detect recurring hero/party/permanent/buff state. Existing probe finds period5. Build a guarded macro recipe only after proving ignored state cannot alter combat within next chronological event.",
+    "mustAccount": [
+      "Luminous status changes rewards, not enemy HP, so spawn orbit can be separate from combat template.",
+      "Include ability Lumen/Shard rewards from Gale/Thorn; they may exceed kill rewards and saturate Lumen Memory.",
+      "Prove no queued Forge/Lab purchase can occur during skipped interval, or stop at its exact affordability boundary. Fixed max capped paths alone are insufficient.",
+      "Lumen Memory is capped and contractive (max effective5/20). Reconstruct final Lumen using exact local last64+ cycles; sandwich from0 and cap and require identical endpoints before declaring independence from skipped initial wallet.",
+      "Stop at Lab completion/start, boost expiry/start, Support buff/recast, automation and other real chronology boundaries. Preserve Support buffs and paid work.",
+      "Hero-resource period must be exact, not an epsilon fingerprint. Active support deadline eligibility can invalidate a cached recipe.",
+      "Fix tiny positive clock intervals being lost by canonical grid subtraction; preserve ordinary rounding outside this blocked extreme path. Anchor elapsed automation to actual chronology rather than inventing a minimum cycle.",
+      "Wide Ascend counters need persistedAmountInteger and exact increments; check Comet trial startedAscend identity/migration as well.",
+      "Huge summaries cannot append one ascendGains element per cycle. Add lossless run-length receipts only for bulk cases, preserving all ordinary summary shapes/UI last reward behavior.",
+      "Use exact Prism/Sigil/Mote and integer counter accounting; new bulk income must match the established analytical Farm arithmetic and rounding. Test normal and failed persistence/rollback/restore.",
+      "Initially target15 with strict algorithm eligibility is acceptable as optimization selection; fallback must retain gameplay and is not a target restriction. Broaden and measure unsupported extreme configurations."
+    ]
+  },
+  "acceptance": [
+    "Finite literal-engine reference with batching disabled, common corrected tiny-clock semantics.",
+    "Exact spawn sequence/counts; independent integer reward/debit oracles; chronological online/offline/split/yield parity.",
+    "Earned mature .001s stress must complete and then full8h/12h; high Mastery/overflow/wide saves; actual V8 6.0.",
+    "No prototype or passing math subtest may be labelled completed Auto-Ascend acceptance."
+  ]
+}

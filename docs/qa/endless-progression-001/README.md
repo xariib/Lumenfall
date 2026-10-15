@@ -1,5 +1,10 @@
 # Endless progression — work in progress
 
+15 October user decision: "Preserve unrestricted Ascends and optimize
+repeated-cycle simulation (larger engine change)". No minimum run timer,
+new cooldown or target restriction is authorized. Exact chronological batching
+must retain payments, counters, Prism rewards, paid work and saved progression.
+
 Current: reconciling newer local/full-debug fe14b2d timed Lab boosts, global60s
 Mote eligibility and red-shortage UI in this isolated branch. Combined source82a05d93
 passes timed1480/3 controls, endless235, wide67,21 controls, actual V8 6.0 checks48,
@@ -13,6 +18,25 @@ not project payouts past the real batch endpoint; a finite causal control catche
 that defect. New combined B/C campaigns are running; their timings are pending.
 Model C changes only future completed-Lab gates, never the accepted boost prices.
 No combined acceptance or release is claimed. The records below are historical.
+
+Newest calibration D/b2babd53: regular and two-visit60d campaigns meet all primary
+targets:21.33/44/48d and21.5/44.5/48.5d for recruits/Mythic/Ultimate. D raises
+Titan's completed-Lab gate40 to43; its frozen policy50285709 buys12h packages
+for12h absences,8h otherwise. No free grants, price change or automatic renewal.
+Regular180d and casual/frequent/efficient60d are running on immutable D/runtime.
+B60 fails with recruits10d/Mythic15/Ultimate30.67; C60 recruits19.33d, while
+two-visit8h packages give Mythic59d. These rejected measurements remain separate.
+
+Unrestricted Ascend optimization is exploratory and absent from index.html.
+A literal200-cycle probe on the earned AK mature save finds a stable five-cycle
+hero-resource pattern after cycle5, with individual cycles about1.1e-19 seconds.
+The floating-pity orbit prototype preserves literal Number additions, uses
+certified even-ULP translations within unchanged binades, and matches100000-cycle
+ordinary references. Its initial10000-region huge-work gate FAILS;100000-region
+experiments complete1e25 cycles for the mature .08/.1 spawn pattern but not the
+.03/.05 pattern. No full-engine batch, completed catch-up or mobile performance
+acceptance is claimed. Next: reusable orbit transitions and complete combat-cycle
+accounting, timers, saved wide counters and compact reward summaries.
 
 Prior frozen source1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c:
 selected AK balance, native Comet debit fix and exact Masterwork preview. Regular free milestones
