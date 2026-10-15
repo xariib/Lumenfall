@@ -18,7 +18,7 @@
     "timerStorage": 29,
     "clockActivation": 383,
     "actualV8_6": 143,
-    "fullBrowser": "RUNNING; no current full PASS claim",
+    "fullBrowser": "RUNNING; two stale-reference setup failures repaired in separate targeted runs. No whole-run PASS claimed.",
     "negativeClock": "actual intended false stall detected; no anchor/setup error",
     "sourceRebuild": "569de01:index.html + current cycle builder + timed balance43, byte-identical",
     "boundaries": 2528,
@@ -26,7 +26,19 @@
     "clockOracle": 989,
     "clockAPI": 1885,
     "requiredNegativeControls": 22,
-    "negativeEvidence": "activation/negative-summary.json"
+    "negativeEvidence": "activation/negative-summary.json",
+    "income": 632726,
+    "prices": 13416,
+    "batch": 94,
+    "cycleBoundaries": 136,
+    "support": 1782,
+    "earlyWisps": 2801,
+    "swift": 173,
+    "overflow": "PASS",
+    "offlineCore18": "PASS",
+    "offlineCap34": "PASS",
+    "overnightGolden": "All four8h one-second state hashes unchanged; only source hash updated",
+    "offlineSummaryUI": "Both current/legacy targeted PASS after qualified reference regeneration"
   },
   "pacing": "New work-aware policy not yet measured. Historical campaign results do not establish current numeric acceptance.",
   "limits": [
@@ -209,6 +221,61 @@
       "originalPath": "validation-evidence/endless-activation-negative/self-test-ascend-prisms-rounding.txt",
       "file": "self-test-ascend-prisms-rounding.txt.gz",
       "rawSha256": "3d2d2a84c9a0951b7d645ef86cbf39b385c2831ef0bc0578e21bbb2d58523231"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-income.json",
+      "file": "endless-activation-income.json.gz",
+      "rawSha256": "debbb5edfa1bb956a982f5de8f6ae887f52c52336084105118e46d95f3bc26eb"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-prices.json",
+      "file": "endless-activation-prices.json.gz",
+      "rawSha256": "cbe1805aa3a23ab8c7ffb4d47e34ad9bd9c0fa35ad60b95d15a37414cac7b306"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-batch.json",
+      "file": "endless-activation-batch.json.gz",
+      "rawSha256": "6ea06469577baead4cc8e8cdde3d6878f3ecb391598764f971bd329027affc0b"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-cycle-boundaries.json",
+      "file": "endless-activation-cycle-boundaries.json.gz",
+      "rawSha256": "13b39596d304d46b363173a9202a40756964dd380472ac07f20a153e8a93ea42"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-support.json",
+      "file": "endless-activation-support.json.gz",
+      "rawSha256": "3f0103bcfdb9af980904e30bb8ba83f1b0019bb9c5c0958dbcc8db9590663357"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-early-wisps.json",
+      "file": "endless-activation-early-wisps.json.gz",
+      "rawSha256": "118b08a5cc4d7caa8d8fd4b2ca3612b41847f0894f220d5d3a1c7f67bc738b13"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-swift.json",
+      "file": "endless-activation-swift.json.gz",
+      "rawSha256": "14cdbde2d704e368b43f397202d4003a2a05c3d2f286f6384fb2cea8324f611b"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-overflow.json",
+      "file": "endless-activation-overflow.json.gz",
+      "rawSha256": "c8ee27a37980a32bf9eb538f18c5cb53d2ddbbf6b41aad0f4cb4b881c41cfc42"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-swift-golden.json",
+      "file": "endless-activation-swift-golden.json.gz",
+      "rawSha256": "14437213771f3e84f861100e604c6b4a118ecb7831e2be7fa1b41772abf0ee93"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-offline-ui.txt",
+      "file": "endless-activation-offline-ui.txt.gz",
+      "rawSha256": "162165139bcf7042abff4e98d4196779432765edb29dcc205183289f92ec91d3"
+    },
+    {
+      "originalPath": "validation-evidence/endless-activation-offline-legacy.txt",
+      "file": "endless-activation-offline-legacy.txt.gz",
+      "rawSha256": "44d5bf0b16c1e8a9fc3018bb13a601cea21d5bbf0d176a5bf410dc37bb144094"
     }
   ]
 }

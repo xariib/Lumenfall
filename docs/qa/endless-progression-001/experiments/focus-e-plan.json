@@ -1,0 +1,36 @@
+{
+  "status": "EXPERIMENT_RUNNING_NOT_APPLIED",
+  "baseSourceSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53",
+  "sourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
+  "reason": "Focused free three-visit policy recruited all eight at18.6667d on D; test robust pacing before accepting numeric gates.",
+  "changes": [
+    "Titan completed Wisp Lab48",
+    "Mythic completed Wisp Lab90 plus existing roster offset",
+    "Ultimate completed Wisp Lab92 plus existing roster offset; Mastery Lab base92"
+  ],
+  "preserved": [
+    "All prices and effects",
+    "Early recruitment and rarity gates",
+    "Running projects, speed benefits and resource affordability",
+    "Unrestricted Ascend and exact engine"
+  ],
+  "limits": "Provisional numeric model only. Fresh complete-engine measurements are required before application.",
+  "campaigns": [
+    {
+      "policyKind": "focused",
+      "policy": "regular",
+      "prefix": "validation-evidence/focus-e-focused-regular",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-focused/tests/behavioral/endless-campaign.cjs"
+    },
+    {
+      "policyKind": "work-aware",
+      "policy": "regular_two",
+      "prefix": "validation-evidence/focus-e-aware-regular_two",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs"
+    }
+  ],
+  "originalFocusedEvidence": {
+    "file": "activation/work-focused-regular-day24.checkpoint.json.gz",
+    "allRecruitsDay": 18.666666666666668
+  }
+}

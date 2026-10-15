@@ -8,8 +8,14 @@ Strict warm/cold953 each, storage29, actualV8.6 143 PASS; full current rerun RUN
 Generic negative clock now proves the intended failure rather than an anchor error.
 HP tolerance remains1e-9 remaining-HP scale. Full acceptance remains OPEN.
 Fresh baseline pacing is still regular32d/all recruits22.333d and two-visits13d.
-Additional [work-aware policy](experiments/lab-work-aware-plan.json) is prepared:
-cheap permanent work reductions and breadth need measurement before numeric acceptance.
+[Work-aware policy](experiments/lab-work-aware-plan.json) all8 at22.333d.
+The [focused policy](experiments/lab-work-focused-plan.json) all8 at18.667d,
+earlier than target. Separate [E experiment](experiments/focus-e-plan.json)
+(Titan Lab48, Mythic90, Ultimate/Mastery92) is running fresh focused3-visit and
+work-aware2-visit campaigns. These numbers are provisional and not applied.
+Four8h reference states remain byte-identical; offline UI/legacy both pass after
+source-qualified regeneration. Current whole browser still running; source-guard
+failures and repaired targeted results remain separate.
 No shared/main/remote/APK/archive. Older checkpoints below are historical.
 
 Current isolated implementation [b645b6a3 checkpoint](experiments/integrated-checkpoint.json).
