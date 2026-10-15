@@ -15,7 +15,7 @@ const specs=[
  ['discarded-physical-progress',' && !Amount.lt(state.enemyHp,hpBeforeAdvance)','', 'Authoritative simulation stalled','endless-wide-engine.cjs','runtime'],
  ['unbounded-future-work','Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level))','node.baseDurationSec * Math.pow(node.durationGrowth, level)','bounded future work'],
  ['lost-old-titan-entitlement','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:32}','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:100}','old unlocked roster preserved titan'],
- ['early-ultimate','module:15,depth:120,lab:30','module:14,depth:120,lab:30','Ultimate needs ability15']
+ ['early-ultimate','module:15,depth:120','module:14,depth:120','Ultimate needs ability15']
 ];
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-endless-controls-')),records=[];
 try{

@@ -137,7 +137,7 @@ function baselineState(actual,expected,seed,label){
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
- const wispIds=['ember','tide','stone','gale','thorn','void','aurora','titan'],oldDepths=[1,3,6,9,12,18,24,32],newDepths=[1,3,6,15,35,55,75,100],newLabs=[0,0,0,15,18,20,21,22];
+ const wispIds=['ember','tide','stone','gale','thorn','void','aurora','titan'],oldDepths=[1,3,6,9,12,18,24,32],newDepths=[1,3,6,15,35,55,75,100],newLabs=[0,0,0,15,18,20,21,24];
  assert.deepEqual(actual.wispMastery,Object.fromEntries(wispIds.map(id=>[id,0])),label+' no invented Mastery');
  assert.deepEqual(actual.recruitmentEntitlements,Object.fromEntries(wispIds.map((id,i)=>[id,id==='ember'||(seed.spirits?.[id]||0)>0||(seed.heroRarity?.[id]||0)>0||(seed.wispModules?.[id]||0)>0||seed.wispUltimate?.[id]===true||seed.maxDepthEver>=oldDepths[i]||(actual.maxDepthEver>=newDepths[i]&&(actual.longStudyLevels.wispascend||0)>=newLabs[i])])),label+' retained old or earned new recruitment access');
  delete actual.wispMastery;delete actual.recruitmentEntitlements;

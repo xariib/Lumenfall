@@ -4,7 +4,7 @@ const {spawn}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'docs/qa/endless-progression-001/mobile');
-const calibrated=process.argv.includes('--calibrated'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=calibrated?32:30;
+const calibrated=!process.argv.includes('--initial-proposal'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=calibrated?32:30;
 const source=fs.readFileSync(file,'utf8'),marker="if(document.readyState==='loading'){";
 const bridge=`window.endlessUi={
  fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},

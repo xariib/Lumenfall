@@ -5,8 +5,7 @@ User explicitly requested implementation of the approved plan. [Requirements](..
 
 Baseline a4f82f47 on local/full-debug, isolated codex/endless-progression in
 validation-evidence/endless-progression-worktree. Original checkout and its
-untracked evidence preserved. Latest combined Wisp/Formation/Lab/Forge changes
-retained. Unused managed worktree archived; native Git isolation used.
+untracked evidence preserved. Combined changes retained; native Git isolation.
 
 Goal: daily push/farm/Ascend/develop loop, later recruitment and rarity/Ultimate,
 permanent uncapped Wisp Mastery (+10% compounded own Power/rank), no ending.
@@ -24,22 +23,23 @@ Acceptance: source-bound daily/free/frequent/efficient and long-run simulations;
 gates/costs/migrations/atomicity/recovery/Ascend/rank/large-value regressions and
 causal controls; existing relevant/full CI, mobile accessibility and Android
 release acceptance on integrated bytes. Simulation is not human/device proof.
-Existing full-debug transport/native/tooling limitations stay recorded.
+Existing platform limits recorded.
 
 Baseline source validation/Support/campaign PASS, Node24.19.0; regular v1 all
 recruits/Mythic/Ultimate16h. [Evidence/status](../qa/endless-progression-001/README.md).
 Arithmetic/schema5, central gates, Mastery/Forge and UI candidate implemented.
 Core142/amount412/wide53/parity305/13 controls and mobile469/12 profiles PASS.
 Forge9319/25 controls, Tree5923/28, Lab2676; V8 Forge2486/Lab580/Mastery17 PASS.
-Forge foundations are retired: add repeatable Masterwork Tempering opening5
-Mastery ranks/level, retain existing caps. Current coefficients still calibrating.
+Forge foundations retired; Masterwork Tempering opens5
+Mastery ranks/level, retain existing caps. Calibrated AA tables applied; acceptance OPEN.
 karahaNx repo404; xariib/Lumenfall empty, destination pending. Integration
-deferred until acceptance. Z regular roster22days, daily closed gaps<=1.34d.
-Mythic/Ultimate42-56days pending. AA repeats from fresh with exact price cursor;
+requires acceptance. AA primary56d: recruits22d/Mythic48.33d/Ultimate53.33d
+PASS. Two-visit measurement continues. Explicit mature policy from day56
+reserves earned Prisms and trains the roster; first Mastery57.33d.
 13,416 independent prices and V8 Mastery25 PASS. Rank10000 replay functional
-PASS; mobile performance OPEN. Simulations remain separate from product tables.
+PASS; mobile performance OPEN. AA matches applied source448a2c1b; exact earned-state parity PASS.
 
 Next: finish AA calibration and exact-price/wall analysis,
-measure all policies/roster months, freeze tables, update UI/golden contracts,
+measure all policies/roster months, finish regressions and UI/golden checks,
 run full CI and combined/native delivery. Feature stays OPEN
 until all required acceptance; no APK/main/remote/archive claimed.

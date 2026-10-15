@@ -1,14 +1,14 @@
 {
   "status": "PARTIAL",
-  "checks": 2088,
+  "checks": 4244,
   "limits": "Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.",
   "records": [
     {
       "policy": "regular",
       "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
       "policySha256": "5042fd3b5a440f929b208e63ee77bc9ca75d92f9b7bf512016dcbfc83186635a",
-      "days": 36,
-      "status": "PARTIAL",
+      "days": 56,
+      "status": "MILESTONE_WINDOW_MEASURED",
       "milestones": {
         "recruit.ember": 0,
         "recruit.tide": 0.005208333333333333,
@@ -20,7 +20,11 @@
         "recruit.void": 11,
         "recruit.aurora": 14,
         "recruit.titan": 22,
-        "allRecruits": 22
+        "allRecruits": 22,
+        "firstMythic": 48.333333333333336,
+        "mythic.ember": 48.333333333333336,
+        "firstUltimate": 53.333333333333336,
+        "ultimate.ember": 53.333333333333336
       },
       "firstDay": [
         {
@@ -56,20 +60,22 @@
           "key": "firstMythic",
           "min": 42,
           "max": 56,
-          "status": "PENDING"
+          "day": 48.333333333333336,
+          "status": "MET"
         },
         {
           "key": "firstUltimate",
           "min": 42,
           "max": 56,
-          "status": "PENDING"
+          "day": 53.333333333333336,
+          "status": "MET"
         }
       ],
       "endpoint": {
-        "rift": 5460,
-        "ascends": 1203,
-        "lab": 28,
-        "masterwork": 116,
+        "rift": 5965,
+        "ascends": 1311,
+        "lab": 32,
+        "masterwork": 122,
         "mastery": {
           "ember": 0,
           "tide": 0,
@@ -81,7 +87,7 @@
           "titan": 0
         }
       },
-      "longestClosedWallDays": 1.9931712962962962,
+      "longestClosedWallDays": 2.326388888888889,
       "walls": [
         {
           "from": 16,
@@ -370,6 +376,90 @@
           "to": 5439,
           "seconds": 114670,
           "days": 1.327199074074074
+        },
+        {
+          "from": 5460,
+          "to": 5461,
+          "seconds": 144040,
+          "days": 1.6671296296296296
+        },
+        {
+          "from": 5461,
+          "to": 5462,
+          "seconds": 57080,
+          "days": 0.6606481481481481
+        },
+        {
+          "from": 5479,
+          "to": 5480,
+          "seconds": 114900,
+          "days": 1.3298611111111112
+        },
+        {
+          "from": 5490,
+          "to": 5500,
+          "seconds": 172250,
+          "days": 1.9936342592592593
+        },
+        {
+          "from": 5524,
+          "to": 5530,
+          "seconds": 143410,
+          "days": 1.659837962962963
+        },
+        {
+          "from": 5558,
+          "to": 5559,
+          "seconds": 114700,
+          "days": 1.3275462962962963
+        },
+        {
+          "from": 5585,
+          "to": 5586,
+          "seconds": 86140,
+          "days": 0.9969907407407408
+        },
+        {
+          "from": 5598,
+          "to": 5680,
+          "seconds": 201000,
+          "days": 2.326388888888889
+        },
+        {
+          "from": 5704,
+          "to": 5705,
+          "seconds": 57430,
+          "days": 0.664699074074074
+        },
+        {
+          "from": 5710,
+          "to": 5711,
+          "seconds": 86110,
+          "days": 0.9966435185185185
+        },
+        {
+          "from": 5730,
+          "to": 5770,
+          "seconds": 114600,
+          "days": 1.3263888888888888
+        },
+        {
+          "from": 5793,
+          "to": 5830,
+          "seconds": 114610,
+          "days": 1.3265046296296297
+        },
+        {
+          "from": 5853,
+          "to": 5920,
+          "seconds": 201000,
+          "days": 2.326388888888889
+        },
+        {
+          "from": 5945,
+          "to": 5946,
+          "seconds": 114700,
+          "days": 1.3275462962962963
         }
       ],
       "wholeDayPlateaus": [
@@ -411,10 +501,554 @@
             "swift"
           ],
           "mastery": []
+        },
+        {
+          "day": 40,
+          "rift": 5490,
+          "ascends": 3,
+          "labs": [],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 42,
+          "rift": 5524,
+          "ascends": 4,
+          "labs": [
+            "lumenstudy",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 46,
+          "rift": 5598,
+          "ascends": 4,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 53,
+          "rift": 5853,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 55,
+          "rift": 5945,
+          "ascends": 4,
+          "labs": [],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        }
+      ],
+      "investments": [
+        {
+          "kind": "ultimate",
+          "id": "ember",
+          "day": 53.333333333333336,
+          "price": {
+            "sigils": 8000000
+          },
+          "shareOfWallet": {
+            "sigils": 0.14202540909131983
+          }
+        }
+      ],
+      "purchaseReceiptCount": 264
+    },
+    {
+      "policy": "regular_two",
+      "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
+      "policySha256": "5154e65994e8cb5339eff682aa5918fa9afefdd07b67502472f5ec9176d27c54",
+      "days": 44,
+      "status": "PARTIAL",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.5,
+        "firstRarity": 0.5002314814814814,
+        "recruit.gale": 4,
+        "recruit.thorn": 8,
+        "recruit.void": 13.5,
+        "recruit.aurora": 15.5,
+        "recruit.titan": 21,
+        "allRecruits": 21
+      },
+      "firstDay": [
+        {
+          "key": "recruit.tide",
+          "day": 0.005208333333333333,
+          "met": true
+        },
+        {
+          "key": "recruit.stone",
+          "day": 0.5,
+          "met": true
+        },
+        {
+          "key": "firstRarity",
+          "day": 0.5002314814814814,
+          "met": true
+        },
+        {
+          "key": "firstAscend",
+          "day": 0.005902777777777778,
+          "met": true
+        }
+      ],
+      "targets": [
+        {
+          "key": "allRecruits",
+          "min": 21,
+          "max": 28,
+          "day": 21,
+          "status": "MET"
+        },
+        {
+          "key": "firstMythic",
+          "min": 42,
+          "max": 56,
+          "status": "PENDING"
+        },
+        {
+          "key": "firstUltimate",
+          "min": 42,
+          "max": 56,
+          "status": "PENDING"
+        }
+      ],
+      "endpoint": {
+        "rift": 6097,
+        "ascends": 1031,
+        "lab": 30,
+        "masterwork": 126,
+        "mastery": {
+          "ember": 0,
+          "tide": 0,
+          "stone": 0,
+          "gale": 0,
+          "thorn": 0,
+          "void": 0,
+          "aurora": 0,
+          "titan": 0
+        }
+      },
+      "longestClosedWallDays": 4.493287037037037,
+      "walls": [
+        {
+          "from": 16,
+          "to": 17,
+          "seconds": 42722,
+          "days": 0.4944675925925926
+        },
+        {
+          "from": 40,
+          "to": 60,
+          "seconds": 86008,
+          "days": 0.995462962962963
+        },
+        {
+          "from": 60,
+          "to": 120,
+          "seconds": 43200,
+          "days": 0.5
+        },
+        {
+          "from": 120,
+          "to": 130,
+          "seconds": 43200,
+          "days": 0.5
+        },
+        {
+          "from": 130,
+          "to": 150,
+          "seconds": 43200,
+          "days": 0.5
+        },
+        {
+          "from": 150,
+          "to": 160,
+          "seconds": 172800,
+          "days": 2
+        },
+        {
+          "from": 253,
+          "to": 254,
+          "seconds": 42830,
+          "days": 0.49571759259259257
+        },
+        {
+          "from": 273,
+          "to": 274,
+          "seconds": 42800,
+          "days": 0.49537037037037035
+        },
+        {
+          "from": 292,
+          "to": 293,
+          "seconds": 43080,
+          "days": 0.4986111111111111
+        },
+        {
+          "from": 300,
+          "to": 312,
+          "seconds": 85860,
+          "days": 0.99375
+        },
+        {
+          "from": 492,
+          "to": 495,
+          "seconds": 42750,
+          "days": 0.4947916666666667
+        },
+        {
+          "from": 546,
+          "to": 700,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 736,
+          "to": 880,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 915,
+          "to": 1030,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 1072,
+          "to": 1079,
+          "seconds": 85840,
+          "days": 0.9935185185185185
+        },
+        {
+          "from": 1324,
+          "to": 1325,
+          "seconds": 42950,
+          "days": 0.49710648148148145
+        },
+        {
+          "from": 1381,
+          "to": 1384,
+          "seconds": 42650,
+          "days": 0.49363425925925924
+        },
+        {
+          "from": 1480,
+          "to": 1481,
+          "seconds": 43040,
+          "days": 0.4981481481481482
+        },
+        {
+          "from": 1520,
+          "to": 1540,
+          "seconds": 85870,
+          "days": 0.9938657407407407
+        },
+        {
+          "from": 1983,
+          "to": 1985,
+          "seconds": 42840,
+          "days": 0.49583333333333335
+        },
+        {
+          "from": 2090,
+          "to": 2094,
+          "seconds": 42710,
+          "days": 0.4943287037037037
+        },
+        {
+          "from": 2196,
+          "to": 2200,
+          "seconds": 85920,
+          "days": 0.9944444444444445
+        },
+        {
+          "from": 2588,
+          "to": 2610,
+          "seconds": 85840,
+          "days": 0.9935185185185185
+        },
+        {
+          "from": 3177,
+          "to": 3178,
+          "seconds": 43090,
+          "days": 0.49872685185185184
+        },
+        {
+          "from": 3215,
+          "to": 3225,
+          "seconds": 85890,
+          "days": 0.9940972222222222
+        },
+        {
+          "from": 3570,
+          "to": 3574,
+          "seconds": 43100,
+          "days": 0.4988425925925926
+        },
+        {
+          "from": 3603,
+          "to": 4180,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 4219,
+          "to": 4220,
+          "seconds": 42990,
+          "days": 0.49756944444444445
+        },
+        {
+          "from": 4240,
+          "to": 4244,
+          "seconds": 86080,
+          "days": 0.9962962962962963
+        },
+        {
+          "from": 4340,
+          "to": 4343,
+          "seconds": 42820,
+          "days": 0.49560185185185185
+        },
+        {
+          "from": 4412,
+          "to": 4414,
+          "seconds": 43180,
+          "days": 0.4997685185185185
+        },
+        {
+          "from": 4418,
+          "to": 4419,
+          "seconds": 85960,
+          "days": 0.9949074074074075
+        },
+        {
+          "from": 4590,
+          "to": 4598,
+          "seconds": 86030,
+          "days": 0.9957175925925926
+        },
+        {
+          "from": 4800,
+          "to": 4803,
+          "seconds": 85890,
+          "days": 0.9940972222222222
+        },
+        {
+          "from": 4965,
+          "to": 4966,
+          "seconds": 42730,
+          "days": 0.4945601851851852
+        },
+        {
+          "from": 5042,
+          "to": 5046,
+          "seconds": 85940,
+          "days": 0.9946759259259259
+        },
+        {
+          "from": 5200,
+          "to": 5202,
+          "seconds": 43060,
+          "days": 0.4983796296296296
+        },
+        {
+          "from": 5236,
+          "to": 5237,
+          "seconds": 85820,
+          "days": 0.993287037037037
+        },
+        {
+          "from": 5380,
+          "to": 5680,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 5722,
+          "to": 5723,
+          "seconds": 42970,
+          "days": 0.49733796296296295
+        },
+        {
+          "from": 5738,
+          "to": 5860,
+          "seconds": 172200,
+          "days": 1.9930555555555556
+        },
+        {
+          "from": 5890,
+          "to": 5950,
+          "seconds": 388220,
+          "days": 4.493287037037037
+        },
+        {
+          "from": 5979,
+          "to": 5980,
+          "seconds": 259020,
+          "days": 2.997916666666667
+        },
+        {
+          "from": 5985,
+          "to": 6070,
+          "seconds": 215400,
+          "days": 2.4930555555555554
+        }
+      ],
+      "wholeDayPlateaus": [
+        {
+          "day": 4,
+          "rift": 150,
+          "ascends": 1,
+          "labs": [
+            "wispascend",
+            "measuredinquiry",
+            "procurement",
+            "catalysis",
+            "focusprotocol",
+            "fieldnotes",
+            "curriculum",
+            "bossledger"
+          ],
+          "forge": [
+            "arcanecal",
+            "conduction",
+            "luminoustracking",
+            "masterwork",
+            "resonancecascade",
+            "resonancereclaim"
+          ],
+          "tree": [
+            "echo",
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 32,
+          "rift": 5738,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 34,
+          "rift": 5890,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 35,
+          "rift": 5890,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 36,
+          "rift": 5890,
+          "ascends": 0,
+          "labs": [
+            "luminousdistill"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 39,
+          "rift": 5979,
+          "ascends": 0,
+          "labs": [
+            "shardstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 40,
+          "rift": 5979,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 42,
+          "rift": 5985,
+          "ascends": 0,
+          "labs": [
+            "lumenstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 44,
+          "rift": 6097,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
         }
       ],
       "investments": [],
-      "purchaseReceiptCount": 177
+      "purchaseReceiptCount": 122
     },
     {
       "policy": "casual",
@@ -1529,6 +2163,974 @@
       "wholeDayPlateaus": [],
       "investments": [],
       "purchaseReceiptCount": 132
+    },
+    {
+      "policy": "mature",
+      "phases": [
+        {
+          "policySha256": "5042fd3b5a440f929b208e63ee77bc9ca75d92f9b7bf512016dcbfc83186635a",
+          "throughDay": 56
+        },
+        {
+          "policySha256": "5ec7e138f2bc113520cd36e697d0b39e83bb6bbc900a374eebd314e6dae5a9f6",
+          "fromDay": 56,
+          "changes": "Train all affordable roster levels; reserve next eligible Mastery price before optional Tree purchases."
+        }
+      ],
+      "sourceSha256": "b2b530228045eb90ca4d4e2f1a14838e9d4a0ec52a24db10721b0eb4638daffd",
+      "policySha256": "5ec7e138f2bc113520cd36e697d0b39e83bb6bbc900a374eebd314e6dae5a9f6",
+      "days": 73,
+      "status": "MILESTONE_WINDOW_MEASURED",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.3333333333333333,
+        "firstRarity": 0.3334490740740741,
+        "recruit.gale": 1.6666666666666667,
+        "recruit.thorn": 4.333333333333333,
+        "recruit.void": 11,
+        "recruit.aurora": 14,
+        "recruit.titan": 22,
+        "allRecruits": 22,
+        "firstMythic": 48.333333333333336,
+        "mythic.ember": 48.333333333333336,
+        "firstUltimate": 53.333333333333336,
+        "ultimate.ember": 53.333333333333336,
+        "firstMastery": 57.333333333333336,
+        "mastery.ember": 57.333333333333336,
+        "mythic.tide": 58.333449074074075,
+        "ultimate.tide": 63,
+        "mastery.tide": 63,
+        "mythic.stone": 68,
+        "ultimate.stone": 72.66666666666667
+      },
+      "firstDay": [
+        {
+          "key": "recruit.tide",
+          "day": 0.005208333333333333,
+          "met": true
+        },
+        {
+          "key": "recruit.stone",
+          "day": 0.3333333333333333,
+          "met": true
+        },
+        {
+          "key": "firstRarity",
+          "day": 0.3334490740740741,
+          "met": true
+        },
+        {
+          "key": "firstAscend",
+          "day": 0.005902777777777778,
+          "met": true
+        }
+      ],
+      "targets": [
+        {
+          "key": "allRecruits",
+          "min": 21,
+          "max": 28,
+          "day": 22,
+          "status": "MET"
+        },
+        {
+          "key": "firstMythic",
+          "min": 42,
+          "max": 56,
+          "day": 48.333333333333336,
+          "status": "MET"
+        },
+        {
+          "key": "firstUltimate",
+          "min": 42,
+          "max": 56,
+          "day": 53.333333333333336,
+          "status": "MET"
+        }
+      ],
+      "endpoint": {
+        "rift": 6359,
+        "ascends": 1406,
+        "lab": 36,
+        "masterwork": 125,
+        "mastery": {
+          "ember": 11,
+          "tide": 6,
+          "stone": 0,
+          "gale": 0,
+          "thorn": 0,
+          "void": 0,
+          "aurora": 0,
+          "titan": 0
+        }
+      },
+      "longestClosedWallDays": 2.6600694444444444,
+      "walls": [
+        {
+          "from": 16,
+          "to": 17,
+          "seconds": 28319,
+          "days": 0.3277662037037037
+        },
+        {
+          "from": 40,
+          "to": 50,
+          "seconds": 28527,
+          "days": 0.3301736111111111
+        },
+        {
+          "from": 51,
+          "to": 52,
+          "seconds": 57535,
+          "days": 0.6659143518518519
+        },
+        {
+          "from": 57,
+          "to": 58,
+          "seconds": 28686,
+          "days": 0.3320138888888889
+        },
+        {
+          "from": 60,
+          "to": 130,
+          "seconds": 28278,
+          "days": 0.32729166666666665
+        },
+        {
+          "from": 130,
+          "to": 131,
+          "seconds": 115235,
+          "days": 1.333738425925926
+        },
+        {
+          "from": 182,
+          "to": 186,
+          "seconds": 85834,
+          "days": 0.9934490740740741
+        },
+        {
+          "from": 294,
+          "to": 295,
+          "seconds": 28720,
+          "days": 0.33240740740740743
+        },
+        {
+          "from": 300,
+          "to": 301,
+          "seconds": 28640,
+          "days": 0.3314814814814815
+        },
+        {
+          "from": 321,
+          "to": 323,
+          "seconds": 28720,
+          "days": 0.33240740740740743
+        },
+        {
+          "from": 330,
+          "to": 331,
+          "seconds": 28700,
+          "days": 0.33217592592592593
+        },
+        {
+          "from": 340,
+          "to": 341,
+          "seconds": 28690,
+          "days": 0.3320601851851852
+        },
+        {
+          "from": 354,
+          "to": 355,
+          "seconds": 28450,
+          "days": 0.3292824074074074
+        },
+        {
+          "from": 378,
+          "to": 460,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 509,
+          "to": 510,
+          "seconds": 28380,
+          "days": 0.3284722222222222
+        },
+        {
+          "from": 530,
+          "to": 531,
+          "seconds": 28400,
+          "days": 0.3287037037037037
+        },
+        {
+          "from": 550,
+          "to": 610,
+          "seconds": 85840,
+          "days": 0.9935185185185185
+        },
+        {
+          "from": 649,
+          "to": 650,
+          "seconds": 57540,
+          "days": 0.6659722222222222
+        },
+        {
+          "from": 651,
+          "to": 652,
+          "seconds": 28360,
+          "days": 0.3282407407407407
+        },
+        {
+          "from": 670,
+          "to": 690,
+          "seconds": 85970,
+          "days": 0.9950231481481482
+        },
+        {
+          "from": 1070,
+          "to": 1073,
+          "seconds": 28760,
+          "days": 0.33287037037037037
+        },
+        {
+          "from": 1085,
+          "to": 1086,
+          "seconds": 28750,
+          "days": 0.33275462962962965
+        },
+        {
+          "from": 1100,
+          "to": 1102,
+          "seconds": 28460,
+          "days": 0.32939814814814816
+        },
+        {
+          "from": 1181,
+          "to": 1182,
+          "seconds": 28660,
+          "days": 0.331712962962963
+        },
+        {
+          "from": 1210,
+          "to": 1213,
+          "seconds": 28440,
+          "days": 0.32916666666666666
+        },
+        {
+          "from": 1274,
+          "to": 1720,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 1747,
+          "to": 1900,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        },
+        {
+          "from": 1930,
+          "to": 2080,
+          "seconds": 114620,
+          "days": 1.3266203703703703
+        },
+        {
+          "from": 2110,
+          "to": 2260,
+          "seconds": 85820,
+          "days": 0.993287037037037
+        },
+        {
+          "from": 2290,
+          "to": 2293,
+          "seconds": 86030,
+          "days": 0.9957175925925926
+        },
+        {
+          "from": 2450,
+          "to": 2452,
+          "seconds": 57130,
+          "days": 0.6612268518518518
+        },
+        {
+          "from": 2556,
+          "to": 2557,
+          "seconds": 57250,
+          "days": 0.6626157407407407
+        },
+        {
+          "from": 2620,
+          "to": 2623,
+          "seconds": 57260,
+          "days": 0.6627314814814815
+        },
+        {
+          "from": 2678,
+          "to": 2680,
+          "seconds": 85810,
+          "days": 0.9931712962962963
+        },
+        {
+          "from": 2938,
+          "to": 2943,
+          "seconds": 85900,
+          "days": 0.9942129629629629
+        },
+        {
+          "from": 3286,
+          "to": 3287,
+          "seconds": 57350,
+          "days": 0.6637731481481481
+        },
+        {
+          "from": 3358,
+          "to": 3360,
+          "seconds": 57490,
+          "days": 0.6653935185185185
+        },
+        {
+          "from": 3385,
+          "to": 3390,
+          "seconds": 85940,
+          "days": 0.9946759259259259
+        },
+        {
+          "from": 3617,
+          "to": 3622,
+          "seconds": 85820,
+          "days": 0.993287037037037
+        },
+        {
+          "from": 3928,
+          "to": 3932,
+          "seconds": 85890,
+          "days": 0.9940972222222222
+        },
+        {
+          "from": 4200,
+          "to": 4203,
+          "seconds": 28520,
+          "days": 0.3300925925925926
+        },
+        {
+          "from": 4272,
+          "to": 4280,
+          "seconds": 85810,
+          "days": 0.9931712962962963
+        },
+        {
+          "from": 4521,
+          "to": 4524,
+          "seconds": 28310,
+          "days": 0.32766203703703706
+        },
+        {
+          "from": 4630,
+          "to": 4990,
+          "seconds": 172210,
+          "days": 1.9931712962962962
+        },
+        {
+          "from": 5030,
+          "to": 5110,
+          "seconds": 85820,
+          "days": 0.993287037037037
+        },
+        {
+          "from": 5150,
+          "to": 5230,
+          "seconds": 85820,
+          "days": 0.993287037037037
+        },
+        {
+          "from": 5270,
+          "to": 5410,
+          "seconds": 143420,
+          "days": 1.6599537037037038
+        },
+        {
+          "from": 5438,
+          "to": 5439,
+          "seconds": 114670,
+          "days": 1.327199074074074
+        },
+        {
+          "from": 5460,
+          "to": 5461,
+          "seconds": 144040,
+          "days": 1.6671296296296296
+        },
+        {
+          "from": 5461,
+          "to": 5462,
+          "seconds": 57080,
+          "days": 0.6606481481481481
+        },
+        {
+          "from": 5479,
+          "to": 5480,
+          "seconds": 114900,
+          "days": 1.3298611111111112
+        },
+        {
+          "from": 5490,
+          "to": 5500,
+          "seconds": 172250,
+          "days": 1.9936342592592593
+        },
+        {
+          "from": 5524,
+          "to": 5530,
+          "seconds": 143410,
+          "days": 1.659837962962963
+        },
+        {
+          "from": 5558,
+          "to": 5559,
+          "seconds": 114700,
+          "days": 1.3275462962962963
+        },
+        {
+          "from": 5585,
+          "to": 5586,
+          "seconds": 86140,
+          "days": 0.9969907407407408
+        },
+        {
+          "from": 5598,
+          "to": 5680,
+          "seconds": 201000,
+          "days": 2.326388888888889
+        },
+        {
+          "from": 5704,
+          "to": 5705,
+          "seconds": 57430,
+          "days": 0.664699074074074
+        },
+        {
+          "from": 5710,
+          "to": 5711,
+          "seconds": 86110,
+          "days": 0.9966435185185185
+        },
+        {
+          "from": 5730,
+          "to": 5770,
+          "seconds": 114600,
+          "days": 1.3263888888888888
+        },
+        {
+          "from": 5793,
+          "to": 5830,
+          "seconds": 114610,
+          "days": 1.3265046296296297
+        },
+        {
+          "from": 5853,
+          "to": 5920,
+          "seconds": 201000,
+          "days": 2.326388888888889
+        },
+        {
+          "from": 5945,
+          "to": 5946,
+          "seconds": 114700,
+          "days": 1.3275462962962963
+        },
+        {
+          "from": 5965,
+          "to": 5966,
+          "seconds": 172290,
+          "days": 1.9940972222222222
+        },
+        {
+          "from": 5984,
+          "to": 6010,
+          "seconds": 114600,
+          "days": 1.3263888888888888
+        },
+        {
+          "from": 6033,
+          "to": 6034,
+          "seconds": 57300,
+          "days": 0.6631944444444444
+        },
+        {
+          "from": 6044,
+          "to": 6045,
+          "seconds": 144000,
+          "days": 1.6666666666666667
+        },
+        {
+          "from": 6045,
+          "to": 6046,
+          "seconds": 172760,
+          "days": 1.9995370370370371
+        },
+        {
+          "from": 6049,
+          "to": 6050,
+          "seconds": 57110,
+          "days": 0.6609953703703704
+        },
+        {
+          "from": 6070,
+          "to": 6190,
+          "seconds": 172280,
+          "days": 1.9939814814814816
+        },
+        {
+          "from": 6210,
+          "to": 6220,
+          "seconds": 85860,
+          "days": 0.99375
+        },
+        {
+          "from": 6238,
+          "to": 6239,
+          "seconds": 229830,
+          "days": 2.6600694444444444
+        },
+        {
+          "from": 6258,
+          "to": 6280,
+          "seconds": 114610,
+          "days": 1.3265046296296297
+        },
+        {
+          "from": 6300,
+          "to": 6340,
+          "seconds": 114670,
+          "days": 1.327199074074074
+        },
+        {
+          "from": 6358,
+          "to": 6359,
+          "seconds": 86380,
+          "days": 0.9997685185185186
+        }
+      ],
+      "wholeDayPlateaus": [
+        {
+          "day": 3,
+          "rift": 130,
+          "ascends": 7,
+          "labs": [
+            "guardmastery",
+            "shardstudy",
+            "lumenstudy",
+            "motestudy",
+            "measuredinquiry",
+            "procurement",
+            "catalysis",
+            "focusprotocol",
+            "fieldnotes",
+            "curriculum",
+            "rarityappraisal"
+          ],
+          "forge": [],
+          "tree": [
+            "echo",
+            "bonds",
+            "swift",
+            "invitations"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 35,
+          "rift": 5438,
+          "ascends": 4,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 40,
+          "rift": 5490,
+          "ascends": 3,
+          "labs": [],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 42,
+          "rift": 5524,
+          "ascends": 4,
+          "labs": [
+            "lumenstudy",
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 46,
+          "rift": 5598,
+          "ascends": 4,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 53,
+          "rift": 5853,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 55,
+          "rift": 5945,
+          "ascends": 4,
+          "labs": [],
+          "forge": [],
+          "tree": [
+            "swift"
+          ],
+          "mastery": []
+        },
+        {
+          "day": 57,
+          "rift": 5965,
+          "ascends": 0,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 62,
+          "rift": 6045,
+          "ascends": 5,
+          "labs": [
+            "guardmastery"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "ember"
+          ]
+        },
+        {
+          "day": 65,
+          "rift": 6070,
+          "ascends": 0,
+          "labs": [],
+          "forge": [],
+          "tree": [],
+          "mastery": [
+            "tide"
+          ]
+        },
+        {
+          "day": 68,
+          "rift": 6238,
+          "ascends": 0,
+          "labs": [
+            "wispascend",
+            "lumenstudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        },
+        {
+          "day": 69,
+          "rift": 6238,
+          "ascends": 0,
+          "labs": [
+            "motestudy"
+          ],
+          "forge": [],
+          "tree": [],
+          "mastery": []
+        }
+      ],
+      "investments": [
+        {
+          "kind": "ultimate",
+          "id": "ember",
+          "day": 53.333333333333336,
+          "price": {
+            "sigils": 8000000
+          },
+          "shareOfWallet": {
+            "sigils": 0.14202540909131983
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 57.333333333333336,
+          "price": {
+            "prisms": 20000,
+            "sigils": 500000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9719589833309035,
+            "sigils": 0.009659427891404847
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 58.666666666666664,
+          "price": {
+            "prisms": 21000,
+            "sigils": 550000
+          },
+          "shareOfWallet": {
+            "prisms": 0.5767012687427913,
+            "sigils": 0.010427682486244655
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 59,
+          "price": {
+            "prisms": 22000,
+            "sigils": 600000
+          },
+          "shareOfWallet": {
+            "prisms": 0.659591053546801,
+            "sigils": 0.011334459361495523
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 59.333333333333336,
+          "price": {
+            "prisms": 23000,
+            "sigils": 650000
+          },
+          "shareOfWallet": {
+            "prisms": 0.6802922298796179,
+            "sigils": 0.012211038914439393
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 59.666666666666664,
+          "price": {
+            "prisms": 24000,
+            "sigils": 700000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8342312906253259,
+            "sigils": 0.01312083061005808
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 61,
+          "price": {
+            "prisms": 25000,
+            "sigils": 750000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9184423218221895,
+            "sigils": 0.013998349762543194
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 63,
+          "price": {
+            "prisms": 26000,
+            "sigils": 800000
+          },
+          "shareOfWallet": {
+            "prisms": 0.551665605771271,
+            "sigils": 0.014627468901909692
+          }
+        },
+        {
+          "kind": "ultimate",
+          "id": "tide",
+          "day": 63,
+          "price": {
+            "sigils": 12000000
+          },
+          "shareOfWallet": {
+            "sigils": 0.22266911914434492
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 63,
+          "price": {
+            "prisms": 20000,
+            "sigils": 500000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9465215333648841,
+            "sigils": 0.011935560766780528
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 63.333333333333336,
+          "price": {
+            "prisms": 21000,
+            "sigils": 550000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8903964384142463,
+            "sigils": 0.012995018347902678
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 63.666666666666664,
+          "price": {
+            "prisms": 22000,
+            "sigils": 600000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8767035944847373,
+            "sigils": 0.014050066569215406
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 64,
+          "price": {
+            "prisms": 23000,
+            "sigils": 650000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8988237133143148,
+            "sigils": 0.015104407356850246
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 66,
+          "price": {
+            "prisms": 27000,
+            "sigils": 850000
+          },
+          "shareOfWallet": {
+            "prisms": 0.7819287576020851,
+            "sigils": 0.019419383729741214
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 66.66666666666667,
+          "price": {
+            "prisms": 24000,
+            "sigils": 700000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9305932531989143,
+            "sigils": 0.016022590937645454
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 69.33333333333333,
+          "price": {
+            "prisms": 28000,
+            "sigils": 900000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8293593199253576,
+            "sigils": 0.02028132999012885
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 70.66666666666667,
+          "price": {
+            "prisms": 29000,
+            "sigils": 950000
+          },
+          "shareOfWallet": {
+            "prisms": 0.7667495108666913,
+            "sigils": 0.021158068387732248
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "tide",
+          "day": 71,
+          "price": {
+            "prisms": 25000,
+            "sigils": 750000
+          },
+          "shareOfWallet": {
+            "prisms": 0.9205390676780323,
+            "sigils": 0.01675850963043397
+          }
+        },
+        {
+          "kind": "mastery",
+          "id": "ember",
+          "day": 72.33333333333333,
+          "price": {
+            "prisms": 30000,
+            "sigils": 1000000
+          },
+          "shareOfWallet": {
+            "prisms": 0.8713331397037467,
+            "sigils": 0.02201684226786333
+          }
+        },
+        {
+          "kind": "ultimate",
+          "id": "stone",
+          "day": 72.66666666666667,
+          "price": {
+            "sigils": 16000000
+          },
+          "shareOfWallet": {
+            "sigils": 0.3599513696700791
+          }
+        }
+      ],
+      "purchaseReceiptCount": 330
     }
   ]
 }

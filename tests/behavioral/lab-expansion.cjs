@@ -12,7 +12,7 @@ function verify(html){
  eq(q.projects().filter(n=>n.retiredTo).map(n=>n.id),['riftattune','formationstudy','prismstudy'],'old paid identities stay retired, not erased');
  const record=[];
  const discount=(v,p)=>Number((BigInt(v)*BigInt(100-p)+99n)/100n);
- const work=(d,l)=>Math.round(Math.min(777600,d.baseDurationSec*Math.pow(d.durationGrowth,l)));
+ const work=(d,l)=>Math.round(Math.min(864000,d.baseDurationSec*Math.pow(d.durationGrowth,l)));
  const costs=(d,l)=>({lumen:Math.round(d.lumenBase*Math.pow(d.lumenGrowth,l)),shard:Math.round(d.shardBase*Math.pow(d.shardGrowth,l))});
  // Every project: named unlock, independent base curve, pure rejection, delayed
  // actual completion, exact price, cap, future queue intent and two-slot storage.
@@ -168,7 +168,7 @@ function verify(html){
   eq([q.burst(sp,50),q.power(),q.tap(),q.preview(21).gain],[before.burst,before.power,before.tap,before.prism],'material research cannot add combat or Prism multipliers');
   q.get().wispModules.ember=0;const c=q.moduleCost(sp,0);q.get().lumen=c.lumen;q.get().shards=c.shard;q.module(sp);eq(q.get().wispModules.ember,1,'actual discounted Module purchase');eq([q.get().lumen,q.get().shards],[0,0],'actual Module debit');
   q.get().heroRarity.ember=0;q.get().spirits.ember=q.rarityReq(0);const rc=q.rarityCost(sp,0);q.get().lumen=rc.lumen;q.get().shards=rc.shard;q.rarity(sp);eq(q.get().heroRarity.ember,1,'actual discounted Rarity at lower gate');eq([q.get().lumen,q.get().shards],[0,0],'actual Rarity debit');
-  q.get().heroRarity.ember=5;q.get().wispModules.ember=15;q.get().longStudyLevels.wispascend=30;q.get().research.arcanecal=10;q.get().ascendCount=50;q.get().sigils=q.ultimateCost(sp);q.ultimate(sp);eq(q.get().wispUltimate.ember,true,'actual Ultimate unlock at complete development gates');eq(q.get().sigils,0,'actual Ultimate debit');
+  q.get().heroRarity.ember=5;q.get().wispModules.ember=15;q.get().longStudyLevels.wispascend=32;q.get().research.arcanecal=10;q.get().ascendCount=50;q.get().sigils=q.ultimateCost(sp);q.ultimate(sp);eq(q.get().wispUltimate.ember,true,'actual Ultimate unlock at complete development gates');eq(q.get().sigils,0,'actual Ultimate debit');
   Object.keys(q.get().wispUltimate).forEach(id=>q.get().wispUltimate[id]=true);q.get().sigils=15;q.get().heroResource.ember=0;eq(q.resonate(sp),true,'actual cheaper Resonate');eq(q.get().sigils,0,'actual Resonate debit');eq(q.get().heroResource.ember,100,'refill amount unchanged');
  }
  // Encounter-specific effects and exact actual kill payouts.

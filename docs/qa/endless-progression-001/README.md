@@ -366,3 +366,73 @@ for efficiency; verify actual Bench Mentorship allows their later rarity level
 gates, or introduce an explicitly recorded mature policy after first Ultimate
 that develops affordable eligible roster members. Do not infer full-roster
 months from an unsuccessful player policy or from seeded stress fixtures.
+
+Checkpoint 15 October: AA primary regular56 days measured with every primary
+elapsed-day target MET: Tide0.0052/Stone0.3333/rarity0.33345/Ascend0.0059 days,
+all recruits22, Mythic48.3333, Ultimate53.3333. Longest closed wall2.3264days.
+Exact payment report --require-primary passes; overall report remains PARTIAL
+because secondary policies are incomplete. Regular_two has recruits21days;
+Mythic/Ultimate still being measured. No final balance application yet.
+
+Day56's actual Ember meets all Mastery prerequisites (MY/20/Ultimate,Lab32,
+MF122,Swift717,Rift5965) but wallet2696 is below20000 Prisms. Frozen mature
+runtime explicitly transitions at day56 from policy5042fd3b: train the whole
+roster and reserve the next eligible Mastery price before optional Tree spend.
+No balances/time/work are granted. Source AA unchanged; phase metadata and
+original receipts/history retained. First earned Mastery57.3333 days measured;
+roster months and extended Mastery remain OPEN.
+
+Source4f5733ed focused native Chrome140: parity-boss-retry, 4h high-power,
+chronology-study-mid-window and lifecycle-partial-enemy all PASS including
+transport. High-power208615179239kills,37441iterations,3067.6/3035.5ms repeats,
+unchanged5s gate. Queue planner skips absent queues/full slots only. The
+reference runner now computes remaining duration from its ordinal time grid,
+removing a1.27microsecond phantom tail from26000 floating-point subtractions;
+production chronology and unchanged1e-6 comparison tolerance are retained.
+Lifecycle partial-enemy fixture uses Ember4 for observable new-curve damage.
+
+F21 causal browser identity checker accepts the actual CDP product object as
+well as a version string. A timeout still fails the control. Cap assertions now
+run before the expensive retained-refund oracle; all original assertions remain.
+Earlier handler CDP timeouts are recorded as infrastructure failures.
+
+Applied calibrated tables by10 targeted diff hunks to root448a2c1b. Exact complete
+earned day56 state and8h offline summary match AA byte-for-byte (aa-ac-earned-parity).
+Current core142,13 controls,wide53,parity305,13416 independent price oracles and
+actual V8 6.0 checks25 PASS. Mobile469/12 profiles PASS; normal and200% Mastery/
+requirements screenshots visually checked. Mastery rank1 shows current1.10,
+next1.21,21k Prisms/550k Sigils and all next requirements without overflow.
+Final8h Swift golden regenerated through four independent one-second references.
+Prism oracle341654 assertions/277916formula/3780payout cases and7 controls PASS;
+its Encyclopedia contract now reads the updated Ascend entry and independently
+requires the exact protected-repeat formula and new-depth clause. Old whole-entry
+string assertion had rejected expanded retention help despite equivalent rules.
+Payment oracle3360 cases PASS (126 newly payable,524 insufficient refusals).
+Native refund17 controls now forbid RangeError as a causal result; UI mutant
+changes actual capped presentation state without manufacturing an undefined price.
+The earlier UI RangeError is not accepted as behavioral evidence.
+Full final browser run2306 stages immutable448a2c1b and all existing assets.
+Rarity-scroll fixture now supplies stone's Lab36 finalUltimate/MY gate, retaining
+all exact debits, state, scroll and focus checks. Lab discount fixture uses Ember
+Lab32. No production change was needed. Final full regression/native delivery
+remain OPEN. Primary2-visit and mature simulations continue, other policies paused.
+
+Source448a2c1b final offline core PASS329754ms under concurrent load (earlier
+source PASS159237ms); timings are not a device performance claim. Replayed
+payments/recovery/backup, split chronology, cap accounting and processing-time
+wall-clock jumps all pass. Final scroll native retest PASS after Stone Lab36
+fixture change; exact individual purchases and retained fields remain checked.
+Final Lab2676 PASS with independent10-day nominal-work cap and EmberLab32.
+Full-suite Lab Mote contracts use earned next-level price108 after original60,
+with168 exact total and the same free-carry defect control. Collision fixture
+starts both already-paid3x records at.045 work, so completion remains.015sec;
+wallet106 plus actual2-Mote reward funds the new108 speed, preserving the same
+buff/completion/start/speed event order and exact work assertions.
+
+Final refund17 browser defect controls PASS including intended UI state failure;
+RangeError/timeouts are rejected. Modern CI payment controls14 intended faults
+caught; refund/mixed/funding rechecks remain recorded separately. Mixed-payment
+control now expects actual preservation of the small credit (stronger than a
+non-null quote). Funding control removes both inadequate native strategy and
+new exact fallback, exercising its original native mixed fixture before wider
+purchase cases; original migration/idempotence assertions still run first.

@@ -2,15 +2,16 @@
 // Audit saved real-engine campaigns. Partial runs remain explicitly partial;
 // milestone evidence is separate from human/device acceptance.
 const fs=require('node:fs'),assert=require('node:assert/strict'),amount=require('../../scripts/lib/game-amount.cjs');
-const prefix=process.argv[2]||'docs/qa/endless-progression-001/candidate-z',output=process.argv[3];
+const positional=process.argv.slice(2).filter(arg=>!arg.startsWith('--'));
+const prefix=positional[0]||'docs/qa/endless-progression-001/candidate-z',output=positional[1];
 const day=86400,records=[];
 let checks=0;
 function equal(a,b,label){checks++;assert(amount.cmp(a,b)===0,label);}
-for(const policy of ['regular','regular_two','casual','frequent','efficient']){
+for(const policy of ['regular','regular_two','casual','frequent','efficient','mature']){
  const file=prefix+'-'+policy+'-snapshot.json.checkpoint.json';
  if(!fs.existsSync(file))continue;
  const c=JSON.parse(fs.readFileSync(file,'utf8'));
- assert.equal(c.policy,policy);assert(c.history.length>0);assert.equal(c.elapsed,c.history.length*day);
+ assert.equal(c.policy,policy==='mature'?'regular':policy);assert(c.history.length>0);assert.equal(c.elapsed,c.history.length*day);
  const milestones=Object.fromEntries(Object.entries(c.milestones).map(([key,value])=>[key,value/day]));
  for(const p of c.purchases||[])for(const key of ['lumen','shards','prisms','sigils']){
   const price=p.price[key]||0,before=p.before[key];
@@ -28,7 +29,7 @@ for(const policy of ['regular','regular_two','casual','frequent','efficient']){
  const gaps=(c.walls||[]).map(w=>({...w,days:w.seconds/day}));
  const investments=(c.purchases||[]).filter(p=>p.kind==='ultimate'||p.kind==='mastery').map(p=>({kind:p.kind,id:p.id,day:p.at/day,price:p.price,shareOfWallet:p.shareOfWallet}));
  const last=c.history[c.history.length-1];
- records.push({policy,sourceSha256:c.sourceSha256,policySha256:c.policySha256,days:c.history.length,status:c.history.length>=56?'MILESTONE_WINDOW_MEASURED':'PARTIAL',milestones,firstDay,targets,
+ records.push({policy,phases:c.phases,sourceSha256:c.sourceSha256,policySha256:c.policySha256,days:c.history.length,status:c.history.length>=56?'MILESTONE_WINDOW_MEASURED':'PARTIAL',milestones,firstDay,targets,
   endpoint:{rift:last.maxDepth,ascends:last.ascends,lab:last.labs.wispascend,masterwork:last.forge.masterwork,mastery:last.mastery},
   longestClosedWallDays:Math.max(0,...gaps.map(w=>w.days)),walls:gaps,wholeDayPlateaus:plateaus,investments,purchaseReceiptCount:(c.purchases||[]).length});
 }

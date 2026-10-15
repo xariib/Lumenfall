@@ -12,11 +12,11 @@ var source=original.replace("if(document.readyState==='loading'){",'window.endle
 var x=compiled.exports.app(source),q=x.q,b=q.endless,s=q.fresh();
 s.lumen=s.shards=s.prisms=s.sigils=s.motes=s.comets='1e400';
 s.spirits.ember=140;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;
-s.maxDepthEver=250200;s.depth=200;s.longStudyLevels.wispascend=2030;s.research.masterwork=2001;s.nodes.swift=1010;s.wispMastery.ember=10000;
+s.maxDepthEver=250200;s.depth=200;s.longStudyLevels.wispascend=2032;s.research.masterwork=2001;s.nodes.swift=1010;s.wispMastery.ember=10000;
 q.set(s);ok(b.amount.wide(q.power('ember')),'large Power in actual V8');
 ok(b.mastery(q.sp('ember')),'large funded rank purchase');eq(q.get().wispMastery.ember,10001,'rank retained');
-eq(b.amount.exactAdd(q.get().sigils,5005000),'1e400','exact large Sigil debit');
-eq(b.amount.exactAdd(q.get().prisms,100200),'1e400','exact large Prism debit');
+eq(b.amount.exactAdd(q.get().sigils,500500000),'1e400','exact large Sigil debit');
+eq(b.amount.exactAdd(q.get().prisms,10020000),'1e400','exact large Prism debit');
 ok(b.labPay(1e30,800),'unsafe native balance can fund an exact debit');
 q.restoreEnemy();q.manualTap();ok(q.get().depth>200,'wide damage reaches a real next Rift');
 ok(q.save(),'wide primary and recovery write');var endpoint=JSON.stringify(q.get());q.load();eq(JSON.stringify(q.get()),endpoint,'wide cold normalization');

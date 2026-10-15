@@ -9,8 +9,8 @@ for(const mutation of ['handler','ui','raw','refund','credit','free-credit','wal
   assert.equal(result.status,1,'causal mutant must fail '+mutation+' '+result.stdout+result.stderr);
   const evidence=JSON.parse(fs.readFileSync(output,'utf8'));
   assert.equal(evidence.status,'FAIL');
-  assert(evidence.browserIdentity && /Chrom(e|ium)/.test(evidence.browserIdentity.version),'actual browser required '+mutation);
-  assert(!/TypeError|ReferenceError|SyntaxError|timeout|browser closed|Chromium required|ENOENT|EACCES|EPERM|spawn|CDP /i.test(evidence.failure),'must fail a behavioral assertion '+mutation+' '+evidence.failure);
+  assert(evidence.browserIdentity && /Chrom(e|ium)/.test(typeof evidence.browserIdentity.version==='string'?evidence.browserIdentity.version:evidence.browserIdentity.version&&evidence.browserIdentity.version.product),'actual browser required '+mutation);
+  assert(!/TypeError|ReferenceError|SyntaxError|RangeError|timeout|browser closed|Chromium required|ENOENT|EACCES|EPERM|spawn|CDP /i.test(evidence.failure),'must fail a behavioral assertion '+mutation+' '+evidence.failure);
   records.push({mutation,sourceSha256:evidence.sourceSha256,assertion:evidence.failure.split('\n')[0]});
   console.log('Killed '+mutation+': '+evidence.failure.split('\n')[0]);
 }

@@ -721,7 +721,7 @@ window.__lumenfallQaBridge = {
   autoEmpowerAll: function(enabled){ setAutoEmpowerAll(!!enabled); return JSON.parse(JSON.stringify(state.empowerQueue)); },
   simulate: function(seconds,kind,chunkSec,startMs,windowStartMs){
     var begin = performance.now();
-    var remaining = Math.max(0,Number(seconds)||0);
+    var remaining = Math.max(0,Number(seconds)||0),totalDuration=remaining;
     var chunk = Math.max(0,Number(chunkSec)||remaining||0);
     var clock = Number.isFinite(startMs) ? startMs : 2000000000000;
     var offlineWindowStartMs = Number.isFinite(windowStartMs)?windowStartMs:clock;
@@ -760,7 +760,9 @@ window.__lumenfallQaBridge = {
       });
       merge(part);
       clock = part.clockEndMs;
-      remaining = Math.max(0,remaining-dt);
+      // Repeated subtraction adds a phantom microsecond tail after26,000
+      // tenth-second slices. Derive remaining time from the requested grid.
+      remaining = Math.max(0,totalDuration-(chunk>0?Math.min(totalDuration,guard*chunk):totalDuration));
     }
     return {
       state:JSON.parse(JSON.stringify(state)),

@@ -4,7 +4,7 @@ const {app,clone,CLOCK}=require('./forge-expansion-harness.cjs');
 const amount=require('../../scripts/lib/game-amount.cjs');
 const original=fs.readFileSync(process.argv[2]||'index.html','utf8');
 // Independent proposal constants; never derive an expected price/gate from code.
-const calibrated=process.argv.includes('--calibrated');
+const calibrated=!process.argv.includes('--initial-proposal');
 const expected=calibrated?{forgeDepth:70,forgeLumen:1000000,forgeShards:25000,recruitLab:24,lab:32,mythicLab:31,work:864000,prisms:100000,sigils:100000000,ultimate:10000000,voidUltimate:60000000,masteryPrisms:20000,masterySigils:500000}:{forgeDepth:120,forgeLumen:50000000,forgeShards:500000,recruitLab:22,lab:30,mythicLab:29,work:777600,prisms:1000,sigils:50000,ultimate:15000,voidUltimate:45000,masteryPrisms:200,masterySigils:5000};
 const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={
   unlocked:wispRecruitmentUnlocked,rarityPlan:getWispRarityPlan,rarity:buyRarity,

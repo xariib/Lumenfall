@@ -7,8 +7,8 @@ function option(name,fallback){const i=args.indexOf(name);return i<0?fallback:ar
 const sourcePath=path.resolve(option('--source',path.join(root,'index.html'))),output=path.resolve(option('--output',path.join(os.tmpdir(),'cheaper-recruitment-results.json')));
 let source=fs.readFileSync(sourcePath,'utf8');
 const mutation=option('--mutation','none');
-if(mutation==='handler')source=source.replace("if(node.levelCap!==undefined && level>=node.levelCap) return {affordable:false,reason:'cap',level:level};","if(node.id!=='bonds' && node.levelCap!==undefined && level>=node.levelCap) return {affordable:false,reason:'cap',level:level};");
-if(mutation==='ui')source=source.replace("if(plan.reason==='cap')",'if(false)').replace("var capped = plan.reason==='cap';",'var capped = false;');
+if(mutation==='handler')source=source.replace("if(node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};","if(node.id!=='bonds' && node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};");
+if(mutation==='ui')source=source.replace("if(plan.reason==='cap'){kind='maxed';reason='Maxed';}","if(plan.reason==='cap'){kind='unavailable';reason='Unavailable';}");
 if(mutation==='raw')source=source.replace('out.nodes[node.id] = nonNegativeInt(nodes[node.id],fresh.nodes[node.id]);','out.nodes[node.id] = Math.min(20,nonNegativeInt(nodes[node.id],fresh.nodes[node.id]));');
 if(mutation==='refund')source=source.replace('if(hasReceipt || raw<=20) return;','if(raw<=20) return;');
 if(mutation==='credit')source=source.replace('var sum=exactPrismArithmetic(out.prisms,amount);','var sum=out.prisms+amount;');
@@ -91,8 +91,13 @@ async function run(){
  await send('Page.enable');await send('Page.setLifecycleEventsEnabled',{enabled:true});await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await navigate(url);
  await evaluate('window.cheaperReceiptLegacyPrices='+JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname,'cheaper-receipt-prices.json'),'utf8')).legacy));
  await evaluate('window.cheaperReceiptCanonicalPrices='+JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname,'cheaper-receipt-prices.json'),'utf8')).modern.map((v,i)=>Math.max(v,JSON.parse(fs.readFileSync(path.join(__dirname,'cheaper-receipt-prices.json'),'utf8')).legacy[i]))));
- records.push({kind:'refund-contracts',result:await evaluate('runCheaperRefundContracts()')});
- records.push({kind:'contracts',result:await evaluate('runCheaperRecruitmentContracts()')});
+ if(['handler','ui','raw'].includes(mutation)){
+  records.push({kind:'contracts',result:await evaluate('runCheaperRecruitmentContracts()')});
+  records.push({kind:'refund-contracts',result:await evaluate('runCheaperRefundContracts()')});
+ }else{
+  records.push({kind:'refund-contracts',result:await evaluate('runCheaperRefundContracts()')});
+  records.push({kind:'contracts',result:await evaluate('runCheaperRecruitmentContracts()')});
+ }
  if(args.includes('--echo')){
   for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
    await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
