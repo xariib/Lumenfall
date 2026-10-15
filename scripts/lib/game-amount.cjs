@@ -25,24 +25,37 @@ function createGameAmount(){
     return out.reverse().join('').replace(/^0+/,'')||'0';
   }
   function digitMul(a,b){
-    var out=[],i,j;
-    for(i=0;i<a.length+b.length;i++)out[i]=0;
-    for(i=a.length-1;i>=0;i--)for(j=b.length-1;j>=0;j--){
-      var at=i+j+1,n=out[at]+Number(a.charAt(i))*Number(b.charAt(j));out[at]=n%10;out[at-1]+=Math.floor(n/10);
+    if(a==='0'||b==='0')return '0';
+    var base=10000000,x=[],y=[],out=[],i,j,carry,n;
+    for(i=a.length;i>0;i-=7)x.push(Number(a.slice(Math.max(0,i-7),i)));
+    for(i=b.length;i>0;i-=7)y.push(Number(b.slice(Math.max(0,i-7),i)));
+    for(i=0;i<x.length+y.length;i++)out[i]=0;
+    // Each product plus carry stays below1e14, exactly representable in V8 6.0.
+    for(i=0;i<x.length;i++){
+      carry=0;
+      for(j=0;j<y.length;j++){
+        n=x[i]*y[j]+out[i+j]+carry;
+        carry=Math.floor(n/base);out[i+j]=n-carry*base;
+      }
+      out[i+y.length]=carry;
     }
-    return out.join('').replace(/^0+/,'')||'0';
+    while(out.length>1&&out[out.length-1]===0)out.pop();
+    var text=String(out.pop());while(out.length)text+=('0000000'+out.pop()).slice(-7);
+    return text;
   }
   function nativeInteger(n){
-    // Reconstruct the actual IEEE-754 integer, rather than its shortened
-    // display string. Old large wallets therefore retain their actual value.
     var key=String(n),cached=nativePartsCache[key];if(cached)return {d:cached.d,e:cached.e,s:cached.s};
     var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,Math.abs(n));
     var hi=v.getUint32(0),lo=v.getUint32(4),shift=((hi>>>20)&2047)-1023-52;
-    var d=String((hi&1048575)*4294967296+lo+4503599627370496);
-    // Multiply in exact 26-bit chunks so repeatedly inspecting large native
-    // combat values does not perform hundreds of decimal multiplications.
-    while(shift>=26){d=digitMul(d,'67108864');shift-=26;}
-    if(shift>0)d=digitMul(d,String(Math.pow(2,shift)));
+    var mantissa=(hi&1048575)*4294967296+lo+4503599627370496,base=10000000,digits=[];
+    while(mantissa){digits.push(mantissa%base);mantissa=Math.floor(mantissa/base);}
+    // Keep base1e7 limbs through all binary shifts. Products remain below2^53.
+    while(shift>0){
+      var step=Math.min(26,shift),scale=Math.pow(2,step),carry=0;
+      for(var i=0;i<digits.length;i++){var value=digits[i]*scale+carry;carry=Math.floor(value/base);digits[i]=value-carry*base;}
+      while(carry){digits.push(carry%base);carry=Math.floor(carry/base);}shift-=step;
+    }
+    var d=String(digits.pop());while(digits.length)d+=('0000000'+digits.pop()).slice(-7);
     var p=clean({d:d,e:0,s:n<0?-1:1});nativePartsCache[key]=p;nativePartsKeys.push(key);
     if(nativePartsKeys.length>128)delete nativePartsCache[nativePartsKeys.shift()];
     return {d:p.d,e:p.e,s:p.s};

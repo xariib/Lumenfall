@@ -12,6 +12,7 @@ const specs=[
  ['wide-quote-copy','if(!quoteOnly)credits=clonePersistedValue(credits);','credits=clonePersistedValue(credits);','wide price quotes never clone or mutate paid ledgers'],
  ['stale-refund-total','if(prismRefundCreditMemo.key===key)','if(prismRefundCreditMemo.key!==null)','in-place held-credit change updates total'],
  ['free-queued-speed','state.motes=debitAmount(state.motes,plan.cost);','', 'queued speed exactly debits a wide Mote wallet','endless-wide-engine.cjs'],
+ ['lost-legacy-ascension-dust','debitAmount(creditAmount(wallet,gain),wallet)','Amount.sub(Amount.add(wallet,gain),wallet)','paid Ascension Dust retained when the old Prism wallet would round away the gain','endless-wide-engine.cjs'],
  ['discarded-physical-progress',' && !Amount.lt(state.enemyHp,hpBeforeAdvance)','', 'Authoritative simulation stalled','endless-wide-engine.cjs','runtime'],
  ['unbounded-future-work','Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level))','node.baseDurationSec * Math.pow(node.durationGrowth, level)','bounded future work'],
  ['lost-old-titan-entitlement','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:32}','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:100}','old unlocked roster preserved titan'],

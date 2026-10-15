@@ -28,7 +28,7 @@ Existing platform limits recorded.
 Baseline source validation/Support/campaign PASS, Node24.19.0; regular v1 all
 recruits/Mythic/Ultimate16h. [Evidence/status](../qa/endless-progression-001/README.md).
 Arithmetic/schema5, central gates, Mastery/Forge and UI candidate implemented.
-Core230/amount412/wide53/parity305/14 controls and mobile469/12 profiles PASS.
+Core230/amount412/wide57/parity305/15 controls and mobile469/12 profiles PASS.
 Forge9319/25 controls, Tree5923/28, Lab2676; V8 Forge2486/Lab580/Mastery17 PASS.
 Forge foundations retired; Masterwork Tempering opens5
 Mastery ranks/level, retain existing caps. Calibrated AA tables applied; acceptance OPEN.
@@ -37,9 +37,9 @@ requires acceptance. AA primary56d: recruits22d/Mythic48.33d/Ultimate53.33d
 PASS. Two visits: recruits21d/Mythic45.5d/Ultimate50.5d/Mastery52d. Explicit mature policy from day56
 reserves earned Prisms and trains the roster; first Mastery57.33d.
 13,416 prices and actual V8 checks32 PASS. Rank10000 replay functional
-PASS; mobile performance OPEN. AA matches tables; root0cbe643e adds atomic abilities.
+PASS; mobile performance OPEN. Root70a6fdfd optimizes exact arithmetic/Dust.
 
-Next: finish policy/roster calibration and broad checks,
-measure all policies/roster months, finish regressions and UI/golden checks,
+Next: resolve low-target AutoAscend stress; AH roster calibration,
+finish broad regressions and source-bound UI/golden checks,
 run full CI and combined/native delivery. Feature stays OPEN
 until all required acceptance; no APK/main/remote/archive claimed.

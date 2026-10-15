@@ -61,7 +61,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
         if(n.retiredTo){var before=b.getState();ok(t.start(id)===false&&t.plan(id).reason==='retired','closed start '+id);same(b.getState(),before,'closed Study has no debit '+id);return;}
         ok(t.start(id)===true,'real start allowed '+id);var a=active(id);
         same(a,{id:id,remainingSec:D,totalDurationSec:D,speedMult:1},'actual discounted snapshot '+id);
-        var now=b.getState();ok(now.lumen===s.lumen-Math.round(n.lumenBase*Math.pow(1.8,5)) && now.shards===s.shards-Math.round(n.shardBase*Math.pow(1.8,5)),'actual debit '+id);
+        var now=b.getState();ok(now.lumen===s.lumen-Math.round(n.lumenBase*Math.pow(1.6,5)) && now.shards===s.shards-Math.round(n.shardBase*Math.pow(1.6,5)),'actual debit '+id);
       });
     });
     function blocked(change,id,label){var s=seed();change(s);install(s);var before=b.getState();ok(t.start(id)===false,'blocked '+label);same(b.getState(),before,'no blocked mutation '+label);}
@@ -72,8 +72,8 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     blocked(function(s){s.activeStudies=window.inquiryOriginals.slice(0,5).map(function(id){return {id:id,remainingSec:100,totalDurationSec:200,speedMult:1};});},'measuredinquiry','full slots');
     blocked(function(){},'missing-study','unknown ID');blocked(function(){},null,'null ID');
     [10,13].forEach(function(k){blocked(function(s){s.longStudyLevels.measuredinquiry=k;},'measuredinquiry','cap raw'+k);});
-    blocked(function(s){s.longStudyLevels.guardmastery=2000;},'guardmastery','nonfinite legacy start');
-    ok(b.getState().longStudyLevels.guardmastery===2000,'finite guard is not ownership clamp');
+    blocked(function(s){s.longStudyLevels.guardmastery=2000;},'guardmastery','unaffordable wide legacy start');
+    ok(b.getState().longStudyLevels.guardmastery===2000,'wide affordability does not clamp ownership');
     var unlocked=seed();unlocked.maxDepthEver=60;install(unlocked);ok(t.start('measuredinquiry'),'depth60 start');
     [1,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;install(s);ok(b.riftStatus.slots()===(depth<40?2:depth<60?3:depth<90?4:5),'unchanged slot matrix '+depth);});
     var deeds=seed();Object.keys(deeds.achieved).forEach(function(id){deeds.achieved[id]=false;});deeds.longStudyLevels.measuredinquiry=13;install(deeds);

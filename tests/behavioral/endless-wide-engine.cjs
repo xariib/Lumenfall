@@ -7,6 +7,17 @@ const source=original.replace("if(document.readyState==='loading'){",`window.end
 let checks=0;function eq(x,y,m){checks++;assert.deepEqual(x,y,m);}function ok(value,m){checks++;assert(value,m);}
 function big(value){if(typeof value==='number')return BigInt(value);const [d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 let x=app(source),q=x.q,b=q.endless;
+{
+ const x=app(source),q=x.q,s=q.fresh();
+ s.prisms=1e30;s.nodes.stardust=5;s.depth=s.enemyDepth=10001;s.maxDepthEver=10001;
+ s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=10000;
+ q.set(s);q.restoreEnemy();const gain=q.prismPreview().gain;
+ ok(gain>=200,'legacy unsafe-wallet fixture earns the complete Ascension Dust reward');
+ const before=clone(q.get()),result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});
+ eq(result.ascends,1,'legacy unsafe-wallet automatic Ascend executes');
+ eq(big(q.get().prisms),BigInt(before.prisms)+BigInt(gain),'legacy unsafe native Prism wallet receives every earned Prism');
+ eq(q.get().motes-before.motes,50,'paid Ascension Dust retained when the old Prism wallet would round away the gain');
+}
 function hugeState(){const s=q.fresh();s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';s.motes='1e400';s.comets='1e400';s.maxDepthEver=100;s.spirits.ember=100;return s;}
 q.set(hugeState());
 eq(q.get().lumen,'1e400','normalization keeps wide currency');

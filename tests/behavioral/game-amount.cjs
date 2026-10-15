@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const a=require('../../scripts/lib/game-amount.cjs');
+const a=require(process.argv[2]?require('node:path').resolve(process.argv[2]):'../../scripts/lib/game-amount.cjs');
 let checks=0;
 function eq(x,y){checks++;assert.equal(x,y);}
 function asBig(value){

@@ -44,6 +44,7 @@ jobs:
           mkdir -p validation-evidence/endless-progression
           node scripts/codex/check_context.cjs --task docs/tasks/ENDLESS_PROGRESSION_001.md
           node tests/behavioral/game-amount.cjs > validation-evidence/endless-progression/amounts.json
+          node tests/behavioral/game-amount-multiplication.cjs > validation-evidence/endless-progression/amount-multiplication.json
           node tests/behavioral/endless-price-cache.cjs index.html > validation-evidence/endless-progression/prices.json
           node tests/behavioral/endless-wide-engine.cjs index.html > validation-evidence/endless-progression/wide.json
           node tests/behavioral/endless-progression-core.cjs index.html > validation-evidence/endless-progression/core.json

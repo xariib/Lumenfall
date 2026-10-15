@@ -34,9 +34,9 @@ for(const policy of ['regular','regular_two','casual','frequent','efficient','ma
   longestClosedWallDays:Math.max(0,...gaps.map(w=>w.days)),walls:gaps,wholeDayPlateaus:plateaus,investments,purchaseReceiptCount:(c.purchases||[]).length});
 }
 assert(records.length>0,'saved campaigns required');
-if(process.argv.includes('--require-primary')){
- const primary=records.find(r=>r.policy==='regular');assert(primary&&primary.days>=56,'complete primary milestone window required');
- assert(primary.firstDay.every(t=>t.met),'primary Day1 targets');assert(primary.targets.every(t=>t.status==='MET'),'primary elapsed-day targets');
+for(const [policy,flag]of [['regular','--require-primary'],['regular_two','--require-regular-two']])if(process.argv.includes(flag)){
+ const primary=records.find(r=>r.policy===policy);assert(primary&&primary.days>=56,'complete '+policy+' milestone window required');
+ assert(primary.firstDay.every(t=>t.met),policy+' Day1 targets');assert(primary.targets.every(t=>t.status==='MET'),policy+' elapsed-day targets');
 }
 const result={status:records.every(r=>r.days>=56)?'MEASURED':'PARTIAL',checks,limits:'Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.',records};
 if(output)fs.writeFileSync(output,JSON.stringify(result,null,2));

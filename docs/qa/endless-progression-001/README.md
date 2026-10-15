@@ -482,3 +482,60 @@ Do not change active endless-campaign/harness/amount bytes. Mature target180d;
 other windows60/70d. Continue from valid checkpoints when bounded jobs end.
 GitHub destination question remains unanswered; Android SDK/Java/device/signing
 checks and combined integration are still unavailable. No remote/APK/release.
+
+
+Checkpoint 15 October 2026, root70a6fdfd (not integrated):
+- AA campaigns finished: regular56d, two-visit70d, casual/frequent/efficient60d,
+  mature180d. Both regular cadences meet the primary milestones. Full AA roster
+  has eight Mythics and eight ability20s by180d but only four Ultimates; late
+  economy acceptance FAIL/OPEN. First Ultimate consumed13–19% of the held Sigils.
+  New AH experiment is immutable e4f1fede9dd5bd0ca66b589acbe55ede5214e28eff038d4adf127c1ff949d026.
+  Base Ultimate Sigils40/50/65/85/110/140/180/240million; base boss Sigils above
+  Rift6000 gain factor1+((depth-6000)/300)^2, floored before the unchanged flat
+  Cartography bonus. This model is NOT applied to the live root. Fresh earned
+  regular180d and two-visit/casual/frequent/efficient60d campaigns run in frozen
+  runtimes/ah. No assumed late acceptance; inspect checkpoints and campaign report.
+- Exact arithmetic now multiplies base1e7 limbs and reconstructs IEEE integers
+  in limbs through26-bit shifts. Products/carries remain below2^53. The independent
+  BigInt oracle passes36,502 assertions including6000-digit carry chains and12000
+  actual unsafe IEEE integers; it checks that the shipped factory equals the helper.
+  AG full rank10000 Push reproduced the old complete chronological result exactly:
+  341222 kills, Rift341223,1375 cooperative batches;43.28s vs old unprofiled341.70s.
+  This remains an extreme desktop measurement, not acceptable mobile performance proof.
+- Root also fixes Ascension Dust for unsafe legacy native Prism wallets using the
+  actual exact credit/debit difference. A real auto-Ascend test receives every Prism
+  and all50 paid Motes; restoring the old expression is killed at that assertion.
+  Current source core230, amount412, wide57, parity305,15 causal controls and actual
+  V8 6.0 checks32 PASS. New multiplication oracle is part of required CI.
+- Bounded actual earned mature-save low-target AutoAscend stress is INCOMPLETE:
+  .001 requested seconds,10 cooperative batches,292 Ascends, reported elapsed0.
+  This blocks extended automation acceptance. No cooldown, changed target or reward
+  was silently introduced. User clarification is pending: preserve unlimited cycles
+  with larger simulation work, or a proposed30-second minimum run duration.
+- Diagnostic broad continuation completed149 PASS/6 FAIL on atomic-web0cbe643e:
+  Inquiry outdated price fixture (focused231 PASS after correcting1.8 to1.6), four
+  Rift native variants, and Prism browser contract CDP deadline. Rift failure was
+  a headless window smaller than the emulated viewport: explicit1000x1100 browser
+  window plus manual native touch events passes stacking-mobile under unchanged300s;
+  the overflow:hidden counterfactual still fails the exact reachability assertion
+  and tears down cleanly. Other motion variants are being rerun. Full browser Prism
+  contract still fails its existing25s gate; profiling and baseline comparison are
+  diagnostic only and do not relax it. Lab speed90s gate also remains open.
+- regular_two AA orchestration attempted a redundant resume at completed day70;
+  the runner correctly rejected it. The intact checkpoint is the evidence. New
+  batch helper guards completed targets and retains the last successful output.
+- Required Linux CI, GitHub destination/access, combined integration, SDK/Java,
+  signing/build and installed-device acceptance remain open. No APK or release.
+
+Further evidence: both baseline and candidate Prism contracts pass all6651 body
+assertions in diagnostic longer observations (baseline44.74s/current51.41s with
+CPU profiling). Neither is a25s required-gate pass. Profiles identify full UI
+replacement/Forge rendering as the main cost. Baseline normal driver also failed
+cleanup with EPERM; preserve that failed observation. Current Lab speed body
+passes1118 checks across12 width/text/motion profiles; still rerun the90s wrapper.
+Parallel three Rift variants timed out at300s under concurrent browser work;
+serial current-source motion reruns are pending. No timeout was increased.
+AH first Ultimate costs32million after Analysis, using56.8%/53.3%/73.8%/72.5%
+of earned held Sigils for regular/two-visit/casual/efficient respectively, while
+retaining their measured first-Ultimate days53.33/50.5/53/52.5. Fresh180d roster
+measurement is still running. Frozen partial checkpoints retain exact provenance.

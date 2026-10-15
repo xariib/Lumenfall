@@ -3,7 +3,7 @@
  */
 const {spawn}=require('node:child_process'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const [chrome,url,scenario]=process.argv.slice(2),profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-forge-ui-'));
-const browser=spawn(process.env.LUMENFALL_QA_CDP_CHROME||chrome,['--headless=new','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
+const browser=spawn(process.env.LUMENFALL_QA_CDP_CHROME||chrome,['--headless=new','--window-size=1000,1100','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
 let seq=0,buffer='',stderr='',session,records=[];
 const traceStart=Date.now();let swipeCount=0;
 function trace(info){if(process.env.LUMENFALL_QA_TRACE)process.stderr.write(JSON.stringify({seconds:(Date.now()-traceStart)/1000,...info})+'\n');}
@@ -64,9 +64,14 @@ async function swipe(loc,width){
  const observing=!!process.env.LUMENFALL_QA_TRACE;
  const before=observing?await evaluate('document.querySelector("main").scrollTop'):null;
  const touched=observing?await evaluate('(()=>{var e=document.elementFromPoint('+x+','+y+');return e?e.tagName+"."+e.className:"none";})()'):null;
+ // Explicit native touch events preserve the actual drag path.
+ // Hold the final point before release to avoid a fling past a nearby control.
  await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
- for(let i=1;i<=6;i++){await send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+dy*i/6}]});await new Promise(r=>setTimeout(r,16));}
- await new Promise(r=>setTimeout(r,120)); // Let the native drag finish before release to reduce inertial overshoot.
+ for(let i=1;i<=4;i++){
+  await send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+dy*i/4}]});
+  await new Promise(r=>setTimeout(r,16));
+ }
+ await new Promise(r=>setTimeout(r,60));
  await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
  await settleScroll(); // Native momentum must settle before choosing the next gesture.
  if(observing)trace({phase:'native-swipe',count:swipeCount,delta,y,dy,before,after:await evaluate('document.querySelector("main").scrollTop'),touched});
@@ -116,7 +121,8 @@ async function run(){
    for(const view of ['spirits','forge','research']){
     const viewStart=Date.now(),swipesBefore=swipeCount;trace({profile:name,kind,view,phase:'start'});
     if(view==='forge'||view==='research')await touch('[data-tab="workshop"]');
-    await touch(`[data-tab="${view}"]`);
+    await touch(`[data-tab="${view}"]`);await shot(name+'-'+kind+'-'+view);
+    if(process.env.LUMENFALL_QA_BLOCK_SCROLL==='1'&&view==='spirits')await evaluate('document.querySelector("main").style.overflow="hidden"');
     // Real touch scroll: no scrollIntoView/focus assistance to reach last control.
     for(let i=0;i<35;i++){let loc=await evaluate(`riftStatusMobile.locate(${JSON.stringify(view)})`);if(loc.visible){await settleScroll();loc=await evaluate(`riftStatusMobile.locate(${JSON.stringify(view)})`);if(loc.visible)break;}await swipe(loc,width);}
     scroll.push(await evaluate(`riftStatusMobile.last(${JSON.stringify(view)})`));
