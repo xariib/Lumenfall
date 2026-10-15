@@ -2,11 +2,16 @@
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
 const source=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const eol=source.includes('\r\n')?'\r\n':'\n',transactionPrefix='function forgeCommitPaidMutation(apply){'+eol+'  var base=state,memoWasBase=studyClockMemo && studyClockMemo.state===state;'+eol;
+const singleAscend=source.includes('state.ascendCount=creditAmount(state.ascendCount,1);')?'state.ascendCount=creditAmount(state.ascendCount,1);':'state.ascendCount++;';
+// Exact clock progress is now a second valid witness alongside falling HP.
+// Remove both witnesses to reproduce the same false-stall defect after integration.
+const exactProgress=' && (!binaryClock||binaryClock.elapsed()===binaryElapsedBefore) && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)';
+const stallFrom=source.includes(exactProgress)?exactProgress:' && !Amount.lt(state.enemyHp,hpBeforeAdvance)',stallTo=source.includes(exactProgress)?' && actions===0':'';
 const specs=[
  ['wrong-mastery-power','return Amount.pow(1.1,wispMasteryLevel(id));','return Amount.pow(1.2,wispMasteryLevel(id));','own Power compounded10%'],
  ['missing-next-record','depthStep:25','depthStep:0','next rank needs deeper record'],
  ['free-mastery-sigils','state.sigils=debitAmount(state.sigils,plan.cost.sigil);state.wispMastery[sp.id]=plan.rank+1;','state.wispMastery[sp.id]=plan.rank+1;','Mastery Sigil debit'],
- ['lost-mastery-on-ascend','state.ascendCount++;','state.ascendCount++;Object.keys(state.wispMastery).forEach(function(id){state.wispMastery[id]=0;});','Mastery survives Ascend'],
+ ['lost-mastery-on-ascend',singleAscend,singleAscend+'Object.keys(state.wispMastery).forEach(function(id){state.wispMastery[id]=0;});','Mastery survives Ascend'],
  ['leaked-paid-mutation',transactionPrefix+'  state=clonePersistedValue(base);',transactionPrefix+'  state=base;','failed primary Mastery rolls back everything'],
  ['lost-paid-clock','if(memoWasBase)studyClockMemo.state=base;','', 'failed purchase preserves paid-work clock continuity'],
  ['wide-quote-copy','if(!quoteOnly)credits=clonePersistedValue(credits);','credits=clonePersistedValue(credits);','wide price quotes never clone or mutate paid ledgers'],
@@ -14,7 +19,7 @@ const specs=[
  ['free-timed-speed','state.motes=debitAmount(state.motes,plan.cost);','', 'timed boost exactly debits a wide Mote wallet','endless-wide-engine.cjs'],
  ['future-mote-payout','if(at>point)break;','', 'wide count pays only inside the actual window','endless-mote-batch.cjs'],
  ['lost-legacy-ascension-dust','debitAmount(creditAmount(wallet,gain),wallet)','Amount.sub(Amount.add(wallet,gain),wallet)','paid Ascension Dust retained when the old Prism wallet would round away the gain','endless-wide-engine.cjs'],
- ['discarded-physical-progress',' && !Amount.lt(state.enemyHp,hpBeforeAdvance)','', 'Authoritative simulation stalled','endless-wide-engine.cjs','runtime'],
+ ['discarded-physical-progress',stallFrom,stallTo, 'Authoritative simulation stalled','endless-wide-engine.cjs','runtime'],
  ['unbounded-future-work','Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level))','node.baseDurationSec * Math.pow(node.durationGrowth, level)','bounded future work'],
  ['lost-old-titan-entitlement','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:32}','legacyDepth={ember:1,tide:3,stone:6,gale:9,thorn:12,void:18,aurora:24,titan:100}','old unlocked roster preserved titan'],
  ['ability-live-leak','if(!forgeCommitPaidMutation(function(){'+eol+'    state.lumen=debitAmount(state.lumen,cost.lumen);','if(!(function(apply){apply();return false;})(function(){'+eol+'    state.lumen=debitAmount(state.lumen,cost.lumen);','failed ability rolls back wallet and rank ember'],

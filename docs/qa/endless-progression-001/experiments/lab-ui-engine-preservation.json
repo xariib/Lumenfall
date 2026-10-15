@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "sources": [
+    {
+      "file": "validation-evidence/endless-limb-d.html",
+      "sha256": "5e47864cffe68eca95186f7bbd3b52b38d88e5c2b5a2c78f7658b4767c6b6d13"
+    },
+    {
+      "file": "validation-evidence/endless-lab-reconciled-d.html",
+      "sha256": "b645b6a3796ce12bb4316484d2445b89cc8d39f51718c0c9432ad111104de42c"
+    }
+  ],
+  "excludedPresentationFunctions": [
+    "studySpeedMarkup",
+    "replaceStudyMarkup",
+    "renderLongStudies"
+  ],
+  "restOfCompleteGameSha256": "04b2cf999b07224a61a2e1270c9b19ba87049daf621533d69db6150ee6b08083",
+  "claim": "Complete calibrated engine and markup outside these three Lab UI functions is byte-identical. Does not replace UI regression or device acceptance."
+}

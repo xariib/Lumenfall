@@ -1,6 +1,16 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),path=require('node:path'),binary=require('./endless-binary-clock-source.cjs');
 module.exports=function(source){
+ // Integrated candidates already contain these exact components. Reject stale
+ // embedded implementations rather than testing an unnoticed older factory.
+ if(source.includes('var createEndlessCycleRuntime=')){
+  assert(source.includes('var createBinarySimulationClock='+require('../../scripts/lib/simulation-limb-clock.cjs').toString()+';'),'current embedded exact clock');
+  const runtime=require('./endless-cycle-runtime.cjs').toString().replace('function nativeProgram(recipe){return recipe.intervals.map(function(n){return n*1000;}).concat([null]);}','function nativeProgram(recipe){return [canonicalAutomationMillis(recipe.intervals),null];}').replace('state.luminousAccum=spawns.phase;state.enemyIsLuminous=spawns.flag;ascendRunToken={};','state.luminousAccum=spawns.phase;state.enemyIsLuminous=spawns.flag;state.canonicalAutomationClock={};ascendRunToken={};');
+  assert(source.includes('var createEndlessCycleRuntime='+runtime+';'),'current embedded cycle runtime with canonical timer connection');
+  assert(source.includes('function persistCanonicalAutomation(clock)'),'saved canonical timer basis');
+  for(const [name,file]of [['createLuminousOrbit','luminous-orbit'],['cycleAggregate','ascend-cycle-aggregate'],['cycleTailLumen','ascend-cycle-lumen'],['cycleLatticeClock','ascend-cycle-lattice-clock'],['cycleNativePhase','ascend-native-phase'],['cycleEconomyBound','ascend-cycle-economy-bound'],['cycleNativeCredit','native-credit-prefix'],['cycleResources','checked-resource-cycles']])assert(source.includes('var '+name+'='+require('../../scripts/lib/'+file+'.cjs').toString()+';'),'current embedded '+name);
+  return source;
+ }
  source=binary(source);
  function edit(a,b,n=1){assert.equal(source.split(a).length,n+1,a);source=source.split(a).join(b);}
  const lib=name=>require('../../scripts/lib/'+name+'.cjs').toString();

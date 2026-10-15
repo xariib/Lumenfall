@@ -1,5 +1,18 @@
 # Endless progression — work in progress
 
+Current isolated implementation [b645b6a3 checkpoint](experiments/integrated-checkpoint.json).
+Measured D gates and unrestricted cycle engine are now in index.html; newer67e Lab
+UI retained. Core235, independent all-Wisp boundaries2528, income632726, price
+quotes13416, V8.6 full-engine143 and21+14 causal controls PASS on this source.
+Staged15 assets match. Mobile469/12 and Wisp163/12 pass; existing22-scenario Lab
+regression passes on reconciled base. Full staged browser suite RUNNING.
+Fresh canonical D: regular32d/all recruits22.333d; two-visits13d partial.
+Earlier five60d D milestones and reinvest180d remain separate source/policy evidence.
+12h prior engine completed291615ms,2193 audit checks; real8h+4h cold split471 PASS.
+Strict HP unchanged. Raw hashes/scope are in checkpoint; no device speed claim.
+Final current pacing/walls, whole UI/CI, remote and native acceptance remain OPEN.
+No shared/main/remote/APK/archive delivery. Older statuses below are historical.
+
 Newest [saved automation basis checkpoint](experiments/automation-basis-checkpoint.json).
 Human chose strict HP. Current604a warm/cold953 each, exact timer storage24,
 core235/parity305/wide67/actual V8.6 143 and14 causal controls PASS. No HP

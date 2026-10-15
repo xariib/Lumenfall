@@ -57,6 +57,24 @@ jobs:
           node tests/behavioral/endless-campaign-offline.cjs index.html > validation-evidence/endless-progression/campaign-offline.json
           node tests/behavioral/endless-mobile.cjs index.html validation-evidence/endless-progression/mobile
 
+      - name: Endless automation clock and repeated Ascend regressions
+        run: |
+          node tests/behavioral/simulation-binary-clock.cjs ../../scripts/lib/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-oracle.json
+          node tests/behavioral/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-compatibility.json
+          node tests/behavioral/endless-requirement-boundaries.cjs index.html > validation-evidence/endless-progression/requirement-boundaries.json
+          node tests/behavioral/endless-cycle-batch.cjs > validation-evidence/endless-progression/cycle-batch.json
+          node tests/behavioral/endless-cycle-boundaries.cjs > validation-evidence/endless-progression/cycle-boundaries.json
+          node tests/behavioral/endless-cycle-automation.cjs > validation-evidence/endless-progression/cycle-automation.json
+          node tests/behavioral/endless-cycle-persistence.cjs > validation-evidence/endless-progression/cycle-ownership.json
+          node tests/behavioral/endless-automation-persistence.cjs > validation-evidence/endless-progression/timer-storage.json
+          node tests/behavioral/endless-automation-transitions.cjs > validation-evidence/endless-progression/empty-ticks.json
+          node tests/behavioral/endless-cycle-resource-replay.cjs > validation-evidence/endless-progression/resource-replay.json
+          node tests/behavioral/endless-cycle-native-wallets.cjs > validation-evidence/endless-progression/native-wallets.json
+          node tests/behavioral/endless-cycle-split.cjs > validation-evidence/endless-progression/live-parity.json
+          LUMENFALL_CYCLE_COLD_FRAMES=1 node tests/behavioral/endless-cycle-split.cjs > validation-evidence/endless-progression/cold-parity.json
+          node tests/behavioral/endless-cycle-overflow.cjs > validation-evidence/endless-progression/high-mastery.json
+          node tests/behavioral/endless-cycle-controls.cjs validation-evidence/endless-progression/cycle-controls > validation-evidence/endless-progression/cycle-controls.json
+
       - name: Stage web assets
         shell: bash
         run: |
