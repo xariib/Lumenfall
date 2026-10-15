@@ -1,0 +1,229 @@
+{
+  "status": "observed-current-source",
+  "sourceSha256": "419f650df46177142b97364f141f4ab420b15879dda11d11ed76584662038450",
+  "scope": "synthetic fixture observations, not player telemetry",
+  "perThousand": [
+    {
+      "depth": 9,
+      "chance": 0.03,
+      "fixedMoteReward": 2,
+      "kills": 1000,
+      "luminous": 29,
+      "motes": 2
+    },
+    {
+      "depth": 39,
+      "chance": 0.09,
+      "fixedMoteReward": 6,
+      "kills": 1000,
+      "luminous": 89,
+      "motes": 6
+    },
+    {
+      "depth": 79,
+      "chance": 0.17,
+      "fixedMoteReward": 11,
+      "kills": 1000,
+      "luminous": 169,
+      "motes": 11
+    },
+    {
+      "depth": 149,
+      "chance": 0.3,
+      "fixedMoteReward": 20,
+      "kills": 1000,
+      "luminous": 299,
+      "motes": 20
+    },
+    {
+      "depth": 249,
+      "chance": 0.3,
+      "fixedMoteReward": 32,
+      "kills": 1000,
+      "luminous": 299,
+      "motes": 32
+    }
+  ],
+  "samples": [
+    {
+      "fixture": "mid-game",
+      "depth": 17,
+      "canonicalHp": 100,
+      "seconds": 60,
+      "kills": 269,
+      "luminous": 13,
+      "motes": 3
+    },
+    {
+      "fixture": "mid-game",
+      "depth": 17,
+      "canonicalHp": 100,
+      "seconds": 600,
+      "kills": 2699,
+      "luminous": 134,
+      "motes": 30
+    },
+    {
+      "fixture": "mid-game",
+      "depth": 17,
+      "canonicalHp": 100,
+      "seconds": 3600,
+      "kills": 16199,
+      "luminous": 809,
+      "motes": 174
+    },
+    {
+      "fixture": "farm-mode",
+      "depth": 3,
+      "canonicalHp": 15,
+      "seconds": 60,
+      "kills": 6644,
+      "luminous": 199,
+      "motes": 1
+    },
+    {
+      "fixture": "farm-mode",
+      "depth": 3,
+      "canonicalHp": 15,
+      "seconds": 600,
+      "kills": 66674,
+      "luminous": 2000,
+      "motes": 10
+    },
+    {
+      "fixture": "farm-mode",
+      "depth": 3,
+      "canonicalHp": 15,
+      "seconds": 3600,
+      "kills": 400174,
+      "luminous": 12005,
+      "motes": 60
+    },
+    {
+      "fixture": "parity-medium-farm",
+      "depth": 89,
+      "canonicalHp": 1712728,
+      "seconds": 60,
+      "kills": 1850,
+      "luminous": 351,
+      "motes": 27
+    },
+    {
+      "fixture": "parity-medium-farm",
+      "depth": 89,
+      "canonicalHp": 1712728,
+      "seconds": 600,
+      "kills": 18590,
+      "luminous": 3531,
+      "motes": 270
+    },
+    {
+      "fixture": "parity-medium-farm",
+      "depth": 89,
+      "canonicalHp": 1712728,
+      "seconds": 3600,
+      "kills": 111590,
+      "luminous": 21201,
+      "motes": 1620
+    },
+    {
+      "fixture": "mature-high-power",
+      "depth": 95,
+      "canonicalHp": 3859413,
+      "seconds": 60,
+      "kills": 829,
+      "luminous": 173,
+      "motes": 27
+    },
+    {
+      "fixture": "mature-high-power",
+      "depth": 95,
+      "canonicalHp": 3859413,
+      "seconds": 600,
+      "kills": 8335,
+      "luminous": 1750,
+      "motes": 270
+    },
+    {
+      "fixture": "mature-high-power",
+      "depth": 95,
+      "canonicalHp": 3859413,
+      "seconds": 3600,
+      "kills": 50035,
+      "luminous": 10507,
+      "motes": 1620
+    }
+  ],
+  "delegatedBalance": {
+    "status": "implemented-candidate",
+    "luminousMotePayoutIntervalSeconds": 60,
+    "keepCurrentFixedEligiblePayoutAndBonusPercentages": true,
+    "otherMoteSources": "Field Notes and Ascension Dust unchanged",
+    "prices": [
+      {
+        "mult": 1.5,
+        "prices": [
+          800,
+          1140,
+          2160
+        ]
+      },
+      {
+        "mult": 2,
+        "prices": [
+          1500,
+          2138,
+          4050
+        ]
+      },
+      {
+        "mult": 3,
+        "prices": [
+          3500,
+          4988,
+          9450
+        ]
+      },
+      {
+        "mult": 4,
+        "prices": [
+          6500,
+          9263,
+          17550
+        ]
+      },
+      {
+        "mult": 5,
+        "prices": [
+          10000,
+          14250,
+          27000
+        ]
+      },
+      {
+        "mult": 6,
+        "prices": [
+          15000,
+          21375,
+          40500
+        ]
+      },
+      {
+        "mult": 7,
+        "prices": [
+          20500,
+          29213,
+          55350
+        ]
+      },
+      {
+        "mult": 8,
+        "prices": [
+          27500,
+          39188,
+          74250
+        ]
+      }
+    ]
+  }
+}

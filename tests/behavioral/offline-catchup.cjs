@@ -131,12 +131,20 @@ function baselineSummary(actual,expected,label){
  assert.equal(actual.studySpeedPurchases,0,label+' no legacy repeat purchases');
  assert.equal(actual.studyMotesSpent,0,label+' no legacy repeat spending');
  const {studySpeedPurchases,studyMotesSpent,...existing}=actual;
- assert.deepEqual(existing,expected,label);
+ // The separately accepted timed-Lab revision changes only eligible Mote
+ // frequency here. Its exact cooldown/amount/chronology oracle lives in
+ // lab-timed-boosts.cjs. Retain every other historical summary field.
+ assert(Number.isSafeInteger(actual.motesGained)&&actual.motesGained>=0&&actual.motesGained<=expected.motesGained,label+' eligible Motes cannot exceed the old every-kill payout');
+ assert.deepEqual(existing,{...expected,motesGained:actual.motesGained},label);
 }
-function baselineState(actual,expected,seed,label){
+function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seconds){
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
+ assert.deepEqual(actual.studyBoosts,{},label+' old save receives no free timed boosts');
+ assert.deepEqual(actual.studyBoostHours,Object.fromEntries(Object.keys(actual.longStudyLevels).map(id=>[id,8])),label+' exact default boost durations');
+ assert(actual.moteNextAtMs===0 || actual.moteNextAtMs>=seed.lastSeen && actual.moteNextAtMs<=seed.lastSeen+seconds*1000+60000,label+' actual eligible payout clock stays inside the simulated window');
+ delete actual.studyBoosts;delete actual.studyBoostHours;delete actual.moteNextAtMs;
  const wispIds=['ember','tide','stone','gale','thorn','void','aurora','titan'],oldDepths=[1,3,6,9,12,18,24,32],newDepths=[1,3,6,15,35,55,75,100],newLabs=[0,0,0,15,18,20,21,24];
  assert.deepEqual(actual.wispMastery,Object.fromEntries(wispIds.map(id=>[id,0])),label+' no invented Mastery');
  assert.deepEqual(actual.recruitmentEntitlements,Object.fromEntries(wispIds.map((id,i)=>[id,id==='ember'||(seed.spirits?.[id]||0)>0||(seed.heroRarity?.[id]||0)>0||(seed.wispModules?.[id]||0)>0||seed.wispUltimate?.[id]===true||seed.maxDepthEver>=oldDepths[i]||(actual.maxDepthEver>=newDepths[i]&&(actual.longStudyLevels.wispascend||0)>=newLabs[i])])),label+' retained old or earned new recruitment access');
@@ -205,7 +213,7 @@ function baselineState(actual,expected,seed,label){
  let refund=0;for(let i=0;i<(seed.nodes?.reserves||0);i++)refund+=Math.ceil(6*Math.pow(1.6,i));
  assert.equal(actual.schemaVersion,5,label+' migrated schema');
  assert.deepEqual(existing,{...expected,schemaVersion:5,owned:oldOwnership,activeFormationPreset:selected,
-  prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0)},label);
+  prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0),motes:expected.motes-oldSummary.motesGained+currentSummary.motesGained},label);
 }
 function runAsync(seed,seconds,batch=256){
  const x=app(seed,source,seconds),before=copy(x.b.get());x.b.batch(batch);
@@ -315,7 +323,7 @@ for(const rawSeed of [original,clear20,off]){
   const old=app(seed,correctedClockBaseline,seconds),next=app(seed,legacyBondSource,seconds);
   const a=old.b.advance(seconds,{kind:'offline',visual:false,clockStartMs:seed.lastSeen});
   const b=next.b.advance(seconds,{kind:'offline',visual:false,clockStartMs:seed.lastSeen});
-  baselineSummary(b,a,'unchanged baseline summary '+seconds);baselineState(next.b.get(),old.b.get(),seed,'unchanged baseline state '+seconds);
+  baselineSummary(b,a,'unchanged baseline summary '+seconds);baselineState(next.b.get(),old.b.get(),seed,'unchanged baseline state '+seconds,b,a,seconds);
  }
 }
 const all=copy(original);all.research.charge=9;all.researchQueue.charge=false;all.research.arcanecal=0;
@@ -325,7 +333,7 @@ all.researchQueue.arcanecal=true;all.studyQueue.guardmastery=true;
 for(const kind of ['live','offline']){
  const whole=app(all),split=app(all),old=app(all,correctedClockBaseline),legacy=app(all,legacyBondSource),options={kind,visual:false,clockStartMs:all.lastSeen};
  const sum=whole.b.advance(3600,options),legacySum=legacy.b.advance(3600,options),oldSum=old.b.advance(3600,options);
- baselineSummary(legacySum,oldSum,'economy/order baseline '+kind);baselineState(legacy.b.get(),old.b.get(),all,'baseline chronology '+kind);
+ baselineSummary(legacySum,oldSum,'economy/order baseline '+kind);baselineState(legacy.b.get(),old.b.get(),all,'baseline chronology '+kind,legacySum,oldSum,3600);
  for(let i=0;i<4;i++)split.b.advance(900,{...options,clockStartMs:all.lastSeen+i*900000,offlineWindowStartMs:all.lastSeen});
  compare(split.b.get(),whole.b.get(),'whole/split '+kind);
  assert(sum.motesGained>0&&sum.empowers>0&&sum.researchBought>0,'Motes, Research and Empower chronology exercised');

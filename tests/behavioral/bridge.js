@@ -90,6 +90,7 @@ window.__lumenfallQaBridge = {
     // UI fixtures pause reload/autosave; explicit input still uses the real
     // save transaction with production's normal, interactive reload flag.
     input: function(fn){var old=reloadInProgress;reloadInProgress=false;try{return fn();}finally{reloadInProgress=old;}},
+    cost:studyBoostCost,activate:activateStudyBoost,effective:studyEffectiveSpeed,payout:luminousMotePayout,
     withHp: function(hp,fn){var original=enemyHpFor;enemyHpFor=function(){return hp;};try{return fn();}finally{enemyHpFor=original;}},
     naturalDps: function(){return simulationPassiveDps(2000000000000);},
     numericCosts: function(){return {titan:spiritCost(SPIRITS.find(function(s){return s.id==='titan';})),formation:researchCostForLevels(RESEARCH.find(function(s){return s.id==='formation';}),state.research.formation,1),momentum:nodeCost(NODES.find(function(s){return s.id==='momentum';})),formationStudy:studyCost(LONG_STUDIES.find(function(s){return s.id==='formationstudy';}),state.longStudyLevels.formationstudy),wispAscend:studyCost(LONG_STUDIES.find(function(s){return s.id==='wispascend';}),state.longStudyLevels.wispascend)};},
@@ -184,7 +185,7 @@ window.__lumenfallQaBridge = {
     start: function(id){return window.__lumenfallQaBridge.labMotes.input(function(){return startStudy(typeof id==='string'?LONG_STUDIES.find(function(n){return n.id===id;}):id);});},
     autoFill: function(){return window.__lumenfallQaBridge.labMotes.input(function(){return autoFillStudySlots();});},
     queued: function(){var summary=simulationSummary(0);simulationStartQueuedStudies(summary);return summary;},
-    tail: function(seconds){var summary=simulationSummary(seconds);advanceStudyOnlyTime(seconds,2000000000000,summary);return {state:JSON.parse(JSON.stringify(state)),summary:summary};},
+    tail: function(seconds,start){var summary=simulationSummary(seconds);advanceStudyOnlyTime(seconds,start||2000000000000,summary);return {state:JSON.parse(JSON.stringify(state)),summary:summary};},
     due: function(){var summary=simulationSummary(0);return {handled:simulationCompleteDueStudies(summary),summary:summary};},
     oldComplete: function(seconds){return advanceActiveStudies(seconds);},
     boundary: function(){return simulationKillsUntilEconomyMutation(1);},

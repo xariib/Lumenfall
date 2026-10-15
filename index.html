@@ -1670,6 +1670,7 @@
   @keyframes creatureStrike{0%{transform:scale(.88) rotate(-4deg);filter:brightness(1.7);}100%{transform:scale(1);filter:brightness(1);}}
   @keyframes dustRise{0%{transform:translate3d(0,15px,0);opacity:0;}30%,65%{opacity:.6;}100%{transform:translate3d(12px,-70px,0);opacity:0;}}
   .cost-icon,.shape.cost-icon{width:.85em;height:.85em;min-width:.85em;max-width:.85em;flex:none;display:inline-block;vertical-align:-.05em;}
+  .wisp-upgrade-price{font-size:.6875rem;}
 
   /* Fixed HUD tracks and bounded Rift chrome protect the interaction region. */
   .hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:calc(4px + var(--safe-top)) 10px 4px;}
@@ -2182,7 +2183,13 @@
   #study-list .study-level{display:inline-block;max-width:100%;margin-top:6px;padding:3px 10px;border:1px solid #526b7b;border-radius:20px;background:#203544;color:#f0b7d4;font-size:.75rem;line-height:1.5;font-weight:600;}
   #study-list .study-card .earned-effect,#study-list .study-card .effect-note{font-size:.8rem;overflow-wrap:anywhere;}
   #study-list .study-card button,#study-list .study-card select{min-width:44px;min-height:44px;font-size:.8rem;white-space:normal;}
-  #study-list .study-speed-controls{margin-top:10px;}
+  #study-list .study-speed-controls{margin-top:12px;padding-top:10px;border-top:1px solid #465e704d;}
+  #study-list .study-speed-heading select{width:auto;max-width:100%;padding:8px;border:1px solid #4d6778;border-radius:8px;background:#142637;color:#e5f4fa;font:inherit;}
+  #study-list .study-boost-start,#study-list .study-boost-active{display:block;width:100%;box-sizing:border-box;min-height:44px;margin-top:8px;padding:9px 12px;border:1px solid #83c7c7;border-radius:9px;background:#203e4a;color:#e5f8f5;font-size:.8rem;line-height:1.5;text-align:center;overflow-wrap:anywhere;}
+  #study-list .study-boost-start [data-price-currency]{display:inline-flex;align-items:center;gap:3px;}
+  #study-list .study-boost-active{background:#173a39;border-color:#68aaa3;}
+  #study-list .study-boost-active:focus{outline:2px solid var(--lumen);outline-offset:2px;}
+  #study-list [data-study-speed-target]:disabled{cursor:default;opacity:.7;}
   #study-list .study-speed-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;font-size:.8rem;}
   #study-list .study-speed-heading>span{display:flex;flex-wrap:wrap;align-items:center;gap:4px;}
   #study-list .study-speed-heading [data-price-currency]{display:inline-flex;align-items:center;gap:3px;}
@@ -3616,7 +3623,7 @@ var LAB_EXPANSION = [
     "lumenGrowth": 1.55,
     "shardBase": 1500,
     "shardGrowth": 1.55,
-    "desc": "2% lower Mote prices per level for future Lab speed purchases, up to 20%. Paid speed is retained; each new Study level still pays its selected tier."
+    "desc": "2% lower Mote prices per level for future timed Lab boosts, up to 20%. Existing paid speed and boost time are retained; project levels share unexpired boost time."
   },
   {
     "id": "focusprotocol",
@@ -3832,6 +3839,98 @@ function labEncounterReward(value,depth,luminous){
 }
 
 var LAB_SPEED_TIERS = [1.5, 2, 3, 4, 5, 6, 7, 8];
+var LAB_BOOST_HOURS = [8,12,24];
+var LAB_BOOST_BASE_COSTS = [800,1500,3500,6500,10000,15000,20500,27500];
+var LUMINOUS_MOTE_INTERVAL_MS = 60000;
+function studyBoostCost(mult,hours){
+  var i=LAB_SPEED_TIERS.indexOf(mult),h=LAB_BOOST_HOURS.indexOf(hours);
+  if(i<0 || h<0)return Infinity;
+  var total=LAB_BOOST_BASE_COSTS[i]*hours;
+  var packageCost=Math.ceil(total*[100,95,90][h]/800);
+  return labDiscountCost(packageCost,2*labExpansionLevel('catalysis'));
+}
+function studyBoostAt(id,nowMs){
+  var b=state.studyBoosts && state.studyBoosts[id],now=nowMs===undefined?Date.now():nowMs;
+  return b && now>=b.startedAtMs && now<b.expiresAtMs ? b : null;
+}
+function studyWorkBetween(active,elapsedSec,nowMs){
+  var now=nowMs===undefined?Date.now():nowMs,b=state.studyBoosts[active.id];
+  var boosted=b?Math.max(0,Math.min(now+elapsedSec*1000,b.expiresAtMs)-Math.max(now,b.startedAtMs))/1000:0;
+  return elapsedSec*active.speedMult+boosted*Math.max(0,(b?b.mult:1)-active.speedMult);
+}
+function studyEffectiveSpeed(active,nowMs){
+  var boost=studyBoostAt(active.id,nowMs);
+  return Math.max(active.speedMult,boost?boost.mult:active.speedMult);
+}
+function studyCompletionSeconds(active,nowMs){
+  var now=nowMs===undefined?Date.now():nowMs,b=state.studyBoosts[active.id],work=active.remainingSec,base=active.speedMult,time=0;
+  if(!b || b.expiresAtMs<=now || b.mult<=base)return work/base;
+  var before=Math.max(0,(b.startedAtMs-now)/1000);
+  if(work<=before*base)return work/base;
+  work-=before*base;time+=before;
+  var boosted=(b.expiresAtMs-Math.max(now,b.startedAtMs))/1000;
+  if(work<=boosted*b.mult)return time+work/b.mult;
+  return time+boosted+(work-boosted*b.mult)/base;
+}
+function nextStudyBoostExpiry(nowMs){
+  var next=Infinity;
+  Object.keys(state.studyBoosts).forEach(function(id){var b=state.studyBoosts[id];if(b.startedAtMs>nowMs)next=Math.min(next,(b.startedAtMs-nowMs)/1000);if(b.expiresAtMs>nowMs)next=Math.min(next,(b.expiresAtMs-nowMs)/1000);});
+  return next;
+}
+function getStudyBoostPlan(id,mult,hours){
+  var node=LONG_STUDIES.find(function(n){return n.id===id;}),active=findActiveStudy(id),now=Date.now();
+  var held=state.studyBoosts[id] && state.studyBoosts[id].expiresAtMs>now;
+  var cost=studyBoostCost(mult,hours);
+  var eligible=!!node && !!active && active.remainingSec>SIM_EPS && state.maxDepthEver>=(node.unlockDepth||1) &&
+    !(node.levelCap!==undefined && longStudyLevel(id)>=node.levelCap) && !held && mult>active.speedMult && Number.isFinite(cost);
+  return {eligible:eligible,affordable:eligible && labCanPay(state.motes,cost),cost:cost,active:active,held:held};
+}
+function activateStudyBoost(id,mult,hours){
+  var plan=getStudyBoostPlan(id,mult,hours),now=Date.now();
+  if(!plan.affordable || offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
+  if(!forgeCommitPaidMutation(function(){
+    state.motes=debitAmount(state.motes,plan.cost);
+    state.studySpeedTargets[id]=mult;state.studyBoostHours[id]=hours;
+    state.studyBoosts[id]={mult:mult,startedAtMs:now,expiresAtMs:now+hours*3600000};
+  }))return false;
+  renderLongStudies();renderHud();return true;
+}
+function luminousMotePayout(nowMs){
+  if(nowMs<state.moteNextAtMs)return 0;
+  state.moteNextAtMs=nowMs+LUMINOUS_MOTE_INTERVAL_MS;
+  var reward=Amount.max(1,Amount.round(Amount.mul(motesDropFor(state.depth),Amount.add(1,supportMoteBonus())),'round'));
+  state.motes=creditAmount(state.motes,reward);return reward;
+}
+// Locate qualifying Luminous defeats analytically, without iterating every kill.
+function batchLuminousMotes(count,first,accum,chance,policy){
+  var stream=policy.moteFarmClock,point=Number.isFinite(policy.nowMs)?policy.nowMs:Date.now();
+  var firstMs=stream?stream.startMs+stream.firstSec*1000:point,gapMs=stream?stream.gapSec*1000:0;
+  var minIndex=1,paid=0;
+  function ceilingRatio(a,b){
+    if(!Amount.wide(a)&&!Amount.wide(b)&&Number.isFinite(a/b))return Math.ceil(a/b);
+    var parts=Amount.divmod(a,b);return Amount.cmp(parts.r,0)>0?Amount.exactAdd(parts.q,1):parts.q;
+  }
+  while(Amount.le(minIndex,count)){
+    if(gapMs>0)minIndex=Amount.max(minIndex,Amount.exactAdd(1,ceilingRatio(state.moteNextAtMs-firstMs,gapMs)));
+    else if(point<state.moteNextAtMs)break;
+    var k;
+    if(Amount.le(minIndex,1) && first)k=1;
+    else if(chance>0){
+      var before=Amount.max(0,Amount.exactSub(minIndex,2)),cross=Amount.exactAdd(Amount.round(Amount.add(Amount.add(accum,Amount.mul(before,chance)),1e-12),'floor'),1);
+      var nextCross=Amount.wide(cross)?ceilingRatio(Amount.exactSub(Amount.exactSub(cross,accum),Amount.mul(chance,1e-12)),chance):Math.ceil((cross-accum)/chance-1e-12);
+      k=Amount.max(minIndex,Amount.exactAdd(1,nextCross));
+    }else break;
+    if(Amount.gt(k,count))break;
+    var at=gapMs>0?firstMs+Number(Amount.mul(Amount.exactSub(k,1),gapMs)):point;
+    // Physical intervals below Number.MIN_VALUE are represented by that
+    // smallest positive clock step. Their huge kill count must never project
+    // a payout beyond this batch's actual chronological endpoint.
+    if(at>point)break;
+    if(at<state.moteNextAtMs){minIndex=Amount.exactAdd(k,1);continue;}
+    paid=creditAmount(paid,luminousMotePayout(at));minIndex=Amount.exactAdd(k,1);
+  }
+  return paid;
+}
 // One future purchase owner per effect. Old IDs and formula operands remain:
 // purchased levels and paid Study work retain their exact original value.
 var UPGRADE_FUSIONS = {
@@ -3850,12 +3949,8 @@ function legacyUpgradeMarkup(node,effect){
 function legacyUpgradeSection(html){
   return html ? '<section class="legacy-upgrades" aria-label="Preserved upgrades"><h3>Preserved upgrades</h3>'+html+'</section>' : '';
 }
-function speedTierCost(mult,node){
-  if(node && node.levelCap===undefined && ENDLESS_PROGRESSION.speedMoteGrowth!==1){
-    var price=Amount.round(Amount.mul(6*Math.pow(mult,2.1),Amount.pow(ENDLESS_PROGRESSION.speedMoteGrowth,longStudyLevel(node.id))),'round');
-    return labDiscountCost(price,2*labExpansionLevel('catalysis'));
-  }
-  return labDiscountCost(Math.round(6 * Math.pow(mult, 2.1)),2*labExpansionLevel('catalysis'));
+function speedTierCost(mult){
+  return studyBoostCost(mult,8);
 }
 
 var ACHIEVEMENTS = [
@@ -4344,7 +4439,7 @@ var MANIFESTO = [
   {eyebrow:'Ascension', title:'Keep your permanent upgrades', body:'Ascend trades your current run progress for the Prism reward shown on the Ascend screen. Rarity, Rift Forge upgrades, completed Lab projects and Tree upgrades stay with you. If a boss is too strong, you can Farm for resources and improve your party.'},
   {eyebrow:'Offline play', title:'Automatic combat, with clear limits', body:'Your Wisps fight automatically. Returning simulates up to 12 hours of offline combat, using your saved upgrades and automation. Offline Lumen and Shard earnings start at 70% and improve with Echoing Rest. Previously earned Lab rate bonuses are preserved.'},
   {eyebrow:'Recruitment', title:'Discover Wisps as you progress', body:'Wisps become available as you reach their Rift unlocks. Recruit them with Lumen and choose your Active Formation. Benched Wisps do not fight.'},
-  {eyebrow:'Prices and rewards', title:'No loot boxes, no gacha', body:'Upgrade prices and effects are shown before you buy. Luminous enemies have a chance to appear, but their Mote reward is fixed for the Rift depth and current bonuses, rather than rolled from a random range.'},
+  {eyebrow:'Prices and rewards', title:'No loot boxes, no gacha', body:'Upgrade prices and effects are shown before you buy. Luminous appearances follow the established encounter sequence. A qualifying kill can pay Motes once every 60 seconds; that payout is fixed for Rift depth and current bonuses. Other Luminous kills retain their Lumen and Shard rewards.'},
   {eyebrow:'Formation', title:'Different roles, automatic abilities', body:'Active Wisps deal passive damage and automatically use their abilities when their resource bars fill. Their roles provide damage, Support buffs or extra resources. Guardian Tap is the damage you deal by tapping the enemy.'},
   {eyebrow:'Guardian Tap', title:'Manual taps have a rate limit', body:'The game accepts at most 20 manual taps in a one-second window and ignores clicks generated by page scripts. Auto-Tap is a separate in-game unlock earned through Deeds.'}
 ];
@@ -4405,18 +4500,19 @@ var COMET_QUEST_REFRESH_BASE_COST = 25;
 // State
 // ---------------------------------------------------------------
 function freshState(){
-  var spirits = {}, nodes = {}, research = {}, researchQueue = {}, heroRarity = {}, heroResource = {}, wispModules = {}, wispUltimate = {}, wispMastery={}, recruitmentEntitlements={}, empowerQueue = {}, achieved = {}, owned = {meteor:false,starcall:false}, longStudyLevels = {}, studyQueue = {}, studyUseMotes = {}, studySpeedTargets = {};
+  var spirits = {}, nodes = {}, research = {}, researchQueue = {}, heroRarity = {}, heroResource = {}, wispModules = {}, wispUltimate = {}, wispMastery={}, recruitmentEntitlements={}, empowerQueue = {}, achieved = {}, owned = {meteor:false,starcall:false}, longStudyLevels = {}, studyQueue = {}, studyUseMotes = {}, studySpeedTargets = {}, studyBoostHours = {};
   SPIRITS.forEach(function(sp){ spirits[sp.id] = 0; heroRarity[sp.id] = 0; heroResource[sp.id] = 0; wispModules[sp.id] = 0; wispUltimate[sp.id] = false; wispMastery[sp.id]=0; recruitmentEntitlements[sp.id]=sp.id==='ember'; empowerQueue[sp.id] = true; });
   spirits['ember'] = 1;
   NODES.forEach(function(n){ nodes[n.id] = 0; });
   RESEARCH.forEach(function(r){ research[r.id] = 0; researchQueue[r.id] = false; });
-  LONG_STUDIES.forEach(function(l){ longStudyLevels[l.id] = 0; studyQueue[l.id] = false; studyUseMotes[l.id] = false; studySpeedTargets[l.id] = 1.5; });
+  LONG_STUDIES.forEach(function(l){ longStudyLevels[l.id] = 0; studyQueue[l.id] = false; studyUseMotes[l.id] = false; studySpeedTargets[l.id] = 1.5; studyBoostHours[l.id]=8; });
   return {
     schemaVersion:SAVE_SCHEMA_VERSION, offline12hRefund:null,
     swiftRecoveryRefund:null, swiftRecoveryRefundAudit:null,
     feedbackMigration:{version:1,applied:true,bondsCreditAuditVersion:1,echoCreditAuditVersion:1,receipts:{},history:{bonds:{levels:0},echo:{levels:0}}}, refundCredits:{prisms:[]},
 
-    lumen:0, shards:0, prisms:0, comets:0, motes:0, sigils:0,
+    lumen:0, shards:0, prisms:0, comets:0, motes:0, sigils:0, moteNextAtMs:0,
+    studyBoosts:{}, studyBoostHours:studyBoostHours,
     depth:1, maxDepthEver:1,
     riftMode:'push', farmDepth:0, farmReturnDepth:0,
     enemyDepth:0, enemyHp:0, enemyMaxHp:0, enemyIsLuminous:false,
@@ -4984,10 +5080,18 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
     var validTarget=LAB_SPEED_TIERS.indexOf(speedTargets[node.id])!==-1;
     var paid=out.activeStudies.find(function(active){return active.id===node.id;});
     out.studySpeedTargets[node.id]=validTarget ? speedTargets[node.id] : paid && paid.speedMult>1 ? paid.speedMult : fresh.studySpeedTargets[node.id];
-    // Malformed or missing targets cannot turn an ON value into spending intent.
-    out.studyUseMotes[node.id]=validTarget && useMotes[node.id]===true;
+    // Old per-level auto-spending is retired; keep preferences and paid work.
+    out.studyUseMotes[node.id]=false;
+    var hours=source.studyBoostHours && source.studyBoostHours[node.id];
+    out.studyBoostHours[node.id]=LAB_BOOST_HOURS.indexOf(hours)!==-1 ? hours : 8;
+    var boost=source.studyBoosts && source.studyBoosts[node.id];
+    if(isPlainObject(boost) && LAB_SPEED_TIERS.indexOf(boost.mult)!==-1 &&
+       Number.isSafeInteger(boost.startedAtMs) && boost.startedAtMs>=0 && Number.isSafeInteger(boost.expiresAtMs) &&
+       LAB_BOOST_HOURS.indexOf((boost.expiresAtMs-boost.startedAtMs)/3600000)!==-1)
+      out.studyBoosts[node.id]={mult:boost.mult,startedAtMs:boost.startedAtMs,expiresAtMs:boost.expiresAtMs};
   });
 
+  out.moteNextAtMs=typeof source.moteNextAtMs==='number' && Number.isFinite(source.moteNextAtMs) && source.moteNextAtMs>=0 && source.moteNextAtMs<=Number.MAX_SAFE_INTEGER ? source.moteNextAtMs : 0;
   var achieved = isPlainObject(source.achieved) ? source.achieved : {};
   ACHIEVEMENTS.forEach(function(a){ if(achieved[a.id]===true) out.achieved[a.id] = true; });
 
@@ -5735,8 +5839,9 @@ function purchasePriceColor(kind,amount){
   var missing=kind==='prism' ? Amount.lt(Amount.add(state.prisms,prismRefundCreditTotal()),amount) : kind==='shard' && state.swiftRecoveryRefund ? !canSpendShardsWithWallet(amount,state.shards) : key && Amount.lt(state[key],amount);
   return key && Amount.valid(amount) && missing ? 'var(--danger)' : 'var(--ink)';
 }
-function purchasePriceMarkup(kind,amount,classes,numberFirst){
-  return ('<span' + (classes?Amount.add(Amount.add(' class="',classes),'"'):'') + ' data-price-currency="' + kind + '" data-price-amount="' + amount + '" style="color:' + purchasePriceColor(kind,amount) + '">' + (numberFirst?Amount.add(Amount.add(formatNum(amount),' '),costIcon(kind)):Amount.add(costIcon(kind),formatNum(amount))) + '</span>');
+function purchasePriceMarkup(kind,amount,classes,numberFirst,currencyLabel){
+  return '<span'+(classes?' class="'+classes+'"':'')+' data-price-currency="'+kind+'" data-price-amount="'+amount+'" style="color:'+purchasePriceColor(kind,amount)+'">'+
+    (currencyLabel?formatNum(amount)+' '+COST_ICON_MAP[kind].name:numberFirst?formatNum(amount)+' '+costIcon(kind):costIcon(kind)+formatNum(amount))+'</span>';
 }
 function updatePurchasePriceColors(root){
   root.querySelectorAll('[data-price-currency]').forEach(function(el){
@@ -6762,10 +6867,8 @@ function defeatEnemy(){
 
   var sigilGain = 0;
   if(wasLuminous){
-    var moteGain = Amount.max(1,Amount.round(Amount.mul(motesDropFor(state.depth),Amount.add(1,supportMoteBonus())),'round'));
-    state.motes=creditAmount(state.motes,moteGain);
-    spawnFloatNum(('+' + formatNum(moteGain) + ' Motes'), els['enemy-stage'],'mote');
-    showToast(('Luminous ' + defeatedName + ' defeated — +' + moteGain + ' Motes'));
+    var moteGain = luminousMotePayout(Date.now());
+    if(moteGain>0){spawnFloatNum('+'+formatNum(moteGain)+' Motes',els['enemy-stage'],'mote');showToast('Luminous '+defeatedName+' defeated — +'+moteGain+' Motes');}
     trackDaily('luminousKills');
   }
   if(wasBoss){
@@ -7586,29 +7689,12 @@ function startStudy(node){
   updateBattleFast();
   return true;
 }
-function applySpeedTier(studyId, mult){
-  var active = findActiveStudy(studyId);
-  var node=LONG_STUDIES.find(function(n){return n.id===studyId;});
-  if(!node || !active || Amount.le(active.remainingSec,SIM_EPS) || Amount.lt(state.maxDepthEver,node.unlockDepth||1) || LAB_SPEED_TIERS.indexOf(mult)===-1) return false;
-  if(node.levelCap!==undefined && Amount.ge(longStudyLevel(studyId),node.levelCap)) return false;
-  if(Amount.le(mult,active.speedMult)) return false;
-  var cost = speedTierCost(mult,node);
-  if(!labCanPay(state.motes,cost)) return false;
-  if(!forgeCommitPaidMutation(function(){
-    state.motes=debitAmount(state.motes,cost);
-    findActiveStudy(studyId).speedMult=mult;
-    state.studySpeedTargets[studyId]=mult;
-  })) return false;
-  renderLongStudies();
-  renderHud();
-  return true;
+function applySpeedTier(studyId,mult){
+  return activateStudyBoost(studyId,mult,state.studyBoostHours[studyId]||8);
 }
 function studyMotesPlan(node){
-  var active=findActiveStudy(node.id),target=state.studySpeedTargets[node.id];
-  if(state.studyUseMotes[node.id]!==true || LAB_SPEED_TIERS.indexOf(target)===-1 || !active || Amount.le(active.remainingSec,SIM_EPS) || Amount.lt(state.maxDepthEver,node.unlockDepth||1) || (node.levelCap!==undefined && Amount.ge(longStudyLevel(node.id),node.levelCap)) || Amount.ge(active.speedMult,target)) return null;
-  var cost=speedTierCost(target,node);
-  if(Amount.ge(state.motes,cost) && !labCanPay(state.motes,cost)) return null;
-  return {active:active,target:target,cost:cost};
+  // Retained save/API compatibility: future levels no longer trigger purchases.
+  return null;
 }
 // Closing paid overcap work is progress, but is never an earned completion.
 function finishStudyRecord(index){
@@ -7622,11 +7708,11 @@ function finishStudyRecord(index){
   state.activeStudies.splice(index,1);
   return {earned:earned,name:node ? node.name : active.id,moteBonus:moteBonus};
 }
-function advanceActiveStudies(elapsedSec){
+function advanceActiveStudies(elapsedSec,nowMs){
   var completed = [];
   for(var i=state.activeStudies.length-1; i>=0; i--){
     var active = state.activeStudies[i];
-    active.remainingSec -= elapsedSec * active.speedMult;
+    active.remainingSec -= studyWorkBetween(active,elapsedSec,nowMs);
     if(active.remainingSec <= SIM_EPS){
       var result=finishStudyRecord(i);
       if(result.earned) completed.push(result.name);
@@ -8010,10 +8096,10 @@ function presentControlStates(root){
       var mult=Number(btn.getAttribute('data-speed'));
       var speedNode=LONG_STUDIES.find(function(n){return n.id===btn.getAttribute('data-speed-study');});
       subject=(speedNode?speedNode.name+' — ':'')+'Study speed';
-      if(btn.classList.contains('study-speed-buy')){btn.removeAttribute('aria-pressed');subject+=(' '+mult+'x · '+formatRiftNumber(speedTierCost(mult,speedNode))+' Motes');}
+      if(btn.classList.contains('study-boost-start')){btn.removeAttribute('aria-pressed');subject+=(' '+mult+'x · '+btn.getAttribute('data-hours')+'h · '+studyBoostCost(mult,Number(btn.getAttribute('data-hours')))+' Motes');}
       else btn.setAttribute('aria-pressed',String(!!study && study.speedMult===mult));
       if(!study){btn.disabled=true;kind='completed';reason='';}
-      else if(study.speedMult>=mult) kind='completed';
+      else if(studyEffectiveSpeed(study)>=mult) kind='completed';
       else if(LONG_STUDIES.some(function(n){return n.id===study.id && n.levelCap!==undefined && longStudyLevel(n.id)>=n.levelCap;})){kind='maxed';reason='Maxed';}
       else if(btn.disabled){kind='unaffordable';reason='';}
     }
@@ -8468,7 +8554,7 @@ var TUTORIAL_STEPS = [
   {title:'Fight & recruit', body:'Ember starts fighting for you. Tap the enemy for extra Guardian damage. In Wisps, spend Lumen to Recruit new Wisps or Empower their levels as you reach their Rift unlocks. Active Wisps use their abilities automatically.'},
   {title:'Choose your Formation', body:'Only recruited Active Wisps fight. Choose pairs to activate Formation Bonds, and save separate Push, Farm and Boss lineups. If a boss stops you, switch Rift to Farm for resources; Push returns you to your saved Rift.'},
   {title:'Upgrade your Wisps', body:'Rarity Up costs Lumen and Shards and requires the shown Wisp level. Upgrade Ability increases burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes increase those currency rewards. These permanent upgrades are called Modules. At Mythic Rarity, Sigils buy that Wisp’s Ultimate. These upgrades stay after Ascend.'},
-  {title:'Use Forge & Lab', body:'Workshop contains Rift Forge for immediate upgrades and Research Lab for timed projects. Lab bonuses apply when a level completes. Queue ON permits automatic spending when affordable. The speed slider selects a target; Buy now spends the shown Motes, while Speed queue ON permits automatic speed purchases.'},
+  {title:'Use Forge & Lab', body:'Workshop contains Rift Forge for immediate upgrades and Research Lab for timed projects. Lab bonuses apply when a level completes. Queue ON permits automatic spending when affordable. Choose Lab speed and 8, 12 or 24 hours, then activate the boost for its shown Mote price. One payment covers that project across levels until the timer expires, including while offline.'},
   {title:'Ascend & automate', body:'Clear Rift 15 to unlock Ascend. Check the Prism reward before restarting your Rift run, Wisp levels and Lumen; Tree upgrades can improve that restart. Permanent upgrades, other currencies and paid Lab work stay. Spend Prisms in the Tree. Comets buy Auto-Ascend; Deeds unlock Auto-Tap and Auto-Empower.'},
   {title:'Return & keep a backup', body:'Offline combat and paid Lab work share up to 12 hours of productive time per absence. Offline Lumen and Shard rewards start at 70%; Echoing Rest improves that rate. In Settings, Save Backup lets you copy progress before reinstalling or changing device. Restoring replaces the current save. You can replay this guide without resetting progress.'}
 ];
@@ -8828,8 +8914,15 @@ function renderSpirits(keepScroll){
     var modCost = moduleCost(sp, modLvl);
     var canModule = recruited && !modMaxed && Amount.ge(state.lumen,modCost.lumen) && canSpendShards(modCost.shard);
     var moduleHtml =
-      ('<div class="module-row">' + '<div class="ability-effects"><div><span class="ability-effect-label">Current</span><div class="module-effect" data-ability-current>' + modInfo.effect(modLvl) + '</div></div>' + '<div><span class="ability-effect-label">Next</span><div class="ability-effect-next" data-ability-next>' + (modMaxed?'Maxed':modInfo.effect(Amount.add(modLvl,1))) + '</div></div></div>' + (modMaxed ? '' :
-          Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="mini-btn" data-module="',sp.id),'" '),canModule?'':'disabled'),'>'),modInfo.upgradeLabel),'<span style="font-size:.6875rem;">'),costIcon('lumen')),formatNum(modCost.lumen)),'</span>'),'<span style="font-size:.6875rem;">'),costIcon('shard')),formatNum(modCost.shard)),'</span>'),'</button>')) + '</div>');
+      '<div class="module-row">' +
+        '<div class="ability-effects"><div><span class="ability-effect-label">Current</span><div class="module-effect" data-ability-current>'+modInfo.effect(modLvl)+'</div></div>' +
+          '<div><span class="ability-effect-label">Next</span><div class="ability-effect-next" data-ability-next>'+(modMaxed?'Maxed':modInfo.effect(modLvl+1))+'</div></div></div>' +
+        (modMaxed ? '' :
+          '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>'+modInfo.upgradeLabel +
+            purchasePriceMarkup('lumen',modCost.lumen,'wisp-upgrade-price') +
+            purchasePriceMarkup('shard',modCost.shard,'wisp-upgrade-price') +
+          '</button>') +
+      '</div>';
     var ultCost = ultimateSigilCost(sp);
     var ultimatePlan=getWispUltimatePlan(sp);
     var resonanceOwned = allUltimatesOwned();
@@ -8837,7 +8930,10 @@ function renderSpirits(keepScroll){
     var resonanceDisabled = !canSigilResonate(sp);
     var resonanceHelpId = ('sigil-resonance-help-' + sp.id);
     var resonanceHtml = ultimateUnlocked(sp.id) ?
-      ((resonanceOwned ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="',sp.id),'" aria-describedby="'),resonanceHelpId),'" '),resonanceDisabled?'disabled':''),'>Resonate — Fill ability to 100'),'<span>'),sigilResonanceCost()),' Sigils</span></button>') : '') + '<p class="sigil-resonance-help" id="' + resonanceHelpId + '">Spend ' + sigilResonanceCost() + ' Sigils to fill this Active Wisp\'s ability resource to 100. This is a refill, not a permanent upgrade. ' + 'Requires all Wisp Ultimates. ' + Amount.sub(sigilResonanceLimit(),resonanceUses) + ' of ' + sigilResonanceLimit() + ' uses left this run, shared across all Wisps. Resets on Ascend.' + forgeResonanceBonusText() + '</p>') : '';
+      (resonanceOwned ? '<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="'+sp.id+'" aria-describedby="'+resonanceHelpId+'" '+(resonanceDisabled?'disabled':'')+'>Resonate — Fill ability to 100'+
+        purchasePriceMarkup('sigil',sigilResonanceCost(),'',false,true)+'</button>' : '')+
+      '<p class="sigil-resonance-help" id="'+resonanceHelpId+'">Spend '+sigilResonanceCost()+' Sigils to fill this Active Wisp\'s ability resource to 100. This is a refill, not a permanent upgrade. '+
+        'Requires all Wisp Ultimates. '+(sigilResonanceLimit()-resonanceUses)+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText()+'</p>' : '';
     var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
       : wispUltimateEffectsMarkup(sp)+'<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
@@ -8847,7 +8943,7 @@ function renderSpirits(keepScroll){
     var chosen = chosenMembers.indexOf(sp.id)!==-1;
     var empowerHtml = ((recruited || pendingRebuild) && state.achieved.labmaster) ?
       (' <button class="node-queue-toggle ' + (empowerOn?'active':'') + '" data-empower-queue="' + sp.id + '">Auto-Empower ' + (empowerOn?'ON':'OFF') + '</button>') : '';
-    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatNum(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong><span class="mono">' + costIcon('lumen') + formatNum(cost) + '</span></button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + (upgradesMaxed ?
+    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatNum(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + purchasePriceMarkup('lumen',cost,'mono') + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + (upgradesMaxed ?
         Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<details class="wisp-progression" data-wisp-progression="',sp.id),'" '),openProgression.indexOf(sp.id)!==-1?'open':''),'><summary data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' upgrades">Upgrades</summary>') :
         Amount.add(Amount.add(Amount.add(Amount.add('<section class="wisp-progression" data-wisp-progression="',sp.id),'" aria-labelledby="wisp-progression-'),sp.id),'">')) + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span><span class="ability-badge">Ability</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div><span class="ability-desc">' + forgeAbilityDescription(sp) + '</span></div>' + moduleHtml + ultimateHtml + '</section>' + (upgradesMaxed ? '</details>' : '</section>') + wispMasteryMarkup(sp) + '</div>');
   });
@@ -8998,47 +9094,50 @@ function renderResearch(){
 }
 
 function studySpeedMarkup(node,active,maxed){
-  var target=state.studySpeedTargets[node.id],index=LAB_SPEED_TIERS.indexOf(target),cost=speedTierCost(target,node);
-  var on=state.studyUseMotes[node.id]===true;
-  var disabled=!active || maxed || active.remainingSec<=SIM_EPS || active.speedMult>=target || !labCanPay(state.motes,cost);
+  var boost=state.studyBoosts[node.id],held=boost && boost.expiresAtMs>Date.now();
+  var target=held?boost.mult:state.studySpeedTargets[node.id],index=LAB_SPEED_TIERS.indexOf(target);
+  var hours=held?(boost.expiresAtMs-boost.startedAtMs)/3600000:state.studyBoostHours[node.id];
+  var plan=getStudyBoostPlan(node.id,target,hours);
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
-    '<div class="study-speed-heading"><span>Speed <strong data-study-speed-value="'+node.id+'">'+target+'x</strong> · '+
-    '<span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',cost)+'</span> / level</span>'+
-    '<button class="study-speed-buy" data-speed="'+target+'" data-speed-study="'+node.id+'" '+(disabled?'disabled':'')+' aria-describedby="study-speed-help">Buy now</button></div>'+
-    '<div class="study-speed-row">'+
-    '<div class="study-speed-range"><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x · '+cost+' Motes per level" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
+    '<div class="study-speed-heading"><span>Speed <strong data-study-speed-value="'+node.id+'">'+target+'x</strong></span>'+
+    '<select data-study-boost-hours="'+node.id+'" aria-label="'+node.name+' — Boost duration" aria-describedby="study-speed-help" '+(held?'disabled':'')+'>'+LAB_BOOST_HOURS.map(function(h,i){return '<option value="'+h+'" '+(hours===h?'selected':'')+'>'+h+' hours'+(i?' · '+[0,5,10][i]+'% off':'')+'</option>';}).join('')+'</select></div>'+
+    '<div class="study-speed-range"><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" '+(held?'disabled':'')+' aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
     '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div>'+
-    '<button class="node-queue-toggle '+(on?'active':'')+'" data-study-use-motes="'+node.id+'" aria-describedby="study-speed-help">Speed queue '+(on?'ON':'OFF')+'</button></div></div>';
+    '<div class="study-boost-action">'+(held?
+      '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">'+target+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
+      '<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">'+(active?'Start '+hours+'h boost':'Start a Study to boost')+' · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>')+'</div></div>';
 }
-// Keep a live native slider attached during drag, ticks and reordering. Preview
-// state is presentation-only; authoritative queue preferences change on release.
+// Native controls stay attached while their project and other cards refresh.
 function replaceStudyMarkup(html){
   var root=els['study-list'],input=document.activeElement;
-  var card=root.contains(input) && input.hasAttribute('data-study-speed-target') && input.closest('[data-running-study],[data-study-card]');
+  var isChoice=input && input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status]');
+  var card=isChoice && root.contains(input) && input.closest('[data-running-study],[data-study-card]');
   var prepared=document.createElement('div');prepared.innerHTML=html;
   var attr=card && (card.hasAttribute('data-running-study')?'data-running-study':'data-study-card');
-  var next=card && prepared.querySelector('['+attr+'="'+card.getAttribute(attr)+'"]');
-  if(input && input.hasAttribute('data-study-speed-target'))input.studyRendering=true;
-  if(!next){replaceControlMarkup(root,html);if(input)input.studyRendering=false;return;}
+  var studyId=card && card.getAttribute(attr);
+  var next=card && prepared.querySelector('[data-running-study="'+studyId+'"],[data-study-card="'+studyId+'"]');
+  if(isChoice)input.studyRendering=true;
+  if(!next){replaceControlMarkup(root,html);if(isChoice)input.studyRendering=false;return;}
   var controls=input.closest('.study-speed-controls'),nextControls=next.querySelector('.study-speed-controls');
-  if(input.studyPreview!==undefined){
-    var preview=LAB_SPEED_TIERS[input.studyPreview];
-    nextControls.querySelector('[data-study-speed-value]').textContent=preview+'x';
-    var buy=nextControls.querySelector('[data-speed-study]'),active=findActiveStudy(card.getAttribute(attr)),node=LONG_STUDIES.find(function(n){return n.id===card.getAttribute(attr);});
-    nextControls.querySelector('[data-study-speed-price]').innerHTML=purchasePriceMarkup('mote',speedTierCost(preview,node));
-    buy.setAttribute('data-speed',preview);buy.disabled=!active || active.remainingSec<=SIM_EPS || active.speedMult>=preview || (node.levelCap!==undefined && longStudyLevel(node.id)>=node.levelCap) || !labCanPay(state.motes,speedTierCost(preview,node));
+  var range=controls.querySelector('[data-study-speed-target]'),select=controls.querySelector('[data-study-boost-hours]');
+  var nextRange=nextControls.querySelector('[data-study-speed-target]'),nextSelect=nextControls.querySelector('[data-study-boost-hours]');
+  range.studyRendering=true;
+  if(range.studyPreview!==undefined && !nextRange.disabled){
+    var mult=LAB_SPEED_TIERS[range.studyPreview],id=range.getAttribute('data-study-speed-target'),hours=Number(nextSelect.value),plan=getStudyBoostPlan(id,mult,hours);
+    nextRange.value=range.studyPreview;
+    nextControls.querySelector('[data-study-speed-value]').textContent=mult+'x';
+    var action=nextControls.querySelector('[data-speed-study]');action.setAttribute('data-speed',mult);action.disabled=!plan.affordable;
+    nextControls.querySelector('[data-study-speed-price]').innerHTML=purchasePriceMarkup('mote',plan.cost);
   }
-  controls.querySelectorAll('button').forEach(function(button){
-    var key=Array.from(button.attributes).find(function(a){return a.name==='data-study-queue'||a.name==='data-study-use-motes'||a.name==='data-speed-study';});
-    var replacement=nextControls.querySelector('['+key.name+'="'+key.value+'"]');
-    Array.from(replacement.attributes).forEach(function(a){button.setAttribute(a.name,a.value);});button.disabled=replacement.disabled;button.innerHTML=replacement.innerHTML;
-  });
   controls.querySelector('[data-study-speed-value]').textContent=nextControls.querySelector('[data-study-speed-value]').textContent;
-  controls.querySelector('[data-study-speed-price]').innerHTML=nextControls.querySelector('[data-study-speed-price]').innerHTML;
-  input.value=input.studyPreview!==undefined ? input.studyPreview : LAB_SPEED_TIERS.indexOf(state.studySpeedTargets[input.getAttribute('data-study-speed-target')]);
-  var inputNode=LONG_STUDIES.find(function(n){return n.id===input.getAttribute('data-study-speed-target');});
-  input.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(input.value)]+'x · '+formatRiftNumber(speedTierCost(LAB_SPEED_TIERS[Number(input.value)],inputNode))+' Motes per level');
-  input.style.backgroundSize=(Number(input.value)/7*100)+'% 8px';
+  range.disabled=nextRange.disabled;range.value=nextRange.value;
+  range.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(range.value)]+'x');range.style.backgroundSize=(Number(range.value)/7*100)+'% 8px';
+  select.disabled=nextSelect.disabled;select.value=nextSelect.value;
+  var status=controls.querySelector('[data-study-boost-status]'),nextStatus=nextControls.querySelector('[data-study-boost-status]');
+  if(status && nextStatus){status.textContent=nextStatus.textContent;status.setAttribute('data-study-boost-time',nextStatus.getAttribute('data-study-boost-time'));}
+  else controls.querySelector('.study-boost-action').innerHTML=nextControls.querySelector('.study-boost-action').innerHTML;
+  Array.from(card.attributes).forEach(function(a){card.removeAttribute(a.name);});
+  Array.from(next.attributes).forEach(function(a){card.setAttribute(a.name,a.value);});
   Array.from(card.children).forEach(function(child){if(child!==controls)card.removeChild(child);});
   var nextChildren=Array.from(next.children),rowIndex=nextChildren.indexOf(nextControls);
   nextChildren.forEach(function(child,i){if(child===nextControls)return;if(i<rowIndex)card.insertBefore(child,controls);else card.appendChild(child);});
@@ -9046,8 +9145,9 @@ function replaceStudyMarkup(html){
   children.forEach(function(child,i){if(root.children[i]===child)return;if(child===card)root.insertBefore(card,root.children[i]||null);else if(root.children[i]===card)root.insertBefore(child,card);else if(root.children[i])root.replaceChild(child,root.children[i]);else root.appendChild(child);});
   while(root.children.length>children.length)root.removeChild(root.lastElementChild);
   presentControlStates(root);
-  if(document.activeElement!==input)input.focus({preventScroll:true});
-  input.studyRendering=false;
+  var focus=input.isConnected && !input.disabled?input:controls.querySelector('[data-study-boost-status]') || range;
+  if(document.activeElement!==focus)focus.focus({preventScroll:true});
+  input.studyRendering=false;range.studyRendering=false;
 }
 function renderLongStudies(){
   var studyView=captureControlViewport(els['study-list']);
@@ -9067,7 +9167,7 @@ function renderLongStudies(){
 
   if(state.activeStudies.length){
     // Presentation-only ordering uses the simulation's remaining-work / speed relationship.
-    state.activeStudies.slice().sort(function(a,b){return Amount.sub(Amount.div(a.remainingSec,a.speedMult),Amount.div(b.remainingSec,b.speedMult));}).forEach(function(active,index){
+    state.activeStudies.slice().sort(function(a,b){return studyCompletionSeconds(a)-studyCompletionSeconds(b);}).forEach(function(active,index){
       var node = LONG_STUDIES.find(function(n){ return n.id===active.id; });
       var maxed=node && node.levelCap!==undefined && Amount.ge(longStudyLevel(active.id),node.levelCap);
       var pct = Amount.max(0,Amount.min(100,Amount.sub(100,Amount.mul(Amount.div(active.remainingSec,active.totalDurationSec),100))));
@@ -9098,7 +9198,7 @@ function renderLongStudies(){
         Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':Amount.gt(openSlots,0)?'Begin Study':'No open slots') + '</button>' + '</div>');
   });
 
-  html=(html + '<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Base slots rise at Rift 40, 60 and 90; Expanded Apparatus adds up to two. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. The slider selects a speed target. Speed queue pays the full selected Mote price per level when affordable, including current work and offline. OFF keeps speed already bought. Buy now pays once for the current level; it does not toggle speed queue ON/OFF.</div>');
+  html += '<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Base slots rise at Rift 40, 60 and 90; Expanded Apparatus adds up to two. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours, then activate once for the shown Motes. The boost belongs to this project across levels; its timer continues while idle and offline. It expires without another payment. Existing speed already paid for a level remains protected.</div>';
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -9108,7 +9208,8 @@ function renderLongStudies(){
   }
   // Beginning removes its button; keep focus on this Study's visible card action.
   if(focusedBegin && findActiveStudy(focusedBegin)){
-    var beganSelector=els['study-list'].querySelector(('[data-study-speed-target="' + focusedBegin + '"]'));
+    var beganSelector=els['study-list'].querySelector('[data-study-speed-target="'+focusedBegin+'"]');
+    beganSelector=els['study-list'].querySelector('[data-study-boost-status="'+focusedBegin+'"]') || beganSelector;
     if(beganSelector) beganSelector.focus({preventScroll:true});
   }
   // Keep inline controls focused. If completion removes the card or a
@@ -9118,8 +9219,9 @@ function renderLongStudies(){
     var cardRemoved=focusedStudy && !els['study-list'].querySelector(('[data-running-study="' + focusedStudy + '"],[data-study-card="' + focusedStudy + '"]'));
     if(cardRemoved || (focusedSpeed && (!sameTier || sameTier.disabled))){
       var restoreStudy=focusedStudy || focusedSpeed;
-      var speedFocus=els['study-list'].querySelector(('[data-study-speed-target="' + restoreStudy + '"]')) ||
-        els['study-list'].querySelector(('[data-legacy-upgrade="' + restoreStudy + '"]')) || document.getElementById('study-choices');
+      var speedFocus=els['study-list'].querySelector('[data-study-speed-target="'+restoreStudy+'"]') ||
+        els['study-list'].querySelector('[data-legacy-upgrade="'+restoreStudy+'"]') || document.getElementById('study-choices');
+      speedFocus=els['study-list'].querySelector('[data-study-boost-status="'+restoreStudy+'"]') || speedFocus;
       if(speedFocus){if(speedFocus.tagName!=='INPUT' && speedFocus.tagName!=='SELECT' && speedFocus.tagName!=='BUTTON')speedFocus.tabIndex=-1;speedFocus.focus({preventScroll:true});}
     }
   }
@@ -9149,13 +9251,13 @@ function renderLongStudies(){
       renderLongStudies();
     });
   });
-  els['study-list'].querySelectorAll('[data-study-use-motes]').forEach(function(button){
-    if(button.studyBound)return;button.studyBound=true;
-    button.addEventListener('click',function(){var id=button.getAttribute('data-study-use-motes');state.studyUseMotes[id]=!state.studyUseMotes[id];saveState();renderLongStudies();});
+  els['study-list'].querySelectorAll('[data-study-boost-hours]').forEach(function(select){
+    if(select.studyBound)return;select.studyBound=true;
+    select.addEventListener('change',function(){var id=select.getAttribute('data-study-boost-hours');if(LAB_BOOST_HOURS.indexOf(Number(select.value))<0)return;state.studyBoostHours[id]=Number(select.value);saveState();renderLongStudies();});
   });
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(button){
     if(button.studyBound)return;button.studyBound=true;
-    button.addEventListener('click',function(){applySpeedTier(button.getAttribute('data-speed-study'),Number(button.getAttribute('data-speed')));});
+    button.addEventListener('click',function(){activateStudyBoost(button.getAttribute('data-speed-study'),Number(button.getAttribute('data-speed')),Number(button.getAttribute('data-hours')));});
   });
   els['study-list'].querySelectorAll('[data-study-speed-target]').forEach(function(input){
     if(input.studyBound)return;input.studyBound=true;
@@ -9396,7 +9498,7 @@ function renderCometCommands(){
         'Up to '+(20+5*cometUpgradeLevel('meteorcore'))+'% max HP, bounded by passive Wisp power.';
       preview.setAttribute('data-damage',String(hp && hp.available ? hp.damage : 0));
       preview.setAttribute('title',hp && hp.available ? String(hp.damage)+' HP reduction' : '');
-    } else preview.textContent='Make the current ordinary enemy Luminous. Its HP stays the same.';
+    } else preview.textContent='Make the current ordinary enemy Luminous. Its HP stays the same. '+(state.moteNextAtMs>Date.now()?'Motes recharge in '+fmtStudyDuration((state.moteNextAtMs-Date.now())/1000)+'. Lumen and Shards still apply.':'Mote payout ready.');
   });
 }
 function cometBuyRequirement(item){
@@ -9596,7 +9698,7 @@ function renderCosmetics(){
 var CURRENCIES = [
   {name:'Lumen', shape:'shape-triangle', color:'var(--lumen)', desc:'Earned from enemy defeats and Thorn abilities. Pays for Recruit and Empower, the Lumen part of Rarity and Module purchases, Rift Forge upgrades and Research Lab starts.'},
   {name:'Shards', shape:'shape-hex', color:'var(--shard)', desc:'Earned from enemy defeats and Gale abilities. Pays for the Shard part of Rarity and Module purchases, Rift Forge upgrades and Research Lab starts. Dual Channel can also add Shards to Thorn abilities and Lumen to Gale abilities.'},
-  {name:'Motes', shape:'shape-pentagon', color:'var(--mote)', desc:'Luminous kills pay a fixed reward for the current Rift depth and bonuses. Field Notes can also award Motes when other Lab levels finish, and Ascension Dust can award them when you Ascend. Spend Motes on speed boosts for individual running Lab projects; each new project level starts at normal speed.'},
+  {name:'Motes', shape:'shape-pentagon', color:'var(--mote)', desc:'A Luminous kill can pay Motes once every 60 seconds across all Rifts. Eligible payouts use the current fixed depth reward and purchased bonuses; other Luminous kills still give Lumen and Shards. Field Notes and Ascension Dust also grant their existing rewards. Spend Motes on timed boosts for individual Lab projects.'},
   {name:'Prisms', shape:'shape-diamond', color:'var(--prism)', desc:'Mainly earned by Ascending; the Ascend screen shows the exact reward for your cleared Rifts, previous reward benchmark and upgrades. The seventh login-streak reward also gives Prisms. Spend them on permanent Ascension Tree upgrades.'},
   {name:'Comets', shape:'shape-star', color:'var(--comet)', desc:'Earned from Deeds, Daily Quests and login streaks. Buy Auto-Ascend Ritual, Meteor Strike, Luminous Call, Orbital Reserve, Orbital Engine and Meteor Core in Deeds. Commands use shared charges earned from enemy defeats, not Comets per use. Quest Refresh is another Comet purchase once unlocked.'},
   {name:'Sigils', shape:'shape-octagon', color:'var(--sigil)', desc:'Earned from boss defeats. Buy Ultimates for Mythic Wisps; once all eight are owned, Resonate fills a recruited Active Wisp’s charge bar. Its current Sigil price and shared per-run allowance include your Lab and Forge upgrades.'}
@@ -9643,12 +9745,12 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Ascend', meta:'Permanent progression', desc:'Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Earned recruitment access, Rarity, Modules, Ultimates, Mastery, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once. New cleared depth beyond your rewarded benchmark adds a bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending.'},
   {name:'Rift Forge', meta:'Workshop · immediate upgrades', desc:'Pay the shown Lumen and Shards for an immediate permanent upgrade. Current and purchase effects are shown beside the price. Queue ON authorizes automatic affordable purchases, including offline; it does not make upgrades free. Unlock requirements and level caps still apply.'},
   {name:'Research Lab', meta:'Workshop · timed projects', desc:'Pay Lumen and Shards when starting a project level. Its permanent bonus arrives only when that level completes. Slot capacity grows with your original project unlocks; Expanded Apparatus adds up to two slots. Lab Queue ON allows affordable starts in free slots. Paid running work and completed bonuses survive Ascend.'},
-  {name:'Lab Speed', meta:'Mote purchases', desc:'The slider selects one of the 1.5x–8x speed targets. Moving it does not buy a boost. Buy now pays the shown Motes to raise a running level’s speed; that speed lasts until the level completes. Speed queue ON authorizes automatic purchases toward the selected target whenever eligible and affordable, including on later project levels. Lab Queue and Speed queue are separate permissions.'},
+  {name:'Lab Speed', meta:'Mote purchases', desc:'Choose one of the 1.5x–8x speeds and 8, 12 or 24 hours. Choices do not spend Motes. Activate once for the displayed total: the timer applies to this project across its levels and counts down while idle and offline. Longer packages discount the proportional price by 5% or 10%, rounded up; Mote Catalysis also applies. There is no automatic renewal. Lab Queue separately pays Lumen and Shards to start new levels. Speed already paid for an old active level remains protected after expiry.'},
   {name:'Ascension Tree', meta:'Permanent Prism upgrades', desc:'Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply.'},
   {name:'Preserved Upgrades', meta:'Earlier purchases', desc:'Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired.'},
   {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 12 Ascends. The Forge Never Sleeps unlocks Auto-Empower after 20 total Forge levels. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
   {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline.'},
-  {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Luminous Call can turn the current ordinary enemy Luminous. Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. The amount is fixed for those bonuses, rather than randomly rolled.'},
+  {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Luminous Call can turn the current ordinary enemy Luminous. Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. Eligible Mote payouts are fixed for those bonuses. They require a Luminous kill and share a 60-second cooldown across Rifts; no Motes accrue just by waiting.'},
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},
   {name:'Comet Commands', meta:'Manual Rift actions', desc:'Meteor Strike and Luminous Call each spend one shared command charge after their unlock purchase. Enemy defeats recharge that shared pool; Orbital Reserve adds capacity and Orbital Engine speeds recharge. Meteor is limited by both enemy max HP and passive Wisp power, works once per encounter, and Meteor Core raises only its HP ceiling. Luminous Call needs an ordinary non-boss enemy; defeat it to receive its rewards. Commands are not used automatically while offline.'},
   {name:'Deeds & Daily Quests', meta:'Comet rewards', desc:'Deeds are one-time milestones and unlocks. Daily Quests pay their displayed Comets when you press Claim; earned daily progress can count toward a refreshed quest. Login streak rewards cycle through seven days, with Prisms on the seventh reward. Quest Refresh replaces an unclaimed quest for the shown Comet price after its unlock; it retains daily progress.'},
@@ -10176,17 +10278,19 @@ function simulationAdvanceAutomationTimers(elapsedSec){
   if(state.achieved.autotap) state._autoTapAccum = (state._autoTapAccum||0) + elapsedSec*1000;
   if(state.achieved.labmaster) state._autoEmpowerAccum = (state._autoEmpowerAccum||0) + elapsedSec*1000;
 }
-function simulationNextStudySeconds(){
-  var next = Infinity;
+function simulationNextStudySeconds(nowMs){
+  nowMs=nowMs===undefined?Date.now():nowMs;
+  var next = nextStudyBoostExpiry(nowMs);
   state.activeStudies.forEach(function(active){
-    if(active.speedMult>0) next = Math.min(next,Math.max(0,active.remainingSec/active.speedMult));
+    var speed=studyEffectiveSpeed(active,nowMs);
+    if(speed>0) next = Math.min(next,Math.max(0,active.remainingSec/speed));
   });
   return next;
 }
-function simulationAdvanceStudyProgress(elapsedSec){
-  if(Amount.le(elapsedSec,0)) return;
+function simulationAdvanceStudyProgress(elapsedSec,nowMs){
+  if(elapsedSec<=0) return;
   state.activeStudies.forEach(function(active){
-    active.remainingSec=Amount.sub(active.remainingSec,Amount.mul(elapsedSec,active.speedMult));
+    active.remainingSec=Amount.sub(active.remainingSec,studyWorkBetween(active,elapsedSec,nowMs));
   });
 }
 function simulationCompleteDueStudies(summary){
@@ -10251,19 +10355,8 @@ function simulationCurrencyKillsNeeded(cost,lumenPerKill,shardPerKill){
   return Amount.max(lumenKills,shardKills);
 }
 function simulationBuyStudySpeeds(summary,elapsedSec){
-  var bought=0;
-  // Shared Motes follow catalogue order, independent of active/UI ordering.
-  LONG_STUDIES.forEach(function(node){
-    var plan=studyMotesPlan(node);
-    if(!plan || Amount.lt(state.motes,plan.cost)) return;
-    state.motes=debitAmount(state.motes,plan.cost);
-    plan.active.speedMult=plan.target;
-    summary.studySpeedPurchases++;
-    summary.studyMotesSpent=Amount.add(summary.studyMotesSpent,plan.cost);
-    simulationTimelinePush(summary,elapsedSec,'studySpeed',{id:node.id,speed:plan.target,cost:plan.cost});
-    bought++;
-  });
-  return bought;
+  // Timed boosts require one explicit prepaid activation, never automatic renewal.
+  return 0;
 }
 function simulationKillsUntilStudyMotes(){
   var depth=state.farmDepth||state.depth;
@@ -10381,8 +10474,7 @@ function simulationDefeatEnemy(policy,summary){
   summary.shardGained=Amount.add(summary.shardGained,shardGain);
 
   if(wasLuminous){
-    var moteGain = Amount.max(1,Amount.round(Amount.mul(motesDropFor(depth),Amount.add(1,supportMoteBonus())),'round'));
-    state.motes=creditAmount(state.motes,moteGain);
+    var moteGain = luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now());
     summary.motesGained=Amount.add(summary.motesGained,moteGain);
     summary.luminousKills++;
     trackDaily('luminousKills');
@@ -10446,9 +10538,7 @@ function simulationBatchFarmKills(count,policy,summary){
   summary.shardGained=Amount.add(summary.shardGained,shardGain);
 
   if(Amount.gt(luminousKills,0)){
-    var motePer = Amount.max(1,Amount.round(Amount.mul(motesDropFor(depth),Amount.add(1,supportMoteBonus())),'round'));
-    var moteGain = Amount.mul(motePer,luminousKills);
-    state.motes=creditAmount(state.motes,moteGain);
+    var moteGain = batchLuminousMotes(count,state.enemyIsLuminous,startAccum,chance,policy);
     summary.motesGained=Amount.add(summary.motesGained,moteGain);
     summary.luminousKills=Amount.add(summary.luminousKills,luminousKills);
     trackDaily('luminousKills',luminousKills);
@@ -10675,6 +10765,7 @@ function simulationMaybeRetryBoss(policy,summary){
   return true;
 }
 function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
+  policy.nowMs=nowMs;
   var actions = 0;
   var ascendsBefore;
 
@@ -10784,6 +10875,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
   var policy = simulationPolicy(options.kind||'live',options);
   var summary = simulationSummary(elapsedSec);
   var clockStartMs = Amount.valid(options.clockStartMs) ? options.clockStartMs : Date.now();
+  policy.nowMs=clockStartMs;
   var clockStartWholeSec = Amount.floorRatio(clockStartMs,1000);
   var elapsedWholeSec = 0;
   var elapsedFractionSec = 0;
@@ -10871,8 +10963,8 @@ function advanceAuthoritativeTime(elapsedSec,options){
   // canonical state copy; re-anchor only new work or an actual speed change.
   // Foreground callbacks earn one logical tick even when wall-clock spacing
   // jitters. Preserve paid-work time separately from combat/buff timestamps.
-  var continuousStudyClock = options.continuousStudyClock===true && options.kind==='live' &&
-    studyClockMemo.state===state && studyClockMemo.position;
+  var continuousStudyClock = studyClockMemo.state===state && studyClockMemo.position &&
+    (studyClockMemo.endMs===clockStartMs || (options.continuousStudyClock===true && options.kind==='live'));
   var studyProgressAnchors = (studyClockMemo.state===state && studyClockMemo.endMs===clockStartMs) || continuousStudyClock
     ? studyClockMemo.anchors : {};
   var studyStartPosition = continuousStudyClock ? studyClockMemo.position : simulationClockPosition();
@@ -10886,10 +10978,10 @@ function advanceAuthoritativeTime(elapsedSec,options){
     state.activeStudies.forEach(function(active){
       var anchor = studyProgressAnchors[active.id];
       if(!anchor || anchor.lastRemaining!==active.remainingSec ||
-          anchor.speed!==active.speedMult || anchor.total!==active.totalDurationSec){
+          anchor.speed!==studyEffectiveSpeed(active,simulationNowMs()) || anchor.total!==active.totalDurationSec){
         studyProgressAnchors[active.id] = {
           remaining:active.remainingSec,lastRemaining:active.remainingSec,
-          speed:active.speedMult,total:active.totalDurationSec,
+          speed:studyEffectiveSpeed(active,simulationNowMs()),total:active.totalDurationSec,
           wholeSec:studyClockPosition().wholeSec,gridRemaining:studyClockPosition().remainingSec
         };
       }
@@ -11001,7 +11093,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
         ability:simulationNextAbilitySeconds(simulationNowMs(),simulationClockPosition()),
         autoTap:simulationNextAutoTapSeconds(),
         autoEmpower:simulationNextAutoEmpowerSeconds(),
-        study:simulationNextStudySeconds(),
+        study:simulationNextStudySeconds(simulationNowMs()),
         farmGrid:traceFarmGrid,
         economy:state.riftMode==='farm'
           ? simulationFarmEconomyBoundarySeconds(traceDps,traceRewardScale)
@@ -11042,6 +11134,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     summary.iterations++;
 
     var nowMs = simulationNowMs();
+    policy.nowMs=nowMs;
 
     if(Amount.le(state.enemyHp,SIM_EPS)){
       var topKillsBefore = summary.kills;
@@ -11067,7 +11160,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     var abilityStep = simulationNextAbilitySeconds(nowMs,simulationClockPosition());
     var autoTapStep = simulationNextAutoTapSeconds();
     var autoEmpowerStep = simulationNextAutoEmpowerSeconds();
-    var studyStep = simulationNextStudySeconds();
+    var studyStep = simulationNextStudySeconds(nowMs);
     var buffStep = simulationNextBuffSeconds(nowMs,simulationClockPosition());
     var bossRetreatStep = simulationNextBossRetreatSeconds(nowMs,policy);
 
@@ -11134,8 +11227,11 @@ function advanceAuthoritativeTime(elapsedSec,options){
         // its event-time bars/phases; ready actions still resolve after death.
         advanceAutomationToProjectedClock(next,hitsWindowEnd);
       }
+      policy.nowMs=nowMs+next*1000;
+      policy.moteFarmClock={startMs:nowMs,firstSec:Amount.ratio(state.enemyHp,dps),gapSec:Amount.ratio(state.enemyMaxHp,dps)};
       if(state.riftMode==='farm') simulationApplyFarmPassive(next,dps,policy,summary);
       else simulationApplyPushPassive(next,dps,policy,summary);
+      delete policy.moteFarmClock;
       // A kill can Ascend at this endpoint. The preceding interval belongs to
       // the old run; do not credit its time to reset resources/purchase timers.
       if(!carryBeforePassive){
@@ -11260,10 +11356,10 @@ function advanceStudyOnlyTime(elapsedSec,clockStartMs,summary,resumable){
       batchStarted = simulationWorkNow();
     }
     batchEvents++;
-    var next = Amount.min(remaining,simulationNextStudySeconds());
+    var next = Amount.min(remaining,simulationNextStudySeconds(nowMs));
     if(!Amount.valid(next)) break;
     if(Amount.gt(next,SIM_EPS)){
-      simulationAdvanceStudyProgress(next);
+      simulationAdvanceStudyProgress(next,nowMs);
       remaining=Amount.sub(remaining,next);
       nowMs=Amount.add(nowMs,Amount.mul(next,1000));
     }
@@ -11372,11 +11468,20 @@ function studyRemainingText(active){
   if(!active || !Number.isFinite(active.remainingSec) || active.remainingSec<0 ||
       !Number.isFinite(active.speedMult) || active.speedMult<=0) return 'Time unavailable';
   // Membership in activeStudies still means pending authoritative completion.
-  if(active.remainingSec===0) return 'Finishing… · '+active.speedMult+'x';
-  var duration = fmtStudyDuration(Math.max(Number.MIN_VALUE,active.remainingSec/active.speedMult));
-  return duration==='Time unavailable' ? duration : duration+' remaining · '+active.speedMult+'x';
+  var speed=studyEffectiveSpeed(active);
+  if(active.remainingSec===0) return 'Finishing… · '+speed+'x';
+  var duration = fmtStudyDuration(Math.max(Number.MIN_VALUE,studyCompletionSeconds(active)));
+  return duration==='Time unavailable' ? duration : duration+' remaining · '+speed+'x';
 }
 function updateStudyProgress(){
+  var expired=false;
+  els['study-list'].querySelectorAll('[data-study-boost-time]').forEach(function(el){
+    var seconds=(Number(el.getAttribute('data-study-boost-time'))-Date.now())/1000;
+    if(seconds<=0){expired=true;return;}
+    var boost=state.studyBoosts[el.getAttribute('data-study-boost-status')];
+    el.textContent=boost.mult+'x · '+fmtStudyDuration(seconds)+' left';
+  });
+  if(expired)renderLongStudies();
   state.activeStudies.forEach(function(active){
     var fillEl = els['study-list'].querySelector('[data-study-bar="'+active.id+'"]');
     var textEl = els['study-list'].querySelector('[data-study-text="'+active.id+'"]');
@@ -11434,26 +11539,25 @@ function checkAffordability(){
   els['spirit-list'].querySelectorAll('[data-mastery]').forEach(function(btn){
     var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-mastery');});if(sp)btn.disabled=!getWispMasteryPlan(sp).affordable;
   });
+  els['spirit-list'].querySelectorAll('[data-sigil-resonate]').forEach(function(btn){
+    var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-sigil-resonate');});
+    btn.disabled=!canSigilResonate(sp);
+  });
   restoreWispActionView(actionView);
   els['research-list'].querySelectorAll('[data-research]').forEach(function(btn){
     var node = RESEARCH.find(function(n){ return n.id===btn.getAttribute('data-research'); });
     if(!node) return;
     updateResearchCard(node,btn.closest('[data-forge-card]'));
   });
-  var openStudySlots = Amount.sub(studySlotCount(),state.activeStudies.length);
+  if(els['hud-mote'])els['hud-mote'].title=state.moteNextAtMs>Date.now()?'Luminous Motes ready in '+fmtStudyDuration((state.moteNextAtMs-Date.now())/1000):'Luminous Mote payout ready';
+  var openStudySlots = studySlotCount() - state.activeStudies.length;
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
     var lnode = LONG_STUDIES.find(function(n){ return n.id===btn.getAttribute('data-study'); });
     if(!lnode) return;
     btn.disabled = !getStudyStartPlan(lnode).affordable;
   });
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(btn){
-    var active = findActiveStudy(btn.getAttribute('data-speed-study'));
-    if(!active){btn.disabled=true;return;}
-    var mult = parseFloat(btn.getAttribute('data-speed'));
-    var acquired = Amount.ge(active.speedMult,mult);
-    var node=LONG_STUDIES.find(function(n){return n.id===active.id;});
-    var maxed=node && node.levelCap!==undefined && Amount.ge(longStudyLevel(active.id),node.levelCap);
-    btn.disabled = acquired || maxed || Amount.le(active.remainingSec,SIM_EPS) || !labCanPay(state.motes,speedTierCost(mult,node));
+    btn.disabled=!getStudyBoostPlan(btn.getAttribute('data-speed-study'),Number(btn.getAttribute('data-speed')),Number(btn.getAttribute('data-hours'))).affordable;
   });
   els['node-list'].querySelectorAll('[data-node]').forEach(function(btn){
     var node=NODES.find(function(n){return n.id===btn.getAttribute('data-node');});

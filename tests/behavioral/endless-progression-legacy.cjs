@@ -8,7 +8,7 @@ function eq(a,b,m){checks++;assert.deepStrictEqual(a,b,m);}
 function ok(v,m){checks++;assert(v,m);}
 var file=path.join(__dirname,'forge-expansion-harness.cjs'),h=fs.readFileSync(file,'utf8').replace("require('node:assert/strict')","require('assert')");
 var compiled=new Module(file,module);compiled.filename=file;compiled.paths=module.paths;compiled._compile(h,file);
-var source=original.replace("if(document.readyState==='loading'){",'window.endlessQa={amount:Amount,module:buyModule,mastery:buyWispMastery,factor:wispMasteryFactor,labPay:labCanPay,cometBuy:function(id){return buyShopItem(SHOP.find(function(item){return item.id===id;}));}};if(document.readyState===\x27loading\x27){');
+var source=original.replace("if(document.readyState==='loading'){",'window.endlessQa={speed:applySpeedTier,amount:Amount,module:buyModule,mastery:buyWispMastery,factor:wispMasteryFactor,labPay:labCanPay,cometBuy:function(id){return buyShopItem(SHOP.find(function(item){return item.id===id;}));}};if(document.readyState===\x27loading\x27){');
 var x=compiled.exports.app(source),q=x.q,b=q.endless,s=q.fresh();
 s.lumen=s.shards=s.prisms=s.sigils=s.motes=s.comets='1e400';
 s.spirits.ember=140;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;
@@ -24,7 +24,7 @@ q.ascend();eq(q.get().wispMastery.ember,10001,'Mastery kept through Ascend');
 eq(q.get().wispModules.ember,20,'ability kept');eq(q.get().wispUltimate.ember,true,'Ultimate kept');
 eq(b.amount.ratio('9e400','1e724'),Number('9e-324'),'subnormal mantissa retained in actual V8');
 var speed=q.fresh();speed.maxDepthEver=130;speed.motes='1e400';speed.activeStudies=[{id:'guardmastery',remainingSec:100,totalDurationSec:100,speedMult:1}];speed.studyUseMotes.guardmastery=true;speed.studySpeedTargets.guardmastery=3;q.set(speed);
-var paid=q.advance(0,{kind:'offline',clockStartMs:compiled.exports.CLOCK});eq(b.amount.exactAdd(q.get().motes,60),'1e400','queued wide Mote debit in actual V8');eq(paid.studyMotesSpent,60,'queued price report in actual V8');
+var paid=q.advance(0,{kind:'offline',clockStartMs:compiled.exports.CLOCK});eq(q.get().motes,'1e400','retired queue cannot spend in actual V8');eq(paid.studyMotesSpent,0,'no automatic timed purchase in actual V8');ok(b.speed('guardmastery',3),'explicit timed activation in actual V8');eq(b.amount.exactAdd(q.get().motes,3500),'1e400','exact wide timed debit in actual V8');eq(q.get().activeStudies[0].speedMult,1,'paid base floor retained in actual V8');eq(q.get().studyBoosts.guardmastery.expiresAtMs,compiled.exports.CLOCK+28800000,'exact timer in actual V8');
 q.set(s);s.depth=s.enemyDepth=1;s.enemyMaxHp=s.enemyHp=b.amount.mul(q.passive(1),'11e-324');Object.keys(s.empowerQueue).forEach(function(id){s.empowerQueue[id]=false;});q.set(s);
 var partial=q.advance(.001,{kind:'live',clockStartMs:compiled.exports.CLOCK,resumable:true});partial.next();ok(b.amount.ge(q.get().totalKills,1),'subnormal partial damage resolves in actual V8');partial.return();
 eq(q.get().recruitmentEntitlements.ember,true,'recruitment entitlement kept');

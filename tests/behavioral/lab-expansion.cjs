@@ -155,10 +155,10 @@ function verify(html){
   const a=seed(q);a.longStudyLevels.fieldnotes=3;a.activeStudies=[{id:'bossledger',remainingSec:.5,totalDurationSec:20,speedMult:1}];q.set(a);const sum=q.advance(1,{kind:'live',clockStartMs:a.lastSeen});eq(sum.motesGained,6,'authoritative summary accounts for Notes Motes');eq(q.get().motes,a.motes+6,'authoritative wallet agrees');
   a.activeStudies=[{id:'fieldnotes',remainingSec:0,totalDurationSec:20,speedMult:1}];q.set(a);q.finish(0);eq(q.get().motes,a.motes,'no self-completion Notes reward');
  }
- // Manual/queued speed pays its full discounted tier each active level.
+ // Timed speed pays once; Catalysis still discounts the visible package price.
  {
-  const s=seed(q);s.longStudyLevels.catalysis=10;q.set(s);q.start('bossledger');const cost=discount(26,20);eq(q.speedCost(2),cost,'Mote price20% lower');q.get().motes=cost-1;const before=clone(q.get());eq(q.speed('bossledger',2),false,'one Mote short');eq(q.get(),before,'speed rejection pure');q.get().motes=cost;eq(q.speed('bossledger',2),true,'exact discounted speed purchase');eq(q.get().motes,0,'full tier debited');eq(q.get().activeStudies[0].speedMult,2,'paid speed saved');eq(q.speed('bossledger',1.5),false,'no downgrade');
-  q.get().motes=100;q.get().studyUseMotes.bossledger=true;q.get().studySpeedTargets.bossledger=3;const scheduled=q.speeds();eq(scheduled.studyMotesSpent,discount(60,20),'auto uses same discount');eq(q.get().activeStudies[0].speedMult,3,'auto speed credited');
+  const s=seed(q);s.longStudyLevels.catalysis=10;q.set(s);q.start('bossledger');const cost=discount(1500,20);eq(q.speedCost(2),cost,'Mote price20% lower');q.get().motes=cost-1;const before=clone(q.get());eq(q.speed('bossledger',2),false,'one Mote short');eq(q.get(),before,'speed rejection pure');q.get().motes=cost;eq(q.speed('bossledger',2),true,'exact discounted speed purchase');eq(q.get().motes,0,'full package debited');eq(q.boostSpeed(q.get().activeStudies[0]),2,'paid timer effective');eq(q.get().activeStudies[0].speedMult,1,'old paid floor untouched');eq(q.speed('bossledger',1.5),false,'no overwrite');
+  q.get().motes=10000;q.get().studyUseMotes.bossledger=true;q.get().studySpeedTargets.bossledger=3;const scheduled=q.speeds();eq(scheduled.studyMotesSpent,0,'no automatic renewal');eq(q.boostSpeed(q.get().activeStudies[0]),2,'paid timer retained');
  }
  // All material upgrades touch only their specific costs/requirements, not power.
  {

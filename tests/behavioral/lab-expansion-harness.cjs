@@ -18,6 +18,7 @@ function app(source,saved){
  plan:function(id){return getStudyStartPlan(LONG_STUDIES.find(function(n){return n.id===id;}));},rawPlan:getStudyStartPlan,
  start:function(id){return startStudy(LONG_STUDIES.find(function(n){return n.id===id;}));},
  startRaw:startStudy,finish:advanceActiveStudies,slots:studySlotCount,speed:applySpeedTier,speedCost:speedTierCost,
+ boost:typeof activateStudyBoost==='function'?activateStudyBoost:null,boostCost:typeof studyBoostCost==='function'?studyBoostCost:null,boostPlan:typeof getStudyBoostPlan==='function'?getStudyBoostPlan:null,boostSpeed:typeof studyEffectiveSpeed==='function'?studyEffectiveSpeed:null,eta:typeof studyCompletionSeconds==='function'?studyCompletionSeconds:null,studyOnly:advanceStudyOnlyTime,motePayout:typeof luminousMotePayout==='function'?luminousMotePayout:null,
  cost:function(id,l){return studyCost(LONG_STUDIES.find(function(n){return n.id===id;}),l);},
  duration:function(id,l){return studyDuration(LONG_STUDIES.find(function(n){return n.id===id;}),l);},effect:projectEarnedEffect,
  discount:labDiscountCost,curriculum:labCurriculumSubjects,

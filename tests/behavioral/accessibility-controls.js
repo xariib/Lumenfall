@@ -80,11 +80,10 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   function luminance(rgb){var c=rgb.map(function(n){n/=255;return n<=.04045?n/12.92:Math.pow((n+.055)/1.055,2.4);});return .2126*c[0]+.7152*c[1]+.0722*c[2];}
   q('[data-tab="research"]').click();
   var contrastResults={};
-  [['forge','.mult-btn.active'],['research','.study-level'],['research','.study-speed-row .node-queue-toggle.active']].forEach(function(entry){
+  [['forge','.mult-btn.active'],['research','.study-level'],['research','.study-boost-start']].forEach(function(entry){
     q('[data-tab="'+entry[0]+'"]').click();
     if(entry[0]==='research'){
       var selected=q('[data-study-speed-target]');assert(selected,'selected speed fixture exists');assert(Number(selected.value)===[1.5,2,3,4,5,6,7,8].indexOf(bridge.getState().studySpeedTargets[selected.dataset.studySpeedTarget]),'selected target retained');
-      if(entry[1].includes('node-queue-toggle')){var intent=selected.closest('.study-speed-controls').querySelector('[data-study-use-motes]');if(!bridge.getState().studyUseMotes[intent.dataset.studyUseMotes])intent.click();assert(q(entry[1]).getAttribute('aria-pressed')==='true','speed queue exposes selected intent for contrast check');}
 
     }
     var selector=entry[1];

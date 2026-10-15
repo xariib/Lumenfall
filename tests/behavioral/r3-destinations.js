@@ -126,11 +126,11 @@ window.prepareR3Reload = function(b,ctx,assert){
   document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study="guardmastery"]').click();
   window.selectLabSpeed('guardmastery',2);document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
   b.feedbackTick(false);
-  assert(b.getState().activeStudies[0].speedMult===2,'paid speed before real reload');
+  assert(b.getState().studyBoosts.guardmastery.mult===2&&b.getState().activeStudies[0].speedMult===1,'paid timer before real reload');
 };
 window.checkR3Reload = function(b,ctx,assert,expected){
   var s=b.getState();
-  ['research','researchQueue','studyQueue','activeStudies','longStudyLevels','savedLabMultiplier','lumen','shards','motes','activeParty','formationRebuild','schemaVersion'].forEach(function(key){
+  ['research','researchQueue','studyQueue','activeStudies','studyBoosts','studyBoostHours','moteNextAtMs','longStudyLevels','savedLabMultiplier','lumen','shards','motes','activeParty','formationRebuild','schemaVersion'].forEach(function(key){
     assert(JSON.stringify(s[key])===JSON.stringify(expected[key]),'real reload preserves '+key);
   });
   document.querySelector('[data-tab="forge"]').click();
@@ -140,7 +140,7 @@ window.checkR3Reload = function(b,ctx,assert,expected){
   assert(badge.hidden===!b.riftStatus.canStartStudy()&&badge.textContent===String(free),'affordable capacity badge restores from actual loaded Study state');
   assert(document.querySelector('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','active project countdown after reload');
   var count=0;
-  while(b.getState().activeStudies.length && count++<750)b.feedbackTick(false);
+  while(b.getState().activeStudies.length && count++<750){ctx.advanceTime(100);b.feedbackTick(false);}
   assert(!b.getState().activeStudies.length && b.getState().longStudyLevels.guardmastery===1,'original live tick authoritatively completes once');
   assert(!document.querySelector('[data-study-text="guardmastery"]'),'completed card removed');
   document.querySelector('[data-tab="forge"]').click();document.querySelector('[data-tab="research"]').click();

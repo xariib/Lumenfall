@@ -1,7 +1,15 @@
 # Lumenfall — current delivery status
 
 15 October: [ENDLESS_PROGRESSION_001](tasks/ENDLESS_PROGRESSION_001.md) local
-candidate. Free180d pacing measured; low-target AutoAscend, gates/release OPEN.
+candidate. AK180d measured; reconciling fe14b2d Lab/UI. AutoAscend/release OPEN.
+
+15 October: [Lab timed boosts](tasks/LAB_SPEED_CONTROLS_001.md),419f650d locally
+verified;8/12/24h project boosts,60s Mote payouts. Preview4174; release OPEN.
+
+14 October2026: [UPGRADE_AFFORDABILITY_001](tasks/UPGRADE_AFFORDABILITY_001.md)
+locally integrated1553d44/source084f2995: red shortages and disabled actions.
+[Evidence](qa/upgrade-affordability-001/README.md):26844/12 profiles,2 controls,
+preservation/V8 PASS;15 preview assets match. Combined/native acceptance OPEN.
 
 14 October 2026: [FORMATION_BEST_NOW_001](tasks/FORMATION_BEST_NOW_001.md)
 adds Field Best now for existing recommended Bonds. User chose recruitment of

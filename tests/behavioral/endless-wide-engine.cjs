@@ -3,7 +3,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require(
 const {app,clone,P,R,CLOCK}=require('./forge-expansion-harness.cjs');
 const a=require('../../scripts/lib/game-amount.cjs');
 const original=fs.readFileSync(process.argv[2]||'index.html','utf8');
-const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode,speedCost:function(id,mult){return speedTierCost(mult,LONG_STUDIES.find(function(n){return n.id===id;}));},speedGrowth:function(growth){ENDLESS_PROGRESSION.speedMoteGrowth=growth;}};if(document.readyState==='loading'){`);
+const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={speed:applySpeedTier,amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode,speedCost:function(id,mult){return speedTierCost(mult,LONG_STUDIES.find(function(n){return n.id===id;}));},speedGrowth:function(growth){ENDLESS_PROGRESSION.speedMoteGrowth=growth;}};if(document.readyState==='loading'){`);
 let checks=0;function eq(x,y,m){checks++;assert.deepEqual(x,y,m);}function ok(value,m){checks++;assert(value,m);}
 function big(value){if(typeof value==='number')return BigInt(value);const [d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 let x=app(source),q=x.q,b=q.endless;
@@ -58,9 +58,10 @@ ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load 
 {
  const x=app(source),q=x.q,b=q.endless,s=hugeState();s.maxDepthEver=130;s.activeStudies=[{id:'guardmastery',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=3;q.set(s);
  const result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});
- eq(big(q.get().motes),10n**400n-60n,'queued speed exactly debits a wide Mote wallet');eq(result.studyMotesSpent,60,'queued speed reports exact paid price');eq(q.get().activeStudies[0].speedMult,3,'queued paid speed retained');
- s.longStudyLevels.wispascend=1500;s.activeStudies=[{id:'wispascend',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.wispascend=true;s.studySpeedTargets.wispascend=8;b.speedGrowth(1.8);q.set(s);const cost=b.speedCost('wispascend',8);ok(a.wide(cost),'future speed cost crosses native overflow');
- const wide=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(big(q.get().motes),10n**400n-big(cost),'queued wide price exact debit');eq(wide.studyMotesSpent,cost,'queued wide price remains a valid report');ok(q.save(),'queued wide speed endpoint saves');
+ eq(big(q.get().motes),10n**400n,'retired queue consent cannot spend wide Motes');eq(result.studyMotesSpent,0,'no automatic timed purchase');eq(q.get().activeStudies[0].speedMult,1,'queue cannot grant free speed');
+ ok(b.speed('guardmastery',3),'explicit timed boost accepts wide wallet');eq(big(q.get().motes),10n**400n-3500n,'timed boost exactly debits a wide Mote wallet');eq(q.get().studyBoosts.guardmastery,{mult:3,startedAtMs:CLOCK,expiresAtMs:CLOCK+28800000},'one exact paid8h timer');
+ s.longStudyLevels.wispascend=1500;s.activeStudies=[{id:'wispascend',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.wispascend=true;s.studySpeedTargets.wispascend=8;q.set(s);const cost=b.speedCost('wispascend',8);eq(cost,27500,'timed package price remains independent of project level');
+ const wide=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(big(q.get().motes),10n**400n,'future project never renews automatically');eq(wide.studyMotesSpent,0,'future project reports no automatic spend');ok(b.speed('wispascend',8),'explicit future boost');eq(big(q.get().motes),10n**400n-27500n,'future timed package exact debit');ok(q.save(),'wide timed endpoint saves');
 }
 {
  const x=app(source),q=x.q,s=hugeState();s.depth=s.enemyDepth=17;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=16;q.set(s);q.restoreEnemy();
@@ -72,5 +73,11 @@ ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load 
  Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);q.set(s);
  s.enemyDepth=s.depth=1;s.enemyMaxHp=s.enemyHp=a.mul(q.passive(1),'11e-324');q.set(s);
  const cursor=q.advance(.001,{kind:'live',clockStartMs:CLOCK,resumable:true});cursor.next();ok(a.ge(q.get().totalKills,1),'subnormal partial damage completes an encounter without a false stall');cursor.return();
+}
+{
+ const x=app(source),q=x.q,s=hugeState();s.riftMode='farm';s.farmDepth=s.depth=s.enemyDepth=1;s.farmReturnDepth=2;s.spirits.ember=140;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;s.wispMastery.ember=10000;s.research.masterwork=2001;
+ Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);q.set(s);q.restoreEnemy();const before=clone(q.get());
+ const result=q.advance(1,{kind:'offline',clockStartMs:CLOCK});ok(a.wide(result.kills),'real wide-count Farm batch');eq(result.motesGained,1,'subnormal kill intervals cannot pay past the actual one-second endpoint');eq(big(q.get().motes),big(before.motes)+1n,'wide Farm pays the one eligible fixed Mote exactly');eq(q.get().moteNextAtMs,CLOCK+60000,'wide Farm preserves the exact global cooldown boundary');
+ const next=q.advance(1,{kind:'offline',clockStartMs:CLOCK+1000});eq(next.motesGained,0,'next wide-count batch cannot bypass cooldown');
 }
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

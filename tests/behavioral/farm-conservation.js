@@ -1,6 +1,6 @@
 /* B1: independent per-enemy damage/spawn ledger; no batching formula oracle. */
 window.runFarmConservationQa=function(b,ctx,assert){
-  var t=b.labMotes,checks=0,clock=2000000000000,rows=[];
+  var t=b.labMotes,checks=0,clock=2000000000000,rows=[];ctx.setClock(clock);
   function ok(v,m){checks++;assert(v,'B1 conservation oracle: '+m);}
   function near(a,c,m){ok(Math.abs(a-c)<1e-7,m+' ('+a+' vs '+c+')');}
   function fixture(depth,frac,flag,accum,needed){
@@ -10,25 +10,29 @@ window.runFarmConservationQa=function(b,ctx,assert){
     s.lumen=s.shards=1e9;s.questDay=ctx.currentDay();s.research.luminoustracking=tracking;s.longStudyLevels.motestudy=moteLevels;
     if(support){s.activeParty=['ember','tide'];s.spirits.tide=1;s.wispModules.tide=support;}
     var reward=Math.max(1,Math.round(Math.max(1,Math.round((1+depth/8)*(1+moteLevels*.1)))*(1+support*.05)));
-    var target=needed*reward>60?4:3,cost=target===4?110:60;
+    var target=needed*reward>60?4:3,cost=target===4?6500:3500;
     s.activeStudies=[{id:'guardmastery',remainingSec:300,totalDurationSec:600,speedMult:1}];
-    s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=target;s.motes=cost-needed*reward;
+    s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=target;s.motes=cost+needed*reward;
     return {s:s,frac:frac,flag:flag,accum:accum,needed:needed,reward:reward,cost:cost,target:target,
       chance:Math.min(.35,Math.min(.30,.03+Math.floor(depth/10)*.02)+tracking*.005),dps:s.enemyMaxHp*100};
   }
   function ledger(f,seconds){
     // Consume one enemy at a time in HP units, tracking each actual spawn/reward.
-    var damage=100*seconds,hp=f.frac,acc=f.accum,flag=f.flag,kills=0,luminous=0,payment=null,spentDamage=0;
+    var damage=100*seconds,hp=f.frac,acc=f.accum,flag=f.flag,kills=0,luminous=0,payment=null,spentDamage=0,payouts=0,next=0;
     while(damage>=hp-1e-12){
-      damage-=hp;spentDamage+=hp;kills++;if(flag)luminous++;
+      damage-=hp;spentDamage+=hp;kills++;if(flag){luminous++;var at=clock+spentDamage*10;if(at>=next){payouts++;next=at+60000;}}
       if(payment===null&&luminous>=f.needed)payment=spentDamage/100;
       acc+=f.chance;flag=acc+1e-12>=1;if(flag)acc-=1;hp=1;
     }
-    return {kills:kills,luminous:luminous,hp:hp-damage,accum:acc,payment:payment};
+    return {kills:kills,luminous:luminous,hp:hp-damage,accum:acc,payment:payment,payouts:payouts};
   }
   function run(f,seconds,use,kind,split){
     return t.withHp(f.s.enemyMaxHp,function(){
-    var s=JSON.parse(JSON.stringify(f.s));s.studyUseMotes.guardmastery=use;b.setState(s);
+    // A prepaid fixture isolates damage conservation from rendering/transactions.
+    // Actual debits and duplicate activation are checked by lab-motes-contracts.
+    var s=JSON.parse(JSON.stringify(f.s));s.studyUseMotes.guardmastery=use;
+    if(use){s.motes-=f.cost;s.studyBoosts.guardmastery={mult:f.target,startedAtMs:clock,expiresAtMs:clock+28800000};}
+    b.setState(s);
     return t.withDps(f.dps,function(){
       if(!split)return t.direct(seconds,kind||'live',clock);
       var a=t.direct(split,kind||'live',clock),c=t.direct(seconds-split,kind||'live',clock+split*1000);
@@ -44,15 +48,13 @@ window.runFarmConservationQa=function(b,ctx,assert){
     var depth=f.s.depth<=100?f.s.depth:100+40*Math.log1p((f.s.depth-100)/40);
     near(r.summary.lumenGained,Math.round(5*Math.pow(1.11,depth))*o.kills*scale,'Lumen ledger');
     near(r.summary.shardGained,Math.round(Math.pow(1.09,depth))*o.kills*scale,'Shard ledger');
-    var buys=use&&o.payment!==null?1:0;
-    ok(r.summary.studySpeedPurchases===buys&&r.summary.studyMotesSpent===buys*f.cost,'exact full-price purchases');
-    near(r.state.motes,f.s.motes+o.luminous*f.reward-buys*f.cost,'Motes ledger');
-    near(r.state.activeStudies[0].remainingSec,300-seconds-(buys?(seconds-o.payment)*(f.target-1):0),'only post-payment work');
-    if(buys)near(r.summary.timeline.find(function(e){return e.type==='studySpeed';}).elapsedSec,o.payment,'actual reward payment time');
+    ok(r.summary.studySpeedPurchases===0&&r.summary.studyMotesSpent===0,'no automatic spending');
+    near(r.state.motes,f.s.motes+o.payouts*f.reward-(use?f.cost:0),'eligible-payout and prepaid debit ledger');
+    near(r.state.activeStudies[0].remainingSec,300-seconds*(use?f.target:1),'only prepaid elapsed work');
     return o;
   }
   var main=t.withHp(11,function(){return fixture(1,.73,false,.975,1);});
-  function mainContract(){var r=run(main,.9,true);verify(main,.9,r,true);ok(r.summary.kills===90&&r.state.lumen===1000000540&&r.state.shards===1000000090,'documented B1 economy');near(r.state.activeStudies[0].remainingSec,297.3346,'documented B1 work');return r;}
+  function mainContract(){var r=run(main,.9,false,'live',.0173);verify(main,.9,r,false);ok(r.summary.kills===90&&r.state.lumen===1000000540&&r.state.shards===1000000090,'documented B1 economy');near(r.state.activeStudies[0].remainingSec,299.1,'documented unboosted B1 work');return r;}
   var positive=mainContract(),undo=t.mutate('double-round'),caught=false;
   try{mainContract();}catch(e){caught=/B1 conservation oracle/.test(e.message);}finally{undo();}
   ok(caught,'exact old double-round implementation must fail oracle');mainContract();

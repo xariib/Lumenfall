@@ -88,9 +88,9 @@ final/device acceptance pending. [FORMATION_COLLAPSE_001](FORMATION_COLLAPSE_001
 local implementation and focused browser/core checks verified; default collapsed
 and current choice/focus retained, calculations/saves unchanged. Final/device
 acceptance pending. [LAB_SPEED_CONTROLS_001](LAB_SPEED_CONTROLS_001.md) locally
-verified: stepped speed slider/price, separate queue toggle and explicit immediate
-purchase; prominent name/level badge and Current/Next effects; scoped
-preservation and native checks PASS, final/device acceptance pending.
+verified; user then replaced per-level speed with selected-project8/12/24-hour
+boosts and delegated Mote pacing. Timed controls/expiry/saves and focused native
+checks PASS on419f650d; name/badge/Current/Next retained; final/device acceptance pending.
 [RIFT_HINT_LAYOUT_001](RIFT_HINT_LAYOUT_001.md) locally verified: inset hint strip,
 background fade, before/after mobile/large-text screens, existing Guidance/Rift/
 navigation and focused geometry/input checks PASS; user/final/device acceptance

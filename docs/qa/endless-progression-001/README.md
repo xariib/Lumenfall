@@ -1,6 +1,20 @@
 # Endless progression — work in progress
 
-Current frozen source1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c:
+Current: reconciling newer local/full-debug fe14b2d timed Lab boosts, global60s
+Mote eligibility and red-shortage UI in this isolated branch. Combined source82a05d93
+passes timed1480/3 controls, endless235, wide67,21 controls, actual V8 6.0 checks48,
+and Wisp formula/preservation8099/14904. Initial core23/26: Windows EPERM, an old
+clock mutation anchor and the now-intentionally-changed historical Mote frequency.
+The clock control is corrected; historical comparisons retain every other field
+and defer exact cooldown rewards to the separate timed1480-check oracle. Old
+per-level speed tests now assert explicit prepaid activation, no automatic renewal,
+retained paid floor/work, exact wide debits and timers. Wide Farm intervals may
+not project payouts past the real batch endpoint; a finite causal control catches
+that defect. New combined B/C campaigns are running; their timings are pending.
+Model C changes only future completed-Lab gates, never the accepted boost prices.
+No combined acceptance or release is claimed. The records below are historical.
+
+Prior frozen source1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c:
 selected AK balance, native Comet debit fix and exact Masterwork preview. Regular free milestones
 22d recruits/48.33d Mythic/53.33d Ultimate; two visits21/45.5/50.5d. Full roster
 observed138.33d. Exact purchase/income and model-continuation checks pass. Low-target

@@ -32,6 +32,7 @@ function verify(html){
   for(const node of l.projects()){
     const old=JSON.parse(JSON.stringify(bl.projects().find(n=>n.id===node.id)));
     if(labIds.includes(node.id)){old.levelCap=20;old.desc=old.desc.replace(node.id==='bossledger'?'up to 50%':'up to 100%',node.id==='bossledger'?'up to 100%':'up to 200%');}
+    if(node.id==='catalysis')old.desc='2% lower Mote prices per level for future timed Lab boosts, up to 20%. Existing paid speed and boost time are retained; project levels share unexpired boost time.';
     eq(node,old,'only agreed Lab cap/endpoint wording changes: '+node.id);
   }
   for(const id of forgeIds){
@@ -79,7 +80,7 @@ function verify(html){
       }else eq(l.get(),prior,'maxed start preserves paid state');
     }
     const discounted=labSeed();discounted.longStudyLevels[id]=19;discounted.longStudyLevels.procurement=10;discounted.longStudyLevels.catalysis=10;l.set(discounted);
-    bl.set(legacyInput(discounted,bl));eq(l.cost(id,19),bl.cost(id,19),'existing discounts apply to added level');eq(l.speedCost(8),379,'existing discounted speed price');
+    bl.set(legacyInput(discounted,bl));eq(l.cost(id,19),bl.cost(id,19),'existing discounts apply to added level');eq(l.speedCost(8),22000,'discount applies to new timed speed price');
   }
   // Retain all pre-existing combined-save fields. Schema5 adds only the
   // explicit Mastery/entitlement fields and the new Masterwork path here.
@@ -88,7 +89,7 @@ function verify(html){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});
     s.longStudyLevels.labcapacity=2;s.activeStudies=[{id:'bossledger',remainingSec:12.5,totalDurationSec:123.75,speedMult:8},{id:'prismstudy',remainingSec:17,totalDurationSec:90,speedMult:3}];
-    f.set(s);cf.set(s);eq(oldFields(f.get()),oldFields(cf.get()),'all old combined-save fields retained '+schema+'/'+level);eq(f.get().schemaVersion,5,'current schema5');eq(f.get().wispMastery,Object.fromEntries(Object.keys(s.spirits).map(id=>[id,0])),'migration creates no free Mastery ranks');for(const id of Object.keys(s.spirits))if(s.spirits[id]>0)eq(f.get().recruitmentEntitlements[id],true,'owned recruit entitlement retained '+id);
+    f.set(s);cf.set(s);const expectedOld=oldFields(cf.get());expectedOld.studyBoosts={};expectedOld.studyBoostHours=l.fresh().studyBoostHours;expectedOld.moteNextAtMs=0;Object.keys(expectedOld.studyUseMotes).forEach(id=>expectedOld.studyUseMotes[id]=false);eq(oldFields(f.get()),expectedOld,'all old combined-save fields retained '+schema+'/'+level);eq(f.get().schemaVersion,5,'current schema5');eq(f.get().wispMastery,Object.fromEntries(Object.keys(s.spirits).map(id=>[id,0])),'migration creates no free Mastery ranks');for(const id of Object.keys(s.spirits))if(s.spirits[id]>0)eq(f.get().recruitmentEntitlements[id],true,'owned recruit entitlement retained '+id);
     const canonical=F.clone(f.get());f.set(canonical);eq(f.get(),canonical,'idempotent normalization');
     f.save();eq(F.app(html,fx.storage).q.get(),canonical,'actual cold save reload');
     eq(f.accept(f.decode(f.export())),canonical,'backup roundtrip keeps raw progress/paid work');

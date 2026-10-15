@@ -1,0 +1,49 @@
+{
+  "status": "pass",
+  "scenario": "lab-motes-offline-integration",
+  "records": [
+    {
+      "case": "yielding",
+      "budget": 1,
+      "batches": 29,
+      "purchases": 0,
+      "spent": 0
+    },
+    {
+      "case": "yielding",
+      "budget": 2,
+      "batches": 14,
+      "purchases": 0,
+      "spent": 0
+    },
+    {
+      "case": "yielding",
+      "budget": 31,
+      "batches": 0,
+      "purchases": 0,
+      "spent": 0
+    },
+    {
+      "case": "yielding",
+      "budget": 256,
+      "batches": 0,
+      "purchases": 0,
+      "spent": 0
+    },
+    {
+      "case": "primary-failure-and-retry",
+      "purchases": 0,
+      "spent": 0
+    },
+    {
+      "case": "simulation-failure-and-retry",
+      "purchases": 0,
+      "spent": 0
+    }
+  ],
+  "recoveryFailure": "committed primary retained",
+  "legacy": "OFF",
+  "processing": "paid speed retained",
+  "tail": "shared 12h cap preserves paid work",
+  "sourceSha256": "419f650df46177142b97364f141f4ab420b15879dda11d11ed76584662038450"
+}

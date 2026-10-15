@@ -537,7 +537,7 @@
       if(ctx.scenario.startsWith('lab-motes-')){
         if(ctx.scenario==='lab-motes-runtime'){bridge.freeze();window.__farmRuntimeReady=true;return;}
         if(ctx.scenario==='lab-motes-native'||ctx.scenario==='lab-motes-reduced-motion'){window.__labMotesNativeReady=true;return;}
-        bridge.freeze();
+        bridge.uiMeasurementPause(true);
         if(ctx.scenario==='lab-motes-conservation'){finish('pass',window.runFarmConservationQa(bridge,ctx,assert));return;}
         if(ctx.scenario==='lab-motes-numerical'){finish('pass',window.runFarmNumericalQa(bridge,ctx,assert));return;}
         if(['lab-motes-save-reload','lab-motes-backup-restore','lab-motes-recovery','lab-motes-reset'].includes(ctx.scenario)){
@@ -553,7 +553,7 @@
         window.runUpgradeIdentityQa(bridge,ctx.scenario.startsWith('self-test-')?Object.assign({},ctx,{scenario:ctx.scenario.endsWith('-clock')?'upgrade-identity-farm-clock':'upgrade-identity-contracts'}):ctx,assert,assertProtectedParity,assertSummaryParity).then(function(detail){finish('pass',detail);},function(error){finish('fail',error.message);});return;
       }
       if(ctx.scenario.startsWith('inquiry-')){
-        bridge.freeze();
+        bridge.uiMeasurementPause(true);
         if(['inquiry-save-reload','inquiry-backup-restore','inquiry-recovery','inquiry-reset'].includes(ctx.scenario)){
           window.runInquiryPersistence(bridge,ctx,assert,phase,nextPhase,backupCode,finish);return;
         }
@@ -658,7 +658,7 @@
         case 'research-duration-reduced-motion':
         case 'self-test-research-duration-days':
         case 'self-test-research-duration-seconds':
-          bridge.freeze();
+          bridge.uiMeasurementPause(true);
           finish('pass',window.runResearchDurationQa(bridge,ctx,assert));
           return;
         case 'p2-06b-live-feedback':

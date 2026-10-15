@@ -4,7 +4,7 @@ const [chrome,url,scenario]=process.argv.slice(2),profile=fs.mkdtempSync(path.jo
 const browser=spawn(process.env.LUMENFALL_QA_CDP_CHROME||chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
 let seq=0,buffer='',stderr='',session,closed=false;const pending=new Map(),records=[];
 function rejectPending(message){for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error(message+' '+p.method));}pending.clear();}
-const completion=new Promise(resolve=>{browser.once('error',e=>{rejectPending(e.message);resolve({error:e.message});});browser.once('close',(code,signal)=>{closed=true;rejectPending('browser closed');resolve({code,signal});});});
+const completion=new Promise(resolve=>{browser.once('error',e=>{rejectPending(e.message);resolve({error:e.message});});browser.once('exit',(code,signal)=>{closed=true;for(const n of [3,4])browser.stdio[n].destroy();rejectPending('browser closed');resolve({code,signal});});});
 browser.stderr.on('data',b=>{stderr=(stderr+b).slice(-4000);});
 for(const stream of [browser.stdio[3],browser.stdio[4]])stream.on('error',e=>rejectPending(e.message));
 browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))!==-1){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw);if(m.id&&pending.has(m.id)){const p=pending.get(m.id);pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
@@ -42,7 +42,7 @@ function audit(r,strictMinimum=true){
  }
  const state=parts.at(-1).state,summary={};
  for(const key of ['kills','luminousKills','lumenGained','shardGained','motesGained','studyMotesSpent','studySpeedPurchases'])summary[key]=parts.reduce((sum,p)=>sum+p.summary[key],0);
- const buys=use?1:0;
+ const buys=0;motes=Math.min(1,motes);
  ok(summary.kills===kills&&state.totalKills===kills,'aggregate exact kills');
  ok(summary.luminousKills===luminous&&summary.motesGained===motes,'aggregate spawn and Motes');
  const scale=kind==='offline'?.7:1;
@@ -51,21 +51,13 @@ function audit(r,strictMinimum=true){
  ok(summary.lumenGained===groupedLumen&&summary.shardGained===groupedShards,'aggregate represented rewards in actual part order');
  ok(summary.studySpeedPurchases===buys&&summary.studyMotesSpent===60*buys,'one full price payment');
  ok(state.motes===input.motes+motes-60*buys,'Motes ledger');
- if(use){let t=0;for(let i=0;i<parts.length;i++){const event=parts[i].summary.timeline.find(e=>e.type==='studySpeed');if(event)payment=t+event.elapsedSec;t+=i===0&&r.split?r.split:seconds;}
-  ok(payment!==null,'payment at an authoritative boundary');
-  const boundary=(input.enemyHp+H)/dps;
-  let time=0,count=0,enabler=null;
-  for(const row of trace){time+=row.seconds;count+=row.kills;if(row.before.motes<60&&row.after.motes>=60){enabler={time,count,row};break;}}
-  ok(payment>0&&enabler&&Math.abs(enabler.time-boundary)<=boundary*1e-12,'positive enabling reward boundary');
-  ok(enabler.count===2&&enabler.row.luminous===1&&enabler.row.after.motes===60,'actual reward enables purchase');
-  near(payment,boundary,'recorded payment time');
- }
- near(state.activeStudies[0].remainingSec,300-seconds-(use?(seconds-payment)*2:0),'only post-payment work');
+ ok(!summary.studySpeedPurchases&&!summary.studyMotesSpent,'legacy consent cannot activate a timed purchase');
+ near(state.activeStudies[0].remainingSec,300-seconds,'base elapsed work');
  ok(parts.every(p=>!p.summary.abilityCasts&&!p.summary.ascends&&!p.summary.completedStudies.length),'no other economy event');
  if(type==='natural'){ok(dps===40052722017724424,'actual product natural DPS');ok(r.normalized.spirits.titan===1635&&r.normalized.research.formation===500,'finite normalization preserves investments');ok(Object.values(r.costs).flatMap(v=>typeof v==='object'?Object.values(v):[v]).every(Number.isFinite),'finite next prices');}
  const minimum=type==='core'?3275345183542180:type==='natural'?3277040892359271:type==='b1'?90:null;
  if(strictMinimum&&minimum!==null)ok(kills===minimum,'documented '+type+' minimum');
- if(type==='b1'){ok(luminous===3&&state.motes===(use?2:62),'B1 Motes and luminous');near(state.activeStudies[0].remainingSec,use?297.3346:299.1,'B1 work');if(use)near(payment,.0173,'B1 .0173 payment');}
+ if(type==='b1'){ok(luminous===3&&state.motes===60,'B1 Motes and luminous');near(state.activeStudies[0].remainingSec,299.1,'B1 work');}
  return {summary,damageUnits:String(damage),payment,unchangedBoundaryPromotions:trace.filter(row=>{const D=units(row.damage),h=units(row.before.enemyHp),max=units(row.before.enemyMaxHp);return row.kills!==(D<h?0:Number(1n+(D-h)/max));}).length};
 }
 async function execute(type,use,kind,split,mutant=false){

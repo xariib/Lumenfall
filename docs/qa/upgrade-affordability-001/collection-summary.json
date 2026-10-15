@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae",
+  "results": [
+    {
+      "name": "normal",
+      "accepted": true,
+      "exitcode": 0,
+      "checks": 5808,
+      "sourceSha256": "084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae",
+      "profiles": 12,
+      "error": null
+    },
+    {
+      "name": "stale-refresh",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 147,
+      "sourceSha256": "28413dc44a47f12f2773125441de11d814f4cd0f1b7e710bd0f2879a65ce2372",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"research\",\"label\":\"becomes affordable without rerender\",\"kind\":\"lumen\",\"want\":\"rgb(240, 239, 251)\",\"got\":\"rgb(255, 123, 146)\"}\n    at ok (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:40:27)\n    at observe (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:98:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:106:47)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:128:6"
+    },
+    {
+      "name": "all-white",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 4,
+      "sourceSha256": "84856d8866f03266b499331ffa7e97104f7ab06f79eb822d43ab926d5fd6aefa",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"forge\",\"label\":\"initial insufficient\",\"kind\":\"lumen\",\"want\":\"rgb(255, 123, 146)\",\"got\":\"rgb(240, 239, 251)\"}\n    at ok (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:40:27)\n    at observe (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:98:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:106:4)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:128:6"
+    },
+    {
+      "name": "retired-card-returns",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 2,
+      "sourceSha256": "af702f231e935506f7a1d4c7c3607a48b3e35fa166e12888b3c47dd8c0096193",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: legacy shop cards must remain absent\n    at ok (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:40:27)\n    at observe (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:95:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:106:4)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\upgrade-affordability-worktree\\tests\\behavioral\\.collection-price-generated-11180.cjs:128:6"
+    }
+  ]
+}

@@ -42,7 +42,7 @@ window.runFarmNumericalQa=function(b,ctx,assert){
       var scale=kind==='offline'?.7:1;
       ok(exactCredit(r.before.lumen,6*scale*count,r.after.lumen),'independent exact Lumen wallet credit');
       ok(exactCredit(r.before.shards,scale*count,r.after.shards),'independent exact Shards wallet credit');
-      total+=count;luminous+=lk;lumen+=6*scale*count;shards+=scale*count;motes+=lk;damage+=D;
+      total+=count;luminous+=lk;lumen+=6*scale*count;shards+=scale*count;motes=Math.min(1,motes+lk);damage+=D;
     });
     return {kills:total,luminous:luminous,lumen:lumen,shards:shards,motes:motes,damageUnits:String(damage)};
   }
@@ -61,12 +61,9 @@ window.runFarmNumericalQa=function(b,ctx,assert){
     ok(r.summary.kills===o.kills&&r.summary.luminousKills===o.luminous,'segment kill and spawn ledger');
     ok(r.summary.lumenGained===o.lumen&&r.state.lumen===trace.rows[trace.rows.length-1].after.lumen,'represented Lumen summary and independently credited final wallet');
     ok(r.summary.shardGained===o.shards&&r.state.shards===trace.rows[trace.rows.length-1].after.shards,'represented Shard summary and independently credited final wallet');
-    var buys=natural&&use?1:0;
-    ok(r.summary.studySpeedPurchases===buys&&r.summary.studyMotesSpent===buys*60,'one full-price actual Motes purchase');
-    ok(r.state.motes===s.motes+o.motes-buys*60,'Motes ledger');
-    var payment=buys?r.summary.timeline.find(function(e){return e.type==='studySpeed';}).elapsedSec:null;
-    if(buys)near(payment,(8.03+11)/dps,'first enabling Luminous reward time');
-    near(r.state.activeStudies[0].remainingSec,300-seconds-(buys?(seconds-payment)*2:0),'only post-payment Study work');
+    ok(r.summary.studySpeedPurchases===0&&r.summary.studyMotesSpent===0,'legacy consent cannot trigger new timed spending');
+    ok(r.state.motes===s.motes+o.motes,'cooldown Motes ledger');
+    near(r.state.activeStudies[0].remainingSec,300-seconds,'base work with no explicit timed activation');
     ok(!r.summary.abilityCasts&&!r.summary.ascends&&!r.summary.completedStudies.length,'no unrelated economy event');
     var out={natural:natural,use:use,kind:kind,split:split,expected:expected,kills:r.summary.kills,hp:r.state.enemyHp,motes:r.state.motes,work:r.state.activeStudies[0].remainingSec,representedDamageExact:(dps*seconds).toFixed(0),ledger:o,segments:trace.rows.length};rows.push(out);return out;
     });

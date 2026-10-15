@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-15",
+  "branch": "local/full-debug",
+  "head": "7598c86",
+  "sourceSha256": "084f29955540f8ecabbd34088a5e404c62f8f3d1d58cf74dddf0a4d93100a8ae",
+  "productMatchesHead": true,
+  "observation": "supplied screenshot and verified production markup/transactions charge per level",
+  "observedCheck": {
+    "command": "node tests/behavioral/lab-expansion.cjs index.html",
+    "status": "pass",
+    "checks": 2675
+  },
+  "timedBoostImplementation": "not implemented; pricing decision pending",
+  "unrelatedUntracked": "validation-evidence/ retained"
+}

@@ -62,7 +62,13 @@ Read archives and technical guides only when needed.
 - Android idle RPG with Wisps in Rift, distributed as an APK with HTML/JavaScript
   in the app's WebView.
 - Deterministic progression and purchases with visible prices/effects, no loot
-  boxes/gacha, and the established fixed Luminous Motes rewards.
+  boxes/gacha, and fixed Luminous Mote payouts when eligible.
+- Luminous kills award Motes at most once every 60 seconds, shared across Rifts
+  and online/offline play. Eligible payouts retain depth and purchased bonuses;
+  other Luminous kills retain their Lumen/Shard rewards.
+- Every upgrade UI must show each insufficient resource amount in red and
+  disable the purchase button when the upgrade is unaffordable. Refresh both
+  as resources change.
 - Preserve chronological simulation, online/offline parity, automation and save/
   recovery. `docs/project/KNOWN_ISSUES.md` records limitations; a contract does
   not prove every current path passes.

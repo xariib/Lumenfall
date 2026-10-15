@@ -89,7 +89,9 @@ async function run(){
   await send('Page.enable');await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});await ready();
   await evaluate('document.fonts.ready.then(()=>true)');await fresh();
   await evaluate(`document.documentElement.style.fontSize=${JSON.stringify(16*scale+'px')};resonateQa.button('ember').scrollIntoView({block:'center'});`);
-  await evaluate('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');
+  // Card entry scales a 44px control below 44px while it is animating.
+  // Measure settled geometry; keep the strict touch-size requirement.
+  await evaluate('Promise.all(document.getElementById("tab-spirits").getAnimations({subtree:true}).filter(function(a){return a.effect.getComputedTiming().iterations!==Infinity;}).map(function(a){return a.finished;})).then(function(){return true;})');
   const layout=await evaluate(`(function(){
    function ok(v,m){if(!v)throw Error(m);}
    var b=resonateQa.button('ember'),h=resonateQa.help('ember');
@@ -100,7 +102,7 @@ async function run(){
    ok(h.textContent.includes('3 of 3 uses left this run, shared across all Wisps')&&h.textContent.includes('Resets on Ascend'),'shared run limit/reset');
    ok(b.getAttribute('aria-describedby')===h.id,'accessible description');
    ok(b.getAttribute('aria-label').includes('Ember'),'Wisp-specific accessible name');
-   ok(r.height>=44&&r.width>=44,'44px action');
+   ok(r.height>=44&&r.width>=44,'44px action '+JSON.stringify({width:r.width,height:r.height,tab:document.getElementById('tab-spirits').className}));
    ok(r.left>=0&&r.right<=innerWidth&&hr.left>=0&&hr.right<=innerWidth,'copy/control fit mobile width');
    ok(b.scrollWidth<=b.clientWidth+1&&h.scrollWidth<=h.clientWidth+1,'no clipped copy');
    ok(document.documentElement.scrollWidth<=innerWidth+1,'no page horizontal overflow');

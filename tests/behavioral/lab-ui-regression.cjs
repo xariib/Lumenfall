@@ -4,7 +4,7 @@ const [chrome,url,scenario]=process.argv.slice(2),profile=fs.mkdtempSync(path.jo
 const browser=spawn(process.env.LUMENFALL_QA_CDP_CHROME||chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
 let seq=0,buffer='',stderr='',session,closed=false;const pending=new Map(),records=[];
 function rejectPending(message){for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error(message+' '+p.method));}pending.clear();}
-const completion=new Promise(resolve=>{browser.once('error',e=>{rejectPending(e.message);resolve({error:e.message});});browser.once('close',(code,signal)=>{closed=true;rejectPending('browser closed');resolve({code,signal});});});
+const completion=new Promise(resolve=>{browser.once('error',e=>{rejectPending(e.message);resolve({error:e.message});});browser.once('exit',(code,signal)=>{closed=true;for(const n of [3,4])browser.stdio[n].destroy();rejectPending('browser closed');resolve({code,signal});});});
 browser.stderr.on('data',b=>{stderr=(stderr+b).slice(-4000);});
 for(const stream of [browser.stdio[3],browser.stdio[4]])stream.on('error',e=>rejectPending(e.message));
 browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))!==-1){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw);if(m.id&&pending.has(m.id)){const p=pending.get(m.id);pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
@@ -15,7 +15,7 @@ async function key(key){const spec=key==='Space'?{key:' ',code:'Space',windowsVi
 // Runs existing browser assertions through CDP when dump-dom/virtual-time hangs.
 // The production source, fixtures and existing assertions are unchanged by this driver.
 async function run(){
- const scenarios=['lab-motes-contracts','lab-motes-chronology','lab-motes-conservation','lab-motes-save-reload','lab-motes-backup-restore','lab-motes-recovery','lab-motes-reset','inquiry-contracts','inquiry-chronology','inquiry-ui','inquiry-ui-reduced-motion','inquiry-save-reload','inquiry-backup-restore','inquiry-recovery','research-duration','research-duration-reduced-motion','upgrade-effects-and-deeds','p2-02b-lab-hierarchy','nav-workshop-contract'];
+ const scenarios=['lab-motes-contracts','lab-motes-chronology','lab-motes-conservation','lab-motes-save-reload','lab-motes-backup-restore','lab-motes-recovery','lab-motes-reset','inquiry-contracts','inquiry-chronology','inquiry-ui','inquiry-ui-reduced-motion','inquiry-save-reload','inquiry-backup-restore','inquiry-recovery','research-duration','research-duration-reduced-motion','upgrade-effects-and-deeds','p2-02b-lab-hierarchy','nav-workshop-contract','p1-05-control-regressions','r3-destinations','r3-save-reload'];
  for(const name of scenarios){
   const context=await send('Target.createBrowserContext',{},null),tab=await send('Target.createTarget',{url:'about:blank',browserContextId:context.browserContextId},null);
   session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
