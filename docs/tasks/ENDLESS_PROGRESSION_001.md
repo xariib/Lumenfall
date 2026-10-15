@@ -13,16 +13,16 @@ compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 Historical D60d/180d receipts are in README; all8 at21-22d, MY44d/ULT48d,
 full roster114.67d. Focused policy all8 at18.67d: F refinement applied only in isolation.
 Product4b052487 has measured F gates/exact cycle engine; Lab UI67e retained.
-Windows tooling/Linux CI, whole UI and native/device acceptance remain OPEN.
+Full browser220/190 PASS; Linux CI/Guidance baseline/native acceptance OPEN.
 
 Preserve fe14b2d timed Lab boosts/60s Motes and67e7d3e idle Lab UI.
 Reconciled labels with wide arithmetic retained. Running campaigns stay frozen.
-Final UI/CI acceptance OPEN; paid value, saves and Support/Formation protected.
+Human/CI acceptance OPEN; paid value, saves and Support/Formation protected.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
 User strict HP retained: current warm/cold953, storage29, V8 143,14 controls PASS.
 Exact window selection fixes12h overrun; exact saved basis retains decimal bits.
 Prior engine12h2193/cold-split471 PASS. Fresh D regular32d/all recruits22.33d;
-two-visits13d partial. D full217/3 failed attempts; targeted reruns PASS. F full browser running.
+two-visits13d partial. D full217/3 failed attempts; targeted reruns PASS. F full220/190 PASS.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
 No shared/main/remote/APK/archive. Next: mature campaigns and final CI; F60d milestones/mobile493 PASS.
