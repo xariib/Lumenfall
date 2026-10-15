@@ -1,5 +1,24 @@
 # Endless progression — work in progress
 
+Newest [native-credit checkpoint](experiments/connected-native-receipts.json):
+frozen1ad7e208 retains exact per-credit native rounding inside certified binades,
+stops before precision changes, and replays short Lumen prefixes from the actual
+wallet.54 connected Native-wallet checks reduce57827 literal iterations to762/969;
+native component24 also passes actualV8. Current core235/parity305/wide67,
+integrated actualV8 59 and10 causal controls PASS. Mixed half-ULP parity still
+falls back; add a weighted two-state fold over certified pity words before calling
+this general. Source5a365d3a has136 boundary/24 persistence PASS.
+Unchanged clock-unit rescaling is skipped exactly: latest60s workload3.84s with
+identical full endpoint and summary. No far-deadline approximation was retained.
+The old997f70da8h workload completed in45min with exact main counters/Prisms,
+paid work and one Lab completion; Mote payout detail/split acceptance remain open.
+Its runtime is unacceptable. Current resumable8h reward-diagnostic run is active.
+Old low policy stopped at earned day3; only verified own processes were stopped.
+A day4 prefix probe captured the first offline input and10s completes in25ms;
+the heavy cost is later in that day. Native phase840e3011 continues from the
+same earned3d on sourceb3bc80ad with identical D tables/player choices. It remains
+running. No broad timing or campaign completion is inferred from the prefix.
+
 Current continuation: [horizon receipts](experiments/connected-horizon-receipts.json)
 freeze9f87f433 with136 boundaries,24 persistence,9 causal controls,235 core,
 305 parity and actualV8 integrated59 PASS. Both due Auto-Tap and Auto-Empower

@@ -1,0 +1,153 @@
+{
+  "status": "PARTIAL_EXPERIMENT_NOT_PRODUCT",
+  "sourceArtifact": "connected-native-1ad7e208.html.gz",
+  "sourceSha256": "1ad7e208795dbb1b1c664d9705a3ca66af65527efda8c5c57193e82c9cc268c6",
+  "receipts": [
+    {
+      "file": "connected-native-0.json.gz",
+      "input": "native-credit-prefix-verified.json",
+      "sha256": "6595a9f8638551a6d3cfac5fafc9a2e040bda077a4ef762d699bed26d0920ad1",
+      "status": "PASS",
+      "checks": 24
+    },
+    {
+      "file": "connected-native-1.json.gz",
+      "input": "native-credit-prefix-v8-verified.json",
+      "sha256": "6595a9f8638551a6d3cfac5fafc9a2e040bda077a4ef762d699bed26d0920ad1",
+      "status": "PASS",
+      "checks": 24
+    },
+    {
+      "file": "connected-native-2.json.gz",
+      "input": "endless-cycle-native-wallets-first.json",
+      "sha256": "8e59aa93199e30b714a45e6046c06ef9d6f0174d1c9450faaae631e13bd12078",
+      "status": "PASS",
+      "checks": 54,
+      "source": "5a365d3a23b55e32082fd1110571aa0e8ca7a922b9dd36b8a3ad23dddc262e50"
+    },
+    {
+      "file": "connected-native-3.json.gz",
+      "input": "endless-cycle-native-wallet-control.json",
+      "sha256": "c9a80cc0d89d41019e3c4bd7ad1d6dd09a8a4a62cf9b14bd7345cf7073b84682",
+      "status": "FAIL",
+      "source": "5af2bdc5d3ac9e2fd7ebe0ccd001d230b710af13da4f99d7e4036e26ad655172"
+    },
+    {
+      "file": "connected-native-4.json.gz",
+      "input": "endless-cycle-native-prefix-batch.json",
+      "sha256": "ab433b25786074b3ae9372daf425cf9ed63d1e6d8fdaf58bfff5526d2c939d81",
+      "status": "PASS",
+      "checks": 94,
+      "source": "457b4c297d2f15119a955a3b3b2a9233ecd60b7b849cae7884c1e143afcc26db"
+    },
+    {
+      "file": "connected-native-5.json.gz",
+      "input": "endless-cycle-native-boundaries.json",
+      "sha256": "f2f801c641a9fa1060c2bf3567623a882480ca18a81fce727b5f4629a2a8f555",
+      "status": "PASS",
+      "checks": 136,
+      "source": "5a365d3a23b55e32082fd1110571aa0e8ca7a922b9dd36b8a3ad23dddc262e50"
+    },
+    {
+      "file": "connected-native-6.json.gz",
+      "input": "endless-cycle-native-persistence.json",
+      "sha256": "7fff3935682e7593884861a5079be0e42399a9b54e8841747146f2c3950e317a",
+      "status": "PASS",
+      "checks": 24,
+      "source": "5a365d3a23b55e32082fd1110571aa0e8ca7a922b9dd36b8a3ad23dddc262e50"
+    },
+    {
+      "file": "connected-native-7.json.gz",
+      "input": "endless-cycle-small-lumen-verified.json",
+      "sha256": "dcdf67257eb2c639c0ba0ae3aaeacfb6a3ef12d6e3e780d65a0465e2ba4a5381",
+      "status": "PASS",
+      "checks": 183
+    },
+    {
+      "file": "connected-native-8.json.gz",
+      "input": "endless-native-identity-core.json",
+      "sha256": "6a6b673404f73f0c81076f85cc26c3ec7ac4f2bbe32fae0fa461933a58b88e3a",
+      "status": "PASS",
+      "checks": 235,
+      "source": "1ad7e208795dbb1b1c664d9705a3ca66af65527efda8c5c57193e82c9cc268c6"
+    },
+    {
+      "file": "connected-native-9.json.gz",
+      "input": "endless-native-identity-parity.json",
+      "sha256": "a150690488929c59fb10319dbf610b36942c87a5ac1dd0b3dad8e50a7d7a4d31",
+      "status": "PASS",
+      "checks": 305,
+      "source": "1ad7e208795dbb1b1c664d9705a3ca66af65527efda8c5c57193e82c9cc268c6"
+    },
+    {
+      "file": "connected-native-10.json.gz",
+      "input": "endless-native-identity-wide.json",
+      "sha256": "b2fd33e63c8fc496387a6cdf0c426bd9c4a499a4e30c55897981034f6c3521d9",
+      "status": "PASS",
+      "checks": 67,
+      "source": "1ad7e208795dbb1b1c664d9705a3ca66af65527efda8c5c57193e82c9cc268c6"
+    },
+    {
+      "file": "connected-native-11.json.gz",
+      "input": "endless-native-identity-v8.json",
+      "sha256": "064646befe59c8a5b60b9acb8be848e405b1f03ae25a2d7165108de02cc80ee8",
+      "status": "PASS",
+      "checks": 59,
+      "source": "1ad7e208795dbb1b1c664d9705a3ca66af65527efda8c5c57193e82c9cc268c6"
+    },
+    {
+      "file": "connected-native-12.json.gz",
+      "input": "endless-cycle-controls-native-identity/summary.json",
+      "sha256": "fcb5bf627b6665bc7e0ba500b958b8d8b452df4b3d8c6933b0231200664b9fe7",
+      "status": "PASS",
+      "controls": 10
+    },
+    {
+      "file": "connected-native-13.json.gz",
+      "input": "endless-cycle-window-identity.json",
+      "sha256": "a3c5249b85ef52c8236f8deee810c416e47f4ed856289f63fe40c56db826a6c1",
+      "status": "MEASURED",
+      "source": "1ad7e208795dbb1b1c664d9705a3ca66af65527efda8c5c57193e82c9cc268c6"
+    },
+    {
+      "file": "connected-native-14.json.gz",
+      "input": "endless-cycle-window-eight-hours.json",
+      "sha256": "3b06b7034dc1bc5ec992981826c88dedd13890f621d4530f9118cba64d3c979c",
+      "status": "MEASURED",
+      "source": "997f70daf3c636576d57666ba6cee546ac91e975c11492302f838735e1d40700"
+    },
+    {
+      "file": "connected-native-15.json.gz",
+      "input": "low-rift-first-offline.json",
+      "sha256": "5cd88c7dbe3ac89a104941f48c2f2a791edea6882209d96185fc32ac247afac4",
+      "status": "OBSERVATION_NOT_CAMPAIGN",
+      "source": "f98b93475dc5a7a3a7b0dd17b981d818b94c38cb5f3242011cf3a40fc6dc782a"
+    },
+    {
+      "file": "connected-native-16.json.gz",
+      "input": "low-rift-ten-seconds-current.json",
+      "sha256": "b2671ec2254a0f8a433475740262380331f217acb61f2875426f1b0373a46dee",
+      "status": "MEASURED_PREFIX_ONLY"
+    }
+  ],
+  "oldOvernight": {
+    "source": "997f70daf3c636576d57666ba6cee546ac91e975c11492302f838735e1d40700",
+    "seconds": 28800,
+    "wallMs": 2699645.6075,
+    "status": "COMPLETED_WORKLOAD_NOT_ACCEPTED",
+    "verified": "Exact lifetime/summary Ascend, kill, Prism and Sigil accounting. All projects advance28800s; one Guardian Lab completes. No speed renewal or purchase.",
+    "open": "Mote payout detail and full chronological split acceptance pending.45min runtime is unacceptable."
+  },
+  "performance": {
+    "seconds": 60,
+    "wallMs": 3841.181,
+    "unchanged": "Every saved field and summary matches the prior literal-clock workload; no event, paid-work or rounding shortcut."
+  },
+  "open": [
+    "Mixed half-ULP parity still falls back; implement weighted2-state fold over the certified pity words",
+    "Early low-Rift full-day probe remains slow and must be profiled across all its windows, including in-run automation",
+    "Current resumable8h run with reward diagnostics",
+    "Fresh/final-source campaign and final numeric calibration",
+    "Whole CI/UI/native acceptance and remote destination"
+  ]
+}

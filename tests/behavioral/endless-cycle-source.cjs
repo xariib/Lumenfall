@@ -12,6 +12,7 @@ module.exports=function(source){
   'var cycleLatticeClock='+lib('ascend-cycle-lattice-clock')+';',
   'var cycleNativePhase='+lib('ascend-native-phase')+';',
   'var cycleEconomyBound='+lib('ascend-cycle-economy-bound')+';',
+  'var cycleNativeCredit='+lib('native-credit-prefix')+';',
   'var cycleNativeThreshold=('+lib('native-event-threshold')+')(Amount);',
   'var cycleRecastThreshold=cycleNativeThreshold.midpoint(SIM_EPS,cycleNativeThreshold.nextUp(SIM_EPS));',
   'var cycleRecordAscends=('+lib('ascend-cycle-receipts')+')(Amount);',

@@ -5,7 +5,7 @@
 // a large epoch timestamp. The normal scheduler is not changed by this module.
 module.exports=function(A,startMs,budgetSec,options){
   var powers2={0:1},powers5={0:1},nativeParts=Object.create(null),nativeKeys=[];
-  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
+  function product(a,b){if(b===1)return A.normalize(a);a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
   function power(base,n,cache){if(!Number.isInteger(n)||n<0)throw new RangeError('Invalid clock exponent');if(cache[n]!==undefined)return cache[n];var value=1,factor=base,left=n;while(left){if(left%2)value=product(value,factor);left=Math.floor(left/2);if(left)factor=product(factor,factor);}cache[n]=value;return value;}
   function pow2(n){return power(2,n,powers2);}
   function dyad(n){
@@ -75,7 +75,7 @@ module.exports=function(A,startMs,budgetSec,options){
     function difference(deadline,early){var current=absolute(),common=Math.min(current.e,deadline.e,early?early.e:current.e);return {n:A.exactSub(A.exactSub(scaled(deadline,common),scaled(current,common)),early?scaled(early,common):0),e:common};}
     function add(d){
       if(!A.integer(d.n)||A.lt(d.n,0)||!Number.isInteger(d.e))throw new RangeError('Invalid binary duration');
-      var common=Math.min(unit,d.e),scale=pow2(unit-common),nextOrigin=product(origin,scale),nextTarget=product(target,scale),nextElapsed=A.exactAdd(product(elapsed,scale),scaled(d,common));
+      var common=Math.min(unit,d.e),same=common===unit,scale=pow2(unit-common),nextOrigin=same?origin:product(origin,scale),nextTarget=same?target:product(target,scale),nextElapsed=A.exactAdd(same?elapsed:product(elapsed,scale),scaled(d,common));
       if(A.gt(nextElapsed,nextTarget))throw new RangeError('Clock step exceeds its window');
       unit=common;origin=nextOrigin;target=nextTarget;elapsed=nextElapsed;
       nowCache=remainingCache=elapsedCache=undefined;untilCache=Object.create(null);

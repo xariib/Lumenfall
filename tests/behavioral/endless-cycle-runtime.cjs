@@ -11,9 +11,6 @@ module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDea
   function ceil(v){return Amount.round(v,'ceil');}
   function nativeProgram(recipe){return recipe.intervals.map(function(n){return n*1000;}).concat([null]);}
   function formulate(records){
-    // Native fractional wallets/rewards need their own repeated-addition
-    // certificate. Preserve their literal owner until that path is proved.
-    if(['shards','prisms','motes','sigils'].some(function(key){return !Amount.wide(state[key])&&!Number.isInteger(state[key]);}))return null;
     var killPath=records[0].ops.filter(function(op){return op.kind==='kill';}),count=autoAscendClearedTarget()-state.depth+1;
     if(killPath.length!==count||killPath.some(function(op,i){return op.depth!==state.depth+i;}))return null;
     var pattern=killPath.map(function(op){return op.nextChance;}).concat([records[0].ops[records[0].ops.length-1].resetChance]);
@@ -87,12 +84,21 @@ module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDea
   }
   function* prepare(clock){
     boundary();var key=eligible()&&fullReset()?signature():null;if(!plan&&key)plan=endlessCombatCache.get(key)||null;
-    if(!clock||!plan||!eligible()||!fullReset()||key!==plan.key||Amount.gt(state.lumen,plan.cap)||['shards','prisms','motes','sigils'].some(function(id){return !Amount.wide(state[id])&&!Number.isInteger(state[id]);}))return null;
-    if(plan.recipes.some(function(r){return r.fractionLumen&&!Amount.wide(summary.lumenGained)||r.fractionShard&&(!Amount.wide(state.shards)||!Amount.wide(summary.shardGained));}))return null;
+    if(!clock||!plan||!eligible()||!fullReset()||key!==plan.key||Amount.gt(state.lumen,plan.cap))return null;
     var budget=horizon(clock);if(!budget)return null;
     var period=cycleLatticeClock(Amount,plan.records.map(function(r){return r.intervals;}),budget),maximum=period.cycles;
     if(budget.strict&&Amount.cmp(period.remaining.ticks,0)===0)maximum=Amount.max(0,Amount.exactSub(maximum,1));
     var count=cycleEconomyBound(Amount,maximum,plan.maxLumen,shardsAvailable(),plan.maxShard,queuedPrices()).cycles;
+    var creditPlans=[];
+    function creditPlan(object,field,reward){
+      var hasKills=reward==='lumen'||reward==='shards',fixed=plan.recipes.map(function(r){return hasKills?r[reward+'Credits']:[r[reward]||0];});
+      var choices=hasKills?plan.kills.map(function(k){return reward==='lumen'?{normal:k.normalLumen,bright:k.brightLumen}:{normal:k.normal,bright:k.bright};}):[];
+      var certificate=cycleNativeCredit(Amount,object[field],fixed,choices,count);count=Amount.min(count,certificate.cycles);
+      creditPlans.push({object:object,field:field,reward:reward,certificate:certificate,hasKills:hasKills});
+    }
+    ['shards','prisms','motes','sigils'].forEach(function(key){creditPlan(state,key,key);});
+    [['lumenGained','lumen'],['shardGained','shards'],['sigilsGained','sigils'],['motesGained','motes']].forEach(function(pair){creditPlan(summary,pair[0],pair[1]);});
+    if(Amount.lt(count,2))return null;
     var phasePrograms=[];plan.records.forEach(function(r){phasePrograms=phasePrograms.concat(nativeProgram(r));});
     function phaseLimit(value,achieved){
       if(!achieved)return count;
@@ -132,12 +138,11 @@ module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDea
     }
     if(state.achieved.autotap)tap=advancePhase(tap);if(state.achieved.labmaster)empower=advancePhase(empower);
     return {duration:period.durationFor(count),count:count,apply:function(){
-      ['shards','prisms','motes','sigils'].forEach(function(key){state[key]=creditAmount(state[key],gain[key]);});state.lumen=lumen.lumen;
+      creditPlans.forEach(function(p){p.object[p.field]=p.certificate.mode==='native'?p.certificate.finish(p.hasKills?spawns.counts:[],count):creditAmount(p.object[p.field],gain[p.reward]);});state.lumen=lumen.lumen;
       state.totalKills=creditAmount(state.totalKills,gain.kills);state.ascendCount=creditAmount(state.ascendCount,count);
       state.heroResource=clonePersistedValue(last.endHero);state._autoTapAccum=tap;state._autoEmpowerAccum=empower;
       state.luminousAccum=spawns.phase;state.enemyIsLuminous=spawns.flag;ascendRunToken={};
       ['kills','bossKills','luminousKills','ascends'].forEach(function(key){if(Amount.gt(gain[key],0))trackDaily(key,gain[key]);});
-      ['lumen','shard','sigils','motes'].forEach(function(key){var value=key==='shard'?gain.shards:gain[key];summary[key+'Gained']=creditAmount(summary[key+'Gained'],value);});
       ['kills','bossKills','luminousKills'].forEach(function(key){summary[key]=creditAmount(summary[key],gain[key]);});
       summary.fastForwardedKills=creditAmount(summary.fastForwardedKills,gain.kills);
       cycleRecordAscends(summary,plan.recipes[0].prisms,count);cache.logical=target;cache.lastAscend=state.ascendCount;
