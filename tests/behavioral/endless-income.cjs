@@ -33,7 +33,7 @@ const prices={ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:11
 for(const [id,base]of Object.entries(prices))for(const analysis of [0,1,10]){
  const x=app(source),q=x.q,b=q.endless,s=q.fresh();
  s.spirits[id]=140;s.heroRarity[id]=5;s.wispModules[id]=20;s.maxDepthEver=200;s.depth=100;s.ascendCount=50;
- s.longStudyLevels.wispascend=process.argv.includes('--prior-ak')?46:84+12*Object.keys(prices).indexOf(id);s.longStudyLevels.ultimateanalysis=analysis;s.research.arcanecal=10;s.sigils='1e400';
+ s.longStudyLevels.wispascend=process.argv.includes('--prior-ak')?46:(process.argv.includes('--focus-f')?92:84)+12*Object.keys(prices).indexOf(id);s.longStudyLevels.ultimateanalysis=analysis;s.research.arcanecal=10;s.sigils='1e400';
  s.activeStudies=[{id:'guardmastery',remainingSec:15,totalDurationSec:20,speedMult:3}];q.set(s);
  const cost=base*(100-2*analysis)/100;
  equal(b.ultimateCost(q.sp(id)),cost,'independent Ultimate price '+id);ok(b.ultimatePlan(q.sp(id)).affordable,'developed Wisp can buy Ultimate '+id);

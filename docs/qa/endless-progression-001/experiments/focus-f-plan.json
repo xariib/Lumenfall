@@ -1,12 +1,12 @@
 {
-  "status": "EXPERIMENT_NOT_APPLIED",
+  "status": "PRIMARY_60D_VALIDATED_OTHER_POLICIES_AND_MATURE_OPEN_NOT_APPLIED",
   "baseSourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
   "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
   "changes": [
     "Mythic base Wisp Lab90→91; all other E values unchanged"
   ],
   "reason": "E focused first Mythic41.6721d is below the retained42–56d audit; Ultimate42.6667d and both two-visit targets already meet it. Do not relax the audit.",
-  "limits": "No fixed calendar gate. Fresh F measurements required before application.",
+  "limits": "F remains a separate candidate. Two fresh primary60d windows pass; four other policy windows, full roster and extended Mastery, final combined CI, GitHub and Android/device acceptance remain open. Current product still source2719.",
   "reproducible": "Current D source2719 + tests/behavioral/endless-balance-focus.cjs with final argument91",
   "campaigns": [
     {
@@ -206,7 +206,11 @@
     "support": 1782,
     "earlyWisps": 2801,
     "swift": 173,
-    "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45"
+    "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+    "core": 235,
+    "requirementBoundaries": 2528,
+    "income": 632726,
+    "causalControls": 21
   },
   "regressionReceipts": [
     {
@@ -224,6 +228,52 @@
     {
       "file": "activation/focus-f-swift.json.gz",
       "rawSha256": "47d805a0042d6975ab8d5fa7cc6a8a2880b0b4b53333f5797d1b62322d52e80b"
+    },
+    {
+      "file": "activation/focus-f-core.json.gz",
+      "rawSha256": "95e0e12fa191e9c65eb23ca135030a45d52a4ca7532756295065287a4db44baa"
+    },
+    {
+      "file": "activation/focus-f-boundaries.json.gz",
+      "rawSha256": "d6aaa846701b546e7dabcfcb6be02e0da1d407e3fd238e1ecadaa1c7c1d01aa2"
+    },
+    {
+      "file": "activation/focus-f-income.json.gz",
+      "rawSha256": "16c0188e512614c130ad58be6e27f4af3a4b501d31c423acc6bdb09d26b26968"
+    },
+    {
+      "file": "activation/focus-f-controls.json.gz",
+      "rawSha256": "1316316e448df5fd4810822be70f552d08e17908bb7cd601ee4c41c00f5e9cc5"
     }
-  ]
+  ],
+  "primaryMilestones": {
+    "focusedThreeVisits": {
+      "days": 60,
+      "allRecruits": 21.333333333333332,
+      "firstMythic": 42.333333333333336,
+      "firstUltimate": 42.666666666666664,
+      "strictAudit": "PASS"
+    },
+    "broaderTwoVisits": {
+      "days": 60,
+      "allRecruits": 23.5,
+      "firstMythic": 51,
+      "firstUltimate": 51.5,
+      "strictAudit": "PASS"
+    }
+  },
+  "extendedCampaigns": [
+    {
+      "prefix": "validation-evidence/focus-f-focused-regular",
+      "targetDays": 180,
+      "fromDay": 60
+    },
+    {
+      "prefix": "validation-evidence/focus-f-aware-regular_two",
+      "targetDays": 180,
+      "fromDay": 60
+    }
+  ],
+  "foregroundPauseFile": "validation-evidence/endless-foreground-qa.pause",
+  "fixtureMode": "F literals are selected explicitly with --focus-f in core, boundary, income and causal-control suites. Existing D default remains until product application; assertions are unchanged."
 }

@@ -35,7 +35,9 @@ try{
  for(const [name,from,to,expected,entry,kind]of specs){
   assert.equal(source.split(from).length,2,'one precise mutation anchor '+name);
   const mutant=source.replace(from,to),file=path.join(dir,name+'.html');fs.writeFileSync(file,mutant);
-  const child=spawnSync(process.execPath,[path.join(__dirname,entry||'endless-progression-core.cjs'),file],{encoding:'utf8',timeout:30000});
+  const entryName=entry||'endless-progression-core.cjs',args=[path.join(__dirname,entryName),file];
+  if(process.argv.includes('--focus-f')&&['endless-progression-core.cjs','endless-income.cjs'].includes(entryName))args.push('--focus-f');
+  const child=spawnSync(process.execPath,args,{encoding:'utf8',timeout:30000});
   assert.equal(child.error,undefined,'control completed normally '+name);assert.notEqual(child.status,0,'control survived '+name);
   assert.match(child.stderr,kind==='runtime'?/Error: Authoritative simulation stalled/:/AssertionError/,'behavioural assertion catches '+name);assert(child.stderr.includes(expected),'causal assertion '+name+': '+child.stderr);
   records.push({name,status:'KILLED',assertion:expected,sourceSha256:crypto.createHash('sha256').update(mutant).digest('hex')});
