@@ -22,8 +22,8 @@ Remeasure balance and rerun core/legacy/mobile/CI after reconciliation.
 Preserve paid work/speed/timers, saves, Support/Formation and exact chronology.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
-User chose strict HP; canonicalA7 warm935/automation112/boundaries136 PASS.
-Cold frame saves still FAIL; persist canonical timer basis next. No relaxed HP.
-12h predecessor2193 receipt/work checks; current canonical overnight RUNNING.
+User chose strict HP;604a warm/cold953, timer storage24, V8 143 and14 controls PASS.
+Exact saved basis and explicit tick invalidation fix cold and empty-tick failures.
+Current12h/fresh D campaigns RUNNING; prior D180d remains separate evidence.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive delivery. Next: persist timer basis for strict cold parity, then D campaigns and gates.
+No shared/main/remote/APK/archive delivery. Next: finish current12h and fresh D campaigns, then UI/CI gates.

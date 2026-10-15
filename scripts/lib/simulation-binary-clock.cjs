@@ -75,6 +75,7 @@ module.exports=function(A,startMs,budgetSec,options){
     function difference(deadline,early){var current=absolute(),common=Math.min(current.e,deadline.e,early?early.e:current.e);return {n:A.exactSub(A.exactSub(scaled(deadline,common),scaled(current,common)),early?scaled(early,common):0),e:common};}
     function deadlineKey(deadline,early){return String(deadline)+'/'+(early&&early.scale===125?String(early.ticks)+'/'+early.unit:String(early||0));}
     function deadlineDifference(deadline,early){var key=deadlineKey(deadline,early);if(!differenceCache[key])differenceCache[key]=difference(millis(deadline),early?duration(early):null);return differenceCache[key];}
+    function pointAfter(point,delay){var d=duration(delay),common=Math.min(point.e,d.e);return {n:A.exactAdd(scaled(point,common),scaled(d,common)),e:common};}
     function add(d){
       if(!A.integer(d.n)||A.lt(d.n,0)||!Number.isInteger(d.e))throw new RangeError('Invalid binary duration');
       var common=Math.min(unit,d.e),same=common===unit,scale=pow2(unit-common),nextOrigin=same?origin:product(origin,scale),nextTarget=same?target:product(target,scale),nextElapsed=A.exactAdd(same?elapsed:product(elapsed,scale),scaled(d,common));
@@ -93,7 +94,9 @@ module.exports=function(A,startMs,budgetSec,options){
       latticeDuration:function(value){var d=seconds(value);return {ticks:d.n,unit:d.e,scale:125};},
       advanceLattice:function(duration){if(duration.scale!==125)throw new RangeError('Invalid clock lattice');add({n:duration.ticks,e:duration.unit});},
       absoluteSnapshot:function(){return absolute();},
-      latticeAfter:function(point,delay){var d=duration(delay),common=Math.min(point.e,d.e),targetPoint={n:A.exactAdd(scaled(point,common),scaled(d,common)),e:common},left=difference(targetPoint);return {ticks:left.n,unit:left.e,scale:125};},
+      pointBefore:function(value){var at=absolute(),d=duration(value),common=Math.min(at.e,d.e);return {n:A.exactSub(scaled(at,common),scaled(d,common)),e:common};},
+      pointAfter:pointAfter,
+      latticeAfter:function(point,delay){var left=difference(pointAfter(point,delay));return {ticks:left.n,unit:left.e,scale:125};},
       compareDuration:function(a,b){var common=Math.min(a.unit,b.unit);return A.cmp(scaled({n:a.ticks,e:a.unit},common),scaled({n:b.ticks,e:b.unit},common));},
       since:function(point){var current=absolute(),common=Math.min(current.e,point.e);return exactSeconds({n:A.exactSub(scaled(current,common),scaled(point,common)),e:common});},
       sinceNumber:function(point){var current=absolute(),common=Math.min(current.e,point.e);return nativeDyad({n:A.exactSub(scaled(current,common),scaled(point,common)),e:common},125);},

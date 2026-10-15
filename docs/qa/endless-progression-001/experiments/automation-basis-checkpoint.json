@@ -1,0 +1,312 @@
+{
+  "status": "IN_PROGRESS_NOT_PRODUCT",
+  "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3",
+  "productSha256": "db1e62af0bb378338eed480b047c7509115ed8f382514ab0d65ccde4eb6a8a8c",
+  "userChoice": "Keep the stricter HP check and change automation arithmetic to make live/offline combat match more closely.",
+  "fixes": [
+    "Persist exact automation basis and rebase it on cold primary/recovery/import.",
+    "Reset basis on actual ticks even when timer stays zero and no purchase occurs.",
+    "Keep Ascend clamp999.999ms; retain valid loaded phase up to1000ms.",
+    "Use exact base2^26 integer words internally while keeping byte-identical public clock API and decimal saved durations."
+  ],
+  "strictHP": "Unchanged1e-9*max(1,abs(remaining HP)); metadata elapsed physical durations use1e-9 seconds across frame policies, separate storage tests require exact bytes.",
+  "results": {
+    "warm": 953,
+    "cold": 953,
+    "timerStorage": 24,
+    "legacyV8_6": 143,
+    "causalControls": 14,
+    "independentClock": 707,
+    "publicAPICompatibility": 1885
+  },
+  "capturedRegression": {
+    "inputSha256": "0c45494ce70667fb8ccf3c75a7a09710dfb55524bcb1b525fe33515efd775b85",
+    "seconds": 28200,
+    "emptyTicks": 28104,
+    "actualEmpowers": 96,
+    "endMode": "push",
+    "note": "Farm explanation was an initial hypothesis. Actual failure is stale deadline after empty automation tick. Removing explicit reset invalidation reproduces original specific failure."
+  },
+  "limitations": [
+    "Current12h and fresh final-source D campaigns running; no acceptance inferred.",
+    "Prior default A8 failed fresh regular day3; A361 regular prefix day6 and A8 regular_two day5 only.",
+    "Product still uses previous tables and engine; D balance not applied.",
+    "No shared/main/GitHub/APK/native acceptance. Self-review only."
+  ],
+  "receipts": [
+    {
+      "file": "endless-limb-automation.json.gz",
+      "rawSha256": "b17d91cf77d72661bb38e81584fbe77c45edf9bc69ff9ff5e72f2e3b9093f535",
+      "status": "PASS",
+      "checks": 112,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-basis-persistence.json.gz",
+      "rawSha256": "21f31b14913f7b6ea8718790d8a81a98350df2bf5799bf30f794a79e75c71c65",
+      "status": "PASS",
+      "checks": 24,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-batch.json.gz",
+      "rawSha256": "1c6fa8b84d442a733194194dcb99dde723840f2fc1bd40cc6dff8612ee5afdc5",
+      "status": "PASS",
+      "checks": 94,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-boundaries.json.gz",
+      "rawSha256": "474835c741ef16a879e45edd61f68caf82778ee4a37f60b3db45ff9d6a0806a8",
+      "status": "PASS",
+      "checks": 136,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-cold.json.gz",
+      "rawSha256": "694e6875077ead64216b0dd029e5dddbeeb1003055b2494803f051eabbb29641",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-core.json.gz",
+      "rawSha256": "8668729a2dcf436da041fb425cbfe6495c26c29d1a250efa86c15f87850f49ea",
+      "status": "PASS",
+      "checks": 235,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-native.json.gz",
+      "rawSha256": "36d3e0839a28d416ba15f9f4df3f5a7a2febf4b33403869f7f39036301dec854",
+      "status": "PASS",
+      "checks": 108,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-ownership.json.gz",
+      "rawSha256": "19e048ebd1a08df95b3b5f105bd22a3cbc9681a34def17ef0d24172ebfa3c8ed",
+      "status": "PASS",
+      "checks": 24,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-parity.json.gz",
+      "rawSha256": "2c715e23d46172804dfa2fca38b1f230a66b5bb5bf0e9b58147db99ecb75cfe1",
+      "status": "PASS",
+      "checks": 305,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-resource.json.gz",
+      "rawSha256": "ccab4debba4bc9f4455865641ee366c920cc834ff37ca5e0664ace3ea498928f",
+      "status": "PASS",
+      "checks": 87
+    },
+    {
+      "file": "endless-limb-transitions.json.gz",
+      "rawSha256": "213fc2880860daabd2316a4776878c41e7dde2d67fb918137784bffbda1c472f",
+      "status": "PASS",
+      "checks": 3,
+      "sourceSha256": "c63a79141f06a22493b4b4d18f25b7590ae4fee9b71e350f4be38cb9b14cd9f8"
+    },
+    {
+      "file": "endless-limb-v8.json.gz",
+      "rawSha256": "9e9895bac0f09e2662743e92182da6f69dfab2a13d0eaf5e855740f46d3c63b5",
+      "status": "PASS",
+      "checks": 143,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-warm.json.gz",
+      "rawSha256": "a25fab6ddda935e69c73d93c50727803e67d946f36938f5126e3fdaec08e9210",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-wide.json.gz",
+      "rawSha256": "731d9bd778fd172f0f1c5cf95a8dc730fbee432935e0feff28949bda28567f0d",
+      "status": "PASS",
+      "checks": 67,
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-compatibility.json.gz",
+      "rawSha256": "47236a3a3527df97349d9796e9c90cff1e24ca3bdf229a3db4ab5a375b51f838",
+      "status": "PASS",
+      "checks": 1885
+    },
+    {
+      "file": "endless-limb-component-fourth.json.gz",
+      "rawSha256": "08474dd8905aa8e004d21ff9b21e82f96764e2c1e6a0f2765f13d41924f90981",
+      "status": "PASS",
+      "checks": 707
+    },
+    {
+      "file": "controls-summary.json.gz",
+      "rawSha256": "8ae7a31c0c0713327839853fc59f75cc320344cce1002c6168a313e6acef21b1",
+      "status": "PASS"
+    },
+    {
+      "file": "control-automation.json.gz",
+      "rawSha256": "302eb8a4734fcfc651326c0c5e8bd9030632679bd66545ffe3de4ac98d900389",
+      "status": "FAIL",
+      "sourceSha256": "a429045bbeea469fc79982cbdd4cbcdf3444d592422816f2976b921f8f6fca7d"
+    },
+    {
+      "file": "control-buff.json.gz",
+      "rawSha256": "624b0cf5ba9af99a9b03c87d841e95dab57b57720f7a9bf9e4d4d4e6ee172ab4",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "c3683d2f24be311036a9c726a59e537efff7e5fa0b83f7e86bc5da5360925a9d"
+    },
+    {
+      "file": "control-economy.json.gz",
+      "rawSha256": "16c0429798acb8a22b02c50b745593a6b737fb4d1d81d55967055b7e77e1d5ad",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "42901bb7d299525d6d2f26932946eec2109e0dbba4736bfc6ef6c6fe062688a3"
+    },
+    {
+      "file": "control-frameClock.json.gz",
+      "rawSha256": "f88f316af4bc453ca6a4fbf1e32b10c3aa85697073707de34ed231ca42bf6d8e",
+      "status": "FAIL",
+      "sourceSha256": "2876381e83cc9073fc2de7e8d9796953c9c2d69f88b5f680fd589bae1302b49c"
+    },
+    {
+      "file": "control-frameOwner.json.gz",
+      "rawSha256": "daeeb98145ec015d5e3f9bcc4c100722bb964b94390d50ede7ae11e0009627ed",
+      "status": "FAIL",
+      "sourceSha256": "8c6981a6ec5bdf48c4eb5c354bf4acd74c3179410769c395b89245f044e1eb29"
+    },
+    {
+      "file": "control-lab.json.gz",
+      "rawSha256": "ae4043797b53f2c9687900d707607404c75a6e6c1b3b77a97602214539717867",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "4d6d04e5e5b51f6e3befe448bee1e026e6ead7d89a0b4edfb817707f3548158f"
+    },
+    {
+      "file": "control-lumen.json.gz",
+      "rawSha256": "1ee9ddf5133ff41e05be939d48d962568ff758148f1ab68ac2e237a2c061fa36",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "c898249eb6d80b2448c087b039e7de7c5bf33cc0ad26465a7b636ab929181bf1"
+    },
+    {
+      "file": "control-mote.json.gz",
+      "rawSha256": "fa31cb7d303993c8980b6712ceb23d139f36ba96a46e8effcabf62b288405c67",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "bd2bfca8cdd375ff6f20df3283fe92e67078a3c1a59eaf7bf1c46a2736e8c5ed"
+    },
+    {
+      "file": "control-nativeCredit.json.gz",
+      "rawSha256": "3629ec4bea5d9a7c3d7b0c7192f9adbfb41892fbc27d60b88e435fc986fa5a3b",
+      "status": "FAIL",
+      "sourceSha256": "bb466e74c1aa79194b83c81cacaba9564ec48cb31c26a6d5d3974951ea228858"
+    },
+    {
+      "file": "control-nativeParity.json.gz",
+      "rawSha256": "2bf33ed2af17438a1acd7035533344c00373009606ab8b5fb625e7749b458776",
+      "status": "FAIL",
+      "sourceSha256": "4144270af8c7825bdd8b0a917e2cd8b933e07ed07a6fc7e43402e9189ae049ac"
+    },
+    {
+      "file": "control-phase.json.gz",
+      "rawSha256": "14145401e18c231ae596839b78fe7869cb7bda56b73d30ed3d124a495394670b",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "e5ae64beca2526d04e9212f0da47ea221f18847eee99bd17cf2a35250bbb6cfb"
+    },
+    {
+      "file": "control-recast.json.gz",
+      "rawSha256": "ef7b597f61e9dbd84343d22a0ad0f3f1c880d384de67ce2560c1a1a918ab0cb2",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "aa09f256f5b144412d18dd21fa85068ebd682c89395806bb815b7fbe127fa738"
+    },
+    {
+      "file": "control-receipt.json.gz",
+      "rawSha256": "6639263b20af7c8845df9645655261a1af639ea8c9c386b5867a67307b0f787e",
+      "status": "FAIL",
+      "checks": 10,
+      "sourceSha256": "c80aeb8ef8acebd8e24f8f36211633cd777f3ae4917c3b30615c484d1be73035"
+    },
+    {
+      "file": "control-resourceReplay.json.gz",
+      "rawSha256": "7e808b98c5d9d52ede5af7419105eb837e504fe4403dbcd6ff5517ab9b09dede",
+      "status": "FAIL",
+      "sourceSha256": "aad33a42580b09b3c8503879cf931cf99ef854252931bfed101fde3255a1f514"
+    },
+    {
+      "file": "endless-canonical-persisted-current.html.gz",
+      "rawSha256": "a8e9913407f4452751507eefb764d80893260ba74cf75b063c38f1e87d0c0d90"
+    },
+    {
+      "file": "endless-canonical-resets.html.gz",
+      "rawSha256": "a361599c85e4dc885ede77ff78fcc750d9834c38697f4bec1d990bd4ded86962"
+    },
+    {
+      "file": "endless-limb-current.html.gz",
+      "rawSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "endless-limb-d.html.gz",
+      "rawSha256": "5e47864cffe68eca95186f7bbd3b52b38d88e5c2b5a2c78f7658b4767c6b6d13"
+    },
+    {
+      "file": "endless-limb-d.json.gz",
+      "rawSha256": "229b4588a4c713141a4a7ae65d73a7ae1987093f7fc57e0da9ee3c53fa97e51d",
+      "status": "EXPERIMENT",
+      "sourceSha256": "5e47864cffe68eca95186f7bbd3b52b38d88e5c2b5a2c78f7658b4767c6b6d13"
+    },
+    {
+      "file": "endless-clock-old-developing.json.gz",
+      "rawSha256": "515a6d35623e11e42c95d680bee01b2c5050338e9d93ed17a6bb617b9a09e62b",
+      "status": "MEASURED_WINDOW",
+      "sourceSha256": "b838293b01fa0a89b0acfa7bef998ffcf09264b217db24a3f63fb6c61e60fbd2"
+    },
+    {
+      "file": "endless-clock-limb-developing.json.gz",
+      "rawSha256": "a1fb8d97fabef0e4e772dcc88528cbe2b471342a8c4eb6a944fefae26b82e412",
+      "status": "MEASURED_WINDOW",
+      "sourceSha256": "5e47864cffe68eca95186f7bbd3b52b38d88e5c2b5a2c78f7658b4767c6b6d13"
+    },
+    {
+      "file": "endless-clock-old-sixty.json.gz",
+      "rawSha256": "11119703139dfe9262bf9300fe66befd7e34b5a87ec8df08aa80556847ec6c15",
+      "status": "MEASURED",
+      "sourceSha256": "a361599c85e4dc885ede77ff78fcc750d9834c38697f4bec1d990bd4ded86962"
+    },
+    {
+      "file": "endless-clock-limb-sixty.json.gz",
+      "rawSha256": "68df12242ea680f3d618e2db992e807cfc2b7c2acc64366ea3151f481ae00d4c",
+      "status": "MEASURED",
+      "sourceSha256": "604a652c59708b24245db6407106a2dd8d049113b355a3a9bfaddd6ffd3912d3"
+    },
+    {
+      "file": "canonical-farm-transition-input.json.gz",
+      "rawSha256": "0c45494ce70667fb8ccf3c75a7a09710dfb55524bcb1b525fe33515efd775b85",
+      "status": "OBSERVED_INPUT_NOT_CAMPAIGN",
+      "sourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9"
+    },
+    {
+      "file": "basis-d-regular-snapshot.json.failure.json.gz",
+      "rawSha256": "88c38c8125273fd23baa06c95cb006feaf387ec1e7c3c2e9f2bffbfedb861d46",
+      "status": "FAIL",
+      "sourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9"
+    },
+    {
+      "file": "basis-d-regular_two-snapshot.json.checkpoint.json.gz",
+      "rawSha256": "b86b7eef6aa2f8fa0e7d1a1bc4190fea2593085c79d5bca9603310028c0d0606",
+      "sourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9"
+    },
+    {
+      "file": "reset-d-regular-snapshot.json.checkpoint.json.gz",
+      "rawSha256": "3a7a7f747743ac0bb95166354aa47a4c4631ecaa20e3a1d2d3bb5b25034f6cb5",
+      "sourceSha256": "b838293b01fa0a89b0acfa7bef998ffcf09264b217db24a3f63fb6c61e60fbd2"
+    }
+  ]
+}

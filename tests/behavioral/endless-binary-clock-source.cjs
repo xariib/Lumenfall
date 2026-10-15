@@ -1,7 +1,7 @@
 'use strict';
 // Experimental complete-game builder. Produces a separate candidate and keeps
 // index.html/frozen campaigns unchanged while the engine connection is proved.
-const fs=require('node:fs'),assert=require('node:assert/strict'),create=require('../../scripts/lib/simulation-binary-clock.cjs');
+const fs=require('node:fs'),assert=require('node:assert/strict'),create=require('../../scripts/lib/simulation-limb-clock.cjs');
 module.exports=function(source){
  function edit(a,b,n=1){assert.equal(source.split(a).length,n+1,a);source=source.split(a).join(b);}
  edit('var studyClockMemo={state:null,endMs:null,anchors:{}};','var createBinarySimulationClock='+create.toString()+';\nvar studyClockMemo={state:null,endMs:null,anchors:{}};');

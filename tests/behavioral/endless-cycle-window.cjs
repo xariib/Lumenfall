@@ -2,7 +2,7 @@
 // Earned-save complete-engine workload. No balance/currency/upgrades are given.
 const fs=require('node:fs'),crypto=require('node:crypto'),assert=require('node:assert/strict'),build=require('./endless-cycle-source.cjs'),{app,CLOCK}=require('./forge-expansion-harness.cjs');
 const seconds=Number(process.argv[2]||1);assert(Number.isFinite(seconds)&&seconds>0&&seconds<=43200);
-let source=build(fs.readFileSync('index.html','utf8'));
+let source=process.argv[3]?fs.readFileSync(process.argv[3],'utf8'):build(fs.readFileSync('index.html','utf8'));
 if(process.env.LUMENFALL_CYCLE_DIAGNOSTICS==='1')source=source.replace("if(document.readyState==='loading'){",`var moteLog=[],dustLog=[],oldPayout=luminousMotePayout,oldAscend=applyAscendMutation;
 luminousMotePayout=function(now,clock){var depth=state.depth,bonus=supportMoteBonus(),base=motesDropFor(depth),reward=oldPayout.apply(this,arguments);if(Amount.gt(reward,0))moteLog.push({now:now,depth:depth,bonus:bonus,base:base,reward:reward});return reward;};
 applyAscendMutation=function(){var before=state.motes,result=oldAscend.apply(this,arguments),dust=Amount.exactSub(state.motes,before);if(Amount.cmp(dust,50)!==0)dustLog.push(dust);return result;};

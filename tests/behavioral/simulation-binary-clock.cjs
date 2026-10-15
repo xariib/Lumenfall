@@ -1,5 +1,5 @@
 'use strict';
-const assert=require('node:assert/strict'),A=require('../../scripts/lib/game-amount.cjs'),create=require('../../scripts/lib/simulation-binary-clock.cjs'),{fraction,integer}=require('./amount-oracle.cjs');
+const assert=require('node:assert/strict'),A=require('../../scripts/lib/game-amount.cjs'),create=require(process.argv[2]||'../../scripts/lib/simulation-binary-clock.cjs'),{fraction,integer}=require('./amount-oracle.cjs');
 let checks=0;function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}
 function dyad(n){if(!n)return {n:0n,e:0};const b=Buffer.alloc(8);b.writeDoubleBE(n);const bits=b.readBigUInt64BE(),raw=Number(bits>>52n&2047n);return {n:(bits&((1n<<52n)-1n))+(raw?1n<<52n:0n),e:raw?raw-1075:-1074};}
 function rationalDyad(n,e){return e>=0?{n:n<<BigInt(e),d:1n}:{n,d:1n<<BigInt(-e)};}
@@ -42,6 +42,10 @@ for(const start of [0,2000000000000,Number.MAX_SAFE_INTEGER]){
  assert.throws(()=>c.advance('1e-400'),/lattice/);eq(c.snapshot(),before,'unrelated nonbinary fraction is rejected atomically');c.advance(c.remaining());eq(c.remaining(),0,'exact endpoint token is accepted without rounding');
 }
 for(const args of [[-1,1],[NaN,1],[0,-1],[0,Infinity]]){assert.throws(()=>create(A,...args),RangeError);checks++;}
+for(const epoch of [0,2000000000000])for(const dt of [Number.MIN_VALUE,1e-20,.125,.9999999999]){
+ const c=create(A,epoch,1),past=c.pointBefore(dt),d=dyad(dt);same(c.since(past),rationalDyad(d.n,d.e),'rebased past point retains all elapsed Native bits');
+ const restored=c.pointAfter(past,dt);same(c.since(restored),{n:0n,d:1n},'point translation round-trip is exact even below epoch resolution');
+}
 {
  const c=create(A,0,1),before=c.snapshot();for(const args of [[-1,0],[1,.5],[Infinity,0]]){assert.throws(()=>c.advanceTicks(...args),RangeError);eq(c.snapshot(),before,'rejected exact step is atomic');}
 }

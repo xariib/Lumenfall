@@ -1,13 +1,14 @@
 # Endless progression — work in progress
 
-Newest [canonical automation checkpoint](experiments/canonical-clock-checkpoint.json).
-Human chose stricter HP and revised automation arithmetic. A7 warm935 comparisons
-PASS without relaxed tolerance;112 automation/136 boundary/24 persistence/108 Native
-checks pass. Original arithmetic is caught by the new concrete HP control. Cold
-save/load frames still FAIL; volatile timer anchors need persisted exact basis.
-Current725 load-cap prototype alone does not fix it; no product integration.
-Prior memo12h completes5.8min with2193 reward/work checks; canonical12h is running.
-
+Newest [saved automation basis checkpoint](experiments/automation-basis-checkpoint.json).
+Human chose strict HP. Current604a warm/cold953 each, exact timer storage24,
+core235/parity305/wide67/actual V8.6 143 and14 causal controls PASS. No HP
+relaxation. Saved exact anchors survive primary/recovery/import; explicit tick
+invalidation fixes the captured empty-purchase deadline failure. Exact word-clock
+passes707 independent rational/IEEE and1885 public-API comparisons. Paired earned
+7.833h window is byte-identical to predecessor,8.28s→2.88s locally; no device claim.
+Current12h and fresh D campaigns running. No product integration; tables provisional.
+Older statements below are historical. See checkpoint for raw/source hashes.
 
 Latest [checked-resource checkpoint](experiments/resource-replay-design.json) freezes
 7a2bf385. Exact checked native ability programs now cover Charge Memory transients,
