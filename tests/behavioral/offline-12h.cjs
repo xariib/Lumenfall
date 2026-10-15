@@ -110,7 +110,7 @@ assert.deepEqual(app(study).b.get().activeStudies,study.activeStudies);
 const lab12=consume(study,43200,256,true),lab24=consume(study,86400,31,true);
 assert.deepEqual(withoutEndpoint(lab24.state),withoutEndpoint(lab12.state),'24h has exactly 12h Lab/queue/economy');
 assert.equal(lab24.state.activeStudies[0].remainingSec,3600); assert.equal(lab24.state.longStudyLevels.guardmastery,0);
-assert.equal(lab24.state.studySpeedTargets.guardmastery,3); assert.equal(lab24.state.studyUseMotes.guardmastery,true);
+assert.equal(lab24.state.studySpeedTargets.guardmastery,3); assert.equal(lab24.state.studyUseMotes.guardmastery,false,'retired repeat consent stays OFF; manual speed target is retained');
 assert.equal(lab24.result.studyMotesSpent,0,'no tail speed debit');
 for(const remaining of [43199.999,43200,43200.001]) {
   const s=clone(study); s.studyQueue.guardmastery=false; s.activeStudies[0].remainingSec=remaining;
@@ -119,8 +119,14 @@ for(const remaining of [43199.999,43200,43200.001]) {
 const queueStudy=clone(study); queueStudy.activeStudies[0].remainingSec=3600;
 queueStudy.activeStudies[0].speedMult=3; queueStudy.motes=600;
 const q12=consume(queueStudy,43200,256,true),q24=consume(queueStudy,86400,31,true);
-assert.deepEqual(withoutEndpoint(q24.state),withoutEndpoint(q12.state),'queue and exact paid repeats share cap');
-assert(q24.result.studySpeedPurchases>0 && q24.result.studyMotesSpent>0,'real B2 repeat speed purchases exercised');
+assert.deepEqual(withoutEndpoint(q24.state),withoutEndpoint(q12.state),'paid queued levels share the12h cap');
+assert.equal(q24.result.studySpeedPurchases,0,'retired repeat consent cannot activate a new timed boost');
+assert.equal(q24.result.studyMotesSpent,0,'queued work cannot spend Motes without explicit activation');
+const paidPrefix=consume(queueStudy,1199,256,true),paidBoundary=consume(queueStudy,1200,256,true);
+assert.equal(paidPrefix.state.activeStudies[0].remainingSec,3,'already-paid3x completes the remaining3600 work in1200 seconds');
+assert.equal(paidPrefix.state.activeStudies[0].speedMult,3,'old project speed remains paid until completion');
+assert.equal(paidBoundary.state.longStudyLevels.guardmastery,1,'paid project completes exactly once at its real boundary');
+assert.equal(paidBoundary.state.activeStudies[0].speedMult,1,'next queued level starts at base speed');
 // Reported production device save, live combat/rewards, Auto-Ascend ON/OFF.
 for(const on of [false,true]) {
   const seed=clone(original); seed.autoAscendEnabled=on;
@@ -211,4 +217,4 @@ for(const [name,oldText,newText] of [
   assert.equal(app(legacy()).b.get().prisms,132,'restored source passes');
   records.push({negative:name,caught:true});
 }
-console.log(JSON.stringify({status:'pass',scenario:'offline-12h',records},null,2));
+console.log(JSON.stringify({status:'pass',scenario:'offline-12h',sourceSha256:require('node:crypto').createHash('sha256').update(source).digest('hex'),records},null,2));

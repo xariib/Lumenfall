@@ -73,6 +73,8 @@ module.exports=function(source){
  edit('function nextStudyBoostExpiry(nowMs){\n  var next=Infinity;',`function nextStudyBoostExpiry(nowMs,clock){
   var next=Infinity;
   if(clock&&clock.binary){Object.keys(state.studyBoosts).forEach(function(id){var b=state.studyBoosts[id];[b.startedAtMs,b.expiresAtMs].forEach(function(at){var left=clock.binary.until(at);if(Amount.gt(left,0))next=Amount.min(next,left);});});return next;}`);
+ edit('    next = Amount.max(0,Amount.min(remaining,next));',`    next=binaryClock?binaryClock.minimumRemaining([abilityStep,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,state.riftMode==='push'?simulationPassiveKillSeconds(dps):Infinity]):Amount.max(0,Amount.min(remaining,next));`);
+ edit('  var binaryClock=null,binaryStudyClock=null;','  var binaryClock=null,binaryStudyClock=null;\n  function physicalDurationOrder(a,b){\n    if(typeof a===\'number\'&&typeof b===\'number\')return a===b?0:a<b?-1:1;\n    if(!binaryClock||!Amount.valid(a)||!Amount.valid(b)||Amount.lt(a,0)||Amount.lt(b,0))return Amount.cmp(a,b);\n    return binaryClock.compareDuration(binaryClock.latticeDuration(a),binaryClock.latticeDuration(b));\n  }\n');
  edit('function simulationNextStudySeconds(nowMs){','function simulationNextStudySeconds(nowMs,clock){');
  edit('var next = nextStudyBoostExpiry(nowMs);','var next = nextStudyBoostExpiry(nowMs,clock);');
  edit('var speed=studyEffectiveSpeed(active,nowMs);','var speed=studyEffectiveSpeed(active,nowMs,clock);');

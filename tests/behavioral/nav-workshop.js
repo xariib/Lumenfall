@@ -44,7 +44,7 @@ window.runNavWorkshopQa = function(b,ctx,assert){
     ok(q('#nav-workshop').getAttribute('aria-label').includes('Lab — '+free+' Study slot'),'Workshop name describes Lab capacity');
     ok(document.activeElement===q('#nav-research'),'badge refresh retains subtab focus');same(snapshot(),prior,'badge refresh leaves state/saves/events unchanged');
   });
-  var poor=b.freshStateSnapshot();poor.maxDepthEver=250;poor.ascendCount=50;poor.longStudyLevels.wispascend=50;poor.research.arcanecal=10;poor.questDay=ctx.currentDay();
+  var poor=b.freshStateSnapshot();poor.maxDepthEver=250;poor.ascendCount=50;poor.longStudyLevels.wispascend=168;poor.research.arcanecal=10;poor.questDay=ctx.currentDay();
   ['ember','tide','stone'].forEach(function(id){poor.spirits[id]=40;poor.heroRarity[id]=5;poor.wispModules[id]=15;});
   poor.activeStudies=[{id:'guardmastery',remainingSec:90,totalDurationSec:90,speedMult:1}];
   b.setState(poor);b.renderLayout();

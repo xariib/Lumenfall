@@ -27,7 +27,7 @@ function recordCanonicalAutomation(field,m,clock){
  state.canonicalAutomationClock[field]={base:m.base,elapsed:clock.since(m.start),last:state[field]||0};
 }
 function persistCanonicalAutomation(clock){
- var next={};[['_autoTapAccum','autotap'],['_autoEmpowerAccum','labmaster']].forEach(function(pair){if(state.achieved[pair[1]]){var m=canonicalAutomationAnchor(pair[0],clock);next[pair[0]]={base:m.base,elapsed:clock.since(m.start),last:state[pair[0]]||0};}});state.canonicalAutomationClock=next;
+ var next={};[['_autoTapAccum','autotap'],['_autoEmpowerAccum','labmaster']].forEach(function(pair){if(state.achieved[pair[1]]){var m=canonicalAutomationAnchor(pair[0],clock),elapsed=clock.since(m.start);if(Amount.gt(elapsed,0))next[pair[0]]={base:m.base,elapsed:elapsed,last:state[pair[0]]||0};}});state.canonicalAutomationClock=next;
 }
 function canonicalAutomationNext(field,clock){
  var m=canonicalAutomationAnchor(field,clock),at=clock.absoluteSnapshot();
@@ -66,10 +66,10 @@ function canonicalAutomationAdvance(from,to){
     ['_autoTapAccum','_autoEmpowerAccum'].forEach(function(field){
       var record=source.canonicalAutomationClock[field];if(record===undefined)return;
       if(!isPlainObject(record)||!Number.isFinite(record.base)||record.base<0||record.base>1000||!Number.isFinite(record.last)||record.last<0||record.last>1000||!Amount.valid(record.elapsed)||Amount.lt(record.elapsed,0)||Amount.gt(record.elapsed,2))throw persistenceError('invalid-automation-clock','Automation clock needs recovery');
-      var elapsed=persistedAmount(record.elapsed,0),probe;try{probe=createBinarySimulationClock(Amount,0,elapsed);probe.advance(elapsed);}catch(error){throw persistenceError('invalid-automation-clock','Automation clock needs recovery');}
+      var elapsed=record.elapsed,probe;try{probe=createBinarySimulationClock(Amount,0,elapsed);probe.advance(elapsed);}catch(error){throw persistenceError('invalid-automation-clock','Automation clock needs recovery');}
       // An actual tick/reset may have changed the phase since its last recorded
       // basis. Keep that legitimate phase; start a new basis at its real owner.
-      if(record.last===out[field]){if(record.base+probe.elapsedNumber()*1000!==record.last)throw persistenceError('invalid-automation-clock','Automation clock needs recovery');out.canonicalAutomationClock[field]={base:record.base,elapsed:elapsed,last:record.last};}
+      if(record.last===out[field]){if(record.base+probe.elapsedNumber()*1000!==record.last)throw persistenceError('invalid-automation-clock','Automation clock needs recovery');if(Amount.gt(elapsed,0))out.canonicalAutomationClock[field]={base:record.base,elapsed:elapsed,last:record.last};}
     });
   }`);
  edit('wispMastery:wispMastery, recruitmentEntitlements:recruitmentEntitlements','wispMastery:wispMastery, canonicalAutomationClock:{}, recruitmentEntitlements:recruitmentEntitlements');

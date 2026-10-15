@@ -117,11 +117,25 @@ function app(seed,html=source,seconds=0){
   drain(){let batches=0;while(queue.length){queue.shift().fn();batches++;assert(batches<100000,'bounded number of work batches');}return batches;}};
 }
 function approx(a,b,label){const tolerance=Math.max(1e-6,Math.max(Math.abs(a),Math.abs(b))*1e-12);assert(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=tolerance,`${label}: ${a} vs ${b}, tolerance ${tolerance}`);}
-function compare(a,b,label='state'){
- if(typeof a==='number'&&typeof b==='number'){approx(a,b,label);return;}
+function compare(a,b,label='state',wholeA=a,wholeB=b){
+ // Optional timer history can use different bases on ordinary/exact paths.
+ // Validate each against its authoritative phase; storage/recovery/import
+ // tests separately require every saved bit. Existing fields stay checked.
+ if(label.endsWith('.canonicalAutomationClock')){
+  for(const [basis,state]of [[a,wholeA],[b,wholeB]])for(const field of Object.keys(basis)){
+   assert(['_autoTapAccum','_autoEmpowerAccum'].includes(field),label+' known timer');
+   const r=basis[field],elapsed=Number(r.elapsed);assert.deepEqual(Object.keys(r).sort(),['base','elapsed','last'],label+' basis shape');
+   assert(Number.isFinite(elapsed)&&elapsed>=0&&elapsed<=2,label+' physical elapsed');
+   assert(Number.isFinite(r.base)&&r.base>=0&&r.base<=1000,label+' base');
+   assert.equal(r.base+elapsed*1000,r.last,label+' represented phase');assert.equal(r.last,state[field],label+' current timer owner');
+  }return;
+ }
+ if(typeof a==='number'&&typeof b==='number'){
+  if(label.endsWith('.enemyHp'))assert(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a),Math.abs(b)),label+' strict remaining-HP parity');else approx(a,b,label);return;
+ }
  if(Array.isArray(a)||a&&typeof a==='object'){
   assert.deepEqual(Object.keys(a).sort(),Object.keys(b).sort(),label+' keys');
-  Object.keys(a).forEach(k=>compare(a[k],b[k],label+'.'+k));return;
+  Object.keys(a).forEach(k=>compare(a[k],b[k],label+'.'+k,wholeA,wholeB));return;
  }
  assert.equal(a,b,label);
 }
@@ -204,7 +218,8 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  assert.deepEqual(actual.legacyCometPurchases,legacy,label+' full legacy ownership archived');
  // Exact F21/F20 receipts and credit defaults were verified above before
  // removing those separately checked additive records from this comparison.
- const {studyUseMotes,studySpeedTargets,cometTrial,cometTrialResult,cometTrialMarks,cometCosmetics,legacyCometPurchases,offline12hRefund,feedbackMigration,refundCredits,...existing}=actual;
+ assert.deepEqual(actual.canonicalAutomationClock,{},label+' legacy Native fallback has no exact-clock basis');
+ const {canonicalAutomationClock,studyUseMotes,studySpeedTargets,cometTrial,cometTrialResult,cometTrialMarks,cometCosmetics,legacyCometPurchases,offline12hRefund,feedbackMigration,refundCredits,...existing}=actual;
  // F14 changes only the selected destination during a matching partial rebuild.
  const intent=expected.formationRebuild;
  const selected=intent&&intent.preset&&expected.formationPresets[intent.preset]&&
@@ -312,8 +327,12 @@ const legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFo
 const legacyBondAnchor=legacyBalanceSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
 assert(legacyBondAnchor,'legacy Bond control function');
 assert.equal(legacyBalanceSource.split(legacyBondAnchor[0]).length,2,'one legacy Bond control anchor');
+// The historical counterfactual also uses the original Native clock. The human
+// explicitly approved new automation arithmetic; current-clock whole/split and
+// one-second oracle checks above continue to exercise the real production path.
+assert.equal(legacyBalanceSource.split('activateBinaryClock();').length,3,'two exact-clock activation sites');
 const legacyBondSource=legacyBalanceSource.replace(legacyBondAnchor[0],
- legacyBondAnchor[0]+"\n  if(['kindling','vanguard','quarry','harvest'].indexOf(bondId)!==-1) return false;");
+ legacyBondAnchor[0]+"\n  if(['kindling','vanguard','quarry','harvest'].indexOf(bondId)!==-1) return false;").split('activateBinaryClock();').join('void 0; /* explicitly historical Native clock */');
 assert.notEqual(legacyBondSource,legacyBalanceSource,'legacy Bond control anchor');
 for(const rawSeed of [original,clear20,off]){
  const seed=copy(rawSeed);seed.research.charge=9;seed.researchQueue.charge=false;
@@ -383,4 +402,4 @@ for(const jump of [-7*86400000,7*86400000]){
  compare(shifted.b.get(),reference.b.get(),'monotonic processing with wall-clock jump '+jump);
  records.push({case:'wall-clock jump '+jump,kills:shifted.b.get().totalKills-original.totalKills,lastSeen:shifted.b.get().lastSeen});
 }
-console.log(JSON.stringify({status:'pass',scenario:'offline-catchup-core',wallMs:performance.now()-start,records},null,2));
+console.log(JSON.stringify({status:'pass',scenario:'offline-catchup-core',sourceSha256:require('node:crypto').createHash('sha256').update(source).digest('hex'),wallMs:performance.now()-start,records},null,2));

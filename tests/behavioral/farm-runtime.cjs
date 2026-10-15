@@ -18,6 +18,9 @@ function near(a,b,message){ok(Math.abs(a-b)<1e-7,message+' '+a+' vs '+b);}
 // Independent decimal wallet oracle; large native integers retain their actual
 // IEEE value. Ordinary wallets keep the established native addition policy.
 function walletParts(value){if(typeof value==='number'&&Math.abs(value)>Number.MAX_SAFE_INTEGER)return {d:BigInt(value),e:0};const m=String(value).match(/^(-?)(\d+)(?:\.(\d+))?(?:e([+-]?\d+))?$/);return {d:BigInt(m[1]+m[2]+(m[3]||'')),e:Number(m[4]||0)-(m[3]||'').length};}
+// Independent credit oracle; native safe sums retain their established rounding.
+function oracleCredit(before,gain){if(typeof before==='number'&&typeof gain==='number'&&Number.isFinite(before+gain)&&Math.abs(before+gain)<=Number.MAX_SAFE_INTEGER)return before+gain;const a=walletParts(before),b=walletParts(gain),e=Math.min(a.e,b.e);return String(a.d*10n**BigInt(a.e-e)+b.d*10n**BigInt(b.e-e))+'e'+e;}
+function sameAmount(a,b){if(typeof a!==typeof b)return false;const x=walletParts(a),y=walletParts(b),e=Math.min(x.e,y.e);return x.d*10n**BigInt(x.e-e)===y.d*10n**BigInt(y.e-e);}
 function exactCredit(before,gain,after){if(typeof after==='number')return after===before+gain;const a=walletParts(before),b=walletParts(gain),c=walletParts(after),e=Math.min(a.e,b.e,c.e);return a.d*10n**BigInt(a.e-e)+b.d*10n**BigInt(b.e-e)===c.d*10n**BigInt(c.e-e);}
 function units(x){const v=new DataView(new ArrayBuffer(8));v.setFloat64(0,x);const n=v.getBigUint64(0),e=Number(n>>52n&2047n);return ((n&((1n<<52n)-1n))+(e?1n<<52n:0n))<<BigInt(e?e-1:0);}
 function represented(u){const shift=Math.max(0,u.toString(2).length-53);return Number(u>>BigInt(shift))*2**(shift-1074);}
@@ -41,14 +44,14 @@ function audit(r,strictMinimum=true){
   kills+=k;luminous+=lk;lumen+=6*scale*k;shards+=scale*k;motes+=lk;damage+=D;elapsed+=row.seconds;
  }
  const state=parts.at(-1).state,summary={};
- for(const key of ['kills','luminousKills','lumenGained','shardGained','motesGained','studyMotesSpent','studySpeedPurchases'])summary[key]=parts.reduce((sum,p)=>sum+p.summary[key],0);
+ for(const key of ['kills','luminousKills','lumenGained','shardGained','motesGained','studyMotesSpent','studySpeedPurchases'])summary[key]=parts.reduce((sum,p)=>oracleCredit(sum,p.summary[key]),0);
  const buys=0;motes=Math.min(1,motes);
  ok(summary.kills===kills&&state.totalKills===kills,'aggregate exact kills');
  ok(summary.luminousKills===luminous&&summary.motesGained===motes,'aggregate spawn and Motes');
  const scale=kind==='offline'?.7:1;
- const groupedLumen=r.groups.map(g=>g.reduce((sum,row)=>sum+6*scale*row.kills,0)).reduce((a,b)=>a+b,0);
- const groupedShards=r.groups.map(g=>g.reduce((sum,row)=>sum+scale*row.kills,0)).reduce((a,b)=>a+b,0);
- ok(summary.lumenGained===groupedLumen&&summary.shardGained===groupedShards,'aggregate represented rewards in actual part order');
+ const groupedLumen=r.groups.map(g=>g.reduce((sum,row)=>oracleCredit(sum,6*scale*row.kills),0)).reduce(oracleCredit,0);
+ const groupedShards=r.groups.map(g=>g.reduce((sum,row)=>oracleCredit(sum,scale*row.kills),0)).reduce(oracleCredit,0);
+ ok(sameAmount(summary.lumenGained,groupedLumen)&&sameAmount(summary.shardGained,groupedShards),'aggregate represented rewards in actual part order');
  ok(summary.studySpeedPurchases===buys&&summary.studyMotesSpent===60*buys,'one full price payment');
  ok(state.motes===input.motes+motes-60*buys,'Motes ledger');
  ok(!summary.studySpeedPurchases&&!summary.studyMotesSpent,'legacy consent cannot activate a timed purchase');

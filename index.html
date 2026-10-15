@@ -5141,10 +5141,10 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
     ['_autoTapAccum','_autoEmpowerAccum'].forEach(function(field){
       var record=source.canonicalAutomationClock[field];if(record===undefined)return;
       if(!isPlainObject(record)||!Number.isFinite(record.base)||record.base<0||record.base>1000||!Number.isFinite(record.last)||record.last<0||record.last>1000||!Amount.valid(record.elapsed)||Amount.lt(record.elapsed,0)||Amount.gt(record.elapsed,2))throw persistenceError('invalid-automation-clock','Automation clock needs recovery');
-      var elapsed=persistedAmount(record.elapsed,0),probe;try{probe=createBinarySimulationClock(Amount,0,elapsed);probe.advance(elapsed);}catch(error){throw persistenceError('invalid-automation-clock','Automation clock needs recovery');}
+      var elapsed=record.elapsed,probe;try{probe=createBinarySimulationClock(Amount,0,elapsed);probe.advance(elapsed);}catch(error){throw persistenceError('invalid-automation-clock','Automation clock needs recovery');}
       // An actual tick/reset may have changed the phase since its last recorded
       // basis. Keep that legitimate phase; start a new basis at its real owner.
-      if(record.last===out[field]){if(record.base+probe.elapsedNumber()*1000!==record.last)throw persistenceError('invalid-automation-clock','Automation clock needs recovery');out.canonicalAutomationClock[field]={base:record.base,elapsed:elapsed,last:record.last};}
+      if(record.last===out[field]){if(record.base+probe.elapsedNumber()*1000!==record.last)throw persistenceError('invalid-automation-clock','Automation clock needs recovery');if(Amount.gt(elapsed,0))out.canonicalAutomationClock[field]={base:record.base,elapsed:elapsed,last:record.last};}
     });
   }
 
@@ -10306,7 +10306,7 @@ function recordCanonicalAutomation(field,m,clock){
  state.canonicalAutomationClock[field]={base:m.base,elapsed:clock.since(m.start),last:state[field]||0};
 }
 function persistCanonicalAutomation(clock){
- var next={};[['_autoTapAccum','autotap'],['_autoEmpowerAccum','labmaster']].forEach(function(pair){if(state.achieved[pair[1]]){var m=canonicalAutomationAnchor(pair[0],clock);next[pair[0]]={base:m.base,elapsed:clock.since(m.start),last:state[pair[0]]||0};}});state.canonicalAutomationClock=next;
+ var next={};[['_autoTapAccum','autotap'],['_autoEmpowerAccum','labmaster']].forEach(function(pair){if(state.achieved[pair[1]]){var m=canonicalAutomationAnchor(pair[0],clock),elapsed=clock.since(m.start);if(Amount.gt(elapsed,0))next[pair[0]]={base:m.base,elapsed:elapsed,last:state[pair[0]]||0};}});state.canonicalAutomationClock=next;
 }
 function canonicalAutomationNext(field,clock){
  var m=canonicalAutomationAnchor(field,clock),at=clock.absoluteSnapshot();
@@ -10950,7 +10950,7 @@ var createBinarySimulationClock=function(A,startMs,budgetSec,options){
  function integer(value){if(!A.integer(value))throw new RangeError('Invalid binary coefficient');if(typeof value==='number'&&Number.isSafeInteger(value))return small(value);var normalized=A.normalize(value),text=String(normalized),s=text.charAt(0)==='-'?-1:1;if(s<0)text=text.slice(1);var p=text.split('e'),digits=p[0],e=Number(p[1]||0);if(e<0)throw new RangeError('Noninteger coefficient');digits+='0'.repeat(e);var out=Z;for(var i=0;i<digits.length;i+=7){var chunk=digits.slice(i,i+7);out=add(times(out,Math.pow(10,chunk.length)),small(Number(chunk)));}return out.s?{w:out.w,s:s}:Z;}
  function amount(a){if(!a.s)return 0;var native=0;for(var i=a.w.length-1;i>=0;i--)native=native*B+a.w[i];if(Number.isSafeInteger(native))return a.s*native;var chunks=[0],D=10000000;for(var i=a.w.length-1;i>=0;i--){var carry=a.w[i];for(var j=0;j<chunks.length;j++){var n=chunks[j]*B+carry;carry=Math.floor(n/D);chunks[j]=n-carry*D;}while(carry){var rest=Math.floor(carry/D);chunks.push(carry-rest*D);carry=rest;}}var text=String(chunks.pop());while(chunks.length){var chunk=String(chunks.pop());text+='0'.repeat(7-chunk.length)+chunk;}return A.normalize((a.s<0?'-':'')+text+'e0');}
  function dyad(n){if(!Number.isFinite(n)||n<0)throw new RangeError('Invalid native clock value');if(!n)return {n:Z,e:0};var key=String(n),cached=partsCache[key];if(cached)return cached;var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,n);var hi=v.getUint32(0),raw=(hi>>>20)&2047,c=(hi&1048575)*4294967296+v.getUint32(4)+(raw?4503599627370496:0),e=raw?raw-1075:-1074;while(c%2===0){c/=2;e++;}var d={n:small(c),e:e};partsCache[key]=d;partKeys.push(key);if(partKeys.length>256)delete partsCache[partKeys.shift()];return d;}
- function seconds(value){if(typeof value==='number'){var d=dyad(value);return {n:times(d.n,125),e:d.e};}if(!A.wide(value)||!A.valid(value)||A.lt(value,0))throw new RangeError('Invalid exact clock interval');var p=value.split('e'),coefficient=integer(p[0]+'e0'),e=Number(p[1]);if(!coefficient.s)return {n:Z,e:0};if(e>=-3)return {n:mul(coefficient,pow5(e+3)),e:e};var divided=divmod(coefficient,pow5(-e-3));if(divided.r.s)throw new RangeError('Interval does not lie on the binary clock lattice');return {n:divided.q,e:e};}
+ function seconds(value){if(typeof value==='number'){var d=dyad(value);return {n:times(d.n,125),e:d.e};}if(!A.wide(value)||!A.valid(value)||A.lt(value,0))throw new RangeError('Invalid exact clock interval');var p=value.split('e'),coefficient=integer(p[0]+'e0'),e=Number(p[1]);if(!coefficient.s)return {n:Z,e:0};if(e>=-3)return {n:mul(coefficient,pow5(e+3)),e:e};if(-e-3>bits(coefficient))throw new RangeError('Interval does not lie on the binary clock lattice');var divided=divmod(coefficient,pow5(-e-3));if(divided.r.s)throw new RangeError('Interval does not lie on the binary clock lattice');return {n:divided.q,e:e};}
  function millis(value){var d=dyad(value);return {n:d.n,e:d.e-3};}
  function budget(value,settings){return settings&&settings.budgetMs!==undefined?millis(settings.budgetMs):seconds(value);}
  function duration(value){if(value&&value.scale===125){if(!Number.isInteger(value.unit))throw new RangeError('Invalid lattice exponent');return {n:integer(value.ticks),e:value.unit};}return seconds(value);}
@@ -10983,6 +10983,15 @@ var createBinarySimulationClock=function(A,startMs,budgetSec,options){
    absoluteSnapshot:function(){return publicPoint(absolute());},pointBefore:function(value){var at=absolute(),d=duration(value),common=Math.min(at.e,d.e);return publicPoint({n:sub(scaled(at,common),scaled(d,common)),e:common});},pointAfter:function(p,d){return publicPoint(after(point(p),d));},latticeAfter:function(p,d){return lattice(difference(after(point(p),d)));},
    compareDuration:function(a,b){var x=duration(a),y=duration(b),common=Math.min(x.e,y.e);return cmp(scaled(x,common),scaled(y,common));},since:function(p){return exactSeconds(since(point(p)));},sinceNumber:function(p){return nativeDyad(since(point(p)),125);},
    remaining:function(){if(remainingCache===undefined)remainingCache=exactSeconds({n:sub(target,elapsed),e:unit});return remainingCache;},elapsed:function(){if(elapsedCache===undefined)elapsedCache=exactSeconds({n:elapsed,e:unit});return elapsedCache;},elapsedNumber:function(){return nativeDyad({n:elapsed,e:unit},125);},nowMs:function(){if(nowCache===undefined){var d=absolute();nowCache=nativeDyad({n:times(d.n,8),e:d.e});}return nowCache;},
+   // Exact event selection without serializing/reparsing every clock point.
+   minimumRemaining:function(values){
+    var selected=remainingCache,best={n:sub(target,elapsed),e:unit};
+    if(selected===undefined)selected=remainingCache=exactSeconds(best);
+    for(var i=0;i<values.length;i++){var value=values[i];if(!A.valid(value))continue;if(A.le(value,0))return 0;
+     if(typeof selected==='number'&&typeof value==='number'){if(value<selected){selected=value;best=duration(value);}continue;}
+     var d=duration(value),common=Math.min(d.e,best.e);if(cmp(scaled(d,common),scaled(best,common))<0){selected=value;best=d;}
+    }return selected;
+   },
    nextWindow:function(value,settings){return create(absolute(),budget(value,settings));},project:function(value){var c=create(absolute(),seconds(value));c.advance(value);return c;},snapshot:function(){return {origin:amount(origin),elapsed:amount(elapsed),target:amount(target),unit:unit};}
   };
  }
@@ -11743,6 +11752,12 @@ function advanceAuthoritativeTime(elapsedSec,options){
   var targetFractionSec = Amount.sub(elapsedSec,targetWholeSec);
 
   var binaryClock=null,binaryStudyClock=null;
+  function physicalDurationOrder(a,b){
+    if(typeof a==='number'&&typeof b==='number')return a===b?0:a<b?-1:1;
+    if(!binaryClock||!Amount.valid(a)||!Amount.valid(b)||Amount.lt(a,0)||Amount.lt(b,0))return Amount.cmp(a,b);
+    return binaryClock.compareDuration(binaryClock.latticeDuration(a),binaryClock.latticeDuration(b));
+  }
+
   function activateBinaryClock(){
     if(binaryClock)return;
     var previous=currentElapsedSec(),durationMs=elapsedSec*1000,settings=Number.isInteger(durationMs)&&durationMs>0?{budgetMs:durationMs}:undefined;
@@ -12104,7 +12119,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     }
 
     if(!Amount.valid(next)) next = remaining;
-    next = Amount.max(0,Amount.min(remaining,next));
+    next=binaryClock?binaryClock.minimumRemaining([abilityStep,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,state.riftMode==='push'?simulationPassiveKillSeconds(dps):Infinity]):Amount.max(0,Amount.min(remaining,next));
     var hitsFarmGrid = state.riftMode==='farm' && next===farmGridStep;
     var hitsWindowEnd = next===remaining;
     var diagnosticEventKinds = [];
@@ -12139,7 +12154,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     // subtraction literally cannot advance the remaining clock and no state
     // event fires.
     if(Amount.gt(next,0)){
-      if(summary._cycle)summary._cycle.interval(next,summary._cycle.capturesResources()&&Amount.cmp(next,abilityStep)===0&&[remaining,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,simulationPassiveKillSeconds(dps)].every(function(v){return Amount.lt(next,v);}));
+      if(summary._cycle)summary._cycle.interval(next,summary._cycle.capturesResources()&&physicalDurationOrder(next,abilityStep)===0&&[remaining,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,simulationPassiveKillSeconds(dps)].every(function(v){return physicalDurationOrder(next,v)<0;}));
       captureStudyProgressAnchors();
       captureAutomationProgressAnchors();
       if(policy.visual && policy.kind==='live' && Amount.gt(dps,0))presentPassiveWispAttack();

@@ -16,10 +16,14 @@ eq(cold.q.get(),x.q.get(),'cold cache reconstruction preserves the whole continu
 for(const [primary,recover]of [[true,false],[false,true]]){
  const p=page([...x.storage]),before=clone(p.q.get().canonicalAutomationClock);p.fail(primary,recover);p.clock(start+125);eq(p.q.save(),false,'injected storage failure is reported');eq(p.q.get().canonicalAutomationClock,before,'failed save cannot discard or truncate timer progress');
 }
-for(const [field,value]of [['base',1001],['elapsed','1e-400'],['elapsed',-1],['elapsed',3],['last',Infinity]]){
+for(const [field,value]of [['base',1001],['elapsed','1e-400'],['elapsed','1e-1000000'],['elapsed',-1],['elapsed',3],['last',Infinity]]){
  const bad=clone(saved);bad.canonicalAutomationClock._autoTapAccum[field]=value;assert.throws(()=>cold.q.accept(bad),/Automation clock needs recovery/,'malformed clock uses recovery');checks++;
 }
 const inconsistent=clone(saved);inconsistent.canonicalAutomationClock._autoTapAccum.base+=.1;assert.throws(()=>cold.q.accept(inconsistent),/Automation clock needs recovery/,'self-inconsistent basis is rejected');checks++;
 const stale=clone(saved);stale._autoTapAccum=0;const normalized=cold.q.accept(stale);eq(normalized._autoTapAccum,0,'a real tick/reset phase remains authoritative');eq(normalized.canonicalAutomationClock._autoTapAccum,undefined,'a basis for the old phase is dropped');
+const zero=clone(saved);for(const field of ['_autoTapAccum','_autoEmpowerAccum']){zero[field]=0;zero.canonicalAutomationClock[field]={base:0,elapsed:0,last:0};}eq(cold.q.accept(zero).canonicalAutomationClock,{},'redundant zero bases have one canonical saved form');
+const decimal=clone(saved);for(const field of ['_autoTapAccum','_autoEmpowerAccum']){decimal[field]=100;decimal.canonicalAutomationClock[field]={base:0,elapsed:'1e-1',last:100};}
+eq(cold.q.accept(decimal).canonicalAutomationClock,decimal.canonicalAutomationClock,'a100ms decimal lattice duration retains its exact type and digits');
+const decimalPage=page();decimalPage.q.set(decimal);ok(decimalPage.q.save(),'decimal lattice basis commits');eq(page([...decimalPage.storage]).q.get().canonicalAutomationClock,decimal.canonicalAutomationClock,'cold storage cannot reinterpret exact100ms as Native0.1');
 const legacy=clone(saved);delete legacy.canonicalAutomationClock;eq(cold.q.accept(legacy).canonicalAutomationClock,{},'older saves migrate without creating timer progress');
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),limits:'Exact timer storage, malformed input and finite continuation. Broader campaigns, long windows and device acceptance remain separate.'}));

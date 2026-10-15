@@ -49,4 +49,21 @@ for(const epoch of [0,2000000000000])for(const dt of [Number.MIN_VALUE,1e-20,.12
 {
  const c=create(A,0,1),before=c.snapshot();for(const args of [[-1,0],[1,.5],[Infinity,0]]){assert.throws(()=>c.advanceTicks(...args),RangeError);eq(c.snapshot(),before,'rejected exact step is atomic');}
 }
+if(typeof create(A,0,1).minimumRemaining==='function'){
+ for(let i=1;i<97;i++){
+  const c=create(A,0,1),elapsed=i/97,d=dyad(elapsed),e=rationalDyad(d.n,d.e);c.advance(elapsed);
+  const remainder={n:e.d-e.n,d:e.d},candidate=1-elapsed,p=dyad(candidate),event=rationalDyad(p.n,p.e);
+  const expected=event.n*remainder.d<remainder.n*event.d?event:remainder,before=c.snapshot();
+  const selected=c.minimumRemaining([Infinity,NaN,candidate,2]);
+  if(typeof selected==='number'){const p=dyad(selected),actual=rationalDyad(p.n,p.e);eq(actual.n*expected.d,expected.n*actual.d,'minimum retains the original Native event bits');}else same(selected,expected,'minimum uses the exact window remainder');
+  eq(c.snapshot(),before,'selecting a duration never mutates the clock');
+  c.advance(selected);if(expected===remainder)eq(c.remaining(),0,'exact window endpoint is consumed without a tolerance');
+ }
+ // Captured12h cap failure: the decimal-shortened event looked affordable,
+ // while its actual IEEE duration exceeded the exact remainder by2^-59/125.
+ const c=create(A,0,43200);c.advanceLattice({ticks:'3112884803907348975428125e0',unit:-59,scale:125});
+ const remaining=c.remaining(),selected=c.minimumRemaining([814632784464943*Math.pow(2,-54)]);
+ eq(selected,remaining,'captured12h overrun selects the exact endpoint');c.advance(selected);eq(c.remaining(),0,'captured12h endpoint finishes exactly');
+ eq(create(A,0,1).minimumRemaining([Infinity,0]),0,'due zero event wins');eq(create(A,0,1).minimumRemaining([-1]),0,'overdue event is immediate');
+}
 console.log(JSON.stringify({status:'PASS',checks,limits:'Exact-clock component only. Scheduler integration, rounding contracts and full catch-up remain unverified.'}));

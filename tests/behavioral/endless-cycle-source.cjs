@@ -50,7 +50,7 @@ module.exports=function(source){
   if(summary._cycle)summary._cycle.gain(Amount.mul(rewards.lumen,rewardScale),Amount.mul(rewards.shards,rewardScale),sp.id);
   if(Amount.gt(rewards.shards,0)){`);
  edit('    if(Amount.gt(next,0)){',`    if(Amount.gt(next,0)){
-      if(summary._cycle)summary._cycle.interval(next,summary._cycle.capturesResources()&&Amount.cmp(next,abilityStep)===0&&[remaining,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,simulationPassiveKillSeconds(dps)].every(function(v){return Amount.lt(next,v);}));`);
+      if(summary._cycle)summary._cycle.interval(next,summary._cycle.capturesResources()&&physicalDurationOrder(next,abilityStep)===0&&[remaining,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,simulationPassiveKillSeconds(dps)].every(function(v){return physicalDurationOrder(next,v)<0;}));`);
  edit('  state.heroResource[id]=Math.min(100,(state.heroResource[id]||0)+amount);','  if(endlessHeroObserver)endlessHeroObserver.charge(id,amount);\n  state.heroResource[id]=Math.min(100,(state.heroResource[id]||0)+amount);');
  edit('var fill=Amount.wide(elapsedSec)?Amount.mul(rate,elapsedSec):rate*elapsedSec;','var fill=Amount.wide(elapsedSec)?Amount.mul(rate,elapsedSec):rate*elapsedSec;\n  if(endlessHeroObserver)endlessHeroObserver.fill(fill);');
  edit("    var id=ids[i];\n    if((state.spirits[id]||0)<=0 || (state.heroResource[id]||0)<100-1e-7) continue;","    var id=ids[i];\n    if(summary._cycle)summary._cycle.heroCheck(id,nowMs,clock);\n    if((state.spirits[id]||0)<=0 || (state.heroResource[id]||0)<100-1e-7) continue;");

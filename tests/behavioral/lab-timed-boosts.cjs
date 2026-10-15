@@ -60,8 +60,9 @@ function verify(html){
  }
  return {checks,prices:bases,midgame600secMotes:whole.sum,liveOfflineSplit:true};
 }
+const moteGate=source.includes('if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;')?'if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;':'if(nowMs<state.moteNextAtMs)return 0;';
 let result;try{result={status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),...verify(source),controls:[]};if(process.argv.includes('--negative'))for(const [name,a,b] of [
  ['free-after-expiry','now<b.expiresAtMs','now<b.expiresAtMs+86400000'],
- ['unlimited-motes','if(nowMs<state.moteNextAtMs)return 0;','if(false)return 0;'],
+ ['unlimited-motes',moteGate,'if(false)return 0;'],
  ['double-charge','&& !held && mult>active.speedMult','&& mult>active.speedMult']]){assert(source.includes(a),'mutation anchor '+name);let caught=null;try{verify(source.replace(a,b));}catch(e){caught=e.message;}assert(caught,'causal control '+name+' must fail');result.controls.push({name,detected:caught});}}
 catch(e){result={status:'fail',error:e.stack};process.exitCode=1;}console.log(JSON.stringify(result));

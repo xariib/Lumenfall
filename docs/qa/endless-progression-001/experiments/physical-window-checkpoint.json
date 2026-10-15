@@ -1,0 +1,442 @@
+{
+  "status": "ISOLATED_IMPLEMENTATION_ACCEPTANCE_OPEN",
+  "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890",
+  "reproducibleFrom": "569de01:index.html + current endless-cycle-source builder + D balance builder43; full byte identity verified",
+  "fixes": [
+    "Exact word-clock minimumRemaining prevents captured12h endpoint overrun of2^-59/125 seconds; Native candidate bits and exact remainders are compared as physical durations.",
+    "Checked resource witnesses use the same exact physical ordering.",
+    "Zero timer bases have one canonical form; nonzero exact elapsed values retain their original type and digits through save/load.",
+    "Very small malformed non-lattice saved durations reject before constructing an enormous power of5."
+  ],
+  "tests": {
+    "clockOracle": 989,
+    "sharedClockAPI": 1885,
+    "strictWarm": 953,
+    "strictCold": 953,
+    "timerStorage": 29,
+    "actualV8_6": 143,
+    "automationControls": 14,
+    "offlineCore18": {
+      "status": "PASS",
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890",
+      "wallMs": 235270.9261
+    },
+    "offline12_34": {
+      "status": "PASS",
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    "progressionControls": 21,
+    "allWispRequirementChecks": 2528
+  },
+  "validationChanges": [
+    "Independent Farm reward oracles now preserve Native safe sums and exact promoted sums, and require value type and amount exactly. HP/reward assertions and old quotient controls retained.",
+    "Stone/Wisp/navigation fixtures use known D development gates108/168; prices/focus/scroll assertions retained.",
+    "Historical counterfactual explicitly uses original Native clock and retains bit-for-bit checks. Real current-clock comparisons remain; numeric HP tolerance tightened to1e-9 times remaining HP scale.",
+    "Optional timer history validates its own current phase and schema; exact storage/recovery/import is tested separately.",
+    "Retired repeat speed consent is OFF; paid3x work, exact completion boundary, next queued1x work and no automatic Mote spending are asserted."
+  ],
+  "rejectedExperiment": {
+    "description": "Activating the exact clock for every Push was reverted.",
+    "observedFailure": "Swift OFF8h whole Motes2956353 versus one-second2956447; not accepted."
+  },
+  "browser": {
+    "status": "STOPPED_NOT_FULL_ACCEPTANCE",
+    "completed": 69,
+    "failures": 11,
+    "record": "../first-integrated-browser-characterization.json",
+    "repairs": "Targeted Farm numerical/runtime and Wisp display/scroll PASS; remaining source-labelled browser reruns pending.",
+    "repairedLatestSource": [
+      "nav-workshop-contract",
+      "offline-catchup-ui",
+      "offline-catchup-legacy-dom"
+    ],
+    "currentFullRun": "RUNNING validation-evidence/endless-physical-full-browser.txt on frozen5739a892"
+  },
+  "pacing": "Historical five D60d targets and D180d roster114.67d remain source-bound. Fresh canonical regular32d/all recruits22.333d, regular_two13d only; continue earned campaign phases or restart final source with explicit evidence.",
+  "limitations": [
+    "Final source core/cap PASS; full browser rerun RUNNING; required CI open.",
+    "Fresh casual/frequent/efficient and final extended Mastery measurements remain.",
+    "GitHub destination unresolved/karahaNx404; SDK/JDK/adb/signing/device unavailable.",
+    "No shared/main/remote/APK/archive; self-review only."
+  ],
+  "receipts": [
+    {
+      "originalPath": "validation-evidence/endless-exact-selector-cold.json",
+      "file": "endless-exact-selector-cold.json.gz",
+      "rawSha256": "f553d195a671d9de0cdae93419b416427541c737cd1652a132d5c146846c8403",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "500ae305bb3fcdcc23695a2d7a5028ce8733cc90cd56c311e45d2cbb0ae96dc0"
+    },
+    {
+      "originalPath": "validation-evidence/endless-exact-selector-warm.json",
+      "file": "endless-exact-selector-warm.json.gz",
+      "rawSha256": "270c346092bf0ec4a96d92d3d5a460e33740274d6861557c86b7eb1a5ca3225b",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "500ae305bb3fcdcc23695a2d7a5028ce8733cc90cd56c311e45d2cbb0ae96dc0"
+    },
+    {
+      "originalPath": "validation-evidence/endless-lattice-memo.json",
+      "file": "endless-lattice-memo.json.gz",
+      "rawSha256": "7cbfc963ed061ad15267579e09bf3493dcdddde276a530b74d57a52ec2fb85bb",
+      "status": "PASS",
+      "checks": 82
+    },
+    {
+      "originalPath": "validation-evidence/endless-lattice-offline12.json",
+      "file": "endless-lattice-offline12.json.gz",
+      "rawSha256": "3aaa6f75057d1010ef2aac1dff0373ebff836f8fdb86e2b3ea865694b75e6bc7",
+      "status": "pass"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-clock.json",
+      "file": "endless-physical-clock.json.gz",
+      "rawSha256": "ea541572aa03cad600b7b7abad1895263e543fc68ec6c8fa300ce444f8dcaca6",
+      "status": "PASS",
+      "checks": 989
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-cold.json",
+      "file": "endless-physical-cold.json.gz",
+      "rawSha256": "e8014e60d3b50b1ec6652329086bcecabd9759279a07a376a171d6e88b1b9751",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls.json",
+      "file": "endless-physical-controls.json.gz",
+      "rawSha256": "ba9fe04a73616e716c50b2ae6e1bcdb0f50c5adc3b640ce4bc5f2e860135174d",
+      "status": "PASS"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-offline-core.json",
+      "file": "endless-physical-offline-core.json.gz",
+      "rawSha256": "7bd6f0dfa3c9c7c9935a77152562cc8662179946544c90738fa2237aff0fae70",
+      "status": "pass"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-resource.json",
+      "file": "endless-physical-resource.json.gz",
+      "rawSha256": "03defdcb1a6fc6c8236106c58620d19ab763bbe86ad6af99cc668ae2cd3c28c2",
+      "status": "PASS",
+      "checks": 87
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-storage-final.json",
+      "file": "endless-physical-storage-final.json.gz",
+      "rawSha256": "fa2409f93cf6aa32e9fbd5fdb98d6e0b4e23a485f6164a47943a9510ee101c29",
+      "status": "PASS",
+      "checks": 29,
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-storage.json",
+      "file": "endless-physical-storage.json.gz",
+      "rawSha256": "c744c85e07280e64a55706e6f3cc0d5876891e48753cc9c13d402e699665bc05",
+      "status": "PASS",
+      "checks": 28,
+      "sourceSha256": "4560e4edea8cef3edf67c2b7840188a19658b6c13b03045a7650c9a64333daf8"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-v8.json",
+      "file": "endless-physical-v8.json.gz",
+      "rawSha256": "4395cec3d7a8d49d4b34ab355598f7af88596664aebcd7555ddd2437ba188403",
+      "status": "PASS",
+      "checks": 143,
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-warm.json",
+      "file": "endless-physical-warm.json.gz",
+      "rawSha256": "fc4d19f90ba6e1e6469f5f33ac3944344e42ff663dee60ded3b9a369dcb8d23b",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-basis-persistence.json",
+      "file": "endless-zero-basis-persistence.json.gz",
+      "rawSha256": "56d479af828cba2656fb60f1f2b52a6fad099369035a9f1ec43357ca20fb7f15",
+      "status": "PASS",
+      "checks": 25,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-boundaries.json",
+      "file": "endless-zero-boundaries.json.gz",
+      "rawSha256": "17505e8676f0c8dc6e3aced0beb5f59646b87cf250d328f1aec910985b5c2dcf",
+      "status": "PASS",
+      "checks": 2528,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-cold.json",
+      "file": "endless-zero-cold.json.gz",
+      "rawSha256": "ed281bba16ff6e3ee213185d234daad5a764d77cf0eb6dfcf2ee74492fbf8189",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-comet.json",
+      "file": "endless-zero-comet.json.gz",
+      "rawSha256": "3c8126ba00d4f4b8954683dbd541d70705509692057c81ec6724436b529f39dc",
+      "status": "pass"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-core.json",
+      "file": "endless-zero-core.json.gz",
+      "rawSha256": "7d86856fe4001fc60f80f2e793b88b2ceff53b054fa99866a783d436e5eaa935",
+      "status": "PASS",
+      "checks": 235,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-v8.json",
+      "file": "endless-zero-v8.json.gz",
+      "rawSha256": "074650f85f71fba4c83cc36dca9035ae87a8dabc6e9bbc2b02de31a511f3cb71",
+      "status": "PASS",
+      "checks": 143,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-warm.json",
+      "file": "endless-zero-warm.json.gz",
+      "rawSha256": "c6dc9bfc20352a01804967529c90f30b97431fd37646fe88ca5639ca0f53b210",
+      "status": "PASS",
+      "checks": 953,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-wisp-preservation.json",
+      "file": "endless-zero-wisp-preservation.json.gz",
+      "rawSha256": "82ea2b750f7eed3a45f74dc23158427dd63feda9745c762b1b8af2f82b3d7e6a",
+      "status": "PASS",
+      "checks": 8099,
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-swift-golden.json",
+      "file": "endless-physical-swift-golden.json.gz",
+      "rawSha256": "acd1ed5bf6d33a5262d576510945bb3f2f30cbcda1c46b8c10c80301a45f1d47",
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-offline12-overrun-diagnostic.json",
+      "file": "endless-offline12-overrun-diagnostic.json.gz",
+      "rawSha256": "7033de72f608d23cdef69b53b595e5965bf4e845ab75a07ae556809591d50242",
+      "status": "OBSERVED_FAILURE",
+      "sourceSha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/summary.json",
+      "file": "controls-summary.json.gz",
+      "rawSha256": "1ee4b40019d79c5121953d3a60e0e8044f7c171b8a2930add5bfece8e75f1eda",
+      "status": "PASS"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/automation.json",
+      "file": "control-automation.json.gz",
+      "rawSha256": "6ebb751104d1efa3c98caba580905ffc43fff64e6b7c6b0e593e9ea39fa357c7",
+      "status": "FAIL",
+      "sourceSha256": "03b367a1021d035d22fbbe3e2873cd794ffa6f8330f51660b17d3a836de3377e"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/buff.json",
+      "file": "control-buff.json.gz",
+      "rawSha256": "3f66529ad2949a65cecf27c31cff1a7a3efe2cd7ef22975d0c1d69dfafdab636",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "3f75ca618195de9442030f88c7a91e4c65e56b4f702e00e6539cb4d7318effde"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/economy.json",
+      "file": "control-economy.json.gz",
+      "rawSha256": "952b736809a919c00a30c1bd1941b05699df70e183ec84a328d5717af89d25c2",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "04cb5da072f38e3555a95f0bdbc33b0f1bc822f1621d20040dd3cd05f2c79fb9"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/frameClock.json",
+      "file": "control-frameClock.json.gz",
+      "rawSha256": "28e8391d81acc9e3405fbca75f6887711b1825db2df90b5e6b1e3a5c64c63182",
+      "status": "FAIL",
+      "sourceSha256": "c89de3b6f258b9bb3d90de630d77683dce156d4f2d56d2c91e71f8b74f4bd363"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/frameOwner.json",
+      "file": "control-frameOwner.json.gz",
+      "rawSha256": "30e611efc5017ea5788f0cff902b51ede75df3aa5159ffed10e1890ea6a4534b",
+      "status": "FAIL",
+      "sourceSha256": "d30e9422dde70d32dc46fcac83861eaa11dfc8fdcde9030e7222395598d95b3c"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/lab.json",
+      "file": "control-lab.json.gz",
+      "rawSha256": "d9910dcc06d7271970ad6c9e708259b66f89437b6bf15f1b5eed58a8f9dcf3b1",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "41f3042b12bfcd39719f62c38ac9ad764b4985fc38995d8a91ad6e9187dc7934"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/lumen.json",
+      "file": "control-lumen.json.gz",
+      "rawSha256": "5758862b6cdb0ad52b6b7de8ee5339a6f207c9e7848675c0112bbd90698647bb",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "9f0331688a665ebb076ac6b423dd545a4770188c462e5d960cd23981b48b2f22"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/mote.json",
+      "file": "control-mote.json.gz",
+      "rawSha256": "5bcd63bed95b64a61de511c8eb71619da0c39b69d5816a0869d14abbc0fb7050",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "e2d520a4efe2c6ca5519426e9e00aef992083957935d78b74c2957e3400cf4f7"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/nativeCredit.json",
+      "file": "control-nativeCredit.json.gz",
+      "rawSha256": "c11eb59dfacc6f1e9eca9e98b3f09151f3de2399ef0b77fc9dcf22630650e09c",
+      "status": "FAIL",
+      "sourceSha256": "3cb243a208de5fb2422531946d077c3a1aa3962b25ca5ce47a5580fbbd7aef63"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/nativeParity.json",
+      "file": "control-nativeParity.json.gz",
+      "rawSha256": "cb14d6ad178272af4b7410b00aabb94cdb49fa63276b9a48d704475ac9f07484",
+      "status": "FAIL",
+      "sourceSha256": "e397792d8850f91b74a4424fc6a2a40e63fd80e2c127ac1125b0fb09536d10ad"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/phase.json",
+      "file": "control-phase.json.gz",
+      "rawSha256": "fff0c66358264e1a68eef0f383602493d2a56a883029d1ebcc7033545b12f5d1",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "002aee1db4b5563ea0791acddcd7b566669555ff6cb566147cf2d58190e4c64d"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/recast.json",
+      "file": "control-recast.json.gz",
+      "rawSha256": "95004229b061b29d21ac8b50243b558cfe78c5f5ad9ddab0e27c55edee24fa8f",
+      "status": "FAIL",
+      "checks": 1,
+      "sourceSha256": "7e6ec6cd59ed7f170d43add5c654382307f8d51fdf31e61d7d4885624c27137c"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/receipt.json",
+      "file": "control-receipt.json.gz",
+      "rawSha256": "fc98816a6fd1cb0b6532984df8c94092c3bddb16159eb934678c41d93604708d",
+      "status": "FAIL",
+      "checks": 10,
+      "sourceSha256": "545bbf4e690e6eb67afe74f4bbdf14e3fa57779a0b6d3e7ee31ce4e70e948a47"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-controls/resourceReplay.json",
+      "file": "control-resourceReplay.json.gz",
+      "rawSha256": "3865b036d673bce8e1908896509e6e0c7b6180567a5caee59e756eee4dd5b629",
+      "status": "FAIL",
+      "sourceSha256": "3385a86cb94aeaf6b6f2d932dcfb24fbf6f3f5402b3968b90ce500ef77aa291e"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-farm-numerical-verified.txt",
+      "file": "endless-zero-farm-numerical-verified.txt.gz",
+      "rawSha256": "b45dedcbca93447a9e64399a69df1b4b00cbd873ea0d8cb94018136751e71e7a"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-farm-runtime-verified.txt",
+      "file": "endless-zero-farm-runtime-verified.txt.gz",
+      "rawSha256": "254fd9cbb09e01ecc90b5f250570a7e5334e193eb4567bcada9a4d273995522f"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-wisp-display.txt",
+      "file": "endless-zero-wisp-display.txt.gz",
+      "rawSha256": "086addb6733871c34e7bb87dbe90d348fefdfce94d1a3a5f16f3995abdeee9b0"
+    },
+    {
+      "originalPath": "validation-evidence/endless-zero-wisp-scroll.txt",
+      "file": "endless-zero-wisp-scroll.txt.gz",
+      "rawSha256": "9b4bac122ef6ebf4ad023994cd62f3b55626fc241fb184d22c1493512a8be342"
+    },
+    {
+      "originalPath": "validation-evidence/endless-integrated-behavioral.txt",
+      "file": "endless-integrated-behavioral.txt.gz",
+      "rawSha256": "75ebc6598855112f9f17c944a040cc3c7416df6a069e2fdb4c62c8871e9f8bdf"
+    },
+    {
+      "originalPath": "docs/qa/endless-progression-001/integrated-browser-raw/wisp-upgrade-display-yPCk0p/stdout.html",
+      "file": "failed-wisp-upgrade-display.html.gz",
+      "rawSha256": "0bd9f526b753514d9fa5f08d3b1b293fa11ad191640e691247a22ac971ae564b"
+    },
+    {
+      "originalPath": "docs/qa/endless-progression-001/integrated-browser-raw/lab-motes-numerical-vsabMx/stdout.html",
+      "file": "failed-lab-motes-numerical.html.gz",
+      "rawSha256": "aa259276c5d7c40de0d890bcf6c3960d19bc5c2539ddd230a162b4bba888356b"
+    },
+    {
+      "originalPath": "docs/qa/endless-progression-001/integrated-browser-raw/nav-workshop-contract-xFKNhd/stdout.html",
+      "file": "failed-nav-workshop-contract.html.gz",
+      "rawSha256": "cfb302d0ba1aa69535f3110df6afa6734b5f28e7b97be44f559613fd4a4855ae"
+    },
+    {
+      "originalPath": "index.html",
+      "file": "current-5739a892.html.gz",
+      "rawSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-offline-core-final.json",
+      "file": "endless-physical-offline-core-final.json.gz",
+      "rawSha256": "488b93f51f8e5bd1011a48539ac547c53e2ca16712590fdb833392c174ad64d8",
+      "status": "pass",
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-offline12-final.json",
+      "file": "endless-physical-offline12-final.json.gz",
+      "rawSha256": "6318696fa917a53c90e06349b18a3f3e0237939d6e9df1d772802cb8b9228d0c",
+      "status": "pass",
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-progression-controls.json",
+      "file": "endless-physical-progression-controls.json.gz",
+      "rawSha256": "acb99a408546cd84440df8eb5c5b13fab0686331dfc685d7c9bbbb3d41e629e4",
+      "status": "PASS",
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-requirements.json",
+      "file": "endless-physical-requirements.json.gz",
+      "rawSha256": "57a2cf504f4585fde8723795849efbcfd4be5bbb9995125f33c8f3d2a83a191a",
+      "status": "PASS",
+      "checks": 2528,
+      "sourceSha256": "5739a8922a257451f65094a86969a4277f41f57759ffffbee923395e04e85890"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-compatibility.json",
+      "file": "endless-physical-compatibility.json.gz",
+      "rawSha256": "47236a3a3527df97349d9796e9c90cff1e24ca3bdf229a3db4ab5a375b51f838",
+      "status": "PASS",
+      "checks": 1885
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-navigation.txt",
+      "file": "endless-physical-navigation.txt.gz",
+      "rawSha256": "892cd50ecd658a374122d4886ebc429d3c429832ed7146916e6010748f97d6c6"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-offline-ui.txt",
+      "file": "endless-physical-offline-ui.txt.gz",
+      "rawSha256": "fdbfac1d8abab5b99ba9387f13f20323d88744ec3929be2b26b320a6ba09a374"
+    },
+    {
+      "originalPath": "validation-evidence/endless-physical-offline-legacy.txt",
+      "file": "endless-physical-offline-legacy.txt.gz",
+      "rawSha256": "64e58aded5ed8bd1ec4591dc085f12ea2ed683a4fde07451042c9901f540374a"
+    }
+  ]
+}

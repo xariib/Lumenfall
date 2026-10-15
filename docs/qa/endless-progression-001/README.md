@@ -1,5 +1,18 @@
 # Endless progression — work in progress
 
+Newest isolated [physical window checkpoint](experiments/physical-window-checkpoint.json),
+source5739a892. Exact event ordering fixes a captured12h clock overrun. Zero timer
+bases normalize consistently; exact decimal elapsed values retain their saved type.
+Clock989, warm/cold953 each, storage29, actualV8.6 143 and14 controls PASS.
+Final source offline core18/cap34 and21 progression controls PASS. Repaired
+navigation/offline UI/legacy DOM pass; complete browser rerun RUNNING. No HP tolerance relaxed; generic
+current-clock HP now also uses strict1e-9 remaining-HP scale. Historical Native
+counterfactual stays bit-identical. All-Push clock expansion failed Mote parity
+and was reverted. Initial full browser pass stopped69 cases/11 failures to fix
+introduced compatibility issues; repaired Farm/Wisp targets pass. Full acceptance
+is OPEN. Fresh pacing still regular32d/all recruits22.333d and two-visits13d.
+No shared/main/remote/APK/archive. Older checkpoints below are historical.
+
 Current isolated implementation [b645b6a3 checkpoint](experiments/integrated-checkpoint.json).
 Measured D gates and unrestricted cycle engine are now in index.html; newer67e Lab
 UI retained. Core235, independent all-Wisp boundaries2528, income632726, price
