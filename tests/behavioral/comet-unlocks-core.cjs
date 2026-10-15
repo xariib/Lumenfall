@@ -3,7 +3,8 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../..');
-const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const sourceArg=process.argv.indexOf('--source');
+const html=fs.readFileSync(sourceArg<0?path.join(root,'index.html'):process.argv[sourceArg+1],'utf8');
 const copy=value=>JSON.parse(JSON.stringify(value)),records=[];
 function exactInteger(value){if(typeof value==='number')return BigInt(value);const p=value.split('e');return BigInt(p[0])*10n**BigInt(p[1]);}
 function app(seed){

@@ -1,7 +1,8 @@
 /* Integration regression: paid Lab speed inside the resumable offline transaction. */
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const source=fs.readFileSync(path.join(__dirname,'../../index.html'),'utf8');
+const sourceArg=process.argv.indexOf('--source');
+const source=fs.readFileSync(sourceArg<0?path.join(__dirname,'../../index.html'):process.argv[sourceArg+1],'utf8');
 const copy=x=>JSON.parse(JSON.stringify(x)),start=2000000000000;
 const records=[];
 function engine(seed,seconds=0){

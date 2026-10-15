@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "mutation": "refund",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "refund receipt prevents a second credit",
+      "assertion": "Error: Error: refund receipt prevents a second credit 21"
+    }
+  ]
+}

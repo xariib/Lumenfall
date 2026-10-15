@@ -90,10 +90,10 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
   if (scenario === 'formation-best-now-core') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-best-now-core.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (scenario === 'formation-best-now') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-best-now.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), path.join(options.rawArtifactRoot || os.tmpdir(), 'formation-best-now')], scenario, 90000, options);
   if (scenario === 'lab-affordable-alert') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-affordable-alert.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
-  if (scenario === 'formation-bonds-core') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-bonds.cjs')], scenario, 90000, options);
+  if (scenario === 'formation-bonds-core') return runNativeProcess([process.execPath, path.join(ROOT, 'formation-bonds.cjs'), '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (scenario === 'resonate-clarity') return runNativeProcess([process.execPath, path.join(ROOT, 'resonate-clarity.cjs'), '--chrome', process.env.LUMENFALL_QA_CDP_CHROME || chrome, '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 150000, options);
-  if (scenario === 'comet-unlocks-core') return runNativeProcess([process.execPath, path.join(ROOT, 'comet-unlocks-core.cjs')], scenario, 90000, options);
-  if (scenario === 'lab-motes-offline-integration') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-motes-offline.cjs')], scenario, 90000, options);
+  if (scenario === 'comet-unlocks-core') return runNativeProcess([process.execPath, path.join(ROOT, 'comet-unlocks-core.cjs'), '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
+  if (scenario === 'lab-motes-offline-integration') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-motes-offline.cjs'), '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (['save-backup-ui', 'self-test-save-backup-placement', 'self-test-save-backup-confirmation'].includes(scenario)) {
     const command = [process.execPath, path.join(ROOT, 'save-backup-ui.cjs'), '--chrome', chrome, '--quiet',
       '--web-root', options.sourceWebRoot || path.join(ROOT, '../..'),
@@ -101,7 +101,7 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
     if (scenario !== 'save-backup-ui') command.push('--mutant', scenario.endsWith('placement') ? 'misplaced-backup' : 'early-restore');
     return runNativeProcess(command, scenario, 150000, options);
   }
-  if (scenario === 'offline-catchup-core') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-catchup.cjs')], scenario, 300000, options);
+  if (scenario === 'offline-catchup-core') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-catchup.cjs'), '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 300000, options);
   if (scenario === 'offline-catchup-ui' || scenario === 'offline-catchup-legacy-dom') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-catchup-ui.cjs'), chrome, urlFor('/index.html'), scenario], scenario, 210000, options);
   if (['formation-autosave-native','formation-autosave-reduced-motion'].includes(scenario)) return runNativeProcess([process.execPath,path.join(ROOT,'formation-autosave.cjs'),chrome,urlFor('/index.html'),scenario],scenario,120000,options);
   if (scenario === 'raw-process-contract') return require('./process_contract.cjs').runContract(runScenario, log);

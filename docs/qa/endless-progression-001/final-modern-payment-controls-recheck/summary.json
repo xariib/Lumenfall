@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "records": [
+    {
+      "mutation": "refund",
+      "causal": false,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "refund receipt prevents a second credit",
+      "assertion": "Error: Error: real Swift3 price debits wallet and small credit exactly"
+    },
+    {
+      "mutation": "mixed-payment",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "wallet-only payment preserves original small credit",
+      "assertion": "Error: Error: wallet-only payment preserves original small credit"
+    },
+    {
+      "mutation": "funding-sources",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "best exact available contribution finds payable Tree price",
+      "assertion": "Error: Error: best exact available contribution finds payable Tree price"
+    }
+  ]
+}

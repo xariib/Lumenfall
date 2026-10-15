@@ -436,3 +436,49 @@ control now expects actual preservation of the small credit (stronger than a
 non-null quote). Funding control removes both inadequate native strategy and
 new exact fallback, exercising its original native mixed fixture before wider
 purchase cases; original migration/idempotence assertions still run first.
+
+Atomic ability checkpoint: baselinea4f82f4 buyModule ignored failed primary saves.
+Root0cbe643e now uses the same atomic paid mutation helper as rarity/Ultimate/
+Mastery and returns a success flag. Prices, cap and ability effects stay intact.
+Core230/14 causal controls/wide53/parity305 PASS; actual V8 6.0 checks32 PASS,
+including failed-save rollback, exact wide ability debits and cold retention.
+Core independently audits all eight initial ability prices with BigInt money,
+failed primary state/storage rollback, exact1e400 debits, paid work, reload/cap.
+Swift golden regenerated on0cbe643e. Native scroll retest6951 pending.
+
+Frozen AA campaigns predate the ability success return, so their real ability
+purchases/levels were simulated but not added to purchase receipts (old wrapper
+returned undefined). Do not claim ability receipt coverage from those campaigns;
+all-level effects/history and direct actual purchase/debit tests are separate.
+No numeric or policy change was made inside active AA runtimes.
+Two600s visits now meet all targets: recruits21d,MY45.5d,ULT50.5d,MM52d; day58
+checkpoint saved. Mature85,casual31,frequent31,efficient29 checkpoints saved;
+AA source/policy hashes are in each, including explicit mature phase provenance.
+
+Full Windows run2306 was interrupted at35 outcomes (final-full-interrupted-summary).
+Lab-speed driver timed out; old StoneLab30 and two old60-Mote-next-level fixtures
+failed before focused repairs. Focused final-scroll PASS, Lab2676 PASS,
+Lab-Mote82/102 contracts+chronology PASS with unchanged causal checks/tolerances.
+The full parent stalled after starting offline core and no child remained at
+later diagnosis; exact cause UNKNOWN. All original logs/raw outcomes retained.
+Do not call this a complete full-suite pass. Native offline dispatch currently
+reads root rather than the stage; fix its source routing for the next full run.
+Required Linux CI, combined integration and Android acceptance remain OPEN.
+
+Continuation checkpoint: commit4551c83 saved calibrated tables/evidence. Current
+root0cbe643e adds only atomic ability purchases. Core230,14 controls,wide53,
+parity305 and actual V8 6.0 checks32 PASS; native new-source scroll also PASS.
+Formation, Comet and Lab-offline core now accept --source; run.cjs supplies the
+same stage to those and offline core. All three core dispatch targets pass on
+atomic-web0cbe643e. No production effects/prices changed in this source-routing fix.
+Bounded diagnostic continuation98543 starts at offline-catchup-core and runs
+remaining SCENARIOS on immutable atomic-web. Each result records production and
+behavioral-test hashes. Logs use direct file handles; a360s outer watchdog marks
+FAIL and kills only its owned case tree. Existing internal25/90/300s gates remain
+unchanged. This diagnostic does not replace required CI/full integrated acceptance.
+Campaign sessions18417(two visits),65371(casual),16440(frequent),85168(efficient)
+and51879(mature) use exact frozen AA source/policies and bounded daily checkpoints.
+Do not change active endless-campaign/harness/amount bytes. Mature target180d;
+other windows60/70d. Continue from valid checkpoints when bounded jobs end.
+GitHub destination question remains unanswered; Android SDK/Java/device/signing
+checks and combined integration are still unavailable. No remote/APK/release.

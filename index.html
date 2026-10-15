@@ -7169,19 +7169,21 @@ function setAutoEmpowerAll(enabled){
 
 function buyModule(sp){
   var level = moduleLevel(sp.id);
-  if(Amount.ge(level,MODULE_MAX_LEVEL)) return;
+  if(Amount.ge(level,MODULE_MAX_LEVEL)) return false;
   var cost = moduleCost(sp, level);
-  if(Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard)) return;
-  state.lumen=debitAmount(state.lumen,cost.lumen);
-  spendShards(cost.shard);
-  state.wispModules[sp.id] = Amount.add(level,1);
-  saveState();
+  if(Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard)) return false;
+  if(!forgeCommitPaidMutation(function(){
+    state.lumen=debitAmount(state.lumen,cost.lumen);
+    spendShards(cost.shard);
+    state.wispModules[sp.id] = Amount.add(level,1);
+  }))return false;
   renderSpirits(true);
   if(Amount.ge(Amount.add(level,1),MODULE_MAX_LEVEL)){
     showToast((sp.name + ' Module perfected.'));
     pulseWispCard(sp.id,'rarity');
   }
   updateBattleFast();
+  return true;
 }
 
 function buyUltimate(sp){

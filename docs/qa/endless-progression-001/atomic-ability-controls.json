@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "controls": 14,
+  "records": [
+    {
+      "name": "wrong-mastery-power",
+      "status": "KILLED",
+      "assertion": "own Power compounded10%",
+      "sourceSha256": "540d640dff123e4dbeb471576a995b52ee53c91f5c9e6186e56d2b3c15a495a5"
+    },
+    {
+      "name": "missing-next-record",
+      "status": "KILLED",
+      "assertion": "next rank needs deeper record",
+      "sourceSha256": "00522efb3041d5900f61fdef6b867b8dfa5b36ea7117b3076e54f56b0179af55"
+    },
+    {
+      "name": "free-mastery-sigils",
+      "status": "KILLED",
+      "assertion": "Mastery Sigil debit",
+      "sourceSha256": "3ce8d98aa261127f0300189d8f9679ca789c52db7aa937b28f2304ebb42fe8f2"
+    },
+    {
+      "name": "lost-mastery-on-ascend",
+      "status": "KILLED",
+      "assertion": "Mastery survives Ascend",
+      "sourceSha256": "e6544f0010c99e3434992c1d3233b5a7031414c71f405b101b77b7ef453278e0"
+    },
+    {
+      "name": "leaked-paid-mutation",
+      "status": "KILLED",
+      "assertion": "failed primary Mastery rolls back everything",
+      "sourceSha256": "772fa78e7cf201ae2d474bc5d70b0547cdc4999e248de52209d6ab7c93bcaf1a"
+    },
+    {
+      "name": "lost-paid-clock",
+      "status": "KILLED",
+      "assertion": "failed purchase preserves paid-work clock continuity",
+      "sourceSha256": "a8fcf0d006410a59cb17b6ac5e6634919fdc132eab8c84c233027a4176e917dc"
+    },
+    {
+      "name": "wide-quote-copy",
+      "status": "KILLED",
+      "assertion": "wide price quotes never clone or mutate paid ledgers",
+      "sourceSha256": "90271127dc6e48e83db287c9b0547e344d47626116bdaf038dd9fe7d7aa5cc88"
+    },
+    {
+      "name": "stale-refund-total",
+      "status": "KILLED",
+      "assertion": "in-place held-credit change updates total",
+      "sourceSha256": "aec86744728408df9e35598987e7177226f087ddbbb9b13e8f6791a3786d284b"
+    },
+    {
+      "name": "free-queued-speed",
+      "status": "KILLED",
+      "assertion": "queued speed exactly debits a wide Mote wallet",
+      "sourceSha256": "6f93b22f84267fdd7759afd03cea42acdf2f991e48e565f719f7619b397fe71a"
+    },
+    {
+      "name": "discarded-physical-progress",
+      "status": "KILLED",
+      "assertion": "Authoritative simulation stalled",
+      "sourceSha256": "64e0ae8c8b282a6f67eb9ba7028bcb0dea8dd1aeb4318e1508e75a1ba19d1877"
+    },
+    {
+      "name": "unbounded-future-work",
+      "status": "KILLED",
+      "assertion": "bounded future work",
+      "sourceSha256": "b113b1dd91b98d631fd1181280a592e3ab38fdcdcbf44d7873ec6f4f6ab5bca7"
+    },
+    {
+      "name": "lost-old-titan-entitlement",
+      "status": "KILLED",
+      "assertion": "old unlocked roster preserved titan",
+      "sourceSha256": "ea2b16aa9227ec1c625c1823552f1f0377a7c2e0d5b97d90698396d731c37d39"
+    },
+    {
+      "name": "ability-live-leak",
+      "status": "KILLED",
+      "assertion": "failed ability rolls back wallet and rank ember",
+      "sourceSha256": "988cd90753127a8c4a7331e66be97b5aea88fcd32d13356334dcb123c02d5b25"
+    },
+    {
+      "name": "early-ultimate",
+      "status": "KILLED",
+      "assertion": "Ultimate needs ability15",
+      "sourceSha256": "6c41337f805edd8cd8221c03fca0751ac3f1b339f552b6abce5119ba3e47af4c"
+    }
+  ],
+  "sourceSha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56"
+}

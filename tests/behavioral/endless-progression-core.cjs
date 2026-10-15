@@ -8,7 +8,7 @@ const calibrated=!process.argv.includes('--initial-proposal');
 const expected=calibrated?{forgeDepth:70,forgeLumen:1000000,forgeShards:25000,recruitLab:24,lab:32,mythicLab:31,work:864000,prisms:100000,sigils:100000000,ultimate:10000000,voidUltimate:60000000,masteryPrisms:20000,masterySigils:500000}:{forgeDepth:120,forgeLumen:50000000,forgeShards:500000,recruitLab:22,lab:30,mythicLab:29,work:777600,prisms:1000,sigils:50000,ultimate:15000,voidUltimate:45000,masteryPrisms:200,masterySigils:5000};
 const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={
   unlocked:wispRecruitmentUnlocked,rarityPlan:getWispRarityPlan,rarity:buyRarity,
-  ultimatePlan:getWispUltimatePlan,masteryPlan:getWispMasteryPlan,mastery:buyWispMastery,
+  ultimatePlan:getWispUltimatePlan,masteryPlan:getWispMasteryPlan,mastery:buyWispMastery,module:buyModule,
   farm:enterFarmMode,curve:endlessCurveDepth,studyWork:studyDuration,studyPrice:studyCost,
   factor:wispMasteryFactor,requirements:wispRequirementText,
   recruitmentPrice:function(id,price){ENDLESS_PROGRESSION.recruitLumen[id]=price;},rarityPrice:rarityCost,
@@ -114,5 +114,15 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
  q.get().motes='1e400';const before=clone(q.get());x.fail(true,false);eq(b.speed('wispascend',8),false,'scaled speed failed save');eq(q.get(),before,'scaled speed rollback retains every field');x.fail(false,false);ok(b.speed('wispascend',8),'scaled wide-funded speed purchase');
  eq(amount.exactAdd(q.get().motes,48214794),'1e400','scaled price exact wide debit');eq(q.get().activeStudies[0],{id:'wispascend',remainingSec:100000,totalDurationSec:100000,speedMult:8},'paid work unchanged at purchased8x');
  b.speedGrowth(2);const paid=clone(q.get());eq(b.speed('wispascend',8),false,'higher future prices do not recharge an owned tier');eq(q.get(),paid,'owned speed and work remain intact');
+}
+// Ability purchases use the same atomic boundary as other Wisp development.
+function exactInteger(value){if(typeof value==='number')return BigInt(value);const p=/^(\d+)e(\d+)$/.exec(value);assert(p,'canonical integer amount');return BigInt(p[1])*10n**BigInt(p[2]);}
+for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2100],['thorn',12000],['void',70000],['aurora',400000],['titan',2200000]]){
+ const {x,q,b}=game(),s=q.fresh();s.maxDepthEver=250;s.spirits[id]=1;s.lumen=s.shards='1e400';s.activeStudies=[{id:'guardmastery',remainingSec:70,totalDurationSec:150,speedMult:4}];q.set(s);q.save();
+ const before=clone(q.get()),disk=Array.from(x.storage);x.fail(true,false);
+ eq(b.module(q.sp(id)),false,'failed primary ability purchase '+id);eq(q.get(),before,'failed ability rolls back wallet and rank '+id);eq(Array.from(x.storage),disk,'failed ability leaves both save slots '+id);x.fail(false,false);
+ ok(b.module(q.sp(id)),'real ability purchase '+id);eq(q.get().wispModules[id],1,'one ability level '+id);
+ eq(exactInteger(q.get().lumen),10n**400n-BigInt(base*4),'exact wide ability Lumen debit '+id);eq(exactInteger(q.get().shards),10n**400n-BigInt(Math.round(base*.4)),'exact wide ability Shard debit '+id);eq(q.get().activeStudies,before.activeStudies,'ability retains paid work '+id);
+ const paid=clone(q.get());q.load();eq(q.get(),paid,'ability cold save endpoint '+id);q.get().wispModules[id]=20;const capped=clone(q.get());eq(b.module(q.sp(id)),false,'ability cap has no extra purchase '+id);eq(q.get(),capped,'ability cap preserves wallet '+id);
 }
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

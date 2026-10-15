@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
-const source=fs.readFileSync(path.resolve(__dirname,'../../index.html'),'utf8');
+const sourceArg=process.argv.indexOf('--source');
+const source=fs.readFileSync(sourceArg<0?path.resolve(__dirname,'../../index.html'):process.argv[sourceArg+1],'utf8');
 const copy=x=>JSON.parse(JSON.stringify(x));
 // Execute the actual product closure. Only DOM presentation and the clock are
 // replaced; authoritative purchases, chronology and persistence stay intact.
