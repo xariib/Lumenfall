@@ -22,8 +22,8 @@ Remeasure balance and rerun core/legacy/mobile/CI after reconciliation.
 Preserve paid work/speed/timers, saves, Support/Formation and exact chronology.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
-Exact counters retained. Separate connected-cycle candidate passes70 reward/count,
-136 boundary checks and8 causal controls;60s takes6.2s. Full catch-up remains OPEN.
+Frozen9f87:235 core/305 parity/136 boundaries/24 save/9 controls/V8 59 PASS.
+Native fractional wallets stall fresh low-Rift farming; exact batching OPEN.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive delivery. Next: optimize exact clock conversion,
-prove overnight/fractional paths, finish D campaigns, calibrate and rerun gates.
+No shared/main/remote/APK/archive delivery. Next: certify native fractional credits,
+prove overnight paths, finish D campaigns, calibrate and rerun gates.

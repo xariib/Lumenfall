@@ -1,5 +1,18 @@
 # Endless progression — work in progress
 
+Current continuation: [horizon receipts](experiments/connected-horizon-receipts.json)
+freeze9f87f433 with136 boundaries,24 persistence,9 causal controls,235 core,
+305 parity and actualV8 integrated59 PASS. Both due Auto-Tap and Auto-Empower
+are exercised; Charge Memory5 is also compared. The corrected recast mutation
+anchor is retained after a harness-only failed run. Native fractional wallets
+remain a real blocker: fresh low-Rift efficient campaign adee0264 reaches day3
+then its next farming window is too slow. Implement exact native additions
+within certified floating binades and stop before crossings/purchases; preserve
+literal rounding. Small-prefix Lumen replay is a separate unverified experiment.
+Reinvestment dd1a86b9 reaches full roster114.6667d and Rift8470 by115d,
+versus prior full roster150.3333d/Rift7870; still finish its180d measurement.
+Running8h source997f70da is now recovered and frozen byte-exactly. No result yet.
+
 Latest connected-cycle experiment (15 October): product db1e62af is unchanged.
 Follow-up: exact native rounding now uses binary limbs (642 independent checks)
 and orbit preparation yields every16 regions. Cancellation, partial-cache retry,

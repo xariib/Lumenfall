@@ -104,7 +104,7 @@ module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDea
       return safe;
     }
     count=Amount.min(count,phaseLimit(state._autoTapAccum||0,state.achieved.autotap),phaseLimit(state._autoEmpowerAccum||0,state.achieved.labmaster));
-    if(Amount.lt(count,128))return null;
+    if(Amount.lt(count,2))return null;
     var patternKey=JSON.stringify(plan.pattern),cache=endlessPityCache;
     function* ensure(n){
       if(!Amount.gt(n,cache.generated))return;
@@ -118,10 +118,10 @@ module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDea
       if(current.phase===state.luminousAccum&&current.flag===state.enemyIsLuminous){cache.logical=next;cache.lastAscend=state.ascendCount;}else cache=null;
     }else cache=null;
     if(!cache)cache={key:patternKey,orbit:createLuminousOrbitSession(Amount,createLuminousOrbit(Amount,{phaseCeiling:.999999}),plan.pattern,state.luminousAccum,state.enemyIsLuminous),logical:0,generated:0,lastAscend:state.ascendCount};
-    endlessPityCache=cache;var target=Amount.exactAdd(cache.logical,count);yield* ensure(target);
+    endlessPityCache=cache;var target=Amount.exactAdd(cache.logical,count);yield* ensure(Amount.max(target,'1e25'));
     var before=cache.orbit.position(cache.logical),after=cache.orbit.position(target),spawns={phase:after.phase,flag:after.flag,counts:after.counts.map(function(v,i){return Amount.exactSub(v,before.counts[i]);})};
-    var lumen=cycleTailLumen(Amount,createLuminousOrbit(Amount,{phaseCeiling:.999999}),cache.orbit,plan.pattern,plan.lumenRecipes,count,plan.cap,64,{orbitOffset:cache.logical});
-    if(!lumen.independent)return null;
+    var lumen=cycleTailLumen(Amount,createLuminousOrbit(Amount,{phaseCeiling:.999999}),cache.orbit,plan.pattern,plan.lumenRecipes,count,plan.cap,64,{orbitOffset:cache.logical,initial:state.lumen});
+    if(!lumen.independent&&!lumen.exactInitial)return null;
     var gain=cycleAggregate(Amount,plan.recipes,plan.kills,spawns.counts,count),last=plan.records[Number(Amount.mod(Amount.exactSub(count,1),plan.records.length))];
     var pieces=Amount.divmod(count,plan.records.length),tap=state._autoTapAccum||0,empower=state._autoEmpowerAccum||0;
     function advancePhase(value){

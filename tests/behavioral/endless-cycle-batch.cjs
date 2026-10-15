@@ -7,7 +7,9 @@ let checks=0;function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}
 function page(){const x=app(source);x.clock(start);x.q.set(clone(seed));x.q.restoreEnemy();return x;}
 for(const seconds of [1e-20,1e-19,1e-18,1e-17]){
  const a=page(),b=page(),fast=a.q.advance(seconds,{kind:'offline',clockStartMs:start}),literal=b.q.advance(seconds,{kind:'offline',clockStartMs:start,disableCycleBatching:true});
- eq(a.q.get(),b.q.get(),'finite complete-engine state matches literal clock reference');eq(fast,literal,'ordinary summary shape/effects unchanged before bulk threshold');
+ eq(a.q.get(),b.q.get(),'finite complete-engine state matches literal clock reference');
+ if(!fast.ascendGainRuns)eq(fast,literal,'ordinary summary shape/effects unchanged without actual batching');
+ else{for(const key of Object.keys(literal))if(!['iterations','fastForwardedKills','ascendGains'].includes(key))eq(fast[key],literal[key],'short bulk preserves exact summary '+key);eq(fast.ascendGainRuns.reduce((n,r)=>n+integer(r.count),0n),BigInt(literal.ascends),'short bulk preserves every compressed receipt');}
 }
 for(const seconds of [1e-16,3e-16]){
  const a=page(),b=page(),fast=a.q.advance(seconds,{kind:'offline',clockStartMs:start}),literal=b.q.advance(seconds,{kind:'offline',clockStartMs:start,disableCycleBatching:true});

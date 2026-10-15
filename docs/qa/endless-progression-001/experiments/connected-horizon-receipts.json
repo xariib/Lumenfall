@@ -1,0 +1,79 @@
+{
+  "status": "PARTIAL_EXPERIMENT",
+  "sourceSha256": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a",
+  "sourceArtifact": "connected-horizon-9f87f433.html.gz",
+  "receipts": [
+    {
+      "file": "connected-horizon-0.json.gz",
+      "input": "endless-cycle-boundaries-horizon.json",
+      "sha256": "4eeaf8eb655128d9d735b2626542be8212e8948f8bd8a62ad8a73aff23317a1e",
+      "status": "PASS",
+      "checks": 136,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    },
+    {
+      "file": "connected-horizon-1.json.gz",
+      "input": "endless-cycle-persistence-horizon.json",
+      "sha256": "360f9a5d434779ee4dd0b7d47300d49d0f87bbabf18ef897b8f020e2661e7cc4",
+      "status": "PASS",
+      "checks": 24,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    },
+    {
+      "file": "connected-horizon-2.json.gz",
+      "input": "endless-cycle-controls-horizon-final/summary.json",
+      "sha256": "56d4b0d26112d8b9591436c13b1044bae296ee49a02c29085f5d2e5a0f9300a7",
+      "status": "PASS",
+      "controls": 9
+    },
+    {
+      "file": "connected-horizon-3.json.gz",
+      "input": "endless-cycle-horizon-core.json",
+      "sha256": "a0d93e942b4ae24332a2a059f4a137351d35adda49e1a9738a73f55b61557538",
+      "status": "PASS",
+      "checks": 235,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    },
+    {
+      "file": "connected-horizon-4.json.gz",
+      "input": "endless-cycle-horizon-parity.json",
+      "sha256": "2190a096770b8653a0f6f3ae22593ddbb568619261d79df3ccbaca22196b5356",
+      "status": "PASS",
+      "checks": 305,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    },
+    {
+      "file": "connected-horizon-5.json.gz",
+      "input": "endless-cycle-legacy-horizon.json",
+      "sha256": "249a84a447da592968adf0a3508d3f58b2788fc9b249f50509b45885bae08bbe",
+      "status": "PASS",
+      "checks": 59,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    },
+    {
+      "file": "connected-horizon-6.json.gz",
+      "input": "endless-cycle-automation-both.json",
+      "sha256": "262412b1dc4a91acff386416d1f90c37e28a4b26c9e311904714ac7134a59652",
+      "status": "PASS",
+      "checks": 85,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    },
+    {
+      "file": "connected-horizon-7.json.gz",
+      "input": "endless-cycle-automation-charge-memory.json",
+      "sha256": "c6bab27ae7a3a02838a2c893f83bf549b063741cafae6ce2630f32400a2a2dc6",
+      "status": "PASS",
+      "checks": 27,
+      "source": "9f87f433a3d659c775961fc5a0029a4e72cac4c2675047a8e72218c0634fd07a"
+    }
+  ],
+  "overnight": {
+    "sourceSha256": "997f70daf3c636576d57666ba6cee546ac91e975c11492302f838735e1d40700",
+    "artifact": "connected-overnight-997f70da.html.gz",
+    "status": "RUNNING_8H",
+    "note": "Exact source recovered from frozen701 by restoring only the old aggregate and its matching fractional guards; SHA256 matches the running measurement exactly."
+  },
+  "rejectedOptimization": "Bounded far-deadline views had no material timing benefit; removed. Exact deadlines restored to9f87 source.",
+  "currentWork": "Small prefixes and Native fractional credited wallets; fresh low-Rift policy revealed a day4 simulation bottleneck. No cooldown/target restriction or rounding change.",
+  "next": "Certify native additions within a single floating binade, stop before crossings or purchases, and keep fractional rounding exact."
+}

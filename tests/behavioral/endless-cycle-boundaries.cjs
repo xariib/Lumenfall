@@ -5,7 +5,7 @@ const mutation=process.env.LUMENFALL_CYCLE_MUTATION||null;
 function replace(a,b){assert.equal(source.split(a).length,2,'causal mutation anchor');source=source.replace(a,b);}
 if(mutation==='mote')replace('var mote=clock.latticeUntil(state.moteNextAtMs);if(Amount.le(mote.ticks,0))blocked=true;else consider(mote);','var mote=null;');
 else if(mutation==='lab')replace('state.activeStudies.forEach(function(active){var left=paidDeadline(active);if(!left||Amount.le(left.ticks,0))blocked=true;else consider(left);});','');
-else if(mutation==='recast')replace("state.activeParty.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;});if(sp.abilityType!=='support')return;var until=state.supportRecastUntil[id]||0,d=clock.latticeUntil(until,cycleRecastThreshold);if(Amount.le(d.ticks,0))blocked=true;else consider(d);});",'');
+else if(mutation==='recast')replace("state.activeParty.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;});if(sp.abilityType!=='support')return;var until=state.supportRecastUntil[id]||0,d=clock.latticeUntil(until,cycleRecastThreshold);if(Amount.gt(d.ticks,0))consider(d);});",'');
 else if(mutation==='buff'){replace('deadline(state.buffUntil);','');replace('if(state.supportBuffs)Object.keys(state.supportBuffs.sources).forEach(function(id){deadline(state.supportBuffs.sources[id].until);});','');}
 else if(mutation==='economy')replace('var count=cycleEconomyBound(Amount,maximum,plan.maxLumen,shardsAvailable(),plan.maxShard,queuedPrices()).cycles;','var count=maximum;');
 else if(mutation==='phase')replace('value=cycleNativePhase(Amount,phasePrograms,pieces.q,value,999.999).value;','value=value;');

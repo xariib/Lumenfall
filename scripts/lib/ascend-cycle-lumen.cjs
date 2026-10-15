@@ -9,6 +9,8 @@ module.exports=function(A,kernel,orbit,pattern,recipes,total,bound,tailLimit,opt
   options=options||{};
   var tail=A.min(total,tailLimit||64),prefix=A.exactSub(total,tail),start=orbit.position(A.exactAdd(options.orbitOffset||0,prefix));
   var phase=start.phase,flag=start.flag,index=Number(A.mod(A.exactAdd(prefix,options.recipeOffset||0),recipes.length)),low=0,high=bound;
+  var exactInitial=A.cmp(prefix,0)===0&&options.initial!==undefined;
+  if(exactInitial){if(!A.valid(options.initial)||A.lt(options.initial,0)||A.gt(options.initial,bound))throw new RangeError('Initial Lumen outside proven bounds');low=high=options.initial;}
   function credit(wallet,gain){
     return !A.wide(wallet)&&!A.wide(gain)&&Number.isFinite(wallet+gain)&&Math.abs(wallet+gain)<=Number.MAX_SAFE_INTEGER?wallet+gain:A.exactAdd(wallet,gain);
   }
@@ -29,5 +31,5 @@ module.exports=function(A,kernel,orbit,pattern,recipes,total,bound,tailLimit,opt
     low=apply(low,ops,spawn.counts);high=apply(high,ops,spawn.counts);
     phase=spawn.phase;flag=spawn.flag;index=(index+1)%recipes.length;
   }
-  return {independent:A.cmp(low,high)===0,low:low,high:high,lumen:A.cmp(low,high)===0?low:null,phase:phase,flag:flag,tailCycles:tail};
+  return {independent:!exactInitial&&A.cmp(low,high)===0,exactInitial:exactInitial,low:low,high:high,lumen:A.cmp(low,high)===0?low:null,phase:phase,flag:flag,tailCycles:tail};
 };
