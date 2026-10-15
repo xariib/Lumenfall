@@ -1,0 +1,340 @@
+{
+  "status": "FAIL",
+  "checks": 8799,
+  "groups": [
+    {
+      "name": "fresh schema, fixed catalog and historical reward policy",
+      "checks": 43,
+      "status": "PASS"
+    },
+    {
+      "name": "old0/1/2 paid migrations and one-pass retirement compensation",
+      "checks": 8222,
+      "status": "PASS"
+    },
+    {
+      "name": "strict current4 paid data, recovery preservation and explicit restore",
+      "checks": 227,
+      "status": "PASS"
+    },
+    {
+      "name": "actual six-type purchases and four event Deeds",
+      "checks": 137,
+      "status": "PASS"
+    },
+    {
+      "name": "sticky unlocks, exact wallets and read-only plans",
+      "checks": 151,
+      "status": "PASS"
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "old-loader",
+      "rawSha256": "387cf45a8608745e511e73efcd058d4188740684eb1df7dcdf262d0841f3d047",
+      "finalComets": 450,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "settled",
+          "rifttrail": "settled",
+          "starfallcrest": "settled"
+        },
+        "deeds": {}
+      }
+    },
+    {
+      "id": "strict-schema",
+      "invalidCases": [
+        {
+          "id": "missing-cometUpgrades",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometCharges",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometWork",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometMeteorUsed",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometCalled",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometEvents",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometClaims",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "missing-owned-meteor",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-owned-meteor",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-owned-starcall",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-owned-starcall",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-comettrials",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-rifttrail",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-starfallcrest",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-cometreservoir",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-cometcycle",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-meteorcore",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "unknown-level",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "array-levels",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-NaN",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-null",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "unknown-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-boss",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-called-kill",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "earned-without-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-4",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-4000",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "full-bank-work",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-charge",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-used",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-called",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "marker-no-owner",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "called-not-luminous",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "called-boss",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "marker-wrong-encounter",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "wrong-policy",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "extra-claims-field",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "missing-retirement",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "unknown-retirement",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "unknown-deed",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "false-pending-deed",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "orphan-pending-deed",
+          "code": "invalid-comet-claims"
+        }
+      ],
+      "overcaps": {
+        "cometreservoir": 1e+30,
+        "cometcycle": 9,
+        "meteorcore": 7
+      }
+    },
+    {
+      "id": "complete-real-catalog",
+      "comets": 8670,
+      "upgrades": {
+        "cometreservoir": 2,
+        "cometcycle": 3,
+        "meteorcore": 4
+      },
+      "events": {
+        "firstCommand": true,
+        "firstRecharge": true,
+        "bossStrike": true,
+        "calledKill": true
+      },
+      "earned": [
+        [
+          "comet_first_command",
+          true
+        ],
+        [
+          "comet_first_recharge",
+          true
+        ],
+        [
+          "comet_boss_strike",
+          true
+        ],
+        [
+          "comet_called_kill",
+          true
+        ]
+      ]
+    }
+  ],
+  "negativeControls": [],
+  "currentGroup": "newly earned credits and transactional spend plus settlement",
+  "error": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "message": "debit precedes canonical credit\n+ actual - expected\n\n  {\n    claim: 'due',\n+   comets: '18014398509481884e0'\n-   comets: 18014398509481884\n  }\n",
+    "stack": "AssertionError [ERR_ASSERTION]: debit precedes canonical credit\n+ actual - expected\n\n  {\n    claim: 'due',\n+   comets: '18014398509481884e0'\n-   comets: 18014398509481884\n  }\n\n    at eq (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:47:33)\n    at C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:230:56\n    at group (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:49:79)\n    at runCore (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:214:3)\n    at cli (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:519:14)\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:527:26)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)"
+  },
+  "input": {
+    "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\index.html",
+    "bytes": 945223,
+    "sha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs",
+      "bytes": 58981,
+      "sha256": "aca4c6cfa8cef18e42744b955715a27a257a19996a9024f7eb666f10fa4837c2"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 15922,
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 21885,
+      "sha256": "a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  }
+}

@@ -60,10 +60,10 @@ function contracts(html){
  {
   const a=app(html),q=a.q;q.set(old(q,7,1e30));eq(q.buy('swift'),true,'Echo-only credit payment');eq(q.get().refundCredits.prisms,[{id:'node.echo',amount:13}],'exact Echo debit');eq(q.get().feedbackMigration.receipts['node.echo'].remainingCredits,[13],'Echo debit audit');eq(q.accept(q.get()),q.get(),'spent Echo record canonical');
  }
- // Neither large credit nor large wallet may buy an unrepresentable free level.
+ // Large credit and wallet balances now fund an exactly debited paid level.
  {
-  const q=app(html).q;q.set(old(q,250,1e100));const s=clone(q.get()),large=s.refundCredits.prisms.find(e=>e.id==='node.echo'&&e.amount>1e25);assert(large);s.prisms=0;s.refundCredits.prisms=[large];s.feedbackMigration.receipts['node.echo'].remainingCredits=[large.amount];q.set(s);const before=clone(q.get());eq(q.buy('swift'),false,'unrepresentable credit cannot pay a free purchase');eq(q.get(),before,'large credit retained');
-  q.set(old(q,7,1e30));const empty=clone(q.get());empty.refundCredits.prisms=[];empty.feedbackMigration.receipts['node.echo'].remainingCredits=[];q.set(empty);eq(q.buy('swift'),false,'unrepresentable wallet cannot pay a free purchase');
+  const integer=require('./amount-oracle.cjs').integer,q=app(html).q;q.set(old(q,250,1e100));const s=clone(q.get()),large=s.refundCredits.prisms.find(e=>e.id==='node.echo'&&e.amount>1e25);assert(large);s.prisms=0;s.refundCredits.prisms=[large];s.feedbackMigration.receipts['node.echo'].remainingCredits=[large.amount];q.set(s);const before=clone(q.get());eq(q.buy('swift'),true,'large credit funds a paid Swift level');eq(integer(q.get().prisms)+q.get().refundCredits.prisms.reduce((n,r)=>n+integer(r.amount),0n),BigInt(large.amount)-3n,'large credit exact conservation');eq(q.get().nodes.swift,before.nodes.swift+1,'one paid Swift level');eq(q.accept(q.get()),q.get(),'wide spent credit and audit remain canonical');
+  q.set(old(q,7,1e30));const empty=clone(q.get());empty.refundCredits.prisms=[];empty.feedbackMigration.receipts['node.echo'].remainingCredits=[];q.set(empty);const wallet=integer(q.get().prisms);eq(q.buy('swift'),true,'large wallet funds a paid Swift level');eq(integer(q.get().prisms),wallet-3n,'large wallet exact conservation');
  }
  for(const damage of ['price','range','missing','audit','deleted-credit','duplicated-credit','changed-credit','missing-balance','version']){
   const a=app(html),q=a.q;q.set(old(q,95,1e30));q.save();const accepted=clone(q.get()),bad=clone(accepted),r=bad.feedbackMigration.receipts['node.echo'];

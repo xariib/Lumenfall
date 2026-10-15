@@ -83,7 +83,7 @@ ok(scripts.length>=1,'every nonempty inline script parses in actual V8 6.0');
 
 scenario('catalog-and-historical-ledgers',function(){
   var a=world(),q=a.q;
-  eq(q.schema(),4,'current schema4');
+  eq(q.schema(),5,'current schema5');
   eq(q.shopDefs().map(function(x){return x.id;}),ROWS.map(function(x){return x[0];}),'six exact ordered catalog IDs');
   eq(q.achievementDefs().map(function(x){return [x.id,x.reward];}),OLD_DEEDS.concat(NEW_DEEDS),'all27 exact rewards and original order');
   eq(OLD_DEEDS.reduce(function(n,x){return n+x[1];},0),683,'independent original23 pool');
@@ -149,7 +149,7 @@ scenario('all-shop-primary-and-recovery-faults',function(){
 
 scenario('raw-old-schema-migrations-and-idempotency',function(){
   [0,1,2].forEach(function(schema){var maker=world(),raw=legacyRaw(maker.q,schema,RETIRED.map(function(r){return r[0];})),rawBytes=JSON.stringify(raw);var a=world([[P,rawBytes],[R,rawBytes]]),q=a.q;
-    eq(q.schema(),4,'actual current schema');eq(q.get().schemaVersion,4,'real old-loader endpoint');eq(q.get().comets,357,'7 plus exactly350 retirement');eq(q.get().cometClaims.retired,{comettrials:'settled',rifttrail:'settled',starfallcrest:'settled'},'three retained paid entries');
+    eq(q.schema(),5,'actual current schema');eq(q.get().schemaVersion,5,'real old-loader endpoint');eq(q.get().comets,357,'7 plus exactly350 retirement');eq(q.get().cometClaims.retired,{comettrials:'settled',rifttrail:'settled',starfallcrest:'settled'},'three retained paid entries');
     RETIRED.forEach(function(r){eq(q.hasLegacy(r[0]),true,'retained legacy '+r[0]);eq(owns(q.get().owned,r[0]),false,'retired ownership removed from current3 '+r[0]);});
     eq([q.get().owned.meteor,q.get().owned.starcall,q.get().cometCharges,q.get().cometWork],[false,false,0,0],'migration grants no new command or work');eq(q.get().cometUpgrades,EMPTY_LEVELS,'migration grants no upgrades');eq(q.get().cometEvents,EMPTY_EVENTS,'historical Deeds do not invent command events');eq(q.get().cometClaims.deeds,{},'historically earned23 rewards not granted again');
     var retained=PAID.filter(function(key){return key!=='offline12hRefund';});eq(selected(q.get(),retained),selected(raw,retained),'all existing paid work preserved');

@@ -18,7 +18,7 @@ function farmFixture(q,rank=0,history=true){
   s.cometUpgrades={cometreservoir:2,cometcycle:rank,meteorcore:4};s.cometCharges=0;s.cometWork=3970;
   s.riftMode='farm';s.farmDepth=s.depth=s.enemyDepth=9;s.farmReturnDepth=11;
   s.enemyHp=s.enemyMaxHp=q.enemyHp(9);s.luminousAccum=.375;
-  s.spirits.ember=30;s.spirits.tide=10;s.activeParty=['ember','tide'];s.heroResource.ember=31;s.heroResource.tide=47;
+  s.spirits.ember=60;s.spirits.tide=10;s.activeParty=['ember','tide'];s.heroResource.ember=31;s.heroResource.tide=47;
   s._autoTapAccum=125;s._autoEmpowerAccum=375;
   s.longStudyLevels.luminousdistill=3;s.longStudyLevels.motestudy=2;
   s.research.tapconduit=2;s.research.endpassrelay=2;s.research.amplifiertrim=2;
@@ -70,7 +70,10 @@ function runOffline(source,options={}){
       }
     }finally{bank.undo();}
     eq(total.kills,bank.result.kills,'every scheduled kill has exactly one original Comet accounting owner');
-    eq(q.get().cometCharges,q.capacity(),'productive fixed world reaches its finite bank cap');eq(q.get().cometWork,0,'full bank has no deferred excess work');
+    const expectedBank=bankAfter(before.cometCharges,before.cometWork,bank.result.kills,rank,cap,before.owned.meteor||before.owned.starcall);
+    eq({charges:q.get().cometCharges,work:q.get().cometWork},expectedBank,'independent cumulative bank at the exact real-kill count');
+    if(config.requireSaturation!==false){eq(q.get().cometCharges,q.capacity(),'productive fixed world reaches its finite bank cap');eq(q.get().cometWork,0,'full bank has no deferred excess work');}
+    else ok(total.kills>0,'short timing trace includes real productive defeats');
     eq(q.get().comets,before.comets,'previously earned identities cannot pay again during scheduled combat');
     for(const key of ['owned','cometUpgrades','nodes','research','longStudyLevels','studyQueue','autoAscendEnabled','autoAscendTargetDepth'])eq(q.get()[key],before[key],'fixed world retains '+key);
     const state=clone(q.get());
@@ -92,10 +95,11 @@ function runOffline(source,options={}){
     }
     // A bounded short trace compares actual event identities and epochs. The
     // long runs above retain counters/endpoints without hitting the inherited
-    // diagnostic timeline's deliberate 2,000-row bound.
+    // diagnostic timeline's deliberate 2,000-row bound. The short trace need
+    // not saturate both banks; the long runs above still require saturation.
     const start=farmFixture(q,0),rank3=clone(start);rank3.cometUpgrades.cometcycle=3;
-    const low=scheduled(source,start,{id:'timeline-engine0',kind:'live',spans:[180],timeline:true});
-    const high=scheduled(source,rank3,{id:'timeline-engine3',kind:'live',spans:[180],timeline:true});
+    const low=scheduled(source,start,{id:'timeline-engine0',kind:'live',spans:[180],timeline:true,requireSaturation:false});
+    const high=scheduled(source,rank3,{id:'timeline-engine3',kind:'live',spans:[180],timeline:true,requireSaturation:false});
     eq(high.timeline,low.timeline,'new manual-command ranks add no scheduler event or timing boundary');
     report.witnesses.push({id:'identical-original-event-timeline',rows:low.timeline.length,sha256:sha(JSON.stringify(low.timeline)),first:low.timeline.slice(0,5),last:low.timeline.slice(-5)});
   });
@@ -186,7 +190,7 @@ function runOffline(source,options={}){
     control('elapsed-seconds-are-not-defeat-work','advanceAuthoritativeTime',body=>'cometRecordDefeats(Math.floor(elapsedSec),false);'+body,text=>silentCase(text),/elapsed time alone must not earn work/);
     control('offline-never-automatically-spends-a-command','applyOfflineProgress',body=>replaceOne(body,'var now = Date.now();','if(state.cometCharges>0)state.cometCharges--;var now = Date.now();'),text=>silentCase(text,true,3),/elapsed time must not spend or refill/);
     control('direct-farm-batch-count-is-required','simulationBatchFarmKills',body=>replaceOne(body,'cometRecordDefeats(count,state.cometCalled);','/* causal omitted batch Comet owner */'),text=>{
-      const e=app(text),q=e.q,s=farmFixture(q,0);q.set(s);const result=q.advance(60,{kind:'offline',clockStartMs:CLOCK});assert(result.fastForwardedKills>0);const expected=bankAfter(s.cometCharges,s.cometWork,result.kills,0,3);assert.deepEqual({charges:q.get().cometCharges,work:q.get().cometWork},expected,'real Farm fast-forward must account for every defeat');
+      const e=app(text),q=e.q,s=farmFixture(q,0);s.spirits.ember=1000;q.set(s);const result=q.advance(60,{kind:'offline',clockStartMs:CLOCK});assert(result.fastForwardedKills>0);const expected=bankAfter(s.cometCharges,s.cometWork,result.kills,0,3);assert.deepEqual({charges:q.get().cometCharges,work:q.get().cometWork},expected,'real Farm fast-forward must account for every defeat');
     },/real Farm fast-forward must account/);
     control('unsafe-lifetime-counter-does-not-suppress-recharge','cometRecordDefeats',body=>'if(state.totalKills+count===state.totalKills)return;'+body,text=>{
       const e=app(text),q=e.q,s=farmFixture(q,2);s.totalKills=1e30;q.set(s);const result=q.advance(60,{kind:'offline',clockStartMs:CLOCK});assert(result.kills>0);const expected=bankAfter(s.cometCharges,s.cometWork,result.kills,2,3);assert.deepEqual({charges:q.get().cometCharges,work:q.get().cometWork},expected,'actual offline defeats survive a stalled lifetime counter');

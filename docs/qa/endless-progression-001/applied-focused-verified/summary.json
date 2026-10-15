@@ -1,0 +1,52 @@
+{
+  "status": "OBSERVED",
+  "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+  "records": [
+    {
+      "name": "wisp-anchor",
+      "status": "COMPLETED_ASSERTION_FAILURE",
+      "elapsedMs": 1377.2584,
+      "exitcode": 1,
+      "timedOut": false,
+      "error": "AssertionError [ERR_ASSERTION]: periodic reflow keeps focused action screen position\n    at check (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:16:40)\n    at run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:54:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:114:34"
+    },
+    {
+      "name": "wisp-focus",
+      "status": "COMPLETED_ASSERTION_FAILURE",
+      "elapsedMs": 1680.9997,
+      "exitcode": 1,
+      "timedOut": false,
+      "error": "AssertionError [ERR_ASSERTION]: Empower keeps exact scroll {\"action\":\"empower\",\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"input\":\"touch\",\"rich\":false,\"beforeScroll\":1111,\"afterScroll\":214,\"card\":\"ember\"}\n    at check (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:16:40)\n    at run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:66:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:114:34"
+    },
+    {
+      "name": "wisp-periodic",
+      "status": "COMPLETED_ASSERTION_FAILURE",
+      "elapsedMs": 8961.537100000001,
+      "exitcode": 1,
+      "timedOut": false,
+      "error": "AssertionError [ERR_ASSERTION]: module-cap rendering keeps card focus\n    at check (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:16:40)\n    at run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:90:115)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\wisp-rarity-scroll.cjs:114:34"
+    },
+    {
+      "name": "p2-wisp-progression-pacing",
+      "status": "PASS",
+      "elapsedMs": 1589.7988000000005,
+      "exitcode": 0,
+      "timedOut": false
+    },
+    {
+      "name": "p2-endgame-currency-utility",
+      "status": "PASS",
+      "elapsedMs": 1925.335500000001,
+      "exitcode": 0,
+      "timedOut": false
+    },
+    {
+      "name": "wisp-rarity-scroll",
+      "status": "PASS",
+      "elapsedMs": 80515.9409,
+      "exitcode": 0,
+      "timedOut": false
+    }
+  ],
+  "limits": "Original deadlines/assertions retained; completed negative assertions require causal-message review."
+}

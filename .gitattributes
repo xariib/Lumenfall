@@ -1,4 +1,10 @@
 * text=auto eol=lf
+tests/behavioral/fixtures-pre-endless.json -text
+docs/qa/endless-progression-001/applied-*/*.log -text whitespace=-trailing-space
+docs/qa/endless-progression-001/ae49-*/*.log -text whitespace=-trailing-space
+docs/qa/endless-progression-001/deed-audit/*.log -text whitespace=-trailing-space
+docs/qa/endless-progression-001/runtimes/offline-stat-before/** -text
+docs/qa/endless-progression-001/runtimes/deed-audit/** -text
 *.png binary
 *.ico binary
 *.apk binary
@@ -30,3 +36,4 @@ docs/qa/ascend-prisms-001/combined-controls/** -text whitespace=-trailing-space
 
 # Preserve original endless-progression browser receipts, including CRLF.
 docs/qa/endless-progression-001/*.log -text whitespace=-trailing-space
+docs/qa/endless-progression-001/final-core-group/*.log -text whitespace=-trailing-space

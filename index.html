@@ -3331,7 +3331,7 @@ var RESEARCH = [
   {id:'luminoustracking', name:'Luminous Tracking', desc:'+0.5 percentage points Luminous chance per level for future eligible encounters; total chance at most 35%. No extra Motes per kill.', unlockDepth:32, levelCap:10, effectPerLevel:0.005, lumenBase:2500000, lumenGrowth:1.60, shardBase:1500, shardGrowth:1.60}
 ];
 
-RESEARCH.push({id:'masterwork',name:'Masterwork Tempering',desc:'Each level opens 5 permanent Mastery ranks for every Wisp. Mastery itself requires Mythic, ability level 20 and Ultimate, plus its shown development requirements and Prisms/Sigils.',unlockDepth:70,lumenBase:1000000,lumenGrowth:1.35,shardBase:25000,shardGrowth:1.35,effectPerLevel:5});
+RESEARCH.push({id:'masterwork',name:'Masterwork Tempering',desc:'Own Wisp Power compounds by 25% per level. Each level opens 5 permanent Mastery ranks for every Wisp. Mastery itself requires Mythic, ability level 20 and Ultimate, plus its shown development requirements and Prisms/Sigils.',unlockDepth:70,lumenBase:1000000,lumenGrowth:1.35,shardBase:25000,shardGrowth:1.35,effectPerLevel:5});
 
 // FORGE_EXPANSION_001: additive IDs; original prices and paid values stay.
 var FORGE_EXPANSION = [
@@ -4131,6 +4131,11 @@ function cometExactDebit(wallet,cost){
   return Number.isFinite(wallet) && Number.isFinite(cost) && cost>=0 && wallet>=cost &&
     Number.isFinite(remaining) && remaining>=0 && wallet-remaining===cost && remaining+cost===wallet;
 }
+function cometDebitValue(wallet,cost){
+  // cometExactDebit already proved a native quote reversible. Keep its native
+  // representation so ordered claim settlement retains the established policy.
+  return Amount.wide(wallet)||Amount.wide(cost) ? debitAmount(wallet,cost) : wallet-cost;
+}
 function cometMutationOpen(){
   return !document.hidden && !resetInProgress && !reloadInProgress && !offlineCatchup && !offlinePending &&
     !resumeFlowBusy && !startupIntroPlaying && !persistenceBlocked;
@@ -4499,7 +4504,7 @@ function refreshDailyQuest(id){
   if(!plan.available) return false;
   var view=cometCaptureQuestView(plan.index);
   if(!cometCommitMutation(function(){
-    state.comets=debitAmount(state.comets,plan.cost);
+    state.comets=cometDebitValue(state.comets,plan.cost);
     state.dailyQuestRefreshes=Amount.add(plan.count,1);
     state.questIds[plan.index]=plan.replacement.id;
   })) return false;
@@ -6106,7 +6111,8 @@ function bestNowFormationPlan(){
 /*
  * P1-03 Wisp power / gameplay-language contract
  * ------------------------------------------------
- * Wisp Power = level-scaled spiritPower() × that Wisp's Rarity multiplier.
+ * Wisp Power = level-scaled spiritPower() × Rarity × Mastery × Masterwork.
+ * Mastery compounds 10% per rank; Masterwork compounds the configured growth.
  * It is the shared per-Wisp input for passive damage, damaging abilities and
  * Gale/Thorn ability rewards. It does NOT set Support buff strength.
  *
@@ -7435,7 +7441,7 @@ function researchPreview(node,requested){
     purchase:researchEffectPreview(node,Amount.add(level,plan.buyCount))};
 }
 function researchEffectText(node,value){
-  if(node.id==='masterwork')return (ENDLESS_PROGRESSION.masterworkPowerGrowth>1?'Own Wisp Power ×'+formatRiftNumber(value.factor)+'; ':'')+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
+  if(node.id==='masterwork')return (ENDLESS_PROGRESSION.masterworkPowerGrowth>1?'Own Wisp Power ×'+(typeof value.factor==='number'&&value.factor<1000?value.factor.toFixed(2):formatRiftNumber(value.factor))+'; ':'')+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
   if(node.forgeGroup) return forgeEffectText(node.id,value.level);
   function decimal(n){return Number(n.toFixed(4)).toString();}
   if(node.id==='luminoustracking') return '+'+decimal(value.bonus*100)+' percentage points; '+
@@ -7651,7 +7657,7 @@ function buyShopItem(item){
   if(!plan.available) return false;
   if(!cometCommitMutation(function(){
     var firstCommand=!state.owned.meteor && !state.owned.starcall;
-    state.comets=debitAmount(state.comets,plan.cost);
+    state.comets=cometDebitValue(state.comets,plan.cost);
     if(COMET_UPGRADE_IDS.indexOf(plan.id)!==-1) state.cometUpgrades[plan.id]=Amount.add(plan.level,1);
     else state.owned[plan.id]=true;
     if((plan.id==='meteor' || plan.id==='starcall') && firstCommand) state.cometCharges=1;

@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "elapsedMs": 90062.18789999999,
+  "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+  "driverSha256": "2a6e15613d890b1e898956304a7ec821b5c496d02584f0713573668b3905699f",
+  "process": {
+    "exitcode": null,
+    "timedOut": true,
+    "stderr": "{\"event\":\"before-result\",\"elapsedMs\":89998.3605,\"handles\":[\"Socket\",\"Socket\"]}\n{\"event\":\"after-result\",\"elapsedMs\":89998.7264,\"handles\":[\"Socket\",\"Socket\"]}\n{\"event\":\"before-exit\",\"elapsedMs\":89999.17109999999,\"handles\":[\"Socket\",\"Socket\"]}\n{\"event\":\"exit\",\"elapsedMs\":89999.2895,\"handles\":[\"Socket\",\"Socket\"]}\n"
+  },
+  "body": {
+    "status": "pass",
+    "checks": 3229
+  },
+  "limit": 90000
+}

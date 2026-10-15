@@ -8,7 +8,7 @@ function eq(a,b,m){checks++;assert.deepStrictEqual(a,b,m);}
 function ok(v,m){checks++;assert(v,m);}
 var file=path.join(__dirname,'forge-expansion-harness.cjs'),h=fs.readFileSync(file,'utf8').replace("require('node:assert/strict')","require('assert')");
 var compiled=new Module(file,module);compiled.filename=file;compiled.paths=module.paths;compiled._compile(h,file);
-var source=original.replace("if(document.readyState==='loading'){",'window.endlessQa={amount:Amount,module:buyModule,mastery:buyWispMastery,factor:wispMasteryFactor,labPay:labCanPay};if(document.readyState===\x27loading\x27){');
+var source=original.replace("if(document.readyState==='loading'){",'window.endlessQa={amount:Amount,module:buyModule,mastery:buyWispMastery,factor:wispMasteryFactor,labPay:labCanPay,cometBuy:function(id){return buyShopItem(SHOP.find(function(item){return item.id===id;}));}};if(document.readyState===\x27loading\x27){');
 var x=compiled.exports.app(source),q=x.q,b=q.endless,s=q.fresh();
 s.lumen=s.shards=s.prisms=s.sigils=s.motes=s.comets='1e400';
 s.spirits.ember=140;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;
@@ -35,4 +35,6 @@ var prices=q.fresh();prices.nodes.gentlegrowth=5;prices.nodes.bonds=7;q.set(pric
 var ability=q.fresh();ability.lumen=ability.shards='1e400';q.set(ability);var abilityBefore=JSON.stringify(q.get());x.fail(true,false);eq(b.module(q.sp('ember')),false,'V8 failed ability returns false');eq(JSON.stringify(q.get()),abilityBefore,'V8 failed ability rolls back');x.fail(false,false);ok(b.module(q.sp('ember')),'V8 real ability purchase');eq(b.amount.exactAdd(q.get().lumen,40),'1e400','V8 exact ability Lumen');eq(b.amount.exactAdd(q.get().shards,4),'1e400','V8 exact ability Shards');eq(q.get().wispModules.ember,1,'V8 one ability rank');q.load();eq(q.get().wispModules.ember,1,'V8 ability cold retention');
 [[6000,600],[6005,601],[6040,700],[6100,1220],[7000,70700]].forEach(function(row){eq(q.sigils(row[0]),row[1],'calibrated boss Sigils in actual V8 '+row[0]);});
 ok(b.amount.valid(q.sigils(Number.MAX_VALUE))&&b.amount.wide(q.sigils(Number.MAX_VALUE)),'Sigil rewards beyond native overflow in actual V8');
+var nativeComets=q.fresh();nativeComets.comets=Math.pow(2,54);q.set(nativeComets);ok(b.cometBuy('autoascend'),'V8 native exact Comet purchase');eq(typeof q.get().comets,'number','V8 native Comet representation');eq(q.get().comets,Math.pow(2,54)-100,'V8 original native Comet debit');
+var wideComets=q.fresh();wideComets.comets='1e400';q.set(wideComets);ok(b.cometBuy('autoascend'),'V8 wide Comet purchase');eq(b.amount.exactAdd(q.get().comets,100),'1e400','V8 exact wide Comet debit');eq(q.get().owned.autoascend,true,'V8 one paid Comet entitlement');
 console.log(JSON.stringify({status:'PASS',checks:checks,node:process.version,v8:process.versions.v8,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),limits:'JavaScript engine evidence; Android/WebView DOM and device acceptance remain separate.'}));

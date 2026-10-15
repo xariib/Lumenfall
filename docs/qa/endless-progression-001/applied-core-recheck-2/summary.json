@@ -1,0 +1,89 @@
+{
+  "status": "FAIL",
+  "records": [
+    {
+      "name": "tree-expansion-economy",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "e2737492e0b78d43815afca0c69912678f0a739d5c30e103ccc127bbd0ca8abd",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 1.7934783,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "tree-expansion-offline",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "525c93ecc3e6f2bdd4163af9d2293749677ab39211a482a469fb628fdde884bf",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 18.8465339,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "comet-expansion-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "aca4c6cfa8cef18e42744b955715a27a257a19996a9024f7eb666f10fa4837c2",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.2760417000000016,
+      "status": "FAIL",
+      "error": "debit precedes canonical credit\n+ actual - expected\n\n  {\n    claim: 'due',\n+   comets: '18014398509481884e0'\n-   comets: 18014398509481884\n  }\n"
+    },
+    {
+      "name": "comet-expansion-numerical",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 1.148588899999999,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "comet-expansion-offline",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "089abe44c05e0dd6d1321cb41f2a3760d6fb6fb98f73120121ba94040e8522ca",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.7670025000000024,
+      "status": "FAIL",
+      "error": "The expression evaluated to a falsy value:\n\n  assert(result.fastForwardedKills>0)\n"
+    },
+    {
+      "name": "wisp-contribution-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "645758a4006b3e491f23d9267e59a9dc0f5dce1f333a73fd8edb2795da44deee",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 32.7077812,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "forge-lab-caps",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "9cee1c80b787d28b9da55881995df2310defc087db6e584c053914b5da08efb2",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 0.6559016000000046,
+      "status": "PASS",
+      "error": ""
+    }
+  ]
+}

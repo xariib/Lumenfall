@@ -21,7 +21,7 @@ if(mutant==='credit-bound')mutate('       shardHexCompare(saved.remainingShardsH
 if(mutant==='study-jitter')mutate('continuousStudyClock:true','continuousStudyClock:false');
 if(mutant==='study-tick-origin')mutate('studyClockMemo.state===state && studyClockMemo.endMs===clockStartMs','false');
 if(mutant==='credit-color')mutate("kind==='shard' && state.swiftRecoveryRefund ? !canSpendShardsWithWallet(amount,state.shards) : ",'');
-if(mutant==='clock'){mutate('var gridCrossingsBefore = farmGridCrossings;','var elapsedWholeBefore = elapsedWholeSec;');mutate('var gridRemainingBefore = farmGridRemainingSec;','var elapsedFractionBefore = elapsedFractionSec;');mutate('farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore','elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore');}
+if(mutant==='clock'){mutate('var gridCrossingsBefore = farmGridCrossings;','var elapsedWholeBefore = elapsedWholeSec;');mutate('var gridRemainingBefore = farmGridRemainingSec;','var elapsedFractionBefore = elapsedFractionSec;');mutate('farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)','elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0');}
 if(mutant==='charge-clock')mutate('(anchor.value+(crossings-anchor.crossings)*anchor.rate)+(anchor.remaining-remaining)*anchor.rate','(anchor.value+(crossings-anchor.crossings)*anchor.rate*0.5)+(anchor.remaining-remaining)*anchor.rate*0.5');
 if(mutant==='study-clock')mutate('      advanceStudyProgressToClock();','      simulationAdvanceStudyProgress(next);');
 function app(product=html){

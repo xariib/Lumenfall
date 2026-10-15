@@ -398,7 +398,7 @@ if (require.main === module) {
     }
     rejects('ignore-initial-burst-budget', () => burstGuard(source, checks, true),
       'near-ready original cast kills the boss');
-    const savedAnchor = 'upperSources[id]=Math.max(1,saved[id].mult)';
+    const savedAnchor = 'upperSources[id]=Amount.max(1,saved[id].mult)';
     assert.equal(source.split(savedAnchor).length, 2, 'one saved-source upper bound anchor');
     rejects('omit-paid-saved-support-source', () => savedSupportBounds(source.replace(savedAnchor, 'upperSources[id]=1'), checks),
       'original gameplay stays below the promised upper bound');
@@ -408,21 +408,21 @@ if (require.main === module) {
       'if(m.support){until[i]=u+m.duration;recast[i]=u+1;pending+=relay;} else charge[i]=0;')),
       'HUD cast rate');
     let exactUptime = replaceOne(source, 'supportRate=0,upperSources=', 'supportRate=0,lowerBuff=1,upperSources=', 'Support lower accumulator');
-    exactUptime = replaceOne(exactUptime, 'supportA+=m.a;supportRate+=m.upper;\n      var profile=supportAbilityProfile(sp);',
-      'supportA+=m.a;supportRate+=m.upper;\n      var profile=supportAbilityProfile(sp);\n      lowerBuff+=(profile.strength-1)*Math.min(1,profile.durationMs/1000*f/100);', 'exact Support uptime');
+    exactUptime = replaceOne(exactUptime, 'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);',
+      'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);\n      lowerBuff+=(profile.strength-1)*Math.min(1,profile.durationMs/1000*f/100);', 'exact Support uptime');
     exactUptime = replaceOne(exactUptime, 'var passive=passiveWispDpsAt(depth),lower=passive,upper=',
       'var passive=passiveWispDpsAt(depth),lower=passive*lowerBuff,upper=', 'buffed guaranteed passive');
     rejects('assume-exact-support-deadline-uptime', () => supportClockLowerBound(exactUptime, checks),
       'Support deadline quantization cannot overstate the analytical lower bound');
-    const lowerCadence = replaceOne(source, 'lower+=base;', 'lower+=base*(1+cadence/5);', 'average Cadence lower bound');
+    const lowerCadence = replaceOne(source, 'lower=Amount.add(lower,base);', 'lower=Amount.add(lower,base*(1+cadence/5));', 'average Cadence lower bound');
     rejects('assume-every-fifth-cadence-in-lower-bound', () => cadenceCounterBounds(lowerCadence, checks),
       'stalled cadence cannot overstate guaranteed lower damage');
-    const upperCadence = replaceOne(source, 'upper+=base*upperBuff*(1+cadence)*tapRate;',
-      'upper+=base*upperBuff*(1+cadence/5)*tapRate;', 'average Cadence upper bound');
+    const upperCadence = replaceOne(source, 'upper=Amount.add(upper,Amount.mul(Amount.mul(Amount.mul(base,upperBuff),Amount.add(1,cadence)),tapRate));',
+      'upper=Amount.add(upper,Amount.mul(Amount.mul(Amount.mul(base,upperBuff),Amount.add(1,cadence/5)),tapRate));', 'average Cadence upper bound');
     rejects('assume-every-fifth-cadence-in-upper-bound', () => cadenceCounterBounds(upperCadence, checks),
       'stalled cadence original gameplay stays below the promised upper bound');
-    const naiveHud = replaceOne(source, 'var frequency=1/5;\n    if(!Number.isSafeInteger(state.totalTaps+60)){',
-      'var frequency=1/5;\n    if(false){', 'unsafe counter HUD reference');
+    const naiveHud = replaceOne(source, 'var frequency=Amount.div(1,5);\n    if(!Number.isSafeInteger(Amount.add(state.totalTaps,60))){',
+      'var frequency=Amount.div(1,5);\n    if(false){', 'unsafe counter HUD reference');
     rejects('ignore-unsafe-counter-transition-in-hud', () => cadenceCounterBounds(naiveHud, checks),
       'Cadence HUD models the actual sixty-tap counter transition');
   }

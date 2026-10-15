@@ -180,7 +180,7 @@ function runNumerical(source,options={}) {
   if(options.progress)options.progress(report);
   const equal=(a,b,label)=>{assert.deepEqual(a,b,label);report.checks++;};
   const check=(value,label)=>{assert(value,label);report.checks++;};
-  equal(q.schema(),4,'actual Comet schema3');
+  equal(q.schema(),5,'current save schema5');
   equal(CLAIMS.length,30,'fixed bounded identity count');
   equal(CLAIMS.reduce((sum,row)=>sum+row[1],0),1083,'fixed old+new+retirement credit family');
   equal(q.achievementDefs().map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'independent old23 + new4 reward table/order');
@@ -319,8 +319,8 @@ function runNumerical(source,options={}) {
       {id:'unused-power-overflow',name:'cometMeteorBudget',change:body=>"if(!Number.isFinite(12*P))return 0;"+body,probe:m=>assert.equal(m.meteorBudget(1000,Number.MAX_VALUE,0),200,'unused overflow cannot reject finite budget')},
       {id:'lost-power-ceiling',name:'cometMeteorBudget',change:body=>replaceOne(body,'var chosen = hp.e < power.e || (hp.e === power.e && hp.q <= power.q) ? hp : power;','var chosen = hp;'),probe:m=>assert.equal(m.meteorBudget(10000,100,4),1200,'power cap remains twelve passive seconds')},
       {id:'lost-core-rank',name:'cometMeteorBudget',change:body=>replaceOne(body,'part(H, 4 + rank, 20, 0)','part(H, 4, 20, 0)'),probe:m=>assert.equal(m.meteorBudget(1000,Number.MAX_VALUE,4),400,'Core rank4 remains forty percent')},
-      {id:'lost-directed-hp-correction',name:'cometMeteorHpPlan',change:body=>replaceOne(body,'if (h - after > budget) after = cometMeteorNextUp(after);','/* causal control: omit directed remainder correction */'),probe:m=>assert.deepEqual(m.meteorHpPlan(2**54,2**54,0.25,0),plan(2**54,2**54,0.25,0),'representable positive damage2 with budget3 remains available')},
-      {id:'reject-valid-fractional-hp',name:'cometMeteorHpPlan',change:body=>replaceOne(body,'!Number.isFinite(h)','!Number.isSafeInteger(h)'),probe:m=>assert.deepEqual(m.meteorHpPlan(5,0.125,1,0),plan(5,0.125,1,0),'fractional lethal HP is supported')},
+      {id:'lost-directed-hp-correction',name:'cometMeteorHpPlan',change:body=>replaceOne(body,'if (Amount.gt(Amount.sub(h,after),budget)) after = cometMeteorNextUp(after);','/* causal control: omit directed remainder correction */'),probe:m=>assert.deepEqual(m.meteorHpPlan(2**54,2**54,0.25,0),plan(2**54,2**54,0.25,0),'representable positive damage2 with budget3 remains available')},
+      {id:'reject-valid-fractional-hp',name:'cometMeteorHpPlan',change:body=>replaceOne(body,'!Amount.valid(h)','!Number.isSafeInteger(h)'),probe:m=>assert.deepEqual(m.meteorHpPlan(5,0.125,1,0),plan(5,0.125,1,0),'fractional lethal HP is supported')},
       {id:'ledger-hidden-rescan',name:'settleCometClaims',change:body=>'for(var qaRepeat=0;qaRepeat<2;qaRepeat++){(function(snapshot){'+body+'})(snapshot);}',probe:m=>{const s=claimSnapshot(m,2**54-10,retirementIds);m.settleClaims(s);assert.deepEqual(pendingIds(s),['retirement:comettrials'],'one fixed pass must retain earlier due claim');}}
     ];
     for(const control of controls){

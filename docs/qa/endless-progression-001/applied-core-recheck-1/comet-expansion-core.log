@@ -1,0 +1,66 @@
+{
+  "status": "FAIL",
+  "checks": 8485,
+  "groups": [
+    {
+      "name": "fresh schema, fixed catalog and historical reward policy",
+      "checks": 43,
+      "status": "PASS"
+    },
+    {
+      "name": "old0/1/2 paid migrations and one-pass retirement compensation",
+      "checks": 8222,
+      "status": "PASS"
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "old-loader",
+      "rawSha256": "387cf45a8608745e511e73efcd058d4188740684eb1df7dcdf262d0841f3d047",
+      "finalComets": 450,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "settled",
+          "rifttrail": "settled",
+          "starfallcrest": "settled"
+        },
+        "deeds": {}
+      }
+    }
+  ],
+  "negativeControls": [],
+  "currentGroup": "strict current4 paid data, recovery preservation and explicit restore",
+  "error": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "message": "future schema remains separate blocked case\n\nfalse !== true\n",
+    "stack": "AssertionError [ERR_ASSERTION]: future schema remains separate blocked case\n\nfalse !== true\n\n    at eq (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:47:33)\n    at C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:165:5\n    at group (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:49:79)\n    at runCore (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:116:3)\n    at cli (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:519:14)\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs:527:26)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)"
+  },
+  "input": {
+    "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\index.html",
+    "bytes": 945223,
+    "sha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs",
+      "bytes": 58981,
+      "sha256": "f92bdd58bb54e85b6b6a1711e229516da8628bbb02c488faea81a733bf3cfa3d"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 15922,
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 21869,
+      "sha256": "41d5b9d51bde1afd69191234bc9892c561d108a1140d6c2aa59fd5d6db97f816"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  }
+}

@@ -8,8 +8,9 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const {app, seed, clone, P, R, CLOCK} = require('./tree-expansion-harness.cjs');
 const {reward} = require('./prism-earning-reference.cjs');
+const {integer}=require('./amount-oracle.cjs');
 
-const FIXTURE_PATH = path.join(__dirname, 'fixtures.json');
+const FIXTURE_PATH = path.join(__dirname, 'fixtures-pre-endless.json');
 const FIXTURE_SHA = 'ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753';
 const PRICES = {
   swiftcharter: [200], lumenmemory: [8,16,28,44,64],
@@ -264,12 +265,12 @@ function rewards(source,a) {
   for(const wallet of [1000,1e30])for(const moteWallet of [100,1e30])for(const route of ['manual','live','offline']) {
     const s=payoutSeed(q,100,0,0,0,5,5);s.prisms=wallet;s.motes=moteWallet;
     s.owned.autoascend=true;s.autoAscendEnabled=route!=='manual';s.autoAscendTargetDepth=101;q.set(s);
-    const credit=Math.min(40,(wallet+40)-wallet),motes=dust(credit,5);
+    const motes=dust(40,5);
     const result=route==='manual'?q.ascend():q.advance(0,{kind:route,clockStartMs:CLOCK});
-    a.eq(q.get().prisms,wallet+40,'preserve accepted original Number Prism wallet '+route);
-    a.eq(q.get().motes,moteWallet+motes,'Dust follows actual represented Prism credit '+route);
-    if(route!=='manual')a.eq(result.motesGained,(moteWallet+motes)-moteWallet,'simulation reports represented Mote difference '+route);
-    if(wallet===1e30)a.eq(motes,0,'zero represented Prism credit grants no new currency');
+    a.eq(integer(q.get().prisms),BigInt(wallet)+40n,'exact actual Prism credit '+route);
+    a.eq(integer(q.get().motes),BigInt(moteWallet)+BigInt(motes),'Dust follows exact actual Prism credit '+route);
+    if(route!=='manual')a.eq(integer(result.motesGained),BigInt(motes),'simulation reports every earned Mote '+route);
+    if(wallet===1e30)a.eq(motes,10,'exact forty-Prism credit retains the established ten-Mote Dust reward');
     walletCases++;
   }
   rewardCase(source,a);

@@ -47,10 +47,12 @@ jobs:
           node tests/behavioral/game-amount-multiplication.cjs > validation-evidence/endless-progression/amount-multiplication.json
           node tests/behavioral/endless-price-cache.cjs index.html > validation-evidence/endless-progression/prices.json
           node tests/behavioral/endless-income.cjs index.html > validation-evidence/endless-progression/income.json
+          node tests/behavioral/endless-comet-amount.cjs index.html > validation-evidence/endless-progression/comet-amount.json
           node tests/behavioral/endless-wide-engine.cjs index.html > validation-evidence/endless-progression/wide.json
           node tests/behavioral/endless-progression-core.cjs index.html > validation-evidence/endless-progression/core.json
           node tests/behavioral/endless-controls.cjs index.html > validation-evidence/endless-progression/controls.json
           node tests/behavioral/endless-parity.cjs index.html > validation-evidence/endless-progression/parity.json
+          node tests/behavioral/endless-campaign-offline.cjs index.html > validation-evidence/endless-progression/campaign-offline.json
           node tests/behavioral/endless-mobile.cjs index.html validation-evidence/endless-progression/mobile
 
       - name: Stage web assets

@@ -30,10 +30,12 @@ async function run() {
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'lumenfall-node-tools-'));
   let taskFixtures;
   let server;
+  const links=[];
   try {
     const safe = path.join(temporary, 'safe'); fs.mkdirSync(safe);
     assert.throws(() => inside(safe, '../escape'), /Unsafe path/);
-    fs.symlinkSync(os.tmpdir(), path.join(safe, 'link'));
+    const directoryLink=path.join(safe,'link');fs.symlinkSync(os.tmpdir(),directoryLink,process.platform==='win32'?'junction':'dir');links.push(directoryLink);
+    assert.equal(fs.realpathSync(directoryLink),fs.realpathSync(os.tmpdir()),'actual directory link escapes the test root');
     assert.throws(() => inside(safe, 'link/new/file'), /Unsafe path/);
     assert.throws(() => checkHash(Buffer.from('changed'), { bytes: 7, sha256: hash('original') }, 'control'), /Integrity mismatch/);
     for (const compressed of [false, true]) {
@@ -104,7 +106,11 @@ async function run() {
     assert.throws(() => checkStartup(path.relative(ROOT, path.join(taskFixtures, 'missing.md'))), /Missing entrypoint/);
     assert.throws(() => checkStartup('AGENTS.md'), /under docs\/tasks/);
     assert.throws(() => checkStartup('../outside.md'), /Unsafe path/);
-    const link = path.join(taskFixtures, 'escape.md'); fs.symlinkSync(path.join(ROOT, 'AGENTS.md'), link);
+    let link;
+    if(process.platform==='win32'){
+      const directory=path.join(taskFixtures,'escape-dir');fs.symlinkSync(ROOT,directory,'junction');links.push(directory);link=path.join(directory,'AGENTS.md');
+    }else{link=path.join(taskFixtures,'escape.md');fs.symlinkSync(path.join(ROOT,'AGENTS.md'),link);links.push(link);}
+    assert.equal(fs.realpathSync(link),fs.realpathSync(path.join(ROOT,'AGENTS.md')),'actual file resolves outside the task directory');
     assert.throws(() => checkStartup(path.relative(ROOT, link)), /under docs\/tasks/);
     fs.writeFileSync(featureTask, '# Broken checkpoint\n\n[Missing original](missing.md)\n');
     assert.throws(() => checkStartup(taskName), /Missing link/);
@@ -120,8 +126,11 @@ async function run() {
     console.log('PASS local server: real requests and traversal/symlink rejection');
   } finally {
     if (server) { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }
+    // Unlink aliases explicitly before recursive removal of owned fixtures.
+    for(const link of links.reverse())if(fs.existsSync(link)){assert(fs.lstatSync(link).isSymbolicLink());fs.unlinkSync(link);}
+    assert.equal(path.dirname(path.resolve(temporary)),path.resolve(os.tmpdir()));assert(path.basename(temporary).startsWith('lumenfall-node-tools-'));
     fs.rmSync(temporary, { recursive: true, force: true });
-    if (taskFixtures) fs.rmSync(taskFixtures, { recursive: true, force: true });
+    if (taskFixtures) {assert.equal(path.dirname(path.resolve(taskFixtures)),path.join(ROOT,'docs/tasks'));assert(path.basename(taskFixtures).startsWith('.context-check-'));fs.rmSync(taskFixtures, { recursive: true, force: true });}
   }
   console.log('Node tooling checks passed.');
 }

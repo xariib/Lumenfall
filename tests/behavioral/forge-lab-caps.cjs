@@ -5,21 +5,27 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {execFileSync}=require('node:child_process');
 const F=require('./forge-expansion-harness.cjs'),L=require('./lab-expansion-harness.cjs');
 const {exactCost}=require('./forge-expansion.cjs');
+const {integer}=require('./amount-oracle.cjs');
 const source=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const baselineRef='fe42861fce2895c24b9e24de18714606973481ea';
 const baseline=execFileSync('git',['show',baselineRef+':index.html'],{encoding:'utf8',maxBuffer:8388608,cwd:path.resolve(__dirname,'../..')});
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 assert.equal(hash(baseline),'f8f787fd4a520ec277b350f40c6caeefa519c48cb55ddeb9bbe486e4cd0200b6','immutable accepted pre-decision source');
+const combinedRef='a4f82f47a818c11ecfcf74850a080f57d6cb690e';
+const combined=execFileSync('git',['show',combinedRef+':index.html'],{encoding:'utf8',maxBuffer:8388608,cwd:path.resolve(__dirname,'../..')});
+assert.equal(hash(combined),'e110f182e500eed4bbb0382d182471c93110da28fda97fff4856b5931791a9ac','immutable accepted combined baseline');
 const forgeIds=['arcanecal','conduction'],labIds=['bossledger','luminousdistill'];
 function verify(html){
   let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);};
   const ok=(v,m)=>{checks++;assert.ok(v,m);};
   const near=(a,b,m)=>ok(Number.isFinite(a)&&Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-10,m);
-  const fx=F.app(html),f=fx.q,bf=F.app(baseline).q,lx=L.app(html),l=lx.q,bl=L.app(baseline).q;
+  const fx=F.app(html),f=fx.q,bf=F.app(baseline).q,cf=F.app(combined).q,lx=L.app(html),l=lx.q,bl=L.app(baseline).q;
   function labSeed(){const s=L.seed(l);s.activeStudies=[];Object.keys(s.studyQueue).forEach(id=>s.studyQueue[id]=false);return s;}
-  eq(f.defs().map(n=>n.id),bf.defs().map(n=>n.id),'no Forge ID removed or replaced');
+  function legacyInput(s,q){s=F.clone(s);s.schemaVersion=q.fresh().schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
+  const originalIds=bf.defs().map(n=>n.id);originalIds.splice(8,0,'masterwork');eq(f.defs().map(n=>n.id),originalIds,'all original Forge IDs retained plus explicit Masterwork');
   eq(l.projects().map(n=>n.id),bl.projects().map(n=>n.id),'no Lab ID removed or replaced');
   for(const node of f.defs()){
+    if(node.id==='masterwork'){eq([node.unlockDepth,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.effectPerLevel,node.levelCap,node.retiredTo],[70,1000000,25000,1.35,1.35,5,undefined,''],'independent repeatable Masterwork definition');continue;}
     const old=JSON.parse(JSON.stringify(bf.node(node.id)));if(forgeIds.includes(node.id))old.levelCap=20;
     eq(node,old,'only agreed Forge cap changes: '+node.id);
   }
@@ -49,17 +55,17 @@ function verify(html){
     eq(f.queue(),true,'queue earns final Forge level');eq(f.get().research[id],20,'queue stops at20');
     const endpoint=F.clone(f.get());eq(f.queue(),false,'second queue tick cannot overbuy');eq(f.get(),endpoint,'maxed queue preserves state');
     const huge=F.seed(f);huge.research[id]=19;huge.lumen=huge.shards=1e30;f.set(huge);const before=F.clone(f.get());
-    eq(f.buy(id,1),false,'huge wallet cannot grant a free level');eq(f.get(),before,'unrepresentable debit preserves state');
+    const price=f.cost(id,19,1);eq(f.buy(id,1),true,'large wallet funds a paid cap level');eq(integer(f.get().lumen),BigInt(before.lumen)-BigInt(price.lumen),'large cap Lumen debit');eq(integer(f.get().shards),BigInt(before.shards)-BigInt(price.shard),'large cap Shard debit');eq(f.get().research[id],20,'one paid final level');
   }
   for(const id of labIds){
     const node=l.projects().find(n=>n.id===id);
     for(let level=0;level<20;level++){
-      l.set(labSeed());bl.set(labSeed());
+      l.set(labSeed());bl.set(legacyInput(labSeed(),bl));
       eq(l.cost(id,level),bl.cost(id,level),'unchanged Lab price curve '+id);
-      eq(l.duration(id,level),bl.duration(id,level),'unchanged Lab work curve '+id);
+      eq(l.duration(id,level),Math.min(864000,bl.duration(id,level)),'bounded future Lab work curve '+id);
       const expected={lumen:Math.round((id==='bossledger'?14000:25000)*Math.pow(1.55,level)),shard:Math.round((id==='bossledger'?500:800)*Math.pow(1.55,level))};
       eq(l.cost(id,level),expected,'independent new Lab level price');ok(Object.values(expected).every(Number.isSafeInteger),'finite new Lab prices');
-      eq(l.duration(id,level),Math.round((id==='bossledger'?720:960)*Math.pow(1.45,level)),'independent new work');
+      eq(l.duration(id,level),Math.round(Math.min(864000,(id==='bossledger'?720:960)*Math.pow(1.45,level))),'independent bounded new work');
     }
     for(const level of [10,19,20,23]){
       const s=labSeed();s.longStudyLevels[id]=level;s.studyQueue[id]=true;l.set(s);const prior=L.clone(l.get()),plan=l.plan(id);
@@ -72,16 +78,17 @@ function verify(html){
         l.finish(plan.duration);eq(l.get().longStudyLevels[id],level+1,'no double earned level');
       }else eq(l.get(),prior,'maxed start preserves paid state');
     }
-    const discounted=labSeed();discounted.longStudyLevels[id]=19;discounted.longStudyLevels.procurement=10;discounted.longStudyLevels.catalysis=10;l.set(discounted);bl.set(discounted);
-    eq(l.cost(id,19),bl.cost(id,19),'existing discounts apply to added level');eq(l.speedCost(8),379,'existing discounted speed price');
+    const discounted=labSeed();discounted.longStudyLevels[id]=19;discounted.longStudyLevels.procurement=10;discounted.longStudyLevels.catalysis=10;l.set(discounted);
+    bl.set(legacyInput(discounted,bl));eq(l.cost(id,19),bl.cost(id,19),'existing discounts apply to added level');eq(l.speedCost(8),379,'existing discounted speed price');
   }
-  // Schema1/2/3, old levels10, retained raw overcaps and retired value all
-  // normalize exactly as the accepted baseline; upward caps need no refund.
+  // Retain all pre-existing combined-save fields. Schema5 adds only the
+  // explicit Mastery/entitlement fields and the new Masterwork path here.
+  function oldFields(s){s=F.clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
   for(const schema of [1,2,3])for(const level of [10,13,20,23]){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});
     s.longStudyLevels.labcapacity=2;s.activeStudies=[{id:'bossledger',remainingSec:12.5,totalDurationSec:123.75,speedMult:8},{id:'prismstudy',remainingSec:17,totalDurationSec:90,speedMult:3}];
-    f.set(s);bf.set(s);eq(f.get(),bf.get(),'old/current save normalized value identical '+schema+'/'+level);
+    f.set(s);cf.set(s);eq(oldFields(f.get()),oldFields(cf.get()),'all old combined-save fields retained '+schema+'/'+level);eq(f.get().schemaVersion,5,'current schema5');eq(f.get().wispMastery,Object.fromEntries(Object.keys(s.spirits).map(id=>[id,0])),'migration creates no free Mastery ranks');for(const id of Object.keys(s.spirits))if(s.spirits[id]>0)eq(f.get().recruitmentEntitlements[id],true,'owned recruit entitlement retained '+id);
     const canonical=F.clone(f.get());f.set(canonical);eq(f.get(),canonical,'idempotent normalization');
     f.save();eq(F.app(html,fx.storage).q.get(),canonical,'actual cold save reload');
     eq(f.accept(f.decode(f.export())),canonical,'backup roundtrip keeps raw progress/paid work');
@@ -106,7 +113,7 @@ function verify(html){
   // and per-cast resources/chance stay unchanged for this Lab-only comparison.
   for(const level of [10,19,20,23])for(const depth of [19,20,39,40])for(const luminous of [false,true]){
     const s=labSeed();s.depth=s.enemyDepth=depth;s.enemyIsLuminous=luminous;s.longStudyLevels.bossledger=level;s.longStudyLevels.luminousdistill=level;
-    l.set(s);const zero=L.clone(s);zero.longStudyLevels.bossledger=zero.longStudyLevels.luminousdistill=0;bl.set(zero);
+    l.set(s);const zero=L.clone(s);zero.longStudyLevels.bossledger=zero.longStudyLevels.luminousdistill=0;bl.set(legacyInput(zero,bl));
     const percent=depth%10===0?5*Math.min(level,20):luminous?10*Math.min(level,20):0;
     for(const kind of ['lumen','shards']){const original=bl[kind](depth,luminous);eq(l[kind](depth,luminous),original+Math.round(original*percent/100),'independent conditional kill reward '+kind);}
     eq(l.sigils(depth),bl.sigils(depth),'no Sigil reward change');eq(l.motes(depth),bl.motes(depth),'no Mote reward change');eq(l.chance(depth),bl.chance(depth),'no encounter chance change');
@@ -127,7 +134,7 @@ function verify(html){
     l.set(s);l.batch(firstFunded,'offline');eq(l.queue().studiesStarted,1,'actual earliest queued final-level start');
     eq(l.get().activeStudies[0].id,'bossledger','queue paid the intended final project');eq(l.get().longStudyLevels.bossledger,19,'queued work does not award early level20');
   }
-  return {checks,sourceSha256:hash(html),baselineRef,baselineSha256:hash(baseline),selected:{arcanecal:20,conduction:20,bossledger:20,luminousdistill:20}};
+  return {checks,sourceSha256:hash(html),baselineRef,baselineSha256:hash(baseline),combinedRef,combinedSha256:hash(combined),selected:{arcanecal:20,conduction:20,bossledger:20,luminousdistill:20}};
 }
 const result=verify(source),negativeControls=[];
 if(process.argv.includes('--negative'))for(const [name,from,to] of [

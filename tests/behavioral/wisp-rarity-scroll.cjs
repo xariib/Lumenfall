@@ -12,11 +12,26 @@ const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 let html=source.replace('<head>','<head><script>window.uiRegressionErrors=[];addEventListener("error",e=>uiRegressionErrors.push(e.message));addEventListener("unhandledrejection",e=>uiRegressionErrors.push(String(e.reason)));const normalInterval=window.setInterval;window.setInterval=(fn,ms)=>normalInterval(()=>{},ms);</script>');
 const marker="if(document.readyState==='loading'){";assert.equal(html.split(marker).length,2,'unique production bridge anchor');
 html=html.replace(marker,`window.uiRegression={ready:()=>!!els.toast,roleDepth:function(depth){state.depth=depth;state.enemyDepth=depth;restoreEnemyOrSpawn();renderSpirits();},setupUpgrade:function(kind){var s=freshState();s.questDay=todayStr();s.lastSeen=Date.now();s.maxDepthEver=250;s.ascendCount=50;s.longStudyLevels.wispascend=36;s.research.arcanecal=10;s.spirits.stone=1000;s.activeParty=['ember','stone'];s.heroRarity.stone=kind==='rarity'?4:5;s.wispModules.stone=kind==='module'?0:kind==='module-cap'?19:20;s.wispUltimate.stone=kind!=='ultimate';state=acceptPersistedState(s);var sp=SPIRITS[2],action=kind==='module-cap'?'module':kind,cost=action==='module'?moduleCost(sp,state.wispModules.stone):action==='rarity'?rarityCost(sp,4):{sigil:ultimateSigilCost(sp)};state.lumen=cost.lumen||0;state.shards=cost.shard||0;state.sigils=cost.sigil||0;checkAchievements();saveState();renderAll();activateTab('spirits');return {action:action,cost:cost};},setupEmpower:function(rich){var s=freshState();s.questDay=todayStr();s.lastSeen=Date.now();s.maxDepthEver=250;s.spirits.stone=50;s.activeParty=['ember','stone'];s.owned.offline24=true;state=acceptPersistedState(s);var plan=getSpiritBuyPlan(SPIRITS[2]);state.lumen=rich?plan.cost*100:plan.cost;checkAchievements();saveState();renderAll();activateTab('spirits');return plan;},setup:function(tier,rich){var s=freshState();s.questDay=todayStr();s.lastSeen=Date.now();s.maxDepthEver=250;s.ascendCount=50;s.longStudyLevels.wispascend=36;s.research.arcanecal=10;s.spirits.stone=1000;s.heroRarity.stone=tier;s.activeParty=['ember','stone'];s.owned.offline24=true;state=acceptPersistedState(s);var cost=rarityCost(SPIRITS[2],tier);state.lumen=rich?1e15:cost.lumen;state.shards=rich?1e15:cost.shard;checkAchievements();saveState();renderAll();activateTab('spirits');return {cost:cost,tier:tier,power:wispPower(SPIRITS[2],1000)};},get:()=>JSON.parse(JSON.stringify(state)),render:renderSpirits,refresh:function(){lastAffordabilityAt=0;checkAffordability();},wallet:function(lumen,shards){state.lumen=lumen;state.shards=shards;lastAffordabilityAt=0;checkAffordability();},save:function(){saveState();return loadState();},power:()=>wispPower(SPIRITS[2],state.spirits.stone)};`+marker);
-let browser,server,profile,stage,session,seq=0,buffer='',closed=false,checks=0;const pending=new Map(),records=[];
+let browser,server,profile,stage,session,seq=0,buffer='',closed=false,checks=0;const pending=new Map(),records=[],layoutSettlements=[];
 function check(value,message){checks++;assert(value,message);}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP deadline '+method));},15000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
 async function ev(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
+// Setup renders synchronously. Observe painted, stable geometry instead of
+// always sleeping 300ms before each periodic-role profile. The same 300ms
+// setup ceiling remains, and every existing input/assertion still follows.
+async function settledSetup(){layoutSettlements.push(await ev(`new Promise(function(resolve,reject){
+ var started=performance.now(),previous=null,stable=0,frames=0,ended=false;
+ var deadline=setTimeout(function(){ended=true;reject(Error('Wisp setup layout did not settle within 300ms'));},300);
+ function frame(){if(ended)return;try{
+  var main=document.querySelector('main'),rect=document.querySelector('[data-empower=stone]').getBoundingClientRect();
+  var geometry=JSON.stringify([main.scrollTop,main.scrollHeight,rect.top,rect.height]);frames++;
+  stable=geometry===previous?stable+1:0;previous=geometry;
+  if(stable>=2){ended=true;clearTimeout(deadline);resolve({frames:frames,elapsedMs:performance.now()-started});}
+  else requestAnimationFrame(frame);
+ }catch(error){ended=true;clearTimeout(deadline);reject(error);}}
+ requestAnimationFrame(frame);
+})`));}
 async function touchRarity(){const r=await ev('(()=>{var r=document.querySelector("[data-rarity=stone]").getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(30);}
 async function key(){await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await pause(30);}
 async function run(){
@@ -28,6 +43,17 @@ async function run(){
  let ready=false;for(let i=0;i<200;i++){try{ready=await ev('!!window.uiRegression && uiRegression.ready()');}catch{}if(ready)break;await pause(25);}check(ready,'actual application ready');await ev('document.fonts.ready');await ev('if(window.startupIntroFinish)startupIntroFinish()');await ev('document.getElementById("startup-skip").click()');await pause(500);
  for(const width of (args.includes('--debug-repeat')?[320]:[320,390,430]))for(const scale of (args.includes('--debug-repeat')?[2]:[1,2]))for(const motion of (args.includes('--debug-repeat')?['no-preference']:['no-preference','reduce'])){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+16*scale+'px"');
+  // A deterministic layout perturbation isolates the game's compensation
+  // from Chrome's native scroll anchoring. Rendering removes the spacer above
+  // Stone, just as changing an earlier card's wrapped content changes height.
+  const reflowBefore=await ev(`(()=>{uiRegression.setupEmpower(false);var main=document.querySelector('main'),button=document.querySelector('[data-empower=stone]'),card=button.closest('[data-wisp-card]');main.style.overflowAnchor='none';var spacer=document.createElement('div');spacer.setAttribute('data-wisp-layout-probe','');spacer.style.height='80px';card.parentNode.insertBefore(spacer,card);button.scrollIntoView({block:'center'});button.focus({preventScroll:true});var top=button.getBoundingClientRect().top;return {top:top,layoutTop:top+main.scrollTop,state:uiRegression.get()};})()`);
+  await ev('uiRegression.render()');
+  const reflowAfter=await ev(`(()=>{var main=document.querySelector('main'),button=document.querySelector('[data-empower=stone]'),top=button.getBoundingClientRect().top;var result={top:top,layoutTop:top+main.scrollTop,state:uiRegression.get(),card:document.activeElement.closest('[data-wisp-card]')?.dataset.wispCard,probe:!!document.querySelector('[data-wisp-layout-probe]')};main.style.overflowAnchor='';return result;})()`);
+  check(!reflowAfter.probe,'periodic rendering removes the controlled layout spacer');
+  check(Math.abs(reflowAfter.layoutTop-reflowBefore.layoutTop)>=40,'controlled earlier-card height really changes');
+  check(Math.abs(reflowAfter.top-reflowBefore.top)<=1,'periodic reflow keeps focused action screen position');
+  check(reflowAfter.card==='stone','periodic reflow keeps Stone focus');
+  assert.deepEqual(reflowAfter.state,reflowBefore.state,'layout compensation preserves every save field');
   if(!args.includes('--debug-repeat') && !args.includes('--role-only'))
   for(const input of ['touch','keyboard'])for(const rich of [false,true]){
    const plan=await ev('uiRegression.setupEmpower('+rich+')');await pause(60);
@@ -44,7 +70,7 @@ async function run(){
    if(!rich){await ev("document.activeElement.blur()");await touch();await key();const denied=await snapshot();check(denied.card==='stone','disabled Empower touch keeps focus');check(Math.abs(denied.scroll-before.scroll)<=1,'disabled Empower touch keeps scroll');assert.deepEqual(denied.state,after.state,'denied repeated Empower preserves save');}
   }
   if(!args.includes('--debug-repeat') && !args.includes('--empower-only'))for(const input of ['touch','keyboard','mouse']){
-   await ev('uiRegression.setupEmpower(false);uiRegression.roleDepth(10)');await pause(300);
+   await ev('uiRegression.setupEmpower(false);uiRegression.roleDepth(10)');await settledSetup();
    const sel='[data-empower=stone]';await ev('(()=>{var e=document.querySelector("[data-empower=stone]");e.scrollIntoView({block:"center"});'+(input==='keyboard'?'e.focus({preventScroll:true});':'document.activeElement.blur();')+'})()');await pause(30);
    if(input==='keyboard')await key();else{const r=await ev('(()=>{var r=document.querySelector("[data-empower=stone]").getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');if(input==='mouse'){await send('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...r});await send('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...r});}else{await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}await pause(30);}
    const observe=()=>ev('({scroll:document.querySelector("main").scrollTop,top:document.querySelector("[data-empower=stone]").getBoundingClientRect().top,focus:document.activeElement.closest("[data-wisp-card]")?.dataset.wispCard,level:uiRegression.get().spirits.stone})');
@@ -83,7 +109,7 @@ async function run(){
   }
   check((await ev('uiRegressionErrors')).length===0,'no browser errors');
  }
- return {status:'pass',sourceSha256,mutation,checks,profiles:records,version};
+ return {status:'pass',sourceSha256,mutation,checks,profiles:records,layoutSettlements,version};
 }
 (async()=>{let result;try{result=await run();}catch(e){result={status:'fail',sourceSha256,mutation,checks,profiles:records,error:e.stack};process.exitCode=1;}finally{
  try{if(browser&&!closed){const completion=new Promise(r=>browser.once('close',(code,signal)=>r({code,signal})));await send('Browser.close',{},null).catch(()=>{});let timer;const exit=await Promise.race([completion,new Promise(r=>{timer=setTimeout(()=>r(null),5000);})]).finally(()=>clearTimeout(timer));if(!exit){browser.kill();await completion;throw Error('Browser close deadline');}assert.equal(exit.code,0);}if(server){server.closeAllConnections();await new Promise(r=>server.close(r));}for(const dir of [profile,stage])if(dir)await fs.promises.rm(dir,{recursive:true,force:true,maxRetries:3,retryDelay:100});}catch(e){result.status='fail';result.teardown=e.stack;process.exitCode=1;}}

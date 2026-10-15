@@ -111,7 +111,11 @@ function campaign(){
   function advance(seconds,kind){
     x.clock(CLOCK+elapsed*1000);
     const result=q.advance(seconds,{kind:kind,clockStartMs:CLOCK+elapsed*1000,offlineWindowStartMs:CLOCK+elapsed*1000});
-    elapsed+=seconds;x.clock(CLOCK+elapsed*1000);note();
+    elapsed+=seconds;x.clock(CLOCK+elapsed*1000);
+    // The authoritative engine advances productive systems; the offline
+    // lifecycle adapter credits this statistic and then checks its Deed.
+    if(kind==='offline'){q.get().totalOfflineSeconds=amount.add(q.get().totalOfflineSeconds,seconds);q.achievements();}
+    note();
     assert.equal(result.processedSec===undefined||result.processedSec>=0,true);
     assert(amount.valid(q.get().lumen)&&amount.valid(q.get().enemyHp),'finite represented engine campaign state');
   }

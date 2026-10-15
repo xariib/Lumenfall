@@ -1,0 +1,173 @@
+{
+  "status": "FAIL",
+  "records": [
+    {
+      "name": "lab-expansion",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "6674c3cabb66f4aee4e91583f32550ef045d8ef34261fc6a19917127185d304b",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 2.3136522,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "lab-expansion-boundary",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "97c925ef222eabb3c7980cb5349b3162d6c0b17b2efb7eefa54d547a660a5718",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 0.7373502999999996,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "lab-expansion-stress",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "1938539bfdd936985332ba0c3ba6c4ed6973b56dd08f9035729abfb73d05a865",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 1.0028533000000002,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "forge-expansion-calibration",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "f1618a149f1e80262dae4db2740da96c3fd17602ecb92202276d7d6b2e920698",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 24.341451,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "tree-expansion-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "f201d421c938f1b268dc71b336f16e52d87e9474e74469e173a37e441a70c6ec",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 1.5439670000000005,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "tree-expansion-economy",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "12d7243352c0b092827a4316d7e8f660eabf504980659b0beed6ad88ffa4109b",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.9893122000000003,
+      "status": "FAIL",
+      "error": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: wide credited Prisms retain the established capped Dust reward\r\n\r\n10 !== 50\r\n\r\n    at Object.eq (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-economy.cjs:32:56)\r\n    at rewards (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-economy.cjs:273:24)\r\n    at verify (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-economy.cjs:412:98)\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-economy.cjs:420:148)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 10,\r\n  expected: 50,\r\n  operator: 'deepStrictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+    },
+    {
+      "name": "tree-expansion-offline",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 19.3742564,
+      "status": "FAIL",
+      "error": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: one paid ending interval mutation anchor\r\n\r\n1 !== 2\r\n\r\n    at replaceOne (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-economy.cjs:392:10)\r\n    at negatives (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-offline.cjs:283:14)\r\n    at verify (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-offline.cjs:304:31)\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\tree-expansion-offline.cjs:308:148)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 1,\r\n  expected: 2,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+    },
+    {
+      "name": "comet-expansion-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "f92bdd58bb54e85b6b6a1711e229516da8628bbb02c488faea81a733bf3cfa3d",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.25752940000000674,
+      "status": "FAIL",
+      "error": "future schema remains separate blocked case\n\nfalse !== true\n"
+    },
+    {
+      "name": "comet-expansion-numerical",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "41d5b9d51bde1afd69191234bc9892c561d108a1140d6c2aa59fd5d6db97f816",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 1.135188500000004,
+      "status": "FAIL",
+      "error": "one causal mutation anchor: if (h - after > budget) after = cometMeteorNextUp(after);\n\n1 !== 2\n"
+    },
+    {
+      "name": "comet-expansion-offline",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "5c50c5323e728cf7d967ca3f971d74b8a12d6746bb02536ac15ead592cd7250b",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.4274629000000059,
+      "status": "FAIL",
+      "error": "productive fixed world reaches its finite bank cap\n\n1 !== 3\n"
+    },
+    {
+      "name": "echo-refund-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "c4832b6576b713e0fae8bebd36010f3c0de6fdf464f814b12bf9954ec61e82f0",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 2.8311028000000005,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "swift-current-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "61a80ca945059bfee8bcd39d327846dd6e5c8b5d4e19ab57d159587da70269ff",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 16.028984900000005,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "wisp-contribution-core",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "bb29ddc81ac93fc78d9f69b67f34ddb7fa8c7838bb47ed5137c9018deb6fe0f8",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 31.82460389999999,
+      "status": "FAIL",
+      "error": "     measuredinquiry: 1.5,\r\n      labcapacity: 1.5,\r\n      procurement: 1.5,\r\n      catalysis: 1.5,\r\n      focusprotocol: 1.5,\r\n      fieldnotes: 1.5,\r\n      curriculum: 1.5,\r\n      bossledger: 1.5,\r\n      luminousdistill: 1.5,\r\n      sigilcartography: 1.5,\r\n      rarityappraisal: 1.5,\r\n      modulefabrication: 1.5,\r\n      ultimateanalysis: 1.5,\r\n      resonantefficiency: 1.5,\r\n      adaptivegrowth: 1.5\r\n    },\r\n    achieved: { autotap: true },\r\n    owned: { meteor: false, starcall: false },\r\n    riftTheme: 'default',\r\n    cometUpgrades: { cometreservoir: 0, cometcycle: 0, meteorcore: 0 },\r\n    cometCharges: 0,\r\n    cometWork: 0,\r\n    cometMeteorUsed: false,\r\n    cometCalled: false,\r\n    cometEvents: {\r\n      firstCommand: false,\r\n      firstRecharge: false,\r\n      bossStrike: false,\r\n      calledKill: false\r\n    },\r\n    cometClaims: {\r\n      policy: 'comet-commands-001',\r\n      retired: {\r\n        comettrials: 'absent',\r\n        rifttrail: 'absent',\r\n        starfallcrest: 'absent'\r\n      },\r\n      deeds: {}\r\n    },\r\n    cometTrial: null,\r\n    cometTrialMarks: {},\r\n    cometTrialResult: null,\r\n    cometCosmetics: { trail: false, crest: false },\r\n    legacyCometPurchases: {},\r\n    buffUntil: 0,\r\n    buffMult: 1,\r\n    supportBuffs: null,\r\n    supportRecastUntil: { tide: 0, aurora: 0 },\r\n    ascendCount: 0,\r\n    ascendRewardedDepth: 0,\r\n    sigilResonanceUses: 0,\r\n    totalTaps: 0,\r\n    totalKills: 0,\r\n    totalOfflineSeconds: 0,\r\n    luminousAccum: 0,\r\n    savedLabMultiplier: 1,\r\n    autoAscendEnabled: false,\r\n    autoAscendTargetDepth: 16,\r\n    loginStreak: 0,\r\n    questDay: '',\r\n    questIds: [],\r\n    questClaimed: {},\r\n    dailyQuestRefreshes: 0,\r\n    dailyStats: {\r\n      taps: 0,\r\n      kills: 0,\r\n      empowers: 0,\r\n      research: 0,\r\n      bossKills: 0,\r\n      luminousKills: 0,\r\n      ascends: 0\r\n    },\r\n    lastSeen: 2000000000000,\r\n    _autoTapAccum: 0,\r\n    _autoEmpowerAccum: 0\r\n  },\r\n  operator: 'deepStrictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+    },
+    {
+      "name": "forge-lab-caps",
+      "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+      "testSha256": "0d07cc9e542662939855f4de3ac57779105456f0f263201ea1bf5996535f4674",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.28937249999999765,
+      "status": "FAIL",
+      "error": "<anonymous_script>:1311\r\n    throw persistenceError('unsupported-future-schema','Save was created by a newer Lumenfall schema');\r\n    ^\r\n\r\nError: Save was created by a newer Lumenfall schema\r\n    at persistenceError (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\lab-expansion-harness.cjs:40:2), <anonymous>:1274:15)\r\n    at identifySaveSchemaVersion (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\lab-expansion-harness.cjs:40:2), <anonymous>:1311:11)\r\n    at acceptPersistedState (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\lab-expansion-harness.cjs:40:2), <anonymous>:2106:29)\r\n    at Object.set (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\lab-expansion-harness.cjs:40:2), <anonymous>:8534:82)\r\n    at verify (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\forge-lab-caps.cjs:62:27)\r\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\forge-lab-caps.cjs:138:14)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12) {\r\n  code: 'unsupported-future-schema'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+    }
+  ]
+}

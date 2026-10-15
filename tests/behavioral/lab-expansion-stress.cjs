@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
+const {ge}=require('./amount-oracle.cjs');
 const root = path.resolve(__dirname,'../..');
 const {app, seed} = require(path.join(root, 'tests/behavioral/lab-expansion-harness.cjs'));
 const source = fs.readFileSync(process.argv[2] || path.join(root, 'index.html'), 'utf8');
@@ -52,7 +53,7 @@ for (let z = 0; z < 3200; z++) {
   function observe(n) {
     q.set(initial);
     const summary = q.batch(n,'offline'), state = q.get(), plan = q.plan(project.id);
-    const enough = state.lumen >= cost.lumen && state.shards >= cost.shard;
+    const enough = ge(state.lumen,cost.lumen) && ge(state.shards,cost.shard);
     const wallet = {L:state.lumen,S:state.shards};
     const started = q.queue().studiesStarted;
     return {n,enough,started,reason:plan.reason,wallet,

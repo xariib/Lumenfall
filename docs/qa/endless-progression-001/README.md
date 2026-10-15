@@ -1,10 +1,49 @@
 # Endless progression — work in progress
 
-Current source82fa86dc: selected AK balance applied. Regular free milestones
+Current frozen source1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c:
+selected AK balance, native Comet debit fix and exact Masterwork preview. Regular free milestones
 22d recruits/48.33d Mythic/53.33d Ultimate; two visits21/45.5/50.5d. Full roster
 observed138.33d. Exact purchase/income and model-continuation checks pass. Low-target
 AutoAscend, final whole-suite/CI, remote integration and native/device acceptance
 remain open. The detailed checkpoints below retain earlier proposals and failures.
+
+Latest checkpoint: both AK campaigns reached180d. Regular full roster138.33d,
+Rift7888,Mastery20/10/7/3/1/1/0/0; investor full roster143d,Rift8410,
+Mastery21/20/18/11/7/3/2/2. First Auto-Ascend attempts already had315/707/1014/
+545/611 Comets for regular/two/casual/frequent/efficient respectively; the old
+adapter's missing Idle8 reward cannot delay that100-Comet purchase. A paired
+real day proves the corrected adapter changes only84600 offline seconds and
+the fixed15-Comet reward, retaining every other field/receipt.
+
+The complete82fa run is preserved in applied-broad-first:216 passing executions,
+three failures (Wisp90s deadline and two obsolete price constants), unchanged
+source/tests. Subsequent focused checks pass: Wisp3277 in80.5s under the same
+90s gate; all three scroll/focus controls fail their intended assertions. The
+new reflow case disables browser automatic anchoring and changes content height
+above Stone, so the product's own compensation is tested. Both price checks
+use fixed40M/240M/910M independent expectations. This does not relabel the failed
+whole run as passing. Final-source clean whole UI/CI remains pending.
+
+The core audit updated schema5 expectations, retained the exact historical
+public fixture bytes in fixtures-pre-endless.json, and extended independent
+BigInt comparisons for wide balances. The large Lab witness remains an unsafe
+ordinary estimate with a safe first Luminous purchase:8985936939061001 kills;
+one fewer cannot pay. Original caps/quotes and actual paid work retain explicit
+regressions. Short Comet traces check exact partial bank work; long runs still
+require full saturation. Wisp preservation retains every prior state field in
+a no-kill world while independently asserting new fields and zero free Mastery.
+
+Final1a840 fixes unnecessary widening of an already exactly payable native
+Comet debit, preserving the existing ordered claim policy. Wide saved wallets
+still debit exactly. New Comet290 assertions/20 causal controls and actual V8
+6.0 endless44 plus standalone Comet15 families pass. Exact8h paired model
+continuations passed on ae49. Final1a840 core233, income632726, amounts412,
+multiplication36502, prices13416, wide57, parity305, Comet290,20 causal controls,
+actual V8 6.0 endless44/Comet1362 pass. Final core group25/26: all game checks
+pass; tooling fails NTFS mode438 versus420 after real archive/link controls.
+This gate remains open for Linux CI. The final frozen full browser run is active.
+The earned day180 low-target stress performs292 Ascensions in10 batches but
+cannot advance0.001 seconds; no cooldown or reward change has been applied.
 
 15 October current checkpoint: final source82fa86dc passes independent income
 632726, exact multiplication36502, prices13416, core230, amounts412, wide57,

@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
 15 October: [ENDLESS_PROGRESSION_001](tasks/ENDLESS_PROGRESSION_001.md) local
-candidate. Pacing measured; low-target AutoAscend, final gates/release OPEN.
+candidate. Free180d pacing measured; low-target AutoAscend, gates/release OPEN.
 
 14 October 2026: [FORMATION_BEST_NOW_001](tasks/FORMATION_BEST_NOW_001.md)
 adds Field Best now for existing recommended Bonds. User chose recruitment of

@@ -215,14 +215,14 @@ const result=verify(source),negatives=[];
 if(process.argv.includes('--negative')){
  const pairs=[
   ['lost-capacity',"return base+labExpansionLevel('labcapacity');",'return base;'],
-  ['free-start','state.lumen-=plan.cost.lumen;','state.lumen-=0;'],
+  ['free-start','  state.lumen=debitAmount(state.lumen,plan.cost.lumen);\n  spendShards(plan.cost.shard);','  state.lumen=debitAmount(state.lumen,0);\n  spendShards(plan.cost.shard);'],
   ['early-level','state.activeStudies.push({id:plan.node.id,','state.longStudyLevels[plan.node.id]++;state.activeStudies.push({id:plan.node.id,'],
   ['lost-seventh-paid-record','}).slice(0,5+Math.min(2,out.longStudyLevels.labcapacity||0)).map(function(active){','}).slice(0,5).map(function(active){'],
   ['ascend-drops-paid-slots','  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;','  state.activeStudies=state.activeStudies.slice(0,5);\n  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;'],
   ['ascend-drops-earned-capacity','  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;','  state.longStudyLevels.labcapacity=0;\n  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;'],
-  ['double-notes','if(moteBonus) state.motes+=moteBonus;','if(moteBonus) state.motes+=2*moteBonus;'],
-  ['no-procurement',"var discount=node.id==='procurement'?0:2*labExpansionLevel('procurement');",'var discount=0;'],
-  ['missed-luminous-purchase',"if(!labExpansionLevel('luminousdistill') || upper<=0 || !Number.isFinite(upper)) return upper;",'return upper;'],
+  ['double-notes','if(moteBonus) state.motes=creditAmount(state.motes,moteBonus);','if(moteBonus) state.motes=creditAmount(state.motes,2*moteBonus);'],
+  ['no-procurement',"var discount=node.id==='procurement'?0:Amount.mul(2,labExpansionLevel('procurement'));",'var discount=0;'],
+  ['missed-luminous-purchase',"if(!labExpansionLevel('luminousdistill') || Amount.le(upper,0) || !Amount.valid(upper)) return upper;",'return upper;'],
   ['erased-old-value','out.research[node.id] = nonNegativeInt(research[node.id],fresh.research[node.id]);',"out.research[node.id] = node.id==='charge'?0:nonNegativeInt(research[node.id],fresh.research[node.id]);"]
  ];
  for(const [name,a,b] of pairs){assert.equal(source.split(a).length,2,'causal anchor '+name);let caught;try{verify(source.replace(a,b));}catch(e){if(e instanceof assert.AssertionError)caught=e.message;else throw e;}assert(caught,'mutation must fail an assertion: '+name);negatives.push({name,caught});}

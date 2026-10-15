@@ -1,0 +1,19 @@
+<anonymous_script>:1311
+    throw persistenceError('unsupported-future-schema','Save was created by a newer Lumenfall schema');
+    ^
+
+Error: Save was created by a newer Lumenfall schema
+    at persistenceError (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\lab-expansion-harness.cjs:40:2), <anonymous>:1274:15)
+    at identifySaveSchemaVersion (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\lab-expansion-harness.cjs:40:2), <anonymous>:1311:11)
+    at acceptPersistedState (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\lab-expansion-harness.cjs:40:2), <anonymous>:2106:29)
+    at Object.set (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\lab-expansion-harness.cjs:40:2), <anonymous>:8534:82)
+    at verify (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-lab-caps.cjs:62:27)
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-lab-caps.cjs:138:14)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12) {
+  code: 'unsupported-future-schema'
+}
+
+Node.js v24.19.0

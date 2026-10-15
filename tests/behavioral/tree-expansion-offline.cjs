@@ -280,7 +280,7 @@ function negatives(source) {
     assert.match(error.message,pattern,name+' must catch its intended chronology fault');
     rows.push({name,caught:true,errorName:error.name,message:error.message.split('\n')[0]});
   }
-  const lost=replaceOne(source,"var carryBeforePassive=treeLevel('chargememory')>0 || treeLevel('phasememory')>0;",'var carryBeforePassive=false;','paid ending interval');
+  const lost=replaceOne(source,"var carryBeforePassive=Amount.gt(treeLevel('chargememory'),0) || Amount.gt(treeLevel('phasememory'),0);",'var carryBeforePassive=false;','paid ending interval');
   rejects('discard-final-old-run-charge',()=>endingPassive(lost,checks()),/ending event-time charge/);
   const twice=replaceOne(source,'if(!carryBeforePassive){','if(true){','single resource accrual');
   rejects('double-accrue-paid-memory-interval',()=>ordinaryInterval(twice,checks()),/ordinary interval accrues charge exactly once/);
@@ -299,7 +299,7 @@ function verify(source,negative=false) {
   const deadlines=supportDeadlines(source,a),walls=[0,1,4].map(rank=>wallCase(source,a,rank));
   const bounds=sixPartyBounds(source,a),long=longRuns(source,a),faults=offlineFaults(source,long.initial,a);
   delete long.initial;
-  return {status:'pass',sourceSha256:hash(source),testSha256:hash(fs.readFileSync(__filename)),fixtureSha256:hash(fs.readFileSync(path.join(__dirname,'fixtures.json'))),
+  return {status:'pass',sourceSha256:hash(source),testSha256:hash(fs.readFileSync(__filename)),fixtureSha256:hash(fs.readFileSync(path.join(__dirname,'fixtures.json'))),historicalFixtureSha256:hash(fs.readFileSync(path.join(__dirname,'fixtures-pre-endless.json'))),
     checks:a.count,boundaries,supportDeadlines:deadlines,wallGrace:walls,sixPartyBounds:bounds,longRuns:long,offlineFaults:faults,
     negativeControls:negative?negatives(source):[],
     scope:'Actual full-IIFE live/offline/split/resumable engine and primary/recovery transaction. Public synthetic fixtures only; no browser/native device or private-save acceptance.200% UI is covered separately.'};

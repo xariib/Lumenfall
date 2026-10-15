@@ -1,0 +1,1306 @@
+{
+  "group": "full",
+  "started": "2026-10-15T03:34:01.148Z",
+  "base": "d5754e3e1904a808a58c67829cc8f3a83151eae9",
+  "sourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+  "node": "v24.19.0",
+  "runtime": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe",
+  "transport": "pipe",
+  "results": [
+    {
+      "name": "behavioral-suite",
+      "args": [
+        "tests/behavioral/run.cjs",
+        "--web-root",
+        "mobile/www",
+        "--raw-artifacts",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\validation-evidence\\endless-applied-full\\raw"
+      ],
+      "code": 1,
+      "signal": null,
+      "timedOut": false,
+      "seconds": 2420.739
+    }
+  ],
+  "testInputs": [
+    {
+      "file": "tests\\behavioral\\accessibility-controls.js",
+      "sha256": "6a04254085039d7c6bdff5f85a5af3c754c514db66a4728c6096bff5a3a510b9"
+    },
+    {
+      "file": "tests\\behavioral\\accessibility.js",
+      "sha256": "010615f180ecdbbbf1867e5d8b73e103e19a40f04417604b70d0122af9a6eff4"
+    },
+    {
+      "file": "tests\\behavioral\\ascend-prisms.js",
+      "sha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482"
+    },
+    {
+      "file": "tests\\behavioral\\auto-ascend-target.cjs",
+      "sha256": "0594515502cbc30895e5d7906f293c91ae35e71ad585fece960738e2534a091d"
+    },
+    {
+      "file": "tests\\behavioral\\auto-ascend-target.js",
+      "sha256": "a6e11e5ef188c3a514597d3b53c6d70ec690f39f9a62902f4f078b1906510c05"
+    },
+    {
+      "file": "tests\\behavioral\\bond-text.js",
+      "sha256": "6597fcaf879bbb8f573e885302feb92a9e3b9cd4cd8a6a7ad829e68187e01986"
+    },
+    {
+      "file": "tests\\behavioral\\bridge.js",
+      "sha256": "4d83e22464554749c1b9c48fa9a2c89a5c97c41ee597a17ae00410c9057d6c9a"
+    },
+    {
+      "file": "tests\\behavioral\\browser-dom.cjs",
+      "sha256": "e18e6a60125dbe07c88868d7c83fd8d602c6a16d26069900eabf233dd805dd8a"
+    },
+    {
+      "file": "tests\\behavioral\\buff-timing.js",
+      "sha256": "a743ac1a5933c2870d9a8a5d19b469e13b622fa07e0e3e12bb9ce64b15611a7e"
+    },
+    {
+      "file": "tests\\behavioral\\campaign-pacing-current.cjs",
+      "sha256": "0befb57d1372c18eebc507ac6f4cd0887fe450cb2487365c5119b200196d6d3f"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-payment-oracle.cjs",
+      "sha256": "146428c7581cc2a3563cfc3dca5d3f54e89b312410dd082fab4c345f0b4a89b2"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-receipt-prices.json",
+      "sha256": "eea55253714435b0c56c31e536d20ab803aa215cfe62f3b42b5b03f0833ff365"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-development-v8.cjs",
+      "sha256": "e39754b4b6aec91c26094a6accfd855f3961bfa3ae0ff09865217d03a51c846f"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-development.cjs",
+      "sha256": "fbf6fa01ef47c0e628244acc44d8bf8c512012dc772009ee099357c2ef64ea64"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-development.js",
+      "sha256": "2ce7e1f7a49ca7018616c287f8051c6bcf926fb4959e5bc6e41fc2c455603fdd"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-integrated.cjs",
+      "sha256": "b26e40da571eea557871c2ee707acfbbfb04579e011cf3031f8d0865a1f78960"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-negative.cjs",
+      "sha256": "0bbbca16d444b9dedc4a24b271f12061f7c7aa775300f1bd00c080edf537dc8c"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-v8.cjs",
+      "sha256": "b35fcf03c6386ff50ec827bd92e42263c30d703519561619960928b826f5baee"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment.cjs",
+      "sha256": "5176918675a0c9987dce8f0ee48210a0f4a09756befd5ce61bcc152161f36682"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment.js",
+      "sha256": "6635779e3b5ce1091774190bf044fbd0c5fb4e180c1609b515b97d9783c07806"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-refund-development.js",
+      "sha256": "bfec3b6b8ee92af89d5523df562b9bdb3c6f9500950a6aa48054bafdbe11d0c7"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-refund.js",
+      "sha256": "60129633baf75494453b775cbb266ac3eafba252f82971c2830ed546b6aa1f21"
+    },
+    {
+      "file": "tests\\behavioral\\collection-price-ui.cjs",
+      "sha256": "cd0143fc9bd4cf1eb82cb1cac7f0cb01cf70c05e725b6f51634493feec670dbe"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-core.cjs",
+      "sha256": "acc8b16f4d54eb9e38cb7a13d6a034439eb2d570c53c1b43b79873446bd89845"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-harness.cjs",
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-mobile-helper.cjs",
+      "sha256": "c8e9138b896dd314b32eb3a98dcadece4cd2458dce75bf423876c1c10c534cfa"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-mobile.cjs",
+      "sha256": "0294404abe720f0aaf03abc157a0fb46a4d03009db57c4b981f14d65a8c55c18"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-numerical.cjs",
+      "sha256": "3dc7c0ab293b3c16c2a2edd01146fbc72a2ff356db9fe1b614946a983d3bd0d8"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-offline.cjs",
+      "sha256": "1f3f9b352a729bbf331a89edc9b510c44a04a25a06b696ec7b340e26b6671deb"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-v8.cjs",
+      "sha256": "6c43e41dea3eb52eb2535306d73909011481e66e3bef1bcf2f5c0f1a5ef3e70a"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-warning.cjs",
+      "sha256": "1f56812e053f57cef66968b859504b14ce7678c7a54afdabaf3bc1ce587c9c8e"
+    },
+    {
+      "file": "tests\\behavioral\\comet-unlocks-core.cjs",
+      "sha256": "f93bcbe5490e4025640adec6374088bb2270271d30c1908a6957360b89694eb1"
+    },
+    {
+      "file": "tests\\behavioral\\comet-unlocks-ui.cjs",
+      "sha256": "69e9ffc33e751bec97458939a9948fb70d4be715dd9c73c663c2b49fa410ce2f"
+    },
+    {
+      "file": "tests\\behavioral\\early-wisp-curve-current.cjs",
+      "sha256": "d14e8dffe491ad4034214d69560be68f4c98f31132e9e062aa771513a7a7fe3e"
+    },
+    {
+      "file": "tests\\behavioral\\echo-receipt-prices.json",
+      "sha256": "a2429a788f84bb477bc30ff195c72ad855f163eb851ca0ddf00d02b746643235"
+    },
+    {
+      "file": "tests\\behavioral\\echo-refund-core.cjs",
+      "sha256": "ca69092d10216018a3a813dbd9833b613d85f3f079966b6f5f1b674cd34d9368"
+    },
+    {
+      "file": "tests\\behavioral\\echo-refund-v8.cjs",
+      "sha256": "87c7a71e44ad33a091e50ce0600afe860ce1c7114131074769594dfa6d5e0938"
+    },
+    {
+      "file": "tests\\behavioral\\endless-autoascend-stress.cjs",
+      "sha256": "053f23d741291ce33f958b29d505a42c8f213b5c55945d5c475307ab949100a3"
+    },
+    {
+      "file": "tests\\behavioral\\endless-balance-next.cjs",
+      "sha256": "3d374a18f0b5cf56a3d64dadd13ad5ac46c5ce120e6669e0e0c9dffafdad1758"
+    },
+    {
+      "file": "tests\\behavioral\\endless-balance-prototype.cjs",
+      "sha256": "455c0bb226c27d7a2097212137ad27cff4f6b6ee476cdbe6a0bb97ea9baf841c"
+    },
+    {
+      "file": "tests\\behavioral\\endless-campaign-batch.cjs",
+      "sha256": "19151376fb3c6956589839657b993588571d4b7b27dded7aa97e4f46d12c070b"
+    },
+    {
+      "file": "tests\\behavioral\\endless-campaign-report.cjs",
+      "sha256": "5f40124510e65d4cc29b7591d24ff06ce09c3b36f8776b787ba65eaead686e47"
+    },
+    {
+      "file": "tests\\behavioral\\endless-campaign.cjs",
+      "sha256": "bbabb038d9d1ede78cacf7a64be4a42e1d55834e43f831f8f74a64de31550284"
+    },
+    {
+      "file": "tests\\behavioral\\endless-controls.cjs",
+      "sha256": "0370c59193994587fe29bf5ac69263809a8a3f20e720e3540f6768ace376d072"
+    },
+    {
+      "file": "tests\\behavioral\\endless-income.cjs",
+      "sha256": "b7b739a66ab95de63dd993d7c16469bf7772e2488babbd75cd68fe21de87b209"
+    },
+    {
+      "file": "tests\\behavioral\\endless-mobile.cjs",
+      "sha256": "8668784b58c10fcb44b720436bbfe9cd599d2aca7d9dd34b655bf2329f053abe"
+    },
+    {
+      "file": "tests\\behavioral\\endless-model-parity.cjs",
+      "sha256": "6f65b3a5cb45262d03fad1fa3e989e9d77c4ded2f28f02cfd62d3543c4d048be"
+    },
+    {
+      "file": "tests\\behavioral\\endless-parity.cjs",
+      "sha256": "edfd4c8e1883c78a49982e2bdc92d33ca291c9420356ebf852c117e66edfdb93"
+    },
+    {
+      "file": "tests\\behavioral\\endless-price-cache.cjs",
+      "sha256": "edb4b2feba7bbebe77ae91f117344452d134c27644a3788f18e77ace4ffaf86d"
+    },
+    {
+      "file": "tests\\behavioral\\endless-progression-core.cjs",
+      "sha256": "5a284541c3c067e006ee51abf4677b5a7bab2aee22fe14f874f58a436a65c030"
+    },
+    {
+      "file": "tests\\behavioral\\endless-progression-legacy.cjs",
+      "sha256": "c9b83b3175ab216d3ef408f601491d9fc232a7a9269075cf393fdca1e6955316"
+    },
+    {
+      "file": "tests\\behavioral\\endless-push-stress.cjs",
+      "sha256": "48ae046b73337749b21e73877a2765dad644375af7994217e4bc0284fb621ce7"
+    },
+    {
+      "file": "tests\\behavioral\\endless-wide-engine.cjs",
+      "sha256": "0e75b50e21300ae7ab863db9a0caaa1c4da3d41e1eb9369f5499d77d8e8f635c"
+    },
+    {
+      "file": "tests\\behavioral\\farm-conservation.js",
+      "sha256": "c4aae5771e4ae0dfa36860407dac6991494d55546208cdee71879e7a5938e6be"
+    },
+    {
+      "file": "tests\\behavioral\\farm-numerical.js",
+      "sha256": "47e19d98c961a21e0a6642cb8cc849208431faa6c9b448099b3eef4ac4753634"
+    },
+    {
+      "file": "tests\\behavioral\\farm-runtime.cjs",
+      "sha256": "c9a198af338572388bd4b8cae90541b12e09b10df7afe4d7b6c3b9c8ed2703ec"
+    },
+    {
+      "file": "tests\\behavioral\\feedback.js",
+      "sha256": "aab3c710ca064ff52568fe01ee131d4df2387f7cbc7f15aead548d766a663df4"
+    },
+    {
+      "file": "tests\\behavioral\\fixtures-offline-refund-interop.json",
+      "sha256": "8f48490641769fd005d3eb071cfb3e3f7301eed6470f669b7d8a38b670ea2a9e"
+    },
+    {
+      "file": "tests\\behavioral\\fixtures.json",
+      "sha256": "3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-calibration.cjs",
+      "sha256": "b86756f24472c41f8ef143e72afb6976e15c67dc3c2b8f5d32f8d59c6314689a"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-harness.cjs",
+      "sha256": "a856154bcd98434bb45504ae24b34cd5758d917386d420876af1d58226e60410"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-legacy.cjs",
+      "sha256": "a90a6c3dc59de799dbf5e53b31804290d92d6ae2691f87838bfe8e8c0a162608"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-ui.cjs",
+      "sha256": "f1b51bbb759923b363c9daaa3e90eeaf68299b05e9c3105db19effb512683f79"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion.cjs",
+      "sha256": "72b0a8a4dbb1f0e2d5e53ebbe34d1373c3d2de32a166cd2d100e2bb2924cc7c3"
+    },
+    {
+      "file": "tests\\behavioral\\forge-lab-caps-mobile.cjs",
+      "sha256": "2df3e75d10023785ef0134981bd175782a360af264bc0a2d2540ee6653361367"
+    },
+    {
+      "file": "tests\\behavioral\\forge-lab-caps.cjs",
+      "sha256": "bd766546da010ae1ed716f492f999db9bbfab57b218b4398d4e4f3f2100050e5"
+    },
+    {
+      "file": "tests\\behavioral\\forge-ui.cjs",
+      "sha256": "d61bb2e34f1e5af76c181ab7698da8ce007ac45d685a8cf6dff67adc25915d3e"
+    },
+    {
+      "file": "tests\\behavioral\\forge-ui.js",
+      "sha256": "defa835adbbfe180898920961396356c38953e64c27665eec29569f8c18b167c"
+    },
+    {
+      "file": "tests\\behavioral\\forge.js",
+      "sha256": "1cbc660d3df38eae232cf809640fa6368e3dfb11e6a8835aa7aa1ce5132c4a62"
+    },
+    {
+      "file": "tests\\behavioral\\formation-autosave.cjs",
+      "sha256": "b4abd978f63ca506c55b32ab80d22a0634d61f0907d582bb6a12371331665aea"
+    },
+    {
+      "file": "tests\\behavioral\\formation-autosave.js",
+      "sha256": "ddc860c47fc0952d2d08e25c143931c055e9a06e605d52d73ef9d09690df31d5"
+    },
+    {
+      "file": "tests\\behavioral\\formation-best-now-core.cjs",
+      "sha256": "fc4be44d2444fb674e4e51c31a75343db2fac40872488ddf085bbc352b5299ce"
+    },
+    {
+      "file": "tests\\behavioral\\formation-best-now.cjs",
+      "sha256": "0889016d27b81701ee66bb2cba49fde688bc2a650e6451842476992a59e4bb5d"
+    },
+    {
+      "file": "tests\\behavioral\\formation-bonds-budget.cjs",
+      "sha256": "25b67d774e209755b5f10b0cbdbb0b689272dcd42e416bdde79fe575adfcfca4"
+    },
+    {
+      "file": "tests\\behavioral\\formation-bonds-ui.cjs",
+      "sha256": "4c10aa227a8ced6e66e88e44a2bed6486dcefbd5546c887f2a12c8d26559d4b1"
+    },
+    {
+      "file": "tests\\behavioral\\formation-bonds.cjs",
+      "sha256": "5be59875e41411c3360923710d69ca1129d350785a43efd9a90c41112c45d8ff"
+    },
+    {
+      "file": "tests\\behavioral\\formation-collapse.cjs",
+      "sha256": "54087a9db27e8025f7414ddee50b27d448531a2265b9d2e4015577043bd4d582"
+    },
+    {
+      "file": "tests\\behavioral\\formation.js",
+      "sha256": "d6eb39156f4a82fde3520d59a0072e89cacd86eda4ce4dbcc3d6b74ead8cc7a6"
+    },
+    {
+      "file": "tests\\behavioral\\game-amount-multiplication.cjs",
+      "sha256": "13406462c56e18a5355751cedfe4679d81065a78489eafe2e2a415090d8c13f8"
+    },
+    {
+      "file": "tests\\behavioral\\game-amount.cjs",
+      "sha256": "fe09f1915595e460d8c9f451c0a0a25b0fde48f0b3dbe5ca6c1eb5416bc0562e"
+    },
+    {
+      "file": "tests\\behavioral\\guidance-baseline-assets.test.cjs",
+      "sha256": "2d1f09639bd078254b69724f00aaa84a03481b48c3074d85359d30202ec0d811"
+    },
+    {
+      "file": "tests\\behavioral\\lab-affordable-alert.cjs",
+      "sha256": "2e6ac4c5576cbc1d6e46e7af3ff8d0c6e5a26822ef84a2f5fbc57e3bd1e2b3d4"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-boundary.cjs",
+      "sha256": "e6cbad1e880daf40a633ec01fb2738ef814f493a2b0cd6e45e2bd53c763ba726"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-harness.cjs",
+      "sha256": "e62bf741549502737f9894c3b3edb84a01628082eb457c75d9258426df899472"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-legacy.cjs",
+      "sha256": "bfada21ace8cd6fed4c42ec49cc3165f6a4ab71501ed6ee4ff23b4131b70f15a"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-stress.cjs",
+      "sha256": "00022e87f3c7fd4d5d4c748faa64156e78cda35504eec3362f31145ab36a14a8"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-ui.cjs",
+      "sha256": "53ea881c25706acd0d65fdead95a1963d42f5752eebf4711ac6e407ff2bf106a"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion.cjs",
+      "sha256": "4000a0dfaaaa043c260fd8a5cdfb6e9c0392523cc3d7cbef47e76cf20348c5be"
+    },
+    {
+      "file": "tests\\behavioral\\lab-motes-offline.cjs",
+      "sha256": "180e5789cf25330256d6445118d27ab13e4752ccf13660bb524477db81066c49"
+    },
+    {
+      "file": "tests\\behavioral\\lab-motes.cjs",
+      "sha256": "2ff099b1c9baedc009976607884642817c116489e7541283ed77935fc8a1ea2c"
+    },
+    {
+      "file": "tests\\behavioral\\lab-motes.js",
+      "sha256": "b441b8ea20d659939216d0d1788a81d5362002227116e4a03993252449f7cff7"
+    },
+    {
+      "file": "tests\\behavioral\\lab-speed-controls.cjs",
+      "sha256": "230300efbe0ef645dd852a5d6a41c8e81332ad64f8b26420f60eb351f45d82ec"
+    },
+    {
+      "file": "tests\\behavioral\\lab-ui-regression.cjs",
+      "sha256": "092abecb51c1d25570246bb07af04d476375ecfcd973c8899d45f37b5f5812a3"
+    },
+    {
+      "file": "tests\\behavioral\\lab-ui.js",
+      "sha256": "1f6ce8055108bfd22148ffdd23e60cf50e44b57e611abdd974c6e7b5e5429962"
+    },
+    {
+      "file": "tests\\behavioral\\layout-host.html",
+      "sha256": "94d0fb5c0e2a6f178a2727358db83cef3b6b28248ded145c820383de17607f99"
+    },
+    {
+      "file": "tests\\behavioral\\layout.js",
+      "sha256": "934d812c01c63fa80f7a8e0355ac33b07840275b2fd26d46469344d6a312e561"
+    },
+    {
+      "file": "tests\\behavioral\\loadout-memory.cjs",
+      "sha256": "a78cc8bd51f0d5446dd874ebefd91cec5448987b6ad3f101685020d7dc755017"
+    },
+    {
+      "file": "tests\\behavioral\\measured-inquiry.js",
+      "sha256": "76d1b6c415890866c5ca2b28c5f085af7f21de79e1b022be5820b7622cde3d27"
+    },
+    {
+      "file": "tests\\behavioral\\nav-workshop.js",
+      "sha256": "5d41876a60d1c9133d0a1606f85b671bddb2d2ca2e995a2abd5cf753ebaecb24"
+    },
+    {
+      "file": "tests\\behavioral\\offline-12h-ui.cjs",
+      "sha256": "a2e0f4ae904f84a6321af1b6340db2c5f6c2f8297f2ca5ca4c571a46b55f2a75"
+    },
+    {
+      "file": "tests\\behavioral\\offline-12h-webview60.cjs",
+      "sha256": "9d3e3b457c89c396f9bbd21f826a5b07b7ff585d74d5f586bdd06bfd1aaa99d5"
+    },
+    {
+      "file": "tests\\behavioral\\offline-12h.cjs",
+      "sha256": "4352b30fa7844362a3d894733fd96105e9a889e03b72b9ffaf38088741e70d1b"
+    },
+    {
+      "file": "tests\\behavioral\\offline-catchup-ui.cjs",
+      "sha256": "7fc76d0e99d78bb57ac0d225c0755ae9de5c9cb311f7100f1b4e33abbfb406d0"
+    },
+    {
+      "file": "tests\\behavioral\\offline-catchup-v8.cjs",
+      "sha256": "07b2387de0d4757fb3c896b090856d4b2652f0849a22f2c4bfbd24abf6f8214c"
+    },
+    {
+      "file": "tests\\behavioral\\offline-catchup.cjs",
+      "sha256": "4d3d1d6df1e535e86f15c1e81ced38afd4c1f8f5a57fd343f3a01126fa207b39"
+    },
+    {
+      "file": "tests\\behavioral\\offline-swift-current-golden.json",
+      "sha256": "3dfcaec87fa558a69f74b0c8e1bbe228d4c57618b44016fc30f9fff8b2eb8e14"
+    },
+    {
+      "file": "tests\\behavioral\\prelude.js",
+      "sha256": "fb33c07611e70948c7b9b2f16262a83e9c0efae933a236b3185a98ec97f1e344"
+    },
+    {
+      "file": "tests\\behavioral\\prism-acceptance.cjs",
+      "sha256": "71b53389cb80391115dce9c9485aabede52943dd5c75fe635feb8a44f3d16e86"
+    },
+    {
+      "file": "tests\\behavioral\\prism-closeout-data.cjs",
+      "sha256": "3d809e42d59d32b4add58034520148b97797a689fe2f45f013062cc39d9a4dff"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning-focused.cjs",
+      "sha256": "7a5de7d99703f80255d125fc369f8ca1c9bfc8b89ef9f00eafb99255b555b41f"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning-reference.cjs",
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning-state.cjs",
+      "sha256": "bbaa33852a9d90f5829df61d6b6be9326f769046a676fe2e4b94800273aa044e"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning.cjs",
+      "sha256": "d8e52fd01b4008d7545431a28bbf9656feaabdb77008f8325b8774c4e8176d42"
+    },
+    {
+      "file": "tests\\behavioral\\prism-legacy-runtime.cjs",
+      "sha256": "b3cc6e5fe8c02f52f3e4d7180bb38bde85ffd10cfbc0640169959168534a9484"
+    },
+    {
+      "file": "tests\\behavioral\\process_contract.cjs",
+      "sha256": "00ca2f77a6989ba70ced834171c7ad80834b6dd627f6d1a2d6008c671fe44462"
+    },
+    {
+      "file": "tests\\behavioral\\r3-destinations.js",
+      "sha256": "f5d45f3a4ae2a13f72da02175b86bb8774056fa7575c7bebc87be54d036c2499"
+    },
+    {
+      "file": "tests\\behavioral\\raw-result.cjs",
+      "sha256": "5ccb3939a1386aac32eee5803fd732198dbf73f354d21bc0f1c8459da478c25b"
+    },
+    {
+      "file": "tests\\behavioral\\refund-issued-legacy.json",
+      "sha256": "66da1621626d10be98d4960e61f0eb7d8cae15fa0adf53fb499ed269786f208a"
+    },
+    {
+      "file": "tests\\behavioral\\refund-original-modern-prices.json",
+      "sha256": "eb1de3966e989ccc0c99bfc51d0cf4b21c431252c39766352efd098acc5b6e43"
+    },
+    {
+      "file": "tests\\behavioral\\refund-schedule-parity.cjs",
+      "sha256": "98ad4dc8e555fa59ba5a32246a4124942e2eecdb91afae1c86922f4bcd09d4f8"
+    },
+    {
+      "file": "tests\\behavioral\\research-duration.js",
+      "sha256": "dd9c67cef7eb7d75aaefa1c87957e8ddcce2c7de5b6ff9922614e5ca841ced3d"
+    },
+    {
+      "file": "tests\\behavioral\\resonate-clarity.cjs",
+      "sha256": "c7562f65e8426278a4a2f5a259559c32fd05bc7ca39e0806c90dae4557411e15"
+    },
+    {
+      "file": "tests\\behavioral\\rift-cast-text.cjs",
+      "sha256": "13a9d7e92e1228bbe9b5ff122b4245c9e8686b597f988c7b6894b5246acb7453"
+    },
+    {
+      "file": "tests\\behavioral\\rift-cosmetics.cjs",
+      "sha256": "72aa95cc280b0a2ec0f4bf18c8bf4c7c09fe3fa7d427036a006d0413951858e0"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance-inverses.cjs",
+      "sha256": "172e9b5656f80dcaff9130a8c9c01cf0f1021f8b2d14bbce7fc083c7436b6fb4"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance-inverses.test.cjs",
+      "sha256": "cbfed855ed9e62e1c6eded75106de0f08636bee80c7cc5746e52a640a5c37b8f"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance-readability.cjs",
+      "sha256": "b229f02d2acf738108c78ee7ec4db35811363aa9a0f40a6e29eadfd4f47c6813"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance.cjs",
+      "sha256": "de607166650f71bf42aebd23eb0abc50fefb501a93829f9e1d004c8b7396776d"
+    },
+    {
+      "file": "tests\\behavioral\\rift-status.cjs",
+      "sha256": "904e7e93e77dc1605430afea6c2944469677469f9eb1b3a1beb78f5d937d1e88"
+    },
+    {
+      "file": "tests\\behavioral\\rift-status.js",
+      "sha256": "8851b93c9f3877ca9e25c7399a7184d7b9ce5c366811005499db4a168f99bc40"
+    },
+    {
+      "file": "tests\\behavioral\\run-auto-ascend-ui.cjs",
+      "sha256": "b95902b736bb70451e2da370c1fbb4dc221ff0873ce7a382a5303af9f98d1f6c"
+    },
+    {
+      "file": "tests\\behavioral\\run.cjs",
+      "sha256": "ba114c91dba37d3550fd58893f6ddad3dcbcb23061ed8e3fbe2bee5d34d4ee18"
+    },
+    {
+      "file": "tests\\behavioral\\runner.js",
+      "sha256": "54d285b4e42b69800443c38949d24386928e680e07f028e8cfd246c8a4b5b5b2"
+    },
+    {
+      "file": "tests\\behavioral\\save-backup-ui.cjs",
+      "sha256": "6c6d4799d144b57c37a5620fdb5cf07f3305de0acca2dad88ce9447097c8e40d"
+    },
+    {
+      "file": "tests\\behavioral\\scenarios.json",
+      "sha256": "03b7dbb377ebdec4a585d104718453c6af82235428ab49fd1449651fd0f32996"
+    },
+    {
+      "file": "tests\\behavioral\\shared-layout-ui.cjs",
+      "sha256": "a2d4346daa8da30d61ef39135cb22399fc7b9b3cce40da9813d70c1fbcdf058c"
+    },
+    {
+      "file": "tests\\behavioral\\support-recast-current.cjs",
+      "sha256": "8860e572eb06fcaa01c886fa8af00562e4c4d2931903375a96461f201a698440"
+    },
+    {
+      "file": "tests\\behavioral\\support-stacking.js",
+      "sha256": "9ceba2a6d1868bf70ecbd4c043701a4271096551711905bbe876cbb898dd3602"
+    },
+    {
+      "file": "tests\\behavioral\\swift-current-core.cjs",
+      "sha256": "5ad04e4f5c1935ffed215065b0953f0156af6409885e0d104edc1a7cafe106fc"
+    },
+    {
+      "file": "tests\\behavioral\\swift-current-legacy-values.json",
+      "sha256": "de5dbe3e637e3c61602aae99da6b97b6d8f3ad7f2c1a7c53e5fede558c95bbc3"
+    },
+    {
+      "file": "tests\\behavioral\\swift-current-legacy.cjs",
+      "sha256": "49d6abc5f5fa756a069a5ed4a59baab0738d3b7c40ac56a6f05a30c726ede54b"
+    },
+    {
+      "file": "tests\\behavioral\\swift-original-modern-prices.json",
+      "sha256": "057b4899e5d25ae9c5080af593bf3e13af3e4d2b7df6d1bdc91c9eca245f8504"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-core.cjs",
+      "sha256": "2251c58460294e20ac0c5f3e029bad41096d8112c30f0058f1dcfeb44999d210"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-economy.cjs",
+      "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-harness.cjs",
+      "sha256": "a924ef6d11e4c8eee1bad4c0ece2bb040068cef3e67e9284bb4b5d240a5edc68"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-mobile.cjs",
+      "sha256": "379d5b2580f0f465162915878d0c6cf35e490265d6516b6a156dfbfda5a0063b"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-offline.cjs",
+      "sha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-v8.cjs",
+      "sha256": "8281a0739fb6d290de23ab6db2b249bf96c2159ccc98605be8df2b239942e9ce"
+    },
+    {
+      "file": "tests\\behavioral\\tree-purchases.js",
+      "sha256": "b0214af86e5844985e679172e99f31ae66783a1cd9ceb3e0853b210baa5d5807"
+    },
+    {
+      "file": "tests\\behavioral\\ui-attention-quest.cjs",
+      "sha256": "45fd01b55a34c1a0169aa9b19499e019cd192f44b8693edaf37d8d64a02013f6"
+    },
+    {
+      "file": "tests\\behavioral\\upgrade-clarity.js",
+      "sha256": "3a11f45ac2fac7aa3642ac0d46779e14083da9e434a4e6f61175c0be1f1a5b3f"
+    },
+    {
+      "file": "tests\\behavioral\\upgrade-identity.js",
+      "sha256": "bb3c43b320248497634b952dab27b5b6fca63e0e0683afa40fd85084cf95e5f5"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-card-layout.js",
+      "sha256": "431b97bfd5e03878cde06727f6b943d9003a3e261946617820ba09b800d46cdc"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-contribution-core.cjs",
+      "sha256": "f332e0674751783d94bc1a0e75df60eb587c693045f54eb2db97b49994901e50"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-contribution-mobile.cjs",
+      "sha256": "6ab8e339bbf87e41f1c5783601c9213bc835bdfe956e3dcaf2440977c2c244e4"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-rarity-scroll.cjs",
+      "sha256": "2a6e15613d890b1e898956304a7ec821b5c496d02584f0713573668b3905699f"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-upgrades-bridge.js",
+      "sha256": "743d110d6078dff745c7c42dc708ad8f900a596ddfeb4aae1c8d99737cef4b83"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-upgrades.cjs",
+      "sha256": "aeca287c81f48a102abbc782a0601214d5a50d9d2f756e6ff4660626744990b4"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-upgrades.js",
+      "sha256": "41a549c9e1a2b6002a3740fc273e5c333e3b844474f56c1ce8ce734c5a1cb696"
+    }
+  ],
+  "finished": "2026-10-15T04:14:21.938Z",
+  "finalSourceSha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0",
+  "finalTestInputs": [
+    {
+      "file": "tests\\behavioral\\accessibility-controls.js",
+      "sha256": "6a04254085039d7c6bdff5f85a5af3c754c514db66a4728c6096bff5a3a510b9"
+    },
+    {
+      "file": "tests\\behavioral\\accessibility.js",
+      "sha256": "010615f180ecdbbbf1867e5d8b73e103e19a40f04417604b70d0122af9a6eff4"
+    },
+    {
+      "file": "tests\\behavioral\\ascend-prisms.js",
+      "sha256": "f496b99deb5534f89aea5671801122215ae912fb33eee087f3e2b81a1cd4f482"
+    },
+    {
+      "file": "tests\\behavioral\\auto-ascend-target.cjs",
+      "sha256": "0594515502cbc30895e5d7906f293c91ae35e71ad585fece960738e2534a091d"
+    },
+    {
+      "file": "tests\\behavioral\\auto-ascend-target.js",
+      "sha256": "a6e11e5ef188c3a514597d3b53c6d70ec690f39f9a62902f4f078b1906510c05"
+    },
+    {
+      "file": "tests\\behavioral\\bond-text.js",
+      "sha256": "6597fcaf879bbb8f573e885302feb92a9e3b9cd4cd8a6a7ad829e68187e01986"
+    },
+    {
+      "file": "tests\\behavioral\\bridge.js",
+      "sha256": "4d83e22464554749c1b9c48fa9a2c89a5c97c41ee597a17ae00410c9057d6c9a"
+    },
+    {
+      "file": "tests\\behavioral\\browser-dom.cjs",
+      "sha256": "e18e6a60125dbe07c88868d7c83fd8d602c6a16d26069900eabf233dd805dd8a"
+    },
+    {
+      "file": "tests\\behavioral\\buff-timing.js",
+      "sha256": "a743ac1a5933c2870d9a8a5d19b469e13b622fa07e0e3e12bb9ce64b15611a7e"
+    },
+    {
+      "file": "tests\\behavioral\\campaign-pacing-current.cjs",
+      "sha256": "0befb57d1372c18eebc507ac6f4cd0887fe450cb2487365c5119b200196d6d3f"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-payment-oracle.cjs",
+      "sha256": "146428c7581cc2a3563cfc3dca5d3f54e89b312410dd082fab4c345f0b4a89b2"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-receipt-prices.json",
+      "sha256": "eea55253714435b0c56c31e536d20ab803aa215cfe62f3b42b5b03f0833ff365"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-development-v8.cjs",
+      "sha256": "e39754b4b6aec91c26094a6accfd855f3961bfa3ae0ff09865217d03a51c846f"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-development.cjs",
+      "sha256": "fbf6fa01ef47c0e628244acc44d8bf8c512012dc772009ee099357c2ef64ea64"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-development.js",
+      "sha256": "2ce7e1f7a49ca7018616c287f8051c6bcf926fb4959e5bc6e41fc2c455603fdd"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-integrated.cjs",
+      "sha256": "b26e40da571eea557871c2ee707acfbbfb04579e011cf3031f8d0865a1f78960"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-negative.cjs",
+      "sha256": "0bbbca16d444b9dedc4a24b271f12061f7c7aa775300f1bd00c080edf537dc8c"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment-v8.cjs",
+      "sha256": "b35fcf03c6386ff50ec827bd92e42263c30d703519561619960928b826f5baee"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment.cjs",
+      "sha256": "5176918675a0c9987dce8f0ee48210a0f4a09756befd5ce61bcc152161f36682"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-recruitment.js",
+      "sha256": "6635779e3b5ce1091774190bf044fbd0c5fb4e180c1609b515b97d9783c07806"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-refund-development.js",
+      "sha256": "bfec3b6b8ee92af89d5523df562b9bdb3c6f9500950a6aa48054bafdbe11d0c7"
+    },
+    {
+      "file": "tests\\behavioral\\cheaper-refund.js",
+      "sha256": "60129633baf75494453b775cbb266ac3eafba252f82971c2830ed546b6aa1f21"
+    },
+    {
+      "file": "tests\\behavioral\\collection-price-ui.cjs",
+      "sha256": "cd0143fc9bd4cf1eb82cb1cac7f0cb01cf70c05e725b6f51634493feec670dbe"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-core.cjs",
+      "sha256": "acc8b16f4d54eb9e38cb7a13d6a034439eb2d570c53c1b43b79873446bd89845"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-harness.cjs",
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-mobile-helper.cjs",
+      "sha256": "c8e9138b896dd314b32eb3a98dcadece4cd2458dce75bf423876c1c10c534cfa"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-mobile.cjs",
+      "sha256": "0294404abe720f0aaf03abc157a0fb46a4d03009db57c4b981f14d65a8c55c18"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-numerical.cjs",
+      "sha256": "3dc7c0ab293b3c16c2a2edd01146fbc72a2ff356db9fe1b614946a983d3bd0d8"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-offline.cjs",
+      "sha256": "1f3f9b352a729bbf331a89edc9b510c44a04a25a06b696ec7b340e26b6671deb"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-v8.cjs",
+      "sha256": "6c43e41dea3eb52eb2535306d73909011481e66e3bef1bcf2f5c0f1a5ef3e70a"
+    },
+    {
+      "file": "tests\\behavioral\\comet-expansion-warning.cjs",
+      "sha256": "1f56812e053f57cef66968b859504b14ce7678c7a54afdabaf3bc1ce587c9c8e"
+    },
+    {
+      "file": "tests\\behavioral\\comet-unlocks-core.cjs",
+      "sha256": "f93bcbe5490e4025640adec6374088bb2270271d30c1908a6957360b89694eb1"
+    },
+    {
+      "file": "tests\\behavioral\\comet-unlocks-ui.cjs",
+      "sha256": "69e9ffc33e751bec97458939a9948fb70d4be715dd9c73c663c2b49fa410ce2f"
+    },
+    {
+      "file": "tests\\behavioral\\early-wisp-curve-current.cjs",
+      "sha256": "d14e8dffe491ad4034214d69560be68f4c98f31132e9e062aa771513a7a7fe3e"
+    },
+    {
+      "file": "tests\\behavioral\\echo-receipt-prices.json",
+      "sha256": "a2429a788f84bb477bc30ff195c72ad855f163eb851ca0ddf00d02b746643235"
+    },
+    {
+      "file": "tests\\behavioral\\echo-refund-core.cjs",
+      "sha256": "ca69092d10216018a3a813dbd9833b613d85f3f079966b6f5f1b674cd34d9368"
+    },
+    {
+      "file": "tests\\behavioral\\echo-refund-v8.cjs",
+      "sha256": "87c7a71e44ad33a091e50ce0600afe860ce1c7114131074769594dfa6d5e0938"
+    },
+    {
+      "file": "tests\\behavioral\\endless-autoascend-stress.cjs",
+      "sha256": "053f23d741291ce33f958b29d505a42c8f213b5c55945d5c475307ab949100a3"
+    },
+    {
+      "file": "tests\\behavioral\\endless-balance-next.cjs",
+      "sha256": "3d374a18f0b5cf56a3d64dadd13ad5ac46c5ce120e6669e0e0c9dffafdad1758"
+    },
+    {
+      "file": "tests\\behavioral\\endless-balance-prototype.cjs",
+      "sha256": "455c0bb226c27d7a2097212137ad27cff4f6b6ee476cdbe6a0bb97ea9baf841c"
+    },
+    {
+      "file": "tests\\behavioral\\endless-campaign-batch.cjs",
+      "sha256": "19151376fb3c6956589839657b993588571d4b7b27dded7aa97e4f46d12c070b"
+    },
+    {
+      "file": "tests\\behavioral\\endless-campaign-report.cjs",
+      "sha256": "5f40124510e65d4cc29b7591d24ff06ce09c3b36f8776b787ba65eaead686e47"
+    },
+    {
+      "file": "tests\\behavioral\\endless-campaign.cjs",
+      "sha256": "bbabb038d9d1ede78cacf7a64be4a42e1d55834e43f831f8f74a64de31550284"
+    },
+    {
+      "file": "tests\\behavioral\\endless-controls.cjs",
+      "sha256": "0370c59193994587fe29bf5ac69263809a8a3f20e720e3540f6768ace376d072"
+    },
+    {
+      "file": "tests\\behavioral\\endless-income.cjs",
+      "sha256": "b7b739a66ab95de63dd993d7c16469bf7772e2488babbd75cd68fe21de87b209"
+    },
+    {
+      "file": "tests\\behavioral\\endless-mobile.cjs",
+      "sha256": "8668784b58c10fcb44b720436bbfe9cd599d2aca7d9dd34b655bf2329f053abe"
+    },
+    {
+      "file": "tests\\behavioral\\endless-model-parity.cjs",
+      "sha256": "6f65b3a5cb45262d03fad1fa3e989e9d77c4ded2f28f02cfd62d3543c4d048be"
+    },
+    {
+      "file": "tests\\behavioral\\endless-parity.cjs",
+      "sha256": "edfd4c8e1883c78a49982e2bdc92d33ca291c9420356ebf852c117e66edfdb93"
+    },
+    {
+      "file": "tests\\behavioral\\endless-price-cache.cjs",
+      "sha256": "edb4b2feba7bbebe77ae91f117344452d134c27644a3788f18e77ace4ffaf86d"
+    },
+    {
+      "file": "tests\\behavioral\\endless-progression-core.cjs",
+      "sha256": "5a284541c3c067e006ee51abf4677b5a7bab2aee22fe14f874f58a436a65c030"
+    },
+    {
+      "file": "tests\\behavioral\\endless-progression-legacy.cjs",
+      "sha256": "c9b83b3175ab216d3ef408f601491d9fc232a7a9269075cf393fdca1e6955316"
+    },
+    {
+      "file": "tests\\behavioral\\endless-push-stress.cjs",
+      "sha256": "48ae046b73337749b21e73877a2765dad644375af7994217e4bc0284fb621ce7"
+    },
+    {
+      "file": "tests\\behavioral\\endless-wide-engine.cjs",
+      "sha256": "0e75b50e21300ae7ab863db9a0caaa1c4da3d41e1eb9369f5499d77d8e8f635c"
+    },
+    {
+      "file": "tests\\behavioral\\farm-conservation.js",
+      "sha256": "c4aae5771e4ae0dfa36860407dac6991494d55546208cdee71879e7a5938e6be"
+    },
+    {
+      "file": "tests\\behavioral\\farm-numerical.js",
+      "sha256": "47e19d98c961a21e0a6642cb8cc849208431faa6c9b448099b3eef4ac4753634"
+    },
+    {
+      "file": "tests\\behavioral\\farm-runtime.cjs",
+      "sha256": "c9a198af338572388bd4b8cae90541b12e09b10df7afe4d7b6c3b9c8ed2703ec"
+    },
+    {
+      "file": "tests\\behavioral\\feedback.js",
+      "sha256": "aab3c710ca064ff52568fe01ee131d4df2387f7cbc7f15aead548d766a663df4"
+    },
+    {
+      "file": "tests\\behavioral\\fixtures-offline-refund-interop.json",
+      "sha256": "8f48490641769fd005d3eb071cfb3e3f7301eed6470f669b7d8a38b670ea2a9e"
+    },
+    {
+      "file": "tests\\behavioral\\fixtures.json",
+      "sha256": "3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-calibration.cjs",
+      "sha256": "b86756f24472c41f8ef143e72afb6976e15c67dc3c2b8f5d32f8d59c6314689a"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-harness.cjs",
+      "sha256": "a856154bcd98434bb45504ae24b34cd5758d917386d420876af1d58226e60410"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-legacy.cjs",
+      "sha256": "a90a6c3dc59de799dbf5e53b31804290d92d6ae2691f87838bfe8e8c0a162608"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion-ui.cjs",
+      "sha256": "f1b51bbb759923b363c9daaa3e90eeaf68299b05e9c3105db19effb512683f79"
+    },
+    {
+      "file": "tests\\behavioral\\forge-expansion.cjs",
+      "sha256": "72b0a8a4dbb1f0e2d5e53ebbe34d1373c3d2de32a166cd2d100e2bb2924cc7c3"
+    },
+    {
+      "file": "tests\\behavioral\\forge-lab-caps-mobile.cjs",
+      "sha256": "2df3e75d10023785ef0134981bd175782a360af264bc0a2d2540ee6653361367"
+    },
+    {
+      "file": "tests\\behavioral\\forge-lab-caps.cjs",
+      "sha256": "bd766546da010ae1ed716f492f999db9bbfab57b218b4398d4e4f3f2100050e5"
+    },
+    {
+      "file": "tests\\behavioral\\forge-ui.cjs",
+      "sha256": "d61bb2e34f1e5af76c181ab7698da8ce007ac45d685a8cf6dff67adc25915d3e"
+    },
+    {
+      "file": "tests\\behavioral\\forge-ui.js",
+      "sha256": "defa835adbbfe180898920961396356c38953e64c27665eec29569f8c18b167c"
+    },
+    {
+      "file": "tests\\behavioral\\forge.js",
+      "sha256": "1cbc660d3df38eae232cf809640fa6368e3dfb11e6a8835aa7aa1ce5132c4a62"
+    },
+    {
+      "file": "tests\\behavioral\\formation-autosave.cjs",
+      "sha256": "b4abd978f63ca506c55b32ab80d22a0634d61f0907d582bb6a12371331665aea"
+    },
+    {
+      "file": "tests\\behavioral\\formation-autosave.js",
+      "sha256": "ddc860c47fc0952d2d08e25c143931c055e9a06e605d52d73ef9d09690df31d5"
+    },
+    {
+      "file": "tests\\behavioral\\formation-best-now-core.cjs",
+      "sha256": "fc4be44d2444fb674e4e51c31a75343db2fac40872488ddf085bbc352b5299ce"
+    },
+    {
+      "file": "tests\\behavioral\\formation-best-now.cjs",
+      "sha256": "0889016d27b81701ee66bb2cba49fde688bc2a650e6451842476992a59e4bb5d"
+    },
+    {
+      "file": "tests\\behavioral\\formation-bonds-budget.cjs",
+      "sha256": "25b67d774e209755b5f10b0cbdbb0b689272dcd42e416bdde79fe575adfcfca4"
+    },
+    {
+      "file": "tests\\behavioral\\formation-bonds-ui.cjs",
+      "sha256": "4c10aa227a8ced6e66e88e44a2bed6486dcefbd5546c887f2a12c8d26559d4b1"
+    },
+    {
+      "file": "tests\\behavioral\\formation-bonds.cjs",
+      "sha256": "5be59875e41411c3360923710d69ca1129d350785a43efd9a90c41112c45d8ff"
+    },
+    {
+      "file": "tests\\behavioral\\formation-collapse.cjs",
+      "sha256": "54087a9db27e8025f7414ddee50b27d448531a2265b9d2e4015577043bd4d582"
+    },
+    {
+      "file": "tests\\behavioral\\formation.js",
+      "sha256": "d6eb39156f4a82fde3520d59a0072e89cacd86eda4ce4dbcc3d6b74ead8cc7a6"
+    },
+    {
+      "file": "tests\\behavioral\\game-amount-multiplication.cjs",
+      "sha256": "13406462c56e18a5355751cedfe4679d81065a78489eafe2e2a415090d8c13f8"
+    },
+    {
+      "file": "tests\\behavioral\\game-amount.cjs",
+      "sha256": "fe09f1915595e460d8c9f451c0a0a25b0fde48f0b3dbe5ca6c1eb5416bc0562e"
+    },
+    {
+      "file": "tests\\behavioral\\guidance-baseline-assets.test.cjs",
+      "sha256": "2d1f09639bd078254b69724f00aaa84a03481b48c3074d85359d30202ec0d811"
+    },
+    {
+      "file": "tests\\behavioral\\lab-affordable-alert.cjs",
+      "sha256": "2e6ac4c5576cbc1d6e46e7af3ff8d0c6e5a26822ef84a2f5fbc57e3bd1e2b3d4"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-boundary.cjs",
+      "sha256": "e6cbad1e880daf40a633ec01fb2738ef814f493a2b0cd6e45e2bd53c763ba726"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-harness.cjs",
+      "sha256": "e62bf741549502737f9894c3b3edb84a01628082eb457c75d9258426df899472"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-legacy.cjs",
+      "sha256": "bfada21ace8cd6fed4c42ec49cc3165f6a4ab71501ed6ee4ff23b4131b70f15a"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-stress.cjs",
+      "sha256": "00022e87f3c7fd4d5d4c748faa64156e78cda35504eec3362f31145ab36a14a8"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion-ui.cjs",
+      "sha256": "53ea881c25706acd0d65fdead95a1963d42f5752eebf4711ac6e407ff2bf106a"
+    },
+    {
+      "file": "tests\\behavioral\\lab-expansion.cjs",
+      "sha256": "4000a0dfaaaa043c260fd8a5cdfb6e9c0392523cc3d7cbef47e76cf20348c5be"
+    },
+    {
+      "file": "tests\\behavioral\\lab-motes-offline.cjs",
+      "sha256": "180e5789cf25330256d6445118d27ab13e4752ccf13660bb524477db81066c49"
+    },
+    {
+      "file": "tests\\behavioral\\lab-motes.cjs",
+      "sha256": "2ff099b1c9baedc009976607884642817c116489e7541283ed77935fc8a1ea2c"
+    },
+    {
+      "file": "tests\\behavioral\\lab-motes.js",
+      "sha256": "b441b8ea20d659939216d0d1788a81d5362002227116e4a03993252449f7cff7"
+    },
+    {
+      "file": "tests\\behavioral\\lab-speed-controls.cjs",
+      "sha256": "230300efbe0ef645dd852a5d6a41c8e81332ad64f8b26420f60eb351f45d82ec"
+    },
+    {
+      "file": "tests\\behavioral\\lab-ui-regression.cjs",
+      "sha256": "092abecb51c1d25570246bb07af04d476375ecfcd973c8899d45f37b5f5812a3"
+    },
+    {
+      "file": "tests\\behavioral\\lab-ui.js",
+      "sha256": "1f6ce8055108bfd22148ffdd23e60cf50e44b57e611abdd974c6e7b5e5429962"
+    },
+    {
+      "file": "tests\\behavioral\\layout-host.html",
+      "sha256": "94d0fb5c0e2a6f178a2727358db83cef3b6b28248ded145c820383de17607f99"
+    },
+    {
+      "file": "tests\\behavioral\\layout.js",
+      "sha256": "934d812c01c63fa80f7a8e0355ac33b07840275b2fd26d46469344d6a312e561"
+    },
+    {
+      "file": "tests\\behavioral\\loadout-memory.cjs",
+      "sha256": "a78cc8bd51f0d5446dd874ebefd91cec5448987b6ad3f101685020d7dc755017"
+    },
+    {
+      "file": "tests\\behavioral\\measured-inquiry.js",
+      "sha256": "76d1b6c415890866c5ca2b28c5f085af7f21de79e1b022be5820b7622cde3d27"
+    },
+    {
+      "file": "tests\\behavioral\\nav-workshop.js",
+      "sha256": "5d41876a60d1c9133d0a1606f85b671bddb2d2ca2e995a2abd5cf753ebaecb24"
+    },
+    {
+      "file": "tests\\behavioral\\offline-12h-ui.cjs",
+      "sha256": "a2e0f4ae904f84a6321af1b6340db2c5f6c2f8297f2ca5ca4c571a46b55f2a75"
+    },
+    {
+      "file": "tests\\behavioral\\offline-12h-webview60.cjs",
+      "sha256": "9d3e3b457c89c396f9bbd21f826a5b07b7ff585d74d5f586bdd06bfd1aaa99d5"
+    },
+    {
+      "file": "tests\\behavioral\\offline-12h.cjs",
+      "sha256": "4352b30fa7844362a3d894733fd96105e9a889e03b72b9ffaf38088741e70d1b"
+    },
+    {
+      "file": "tests\\behavioral\\offline-catchup-ui.cjs",
+      "sha256": "7fc76d0e99d78bb57ac0d225c0755ae9de5c9cb311f7100f1b4e33abbfb406d0"
+    },
+    {
+      "file": "tests\\behavioral\\offline-catchup-v8.cjs",
+      "sha256": "07b2387de0d4757fb3c896b090856d4b2652f0849a22f2c4bfbd24abf6f8214c"
+    },
+    {
+      "file": "tests\\behavioral\\offline-catchup.cjs",
+      "sha256": "4d3d1d6df1e535e86f15c1e81ced38afd4c1f8f5a57fd343f3a01126fa207b39"
+    },
+    {
+      "file": "tests\\behavioral\\offline-swift-current-golden.json",
+      "sha256": "3dfcaec87fa558a69f74b0c8e1bbe228d4c57618b44016fc30f9fff8b2eb8e14"
+    },
+    {
+      "file": "tests\\behavioral\\prelude.js",
+      "sha256": "fb33c07611e70948c7b9b2f16262a83e9c0efae933a236b3185a98ec97f1e344"
+    },
+    {
+      "file": "tests\\behavioral\\prism-acceptance.cjs",
+      "sha256": "71b53389cb80391115dce9c9485aabede52943dd5c75fe635feb8a44f3d16e86"
+    },
+    {
+      "file": "tests\\behavioral\\prism-closeout-data.cjs",
+      "sha256": "3d809e42d59d32b4add58034520148b97797a689fe2f45f013062cc39d9a4dff"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning-focused.cjs",
+      "sha256": "7a5de7d99703f80255d125fc369f8ca1c9bfc8b89ef9f00eafb99255b555b41f"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning-reference.cjs",
+      "sha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning-state.cjs",
+      "sha256": "bbaa33852a9d90f5829df61d6b6be9326f769046a676fe2e4b94800273aa044e"
+    },
+    {
+      "file": "tests\\behavioral\\prism-earning.cjs",
+      "sha256": "d8e52fd01b4008d7545431a28bbf9656feaabdb77008f8325b8774c4e8176d42"
+    },
+    {
+      "file": "tests\\behavioral\\prism-legacy-runtime.cjs",
+      "sha256": "b3cc6e5fe8c02f52f3e4d7180bb38bde85ffd10cfbc0640169959168534a9484"
+    },
+    {
+      "file": "tests\\behavioral\\process_contract.cjs",
+      "sha256": "00ca2f77a6989ba70ced834171c7ad80834b6dd627f6d1a2d6008c671fe44462"
+    },
+    {
+      "file": "tests\\behavioral\\r3-destinations.js",
+      "sha256": "f5d45f3a4ae2a13f72da02175b86bb8774056fa7575c7bebc87be54d036c2499"
+    },
+    {
+      "file": "tests\\behavioral\\raw-result.cjs",
+      "sha256": "5ccb3939a1386aac32eee5803fd732198dbf73f354d21bc0f1c8459da478c25b"
+    },
+    {
+      "file": "tests\\behavioral\\refund-issued-legacy.json",
+      "sha256": "66da1621626d10be98d4960e61f0eb7d8cae15fa0adf53fb499ed269786f208a"
+    },
+    {
+      "file": "tests\\behavioral\\refund-original-modern-prices.json",
+      "sha256": "eb1de3966e989ccc0c99bfc51d0cf4b21c431252c39766352efd098acc5b6e43"
+    },
+    {
+      "file": "tests\\behavioral\\refund-schedule-parity.cjs",
+      "sha256": "98ad4dc8e555fa59ba5a32246a4124942e2eecdb91afae1c86922f4bcd09d4f8"
+    },
+    {
+      "file": "tests\\behavioral\\research-duration.js",
+      "sha256": "dd9c67cef7eb7d75aaefa1c87957e8ddcce2c7de5b6ff9922614e5ca841ced3d"
+    },
+    {
+      "file": "tests\\behavioral\\resonate-clarity.cjs",
+      "sha256": "c7562f65e8426278a4a2f5a259559c32fd05bc7ca39e0806c90dae4557411e15"
+    },
+    {
+      "file": "tests\\behavioral\\rift-cast-text.cjs",
+      "sha256": "13a9d7e92e1228bbe9b5ff122b4245c9e8686b597f988c7b6894b5246acb7453"
+    },
+    {
+      "file": "tests\\behavioral\\rift-cosmetics.cjs",
+      "sha256": "72aa95cc280b0a2ec0f4bf18c8bf4c7c09fe3fa7d427036a006d0413951858e0"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance-inverses.cjs",
+      "sha256": "172e9b5656f80dcaff9130a8c9c01cf0f1021f8b2d14bbce7fc083c7436b6fb4"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance-inverses.test.cjs",
+      "sha256": "cbfed855ed9e62e1c6eded75106de0f08636bee80c7cc5746e52a640a5c37b8f"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance-readability.cjs",
+      "sha256": "b229f02d2acf738108c78ee7ec4db35811363aa9a0f40a6e29eadfd4f47c6813"
+    },
+    {
+      "file": "tests\\behavioral\\rift-guidance.cjs",
+      "sha256": "de607166650f71bf42aebd23eb0abc50fefb501a93829f9e1d004c8b7396776d"
+    },
+    {
+      "file": "tests\\behavioral\\rift-status.cjs",
+      "sha256": "904e7e93e77dc1605430afea6c2944469677469f9eb1b3a1beb78f5d937d1e88"
+    },
+    {
+      "file": "tests\\behavioral\\rift-status.js",
+      "sha256": "8851b93c9f3877ca9e25c7399a7184d7b9ce5c366811005499db4a168f99bc40"
+    },
+    {
+      "file": "tests\\behavioral\\run-auto-ascend-ui.cjs",
+      "sha256": "b95902b736bb70451e2da370c1fbb4dc221ff0873ce7a382a5303af9f98d1f6c"
+    },
+    {
+      "file": "tests\\behavioral\\run.cjs",
+      "sha256": "ba114c91dba37d3550fd58893f6ddad3dcbcb23061ed8e3fbe2bee5d34d4ee18"
+    },
+    {
+      "file": "tests\\behavioral\\runner.js",
+      "sha256": "54d285b4e42b69800443c38949d24386928e680e07f028e8cfd246c8a4b5b5b2"
+    },
+    {
+      "file": "tests\\behavioral\\save-backup-ui.cjs",
+      "sha256": "6c6d4799d144b57c37a5620fdb5cf07f3305de0acca2dad88ce9447097c8e40d"
+    },
+    {
+      "file": "tests\\behavioral\\scenarios.json",
+      "sha256": "03b7dbb377ebdec4a585d104718453c6af82235428ab49fd1449651fd0f32996"
+    },
+    {
+      "file": "tests\\behavioral\\shared-layout-ui.cjs",
+      "sha256": "a2d4346daa8da30d61ef39135cb22399fc7b9b3cce40da9813d70c1fbcdf058c"
+    },
+    {
+      "file": "tests\\behavioral\\support-recast-current.cjs",
+      "sha256": "8860e572eb06fcaa01c886fa8af00562e4c4d2931903375a96461f201a698440"
+    },
+    {
+      "file": "tests\\behavioral\\support-stacking.js",
+      "sha256": "9ceba2a6d1868bf70ecbd4c043701a4271096551711905bbe876cbb898dd3602"
+    },
+    {
+      "file": "tests\\behavioral\\swift-current-core.cjs",
+      "sha256": "5ad04e4f5c1935ffed215065b0953f0156af6409885e0d104edc1a7cafe106fc"
+    },
+    {
+      "file": "tests\\behavioral\\swift-current-legacy-values.json",
+      "sha256": "de5dbe3e637e3c61602aae99da6b97b6d8f3ad7f2c1a7c53e5fede558c95bbc3"
+    },
+    {
+      "file": "tests\\behavioral\\swift-current-legacy.cjs",
+      "sha256": "49d6abc5f5fa756a069a5ed4a59baab0738d3b7c40ac56a6f05a30c726ede54b"
+    },
+    {
+      "file": "tests\\behavioral\\swift-original-modern-prices.json",
+      "sha256": "057b4899e5d25ae9c5080af593bf3e13af3e4d2b7df6d1bdc91c9eca245f8504"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-core.cjs",
+      "sha256": "2251c58460294e20ac0c5f3e029bad41096d8112c30f0058f1dcfeb44999d210"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-economy.cjs",
+      "sha256": "3b3717f48dd4183f3ef8a70085f5c21460da75e909e020c7b473c251ff66d60a"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-harness.cjs",
+      "sha256": "a924ef6d11e4c8eee1bad4c0ece2bb040068cef3e67e9284bb4b5d240a5edc68"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-mobile.cjs",
+      "sha256": "379d5b2580f0f465162915878d0c6cf35e490265d6516b6a156dfbfda5a0063b"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-offline.cjs",
+      "sha256": "48713a8ed9e4703179a901521ce42889148b5d4f80dedb858ffddf7a22d7aa71"
+    },
+    {
+      "file": "tests\\behavioral\\tree-expansion-v8.cjs",
+      "sha256": "8281a0739fb6d290de23ab6db2b249bf96c2159ccc98605be8df2b239942e9ce"
+    },
+    {
+      "file": "tests\\behavioral\\tree-purchases.js",
+      "sha256": "b0214af86e5844985e679172e99f31ae66783a1cd9ceb3e0853b210baa5d5807"
+    },
+    {
+      "file": "tests\\behavioral\\ui-attention-quest.cjs",
+      "sha256": "45fd01b55a34c1a0169aa9b19499e019cd192f44b8693edaf37d8d64a02013f6"
+    },
+    {
+      "file": "tests\\behavioral\\upgrade-clarity.js",
+      "sha256": "3a11f45ac2fac7aa3642ac0d46779e14083da9e434a4e6f61175c0be1f1a5b3f"
+    },
+    {
+      "file": "tests\\behavioral\\upgrade-identity.js",
+      "sha256": "bb3c43b320248497634b952dab27b5b6fca63e0e0683afa40fd85084cf95e5f5"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-card-layout.js",
+      "sha256": "431b97bfd5e03878cde06727f6b943d9003a3e261946617820ba09b800d46cdc"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-contribution-core.cjs",
+      "sha256": "f332e0674751783d94bc1a0e75df60eb587c693045f54eb2db97b49994901e50"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-contribution-mobile.cjs",
+      "sha256": "6ab8e339bbf87e41f1c5783601c9213bc835bdfe956e3dcaf2440977c2c244e4"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-rarity-scroll.cjs",
+      "sha256": "2a6e15613d890b1e898956304a7ec821b5c496d02584f0713573668b3905699f"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-upgrades-bridge.js",
+      "sha256": "743d110d6078dff745c7c42dc708ad8f900a596ddfeb4aae1c8d99737cef4b83"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-upgrades.cjs",
+      "sha256": "aeca287c81f48a102abbc782a0601214d5a50d9d2f756e6ff4660626744990b4"
+    },
+    {
+      "file": "tests\\behavioral\\wisp-upgrades.js",
+      "sha256": "41a549c9e1a2b6002a3740fc273e5c333e3b844474f56c1ce8ce734c5a1cb696"
+    }
+  ],
+  "unchangedTests": true,
+  "passed": false
+}

@@ -65,8 +65,9 @@ function preservation(html,baseline){
  assert.strictEqual(crypto.createHash('sha256').update(baseline).digest('hex'),'d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8','immutable pre-display source');
  // F19 intentionally changes Deed counting and the minimum natural cycle.
  // Apply those approved rules to the immutable pre-readout oracle, retaining
- // its original Wisp formulas/controller. Compare every field, including the
- // additive empty refund fields; no endpoint keys or rewards are discarded.
+ // its original Wisp formulas/controller. ENDLESS adds explicit state fields
+ // and changes combat pacing; compare all prior fields in a no-kill world,
+ // while separately asserting the new fields start without free Mastery.
  function approvedRule(from,to){assert.strictEqual(baseline.split(from).length,2,'unique approved Swift oracle anchor');baseline=baseline.replace(from,to);}
  approvedRule('var SAVE_SCHEMA_VERSION = 3;','var SAVE_SCHEMA_VERSION = 4;');
  approvedRule('return LEGACY_RESEARCH_IDS.reduce(function(sum,id){return sum+(s.research[id]||0);},0);','return RESEARCH.reduce(function(sum,node){return sum+(s.research[node.id]||0);},0);');
@@ -102,28 +103,30 @@ function preservation(html,baseline){
   "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
  var before=world(baseline),after=world(html),ids=clone(after.spirits()).map(function(s){return s.id;}),checks=0,cases=[];
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
+ function oldFields(s){s=clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
+ var noMastery={};ids.forEach(function(id){noMastery[id]=0;});
  function combos(xs,k){if(!k)return [[]];var r=[];xs.forEach(function(id,i){combos(xs.slice(i+1),k-1).forEach(function(t){r.push([id].concat(t));});});return r;}
  combos(ids,5).forEach(function(party){[99,160,170,180].forEach(function(depth){[false,true].forEach(function(forge){
   var s=before.fresh();s.lastSeen=clock;s.maxDepthEver=250;s.depth=depth;s.activeParty=party;s.achieved.autotap=true;
   ids.forEach(function(id,i){s.spirits[id]=170-i*17;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});
   s.research.charge=10;if(forge)before.forge().forEach(function(n){if(n.forgeGroup&&!n.retiredTo)s.research[n.id]=n.levelCap||5;});
-  before.set(s);after.set(s);eq(after.get(),before.get(),'complete canonical state unchanged');
+  before.set(s);after.set(s);eq(oldFields(after.get()),oldFields(before.get()),'every prior canonical field retained');eq(after.get().schemaVersion,5,'current schema5');eq(after.get().wispMastery,noMastery,'migration grants no Mastery');ids.forEach(function(id){eq(after.get().recruitmentEntitlements[id],true,'existing recruited Wisp remains entitled');});eq(after.get().research.masterwork,0,'new Forge path starts unpurchased');
   eq([after.dps(depth),after.passive(depth),after.ability(depth),after.auto(depth)],[before.dps(depth),before.passive(depth),before.ability(depth),before.auto(depth)],'all default gameplay estimates bit-identical');
   ids.forEach(function(id,i){eq(after.power(after.spirits()[i],s.spirits[id]),before.power(before.spirits()[i],s.spirits[id]),'unchanged power curve');eq(after.rewards(after.spirits()[i],s.spirits[id]),before.rewards(before.spirits()[i],s.spirits[id]),'unchanged default resource formula');});
   var profile=clone(after.profile(depth));if(profile)delete profile.supportUptime;eq(profile,before.profile(depth),'default cast rates/integral/cache result unchanged');
   if(forge && depth===99 && party[0]==='ember' && party[1]==='tide') ['live','offline'].forEach(function(kind){
-   var seed=clone(before.get());seed.riftMode='farm';seed.farmDepth=seed.enemyDepth=99;seed.depth=99;seed.enemyHp=seed.enemyMaxHp=100000;seed.enemyIsLuminous=false;seed.autoAscendEnabled=false;
-   before.set(seed);after.set(seed);var old=before.simulate(60,kind,clock+.125),next=after.simulate(60,kind,clock+.125);eq(next,old,'unchanged chronological summary');eq(after.get(),before.get(),'unchanged complete simulation endpoint');cases.push({party:party,kind:kind,seconds:60,kills:next.kills});
+   var seed=clone(before.get());seed.riftMode='farm';seed.farmDepth=seed.enemyDepth=99;seed.depth=99;seed.enemyHp=seed.enemyMaxHp=1e200;seed.enemyIsLuminous=false;seed.autoAscendEnabled=false;
+   before.set(seed);after.set(seed);var old=before.simulate(60,kind,clock+.125),next=after.simulate(60,kind,clock+.125);eq(next.kills,0,'fixed world isolates unchanged casts and paid effects from the new enemy curve');eq(next,old,'unchanged chronological summary');eq(oldFields(after.get()),oldFields(before.get()),'every prior simulation endpoint field retained');cases.push({party:party,kind:kind,seconds:60,kills:next.kills});
   });
  });});});
  return {status:'PASS',checks:checks,baselineSha256:'d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8',defaultFormulaCases:448,chronologicalCases:cases};
 }
 var result=contracts(source),controls=[];
 if(process.argv.indexOf('--negative')>=0){
- [['double-support','supportDps:support,legacyDps:legacy,totalDps:raw+bondDps+support+legacy','supportDps:support,legacyDps:legacy,totalDps:raw+bondDps+support*2+legacy'],
- ['missing-kindling',"if(b.id==='kindling') kindling*=1.25;",''],['wrong-reward-bond',"bondActive('quarry',ids)",'false'],
- ['wrong-removal','ids.filter(function(id){return id!==row.id;})','ids'],['missing-legacy','Math.max(0,state.buffMult-known)*supportBase','0'],
- ['missing-forge-uptime','estimate.supportUptime[row.id]||0','0'],['missing-cadence','1+0.10*forgeLevel(\'guardiancadence\')*cadenceFrequency','1']].forEach(function(row){
+ [['double-support','supportDps:support,legacyDps:legacy,totalDps:Amount.add(Amount.add(Amount.add(raw,bondDps),support),legacy)','supportDps:support,legacyDps:legacy,totalDps:Amount.add(Amount.add(Amount.add(raw,bondDps),support*2),legacy)'],
+ ['missing-kindling',"if(b.id==='kindling') kindling=Amount.mul(kindling,1.25);",''],['wrong-reward-bond',"bondActive('quarry',ids)",'false'],
+ ['wrong-removal','ids.filter(function(id){return id!==row.id;})','ids'],['missing-legacy','Amount.mul(Amount.max(0,Amount.sub(state.buffMult,known)),supportBase)','0'],
+ ['missing-forge-uptime','estimate.supportUptime[row.id]||0','0'],['missing-cadence',"Amount.add(1,Amount.mul(Amount.mul(0.10,forgeLevel('guardiancadence')),cadenceFrequency))",'1']].forEach(function(row){
   var changed=source.replace(row[1],row[2]);assert.notStrictEqual(changed,source,'control anchor');
   var caught=false;try{contracts(changed);}catch(e){assert.strictEqual(e.code,'ERR_ASSERTION','assertion failure only');caught=true;}
   assert(caught,'actual control must fail '+row[0]);controls.push({id:row[0],status:'killed',failure:'ERR_ASSERTION'});

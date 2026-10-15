@@ -2386,7 +2386,7 @@
           assert(acceptedGrandfathered.heroRarity.ember===5 && acceptedGrandfathered.wispModules.ember===20,'existing maxed Ember progression must never be downgraded by new requirements');
           assert(acceptedGrandfathered.heroRarity.titan===5 && acceptedGrandfathered.wispModules.titan===20,'existing maxed Titan progression must never be downgraded by new requirements');
 
-          assert(emberCurve.ultimateSigils===10000000 && titanCurve.ultimateSigils===120000000,'independent candidate Ultimate prices');
+          assert(emberCurve.ultimateSigils===40000000 && titanCurve.ultimateSigils===240000000,'independent calibrated Ultimate prices');
 
           finish('pass',{
             rarityRequirements:emberCurve.rarity.map(function(x){return x.req;}),
@@ -2402,7 +2402,7 @@
 
         case 'p2-endgame-currency-utility': {
           var economy=bridge.endgameEconomyContract();
-          assert(economy.ultimateSigilTotal===375000000,'candidate roster Ultimate investment is375000000 Sigils');
+          assert(economy.ultimateSigilTotal===910000000,'calibrated roster Ultimate investment is910000000 Sigils');
           assert(economy.sigilsThroughRift220===253,'first-clear boss sequence through Rift 220 must yield 253 Sigils before repeated runs');
           assert(economy.restStopCometTotal===450,'the historical four Rest Stop purchases retain their independent 450-Comet value');
           assert(economy.retirementCometTotal===350&&economy.retiredEntitlements.every(function(v){return v===true;}),'actual migration preserves all three retired entitlements and their 350-Comet compensation');

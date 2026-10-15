@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const crypto = require('node:crypto');
 const {app, seed, clone} = require('./lab-expansion-harness.cjs');
+const {ge}=require('./amount-oracle.cjs');
 const source = fs.readFileSync(process.argv[2] || 'index.html', 'utf8');
 
 function verify(html) {
@@ -33,7 +34,7 @@ function verify(html) {
       prepare();
       q.batch(count, kind || 'offline');
       const actual = q.get();
-      if (actual.lumen >= cost.lumen && actual.shards >= cost.shard) {
+      if (ge(actual.lumen,cost.lumen) && ge(actual.shards,cost.shard)) {
         firstAffordable = count; stateAtPurchase = clone(actual); break;
       }
     }
@@ -98,16 +99,18 @@ function verify(html) {
   // Luminous rewards still allow a safe integer boundary. Use an independent
   // BigInt search over actual batches; BigInt is test-only, never game code.
   const large = farm(1, 6, 0, 10, false, .3);
-  large.longStudyLevels.guardmastery=60;
+  large.longStudyLevels.guardmastery=100;
   large.studyQueue.bossledger=false;large.studyQueue.guardmastery=true;
-  large.lumen=1188487091262810400;large.shards=82872472750854020;
-  q.set(large);const largeCost=q.cost('guardmastery',60);
+  large.lumen=1004000000000000000;large.shards=61500000000000000;
+  q.set(large);const largeCost=q.cost('guardmastery',100);
+  eq(largeCost,{lumen:1059533090283397000,shard:70635539352226470},'independent calibrated future Lab price');
+  ok((largeCost.lumen-large.lumen)/6>Number.MAX_SAFE_INTEGER&&(largeCost.shard-large.shards)>Number.MAX_SAFE_INTEGER,'both ordinary-only estimates remain unsafe');
   const largePrediction=q.boundary(largeCost,1);
-  function batchCanPay(count){q.set(large);q.batch(Number(count),'offline');return q.get().lumen>=largeCost.lumen&&q.get().shards>=largeCost.shard;}
+  function batchCanPay(count){q.set(large);q.batch(Number(count),'offline');return ge(q.get().lumen,largeCost.lumen)&&ge(q.get().shards,largeCost.shard);}
   let low=1n,high=BigInt(Number.MAX_SAFE_INTEGER);
   ok(batchCanPay(high),'large paid level has an actually affordable safe batch');
   while(low<high){const mid=low+(high-low)/2n;if(batchCanPay(mid))high=mid;else low=mid+1n;}
-  eq(Number(low),8834951456310660,'independent real-batch large-value reproduction');
+  eq(Number(low),8985936939061001,'independent real-batch calibrated large-value reproduction');
   eq(largePrediction,Number(low),'unsafe ordinary estimate must not hide the earlier safe boundary');
   eq(batchCanPay(low-1n),false,'one less large-count kill cannot buy');
   eq(batchCanPay(low),true,'exact large-count boundary can buy');
@@ -131,8 +134,8 @@ function verify(html) {
 
 const result = verify(source), negatives = [];
 if (process.argv.includes('--negative')) {
-  const exact = 'state.lumen+(lumenPerKill*count+extraLumen*luminous)>=cost.lumen &&\n      canSpendShardsWithWallet(cost.shard,state.shards+(shardPerKill*count+extraShard*luminous));';
-  const old = 'state.lumen+lumenPerKill*count+extraLumen*luminous>=cost.lumen &&\n      canSpendShardsWithWallet(cost.shard,state.shards+shardPerKill*count+extraShard*luminous);';
+  const exact = 'Amount.ge(creditAmount(state.lumen,Amount.add(Amount.mul(lumenPerKill,count),Amount.mul(extraLumen,luminous))),cost.lumen) &&\n      canSpendShardsWithWallet(cost.shard,creditAmount(state.shards,Amount.add(Amount.mul(shardPerKill,count),Amount.mul(extraShard,luminous))));';
+  const old = 'Amount.ge(creditAmount(creditAmount(state.lumen,Amount.mul(lumenPerKill,count)),Amount.mul(extraLumen,luminous)),cost.lumen) &&\n      canSpendShardsWithWallet(cost.shard,creditAmount(creditAmount(state.shards,Amount.mul(shardPerKill,count)),Amount.mul(extraShard,luminous)));';
   assert.equal(source.split(exact).length, 2, 'one production wallet/batch boundary anchor');
   let caught;
   try {verify(source.replace(exact, old));} catch (error) {
@@ -142,10 +145,10 @@ if (process.argv.includes('--negative')) {
   assert.ok(caught, 'original floating-point grouping must fail the real-batch oracle');
   negatives.push({name:'wallet-before-luminous-bonus', caught});
   const variants = [
-    ['unverified-one-kill-estimate', "if(!labExpansionLevel('luminousdistill') || upper<=0 || !Number.isFinite(upper)) return upper;", "if(!labExpansionLevel('luminousdistill') || upper<=1 || !Number.isFinite(upper)) return upper;"],
+    ['unverified-one-kill-estimate', "if(!labExpansionLevel('luminousdistill') || Amount.le(upper,0) || !Amount.valid(upper)) return upper;", "if(!labExpansionLevel('luminousdistill') || Amount.le(upper,1) || !Amount.valid(upper)) return upper;"],
     ['imaginary-first-luminous-kill', 'if(count>1) luminous+=Math.floor(accum+(count-1)*chance+1e-12);', 'luminous+=Math.floor(accum+(count-1)*chance+1e-12);'],
     ['unverified-upper-bound', 'while(!enough(high)){', 'while(false){'],
-    ['unsafe-normal-estimate-skips-safe-buy', "if(!labExpansionLevel('luminousdistill') || upper<=0 || !Number.isFinite(upper)) return upper;", "if(!labExpansionLevel('luminousdistill') || upper<=0 || !Number.isSafeInteger(upper)) return upper;"]
+    ['unsafe-normal-estimate-skips-safe-buy', "if(!labExpansionLevel('luminousdistill') || Amount.le(upper,0) || !Amount.valid(upper)) return upper;", "if(!labExpansionLevel('luminousdistill') || Amount.le(upper,0) || !Number.isSafeInteger(upper)) return upper;"]
   ];
   for(const [name, before, after] of variants){
     assert.equal(source.split(before).length,2,'one causal boundary anchor '+name);

@@ -125,4 +125,8 @@ for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2100],['th
  eq(exactInteger(q.get().lumen),10n**400n-BigInt(base*4),'exact wide ability Lumen debit '+id);eq(exactInteger(q.get().shards),10n**400n-BigInt(Math.round(base*.4)),'exact wide ability Shard debit '+id);eq(q.get().activeStudies,before.activeStudies,'ability retains paid work '+id);
  const paid=clone(q.get());q.load();eq(q.get(),paid,'ability cold save endpoint '+id);q.get().wispModules[id]=20;const capped=clone(q.get());eq(b.module(q.sp(id)),false,'ability cap has no extra purchase '+id);eq(q.get(),capped,'ability cap preserves wallet '+id);
 }
+if(calibrated){
+ const q=app(source).q,s=q.fresh();s.maxDepthEver=70;s.lumen=s.shards='1e400';q.set(s);
+ const text=q.previewText('masterwork',1);ok(text.includes('Current: Own Wisp Power ×1.00;'),'explicit current Masterwork Power');ok(text.includes('Next: Own Wisp Power ×1.25;'),'exact first Masterwork multiplier display');ok(q.node('masterwork').desc.includes('25% per level'),'Masterwork description discloses its compounded Power effect');
+}
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

@@ -1,0 +1,80 @@
+{
+  "status": "pass",
+  "checks": 1362,
+  "inlineScriptsParsed": 2,
+  "completeIifeInstances": 255,
+  "priceCases": 12,
+  "faultCases": 22,
+  "numericCases": 28,
+  "migrationCases": 16,
+  "invalidCases": 18,
+  "records": [
+    {
+      "id": "catalog-and-historical-ledgers",
+      "checks": 24
+    },
+    {
+      "id": "all-purchased-prices-caps-and-storage",
+      "checks": 357
+    },
+    {
+      "id": "purchase-unlocks-lifecycle-and-exact-debit",
+      "checks": 150
+    },
+    {
+      "id": "all-shop-primary-and-recovery-faults",
+      "checks": 120
+    },
+    {
+      "id": "raw-old-schema-migrations-and-idempotency",
+      "checks": 93
+    },
+    {
+      "id": "pending-claims-representability-and-one-pass-order",
+      "checks": 23
+    },
+    {
+      "id": "strict-current3-preservation-and-backups",
+      "checks": 148
+    },
+    {
+      "id": "literal-independent-meteor-numerics",
+      "checks": 44
+    },
+    {
+      "id": "actual-meteor-no-time-no-extra-hit-and-preview",
+      "checks": 58
+    },
+    {
+      "id": "actual-command-rejections-and-primary-faults",
+      "checks": 127
+    },
+    {
+      "id": "actual-call-kill-natural-counter-and-retained-motes",
+      "checks": 42
+    },
+    {
+      "id": "actual-orbital-kill-work-and-bounded-farm-batches",
+      "checks": 72
+    },
+    {
+      "id": "lethal-meteor-auto-ascend-atomicity-and-run-token",
+      "checks": 47
+    },
+    {
+      "id": "legacy-trials-refresh-and-save-faults",
+      "checks": 40
+    },
+    {
+      "id": "real-offline-call-endpoint-and-bank-retention",
+      "checks": 12
+    }
+  ],
+  "bigIntAvailable": false,
+  "scope": "Actual Node8.3/V8 6.0 complete production IIFE: all six purchases, fixed numeric vectors, old/current schema, exact claims, actual commands and defeat owners, Auto-Ascend, offline and persistence. Native browser layout is a separate gate.",
+  "sourceSha256": "1a840eaa085c70d6e4ce1643c5f738ca64f8120236615522ed871c0c3c23d44c",
+  "testSha256": "66099c4d8633b2acb3b4c18bdf30807ce305bcce0b9935043d0ea79d54f2fbc6",
+  "harnessSha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928",
+  "node": "v8.3.0",
+  "v8": "6.0.286.52"
+}

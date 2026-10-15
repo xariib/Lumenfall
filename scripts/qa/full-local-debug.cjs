@@ -10,7 +10,7 @@ fs.mkdirSync(out,{recursive:true});
 console.log('Evidence: '+out);
 const test=(name,file,...args)=>({name,args:[file,...args]});
 const core=[
- test('context','scripts/codex/check_context.cjs','--task','docs/tasks/LOCAL_FULL_DEBUG_001.md'),
+ test('context','scripts/codex/check_context.cjs','--task',process.env.LUMENFALL_QA_TASK||'docs/tasks/LOCAL_FULL_DEBUG_001.md'),
  test('source','scripts/ci/validate_source.cjs'),test('tooling','tests/tooling/run.cjs'),
  test('apk-identity','scripts/verify_apk_identity.cjs','--self-test'),
  ...['lab-expansion','lab-expansion-boundary','forge-expansion','forge-expansion-calibration','tree-expansion-core','tree-expansion-offline','tree-expansion-economy','comet-expansion-core','comet-expansion-numerical','comet-expansion-offline','echo-refund-core','swift-current-core','support-recast-current','early-wisp-curve-current','wisp-contribution-core'].map(n=>test(n,'tests/behavioral/'+n+'.cjs','index.html','--negative')),

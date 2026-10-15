@@ -62,7 +62,7 @@ function runCore(source,options={}){
   }
   group('fresh schema, fixed catalog and historical reward policy',()=>{
     const e=app(source),q=e.q,s=q.get();
-    eq(q.schema(),4,'schema4 is actual');eq(s.schemaVersion,4,'fresh schema4');
+    eq(q.schema(),5,'schema5 is actual');eq(s.schemaVersion,5,'fresh schema5');
     eq(s.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},'three separate raw level fields');
     eq(commandOnlyFields(s),{charges:0,work:0,used:false,called:false,events:emptyEvents()},'no gifts/events on fresh load');
     eq(s.cometClaims,{policy:POLICY,retired:{comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'},deeds:{}},'closed fresh ledger');
@@ -84,7 +84,7 @@ function runCore(source,options={}){
       const old=legacyFixture(q,version,mask,wallet),raw=JSON.stringify(old);
       const ids=RETIRED.filter((_,i)=>mask&(1<<i)).map(([id])=>'retirement:'+id),expected=oracle.settleKnownClaims(wallet,ids);
       const accepted=q.accept(old,'synthetic-old'+version);
-      eq(JSON.stringify(old),raw,'migration preserves input bytes/object');eq(accepted.schemaVersion,4,'ordered migration reaches4');
+      eq(JSON.stringify(old),raw,'migration preserves input bytes/object');eq(accepted.schemaVersion,5,'ordered migration reaches5');
       eq(accepted.comets,expected.wallet,'fixed once retirement amount');eq(pendingIds(accepted),expected.pendingIds,'unrepresentable identities stay due');
       eq(accepted.owned.meteor,false,'no migrated Meteor');eq(accepted.owned.starcall,false,'no migrated Call');
       eq(accepted.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},'no migrated new levels');
@@ -161,7 +161,7 @@ function runCore(source,options={}){
     }
     const corrupt=app(source,[[P,'{corrupt'],[R,JSON.stringify(valid)]]);
     eq(corrupt.q.persistenceStatus().blocked,false,'ordinary corrupt primary keeps old repair semantics');eq(JSON.parse(corrupt.storage.get(P)),valid,'ordinary recovery repairs primary');
-    const future=clone(valid);future.schemaVersion=5;const futureRaw=JSON.stringify(future),futureLoaded=app(source,[[P,futureRaw],[R,JSON.stringify(valid)]]);
+    const future=clone(valid);future.schemaVersion=6;const futureRaw=JSON.stringify(future),futureLoaded=app(source,[[P,futureRaw],[R,JSON.stringify(valid)]]);
     eq(futureLoaded.q.persistenceStatus().blocked,true,'future schema remains separate blocked case');eq(futureLoaded.storage.get(P),futureRaw,'future primary unchanged');
     const over=ownedFixture(q);over.cometUpgrades={cometreservoir:1e30,cometcycle:9,meteorcore:7};
     const accepted=q.accept(over);eq(accepted.cometUpgrades,over.cometUpgrades,'raw overcaps never rewritten');eq(q.capacity(accepted),3,'capacity effective cap');eq(q.workPerKill(accepted),40,'Engine effective cap');eq(q.upgradeLevel('meteorcore',accepted),4,'Core effective cap');
@@ -457,7 +457,7 @@ function runCore(source,options={}){
     control('representable-debit-required','cometExactDebit','wallet-remaining===cost && remaining+cost===wallet','true',text=>{
       const e=prepared(text),q=e.q;q.get().comets=1e30;const before=snapshot(e);assert.equal(q.buy('meteor'),false,'unrepresentable paid debit must refuse');assert.deepEqual(q.get(),before.state);assert.deepEqual(Array.from(e.storage),before.slots);
     },/unrepresentable paid debit must refuse/);
-    control('unrepresentable-credit-keeps-original-claim','cometCreditExactly','!Number.isFinite(next) || next-before!==amount || next-amount!==before','!Number.isFinite(next)',text=>{
+    control('unrepresentable-credit-keeps-original-claim','cometCreditExactly','!Amount.valid(next) || Amount.sub(next,before)!==amount || Amount.sub(next,amount)!==before','!Amount.valid(next)',text=>{
       const e=prepared(text),q=e.q;q.get().comets=1e30;q.get().achieved.d25=false;q.applyAchievements();assert.equal(q.get().comets,1e30);assert.equal(q.get().cometClaims.deeds.d25,true,'lost credit must retain its original pending identity');
     },/lost credit must retain/);
     control('new-deed-does-not-sweep-older-claims','cometEarnDeed','if(cometCreditExactly(state,COMET_DEED_REWARDS[id])) delete state.cometClaims.deeds[id];','if(cometCreditExactly(state,COMET_DEED_REWARDS[id])) delete state.cometClaims.deeds[id];settleCometClaims(state);',text=>{

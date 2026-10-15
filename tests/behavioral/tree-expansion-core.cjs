@@ -380,7 +380,7 @@ function reserve(t,mutate) {
 }
 
 function invitations(t,mutate) {
-  const gates={ember:[1,0],tide:[3,0],stone:[6,0],gale:[15,15],thorn:[35,18],void:[55,20],aurora:[75,21],titan:[100,22]};
+  const gates={ember:[1,0],tide:[3,0],stone:[6,0],gale:[15,15],thorn:[35,18],void:[55,20],aurora:[75,21],titan:[100,24]};
   for(const raw of ranksFor('invitations')) for(const sp of SPIRITS) {
     const a=app(source),q=a.q,s=lowWorld(q,Math.max(1,gates[sp.id][0]-effective('invitations',raw)));s.nodes.invitations=raw;s.spirits[sp.id]=0;s.longStudyLevels.wispascend=gates[sp.id][1];q.set(s);
     const immutable=[q.sp(sp.id).unlockDepth,q.rarityCost(sp.id,0),q.moduleCost(sp.id,0),q.ultimateCost(sp.id)],end=useMutation(q,mutate);
@@ -492,7 +492,7 @@ function dustCases(t,mutate) {
     } finally {end();}
   }
   const a=app(source),q=a.q,s=atCleared(q,1000);s.maxDepthEver=1001;s.nodes.stardust=5;s.nodes.swift=100;s.prisms=1e30;q.set(s);
-  const before=q.get().motes;t.eq(q.ascend(),true,'legacy huge-Prism Ascend remains available');t.eq(q.get().motes,before,'uncredited nominal Prisms cannot create Dust');
+  const before=q.get().motes,prisms=BigInt(q.get().prisms),gain=q.prismPreview().gain;t.eq(q.ascend(),true,'legacy huge-Prism Ascend remains available');t.eq(integerAmount(q.get().prisms),prisms+BigInt(gain),'huge wallet credits every earned Prism');t.eq(q.get().motes,before+50,'exactly credited Prisms preserve capped Dust');
 }
 
 function wall(t,mutate) {
