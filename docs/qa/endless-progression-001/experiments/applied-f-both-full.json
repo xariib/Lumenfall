@@ -1,0 +1,146 @@
+{
+  "status": "BOTH_PRIMARY_FULL_ROSTERS_AND_POST_ROSTER_GROWTH_OBSERVED",
+  "checks": 34360,
+  "policies": [
+    {
+      "policy": "regular",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
+      "days": 145,
+      "firstFullDay": 125.66666666666667,
+      "roster": {
+        "mythics": 8,
+        "abilities20": 8,
+        "ultimates": 8,
+        "mastered": 8,
+        "fullDevelopmentDay": 125.66666666666667,
+        "firstFullDayEndpoint": 126,
+        "status": "FULL_ROSTER_OBSERVED"
+      },
+      "postRoster": {
+        "daysObserved": 19,
+        "firstRanks": {
+          "ember": 19,
+          "tide": 11,
+          "stone": 9,
+          "gale": 8,
+          "thorn": 7,
+          "void": 2,
+          "aurora": 1,
+          "titan": 0
+        },
+        "endpointRanks": {
+          "ember": 20,
+          "tide": 14,
+          "stone": 10,
+          "gale": 9,
+          "thorn": 8,
+          "void": 6,
+          "aurora": 3,
+          "titan": 1
+        },
+        "advancedWisps": [
+          "ember",
+          "tide",
+          "stone",
+          "gale",
+          "thorn",
+          "void",
+          "aurora",
+          "titan"
+        ]
+      },
+      "longestClosedWallDays": 3.6597222222222223,
+      "endpoint": {
+        "rift": 9580,
+        "ascends": 1864,
+        "lab": 185,
+        "masterwork": 172,
+        "mastery": {
+          "ember": 20,
+          "tide": 14,
+          "stone": 10,
+          "gale": 9,
+          "thorn": 8,
+          "void": 6,
+          "aurora": 3,
+          "titan": 1
+        }
+      }
+    },
+    {
+      "policy": "regular_two",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "days": 138,
+      "firstFullDay": 133.5,
+      "roster": {
+        "mythics": 8,
+        "abilities20": 8,
+        "ultimates": 8,
+        "mastered": 6,
+        "fullDevelopmentDay": 133.5,
+        "firstFullDayEndpoint": 134,
+        "status": "FULL_ROSTER_OBSERVED"
+      },
+      "postRoster": {
+        "daysObserved": 4,
+        "firstRanks": {
+          "ember": 16,
+          "tide": 8,
+          "stone": 5,
+          "gale": 4,
+          "thorn": 2,
+          "void": 2,
+          "aurora": 0,
+          "titan": 0
+        },
+        "endpointRanks": {
+          "ember": 16,
+          "tide": 8,
+          "stone": 6,
+          "gale": 4,
+          "thorn": 2,
+          "void": 2,
+          "aurora": 0,
+          "titan": 0
+        },
+        "advancedWisps": [
+          "stone"
+        ]
+      },
+      "longestClosedWallDays": 4.994212962962963,
+      "endpoint": {
+        "rift": 9022,
+        "ascends": 1136,
+        "lab": 177,
+        "masterwork": 164,
+        "mastery": {
+          "ember": 16,
+          "tide": 8,
+          "stone": 6,
+          "gale": 4,
+          "thorn": 2,
+          "void": 2,
+          "aurora": 0,
+          "titan": 0
+        }
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "file": "both-full-regular-day145.checkpoint.json.gz",
+      "rawSha256": "3ce107634cac42e2118908def6d919431f21f71e80f88f611182ed4dab294cce"
+    },
+    {
+      "file": "both-full-regular_two-day138.checkpoint.json.gz",
+      "rawSha256": "fed53201a8454237660bb9812d206e46b46e69ab20c4c08684768181cdb5d113"
+    },
+    {
+      "file": "both-full-report.json.gz",
+      "sha256": "acfc5c1e5a36c2a6afa9f020fffa12c32211662f2adae529b7e24c1351c770a2"
+    }
+  ],
+  "limits": "Earned free policies; both continue toward180d. Desktop simulations do not establish human/device acceptance."
+}

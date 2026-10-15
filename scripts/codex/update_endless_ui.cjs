@@ -8,7 +8,7 @@ visit(m.exports.parse(script,{ecmaVersion:2020}));assert.equal(nodes.length,1);
 const n=nodes[0];
 const text=`var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
-      : '<p class="ultimate-requirements">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!==\'rarity\';}))+'</p>'+ 
+      : '<p class="ultimate-requirements">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!==\'rarity\';}))+'</p>'+
         '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" '+(ultimatePlan.affordable?'':'disabled')+'>Unlock Ultimate'+purchasePriceMarkup('sigil',ultCost,'wisp-upgrade-price')+'</button>')+'</div>';`;
 const next=script.slice(0,n.start)+text+script.slice(n.end);new Function(next);
 fs.writeFileSync(file,html.slice(0,offset)+next+html.slice(offset+script.length));

@@ -11,7 +11,7 @@ endless-progression-worktree. Original checkout preserved. Schema5 entitlements/
 Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 Historical D60d/180d receipts are in README; all8 at21-22d, MY44d/ULT48d,
-D roster114.67d; early18.67d recruits rejected. F roster125.67d observed.
+D roster114.67d; early18.67d recruits rejected. F rosters125.67/133.5d observed.
 Product4b052487 has measured F gates/exact cycle engine; Lab UI67e retained.
 Full browser220/190 PASS; Linux CI/Guidance baseline/native acceptance OPEN.
 
@@ -25,4 +25,4 @@ Exact window selection fixes12h overrun; exact saved basis retains decimal bits.
 Prior engine12h2193/cold-split471 PASS. Fresh D regular32d/all recruits22.33d;
 two-visits13d partial. D full217/3 failed attempts; targeted reruns PASS. F full220/190 PASS.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive. Next: mature campaigns and final CI; F60d milestones/mobile493 PASS.
+No shared/main/remote/APK/archive. Next: finish180d and final CI; both rosters/post-roster growth observed.

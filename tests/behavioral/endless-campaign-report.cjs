@@ -53,6 +53,8 @@ for(const [policy,flag]of [['regular','--require-primary'],['regular_two','--req
 }
 if(process.argv.includes('--require-roster'))assert(records.find(r=>r.policy==='regular')?.roster.status==='FULL_ROSTER_OBSERVED','regular campaign must actually develop all eight Wisps');
 if(process.argv.includes('--require-post-roster'))assert(records.find(r=>r.policy==='regular')?.postRoster?.advancedWisps.length>0,'regular campaign must purchase further Mastery after full roster development');
+if(process.argv.includes('--require-regular-two-roster'))assert(records.find(r=>r.policy==='regular_two')?.roster.status==='FULL_ROSTER_OBSERVED','regular_two campaign must actually develop all eight Wisps');
+if(process.argv.includes('--require-regular-two-post-roster'))assert(records.find(r=>r.policy==='regular_two')?.postRoster?.advancedWisps.length>0,'regular_two campaign must purchase further Mastery after full roster development');
 const result={status:records.every(r=>r.days>=56)?'MEASURED':'PARTIAL',checks,limits:'Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.',records};
 if(output)fs.writeFileSync(output,JSON.stringify(result,null,2));
 console.log(JSON.stringify({status:result.status,checks,policies:records.map(r=>({policy:r.policy,days:r.days,milestones:r.milestones,targets:r.targets,longestClosedWallDays:r.longestClosedWallDays}))}));
