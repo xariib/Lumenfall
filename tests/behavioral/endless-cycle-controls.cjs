@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const out=process.argv[2]||'validation-evidence/endless-cycle-controls';assert(!fs.existsSync(out)||fs.readdirSync(out).length===0,'new evidence output required');fs.mkdirSync(out,{recursive:true});
+const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),inputFile='tests/behavioral/endless-cycle-boundaries.cjs',inputHash=hash(inputFile);
+const cases=[['mote','fixed Mote payout boundary'],['lab','paid Lab completion EPS boundary'],['recast','Support recast EPS boundary'],['buff','Support expiry'],['economy','queued Forge affordability'],['phase','queued Forge affordability'],['receipt','Support expiry'],['lumen','Support expiry']],records=[];
+for(const [mutation,fixture]of cases){
+ const file=path.join(out,mutation+'.json'),fd=fs.openSync(file,'w'),started=performance.now(),r=cp.spawnSync(process.execPath,['tests/behavioral/endless-cycle-boundaries.cjs'],{env:{...process.env,LUMENFALL_CYCLE_CASE:fixture,LUMENFALL_CYCLE_MUTATION:mutation},stdio:['ignore',fd,'pipe'],timeout:120000,windowsHide:true});fs.closeSync(fd);
+ const report=JSON.parse(fs.readFileSync(file,'utf8')),expected=fixture+(mutation==='receipt'?' exact summary ascends':' exact chronological saved endpoint'),caught=r.status===1&&!r.error&&report.status==='FAIL'&&report.current===fixture&&report.error.includes(expected);
+ records.push({mutation,fixture,caught,code:r.status,error:r.error&&String(r.error),seconds:(performance.now()-started)/1000,sourceSha256:report.sourceSha256,receiptSha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),failure:report.error&&report.error.split('\n')[0],stderr:r.stderr.toString()});
+ fs.writeFileSync(path.join(out,'summary.json'),JSON.stringify({status:records.every(r=>r.caught)?'PASS_SO_FAR':'FAIL',records},null,2));process.stderr.write(mutation+': '+(caught?'CAUGHT':'NOT CAUGHT')+'\n');
+}
+assert.equal(hash(inputFile),inputHash,'causal fixture input must stay unchanged');assert(records.every(r=>r.caught),'every intentional defect must fail its intended concrete assertion');fs.writeFileSync(path.join(out,'summary.json'),JSON.stringify({status:'PASS',controls:records.length,inputSha256:inputHash,records},null,2));console.log(JSON.stringify({status:'PASS',controls:records.length}));

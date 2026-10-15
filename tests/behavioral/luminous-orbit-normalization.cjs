@@ -17,4 +17,5 @@ for(const n of [0,1,31,100001]){const indexed=session.position(n),expected=refer
 const whole=create(A,pattern,.20999899976786907,false,{phaseCeiling:ceiling}).advance(A.exactAdd('1e25',100001));
 eq(whole.phase,next.phase,'normalized whole/split endpoint identical');whole.counts.forEach((v,i)=>eq(integer(v),integer(first.counts[i])+integer(next.counts[i]),'normalized whole/split counters exact'));
 observations.push({yields,stats:session.stats(),wallMs:performance.now()-started,indexedWithLiteralMs:indexedMs,phase:first.phase});}
+for(const n of [1e25,1e28,1e30]){const r=create(A,[.25,.25,null,.25],0,false,{phaseCeiling:ceiling}).advance(n),count=BigInt(n)/4n;eq(integer(r.cycles),BigInt(n),'unsafe native cycle input is exact');eq(r.counts.map(integer),[count-1n,count,count],'quarter-orbit independent huge integer count');eq(r.phase,0,'quarter-orbit exact phase');eq(r.flag,true,'quarter-orbit final unspent spawn');}
 console.log(JSON.stringify({status:'PASS',checks,observations}));

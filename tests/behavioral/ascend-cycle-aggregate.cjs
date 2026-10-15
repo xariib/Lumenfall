@@ -20,4 +20,6 @@ for(let n=1;n<=rows.length-base;n++){
 }
 session.advance(A.exactSub('1e25',rows.length-base));const result=aggregate(A,recipes,killShards,session.position('1e25').counts,'1e25');
 eq(integer(result.ascends),10n**25n,'huge Ascend integer oracle');eq(integer(result.kills),10n**26n,'huge victory integer oracle');eq(integer(result.prisms),222n*10n**25n,'huge protected Prism oracle');eq(integer(result.motes),50n*10n**25n,'huge paid Dust oracle');eq(integer(result.bossKills),10n**25n,'huge boss integer oracle');
+for(const n of [1e25,1e28,1e30]){const r=aggregate(A,[{prisms:1e30}],[],[],n);eq(integer(r.prisms),BigInt(1e30)*BigInt(n),'native unsafe rewards/counts preserve exact binary input values');eq(integer(r.ascends),BigInt(n),'native unsafe reset count retained');}
+eq(integer(aggregate(A,[{shards:.25}],[],[],'1e25').shards),10n**25n/4n,'fractional operand reaches the exact multiply instead of an invalid coefficient token');
 console.log(JSON.stringify({status:'PASS',checks,result,limits:'Reward component; caller must prove unchanged recipes and no eligible Luminous payout/purchase before its stop. Full engine acceptance remains open.'}));

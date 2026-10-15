@@ -1,5 +1,27 @@
 # Endless progression — work in progress
 
+Latest connected-cycle experiment (15 October): product db1e62af is unchanged.
+The separate builder now connects exact clock, observed combat periods, indexed
+native pity, wallet/counter aggregation, paid-work and purchase horizons, native
+Phase Memory and compressed Ascend receipts to the complete game. Finite reward
+and independent count checks70 PASS; five chronological boundary fixtures136
+PASS; eight intentional defects are caught. The first Lab-timing control escaped
+because its fixture did not affect combat; the strengthened Wisp Lab fixture
+catches it. Preserve that failed first attempt as evidence of the test repair.
+The earned mature60-second workload takes6.2s and advances paid work correctly;
+it is a measurement, not overnight acceptance. Profiling finds exact native clock
+conversion dominates. Fractional per-credit/wallet paths still use the literal
+owner and may remain too slow. Resumable index preparation, cancellation, full
+8/12h, actualV8 integrated batching, rollback/recovery and final UI/CI remain OPEN.
+[Connected checkpoint](experiments/connected-cycle-receipts.json).
+
+The restored timed-roster phase observes full roster development at150.3333d.
+Its campaign is still running. Rift7870 stalls for weeks while that policy saves
+for Lab resources and blocks affordable Masterwork investment; this is not proof
+of a mandatory balance wall. Compare an explicit reinvestment policy from the same
+earned day60. Also measure unrestricted low-target efficient Ascend farming before
+choosing final numeric gates. Frozen D60 records are preserved unchanged.
+
 15 October user decision: "Preserve unrestricted Ascends and optimize
 repeated-cycle simulation (larger engine change)". No minimum run timer,
 new cooldown or target restriction is authorized. Exact chronological batching

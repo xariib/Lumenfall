@@ -1,0 +1,163 @@
+{
+  "status": "PARTIAL_EXPERIMENT_NOT_PRODUCT",
+  "decision": "Preserve unrestricted Ascends; optimize repeated cycles without cooldown or target restriction",
+  "productSha256": "db1e62af0bb378338eed480b047c7509115ed8f382514ab0d65ccde4eb6a8a8c",
+  "candidateSha256": "a5853d42ec40e8f03d8579dc74123406cd77badc8e2f6d3924e10d09ad50cfa9",
+  "files": [
+    {
+      "file": "scripts/lib/ascend-cycle-aggregate.cjs",
+      "sha256": "23b2927fae1137cfd5d2a9b215f9ff8b147b82dd8b89871c666f183fca82a863"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-clock.cjs",
+      "sha256": "5a79833043935759efcf1b25b847e3641f0aadbaffdf55a514d76e914009e7b5"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-lumen.cjs",
+      "sha256": "7c420fc201b1dabc7fab3799b9ab8047d3f1e4cfb228cff7d793f6c4120cf707"
+    },
+    {
+      "file": "scripts/lib/luminous-orbit-session.cjs",
+      "sha256": "94409845b7d00ac13971ce97c00a96e7243bef4ea0be1a9c5bc5959703dc8373"
+    },
+    {
+      "file": "scripts/lib/luminous-orbit.cjs",
+      "sha256": "f51d7a6f80f79dcef47ba39bc86e1a98db2edd49b212ef974fea79489765c0d1"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-economy-bound.cjs",
+      "sha256": "4443f49707b3614f0914980a43d0619835ea40ba7c8790733427b03d36233a50"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-lattice-clock.cjs",
+      "sha256": "66e50e3ac5eebdc5be3ffa9035bb49ce76995cfda5a6470f5a754e63b8529fcf"
+    },
+    {
+      "file": "scripts/lib/ascend-native-phase.cjs",
+      "sha256": "79048a56e673c79708d2c602217b539f11ce9bcbd938ccf6f5fcc2ad9cf85613"
+    },
+    {
+      "file": "scripts/lib/native-event-threshold.cjs",
+      "sha256": "1ef183f0bca7bdb2619fa5078244b8933aedeb995912442bd3b3704277113f63"
+    },
+    {
+      "file": "scripts/lib/simulation-binary-clock.cjs",
+      "sha256": "752d08596d2816b4092aaee135c54a9a31cb188fd7a16f7f55ca0918d3c50eb1"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-aggregate.cjs",
+      "sha256": "31c33e0f7e7cb5061a6d89dce19725bbdf9e4c537fc157389296df26db8d6207"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-clock.cjs",
+      "sha256": "0a334181cc39af5e8d98983bb900d9a7dcc9a35e3eb1aed441ddfbe30066b832"
+    },
+    {
+      "file": "tests/behavioral/luminous-orbit-normalization.cjs",
+      "sha256": "75b078dac546c31ee61518f3b05679cff07869dc9a440dbf1318cdbab4a63bcd"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-economy-bound.cjs",
+      "sha256": "3baaedc6bdf09cb20e6c0524327ee97ede6a0557036abda827d40f182d46659d"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-lattice-clock.cjs",
+      "sha256": "dc5fb32ed2f33a6653dd28500176f08d52c29370c7a72aff015cf91ef74426a7"
+    },
+    {
+      "file": "tests/behavioral/ascend-native-phase.cjs",
+      "sha256": "b191052e7d93fcd9e63927c17c333fd1ab634fb2ecc7a1f0f6f100003fde94a2"
+    },
+    {
+      "file": "tests/behavioral/endless-binary-clock-source.cjs",
+      "sha256": "1c35203635a3f346f195448db9a2bc620395c745cd96c08b9c52fe074847dc6e"
+    },
+    {
+      "file": "tests/behavioral/endless-binary-clock.cjs",
+      "sha256": "de2badfd3809c6b41ba478f5d505f48fe6788b3ea697114e59c620b2b7eeecf1"
+    },
+    {
+      "file": "tests/behavioral/endless-cycle-batch.cjs",
+      "sha256": "74a7182cf9ddb7fe1778668f6397323cd03c3671985e7e55074c92008562e53e"
+    },
+    {
+      "file": "tests/behavioral/endless-cycle-boundaries.cjs",
+      "sha256": "b1bb7c63246bbab77d417b2db8684f674b4be1e662d496a84d5bed33d22d1659"
+    },
+    {
+      "file": "tests/behavioral/endless-cycle-controls.cjs",
+      "sha256": "bef6aeee7bd558f0ede5d5cd23bc7c4e88ecdfc5c501f1e82412623c7d5de500"
+    },
+    {
+      "file": "tests/behavioral/endless-cycle-runtime.cjs",
+      "sha256": "e21e6e966d8e9c3199cf3595452f1c2618b6f0833125305bc70f9816b36992ff"
+    },
+    {
+      "file": "tests/behavioral/endless-cycle-source.cjs",
+      "sha256": "3ff47dfc1b2ab2c2170478abf131424187e7f0130dcf7ab8783df1a2cc0bf905"
+    },
+    {
+      "file": "tests/behavioral/endless-cycle-window.cjs",
+      "sha256": "7ba33a13ff493ac582560c754ab6baedc031ad88e8d94a2545ff3a03436b9151"
+    },
+    {
+      "file": "tests/behavioral/native-event-threshold.cjs",
+      "sha256": "b50cb263f4d3339a4ee0e2e53392eacb82082c1ab9eed5c218c384722efd39f8"
+    },
+    {
+      "file": "tests/behavioral/simulation-binary-clock-legacy.cjs",
+      "sha256": "420b7596150f9866722cc0459e0c8c9714c51097c3966fa79a1f5238e67a0a04"
+    },
+    {
+      "file": "tests/behavioral/simulation-binary-clock.cjs",
+      "sha256": "e22eb264943f5453388bece1f746271a5c89cfc34a074474db3ea7202d39f4a6"
+    }
+  ],
+  "receipts": [
+    {
+      "input": "endless-cycle-batch-exact-first.json",
+      "receipt": "connected-0.json.gz",
+      "sha256": "468424a0548925ba92fa0b4dd9458bd0ec4611c68422a2197d67e37959fc5799",
+      "status": "PASS",
+      "checks": 70,
+      "sourceSha256": "05533e0018f7013230c70e9488b07a1795a50f5d7bc6ca722da5e6e317e251e9"
+    },
+    {
+      "input": "endless-cycle-boundaries-strong-verified.json",
+      "receipt": "connected-1.json.gz",
+      "sha256": "8bf21ddf671dafd68d8d35bed3be09f6efa8eb2dd7c8fa4270653127ff02d1e5",
+      "status": "PASS",
+      "checks": 136,
+      "sourceSha256": "a5853d42ec40e8f03d8579dc74123406cd77badc8e2f6d3924e10d09ad50cfa9"
+    },
+    {
+      "input": "endless-cycle-window-sixty-seconds.json",
+      "receipt": "connected-2.json.gz",
+      "sha256": "dc0ffd12aeba809f2075c1800de7c26852bb413e3dc94bc2f5e2f84b84f69bfd",
+      "status": "MEASURED",
+      "sourceSha256": "a5853d42ec40e8f03d8579dc74123406cd77badc8e2f6d3924e10d09ad50cfa9"
+    },
+    {
+      "input": "endless-cycle-controls-verified/summary.json",
+      "receipt": "connected-3.json.gz",
+      "sha256": "cae91b79ec1bf69335efe99d14fd386334d7bf8220228daff925d0c9bfe06c00",
+      "status": "PASS",
+      "controls": 8
+    },
+    {
+      "input": "endless-cycle-controls-first/summary.json",
+      "receipt": "connected-4.json.gz",
+      "sha256": "c7974c7427485607ad2e885a73f4ffcd6aa2b05b424188fcc279c41c169819e7",
+      "status": "FAIL"
+    }
+  ],
+  "open": [
+    "Full overnight throughput and acceptance",
+    "Fractional reward and wallet fast paths",
+    "Resumable preparation and cancellation",
+    "Integrated actual V8 batching",
+    "Save rollback/recovery/import",
+    "Efficient low-target and reinvestment campaign policies",
+    "Final numerical calibration and mobile/CI/native acceptance"
+  ]
+}

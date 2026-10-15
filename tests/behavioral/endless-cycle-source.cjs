@@ -1,0 +1,64 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),path=require('node:path'),binary=require('./endless-binary-clock-source.cjs');
+module.exports=function(source){
+ source=binary(source);
+ function edit(a,b,n=1){assert.equal(source.split(a).length,n+1,a);source=source.split(a).join(b);}
+ const lib=name=>require('../../scripts/lib/'+name+'.cjs').toString();
+ const session=fs.readFileSync(path.resolve(__dirname,'../../scripts/lib/luminous-orbit-session.cjs'),'utf8').split('\nmodule.exports')[0];
+ const definitions=[
+  'var createLuminousOrbit='+lib('luminous-orbit')+';',session,
+  'var cycleAggregate='+lib('ascend-cycle-aggregate')+';',
+  'var cycleTailLumen='+lib('ascend-cycle-lumen')+';',
+  'var cycleLatticeClock='+lib('ascend-cycle-lattice-clock')+';',
+  'var cycleNativePhase='+lib('ascend-native-phase')+';',
+  'var cycleEconomyBound='+lib('ascend-cycle-economy-bound')+';',
+  'var cycleNativeThreshold=('+lib('native-event-threshold')+')(Amount);',
+  'var cycleRecastThreshold=cycleNativeThreshold.midpoint(SIM_EPS,cycleNativeThreshold.nextUp(SIM_EPS));',
+  'var cycleRecordAscends=('+lib('ascend-cycle-receipts')+')(Amount);',
+  'var endlessPityCache=null,endlessCombatCache=new Map();',
+  'var createEndlessCycleRuntime='+require('./endless-cycle-runtime.cjs').toString()+';'
+ ].join('\n');
+ edit('var studyClockMemo={state:null,endMs:null,anchors:{}};',definitions+'\nvar studyClockMemo={state:null,endMs:null,anchors:{}};');
+ edit('  var summary = simulationSummary(elapsedSec);',`  var summary = simulationSummary(elapsedSec);
+  Object.defineProperty(summary,'_cycle',{value:createEndlessCycleRuntime(summary,policy,options,cyclePaidDeadline),configurable:true});`);
+ edit('  summary.ascends++;\n  summary.ascendGains.push(gain);','  cycleRecordAscends(summary,gain,1);');
+ edit('    summary.luminousKills++;','    summary.luminousKills=creditAmount(summary.luminousKills,1);');
+ edit('    summary.bossKills++;','    summary.bossKills=creditAmount(summary.bossKills,1);');
+ for(const [field,count]of [['lumenGained',3],['shardGained',3],['sigilsGained',1],['motesGained',4]])edit('summary.'+field+'=Amount.add(','summary.'+field+'=creditAmount(',count);
+ edit('  state = normalizeCurrentSave(state,true);\n  simulationRecordAchievements(summary);',`  state = normalizeCurrentSave(state,true);
+  if(summary._cycle)summary._cycle.ascend(gain,Amount.exactSub(state.motes,motesBeforeAscend));
+  simulationRecordAchievements(summary);`);
+ edit('  var shardGain = Amount.mul(shardRewardFor(depth,wasLuminous),rewardScale);',`  var shardGain = Amount.mul(shardRewardFor(depth,wasLuminous),rewardScale);
+  if(summary._cycle&&summary._cycle.active())summary._cycle.kill({kind:'kill',depth:depth,
+    normalLumen:Amount.mul(enemyRewardFor(depth,false),rewardScale),brightLumen:Amount.mul(enemyRewardFor(depth,true),rewardScale),
+    normalShard:Amount.mul(shardRewardFor(depth,false),rewardScale),brightShard:Amount.mul(shardRewardFor(depth,true),rewardScale),nextChance:isBoss(depth+1)?null:eliteChance(depth+1)});`);
+ edit('  var rewardScale=simulationRewardScale(policy);\n  if(Amount.gt(rewards.shards,0)){',`  var rewardScale=simulationRewardScale(policy);
+  if(summary._cycle)summary._cycle.gain(Amount.mul(rewards.lumen,rewardScale),Amount.mul(rewards.shards,rewardScale),sp.id);
+  if(Amount.gt(rewards.shards,0)){`);
+ edit('    if(Amount.gt(next,0)){','    if(Amount.gt(next,0)){\n      if(summary._cycle)summary._cycle.interval(next);');
+ edit('  function currentElapsedSec(){',`  function advanceCycleClock(duration){
+    binaryClock.advanceLattice(duration);binaryStudyClock.advanceLattice(duration);
+    var at=binaryClock.nowMs(),whole=Math.floor(at/1000),fraction=(at-whole*1000)/1000;
+    farmGridCrossings=whole-clockStartWholeSec;farmGridRemainingSec=fraction===0?1:1-fraction;syncElapsedClockFromFarmGrid();
+  }
+  function cyclePaidDeadline(active){
+    var anchor=studyProgressAnchors[active.id];if(!anchor||!anchor.binaryAnchor||!binaryStudyClock)return null;
+    if(!anchor.cycleThreshold)anchor.cycleThreshold=cycleNativeThreshold.firstTrue(function(work){return anchor.remaining-work*anchor.speed<=SIM_EPS;},anchor.remaining/anchor.speed);
+    return binaryStudyClock.latticeAfter(anchor.binaryAnchor,anchor.cycleThreshold);
+  }
+  function currentElapsedSec(){`);
+ edit('    policy.clock=simulationClockPosition();',`    policy.clock=simulationClockPosition();
+    if(binaryClock)captureStudyProgressAnchors();
+    var bulk=summary._cycle.prepare(binaryClock);
+    if(bulk){
+      captureStudyProgressAnchors();advanceCycleClock(bulk.duration);bulk.apply();advanceStudyProgressToClock();
+      elapsedInRun=currentElapsedSec();remaining=simulationRemainingSec();policy.clock=simulationClockPosition();policy.nowMs=simulationNowMs();
+      simulationResolveTimestamp(policy.nowMs,elapsedInRun,policy,summary,policy.clock);continue;
+    }`);
+ edit('  summary.endDepth = state.depth;','  delete summary._cycle;\n  summary.endDepth = state.depth;');
+ edit('if(summary.ascends>ascendsBefore){','if(Amount.gt(summary.ascends,ascendsBefore)){',2);
+ edit('count:summary.ascends-ascendsBefore','count:Amount.exactSub(summary.ascends,ascendsBefore)',2);
+ edit("offline.ascends + ' time'","(Amount.wide(offline.ascends)?formatNum(offline.ascends):offline.ascends) + ' time'");
+ return source;
+};
+if(require.main===module){if(!process.argv[3])throw Error('Separate candidate output required');fs.writeFileSync(process.argv[3],module.exports(fs.readFileSync(process.argv[2]||'index.html','utf8')));}

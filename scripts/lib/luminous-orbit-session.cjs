@@ -7,7 +7,7 @@ function createLuminousOrbitSession(A,kernel,chances,initialPhase,initialFlag){
   var initial={phase:phase,flag:flag};
   var sum=chances.reduce(function(a,c){return a+(c||0);},0),period=200;
   for(var p=1;p<=200;p++)if(Math.abs(sum*p-Math.round(sum*p))<1e-9){period=p;break;}
-  function product(a,b){return A.mul(typeof a==='number'?String(a)+'e0':a,typeof b==='number'?String(b)+'e0':b);}
+  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
   function vectorAdd(a,b){return a.map(function(v,i){return A.exactAdd(v,b[i]);});}
   function vectorSub(a,b){return a.map(function(v,i){return A.exactSub(v,b[i]);});}
   function vectorMul(a,n){return a.map(function(v){return product(v,n);});}
@@ -51,6 +51,7 @@ function createLuminousOrbitSession(A,kernel,chances,initialPhase,initialFlag){
   // reconstruction can inspect its tail and the first eligible payout.
   function position(n){
     if(!A.integer(n)||A.lt(n,0)||(!cycle&&A.gt(n,done)))throw new RangeError('Orbit position is not indexed');
+    n=A.exactAdd(n,0);
     if(A.cmp(n,0)===0)return {phase:initial.phase,flag:initial.flag,counts:zero.slice()};
     if(cycle&&A.ge(n,cycle.base)){
       var parts=A.divmod(A.exactSub(n,cycle.base),cycle.length),r=cycleAt(parts.r);
@@ -63,6 +64,7 @@ function createLuminousOrbitSession(A,kernel,chances,initialPhase,initialFlag){
   }
   function* cursor(n,options){
     options=options||{};if(!A.integer(n)||A.lt(n,0))throw new RangeError('Invalid orbit count');
+    n=A.exactAdd(n,0);
     var start=done,before=totals.slice(),target=A.exactAdd(done,n),batch=0;
     function result(complete){return {complete:complete,cycles:A.exactSub(done,start),phase:phase,flag:flag,counts:vectorSub(totals,before),regions:regions,compiled:!!cycle};}
     while(A.lt(done,target)){

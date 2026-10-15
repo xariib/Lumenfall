@@ -3,10 +3,12 @@
 // must prove a purchase-free recipe, its recurring combat phase, and an
 // initial wallet within [0,bound]. Matching monotone endpoint bounds then
 // prove the skipped initial wallet cannot affect the reconstructed result.
-module.exports=function(A,kernel,orbit,pattern,recipes,total,bound,tailLimit){
+module.exports=function(A,kernel,orbit,pattern,recipes,total,bound,tailLimit,options){
   if(!A.integer(total)||A.lt(total,0)||!recipes.length||!A.valid(bound)||A.lt(bound,0))throw new RangeError('Invalid Lumen recipe');
-  var tail=A.min(total,tailLimit||64),prefix=A.exactSub(total,tail),start=orbit.position(prefix);
-  var phase=start.phase,flag=start.flag,index=Number(A.mod(prefix,recipes.length)),low=0,high=bound;
+  total=A.exactAdd(total,0);
+  options=options||{};
+  var tail=A.min(total,tailLimit||64),prefix=A.exactSub(total,tail),start=orbit.position(A.exactAdd(options.orbitOffset||0,prefix));
+  var phase=start.phase,flag=start.flag,index=Number(A.mod(A.exactAdd(prefix,options.recipeOffset||0),recipes.length)),low=0,high=bound;
   function credit(wallet,gain){
     return !A.wide(wallet)&&!A.wide(gain)&&Number.isFinite(wallet+gain)&&Math.abs(wallet+gain)<=Number.MAX_SAFE_INTEGER?wallet+gain:A.exactAdd(wallet,gain);
   }

@@ -7,10 +7,11 @@ function createLuminousOrbit(A,settings){
   var ceiling=settings.phaseCeiling===undefined?1:settings.phaseCeiling;
   if(!Number.isFinite(ceiling)||ceiling<=0||ceiling>1)throw new RangeError('Invalid phase ceiling');
   var QUANTUM=Math.pow(2,-51);
-  function product(a,b){return A.mul(typeof a==='number'?String(a)+'e0':a,typeof b==='number'?String(b)+'e0':b);}
+  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
   function advance(chances,total,phase,flag,options){
     options=options||{};
     if(!Array.isArray(chances)||chances.length<2||!A.integer(total)||A.lt(total,0)||!Number.isFinite(phase)||phase<0||phase>=1)throw new RangeError('Invalid luminous orbit');
+    total=A.exactAdd(total,0);
     chances.forEach(function(c){if(c!==null&&(!Number.isFinite(c)||c<0||c>.35))throw new RangeError('Invalid spawn chance');});
     // This selects a block length only. Every spawn still performs the
     // original Number addition/subtraction, including its rounding drift.

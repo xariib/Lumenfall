@@ -22,8 +22,8 @@ Remeasure balance and rerun core/legacy/mobile/CI after reconciliation.
 Preserve paid work/speed/timers, saves, Support/Formation and exact chronology.
 
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
-Exact wide counters and normalized-orbit104 checks PASS.
-Low-target catch-up remains OPEN; no cooldown or target restriction authorized.
+Exact counters retained. Separate connected-cycle candidate passes70 reward/count,
+136 boundary checks and8 causal controls;60s takes6.2s. Full catch-up remains OPEN.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
-No shared/main/remote/APK/archive delivery claimed. Next: compile exact repeated
-Ascend cycles, finish D campaigns, then apply accepted balance and rerun gates.
+No shared/main/remote/APK/archive delivery. Next: optimize exact clock conversion,
+prove overnight/fractional paths, finish D campaigns, calibrate and rerun gates.
