@@ -1,5 +1,5 @@
 {
-  "status": "EXPERIMENT_RUNNING_NOT_APPLIED",
+  "status": "NOT_ACCEPTED_FOCUSED_MYTHIC_EARLY",
   "baseSourceSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53",
   "sourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
   "reason": "Focused free three-visit policy recruited all eight at18.6667d on D; test robust pacing before accepting numeric gates.",
@@ -21,8 +21,8 @@
       "policy": "regular",
       "prefix": "validation-evidence/focus-e-focused-regular",
       "runner": "docs/qa/endless-progression-001/runtimes/lab-work-focused/tests/behavioral/endless-campaign.cjs",
-      "status": "MEASURED_PARTIAL",
-      "days": 28,
+      "status": "MEASURED_TARGET_REACHED",
+      "days": 60,
       "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
       "milestones": {
         "recruit.ember": 0,
@@ -35,7 +35,21 @@
         "recruit.void": 12.333333333333334,
         "recruit.aurora": 15,
         "recruit.titan": 21.333333333333332,
-        "allRecruits": 21.333333333333332
+        "allRecruits": 21.333333333333332,
+        "firstMythic": 41.67210648148148,
+        "mythic.ember": 41.67210648148148,
+        "firstUltimate": 42.666666666666664,
+        "ultimate.ember": 42.666666666666664,
+        "firstMastery": 42.666666666666664,
+        "mastery.ember": 42.666666666666664,
+        "mythic.tide": 42.667824074074076,
+        "mythic.stone": 43.666666666666664,
+        "mythic.gale": 45.00081018518519,
+        "mythic.thorn": 45.666666666666664,
+        "mythic.void": 46.666666666666664,
+        "mythic.aurora": 47.666666666666664,
+        "mythic.titan": 48.666666666666664,
+        "ultimate.tide": 59
       }
     },
     {
@@ -43,8 +57,8 @@
       "policy": "regular_two",
       "prefix": "validation-evidence/focus-e-aware-regular_two",
       "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
-      "status": "MEASURED_PARTIAL",
-      "days": 25,
+      "status": "MEASURED_TARGET_REACHED",
+      "days": 60,
       "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
       "milestones": {
         "recruit.ember": 0,
@@ -57,7 +71,21 @@
         "recruit.void": 12,
         "recruit.aurora": 15,
         "recruit.titan": 23.5,
-        "allRecruits": 23.5
+        "allRecruits": 23.5,
+        "firstMythic": 50,
+        "mythic.ember": 50,
+        "firstUltimate": 51.5,
+        "ultimate.ember": 51.5,
+        "mythic.tide": 51.50092592592593,
+        "mythic.stone": 52.5,
+        "firstMastery": 53,
+        "mastery.ember": 53,
+        "mythic.gale": 54,
+        "mythic.thorn": 55,
+        "mythic.void": 56.5,
+        "mythic.aurora": 57.5,
+        "ultimate.tide": 59,
+        "mythic.titan": 59
       }
     },
     {
@@ -66,7 +94,7 @@
       "prefix": "validation-evidence/focus-e-aware-regular",
       "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
       "status": "MEASURED_PARTIAL",
-      "days": 5,
+      "days": 51,
       "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
       "milestones": {
         "recruit.ember": 0,
@@ -74,7 +102,12 @@
         "firstAscend": 0.005902777777777778,
         "recruit.stone": 0.3333333333333333,
         "firstRarity": 0.3334490740740741,
-        "recruit.gale": 4.666666666666667
+        "recruit.gale": 4.666666666666667,
+        "recruit.thorn": 9.666666666666666,
+        "recruit.void": 13.666666666666666,
+        "recruit.aurora": 17,
+        "recruit.titan": 26,
+        "allRecruits": 26
       }
     },
     {
@@ -83,7 +116,7 @@
       "prefix": "validation-evidence/focus-e-aware-casual",
       "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
       "status": "MEASURED_PARTIAL",
-      "days": 6,
+      "days": 55,
       "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
       "milestones": {
         "recruit.ember": 0,
@@ -91,7 +124,21 @@
         "recruit.stone": 0.5,
         "firstAscend": 0.5,
         "firstRarity": 1,
-        "recruit.gale": 5
+        "recruit.gale": 5,
+        "recruit.thorn": 9,
+        "recruit.void": 12.5,
+        "recruit.aurora": 15,
+        "recruit.titan": 23.5,
+        "allRecruits": 23.5,
+        "firstMythic": 50.5,
+        "mythic.ember": 50.5,
+        "firstUltimate": 51.5,
+        "ultimate.ember": 51.5,
+        "mythic.tide": 51.50023148148148,
+        "firstMastery": 52,
+        "mastery.ember": 52,
+        "mythic.stone": 53,
+        "mythic.gale": 54
       }
     },
     {
@@ -100,7 +147,7 @@
       "prefix": "validation-evidence/focus-e-aware-frequent",
       "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
       "status": "MEASURED_PARTIAL",
-      "days": 4,
+      "days": 54,
       "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
       "milestones": {
         "recruit.ember": 0,
@@ -108,7 +155,20 @@
         "firstAscend": 0.005902777777777778,
         "recruit.stone": 0.16666666666666666,
         "firstRarity": 0.16712962962962963,
-        "recruit.gale": 3.5
+        "recruit.gale": 3.5,
+        "recruit.thorn": 7.666666666666667,
+        "recruit.void": 11.833333333333334,
+        "recruit.aurora": 15.166666666666666,
+        "recruit.titan": 24.333333333333332,
+        "allRecruits": 24.333333333333332,
+        "firstMythic": 51,
+        "mythic.ember": 51,
+        "firstUltimate": 52.333333333333336,
+        "ultimate.ember": 52.333333333333336,
+        "mythic.tide": 52.333333333333336,
+        "firstMastery": 53,
+        "mastery.ember": 53,
+        "mythic.stone": 53.5056712962963
       }
     },
     {
@@ -117,7 +177,7 @@
       "prefix": "validation-evidence/focus-e-aware-efficient",
       "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
       "status": "MEASURED_PARTIAL",
-      "days": 4,
+      "days": 57,
       "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
       "milestones": {
         "recruit.ember": 0,
@@ -125,7 +185,22 @@
         "firstAscend": 0.005787037037037037,
         "recruit.stone": 0.16666666666666666,
         "firstRarity": 0.16707175925925927,
-        "recruit.gale": 3.6666666666666665
+        "recruit.gale": 3.6666666666666665,
+        "recruit.thorn": 8.166666666666666,
+        "recruit.void": 12.333333333333334,
+        "recruit.aurora": 15.833333333333334,
+        "recruit.titan": 24.833333333333332,
+        "allRecruits": 24.833333333333332,
+        "firstMythic": 51.666666666666664,
+        "mythic.ember": 51.666666666666664,
+        "firstUltimate": 53,
+        "ultimate.ember": 53,
+        "mythic.tide": 53,
+        "firstMastery": 54.166666666666664,
+        "mastery.ember": 54.166666666666664,
+        "mythic.stone": 54.166666666666664,
+        "mythic.gale": 55.502372685185186,
+        "mythic.thorn": 56.666666666666664
       }
     }
   ],
@@ -133,5 +208,14 @@
     "file": "activation/work-focused-regular-day24.checkpoint.json.gz",
     "allRecruitsDay": 18.666666666666668
   },
-  "milestoneUnits": "elapsed days at explicit decisions/absence boundaries"
+  "milestoneUnits": "elapsed days at explicit decisions/absence boundaries",
+  "finding": "Focused60d first Mythic41.6721064815d is below retained42d lower bound. F changes the requirement by one Lab level and is measured fresh.",
+  "earlyWallControl": {
+    "sourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
+    "policy": "lab-work-aware-push",
+    "days": 7,
+    "baselineClosedWallDays": 3,
+    "pushBeforeLaterManualAscendWallDays": 1.5006597222222222,
+    "limits": "Player decision policy only; no game cooldown or combat change."
+  }
 }

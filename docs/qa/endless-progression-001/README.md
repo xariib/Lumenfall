@@ -11,10 +11,14 @@ Generic negative clock now proves the intended failure rather than an anchor err
 HP tolerance remains1e-9 remaining-HP scale. Full acceptance remains OPEN.
 Fresh baseline pacing is still regular32d/all recruits22.333d and two-visits13d.
 [Work-aware policy](experiments/lab-work-aware-plan.json) all8 at22.333d.
-The [focused policy](experiments/lab-work-focused-plan.json) all8 at18.667d,
-earlier than target. Separate [E experiment](experiments/focus-e-plan.json)
-(Titan Lab48, Mythic90, Ultimate/Mastery92) is running fresh focused3-visit and
-work-aware2-visit campaigns. These numbers are provisional and not applied.
+The [focused D policy](experiments/lab-work-focused-plan.json) all8 at18.667d,
+MY36d/ULT39d, outside target. [E experiment](experiments/focus-e-plan.json)
+completed focused and two-visit60d: all8 at21.333/23.5d, MY41.672/50d,
+ULT42.667/51.5d. Focused MY remains slightly early under the retained42–56d audit.
+Separate [F experiment](experiments/focus-f-plan.json) changes only MY Lab90→91;
+fresh measurements running. Neither model is applied to the product.
+An explicit player-policy control tries60s combat before optional later manual
+Ascend: early two-visit plateau3d→1.501d, with no game cooldown/combat change.
 Four8h reference states remain byte-identical; offline UI/legacy both pass after
 source-qualified regeneration. Whole-run failures and targeted repaired results
 remain separate; final combined CI is still required.

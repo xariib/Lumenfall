@@ -7,8 +7,8 @@
     "Retain the same three daily sessions,10-minute visits, normal speed budget and post-Ultimate reinvestment."
   ],
   "limits": "Fresh immutable policy; no checkpoint rebasing, cancelled work or grants. Later milestones pending.",
-  "status": "MEASURED_PARTIAL",
-  "measuredDays": 24,
+  "status": "D_REJECTED_FOR_FOCUSED_PACING",
+  "measuredDays": 42,
   "sourceSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53",
   "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
   "milestones": {
@@ -22,8 +22,21 @@
     "recruit.void": 12.333333333333334,
     "recruit.aurora": 15,
     "recruit.titan": 18.666666666666668,
-    "allRecruits": 18.666666666666668
+    "allRecruits": 18.666666666666668,
+    "firstMythic": 36,
+    "mythic.ember": 36,
+    "mythic.tide": 37.334953703703704,
+    "mythic.stone": 38,
+    "firstUltimate": 39,
+    "ultimate.ember": 39,
+    "firstMastery": 39,
+    "mastery.ember": 39,
+    "mythic.gale": 39.334143518518516,
+    "mythic.thorn": 40,
+    "mythic.void": 41,
+    "mythic.aurora": 41.67210648148148
   },
   "milestoneUnits": "elapsed days",
-  "checkpoint": "activation/work-focused-regular-day24.checkpoint.json.gz"
+  "checkpoint": "activation/work-focused-regular-day42.checkpoint.json.gz",
+  "disposition": "Diagnostic stops after all three main milestones are observed outside targets. This is not a complete60d or accepted campaign."
 }

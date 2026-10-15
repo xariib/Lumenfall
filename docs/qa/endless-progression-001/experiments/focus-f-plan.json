@@ -1,0 +1,67 @@
+{
+  "status": "EXPERIMENT_NOT_APPLIED",
+  "baseSourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
+  "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+  "changes": [
+    "Mythic base Wisp Lab90→91; all other E values unchanged"
+  ],
+  "reason": "E focused first Mythic41.6721d is below the retained42–56d audit; Ultimate42.6667d and both two-visit targets already meet it. Do not relax the audit.",
+  "limits": "No fixed calendar gate. Fresh F measurements required before application.",
+  "reproducible": "Current D source2719 + tests/behavioral/endless-balance-focus.cjs with final argument91",
+  "campaigns": [
+    {
+      "kind": "focused",
+      "policy": "regular",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-focused/tests/behavioral/endless-campaign.cjs",
+      "prefix": "validation-evidence/focus-f-focused-regular",
+      "days": 28,
+      "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
+      "status": "MEASURED_PARTIAL"
+    },
+    {
+      "kind": "aware",
+      "policy": "regular_two",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "prefix": "validation-evidence/focus-f-aware-regular_two",
+      "days": 25,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "status": "MEASURED_PARTIAL"
+    },
+    {
+      "kind": "aware",
+      "policy": "regular",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "prefix": "validation-evidence/focus-f-aware-regular",
+      "days": 6,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "status": "MEASURED_PARTIAL"
+    },
+    {
+      "kind": "aware",
+      "policy": "casual",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "prefix": "validation-evidence/focus-f-aware-casual",
+      "days": 6,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "status": "MEASURED_PARTIAL"
+    },
+    {
+      "kind": "aware",
+      "policy": "frequent",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "prefix": "validation-evidence/focus-f-aware-frequent",
+      "days": 4,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "status": "MEASURED_PARTIAL"
+    },
+    {
+      "kind": "aware",
+      "policy": "efficient",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "prefix": "validation-evidence/focus-f-aware-efficient",
+      "days": 5,
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "status": "MEASURED_PARTIAL"
+    }
+  ]
+}
