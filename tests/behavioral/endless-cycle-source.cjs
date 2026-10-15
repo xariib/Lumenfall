@@ -72,6 +72,6 @@ module.exports=function(source){
  edit('if(summary.ascends>ascendsBefore){','if(Amount.gt(summary.ascends,ascendsBefore)){',2);
  edit('count:summary.ascends-ascendsBefore','count:Amount.exactSub(summary.ascends,ascendsBefore)',2);
  edit("offline.ascends + ' time'","(Amount.wide(offline.ascends)?formatNum(offline.ascends):offline.ascends) + ' time'");
- return source;
+ return require('./endless-automation-clock-source.cjs')(source);
 };
 if(require.main===module){if(!process.argv[3])throw Error('Separate candidate output required');fs.writeFileSync(process.argv[3],module.exports(fs.readFileSync(process.argv[2]||'index.html','utf8')));}

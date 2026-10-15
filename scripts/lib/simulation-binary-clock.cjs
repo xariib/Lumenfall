@@ -70,21 +70,24 @@ module.exports=function(A,startMs,budgetSec,options){
   }
   function create(originD,budgetD){
     var unit=Math.min(originD.n?originD.e:0,budgetD.n?budgetD.e:0),origin=scaled(originD,unit),target=scaled(budgetD,unit),elapsed=0;
-    var nowCache,remainingCache,elapsedCache,untilCache=Object.create(null);
+    var nowCache,remainingCache,elapsedCache,untilCache=Object.create(null),differenceCache=Object.create(null);
     function absolute(){return {n:A.exactAdd(origin,elapsed),e:unit};}
     function difference(deadline,early){var current=absolute(),common=Math.min(current.e,deadline.e,early?early.e:current.e);return {n:A.exactSub(A.exactSub(scaled(deadline,common),scaled(current,common)),early?scaled(early,common):0),e:common};}
+    function deadlineKey(deadline,early){return String(deadline)+'/'+(early&&early.scale===125?String(early.ticks)+'/'+early.unit:String(early||0));}
+    function deadlineDifference(deadline,early){var key=deadlineKey(deadline,early);if(!differenceCache[key])differenceCache[key]=difference(millis(deadline),early?duration(early):null);return differenceCache[key];}
     function add(d){
       if(!A.integer(d.n)||A.lt(d.n,0)||!Number.isInteger(d.e))throw new RangeError('Invalid binary duration');
       var common=Math.min(unit,d.e),same=common===unit,scale=pow2(unit-common),nextOrigin=same?origin:product(origin,scale),nextTarget=same?target:product(target,scale),nextElapsed=A.exactAdd(same?elapsed:product(elapsed,scale),scaled(d,common));
       if(A.gt(nextElapsed,nextTarget))throw new RangeError('Clock step exceeds its window');
       unit=common;origin=nextOrigin;target=nextTarget;elapsed=nextElapsed;
-      nowCache=remainingCache=elapsedCache=undefined;untilCache=Object.create(null);
+      nowCache=remainingCache=elapsedCache=undefined;untilCache=Object.create(null);differenceCache=Object.create(null);
     }
     return {
       advance:function(value){add(seconds(value));},
       advanceTicks:function(ticks,exponent){add({n:product(ticks,125),e:exponent});},
       advanceToMs:function(deadline){var d=difference(millis(deadline));add(d);},
-      until:function(deadline,early){var key=String(deadline)+'/'+(early&&early.scale===125?String(early.ticks)+'/'+early.unit:String(early||0));if(untilCache[key]===undefined)untilCache[key]=exactSeconds(difference(millis(deadline),early?duration(early):null));return untilCache[key];},
+      until:function(deadline,early){var key=deadlineKey(deadline,early);if(untilCache[key]===undefined)untilCache[key]=exactSeconds(deadlineDifference(deadline,early));return untilCache[key];},
+      compareMs:function(deadline,early){return A.cmp(deadlineDifference(deadline,early).n,0);},
       latticeRemaining:function(){return {ticks:A.exactSub(target,elapsed),unit:unit,scale:125};},
       latticeUntil:function(deadline,early){var d=difference(millis(deadline),early?duration(early):null);return {ticks:d.n,unit:d.e,scale:125};},
       latticeDuration:function(value){var d=seconds(value);return {ticks:d.n,unit:d.e,scale:125};},

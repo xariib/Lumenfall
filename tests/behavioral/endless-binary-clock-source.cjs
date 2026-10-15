@@ -65,10 +65,10 @@ module.exports=function(source){
  edit('simulationBuffSecondsRemaining(nowMs,clock)>0','Amount.gt(simulationBuffSecondsRemaining(nowMs,clock),0)');
  edit('var next = remaining>0 ? remaining : Infinity;','var next = Amount.gt(remaining,0) ? remaining : Infinity;');
  edit('if(seconds>0) next = Math.min(next,seconds);','if(Amount.gt(seconds,0)) next = Amount.min(next,seconds);');
- edit('function luminousMotePayout(nowMs){\n  if(nowMs<state.moteNextAtMs)return 0;','function luminousMotePayout(nowMs,clock){\n  if(clock&&clock.binary?Amount.gt(clock.binary.until(state.moteNextAtMs),0):nowMs<state.moteNextAtMs)return 0;');
+ edit('function luminousMotePayout(nowMs){\n  if(nowMs<state.moteNextAtMs)return 0;','function luminousMotePayout(nowMs,clock){\n  if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;');
  edit('luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now());','luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now(),policy.clock);');
  edit('function studyBoostAt(id,nowMs){','function studyBoostAt(id,nowMs,clock){');
- edit('return b && now>=b.startedAtMs && now<b.expiresAtMs ? b : null;','return b && (clock&&clock.binary?Amount.le(clock.binary.until(b.startedAtMs),0)&&Amount.gt(clock.binary.until(b.expiresAtMs),0):now>=b.startedAtMs && now<b.expiresAtMs) ? b : null;');
+ edit('return b && now>=b.startedAtMs && now<b.expiresAtMs ? b : null;','return b && (clock&&clock.binary?clock.binary.compareMs(b.startedAtMs)<=0&&clock.binary.compareMs(b.expiresAtMs)>0:now>=b.startedAtMs && now<b.expiresAtMs) ? b : null;');
  edit('function studyEffectiveSpeed(active,nowMs){\n  var boost=studyBoostAt(active.id,nowMs);','function studyEffectiveSpeed(active,nowMs,clock){\n  var boost=studyBoostAt(active.id,nowMs,clock);');
  edit('function nextStudyBoostExpiry(nowMs){\n  var next=Infinity;',`function nextStudyBoostExpiry(nowMs,clock){
   var next=Infinity;

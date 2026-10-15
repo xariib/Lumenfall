@@ -23,11 +23,13 @@ for(const start of [0,2000000000000,Number.MAX_SAFE_INTEGER]){
  const clock=create(A,start,1);let sum=0n,unit=-1074;
  for(const dt of [Number.MIN_VALUE,1e-200,1e-100,1e-20,.125,.25]){clock.advance(dt);const d=dyad(dt);sum+=d.n<<BigInt(d.e-unit);same(clock.elapsed(),rationalDyad(sum,unit),'all native interval bits retained');same(clock.remaining(),rationalDyad((1n<<1074n)-sum,unit),'exact positive remaining time');}
  const before=clock.snapshot();assert.throws(()=>clock.advance(2),RangeError);eq(clock.snapshot(),before,'rejected clock overshoot is atomic');
+ for(const deadline of [0,start,start+1,start+1000])for(const early of [0,Number.MIN_VALUE,1e-9,.125])eq(clock.compareMs(deadline,early),A.cmp(clock.until(deadline,early),0),'exact sign query retains every deadline/early-boundary bit');
 }
 {
  const start=2000000000000,clock=create(A,start,1),ticks=(1n<<400n)-1n;clock.advanceTicks(ticks.toString()+'e0',-400);
  eq(clock.nowMs(),start+1000,'rounded epoch alone cannot distinguish the event');same(clock.until(start+1000),{n:1n,d:1n<<400n},'real deadline still lies ahead by2^-400 seconds');same(clock.remaining(),{n:1n,d:1n<<400n},'caller remainder survives rounded epoch equality');
  clock.advanceToMs(start+1000);eq(clock.remaining(),0,'exact deadline step finishes window');eq(clock.until(start+1000),0,'deadline is now due');
+ eq(clock.compareMs(start+1000),0,'sign cache invalidates at the real deadline');
 }
 {
  let split=create(A,2000000000000,.25);for(let i=0;i<4;i++){split.advance(.25);if(i<3)split=split.nextWindow(.25);}

@@ -1,0 +1,13 @@
+'use strict';
+// A high-Mastery Push must honor the established Number.MIN_VALUE physical
+// interval floor while retaining exact huge rewards and continued own Power.
+// Never count a bounded partial probe as successful catch-up.
+const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),build=require('./endless-cycle-source.cjs'),A=require('../../scripts/lib/game-amount.cjs'),{app,CLOCK}=require('./forge-expansion-harness.cjs');
+const source=build(fs.readFileSync('index.html','utf8')),x=app(source),seed=JSON.parse(fs.readFileSync('docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json')),start=CLOCK+180*86400000;
+seed.depth=seed.enemyDepth=16;seed.riftMode='push';seed.autoAscendEnabled=true;seed.autoAscendTargetDepth=16;seed.wispMastery.ember=10000;
+x.clock(start);x.q.set(seed);x.q.restoreEnemy();const before=x.q.get().ascendCount,prismsBefore=x.q.get().prisms,sigilsBefore=x.q.get().sigils,power=x.q.power('ember',seed.spirits.ember),cursor=x.q.advance(.001,{kind:'offline',clockStartMs:start,resumable:true}),began=performance.now();let step,yields=0,error;
+try{do{step=cursor.next();if(!step.done)yields++;}while(!step.done&&performance.now()-began<10000);if(!step.done)cursor.return();assert(step.done,'extreme-Power combat must finish the requested window');assert.equal(step.value.elapsedSec,.001,'whole caller time advances');
+ assert(A.gt(step.value.ascends,'1e300'),'fixture crosses native counter overflow');assert.equal(A.cmp(A.exactSub(x.q.get().ascendCount,before),step.value.ascends),0,'exact lifetime counter credits');assert.equal(A.cmp(A.exactSub(x.q.get().prisms,prismsBefore),A.mul(step.value.ascends,'222e0')),0,'exact protected Prisms over enormous reset count');assert.equal(A.cmp(A.exactSub(x.q.get().sigils,sigilsBefore),A.mul(step.value.bossKills,'6e0')),0,'exact deterministic boss Sigils');
+ assert(A.wide(power),'Mastery Power itself exceeds native limits');x.q.get().wispMastery.ember++;assert(Math.abs(A.ratio(x.q.power('ember',seed.spirits.ember),power)-1.1)<1e-12,'next rank still compounds own Power');}
+catch(e){error=e.stack;}
+console.log(JSON.stringify({status:error?'FAIL':'PASS',current:'high-Mastery subnative Push',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),mastery:10000,requestedSec:.001,wallMs:performance.now()-began,yields,progress:step&&!step.done?step.value:undefined,ascendsBefore:before,ascendsAfter:x.q.get().ascendCount,error,limits:'Valid synthetic paid development tests numeric support; not an earned pacing campaign.'}));if(error)process.exitCode=1;

@@ -57,3 +57,7 @@ The user then explicitly said PLEASE IMPLEMENT THIS PLAN, approving:
 No new repository workflow rule was requested. Existing historical fixtures
 and original evidence must remain intact; necessary new expectations belong to
 the approved new model and require source-bound evidence, not weaker gates.
+
+15 October2026 human clarifications:
+- "Preserve unrestricted Ascends and optimize repeated-cycle simulation (larger engine change)." No cooldown or minimum-run rule.
+- "Keep the stricter HP check and change automation arithmetic to make live/offline combat match more closely." Retain the original physical HP tolerance; do not relax it to maximum HP. Canonical automation arithmetic is authorized; Support timing remains protected.

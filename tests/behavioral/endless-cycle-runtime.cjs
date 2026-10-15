@@ -2,7 +2,7 @@
 // Experimental function embedded into the complete game by the test builder.
 // Free identifiers are the existing game's closure and named pure components.
 module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDeadline){
-  var rows=[],pending=null,plan=null,lastBoundary=null,lastPassive=null;
+  var rows=[],pending=null,plan=null,lastBoundary=null,lastPassive=null,latticeMemo=new Map();
   var ignored={lumen:1,shards:1,prisms:1,motes:1,sigils:1,ascendCount:1,totalKills:1,totalTaps:1,dailyStats:1,luminousAccum:1,enemyIsLuminous:1,_autoTapAccum:1,_autoEmpowerAccum:1,activeStudies:1,studyBoosts:1,studySpeedTargets:1,studyBoostHours:1,studyUseMotes:1,moteNextAtMs:1,buffUntil:1,buffMult:1,supportBuffs:1,supportRecastUntil:1};
   function signature(withoutResources){var out={};Object.keys(state).forEach(function(key){if(!ignored[key]&&!(withoutResources&&key==='heroResource'))out[key]=state[key];});out.cycleBuff=simulationBuffMult(policy.nowMs,policy.clock);out.cycleRewardScale=simulationRewardScale(policy);out.cycleRecastReady={};state.activeParty.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;});if(sp.abilityType==='support')out.cycleRecastReady[id]=supportRecastSeconds(sp,policy.nowMs,policy.clock)<=SIM_EPS;});return JSON.stringify(out);}
   function eligible(){return !options.disableCycleBatching&&!options.captureTimeline&&!options.traceEverySec&&options.traceEventsFromSec===undefined&&state.riftMode==='push'&&state.owned.autoascend&&state.autoAscendEnabled&&Amount.ge(state.ascendCount,12)&&autoAscendClearedTarget()<=256&&!state.cometTrial;}
@@ -119,7 +119,7 @@ module.exports=function createEndlessCycleRuntime(summary,policy,options,paidDea
     if(policy.allowBossRetreat&&!plan.passiveBossSafe&&Number.isFinite(policy.bossRetreatNotBeforeMs)){
       var retreat=clock.latticeUntil(policy.bossRetreatNotBeforeMs);if(Amount.le(retreat.ticks,0))return null;retreat.strict=true;if(clock.compareDuration(retreat,budget)<=0)budget=retreat;
     }
-    var period=cycleLatticeClock(Amount,plan.records.map(function(r){return r.intervals;}),budget),maximum=period.cycles;
+    var period=cycleLatticeClock(Amount,plan.records.map(function(r){return r.intervals;}),budget,latticeMemo),maximum=period.cycles;
     if(budget.strict&&Amount.cmp(period.remaining.ticks,0)===0)maximum=Amount.max(0,Amount.exactSub(maximum,1));
     var count=cycleEconomyBound(Amount,maximum,plan.maxLumen,shardsAvailable(),plan.maxShard,queuedPrices()).cycles;
     var creditPlans=[];

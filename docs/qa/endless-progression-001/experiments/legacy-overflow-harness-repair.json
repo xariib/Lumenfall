@@ -1,0 +1,6 @@
+{
+  "status": "HARNESS_REPAIR_PENDING_RERUN",
+  "firstFailure": "actual V8 overflow cold reload",
+  "cause": "The new test compared reload with hugeAfter captured before saveState replaced live state with its canonical saved object and lastSeen. Compare against q.get() after a successful commit.",
+  "earlier137": "Passed separately; new143 test acceptance pending rerun."
+}

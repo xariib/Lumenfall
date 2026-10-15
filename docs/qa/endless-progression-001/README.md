@@ -1,5 +1,14 @@
 # Endless progression — work in progress
 
+Newest [canonical automation checkpoint](experiments/canonical-clock-checkpoint.json).
+Human chose stricter HP and revised automation arithmetic. A7 warm935 comparisons
+PASS without relaxed tolerance;112 automation/136 boundary/24 persistence/108 Native
+checks pass. Original arithmetic is caught by the new concrete HP control. Cold
+save/load frames still FAIL; volatile timer anchors need persisted exact basis.
+Current725 load-cap prototype alone does not fix it; no product integration.
+Prior memo12h completes5.8min with2193 reward/work checks; canonical12h is running.
+
+
 Latest [checked-resource checkpoint](experiments/resource-replay-design.json) freezes
 7a2bf385. Exact checked native ability programs now cover Charge Memory transients,
 with bounded caches, observer cleanup and ordered half-ULP credits. Twelve concrete

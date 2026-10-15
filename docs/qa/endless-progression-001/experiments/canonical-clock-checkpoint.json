@@ -1,0 +1,133 @@
+{
+  "status": "IN_PROGRESS_NOT_PRODUCT",
+  "userChoice": "Keep the stricter HP check and change automation arithmetic to make live/offline combat match more closely.",
+  "sourceA7": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73",
+  "currentDefault": "725f579d61bbb276a03289c9ac1668d2ce6e8ef29d97d06db904490a63542662",
+  "receipts": [
+    {
+      "file": "endless-lattice-memo.json.gz",
+      "sha256": "7cbfc963ed061ad15267579e09bf3493dcdddde276a530b74d57a52ec2fb85bb",
+      "status": "PASS",
+      "checks": 82
+    },
+    {
+      "file": "endless-clock-sign.json.gz",
+      "sha256": "b9e72874d26d6550881c6a49e5eb2470000e98fb21efb2dea286360778c41073",
+      "status": "PASS",
+      "checks": 691
+    },
+    {
+      "file": "endless-cycle-memo-twelve-hours.json.gz",
+      "sha256": "45fcbbd8deaedb2a14542ccb710feefc254ea0c0996396c07b5b99eebc0e9fde",
+      "status": "MEASURED",
+      "sourceSha256": "d040ddd1961291a5f125c0d24125690a52e7e65c883f7a6677c43719cfba8894"
+    },
+    {
+      "file": "endless-cycle-memo-twelve-audit.json.gz",
+      "sha256": "f3cbbee9163deb4f3daf608c956a9fc4fbddbb3dd2b68c148aaf52661601c43e",
+      "status": "PASS",
+      "checks": 2193,
+      "sourceSha256": "d040ddd1961291a5f125c0d24125690a52e7e65c883f7a6677c43719cfba8894"
+    },
+    {
+      "file": "endless-cycle-sign-overflow.json.gz",
+      "sha256": "f2c6b9ccd75b16a0981f128ff9ca54cf72eaf64af0ced5f6c64a825e96c02568",
+      "status": "PASS",
+      "sourceSha256": "2370c59234caacbc9fbd48cc1efb8107b887173e781aaf9be762c1edd48470bd"
+    },
+    {
+      "file": "endless-canonical-automation.json.gz",
+      "sha256": "4cb4dd5b50fddb06e5aa2c70e67124e81254b695cec050d5f7ba6da9a1a7bd8d",
+      "status": "PASS",
+      "checks": 112,
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-split.json.gz",
+      "sha256": "f90a39631078f8dfd835f1cb15466dfdd81c0ba301ce1cd0753010889cff65a8",
+      "status": "PASS",
+      "checks": 935,
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-batch.json.gz",
+      "sha256": "8232ade6f874c7d8ef3710c270fc04f88de0b8e25c93e1539fcc87e500ce9847",
+      "status": "PASS",
+      "checks": 94,
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-persistence.json.gz",
+      "sha256": "137dac9790ae37772084d5a1014755f699508d8938b6efa617644222b31e7043",
+      "status": "PASS",
+      "checks": 24,
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-boundaries.json.gz",
+      "sha256": "d7855616c657b69c69c3a6fa4328a8b07f86ff8678af8b375f4ce59e356745e6",
+      "status": "PASS",
+      "checks": 136,
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-resource.json.gz",
+      "sha256": "ff37cfa32b08591c4b37cdee770520d9372e6865365aa856de5f13935c4ec326",
+      "status": "PASS",
+      "checks": 87
+    },
+    {
+      "file": "endless-canonical-native.json.gz",
+      "sha256": "ac22b899d06eaf93a9096ec12074e0d0ed3ac4cae4d44e459e47848465153902",
+      "status": "PASS",
+      "checks": 108,
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-overflow.json.gz",
+      "sha256": "2b8c4492529dd059ec6bcfe511dbb94529f8588cd71c2586782a6656e181cc85",
+      "status": "PASS",
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-cold-frames.json.gz",
+      "sha256": "2b0414863e1741e6298167349f1bc87fbf252f2b6b312a3c5724740c20f64355",
+      "status": "FAIL",
+      "sourceSha256": "a7a2f565fe835b8c60e155d3ea71b6e445c6e012bf325c386e4a9ff899342d73"
+    },
+    {
+      "file": "endless-canonical-load-cap-cold.json.gz",
+      "sha256": "0f55be05406b6d8d72bf606b35aae71f09ec0ee900188215e791ffb56137abef",
+      "status": "FAIL",
+      "sourceSha256": "725f579d61bbb276a03289c9ac1668d2ce6e8ef29d97d06db904490a63542662"
+    },
+    {
+      "file": "endless-canonical-frame-control.json.gz",
+      "sha256": "e1c313cecc8390fc04a3746a75be7f41bf342ec23b96dad132e3d9b8d29ef639",
+      "status": "FAIL",
+      "sourceSha256": "36ef2e23eded292638c05849b9501b84286be22662418adfdd43ca2bb6d273d3"
+    }
+  ],
+  "findings": [
+    "Original Native per-step automation reproduces5.56e-9 HP mismatch even with batching disabled. Disabling automation in a diagnostic passes935.",
+    "Enemy-deadline experiment did not fix it and is not connected.",
+    "Canonical timer anchors/deadlines across frames, with one conversion per Ascend cycle, pass935 warm strict checks and112 exact fast/literal automation,136 boundaries,24 persistence,108 Native wallet checks.",
+    "FrameClock defect restores original arithmetic and fails intended saved.enemyHp assertion.",
+    "Cold100-frame save/load still fails3.7e-9 HP; state identity replacement loses volatile anchor basis. Load-cap1000 prototype alone has no effect; original Ascend clamp999.999 remains."
+  ],
+  "next": "Persist optional canonical timer basis (base plus exact elapsed, linked to last visible phase), rebase after save/load/import, invalidate on Ascend/tick; do not relax HP. Extend exact clock point-before/point-after API and independent tests. Then rerun warm/cold/controls/overnights/legacy.",
+  "overnight": {
+    "sourceSha256": "7d5c11de01c29d938c41bf76b2da05f1a7928634d99d60ae789d7bfc5bf0b8dc",
+    "wallMs": 381851.0362,
+    "checks": 2193,
+    "comparisonToMemo": {
+      "state": true,
+      "summaryDiffs": []
+    },
+    "limit": "A7 predecessor, not current725 save-cap/basis work. Throughput remains too slow."
+  },
+  "campaign": "D180d reinvest2925 receipt checks; full roster114.67d, max closed sampled wall4.66d. Low checked-resource phase stopped at day4 parent: no day5 output, bounded probe captures first5th-day offline input;600s prefix states/summaries identical after memo/sign optimizations.",
+  "remote": "Configured karahaNx/Lumenfall still404 on15Oct12:20UTC; destination question pending. SDK/JDK/adb/signing/native acceptance unavailable.",
+  "limits": "No product index, shared/main, remote or APK integration. Final calibration/fresh campaigns/mobile/CI/native/device remain open.",
+  "legacy": "Prior137 checks PASS. Extra6 huge-count assertions reached final reload but expected a stale pre-save object; repaired fixture now compares committed canonical state, session42609 rerun pending."
+}
