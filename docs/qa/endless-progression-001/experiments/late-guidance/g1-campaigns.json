@@ -1,0 +1,80 @@
+{
+  "status": "MEASURED_SEVEN_DAY_RECOVERY_NOT_LATER_GATE_ACCEPTANCE",
+  "rows": [
+    {
+      "input": "g-guided-two-slow.json",
+      "payloadSha256": "d84a6e26cc08cbc3209caacd078546ac828cf1733c35a60f21017b7156ff63ce",
+      "sourceSha256": "b3592be615847af12d0505d462be9a9a7c8d6cf2afcb2a695901f0d7a63fa64c",
+      "originSha256": "2e4fa517b798184c0a3ce5ada6132c5f4588d3a93002905e3af81cf972e1a81c",
+      "originSourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "originPolicySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "policySha256": "a9d2de4647a78a26a6ca9dc0e990a94c2059eac575f5c2fd6954f03cc6a12f76",
+      "days": 7,
+      "visitsPerDay": 2,
+      "activeSecondsPerVisit": 600,
+      "originRift": 9058,
+      "finalRift": 15910,
+      "lab": 179,
+      "maxObservedGapDays": 0.5,
+      "dailyRifts": [
+        10120,
+        11080,
+        12070,
+        13030,
+        13990,
+        14950,
+        15910
+      ]
+    },
+    {
+      "input": "g-guided-three-slow.json",
+      "payloadSha256": "e407e4b92d331cb5678aee0669c67b33639bf8eb704bf0c50e6650567306f082",
+      "sourceSha256": "b3592be615847af12d0505d462be9a9a7c8d6cf2afcb2a695901f0d7a63fa64c",
+      "originSha256": "1213aaacdd0860ebbb7a9528d1e72d03737241e9fb19bdaacc0bb9f5c0592b8b",
+      "originSourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "originPolicySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
+      "policySha256": "3a0afc52039309a695b850207d428cf4325751fa29266cc25f5b7e7e036b2705",
+      "days": 7,
+      "visitsPerDay": 3,
+      "activeSecondsPerVisit": 600,
+      "originRift": 9691,
+      "finalRift": 19960,
+      "lab": 190,
+      "maxObservedGapDays": 0.3333333333333333,
+      "dailyRifts": [
+        11320,
+        12760,
+        14200,
+        15640,
+        17080,
+        18520,
+        19960
+      ]
+    },
+    {
+      "input": "g-guided-casual.json",
+      "payloadSha256": "02b48dbc01f0cab2c2ee6045d8232cddbeca10b6d764bdf1dadb3ace3f693dba",
+      "sourceSha256": "b3592be615847af12d0505d462be9a9a7c8d6cf2afcb2a695901f0d7a63fa64c",
+      "originSha256": "2e4fa517b798184c0a3ce5ada6132c5f4588d3a93002905e3af81cf972e1a81c",
+      "originSourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "originPolicySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "policySha256": "69055f2933f9fd370964923a0a830decbecb75de62808324dc89e73ce407099d",
+      "days": 7,
+      "visitsPerDay": 2,
+      "activeSecondsPerVisit": 300,
+      "originRift": 9058,
+      "finalRift": 12550,
+      "lab": 179,
+      "maxObservedGapDays": 0.5,
+      "dailyRifts": [
+        9700,
+        10120,
+        10600,
+        11080,
+        11590,
+        12070,
+        12550
+      ]
+    }
+  ]
+}

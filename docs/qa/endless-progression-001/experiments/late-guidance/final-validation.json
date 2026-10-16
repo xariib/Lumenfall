@@ -1,0 +1,261 @@
+{
+  "status": "LOCAL_PACING_AND_MOBILE_VERIFIED_FINAL_SERIAL_BROWSER_PENDING",
+  "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+  "measuredSourceSha256": "fb76dd813189fa89e959b13193512460a1b17d373c4e88225902d277325398e8",
+  "campaigns": [
+    {
+      "name": "regular-two",
+      "days": 7,
+      "visitsPerDay": 2,
+      "minutesPerVisit": 10,
+      "origin": "f-final-180-regular_two-snapshot.json.checkpoint.json",
+      "originSha256": "2e4fa517b798184c0a3ce5ada6132c5f4588d3a93002905e3af81cf972e1a81c",
+      "originSourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "originPolicySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89",
+      "sourceSha256": "fb76dd813189fa89e959b13193512460a1b17d373c4e88225902d277325398e8",
+      "policySha256": "f1ac52876efe068df955600f518602e845450b613da6536451d3d0d25ffe9154",
+      "record": [
+        9058,
+        15910
+      ],
+      "maxObservedGapDays": 0.5,
+      "dailyRifts": [
+        10120,
+        11080,
+        12070,
+        13030,
+        13990,
+        14950,
+        15910
+      ],
+      "finalLab": 179,
+      "masteryPurchases": 274,
+      "paidSpeedPurchases": 0,
+      "auditChecks": 1286,
+      "result": {
+        "file": "g2-regular-two.json.gz",
+        "payloadSha256": "213baa0720cd46c0fecf6e74c24deb60d0bba98ae9c66f82600240a5066d59a0"
+      },
+      "audit": {
+        "file": "g2-regular-two-audit.json.gz",
+        "payloadSha256": "ebf0e245cb248e7266aeac8fdcc4b88956b4a9fc571f922b24e593a0c4d9f38e"
+      }
+    },
+    {
+      "name": "regular-three",
+      "days": 7,
+      "visitsPerDay": 3,
+      "minutesPerVisit": 10,
+      "origin": "f-final-180-regular-snapshot.json.checkpoint.json",
+      "originSha256": "1213aaacdd0860ebbb7a9528d1e72d03737241e9fb19bdaacc0bb9f5c0592b8b",
+      "originSourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "originPolicySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
+      "sourceSha256": "fb76dd813189fa89e959b13193512460a1b17d373c4e88225902d277325398e8",
+      "policySha256": "7f0c5f6101874ce85b2210c3d960a50a2a728da59578210acd1f7b519afd187d",
+      "record": [
+        9691,
+        19960
+      ],
+      "maxObservedGapDays": 0.3333333333333333,
+      "dailyRifts": [
+        11320,
+        12760,
+        14200,
+        15640,
+        17080,
+        18520,
+        19960
+      ],
+      "finalLab": 190,
+      "masteryPurchases": 414,
+      "paidSpeedPurchases": 0,
+      "auditChecks": 1897,
+      "result": {
+        "file": "g2-regular-three.json.gz",
+        "payloadSha256": "94ffb846b11cb775bd227ec5838f0dab1d61b91ea25eb3c780baf1f390beb03c"
+      },
+      "audit": {
+        "file": "g2-regular-three-audit.json.gz",
+        "payloadSha256": "23fd386b8f0ede942c246fa4330644bad27ce0d712fa0ba1ab90589eb78c6cdb"
+      }
+    },
+    {
+      "name": "lab-gates",
+      "days": 10,
+      "visitsPerDay": 3,
+      "minutesPerVisit": 10,
+      "origin": "g1-three-day187.checkpoint.json",
+      "originSha256": "578e83c71446a70e75c11db8f458c746643cecd0a9ba66e036398e1e9b8f2189",
+      "originSourceSha256": "b3592be615847af12d0505d462be9a9a7c8d6cf2afcb2a695901f0d7a63fa64c",
+      "originPolicySha256": "3a0afc52039309a695b850207d428cf4325751fa29266cc25f5b7e7e036b2705",
+      "sourceSha256": "fb76dd813189fa89e959b13193512460a1b17d373c4e88225902d277325398e8",
+      "policySha256": "7f0c5f6101874ce85b2210c3d960a50a2a728da59578210acd1f7b519afd187d",
+      "record": [
+        19960,
+        22960
+      ],
+      "maxObservedGapDays": 0.6711805555555556,
+      "dailyRifts": [
+        21400,
+        21520,
+        21640,
+        21880,
+        22000,
+        22240,
+        22360,
+        22600,
+        22720,
+        22960
+      ],
+      "finalLab": 203,
+      "masteryPurchases": 125,
+      "paidSpeedPurchases": 13,
+      "auditChecks": 1367,
+      "result": {
+        "file": "g2-lab-gates.json.gz",
+        "payloadSha256": "4b971734304d204f25c189ab46fb7f9752c133782d0a23670ab72ee87fe20cb9"
+      },
+      "audit": {
+        "file": "g2-lab-gates-audit.json.gz",
+        "payloadSha256": "3891789bf3bb252d1878ed09a09efbdae60f37b91f78230a9e324e3b3cde1f69"
+      }
+    }
+  ],
+  "mobile": {
+    "file": "g4-mobile.json.gz",
+    "payloadSha256": "9838b870c5901cf9265659a5c16fc1010f63f5341b13a4714ac6a5abfbc969a1",
+    "checks": 865,
+    "profiles": 12,
+    "cases": 72
+  },
+  "equivalence": "g4-campaign-equivalence.json.gz",
+  "wholeGameplayInverse": "g4-exact-inverse.json.gz",
+  "attempts": [
+    {
+      "file": "g-full-browser.txt",
+      "pass": 66,
+      "failedAttempts": 4,
+      "status": "STOPPED_SUPERSEDED_OR_LOADED",
+      "receipt": {
+        "file": "attempt-g-full-browser.txt.gz",
+        "payloadSha256": "ac5f5dbacf500fedbc51f632ffc0e46469d034caa28d784d1aa4ffc0d3d3b1f8"
+      }
+    },
+    {
+      "file": "g3-full-browser.txt",
+      "pass": 5,
+      "failedAttempts": 0,
+      "status": "STOPPED_SUPERSEDED_OR_LOADED",
+      "receipt": {
+        "file": "attempt-g3-full-browser.txt.gz",
+        "payloadSha256": "4a461b7b7de7a1f2af23c5f25706ea36a5a71283d8f909aa786c0436d36faa04"
+      }
+    },
+    {
+      "file": "g4-full-browser.txt",
+      "pass": 40,
+      "failedAttempts": 1,
+      "status": "STOPPED_SUPERSEDED_OR_LOADED",
+      "receipt": {
+        "file": "attempt-g4-full-browser.txt.gz",
+        "payloadSha256": "a4fd74069a3d444b9224841c0326423c5fe3e9e35d2aeab042880f32506f2f17"
+      }
+    },
+    {
+      "file": "g4-scroll-retry.txt",
+      "pass": 0,
+      "failedAttempts": 1,
+      "status": "DEADLINE_FAIL",
+      "receipt": {
+        "file": "attempt-g4-scroll-retry.txt.gz",
+        "payloadSha256": "9e0bf6a31b74368d3ddefacbcbf533b33af5f0ff9a86ffea04a9e8e048879007"
+      }
+    }
+  ],
+  "limits": "Pacing hashes stay source-qualified. G4 equivalence uses exact inverse plus all-day Rift/rank bounds. No fresh campaign rebase, main/remote integration, APK, device or human acceptance.",
+  "checks": [
+    {
+      "file": "g4-core.json.gz",
+      "checks": 235,
+      "payloadSha256": "ee83424466b74236cd6f421861d70b90405d66bf8775537df474217b268bb73d",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-boundaries.json.gz",
+      "checks": 2528,
+      "payloadSha256": "254fb03ad9648bbe1722c116ceb9857e259d0099996f8db876a18430a664921c",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-guidance.json.gz",
+      "checks": 183,
+      "payloadSha256": "fd350cecb53d952b8a0da104a5620188fa39466708ae89985ec6f2f1b7283945",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-v8.json.gz",
+      "checks": 59,
+      "payloadSha256": "18d87b1332262750515bef78f5b565da7f409224bdd6c4bf4329f19f3b306782",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-parity.json.gz",
+      "checks": 305,
+      "payloadSha256": "13653bde00e8e11df236079bfe059ddf35dd7e57d3b5f7021e37572fe5be3b20",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-warm.json.gz",
+      "checks": 953,
+      "payloadSha256": "93e80f3e2cc6da4dfcc3e5125935ce3387337f815cf0ad2e05c03df4a784b3a8",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-cold.json.gz",
+      "checks": 953,
+      "payloadSha256": "1c0861b0e30d7bae3d49df3c494ede996f34ba81592b268a43bfa64a60b09efa",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-wide.json.gz",
+      "checks": 67,
+      "payloadSha256": "431a4a4640f8df2b82d7887e92eaee8956b04a562301194ab6400c30f645f08a",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-wisp-preservation.json.gz",
+      "checks": 8099,
+      "payloadSha256": "80a8e0e66288aa18da59e44a925485540c47d691758fb59b71cec0844291b96d",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-persistence.json.gz",
+      "checks": 24,
+      "payloadSha256": "bf6aa47e908499899a094bd9ca2d02fc3bd046cdfc718e3222445c8b6aea002e",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-exact-inverse.json.gz",
+      "checks": 2,
+      "payloadSha256": "385f61a849b600a682aef0a4f0b1ef7a2e8c64eccc1e34c57dbc0593afe2ece8",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g4-campaign-equivalence.json.gz",
+      "checks": 54,
+      "payloadSha256": "6f1c716e711358fa1b772c878daf100aa34dd512b43cbef87b037734b86e5b07",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    }
+  ],
+  "controls": {
+    "types": 6,
+    "executions": 12,
+    "regular2": "g2-control-summary.json.gz",
+    "lateLab": "g2-lab-control-summary.json.gz"
+  },
+  "preview": "g4-preview.json",
+  "finalBrowser": {
+    "status": "PENDING_UNLOADED_RUN",
+    "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+  }
+}

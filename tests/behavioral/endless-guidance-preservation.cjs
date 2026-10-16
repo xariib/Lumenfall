@@ -12,6 +12,7 @@ function inverse(input){
  cut('// Read-only advice after roster development.','function nextRiftObjective(){');
  for(const line of ["  var late=latePowerAdvice();if(late)return late;\n","  el.setAttribute('data-target-selector',goal.selector||'');\n","  renderLatePowerAdvice();\n","  document.getElementById('late-power-open').addEventListener('click',function(){openPowerAdvice(latePowerAdvice());});\n"]){assert.equal(text.split(line).length,2);text=text.replace(line,'');}
  text=text.replace("    if(target) openPowerAdvice({tab:target,selector:this.getAttribute('data-target-selector')});","    if(target) activateTab(target);");
+ for(const [a,b]of [['powerText=formatRiftNumber(chipEffectivePower(id))','powerText=formatNum(chipEffectivePower(id))'],['formatRiftNumber(wispPower(sp,1))','formatNum(wispPower(sp,1))'],["formatRiftNumber(power) + ' Wisp Power","formatNum(power) + ' Wisp Power"]]){assert(text.split(a).length<=2);text=text.replace(a,b);}
  return text;
 }
 assert.equal(inverse(source),baseline,'all original product bytes retained outside optional advice and its presentation hooks');

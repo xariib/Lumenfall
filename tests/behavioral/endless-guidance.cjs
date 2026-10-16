@@ -9,7 +9,7 @@ const c=JSON.parse(z.gunzipSync(fs.readFileSync('docs/qa/endless-progression-001
 const earned=JSON.stringify(q.get()),slots=JSON.stringify([...x.storage]);
 for(let i=0;i<50;i++){const a=q.endless.advice();ok(a&&a.tab&&a.selector,'actionable late recommendation');ok(a.labNote.includes('Lab gate met'),'no unnecessary Lab saving');ok(a.labTarget<=q.get().longStudyLevels.wispascend,'reports exact current Mastery Lab requirement');}
 eq(JSON.stringify(q.get()),earned,'advice preserves entire state including queues and paid work');eq(JSON.stringify([...x.storage]),slots,'advice never saves');
-function fixture(){const s=q.accept(c.state);s.autoAscendEnabled=false;s.riftMode='push';s.lumen=0;s.shards=0;s.prisms=0;s.sigils=0;for(const id of Object.keys(s.spirits)){s.spirits[id]=300;s.empowerQueue[id]=true;s.wispMastery[id]=0;}s.longStudyLevels.wispascend=200;s.research.masterwork=200;s.nodes.swift=100;s.maxDepthEver=10000;return s;}
+function fixture(){const s=q.accept(c.state);s.autoAscendEnabled=false;s.riftMode='push';s.activeStudies=[];s.studyBoosts={};s.lumen=0;s.shards=0;s.prisms=0;s.sigils=0;for(const id of Object.keys(s.spirits)){s.spirits[id]=300;s.empowerQueue[id]=true;s.wispMastery[id]=0;}s.longStudyLevels.wispascend=200;s.research.masterwork=200;s.nodes.swift=100;s.maxDepthEver=10000;return s;}
 let s=fixture();s.prisms=1e6;s.sigils=1e8;q.set(s);let a=q.endless.advice();eq(a.kind,'MASTERY READY','funded Mastery before optional Lab');eq(q.endless.objective(),a,'Rift points to same recommendation');ok(a.detail.includes('×1.10'),'own Power increase shown');
 s=fixture();s.prisms=19999;s.sigils=1e8;q.set(s);eq(q.endless.advice().kind,'FARM PRISMS','one Prism short guides Ascend');
 s.prisms=20000;q.set(s);eq(q.endless.advice().kind,'MASTERY READY','exact funded boundary');
@@ -20,10 +20,16 @@ s=fixture();s.longStudyLevels.wispascend=91;q.set(s);a=q.endless.advice();eq(a.k
 s=fixture();s.research.masterwork=0;q.set(s);eq(q.endless.advice().id,'forge','missing Forge gate');
 s=fixture();s.nodes.swift=9;q.set(s);eq(q.endless.advice().id,'tree','missing uncapped Tree gate');
 s=fixture();s.depth=199;s.enemyDepth=199;s.farmReturnDepth=199;s.maxDepthEver=199;q.set(s);eq(q.endless.advice().kind,'PUSH','missing Rift gate');
+s.lumen=s.shards='1e400';q.set(s);eq(q.endless.advice().kind,'FORGE POWER','affordable Forge helps overcome a Rift wall');
 s=fixture();s.lumen=1e28;s.empowerQueue.ember=false;q.set(s);a=q.endless.advice();eq(a.kind,'REBUILD','cheap levels not blocked by unaffordable next Lab');eq(a.id,'ember','specific Empower control');
 s=fixture();s.spirits.ember=0;s.lumen=10;q.set(s);eq(q.endless.advice().kind,'REBUILD','permanent recruits rebuild after Ascend');
 s=fixture();s.lumen='1e400';s.shards='1e400';q.set(s);eq(q.endless.advice().kind,'FORGE POWER','wide-value affordable Forge remains useful');
 s=fixture();s.prisms='1e400';s.sigils='1e400';q.set(s);eq(q.endless.advice().kind,'MASTERY READY','wide-value funded Mastery');
+s=fixture();s.maxDepthEver=20000;s.wispMastery.ember=495;s.longStudyLevels.wispascend=190;s.prisms=s.sigils='1e400';q.set(s);a=q.endless.advice();eq(a.kind,'MASTERY PATH','leading Wisp gate before low-impact trailing Mastery');eq(a.labTarget,191,'leading Wisp next Lab gate');
+s.longStudyLevels.catalysis=0;s.motes=1e6;s.activeStudies=[{id:'wispascend',remainingSec:864000,totalDurationSec:864000,speedMult:1}];q.set(s);a=q.endless.advice();eq(a.kind,'LAB SPEED','earned speed offered during required Lab wait');eq(a.boost,{mult:8,hours:24,cost:74250},'independent24h speed quote');eq(a.affordable,true,'earned Motes can fund quoted speed');
+s.motes=0;q.set(s);eq(q.endless.advice().affordable,false,'unfunded speed directs Mote farming');
+s.studyBoosts.wispascend={mult:3,startedAtMs:CLOCK+c.elapsed*1000,expiresAtMs:CLOCK+c.elapsed*1000+28800000};q.set(s);eq(q.endless.advice().kind,'MASTERY PATH','never replace already-paid running boost');
+s.studyBoosts={};s.activeStudies[0].speedMult=8;q.set(s);eq(q.endless.advice().kind,'MASTERY PATH','purchased base speed prevents redundant payment');
 // Causal controls: deleting late advice or recommending Lab unconditionally must
 // fail the same positive contract, not pass by changing expected game behavior.
 if(process.argv.includes('--negative')){

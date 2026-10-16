@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "sourceSha256": "b3592be615847af12d0505d462be9a9a7c8d6cf2afcb2a695901f0d7a63fa64c",
+  "mobile": {
+    "checks": 661,
+    "profiles": 12,
+    "cases": 60,
+    "payloadSha256": "b7b6c0f9242d52a3d2194e99ec46966082b4fc8ea3ef2144c8dd63ddb88c606d"
+  },
+  "checks": [
+    {
+      "file": "g-core.json.gz",
+      "payloadSha256": "8391a95ec91e7d05d7cac24848637123a838744fb199e765eb6b6b3fc028167e",
+      "checks": 235,
+      "status": "PASS"
+    },
+    {
+      "file": "g-boundaries.json.gz",
+      "payloadSha256": "14bdc1fec8b02436598f010c9079f384af6a0344fa683a51f22f4421759786e7",
+      "checks": 2528,
+      "status": "PASS"
+    },
+    {
+      "file": "g-guidance-core.json.gz",
+      "payloadSha256": "351213af297860eded4dcdf846ff3a197fc5b2d33f3a5500402c9826e8e3fa2b",
+      "checks": 174,
+      "status": "PASS"
+    },
+    {
+      "file": "g-core-controls.json.gz",
+      "payloadSha256": "cb117f7373fcb8e9e4e9143b10add6d5b1a4dc99d703e5e946b3be866f62dfa2",
+      "status": "PASS"
+    },
+    {
+      "file": "g-exact-inverse.json.gz",
+      "payloadSha256": "31525e2bc5df0da1212522406bf705eeb5445b170d560e6e2afa1aa048413362",
+      "checks": 2,
+      "status": "PASS"
+    },
+    {
+      "file": "g-strict-warm.json.gz",
+      "payloadSha256": "8a007e89bc2e16727e3ed36c64373cb11cd2dfd89e3c64d651aef532eb5b6ba3",
+      "checks": 953,
+      "status": "PASS"
+    },
+    {
+      "file": "g-strict-cold.json.gz",
+      "payloadSha256": "64bc9676ac0216818ddd5dc34b2a6fefbb3ca267b3b7af62ca376a2cf61f5bbe",
+      "checks": 953,
+      "status": "PASS"
+    },
+    {
+      "file": "g-parity.json.gz",
+      "payloadSha256": "761f5754d6cd7f87aafa4899fa37bc707b4bbabe2a8fa1114e940d7b23792f47",
+      "checks": 305,
+      "status": "PASS"
+    },
+    {
+      "file": "g-wisp-preservation.json.gz",
+      "payloadSha256": "361547bf367e698c1817b4929b37fed81492f4b6ce46ee42d08c16d9b31d12dd",
+      "checks": 8099,
+      "status": "PASS"
+    },
+    {
+      "file": "g-high-mastery.json.gz",
+      "payloadSha256": "8bad8a8cfd96db3ebfc59ead901aa7760ffbf9fdba6e83fab1b531260828b40d",
+      "status": "PASS"
+    },
+    {
+      "file": "g-v8.json.gz",
+      "payloadSha256": "b4f5948d7c66597fcf8823047473967977cece4fbe007a0909677b14b3ad1076",
+      "checks": 59,
+      "status": "PASS"
+    },
+    {
+      "file": "g-preview-manifest.json.gz",
+      "payloadSha256": "2fd1d2a7ad232aeb79cf94f686eddfbff84b343174d1b3a1a6c638f18674198e",
+      "status": "PASS"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "win32"
+  },
+  "external": {
+    "githubLogin": "xariib",
+    "repository": "karahaNx/Lumenfall",
+    "fetch": "404 NOT_FOUND (16 October)",
+    "historicalGuidanceObject": "684bfc52bb2ca523124fe63981188b9a8004d747 missing",
+    "nativeTools": "java/javac/adb/keytool/aapt/apksigner unavailable on PATH",
+    "remoteCI": "OPEN",
+    "Android": "NOT_EXECUTED",
+    "release": "NOT_EXECUTED"
+  }
+}

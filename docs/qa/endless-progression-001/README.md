@@ -2,7 +2,12 @@
 
 [Readable current results and limits](RESULTS.md).
 
-Applied isolated [F checkpoint](experiments/applied-f-checkpoint.json), source4b052487.
+16 October: current isolated source07c9397a adds [late guidance](LATE_GUIDANCE.md).
+Regular recovery gaps8–12h; ten-day required-Lab sample max16.11h. Source-bound
+audits4550/guide183/mobile865 PASS; final serial browser/CI/native acceptance OPEN.
+The F baseline and earlier measurements below retain their original source hashes.
+
+Applied F baseline [checkpoint](experiments/applied-f-checkpoint.json), source4b052487.
 Six fresh60d policies meet recruitment/Mythic/Ultimate target windows:
 21.333–26d /42.333–53.333d /42.667–54d. Primary2/3-visit Day1 audits pass.
 Only four measured numeric table lines changed. Root/staged/HTTP15 assets match.

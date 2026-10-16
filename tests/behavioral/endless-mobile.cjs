@@ -40,12 +40,13 @@ async function run(){
  let ready=false;for(let i=0;i<200;i++){try{ready=await ev('!!window.endlessUi&&endlessUi.ready()');}catch{}if(ready)break;await pause(25);}check(ready,'real game initializes');await ev('document.fonts.ready');await ev('endlessUi.prepare()');await pause(500);
  for(const width of [320,390,430])for(const scale of [1,2])for(const motion of ['no-preference','reduce']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize='+16*scale+'+"px"');
-  for(const mode of ['early','gates','mastery','huge','guide']){
+  for(const mode of ['early','gates','mastery','huge','guide','guide-lab']){
    await ev(`(()=>{var s=endlessUi.fresh();s.depth=20;s.maxDepthEver=32;s.lumen=1e12;s.shards=1e12;s.prisms=${calibrated?100000:1000};s.sigils=${calibrated?100000000:50000};
     if('${mode}'!=='early'){s.spirits.ember=140;s.heroRarity.ember=4;s.wispModules.ember=20;s.maxDepthEver=200;s.ascendCount=50;s.longStudyLevels.wispascend=${labBase};s.research.arcanecal=10;s.research.masterwork=1;s.nodes.swift=10;}
     if('${mode}'==='mastery'||'${mode}'==='huge'){s.heroRarity.ember=5;s.wispUltimate.ember=true;}
     if('${mode}'==='huge'){s.wispMastery.ember=10000;s.maxDepthEver=250200;s.longStudyLevels.wispascend=${2000+labBase};s.research.masterwork=2001;s.nodes.swift=1010;s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';}
-    if('${mode}'==='guide'){Object.keys(s.spirits).forEach(id=>{s.spirits[id]=140;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});s.maxDepthEver=10000;s.longStudyLevels.wispascend=200;s.research.masterwork=200;s.nodes.swift=100;s.prisms=1e6;s.sigils=1e8;}
+    if('${mode}'==='guide'||'${mode}'==='guide-lab'){Object.keys(s.spirits).forEach(id=>{s.spirits[id]=140;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});s.maxDepthEver=20000;s.longStudyLevels.wispascend=200;s.research.masterwork=200;s.nodes.swift=100;s.prisms=1e6;s.sigils=1e8;}
+    if('${mode}'==='guide-lab'){s.wispMastery.ember=495;s.longStudyLevels.wispascend=190;s.longStudyLevels.catalysis=0;s.motes=1e6;s.activeStudies=[{id:'wispascend',remainingSec:864000,totalDurationSec:864000,speedMult:1}];}
     endlessUi.set(s);document.querySelector('[data-wisp-card=ember]').scrollIntoView({block:'start'});})()`);
    await pause(80);
    // Measure the settled target, after the existing panelIn scale animation.
@@ -72,14 +73,24 @@ async function run(){
     const after=await ev('({s:endlessUi.get(),card:document.activeElement.closest("[data-wisp-card]")?.dataset.wispCard})');check(after.s.wispMastery.ember===1,'native keyboard buys a rank');check(after.s.prisms===before.prisms-prismPrice&&after.s.sigils===before.sigils-sigilPrice,'native keyboard exact spend');check(after.card==='ember','stable purchase focus');
    }
    if(mode==='huge'){check(!geometry.mastery.includes('Infinity')&&!geometry.mastery.includes('NaN'),'wide growth displays compactly');}
-   if(mode==='guide'){
+   if(mode==='guide'||mode==='guide-lab'){
     const before=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');
     const guide=await ev(`(()=>{var root=document.getElementById('late-power-guide');root.scrollIntoView({block:'start'});return {hidden:root.hidden,text:root.textContent,clipped:Array.from(root.querySelectorAll('h3,p,button')).some(e=>e.scrollWidth>e.clientWidth+1),w:root.querySelector('button').getBoundingClientRect().width,h:root.querySelector('button').getBoundingClientRect().height};})()`);
-    check(!guide.hidden&&guide.text.includes('Lab gate met')&&guide.text.includes('×1.10'),'next upgrade and Lab saving guidance visible');check(!guide.clipped&&guide.w>=44&&guide.h>=44,'guide wraps and touch target fits');
+    check(!guide.hidden&&(mode==='guide'?guide.text.includes('Lab gate met')&&guide.text.includes('×1.10'):guide.text.includes('190 / 191')&&guide.text.includes('8× for 24h')),'next upgrade and correct Lab guidance visible');check(!guide.clipped&&guide.w>=44&&guide.h>=44,'guide wraps and touch target fits');
     await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
-    check(await ev('document.activeElement.getAttribute("data-mastery")==="ember"'),'keyboard guide locates actual purchase control');
+    check(await ev(mode==='guide'?'document.activeElement.getAttribute("data-mastery")==="ember"':'document.activeElement.getAttribute("data-study-speed-target")==="wispascend"'),'keyboard guide locates actual upgrade control');
     check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===before,'guide navigation never buys or changes save');
-    if(width===320&&motion==='no-preference'){await ev('document.getElementById("late-power-guide").scrollIntoView({block:"start"})');const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,'guide-'+scale+'.png'),Buffer.from(shot.data,'base64'));}
+    await ev('document.querySelector(".tab-btn[data-tab=battle]").click();document.getElementById("rift-objective").focus({preventScroll:true})');await key();
+    check(await ev(mode==='guide'?'document.getElementById("tab-spirits").classList.contains("active")&&document.activeElement.getAttribute("data-mastery")==="ember"':'document.getElementById("tab-research").classList.contains("active")&&document.activeElement.getAttribute("data-study-speed-target")==="wispascend"'),'Rift hint keyboard locates recommended development');
+    check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===before,'Rift hint navigation preserves wallets and queues');
+    if(mode==='guide'){
+     const restore=await ev('endlessUi.get()');await ev('(()=>{var s=endlessUi.get();s.depth=s.enemyDepth=s.maxDepthEver=s.farmReturnDepth=199;s.riftMode="push";s.lumen=s.shards="1e400";endlessUi.set(s);})()');
+     check(await ev('document.getElementById("late-power-action").textContent.includes("Masterwork")'),'Rift gate recommends affordable permanent Forge Power');
+     const forgeBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
+     check(await ev('document.activeElement.getAttribute("data-research")==="masterwork"'),'guide locates actual Forge control');
+     check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===forgeBefore,'Forge recommendation never buys');await ev('endlessUi.set('+JSON.stringify(restore)+')');
+    }
+    if(width===320&&motion==='no-preference'){await ev('document.querySelector(".tab-btn[data-tab=spirits]").click();document.getElementById("late-power-guide").scrollIntoView({block:"start"})');await ev('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,mode+'-'+scale+'.png'),Buffer.from(shot.data,'base64'));}
    }
    const purity=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('endlessUi.render();endlessUi.refresh()');check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===purity,'render/refresh does not mutate save');
    if(width===320&&motion==='no-preference'&&['gates','mastery'].includes(mode)){

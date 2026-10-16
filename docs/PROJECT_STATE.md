@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
 16 October: [ENDLESS_PROGRESSION_001](tasks/ENDLESS_PROGRESSION_001.md) local
-G advice: stalled-save replays running; CI/native/human acceptance OPEN.
+G4 advice: gate replays running; CI/native/human acceptance OPEN.
 
 15 October: [Lab controls](tasks/LAB_SPEED_CONTROLS_001.md),67e7d3e locally verified;
 idle boost action removed/current levels shown. Combined/native acceptance OPEN.

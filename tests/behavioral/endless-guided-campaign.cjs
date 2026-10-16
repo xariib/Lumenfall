@@ -6,7 +6,7 @@ const [file,originFile,daysText,out,sessionsText='2',activeText='600']=process.a
 assert(file&&originFile&&out&&Number.isInteger(days)&&days>0&&days<=90&&[2,3,6].includes(sessions)&&active>=120);
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),raw=fs.readFileSync(originFile),c=JSON.parse(originFile.endsWith('.gz')?z.gunzipSync(raw):raw),source=fs.readFileSync(file,'utf8'),sourceSha256=hash(source);
 const policySha256=hash(Buffer.concat([fs.readFileSync(__filename),fs.readFileSync(require.resolve('./forge-expansion-harness.cjs')),fs.readFileSync(require.resolve('../../scripts/lib/game-amount.cjs')),Buffer.from(JSON.stringify({sessions,active}))]));
-const marker="if(document.readyState==='loading'){",bridge=`window.endlessQa={advice:latePowerAdvice,best:fieldBestNowFormation,push:enterPushMode,farm:enterFarmMode,eligible:ascendEligible,mastery:buyWispMastery,plan:getWispMasteryPlan,wisps:function(){return SPIRITS;},node:function(){return NODES.find(function(n){return n.id==='swift';});},buyNode:buyNode,auto:function(on){if(on)setAutoAscendClearedTarget('15');state.autoAscendEnabled=on;}};`;
+const marker="if(document.readyState==='loading'){",bridge=`window.endlessQa={advice:latePowerAdvice,best:fieldBestNowFormation,push:enterPushMode,farm:enterFarmMode,eligible:ascendEligible,mastery:buyWispMastery,plan:getWispMasteryPlan,speed:activateStudyBoost,wisps:function(){return SPIRITS;},node:function(){return NODES.find(function(n){return n.id==='swift';});},buyNode:buyNode,auto:function(on){if(on)setAutoAscendClearedTarget('15');state.autoAscendEnabled=on;}};`;
 assert.equal(source.split(marker).length,2);const x=app(source.replace(marker,bridge+marker),undefined,{clockDate:true,retainWrites:false}),q=x.q,b=q.endless;
 let elapsed=c.elapsed,lastRecord=c.state.maxDepthEver,lastRecordAt=elapsed;const origin=JSON.parse(JSON.stringify(c.state)),history=[],actions=[],windows=[],gaps=[];const began=performance.now();
 x.clock(CLOCK+elapsed*1000);q.set(c.state);assert(b.advice(),'earned developed roster supports advice');
@@ -30,6 +30,8 @@ function follow(){
   if(g.id==='lab'){event.started=q.startStudy('wispascend');if(!event.started)return false;}
   else if(g.id==='forge'){if(!q.plan('masterwork',1).affordable)return false;event.cost=q.plan('masterwork',1).cost;assert(q.buy('masterwork',1));}
   else if(g.id==='tree'){if(!b.buyNode(b.node()))return false;}
+ }else if(g.kind==='LAB SPEED'){
+  if(!g.affordable)return false;event.cost={motes:g.boost.cost};const before=q.get().motes;assert(b.speed('wispascend',g.boost.mult,g.boost.hours));assert.equal(A.cmp(A.exactSub(before,q.get().motes),g.boost.cost),0,'exact paid speed debit');
  }else if(g.kind==='PUSH'){b.best();b.push();return false;}
  else if(g.kind==='FARM SIGILS'){b.push();return false;}
  else return false;
