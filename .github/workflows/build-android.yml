@@ -2,26 +2,20 @@ name: Build Android APK
 # Node.js validation/build support; established Android signing and release flow.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'index.html'
-      - 'branding/**'
-      - 'fonts/**'
-      - 'mobile/**'
-      - 'scripts/verify_apk_identity.cjs'
-      - 'scripts/lib/**'
-      - 'scripts/ci/**'
-      - 'scripts/serve.cjs'
-      - '.github/workflows/build-android.yml'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish only after all integrated-commit CI and APK checks pass
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: lumenfall-android-main
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-apk:
@@ -30,11 +24,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Require integrated validation before publishing
+        if: inputs.publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/ci/release-ci-gate.cjs
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: mobile/package-lock.json
 
@@ -56,30 +58,18 @@ jobs:
 
       - name: Restore and verify stable Android signing key
         env:
-          GH_TOKEN: ${{ github.token }}
+          KEYSTORE_BASE64: ${{ secrets.LUMENFALL_KEYSTORE_BASE64 }}
           EXPECTED_SIGNING_SHA256: "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21"
         shell: bash
         run: |
           set -euo pipefail
-          SIGNING_TAG="lumenfall-signing-v1"
           KEYSTORE_DIR="$RUNNER_TEMP/lumenfall-signing"
           KEYSTORE_FILE="$KEYSTORE_DIR/Lumenfall-debug.keystore"
           KEYTOOL_OUTPUT="$KEYSTORE_DIR/keytool-output.txt"
-
           mkdir -p "$KEYSTORE_DIR" "$HOME/.android"
-
-          if ! gh release view "$SIGNING_TAG" >/dev/null 2>&1; then
-            echo "::error::Established Android signing release '$SIGNING_TAG' is missing or inaccessible. Refusing to generate replacement signing material."
-            exit 1
-          fi
-
-          if ! gh release download "$SIGNING_TAG" \
-            --pattern "Lumenfall-debug.keystore" \
-            --dir "$KEYSTORE_DIR" \
-            --clobber; then
-            echo "::error::Established Android signing keystore could not be downloaded. Refusing to build or publish."
-            exit 1
-          fi
+          test -n "$KEYSTORE_BASE64" || { echo "::error::Original signing secret is missing"; exit 1; }
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$KEYSTORE_FILE"
+          chmod 600 "$KEYSTORE_FILE"
 
           if [ ! -s "$KEYSTORE_FILE" ]; then
             echo "::error::Established Android signing keystore is missing or empty. Refusing to build or publish."
@@ -175,12 +165,11 @@ jobs:
         working-directory: mobile
         run: npx cap add android
 
+      - name: Compute continuing Android version
+        run: node scripts/ci/android-release-version.cjs
+
       - name: Set Android app version
-        env:
-          BUILD_NUMBER: ${{ github.run_number }}
-        shell: bash
-        run: |
-          node scripts/ci/set_android_version.cjs
+        run: node scripts/ci/set_android_version.cjs
 
       - name: Stage Android icon and splash sources
         working-directory: mobile
@@ -253,8 +242,6 @@ jobs:
       - name: Verify final APK identity
         env:
           EXPECTED_PACKAGE_ID: "com.lumenfall.app"
-          EXPECTED_VERSION_CODE: "${{ github.run_number }}"
-          EXPECTED_VERSION_NAME: "0.1.${{ github.run_number }}"
           EXPECTED_SIGNING_SHA256: "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21"
         shell: bash
         run: |
@@ -282,21 +269,52 @@ jobs:
             --expected-version-name "$EXPECTED_VERSION_NAME" \
             --expected-cert-sha256 "$EXPECTED_SIGNING_SHA256"
 
-      - name: Publish latest APK release
+      - name: Verify exact packaged production assets and origin
+        run: |
+          mkdir -p release-evidence
+          node scripts/ci/verify_apk_assets.cjs Lumenfall.apk > release-evidence/assets.json
+          sha256sum Lumenfall.apk > release-evidence/apk-sha256.txt
+          git rev-parse HEAD > release-evidence/commit.txt
+          printf '%s\n' "$EXPECTED_VERSION_CODE" > release-evidence/version-code.txt
+
+      - name: Enable emulator hardware acceleration
+        run: |
+          echo KERNEL==\"kvm\",GROUP=\"kvm\",MODE=\"0666\",OPTIONS+=\"static_node=kvm\" | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: In-place signed APK and save upgrade on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          disable-animations: true
+          script: node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
+
+      - name: Preserve verified build
+        uses: actions/upload-artifact@v4
+        with:
+          name: signed-apk-${{ github.run_id }}
+          path: |
+            Lumenfall.apk
+            release-evidence/
+
+      - name: Publish verified APK release
+        if: inputs.publish
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          git tag -f android-latest "$GITHUB_SHA"
-          git push origin --force refs/tags/android-latest
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(gh api repos/$GITHUB_REPOSITORY/git/ref/heads/main --jq .object.sha)" = "$GITHUB_SHA"
+          TAG="android-$EXPECTED_VERSION_CODE"
+          gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json \
+            --target "$GITHUB_SHA" --latest \
+            --title "Lumenfall Android $EXPECTED_VERSION_NAME" \
+            --notes "Combined endless-progression release from $GITHUB_SHA. Install Lumenfall.apk as an update without uninstalling. Original package/signing/save identity retained. Physical-device, legacy WebView and TalkBack limitations are recorded in docs/tasks/REPOSITORY_MIGRATION_001.md."
 
-          if gh release view android-latest >/dev/null 2>&1; then
-            gh release upload android-latest Lumenfall.apk --clobber
-            gh release edit android-latest \
-              --title "Lumenfall Android — Latest" \
-              --notes "Automatically built from the latest main branch. Android APK only."
-          else
-            gh release create android-latest Lumenfall.apk \
-              --title "Lumenfall Android — Latest" \
-              --notes "Automatically built from the latest main branch. Android APK only."
-          fi
+      - name: Remove temporary signing copy
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/lumenfall-signing/Lumenfall-debug.keystore" "$HOME/.android/debug.keystore"

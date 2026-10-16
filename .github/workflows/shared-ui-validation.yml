@@ -1,6 +1,7 @@
 name: Shared UI layout validation
 
 on:
+  workflow_dispatch: {}
   push:
     branches: ['qa/shared-ui-diagnostic-001']
   pull_request:

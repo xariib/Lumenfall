@@ -29,6 +29,9 @@ jobs:
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test
 
+      - name: Repository migration version and historical-baseline controls
+        run: node tests/tooling/repository-migration.cjs
+
       - name: Node tooling regression checks
         run: |
           node tests/tooling/run.cjs

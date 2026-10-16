@@ -1,6 +1,6 @@
 # Lumenfall — project rules
 
-Repository: `karahaNx/Lumenfall`. Communicate in English. Read this entrypoint
+Repository: `xariib/Lumenfall`. Communicate in English. Read this entrypoint
 for every new task. With GitHub-tool-only access, explicitly fetch this file.
 
 ## Start with one feature

@@ -1,6 +1,6 @@
 # Lumenfall — fortsæt fra en ny ChatGPT-konto
 
-Projektet skal kunne fortsættes fra `karahaNx/Lumenfall` uden den gamle
+Projektet skal kunne fortsættes fra `xariib/Lumenfall` uden den gamle
 ChatGPT-konto. Kode, regler, opgaver, beslutninger, status og nødvendige
 originaler/beviser gemmes løbende i GitHub. Det er en arbejdsregel; repositoryet
 kan ikke genskabe chatbeskeder eller filer, der aldrig blev gemt der.
@@ -27,7 +27,7 @@ kan ikke genskabe chatbeskeder eller filer, der aldrig blev gemt der.
 ## Startprompt til den nye konto
 
 ```text
-Continue Lumenfall from karahaNx/Lumenfall, current main or the feature branch.
+Continue Lumenfall from xariib/Lumenfall, current main or the feature branch.
 Read AGENTS.md, PROJECT_BOOTSTRAP.txt, docs/PROJECT_STATE.md and the current
 docs/tasks/<FEATURE_ID>.md. You own this feature across implementation, fixes,
 tests, documentation and delivery; there is no default Lead or writer ceremony.
@@ -56,7 +56,7 @@ også en kopi på en enhed eller lagring, du selv kontrollerer, hvis du ønsker
 beskyttelse mod tab af selve repositoryet:
 
 ```bash
-git clone --mirror https://github.com/karahaNx/Lumenfall.git Lumenfall-backup.git
+git clone --mirror https://github.com/xariib/Lumenfall.git Lumenfall-backup.git
 git -C Lumenfall-backup.git bundle create ../Lumenfall-backup.bundle --all
 git -C Lumenfall-backup.git bundle verify ../Lumenfall-backup.bundle
 git clone Lumenfall-backup.bundle Lumenfall-restored

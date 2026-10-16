@@ -6,6 +6,7 @@ const {findChrome}=require('../../tests/behavioral/run.cjs');
 const {assertGuidanceWord}=require('../../tests/behavioral/rift-guidance-readability.cjs');
 const {oldTitleInverse,oldLayoutInverse}=require('../../tests/behavioral/rift-guidance-inverses.cjs');
 const {restoreBaselineAssets}=require('./guidance-baseline-assets.cjs');
+const {archivedBaseline}=require('./guidance-archived-baseline.cjs');
 const root=path.resolve(__dirname,'../..'),stage=path.join(root,'mobile/www');
 const BASE='684bfc52bb2ca523124fe63981188b9a8004d747',SHA='38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f',CAUSE='guidance-leading-word-fragmented';
 assert(process.argv.length===3,'Usage: node scripts/ci/guidance-readability.cjs OUTPUT_DIR');
@@ -56,16 +57,18 @@ try{
  result.runtime=pin(path.join(out,'runtime.json'));
  const head=execute('candidate-git',['git','show','-s','--format=%H%n%T','HEAD'],30000);successful(head);
  let original=execute('baseline-git-show',['git','show',BASE+':index.html'],30000);
+ let recovered;
  if(original.record.exitCode!==0){
   const missing=execute('baseline-object-check',['git','cat-file','--batch-check'],30000,BASE+'\n');successful(missing);
-  assert.equal(missing.raw.stdout.toString().trim(),BASE+' missing','Fetch is allowed only for the missing exact baseline object');
-  successful(execute('baseline-fetch',['git','fetch','--no-tags','--depth=1','origin',BASE],120000));
-  original=execute('baseline-git-show-fetched',['git','show',BASE+':index.html'],30000);
+  assert.equal(missing.raw.stdout.toString().trim(),BASE+' missing','Archived recovery is allowed only for the missing exact baseline object');
+  recovered=archivedBaseline(root);
+  original={record:{timedOut:false,error:null,signal:null,exitCode:0},raw:{stdout:recovered.source}};
+  write('baseline-offline-recovery.json',{baselineCommit:BASE,sourceSha256:hash(recovered.source),provenance:'Pinned pre-existing historical source, merge tree and unchanged-asset diff; original Git blobs'});
  }
  successful(original);assert.equal(hash(original.raw.stdout),SHA,'Immutable baseline HTML SHA256');
  const baselineRoot=path.join(out,'baseline-www');fs.mkdirSync(baselineRoot);
  fs.writeFileSync(path.join(baselineRoot,'index.html'),original.raw.stdout);
- const baselineAssets=restoreBaselineAssets(BASE,baselineRoot,(id,command)=>{const p=execute(id,command,30000);successful(p);return p.raw.stdout;});
+ const baselineAssets=restoreBaselineAssets(BASE,baselineRoot,(id,command)=>{if(recovered&&id==='baseline-assets-tree')return recovered.tree;const p=execute(id,command,30000);successful(p);return p.raw.stdout;});
  const baselineAssetPins=baselineAssets.assets.map(({path,bytes,sha256})=>({path,bytes,sha256})).sort((a,b)=>a.path.localeCompare(b.path,'en'));
  const sortedAssets=webroot=>assets(webroot).sort((a,b)=>a.path.localeCompare(b.path,'en'));
  assert.deepEqual(sortedAssets(baselineRoot),baselineAssetPins,'Written baseline assets match the immutable Git objects');

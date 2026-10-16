@@ -1,6 +1,6 @@
 # Start Lumenfall i Codex
 
-Start from current `main` or the feature's branch in `karahaNx/Lumenfall`.
+Start from current `main` or the feature's branch in `xariib/Lumenfall`.
 Read root `AGENTS.md`, `PROJECT_BOOTSTRAP.txt`, `docs/PROJECT_STATE.md` and
 the current feature task. The user assigns scope; one owner chat handles all
 affected disciplines under [the feature workflow](FEATURE_WORKFLOW.md).
