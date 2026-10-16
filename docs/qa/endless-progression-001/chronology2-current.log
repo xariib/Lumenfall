@@ -1,0 +1,50 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "92ceadcc5fbbb40f40ab4d0f340fbd514e8daa628deef7af6e9967c29c41fb26", "instrumented_sha256": "67dd1e8eecea6eb3602e074738352020de8f6cb47dcab17e555e2c36c51972e2" }
+PASS chronology-auto-empower-mid-window
+  detail: { "firstEmpowerSec": 49.99999999999999, "finalEmberLevel": 3, "killsWithEmpower": 4, "killsWithoutEmpower": 2 }
+Behavioral QA passed: 1 deterministic scenario(s).
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "92ceadcc5fbbb40f40ab4d0f340fbd514e8daa628deef7af6e9967c29c41fb26", "instrumented_sha256": "67dd1e8eecea6eb3602e074738352020de8f6cb47dcab17e555e2c36c51972e2" }
+PASS chronology-auto-ascend-mid-window
+  detail: { "ascendSec": 17.59908856508964, "ascendCount": 1, "killsAtAscend": 1, "finalKills": 3 }
+Behavioral QA passed: 1 deterministic scenario(s).
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "92ceadcc5fbbb40f40ab4d0f340fbd514e8daa628deef7af6e9967c29c41fb26", "instrumented_sha256": "67dd1e8eecea6eb3602e074738352020de8f6cb47dcab17e555e2c36c51972e2" }
+FAIL lifecycle-boss-retry
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.6621031000000004, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "lifecycle-boss-retry", "json_status": "fail", "json_scenario": "lifecycle-boss-retry", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 905.9599999999932, got 901.8838759999895, tolerance 0.000001)", "stack": "Error: boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 905.9599999999932, got 901.8838759999895, tolerance 0.000001)\n    at parityApprox (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16866:13)\n    at http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16891:7\n    at Array.forEach (<anonymous>)\n    at assertProtectedParity (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:16890:122)\n    at assertLifecycleState (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:17179:5)\n    at runResumeWindow (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:17228:5)\n    at async HTMLDocument.run (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&qaFixture=chronology-boss-retry:18166:26)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\chronology2-current-raw\lifecycle-boss-retry-4WitGO
+  stdout tail:
+return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="lifecycle-boss-retry">{
+  "scenario": "lifecycle-boss-retry",
+  "status": "fail",
+  "detail": {
+    "message": "boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 905.9599999999932, got 901.8838759999895, tolerance 0.000001)",
+    "stack": "Error: boss retreat/Farm/retry lifecycle enemyHp parity mismatch (expected 905.9599999999932, got 901.8838759999895, tolerance 0.000001)\n    at parityApprox (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&amp;qaFixture=chronology-boss-retry:16866:13)\n    at http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&amp;qaFixture=chronology-boss-retry:16891:7\n    at Array.forEach (&lt;anonymous&gt;)\n    at assertProtectedParity (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&amp;qaFixture=chronology-boss-retry:16890:122)\n    at assertLifecycleState (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&amp;qaFixture=chronology-boss-retry:17179:5)\n    at runResumeWindow (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&amp;qaFixture=chronology-boss-retry:17228:5)\n    at async HTMLDocument.run (http://127.0.0.1:55223/index.html?qaScenario=lifecycle-boss-retry&amp;qaFixture=chronology-boss-retry:18166:26)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: lifecycle-boss-retry null

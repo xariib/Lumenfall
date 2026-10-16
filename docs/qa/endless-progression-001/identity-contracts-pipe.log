@@ -1,0 +1,63 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "999390122eda981b8ea2b8ad48b86ec4976219284e78dc98f2c305d92398aff2", "instrumented_sha256": "11681a1c4b4412b59322f11927613a25bce1005f636b3342c98afea2a0b79d19" }
+FAIL upgrade-identity-contracts
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.5168171000000004, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "upgrade-identity-contracts", "json_status": "fail", "json_scenario": "upgrade-identity-contracts", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: "twenty independently purchasable Forge tracks"
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\identity-contracts-pipe\upgrade-identity-contracts-L4zjXv
+  stdout tail:
+ot detected'});
+          return;
+        }
+
+        case 'self-test-wisp-pacing-regression': {
+          var compressed = bridge.wispPacingContract('ember');
+          assert(
+            compressed.rarity[4].shard<100000,
+            'intentional Wisp pacing regression: Mythic cost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="upgrade-identity-contracts">{
+  "scenario": "upgrade-identity-contracts",
+  "status": "fail",
+  "detail": "twenty independently purchasable Forge tracks",
+  "runtimeErrors": []
+}</pre></body></html>

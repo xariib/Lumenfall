@@ -1,0 +1,17 @@
+Killed handler: Error: Error: UI maxed even with affordable wallet 20
+Killed ui: Error: RangeError: Amount must be finite
+Killed raw: Error: Error: legacy raw count visible
+Killed refund: Error: Error: canonical normalization idempotent 21
+Killed credit: Error: Error: fractional original wallet retains exact refund value
+Killed free-credit: Error: Error: large credit quote conserves exact value
+Killed wallet: Error: Error: canonical metadata and original debit 0
+Killed receipt: Error: Error: wrong receipt amount rejects for recovery
+Killed cache: Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries
+Killed credit-record: Error: Error: malformed persisted Prism credit rejects for recovery
+Killed ascend-copy: Error: Error: actual auto-Ascends avoid repeated refund cloning and validation
+Killed version-check: Error: Error: unsupported migration version rejects before any early return
+Killed credit-reconcile: Error: Error: own credit sequence reconciles with saved receipt
+Killed missing-receipt: Error: Error: deleted completed receipt rejects instead of refunding twice
+Killed missing-audit-history: Error: Error: retained completed history rejects deleted receipt and marker
+Killed missing-audit-proof: Error: Error: retained completed marker rejects deleted receipt and history
+Killed quote-copy: Error: Error: large legacy price quotes never clone the refund ledger

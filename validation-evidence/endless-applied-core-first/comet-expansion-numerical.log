@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "checks": 0,
+  "budgetVectors": 0,
+  "hpPlanVectors": 0,
+  "creditVectors": 0,
+  "debitVectors": 0,
+  "settlementPasses": 0,
+  "examples": [],
+  "negativeControls": [],
+  "error": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "message": "actual Comet schema3\n\n5 !== 4\n",
+    "stack": "AssertionError [ERR_ASSERTION]: actual Comet schema3\n\n5 !== 4\n\n    at equal (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs:181:36)\n    at runNumerical (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs:183:3)\n    at cli (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs:340:14)\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs:347:26)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)"
+  },
+  "input": {
+    "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\index.html",
+    "bytes": 945223,
+    "sha256": "82fa86dc0473a359c742f6487c08e17592e59dd80b632fc468ba1aaf409d57e0"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 21869,
+      "sha256": "3dc7c0ab293b3c16c2a2edd01146fbc72a2ff356db9fe1b614946a983d3bd0d8"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 15922,
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  },
+  "scope": "Actual full game IIFE: numerical kernel, exact read-only debit plans and one-pass claim owner; gameplay transactions/chronology are separate core/offline suites."
+}

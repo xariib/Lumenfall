@@ -1,0 +1,1822 @@
+{
+  "status": "PASS",
+  "checks": 34021,
+  "groups": [
+    {
+      "name": "fixed-world live/offline, split and cursor chronology with every real kill owner",
+      "status": "PASS",
+      "checks": 19225
+    },
+    {
+      "name": "elapsed time is neither a command nor a defeat",
+      "status": "PASS",
+      "checks": 20
+    },
+    {
+      "name": "saved Call, private offline work, primary rollback/retry and recovery-only commit",
+      "status": "PASS",
+      "checks": 14600
+    },
+    {
+      "name": "actual offline Auto-Ascend keeps the bank and exact paid ranks",
+      "status": "PASS",
+      "checks": 148
+    },
+    {
+      "name": "host-processing foreground replay uses existing live time exactly once",
+      "status": "PASS",
+      "checks": 7
+    },
+    {
+      "name": "causal offline controls execute the complete mutated production IIFE",
+      "status": "PASS",
+      "checks": 21
+    }
+  ],
+  "runs": [
+    {
+      "id": "live-unsplit",
+      "kind": "live",
+      "seconds": 600.125,
+      "spans": [
+        600.125
+      ],
+      "yields": 0,
+      "firstYield": null,
+      "lastYield": null,
+      "counts": {
+        "kills": 579,
+        "bossKills": 0,
+        "luminousKills": 17,
+        "ascends": 0,
+        "autoTaps": 600,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 579,
+        "kills": 579,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 0,
+              "work": 3990
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3990
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 30
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 30
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "43931a85c5a3e5792a18f4bb077199d8bd6d8372f0b0bf34e54b2e3e1907e383",
+      "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "live-split-cursor",
+      "kind": "live",
+      "seconds": 600.125,
+      "spans": [
+        13,
+        187,
+        200,
+        200.125
+      ],
+      "yields": 6,
+      "firstYield": 85.625,
+      "lastYield": 544.875,
+      "counts": {
+        "kills": 579,
+        "bossKills": 0,
+        "luminousKills": 17,
+        "ascends": 0,
+        "autoTaps": 600,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 579,
+        "kills": 579,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 0,
+              "work": 3990
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3990
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 30
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 30
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "43931a85c5a3e5792a18f4bb077199d8bd6d8372f0b0bf34e54b2e3e1907e383",
+      "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "live-engine3-same-world",
+      "kind": "live",
+      "seconds": 600.125,
+      "spans": [
+        600.125
+      ],
+      "yields": 0,
+      "firstYield": null,
+      "lastYield": null,
+      "counts": {
+        "kills": 579,
+        "bossKills": 0,
+        "luminousKills": 17,
+        "ascends": 0,
+        "autoTaps": 600,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 579,
+        "kills": 579,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 50
+            },
+            "after": {
+              "charges": 1,
+              "work": 90
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 90
+            },
+            "after": {
+              "charges": 1,
+              "work": 130
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "5c70acfc4afadbf54d45098f7a99beb12a882498b8c3aecee8553e8e0d796923",
+      "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "offline-unsplit",
+      "kind": "offline",
+      "seconds": 600.125,
+      "spans": [
+        600.125
+      ],
+      "yields": 0,
+      "firstYield": null,
+      "lastYield": null,
+      "counts": {
+        "kills": 579,
+        "bossKills": 0,
+        "luminousKills": 17,
+        "ascends": 0,
+        "autoTaps": 600,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 579,
+        "kills": 579,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 0,
+              "work": 3990
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3990
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 30
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 30
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "1d51ef4594e1c2f69947fe23a29d932766d27aeeb8a5700e9bbf9c2182df2311",
+      "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "offline-split-cursor",
+      "kind": "offline",
+      "seconds": 600.125,
+      "spans": [
+        13,
+        187,
+        200,
+        200.125
+      ],
+      "yields": 6,
+      "firstYield": 85.625,
+      "lastYield": 544.875,
+      "counts": {
+        "kills": 579,
+        "bossKills": 0,
+        "luminousKills": 17,
+        "ascends": 0,
+        "autoTaps": 600,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 579,
+        "kills": 579,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 0,
+              "work": 3990
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3990
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 30
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 30
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "1d51ef4594e1c2f69947fe23a29d932766d27aeeb8a5700e9bbf9c2182df2311",
+      "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "offline-engine3-same-world",
+      "kind": "offline",
+      "seconds": 600.125,
+      "spans": [
+        600.125
+      ],
+      "yields": 0,
+      "firstYield": null,
+      "lastYield": null,
+      "counts": {
+        "kills": 579,
+        "bossKills": 0,
+        "luminousKills": 17,
+        "ascends": 0,
+        "autoTaps": 600,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 579,
+        "kills": 579,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 50
+            },
+            "after": {
+              "charges": 1,
+              "work": 90
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 90
+            },
+            "after": {
+              "charges": 1,
+              "work": 130
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "1a2c85226a30cb72caf479a3dbbca7ac62e8b711341ae8990f121aa55652be69",
+      "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "timeline-engine0",
+      "kind": "live",
+      "seconds": 180,
+      "spans": [
+        180
+      ],
+      "yields": 0,
+      "firstYield": null,
+      "lastYield": null,
+      "counts": {
+        "kills": 173,
+        "bossKills": 0,
+        "luminousKills": 5,
+        "ascends": 0,
+        "autoTaps": 180,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 173,
+        "kills": 173,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 0,
+              "work": 3990
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3990
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 30
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 30
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 1,
+            "work": 3410
+          },
+          "after": {
+            "charges": 1,
+            "work": 3430
+          }
+        }
+      },
+      "stateSha256": "574389fdd02ae42e8ffd85b6a53996cffab16587f6772fb55c91a697163b9c36",
+      "timelineSha256": "84efa01f69241e2423feffc9d68b5053affcfdf6d55b3e66cffa78d3a36a0472",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "timeline-engine3",
+      "kind": "live",
+      "seconds": 180,
+      "spans": [
+        180
+      ],
+      "yields": 0,
+      "firstYield": null,
+      "lastYield": null,
+      "counts": {
+        "kills": 173,
+        "bossKills": 0,
+        "luminousKills": 5,
+        "ascends": 0,
+        "autoTaps": 180,
+        "empowers": 0,
+        "researchBought": 0,
+        "studiesStarted": 0,
+        "studySpeedPurchases": 0
+      },
+      "bank": {
+        "calls": 173,
+        "kills": 173,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 0,
+              "work": 3970
+            },
+            "after": {
+              "charges": 1,
+              "work": 10
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 10
+            },
+            "after": {
+              "charges": 1,
+              "work": 50
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 50
+            },
+            "after": {
+              "charges": 1,
+              "work": 90
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 1,
+              "work": 90
+            },
+            "after": {
+              "charges": 1,
+              "work": 130
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 2,
+            "work": 2850
+          },
+          "after": {
+            "charges": 2,
+            "work": 2890
+          }
+        }
+      },
+      "stateSha256": "e26b968075c0c3eb071cdab25cbff6bfd094077ac7b46b7232e99b4abc486677",
+      "timelineSha256": "84efa01f69241e2423feffc9d68b5053affcfdf6d55b3e66cffa78d3a36a0472",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+    },
+    {
+      "id": "saved-called-clean",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+      "fault": "none",
+      "callbacks": 1,
+      "yields": 8,
+      "firstAttempt": {
+        "callbacks": 1,
+        "error": null,
+        "bank": {
+          "calls": 579,
+          "kills": 579,
+          "calledDefeats": 1,
+          "first": [
+            {
+              "count": 1,
+              "marked": true,
+              "before": {
+                "charges": 0,
+                "work": 3970
+              },
+              "after": {
+                "charges": 1,
+                "work": 2
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 2
+              },
+              "after": {
+                "charges": 1,
+                "work": 34
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 34
+              },
+              "after": {
+                "charges": 1,
+                "work": 66
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 66
+              },
+              "after": {
+                "charges": 1,
+                "work": 98
+              }
+            }
+          ],
+          "last": {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        },
+        "yields": 8
+      },
+      "result": {
+        "elapsedSec": 600,
+        "effectiveSec": 600,
+        "earned": 5319.300000000019,
+        "shardEarned": 823.1999999999922,
+        "sigilsEarned": 0,
+        "motesEarned": 54,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 0,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 9,
+        "pushDepth": 11,
+        "kills": 579,
+        "iterations": 2120,
+        "fastForwardedKills": 0
+      },
+      "stateSha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "primarySha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "absent",
+          "starfallcrest": "absent"
+        },
+        "deeds": {
+          "comet_first_command": true,
+          "comet_first_recharge": true,
+          "comet_called_kill": true
+        }
+      }
+    },
+    {
+      "id": "saved-called-primary",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+      "fault": "primary",
+      "callbacks": 2,
+      "yields": 16,
+      "firstAttempt": {
+        "callbacks": 1,
+        "error": {
+          "name": "Error",
+          "message": "Offline progress could not be saved"
+        },
+        "bank": {
+          "calls": 579,
+          "kills": 579,
+          "calledDefeats": 1,
+          "first": [
+            {
+              "count": 1,
+              "marked": true,
+              "before": {
+                "charges": 0,
+                "work": 3970
+              },
+              "after": {
+                "charges": 1,
+                "work": 2
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 2
+              },
+              "after": {
+                "charges": 1,
+                "work": 34
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 34
+              },
+              "after": {
+                "charges": 1,
+                "work": 66
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 66
+              },
+              "after": {
+                "charges": 1,
+                "work": 98
+              }
+            }
+          ],
+          "last": {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        },
+        "yields": 8
+      },
+      "result": {
+        "elapsedSec": 600,
+        "effectiveSec": 600,
+        "earned": 5319.300000000019,
+        "shardEarned": 823.1999999999922,
+        "sigilsEarned": 0,
+        "motesEarned": 54,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 0,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 9,
+        "pushDepth": 11,
+        "kills": 579,
+        "iterations": 2120,
+        "fastForwardedKills": 0
+      },
+      "stateSha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "primarySha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "absent",
+          "starfallcrest": "absent"
+        },
+        "deeds": {
+          "comet_first_command": true,
+          "comet_first_recharge": true,
+          "comet_called_kill": true
+        }
+      }
+    },
+    {
+      "id": "saved-called-recovery",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+      "fault": "recovery",
+      "callbacks": 1,
+      "yields": 8,
+      "firstAttempt": {
+        "callbacks": 1,
+        "error": null,
+        "bank": {
+          "calls": 579,
+          "kills": 579,
+          "calledDefeats": 1,
+          "first": [
+            {
+              "count": 1,
+              "marked": true,
+              "before": {
+                "charges": 0,
+                "work": 3970
+              },
+              "after": {
+                "charges": 1,
+                "work": 2
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 2
+              },
+              "after": {
+                "charges": 1,
+                "work": 34
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 34
+              },
+              "after": {
+                "charges": 1,
+                "work": 66
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 66
+              },
+              "after": {
+                "charges": 1,
+                "work": 98
+              }
+            }
+          ],
+          "last": {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        },
+        "yields": 8
+      },
+      "result": {
+        "elapsedSec": 600,
+        "effectiveSec": 600,
+        "earned": 5319.300000000019,
+        "shardEarned": 823.1999999999922,
+        "sigilsEarned": 0,
+        "motesEarned": 54,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 0,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 9,
+        "pushDepth": 11,
+        "kills": 579,
+        "iterations": 2120,
+        "fastForwardedKills": 0
+      },
+      "stateSha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "primarySha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "absent",
+          "starfallcrest": "absent"
+        },
+        "deeds": {
+          "comet_first_command": true,
+          "comet_first_recharge": true,
+          "comet_called_kill": true
+        }
+      }
+    },
+    {
+      "id": "saved-called-batch31",
+      "sourceSha256": "1e1ecc02468dd121f96551a7cc5f9ab6b19e90703400e4d703c0c86326a02e67",
+      "fault": "none",
+      "callbacks": 1,
+      "yields": 68,
+      "firstAttempt": {
+        "callbacks": 1,
+        "error": null,
+        "bank": {
+          "calls": 579,
+          "kills": 579,
+          "calledDefeats": 1,
+          "first": [
+            {
+              "count": 1,
+              "marked": true,
+              "before": {
+                "charges": 0,
+                "work": 3970
+              },
+              "after": {
+                "charges": 1,
+                "work": 2
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 2
+              },
+              "after": {
+                "charges": 1,
+                "work": 34
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 34
+              },
+              "after": {
+                "charges": 1,
+                "work": 66
+              }
+            },
+            {
+              "count": 1,
+              "marked": false,
+              "before": {
+                "charges": 1,
+                "work": 66
+              },
+              "after": {
+                "charges": 1,
+                "work": 98
+              }
+            }
+          ],
+          "last": {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        },
+        "yields": 68
+      },
+      "result": {
+        "elapsedSec": 600,
+        "effectiveSec": 600,
+        "earned": 5319.300000000019,
+        "shardEarned": 823.1999999999922,
+        "sigilsEarned": 0,
+        "motesEarned": 54,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 0,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 9,
+        "pushDepth": 11,
+        "kills": 579,
+        "iterations": 2120,
+        "fastForwardedKills": 0
+      },
+      "stateSha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "primarySha256": "000ed79e384ff129ae63f762a748ba0ff45a2ab22cecb573c59cba7692f47455",
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "absent",
+          "starfallcrest": "absent"
+        },
+        "deeds": {
+          "comet_first_command": true,
+          "comet_first_recharge": true,
+          "comet_called_kill": true
+        }
+      }
+    },
+    {
+      "id": "offline-auto-ascend-none",
+      "result": {
+        "elapsedSec": 60,
+        "effectiveSec": 60,
+        "earned": 35.699999999999996,
+        "shardEarned": 5.6000000000000005,
+        "sigilsEarned": 0,
+        "motesEarned": 0,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 1,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 5,
+        "pushDepth": 5,
+        "kills": 5,
+        "iterations": 61,
+        "fastForwardedKills": 0
+      },
+      "calls": 1,
+      "transitions": [
+        {
+          "bank": {
+            "charges": 3,
+            "work": 0
+          },
+          "depth": 1,
+          "count": 1e+30
+        }
+      ],
+      "transitionCount": 1,
+      "bank": {
+        "calls": 5,
+        "kills": 5,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 2,
+              "work": 3970
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "1e53b570aac05687eea5a62060adaee527d6e7f65b8fcf04cd0c09f9e686876b"
+    },
+    {
+      "id": "offline-auto-ascend-primary",
+      "result": {
+        "elapsedSec": 60,
+        "effectiveSec": 60,
+        "earned": 35.699999999999996,
+        "shardEarned": 5.6000000000000005,
+        "sigilsEarned": 0,
+        "motesEarned": 0,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 1,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 5,
+        "pushDepth": 5,
+        "kills": 5,
+        "iterations": 61,
+        "fastForwardedKills": 0
+      },
+      "calls": 2,
+      "transitions": [
+        {
+          "bank": {
+            "charges": 3,
+            "work": 0
+          },
+          "depth": 1,
+          "count": 1e+30
+        },
+        {
+          "bank": {
+            "charges": 3,
+            "work": 0
+          },
+          "depth": 1,
+          "count": 1e+30
+        }
+      ],
+      "transitionCount": 2,
+      "bank": {
+        "calls": 10,
+        "kills": 10,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 2,
+              "work": 3970
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "1e53b570aac05687eea5a62060adaee527d6e7f65b8fcf04cd0c09f9e686876b"
+    },
+    {
+      "id": "offline-auto-ascend-recovery",
+      "result": {
+        "elapsedSec": 60,
+        "effectiveSec": 60,
+        "earned": 35.699999999999996,
+        "shardEarned": 5.6000000000000005,
+        "sigilsEarned": 0,
+        "motesEarned": 0,
+        "studySpeedPurchases": 0,
+        "studyMotesSpent": 0,
+        "ascends": 1,
+        "completedStudies": [],
+        "closedStudies": [],
+        "retreated": false,
+        "endDepth": 5,
+        "pushDepth": 5,
+        "kills": 5,
+        "iterations": 61,
+        "fastForwardedKills": 0
+      },
+      "calls": 1,
+      "transitions": [
+        {
+          "bank": {
+            "charges": 3,
+            "work": 0
+          },
+          "depth": 1,
+          "count": 1e+30
+        }
+      ],
+      "transitionCount": 1,
+      "bank": {
+        "calls": 5,
+        "kills": 5,
+        "calledDefeats": 0,
+        "first": [
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 2,
+              "work": 3970
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          },
+          {
+            "count": 1,
+            "marked": false,
+            "before": {
+              "charges": 3,
+              "work": 0
+            },
+            "after": {
+              "charges": 3,
+              "work": 0
+            }
+          }
+        ],
+        "last": {
+          "count": 1,
+          "marked": false,
+          "before": {
+            "charges": 3,
+            "work": 0
+          },
+          "after": {
+            "charges": 3,
+            "work": 0
+          }
+        }
+      },
+      "stateSha256": "1e53b570aac05687eea5a62060adaee527d6e7f65b8fcf04cd0c09f9e686876b"
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "identical-original-event-timeline",
+      "rows": 412,
+      "sha256": "84efa01f69241e2423feffc9d68b5053affcfdf6d55b3e66cffa78d3a36a0472",
+      "first": [
+        {
+          "elapsedSec": 0.875,
+          "type": "autoTap",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 1.625,
+          "type": "enemyDeath",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 1.875,
+          "type": "autoTap",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 2.625,
+          "type": "enemyDeath",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 2.875,
+          "type": "autoTap",
+          "detail": {
+            "count": 1
+          }
+        }
+      ],
+      "last": [
+        {
+          "elapsedSec": 177.875,
+          "type": "ability",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 178.18,
+          "type": "buffExpire",
+          "detail": null
+        },
+        {
+          "elapsedSec": 178.875,
+          "type": "autoTap",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 179.625,
+          "type": "enemyDeath",
+          "detail": {
+            "count": 1
+          }
+        },
+        {
+          "elapsedSec": 179.875,
+          "type": "autoTap",
+          "detail": {
+            "count": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "silent-elapsed",
+      "callback": false,
+      "callbacks": 0,
+      "kills": 0,
+      "bank": {
+        "charges": 0,
+        "work": 1234,
+        "used": true,
+        "called": false,
+        "events": {
+          "firstCommand": true,
+          "firstRecharge": false,
+          "bossStrike": false,
+          "calledKill": false
+        }
+      }
+    },
+    {
+      "id": "silent-elapsed",
+      "callback": false,
+      "callbacks": 0,
+      "kills": 0,
+      "bank": {
+        "charges": 3,
+        "work": 0,
+        "used": true,
+        "called": false,
+        "events": {
+          "firstCommand": true,
+          "firstRecharge": false,
+          "bossStrike": false,
+          "calledKill": false
+        }
+      }
+    },
+    {
+      "id": "silent-elapsed",
+      "callback": true,
+      "callbacks": 1,
+      "kills": 0,
+      "bank": {
+        "charges": 0,
+        "work": 1234,
+        "used": true,
+        "called": false,
+        "events": {
+          "firstCommand": true,
+          "firstRecharge": false,
+          "bossStrike": false,
+          "calledKill": false
+        }
+      }
+    },
+    {
+      "id": "silent-elapsed",
+      "callback": true,
+      "callbacks": 1,
+      "kills": 0,
+      "bank": {
+        "charges": 3,
+        "work": 0,
+        "used": true,
+        "called": false,
+        "events": {
+          "firstCommand": true,
+          "firstRecharge": false,
+          "bossStrike": false,
+          "calledKill": false
+        }
+      }
+    },
+    {
+      "id": "host-processing-replay",
+      "offlineSeconds": 60,
+      "hostCostMs": 600,
+      "liveSeconds": 0.6,
+      "offlineKills": 57,
+      "liveKills": 1,
+      "totalKills": 58,
+      "callbacks": 1,
+      "stateSha256": "8ee75f97fbce057b3ea2054918962dd38b9b58b75614ac86a8859bceb5ad75f5"
+    }
+  ],
+  "negativeControls": [
+    {
+      "id": "elapsed-seconds-are-not-defeat-work",
+      "function": "advanceAuthoritativeTime",
+      "sourceSha256": "08e70df52d7255061d940a71de7b999164c00e46c10b3c7bf4d8b5fbe5cd0265",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "elapsed time alone must not earn work\n\n2434 !== 1234\n"
+      }
+    },
+    {
+      "id": "offline-never-automatically-spends-a-command",
+      "function": "applyOfflineProgress",
+      "sourceSha256": "36648f4920a9589b3b4d6a10d7eaff97fd24b1c0aae3e15807d9898d44489e16",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "elapsed time must not spend or refill command charges\n\n2 !== 3\n"
+      }
+    },
+    {
+      "id": "direct-farm-batch-count-is-required",
+      "function": "simulationBatchFarmKills",
+      "sourceSha256": "4835724b3a408824217834d9d1b45d99b7f466c5f4d753f6d193a7d7105dd318",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "real Farm fast-forward must account for every defeat\n+ actual - expected\n\n  {\n+   charges: 1,\n+   work: 1410\n-   charges: 3,\n-   work: 0\n  }\n"
+      }
+    },
+    {
+      "id": "unsafe-lifetime-counter-does-not-suppress-recharge",
+      "function": "cometRecordDefeats",
+      "sourceSha256": "19f2e8223029fa049aee2c92b7e2d624a45f46d2731781f6af2fdefa5abdbf77",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "actual offline defeats survive a stalled lifetime counter\n+ actual - expected\n\n  {\n+   charges: 0,\n+   work: 3970\n-   charges: 1,\n-   work: 1794\n  }\n"
+      }
+    },
+    {
+      "id": "direct-farm-replacement-clears-called-marker",
+      "function": "simulationBatchFarmKills",
+      "sourceSha256": "b85ffe054bacb4a376af2deedea99171af79d1282a1457cbb95e2101fe236004",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "actual Farm replacement must consume the called marker\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "offline-primary-failure-cannot-publish-working-bank",
+      "function": "applyOfflineProgress",
+      "sourceSha256": "dd7427895547e9d3b70c2eb28a761787487a17a94d90ea6ce85b290400fec90b",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "failed primary must report rejected offline commit"
+      }
+    },
+    {
+      "id": "actual-ascend-does-not-empty-earned-comet-bank",
+      "function": "applyAscendMutation",
+      "sourceSha256": "e3190addbcc6327128ad4c5c439aae86a92598e70220ccf05b99169ba98810dd",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "actual offline Ascend must preserve earned bank\n+ actual - expected\n\n  {\n+   charges: 0,\n+   work: 0\n-   charges: 2,\n-   work: 3990\n  }\n"
+      }
+    }
+  ],
+  "input": {
+    "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\index.html",
+    "bytes": 945602,
+    "sha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-offline.cjs",
+      "bytes": 26308,
+      "sha256": "e927b7c84d62afdf975f9641a938a8b947d1125f3a5b1e8d6f98dc728e5c85b5"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 15922,
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs",
+      "bytes": 58981,
+      "sha256": "aca4c6cfa8cef18e42744b955715a27a257a19996a9024f7eb666f10fa4837c2"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 21885,
+      "sha256": "a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  },
+  "scope": "Actual original scheduler and offline transaction; supplied synthetic storage/clocks/DOM. No native WebView, touch or browser geometry claim."
+}

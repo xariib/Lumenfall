@@ -1,0 +1,30 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "c71f913f9c1fc10615ac372897c81630e407041d0ba6557baef96685eda9757a", "instrumented_sha256": "500cd8e246c1b971c4de97ed357afa7c728aaaf3093b9afd2f8cf9afc228dc4e" }
+FAIL tree-purchase-contract
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 17.07827, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\focused4-pipe-raw\tree-purchase-contract-MFAFQo
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:12:146)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "c71f913f9c1fc10615ac372897c81630e407041d0ba6557baef96685eda9757a", "instrumented_sha256": "500cd8e246c1b971c4de97ed357afa7c728aaaf3093b9afd2f8cf9afc228dc4e" }
+FAIL rift-status-contract
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 11.180890400000001, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\focused4-pipe-raw\rift-status-contract-wWw4LZ
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:12:146)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\browsers\\chromium-1234\\chrome-win64\\chrome.exe", "sha256": "409805a16d6416087e6b2f778df1cf8f7bbb267d6b99f6b5bb0a618eace234f2", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "c71f913f9c1fc10615ac372897c81630e407041d0ba6557baef96685eda9757a", "instrumented_sha256": "500cd8e246c1b971c4de97ed357afa7c728aaaf3093b9afd2f8cf9afc228dc4e" }
+PASS nav-workshop-contract
+Behavioral QA passed: 1 deterministic scenario(s).

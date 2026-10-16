@@ -1,0 +1,426 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: control anchor
+    at C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\wisp-contribution-core.cjs:127:52
+    at Array.forEach (<anonymous>)
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\wisp-contribution-core.cjs:126:150)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '<!DOCTYPE html>\n' +
+    '<html lang="en">\n' +
+    '<head>\n' +
+    '<meta charset="UTF-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">\n' +
+    '<title>Lumenfall</title>\n' +
+    '<meta name="description" content="Lumenfall — an idle RPG where Wisps push deeper into an ever-collapsing Rift. Recruit, empower, and ascend.">\n' +
+    '<meta name="theme-color" content="#1c1730">\n' +
+    '<link rel="stylesheet" href="fonts/fonts.css">\n' +
+    '<style>\n' +
+    '  /* Lumenfall deliberately uses one dark palette, independent of system appearance. */\n' +
+    '  :root{\n' +
+    '    --bg:#0d0f1f;--bg-elev:#161933;--bg-elev-2:#1f2344;\n' +
+    '    --ink:#f0effb;--ink-dim:#b5b4cb;--line:#3b4060;\n' +
+    '    --lumen:#f0c567;--shard:#82d2ec;--mote:#ffb4d5;--prism:#bd9bef;\n' +
+    '    --comet:#5ee6d0;--sigil:#ffa17b;--danger:#ff7b92;--good:#9ed9b1;\n' +
+    '    --shadow:0 1px 2px #0006,0 12px 32px -12px #0009;\n' +
+    '    color-scheme:dark;\n' +
+    '  }\n' +
+    '\n' +
+    '  *{box-sizing:border-box;}\n' +
+    '  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}\n' +
+    '  body{\n' +
+    "    font-family:'Manrope',system-ui,-apple-system,sans-serif;\n" +
+    '    min-height:100vh;\n' +
+    '    overflow-x:hidden;\n' +
+    '    -webkit-tap-highlight-color: transparent;\n' +
+    '  }\n' +
+    "  h1,h2,h3{font-family:'Cinzel',Georgia,serif;text-wrap:balance;margin:0;}\n" +
+    "  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;}\n" +
+    '  button{font-family:inherit;}\n' +
+    '  :focus-visible{outline:2px solid var(--prism);outline-offset:2px;border-radius:4px;}\n' +
+    '\n' +
+    '  canvas#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}\n' +
+    '\n' +
+    '  .shell{\n' +
+    '    position:relative;z-index:1;\n' +
+    '    max-width:460px;margin:0 auto;\n' +
+    '    min-height:100vh;\n' +
+    '    display:flex;flex-direction:column;\n' +
+    '    background:color-mix(in srgb, var(--bg-elev) 88%, transparent);\n' +
+    '    backdrop-filter: blur(6px);\n' +
+    '    border-left:1px solid var(--line);\n' +
+    '    border-right:1px solid var(--line);\n' +
+    '  }\n' +
+    '\n' +
+    '  :root{--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--nav-height:54px;}\n' +
+    '\n' +
+    '  /* ---------- HUD ---------- */\n' +
+    '  .topbar{position:sticky;top:0;z-index:6;}\n' +
+    '  .hud{\n' +
+    '    display:flex;align-items:center;gap:6px;flex-wrap:wrap;\n' +
+    '    padding:10px 12px;\n' +
+    '    background:color-mix(in srgb, var(--bg-elev) 92%, transparent);\n' +
+    '    backdrop-filter: blur(10px);\n' +
+    '    border-bottom:1px solid var(--line);\n' +
+    '  }\n' +
+    '  .chip{\n' +
+    '    display:flex;align-items:center;gap:5px;\n' +
+    '    padding:5px 9px;border-radius:999px;\n' +
+    '    background:var(--bg-elev-2);\n' +
+    '    border:1px solid var(--line);\n' +
+    '    flex:1 1 auto;min-width:0;\n' +
+    '  }\n' +
+    '  .chip .lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-dim);}\n' +
+    '  .chip .val{font-size:.78rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}\n' +
+    '  .glyph-icon{flex:none;width:13px;height:13px;}\n' +
+    '  .hud-title-row{display:flex;align-items:center;width:100%;gap:8px;margin-bottom:2px;}\n' +
+    '  .hud .brand{\n' +
+    "    font-family:'Cinzel',serif;font-weight:700;font-size:1rem;letter-spacing:.02em;\n" +
+    '    color:var(--ink);flex:1;min-width:0;\n' +
+    '  }\n' +
+    '  .settings-btn{\n' +
+    '    width:34px;height:34px;border-radius:10px;border:1px solid var(--line);\n' +
+    '    background:var(--bg-elev-2);color:var(--ink-dim);font-size:1.05rem;\n' +
+    '    display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;\n' +
+    '  }\n' +
+    '  .settings-btn:active{transform:scale(.96);}\n' +
+    '\n' +
+    '  /* ---------- main ---------- */\n' +
+    '  main{flex:1;padding:14px 12px 24px;}\n' +
+    '  .tab-panel{display:none;animation: fade .25s ease;}\n' +
+    '  .tab-panel.active{display:block;}\n' +
+    '  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}\n' +
+    '\n' +
+    '  .card{\n' +
+    '    background:var(--bg-elev-2);\n' +
+    '    border:1px solid var(--line);\n' +
+    '    border-radius:14px;\n' +
+    '    padding:14px;\n' +
+    '    box-shadow:var(--shadow);\n' +
+    '  }\n' +
+    '  .section-label{\n' +
+    '    font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;\n' +
+    '    color:var(--ink-dim);font-weight:700;margin:18px 2px 8px;\n' +
+    '  }\n' +
+    '  .section-label:first-child{margin-top:0;}\n' +
+    '  .section-sub{font-size:.78rem;color:var(--ink-dim);margin:-4px 2px 12px;}\n' +
+    '\n' +
+    '  /* ---------- reusable buy button ---------- */\n' +
+    '  .buy-btn{\n' +
+    '    flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;\n' +
+    '    border:1px solid var(--line);background:var(--bg-elev);border-radius:10px;\n' +
+    '    padding:7px 10px;cursor:pointer;color:var(--ink);min-width:78px;\n' +
+    '  }\n' +
+    '  .buy-btn .cost{font-size:.74rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:2px;}\n' +
+    '  .buy-btn .label{font-size:.6rem;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;}\n' +
+    '  .buy-btn:disabled{opacity:1;cursor:not-allowed;}\n' +
+    '  .lock-note{font-size:.72rem;color:var(--ink-dim);font-style:italic;}\n' +
+    '\n' +
+    '  /* ---------- Battle stage ---------- */\n' +
+    '  .stage{padding:16px 14px;display:flex;flex-direction:column;gap:10px;}\n' +
+    '  .depth-label{font-size:.78rem;color:var(--ink-dim);font-weight:700;letter-spacing:.04em;text-align:center;}\n' +
+    '  .depth-label .boss-tag{color:var(--danger);}\n' +
+    '  .depth-label .region-label{display:block;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}\n' +
+    "  .enemy-name{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;text-align:center;}\n" +
+    '\n' +
+    '  .battle-row{display:flex;gap:10px;align-items:flex-start;}\n' +
+    '  .party-col{width:60px;flex:none;display:flex;flex-direction:column;gap:6px;}\n' +
+    '  .hero-chip{\n' +
+    '    position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;\n' +
+    '    background:var(--bg-elev);border:1px solid var(--line);border-radius:9px;padding:5px 2px 6px;\n' +
+    '  }\n' +
+    '  .hero-chip .shape{width:20px;height:20px;}\n' +
+    '  .chip-bar-track{width:32px;height:3px;border-radius:999px;background:var(--line);overflow:hidden;}\n' +
+    '  .chip-bar-fill{height:100%;width:0%;transition:width .1s linear;}\n' +
+    '  .chip-label{font-size:.5rem;color:var(--ink-dim);font-weight:700;max-width:36px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}\n' +
+    "  .chip-power{font-family:'IBM Plex Mono',monospace;font-size:.5rem;color:var(--ink);font-weight:600;max-width:36px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}\n" +
+    '  .hero-chip.pulse{animation:pulseChip .3s ease;}\n' +
+    '  .hero-chip.unpowered{opacity:.5;}\n' +
+    '  @keyframes pulseChip{0%{transform:scale(1);}50%{transform:scale(1.18);}100%{transform:scale(1);}}\n' +
+    '  .chip-flash{\n' +
+    '    position:absolute;top:-13px;left:50%;transform:translateX(-50%);\n' +
+    '    font-size:.5rem;font-weight:700;white-space:nowrap;pointer-events:none;\n' +
+    '    animation: floatUp .8s ease-out forwards;\n' +
+    '  }\n' +
+    '  .empty-party-note{font-size:.66rem;color:var(--ink-dim);text-align:center;line-height:1.3;padding-top:4px;}\n' +
+    '\n' +
+    '  .enemy-stage-wrap{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;}\n' +
+    '  .enemy-stage{\n' +
+    '    position:relative;width:128px;height:128px;\n' +
+    '    display:flex;align-items:center;justify-content:center;\n' +
+    '    cursor:pointer;user-select:none;touch-action:manipulation;\n' +
+    '  }\n' +
+    '  .enemy-stage::before{\n' +
+    "    content:'';position:absolute;inset:-16px;border-radius:50%;pointer-events:none;\n" +
+    '    background: radial-gradient(circle, color-mix(in srgb, var(--theme-accent, var(--zone-accent, transparent)) 45%, transparent) 0%, transparent 72%);\n' +
+    '  }\n' +
+    '  .enemy-stage.theme-radiant::before{\n' +
+    '    background: conic-gradient(from 0deg, var(--lumen), var(--shard), var(--mote), var(--prism), var(--comet), var(--sigil), var(--lumen));\n' +
+    '    opacity:.4;filter:blur(4px);\n' +
+    '  }\n' +
+    '  .enemy-glyph{\n' +
+    '    width:92px;height:92px;\n' +
+    '    background: linear-gradient(160deg, var(--danger), color-mix(in srgb, var(--danger) 60%, #3a1030));\n' +
+    '    border-radius: 63% 37% 54% 46% / 43% 47% 53% 57%;\n' +
+    '    box-shadow: 0 0 40px -6px color-mix(in srgb, var(--danger) 60%, transparent);\n' +
+    '    transition: transform .08s ease;\n' +
+    '  }\n' +
+    '  .enemy-glyph.boss{\n' +
+    '    border-radius:0;\n' +
+    '    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);\n' +
+    '    width:104px;height:104px;\n' +
+    '  }\n' +
+    '  .enemy-glyph.luminous{\n' +
+    '    box-shadow: 0 0 46px 8px color-mix(in srgb, var(--mote) 65%, transparent);\n' +
+    '    filter: brightness(1.18) saturate(1.1);\n' +
+    '  }\n' +
+    '  .enemy-stage.hit .enemy-glyph{transform:scale(.9) rotate(-2deg);}\n' +
+    '  .hp-wrap{width:100%;}\n' +
+    '  .hp-bar-track{height:9px;border-radius:999px;background:var(--bg-elev-2);border:1px solid var(--line);overflow:hidden;}\n' +
+    '  .hp-bar-fill{height:100%;background:linear-gradient(90deg, var(--danger), color-mix(in srgb, var(--danger) 70%, #ffb56b));width:100%;transition:width .12s linear;}\n' +
+    '  .hp-text{font-size:.68rem;color:var(--ink-dim);margin-top:4px;text-align:center;}\n' +
+    '  .boss-regen-tag{font-size:.66rem;color:var(--good);font-weight:700;text-align:center;margin-top:4px;}\n' +
+    '  .boss-regen-tag.insufficient{color:var(--danger);}\n' +
+    '  .buff-indicator{font-size:.72rem;color:var(--good);font-weight:700;text-align:center;}\n' +
+    '  .float-num{\n' +
+    '    position:absolute;left:50%;top:20%;transform:translateX(-50%);\n' +
+    "    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.82rem;\n" +
+    '    color:var(--lumen);pointer-events:none;\n' +
+    '    animation: floatUp .7s ease-out forwards;\n' +
+    '  }\n' +
+    '  @keyframes floatUp{\n' +
+    '    0%{opacity:1;transform:translate(-50%,0);}\n' +
+    '    100%{opacity:0;transform:translate(-50%,-44px);}\n' +
+    '  }\n' +
+    '  .tap-hint{font-size:.7rem;color:var(--ink-dim);text-align:center;}\n' +
+    '  .stat-row{display:flex;gap:8px;width:100%;}\n' +
+    '  .stat-box{flex:1;background:var(--bg-elev-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;text-align:left;}\n' +
+    '  .stat-box .k{font-size:.63rem;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.05em;}\n' +
+    '  .stat-box .v{font-size:.88rem;font-weight:600;margin-top:2px;}\n' +
+    '  .rift-mode-row{display:flex;gap:7px;width:100%;align-items:center;}\n' +
+    '  .rift-mode-btn{\n' +
+    '    flex:1;border:1px solid var(--line);background:var(--bg-elev);color:var(--ink-dim);\n' +
+    '    border-radius:9px;padding:7px 8px;font-size:.68rem;font-weight:800;cursor:pointer;\n' +
+    '  }\n' +
+    '  .rift-mode-btn.active{border-color:var(--lumen);color:var(--lumen);background:color-mix(in srgb,var(--lumen) 10%,var(--bg-elev));}\n' +
+    '  .rift-mode-btn:disabled{opacity:1;cursor:not-allowed;}\n' +
+    '  .rift-mode-note{font-size:.66rem;color:var(--ink-dim);text-align:center;line-height:1.4;margin-top:-3px;}\n' +
+    '\n' +
+    '  /* ---------- shapes ---------- */\n' +
+    '  .shape{'... 934875 more characters,
+  expected: '<!DOCTYPE html>\n' +
+    '<html lang="en">\n' +
+    '<head>\n' +
+    '<meta charset="UTF-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">\n' +
+    '<title>Lumenfall</title>\n' +
+    '<meta name="description" content="Lumenfall — an idle RPG where Wisps push deeper into an ever-collapsing Rift. Recruit, empower, and ascend.">\n' +
+    '<meta name="theme-color" content="#1c1730">\n' +
+    '<link rel="stylesheet" href="fonts/fonts.css">\n' +
+    '<style>\n' +
+    '  /* Lumenfall deliberately uses one dark palette, independent of system appearance. */\n' +
+    '  :root{\n' +
+    '    --bg:#0d0f1f;--bg-elev:#161933;--bg-elev-2:#1f2344;\n' +
+    '    --ink:#f0effb;--ink-dim:#b5b4cb;--line:#3b4060;\n' +
+    '    --lumen:#f0c567;--shard:#82d2ec;--mote:#ffb4d5;--prism:#bd9bef;\n' +
+    '    --comet:#5ee6d0;--sigil:#ffa17b;--danger:#ff7b92;--good:#9ed9b1;\n' +
+    '    --shadow:0 1px 2px #0006,0 12px 32px -12px #0009;\n' +
+    '    color-scheme:dark;\n' +
+    '  }\n' +
+    '\n' +
+    '  *{box-sizing:border-box;}\n' +
+    '  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}\n' +
+    '  body{\n' +
+    "    font-family:'Manrope',system-ui,-apple-system,sans-serif;\n" +
+    '    min-height:100vh;\n' +
+    '    overflow-x:hidden;\n' +
+    '    -webkit-tap-highlight-color: transparent;\n' +
+    '  }\n' +
+    "  h1,h2,h3{font-family:'Cinzel',Georgia,serif;text-wrap:balance;margin:0;}\n" +
+    "  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;}\n" +
+    '  button{font-family:inherit;}\n' +
+    '  :focus-visible{outline:2px solid var(--prism);outline-offset:2px;border-radius:4px;}\n' +
+    '\n' +
+    '  canvas#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}\n' +
+    '\n' +
+    '  .shell{\n' +
+    '    position:relative;z-index:1;\n' +
+    '    max-width:460px;margin:0 auto;\n' +
+    '    min-height:100vh;\n' +
+    '    display:flex;flex-direction:column;\n' +
+    '    background:color-mix(in srgb, var(--bg-elev) 88%, transparent);\n' +
+    '    backdrop-filter: blur(6px);\n' +
+    '    border-left:1px solid var(--line);\n' +
+    '    border-right:1px solid var(--line);\n' +
+    '  }\n' +
+    '\n' +
+    '  :root{--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--nav-height:54px;}\n' +
+    '\n' +
+    '  /* ---------- HUD ---------- */\n' +
+    '  .topbar{position:sticky;top:0;z-index:6;}\n' +
+    '  .hud{\n' +
+    '    display:flex;align-items:center;gap:6px;flex-wrap:wrap;\n' +
+    '    padding:10px 12px;\n' +
+    '    background:color-mix(in srgb, var(--bg-elev) 92%, transparent);\n' +
+    '    backdrop-filter: blur(10px);\n' +
+    '    border-bottom:1px solid var(--line);\n' +
+    '  }\n' +
+    '  .chip{\n' +
+    '    display:flex;align-items:center;gap:5px;\n' +
+    '    padding:5px 9px;border-radius:999px;\n' +
+    '    background:var(--bg-elev-2);\n' +
+    '    border:1px solid var(--line);\n' +
+    '    flex:1 1 auto;min-width:0;\n' +
+    '  }\n' +
+    '  .chip .lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-dim);}\n' +
+    '  .chip .val{font-size:.78rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}\n' +
+    '  .glyph-icon{flex:none;width:13px;height:13px;}\n' +
+    '  .hud-title-row{display:flex;align-items:center;width:100%;gap:8px;margin-bottom:2px;}\n' +
+    '  .hud .brand{\n' +
+    "    font-family:'Cinzel',serif;font-weight:700;font-size:1rem;letter-spacing:.02em;\n" +
+    '    color:var(--ink);flex:1;min-width:0;\n' +
+    '  }\n' +
+    '  .settings-btn{\n' +
+    '    width:34px;height:34px;border-radius:10px;border:1px solid var(--line);\n' +
+    '    background:var(--bg-elev-2);color:var(--ink-dim);font-size:1.05rem;\n' +
+    '    display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;\n' +
+    '  }\n' +
+    '  .settings-btn:active{transform:scale(.96);}\n' +
+    '\n' +
+    '  /* ---------- main ---------- */\n' +
+    '  main{flex:1;padding:14px 12px 24px;}\n' +
+    '  .tab-panel{display:none;animation: fade .25s ease;}\n' +
+    '  .tab-panel.active{display:block;}\n' +
+    '  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}\n' +
+    '\n' +
+    '  .card{\n' +
+    '    background:var(--bg-elev-2);\n' +
+    '    border:1px solid var(--line);\n' +
+    '    border-radius:14px;\n' +
+    '    padding:14px;\n' +
+    '    box-shadow:var(--shadow);\n' +
+    '  }\n' +
+    '  .section-label{\n' +
+    '    font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;\n' +
+    '    color:var(--ink-dim);font-weight:700;margin:18px 2px 8px;\n' +
+    '  }\n' +
+    '  .section-label:first-child{margin-top:0;}\n' +
+    '  .section-sub{font-size:.78rem;color:var(--ink-dim);margin:-4px 2px 12px;}\n' +
+    '\n' +
+    '  /* ---------- reusable buy button ---------- */\n' +
+    '  .buy-btn{\n' +
+    '    flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;\n' +
+    '    border:1px solid var(--line);background:var(--bg-elev);border-radius:10px;\n' +
+    '    padding:7px 10px;cursor:pointer;color:var(--ink);min-width:78px;\n' +
+    '  }\n' +
+    '  .buy-btn .cost{font-size:.74rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:2px;}\n' +
+    '  .buy-btn .label{font-size:.6rem;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;}\n' +
+    '  .buy-btn:disabled{opacity:1;cursor:not-allowed;}\n' +
+    '  .lock-note{font-size:.72rem;color:var(--ink-dim);font-style:italic;}\n' +
+    '\n' +
+    '  /* ---------- Battle stage ---------- */\n' +
+    '  .stage{padding:16px 14px;display:flex;flex-direction:column;gap:10px;}\n' +
+    '  .depth-label{font-size:.78rem;color:var(--ink-dim);font-weight:700;letter-spacing:.04em;text-align:center;}\n' +
+    '  .depth-label .boss-tag{color:var(--danger);}\n' +
+    '  .depth-label .region-label{display:block;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}\n' +
+    "  .enemy-name{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;text-align:center;}\n" +
+    '\n' +
+    '  .battle-row{display:flex;gap:10px;align-items:flex-start;}\n' +
+    '  .party-col{width:60px;flex:none;display:flex;flex-direction:column;gap:6px;}\n' +
+    '  .hero-chip{\n' +
+    '    position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;\n' +
+    '    background:var(--bg-elev);border:1px solid var(--line);border-radius:9px;padding:5px 2px 6px;\n' +
+    '  }\n' +
+    '  .hero-chip .shape{width:20px;height:20px;}\n' +
+    '  .chip-bar-track{width:32px;height:3px;border-radius:999px;background:var(--line);overflow:hidden;}\n' +
+    '  .chip-bar-fill{height:100%;width:0%;transition:width .1s linear;}\n' +
+    '  .chip-label{font-size:.5rem;color:var(--ink-dim);font-weight:700;max-width:36px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}\n' +
+    "  .chip-power{font-family:'IBM Plex Mono',monospace;font-size:.5rem;color:var(--ink);font-weight:600;max-width:36px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}\n" +
+    '  .hero-chip.pulse{animation:pulseChip .3s ease;}\n' +
+    '  .hero-chip.unpowered{opacity:.5;}\n' +
+    '  @keyframes pulseChip{0%{transform:scale(1);}50%{transform:scale(1.18);}100%{transform:scale(1);}}\n' +
+    '  .chip-flash{\n' +
+    '    position:absolute;top:-13px;left:50%;transform:translateX(-50%);\n' +
+    '    font-size:.5rem;font-weight:700;white-space:nowrap;pointer-events:none;\n' +
+    '    animation: floatUp .8s ease-out forwards;\n' +
+    '  }\n' +
+    '  .empty-party-note{font-size:.66rem;color:var(--ink-dim);text-align:center;line-height:1.3;padding-top:4px;}\n' +
+    '\n' +
+    '  .enemy-stage-wrap{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;}\n' +
+    '  .enemy-stage{\n' +
+    '    position:relative;width:128px;height:128px;\n' +
+    '    display:flex;align-items:center;justify-content:center;\n' +
+    '    cursor:pointer;user-select:none;touch-action:manipulation;\n' +
+    '  }\n' +
+    '  .enemy-stage::before{\n' +
+    "    content:'';position:absolute;inset:-16px;border-radius:50%;pointer-events:none;\n" +
+    '    background: radial-gradient(circle, color-mix(in srgb, var(--theme-accent, var(--zone-accent, transparent)) 45%, transparent) 0%, transparent 72%);\n' +
+    '  }\n' +
+    '  .enemy-stage.theme-radiant::before{\n' +
+    '    background: conic-gradient(from 0deg, var(--lumen), var(--shard), var(--mote), var(--prism), var(--comet), var(--sigil), var(--lumen));\n' +
+    '    opacity:.4;filter:blur(4px);\n' +
+    '  }\n' +
+    '  .enemy-glyph{\n' +
+    '    width:92px;height:92px;\n' +
+    '    background: linear-gradient(160deg, var(--danger), color-mix(in srgb, var(--danger) 60%, #3a1030));\n' +
+    '    border-radius: 63% 37% 54% 46% / 43% 47% 53% 57%;\n' +
+    '    box-shadow: 0 0 40px -6px color-mix(in srgb, var(--danger) 60%, transparent);\n' +
+    '    transition: transform .08s ease;\n' +
+    '  }\n' +
+    '  .enemy-glyph.boss{\n' +
+    '    border-radius:0;\n' +
+    '    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);\n' +
+    '    width:104px;height:104px;\n' +
+    '  }\n' +
+    '  .enemy-glyph.luminous{\n' +
+    '    box-shadow: 0 0 46px 8px color-mix(in srgb, var(--mote) 65%, transparent);\n' +
+    '    filter: brightness(1.18) saturate(1.1);\n' +
+    '  }\n' +
+    '  .enemy-stage.hit .enemy-glyph{transform:scale(.9) rotate(-2deg);}\n' +
+    '  .hp-wrap{width:100%;}\n' +
+    '  .hp-bar-track{height:9px;border-radius:999px;background:var(--bg-elev-2);border:1px solid var(--line);overflow:hidden;}\n' +
+    '  .hp-bar-fill{height:100%;background:linear-gradient(90deg, var(--danger), color-mix(in srgb, var(--danger) 70%, #ffb56b));width:100%;transition:width .12s linear;}\n' +
+    '  .hp-text{font-size:.68rem;color:var(--ink-dim);margin-top:4px;text-align:center;}\n' +
+    '  .boss-regen-tag{font-size:.66rem;color:var(--good);font-weight:700;text-align:center;margin-top:4px;}\n' +
+    '  .boss-regen-tag.insufficient{color:var(--danger);}\n' +
+    '  .buff-indicator{font-size:.72rem;color:var(--good);font-weight:700;text-align:center;}\n' +
+    '  .float-num{\n' +
+    '    position:absolute;left:50%;top:20%;transform:translateX(-50%);\n' +
+    "    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.82rem;\n" +
+    '    color:var(--lumen);pointer-events:none;\n' +
+    '    animation: floatUp .7s ease-out forwards;\n' +
+    '  }\n' +
+    '  @keyframes floatUp{\n' +
+    '    0%{opacity:1;transform:translate(-50%,0);}\n' +
+    '    100%{opacity:0;transform:translate(-50%,-44px);}\n' +
+    '  }\n' +
+    '  .tap-hint{font-size:.7rem;color:var(--ink-dim);text-align:center;}\n' +
+    '  .stat-row{display:flex;gap:8px;width:100%;}\n' +
+    '  .stat-box{flex:1;background:var(--bg-elev-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;text-align:left;}\n' +
+    '  .stat-box .k{font-size:.63rem;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.05em;}\n' +
+    '  .stat-box .v{font-size:.88rem;font-weight:600;margin-top:2px;}\n' +
+    '  .rift-mode-row{display:flex;gap:7px;width:100%;align-items:center;}\n' +
+    '  .rift-mode-btn{\n' +
+    '    flex:1;border:1px solid var(--line);background:var(--bg-elev);color:var(--ink-dim);\n' +
+    '    border-radius:9px;padding:7px 8px;font-size:.68rem;font-weight:800;cursor:pointer;\n' +
+    '  }\n' +
+    '  .rift-mode-btn.active{border-color:var(--lumen);color:var(--lumen);background:color-mix(in srgb,var(--lumen) 10%,var(--bg-elev));}\n' +
+    '  .rift-mode-btn:disabled{opacity:1;cursor:not-allowed;}\n' +
+    '  .rift-mode-note{font-size:.66rem;color:var(--ink-dim);text-align:center;line-height:1.4;margin-top:-3px;}\n' +
+    '\n' +
+    '  /* ---------- shapes ---------- */\n' +
+    '  .shape{'... 934875 more characters,
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -1,0 +1,88 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5", "instrumented_sha256": "6bd8848f0a54c538814a957e092df6bd2daac401876b281b9da0b17e1f38f7ea" }
+FAIL forge-balance
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 12.3167746, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\chrome140-current-raw\forge-balance-nKJmIt
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:12:146)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+Behavioral QA failed: forge-balance null
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5", "instrumented_sha256": "6bd8848f0a54c538814a957e092df6bd2daac401876b281b9da0b17e1f38f7ea" }
+FAIL p2-06b-live-feedback
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 6.9474595, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "p2-06b-live-feedback", "json_status": "fail", "json_scenario": "p2-06b-live-feedback", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "real live tick defeats intended enemy 10 -> 10", "stack": "Error: real live tick defeats intended enemy 10 -> 10\n    at assert (http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:16867:61)\n    at http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:15164:5\n    at Array.forEach (<anonymous>)\n    at window.runP206FeedbackQa (http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:15157:9)\n    at HTMLDocument.run (http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&qaFixture=fresh:17514:32)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\chrome140-current-raw\p2-06b-live-feedback-hh8XGo
+  stdout tail:
+onomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="p2-06b-live-feedback">{
+  "scenario": "p2-06b-live-feedback",
+  "status": "fail",
+  "detail": {
+    "message": "real live tick defeats intended enemy 10 -&gt; 10",
+    "stack": "Error: real live tick defeats intended enemy 10 -&gt; 10\n    at assert (http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&amp;qaFixture=fresh:16867:61)\n    at http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&amp;qaFixture=fresh:15164:5\n    at Array.forEach (&lt;anonymous&gt;)\n    at window.runP206FeedbackQa (http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&amp;qaFixture=fresh:15157:9)\n    at HTMLDocument.run (http://127.0.0.1:56908/index.html?qaScenario=p2-06b-live-feedback&amp;qaFixture=fresh:17514:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: p2-06b-live-feedback null
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5", "instrumented_sha256": "6bd8848f0a54c538814a957e092df6bd2daac401876b281b9da0b17e1f38f7ea" }
+FAIL rift-status-contract
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 22.4959218, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\chrome140-current-raw\rift-status-contract-rVItKi
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:12:146)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+Behavioral QA failed: rift-status-contract null
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5", "instrumented_sha256": "6bd8848f0a54c538814a957e092df6bd2daac401876b281b9da0b17e1f38f7ea" }
+PASS support-backup-restore
+  detail: { "route": "support-backup-restore", "sources": { "version": 1, "sources": { "tide": { "until": 2052471612345.625, "mult": 1.25 }, "aurora": { "until": 2052471609234.375, "mult": 1.5 } } }, "legacy": { "until": 2052471608000, "mult": 1.8 } }
+Behavioral QA passed: 1 deterministic scenario(s).
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "7176c104f908ce3f58d0813f46e1e41c095709bd72c068f3838bde16ee80b8a5", "instrumented_sha256": "6bd8848f0a54c538814a957e092df6bd2daac401876b281b9da0b17e1f38f7ea" }
+PASS support-resume
+  detail: { "coldResumeSeconds": 15, "expiredSources": { "version": 1, "sources": {} }, "schema": 5 }
+Behavioral QA passed: 1 deterministic scenario(s).

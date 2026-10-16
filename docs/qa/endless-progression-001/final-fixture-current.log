@@ -1,0 +1,29 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "440a7efdf28ebbeba538bd8237c9f0d74ee4e0d49667b2320a458cb0a2169b22", "instrumented_sha256": "e0004ffaef566e9d341f5c39e278607f9587c3eae117eb318408978f6aeacdd1" }
+PASS lifecycle-partial-enemy
+Behavioral QA passed: 1 deterministic scenario(s).
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "440a7efdf28ebbeba538bd8237c9f0d74ee4e0d49667b2320a458cb0a2169b22", "instrumented_sha256": "e0004ffaef566e9d341f5c39e278607f9587c3eae117eb318408978f6aeacdd1" }
+FAIL parity-boss-retry
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 5.7289519, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "parity-boss-retry", "json_status": "fail", "json_scenario": "parity-boss-retry", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "offline 2600s _autoEmpowerAccum parity mismatch (expected 0.0000012708565727548304, got 2.6834090505190034e-10, tolerance 0.000001) | diagnostics={\"reference\":{\"enemyHp\":905.9599999749497,\"clockEndMs\":2000002600000,\"autoTapAccum\":0,\"autoEmpowerAccum\":0.0000012708565727548304,\"heroResource\":{\"ember\":33.33333335451429,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"passiveDps\":19.72,\"sustainedDps\":36.153333333333336,\"abilityCycleSec\":6},\"direct\":{\"enemyHp\":905.9599999999932,\"clockEndMs\":2000002600000,\"autoTapAccum\":0,\"autoEmpowerAccum\":2.6834090505190034e-10,\"heroResource\":{\"ember\":33.333333333337805,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"passiveDps\":19.72,\"sustainedDps\":36.153333333333336,\"abilityCycleSec\":6},\"boundaryProbes\":[],\"firstCheckpointDivergence\":null,\"firstEventDivergence\":null}", "stack": "Error: offline 2600s _autoEmpowerAccum parity mismatch (expected 0.0000012708565727548304, got 2.6834090505190034e-10, tolerance 0.000001)\n    at parityApprox (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:16894:13)\n    at http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:16919:7\n    at Array.forEach (<anonymous>)\n    at assertProtectedParity (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:16918:122)\n    at runParityPair (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:16957:7)\n    at HTMLDocument.run (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&qaFixture=parity-boss-retry:17870:27)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\final-fixture-current-raw\parity-boss-retry-6l7aAK
+  stdout tail:
+
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="parity-boss-retry">{
+  "scenario": "parity-boss-retry",
+  "status": "fail",
+  "detail": {
+    "message": "offline 2600s _autoEmpowerAccum parity mismatch (expected 0.0000012708565727548304, got 2.6834090505190034e-10, tolerance 0.000001) | diagnostics={\"reference\":{\"enemyHp\":905.9599999749497,\"clockEndMs\":2000002600000,\"autoTapAccum\":0,\"autoEmpowerAccum\":0.0000012708565727548304,\"heroResource\":{\"ember\":33.33333335451429,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"passiveDps\":19.72,\"sustainedDps\":36.153333333333336,\"abilityCycleSec\":6},\"direct\":{\"enemyHp\":905.9599999999932,\"clockEndMs\":2000002600000,\"autoTapAccum\":0,\"autoEmpowerAccum\":2.6834090505190034e-10,\"heroResource\":{\"ember\":33.333333333337805,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"passiveDps\":19.72,\"sustainedDps\":36.153333333333336,\"abilityCycleSec\":6},\"boundaryProbes\":[],\"firstCheckpointDivergence\":null,\"firstEventDivergence\":null}",
+    "stack": "Error: offline 2600s _autoEmpowerAccum parity mismatch (expected 0.0000012708565727548304, got 2.6834090505190034e-10, tolerance 0.000001)\n    at parityApprox (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&amp;qaFixture=parity-boss-retry:16894:13)\n    at http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&amp;qaFixture=parity-boss-retry:16919:7\n    at Array.forEach (&lt;anonymous&gt;)\n    at assertProtectedParity (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&amp;qaFixture=parity-boss-retry:16918:122)\n    at runParityPair (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&amp;qaFixture=parity-boss-retry:16957:7)\n    at HTMLDocument.run (http://127.0.0.1:64412/index.html?qaScenario=parity-boss-retry&amp;qaFixture=parity-boss-retry:17870:27)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: parity-boss-retry null

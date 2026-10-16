@@ -1,0 +1,52 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "fd9a0dd81845976e5e03094ea1cadfd155ad8c484be883f41af1688c5042aad3", "instrumented_sha256": "de432bf740169fa24ebdde06bff71c6237075a5f3ece89f150adac5bbd64650b" }
+FAIL self-test-upgrade-identity-clock
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 3.681274, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-upgrade-identity-clock", "json_status": "fail", "json_scenario": "self-test-upgrade-identity-clock", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: "Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":3,\"elapsedWholeSec\":3,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":57,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":3,\"riftMode\":\"farm\",\"candidates\":{\"ability\":1,\"autoTap\":1,\"autoEmpower\":1,\"study\":87,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}"
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lf-aj-identity\self-test-upgrade-identity-clock-dVnaGO
+  stdout tail:
+      }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-upgrade-identity-clock">{
+  "scenario": "self-test-upgrade-identity-clock",
+  "status": "fail",
+  "detail": "Authoritative simulation stalled without elapsed-time or state progress | {\"elapsedInRun\":3,\"elapsedWholeSec\":3,\"elapsedFractionSec\":0,\"elapsedSec\":60,\"remaining\":57,\"stepSec\":5.551115123125783e-17,\"farmGridRemainingSec\":1,\"farmGridCrossings\":3,\"riftMode\":\"farm\",\"candidates\":{\"ability\":1,\"autoTap\":1,\"autoEmpower\":1,\"study\":87,\"bossRetreatGrace\":null,\"farmGrid\":5.551115123125783e-17,\"economy\":null},\"kinds\":[\"farmGrid\"]}",
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: self-test-upgrade-identity-clock null

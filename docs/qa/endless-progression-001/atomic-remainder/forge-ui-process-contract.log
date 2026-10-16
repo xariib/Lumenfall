@@ -1,0 +1,20 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56", "instrumented_sha256": "1877bed989a2855674d9e984225d4fc2e7fa03f9f26fd3f7960f7fd88237b6f9" }
+  process control valid-pass (expected true):
+    PASS valid-pass
+      process: { "exitcode": 0, "timed_out": false, "stderr": "" }
+      detail: { "status": "pass" }
+  process control pass-nonzero (expected false):
+    FAIL pass-nonzero
+      process: { "exitcode": 7, "timed_out": false, "stderr": "intentional exit 7\n" }
+      detail: { "status": "pass" }
+  process control invalid-json (expected false):
+    FAIL invalid-json
+      process: { "exitcode": 0, "timed_out": false, "stderr": "invalid payload evidence\n" }
+      detail: { "status": "fail", "message": "Invalid driver JSON: Unexpected token 'o', \"not JSON\n\" is not valid JSON", "stdout": "not JSON\n" }
+  process control timeout (expected false):
+    FAIL timeout
+      process: { "exitcode": null, "timed_out": true, "stderr": "pending process evidence\n" }
+      detail: { "status": "pass" }
+PASS forge-ui-process-contract
+Behavioral QA passed: 1 deterministic scenario(s).

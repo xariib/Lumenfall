@@ -1,0 +1,219 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5", "instrumented_sha256": "46c2a86d06c7d1f1f096a9a424cd5be202ab7620540a8efa82eb721636d9d095" }
+FAIL rift-status-contract
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 28.0819775, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "pass", "qa_scenario": "rift-status-contract", "json_status": "pass", "json_scenario": "rift-status-contract", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "checks": 1738, "guidanceLines": [ { "phase": "Recruit-ready / render", "kind": "WISP READY", "hidden": false, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "100%" }, { "phase": "Recruit-ready / fast rerender", "kind": "WISP READY", "hidden": false, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "100%" }, { "phase": "Recruit-ready / hidden", "kind": "WISP READY", "hidden": true, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "100%" }, { "phase": "Recruit-ready / hidden rerender", "kind": "WISP READY", "hidden": true, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "100%" }, { "phase": "Recruit-ready / restored", "kind": "WISP READY", "hidden": false, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "100%" }, { "phase": "Recruit-ready / restored rerender", "kind": "WISP READY", "hidden": false, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "100%" }, { "phase": "Upcoming unlock / render", "kind": "WISP", "hidden": false, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "10%" }, { "phase": "Upcoming unlock / fast rerender", "kind": "WISP", "hidden": false, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "10%" }, { "phase": "Upcoming unlock / hidden", "kind": "WISP", "hidden": true, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "10%" }, { "phase": "Upcoming unlock / hidden rerender", "kind": "WISP", "hidden": true, "content": "none", "width": "auto", "height": "auto", "background": "none", "shadow": "none", "progress": "10%" }, { "phase": "Upcoming u
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\transport-current-raw\rift-status-contract-WkuRMX
+  Chromium stderr tail:
+Error: browser close deadline
+    at Timeout.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:36:201)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+  stdout tail:
+ds": {
+          "x": 9.930000305175781,
+          "y": 13.569999694824219,
+          "width": 138.32000732421875,
+          "height": 131.95001220703125
+        }
+      },
+      {
+        "id": "wisp-ember",
+        "canvas": 64,
+        "painted": 11,
+        "bounds": {
+          "x": 5,
+          "y": 4,
+          "width": 51.50113296508789,
+          "height": 55.25578308105469
+        }
+      },
+      {
+        "id": "wisp-tide",
+        "canvas": 64,
+        "painted": 9,
+        "bounds": {
+          "x": 6,
+          "y": 4,
+          "width": 49.040000915527344,
+          "height": 56
+        }
+      },
+      {
+        "id": "wisp-stone",
+        "canvas": 64,
+        "painted": 16,
+        "bounds": {
+          "x": 6,
+          "y": 5,
+          "width": 53,
+          "height": 55
+        }
+      },
+      {
+        "id": "wisp-gale",
+        "canvas": 64,
+        "painted": 12,
+        "bounds": {
+          "x": 4,
+          "y": 6,
+          "width": 56,
+          "height": 54
+        }
+      },
+      {
+        "id": "wisp-thorn",
+        "canvas": 64,
+        "painted": 12,
+        "bounds": {
+          "x": 6.698991775512695,
+          "y": 5,
+          "width": 52.30101013183594,
+          "height": 56
+        }
+      },
+      {
+        "id": "wisp-void",
+        "canvas": 64,
+        "painted": 12,
+        "bounds": {
+          "x": 3,
+          "y": 3,
+          "width": 56,
+          "height": 58
+        }
+      },
+      {
+        "id": "wisp-aurora",
+        "canvas": 64,
+        "painted": 14,
+        "bounds": {
+          "x": 4,
+          "y": 6.375,
+          "width": 56,
+          "height": 53.625
+        }
+      },
+      {
+        "id": "wisp-titan",
+        "canvas": 64,
+        "painted": 16,
+        "bounds": {
+          "x": 5,
+          "y": 3,
+          "width": 54,
+          "height": 58
+        }
+      }
+    ],
+    "traitRims": [
+      "#99d9a3",
+      "#cb9eff",
+      "#e7b964"
+    ]
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: rift-status-contract null
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "0ac99ebbf110dc38b61c3724f90516d0ef417339ab4e90891115257bb1aec5b5", "instrumented_sha256": "46c2a86d06c7d1f1f096a9a424cd5be202ab7620540a8efa82eb721636d9d095" }
+FAIL forge-balance
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 25.639364099999998, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "pass", "qa_scenario": "forge-balance", "json_status": "pass", "json_scenario": "forge-balance", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "checks": 36, "records": [ { "fixture": "mid-game", "mode": "manual", "kind": "live", "seconds": 600, "manualPurchaseSec": 60, "start": { "depth": 17, "lumen": 12500, "shards": 420 }, "manualBuys": { "arcanecal": 1, "conduction": 0, "luminoustracking": 0 }, "manualCosts": { "lumen": 15000, "shards": 120 }, "research": { "focus": 4, "sense": 3, "formation": 2, "resolve": 2, "charge": 1, "arcanecal": 1, "conduction": 0, "luminoustracking": 0, "masterwork": 0, "cauterize": 0, "fracturekey": 0, "guardianseal": 0, "spillway": 0, "sustainedchannel": 0, "tapconduit": 0, "guardiancadence": 0, "relay": 0, "resonantedge": 0, "victorycharge": 0, "amplifiertrim": 0, "dualchannel": 0, "overflowconduit": 0, "resonancecells": 0, "resonancecascade": 0, "resonancereclaim": 0 }, "spent": { "lumen": 0, "shards": 0, "resetLumen": 0, "researchLevels": 0, "studyStarts": 0, "forge": { "lumen": 0, "shards": 0 } }, "kills": 53, "depth": 70, "motes": 34, "remaining": { "lumen": 148817, "shards": 7475 }, "formation": null, "active": [ "ember", "tide", "stone" ], "causalAudit": { "retries": 0, "ascends": 0, "purchases": 0, "rebuildPurchases": 0, "deaths": 53 } }, { "fixture": "mid-game", "mode": "manual", "kind": "offline", "seconds": 600, "manualPurchaseSec": 60, "start": { "depth": 17, "lumen": 12500, "shards": 420 }, "manualBuys": { "arcanecal": 1, "conduction": 0, "luminoustracking": 0 }, "manualCosts": { "lumen": 15000, "shards": 120 }, "research": { "focus": 4, "sense": 3, "formation": 2, "resolve": 2, "charge": 1, "arcanecal": 1, "conduction": 0, "luminoustracking": 0, "masterwork": 0, "cauterize": 0, "fracturekey": 0, "guardianseal": 0, "spillway": 0, "sustainedchannel": 0, "tapconduit": 0, "guardiancadence": 0, "relay": 0, "resonantedge": 0, "victorycharge": 0, "amplifiertrim": 0, "dualchannel": 0, "overflowconduit": 0, "resonancecells": 0, "resonancecascade": 0, "resonancereclaim": 0 }, "spent": { "lumen": 0, "shards": 0, "resetLumen": 0, "researchLevels": 0, "studyStarts": 0, "for
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\transport-current-raw\forge-balance-FfINwx
+  Chromium stderr tail:
+Error: browser close deadline
+    at Timeout.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:36:201)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+  stdout tail:
+nualPurchaseSec": null,
+        "start": {
+          "depth": 95,
+          "lumen": 987654321,
+          "shards": 3512970
+        },
+        "manualBuys": {},
+        "manualCosts": {
+          "lumen": 0,
+          "shards": 0
+        },
+        "research": {
+          "focus": 24,
+          "sense": 22,
+          "formation": 20,
+          "resolve": 18,
+          "charge": 16,
+          "arcanecal": 20,
+          "conduction": 18,
+          "luminoustracking": 10,
+          "masterwork": 0,
+          "cauterize": 0,
+          "fracturekey": 0,
+          "guardianseal": 0,
+          "spillway": 0,
+          "sustainedchannel": 0,
+          "tapconduit": 0,
+          "guardiancadence": 0,
+          "relay": 0,
+          "resonantedge": 0,
+          "victorycharge": 0,
+          "amplifiertrim": 0,
+          "dualchannel": 0,
+          "overflowconduit": 0,
+          "resonancecells": 0,
+          "resonancecascade": 0,
+          "resonancereclaim": 0
+        },
+        "spent": {
+          "lumen": 1754074528,
+          "shards": 4913635,
+          "resetLumen": 80396960.00000007,
+          "researchLevels": 48,
+          "studyStarts": 2,
+          "forge": {
+            "lumen": 1464374633,
+            "shards": 4893358
+          }
+        },
+        "kills": 241,
+        "depth": 78,
+        "motes": 993,
+        "remaining": {
+          "lumen": 2522056.6,
+          "shards": 10326258.000000006
+        },
+        "formation": {
+          "members": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "void"
+          ],
+          "preset": "push"
+        },
+        "active": [
+          "ember",
+          "tide",
+          "stone",
+          "gale"
+        ],
+        "causalAudit": {
+          "retries": 0,
+          "ascends": 2,
+          "purchases": 593,
+          "rebuildPurchases": 7,
+          "deaths": 241
+        }
+      }
+    ],
+    "realPaidSimulation": true
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: forge-balance null

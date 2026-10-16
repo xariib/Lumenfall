@@ -49,3 +49,6 @@ docs/qa/ascend-prisms-001/combined-controls/** -text whitespace=-trailing-space
 # Preserve original endless-progression browser receipts, including CRLF.
 docs/qa/endless-progression-001/*.log -text whitespace=-trailing-space
 docs/qa/endless-progression-001/final-core-group/*.log -text whitespace=-trailing-space
+
+# Synthetic QA log receipts preserve original bytes.
+*.log -text whitespace=-trailing-space

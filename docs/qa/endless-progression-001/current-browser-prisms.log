@@ -1,0 +1,14 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "70a6fdfd4efa84c8ea6eb03438886454e9ff59b366615a75f26bd370fed2c773", "instrumented_sha256": "5882ac3a32cc5b0688aa9294b3edaed7e910d3bfe9d1439e7b194cf4b502a0ee" }
+FAIL ascend-prisms-contract
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 23.918195, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\prism-source-raw\ascend-prisms-contract-lcjtj2
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\browser-dom.cjs:12:146)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+Behavioral QA failed: ascend-prisms-contract null

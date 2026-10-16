@@ -1,0 +1,25 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: first actual affordable batch must match predicted boundary: [{"profile":{"depth":79,"echo":3,"at":0,"lum":5,"first":false,"acc":0.999998,"target":7,"project":"motestudy","level":80,"binding":"both","ulp":0},"wallet":{"L":13977769766091458,"S":1397776976615933.2},"cost":{"lumen":13977769766220876,"shard":1397776976622088},"predicted":8,"atPrediction":{"n":8,"enough":true,"started":1,"reason":"","wallet":{"L":"139777697662370528e-1","S":1397776976622857.2},"reward":{"L":145594.8,"S":6924.1}},"previous":{"n":7,"enough":true,"started":0,"reason":"unaffordable","wallet":{"L":"1397776976622087559999999999e-11","S":1397776976622088},"reward":{"L":129417.59999999999,"S":6154.85}},"next":{"n":9,"enough":true,"started":1,"reason":"","wallet":{"L":"1397776976625323e1","S":1397776976623626.5},"reward":{"L":161772,"S":7693.35}}},{"profile":{"depth":149,"echo":5,"at":1,"lum":5,"first":true,"acc":0.3,"target":7,"project":"motestudy","level":80,"binding":"both","ulp":0},"wallet":{"L":13977769723388640,"S":1397776975844870.8},"cost":{"lumen":13977769766220876,"shard":1397776976622088},"predicted":8,"atPrediction":{"n":8,"enough":true,"started":1,"reason":"","wallet":{"L":"1397776977125996175e-2","S":1397776976713525.2},"reward":{"L":47871321.75,"S":868654.5}},"previous":{"n":7,"enough":true,"started":0,"reason":"unaffordable","wallet":{"L":"1397776976622087525e-2","S":1397776976622088},"reward":{"L":42832235.25,"S":777217.3500000001}},"next":{"n":9,"enough":true,"started":1,"reason":"","wallet":{"L":"1397776977629904825e-2","S":1397776976804962.5},"reward":{"L":52910408.25,"S":960091.6500000001}}},{"profile":{"depth":9,"echo":2,"at":1,"lum":10,"first":true,"acc":0.999998,"target":1,"project":"motestudy","level":80,"binding":"both","ulp":0},"wallet":{"L":13977769766220852,"S":1397776976622084.5},"cost":{"lumen":13977769766220876,"shard":1397776976622088},"predicted":2,"atPrediction":{"n":2,"enough":true,"started":1,"reason":"","wallet":{"L":"139777697662208988e-1","S":1397776976622091.8},"reward":{"L":46.8,"S":7.199999999999999}},"previous":{"n":1,"enough":true,"started":0,"reason":"unaffordable","wallet":{"L":"139777697662208754e-1","S":1397776976622088},"reward":{"L":23.4,"S":3.5999999999999996}},"next":{"n":3,"enough":true,"started":1,"reason":"","wallet":{"L":"1397776976622091049999999999999e-14","S":1397776976622093.5},"reward":{"L":58.49999999999999,"S":9}}},{"profile":{"depth":79,"echo":6,"at":2,"lum":10,"first":false,"acc":0.3,"target":1000,"project":"motestudy","level":80,"binding":"lumen","ulp":0},"wallet":{"L":13977769739499948,"S":1397776976622088},"cost":{"lumen":13977769766220876,"shard":1397776976622088},"predicted":1001,"atPrediction":{"n":1001,"enough":true,"started":1,"reason":"","wallet":{"L":"139777697662437144e-1","S":1397776977893794},"reward":{"L":26743766.4,"S":1271706}},"previous":{"n":1000,"enough":true,"started":0,"reason":"unaffordable","wallet":{"L":"13977769766220875999999996e-9","S":1397776977892708},"reward":{"L":26720927.999999996,"S":1270620}},"next":{"n":1002,"enough":true,"started":1,"reason":"","wallet":{"L":"13977769766266552799999997e-9","S":1397776977894880},"reward":{"L":26766604.799999997,"S":1272792}}}]
+
+6 !== 0
+
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\lab-expansion-stress.cjs:75:8)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 6,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

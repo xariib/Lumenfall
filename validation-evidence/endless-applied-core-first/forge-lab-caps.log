@@ -1,0 +1,68 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: no Forge ID removed or replaced
++ actual - expected
+... Skipped lines
+
+  [
+    'focus',
+    'sense',
+    'formation',
+    'resolve',
+...
+    'luminoustracking',
++   'masterwork',
+    'cauterize',
+    'fracturekey',
+    'guardianseal',
+    'spillway',
+    'sustainedchannel',
+
+    at eq (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-lab-caps.cjs:15:51)
+    at verify (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-lab-caps.cjs:20:3)
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-lab-caps.cjs:132:14)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'focus',            'sense',
+    'formation',        'resolve',
+    'charge',           'arcanecal',
+    'conduction',       'luminoustracking',
+    'masterwork',       'cauterize',
+    'fracturekey',      'guardianseal',
+    'spillway',         'sustainedchannel',
+    'tapconduit',       'guardiancadence',
+    'relay',            'resonantedge',
+    'victorycharge',    'amplifiertrim',
+    'dualchannel',      'overflowconduit',
+    'resonancecells',   'resonancecascade',
+    'resonancereclaim'
+  ],
+  expected: [
+    'focus',            'sense',
+    'formation',        'resolve',
+    'charge',           'arcanecal',
+    'conduction',       'luminoustracking',
+    'cauterize',        'fracturekey',
+    'guardianseal',     'spillway',
+    'sustainedchannel', 'tapconduit',
+    'guardiancadence',  'relay',
+    'resonantedge',     'victorycharge',
+    'amplifiertrim',    'dualchannel',
+    'overflowconduit',  'resonancecells',
+    'resonancecascade', 'resonancereclaim'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

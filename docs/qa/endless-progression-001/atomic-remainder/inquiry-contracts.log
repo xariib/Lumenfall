@@ -1,0 +1,49 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "0cbe643ec5ce1d47c4834284e7a647ab8fc86d2695f96c60d270dd5366e54b56", "instrumented_sha256": "420ca378d210d034964ce6a79bee6092de46cf27db882a93e478d4903255b23c" }
+FAIL inquiry-contracts
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.9011147999999998, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "inquiry-contracts", "json_status": "fail", "json_scenario": "inquiry-contracts", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "actual debit wispascend", "stack": "Error: actual debit wispascend\n    at assert (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16886:61)\n    at ok (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16259:29)\n    at http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16309:30\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16303:31\n    at Array.forEach (<anonymous>)\n    at window.runInquiryQa (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:16302:14)\n    at HTMLDocument.run (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&qaFixture=fresh:17426:30)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\atomic-remainder\raw\inquiry-contracts-MMWNhs
+  stdout tail:
+/ Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="inquiry-contracts">{
+  "scenario": "inquiry-contracts",
+  "status": "fail",
+  "detail": {
+    "message": "actual debit wispascend",
+    "stack": "Error: actual debit wispascend\n    at assert (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&amp;qaFixture=fresh:16886:61)\n    at ok (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&amp;qaFixture=fresh:16259:29)\n    at http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&amp;qaFixture=fresh:16309:30\n    at Array.forEach (&lt;anonymous&gt;)\n    at http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&amp;qaFixture=fresh:16303:31\n    at Array.forEach (&lt;anonymous&gt;)\n    at window.runInquiryQa (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&amp;qaFixture=fresh:16302:14)\n    at HTMLDocument.run (http://127.0.0.1:49805/index.html?qaScenario=inquiry-contracts&amp;qaFixture=fresh:17426:30)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: inquiry-contracts null
