@@ -34,8 +34,8 @@ assert(start>0&&end>start,'one existing mobile profile body');
 const cases=String.raw`
   const samples=[],queueSamples=[];
   const added=['cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
-  const activeIds=['charge','arcanecal','conduction','luminoustracking'].concat(added);
-  const expectedPrices=[[0,30],[15000,120],[90000,280],[2500000,1500],[36000,2500],[103000,6000],[293000,14500],[2361000,80500],[6703000,191000],[61000,4000],[174000,9500],[493000,22000],[831000,34000],[1401000,52500],[2361000,80500],[1401000,52500],[3978000,124000],[19032000,452500],[54040000,1071500],[153442000,2536500]];
+  const activeIds=['charge','arcanecal','conduction','luminoustracking','masterwork'].concat(added);
+  const expectedPrices=[[0,30],[15000,120],[90000,280],[2500000,1500],[1000001,25000],[36000,2500],[103000,6000],[293000,14500],[2361000,80500],[6703000,191000],[61000,4000],[174000,9500],[493000,22000],[831000,34000],[1401000,52500],[2361000,80500],[1401000,52500],[3978000,124000],[19032000,452500],[54040000,1071500],[153442000,2536500]];
   // Approved native effect text at 0, 1 and cap, independent of the product's
   // effect/preview formatters. A correct model with stale rendered values fails.
   const nativeEffects=[
@@ -83,12 +83,12 @@ const cases=String.raw`
   }.toString()+')()');ok(!m.overflow&&!m.bad.length,'Forge fit '+JSON.stringify({width,scale,motion,label,measurement:m}));}
   const seed=await ev('prismQa.forgeSeed()');let paid=copy(seed);await install(seed);
   const nodes=(await ev('prismQa.forgeNodes()')).filter(n=>!n.retiredTo);
-  ok(JSON.stringify(nodes.map(n=>n.id))===JSON.stringify(activeIds),'twenty approved active IDs in order');
+  ok(JSON.stringify(nodes.map(n=>n.id))===JSON.stringify(activeIds),'twenty-one approved active IDs in order');
   const catalog=await ev("({ids:Array.from(document.querySelectorAll('#research-list [data-forge-card]')).map(function(e){return e.dataset.forgeCard;}),groups:Array.from(document.querySelectorAll('#research-list [data-forge-group]')).map(function(e){return e.textContent.trim();}),legacy:document.querySelectorAll('[data-legacy-upgrade]').length})");
-  ok(JSON.stringify(catalog.ids)===JSON.stringify(activeIds),'all twenty rendered cards in order');
+  ok(JSON.stringify(catalog.ids)===JSON.stringify(activeIds),'all twenty-one rendered cards in order');
   ok(catalog.groups.join(',')==='Core,Boss craft,Rhythm,Resources,Resonance','five explicit Forge groups');ok(catalog.legacy===0,'retired shop rows stay absent');
   const groupCounts=await ev("(function(){var counts=[],at=-1;document.querySelectorAll('#research-list [data-forge-group],#research-list [data-forge-card]').forEach(function(e){if(e.hasAttribute('data-forge-group')){at++;counts[at]=0;}else counts[at]++;});return counts;})()");
-  ok(JSON.stringify(groupCounts)==='[4,5,6,2,3]','exact active row count in each group');catalog.groupCounts=groupCounts;
+  ok(JSON.stringify(groupCounts)==='[5,5,6,2,3]','exact active row count in each group');catalog.groupCounts=groupCounts;
   await fit('full catalogue');
   const renderBefore=await ev('JSON.stringify(prismQa.get())');await ev('prismQa.forgeRender();prismQa.forgeRender()');ok(await ev('JSON.stringify(prismQa.get())')===renderBefore,'full catalog rendering is pure');
   const locked=copy(seed);locked.maxDepthEver=1;locked.depth=locked.enemyDepth=1;await install(locked);
@@ -100,7 +100,7 @@ const cases=String.raw`
    ok(plan.cost.lumen===expectedPrices[row][0]&&plan.cost.shard===expectedPrices[row][1],'independent approved first price '+id);
    const text=await ev('document.querySelector('+JSON.stringify(card)+').textContent');
    ok(text.includes(d.name)&&text.includes(d.desc)&&text.includes('Current:')&&text.includes('Next:')&&text.includes('Purchase impact:'),'native name/effect/current/next/purchase preview '+id);
-   const native=row>=4?nativeEffects[row-4]:null;
+   const native=row>=5?nativeEffects[row-5]:null;
    if(native)ok(await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent')==='Current: '+native[0]+'\nNext: '+native[1]+' (preview only)\nPurchase impact: 1 level(s) · '+native[1],'independent native 0/1/purchase text '+id);
    async function wallet(L,S,label){
     await ev('prismQa.forgeWallet({lumen:'+L+',shards:'+S+'})');const before=await ev('JSON.stringify(prismQa.get())');await ev('prismQa.forgeRefresh()');ok(await ev('JSON.stringify(prismQa.get())')===before,'affordability refresh pure '+id+' '+label);

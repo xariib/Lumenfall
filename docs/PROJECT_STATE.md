@@ -12,14 +12,16 @@ UI and the previously combined Forge/Lab/Tree/Comet/save/offline work.
 [continuation](qa/endless-progression-001/experiments/CONTINUATION.md),
 [requirements](qa/endless-progression-001/REQUIREMENTS.md) and
 [late guidance evidence](qa/endless-progression-001/LATE_GUIDANCE.md) retain
-source-qualified results. Product SHA2569cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8.
+source-qualified results. Original product9cdcd80c is preserved in history. Migration adds only the native
+Comet scrolling CSS fix; current SHA256bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21.
+[Exact preservation proof](qa/repository-migration-001/product-preservation.json).
 
 Original signing identity has been [recovered and verified](qa/endless-progression-001/signing-recovery/README.md).
 Package com.lumenfall.app and existing Capacitor/save identity must be preserved.
 The old repository run counter cannot determine new Android versions by itself.
 
 Inherited full G4 run:215PASS/five deadlines; isolated retries pass. Required
-Linux CI, historical Guidance baseline and Android installed-update/device/
+Linux CI, combined acceptance and Android installed-update/device/
 WebView60/TalkBack/human acceptance remain open. Desktop evidence is not native
 acceptance. Self-review only. Other feature chats/worktrees remain unchanged.
 

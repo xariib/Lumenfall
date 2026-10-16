@@ -11,7 +11,7 @@ var m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(h,
 var app=m.exports.app,seed=m.exports.seed,clone=m.exports.clone,x=app(source),q=x.q,defs=q.expansion();
 eq(defs.length,14,'fourteen projects');eq(q.projects().filter(function(n){return !n.retiredTo;}).length,20,'twenty active projects');
 defs.forEach(function(d){
- [0,1,d.levelCap-1].forEach(function(l){var s=seed(q);s.longStudyLevels[d.id]=l;q.set(s);var p=q.plan(d.id),L=Math.round(d.lumenBase*Math.pow(d.lumenGrowth,l)),S=Math.round(d.shardBase*Math.pow(d.shardGrowth,l)),D=Math.round(Math.min(777600,d.baseDurationSec*Math.pow(d.durationGrowth,l)));
+ [0,1,d.levelCap-1].forEach(function(l){var s=seed(q);s.longStudyLevels[d.id]=l;q.set(s);var p=q.plan(d.id),L=Math.round(d.lumenBase*Math.pow(d.lumenGrowth,l)),S=Math.round(d.shardBase*Math.pow(d.shardGrowth,l)),D=Math.round(Math.min(864000,d.baseDurationSec*Math.pow(d.durationGrowth,l)));
  eq(p.cost,{lumen:L,shard:S},'price '+d.id+'/'+l);eq(p.duration,D,'work '+d.id+'/'+l);eq(q.start(d.id),true,'start');eq(q.get().longStudyLevels[d.id],l,'no early effect');eq(q.get().lumen,s.lumen-L,'debit');eq(q.get().shards,s.shards-S,'Shard debit');q.finish(D);eq(q.get().longStudyLevels[d.id],l+1,'earned once');q.finish(D);eq(q.get().longStudyLevels[d.id],l+1,'no repeat');q.save();writes+=2;eq(app(source,x.storage).q.get().longStudyLevels[d.id],l+1,'cold save');eq(q.accept(q.decode(q.export())),q.get(),'backup roundtrip');});
  var s=seed(q);s.longStudyLevels[d.id]=d.levelCap+10;q.set(s);eq(q.level(d.id),d.levelCap,'effective cap');eq(q.start(d.id),false,'cap no debit');eq(q.get().longStudyLevels[d.id],d.levelCap+10,'raw paid level retained');
 });

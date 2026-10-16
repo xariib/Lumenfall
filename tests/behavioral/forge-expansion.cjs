@@ -547,7 +547,7 @@ function unsafeRunCase(html,a,route) {
   if(summary){a.eq(summary.ascends,1,'unsafe counter still performs actual authoritative Ascend');a.eq(summary.bossKills,1,'unsafe run fixture actually kills its source boss');}
   a.eq(after.depth,1,'unsafe run really resets depth '+route);a.eq(after.totalKills,before.totalKills+(route==='manual'?0:1),'unsafe run has only the intended source kill');
   a.eq(after.prisms,before.prisms+prismReward(20,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),'unsafe run actual independent Prism payout');
-  a.eq(after.ascendCount,1e30,'unsafe raw Ascend counter retained');a.eq([after.enemyHp,after.enemyMaxHp],[69,69],'unsafe run blocks old Spillway damage '+route);
+  a.eq(integerAmount(after.ascendCount),BigInt(before.ascendCount)+1n,'unsafe historical Ascend counter advances exactly once');a.eq([after.enemyHp,after.enemyMaxHp],[69,69],'unsafe run blocks old Spillway damage '+route);
   Object.keys(after.heroResource).forEach(id=>a.eq(after.heroResource[id],0,'unsafe run blocks old charge/time credit '+route+'/'+id));
   a.eq(after.supportBuffs,null,'unsafe run clears old Support cast');a.eq(after.sigilResonanceUses,0,'unsafe run resets shared uses');a.eq(after.research,before.research,'unsafe run preserves all paid Forge levels');
   a.eq(Object.keys(q.accept(after)).sort(),Object.keys(q.accept(before)).sort(),'runtime run identity adds no persisted field');
@@ -568,12 +568,12 @@ function unsafeRunCases(html,a) {
 function oldRunGuards(source,passiveOnly) {
   const changes=passiveOnly?[
     ['var runBeforePassive = ascendRunToken;','var runBeforePassive = state.ascendCount;'],
-    ['if(ascendRunToken===runBeforePassive){','if(state.ascendCount===runBeforePassive){']
+    ['if(ascendRunToken===runBeforePassive){','if(true){']
   ]:[
     ['run=ascendRunToken','run=state.ascendCount'],
-    ['ascendRunToken===run &&','state.ascendCount===run &&'],
-    ['ascendRunToken===run)','state.ascendCount===run)'],
-    ['grant.run===ascendRunToken','grant.run===state.ascendCount']
+    ['ascendRunToken===run &&','true &&'],
+    ['ascendRunToken===run)','true)'],
+    ['grant.run===ascendRunToken','true']
   ];
   for(const [from,to] of changes){assert(source.includes(from),'negative targets observed run guard '+from);source=source.split(from).join(to);}
   return source;
@@ -644,8 +644,8 @@ function negativeCases(html) {
   reject('paid-relay-lost-on-real-ascend',()=>ascendCases(html,assertions(),true),'manual retains research');
   reject('finite-burst-false-wall',()=>controllerCases(html,assertions(),true),'finite remaining burst prevents automatic wall retreat');
   reject('unsafe-counter-normal-cadence-average',()=>unsafeCounterCases(html,assertions(),true),'HUD recognizes stagnant cadence ordinal');
-  reject('unsafe-count-as-forge-run-identity',()=>unsafeRunCase(oldRunGuards(html,false),assertions(),'support-live'),'unsafe run blocks old Spillway damage');
-  reject('unsafe-count-as-passive-run-identity',()=>unsafeRunCase(oldRunGuards(html,true),assertions(),'passive-live'),'unsafe run blocks old charge/time credit');
+  reject('removed-forge-run-identity-guard',()=>unsafeRunCase(oldRunGuards(html,false),assertions(),'support-live'),'unsafe run blocks old Spillway damage');
+  reject('removed-passive-run-identity-guard',()=>unsafeRunCase(oldRunGuards(html,true),assertions(),'passive-live'),'unsafe run blocks old charge/time credit');
   return killed;
 }
 

@@ -1,0 +1,1431 @@
+comet	Actual defeat recharge offline chronology and Auto-Ascend	﻿2026-10-16T10:30:12.2416005Z ##[group]Run set -euo pipefail
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:12.2416190Z ^[[36;1mset -euo pipefail^[[0m
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:12.2416583Z ^[[36;1mnode tests/behavioral/comet-expansion-offline.cjs index.html --negative 2>&1 | tee comet-validation/offline.log^[[0m
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:12.2480336Z shell: /usr/bin/bash -e {0}
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:12.2480437Z ##[endgroup]
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9834104Z {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9834717Z   "status": "FAIL",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9835225Z   "checks": 33876,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9835685Z   "groups": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9836101Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9836936Z       "name": "fixed-world live/offline, split and cursor chronology with every real kill owner",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9837833Z       "status": "PASS",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9838232Z       "checks": 19225
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9838622Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9839020Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9839634Z       "name": "elapsed time is neither a command nor a defeat",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9840331Z       "status": "PASS",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9840769Z       "checks": 20
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9841320Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9841561Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9842243Z       "name": "saved Call, private offline work, primary rollback/retry and recovery-only commit",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9843118Z       "status": "PASS",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9843860Z       "checks": 14600
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9844317Z     }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9844711Z   ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9844994Z   "runs": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9845194Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9845430Z       "id": "live-unsplit",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9845711Z       "kind": "live",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9845953Z       "seconds": 600.125,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9846300Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9846684Z         600.125
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9847147Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9847534Z       "yields": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9847960Z       "firstYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9848751Z       "lastYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9849224Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9849625Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9850071Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9850776Z         "luminousKills": 17,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9851269Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9851690Z         "autoTaps": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9852163Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9852621Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9853132Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9854070Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9854632Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9855055Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9855491Z         "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9855909Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9856402Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9856810Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9857186Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9857569Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9858000Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9858470Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9858851Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9859259Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9859625Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9859944Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9860294Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9860702Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9861060Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9861405Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9861759Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9862091Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9862484Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9862926Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9863300Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9874198Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9874680Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9875118Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9875628Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9876165Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9876671Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9877096Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9877534Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9877961Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9878836Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9879384Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9879865Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9880370Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9880866Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9881296Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9881782Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9882319Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9882774Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9883209Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9883775Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9884192Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9884663Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9885094Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9885520Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9885963Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9886364Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9886760Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9887242Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9887740Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9888208Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9888610Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9888996Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9889395Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9889846Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9890296Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9890766Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9891248Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9891733Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9892182Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9892568Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9893028Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9893694Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9894072Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9894375Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9894695Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9895539Z       "stateSha256": "42a4a6139a36aa17130f625a8f4a235b67778c3a8110a4652c534094ae78a81f",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9897210Z       "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9898651Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9899584Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9899991Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9900478Z       "id": "live-split-cursor",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9901041Z       "kind": "live",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9901541Z       "seconds": 600.125,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9902049Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9902482Z         13,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9902932Z         187,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9903327Z         200,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9904040Z         200.125
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9904487Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9905170Z       "yields": 6,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9905767Z       "firstYield": 85.625,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9906346Z       "lastYield": 544.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9911433Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9911970Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9912500Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9913034Z         "luminousKills": 17,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9913801Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9914221Z         "autoTaps": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9914643Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9914951Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9915283Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9915647Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9915960Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9916215Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9916478Z         "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9916738Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9917019Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9917317Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9917575Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9917819Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9918115Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9918414Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9918706Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9918963Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9919188Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9919390Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9919610Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9920072Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9920315Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9920513Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9920697Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9920887Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9924469Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9924990Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9925403Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9925830Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9926232Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9926579Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9926974Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9927388Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9927776Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9928114Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9928445Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9928788Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9929190Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9929612Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9929998Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9930421Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9930805Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9931151Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9931537Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9931952Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9932349Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9932691Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9933022Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9933365Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9933988Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9934426Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9934822Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9935228Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9935613Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9935965Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9936364Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9936769Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9937379Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9937706Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9938017Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9938334Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9938691Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9939064Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9939454Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9939818Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9940190Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9940537Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9940863Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9941217Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9941598Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9941934Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9942236Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9942536Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9943210Z       "stateSha256": "42a4a6139a36aa17130f625a8f4a235b67778c3a8110a4652c534094ae78a81f",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9944579Z       "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9945776Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9946494Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9946863Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9947313Z       "id": "live-engine3-same-world",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9947790Z       "kind": "live",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9948172Z       "seconds": 600.125,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9948568Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9948915Z         600.125
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9949246Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9949571Z       "yields": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9949936Z       "firstYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9950341Z       "lastYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9950728Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9951085Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9951458Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9951857Z         "luminousKills": 17,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9952272Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9952643Z         "autoTaps": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9953029Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9953423Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9954051Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9954532Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9954953Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9955477Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9955833Z         "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9956194Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9956564Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9956949Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9957274Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9957475Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9957703Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9957940Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9958158Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9958386Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9958607Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9958804Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9959046Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9959278Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9959499Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9959746Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9959960Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9960155Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9960585Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9961003Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9961386Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9961793Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9962173Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9962511Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9962900Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9963326Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9963971Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9964299Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9964595Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9964791Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9965016Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9965249Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9965471Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9965705Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9965927Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9966126Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9966534Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9966764Z               "work": 90
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9966984Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9967183Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9967369Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9967563Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9967783Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9968016Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9968233Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9968464Z               "work": 90
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9968673Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9968870Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9969090Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9969317Z               "work": 130
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9969533Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9969728Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9969911Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9970098Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9970304Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9970523Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9970758Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9970976Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9971205Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9971414Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9971606Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9971824Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9972044Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9972248Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9972440Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9972619Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9973033Z       "stateSha256": "35deeec1f4c1c09d970453e3144b2b2ddba9de25fc99f079d467c5853aef9e1b",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9973993Z       "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9974661Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9975083Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9975267Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9975491Z       "id": "offline-unsplit",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9975751Z       "kind": "offline",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9975995Z       "seconds": 600.125,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9976221Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9976425Z         600.125
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9976629Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9976965Z       "yields": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9977181Z       "firstYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9977413Z       "lastYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9977635Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9977845Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9978083Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9978320Z         "luminousKills": 17,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9978558Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9978777Z         "autoTaps": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9979001Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9979226Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9979476Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9979751Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9979994Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9980180Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9980380Z         "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9980595Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9980816Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9981058Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9981256Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9981458Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9981683Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9981919Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9982138Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9982378Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9982599Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9982800Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9983020Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9983249Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9998078Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9998518Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9998859Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9999189Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9999540Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:13.9999794Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0000017Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0000452Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0000686Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0000895Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0001122Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0001366Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0001580Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0001770Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0001951Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0002144Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0002366Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0002602Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0002819Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0003047Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0003260Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0003462Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0003969Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0004206Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0004419Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0004609Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0004791Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0004977Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0005206Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0005435Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0005647Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0005875Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0006091Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0006285Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0006501Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0006722Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0006934Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0007120Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0007301Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0007482Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0007686Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0007905Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0008127Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0008341Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0008558Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0008766Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0008954Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0009170Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0009396Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0009594Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0009776Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0009953Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0010498Z       "stateSha256": "3583750e38af8b12c2775b66b3bfa683fa63a4e5d179124d0874cdc28282706f",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0011192Z       "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0011848Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0012260Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0012442Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0012680Z       "id": "offline-split-cursor",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0012965Z       "kind": "offline",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0013201Z       "seconds": 600.125,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0013442Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0013942Z         13,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0014267Z         187,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0014478Z         200,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0014668Z         200.125
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0014872Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0015069Z       "yields": 6,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0015286Z       "firstYield": 85.625,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0015527Z       "lastYield": 544.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0015764Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0015979Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0016211Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0016447Z         "luminousKills": 17,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0016688Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0016913Z         "autoTaps": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0017139Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0017365Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0017611Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0017892Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0018137Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0018321Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0018522Z         "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0018730Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0018947Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0019191Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0019395Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0019738Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0019975Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0020205Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0020430Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0020663Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0020887Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0021084Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0021299Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0021523Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0021743Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0021938Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0022131Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0022324Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0022546Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0022777Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0022992Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0023227Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0023454Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0023907Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0024129Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0024367Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0024585Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0024778Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0024981Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0025173Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0025393Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0025623Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0025838Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0026065Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0026277Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0026479Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0026688Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0026907Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0027118Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0027305Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0027486Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0027688Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0027907Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0028137Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0028352Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0028583Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0028798Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0028999Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0029394Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0029616Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0029827Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0030013Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0030195Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0030384Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0030594Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0030808Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0031041Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0031255Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0031477Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0031677Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0031870Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0032090Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0032309Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0032510Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0032696Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0032879Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0033285Z       "stateSha256": "3583750e38af8b12c2775b66b3bfa683fa63a4e5d179124d0874cdc28282706f",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0034197Z       "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0034852Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0035262Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0035443Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0035679Z       "id": "offline-engine3-same-world",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0035973Z       "kind": "offline",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0036196Z       "seconds": 600.125,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0036415Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0036611Z         600.125
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0036798Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0036986Z       "yields": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0037196Z       "firstYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0037430Z       "lastYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0037647Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0037849Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0038063Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0038419Z         "luminousKills": 17,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0038653Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0038871Z         "autoTaps": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0039096Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0039319Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0039562Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0039828Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0040069Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0040253Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0040456Z         "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0040678Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0040898Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0041129Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0041324Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0041517Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0041744Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0041972Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0042189Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0042418Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0042642Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0042836Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0043057Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0043290Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0043750Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0043965Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0044151Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0044341Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0044567Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0044797Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0045012Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0045235Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0045441Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0045637Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0045849Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0046078Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0046285Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0046493Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0046678Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0046900Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0047118Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0047362Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0047579Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0047802Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0048173Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0048367Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0048580Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0048800Z               "work": 90
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0049012Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0049198Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0049383Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0049575Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0049796Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0050024Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0050241Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0050465Z               "work": 90
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0050682Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0050879Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0051090Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0051312Z               "work": 130
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0051537Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0051723Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0051907Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0052097Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0052307Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0052519Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0052744Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0052959Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0053185Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0053391Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0053832Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0054051Z             "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0054270Z             "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0054474Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0054656Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0054836Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0055236Z       "stateSha256": "a2eecde8c47567b377240164e89afc8bdccf91ca564ca9a102f3b0d62466e0f0",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0055899Z       "timelineSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0056554Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0057121Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0057308Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0057532Z       "id": "timeline-engine0",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0057800Z       "kind": "live",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0058014Z       "seconds": 180,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0058223Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0058424Z         180
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0058606Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0058790Z       "yields": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0059005Z       "firstYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0059238Z       "lastYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0059465Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0059673Z         "kills": 173,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0059886Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0060117Z         "luminousKills": 5,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0060351Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0060560Z         "autoTaps": 180,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0060780Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0061005Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0061279Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0061551Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0061800Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0061984Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0062194Z         "calls": 173,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0062407Z         "kills": 173,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0062627Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0062858Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0063051Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0063241Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0063461Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0063944Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0064173Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0064399Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0064617Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0064812Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0065022Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0065249Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0065466Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0065658Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0065849Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0066038Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0066253Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0066482Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0066839Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0067079Z               "work": 3990
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0067299Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0067495Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0067709Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0067937Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0068151Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0068344Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0068529Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0068716Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0068934Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0069167Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0069382Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0069608Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0069835Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0070030Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0070250Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0070477Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0070689Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0070878Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0071079Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0071271Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0071490Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0071723Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0071938Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0072163Z               "work": 30
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0072374Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0072571Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0072784Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0073005Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0073212Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0073395Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0073784Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0073982Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0074188Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0074404Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0074628Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0074977Z             "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0075204Z             "work": 3410
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0075423Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0075619Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0075833Z             "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0076054Z             "work": 3430
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0076265Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0076452Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0076633Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0077059Z       "stateSha256": "0664acb3dcbe0da8978f57c7985edfb9b9609bf0b81a883049f5d83a81d7196e",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0077738Z       "timelineSha256": "84efa01f69241e2423feffc9d68b5053affcfdf6d55b3e66cffa78d3a36a0472",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0078385Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0078800Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0078982Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0079210Z       "id": "timeline-engine3",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0079468Z       "kind": "live",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0079688Z       "seconds": 180,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0079909Z       "spans": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0080105Z         180
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0080286Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0080471Z       "yields": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0080695Z       "firstYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0080927Z       "lastYield": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0081147Z       "counts": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0081348Z         "kills": 173,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0081564Z         "bossKills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0081790Z         "luminousKills": 5,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0082025Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0082248Z         "autoTaps": 180,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0082473Z         "empowers": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0082696Z         "researchBought": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0082937Z         "studiesStarted": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0083209Z         "studySpeedPurchases": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0083454Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0083829Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0084033Z         "calls": 173,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0084244Z         "kills": 173,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0084466Z         "calledDefeats": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0084695Z         "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0084895Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0085085Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0085431Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0085660Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0085878Z               "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0086105Z               "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0086326Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0086527Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0086740Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0086964Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0087173Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0087361Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0087545Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0087740Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0087958Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0088186Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0088403Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0088624Z               "work": 10
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0088841Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0089038Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0089256Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0089483Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0089700Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0089887Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0090070Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0090261Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0090487Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0090720Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0090935Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0091159Z               "work": 50
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0091370Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0091567Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0091787Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0092014Z               "work": 90
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0092221Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0092406Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0092592Z           {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0092780Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0093000Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0093356Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0093811Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0094052Z               "work": 90
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0094272Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0094466Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0094679Z               "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0094908Z               "work": 130
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0095123Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0095307Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0095487Z         ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0095673Z         "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0095873Z           "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0096088Z           "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0096327Z           "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0096540Z             "charges": 2,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0096762Z             "work": 2850
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0096972Z           },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0097164Z           "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0097374Z             "charges": 2,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0097599Z             "work": 2890
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0097818Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0098002Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0098183Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0098581Z       "stateSha256": "6caa56f9061cabcedd4171a4284ea3fc6995480960ef6a434b8d81c3fe791606",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0099242Z       "timelineSha256": "84efa01f69241e2423feffc9d68b5053affcfdf6d55b3e66cffa78d3a36a0472",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0099888Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0100301Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0100489Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0100716Z       "id": "saved-called-clean",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0101177Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0101609Z       "fault": "none",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0101829Z       "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0102043Z       "yields": 8,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0102253Z       "firstAttempt": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0102485Z         "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0102699Z         "error": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0102931Z         "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0103135Z           "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0103346Z           "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0103961Z           "calledDefeats": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0104211Z           "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0104424Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0104634Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0104872Z               "marked": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0105106Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0105331Z                 "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0105563Z                 "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0105790Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0105990Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0106222Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0106452Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0106677Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0106873Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0107065Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0107261Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0107520Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0107760Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0107984Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0108219Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0108430Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0108635Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0108871Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0109118Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0109338Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0109538Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0109732Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0109927Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0110173Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0110413Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0110632Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0110863Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0111093Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0111297Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0111515Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0111877Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0112092Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0112279Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0112472Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0112680Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0112928Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0113164Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0113397Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0113825Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0114050Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0114250Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0114470Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0114700Z                 "work": 98
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0114921Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0115111Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0115301Z           ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0115494Z           "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0115701Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0115925Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0116160Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0116388Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0116618Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0116822Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0117017Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0117240Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0117479Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0117693Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0117880Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0118067Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0118258Z         "yields": 8
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0118458Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0118645Z       "result": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0118866Z         "elapsedSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0119104Z         "effectiveSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0119378Z         "earned": 5319.300000000019,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0119672Z         "shardEarned": 823.1999999999922,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0119955Z         "sigilsEarned": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0120190Z         "motesEarned": 27,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0120459Z         "studySpeedPurchases": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0120724Z         "studyMotesSpent": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0120967Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0121214Z         "completedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0121466Z         "closedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0121845Z         "retreated": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0122084Z         "endDepth": 9,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0122305Z         "pushDepth": 11,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0122527Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0122743Z         "iterations": 2120,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0123001Z         "fastForwardedKills": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0123238Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0123834Z       "stateSha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0124497Z       "primarySha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0124936Z       "claims": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0125190Z         "policy": "comet-commands-001",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0125465Z         "retired": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0125714Z           "comettrials": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0126011Z           "rifttrail": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0126287Z           "starfallcrest": "absent"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0126535Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0126729Z         "deeds": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0126973Z           "comet_first_command": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0127273Z           "comet_first_recharge": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0127571Z           "comet_called_kill": true
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0127815Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0127998Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0128175Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0128349Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0128578Z       "id": "saved-called-primary",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0129053Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0129490Z       "fault": "primary",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0129723Z       "callbacks": 2,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0129942Z       "yields": 16,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0130158Z       "firstAttempt": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0130384Z         "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0130742Z         "error": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0130948Z           "name": "Error",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0131272Z           "message": "Offline progress could not be saved"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0131587Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0131775Z         "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0131976Z           "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0132196Z           "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0132418Z           "calledDefeats": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0132657Z           "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0132861Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0133061Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0133290Z               "marked": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0133759Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0134013Z                 "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0134249Z                 "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0134471Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0134673Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0134896Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0135128Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0135352Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0135544Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0135737Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0135932Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0136190Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0136432Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0136662Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0136905Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0137121Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0137326Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0137550Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0137782Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0137998Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0138194Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0138385Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0138585Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0138833Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0139067Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0139291Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0139527Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0139760Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0139958Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0140181Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0140566Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0140779Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0140971Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0141158Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0141351Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0141590Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0141819Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0142038Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0142276Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0142495Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0142690Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0142911Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0143140Z                 "work": 98
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0143351Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0143782Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0143987Z           ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0144183Z           "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0144387Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0144602Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0144832Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0145057Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0145290Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0145497Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0145693Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0145910Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0146135Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0146345Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0146529Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0146718Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0146950Z         "yields": 8
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0147151Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0147344Z       "result": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0147557Z         "elapsedSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0147796Z         "effectiveSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0148191Z         "earned": 5319.300000000019,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0148611Z         "shardEarned": 823.1999999999922,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0149102Z         "sigilsEarned": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0149648Z         "motesEarned": 27,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0150002Z         "studySpeedPurchases": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0150418Z         "studyMotesSpent": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0150782Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0151104Z         "completedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0151544Z         "closedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0151877Z         "retreated": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0152276Z         "endDepth": 9,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0152593Z         "pushDepth": 11,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0152892Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0153262Z         "iterations": 2120,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0153944Z         "fastForwardedKills": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0154398Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0154898Z       "stateSha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0155624Z       "primarySha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0156225Z       "claims": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0156613Z         "policy": "comet-commands-001",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0157051Z         "retired": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0157403Z           "comettrials": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0169529Z           "rifttrail": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0169859Z           "starfallcrest": "absent"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0170129Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0170325Z         "deeds": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0170581Z           "comet_first_command": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0170885Z           "comet_first_recharge": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0171182Z           "comet_called_kill": true
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0171427Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0171615Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0171789Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0171967Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0172194Z       "id": "saved-called-recovery",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0172672Z       "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0173113Z       "fault": "recovery",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0173366Z       "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0173892Z       "yields": 8,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0174117Z       "firstAttempt": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0174544Z         "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0174774Z         "error": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0174992Z         "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0175211Z           "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0175433Z           "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0175659Z           "calledDefeats": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0175905Z           "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0176109Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0176309Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0176540Z               "marked": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0176778Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0177011Z                 "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0177245Z                 "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0177470Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0177670Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0177893Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0178135Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0178345Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0178537Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0178725Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0178925Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0179177Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0179418Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0179637Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0179865Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180073Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180165Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180252Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180345Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180428Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180508Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180593Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180686Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180802Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180896Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0180987Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181207Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181293Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181379Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181478Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181567Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181648Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181732Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181811Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0181902Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182016Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182102Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182198Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182294Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182373Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182465Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182555Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182652Z                 "work": 98
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182738Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182818Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0182908Z           ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183005Z           "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183094Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183190Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183280Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183376Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183472Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183792Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183890Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0183985Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184069Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184154Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184233Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184321Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184411Z         "yields": 8
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184489Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184577Z       "result": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184683Z         "elapsedSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184779Z         "effectiveSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0184902Z         "earned": 5319.300000000019,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185028Z         "shardEarned": 823.1999999999922,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185135Z         "sigilsEarned": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185231Z         "motesEarned": 27,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185357Z         "studySpeedPurchases": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185591Z         "studyMotesSpent": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185683Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185800Z         "completedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0185902Z         "closedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186000Z         "retreated": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186089Z         "endDepth": 9,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186198Z         "pushDepth": 11,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186287Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186388Z         "iterations": 2120,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186509Z         "fastForwardedKills": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186588Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0186906Z       "stateSha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187223Z       "primarySha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187312Z       "claims": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187451Z         "policy": "comet-commands-001",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187542Z         "retired": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187666Z           "comettrials": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187786Z           "rifttrail": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187911Z           "starfallcrest": "absent"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0187991Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188080Z         "deeds": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188206Z           "comet_first_command": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188341Z           "comet_first_recharge": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188461Z           "comet_called_kill": true
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188541Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188627Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188710Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188789Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0188918Z       "id": "saved-called-batch31",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189216Z       "sourceSha256": "f64cac1b2ad36ca5f72661ee821da244008c3987554fce5dc3da45d05c92a508",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189309Z       "fault": "none",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189520Z       "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189608Z       "yields": 68,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189705Z       "firstAttempt": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189805Z         "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189892Z         "error": null,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0189980Z         "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190075Z           "calls": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190160Z           "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190261Z           "calledDefeats": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190345Z           "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190431Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190525Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190617Z               "marked": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190710Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190809Z                 "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190901Z                 "work": 3970
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0190989Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191079Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191177Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191275Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191357Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191444Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191535Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191622Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191737Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191823Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0191919Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192014Z                 "work": 2
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192095Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192189Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192285Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192374Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192461Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192542Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192631Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192726Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192835Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0192928Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193025Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193119Z                 "work": 34
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193206Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193301Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193478Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193826Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0193914Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194003Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194089Z             {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194177Z               "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194297Z               "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194390Z               "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194482Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194574Z                 "work": 66
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194655Z               },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194748Z               "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194842Z                 "charges": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0194929Z                 "work": 98
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195015Z               }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195099Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195186Z           ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195274Z           "last": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195360Z             "count": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195462Z             "marked": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195561Z             "before": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195651Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195742Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195826Z             },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0195911Z             "after": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196004Z               "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196088Z               "work": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196172Z             }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196257Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196336Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196430Z         "yields": 68
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196514Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196599Z       "result": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196704Z         "elapsedSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196809Z         "effectiveSec": 600,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0196931Z         "earned": 5319.300000000019,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197196Z         "shardEarned": 823.1999999999922,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197290Z         "sigilsEarned": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197388Z         "motesEarned": 27,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197523Z         "studySpeedPurchases": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197620Z         "studyMotesSpent": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197714Z         "ascends": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197838Z         "completedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0197934Z         "closedStudies": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198033Z         "retreated": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198123Z         "endDepth": 9,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198223Z         "pushDepth": 11,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198316Z         "kills": 579,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198410Z         "iterations": 2120,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198533Z         "fastForwardedKills": 0
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198618Z       },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0198914Z       "stateSha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199220Z       "primarySha256": "dcbc116cde8b2913973f28fa09adcd5a20a9d6521952a654cfe5007a808d37ee",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199318Z       "claims": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199452Z         "policy": "comet-commands-001",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199543Z         "retired": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199666Z           "comettrials": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199783Z           "rifttrail": "absent",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199899Z           "starfallcrest": "absent"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0199987Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200069Z         "deeds": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200198Z           "comet_first_command": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200325Z           "comet_first_recharge": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200443Z           "comet_called_kill": true
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200527Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200608Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200684Z     }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200767Z   ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200854Z   "witnesses": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0200932Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201097Z       "id": "identical-original-event-timeline",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201182Z       "rows": 412,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201471Z       "sha256": "84efa01f69241e2423feffc9d68b5053affcfdf6d55b3e66cffa78d3a36a0472",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201557Z       "first": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201771Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201890Z           "elapsedSec": 0.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0201987Z           "type": "autoTap",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202073Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202161Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202239Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202320Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202400Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202510Z           "elapsedSec": 1.625,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202627Z           "type": "enemyDeath",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202716Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202800Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202883Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0202960Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203040Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203151Z           "elapsedSec": 1.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203242Z           "type": "autoTap",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203341Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203428Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203759Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203882Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0203976Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204090Z           "elapsedSec": 2.625,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204207Z           "type": "enemyDeath",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204292Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204381Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204464Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204540Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204621Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204736Z           "elapsedSec": 2.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204827Z           "type": "autoTap",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0204916Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205000Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205084Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205165Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205242Z       ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205328Z       "last": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205410Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205526Z           "elapsedSec": 177.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205753Z           "type": "ability",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205837Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0205925Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206010Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206088Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206169Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206284Z           "elapsedSec": 178.18,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206396Z           "type": "buffExpire",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206492Z           "detail": null
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206569Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206658Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206779Z           "elapsedSec": 178.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206871Z           "type": "autoTap",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0206962Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207052Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207128Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207211Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207287Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207403Z           "elapsedSec": 179.625,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207519Z           "type": "enemyDeath",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207608Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207700Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207782Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207859Z         },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0207947Z         {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208058Z           "elapsedSec": 179.875,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208154Z           "type": "autoTap",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208245Z           "detail": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208328Z             "count": 1
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208410Z           }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208491Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208572Z       ]
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208653Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208728Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208831Z       "id": "silent-elapsed",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0208929Z       "callback": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209016Z       "callbacks": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209106Z       "kills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209188Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209273Z         "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209361Z         "work": 1234,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209445Z         "used": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209543Z         "called": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209632Z         "events": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209750Z           "firstCommand": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0209996Z           "firstRecharge": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210114Z           "bossStrike": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210207Z           "calledKill": false
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210288Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210370Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210446Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210524Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210621Z       "id": "silent-elapsed",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210719Z       "callback": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210813Z       "callbacks": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210895Z       "kills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0210982Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211074Z         "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211157Z         "work": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211245Z         "used": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211338Z         "called": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211427Z         "events": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211551Z           "firstCommand": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211668Z           "firstRecharge": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211784Z           "bossStrike": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211884Z           "calledKill": false
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0211963Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212044Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212120Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212202Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212303Z       "id": "silent-elapsed",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212394Z       "callback": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212486Z       "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212573Z       "kills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212657Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212747Z         "charges": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212831Z         "work": 1234,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0212921Z         "used": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213014Z         "called": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213098Z         "events": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213214Z           "firstCommand": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213333Z           "firstRecharge": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213705Z           "bossStrike": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213808Z           "calledKill": false
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213891Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0213974Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214054Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214130Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214231Z       "id": "silent-elapsed",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214326Z       "callback": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214414Z       "callbacks": 1,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214504Z       "kills": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214589Z       "bank": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214674Z         "charges": 3,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214762Z         "work": 0,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214846Z         "used": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0214939Z         "called": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215029Z         "events": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215143Z           "firstCommand": true,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215268Z           "firstRecharge": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215382Z           "bossStrike": false,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215472Z           "calledKill": false
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215560Z         }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215637Z       }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215717Z     }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215797Z   ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0215896Z   "negativeControls": [],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0216196Z   "currentGroup": "actual offline Auto-Ascend keeps the bank and exact paid ranks",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0216283Z   "error": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0216380Z     "name": "AssertionError",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0216479Z     "code": "ERR_ASSERTION",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0216975Z     "message": "no invented replacement for original lifetime Number\n+ actual - expected\n\n+ '1000000000000000019884624838657e0'\n- 1e+30",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0221398Z     "stack": "AssertionError [ERR_ASSERTION]: no invented replacement for original lifetime Number\n+ actual - expected\n\n+ '1000000000000000019884624838657e0'\n- 1e+30\n    at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:39:33)\n    at ascending (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:164:152)\n    at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:169:17\n    at group (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:41:79)\n    at runOffline (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:168:3)\n    at cli (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:217:14)\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs:225:26)\n    at Module._compile (node:internal/modules/cjs/loader:1521:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)\n    at Module.load (node:internal/modules/cjs/loader:1266:32)"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0221654Z   },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0221742Z   "input": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0221960Z     "path": "/home/runner/work/Lumenfall/Lumenfall/index.html",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0222053Z     "bytes": 1045984,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0222321Z     "sha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0222405Z   },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0222502Z   "dependencies": [
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0222584Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0222942Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-offline.cjs",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0223029Z       "bytes": 26308,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0223301Z       "sha256": "e927b7c84d62afdf975f9641a938a8b947d1125f3a5b1e8d6f98dc728e5c85b5"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0223384Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0223462Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0223938Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-harness.cjs",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0224032Z       "bytes": 15922,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0224294Z       "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0224377Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0224458Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0224786Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-core.cjs",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0224999Z       "bytes": 59116,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0225268Z       "sha256": "0cba6ce620e5e586eb11ab4bd992320a477ceeb6c8cab404db6cb2f94cf27f57"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0225352Z     },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0225432Z     {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0225781Z       "path": "/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-numerical.cjs",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0225870Z       "bytes": 21885,
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226131Z       "sha256": "a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226207Z     }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226285Z   ],
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226375Z   "runtime": {
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226464Z     "node": "v20.20.2",
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226576Z     "v8": "11.3.244.8-node.38"
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0226659Z   },
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0227236Z   "scope": "Actual original scheduler and offline transaction; supplied synthetic storage/clocks/DOM. No native WebView, touch or browser geometry claim."
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0227329Z }
+comet	Actual defeat recharge offline chronology and Auto-Ascend	2026-10-16T10:30:14.0239281Z ##[error]Process completed with exit code 1.
+comet	Twelve browser profiles with real input and causal failures	﻿2026-10-16T10:30:14.0863214Z ##[group]Run set -euo pipefail
+comet	Twelve browser profiles with real input and causal failures	2026-10-16T10:30:14.0864021Z ^[[36;1mset -euo pipefail^[[0m
+comet	Twelve browser profiles with real input and causal failures	2026-10-16T10:30:14.0865073Z ^[[36;1mnode tests/behavioral/comet-expansion-mobile.cjs index.html comet-validation/mobile 2>&1 | tee comet-validation/mobile.log^[[0m
+comet	Twelve browser profiles with real input and causal failures	2026-10-16T10:30:14.0946374Z shell: /usr/bin/bash -e {0}
+comet	Twelve browser profiles with real input and causal failures	2026-10-16T10:30:14.0946805Z ##[endgroup]
+comet	Twelve browser profiles with real input and causal failures	2026-10-16T10:30:17.8087368Z {"status":"fail","sourceSha256":"9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8","cometIdentity":{"testSha256":"0294404abe720f0aaf03abc157a0fb46a4d03009db57c4b981f14d65a8c55c18","helperSha256":"c8e9138b896dd314b32eb3a98dcadece4cd2458dce75bf423876c1c10c534cfa","transportSha256":"71b53389cb80391115dce9c9485aabede52943dd5c75fe635feb8a44f3d16e86","numericalSha256":"a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4"},"checks":4,"profiles":0,"negativeControls":[],"browserVersion":{"protocolVersion":"1.3","product":"Chrome/155.0.8059.39","revision":"@3ff7ac5a9224be9156d7f8703a06e22890aafd34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36","jsVersion":"15.5.35.20"},"instrumentedHtmlSha256":"aad9fe5b039290ce426c63ddf0e3874f7d9c997da6f7c32b99924fd3c9e36f35","error":"AssertionError [ERR_ASSERTION]: actual schema2 migration reaches schema4 through3\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.comet-mobile-2437.cjs:83:27)\n    at migrationAssertions (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.comet-mobile-2437.cjs:196:55)\n    at profile (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.comet-mobile-2437.cjs:210:96)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.comet-mobile-2437.cjs:134:3)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.comet-mobile-2437.cjs:415:6","receipt":"/home/runner/work/Lumenfall/Lumenfall/comet-validation/mobile/receipt.json","rawStdoutSha256":"c3af8904c9d06fa6639aa6f8c52efe3f5a609017cc2df93e864a861b25089da4","rawStdoutBytes":99253,"nativeAndroid":"untested"}
+comet	Twelve browser profiles with real input and causal failures	2026-10-16T10:30:17.8119043Z ##[error]Process completed with exit code 1.
+comet	Exact protected-save warning reversion after the complete positive browser lane	﻿2026-10-16T10:30:17.8384161Z ##[group]Run set -euo pipefail
+comet	Exact protected-save warning reversion after the complete positive browser lane	2026-10-16T10:30:17.8384520Z ^[[36;1mset -euo pipefail^[[0m
+comet	Exact protected-save warning reversion after the complete positive browser lane	2026-10-16T10:30:17.8385230Z ^[[36;1mnode tests/behavioral/comet-expansion-warning.cjs index.html comet-validation/mobile comet-validation/warning 2>&1 | tee comet-validation/warning.log^[[0m
+comet	Exact protected-save warning reversion after the complete positive browser lane	2026-10-16T10:30:17.8447948Z shell: /usr/bin/bash -e {0}
+comet	Exact protected-save warning reversion after the complete positive browser lane	2026-10-16T10:30:17.8448219Z ##[endgroup]
+comet	Exact protected-save warning reversion after the complete positive browser lane	2026-10-16T10:30:17.9281954Z {"status":"fail","kind":"exact protected-warning source reversion","positiveProfiles":0,"originalCausalPairs":0,"warningReversionsCaught":0,"receipt":"/home/runner/work/Lumenfall/Lumenfall/comet-validation/warning/receipt.json","error":"Expected values to be strictly equal:\n\n1 !== 0\n","nativeAndroid":"untested"}
+comet	Exact protected-save warning reversion after the complete positive browser lane	2026-10-16T10:30:17.9321387Z ##[error]Process completed with exit code 1.

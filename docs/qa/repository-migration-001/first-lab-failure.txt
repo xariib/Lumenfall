@@ -1,0 +1,73 @@
+lab	Complete-game Lab effects purchases save and causal controls	﻿2026-10-16T10:30:10.4315049Z ##[group]Run set -euo pipefail
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4315338Z ^[[36;1mset -euo pipefail^[[0m
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4315703Z ^[[36;1mnode tests/behavioral/lab-expansion.cjs index.html --negative | tee lab-validation/core.json^[[0m
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4316266Z ^[[36;1mnode tests/behavioral/lab-expansion-boundary.cjs index.html --negative | tee lab-validation/boundary.json^[[0m
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4317020Z ^[[36;1mnode tests/behavioral/lab-expansion-stress.cjs index.html | tee lab-validation/boundary-stress.json^[[0m
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4317584Z ^[[36;1mnode tests/behavioral/prism-earning-state.cjs index.html | tee lab-validation/prism-state.json^[[0m
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4376337Z shell: /usr/bin/bash -e {0}
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.4376579Z ##[endgroup]
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9299698Z node:assert:90
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9300456Z   throw new AssertionError(obj);
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9301122Z   ^
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9301601Z 
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9302422Z AssertionError [ERR_ASSERTION]: actual Ultimate unlock at complete development gates
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9303245Z 
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9303756Z false !== true
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9304108Z 
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9304725Z     at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion.cjs:8:50)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9305873Z     at verify (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion.cjs:171:199)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9307106Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion.cjs:214:14)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9308119Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9308874Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9309639Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9310375Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9311694Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9312524Z     at node:internal/main/run_main_module:28:49 {
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9313137Z   generatedMessage: false,
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9313861Z   code: 'ERR_ASSERTION',
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9314380Z   actual: false,
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9314816Z   expected: true,
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9315297Z   operator: 'deepStrictEqual'
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9315782Z }
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9316085Z 
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9316366Z Node.js v20.20.2
+lab	Complete-game Lab effects purchases save and causal controls	2026-10-16T10:30:10.9352290Z ##[error]Process completed with exit code 1.
+lab	Execute full product on actual V8 6.0	﻿2026-10-16T10:31:31.0841563Z ##[group]Run set -euo pipefail
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0841844Z ^[[36;1mset -euo pipefail^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0842055Z ^[[36;1mmkdir -p /tmp/lab-node8^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0842255Z ^[[36;1mcd /tmp/lab-node8^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0861199Z ^[[36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0862049Z ^[[36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0862669Z ^[[36;1mgrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0862999Z ^[[36;1mtar -xf node-v8.3.0-linux-x64.tar.xz^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0863231Z ^[[36;1mcd "$GITHUB_WORKSPACE"^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0864231Z ^[[36;1m/tmp/lab-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/lab-expansion-legacy.cjs index.html | tee lab-validation/v8.json^[[0m
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0922498Z shell: /usr/bin/bash -e {0}
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.0922738Z ##[endgroup]
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1083763Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1084638Z                                  Dload  Upload   Total   Spent    Left  Speed
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1085002Z 
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1566469Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1567008Z 100  3865  100  3865    0     0  79812      0 --:--:-- --:--:-- --:--:-- 80520
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1634338Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1634967Z                                  Dload  Upload   Total   Spent    Left  Speed
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.1635243Z 
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.3226412Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.3227038Z 100 10.9M  100 10.9M    0     0  69.0M      0 --:--:-- --:--:-- --:--:-- 69.1M
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:31.3341624Z node-v8.3.0-linux-x64.tar.xz: OK
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2775616Z assert.js:43
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2775988Z   throw new errors.AssertionError({
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2776221Z   ^
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2776314Z 
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2776490Z AssertionError [ERR_ASSERTION]: work bossledger/19
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2776983Z     at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion-legacy.cjs:7:36)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2777525Z     at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion-legacy.cjs:15:51
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2777914Z     at Array.forEach (<anonymous>)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2778308Z     at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion-legacy.cjs:14:21
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2778675Z     at Array.forEach (<anonymous>)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2779097Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-expansion-legacy.cjs:13:6)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2779532Z     at Module._compile (module.js:573:30)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2779827Z     at Object.Module._extensions..js (module.js:584:10)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2780125Z     at Module.load (module.js:507:32)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2780364Z     at tryModuleLoad (module.js:470:12)
+lab	Execute full product on actual V8 6.0	2026-10-16T10:31:32.2816397Z ##[error]Process completed with exit code 1.

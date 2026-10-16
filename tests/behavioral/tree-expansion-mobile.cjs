@@ -263,7 +263,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   await send('Page.removeScriptToEvaluateOnNewDocument',{identifier:legacyBootstrap.identifier});
   const legacySeedObservation=await ev('window.__treeLegacySeedObservation');migrationDiagnostic.beforeLoad=legacySeedObservation;ok(legacySeedObservation&&legacySeedObservation.slotsMatch&&legacySeedObservation.sha256===legacySeedSha256,'raw legacy slots installed before actual load');
   await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('ascend')");await frames();
-  const migrated=await ev('prismQa.get()');migrationDiagnostic.loaded={schemaVersion:migrated.schemaVersion,nodes:migrated.nodes,prisms:migrated.prisms,comets:migrated.comets};ok(migrated.schemaVersion===4,'actual load migrates schema1 through2/3 to4');
+  const migrated=await ev('prismQa.get()');migrationDiagnostic.loaded={schemaVersion:migrated.schemaVersion,nodes:migrated.nodes,prisms:migrated.prisms,comets:migrated.comets};ok(migrated.schemaVersion===5,'actual load migrates schema1 through2/3/4 to5');
   for(const id of ['starlight','steady','echo','bonds','swift','momentum','reserves'])ok(migrated.nodes[id]===old.nodes[id],'raw old paid level retained '+id);
   ok(added.every(id=>migrated.nodes[id]===0)&&migrated.treeTrainingProgress===0,'all missing new levels/counter start at zero');
   ok(migrated.prisms===40786&&migrated.comets===7+300+350,'F26 prices 6+10+16 plus F21 original40586 and Echo68 Prisms;300 Comets plus separate350 retired-card compensation');
@@ -333,35 +333,40 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
    });
   }
   // The actual Ascend calculation displays Dust from represented Prism credit.
-  // The huge-wallet case must display zero even though the nominal gain is >20.
+  // Exact wide wallets retain every credited Prism and its eligible Dust.
   for(const wallet of [100000,1e30]){
    const dustState=copy(paid);dustState.prisms=wallet;await install(dustState);
-   const gain=(await ev('prismQa.breakdown(101)')).gain,expected=Math.min(10,Math.floor(((wallet+gain)-wallet)/20));
+   const gain=(await ev('prismQa.breakdown(101)')).gain,expected=Math.min(10,Math.floor(gain/20));
    ok(gain>=20,'Dust preview fixture has a whole twenty-Prism bundle');
    const preview=await ev('('+function(){var root=document.querySelector('#prism-calculation'),term=Array.from(root.querySelectorAll('dt')).find(function(e){return e.textContent==='Ascension Dust';});return {dust:term&&term.nextElementSibling.textContent,note:document.querySelector('#ascend-note').textContent};}.toString()+')()');
    ok(preview.dust===expected+' Motes','Dust preview uses actual represented credit');
    ok(expected?preview.note.includes('Ascension Dust adds '+expected+' Motes.'):!preview.note.includes('Ascension Dust adds'),'Ascend note agrees with actual Dust preview');
    dustSamples.push({wallet,gain,expected,preview});
   }
-  // A quote can fit the wallet and still be an unrepresentable exact debit.
+  // Wide wallets pay exact costs; genuinely insufficient balances remain disabled.
   // Verify actual initial render, delayed refresh, blocked trusted input, then
   // the ordinary affordable transition and the unchanged real paid handler.
   const precision=copy(seed);precision.spirits.ember=1;precision.nodes.bonds=0;precision.lumen=1e30;await install(precision,'spirits');
   const empower='[data-empower="ember"]';
   async function empowerStatus(){return ev('('+function(){var b=document.querySelector('[data-empower="ember"]');return {disabled:b.disabled,state:b.dataset.state,label:b.querySelector('strong').textContent,aria:b.getAttribute('aria-label'),plan:prismQa.treeSpiritPlan('ember')};}.toString()+')()');}
-  const unavailableInitial=await empowerStatus();ok(unavailableInitial.plan.cost===11&&unavailableInitial.plan.reason==='unavailable','exact huge-wallet quote11');
-  ok(unavailableInitial.disabled&&unavailableInitial.state==='unavailable'&&unavailableInitial.label==='Unavailable','initial unrepresented Empower remains unavailable');
+  const wideInitial=await empowerStatus();ok(wideInitial.plan.cost===11&&wideInitial.plan.reason==='available','exact wide-wallet quote11');
+  ok(!wideInitial.disabled&&wideInitial.state==='available'&&wideInitial.label==='Empower','wide wallet can afford an exact debit');
+  const wideWrites=await ev('window.__treeWrites.length');await prepare(empower,false);await touchHere(empower);await frames();
+  const widePaid=await ev('prismQa.get()');ok(widePaid.spirits.ember===2&&widePaid.lumen==='1000000000000000019884624838645e0','independent integer oracle: wide wallet pays exactly11');
+  ok(await ev('window.__treeWrites.slice('+wideWrites+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;}).length')===2,'wide purchase saves one primary/recovery pair');
+  precision.lumen=10;await install(precision,'spirits');const unavailableInitial=await empowerStatus();
+  ok(unavailableInitial.disabled&&unavailableInitial.state==='unaffordable','one-Lumen-short Empower is disabled');
   await ev('new Promise(function(resolve){setTimeout(resolve,500);})');await ev('prismQa.treeRefresh()');
-  const unavailableRefresh=await empowerStatus();ok(unavailableRefresh.disabled&&unavailableRefresh.state==='unavailable'&&unavailableRefresh.label==='Unavailable','500ms affordability refresh retains exact-debit unavailability');
+  const unavailableRefresh=await empowerStatus();ok(unavailableRefresh.disabled&&unavailableRefresh.state==='unaffordable','refresh preserves genuinely unaffordable action');
   const precisionBefore=await ev('JSON.stringify(prismQa.get())'),precisionWrites=await ev('window.__treeWrites.length');
   await prepare(empower,false);await touchHere(empower);await frames();
-  ok(await ev('JSON.stringify(prismQa.get())')===precisionBefore&&await ev('window.__treeWrites.length')===precisionWrites,'trusted unavailable click changes neither state nor saves');
+  ok(await ev('JSON.stringify(prismQa.get())')===precisionBefore&&await ev('window.__treeWrites.length')===precisionWrites,'trusted unaffordable click changes neither state nor saves');
   await ev('prismQa.treeLumen(11);prismQa.treeRefresh()');const affordableRefresh=await empowerStatus();
   ok(!affordableRefresh.disabled&&affordableRefresh.state==='available'&&affordableRefresh.label==='Empower','ordinary exact wallet restores Empower label and action');
   await prepare(empower,false);await touchHere(empower);await frames();const precisionAfter=await ev('prismQa.get()');
   ok(precisionAfter.spirits.ember===2&&precisionAfter.lumen===0,'actual restored handler buys exactly one level for11');
   ok(await ev('window.__treeWrites.slice('+precisionWrites+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;}).length')===2,'restored actual Empower saves one primary/recovery pair');
-  const unavailableEmpower={unavailableInitial,unavailableRefresh,affordableRefresh,after:{level:precisionAfter.spirits.ember,lumen:precisionAfter.lumen}};
+  const unavailableEmpower={wideInitial,widePaid,unavailableInitial,unavailableRefresh,affordableRefresh,after:{level:precisionAfter.spirits.ember,lumen:precisionAfter.lumen}};
   // Six chosen members, including two Support sources, through real controls.
   const formation=copy(paid),firstFive=['ember','tide','stone','gale','thorn'];
   ['ember','tide','stone','gale','thorn','void','aurora','titan'].forEach(id=>formation.spirits[id]=10);

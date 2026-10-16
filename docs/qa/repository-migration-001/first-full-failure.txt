@@ -1,0 +1,40 @@
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	﻿2026-10-16T10:31:27.1013535Z ##[group]Run node tests/behavioral/simulation-binary-clock.cjs ../../scripts/lib/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-oracle.json
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1015014Z ^[[36;1mnode tests/behavioral/simulation-binary-clock.cjs ../../scripts/lib/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-oracle.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1016163Z ^[[36;1mnode tests/behavioral/simulation-limb-clock.cjs > validation-evidence/endless-progression/clock-compatibility.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1017220Z ^[[36;1mnode tests/behavioral/endless-clock-activation.cjs index.html > validation-evidence/endless-progression/clock-activation.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1018404Z ^[[36;1mnode tests/behavioral/endless-requirement-boundaries.cjs index.html --focus-f > validation-evidence/endless-progression/requirement-boundaries.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1019508Z ^[[36;1mnode tests/behavioral/endless-cycle-batch.cjs > validation-evidence/endless-progression/cycle-batch.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1020551Z ^[[36;1mnode tests/behavioral/endless-cycle-boundaries.cjs > validation-evidence/endless-progression/cycle-boundaries.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1021679Z ^[[36;1mnode tests/behavioral/endless-cycle-automation.cjs > validation-evidence/endless-progression/cycle-automation.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1022710Z ^[[36;1mnode tests/behavioral/endless-cycle-persistence.cjs > validation-evidence/endless-progression/cycle-ownership.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1023723Z ^[[36;1mnode tests/behavioral/endless-automation-persistence.cjs > validation-evidence/endless-progression/timer-storage.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1024749Z ^[[36;1mnode tests/behavioral/endless-automation-transitions.cjs > validation-evidence/endless-progression/empty-ticks.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1025786Z ^[[36;1mnode tests/behavioral/endless-cycle-resource-replay.cjs > validation-evidence/endless-progression/resource-replay.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1026747Z ^[[36;1mnode tests/behavioral/endless-cycle-native-wallets.cjs > validation-evidence/endless-progression/native-wallets.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1027665Z ^[[36;1mnode tests/behavioral/endless-cycle-split.cjs > validation-evidence/endless-progression/live-parity.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1028678Z ^[[36;1mLUMENFALL_CYCLE_COLD_FRAMES=1 node tests/behavioral/endless-cycle-split.cjs > validation-evidence/endless-progression/cold-parity.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1029726Z ^[[36;1mnode tests/behavioral/endless-cycle-overflow.cjs > validation-evidence/endless-progression/high-mastery.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1030890Z ^[[36;1mnode tests/behavioral/endless-cycle-controls.cjs validation-evidence/endless-progression/cycle-controls > validation-evidence/endless-progression/cycle-controls.json^[[0m
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1101043Z shell: /usr/bin/bash -e {0}
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:27.1101313Z ##[endgroup]
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7446971Z node:fs:448
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7448056Z     return binding.readFileUtf8(path, stringToFlags(options.flag));
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7449835Z                    ^
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7450277Z 
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7452862Z Error: ENOENT: no such file or directory, open 'docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json'
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7454037Z     at Object.readFileSync (node:fs:448:20)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7455038Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/endless-cycle-batch.cjs:3:136)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7456128Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7456971Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7457488Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7457919Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7458461Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7458981Z     at node:internal/main/run_main_module:28:49 {
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7459315Z   errno: -2,
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7459817Z   code: 'ENOENT',
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7460023Z   syscall: 'open',
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7460495Z   path: 'docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json'
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7460963Z }
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7461069Z 
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7461156Z Node.js v20.20.2
+Lumenfall pre-merge validation	Endless automation clock and repeated Ascend regressions	2026-10-16T10:31:28.7491321Z ##[error]Process completed with exit code 1.

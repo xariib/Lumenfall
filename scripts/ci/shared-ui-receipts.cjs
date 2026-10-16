@@ -85,7 +85,8 @@ function includeToolingFixtures() {
 }
 try {
   identity('before-staging');
-  assert.equal(hash(fs.readFileSync(path.join(root, 'tests/behavioral/fixtures.json'))), 'ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753', 'Frozen fixture identity');
+  assert.equal(hash(fs.readFileSync(path.join(root, 'tests/behavioral/fixtures-pre-endless.json'))), 'ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753', 'Frozen original fixture identity');
+  assert.equal(hash(fs.readFileSync(path.join(root, 'tests/behavioral/fixtures.json'))), '3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2', 'Accepted endless-progression fixture identity');
   includeToolingFixtures();
   const archivePaths = rows.filter(row => isActive(row.path)).map(row => row.path);
   const archive = git(['archive', '--format=tar', head, '--', ...archivePaths]);

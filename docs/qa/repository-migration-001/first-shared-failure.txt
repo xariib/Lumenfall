@@ -1,0 +1,17 @@
+shared-ui	Exact source, task context and original standalone gate receipts	﻿2026-10-16T10:30:37.3472418Z ##[group]Run node scripts/ci/shared-ui-receipts.cjs shared-ui-validation/standalone
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:37.3473130Z ^[[36;1mnode scripts/ci/shared-ui-receipts.cjs shared-ui-validation/standalone^[[0m
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:37.3699122Z shell: /usr/bin/bash -e {0}
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:37.3699492Z ##[endgroup]
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6266149Z AssertionError [ERR_ASSERTION]: Frozen fixture identity
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6267140Z + actual - expected
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6267302Z 
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6267612Z + '3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2'
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6268220Z - 'ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753'
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6268966Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/scripts/ci/shared-ui-receipts.cjs:88:10)
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6269623Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6270132Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6270605Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6271175Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6271737Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6272264Z     at node:internal/main/run_main_module:28:49
+shared-ui	Exact source, task context and original standalone gate receipts	2026-10-16T10:30:39.6427857Z ##[error]Process completed with exit code 1.

@@ -32,7 +32,7 @@ function assets(webroot){
  for(const dir of ['fonts','branding'])walk(dir);return rows;
 }
 const driver=path.join(root,'tests/behavioral/rift-guidance.cjs');
-const tests=[__filename,path.join(__dirname,'guidance-baseline-assets.cjs'),driver,...['guidance-baseline-assets.test.cjs','rift-guidance-readability.cjs','rift-guidance-inverses.cjs','rift-guidance-inverses.test.cjs','run.cjs','prelude.js','bridge.js','wisp-upgrades-bridge.js','rift-status.js','fixtures.json','scenarios.json'].map(p=>path.join(root,'tests/behavioral',p))];
+const tests=[__filename,path.join(__dirname,'guidance-baseline-assets.cjs'),path.join(__dirname,'guidance-archived-baseline.cjs'),driver,...['guidance-baseline-assets.test.cjs','rift-guidance-readability.cjs','rift-guidance-inverses.cjs','rift-guidance-inverses.test.cjs','run.cjs','prelude.js','bridge.js','wisp-upgrades-bridge.js','rift-status.js','fixtures.json','scenarios.json'].map(p=>path.join(root,'tests/behavioral',p))];
 function inputs(){return {candidate:pin(path.join(stage,'index.html')),tests:tests.map(pin),assets:assets(stage)};}
 function fonts(m){
  assert.equal(m?.schema,'rift-guidance-readability-001');assert.equal(m.fontStatus,'loaded');

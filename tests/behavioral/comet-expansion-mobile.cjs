@@ -16,6 +16,8 @@ function one(from,to){assert.equal(driver.split(from).length,2,'one Comet transp
 // Native frames remain active. Only the transport's ambient interval scheduler
 // is paused; actual production simulation and every action owner remain intact.
 one('window.requestAnimationFrame=function(){return 0;};','');
+one("'--headless=new','--enable-automation'","'--headless=new','--enable-automation','--window-size=430,1000'");
+one("await send('Runtime.enable');await send('DOM.enable');","await send('Runtime.enable');await send('DOM.enable');await send('Page.bringToFront');");
 one("const {reward}=require('./prism-earning-reference.cjs');", "const {reward}=require('./prism-earning-reference.cjs');const {oracle}=require('./comet-expansion-numerical.cjs');const COMET_SPECS="+JSON.stringify(helper.specs)+";");
 one('let checks=0;', 'let checks=0;const cometDiagnostics={readiness:[],migration:[],purchases:[],commands:[],refresh:[],preservation:[],negatives:[],images:[]};let cometActiveProfile=null;let cometBrowserVersion=null;');
 one('m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);', 'if(m.error){const error=Error(JSON.stringify(m.error));error.cdpMethod=p.method;error.cdpError=m.error;p.reject(error);}else p.resolve(m.result);');
