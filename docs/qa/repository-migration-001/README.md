@@ -119,3 +119,11 @@ Extra same-source checks: Prism341654/seven controls; recruitment206; Echo627/13
 Swift V8.6.0 PASS; Support1782/four; earlyWisp2801/five; Wisp8099/seven plus15352
 preservation; Rift cosmetics170 samples PASS unsandboxed. Sandboxed Chrome startup
 attempt fails before samples and remains failed local evidence.
+
+API35 run38894502679 loses the entire emulator (adb device disappears), before
+fixture/save acceptance. No logcat can be collected from a dead device; no upgrade
+PASS. Resource exhaustion is a hypothesis, not a proved cause. Next preflight
+stops the Gradle build daemon before the emulator, bounds AVD RAM1536M/heap256M
+and records runner kernel/memory diagnostics on failure. Native assertions remain.
+Runner RAM/heap options are documented upstream:
+https://github.com/ReactiveCircus/android-emulator-runner#configurations

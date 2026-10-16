@@ -286,12 +286,21 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
+      - name: Free native build memory before emulator acceptance
+        working-directory: mobile/android
+        run: |
+          ./gradlew --stop
+          free -m
+
       - name: In-place signed APK and save upgrade on emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35
           target: google_apis
           arch: x86_64
+          ram-size: 1536M
+          heap-size: 256M
+          cores: 2
           disable-animations: true
           script: node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
 
@@ -299,6 +308,14 @@ jobs:
         run: node scripts/ci/verify_upgrade_receipt.cjs
 
       - name: Preserve failed native upgrade diagnostics
+        if: failure()
+        shell: bash
+        run: |
+          mkdir -p release-evidence
+          sudo dmesg | tail -n 120 > release-evidence/runner-kernel.txt
+          free -m > release-evidence/runner-memory.txt
+
+      - name: Upload failed native upgrade diagnostics
         if: failure()
         uses: actions/upload-artifact@v4
         with:
