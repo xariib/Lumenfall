@@ -107,3 +107,24 @@ native actual completed receipt before integration/final exact-main checks/build
 Local full Guidance real-font matrix16/160 PASS;80 words verify real Manrope.
 Full and bounded/inverse raw receipts saved compressed in migration evidence.
 Do not rerun already-passed local tests unnecessarily. No release exists yet.
+
+LATEST: native38900729111 on4dbe3e3 is QUALIFIED PASS. Downloaded actual APK,
+receipt rechecked with verify_upgrade_receipt and exact assets verifier; SHAfc63f26d5618af8aec64e5ea0d5ba78135eff14dfd8cedb1add8bc4af94a04af,
+original certificate/package, code1000012/name0.2.12, old158 real cold fixture,
+actual install-r, sameUID10145/origin, BOTH current slots/progression/paid Study,
+all four actual legacy purchases via ownership or350 once credits/cosmetics/marks.
+Android12/API31/WebView91.0.4472.114. Original Page.enable fixed seeding. Meteor/Call
+unsupported in158 removed as invalid fixture; oldactualfour purchases now all
+verified BEFORE upgrade and approved migration checked AFTER. WorkaroundKVM
+removed; API35 unstable, API29 font/GPU failure remain limits. No production JS
+changes. All qualified-native-* receipts/synthetic snapshots/log saved. PRELIGHT
+UNPUBLISHED, never publish this APK; final exact-main build needed.
+Current PRfcf1077 all five scoped lanes PASS; Full38896647886 attempt2 is in
+stateful suite, all preceding gates including true-font Guidance/Swift/etc PASS.
+Wait for actual result; do not push PR while running (cancels expensive run).
+Local4dbe3e3 plus current doc/evidence updates; commit and push only preflight
+branch for durable checkpoint until Full done. Then final migration merge and
+all six exact-main manual gates, guarded publish=true, actual anonymous download
+verification and README stable link/final docs. No new permission required.
+Origin=new repo, legacy-origin old preserved. Physical/exactWebView60/TalkBack/
+human tests remain unverified. User task still demands carry through release.

@@ -4,6 +4,10 @@
 is migrating the explicitly selected combined candidate8f46153 from
 codex/endless-progression to xariib/Lumenfall. Signing/versioning/CI/native and
 release verification are IN PROGRESS. No new release is claimed yet.
+Qualified Android12/WebView91 preflight38900729111 passes actual old158 cold save,
+install-r, original certificate/package/origin/UID, both slots, progression and
+paid work/legacy entitlements. [Verified receipt](qa/repository-migration-001/qualified-native-upgrade.json).
+Full CI is still running; final integrated-main validation/build/publication pending.
 
 The current game includes endless progression, permanent Wisp Mastery, late
 upgrade guidance, affordability feedback, Formation controls, Wisp progression

@@ -191,3 +191,20 @@ legacy entitlement/140+50+160 once credits and cosmetics/marks in BOTH current
 persisted slots. Core Comet CI separately covers new command purchase retention.
 Original progression/paid Study/UID/signature/slots/cold tests unchanged; new
 readiness requires both new schemas actually persisted and saves post-update data.
+
+## Qualified native in-place upgrade
+
+Run38900729111 on4dbe3e3 PASS, completed receipt downloaded and separately
+rechecked against actual APK SHA256fc63f26d5618af8aec64e5ea0d5ba78135eff14dfd8cedb1add8bc4af94a04af,
+sourcebf7909b5/exact15 assets. Version1000012/0.2.12, com.lumenfall.app, expected
+original A9:1C:...:AD:3E:21 certificate verified by real aapt/apksigner. Actual
+old158 cold fixture verified, real install-r, same Android UID10145 and HTTPS
+localhost origin, BOTH migrated persisted slots retain currencies/progression,
+Mythic/modules/Ultimate, Tree/Forge/Studies, paid running work/choices, actual
+Auto-Ascend and all three legacy Comet entitlements, equipped cosmetics and Trial
+marks. Independent140+50+160 legacy credits350 settled once. New recruits retain
+entitlement. Actual native environment Android12/API31 emulator; no phone claim.
+Receipt, original/new synthetic snapshots, identity/assets and complete run log
+are saved as qualified-native-* files. First green receipt-less job remains
+UNVERIFIED; prior failed attempts remain failures, not retroactively accepted.
+This APK is build-only, UNPUBLISHED; final integrated-main checks/build still needed.

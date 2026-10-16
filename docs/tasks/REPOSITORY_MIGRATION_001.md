@@ -1,7 +1,7 @@
 # REPOSITORY_MIGRATION_001 — migrate and release the current combined game
 
-Owner: this feature chat. Status: IN PROGRESS; no release or native save-retention
-acceptance claimed. [PR1](https://github.com/xariib/Lumenfall/pull/1).
+Owner: this feature chat. Status: IN PROGRESS; qualified native upgrade preflight
+PASS, integrated release pending. [PR1](https://github.com/xariib/Lumenfall/pull/1).
 [Current continuation](../qa/repository-migration-001/CONTINUATION.md) and
 [complete evidence/failed attempts](../qa/repository-migration-001/README.md).
 
@@ -86,15 +86,24 @@ economy/mobile; Comet12738/12/10; Forge27396/12; real one-second8h golden phases
 unchanged; payment3360; recovery/refund/purchase regressions PASS. Self-review and
 automated validation only; no independent review claimed.
 
-Native remains UNVERIFIED. Initial green job silently omitted receipt; explicitly
-corrected to identity/assets-only, never counted as upgrade PASS. Strict attempts
-fail closed. API29 logcat shows stock WebView native font/GPU SIGABRT before
-fixture registration. API35 attempts lose entire emulator before save setup;
-latest host logs show repeated KVM WRMSR0xc0010007 before disappearance, no OOM.
-Current build-only38897693824 on locald39a619 tests a disposable-host KVM MSR
-compatibility setting, keeps diagnostics and streams Android logs. Original APK,
-assets and all save/paid-work assertions unchanged, now explicitly for BOTH slots.
-No native/CPU/performance success is inferred from a build or hypothetical cause.
+Qualified native build-only38900729111 on4dbe3e3 PASS. Downloaded actual APK and
+rechecked completed receipt/hash/assets/identity: original certificate,
+com.lumenfall.app,158→1000012/0.2.12, same UID10145 and https://localhost. Android12/
+API31, WebView91.0.4472.114: real old-app cold fixture, actual install-r, BOTH
+migrated persisted slots retain currencies/progression/rarity/modules/Ultimate,
+Tree/Forge, paid Study work and queue/Auto-Ascend choices, equipped cosmetics and
+Trial marks. All four actual old purchases preserved via ownership or approved
+legacy entitlement/350 once credits. New recruitment entitlements present.
+[Receipt](../qa/repository-migration-001/qualified-native-upgrade.json),
+[identity](../qa/repository-migration-001/qualified-native-identity.txt) and
+[exact assets](../qa/repository-migration-001/qualified-native-assets.json).
+This preflight APK is UNPUBLISHED; final exact-main build still required.
+
+Earlier green job omitted receipt and remains identity/assets-only, not upgrade
+PASS. Prior failures retained honestly: API29 native stock-WebView font crash;
+API35 hosted emulator loss; KVM workaround unproved/removed. API31 exposed missing
+Page agent then an invalid fixture expectation (Meteor did not exist in158).
+Actual old purchases now proved before replacement. No game code changed.
 
 ## Remaining acceptance and next action
 
