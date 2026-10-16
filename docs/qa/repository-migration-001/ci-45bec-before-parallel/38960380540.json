@@ -1,16 +1,16 @@
 {
-  "conclusion": "",
+  "conclusion": "cancelled",
   "databaseId": 38960380540,
   "event": "workflow_dispatch",
   "headSha": "45bec037e3881d25770958886bcb7bbfc6d92f62",
   "jobs": [
     {
-      "completedAt": "0001-01-01T00:00:00Z",
-      "conclusion": "",
+      "completedAt": "2026-10-16T20:41:38Z",
+      "conclusion": "cancelled",
       "databaseId": 117173650669,
       "name": "Lumenfall pre-merge validation",
       "startedAt": "2026-10-16T20:11:09Z",
-      "status": "in_progress",
+      "status": "completed",
       "steps": [
         {
           "completedAt": "2026-10-16T20:11:11Z",
@@ -197,52 +197,60 @@
           "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-10-16T20:41:26Z",
+          "conclusion": "cancelled",
           "name": "Stateful behavioral regression suite",
           "number": 24,
           "startedAt": "2026-10-16T20:23:06Z",
-          "status": "in_progress"
+          "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-10-16T20:41:26Z",
+          "conclusion": "skipped",
           "name": "Install runtime error guard in staged copy",
           "number": 25,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-10-16T20:41:26Z",
+          "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-10-16T20:41:26Z",
+          "conclusion": "skipped",
           "name": "Browser runtime smoke test",
           "number": 26,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-10-16T20:41:26Z",
+          "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-10-16T20:41:36Z",
+          "conclusion": "success",
           "name": "Preserve full regression evidence",
           "number": 27,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-10-16T20:41:26Z",
+          "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-10-16T20:41:36Z",
+          "conclusion": "skipped",
           "name": "Post Set up Node.js",
           "number": 53,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-10-16T20:41:36Z",
+          "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-10-16T20:41:36Z",
+          "conclusion": "success",
           "name": "Post Checkout",
           "number": 54,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-10-16T20:41:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-16T20:41:36Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 55,
+          "startedAt": "2026-10-16T20:41:36Z",
+          "status": "completed"
         }
       ],
       "url": "https://github.com/xariib/Lumenfall/actions/runs/38960380540/job/117173650669"
@@ -332,6 +340,6 @@
     }
   ],
   "name": "Pre-merge validation",
-  "status": "in_progress",
+  "status": "completed",
   "url": "https://github.com/xariib/Lumenfall/actions/runs/38960380540"
 }

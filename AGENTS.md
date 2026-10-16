@@ -82,11 +82,10 @@ unrounded depth-curve difference with current Tree/completed Lab bonuses and
 round up once. Preserve first reward, 20% repeat, minimum 1 and the full-reward
 cap. [Decision and status](docs/decisions/2026-10-07-ascend-prisms-rounding.md).
 
-PRISM_EARNING_001 is the separate, unreleased task-01 candidate for the user's
-9 October sequential-improvement mandate. Its protected-bonus repeat rule
-supersedes the historical 20%-of-full rule only on that development candidate.
-No main integration or APK publication is authorized before the combined release.
-See [task and evidence](docs/tasks/PRISM_EARNING_001.md).
+PRISM_EARNING_001's protected-bonus repeat rule is included in the combined
+endless-progression Android release. The historical 20%-of-full rule remains
+historical. See [requirements/evidence](docs/tasks/PRISM_EARNING_001.md) and
+[combined migration/release](docs/tasks/REPOSITORY_MIGRATION_001.md).
 
 ## Language and new rules
 Use JavaScript/Node.js 20+ for code, tests, test execution, CI logic and helper

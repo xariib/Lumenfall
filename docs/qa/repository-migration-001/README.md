@@ -1,5 +1,15 @@
 # Repository migration and release evidence — 16 October 2026
 
+COMPLETE 16 October 2026: [Android 0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014), code1000014,
+[stable APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk). All six exact-main CI workflows and both Full jobs PASS;
+final package/original certificate/exact assets/native install-r retention and
+anonymous download bytes verified. [Final receipts](release/) and
+[CI metadata/logs](ci-de1338-release/). [Task](../../tasks/REPOSITORY_MIGRATION_001.md).
+
+The chronological pre-publication checkpoints below are retained for provenance;
+their pending/failed statuses describe those earlier attempts, not this release.
+
+
 IN PROGRESS; no APK or publication claimed. [Task](../../tasks/REPOSITORY_MIGRATION_001.md).
 Start8f46153, product9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8.
 Migration branch codex/repository-migration, PR1 in xariib/Lumenfall.

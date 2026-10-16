@@ -1,4 +1,4 @@
-# [Download latest Android APK](https://github.com/xariib/Lumenfall/releases)
+# [Download latest Android APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk)
 
 Install Lumenfall on Android by downloading **Lumenfall.apk**, opening it, and
 allowing **Install unknown apps** for your browser or file manager if Android asks.
@@ -29,7 +29,8 @@ Rift, farm resources and Ascend for permanent growth.
 
 Clone [xariib/Lumenfall](https://github.com/xariib/Lumenfall). Read [AGENTS.md](AGENTS.md),
 [bootstrap](PROJECT_BOOTSTRAP.txt), [current status](docs/PROJECT_STATE.md) and the
-relevant task. Use Node.js20+, Git and Chromium. There is no root npm test script.
+relevant task. Use Node.js 24.19.0 for the full regression suite, Git and Chromium.
+There is no root npm test script.
 
 ```sh
 node scripts/codex/check_context.cjs --task docs/tasks/REPOSITORY_MIGRATION_001.md
@@ -38,7 +39,7 @@ node scripts/verify_apk_identity.cjs --self-test
 node tests/tooling/run.cjs
 ```
 
-Follow [environment setup](docs/project/CODEX_START.md) and the unchanged required
+Follow [environment setup](docs/project/CODEX_START.md) and the required
 [CI gates](.github/workflows/pre-merge-validation.yml). Windows uses the documented
 Chromium override; POSIX tooling acceptance runs on Linux.
 
@@ -56,7 +57,7 @@ a floor above historical builds. The setter and APK verifier share the same
 computed version. Package com.lumenfall.app, Capacitor origin and player storage
 are retained. Missing/wrong signing material or failed identity/assets aborts.
 
-Local native builds require Node.js20+, JDK17, Android SDK and the original key;
+Local native builds require Node.js 20+, JDK17, Android SDK and the original key;
 use the workflow steps for staging, Capacitor generation and Gradle signing.
 Keep signing material outside Git. Modern desktop browser results do not prove
 physical-device, legacy WebView or TalkBack acceptance.

@@ -12,7 +12,9 @@ For a new account, use [ACCOUNT_RECOVERY.md](ACCOUNT_RECOVERY.md).
 
 ## Miljø
 
-Webkode/adfærdstests kræver **Node.js 20+**, **Git** og en
+Full regression CI pins **Node.js 24.19.0**; use this version to reproduce its
+runtime. Android build CI uses Node.js 22. Tools otherwise require Node.js 20+.
+Webkode/adfærdstests kræver **Git** og en
 Chromium-browser på PATH: `google-chrome`, `google-chrome-stable`, `chromium`
 eller `chromium-browser`. Der er ingen root package.json/npm-testkommando.
 Brugerens [sprogregel](../decisions/2026-10-07-javascript-first.md) gør

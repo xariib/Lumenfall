@@ -1,42 +1,33 @@
 # Lumenfall — current delivery status
 
-16 October 2026: [REPOSITORY_MIGRATION_001](tasks/REPOSITORY_MIGRATION_001.md)
-is migrating the explicitly selected combined candidate8f46153 from
-codex/endless-progression to xariib/Lumenfall. Signing/versioning/CI/native and
-release verification are IN PROGRESS. No new release is claimed yet.
-Qualified Android12/WebView91 preflight38900729111 passes actual old158 cold save,
-install-r, original certificate/package/origin/UID, both slots, progression and
-paid work/legacy entitlements. [Verified receipt](qa/repository-migration-001/qualified-native-upgrade.json).
-Main45bec037 integrates selected8f and destinationeba histories. All five scoped
-lanes passed; Full original offline job times out300s. The unchanged original
-regression now runs in independent worker groups under the same overall deadline:
-local127s PASS, all18 result records exactly equal original/current sequential.
-Twelve worker controls plus complete190-case/both-job publisher gates pass. New
-exact-main six-lane CI, final signed native build and publication remain pending.
+16 October 2026: combined endless-progression game released in xariib/Lumenfall as
+[Android 0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014), versionCode1000014.
+[Download latest APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk); existing players install as an update without
+uninstalling. [Completed migration](tasks/REPOSITORY_MIGRATION_001.md) and
+[final identity/save/download evidence](qa/repository-migration-001/release/).
 
-The current game includes endless progression, permanent Wisp Mastery, late
-upgrade guidance, affordability feedback, Formation controls, Wisp progression
-UI and the previously combined Forge/Lab/Tree/Comet/save/offline work.
-[Endless task](tasks/ENDLESS_PROGRESSION_001.md),
-[continuation](qa/endless-progression-001/experiments/CONTINUATION.md),
-[requirements](qa/endless-progression-001/REQUIREMENTS.md) and
-[late guidance evidence](qa/endless-progression-001/LATE_GUIDANCE.md) retain
-source-qualified results. Original product9cdcd80c is preserved in history. Migration adds native Comet scrolling and enlarged Wisp effect text wrapping CSS
-fixes plus a pure Amount integer/parsing performance optimization. All other
-production JS remains unchanged; full offline gate is byte-identical to selected
-source and passes locally in237s. Current SHA256
-d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5.
-[Exact preservation proof](qa/repository-migration-001/product-preservation.json).
+Released source: de1338cd40cca13a765cc42181a7f856d8711d6b, from selected codex/endless-progression8f46153.
+Both selected history and original destinationeba021e preserved; PR1 merged.
+All six exact-main required workflows and both Full jobs pass. Android12/API31/
+WebView91 actual cold-save/in-place installed upgrade verifies original package,
+certificate, origin/UID, BOTH slots, progression, paid work and legacy entitlements.
+Anonymous stable download returns the exact verified signed APK bytes.
 
-Original signing identity has been [recovered and verified](qa/endless-progression-001/signing-recovery/README.md).
-Package com.lumenfall.app and existing Capacitor/save identity must be preserved.
-The old repository run counter cannot determine new Android versions by itself.
+Current features include endless progression, permanent Wisp Mastery, late upgrade
+guidance, affordability feedback, Formation controls and Wisp progression UI,
+Forge/Lab/Tree/Comet/save/offline systems. Migration adds two proven CSS fixes and
+pure Amount arithmetic performance changes; all other product JS/config/assets
+match selected8f. Product SHA256d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5.
+[Preservation proof](qa/repository-migration-001/product-preservation.json).
 
-Inherited full G4 run:215PASS/five deadlines; isolated retries pass. Required
-Linux CI, combined acceptance and Android installed-update/device/
-WebView60/TalkBack/human acceptance remain open. Desktop evidence is not native
-acceptance. Self-review only. Other feature chats/worktrees remain unchanged.
+Original requirements and earlier evidence remain in [Endless task](tasks/ENDLESS_PROGRESSION_001.md),
+[requirements](qa/endless-progression-001/REQUIREMENTS.md),
+[late guidance](qa/endless-progression-001/LATE_GUIDANCE.md) and
+[pre-migration status snapshot](project/PROJECT_STATE_BEFORE_MIGRATION_2026-10-16.md).
+Their pre-release statuses are historical; the migration task records this delivery.
+Other chats/worktrees remain untouched. Self-review/automated validation only.
 
-[Complete pre-migration status snapshot](project/PROJECT_STATE_BEFORE_MIGRATION_2026-10-16.md)
-preserves all earlier milestones and their limitations verbatim.
-See [known issues](project/KNOWN_ISSUES.md) and the feature task before continuing.
+Physical-phone, exact WebView60 DOM, TalkBack and human pacing/performance acceptance
+remain unverified. The available emulator test uses archived signed158 and synthetic
+saves; no particular old version is required on the user's phone. Historical
+pre-import Git objects unavailable404 remain a limitation. [Known issues](project/KNOWN_ISSUES.md).
