@@ -1,0 +1,125 @@
+{
+  "status": "Partial engine components only",
+  "baseCommit": "91eb301",
+  "gameSha256": "db1e62af0bb378338eed480b047c7509115ed8f382514ab0d65ccde4eb6a8a8c",
+  "sources": [
+    {
+      "file": "scripts/lib/luminous-orbit.cjs",
+      "sha256": "dcfb41a48fbcb60e0e756209308b1805f4eb005d36db7971885b0ca78298c118"
+    },
+    {
+      "file": "scripts/lib/luminous-orbit-session.cjs",
+      "sha256": "5b74f2ac04b74a1a0d447255a369ba0596d36615728d4a0d31af74b359d0891a"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-aggregate.cjs",
+      "sha256": "331e6161e2e71d557c5b2ae921122955dbdd650e9aa3905ea02a2952e78f5aeb"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-clock.cjs",
+      "sha256": "57d9133bffd7b3def0116527bc9076fea0ff209e4f0f9f44fee29c0db798ed6f"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-lumen.cjs",
+      "sha256": "94a226c08035f3dae0b458af76003070798fd04729a4628f1228be3ba310c9f8"
+    },
+    {
+      "file": "scripts/lib/ascend-native-phase.cjs",
+      "sha256": "8670dd61a84b951fab71d727060b2d62875e4839903ccc0ee43093be1353e1a5"
+    },
+    {
+      "file": "scripts/lib/simulation-binary-clock.cjs",
+      "sha256": "2d4706065368f12f4c61d314f7f4f03086f404f4457f48376f21153afd0eca93"
+    },
+    {
+      "file": "scripts/lib/ascend-cycle-lattice-clock.cjs",
+      "sha256": "40024b12394de15a8d17b9a2d0093d3f66840f2ae2a3f6e4480ff096d17ec577"
+    },
+    {
+      "file": "tests/behavioral/ascend-native-phase.cjs",
+      "sha256": "b191052e7d93fcd9e63927c17c333fd1ab634fb2ecc7a1f0f6f100003fde94a2"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-clock.cjs",
+      "sha256": "0a334181cc39af5e8d98983bb900d9a7dcc9a35e3eb1aed441ddfbe30066b832"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-aggregate.cjs",
+      "sha256": "4f41f8f4cab5c93de20b480e94c5a8c7d39420aee9030be6dcf1bc74d2302ff4"
+    },
+    {
+      "file": "tests/behavioral/luminous-orbit-normalization.cjs",
+      "sha256": "75b078dac546c31ee61518f3b05679cff07869dc9a440dbf1318cdbab4a63bcd"
+    },
+    {
+      "file": "tests/behavioral/simulation-binary-clock.cjs",
+      "sha256": "cf40cd53c80c4b6b4fc64a3cd1dd8c75dd5df3f9a0b7ab58f08da56145b85b6c"
+    },
+    {
+      "file": "tests/behavioral/simulation-binary-clock-legacy.cjs",
+      "sha256": "420b7596150f9866722cc0459e0c8c9714c51097c3966fa79a1f5238e67a0a04"
+    },
+    {
+      "file": "tests/behavioral/ascend-cycle-lattice-clock.cjs",
+      "sha256": "dc5fb32ed2f33a6653dd28500176f08d52c29370c7a72aff015cf91ef74426a7"
+    }
+  ],
+  "files": [
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-native-phase-verified.json",
+      "sha256": "7416ea917a6ec82d761e7d694a6bf75b34e1385eacc2d79bb61ad20a6f749688"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-native-phase-v8.json",
+      "sha256": "7c9708bb681b45f95b8a4a525d5fdc83dd221c17ecb52dac44c51c1f26e2863d"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-clock-residual-final.json",
+      "sha256": "80205a9454a8cebc95eba27110ff6d55fd02bb0df3f5e1feec5b8fa97533990e"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-aggregate-verified.json",
+      "sha256": "81cf460bd1f691ba8891a167324243c627c91ae0a0933737b221a1117f13b2c6"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/luminous-orbit-normalization-exact-native-verified.json",
+      "sha256": "3bfb3b7074a8ec3c14aaed8459b6133a32ee58fc7a916407f4b1b94a441c13c1"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/luminous-orbit-session-exact-native.json",
+      "sha256": "c1e11816c5e7a3db09853ea5c5e1c3096a559bd963fdc58f3c2981307a4c2317"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-lumen-exact-native.json",
+      "sha256": "eaad4d492101e853053a6815ef801d93ad67853a83b53eb9b68930e2395555bf"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/simulation-binary-clock-lattice-verified.json",
+      "sha256": "e6a8d2dffdcaf1a2686e501d633b2c4bf191c1ae934046e8a5fa90ceb06e3cad"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/simulation-binary-clock-phase-v8-verified.json",
+      "sha256": "57043de54b1af6216d11bc79a3c11f458196c8038f7f04c7dbff029ff61978f7"
+    },
+    {
+      "file": "docs/qa/endless-progression-001/experiments/ascend-cycle-lattice-clock-first.json",
+      "sha256": "1c3ed399b6dcbb3066dd64553cdce427207a64227a9d1e4fb3f4f8e3b84981b5"
+    }
+  ],
+  "checks": {
+    "phase": 41,
+    "clockLedger": 58,
+    "latticePeriodBudget": 20,
+    "clockResidual": 79,
+    "aggregate": 473,
+    "lumen": 177,
+    "normalizedOrbit": 116,
+    "orbitSession": 120,
+    "actualV8": 7
+  },
+  "limits": [
+    "No new modules are called by index.html. Generic recipe collection, queue affordability proof, precise global event scheduling, paid logical-clock integration, summary recording and full catch-up remain open.",
+    "Native unsafe integer operands are promoted from their actual binary value before exact multiplication; independent1e25/1e28/1e30 inputs cover both directions of decimal-vs-binary discrepancy.",
+    "The first binary-clock test was owner-stopped, verified PID21204, after zero origin incorrectly requested a negative exponent loop. Scaled zero now returns0; power rejects invalid shifts. Corrected58 modern/7 actualV8 checks pass. No timed-out run is counted as PASS."
+  ]
+}

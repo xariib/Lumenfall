@@ -1,0 +1,65 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "62214f4f00518c0e62cb200fa38a03b272283179789857b001cdb711784e434c", "instrumented_sha256": "b66a5940c0f52d0481a4b63aae93b8f2ab558b16c950c9eece74d0591dd0fd0f" }
+FAIL self-test-upgrade-identity-value
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.4886961, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-upgrade-identity-value", "json_status": "fail", "json_scenario": "self-test-upgrade-identity-value", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: "exact old Formation factors 1"
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\validation-evidence\final-f-negative\raw\self-test-upgrade-identity-value-xdpss7
+  stdout tail:
+as not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-pacing-regression': {
+          var compressed = bridge.wispPacingContract('ember');
+          assert(
+            compressed.rarity[4].shard<100000,
+            'intentional Wisp pacing regression: Mythic cost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-upgrade-identity-value">{
+  "scenario": "self-test-upgrade-identity-value",
+  "status": "fail",
+  "detail": "exact old Formation factors 1",
+  "runtimeErrors": []
+}</pre></body></html>
+
+Behavioral QA failed: self-test-upgrade-identity-value null

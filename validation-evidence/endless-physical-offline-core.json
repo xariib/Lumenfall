@@ -1,0 +1,147 @@
+{
+  "status": "pass",
+  "scenario": "offline-catchup-core",
+  "wallMs": 242395.9292,
+  "records": [
+    {
+      "case": "ON Clear21",
+      "seconds": 28800,
+      "batch": 256,
+      "batches": 369,
+      "kills": 86404,
+      "ascends": 4114,
+      "iterations": 94633,
+      "earned": 368583741.6000981
+    },
+    {
+      "case": "Prism policy isolation",
+      "perAscend": 23,
+      "newPrisms": 101585,
+      "legacyPrisms": 31647
+    },
+    {
+      "case": "ON Clear21",
+      "seconds": 28800,
+      "batch": 31,
+      "batches": 3052,
+      "kills": 86404,
+      "ascends": 4114,
+      "iterations": 94633,
+      "earned": 368583741.6000981
+    },
+    {
+      "case": "ON Clear20",
+      "seconds": 28800,
+      "batch": 256,
+      "batches": 367,
+      "kills": 89717,
+      "ascends": 4485,
+      "iterations": 94204,
+      "earned": 378867866.4000847
+    },
+    {
+      "case": "OFF",
+      "seconds": 28800,
+      "batch": 256,
+      "batches": 238,
+      "kills": 1149,
+      "ascends": 0,
+      "iterations": 61068,
+      "earned": 83860435381506.17
+    },
+    {
+      "case": "ON Clear21",
+      "seconds": 259200,
+      "batch": 256,
+      "batches": 554,
+      "kills": 129605,
+      "ascends": 6171,
+      "iterations": 141948,
+      "earned": 552873108.0000204
+    },
+    {
+      "case": "ON Clear21",
+      "seconds": 345600,
+      "batch": 256,
+      "batches": 554,
+      "kills": 129605,
+      "ascends": 6171,
+      "iterations": 141947,
+      "earned": 552873108.0000204
+    },
+    {
+      "case": "ON Clear21",
+      "seconds": 43200,
+      "batch": 256,
+      "batches": 554,
+      "kills": 129605,
+      "ascends": 6171,
+      "iterations": 141947,
+      "earned": 552873108.0000204
+    },
+    {
+      "case": "boundaries live",
+      "kills": 17975,
+      "motes": 290,
+      "empowers": 3424,
+      "research": 2,
+      "studies": [
+        "Guardian's Mastery"
+      ]
+    },
+    {
+      "case": "boundaries offline",
+      "kills": 17975,
+      "motes": 290,
+      "empowers": 3424,
+      "research": 4,
+      "studies": [
+        "Guardian's Mastery"
+      ]
+    },
+    {
+      "case": "cancel",
+      "callbacks": 1,
+      "error": "Offline catch-up cancelled",
+      "pending": true
+    },
+    {
+      "case": "simulation",
+      "callbacks": 1,
+      "error": "injected simulation failure",
+      "pending": true
+    },
+    {
+      "case": "primary",
+      "callbacks": 1,
+      "error": "Offline progress could not be saved",
+      "pending": true
+    },
+    {
+      "case": "recovery",
+      "callbacks": 1,
+      "error": null,
+      "pending": false
+    },
+    {
+      "case": "processing time 28800",
+      "kills": 86581,
+      "lastSeen": 1791390424477
+    },
+    {
+      "case": "processing time 259200",
+      "kills": 129780,
+      "lastSeen": 1791620824477
+    },
+    {
+      "case": "wall-clock jump -604800000",
+      "kills": 86581,
+      "lastSeen": 1790785624477
+    },
+    {
+      "case": "wall-clock jump 604800000",
+      "kills": 86581,
+      "lastSeen": 1791995224477
+    }
+  ]
+}

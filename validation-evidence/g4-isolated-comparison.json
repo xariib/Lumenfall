@@ -1,0 +1,123 @@
+{
+  "status": "MEASURED",
+  "records": [
+    {
+      "name": "wisp-rarity-scroll",
+      "deadline": 90000,
+      "wrapperOuterAllowance": 45000,
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "command": [
+        "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "tests/behavioral/run.cjs",
+        "--web-root",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\validation-evidence\\g4-isolated-web",
+        "--scenario",
+        "wisp-rarity-scroll",
+        "--raw-artifacts",
+        "validation-evidence/g4-isolated-wisp-rarity-scroll-raw"
+      ],
+      "exitcode": 0,
+      "outerTimedOut": false,
+      "inner": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "wallMs": 74885.48569999999,
+      "passed": true,
+      "stdoutSha256": "90babc52f2ccc6f0cbca10e67fcec3272a4e192424599e2033d018985e52b2c4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "offline-catchup-core",
+      "deadline": 300000,
+      "wrapperOuterAllowance": 0,
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "command": [
+        "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "tests/behavioral/offline-catchup.cjs",
+        "--source",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\validation-evidence\\g4-isolated-web\\index.html"
+      ],
+      "exitcode": 0,
+      "outerTimedOut": false,
+      "inner": null,
+      "wallMs": 258514.40170000005,
+      "passed": true,
+      "stdoutSha256": "08d4c48fca7a57d59c65862ad23f71f22ba7b30f1c7e515bebf65e1052527b0f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "offline-12h-core",
+      "deadline": 300000,
+      "wrapperOuterAllowance": 0,
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "command": [
+        "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "tests/behavioral/offline-12h.cjs",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\validation-evidence\\g4-isolated-web\\index.html"
+      ],
+      "exitcode": 0,
+      "outerTimedOut": false,
+      "inner": null,
+      "wallMs": 135729.53109999996,
+      "passed": true,
+      "stdoutSha256": "7a18ad602644f8a6ac8c0e4ff748b1a0dca058cf0af2bcd4fdac9c167f16c24e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rift-status-stacking-mobile",
+      "deadline": 300000,
+      "wrapperOuterAllowance": 45000,
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "command": [
+        "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "tests/behavioral/run.cjs",
+        "--web-root",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\validation-evidence\\g4-isolated-web",
+        "--scenario",
+        "rift-status-stacking-mobile",
+        "--raw-artifacts",
+        "validation-evidence/g4-isolated-rift-status-stacking-mobile-raw"
+      ],
+      "exitcode": 0,
+      "outerTimedOut": false,
+      "inner": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "wallMs": 264661.97690000007,
+      "passed": true,
+      "stdoutSha256": "69a46b6d69c6aa92f2e82182b2f0253052eef9d619edaec84b8e644fc90fb364",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rift-status-mobile",
+      "deadline": 300000,
+      "wrapperOuterAllowance": 45000,
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "command": [
+        "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "tests/behavioral/run.cjs",
+        "--web-root",
+        "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\validation-evidence\\g4-isolated-web",
+        "--scenario",
+        "rift-status-mobile",
+        "--raw-artifacts",
+        "validation-evidence/g4-isolated-rift-status-mobile-raw"
+      ],
+      "exitcode": 0,
+      "outerTimedOut": false,
+      "inner": {
+        "exitcode": 0,
+        "timed_out": false,
+        "stderr": ""
+      },
+      "wallMs": 265352.97589999996,
+      "passed": true,
+      "stdoutSha256": "41ccc77ccfc7274c98abbcee36a769ee618bbf08c8d87557fbea7d246511773d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

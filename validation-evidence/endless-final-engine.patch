@@ -1,0 +1,1470 @@
+diff --git a/index.html b/index.html
+index dbf2483..d5c9ab4 100644
+--- a/index.html
++++ b/index.html
+@@ -3249,12 +3249,12 @@ function createGameAmount(){
+ var Amount=createGameAmount();
+ 
+ var ENDLESS_PROGRESSION = {
+-  recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:15},thorn:{depth:35,lab:18},void:{depth:55,lab:20},aurora:{depth:75,lab:21},titan:{depth:100,lab:24}},
++  recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:18},thorn:{depth:35,lab:24},void:{depth:55,lab:30},aurora:{depth:75,lab:35},titan:{depth:100,lab:43}},
+   recruitLumen:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
+   rarityLumenBase:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
+-  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,31],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
+-  ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:32,forge:10,ascends:50},
+-  mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:32,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
++  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,15,40,78],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
++  ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:84,forge:10,ascends:50},
++  mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:84,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
+   masterworkPowerGrowth:1.25,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
+ };
+ var SPIRITS = [
+@@ -3849,17 +3849,17 @@ function studyBoostCost(mult,hours){
+   var packageCost=Math.ceil(total*[100,95,90][h]/800);
+   return labDiscountCost(packageCost,2*labExpansionLevel('catalysis'));
+ }
+-function studyBoostAt(id,nowMs){
++function studyBoostAt(id,nowMs,clock){
+   var b=state.studyBoosts && state.studyBoosts[id],now=nowMs===undefined?Date.now():nowMs;
+-  return b && now>=b.startedAtMs && now<b.expiresAtMs ? b : null;
++  return b && (clock&&clock.binary?clock.binary.compareMs(b.startedAtMs)<=0&&clock.binary.compareMs(b.expiresAtMs)>0:now>=b.startedAtMs && now<b.expiresAtMs) ? b : null;
+ }
+ function studyWorkBetween(active,elapsedSec,nowMs){
+   var now=nowMs===undefined?Date.now():nowMs,b=state.studyBoosts[active.id];
+   var boosted=b?Math.max(0,Math.min(now+elapsedSec*1000,b.expiresAtMs)-Math.max(now,b.startedAtMs))/1000:0;
+   return elapsedSec*active.speedMult+boosted*Math.max(0,(b?b.mult:1)-active.speedMult);
+ }
+-function studyEffectiveSpeed(active,nowMs){
+-  var boost=studyBoostAt(active.id,nowMs);
++function studyEffectiveSpeed(active,nowMs,clock){
++  var boost=studyBoostAt(active.id,nowMs,clock);
+   return Math.max(active.speedMult,boost?boost.mult:active.speedMult);
+ }
+ function studyCompletionSeconds(active,nowMs){
+@@ -3872,8 +3872,9 @@ function studyCompletionSeconds(active,nowMs){
+   if(work<=boosted*b.mult)return time+work/b.mult;
+   return time+boosted+(work-boosted*b.mult)/base;
+ }
+-function nextStudyBoostExpiry(nowMs){
++function nextStudyBoostExpiry(nowMs,clock){
+   var next=Infinity;
++  if(clock&&clock.binary){Object.keys(state.studyBoosts).forEach(function(id){var b=state.studyBoosts[id];[b.startedAtMs,b.expiresAtMs].forEach(function(at){var left=clock.binary.until(at);if(Amount.gt(left,0))next=Amount.min(next,left);});});return next;}
+   Object.keys(state.studyBoosts).forEach(function(id){var b=state.studyBoosts[id];if(b.startedAtMs>nowMs)next=Math.min(next,(b.startedAtMs-nowMs)/1000);if(b.expiresAtMs>nowMs)next=Math.min(next,(b.expiresAtMs-nowMs)/1000);});
+   return next;
+ }
+@@ -3895,8 +3896,8 @@ function activateStudyBoost(id,mult,hours){
+   }))return false;
+   renderLongStudies();renderHud();return true;
+ }
+-function luminousMotePayout(nowMs){
+-  if(nowMs<state.moteNextAtMs)return 0;
++function luminousMotePayout(nowMs,clock){
++  if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;
+   state.moteNextAtMs=nowMs+LUMINOUS_MOTE_INTERVAL_MS;
+   var reward=Amount.max(1,Amount.round(Amount.mul(motesDropFor(state.depth),Amount.add(1,supportMoteBonus())),'round'));
+   state.motes=creditAmount(state.motes,reward);return reward;
+@@ -4516,7 +4517,7 @@ function freshState(){
+     depth:1, maxDepthEver:1,
+     riftMode:'push', farmDepth:0, farmReturnDepth:0,
+     enemyDepth:0, enemyHp:0, enemyMaxHp:0, enemyIsLuminous:false,
+-    spirits:spirits, heroRarity:heroRarity, heroResource:heroResource, wispModules:wispModules, wispUltimate:wispUltimate, wispMastery:wispMastery, recruitmentEntitlements:recruitmentEntitlements, empowerQueue:empowerQueue, activeParty:['ember'],
++    spirits:spirits, heroRarity:heroRarity, heroResource:heroResource, wispModules:wispModules, wispUltimate:wispUltimate, wispMastery:wispMastery, canonicalAutomationClock:{}, recruitmentEntitlements:recruitmentEntitlements, empowerQueue:empowerQueue, activeParty:['ember'],
+     formationPresets:{push:['ember'],farm:['ember'],boss:['ember']}, activeFormationPreset:'push',
+     formationRebuild:null,
+     nodes:nodes, treeTrainingProgress:0, research:research, researchQueue:researchQueue,
+@@ -5132,8 +5133,20 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
+   out.totalKills = persistedAmountInteger(source.totalKills,fresh.totalKills);
+   out.totalOfflineSeconds = persistedAmount(source.totalOfflineSeconds,fresh.totalOfflineSeconds);
+   out.luminousAccum = Math.max(0,Math.min(0.999999,finiteNonNegative(source.luminousAccum,fresh.luminousAccum)));
+-  out._autoTapAccum = Math.max(0,Math.min(999.999,finiteNonNegative(source._autoTapAccum,0)));
+-  out._autoEmpowerAccum = Math.max(0,Math.min(999.999,finiteNonNegative(source._autoEmpowerAccum,0)));
++  out._autoTapAccum = Math.max(0,Math.min(1000,finiteNonNegative(source._autoTapAccum,0)));
++  out._autoEmpowerAccum = Math.max(0,Math.min(1000,finiteNonNegative(source._autoEmpowerAccum,0)));
++  out.canonicalAutomationClock={};
++  if(source.canonicalAutomationClock!==undefined){
++    if(!isPlainObject(source.canonicalAutomationClock))throw persistenceError('invalid-automation-clock','Automation clock needs recovery');
++    ['_autoTapAccum','_autoEmpowerAccum'].forEach(function(field){
++      var record=source.canonicalAutomationClock[field];if(record===undefined)return;
++      if(!isPlainObject(record)||!Number.isFinite(record.base)||record.base<0||record.base>1000||!Number.isFinite(record.last)||record.last<0||record.last>1000||!Amount.valid(record.elapsed)||Amount.lt(record.elapsed,0)||Amount.gt(record.elapsed,2))throw persistenceError('invalid-automation-clock','Automation clock needs recovery');
++      var elapsed=persistedAmount(record.elapsed,0),probe;try{probe=createBinarySimulationClock(Amount,0,elapsed);probe.advance(elapsed);}catch(error){throw persistenceError('invalid-automation-clock','Automation clock needs recovery');}
++      // An actual tick/reset may have changed the phase since its last recorded
++      // basis. Keep that legitimate phase; start a new basis at its real owner.
++      if(record.last===out[field]){if(record.base+probe.elapsedNumber()*1000!==record.last)throw persistenceError('invalid-automation-clock','Automation clock needs recovery');out.canonicalAutomationClock[field]={base:record.base,elapsed:elapsed,last:record.last};}
++    });
++  }
+ 
+   var allowedMultipliers = [1,5,10,25,50,100,'max'];
+   out.savedLabMultiplier = allowedMultipliers.indexOf(source.savedLabMultiplier)!==-1 ? source.savedLabMultiplier : fresh.savedLabMultiplier;
+@@ -5973,6 +5986,7 @@ function forgeCommitPaidMutation(apply){
+ }
+ function forgeGiveCharge(id,amount){
+   if(amount<=0 || (state.spirits[id]||0)<=0 || state.activeParty.indexOf(id)===-1) return;
++  if(endlessHeroObserver)endlessHeroObserver.charge(id,amount);
+   state.heroResource[id]=Math.min(100,(state.heroResource[id]||0)+amount);
+ }
+ function forgeTapCharge(){
+@@ -6097,7 +6111,7 @@ function getWispRarityPlan(sp){
+ }
+ function getWispUltimatePlan(sp){
+   if(SPIRITS.indexOf(sp)===-1)return {affordable:false,reason:'invalid',requirements:[]};
+-  var g=ENDLESS_PROGRESSION.ultimate,requirements=[wispRequirement('rarity','Rarity tier',state.heroRarity[sp.id]||0,5),wispRequirement('module','Ability Lv.',moduleLevel(sp.id),g.module),wispRequirement('depth','Rift',state.maxDepthEver,g.depth),wispRequirement('ascends','Ascends',state.ascendCount,g.ascends),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),g.lab+2*SPIRITS.indexOf(sp)),wispRequirement('forge','Arcane Calibration Lv.',researchLevel('arcanecal'),g.forge)];
++  var g=ENDLESS_PROGRESSION.ultimate,requirements=[wispRequirement('rarity','Rarity tier',state.heroRarity[sp.id]||0,5),wispRequirement('module','Ability Lv.',moduleLevel(sp.id),g.module),wispRequirement('depth','Rift',state.maxDepthEver,g.depth),wispRequirement('ascends','Ascends',state.ascendCount,g.ascends),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),g.lab+12*SPIRITS.indexOf(sp)),wispRequirement('forge','Arcane Calibration Lv.',researchLevel('arcanecal'),g.forge)];
+   var cost=ultimateSigilCost(sp),eligible=(state.spirits[sp.id]||0)>0&&!ultimateUnlocked(sp.id)&&requirements.every(function(r){return r.met;});
+   var funded=forgeExactDebit(state.sigils,cost);
+   return {cost:cost,requirements:requirements,eligible:eligible,affordable:eligible&&funded,reason:ultimateUnlocked(sp.id)?'owned':!eligible?'requirements':funded?'available':'funds'};
+@@ -7957,6 +7971,7 @@ function applyAscendMutation(){
+     state.buffMult = 1;
+     state.supportBuffs = null;
+   }
++  state.canonicalAutomationClock={};
+   var oldTapPhase=state._autoTapAccum||0,oldEmpowerPhase=state._autoEmpowerAccum||0;
+   state.sigilResonanceUses = 0;
+   state._autoTapAccum = 0;
+@@ -10174,6 +10189,7 @@ function simulationTimelinePush(summary,elapsedSec,type,detail){
+ // rounded epoch "now" to obtain an interval on that more precise clock.
+ function supportDeadlineSecondsRemaining(until,nowMs,clock){
+   if(!until) return 0;
++  if(clock&&clock.binary)return clock.binary.until(until);
+   if(!clock) return (until-nowMs)/1000;
+   var deadlineWhole = Math.floor(until/1000);
+   var deadlineRemaining = 1-(until-deadlineWhole*1000)/1000;
+@@ -10190,7 +10206,7 @@ function applySupportCast(sp,nowMs,clock){
+   var sources = state.supportBuffs.sources;
+   var old = sources[sp.id];
+   // An expired cast cannot pass its strength into a later cast.
+-  if(old && supportDeadlineSecondsRemaining(old.until,nowMs,clock)<=0) old = null;
++  if(old && Amount.le(supportDeadlineSecondsRemaining(old.until,nowMs,clock),0)) old = null;
+   sources[sp.id] = {
+     until:Math.max(old ? old.until : 0,nowMs+profile.durationMs),
+     mult:Math.max(old ? old.mult : 1,profile.strength)
+@@ -10201,14 +10217,14 @@ function applySupportCast(sp,nowMs,clock){
+ }
+ function simulationExpireBuff(nowMs,clock){
+   var changed = false;
+-  if(state.buffUntil && simulationBuffSecondsRemaining(nowMs,clock)<=0){
++  if(state.buffUntil && Amount.le(simulationBuffSecondsRemaining(nowMs,clock),0)){
+     state.buffUntil = 0;
+     state.buffMult = 1;
+     changed = true;
+   }
+   var sources = state.supportBuffs && state.supportBuffs.sources;
+   if(sources) ['tide','aurora'].forEach(function(id){
+-    if(sources[id] && supportDeadlineSecondsRemaining(sources[id].until,nowMs,clock)<=0){
++    if(sources[id] && Amount.le(supportDeadlineSecondsRemaining(sources[id].until,nowMs,clock),0)){
+       delete sources[id];
+       changed = true;
+     }
+@@ -10227,9 +10243,9 @@ function simulationBuffMult(nowMs,clock){
+   var sources = state.supportBuffs && state.supportBuffs.sources;
+   if(sources) ['tide','aurora'].forEach(function(id){
+     var entry = sources[id];
+-    if(entry && supportDeadlineSecondsRemaining(entry.until,nowMs,clock)>0) known += entry.mult-1;
++    if(entry && Amount.gt(supportDeadlineSecondsRemaining(entry.until,nowMs,clock),0)) known += entry.mult-1;
+   });
+-  var legacy = simulationBuffSecondsRemaining(nowMs,clock)>0 ? state.buffMult : 1;
++  var legacy = Amount.gt(simulationBuffSecondsRemaining(nowMs,clock),0) ? state.buffMult : 1;
+   return Math.max(legacy,known);
+ }
+ function simulationPassiveDps(nowMs,clock){
+@@ -10237,12 +10253,12 @@ function simulationPassiveDps(nowMs,clock){
+ }
+ function simulationNextBuffSeconds(nowMs,clock){
+   var remaining = simulationBuffSecondsRemaining(nowMs,clock);
+-  var next = remaining>0 ? remaining : Infinity;
++  var next = Amount.gt(remaining,0) ? remaining : Infinity;
+   var sources = state.supportBuffs && state.supportBuffs.sources;
+   if(sources) ['tide','aurora'].forEach(function(id){
+     if(!sources[id]) return;
+     var seconds = supportDeadlineSecondsRemaining(sources[id].until,nowMs,clock);
+-    if(seconds>0) next = Math.min(next,seconds);
++    if(Amount.gt(seconds,0)) next = Amount.min(next,seconds);
+   });
+   return next;
+ }
+@@ -10259,31 +10275,73 @@ function simulationNextAbilitySeconds(nowMs,clock){
+   return next;
+ }
+ function simulationAdvanceAbilityResources(elapsedSec){
+-  if(elapsedSec<=0) return;
+-  var fill = (100/ABILITY_BASE_CYCLE_SEC) * fillRateMult() * elapsedSec;
++  if(Amount.le(elapsedSec,0)) return;
++  var rate=(100/ABILITY_BASE_CYCLE_SEC)*fillRateMult();var fill=Amount.wide(elapsedSec)?Amount.mul(rate,elapsedSec):rate*elapsedSec;
++  if(endlessHeroObserver)endlessHeroObserver.fill(fill);
+   state.activeParty.forEach(function(id){
+     if((state.spirits[id]||0)<=0) return;
+-    state.heroResource[id] = Math.min(100,(state.heroResource[id]||0)+fill);
+-  });
+-}
+-function simulationNextAutoTapSeconds(){
++    state.heroResource[id] = Math.min(100,Amount.add(state.heroResource[id]||0,fill));
++  });
++}
++
++var canonicalAutomationAnchors={},canonicalAutomationDurations=new Map();
++function invalidateCanonicalAutomation(field){delete canonicalAutomationAnchors[field];if(state.canonicalAutomationClock)delete state.canonicalAutomationClock[field];}
++function canonicalAutomationMillis(intervals){
++ var key=JSON.stringify(intervals),cached=canonicalAutomationDurations.get(key);if(cached!==undefined)return cached;
++ var sum=intervals.reduce(function(a,b){return a+b;},0),clock=createBinarySimulationClock(Amount,0,Math.max(1,sum*2));
++ intervals.forEach(function(dt){clock.advance(dt);});var value=clock.elapsedNumber()*1000;
++ canonicalAutomationDurations.set(key,value);if(canonicalAutomationDurations.size>64)canonicalAutomationDurations.delete(canonicalAutomationDurations.keys().next().value);return value;
++}
++function canonicalAutomationAnchor(field,clock){
++ var value=state[field]||0,m=canonicalAutomationAnchors[field];
++ if(!m||m.state!==state||m.run!==ascendRunToken||m.last!==value){
++   var sameOwner=m&&m.state===state&&m.run===ascendRunToken,saved=!sameOwner&&state.canonicalAutomationClock&&state.canonicalAutomationClock[field];
++   var base=saved&&saved.last===value?saved.base:value,start=saved&&saved.last===value?clock.pointBefore(saved.elapsed):clock.absoluteSnapshot(),delay=Math.max(0,(1000-base)/1000);
++   m={state:state,run:ascendRunToken,base:base,last:value,start:start,delay:delay,deadline:clock.pointAfter(start,delay)};canonicalAutomationAnchors[field]=m;
++ }
++ return m;
++}
++function recordCanonicalAutomation(field,m,clock){
++ if(!state.canonicalAutomationClock)state.canonicalAutomationClock={};
++ state.canonicalAutomationClock[field]={base:m.base,elapsed:clock.since(m.start),last:state[field]||0};
++}
++function persistCanonicalAutomation(clock){
++ var next={};[['_autoTapAccum','autotap'],['_autoEmpowerAccum','labmaster']].forEach(function(pair){if(state.achieved[pair[1]]){var m=canonicalAutomationAnchor(pair[0],clock);next[pair[0]]={base:m.base,elapsed:clock.since(m.start),last:state[pair[0]]||0};}});state.canonicalAutomationClock=next;
++}
++function canonicalAutomationNext(field,clock){
++ var m=canonicalAutomationAnchor(field,clock),at=clock.absoluteSnapshot();
++ if(at.e===m.start.e&&Amount.cmp(at.n,m.start.n)===0)return m.delay;
++ var left=Amount.exactSub(0,clock.since(m.deadline));
++ if(Amount.le(left,0)&&(state[field]||0)<1000-1e-7)throw new Error('Canonical timer deadline mismatch '+JSON.stringify({field:field,base:m.base,last:m.last,value:state[field],elapsed:clock.sinceNumber(m.start),delay:m.delay}));
++ return Amount.max(0,left);
++}
++function canonicalAutomationAdvance(from,to){
++ [['_autoTapAccum','autotap'],['_autoEmpowerAccum','labmaster']].forEach(function(pair){
++   if(!state.achieved[pair[1]])return;var m=canonicalAutomationAnchor(pair[0],from);
++   state[pair[0]]=m.base+to.sinceNumber(m.start)*1000;m.last=state[pair[0]];recordCanonicalAutomation(pair[0],m,to);
++ });
++}
++
++function simulationNextAutoTapSeconds(clock){
++  if(state.achieved.autotap&&clock&&clock.binary)return canonicalAutomationNext('_autoTapAccum',clock.binary);
+   if(!state.achieved.autotap) return Infinity;
+   return Math.max(0,(1000-(state._autoTapAccum||0))/1000);
+ }
+-function simulationNextAutoEmpowerSeconds(){
++function simulationNextAutoEmpowerSeconds(clock){
++  if(state.achieved.labmaster&&clock&&clock.binary)return canonicalAutomationNext('_autoEmpowerAccum',clock.binary);
+   if(!state.achieved.labmaster) return Infinity;
+   return Math.max(0,(1000-(state._autoEmpowerAccum||0))/1000);
+ }
+ function simulationAdvanceAutomationTimers(elapsedSec){
+-  if(state.achieved.autotap) state._autoTapAccum = (state._autoTapAccum||0) + elapsedSec*1000;
+-  if(state.achieved.labmaster) state._autoEmpowerAccum = (state._autoEmpowerAccum||0) + elapsedSec*1000;
++  if(state.achieved.autotap) state._autoTapAccum = (state._autoTapAccum||0) + (Amount.wide(elapsedSec)?Amount.mul(elapsedSec,1000):elapsedSec*1000);
++  if(state.achieved.labmaster) state._autoEmpowerAccum = (state._autoEmpowerAccum||0) + (Amount.wide(elapsedSec)?Amount.mul(elapsedSec,1000):elapsedSec*1000);
+ }
+-function simulationNextStudySeconds(nowMs){
++function simulationNextStudySeconds(nowMs,clock){
+   nowMs=nowMs===undefined?Date.now():nowMs;
+-  var next = nextStudyBoostExpiry(nowMs);
++  var next = nextStudyBoostExpiry(nowMs,clock);
+   state.activeStudies.forEach(function(active){
+-    var speed=studyEffectiveSpeed(active,nowMs);
+-    if(speed>0) next = Math.min(next,Math.max(0,active.remainingSec/speed));
++    var speed=studyEffectiveSpeed(active,nowMs,clock);
++    if(speed>0) next = Amount.min(next,Math.max(0,active.remainingSec/speed));
+   });
+   return next;
+ }
+@@ -10299,7 +10357,7 @@ function simulationCompleteDueStudies(summary){
+     var active = state.activeStudies[i];
+     if(active.remainingSec>SIM_EPS) continue;
+     var result=finishStudyRecord(i);
+-    if(result.earned){summary.completedStudies.push(result.name);summary.motesGained=Amount.add(summary.motesGained,result.moteBonus||0);earned++;}
++    if(result.earned){summary.completedStudies.push(result.name);summary.motesGained=creditAmount(summary.motesGained,result.moteBonus||0);earned++;}
+     else summary.closedStudies.push(result.name);
+     handled++;
+   }
+@@ -10450,13 +10508,13 @@ function simulationApplyAutoAscend(summary){
+   if(!autoAscendReady()) return false;
+   var motesBeforeAscend=state.motes;
+   var gain = applyAscendMutation();
+-  summary.ascends++;
+-  summary.ascendGains.push(gain);
+-  summary.motesGained=Amount.add(summary.motesGained,Amount.sub(state.motes,motesBeforeAscend));
++  cycleRecordAscends(summary,gain,1);
++  summary.motesGained=creditAmount(summary.motesGained,Amount.sub(state.motes,motesBeforeAscend));
+   // Normalize gameplay as a live save while retaining untouched canonical
+   // refund records across repeated offline Auto-Ascend boundaries.
+ 
+   state = normalizeCurrentSave(state,true);
++  if(summary._cycle)summary._cycle.ascend(gain,Amount.exactSub(state.motes,motesBeforeAscend));
+   simulationRecordAchievements(summary);
+   return true;
+ }
+@@ -10467,23 +10525,26 @@ function simulationDefeatEnemy(policy,summary){
+   var rewardScale = simulationRewardScale(policy);
+   var lumenGain = Amount.mul(enemyRewardFor(depth,wasLuminous),rewardScale);
+   var shardGain = Amount.mul(shardRewardFor(depth,wasLuminous),rewardScale);
++  if(summary._cycle&&summary._cycle.active())summary._cycle.kill({kind:'kill',depth:depth,
++    normalLumen:Amount.mul(enemyRewardFor(depth,false),rewardScale),brightLumen:Amount.mul(enemyRewardFor(depth,true),rewardScale),
++    normalShard:Amount.mul(shardRewardFor(depth,false),rewardScale),brightShard:Amount.mul(shardRewardFor(depth,true),rewardScale),nextChance:isBoss(depth+1)?null:eliteChance(depth+1)});
+ 
+   gainLumen(lumenGain);
+   state.shards=creditAmount(state.shards,shardGain);
+-  summary.lumenGained=Amount.add(summary.lumenGained,lumenGain);
+-  summary.shardGained=Amount.add(summary.shardGained,shardGain);
++  summary.lumenGained=creditAmount(summary.lumenGained,lumenGain);
++  summary.shardGained=creditAmount(summary.shardGained,shardGain);
+ 
+   if(wasLuminous){
+-    var moteGain = luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now());
+-    summary.motesGained=Amount.add(summary.motesGained,moteGain);
+-    summary.luminousKills++;
++    var moteGain = luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now(),policy.clock);
++    summary.motesGained=creditAmount(summary.motesGained,moteGain);
++    summary.luminousKills=creditAmount(summary.luminousKills,1);
+     trackDaily('luminousKills');
+   }
+   if(wasBoss){
+     var sigilGain = sigilsFromBoss(depth);
+     state.sigils=creditAmount(state.sigils,sigilGain);
+-    summary.sigilsGained=Amount.add(summary.sigilsGained,sigilGain);
+-    summary.bossKills++;
++    summary.sigilsGained=creditAmount(summary.sigilsGained,sigilGain);
++    summary.bossKills=creditAmount(summary.bossKills,1);
+     trackDaily('bossKills');
+     forgeBossVictory();
+   }
+@@ -10534,12 +10595,12 @@ function simulationBatchFarmKills(count,policy,summary){
+ 
+   gainLumen(lumenGain);
+   state.shards=creditAmount(state.shards,shardGain);
+-  summary.lumenGained=Amount.add(summary.lumenGained,lumenGain);
+-  summary.shardGained=Amount.add(summary.shardGained,shardGain);
++  summary.lumenGained=creditAmount(summary.lumenGained,lumenGain);
++  summary.shardGained=creditAmount(summary.shardGained,shardGain);
+ 
+   if(Amount.gt(luminousKills,0)){
+     var moteGain = batchLuminousMotes(count,state.enemyIsLuminous,startAccum,chance,policy);
+-    summary.motesGained=Amount.add(summary.motesGained,moteGain);
++    summary.motesGained=creditAmount(summary.motesGained,moteGain);
+     summary.luminousKills=Amount.add(summary.luminousKills,luminousKills);
+     trackDaily('luminousKills',luminousKills);
+   }
+@@ -10661,15 +10722,16 @@ function simulationTriggerAbility(sp,level,nowMs,policy,summary,clock){
+   var hit=Amount.mul(Amount.mul(abilityRawBurst(sp,level),formationContextDamageMult(depth)),bossAbilityDamageMult(depth));
+   var rewards=forgeAbilityRewards(sp,level,hit,state.enemyHp);
+   var rewardScale=simulationRewardScale(policy);
++  if(summary._cycle)summary._cycle.gain(Amount.mul(rewards.lumen,rewardScale),Amount.mul(rewards.shards,rewardScale),sp.id);
+   if(Amount.gt(rewards.shards,0)){
+     var shardGain=Amount.mul(rewards.shards,rewardScale);
+     state.shards=creditAmount(state.shards,shardGain);
+-    summary.shardGained=Amount.add(summary.shardGained,shardGain);
++    summary.shardGained=creditAmount(summary.shardGained,shardGain);
+   }
+   if(Amount.gt(rewards.lumen,0)){
+     var lumenGain=Amount.mul(rewards.lumen,rewardScale);
+     gainLumen(lumenGain);
+-    summary.lumenGained=Amount.add(summary.lumenGained,lumenGain);
++    summary.lumenGained=creditAmount(summary.lumenGained,lumenGain);
+   }
+   if(sp.abilityType==='support') applySupportCast(sp,nowMs,clock);
+   if(policy.visual){
+@@ -10683,6 +10745,7 @@ function simulationProcessAbilities(nowMs,policy,summary,clock){
+   var fired=0,ids=state.activeParty.slice(),pendingRelay=[];
+   for(var i=0;i<ids.length;i++){
+     var id=ids[i];
++    if(summary._cycle)summary._cycle.heroCheck(id,nowMs,clock);
+     if((state.spirits[id]||0)<=0 || (state.heroResource[id]||0)<100-1e-7) continue;
+     var sp=SPIRITS.find(function(s){return s.id===id;});
+     if(!sp) continue;
+@@ -10701,6 +10764,7 @@ function simulationProcessAutoTap(nowMs,policy,summary,clock){
+   while(state.achieved.autotap && Amount.ge(state._autoTapAccum||0,Amount.sub(1000,1e-7))){
+     var tapResidual=Amount.sub(state._autoTapAccum||0,1000);
+     state._autoTapAccum=Amount.lt(Amount.abs(tapResidual),1e-7) ? 0 : Amount.max(0,tapResidual);
++    invalidateCanonicalAutomation('_autoTapAccum');
+     state.totalTaps=Amount.add(state.totalTaps,1);
+     summary.autoTaps++;
+     trackDaily('taps');
+@@ -10718,11 +10782,13 @@ function simulationProcessAutoEmpower(summary){
+   while(state.achieved.labmaster && (state._autoEmpowerAccum||0)>=1000-1e-7){
+     var empowerResidual = (state._autoEmpowerAccum||0)-1000;
+     state._autoEmpowerAccum = Math.abs(empowerResidual)<1e-7 ? 0 : Math.max(0,empowerResidual);
++    invalidateCanonicalAutomation('_autoEmpowerAccum');
+     for(var purchase=0;purchase<1+treeLevel('empowerbatch');purchase++){
+       if(!autoEmpowerTick()) break;
+       summary.empowers++;
+     }
+     processed++;
++    if(summary._cycle)summary._cycle.automaticTick();
+     if(processed>10) throw new Error('Authoritative simulation Auto-Empower guard exceeded');
+   }
+   return processed;
+@@ -10780,8 +10846,8 @@ function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
+     simulationTimelinePush(summary,elapsedSec,'ability',{count:abilities});
+     actions += abilities;
+   }
+-  if(summary.ascends>ascendsBefore){
+-    simulationTimelinePush(summary,elapsedSec,'autoAscend',{count:summary.ascends-ascendsBefore});
++  if(Amount.gt(summary.ascends,ascendsBefore)){
++    simulationTimelinePush(summary,elapsedSec,'autoAscend',{count:Amount.exactSub(summary.ascends,ascendsBefore)});
+   }
+ 
+   ascendsBefore = summary.ascends;
+@@ -10790,8 +10856,8 @@ function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
+     simulationTimelinePush(summary,elapsedSec,'autoTap',{count:taps});
+     actions += taps;
+   }
+-  if(summary.ascends>ascendsBefore){
+-    simulationTimelinePush(summary,elapsedSec,'autoAscend',{count:summary.ascends-ascendsBefore});
++  if(Amount.gt(summary.ascends,ascendsBefore)){
++    simulationTimelinePush(summary,elapsedSec,'autoAscend',{count:Amount.exactSub(summary.ascends,ascendsBefore)});
+   }
+ 
+   var spiritBefore = {};
+@@ -10865,8 +10931,800 @@ function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
+ 
+   return actions;
+ }
++var createBinarySimulationClock=function(A,startMs,budgetSec,options){
++ var B=67108864,Z={w:[],s:0},partsCache=Object.create(null),partKeys=[],fives={0:{w:[1],s:1}};
++ function clean(w,s){while(w.length&&!w[w.length-1])w.pop();return w.length?{w:w,s:s}:Z;}
++ function small(n){var s=n<0?-1:1,w=[];n=Math.abs(n);while(n){var q=Math.floor(n/B);w.push(n-q*B);n=q;}return clean(w,s);}
++ function magnitude(a,b){if(a.w.length!==b.w.length)return a.w.length>b.w.length?1:-1;for(var i=a.w.length-1;i>=0;i--)if(a.w[i]!==b.w[i])return a.w[i]>b.w[i]?1:-1;return 0;}
++ function cmp(a,b){return a.s!==b.s?(a.s>b.s?1:-1):a.s*magnitude(a,b);}
++ function positiveSub(a,b){var w=[],borrow=0;for(var i=0;i<a.w.length;i++){var v=a.w[i]-(b.w[i]||0)-borrow;borrow=v<0?1:0;w.push(v+borrow*B);}return clean(w,1);}
++ function add(a,b){if(!a.s)return b;if(!b.s)return a;if(a.s!==b.s){var order=magnitude(a,b);if(!order)return Z;var d=order>0?positiveSub(a,b):positiveSub(b,a);return {w:d.w,s:order>0?a.s:b.s};}var w=[],carry=0;for(var i=0;i<Math.max(a.w.length,b.w.length);i++){var n=(a.w[i]||0)+(b.w[i]||0)+carry;carry=n>=B?1:0;w.push(n-carry*B);}if(carry)w.push(carry);return clean(w,a.s);}
++ function sub(a,b){return add(a,b.s?{w:b.w,s:-b.s}:Z);}
++ function mul(a,b){if(!a.s||!b.s)return Z;var w=new Array(a.w.length+b.w.length);for(var k=0;k<w.length;k++)w[k]=0;for(var i=0;i<a.w.length;i++){var carry=0;for(var j=0;j<b.w.length;j++){var n=w[i+j]+a.w[i]*b.w[j]+carry;carry=Math.floor(n/B);w[i+j]=n-carry*B;}var at=i+b.w.length;while(carry){var n=(w[at]||0)+carry;carry=Math.floor(n/B);w[at++]=n-carry*B;}}return clean(w,a.s*b.s);}
++ function times(a,n){return mul(a,small(n));}
++ function shift(a,bits){if(!Number.isInteger(bits)||bits<0)throw new RangeError('Invalid binary shift');if(!a.s||!bits)return a;var whole=Math.floor(bits/26),fraction=bits%26,w=[],carry=0,factor=Math.pow(2,fraction);for(var i=0;i<whole;i++)w.push(0);for(var i=0;i<a.w.length;i++){var n=a.w[i]*factor+carry;carry=Math.floor(n/B);w.push(n-carry*B);}if(carry)w.push(carry);return clean(w,a.s);}
++ function half(a){var w=a.w.slice(),carry=0;for(var i=w.length-1;i>=0;i--){var n=w[i]+carry*B;w[i]=Math.floor(n/2);carry=n%2;}return clean(w,a.s);}
++ function bits(a){return a.w.length?(a.w.length-1)*26+32-Math.clz32(a.w[a.w.length-1]):0;}
++ function divmod(a,b){if(a.s<0||b.s<=0)throw new RangeError('Invalid unsigned division');var rem=a,offset=bits(a)-bits(b),w=[];if(offset<0)return {q:Z,r:a};var divisor=shift(b,offset);for(var bit=offset;bit>=0;bit--){if(magnitude(rem,divisor)>=0){rem=positiveSub(rem,divisor);var at=Math.floor(bit/26);w[at]=(w[at]||0)+Math.pow(2,bit%26);}divisor=half(divisor);}for(var i=0;i<w.length;i++)if(w[i]===undefined)w[i]=0;return {q:clean(w,1),r:rem};}
++ function pow5(n){if(!Number.isInteger(n)||n<0)throw new RangeError('Invalid power');if(fives[n])return fives[n];var result=small(1),factor=small(5),left=n;while(left){if(left%2)result=mul(result,factor);left=Math.floor(left/2);if(left)factor=mul(factor,factor);}fives[n]=result;return result;}
++ function integer(value){if(!A.integer(value))throw new RangeError('Invalid binary coefficient');if(typeof value==='number'&&Number.isSafeInteger(value))return small(value);var normalized=A.normalize(value),text=String(normalized),s=text.charAt(0)==='-'?-1:1;if(s<0)text=text.slice(1);var p=text.split('e'),digits=p[0],e=Number(p[1]||0);if(e<0)throw new RangeError('Noninteger coefficient');digits+='0'.repeat(e);var out=Z;for(var i=0;i<digits.length;i+=7){var chunk=digits.slice(i,i+7);out=add(times(out,Math.pow(10,chunk.length)),small(Number(chunk)));}return out.s?{w:out.w,s:s}:Z;}
++ function amount(a){if(!a.s)return 0;var native=0;for(var i=a.w.length-1;i>=0;i--)native=native*B+a.w[i];if(Number.isSafeInteger(native))return a.s*native;var chunks=[0],D=10000000;for(var i=a.w.length-1;i>=0;i--){var carry=a.w[i];for(var j=0;j<chunks.length;j++){var n=chunks[j]*B+carry;carry=Math.floor(n/D);chunks[j]=n-carry*D;}while(carry){var rest=Math.floor(carry/D);chunks.push(carry-rest*D);carry=rest;}}var text=String(chunks.pop());while(chunks.length){var chunk=String(chunks.pop());text+='0'.repeat(7-chunk.length)+chunk;}return A.normalize((a.s<0?'-':'')+text+'e0');}
++ function dyad(n){if(!Number.isFinite(n)||n<0)throw new RangeError('Invalid native clock value');if(!n)return {n:Z,e:0};var key=String(n),cached=partsCache[key];if(cached)return cached;var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,n);var hi=v.getUint32(0),raw=(hi>>>20)&2047,c=(hi&1048575)*4294967296+v.getUint32(4)+(raw?4503599627370496:0),e=raw?raw-1075:-1074;while(c%2===0){c/=2;e++;}var d={n:small(c),e:e};partsCache[key]=d;partKeys.push(key);if(partKeys.length>256)delete partsCache[partKeys.shift()];return d;}
++ function seconds(value){if(typeof value==='number'){var d=dyad(value);return {n:times(d.n,125),e:d.e};}if(!A.wide(value)||!A.valid(value)||A.lt(value,0))throw new RangeError('Invalid exact clock interval');var p=value.split('e'),coefficient=integer(p[0]+'e0'),e=Number(p[1]);if(!coefficient.s)return {n:Z,e:0};if(e>=-3)return {n:mul(coefficient,pow5(e+3)),e:e};var divided=divmod(coefficient,pow5(-e-3));if(divided.r.s)throw new RangeError('Interval does not lie on the binary clock lattice');return {n:divided.q,e:e};}
++ function millis(value){var d=dyad(value);return {n:d.n,e:d.e-3};}
++ function budget(value,settings){return settings&&settings.budgetMs!==undefined?millis(settings.budgetMs):seconds(value);}
++ function duration(value){if(value&&value.scale===125){if(!Number.isInteger(value.unit))throw new RangeError('Invalid lattice exponent');return {n:integer(value.ticks),e:value.unit};}return seconds(value);}
++ function point(value){if(!value||!Number.isInteger(value.e))throw new RangeError('Invalid clock point');return {n:integer(value.n),e:value.e};}
++ function scaled(d,unit){return d.n.s?shift(d.n,d.e-unit):Z;}
++ function publicPoint(d){return {n:amount(d.n),e:d.e};}
++ function lattice(d){return {ticks:amount(d.n),unit:d.e,scale:125};}
++ function exactSeconds(d){if(!d.n.s)return 0;var k=Math.max(0,-d.e),c=times(d.n,8),e=-3-k;c=d.e>=0?shift(c,d.e):mul(c,pow5(k));var encoded=amount(c),text=typeof encoded==='number'?String(encoded)+'e0':encoded,p=text.split('e');return p[0]+'e'+(Number(p[1])+e);}
++ function nativeDyad(d,denominator){
++  if(!d.n.s)return 0;var limbs=d.n.w.slice(),sign=d.n.s,e=d.e,fraction=0,count=bits(d.n);
++  if(denominator===125){var extra=Math.max(0,60-count);e-=extra;limbs=shift({w:limbs,s:1},extra).w.slice();for(var i=limbs.length-1;i>=0;i--){var n=fraction*B+limbs[i];limbs[i]=Math.floor(n/125);fraction=n-limbs[i]*125;}while(limbs.length>1&&!limbs[limbs.length-1])limbs.pop();count=bits(clean(limbs.slice(),1));}
++  var shiftBy=Math.max(0,count-53,-1074-e),word=Math.floor(shiftBy/26),offset=shiftBy%26,q=0;
++  for(var i=limbs.length-1;i>word;i--)q=q*B+limbs[i];q=q*Math.pow(2,26-offset)+Math.floor((limbs[word]||0)/Math.pow(2,offset));
++  if(shiftBy){var guardWord=Math.floor((shiftBy-1)/26),guardOffset=(shiftBy-1)%26,guard=Math.floor((limbs[guardWord]||0)/Math.pow(2,guardOffset))%2,sticky=fraction!==0;for(var i=0;i<guardWord;i++)if(limbs[i])sticky=true;if((limbs[guardWord]||0)%Math.pow(2,guardOffset))sticky=true;if(guard&&(sticky||q%2))q++;}else if(fraction>=63)q++;
++  return sign*q*Math.pow(2,e+shiftBy);
++ }
++ function create(originD,budgetD){
++  var unit=Math.min(originD.n.s?originD.e:0,budgetD.n.s?budgetD.e:0),origin=scaled(originD,unit),target=scaled(budgetD,unit),elapsed=Z,nowCache,remainingCache,elapsedCache,untilCache=Object.create(null),differenceCache=Object.create(null);
++  function absolute(){return {n:add(origin,elapsed),e:unit};}
++  function difference(deadline,early){var current=absolute(),common=Math.min(current.e,deadline.e,early?early.e:current.e);return {n:sub(sub(scaled(deadline,common),scaled(current,common)),early?scaled(early,common):Z),e:common};}
++  function key(deadline,early){return String(deadline)+'/'+(early&&early.scale===125?String(early.ticks)+'/'+early.unit:String(early||0));}
++  function untilParts(deadline,early){var id=key(deadline,early);if(!differenceCache[id])differenceCache[id]=difference(millis(deadline),early?duration(early):null);return differenceCache[id];}
++  function after(p,delay){var d=duration(delay),common=Math.min(p.e,d.e);return {n:add(scaled(p,common),scaled(d,common)),e:common};}
++  function since(p){var current=absolute(),common=Math.min(current.e,p.e);return {n:sub(scaled(current,common),scaled(p,common)),e:common};}
++  function advance(d){if(d.n.s<0||!Number.isInteger(d.e))throw new RangeError('Invalid binary duration');var common=Math.min(unit,d.e),same=common===unit,nextOrigin=same?origin:shift(origin,unit-common),nextTarget=same?target:shift(target,unit-common),nextElapsed=add(same?elapsed:shift(elapsed,unit-common),scaled(d,common));if(cmp(nextElapsed,nextTarget)>0)throw new RangeError('Clock step exceeds its window');unit=common;origin=nextOrigin;target=nextTarget;elapsed=nextElapsed;nowCache=remainingCache=elapsedCache=undefined;untilCache=Object.create(null);differenceCache=Object.create(null);}
++  return {
++   advance:function(value){advance(seconds(value));},advanceTicks:function(ticks,e){advance({n:times(integer(ticks),125),e:e});},advanceToMs:function(deadline){advance(difference(millis(deadline)));},
++   until:function(deadline,early){var id=key(deadline,early);if(untilCache[id]===undefined)untilCache[id]=exactSeconds(untilParts(deadline,early));return untilCache[id];},compareMs:function(deadline,early){return untilParts(deadline,early).n.s;},
++   latticeRemaining:function(){return lattice({n:sub(target,elapsed),e:unit});},latticeUntil:function(deadline,early){return lattice(untilParts(deadline,early));},latticeDuration:function(value){return lattice(seconds(value));},advanceLattice:function(d){if(d.scale!==125)throw new RangeError('Invalid clock lattice');advance(duration(d));},
++   absoluteSnapshot:function(){return publicPoint(absolute());},pointBefore:function(value){var at=absolute(),d=duration(value),common=Math.min(at.e,d.e);return publicPoint({n:sub(scaled(at,common),scaled(d,common)),e:common});},pointAfter:function(p,d){return publicPoint(after(point(p),d));},latticeAfter:function(p,d){return lattice(difference(after(point(p),d)));},
++   compareDuration:function(a,b){var x=duration(a),y=duration(b),common=Math.min(x.e,y.e);return cmp(scaled(x,common),scaled(y,common));},since:function(p){return exactSeconds(since(point(p)));},sinceNumber:function(p){return nativeDyad(since(point(p)),125);},
++   remaining:function(){if(remainingCache===undefined)remainingCache=exactSeconds({n:sub(target,elapsed),e:unit});return remainingCache;},elapsed:function(){if(elapsedCache===undefined)elapsedCache=exactSeconds({n:elapsed,e:unit});return elapsedCache;},elapsedNumber:function(){return nativeDyad({n:elapsed,e:unit},125);},nowMs:function(){if(nowCache===undefined){var d=absolute();nowCache=nativeDyad({n:times(d.n,8),e:d.e});}return nowCache;},
++   nextWindow:function(value,settings){return create(absolute(),budget(value,settings));},project:function(value){var c=create(absolute(),seconds(value));c.advance(value);return c;},snapshot:function(){return {origin:amount(origin),elapsed:amount(elapsed),target:amount(target),unit:unit};}
++  };
++ }
++ return create(millis(startMs),budget(budgetSec,options));
++};
++var createLuminousOrbit=function createLuminousOrbit(A,settings){
++  settings=settings||{};
++  var ceiling=settings.phaseCeiling===undefined?1:settings.phaseCeiling;
++  if(!Number.isFinite(ceiling)||ceiling<=0||ceiling>1)throw new RangeError('Invalid phase ceiling');
++  var QUANTUM=Math.pow(2,-51);
++  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  function advance(chances,total,phase,flag,options){
++    options=options||{};
++    if(!Array.isArray(chances)||chances.length<2||!A.integer(total)||A.lt(total,0)||!Number.isFinite(phase)||phase<0||phase>=1)throw new RangeError('Invalid luminous orbit');
++    total=A.exactAdd(total,0);
++    chances.forEach(function(c){if(c!==null&&(!Number.isFinite(c)||c<0||c>.35))throw new RangeError('Invalid spawn chance');});
++    // This selects a block length only. Every spawn still performs the
++    // original Number addition/subtraction, including its rounding drift.
++    var sum=chances.reduce(function(a,c){return a+(c||0);},0),period=200;
++    for(var candidate=1;candidate<=200;candidate++)if(Math.abs(sum*candidate-Math.round(sum*candidate))<1e-9){period=candidate;break;}
++    var size=chances.length-1,counts=chances.slice(1).map(function(){return 0;}),done=0,blocks=0,jumps=0,seen=new Map();
++    function addCounts(values,n){for(var i=0;i<size;i++)counts[i]=A.exactAdd(counts[i],product(values[i],n));}
++    function block(cycles){
++      var start=phase,startFlag=flag,low=-Infinity,high=Infinity,values=counts.map(function(){return 0;});
++      function bound(value){
++        if(value===0){low=Math.max(low,0);high=Math.min(high,0);return;}
++        var exponent=Math.floor(Math.log(value)/Math.LN2),base=Math.pow(2,exponent);
++        // Correct log rounding at exact powers of two.
++        if(value<base){exponent--;base/=2;}else if(value>=base*2){exponent++;base*=2;}
++        var ulp=Math.pow(2,exponent-52);
++        low=Math.max(low,base+2*ulp-value);high=Math.min(high,base*2-2*ulp-value);
++      }
++      for(var n=0;n<cycles;n++){
++      for(var j=0;j<chances.length;j++){
++        if(j<size&&flag)values[j]++;
++        if(chances[j]===null){flag=false;continue;}
++        bound(phase);phase+=chances[j];bound(phase);
++        flag=phase>=1;if(flag)phase-=1;bound(phase);
++      }
++      // Ascend normalizes the saved accumulator after its reset spawn. A
++      // translated block must neither introduce nor remove that clamp.
++      if(phase>ceiling){phase=ceiling;low=0;high=0;}
++      else high=Math.min(high,ceiling-phase);
++      }
++      return {start:start,startFlag:startFlag,phase:phase,flag:flag,delta:phase-start,low:low,high:high,counts:values};
++    }
++    while(A.lt(done,total)){
++      var key=String(phase)+'/'+(flag?1:0),previous=seen.get(key);
++      if(previous){
++        var cycle=A.exactSub(done,previous.done),repeat=A.floorRatio(A.exactSub(total,done),cycle);
++        if(A.gt(repeat,0)){
++          for(var p=0;p<size;p++)counts[p]=A.exactAdd(counts[p],product(A.exactSub(counts[p],previous.counts[p]),repeat));
++          done=A.exactAdd(done,product(cycle,repeat));jumps++;
++          if(A.cmp(done,total)===0)break;
++        }
++      }else seen.set(key,{done:done,counts:counts.slice()});
++      var remaining=A.exactSub(total,done),cycles=A.ge(remaining,period)?period:Number(remaining),b=block(cycles);blocks++;
++      while(cycles>=period && cycles<period*8 && b.delta!==0 && flag===b.startFlag &&
++          !Number.isInteger(b.delta/QUANTUM) && b.low<=0 && b.high>=0 && A.ge(remaining,cycles*2)){
++        phase=b.start;flag=b.startFlag;cycles*=2;b=block(cycles);
++      }
++      var repetitions=1;
++      if(cycles>=period && flag===b.startFlag){
++        if(b.delta===0)repetitions=A.floorRatio(remaining,cycles);
++        else if(Number.isInteger(b.delta/QUANTUM)&&b.low<=0&&b.high>=0){
++          var limit=b.delta>0?b.high:b.low,steps=Math.floor(limit/b.delta);
++          // Keep every translated operand strictly inside its certified range.
++          while(steps>0 && !(steps*b.delta>=b.low&&steps*b.delta<=b.high))steps--;
++          var available=A.floorRatio(remaining,cycles);
++          repetitions=A.min(available,Math.max(1,steps+1));
++          if(repetitions>1)phase=b.start+Number(repetitions)*b.delta;
++        }
++      }
++      if(options.observe)options.observe({phase:b.start,flag:b.startFlag,delta:b.delta,low:b.low,high:b.high,repetitions:repetitions,primitiveCycles:cycles,counts:b.counts.slice(),endFlag:b.flag});
++      addCounts(b.counts,repetitions);done=A.exactAdd(done,product(cycles,repetitions));
++      if(A.gt(repetitions,1))jumps++;
++      if(options.maxBlocks&&blocks>=options.maxBlocks&&A.lt(done,total))return {complete:false,cycles:done,phase:phase,flag:flag,counts:counts,blocks:blocks,jumps:jumps};
++    }
++    return {complete:true,cycles:done,phase:phase,flag:flag,counts:counts,blocks:blocks,jumps:jumps};
++  }
++  function word(chances,cycles,phase,flag){
++    if(!Number.isSafeInteger(cycles)||cycles<0||!Number.isFinite(phase)||phase<0||phase>=1)throw new RangeError('Invalid native orbit word');
++    var rows=[],size=chances.length-1;
++    for(var n=0;n<cycles;n++){
++      var row=[];
++      for(var j=0;j<chances.length;j++){
++        if(j<size)row.push(flag);
++        if(chances[j]===null){flag=false;continue;}
++        phase+=chances[j];flag=phase>=1;if(flag)phase-=1;
++      }
++      if(phase>ceiling)phase=ceiling;rows.push(row);
++    }
++    return rows;
++  }
++  return {advance:advance,word:word};
++};
++'use strict';
++// Experimental reusable, lossless index of the certified floating orbit.
++// No game calls this module until full combat-cycle acceptance is complete.
++function createLuminousOrbitSession(A,kernel,chances,initialPhase,initialFlag){
++  var size=chances.length-1,zero=chances.slice(1).map(function(){return 0;}),phase=initialPhase,flag=initialFlag;
++  var done=0,totals=zero.slice(),segments=[],seen=new Map(),cycle=null,regions=0;
++  var initial={phase:phase,flag:flag};
++  var foldMemos=new Map();
++  var sum=chances.reduce(function(a,c){return a+(c||0);},0),period=200;
++  for(var p=1;p<=200;p++)if(Math.abs(sum*p-Math.round(sum*p))<1e-9){period=p;break;}
++  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  function vectorAdd(a,b){return a.map(function(v,i){return A.exactAdd(v,b[i]);});}
++  function vectorSub(a,b){return a.map(function(v,i){return A.exactSub(v,b[i]);});}
++  function vectorMul(a,n){return a.map(function(v){return product(v,n);});}
++  function literal(n,start,first){return kernel.advance(chances,n,start,first);}
++  function measure(){
++    var metadata;
++    kernel.advance(chances,'1e25',phase,flag,{maxBlocks:1,observe:function(row){metadata=row;}});
++    if(!metadata)throw new Error('Orbit region missing');
++    if(metadata.delta===0&&metadata.flag===metadata.endFlag)metadata.repetitions=1;
++    metadata.cycles=product(metadata.primitiveCycles,metadata.repetitions);
++    return metadata;
++  }
++  function at(region,n){
++    var pieces=A.divmod(n,region.primitiveCycles),whole=pieces.q,remainder=Number(pieces.r);
++    var shifted=region.delta===0?region.phase:region.phase+Number(whole)*region.delta;
++    var first=A.gt(whole,0)?region.endFlag:region.flag;
++    var counts=vectorMul(region.counts,whole),end={phase:shifted,flag:first,counts:zero};
++    if(remainder)end=literal(remainder,shifted,first);
++    return {phase:end.phase,flag:end.flag,counts:vectorAdd(counts,end.counts)};
++  }
++  function addSegment(region,n){
++    var result=at(region,n);
++    segments.push({prefix:done,counts:totals.slice(),region:region,cycles:n});
++    phase=result.phase;flag=result.flag;done=A.exactAdd(done,n);totals=vectorAdd(totals,result.counts);
++  }
++  function cycleAt(offset){
++    if(A.cmp(offset,0)===0)return {phase:cycle.phase,flag:cycle.flag,counts:zero.slice()};
++    var low=cycle.first,high=segments.length-1,index=low;
++    while(low<=high){var mid=Math.floor((low+high)/2),relative=A.exactSub(segments[mid].prefix,cycle.base);
++      if(A.le(relative,offset)){index=mid;low=mid+1;}else high=mid-1;}
++    var segment=segments[index],relativeOffset=A.exactSub(offset,A.exactSub(segment.prefix,cycle.base));
++    var result=at(segment.region,relativeOffset);
++    result.counts=vectorAdd(vectorSub(segment.counts,cycle.baseCounts),result.counts);return result;
++  }
++  function useCycle(n){
++    var before=cycleAt(cycle.offset),parts=A.divmod(A.exactAdd(cycle.offset,n),cycle.length),after=cycleAt(parts.r);
++    var gain=vectorAdd(vectorSub(after.counts,before.counts),vectorMul(cycle.counts,parts.q));
++    totals=vectorAdd(totals,gain);done=A.exactAdd(done,n);phase=after.phase;flag=after.flag;cycle.offset=parts.r;
++  }
++  // Read an already indexed prefix without moving the live cursor. Combat
++  // reconstruction can inspect its tail and the first eligible payout.
++  function position(n){
++    if(!A.integer(n)||A.lt(n,0)||(!cycle&&A.gt(n,done)))throw new RangeError('Orbit position is not indexed');
++    n=A.exactAdd(n,0);
++    if(A.cmp(n,0)===0)return {phase:initial.phase,flag:initial.flag,counts:zero.slice()};
++    if(cycle&&A.ge(n,cycle.base)){
++      var parts=A.divmod(A.exactSub(n,cycle.base),cycle.length),r=cycleAt(parts.r);
++      return {phase:r.phase,flag:r.flag,counts:vectorAdd(cycle.baseCounts,vectorAdd(vectorMul(cycle.counts,parts.q),r.counts))};
++    }
++    var low=0,high=segments.length-1,index=0;
++    while(low<=high){var mid=Math.floor((low+high)/2);if(A.le(segments[mid].prefix,n)){index=mid;low=mid+1;}else high=mid-1;}
++    var segment=segments[index],atEnd=at(segment.region,A.exactSub(n,segment.prefix));
++    return {phase:atEnd.phase,flag:atEnd.flag,counts:vectorAdd(segment.counts,atEnd.counts)};
++  }
++  function* cursor(n,options){
++    options=options||{};if(!A.integer(n)||A.lt(n,0))throw new RangeError('Invalid orbit count');
++    n=A.exactAdd(n,0);
++    var start=done,before=totals.slice(),target=A.exactAdd(done,n),batch=0;
++    function result(complete){return {complete:complete,cycles:A.exactSub(done,start),phase:phase,flag:flag,counts:vectorSub(totals,before),regions:regions,compiled:!!cycle};}
++    while(A.lt(done,target)){
++      if(cycle){useCycle(A.exactSub(target,done));break;}
++      if(options.maxBlocks&&batch>=options.maxBlocks){batch=0;yield result(false);}
++      var remaining=A.exactSub(target,done),mod=Number(A.mod(done,period));
++      if(mod){
++        var padding=A.min(remaining,period-mod),plain=literal(Number(padding),phase,flag);
++        addSegment({phase:phase,flag:flag,delta:plain.phase-phase,primitiveCycles:Number(padding),repetitions:1,counts:plain.counts,endFlag:plain.flag},padding);
++        continue;
++      }
++      var key=String(phase)+'/'+(flag?1:0),previous=seen.get(key);
++      if(previous!==undefined){
++        var first=segments[previous];cycle={first:previous,base:first.prefix,baseCounts:first.counts,length:A.exactSub(done,first.prefix),counts:vectorSub(totals,first.counts),phase:phase,flag:flag,offset:0};
++        continue;
++      }
++      seen.set(key,segments.length);
++      var region=measure(),take=A.min(remaining,region.cycles);addSegment(region,take);regions++;batch++;
++    }
++    return result(true);
++  }
++  function advance(n,options){var iterator=cursor(n,options),step;do{step=iterator.next();}while(!step.done);return step.value;}
++  // Fold a finite-state weighted consumer over the actual certified spawn
++  // words. Translation regions repeat the same branches; the native phase is
++  // never replaced with a rational approximation. Consumers must include all
++  // transformation semantics in key before opting into the bounded memo.
++  function* foldCursor(start,n,consumer,options){
++    options=options||{};
++    if(!A.integer(start)||A.lt(start,0)||!A.integer(n)||A.lt(n,0)||(!cycle&&A.gt(A.exactAdd(start,n),done)))throw new RangeError('Orbit fold is not indexed');
++    start=A.exactAdd(start,0);n=A.exactAdd(n,0);
++    var memo=consumer.key&&foldMemos.get(consumer.key),visited=0;
++    if(!memo){memo={regions:new WeakMap(),cycle:null};if(consumer.key){foldMemos.set(consumer.key,memo);if(foldMemos.size>16)foldMemos.delete(foldMemos.keys().next().value);}}
++    function full(region){var value=memo.regions.get(region);if(value===undefined){value=consumer.word(kernel.word(chances,region.primitiveCycles,region.phase,region.flag));memo.regions.set(region,value);}return value;}
++    function slice(region,offset,count){return offset===0&&count===region.primitiveCycles?full(region):consumer.word(kernel.word(chances,region.primitiveCycles,region.phase,region.flag).slice(offset,offset+count));}
++    function span(region,offset,count){
++      var result=consumer.identity(),skip=Number(A.mod(offset,region.primitiveCycles));
++      if(skip){var take=A.min(count,region.primitiveCycles-skip);result=consumer.combine(result,slice(region,skip,Number(take)));count=A.exactSub(count,take);}
++      var parts=A.divmod(count,region.primitiveCycles);
++      if(A.gt(parts.q,0))result=consumer.combine(result,consumer.repeat(full(region),parts.q));
++      if(A.gt(parts.r,0))result=consumer.combine(result,slice(region,0,Number(parts.r)));
++      return result;
++    }
++    function* contiguous(at,count){
++      var result=consumer.identity(),low=0,high=segments.length-1,index=0;
++      while(low<=high){var mid=Math.floor((low+high)/2);if(A.le(segments[mid].prefix,at)){index=mid;low=mid+1;}else high=mid-1;}
++      while(A.gt(count,0)){
++        var segment=segments[index++];if(!segment)throw new RangeError('Missing orbit fold segment');
++        var offset=A.exactSub(at,segment.prefix),take=A.min(count,A.exactSub(segment.cycles,offset));if(A.le(take,0))throw new RangeError('Empty orbit fold segment');
++        result=consumer.combine(result,span(segment.region,offset,take));at=A.exactAdd(at,take);count=A.exactSub(count,take);visited++;
++        if(options.maxBlocks&&visited%options.maxBlocks===0)yield {foldRegions:visited};
++      }
++      return result;
++    }
++    var result=consumer.identity();
++    if(!cycle||A.lt(start,cycle.base)){
++      var before=cycle?A.min(n,A.exactSub(cycle.base,start)):n;
++      result=consumer.combine(result,yield* contiguous(start,before));start=A.exactAdd(start,before);n=A.exactSub(n,before);
++    }
++    if(A.gt(n,0)){
++      var offset=A.mod(A.exactSub(start,cycle.base),cycle.length);
++      if(A.gt(offset,0)){var take=A.min(n,A.exactSub(cycle.length,offset));result=consumer.combine(result,yield* contiguous(A.exactAdd(cycle.base,offset),take));n=A.exactSub(n,take);}
++      var pieces=A.divmod(n,cycle.length);
++      if(A.gt(pieces.q,0)){if(memo.cycle===null)memo.cycle=yield* contiguous(cycle.base,cycle.length);result=consumer.combine(result,consumer.repeat(memo.cycle,pieces.q));}
++      if(A.gt(pieces.r,0))result=consumer.combine(result,yield* contiguous(cycle.base,pieces.r));
++    }
++    return result;
++  }
++  function fold(start,n,consumer,options){var iterator=foldCursor(start,n,consumer,options),step;do{step=iterator.next();}while(!step.done);return step.value;}
++  return {cursor:cursor,advance:advance,position:position,fold:fold,foldCursor:foldCursor,stats:function(){return {regions:regions,segments:segments.length,compiled:!!cycle,periodCycles:cycle&&cycle.length};}};
++}
++var cycleAggregate=function(A,recipes,killShards,spawnCounts,total){
++  if(!recipes.length||!A.integer(total)||A.lt(total,0)||killShards.length!==spawnCounts.length)throw new RangeError('Invalid Ascend reward recipe');
++  total=A.exactAdd(total,0);
++  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  function exactCredits(terms){
++    // Once a credited wallet is wide, each individual native fractional gain
++    // is added as its decimal representation. Sum on an integer decimal
++    // lattice: small intermediate fractions must never round before the
++    // complete aggregate reaches that existing wide wallet.
++    var rows=terms.map(function(term){var value=typeof term[0]==='number'?A.exactAdd(term[0],0):term[0],m=/^(\d+)(?:\.(\d+))?(?:e([+-]?\d+))?$/.exec(String(value));if(!m)throw new RangeError('Invalid reward credit');return {n:(m[1]+(m[2]||''))+'e0',e:Number(m[3]||0)-(m[2]||'').length,count:term[1]};}),unit=rows.reduce(function(e,r){return Math.min(e,r.e);},0),sum=0;
++    rows.forEach(function(r){sum=A.exactAdd(sum,product(A.mul(r.n,'1e'+(r.e-unit)),r.count));});
++    if(A.cmp(sum,0)===0)return 0;
++    var parts=String(sum).split('e'),digits=parts[0],exponent=Number(parts[1]||0)+unit;
++    while(digits.length>1&&digits.charAt(digits.length-1)==='0'){digits=digits.slice(0,-1);exponent++;}
++    var token=digits+'e'+exponent,native=Number(token);
++    return Number.isSafeInteger(native)&&A.cmp(token,native)===0?native:token;
++  }
++  var parts=A.divmod(total,recipes.length),tail=Number(parts.r),out={lumen:0,shards:0,sigils:0,prisms:0,motes:0,kills:0,bossKills:0,luminousKills:0,ascends:total};
++  var credits={lumen:[],shards:[]};
++  recipes.forEach(function(recipe,i){
++    var count=A.exactAdd(parts.q,i<tail?1:0);
++    ['sigils','prisms','motes','kills','bossKills'].forEach(function(key){out[key]=A.exactAdd(out[key],product(recipe[key]||0,count));});
++    ['lumen','shards'].forEach(function(key){(recipe[key+'Credits']||[recipe[key]||0]).forEach(function(value){credits[key].push([value,count]);});});
++  });
++  killShards.forEach(function(reward,i){
++    var ordinary=A.exactSub(total,spawnCounts[i]);
++    credits.shards.push([reward.normal,ordinary],[reward.bright,spawnCounts[i]]);
++    credits.lumen.push([reward.normalLumen||0,ordinary],[reward.brightLumen||0,spawnCounts[i]]);
++    out.luminousKills=A.exactAdd(out.luminousKills,spawnCounts[i]);
++  });
++  out.lumen=exactCredits(credits.lumen);out.shards=exactCredits(credits.shards);
++  return out;
++};
++var cycleTailLumen=function(A,kernel,orbit,pattern,recipes,total,bound,tailLimit,options){
++  if(!A.integer(total)||A.lt(total,0)||!recipes.length||!A.valid(bound)||A.lt(bound,0))throw new RangeError('Invalid Lumen recipe');
++  total=A.exactAdd(total,0);
++  options=options||{};
++  var tail=A.min(total,tailLimit||64),prefix=A.exactSub(total,tail),start=orbit.position(A.exactAdd(options.orbitOffset||0,prefix));
++  var phase=start.phase,flag=start.flag,index=Number(A.mod(A.exactAdd(prefix,options.recipeOffset||0),recipes.length)),low=0,high=bound;
++  var exactInitial=A.cmp(prefix,0)===0&&options.initial!==undefined;
++  if(exactInitial){if(!A.valid(options.initial)||A.lt(options.initial,0)||A.gt(options.initial,bound))throw new RangeError('Initial Lumen outside proven bounds');low=high=options.initial;}
++  function credit(wallet,gain){
++    return !A.wide(wallet)&&!A.wide(gain)&&Number.isFinite(wallet+gain)&&Math.abs(wallet+gain)<=Number.MAX_SAFE_INTEGER?wallet+gain:A.exactAdd(wallet,gain);
++  }
++  function apply(wallet,ops,flags){
++    var kill=0;
++    for(var i=0;i<ops.length;i++){
++      var op=ops[i];
++      if(op.kind==='kill')wallet=credit(wallet,flags[kill++]?op.bright:op.normal);
++      else if(op.kind==='gain')wallet=credit(wallet,op.amount);
++      else if(op.kind==='retain')wallet=A.min(A.mul(wallet,op.factor),op.cap);
++      else throw new RangeError('Unknown Lumen operation');
++    }
++    if(kill!==flags.length)throw new RangeError('Lumen recipe does not match spawn path');
++    return wallet;
++  }
++  for(var n=0;n<Number(tail);n++){
++    var spawn=kernel.advance(pattern,1,phase,flag),ops=recipes[index];
++    low=apply(low,ops,spawn.counts);high=apply(high,ops,spawn.counts);
++    phase=spawn.phase;flag=spawn.flag;index=(index+1)%recipes.length;
++  }
++  return {independent:!exactInitial&&A.cmp(low,high)===0,exactInitial:exactInitial,low:low,high:high,lumen:A.cmp(low,high)===0?low:null,phase:phase,flag:flag,tailCycles:tail};
++};
++var cycleLatticeClock=function(A,intervals,budget,memo){
++  if(!intervals.length||!budget||budget.scale!==125||!A.integer(budget.ticks)||A.lt(budget.ticks,0)||!Number.isInteger(budget.unit))throw new RangeError('Invalid lattice cycle budget');
++  function product(a,b){if(b===1)return A.normalize(a);a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  function pow2(n){if(n<0)throw new RangeError('Negative clock shift');var out=1,base=2;while(n){if(n%2)out=product(out,base);n=Math.floor(n/2);if(n)base=product(base,base);}return out;}
++  function dyad(n){if(!Number.isFinite(n)||n<0)throw new RangeError('Invalid native combat interval');if(!n)return {n:0,e:0};var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,n);var hi=v.getUint32(0),raw=(hi>>>20)&2047;return {n:product((hi&1048575)*4294967296+v.getUint32(4)+(raw?4503599627370496:0),125),e:raw?raw-1075:-1074};}
++  var key=memo&&JSON.stringify([budget.unit,intervals]),cached=memo&&memo.get(key),unit=budget.unit,values;
++  if(cached)unit=cached.unit;
++  else{values=intervals.map(function(row){if(!row.length)throw new RangeError('Empty combat cycle');return row.map(dyad);});values.forEach(function(row){row.forEach(function(d){if(A.gt(d.n,0))unit=Math.min(unit,d.e);});});}
++  function scaled(n,e){return A.cmp(n,0)===0?0:product(n,pow2(e-unit));}
++  var durations=cached?cached.durations:values.map(function(row){return row.reduce(function(sum,d){return A.exactAdd(sum,scaled(d.n,d.e));},0);});
++  if(durations.some(function(d){return A.le(d,0);}))throw new RangeError('Zero combat cycle');
++  var period=cached?cached.period:durations.reduce(function(a,b){return A.exactAdd(a,b);},0);
++  if(memo&&!cached){memo.set(key,{unit:unit,durations:durations,period:period});if(memo.size>8)memo.delete(memo.keys().next().value);}
++  var total=scaled(budget.ticks,budget.unit),parts=A.divmod(total,period),cycles=product(parts.q,durations.length),left=parts.r;
++  for(var i=0;i<durations.length&&A.ge(left,durations[i]);i++){left=A.exactSub(left,durations[i]);cycles=A.exactAdd(cycles,1);}
++  function durationFor(count){if(!A.integer(count)||A.lt(count,0)||A.gt(count,cycles))throw new RangeError('Invalid prefix count');var split=A.divmod(count,durations.length),ticks=product(split.q,period);for(var j=0;j<Number(split.r);j++)ticks=A.exactAdd(ticks,durations[j]);return {ticks:ticks,unit:unit,scale:125};}
++  return {cycles:cycles,elapsed:durationFor(cycles),remaining:{ticks:left,unit:unit,scale:125},durationFor:durationFor};
++};
++var cycleNativePhase=function(A,program,total,value,cap,options){
++  if(!A.integer(total)||A.lt(total,0)||!Number.isFinite(value)||value<0||!Number.isFinite(cap)||cap<value||!program.length||program[program.length-1]!==null)throw new RangeError('Invalid native phase');
++  total=A.exactAdd(total,0);
++  program.forEach(function(n){if(n!==null&&(!Number.isFinite(n)||n<0))throw new RangeError('Invalid native phase increment');});
++  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  var done=0,blocks=0,threshold=options&&options.threshold;
++  if(threshold!==undefined&&(!Number.isFinite(threshold)||threshold<=cap))throw new RangeError('Invalid native phase threshold');
++  function block(n){
++    var start=value,low=-Infinity,high=Infinity,maxUlp=Number.MIN_VALUE;
++    function bound(x){
++      if(x===0){low=Math.max(low,0);high=Math.min(high,0);return;}
++      var exponent=Math.floor(Math.log(x)/Math.LN2),base=Math.pow(2,exponent);
++      if(x<base){exponent--;base/=2;}else if(x>=base*2){exponent++;base*=2;}
++      var ulp=Math.max(Number.MIN_VALUE,Math.pow(2,exponent-52)),upper=base*2;
++      if(exponent<-1022){base=0;upper=Math.pow(2,-1022);}
++      maxUlp=Math.max(maxUlp,ulp);low=Math.max(low,base+2*ulp-x);high=Math.min(high,upper-2*ulp-x);
++    }
++    for(var i=0;i<n;i++)for(var j=0;j<program.length;j++){
++      if(program[j]===null){if(value>cap){value=cap;low=0;high=0;}else high=Math.min(high,cap-value);}
++      else{bound(value);value+=program[j];if(!Number.isFinite(value))throw new RangeError('Native phase overflow');bound(value);if(threshold!==undefined){if(value>=threshold){value=start;return {crossed:true,start:start};}high=Math.min(high,threshold-value-2*maxUlp);}}
++    }
++    return {start:start,delta:value-start,low:low,high:high,quantum:2*maxUlp};
++  }
++  while(A.lt(done,total)){
++    var left=A.exactSub(total,done),n=1,b=block(n);blocks++;
++    if(b.crossed)return {value:value,blocks:blocks,cycles:done,stopped:true};
++    while(n<8&&A.ge(left,n*2)&&b.delta!==0&&!Number.isInteger(b.delta/b.quantum)&&b.low<=0&&b.high>=0){var previous=b;value=b.start;n*=2;b=block(n);if(b.crossed){n/=2;b=previous;value=b.start+b.delta;break;}}
++    var repetitions=1;
++    if(b.delta===0)repetitions=A.floorRatio(left,n);
++    else if(Number.isInteger(b.delta/b.quantum)&&b.low<=0&&b.high>=0){
++      var steps=Math.min(4503599627370495,Math.floor(b.high/b.delta));
++      while(steps>0&&steps*b.delta>b.high)steps--;
++      repetitions=A.min(A.floorRatio(left,n),Math.max(1,steps+1));
++      if(A.gt(repetitions,1))value=b.start+Number(repetitions)*b.delta;
++    }
++    done=A.exactAdd(done,product(n,repetitions));
++  }
++  return {value:value,blocks:blocks,cycles:done};
++};
++var cycleEconomyBound=function(A,limit,lumenCeiling,shardCeiling,shardGain,costs){
++  [limit,lumenCeiling,shardCeiling,shardGain].forEach(function(v){if(!A.valid(v)||A.lt(v,0))throw new RangeError('Invalid economy bound');});
++  if(!A.integer(limit)||!Array.isArray(costs))throw new RangeError('Invalid cycle limit');
++  var count=A.exactAdd(limit,0),held=A.round(shardCeiling,'ceil'),limiting=null;
++  costs.forEach(function(cost,index){
++    var lumen=cost.lumen===undefined?0:cost.lumen,shard=cost.shard===undefined?0:cost.shard;
++    if(!A.valid(lumen)||A.lt(lumen,0)||!A.valid(shard)||A.lt(shard,0))throw new RangeError('Invalid queued price');
++    if(A.gt(lumen,lumenCeiling))return;
++    var bound;
++    if(A.ge(held,shard))bound=0;
++    else if(A.cmp(shardGain,0)===0)return;
++    else{
++      var split=A.divmod(A.exactSub(shard,held),shardGain);bound=split.q;
++      if(A.cmp(split.r,0)===0)bound=A.max(0,A.exactSub(bound,1));
++    }
++    if(A.lt(bound,count)){count=bound;limiting=index;}
++  });
++  return {cycles:count,limiting:limiting};
++};
++var cycleNativeCredit=function(A,wallet,recipes,kills,limit,options){
++  if(!A.valid(wallet)||A.lt(wallet,0)||!A.integer(limit)||A.lt(limit,0)||!recipes.length)throw new RangeError('Invalid native credit prefix');
++  var amounts=[];recipes.forEach(function(row){amounts=amounts.concat(row);});kills.forEach(function(k){amounts.push(k.normal,k.bright);});
++  if(amounts.some(function(v){return !A.valid(v)||A.lt(v,0);}))throw new RangeError('Invalid native credit');
++  if(A.wide(wallet)||wallet>Number.MAX_SAFE_INTEGER||(Number.isInteger(wallet)&&amounts.every(A.integer)))return {mode:'exact',cycles:limit};
++  function literal(){return {mode:'literal',cycles:0};}
++  if(!wallet||amounts.some(A.wide))return literal();
++  var exponent=Math.floor(Math.log(wallet)/Math.LN2),base=Math.pow(2,exponent);
++  if(wallet<base){exponent--;base/=2;}else if(wallet>=base*2){exponent++;base*=2;}
++  var ulp=Math.max(Number.MIN_VALUE,Math.pow(2,exponent-52)),upperUnits=9007199254740992;
++  if(exponent<-1022)upperUnits=4503599627370496;
++  var units=wallet/ulp,available=upperUnits-2-units,hasTie=false,oddIncrement=false;
++  if(!Number.isSafeInteger(units)||available<0)return literal();
++  function increment(value){
++    var ratio=value/ulp;if(!Number.isFinite(ratio)||ratio>Number.MAX_SAFE_INTEGER)return null;
++    var floor=Math.floor(ratio),tie=ratio-floor===.5,n=tie?floor+((floor%2+units%2)%2?1:0):Math.round(ratio);
++    if(tie)hasTie=true;else if(n%2)oddIncrement=true;return n;
++  }
++  var fixed=recipes.map(function(row){var sum=0;for(var i=0;i<row.length;i++){var n=increment(row[i]);if(n===null)return null;sum=A.exactAdd(sum,n);}return sum;});
++  var choices=kills.map(function(k){return {normal:increment(k.normal),bright:increment(k.bright)};});
++  if(fixed.some(function(n){return n===null;})||choices.some(function(k){return k.normal===null||k.bright===null;}))return literal();
++  var needsFold=!!(hasTie&&(units%2||oddIncrement)),ordered=null;
++  if(needsFold){
++    if(!options||!options.ordered)return literal();ordered=typeof options.ordered==='function'?options.ordered():options.ordered;
++    if(!Array.isArray(ordered)||ordered.length!==recipes.length)throw new RangeError('Invalid ordered native credits');
++    ordered.forEach(function(row,i){var index=0,gains=[];row.forEach(function(op){if(op.kind==='kill'){if(op.index!==index++)throw new RangeError('Native kill order changed');}else if(op.kind==='gain')gains.push(op.amount);else throw new RangeError('Unknown native credit operation');});if(index!==kills.length||gains.length!==recipes[i].length||gains.some(function(v,j){return A.cmp(v,recipes[i][j])!==0;}))throw new RangeError('Native credit recipe changed');});
++  }
++  function ceiling(value){var ratio=value/ulp,floor=Math.floor(ratio);return ratio-floor===.5?floor+1:Math.round(ratio);}
++  var killCeiling=needsFold?kills.reduce(function(sum,k){return A.exactAdd(sum,Math.max(ceiling(k.normal),ceiling(k.bright)));},0):choices.reduce(function(sum,k){return A.exactAdd(sum,Math.max(k.normal,k.bright));},0);
++  var maximum=needsFold?recipes.reduce(function(m,row){return A.max(m,A.exactAdd(row.reduce(function(sum,n){return A.exactAdd(sum,ceiling(n));},0),killCeiling));},0):fixed.reduce(function(m,n){return A.max(m,A.exactAdd(n,killCeiling));},0);
++  var count=A.cmp(maximum,0)===0?limit:A.min(limit,A.floorRatio(available,maximum));
++  function product(a,b){return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  function consumer(){
++    // Keep phase and incoming mantissa parity in a tiny deterministic
++    // transducer. Saturation is above every valid binade prefix; it bounds
++    // unused states without changing any affordable path's exact weight.
++    var cap=4503599627370496,size=recipes.length*2;
++    function profile(value){var r=value/ulp,f=Math.floor(r);return r-f===.5?[1,f]:[0,Math.round(r)];}
++    var choices=kills.map(function(k){return [profile(k.normal),profile(k.bright)];}),program=ordered.map(function(row){return row.map(function(op){return op.kind==='kill'?['kill',op.index]:['gain',profile(op.amount)];});});
++    function identity(){var out=[];for(var i=0;i<size;i++)out.push({next:i,gain:0});return out;}
++    function combine(a,b){return a.map(function(row){var next=b[row.next];return {next:next.next,gain:Math.min(cap,row.gain+next.gain)};});}
++    function repeat(word,n){var result=identity();while(A.gt(n,0)){var p=A.divmod(n,2);if(A.cmp(p.r,0))result=combine(result,word);n=p.q;if(A.gt(n,0))word=combine(word,word);}return result;}
++    function word(rows){
++      var out=[];
++      for(var state=0;state<size;state++){
++        var phase=Math.floor(state/2),parity=state%2,gain=0;
++        rows.forEach(function(flags){program[phase].forEach(function(op){var p=op[0]==='kill'?choices[op[1]][flags[op[1]]?1:0]:op[1],n=p[0]?p[1]+((p[1]%2+parity)%2?1:0):p[1];gain=Math.min(cap,gain+n);parity=(parity+n%2)%2;});phase=(phase+1)%recipes.length;});
++        out.push({next:phase*2+parity,gain:gain});
++      }
++      return out;
++    }
++    return {key:JSON.stringify(['native-credit-parity-v1',cap,program,choices]),identity:identity,combine:combine,repeat:repeat,word:word};
++  }
++  var weighted=needsFold?consumer():null;
++  function* finishCursor(spawns,total,orbit,offset,settings){
++    if(spawns.length!==choices.length||!A.integer(total)||A.lt(total,0)||A.gt(total,count))throw new RangeError('Native credit prefix exceeded');
++    spawns.forEach(function(v){if(!A.integer(v)||A.lt(v,0)||A.gt(v,total))throw new RangeError('Invalid native luminous count');});
++    var parts=A.divmod(total,fixed.length),gain=0;
++    if(weighted){if(!orbit||!orbit.foldCursor)throw new RangeError('Native parity needs an indexed orbit');var folded=yield* orbit.foldCursor(offset||0,total,weighted,settings);gain=folded[units%2].gain;}
++    else{
++      fixed.forEach(function(n,i){gain=A.exactAdd(gain,product(n,A.exactAdd(parts.q,i<Number(parts.r)?1:0)));});
++      choices.forEach(function(k,i){gain=A.exactAdd(gain,A.exactAdd(product(k.normal,A.exactSub(total,spawns[i])),product(k.bright,spawns[i])));});
++    }
++    if(A.gt(gain,available))throw new RangeError('Native credit binade crossed');
++    return (units+Number(gain))*ulp;
++  }
++  function finish(spawns,total,orbit,offset,settings){var cursor=finishCursor(spawns,total,orbit,offset,settings),step;do{step=cursor.next();}while(!step.done);return step.value;}
++  return {mode:'native',cycles:count,ulp:ulp,needsFold:needsFold,finish:finish,finishCursor:finishCursor};
++};
++var cycleResources=function* certifyResources(A,programs,initial,canCast,requested,options){
++  options=options||{};
++  if(!programs.length||!A.integer(requested)||A.lt(requested,0))throw new RangeError('Invalid resource cycle request');
++  var ids=Object.keys(initial),period=programs.length,certificates={},limit=requested,allFixed=true,examined=0;
++  if(ids.some(function(id){return !Number.isFinite(initial[id])||initial[id]<0||initial[id]>100;}))throw new RangeError('Invalid initial ability resource');
++  function apply(value,ops,id){
++    for(var i=0;i<ops.length;i++){
++      var op=ops[i];
++      if(op.kind==='interval'&&op.ids.indexOf(id)!==-1){
++        var witness=op.witnesses&&op.witnesses.indexOf(id)!==-1;
++        if(witness&&!canCast[id])return null;
++        if(canCast[id]){var needed=op.rate>0?Math.max(0,(100-value)/op.rate):Infinity;if(needed<op.seconds||(witness&&needed!==op.seconds))return null;}
++      }else if(op.kind==='add'&&op.ids.indexOf(id)!==-1)value=Math.min(100,value+op.amount);
++      else if(op.kind==='retain')value=Math.min(100,(value*op.level)/5);
++      else if(op.kind==='check'&&op.id===id){var fired=!!canCast[id]&&value>=100-1e-7;if(fired!==op.fired)return null;if(fired)value=0;}
++    }
++    return value;
++  }
++  function* scalar(id,maximum){
++    var value=initial[id];if(!Number.isFinite(value)||value<0||value>100)throw new RangeError('Invalid initial ability resource');
++    var starts=[value],complete=0,fixedAt=null,fixedValue=null,stopped=false;
++    outer:for(var group=0;group<(options.maxPeriods||16384)&&A.lt(complete,maximum);group++){
++      var start=value;
++      for(var j=0;j<period;j++){
++        if(!A.lt(complete,maximum))break outer;
++        var next=apply(value,programs[j],id);examined++;
++        if(next===null){stopped=true;break outer;}value=next;complete++;
++      }
++      if(value===start){fixedAt=group;fixedValue=value;break;}
++      starts.push(value);
++      if(options.maxBlocks&&(group+1)%options.maxBlocks===0)yield {resourcePeriods:group+1,resource:id};
++    }
++    var fixed=fixedAt!==null,safe=fixed?maximum:A.min(maximum,complete);
++    function at(n){
++      if(!A.integer(n)||A.lt(n,0)||(!fixed&&A.gt(n,safe)))throw new RangeError('Resource certificate exceeded');
++      var parts=A.divmod(n,period),q=parts.q,r=Number(parts.r),current;
++      if(fixed&&A.ge(q,fixedAt))current=fixedValue;
++      else{current=starts[Number(q)];if(current===undefined)throw new RangeError('Missing resource checkpoint');}
++      for(var k=0;k<r;k++){current=apply(current,programs[k],id);if(current===null)throw new RangeError('Resource decision changed');}
++      return current;
++    }
++    return {cycles:safe,unbounded:fixed,stopped:stopped,at:at};
++  }
++  for(var i=0;i<ids.length;i++){
++    var id=ids[i],certificate=yield* scalar(id,limit);certificates[id]=certificate;limit=A.min(limit,certificate.cycles);allFixed=allFixed&&certificate.unbounded;
++    if(A.cmp(limit,0)===0)break;
++  }
++  return {cycles:limit,unbounded:allFixed,examined:examined,at:function(n){if(!A.integer(n)||A.lt(n,0)||(!allFixed&&A.gt(n,limit)))throw new RangeError('Resource prefix exceeded');var out={};ids.forEach(function(id){if(A.cmp(n,0)===0)out[id]=initial[id];else{if(!certificates[id])throw new RangeError('Incomplete resource certificate');out[id]=certificates[id].at(n);}});return out;}};
++};
++var cycleNativeThreshold=(function(A){
++  function product(a,b){a=typeof a==='number'?A.exactAdd(a,0):a;b=typeof b==='number'?A.exactAdd(b,0):b;return A.mul(a,typeof b==='number'?String(b)+'e0':b);}
++  function pow2(n){var out=1,base=2;while(n){if(n%2)out=product(out,base);n=Math.floor(n/2);if(n)base=product(base,base);}return out;}
++  function adjacent(n,direction){
++    if(!Number.isFinite(n)||n<0)throw new RangeError('Invalid native boundary');if(n===0)return direction>0?Number.MIN_VALUE:0;
++    var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,n);var hi=v.getUint32(0),lo=v.getUint32(4);
++    if(direction>0){if(lo===4294967295){hi++;lo=0;}else lo++;}else if(lo===0){hi--;lo=4294967295;}else lo--;
++    v.setUint32(0,hi);v.setUint32(4,lo);return v.getFloat64(0);
++  }
++  function dyad(n){if(n===0)return {n:0,e:0};var v=new DataView(new ArrayBuffer(8));v.setFloat64(0,n);var hi=v.getUint32(0),raw=(hi>>>20)&2047;return {n:product((hi&1048575)*4294967296+v.getUint32(4)+(raw?4503599627370496:0),125),e:raw?raw-1075:-1074};}
++  function midpoint(a,b){
++    if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<a)throw new RangeError('Invalid midpoint');
++    var left=dyad(a),right=dyad(b),unit=Math.min(a?left.e:0,b?right.e:0);
++    var ticks=A.exactAdd(a?product(left.n,pow2(left.e-unit)):0,b?product(right.n,pow2(right.e-unit)):0);
++    return {ticks:ticks,unit:unit-1,scale:125};
++  }
++  function firstTrue(predicate,estimate){
++    if(typeof predicate!=='function'||!Number.isFinite(estimate)||estimate<0)throw new RangeError('Invalid native predicate');
++    if(predicate(0))return {ticks:0,unit:0,scale:125};
++    var lo=0,hi=estimate;
++    while(!predicate(hi)){hi=adjacent(hi,1);if(!Number.isFinite(hi))throw new RangeError('No finite native event boundary');}
++    while(adjacent(lo,1)<hi){var mid=lo+(hi-lo)/2;if(mid<=lo||mid>=hi)break;if(predicate(mid))hi=mid;else lo=mid;}
++    var lower=adjacent(hi,-1),result=midpoint(lower,hi);result.lower=lower;result.upper=hi;return result;
++  }
++  return {nextUp:function(n){return adjacent(n,1);},nextDown:function(n){return adjacent(n,-1);},midpoint:midpoint,firstTrue:firstTrue};
++})(Amount);
++var cycleRecastThreshold=cycleNativeThreshold.midpoint(SIM_EPS,cycleNativeThreshold.nextUp(SIM_EPS));
++var cycleRecordAscends=(function(A){
++  return function record(summary,gain,count){
++    if(count===undefined)count=1;
++    if(!A.integer(count)||A.le(count,0)||!A.valid(gain)||A.lt(gain,0))throw new RangeError('Invalid Ascend receipt');
++    function run(value,n){
++      var last=summary.ascendGainRuns[summary.ascendGainRuns.length-1];
++      if(last&&A.cmp(last.gain,value)===0)last.count=A.exactAdd(last.count,n);
++      else summary.ascendGainRuns.push({gain:value,count:n});
++    }
++    if(!summary.ascendGainRuns&&A.cmp(count,1)===0)summary.ascendGains.push(gain);
++    else{
++      if(!summary.ascendGainRuns){summary.ascendGainRuns=[];summary.ascendGains.forEach(function(value){run(value,1);});}
++      run(gain,count);summary.ascendGains=[gain];
++    }
++    summary.ascends=A.exactAdd(summary.ascends,count);
++  };
++})(Amount);
++var endlessPityCache=null,endlessCombatCache=new Map(),endlessPassiveCache=new Map(),endlessResourceCache=new Map(),endlessHeroObserver=null;
++var createEndlessCycleRuntime=function createEndlessCycleRuntime(summary,policy,options,paidDeadline){
++  var rows=[],pending=null,plan=null,lastBoundary=null,lastPassive=null,latticeMemo=new Map();
++  var ignored={lumen:1,shards:1,prisms:1,motes:1,sigils:1,ascendCount:1,totalKills:1,totalTaps:1,dailyStats:1,luminousAccum:1,enemyIsLuminous:1,_autoTapAccum:1,_autoEmpowerAccum:1,canonicalAutomationClock:1,activeStudies:1,studyBoosts:1,studySpeedTargets:1,studyBoostHours:1,studyUseMotes:1,moteNextAtMs:1,buffUntil:1,buffMult:1,supportBuffs:1,supportRecastUntil:1};
++  function signature(withoutResources){var out={};Object.keys(state).forEach(function(key){if(!ignored[key]&&!(withoutResources&&key==='heroResource'))out[key]=state[key];});out.cycleBuff=simulationBuffMult(policy.nowMs,policy.clock);out.cycleRewardScale=simulationRewardScale(policy);out.cycleRecastReady={};state.activeParty.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;});if(sp.abilityType==='support')out.cycleRecastReady[id]=supportRecastSeconds(sp,policy.nowMs,policy.clock)<=SIM_EPS;});return JSON.stringify(out);}
++  function eligible(){return !options.disableCycleBatching&&!options.captureTimeline&&!options.traceEverySec&&options.traceEventsFromSec===undefined&&state.riftMode==='push'&&state.owned.autoascend&&state.autoAscendEnabled&&Amount.ge(state.ascendCount,12)&&autoAscendClearedTarget()<=256&&!state.cometTrial;}
++  function fullReset(){return state.depth===1+treeLevel('riftstep')&&state.enemyDepth===state.depth&&Amount.cmp(state.enemyHp,state.enemyMaxHp)===0;}
++  function rotate(list,offset){return list.slice(offset).concat(list.slice(0,offset));}
++  function ceil(v){return Amount.round(v,'ceil');}
++  function nativeProgram(recipe){return [canonicalAutomationMillis(recipe.intervals),null];}
++  function formulate(records,passive){
++    var killPath=records[0].ops.filter(function(op){return op.kind==='kill';}),count=autoAscendClearedTarget()-state.depth+1;
++    if(killPath.length!==count||killPath.some(function(op,i){return op.depth!==state.depth+i;}))return null;
++    var pattern=killPath.map(function(op){return op.nextChance;}).concat([records[0].ops[records[0].ops.length-1].resetChance]);
++    var recipes=[],lumenRecipes=[],maxLumen=0,maxShard=0,cap=50000*treeLevel('lumenmemory');
++    for(var i=0;i<records.length;i++){
++      var row=records[i],ops=row.ops,last=ops[ops.length-1],shards=0,lumen=0,lumenCredits=[],shardsCredits=[],fractionLumen=false,fractionShard=false,sigils=0,bosses=0,peakLumen=cap,peakShard=0,totalMillis=0;
++      if(!last||last.kind!=='retain'||row.autoTaps||row.empowers||row.automaticTicks||row.intervals.some(function(n){return typeof n!=='number'||!Number.isFinite(n)||n<=0;}))return null;
++      if(ops.some(function(op){if(op.kind!=='gain')return false;var sp=SPIRITS.find(function(s){return s.id===op.id;});return passive||!sp||sp.abilityType==='support';}))return null;
++      if(passive&&(!row.heroOps||row.heroOps.some(function(op){return op.kind==='interval'&&op.soleAbility;})))return null;
++      row.intervals.forEach(function(n){totalMillis+=n*1000;});if(!Number.isFinite(totalMillis))return null;
++      var path=ops.filter(function(op){return op.kind==='kill';});
++      if(JSON.stringify(path)!==JSON.stringify(killPath)||last.resetChance!==pattern[pattern.length-1])return null;
++      var lr=[];
++      for(var j=0;j<ops.length;j++){
++        var op=ops[j];
++        if(op.kind==='kill'){
++          if(!Amount.integer(op.normalLumen)||!Amount.integer(op.brightLumen))fractionLumen=true;
++          if(!Amount.integer(op.normalShard)||!Amount.integer(op.brightShard))fractionShard=true;
++          lr.push({kind:'kill',normal:op.normalLumen,bright:op.brightLumen});
++          peakLumen=Amount.exactAdd(peakLumen,Amount.exactAdd(ceil(Amount.max(op.normalLumen,op.brightLumen)),1));
++          peakShard=Amount.exactAdd(peakShard,Amount.exactAdd(ceil(Amount.max(op.normalShard,op.brightShard)),1));
++          if(isBoss(op.depth)){sigils=Amount.exactAdd(sigils,sigilsFromBoss(op.depth));bosses++;}
++        }else if(op.kind==='gain'){
++          if(!Amount.integer(op.lumen))fractionLumen=true;if(!Amount.integer(op.shards))fractionShard=true;
++          lumenCredits.push(op.lumen);shardsCredits.push(op.shards);
++          lr.push({kind:'gain',amount:op.lumen});shards=Amount.exactAdd(shards,op.shards);lumen=Amount.exactAdd(lumen,op.lumen);
++          peakLumen=Amount.exactAdd(peakLumen,Amount.exactAdd(ceil(op.lumen),1));peakShard=Amount.exactAdd(peakShard,Amount.exactAdd(ceil(op.shards),1));
++        }else if(op.kind==='retain')lr.push({kind:'retain',factor:op.factor,cap:op.cap});
++      }
++      if(Amount.gt(row.endLumen,cap))return null;
++      recipes.push({lumen:lumen,shards:shards,lumenCredits:lumenCredits,shardsCredits:shardsCredits,fractionLumen:fractionLumen,fractionShard:fractionShard,sigils:sigils,prisms:last.prisms,motes:last.motes,kills:count,bossKills:bosses});lumenRecipes.push(lr);
++      if(i&&(Amount.cmp(last.prisms,recipes[0].prisms)!==0||Amount.cmp(last.motes,recipes[0].motes)!==0))return null;
++      maxLumen=Amount.max(maxLumen,peakLumen);maxShard=Amount.max(maxShard,peakShard);
++    }
++    var result={key:passive?records[0].baseKey:records[0].startKey,baseKey:records[0].baseKey,passive:!!passive,records:records,recipes:recipes,lumenRecipes:lumenRecipes,pattern:pattern,cap:cap,maxLumen:maxLumen,maxShard:maxShard,
++      kills:killPath.map(function(op){return {normal:op.normalShard,bright:op.brightShard,normalLumen:op.normalLumen,brightLumen:op.brightLumen};})};
++    // Positive unbuffed passive net damage is sufficient for both existing
++    // Boss controllers to avoid a wall verdict, independent of ready bars.
++    result.passiveBossSafe=killPath.every(function(op){return !isBoss(op.depth)||Amount.gt(passiveWispDpsAt(op.depth),Amount.mul(enemyHpFor(op.depth),bossRegenRate(op.depth)));});
++    for(var offset=0;offset<records.length;offset++){
++      var cached={};Object.keys(result).forEach(function(key){cached[key]=result[key];});cached.key=passive?records[offset].baseKey:records[offset].startKey;cached.baseKey=records[offset].baseKey;cached.records=rotate(records,offset);cached.recipes=rotate(recipes,offset);cached.lumenRecipes=rotate(lumenRecipes,offset);
++      var cache=passive?endlessPassiveCache:endlessCombatCache;cache.set(cached.key,cached);if(cache.size>(passive?32:256))cache.delete(cache.keys().next().value);
++      if(!passive&&records.every(function(r){return r.baseKey===cached.baseKey&&r.heroOps&&r.heroOps.length;})){
++        cached.programKey=JSON.stringify(cached.records.map(function(r){return [r.ops,r.intervals,r.heroOps];}));
++        var list=endlessResourceCache.get(cached.baseKey)||[];if(!list.some(function(p){return p.programKey===cached.programKey;}))list.push(cached);if(list.length>32)list.shift();endlessResourceCache.set(cached.baseKey,list);if(endlessResourceCache.size>8)endlessResourceCache.delete(endlessResourceCache.keys().next().value);
++      }
++    }
++    return result;
++  }
++  function boundary(){
++    if(!eligible()||!fullReset())return;
++    if(lastBoundary!==null&&Amount.cmp(lastBoundary,state.ascendCount)===0)return;
++    var key=signature(),captureHero=true,baseKey=signature(true);
++    if(pending){
++      var row={startKey:pending.key,baseKey:pending.baseKey,ops:pending.ops,intervals:pending.intervals,heroOps:pending.heroOps,endHero:clonePersistedValue(state.heroResource),endLumen:state.lumen,autoTaps:summary.autoTaps-pending.autoTaps,empowers:summary.empowers-pending.empowers,automaticTicks:pending.automaticTicks};
++      row.fingerprint=JSON.stringify([row.startKey,row.ops,row.intervals,row.autoTaps,row.empowers,row.automaticTicks]);rows.push(row);if(rows.length>64)rows.shift();
++      if(treeLevel('chargememory')<5&&!row.autoTaps&&!row.automaticTicks&&!row.ops.some(function(op){return op.kind==='gain';})){
++        var fingerprint=JSON.stringify([row.baseKey,row.ops,row.intervals,row.heroOps]);if(lastPassive===fingerprint)formulate([row],true);lastPassive=fingerprint;
++      }else lastPassive=null;
++      for(var p=1;p<=Math.min(32,Math.floor(rows.length/2));p++){
++        var a=rows.length-2*p,b=rows.length-p,match=key===rows[a].startKey;
++        for(var k=0;match&&k<p;k++)match=rows[a+k].fingerprint===rows[b+k].fingerprint;
++        if(match){plan=formulate(rows.slice(b));if(plan)break;}
++      }
++    }
++    pending={key:key,baseKey:baseKey,captureHero:captureHero,ops:[],intervals:[],heroOps:[],automaticTicks:0,autoTaps:summary.autoTaps,empowers:summary.empowers};lastBoundary=state.ascendCount;
++  }
++  function horizon(clock){
++    var best=clock.latticeRemaining(),blocked=false;
++    best.strict=false;
++    function consider(d){d.strict=true;if(clock.compareDuration(d,best)<=0)best=d;}
++    function deadline(until,early){if(!until)return;var d=clock.latticeUntil(until,early);if(Amount.le(d.ticks,0))return;consider(d);}
++    deadline(state.buffUntil);
++    if(state.supportBuffs)Object.keys(state.supportBuffs.sources).forEach(function(id){deadline(state.supportBuffs.sources[id].until);});
++    state.activeParty.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;});if(sp.abilityType!=='support')return;var until=state.supportRecastUntil[id]||0,d=clock.latticeUntil(until,cycleRecastThreshold);if(Amount.gt(d.ticks,0))consider(d);});
++    Object.keys(state.studyBoosts).forEach(function(id){var b=state.studyBoosts[id];deadline(b.startedAtMs);deadline(b.expiresAtMs);});
++    state.activeStudies.forEach(function(active){var left=paidDeadline(active);if(!left||Amount.le(left.ticks,0))blocked=true;else consider(left);});
++    var mote=clock.latticeUntil(state.moteNextAtMs);if(Amount.le(mote.ticks,0))blocked=true;else consider(mote);
++    return blocked?null:best;
++  }
++  function queuedPrices(){
++    var costs=[];
++    RESEARCH.forEach(function(node){if(!state.researchQueue[node.id])return;var e=researchEligibility(node);if(e.unlocked&&!e.maxed&&getResearchBuyPlan(node,1).reason!=='unavailable')costs.push(researchCostForLevels(node,state.research[node.id],1));});
++    if(state.activeStudies.length<studySlotCount())LONG_STUDIES.forEach(function(node){if(!state.studyQueue[node.id])return;var p=getStudyStartPlan(node);if(p.eligible)costs.push(p.cost);});
++    return costs;
++  }
++  function* prepare(clock){
++    boundary();var exactKey=eligible()&&fullReset()?signature():null;
++    if(exactKey)plan=plan&&!plan.passive&&plan.key===exactKey?plan:endlessCombatCache.get(exactKey)||(treeLevel('chargememory')<5?endlessPassiveCache.get(signature(true)):null)||null;
++    if(!clock||!eligible()||!fullReset())return null;
++    var budget=horizon(clock);if(!budget)return null;
++    var resources=null,resourceFallback=false,baseKey=signature(true);
++    function* certify(candidate){
++      var canCast={};SPIRITS.forEach(function(sp){canCast[sp.id]=(state.spirits[sp.id]||0)>0&&state.activeParty.indexOf(sp.id)!==-1&&supportRecastSeconds(sp,policy.nowMs,policy.clock)<=SIM_EPS;});
++      if(candidate.records.some(function(r){return r.heroOps.some(function(op){return op.kind==='interval'&&op.soleAbility&&(!op.witnesses||!op.witnesses.length);});}))return null;
++      var resourceCursor=cycleResources(Amount,candidate.records.map(function(r){return r.heroOps;}),clonePersistedValue(state.heroResource),canCast,16384*candidate.records.length,{maxBlocks:32}),resourceStep=null;
++      try{do{resourceStep=resourceCursor.next();if(!resourceStep.done&&options.resumable)yield {preparingResources:true,resource:resourceStep.value.resource};}while(!resourceStep.done);}finally{if(!resourceStep||!resourceStep.done)resourceCursor.return();}
++      return resourceStep.value.unbounded?resourceStep.value:null;
++    }
++    if(!plan||plan.passive){
++      var candidates=(endlessResourceCache.get(baseKey)||[]).slice();if(plan&&plan.passive)candidates.push(plan);plan=null;
++      for(var candidateIndex=0;candidateIndex<candidates.length;candidateIndex++){var candidate=candidates[candidateIndex];if(candidate.baseKey!==baseKey)continue;var certificate=yield* certify(candidate);if(certificate){plan=candidate;resources=certificate;resourceFallback=true;break;}}
++    }
++    var key=resourceFallback||plan&&plan.passive?baseKey:exactKey;
++    if(!plan||key!==(resourceFallback?plan.baseKey:plan.key)||Amount.gt(state.lumen,plan.cap))return null;
++    if(policy.allowBossRetreat&&!plan.passiveBossSafe&&Number.isFinite(policy.bossRetreatNotBeforeMs)){
++      var retreat=clock.latticeUntil(policy.bossRetreatNotBeforeMs);if(Amount.le(retreat.ticks,0))return null;retreat.strict=true;if(clock.compareDuration(retreat,budget)<=0)budget=retreat;
++    }
++    var period=cycleLatticeClock(Amount,plan.records.map(function(r){return r.intervals;}),budget,latticeMemo),maximum=period.cycles;
++    if(budget.strict&&Amount.cmp(period.remaining.ticks,0)===0)maximum=Amount.max(0,Amount.exactSub(maximum,1));
++    var count=cycleEconomyBound(Amount,maximum,plan.maxLumen,shardsAvailable(),plan.maxShard,queuedPrices()).cycles;
++    var creditPlans=[];
++    function creditPlan(object,field,reward){
++      var hasKills=reward==='lumen'||reward==='shards',fixed=plan.recipes.map(function(r){return hasKills?r[reward+'Credits']:[r[reward]||0];});
++      var choices=hasKills?plan.kills.map(function(k){return reward==='lumen'?{normal:k.normalLumen,bright:k.brightLumen}:{normal:k.normal,bright:k.bright};}):[];
++      var certificate=cycleNativeCredit(Amount,object[field],fixed,choices,count,{ordered:function(){
++        if(!hasKills)return fixed.map(function(row){return row.map(function(amount){return {kind:'gain',amount:amount};});});
++        return plan.records.map(function(r){var index=0,out=[];r.ops.forEach(function(op){if(op.kind==='kill')out.push({kind:'kill',index:index++});else if(op.kind==='gain')out.push({kind:'gain',amount:reward==='lumen'?op.lumen:op.shards});});return out;});
++      }});count=Amount.min(count,certificate.cycles);
++      creditPlans.push({object:object,field:field,reward:reward,certificate:certificate,hasKills:hasKills});
++    }
++    ['shards','prisms','motes','sigils'].forEach(function(key){creditPlan(state,key,key);});
++    [['lumenGained','lumen'],['shardGained','shards'],['sigilsGained','sigils'],['motesGained','motes']].forEach(function(pair){creditPlan(summary,pair[0],pair[1]);});
++    if(Amount.lt(count,2))return null;
++    var phasePrograms=[];plan.records.forEach(function(r){phasePrograms=phasePrograms.concat(nativeProgram(r));});
++    function phaseLimit(value,achieved){
++      if(!achieved)return count;
++      var pieces=Amount.divmod(count,plan.records.length),cap=treeLevel('phasememory')?999.999:0;
++      var r=cycleNativePhase(Amount,phasePrograms,pieces.q,value,cap,{threshold:1000-1e-7}),safe=Amount.mul(r.cycles,String(plan.records.length)+'e0');
++      if(r.stopped)return safe;
++      value=r.value;
++      for(var i=0;i<Number(pieces.r);i++){r=cycleNativePhase(Amount,nativeProgram(plan.records[i]),1,value,cap,{threshold:1000-1e-7});if(r.stopped)return safe;value=r.value;safe=Amount.exactAdd(safe,1);}
++      return safe;
++    }
++    count=Amount.min(count,phaseLimit(state._autoTapAccum||0,state.achieved.autotap),phaseLimit(state._autoEmpowerAccum||0,state.achieved.labmaster));
++    if(Amount.lt(count,2))return null;
++    var patternKey=JSON.stringify(plan.pattern),cache=endlessPityCache;
++    function* ensure(n){
++      if(!Amount.gt(n,cache.generated))return;
++      var initial=cache.generated,cursor=cache.orbit.cursor(Amount.exactSub(n,initial),{maxBlocks:16}),step;
++      try{
++        do{step=cursor.next();cache.generated=Amount.exactAdd(initial,step.value.cycles);if(!step.done&&options.resumable)yield {preparingCycles:true,regions:step.value.regions};}while(!step.done);
++      }finally{if(!step||!step.done)cursor.return();}
++    }
++    if(cache&&cache.key===patternKey&&Amount.ge(state.ascendCount,cache.lastAscend)){
++      var next=Amount.exactAdd(cache.logical,Amount.exactSub(state.ascendCount,cache.lastAscend));yield* ensure(next);var current=cache.orbit.position(next);
++      if(current.phase===state.luminousAccum&&current.flag===state.enemyIsLuminous){cache.logical=next;cache.lastAscend=state.ascendCount;}else cache=null;
++    }else cache=null;
++    if(!cache)cache={key:patternKey,orbit:createLuminousOrbitSession(Amount,createLuminousOrbit(Amount,{phaseCeiling:.999999}),plan.pattern,state.luminousAccum,state.enemyIsLuminous),logical:0,generated:0,lastAscend:state.ascendCount};
++    endlessPityCache=cache;var target=Amount.exactAdd(cache.logical,count);yield* ensure(Amount.max(target,'1e25'));
++    var before=cache.orbit.position(cache.logical),after=cache.orbit.position(target),spawns={phase:after.phase,flag:after.flag,counts:after.counts.map(function(v,i){return Amount.exactSub(v,before.counts[i]);})};
++    var lumen=cycleTailLumen(Amount,createLuminousOrbit(Amount,{phaseCeiling:.999999}),cache.orbit,plan.pattern,plan.lumenRecipes,count,plan.cap,64,{orbitOffset:cache.logical,initial:state.lumen});
++    if(!lumen.independent&&!lumen.exactInitial)return null;
++    var gain=cycleAggregate(Amount,plan.recipes,plan.kills,spawns.counts,count),last=plan.records[Number(Amount.mod(Amount.exactSub(count,1),plan.records.length))];
++    for(var creditIndex=0;creditIndex<creditPlans.length;creditIndex++){
++      var credit=creditPlans[creditIndex];if(credit.certificate.mode!=='native')continue;
++      var fold=credit.certificate.finishCursor(credit.hasKills?spawns.counts:[],count,cache.orbit,cache.logical,{maxBlocks:1}),step=null;
++      try{do{step=fold.next();if(!step.done&&options.resumable)yield {preparingCredits:true,foldRegions:step.value.foldRegions};}while(!step.done);}
++      finally{if(!step||!step.done)fold.return();}
++      credit.nativeValue=step.value;
++    }
++    var pieces=Amount.divmod(count,plan.records.length),tap=state._autoTapAccum||0,empower=state._autoEmpowerAccum||0;
++    function advancePhase(value){
++      if(!treeLevel('phasememory'))return 0;
++      value=cycleNativePhase(Amount,phasePrograms,pieces.q,value,999.999).value;
++      for(var i=0;i<Number(pieces.r);i++)value=cycleNativePhase(Amount,nativeProgram(plan.records[i]),1,value,999.999).value;
++      return value;
++    }
++    if(state.achieved.autotap)tap=advancePhase(tap);if(state.achieved.labmaster)empower=advancePhase(empower);
++    return {duration:period.durationFor(count),count:count,apply:function(){
++      creditPlans.forEach(function(p){p.object[p.field]=p.certificate.mode==='native'?p.nativeValue:creditAmount(p.object[p.field],gain[p.reward]);});state.lumen=lumen.lumen;
++      state.totalKills=creditAmount(state.totalKills,gain.kills);state.ascendCount=creditAmount(state.ascendCount,count);
++      state.heroResource=resources?resources.at(count):clonePersistedValue(last.endHero);state._autoTapAccum=tap;state._autoEmpowerAccum=empower;
++      state.luminousAccum=spawns.phase;state.enemyIsLuminous=spawns.flag;state.canonicalAutomationClock={};ascendRunToken={};
++      ['kills','bossKills','luminousKills','ascends'].forEach(function(key){if(Amount.gt(gain[key],0))trackDaily(key,gain[key]);});
++      ['kills','bossKills','luminousKills'].forEach(function(key){summary[key]=creditAmount(summary[key],gain[key]);});
++      summary.fastForwardedKills=creditAmount(summary.fastForwardedKills,gain.kills);
++      cycleRecordAscends(summary,plan.recipes[0].prisms,count);cache.logical=target;cache.lastAscend=state.ascendCount;
++      simulationRecordAchievements(summary);rows=[];pending=null;plan=null;lastBoundary=null;lastPassive=null;
++    }};
++  }
++  return {boundary:boundary,prepare:prepare,active:function(){return !!pending;},
++    capturesResources:function(){return !!(pending&&pending.captureHero);},
++    interval:function(n,soleAbility){if(pending){pending.intervals.push(n);if(pending.captureHero){var rate=(100/ABILITY_BASE_CYCLE_SEC)*fillRateMult(),ids=poweredActiveIds().slice(),witnesses=[];if(soleAbility)ids.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;}),cur=Math.max(0,Math.min(100,state.heroResource[id]||0)),needed=Math.max(0,(100-cur)/rate,supportRecastSeconds(sp,policy.nowMs,policy.clock));if(needed===n)witnesses.push(id);});pending.heroOps.push({kind:'interval',seconds:n,rate:rate,ids:ids,witnesses:witnesses,soleAbility:!!soleAbility});}}},
++    fill:function(amount){if(pending&&pending.captureHero)pending.heroOps.push({kind:'add',ids:poweredActiveIds().slice(),amount:amount});},
++    charge:function(id,amount){if(pending&&pending.captureHero)pending.heroOps.push({kind:'add',ids:[id],amount:amount});},
++    heroCheck:function(id,nowMs,clock){if(pending&&pending.captureHero){var sp=SPIRITS.find(function(s){return s.id===id;}),fired=(state.spirits[id]||0)>0&&(state.heroResource[id]||0)>=100-1e-7&&supportRecastSeconds(sp,nowMs,clock)<=SIM_EPS;pending.heroOps.push({kind:'check',id:id,fired:!!fired});}},
++    automaticTick:function(){if(pending)pending.automaticTicks++;},
++    kill:function(op){if(pending)pending.ops.push(op);},
++    gain:function(lumen,shards,id){if(pending)pending.ops.push({kind:'gain',lumen:lumen,shards:shards,id:id});},
++    ascend:function(gain,dust){if(pending){pending.ops.push({kind:'retain',factor:treeLevel('lumenmemory')/20,cap:50000*treeLevel('lumenmemory'),prisms:gain,motes:dust,resetChance:isBoss(state.depth)?null:eliteChance(state.depth)});if(pending.captureHero)pending.heroOps.push({kind:'retain',level:treeLevel('chargememory')});}}
++  };
++};
+ var studyClockMemo={state:null,endMs:null,anchors:{}};
+ function advanceAuthoritativeTime(elapsedSec,options){
++  var cycleOwner=null;
+   // A cursor retains this scheduler's exact clock/phase across yields. Calling
+   // the synchronous facade still uses the identical event ordering.
+   function* run(){
+@@ -10874,6 +11732,8 @@ function advanceAuthoritativeTime(elapsedSec,options){
+   elapsedSec = Amount.max(0,Number(elapsedSec)||0);
+   var policy = simulationPolicy(options.kind||'live',options);
+   var summary = simulationSummary(elapsedSec);
++  Object.defineProperty(summary,'_cycle',{value:createEndlessCycleRuntime(summary,policy,options,cyclePaidDeadline),configurable:true});
++  cycleOwner=summary._cycle;endlessHeroObserver=cycleOwner;
+   var clockStartMs = Amount.valid(options.clockStartMs) ? options.clockStartMs : Date.now();
+   policy.nowMs=clockStartMs;
+   var clockStartWholeSec = Amount.floorRatio(clockStartMs,1000);
+@@ -10882,13 +11742,44 @@ function advanceAuthoritativeTime(elapsedSec,options){
+   var targetWholeSec = Amount.round(elapsedSec,'floor');
+   var targetFractionSec = Amount.sub(elapsedSec,targetWholeSec);
+ 
++  var binaryClock=null,binaryStudyClock=null;
++  function activateBinaryClock(){
++    if(binaryClock)return;
++    var previous=currentElapsedSec(),durationMs=elapsedSec*1000,settings=Number.isInteger(durationMs)&&durationMs>0?{budgetMs:durationMs}:undefined;
++    binaryClock=createBinarySimulationClock(Amount,clockStartMs,elapsedSec,settings);
++    if(previous>0)binaryClock.advance(previous);
++    var prior=continuousStudyClock&&studyStartPosition.binary;
++    binaryStudyClock=prior?prior.nextWindow(elapsedSec,settings):createBinarySimulationClock(Amount,clockStartMs,elapsedSec,settings);
++    if(previous>0)binaryStudyClock.advance(previous);
++    state.activeStudies.forEach(function(active){
++      var anchor=studyProgressAnchors[active.id];
++      if(anchor&&anchor.binaryAnchor)return;
++      studyProgressAnchors[active.id]={remaining:active.remainingSec,lastRemaining:active.remainingSec,
++        speed:studyEffectiveSpeed(active,simulationNowMs(),simulationClockPosition()),total:active.totalDurationSec,
++        wholeSec:simulationClockPosition().wholeSec,gridRemaining:simulationClockPosition().remainingSec,
++        binaryAnchor:binaryStudyClock.absoluteSnapshot()};
++    });
++  }
++  function fastRepeatedPush(kill){return state.riftMode==='push'&&state.owned.autoascend&&state.autoAscendEnabled&&autoAscendClearedTarget()<=256&&kill>0&&kill<.05;}
++  function advanceCycleClock(duration){
++    binaryClock.advanceLattice(duration);binaryStudyClock.advanceLattice(duration);
++    var at=binaryClock.nowMs(),whole=Math.floor(at/1000),fraction=(at-whole*1000)/1000;
++    farmGridCrossings=whole-clockStartWholeSec;farmGridRemainingSec=fraction===0?1:1-fraction;syncElapsedClockFromFarmGrid();
++  }
++  function cyclePaidDeadline(active){
++    var anchor=studyProgressAnchors[active.id];if(!anchor||!anchor.binaryAnchor||!binaryStudyClock)return null;
++    if(!anchor.cycleThreshold)anchor.cycleThreshold=cycleNativeThreshold.firstTrue(function(work){return anchor.remaining-work*anchor.speed<=SIM_EPS;},anchor.remaining/anchor.speed);
++    return binaryStudyClock.latticeAfter(anchor.binaryAnchor,anchor.cycleThreshold);
++  }
+   function currentElapsedSec(){
++    if(binaryClock)return binaryClock.elapsedNumber();
+     return elapsedWholeSec+elapsedFractionSec;
+   }
+   function simulationRemainingSec(){
+     // Window-end time is represented in the same one-second grid coordinate as
+     // Farm scheduling. When a window end and Farm grid are the same logical
+     // instant, both candidates therefore use the exact same residual value.
++    if(binaryClock)return binaryClock.remaining();
+     var crossingDelta = targetFarmGridCrossings-farmGridCrossings;
+     if(crossingDelta<0) return 0;
+     if(crossingDelta===0){
+@@ -10897,12 +11788,13 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     return farmGridRemainingSec + Math.max(0,crossingDelta-1) + (1-targetFarmGridRemainingSec);
+   }
+   function simulationClockPosition(){
+-    return {wholeSec:clockStartWholeSec+farmGridCrossings,remainingSec:farmGridRemainingSec};
++    return {wholeSec:clockStartWholeSec+farmGridCrossings,remainingSec:farmGridRemainingSec,binary:binaryClock};
+   }
+   function simulationNowMs(){
+     // Compose absolute event time from the same canonical one-second scheduler
+     // on every call. This avoids call-boundary-dependent grouping such as
+     // (base + 203.157s) versus ((base + 180s) + 23.157s).
++    if(binaryClock)return binaryClock.nowMs();
+     var absoluteWholeSec = clockStartWholeSec + farmGridCrossings;
+     var absolutePhaseSec = farmGridRemainingSec===1 ? 0 : 1-farmGridRemainingSec;
+     return absoluteWholeSec*1000 + absolutePhaseSec*1000;
+@@ -10926,7 +11818,12 @@ function advanceAuthoritativeTime(elapsedSec,options){
+   var targetFarmGridRemainingSec = targetGridPhaseSec===0 ? 1 : Amount.sub(1,targetGridPhaseSec);
+ 
+   function advanceFarmGridClock(stepSec){
+-    if(stepSec<=0) return 0;
++    if(Amount.le(stepSec,0))return 0;
++    if(binaryClock){
++      var before=farmGridCrossings;binaryClock.advance(stepSec);binaryStudyClock.advance(stepSec);
++      var at=binaryClock.nowMs(),whole=Math.floor(at/1000),fraction=(at-whole*1000)/1000;
++      farmGridCrossings=whole-clockStartWholeSec;farmGridRemainingSec=fraction===0?1:1-fraction;return farmGridCrossings-before;
++    }
+     if(stepSec<farmGridRemainingSec){
+       farmGridRemainingSec -= stepSec;
+       return 0;
+@@ -10940,6 +11837,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     return crossed;
+   }
+   function syncElapsedClockFromFarmGrid(){
++    if(binaryClock){var elapsed=binaryClock.elapsedNumber();elapsedWholeSec=Math.floor(elapsed);elapsedFractionSec=elapsed-elapsedWholeSec;return;}
+     // The grid countdown is the canonical sub-second clock. Derive logical
+     // elapsed from it after every segment instead of independently summing the
+     // same floating-point steps in a second clock.
+@@ -10969,6 +11867,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     ? studyClockMemo.anchors : {};
+   var studyStartPosition = continuousStudyClock ? studyClockMemo.position : simulationClockPosition();
+   function studyClockPosition(){
++    if(binaryClock){var p=simulationClockPosition();p.binary=binaryStudyClock;return p;}
+     if(!continuousStudyClock) return simulationClockPosition();
+     var phase = 1-studyStartPosition.remainingSec+elapsedFractionSec;
+     var carry = Math.floor(phase);
+@@ -10978,11 +11877,12 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     state.activeStudies.forEach(function(active){
+       var anchor = studyProgressAnchors[active.id];
+       if(!anchor || anchor.lastRemaining!==active.remainingSec ||
+-          anchor.speed!==studyEffectiveSpeed(active,simulationNowMs()) || anchor.total!==active.totalDurationSec){
++          anchor.speed!==studyEffectiveSpeed(active,simulationNowMs(),simulationClockPosition()) || anchor.total!==active.totalDurationSec){
+         studyProgressAnchors[active.id] = {
+           remaining:active.remainingSec,lastRemaining:active.remainingSec,
+-          speed:studyEffectiveSpeed(active,simulationNowMs()),total:active.totalDurationSec,
+-          wholeSec:studyClockPosition().wholeSec,gridRemaining:studyClockPosition().remainingSec
++          speed:studyEffectiveSpeed(active,simulationNowMs(),simulationClockPosition()),total:active.totalDurationSec,
++          wholeSec:studyClockPosition().wholeSec,gridRemaining:studyClockPosition().remainingSec,
++          binaryAnchor:binaryStudyClock?binaryStudyClock.absoluteSnapshot():null
+         };
+       }
+     });
+@@ -10991,7 +11891,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     state.activeStudies.forEach(function(active){
+       var anchor = studyProgressAnchors[active.id];
+       var position = studyClockPosition();
+-      var workSeconds = (position.wholeSec-anchor.wholeSec)+(anchor.gridRemaining-position.remainingSec);
++      var workSeconds = binaryStudyClock&&anchor.binaryAnchor?binaryStudyClock.sinceNumber(anchor.binaryAnchor):(position.wholeSec-anchor.wholeSec)+(anchor.gridRemaining-position.remainingSec);
+       active.remainingSec = anchor.remaining-workSeconds*anchor.speed;
+       anchor.lastRemaining = active.remainingSec;
+     });
+@@ -11031,6 +11931,11 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     });
+   }
+   function advanceAutomationToProjectedClock(stepSec,windowEnd){
++    if(binaryClock&&state.riftMode==='push'){
++      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));simulationAdvanceAbilityResources(stepSec);
++      resourceProgressAnchors={};automationProgressAnchors={};return;
++    }
++    canonicalAutomationAnchors={};state.canonicalAutomationClock={};
+     if(state.riftMode!=='farm' || researchLevel('charge')<10){
+       simulationAdvanceAbilityResources(stepSec);
+       simulationAdvanceAutomationTimers(stepSec);
+@@ -11105,6 +12010,10 @@ function advanceAuthoritativeTime(elapsedSec,options){
+   // Resolve time-zero state with exactly the same ordering as every later
+   // timestamp. This is critical for compositional offline simulation: a caller
+   // boundary cannot give Research/Studies priority over due automation.
++  if(elapsedSec>0&&state.riftMode==='push'){
++    var firstKill=simulationPassiveKillSeconds(simulationPassiveDps(simulationNowMs(),simulationClockPosition()));
++    if(firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
++  }
+   var initialNowMs = simulationNowMs();
+   var initialAscends = summary.ascends;
+   if(Amount.le(state.enemyHp,SIM_EPS)){
+@@ -11134,7 +12043,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     summary.iterations++;
+ 
+     var nowMs = simulationNowMs();
+-    policy.nowMs=nowMs;
++    policy.nowMs=nowMs;policy.clock=simulationClockPosition();
+ 
+     if(Amount.le(state.enemyHp,SIM_EPS)){
+       var topKillsBefore = summary.kills;
+@@ -11155,12 +12064,24 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     }
+ 
+     var dps = simulationPassiveDps(nowMs,simulationClockPosition());
++    if(!binaryClock&&state.riftMode==='push'){
++      var tinyKill=simulationPassiveKillSeconds(dps);
++      if(tinyKill>0&&(farmGridRemainingSec-tinyKill===farmGridRemainingSec||fastRepeatedPush(tinyKill))){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
++    }
++    policy.clock=simulationClockPosition();
++    if(binaryClock)captureStudyProgressAnchors();
++    var bulk=yield* summary._cycle.prepare(binaryClock);
++    if(bulk){
++      captureStudyProgressAnchors();advanceCycleClock(bulk.duration);bulk.apply();advanceStudyProgressToClock();
++      elapsedInRun=currentElapsedSec();remaining=simulationRemainingSec();policy.clock=simulationClockPosition();policy.nowMs=simulationNowMs();
++      simulationResolveTimestamp(policy.nowMs,elapsedInRun,policy,summary,policy.clock);continue;
++    }
+     var rewardScale = simulationRewardScale(policy);
+     var next = remaining;
+     var abilityStep = simulationNextAbilitySeconds(nowMs,simulationClockPosition());
+-    var autoTapStep = simulationNextAutoTapSeconds();
+-    var autoEmpowerStep = simulationNextAutoEmpowerSeconds();
+-    var studyStep = simulationNextStudySeconds(nowMs);
++    var autoTapStep = simulationNextAutoTapSeconds(simulationClockPosition());
++    var autoEmpowerStep = simulationNextAutoEmpowerSeconds(simulationClockPosition());
++    var studyStep = simulationNextStudySeconds(nowMs,simulationClockPosition());
+     var buffStep = simulationNextBuffSeconds(nowMs,simulationClockPosition());
+     var bossRetreatStep = simulationNextBossRetreatSeconds(nowMs,policy);
+ 
+@@ -11211,12 +12132,14 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     var ascendsBeforeAdvance = summary.ascends;
+     var gridCrossingsBefore = farmGridCrossings;
+     var gridRemainingBefore = farmGridRemainingSec;
++    var binaryElapsedBefore=binaryClock?binaryClock.elapsed():null;
+     // Sub-nanosecond elapsed time can still carry material damage at mature
+     // power. Never discard it merely because it is below a generic time
+     // epsilon; only treat the simulator as stalled if floating-point
+     // subtraction literally cannot advance the remaining clock and no state
+     // event fires.
+     if(Amount.gt(next,0)){
++      if(summary._cycle)summary._cycle.interval(next,summary._cycle.capturesResources()&&Amount.cmp(next,abilityStep)===0&&[remaining,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,simulationPassiveKillSeconds(dps)].every(function(v){return Amount.lt(next,v);}));
+       captureStudyProgressAnchors();
+       captureAutomationProgressAnchors();
+       if(policy.visual && policy.kind==='live' && Amount.gt(dps,0))presentPassiveWispAttack();
+@@ -11227,7 +12150,8 @@ function advanceAuthoritativeTime(elapsedSec,options){
+         // its event-time bars/phases; ready actions still resolve after death.
+         advanceAutomationToProjectedClock(next,hitsWindowEnd);
+       }
+-      policy.nowMs=nowMs+next*1000;
++      policy.clock=binaryClock?{binary:binaryClock.project(next)}:null;
++      policy.nowMs=binaryClock?policy.clock.binary.nowMs():nowMs+next*1000;
+       policy.moteFarmClock={startMs:nowMs,firstSec:Amount.ratio(state.enemyHp,dps),gapSec:Amount.ratio(state.enemyMaxHp,dps)};
+       if(state.riftMode==='farm') simulationApplyFarmPassive(next,dps,policy,summary);
+       else simulationApplyPushPassive(next,dps,policy,summary);
+@@ -11309,7 +12233,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     }
+ 
+     // A real grid crossing can leave the derived elapsed value rounded unchanged.
+-    if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)){
++    if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && (!binaryClock||binaryClock.elapsed()===binaryElapsedBefore) && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)){
+       throw new Error(('Authoritative simulation stalled without elapsed-time or state progress | ' + JSON.stringify({
+         elapsedInRun:elapsedInRun,
+         elapsedWholeSec:elapsedWholeSec,
+@@ -11326,6 +12250,8 @@ function advanceAuthoritativeTime(elapsedSec,options){
+     }
+   }
+ 
++  if(binaryClock)persistCanonicalAutomation(binaryClock);
++  delete summary._cycle;cycleOwner=null;
+   summary.endDepth = state.depth;
+   summary.pushDepth = progressionDepth();
+   summary.clockEndMs = Amount.add(clockStartMs,Amount.mul(elapsedSec,1000));
+@@ -11333,6 +12259,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
+   return summary;
+   }
+   var cursor = run();
++  ['next','return','throw'].forEach(function(name){var method=cursor[name];cursor[name]=function(value){var previous=endlessHeroObserver;try{endlessHeroObserver=cycleOwner;return method.call(cursor,value);}finally{endlessHeroObserver=previous;}};});
+   if(options && options.resumable) return cursor;
+   var step;
+   do{ step = cursor.next(); }while(!step.done);
+@@ -11692,6 +12619,7 @@ function cancelOfflineCatchup(){
+   if(!job) return;
+   clearTimeout(job.timer);
+   offlineCatchup = null;
++  if(job.cursor&&job.cursor.return)job.cursor.return();
+   offlinePending = true;
+   resumeFlowBusy = false;
+   if(job.done) job.done(null,new Error('Offline catch-up cancelled'));
+@@ -11845,7 +12773,7 @@ function offlineReturnMessage(offline){
+     (offline.sigilsEarned>0 ? ' and ' + formatNum(offline.sigilsEarned) + ' Sigils' : '') +
+     (offline.motesEarned>0 ? ' and ' + formatNum(offline.motesEarned) + ' Motes' : '') + ' while you were gone.';
+   msg += ' Offline progress is limited to 12 hours for rewards, Lab and automation.';
+-  if(offline.ascends>0){ msg += ' They ascended ' + offline.ascends + ' time' + (offline.ascends===1?'':'s') + ' on their own!'; }
++  if(offline.ascends>0){ msg += ' They ascended ' + (Amount.wide(offline.ascends)?formatNum(offline.ascends):offline.ascends) + ' time' + (offline.ascends===1?'':'s') + ' on their own!'; }
+   if(offline.retreated){ msg += ' After the Boss remained an impossible wall for 5 minutes offline, they switched to Farm at Rift ' + offline.endDepth + '. Your Push point at Rift ' + offline.pushDepth + ' is still saved.'; }
+   if(offline.completedStudies.length===1){ msg += ' Your Long Study "' + offline.completedStudies[0] + '" finished while you were away!'; }
+   else if(offline.completedStudies.length>1){ msg += ' Your Long Studies "' + offline.completedStudies.join('", "') + '" finished while you were away!'; }

@@ -1,0 +1,2687 @@
+{
+  "status": "MEASURED_PARTIAL",
+  "sourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9",
+  "policySha256": "2222de05d1163efcd61b4db03177582a37b5249cf832f89ccd942d2406e2cd58",
+  "policy": "regular_two",
+  "policyDetails": {
+    "sessions": 2,
+    "activeSec": 600,
+    "decisionSec": 10,
+    "speed": 8,
+    "budget": 0.5
+  },
+  "days": 5,
+  "targetDays": 60,
+  "resumedFrom": null,
+  "policyNotes": "Early Support level10 focus ends at first Ultimate; save for eligible Ultimates before optional Mastery and reserve an eligible Mastery price before Tree spending.",
+  "limits": "Deterministic real-engine sessions and offline chronology; only earned currencies fund automation/speed; not human/device acceptance.",
+  "phases": [
+    {
+      "sourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9",
+      "policySha256": "2222de05d1163efcd61b4db03177582a37b5249cf832f89ccd942d2406e2cd58",
+      "fromDay": 0,
+      "changes": "Fresh earned D campaign with canonical saved automation basis. Existing post-Ultimate reserves and bounded Masterwork reinvestment; no grants."
+    }
+  ],
+  "milestones": {
+    "recruit.ember": 0,
+    "recruit.tide": 450,
+    "firstAscend": 510,
+    "recruit.stone": 43200,
+    "firstRarity": 43220
+  },
+  "walls": [
+    {
+      "from": 16,
+      "to": 17,
+      "seconds": 42722
+    },
+    {
+      "from": 40,
+      "to": 60,
+      "seconds": 86008
+    },
+    {
+      "from": 60,
+      "to": 120,
+      "seconds": 43200
+    },
+    {
+      "from": 120,
+      "to": 130,
+      "seconds": 43200
+    },
+    {
+      "from": 130,
+      "to": 150,
+      "seconds": 86400
+    },
+    {
+      "from": 163,
+      "to": 164,
+      "seconds": 42827
+    },
+    {
+      "from": 170,
+      "to": 171,
+      "seconds": 43126
+    },
+    {
+      "from": 179,
+      "to": null,
+      "open": true,
+      "seconds": 42606
+    }
+  ],
+  "history": [
+    {
+      "day": 1,
+      "maxDepth": 40,
+      "ascends": 1,
+      "levels": {
+        "ember": 29,
+        "tide": 10,
+        "stone": 1,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "rarity": {
+        "ember": 1,
+        "tide": 1,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "modules": {
+        "ember": 1,
+        "tide": 1,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "labs": {
+        "wispascend": 10,
+        "guardmastery": 0,
+        "riftattune": 0,
+        "shardstudy": 0,
+        "lumenstudy": 0,
+        "formationstudy": 0,
+        "motestudy": 0,
+        "prismstudy": 0,
+        "measuredinquiry": 0,
+        "labcapacity": 0,
+        "procurement": 0,
+        "catalysis": 0,
+        "focusprotocol": 0,
+        "fieldnotes": 1,
+        "curriculum": 0,
+        "bossledger": 0,
+        "luminousdistill": 0,
+        "sigilcartography": 0,
+        "rarityappraisal": 0,
+        "modulefabrication": 0,
+        "ultimateanalysis": 0,
+        "resonantefficiency": 0,
+        "adaptivegrowth": 0
+      },
+      "ultimates": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "mastery": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "forge": {
+        "focus": 0,
+        "sense": 0,
+        "formation": 0,
+        "resolve": 0,
+        "charge": 10,
+        "arcanecal": 4,
+        "conduction": 0,
+        "luminoustracking": 0,
+        "masterwork": 0,
+        "cauterize": 2,
+        "fracturekey": 0,
+        "guardianseal": 0,
+        "spillway": 0,
+        "sustainedchannel": 0,
+        "tapconduit": 1,
+        "guardiancadence": 0,
+        "relay": 0,
+        "resonantedge": 0,
+        "victorycharge": 0,
+        "amplifiertrim": 0,
+        "dualchannel": 0,
+        "overflowconduit": 0,
+        "resonancecells": 0,
+        "resonancecascade": 0,
+        "resonancereclaim": 0
+      },
+      "tree": {
+        "starlight": 0,
+        "steady": 0,
+        "echo": 1,
+        "bonds": 1,
+        "swift": 1,
+        "momentum": 0,
+        "reserves": 0,
+        "swiftcharter": 0,
+        "lumenmemory": 0,
+        "veteranrecruits": 0,
+        "rosterrecall": 0,
+        "chargememory": 0,
+        "supportmemory": 0,
+        "phasememory": 0,
+        "riftstep": 0,
+        "frontier": 0,
+        "stardust": 0,
+        "gentlegrowth": 0,
+        "formationseat": 0,
+        "benchmentor": 0,
+        "empowerbatch": 0,
+        "wallwisdom": 0,
+        "invitations": 0,
+        "recruitreserve": 0
+      },
+      "lumen": 1931.75,
+      "shards": 16788.75,
+      "prisms": 0,
+      "sigils": 7,
+      "motes": 1274,
+      "owned": {
+        "meteor": false,
+        "starcall": false
+      },
+      "active": [],
+      "autoAscend": false
+    },
+    {
+      "day": 2,
+      "maxDepth": 120,
+      "ascends": 2,
+      "levels": {
+        "ember": 96,
+        "tide": 10,
+        "stone": 67,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "rarity": {
+        "ember": 2,
+        "tide": 1,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "modules": {
+        "ember": 2,
+        "tide": 1,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "labs": {
+        "wispascend": 11,
+        "guardmastery": 0,
+        "riftattune": 0,
+        "shardstudy": 1,
+        "lumenstudy": 0,
+        "formationstudy": 0,
+        "motestudy": 0,
+        "prismstudy": 0,
+        "measuredinquiry": 0,
+        "labcapacity": 0,
+        "procurement": 0,
+        "catalysis": 0,
+        "focusprotocol": 0,
+        "fieldnotes": 1,
+        "curriculum": 0,
+        "bossledger": 0,
+        "luminousdistill": 0,
+        "sigilcartography": 0,
+        "rarityappraisal": 0,
+        "modulefabrication": 0,
+        "ultimateanalysis": 0,
+        "resonantefficiency": 0,
+        "adaptivegrowth": 0
+      },
+      "ultimates": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "mastery": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "forge": {
+        "focus": 0,
+        "sense": 0,
+        "formation": 0,
+        "resolve": 0,
+        "charge": 10,
+        "arcanecal": 10,
+        "conduction": 6,
+        "luminoustracking": 0,
+        "masterwork": 0,
+        "cauterize": 8,
+        "fracturekey": 6,
+        "guardianseal": 3,
+        "spillway": 0,
+        "sustainedchannel": 0,
+        "tapconduit": 5,
+        "guardiancadence": 4,
+        "relay": 2,
+        "resonantedge": 1,
+        "victorycharge": 1,
+        "amplifiertrim": 0,
+        "dualchannel": 1,
+        "overflowconduit": 0,
+        "resonancecells": 0,
+        "resonancecascade": 0,
+        "resonancereclaim": 0
+      },
+      "tree": {
+        "starlight": 0,
+        "steady": 0,
+        "echo": 1,
+        "bonds": 1,
+        "swift": 2,
+        "momentum": 0,
+        "reserves": 0,
+        "swiftcharter": 0,
+        "lumenmemory": 0,
+        "veteranrecruits": 0,
+        "rosterrecall": 0,
+        "chargememory": 0,
+        "supportmemory": 0,
+        "phasememory": 0,
+        "riftstep": 0,
+        "frontier": 0,
+        "stardust": 0,
+        "gentlegrowth": 0,
+        "formationseat": 0,
+        "benchmentor": 0,
+        "empowerbatch": 0,
+        "wallwisdom": 0,
+        "invitations": 0,
+        "recruitreserve": 0
+      },
+      "lumen": 136440.5,
+      "shards": 458245.5,
+      "prisms": 2,
+      "sigils": 73,
+      "motes": 2847,
+      "owned": {
+        "meteor": false,
+        "starcall": false
+      },
+      "active": [
+        {
+          "id": "wispascend",
+          "remainingSec": 12527.868817564493,
+          "totalDurationSec": 31666,
+          "speedMult": 1
+        }
+      ],
+      "autoAscend": false
+    },
+    {
+      "day": 3,
+      "maxDepth": 130,
+      "ascends": 2,
+      "levels": {
+        "ember": 127,
+        "tide": 10,
+        "stone": 98,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "rarity": {
+        "ember": 2,
+        "tide": 1,
+        "stone": 2,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "modules": {
+        "ember": 7,
+        "tide": 3,
+        "stone": 2,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "labs": {
+        "wispascend": 14,
+        "guardmastery": 1,
+        "riftattune": 0,
+        "shardstudy": 2,
+        "lumenstudy": 0,
+        "formationstudy": 0,
+        "motestudy": 0,
+        "prismstudy": 0,
+        "measuredinquiry": 2,
+        "labcapacity": 2,
+        "procurement": 1,
+        "catalysis": 0,
+        "focusprotocol": 2,
+        "fieldnotes": 1,
+        "curriculum": 1,
+        "bossledger": 0,
+        "luminousdistill": 0,
+        "sigilcartography": 0,
+        "rarityappraisal": 0,
+        "modulefabrication": 0,
+        "ultimateanalysis": 0,
+        "resonantefficiency": 0,
+        "adaptivegrowth": 0
+      },
+      "ultimates": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "mastery": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "forge": {
+        "focus": 0,
+        "sense": 0,
+        "formation": 0,
+        "resolve": 0,
+        "charge": 10,
+        "arcanecal": 18,
+        "conduction": 14,
+        "luminoustracking": 7,
+        "masterwork": 0,
+        "cauterize": 10,
+        "fracturekey": 10,
+        "guardianseal": 5,
+        "spillway": 5,
+        "sustainedchannel": 4,
+        "tapconduit": 5,
+        "guardiancadence": 5,
+        "relay": 5,
+        "resonantedge": 5,
+        "victorycharge": 5,
+        "amplifiertrim": 5,
+        "dualchannel": 5,
+        "overflowconduit": 5,
+        "resonancecells": 2,
+        "resonancecascade": 0,
+        "resonancereclaim": 0
+      },
+      "tree": {
+        "starlight": 0,
+        "steady": 0,
+        "echo": 1,
+        "bonds": 1,
+        "swift": 2,
+        "momentum": 0,
+        "reserves": 0,
+        "swiftcharter": 0,
+        "lumenmemory": 0,
+        "veteranrecruits": 0,
+        "rosterrecall": 0,
+        "chargememory": 0,
+        "supportmemory": 0,
+        "phasememory": 0,
+        "riftstep": 0,
+        "frontier": 0,
+        "stardust": 0,
+        "gentlegrowth": 0,
+        "formationseat": 0,
+        "benchmentor": 0,
+        "empowerbatch": 0,
+        "wallwisdom": 0,
+        "invitations": 0,
+        "recruitreserve": 0
+      },
+      "lumen": 14546375.25,
+      "shards": 25014401.5,
+      "prisms": 2,
+      "sigils": 85,
+      "motes": 7841,
+      "owned": {
+        "meteor": false,
+        "starcall": false
+      },
+      "active": [
+        {
+          "id": "wispascend",
+          "remainingSec": 85480.86881773645,
+          "totalDurationSec": 105191,
+          "speedMult": 1
+        }
+      ],
+      "autoAscend": false
+    },
+    {
+      "day": 4,
+      "maxDepth": 163,
+      "ascends": 4,
+      "levels": {
+        "ember": 124,
+        "tide": 0,
+        "stone": 95,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "rarity": {
+        "ember": 2,
+        "tide": 1,
+        "stone": 2,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "modules": {
+        "ember": 20,
+        "tide": 20,
+        "stone": 20,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "labs": {
+        "wispascend": 15,
+        "guardmastery": 1,
+        "riftattune": 0,
+        "shardstudy": 2,
+        "lumenstudy": 0,
+        "formationstudy": 0,
+        "motestudy": 0,
+        "prismstudy": 0,
+        "measuredinquiry": 4,
+        "labcapacity": 2,
+        "procurement": 3,
+        "catalysis": 2,
+        "focusprotocol": 4,
+        "fieldnotes": 3,
+        "curriculum": 3,
+        "bossledger": 0,
+        "luminousdistill": 0,
+        "sigilcartography": 0,
+        "rarityappraisal": 0,
+        "modulefabrication": 0,
+        "ultimateanalysis": 0,
+        "resonantefficiency": 0,
+        "adaptivegrowth": 0
+      },
+      "ultimates": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "mastery": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "forge": {
+        "focus": 0,
+        "sense": 0,
+        "formation": 0,
+        "resolve": 0,
+        "charge": 10,
+        "arcanecal": 19,
+        "conduction": 15,
+        "luminoustracking": 8,
+        "masterwork": 10,
+        "cauterize": 10,
+        "fracturekey": 10,
+        "guardianseal": 5,
+        "spillway": 5,
+        "sustainedchannel": 5,
+        "tapconduit": 5,
+        "guardiancadence": 5,
+        "relay": 5,
+        "resonantedge": 5,
+        "victorycharge": 5,
+        "amplifiertrim": 5,
+        "dualchannel": 5,
+        "overflowconduit": 5,
+        "resonancecells": 2,
+        "resonancecascade": 1,
+        "resonancereclaim": 0
+      },
+      "tree": {
+        "starlight": 0,
+        "steady": 0,
+        "echo": 1,
+        "bonds": 1,
+        "swift": 4,
+        "momentum": 0,
+        "reserves": 0,
+        "swiftcharter": 0,
+        "lumenmemory": 0,
+        "veteranrecruits": 0,
+        "rosterrecall": 0,
+        "chargememory": 0,
+        "supportmemory": 0,
+        "phasememory": 0,
+        "riftstep": 0,
+        "frontier": 0,
+        "stardust": 0,
+        "gentlegrowth": 0,
+        "formationseat": 0,
+        "benchmentor": 0,
+        "empowerbatch": 0,
+        "wallwisdom": 0,
+        "invitations": 0,
+        "recruitreserve": 0
+      },
+      "lumen": 5482951,
+      "shards": 67849464.5,
+      "prisms": 15,
+      "sigils": 341,
+      "motes": 6084,
+      "owned": {
+        "meteor": false,
+        "starcall": false,
+        "autoascend": true
+      },
+      "active": [
+        {
+          "id": "wispascend",
+          "remainingSec": 13445.868817736453,
+          "totalDurationSec": 143965,
+          "speedMult": 1
+        }
+      ],
+      "autoAscend": true
+    },
+    {
+      "day": 5,
+      "maxDepth": 179,
+      "ascends": 9,
+      "levels": {
+        "ember": 69,
+        "tide": 0,
+        "stone": 40,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "rarity": {
+        "ember": 3,
+        "tide": 1,
+        "stone": 2,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "modules": {
+        "ember": 20,
+        "tide": 20,
+        "stone": 20,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "labs": {
+        "wispascend": 16,
+        "guardmastery": 1,
+        "riftattune": 0,
+        "shardstudy": 2,
+        "lumenstudy": 0,
+        "formationstudy": 0,
+        "motestudy": 0,
+        "prismstudy": 0,
+        "measuredinquiry": 6,
+        "labcapacity": 2,
+        "procurement": 5,
+        "catalysis": 4,
+        "focusprotocol": 5,
+        "fieldnotes": 5,
+        "curriculum": 3,
+        "bossledger": 2,
+        "luminousdistill": 1,
+        "sigilcartography": 0,
+        "rarityappraisal": 0,
+        "modulefabrication": 0,
+        "ultimateanalysis": 0,
+        "resonantefficiency": 0,
+        "adaptivegrowth": 0
+      },
+      "ultimates": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "mastery": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "forge": {
+        "focus": 0,
+        "sense": 0,
+        "formation": 0,
+        "resolve": 0,
+        "charge": 10,
+        "arcanecal": 19,
+        "conduction": 15,
+        "luminoustracking": 8,
+        "masterwork": 10,
+        "cauterize": 10,
+        "fracturekey": 10,
+        "guardianseal": 5,
+        "spillway": 5,
+        "sustainedchannel": 5,
+        "tapconduit": 5,
+        "guardiancadence": 5,
+        "relay": 5,
+        "resonantedge": 5,
+        "victorycharge": 5,
+        "amplifiertrim": 5,
+        "dualchannel": 5,
+        "overflowconduit": 5,
+        "resonancecells": 2,
+        "resonancecascade": 2,
+        "resonancereclaim": 0
+      },
+      "tree": {
+        "starlight": 0,
+        "steady": 0,
+        "echo": 3,
+        "bonds": 2,
+        "swift": 5,
+        "momentum": 0,
+        "reserves": 0,
+        "swiftcharter": 0,
+        "lumenmemory": 0,
+        "veteranrecruits": 0,
+        "rosterrecall": 0,
+        "chargememory": 0,
+        "supportmemory": 0,
+        "phasememory": 0,
+        "riftstep": 0,
+        "frontier": 0,
+        "stardust": 0,
+        "gentlegrowth": 0,
+        "formationseat": 0,
+        "benchmentor": 0,
+        "empowerbatch": 0,
+        "wallwisdom": 0,
+        "invitations": 1,
+        "recruitreserve": 0
+      },
+      "lumen": 12549.149999999994,
+      "shards": 113731754.69999935,
+      "prisms": 35,
+      "sigils": 988,
+      "motes": 4617,
+      "owned": {
+        "meteor": false,
+        "starcall": false,
+        "autoascend": true
+      },
+      "active": [
+        {
+          "id": "wispascend",
+          "remainingSec": 12177.868817736453,
+          "totalDurationSec": 171532,
+          "speedMult": 1
+        }
+      ],
+      "autoAscend": true
+    }
+  ],
+  "purchases": [
+    {
+      "kind": "recruit",
+      "id": "tide",
+      "at": 450,
+      "price": {
+        "lumen": 60
+      },
+      "before": {
+        "lumen": 121,
+        "shards": 26,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 61,
+        "shards": 26,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.49586776859504134
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "tide",
+      "at": 43200,
+      "price": {
+        "lumen": 58
+      },
+      "before": {
+        "lumen": 6819,
+        "shards": 752,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 6761,
+        "shards": 752,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.00850564598914797
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "stone",
+      "at": 43200,
+      "price": {
+        "lumen": 349
+      },
+      "before": {
+        "lumen": 6761,
+        "shards": 752,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 6412,
+        "shards": 752,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.051619582901937584
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 43200,
+      "price": {
+        "lumen": 40,
+        "shards": 4
+      },
+      "before": {
+        "lumen": 6296,
+        "shards": 752,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 6256,
+        "shards": 748,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.0063532401524777635,
+        "shards": 0.005319148936170213
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 43200,
+      "price": {
+        "lumen": 240,
+        "shards": 24
+      },
+      "before": {
+        "lumen": 6256,
+        "shards": 748,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 6016,
+        "shards": 724,
+        "sigils": 1,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.03836317135549872,
+        "shards": 0.03208556149732621
+      }
+    },
+    {
+      "kind": "rarity",
+      "id": "ember",
+      "at": 43220,
+      "price": {
+        "lumen": 80,
+        "shards": 15
+      },
+      "before": {
+        "lumen": 155,
+        "shards": 446,
+        "sigils": 2,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 75,
+        "shards": 431,
+        "sigils": 2,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.5161290322580645,
+        "shards": 0.033632286995515695
+      }
+    },
+    {
+      "kind": "rarity",
+      "id": "tide",
+      "at": 43600,
+      "price": {
+        "lumen": 480,
+        "shards": 15
+      },
+      "before": {
+        "lumen": 626,
+        "shards": 819,
+        "sigils": 7,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 146,
+        "shards": 804,
+        "sigils": 7,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.7667731629392971,
+        "shards": 0.018315018315018316
+      }
+    },
+    {
+      "kind": "rarity",
+      "id": "ember",
+      "at": 86400,
+      "price": {
+        "lumen": 500,
+        "shards": 1500
+      },
+      "before": {
+        "lumen": 1931.75,
+        "shards": 16788.75,
+        "sigils": 7,
+        "prisms": 0
+      },
+      "after": {
+        "lumen": 1431.75,
+        "shards": 15288.75,
+        "sigils": 7,
+        "prisms": 0
+      },
+      "shareOfWallet": {
+        "lumen": 0.2588326646822829,
+        "shards": 0.08934554389099844
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "tide",
+      "at": 86470,
+      "price": {
+        "lumen": 58
+      },
+      "before": {
+        "lumen": 122,
+        "shards": 15314.75,
+        "sigils": 8,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 64,
+        "shards": 15314.75,
+        "sigils": 8,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.47540983606557374
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "stone",
+      "at": 86530,
+      "price": {
+        "lumen": 349
+      },
+      "before": {
+        "lumen": 351,
+        "shards": 15376.75,
+        "sigils": 10,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 2,
+        "shards": 15376.75,
+        "sigils": 10,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.9943019943019943
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 86640,
+      "price": {
+        "lumen": 54,
+        "shards": 5
+      },
+      "before": {
+        "lumen": 572,
+        "shards": 15535.75,
+        "sigils": 13,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 518,
+        "shards": 15530.75,
+        "sigils": 13,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0944055944055944,
+        "shards": 0.00032183834060151587
+      }
+    },
+    {
+      "kind": "rarity",
+      "id": "stone",
+      "at": 172800,
+      "price": {
+        "lumen": 2880,
+        "shards": 15
+      },
+      "before": {
+        "lumen": 136440.5,
+        "shards": 458245.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 133560.5,
+        "shards": 458230.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.021108102066468532,
+        "shards": 0.00003273354566493288
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 172800,
+      "price": {
+        "lumen": 73,
+        "shards": 7
+      },
+      "before": {
+        "lumen": 133560.5,
+        "shards": 458230.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 133487.5,
+        "shards": 458223.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0005465687834352223,
+        "shards": 0.000015276154686342353
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 172800,
+      "price": {
+        "lumen": 324,
+        "shards": 32
+      },
+      "before": {
+        "lumen": 133487.5,
+        "shards": 458223.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 133163.5,
+        "shards": 458191.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0024271935574491994,
+        "shards": 0.00006983491680369951
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 172800,
+      "price": {
+        "lumen": 1440,
+        "shards": 144
+      },
+      "before": {
+        "lumen": 133163.5,
+        "shards": 458191.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 131723.5,
+        "shards": 458047.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.010813774044689424,
+        "shards": 0.0003142790732695827
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 172810,
+      "price": {
+        "lumen": 98,
+        "shards": 10
+      },
+      "before": {
+        "lumen": 1723.5,
+        "shards": 452047.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 1625.5,
+        "shards": 452037.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.056861038584276186,
+        "shards": 0.00002212156908289505
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 172820,
+      "price": {
+        "lumen": 133,
+        "shards": 13
+      },
+      "before": {
+        "lumen": 1625.5,
+        "shards": 452037.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 1492.5,
+        "shards": 452024.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.08182097816056598,
+        "shards": 0.000028758675994801316
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 172830,
+      "price": {
+        "lumen": 212,
+        "shards": 21
+      },
+      "before": {
+        "lumen": 1492.5,
+        "shards": 452024.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 1280.5,
+        "shards": 452003.5,
+        "sigils": 73,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.14204355108877723,
+        "shards": 0.00004645765882159042
+      }
+    },
+    {
+      "kind": "rarity",
+      "id": "stone",
+      "at": 216000,
+      "price": {
+        "lumen": 18000,
+        "shards": 1500
+      },
+      "before": {
+        "lumen": 159510.75,
+        "shards": 5382253,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 141510.75,
+        "shards": 5380753,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.11284505903207151,
+        "shards": 0.0002786936994600588
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 216000,
+      "price": {
+        "lumen": 337,
+        "shards": 34
+      },
+      "before": {
+        "lumen": 141510.75,
+        "shards": 5380753,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 141173.75,
+        "shards": 5380719,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0023814445192326377,
+        "shards": 0.000006318818202582427
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 216000,
+      "price": {
+        "lumen": 437,
+        "shards": 44
+      },
+      "before": {
+        "lumen": 141173.75,
+        "shards": 5380719,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 140736.75,
+        "shards": 5380675,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0030954763190748987,
+        "shards": 0.000008177345815680023
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 216000,
+      "price": {
+        "lumen": 1944,
+        "shards": 194
+      },
+      "before": {
+        "lumen": 140736.75,
+        "shards": 5380675,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 138792.75,
+        "shards": 5380481,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.013813023250856652,
+        "shards": 0.00003605495593025039
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 259200,
+      "price": {
+        "lumen": 537,
+        "shards": 54
+      },
+      "before": {
+        "lumen": 14546375.25,
+        "shards": 25014401.5,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 14545838.25,
+        "shards": 25014347.5,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00003691641324872325,
+        "shards": 0.000002158756426772793
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 259200,
+      "price": {
+        "lumen": 590,
+        "shards": 59
+      },
+      "before": {
+        "lumen": 14545838.25,
+        "shards": 25014347.5,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 14545248.25,
+        "shards": 25014288.5,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00004056143000215199,
+        "shards": 0.0000023586463728466232
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 259200,
+      "price": {
+        "lumen": 2624,
+        "shards": 262
+      },
+      "before": {
+        "lumen": 14545248.25,
+        "shards": 25014288.5,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 14542624.25,
+        "shards": 25014026.5,
+        "sigils": 85,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00018040255861566335,
+        "shards": 0.000010474013682220064
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "tide",
+      "at": 259230,
+      "price": {
+        "lumen": 58
+      },
+      "before": {
+        "lumen": 294,
+        "shards": 24753164.5,
+        "sigils": 88,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 236,
+        "shards": 24753164.5,
+        "sigils": 88,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.19727891156462585
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "stone",
+      "at": 259310,
+      "price": {
+        "lumen": 349
+      },
+      "before": {
+        "lumen": 684,
+        "shards": 24753774.5,
+        "sigils": 95,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 335,
+        "shards": 24753774.5,
+        "sigils": 95,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.5102339181286549
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302400,
+      "price": {
+        "lumen": 856,
+        "shards": 86
+      },
+      "before": {
+        "lumen": 54152105.5,
+        "shards": 56484140.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 54151249.5,
+        "shards": 56484054.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.000015807326272844554,
+        "shards": 0.0000015225512726001382
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302400,
+      "price": {
+        "lumen": 797,
+        "shards": 80
+      },
+      "before": {
+        "lumen": 54151249.5,
+        "shards": 56484054.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 54150452.5,
+        "shards": 56483974.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.000014718035268973802,
+        "shards": 0.0000014163289216428329
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302400,
+      "price": {
+        "lumen": 3543,
+        "shards": 354
+      },
+      "before": {
+        "lumen": 54150452.5,
+        "shards": 56483974.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 54146909.5,
+        "shards": 56483620.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00006542881613039152,
+        "shards": 0.0000062672643547773
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302410,
+      "price": {
+        "lumen": 1363,
+        "shards": 136
+      },
+      "before": {
+        "lumen": 49137680.5,
+        "shards": 56351407.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 49136317.5,
+        "shards": 56351271.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.000027738387040877928,
+        "shards": 0.0000024134268518492638
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302410,
+      "price": {
+        "lumen": 1270,
+        "shards": 127
+      },
+      "before": {
+        "lumen": 49136317.5,
+        "shards": 56351271.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 49135047.5,
+        "shards": 56351144.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.000025846462751304062,
+        "shards": 0.000002253720219959899
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302410,
+      "price": {
+        "lumen": 4783,
+        "shards": 478
+      },
+      "before": {
+        "lumen": 49135047.5,
+        "shards": 56351144.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 49130264.5,
+        "shards": 56350666.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00009734395799658075,
+        "shards": 0.000008482525141969389
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302420,
+      "price": {
+        "lumen": 2171,
+        "shards": 217
+      },
+      "before": {
+        "lumen": 43076818.5,
+        "shards": 56199329.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 43074647.5,
+        "shards": 56199112.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00005039833663667618,
+        "shards": 0.000003861256031533259
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302420,
+      "price": {
+        "lumen": 2023,
+        "shards": 202
+      },
+      "before": {
+        "lumen": 43074647.5,
+        "shards": 56199112.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 43072624.5,
+        "shards": 56198910.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.000046964980967052603,
+        "shards": 0.0000035943628113344316
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302420,
+      "price": {
+        "lumen": 7619,
+        "shards": 762
+      },
+      "before": {
+        "lumen": 43072624.5,
+        "shards": 56198910.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 43065005.5,
+        "shards": 56198148.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00017688729415594353,
+        "shards": 0.000013558981717270124
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302430,
+      "price": {
+        "lumen": 3459,
+        "shards": 346
+      },
+      "before": {
+        "lumen": 34892854.5,
+        "shards": 55993844.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34889395.5,
+        "shards": 55993498.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00009913204435595832,
+        "shards": 0.000006179250649595957
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302430,
+      "price": {
+        "lumen": 3223,
+        "shards": 322
+      },
+      "before": {
+        "lumen": 34889395.5,
+        "shards": 55993498.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34886172.5,
+        "shards": 55993176.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00009237763950367097,
+        "shards": 0.000005750667642244215
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302430,
+      "price": {
+        "lumen": 12137,
+        "shards": 1214
+      },
+      "before": {
+        "lumen": 34886172.5,
+        "shards": 55993176.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34874035.5,
+        "shards": 55991962.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00034790288329853325,
+        "shards": 0.000021681213245688964
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302440,
+      "price": {
+        "lumen": 5510,
+        "shards": 551
+      },
+      "before": {
+        "lumen": 34874035.5,
+        "shards": 55991962.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34868525.5,
+        "shards": 55991411.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00015799720109822105,
+        "shards": 0.000009840698118055783
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302440,
+      "price": {
+        "lumen": 5133,
+        "shards": 513
+      },
+      "before": {
+        "lumen": 34868525.5,
+        "shards": 55991411.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34863392.5,
+        "shards": 55990898.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00014721012507397252,
+        "shards": 0.000009162119443979369
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302440,
+      "price": {
+        "lumen": 19335,
+        "shards": 1934
+      },
+      "before": {
+        "lumen": 34863392.5,
+        "shards": 55990898.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34844057.5,
+        "shards": 55988964.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0005545931882561342,
+        "shards": 0.00003454132817675716
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302450,
+      "price": {
+        "lumen": 8777,
+        "shards": 878
+      },
+      "before": {
+        "lumen": 34844057.5,
+        "shards": 55988964.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34835280.5,
+        "shards": 55988086.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00025189374113505583,
+        "shards": 0.0000156816616960294
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302450,
+      "price": {
+        "lumen": 8178,
+        "shards": 818
+      },
+      "before": {
+        "lumen": 34835280.5,
+        "shards": 55988086.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34827102.5,
+        "shards": 55987268.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.00023476199653394493,
+        "shards": 0.000014610251057606693
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302450,
+      "price": {
+        "lumen": 30801,
+        "shards": 3080
+      },
+      "before": {
+        "lumen": 34827102.5,
+        "shards": 55987268.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34796301.5,
+        "shards": 55984188.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0008843974315692786,
+        "shards": 0.000055012506995228746
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302460,
+      "price": {
+        "lumen": 13981,
+        "shards": 1398
+      },
+      "before": {
+        "lumen": 34796301.5,
+        "shards": 55984188.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34782320.5,
+        "shards": 55982790.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0004017955758890065,
+        "shards": 0.000024971336326505832
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302460,
+      "price": {
+        "lumen": 13027,
+        "shards": 1303
+      },
+      "before": {
+        "lumen": 34782320.5,
+        "shards": 55982790.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34769293.5,
+        "shards": 55981487.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0003745293532097722,
+        "shards": 0.000023275009844319926
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302460,
+      "price": {
+        "lumen": 49066,
+        "shards": 4907
+      },
+      "before": {
+        "lumen": 34769293.5,
+        "shards": 55981487.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34720227.5,
+        "shards": 55976580.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.001411187719416847,
+        "shards": 0.00008765397668291683
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302470,
+      "price": {
+        "lumen": 22272,
+        "shards": 2227
+      },
+      "before": {
+        "lumen": 34720227.5,
+        "shards": 55976580.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34697955.5,
+        "shards": 55974353.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0006414704511944802,
+        "shards": 0.00003978449523189434
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302470,
+      "price": {
+        "lumen": 20752,
+        "shards": 2075
+      },
+      "before": {
+        "lumen": 34697955.5,
+        "shards": 55974353.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34677203.5,
+        "shards": 55972278.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0005980755840210816,
+        "shards": 0.000037070548746936396
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302470,
+      "price": {
+        "lumen": 78161,
+        "shards": 7816
+      },
+      "before": {
+        "lumen": 34677203.5,
+        "shards": 55972278.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34599042.5,
+        "shards": 55964462.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0022539591463884914,
+        "shards": 0.00013964055438622176
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302480,
+      "price": {
+        "lumen": 35480,
+        "shards": 3548
+      },
+      "before": {
+        "lumen": 34599042.5,
+        "shards": 55964462.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34563562.5,
+        "shards": 55960914.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0010254619040396854,
+        "shards": 0.00006339737471792926
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302480,
+      "price": {
+        "lumen": 33058,
+        "shards": 3306
+      },
+      "before": {
+        "lumen": 34563562.5,
+        "shards": 55960914.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34530504.5,
+        "shards": 55957608.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0009564407604106202,
+        "shards": 0.000059076947357606176
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302480,
+      "price": {
+        "lumen": 124511,
+        "shards": 12451
+      },
+      "before": {
+        "lumen": 34530504.5,
+        "shards": 55957608.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34405993.5,
+        "shards": 55945157.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.003605826262978579,
+        "shards": 0.00022250772207321905
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302490,
+      "price": {
+        "lumen": 56520,
+        "shards": 5652
+      },
+      "before": {
+        "lumen": 34405993.5,
+        "shards": 55945157.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34349473.5,
+        "shards": 55939505.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0016427370423121193,
+        "shards": 0.0001010275107367425
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302490,
+      "price": {
+        "lumen": 52661,
+        "shards": 5266
+      },
+      "before": {
+        "lumen": 34349473.5,
+        "shards": 55939505.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34296812.5,
+        "shards": 55934239.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0015330948231273471,
+        "shards": 0.00009413740706020363
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302490,
+      "price": {
+        "lumen": 198346,
+        "shards": 19835
+      },
+      "before": {
+        "lumen": 34296812.5,
+        "shards": 55934239.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34098466.5,
+        "shards": 55914404.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0057832196505141695,
+        "shards": 0.0003546128485397571
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302500,
+      "price": {
+        "lumen": 90036,
+        "shards": 9004
+      },
+      "before": {
+        "lumen": 34098466.5,
+        "shards": 55914404.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 34008430.5,
+        "shards": 55905400.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0026404706499044465,
+        "shards": 0.00016103185003070184
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302500,
+      "price": {
+        "lumen": 83889,
+        "shards": 8389
+      },
+      "before": {
+        "lumen": 34008430.5,
+        "shards": 55905400.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 33924541.5,
+        "shards": 55897011.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.002466711893687655,
+        "shards": 0.00015005705933543933
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302500,
+      "price": {
+        "lumen": 315965,
+        "shards": 31597
+      },
+      "before": {
+        "lumen": 33924541.5,
+        "shards": 55897011.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 33608576.5,
+        "shards": 55865414.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.009313758890448085,
+        "shards": 0.0005652717229793225
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "ember",
+      "at": 302510,
+      "price": {
+        "lumen": 143427,
+        "shards": 14343
+      },
+      "before": {
+        "lumen": 33608576.5,
+        "shards": 55865414.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 33465149.5,
+        "shards": 55851071.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.004267571403983742,
+        "shards": 0.0002567420313331784
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302510,
+      "price": {
+        "lumen": 133635,
+        "shards": 13363
+      },
+      "before": {
+        "lumen": 33465149.5,
+        "shards": 55851071.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 33331514.5,
+        "shards": 55837708.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.003993258718297374,
+        "shards": 0.0002392613004747814
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302510,
+      "price": {
+        "lumen": 503333,
+        "shards": 50333
+      },
+      "before": {
+        "lumen": 33331514.5,
+        "shards": 55837708.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 32828181.5,
+        "shards": 55787375.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.015100813975914595,
+        "shards": 0.0009014159311354978
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302520,
+      "price": {
+        "lumen": 212880,
+        "shards": 21288
+      },
+      "before": {
+        "lumen": 32828181.5,
+        "shards": 55787375.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 32615301.5,
+        "shards": 55766087.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.0064846723233816655,
+        "shards": 0.0003815917097587787
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302520,
+      "price": {
+        "lumen": 801809,
+        "shards": 80181
+      },
+      "before": {
+        "lumen": 32615301.5,
+        "shards": 55766087.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 31813492.5,
+        "shards": 55685906.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.024583829157611804,
+        "shards": 0.001437809313769771
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302530,
+      "price": {
+        "lumen": 339118,
+        "shards": 33912
+      },
+      "before": {
+        "lumen": 31813492.5,
+        "shards": 55685906.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 31474374.5,
+        "shards": 55651994.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.010659565277216891,
+        "shards": 0.0006089871231601483
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302530,
+      "price": {
+        "lumen": 1277282,
+        "shards": 127728
+      },
+      "before": {
+        "lumen": 31474374.5,
+        "shards": 55651994.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 30197092.5,
+        "shards": 55524266.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.040581648413696034,
+        "shards": 0.002295119899072081
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302540,
+      "price": {
+        "lumen": 540216,
+        "shards": 54022
+      },
+      "before": {
+        "lumen": 30197092.5,
+        "shards": 55524266.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 29656876.5,
+        "shards": 55470244.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.017889669344821856,
+        "shards": 0.0009729439649598973
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302540,
+      "price": {
+        "lumen": 2034711,
+        "shards": 203471
+      },
+      "before": {
+        "lumen": 29656876.5,
+        "shards": 55470244.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 27622165.5,
+        "shards": 55266773.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.06860840520410165,
+        "shards": 0.0036681107471952822
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "tide",
+      "at": 302550,
+      "price": {
+        "lumen": 860564,
+        "shards": 86056
+      },
+      "before": {
+        "lumen": 27622165.5,
+        "shards": 55266773.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 26761601.5,
+        "shards": 55180717.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.031154834692450162,
+        "shards": 0.0015571019357589239
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302550,
+      "price": {
+        "lumen": 3241294,
+        "shards": 324129
+      },
+      "before": {
+        "lumen": 26761601.5,
+        "shards": 55180717.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 23520307.5,
+        "shards": 54856588.5,
+        "sigils": 190,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.12111734045512934,
+        "shards": 0.0058739540673787
+      }
+    },
+    {
+      "kind": "ability",
+      "id": "stone",
+      "at": 302570,
+      "price": {
+        "lumen": 5163381,
+        "shards": 516338
+      },
+      "before": {
+        "lumen": 63746487.5,
+        "shards": 55381503.5,
+        "sigils": 205,
+        "prisms": 2
+      },
+      "after": {
+        "lumen": 58583106.5,
+        "shards": 54865165.5,
+        "sigils": 205,
+        "prisms": 2
+      },
+      "shareOfWallet": {
+        "lumen": 0.08099867463285722,
+        "shards": 0.009323293290511696
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "tide",
+      "at": 345600,
+      "price": {
+        "lumen": 58
+      },
+      "before": {
+        "lumen": 5482951,
+        "shards": 67849464.5,
+        "sigils": 341,
+        "prisms": 15
+      },
+      "after": {
+        "lumen": 5482893,
+        "shards": 67849464.5,
+        "sigils": 341,
+        "prisms": 15
+      },
+      "shareOfWallet": {
+        "lumen": 0.000010578245182202065
+      }
+    },
+    {
+      "kind": "rarity",
+      "id": "ember",
+      "at": 388800,
+      "price": {
+        "lumen": 10000,
+        "shards": 150000
+      },
+      "before": {
+        "lumen": 4827646.999999963,
+        "shards": 92876459.89999926,
+        "sigils": 613,
+        "prisms": 20
+      },
+      "after": {
+        "lumen": 4817646.999999963,
+        "shards": 92726459.89999926,
+        "sigils": 613,
+        "prisms": 20
+      },
+      "shareOfWallet": {
+        "lumen": 0.002071402486552989,
+        "shards": 0.001615048637313546
+      }
+    },
+    {
+      "kind": "recruit",
+      "id": "tide",
+      "at": 388800,
+      "price": {
+        "lumen": 56
+      },
+      "before": {
+        "lumen": 4817646.999999963,
+        "shards": 92726459.89999926,
+        "sigils": 613,
+        "prisms": 20
+      },
+      "after": {
+        "lumen": 4817590.999999963,
+        "shards": 92726459.89999926,
+        "sigils": 613,
+        "prisms": 20
+      },
+      "shareOfWallet": {
+        "lumen": 0.000011623931765860063
+      }
+    }
+  ]
+}

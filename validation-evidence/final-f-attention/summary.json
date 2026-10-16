@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "name": "normal",
+      "exit": 0,
+      "status": "PASS",
+      "checks": 1081,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "cause": null
+    },
+    {
+      "name": "attention",
+      "exit": 1,
+      "status": "FAIL",
+      "checks": 3,
+      "sourceSha256": "02b98d8d96d16948ec65f7829a510e37882b6f9665c49e7cae277f77325b21d8",
+      "cause": "entering Ascend clears notification"
+    },
+    {
+      "name": "quest",
+      "exit": 1,
+      "status": "FAIL",
+      "checks": 2,
+      "sourceSha256": "a7dc0ef4d4c9d532551f1908d7d093651bd6f3c958b21ad4a706684886b4d91a",
+      "cause": "claim keeps exact scroll position"
+    }
+  ]
+}

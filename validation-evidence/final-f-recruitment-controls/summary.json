@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "controls": 17,
+  "records": [
+    {
+      "mutation": "handler",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: UI maxed even with affordable wallet 20"
+    },
+    {
+      "mutation": "ui",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: UI maxed even with affordable wallet 20"
+    },
+    {
+      "mutation": "raw",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: legacy raw count visible"
+    },
+    {
+      "mutation": "refund",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: refund receipt prevents a second credit 21"
+    },
+    {
+      "mutation": "credit",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: fractional original wallet retains exact refund value"
+    },
+    {
+      "mutation": "free-credit",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: large credit quote conserves exact value"
+    },
+    {
+      "mutation": "wallet",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: representable large-wallet debit pays exactly"
+    },
+    {
+      "mutation": "receipt",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: wrong receipt amount rejects for recovery"
+    },
+    {
+      "mutation": "cache",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries"
+    },
+    {
+      "mutation": "credit-record",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: malformed persisted Prism credit rejects for recovery"
+    },
+    {
+      "mutation": "ascend-copy",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: actual auto-Ascends avoid repeated refund cloning and validation"
+    },
+    {
+      "mutation": "version-check",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: unsupported migration version rejects before any early return"
+    },
+    {
+      "mutation": "credit-reconcile",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: own credit sequence reconciles with saved receipt"
+    },
+    {
+      "mutation": "missing-receipt",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: deleted completed receipt rejects instead of refunding twice"
+    },
+    {
+      "mutation": "missing-audit-history",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: retained completed history rejects deleted receipt and marker"
+    },
+    {
+      "mutation": "missing-audit-proof",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: retained completed marker rejects deleted receipt and history"
+    },
+    {
+      "mutation": "quote-copy",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "assertion": "Error: Error: large legacy price quotes never clone the refund ledger"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+CAUSAL handler Error: Error: UI maxed even with affordable wallet 20
+CAUSAL refund Error: Error: refund receipt prevents a second credit 21
+CAUSAL credit Error: Error: fractional original wallet retains exact refund value
+CAUSE_CHANGED free-credit Error: Error: real Swift3 price debits wallet and small credit exactly
+CAUSAL wallet Error: Error: large wallet quote conserves exact value
+CAUSAL receipt Error: Error: wrong receipt amount rejects for recovery
+CAUSAL cache Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries
+CAUSAL credit-record Error: Error: malformed persisted Prism credit rejects for recovery
+CAUSAL ascend-copy Error: Error: actual auto-Ascends avoid repeated refund cloning and validation
+CAUSAL version-check Error: Error: unsupported migration version rejects before any early return
+CAUSAL credit-reconcile Error: Error: own credit sequence reconciles with saved receipt
+CAUSAL below-cap-receipt Error: Error: below-cap receipt rejects before legitimate purchase
+CAUSAL missing-receipt Error: Error: completed marker cannot refund again after receipt deletion
+CAUSAL canonical-price Error: Error: all finite original purchase value retained 2000/1000000
+CAUSAL mixed-payment Error: Error: wallet-only payment preserves original small credit
+CAUSAL power-spacing Error: Error: downward ULP at power of two supports exact mixed payment
+CAUSAL funding-sources Error: Error: best exact available contribution finds payable Tree price
+PASS all17

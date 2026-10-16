@@ -1,0 +1,15 @@
+Browser identity: {"selected":"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe","resolved":"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe"}
+FAIL Cheaper Recruitment: 0 result groups; C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\validation-evidence\final-f-payment-controls\version-check.json
+
+Error: TypeError: Invalid amount
+    at parts (http://127.0.0.1:53510/index.html:3120:44)
+    at Object.exactAdd (http://127.0.0.1:53510/index.html:3155:11)
+    at creditAmount (http://127.0.0.1:53510/index.html:5975:17)
+    at simulationApplyAutoAscend (http://127.0.0.1:53510/index.html:10512:23)
+    at Object.ascendBoundaries (http://127.0.0.1:53510/index.html:13005:481)
+    at window.runCheaperRefundContracts (http://127.0.0.1:53510/index.html:13212:72)
+    at <anonymous>:1:1
+    at evaluate (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\cheaper-recruitment.cjs:73:154)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async run (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\cheaper-recruitment.cjs:100:48)
+    at async C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\cheaper-recruitment.cjs:205:6

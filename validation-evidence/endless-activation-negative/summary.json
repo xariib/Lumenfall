@@ -1,0 +1,160 @@
+{
+  "status": "EXPECTED_FAILURES_DETECTED",
+  "sourceSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53",
+  "expected": 22,
+  "completed": 22,
+  "records": [
+    {
+      "scenario": "self-test-bad-assertion",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-bad-assertion\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-bad-assertion\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional harness self-test assertion\", \"stack\": \"Error: intentional harness self-test assertion\\n    at assert (http://127.0.0.1:57763/index.html?qaScenario=self-test-bad-assertion&qaFixture=fresh:17947:61)\\n    at HTMLDocument.run (http://127.0.0.1:57763/index.html?qaScenario=self-test-bad-assertion&qaFixture=fresh:20441:11)\" }"
+    },
+    {
+      "scenario": "self-test-uncaught-error",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-uncaught-error\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-uncaught-error\", \"runtime_markers\": [ \"uncaught-error\" ], \"runtime_error_count\": 1, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"unexpected\": \"uncaught error was not detected\" }"
+    },
+    {
+      "scenario": "self-test-unhandled-rejection",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-unhandled-rejection\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-unhandled-rejection\", \"runtime_markers\": [ \"unhandled-rejection\" ], \"runtime_error_count\": 1, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"unexpected\": \"unhandled rejection was not detected\" }"
+    },
+    {
+      "scenario": "self-test-parity-regression",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-parity-regression\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-parity-regression\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional parity regression totalKills must match exactly (expected 29, got 30)\", \"stack\": \"Error: intentional parity regression totalKills must match exactly (expected 29, got 30)\\n    at assert (http://127.0.0.1:59939/index.html?qaScenario=self-test-parity-regression&qaFixture=parity-early-simple:17947:61)\\n    at http://127.0.0.1:59939/index.html?qaScenario=self-test-parity-regression&qaFixture=parity-early-simple:17980:7\\n    at Array.forEach (<anonymous>)\\n    at assertProtectedParity (http://127.0.0.1:59939/index.html?qaScenario=self-test-parity-regression&qaFixture=parity-early-simple:17979:7)\\n    at HTMLDocument.run (http://127.0.0.1:59939/index.html?qaScenario=self-test-parity-regression&qaFixture=parity-early-simple:20461:11)\" }"
+    },
+    {
+      "scenario": "self-test-chronology-regression",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-chronology-regression\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-chronology-regression\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional chronology regression: Study incorrectly expected before Research\", \"stack\": \"Error: intentional chronology regression: Study incorrectly expected before Research\\n    at assert (http://127.0.0.1:56594/index.html?qaScenario=self-test-chronology-regression&qaFixture=chronology-simultaneous-order:17947:61)\\n    at HTMLDocument.run (http://127.0.0.1:56594/index.html?qaScenario=self-test-chronology-regression&qaFixture=chronology-simultaneous-order:20471:11)\" }"
+    },
+    {
+      "scenario": "self-test-wisp-formula-regression",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-wisp-formula-regression\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-wisp-formula-regression\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional Wisp formula regression: passive-only Formation Training incorrectly expected to scale ability damage\", \"stack\": \"Error: intentional Wisp formula regression: passive-only Formation Training incorrectly expected to scale ability damage\\n    at assert (http://127.0.0.1:58615/index.html?qaScenario=self-test-wisp-formula-regression&qaFixture=fresh:17947:61)\\n    at HTMLDocument.run (http://127.0.0.1:58615/index.html?qaScenario=self-test-wisp-formula-regression&qaFixture=fresh:20500:11)\" }"
+    },
+    {
+      "scenario": "self-test-wisp-pacing-regression",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-wisp-pacing-regression\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-wisp-pacing-regression\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional Wisp pacing regression: Mythic cost compression was not detected\", \"stack\": \"Error: intentional Wisp pacing regression: Mythic cost compression was not detected\\n    at assert (http://127.0.0.1:53099/index.html?qaScenario=self-test-wisp-pacing-regression&qaFixture=fresh:17947:61)\\n    at HTMLDocument.run (http://127.0.0.1:53099/index.html?qaScenario=self-test-wisp-pacing-regression&qaFixture=fresh:20510:11)\" }"
+    },
+    {
+      "scenario": "self-test-endgame-currency-regression",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-endgame-currency-regression\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-endgame-currency-regression\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected\", \"stack\": \"Error: intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected\\n    at assert (http://127.0.0.1:54020/index.html?qaScenario=self-test-endgame-currency-regression&qaFixture=fresh:17947:61)\\n    at HTMLDocument.run (http://127.0.0.1:54020/index.html?qaScenario=self-test-endgame-currency-regression&qaFixture=fresh:20520:11)\" }"
+    },
+    {
+      "scenario": "self-test-wisp-role-regression",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-wisp-role-regression\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-wisp-role-regression\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional Wisp role regression: stale Tank semantics were not detected\", \"stack\": \"Error: intentional Wisp role regression: stale Tank semantics were not detected\\n    at assert (http://127.0.0.1:64433/index.html?qaScenario=self-test-wisp-role-regression&qaFixture=fresh:17947:61)\\n    at HTMLDocument.run (http://127.0.0.1:64433/index.html?qaScenario=self-test-wisp-role-regression&qaFixture=fresh:20530:11)\" }"
+    },
+    {
+      "scenario": "self-test-p1-05-selected",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-p1-05-selected\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-p1-05-selected\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional selected semantics regression\", \"stack\": \"Error: intentional selected semantics regression\\n    at assert (http://127.0.0.1:58089/index.html?qaScenario=self-test-p1-05-selected&qaFixture=accessibility-mixed-states:17947:61)\\n    at Object.negativeSelected (http://127.0.0.1:58089/index.html?qaScenario=self-test-p1-05-selected&qaFixture=accessibility-mixed-states:15329:5)\\n    at HTMLDocument.run (http://127.0.0.1:58089/index.html?qaScenario=self-test-p1-05-selected&qaFixture=accessibility-mixed-states:19698:38)\" }"
+    },
+    {
+      "scenario": "self-test-p1-05-focus-return",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-p1-05-focus-return\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-p1-05-focus-return\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional overlay focus-return regression\", \"stack\": \"Error: intentional overlay focus-return regression\\n    at assert (http://127.0.0.1:55633/index.html?qaScenario=self-test-p1-05-focus-return&qaFixture=accessibility-mixed-states:17947:61)\\n    at Object.negativeFocusReturn (http://127.0.0.1:55633/index.html?qaScenario=self-test-p1-05-focus-return&qaFixture=accessibility-mixed-states:15338:5)\\n    at HTMLDocument.run (http://127.0.0.1:55633/index.html?qaScenario=self-test-p1-05-focus-return&qaFixture=accessibility-mixed-states:19703:38)\" }"
+    },
+    {
+      "scenario": "self-test-lifecycle-duplicate",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-lifecycle-duplicate\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-lifecycle-duplicate\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"intentional duplicate lifecycle regression must consume exactly one offline window, got 2\", \"stack\": \"Error: intentional duplicate lifecycle regression must consume exactly one offline window, got 2\\n    at assert (http://127.0.0.1:65103/index.html?qaScenario=self-test-lifecycle-duplicate&qaFixture=lifecycle-basic:17947:61)\\n    at assertOfflineExactlyOnce (http://127.0.0.1:65103/index.html?qaScenario=self-test-lifecycle-duplicate&qaFixture=lifecycle-basic:18264:5)\\n    at HTMLDocument.run (http://127.0.0.1:65103/index.html?qaScenario=self-test-lifecycle-duplicate&qaFixture=lifecycle-basic:20485:11)\" }"
+    },
+    {
+      "scenario": "self-test-save-backup-placement",
+      "exit": 1,
+      "valid": true,
+      "failure": "  detail: { \"status\": \"fail\", \"profiles\": 0, \"mutant\": \"misplaced-backup\", \"message\": \"Backup is under Save immediately before separate Reset\" }"
+    },
+    {
+      "scenario": "self-test-save-backup-confirmation",
+      "exit": 1,
+      "valid": true,
+      "failure": "  detail: { \"status\": \"fail\", \"profiles\": 0, \"mutant\": \"early-restore\", \"message\": \"Restore request waits for confirmation: primary\\n+ actual - expected\\n\\n+ '{\\\"schemaVersion\\\":5,\\\"offline12hRefund\\\":{\\\"policy\\\":\\\"OFFLINE_12H_001:140/160:sum-ceil-6x1.6^level\\\",\\\"offline24\\\":false,\\\"offline48\\\":false,\\\"reservesLevel\\\":0,\\\"comets\\\":0,\\\"prismPrices\\\":[],\\\"prismsExact\\\":\\\"0\\\",\\\"cometsPaid\\\":[true,true],\\\"prismsPaid\\\":[]},\\\"swiftRecoveryRefund\\\":null,\\\"swiftRecoveryRefundAudit\\\":null,\\\"feedbackMigration\\\":{\\\"version\\\":1,\\\"bondsCreditAuditVersion\\\":1,\\\"applied\\\":true,\\\"history\\\":{\\\"bonds\\\":{\\\"levels\\\":0},\\\"echo\\\":{\\\"levels\\\":0}},\\\"receipts\\\":{},\\\"echoCreditAuditVersion\\\":1},\\\"refundCredits\\\":{\\\"prisms\\\":[]},\\\"lumen\\\":777777,\\\"shards\\\":12345,\\\"prisms\\\":31,\\\"comets\\\":99,\\\"motes\\\":44,\\\"sigils\\\":11,\\\"moteNextAtMs\\\":0,\\\"studyBoosts\\\":{},\\\"studyBoostHours\\\":{\\\"wispascend\\\":8,\\\"guardmastery\\\":8,\\\"riftattune\\\":8,\\\"shardstudy\\\":8,\\\"lumenstudy\\\":8,\\\"formationstudy\\\":8,\\\"motestudy\\\":8,\\\"prismstudy\\\":8,\\\"measuredinquiry\\\":8,\\\"labcapacity\\\":8,\\\"procurement\\\":8,\\\"catalysis\\\":8,\\\"focusprotocol\\\":8,\\\"fieldnotes\\\":8,\\\"curriculum\\\":8,\\\"bossledger\\\":8,\\\"luminousdistill\\\":8,\\\"sigilcartography\\\":8,\\\"rarityappraisal\\\":8,\\\"modulefabrication\\\":8,\\\"ultimateanalysis\\\":8,\\\"resonantefficiency\\\":8,\\\"adaptivegrowth\\\":8},\\\"depth\\\":33,\\\"maxDepthEver\\\":44,\\\"riftMode\\\":\\\"push\\\",\\\"farmDepth\\\":0,\\\"farmReturnDepth\\\":0,\\\"enemyDepth\\\":33,\\\"enemyHp\\\":1,\\\"enemyMaxHp\\\":1,\\\"enemyIsLuminous\\\":false,\\\"spirits\\\":{\\\"ember\\\":28,\\\"tide\\\":0,\\\"stone\\\":0,\\\"gale\\\":0,\\\"thorn\\\":0,\\\"void\\\":12,\\\"aurora\\\":0,\\\"titan\\\":0},\\\"heroRarity\\\":{\\\"ember\\\":0,\\\"tide\\\":0,\\\"stone\\\":0,\\\"gale\\\":0,\\\"thorn\\\":0,\\\"void\\\":0,\\\"aurora\\\":0,\\\"titan\\\":0},\\\"heroResource\\\":{\\\"ember\\\":0,\\\"tide\\\":0,\\\"stone\\\":0,\\\"gale\\\":0,\\\"thorn\\\":0,\\\"void\\\":0,\\\"aurora\\\":0,\\\"titan\\\":0},\\\"wispModules\\\":{\\\"ember\\\":0,\\\"tide\\\":0,\\\"stone\\\":0,\\\"gale\\\":0,\\\"thorn\\\":0,\\\"void\\\":0,\\\"aurora\\\":0,\\\"titan\\\":0},\\\"wispUltimate\\\":{\\\"ember\\\":false,\\\"tide\\\":false,\\\"stone\\\":false,\\\"gale\\\":false,\\\"thorn\\\":false,\\\"void\\\":false,\\\"aurora\\\":false,\\\"titan\\\":false},\\\"wispMastery\\\":{\\\"ember\\\":0,\\\"tide\\\":0,\\\"stone\\\":0,\\\"gale\\\":0,\\\"thorn\\\":0,\\\"void\\\":0,\\\"aurora\\\":0,\\\"titan\\\":0},\\\"canonicalAutomationClock\\\":{},\\\"recruitmentEntitlements\\\":{\\\"ember\\\":true,\\\"tide\\\":true,\\\"stone\\\":true,\\\"gale\\\":true,\\\"thorn\\\":true,\\\"void\\\":true,\\\"aurora\\\":true,\\\"titan\\\":true},\\\"empowerQueue\\\":{\\\"ember\\\":true,\\\"tide\\\":true,\\\"stone\\\":true,\\\"gale\\\":true,\\\"thorn\\\":true,\\\"void\\\":true,\\\"aurora\\\":true,\\\"titan\\\":true},\\\"activeParty\\\":[\\\"ember\\\",\\\"void\\\"],\\\"formationPresets\\\":{\\\"push\\\":[\\\"ember\\\",\\\"void\\\"],\\\"farm\\\":[\\\"ember\\\",\\\"void\\\"],\\\"boss\\\":[\\\"ember\\\",\\\"void\\\"]},\\\"activeFormationPreset\\\":\\\"push\\\",\\\"formationRebuild\\\":null,\\\"nodes\\\":{\\\"starlight\\\":0,\\\"steady\\\":0,\\\"echo\\\":0,\\\"bonds\\\":0,\\\"swift\\\":0,\\\"momentum\\\":0,\\\"reserves\\\":0,\\\"swiftcharter\\\":0,\\\"lumenmemory\\\":0,\\\"veteranrecruits\\\":0,\\\"rosterrecall\\\":0,\\\"chargememory\\\":0,\\\"supportmemory\\\":0,\\\"phasememory\\\":0,\\\"riftstep\\\":0,\\\"frontier\\\":0,\\\"stardust\\\":0,\\\"gentlegrowth\\\":0,\\\"formationseat\\\":0,\\\"benchmentor\\\":0,\\\"empowerbatch\\\":0,\\\"wallwisdom\\\":0,\\\"invitations\\\":0,\\\"recruitreserve\\\":0},\\\"treeTrainingProgress\\\":0,\\\"research\\\":{\\\"focus\\\":0,\\\"sense\\\":0,\\\"formation\\\":0,\\\"resolve\\\":0,\\\"charge\\\":0,\\\"arcanecal\\\":0,\\\"conduction\\\":0,\\\"luminoustracking\\\":0,\\\"masterwork\\\":0,\\\"cauterize\\\":0,\\\"fracturekey\\\":0,\\\"guardianseal\\\":0,\\\"spillway\\\":0,\\\"sustainedchannel\\\":0,\\\"tapconduit\\\":0,\\\"guardiancadence\\\":0,\\\"relay\\\":0,\\\"resonantedge\\\":0,\\\"victorycharge\\\":0,\\\"amplifiertrim\\\":0,\\\"dualchannel\\\":0,\\\"overflowconduit\\\":0,\\\"resonancecells\\\":0,\\\"resonancecascade\\\":0,\\\"resonancereclaim\\\":0},\\\"researchQueue\\\":{\\\"focus\\\":false,\\\"sense\\\":false,\\\"formation\\\":false,\\\"resolve\\\":false,\\\"charge\\\":false,\\\"arcanecal\\\":false,\\\"conduction\\\":false,\\\"luminoustracking\\\":false,\\\"masterwork\\\":false,\\\"cauterize\\\":false,\\\"fracturekey\\\":false,\\\"guardianseal\\\":false,\\\"spillway\\\":false,\\\"sustainedchannel\\\":false,\\\"tapconduit\\\":false,\\\"guardiancadence\\\":false,\\\"relay\\\":false,\\\"resonantedge\\\":"
+    },
+    {
+      "scenario": "self-test-upgrade-identity-buy",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-upgrade-identity-buy\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-upgrade-identity-buy\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: \"closed bulk focus 1\""
+    },
+    {
+      "scenario": "self-test-upgrade-identity-value",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-upgrade-identity-value\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-upgrade-identity-value\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: \"exact old Formation factors 1\""
+    },
+    {
+      "scenario": "self-test-upgrade-identity-clock",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-upgrade-identity-clock\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-upgrade-identity-clock\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: \"Authoritative simulation stalled without elapsed-time or state progress | {\\\"elapsedInRun\\\":3,\\\"elapsedWholeSec\\\":3,\\\"elapsedFractionSec\\\":0,\\\"elapsedSec\\\":60,\\\"remaining\\\":57,\\\"stepSec\\\":5.551115123125783e-17,\\\"farmGridRemainingSec\\\":1,\\\"farmGridCrossings\\\":3,\\\"riftMode\\\":\\\"farm\\\",\\\"candidates\\\":{\\\"ability\\\":1,\\\"autoTap\\\":1,\\\"autoEmpower\\\":1,\\\"study\\\":87,\\\"bossRetreatGrace\\\":null,\\\"farmGrid\\\":5.551115123125783e-17,\\\"economy\\\":null},\\\"kinds\\\":[\\\"farmGrid\\\"]}\""
+    },
+    {
+      "scenario": "self-test-ascend-prisms-tree",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-ascend-prisms-tree\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-ascend-prisms-tree\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"reward oracle 15,0,1,0,full expected 8 got 7\", \"stack\": \"Error: reward oracle 15,0,1,0,full expected 8 got 7\\n    at assert (http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:17947:61)\\n    at ok (http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14213:29)\\n    at http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14221:43\\n    at Array.forEach (<anonymous>)\\n    at check (http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14221:23)\\n    at http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14258:83\\n    at Array.forEach (<anonymous>)\\n    at http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14258:63\\n    at Array.forEach (<anonymous>)\\n    at http://127.0.0.1:49676/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14257:18\" }"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-lab",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-ascend-prisms-lab\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-ascend-prisms-lab\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"reward oracle 16,15,0,1,reserve expected 2 got 1\", \"stack\": \"Error: reward oracle 16,15,0,1,reserve expected 2 got 1\\n    at assert (http://127.0.0.1:56324/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:17947:61)\\n    at ok (http://127.0.0.1:56324/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14213:29)\\n    at http://127.0.0.1:56324/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14221:43\\n    at Array.forEach (<anonymous>)\\n    at check (http://127.0.0.1:56324/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14221:23)\\n    at window.runAscendPrismsContract (http://127.0.0.1:56324/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14254:37)\\n    at HTMLDocument.run (http://127.0.0.1:56324/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:20116:32)\" }"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-payout",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-ascend-prisms-payout\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-ascend-prisms-payout\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"manual payout equals preview/oracle\", \"stack\": \"Error: manual payout equals preview/oracle\\n    at assert (http://127.0.0.1:62604/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:17947:61)\\n    at ok (http://127.0.0.1:62604/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14213:29)\\n    at check (http://127.0.0.1:62604/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14229:33)\\n    at window.runAscendPrismsContract (http://127.0.0.1:62604/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14254:3)\\n    at HTMLDocument.run (http://127.0.0.1:62604/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:20116:32)\" }"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-repeat",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-ascend-prisms-repeat\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-ascend-prisms-repeat\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"reward oracle 16,15,0,0,reserve expected 1 got 2\", \"stack\": \"Error: reward oracle 16,15,0,0,reserve expected 1 got 2\\n    at assert (http://127.0.0.1:52635/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:17947:61)\\n    at ok (http://127.0.0.1:52635/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14213:29)\\n    at http://127.0.0.1:52635/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14221:43\\n    at Array.forEach (<anonymous>)\\n    at check (http://127.0.0.1:52635/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14221:23)\\n    at window.runAscendPrismsContract (http://127.0.0.1:52635/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14254:3)\\n    at HTMLDocument.run (http://127.0.0.1:52635/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:20116:32)\" }"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-rounding",
+      "exit": 1,
+      "valid": true,
+      "observation": "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"self-test-ascend-prisms-rounding\", \"json_status\": \"fail\", \"json_scenario\": \"self-test-ascend-prisms-rounding\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+      "failure": "  failure: { \"message\": \"reward oracle 16,15,1,0,progressBonus expected 1 got 0\", \"stack\": \"Error: reward oracle 16,15,1,0,progressBonus expected 1 got 0\\n    at assert (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:17947:61)\\n    at ok (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14213:29)\\n    at http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14221:43\\n    at Array.forEach (<anonymous>)\\n    at check (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14221:23)\\n    at window.runAscendPrismsContract (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14254:20)\\n    at HTMLDocument.run (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:20116:32)\" }"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "note": "All owned test/campaign jobs completed; initial defective probe explicitly stopped. Do not stop stale PIDs. Preview4175 retained, shared4174 untouched.",
+  "jobs": [
+    {
+      "name": "F focused180",
+      "session": 61729,
+      "status": "COMPLETED",
+      "days": 180
+    },
+    {
+      "name": "F regular_two180",
+      "session": 40911,
+      "status": "COMPLETED",
+      "days": 180
+    },
+    {
+      "name": "F late burst7d",
+      "session": 53127,
+      "status": "COMPLETED",
+      "days": 7
+    }
+  ],
+  "preview": {
+    "port": 4175,
+    "session": 8241,
+    "lastKnown": "running"
+  }
+}

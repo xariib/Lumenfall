@@ -1,0 +1,41 @@
+{
+  "status": "fail",
+  "sourceSha256": "c06628650ffd9dbe48ae882ec6f05b4c8ebe0072f5fd5825686906e3f70a2c99",
+  "node": "v24.19.0",
+  "browser": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: wide wallet exact debit retains every Prism\n    at ok (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\.collection-price-generated-8168.cjs:40:27)\n    at run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\.collection-price-generated-8168.cjs:126:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\.collection-price-generated-8168.cjs:135:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-research=\"arcanecal\" data-plan-html=\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;15000&quot; style=&quot;color:var(-",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"mini-btn\" data-study=\"guardmastery\" aria-describedby=\"study-price-guardmastery\" style=\"margin-top:10px;width:100%;\" data-state=\"available\" aria-label=\"Guardian's Mastery — Begin Study\">",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"buy-btn\" data-node=\"swift\" aria-label=\"Swift Ascension — Prisms 3 Prisms\" style=\"min-width:78px;\" data-state=\"available\"><span class=\"cost mono\" data-price-currency=\"prism\" data-price-a",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img\" aria-label=\"Comets\" style=\"background:var(--comet)\"></span></",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"label\">Prisms</span>",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 488,
+  "stderr": "[21760:8404:1015/214245.400:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT\r\n[21760:8404:1015/214245.411:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\r\n[21760:8404:1015/214245.435:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\r\n"
+}

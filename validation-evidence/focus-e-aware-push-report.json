@@ -1,0 +1,189 @@
+{
+  "status": "PARTIAL",
+  "checks": 456,
+  "limits": "Real-engine deterministic policies and exact purchase receipts; no human/device acceptance inferred.",
+  "records": [
+    {
+      "policy": "regular_two",
+      "phases": [
+        {
+          "sourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
+          "policySha256": "8364938e48315c576c42730d24bf650fba761fe04a80c18602cd7420efe030a7",
+          "fromDay": 0,
+          "changes": "Fresh work-aware push policy: same real capped Lab purchases; attempt60 active seconds at each visit before optional later manual Ascend. First Ascend and automatic Ascends unchanged. No gameplay cooldown, grants or cancelled work."
+        }
+      ],
+      "sourceSha256": "45520099410f0065a49120ad2a46dde8570f5ac7edc7b1ef617cfe0a920e31b9",
+      "policySha256": "8364938e48315c576c42730d24bf650fba761fe04a80c18602cd7420efe030a7",
+      "days": 7,
+      "status": "PARTIAL",
+      "milestones": {
+        "recruit.ember": 0,
+        "recruit.tide": 0.005208333333333333,
+        "firstAscend": 0.005902777777777778,
+        "recruit.stone": 0.5,
+        "firstRarity": 0.5002314814814814,
+        "recruit.gale": 5
+      },
+      "firstDay": [
+        {
+          "key": "recruit.tide",
+          "day": 0.005208333333333333,
+          "met": true
+        },
+        {
+          "key": "recruit.stone",
+          "day": 0.5,
+          "met": true
+        },
+        {
+          "key": "firstRarity",
+          "day": 0.5002314814814814,
+          "met": true
+        },
+        {
+          "key": "firstAscend",
+          "day": 0.005902777777777778,
+          "met": true
+        }
+      ],
+      "targets": [
+        {
+          "key": "allRecruits",
+          "min": 21,
+          "max": 28,
+          "status": "PENDING"
+        },
+        {
+          "key": "firstMythic",
+          "min": 42,
+          "max": 56,
+          "status": "PENDING"
+        },
+        {
+          "key": "firstUltimate",
+          "min": 42,
+          "max": 56,
+          "status": "PENDING"
+        }
+      ],
+      "roster": {
+        "mythics": 0,
+        "abilities20": 4,
+        "ultimates": 0,
+        "mastered": 0,
+        "status": "DEVELOPING"
+      },
+      "endpoint": {
+        "rift": 340,
+        "ascends": 144,
+        "lab": 20,
+        "masterwork": 24,
+        "mastery": {
+          "ember": 0,
+          "tide": 0,
+          "stone": 0,
+          "gale": 0,
+          "thorn": 0,
+          "void": 0,
+          "aurora": 0,
+          "titan": 0
+        }
+      },
+      "longestClosedWallDays": 1.5006597222222222,
+      "walls": [
+        {
+          "from": 16,
+          "to": 17,
+          "seconds": 42722,
+          "days": 0.4944675925925926
+        },
+        {
+          "from": 40,
+          "to": 60,
+          "seconds": 86008,
+          "days": 0.995462962962963
+        },
+        {
+          "from": 60,
+          "to": 120,
+          "seconds": 43200,
+          "days": 0.5
+        },
+        {
+          "from": 120,
+          "to": 130,
+          "seconds": 43200,
+          "days": 0.5
+        },
+        {
+          "from": 130,
+          "to": 131,
+          "seconds": 129657,
+          "days": 1.5006597222222222
+        },
+        {
+          "from": 195,
+          "to": 196,
+          "seconds": 43012,
+          "days": 0.4978240740740741
+        },
+        {
+          "from": 209,
+          "to": 210,
+          "seconds": 42630,
+          "days": 0.4934027777777778
+        },
+        {
+          "from": 222,
+          "to": 250,
+          "seconds": 85810,
+          "days": 0.9931712962962963
+        },
+        {
+          "from": 289,
+          "to": 340,
+          "seconds": 85800,
+          "days": 0.9930555555555556
+        }
+      ],
+      "wholeDayPlateaus": [
+        {
+          "day": 4,
+          "rift": 130,
+          "ascends": 2,
+          "labs": [
+            "wispascend",
+            "guardmastery",
+            "measuredinquiry",
+            "procurement",
+            "catalysis",
+            "fieldnotes",
+            "curriculum",
+            "bossledger",
+            "luminousdistill",
+            "modulefabrication",
+            "resonantefficiency",
+            "adaptivegrowth"
+          ],
+          "forge": [
+            "arcanecal",
+            "conduction",
+            "luminoustracking",
+            "masterwork",
+            "resonancecascade",
+            "resonancereclaim"
+          ],
+          "tree": [
+            "echo",
+            "bonds",
+            "swift"
+          ],
+          "mastery": []
+        }
+      ],
+      "investments": [],
+      "purchaseReceiptCount": 114
+    }
+  ]
+}

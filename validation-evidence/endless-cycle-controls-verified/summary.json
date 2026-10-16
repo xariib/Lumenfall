@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "controls": 8,
+  "inputSha256": "b1bb7c63246bbab77d417b2db8684f674b4be1e662d496a84d5bed33d22d1659",
+  "records": [
+    {
+      "mutation": "mote",
+      "fixture": "fixed Mote payout boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.10326,
+      "sourceSha256": "b53d2f96539c49b6afa142436cf900feb8f0f09e4152d93d32f84ad0ac87ce42",
+      "receiptSha256": "5412735fb3bb0e7bc5166834efdb0098244d2f97cfd67f3ce1696143aecde124",
+      "failure": "AssertionError [ERR_ASSERTION]: fixed Mote payout boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "lab",
+      "fixture": "paid Lab completion EPS boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 1.8524281999999999,
+      "sourceSha256": "23a277591972fc78f82effc0bb93f797cb28493c5934e24d1445e188d1fc64f7",
+      "receiptSha256": "6c7e2a762345aed871a2490bdbe6b1374417f96623d0a25e38bf2ea852628e34",
+      "failure": "AssertionError [ERR_ASSERTION]: paid Lab completion EPS boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "recast",
+      "fixture": "Support recast EPS boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.2770108000000002,
+      "sourceSha256": "47c77743d16aab16fa2b695f12eb106a52610a868b813f42fb877e1df456078f",
+      "receiptSha256": "97b338de9461a17838f3ab11cfd2dbd288de72e3fab7f803de16d3fa5654f87b",
+      "failure": "AssertionError [ERR_ASSERTION]: Support recast EPS boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "buff",
+      "fixture": "Support expiry",
+      "caught": true,
+      "code": 1,
+      "seconds": 1.6774270999999998,
+      "sourceSha256": "fbb857f3cb4b2b2b90481309cc36457bccb44d1b668d984eac97ccacfa0848c1",
+      "receiptSha256": "da2ac9f63c8572065e9f933498ee499d5c9d9b465f21958e2fb439aade5e58de",
+      "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "economy",
+      "fixture": "queued Forge affordability",
+      "caught": true,
+      "code": 1,
+      "seconds": 0.7210268999999998,
+      "sourceSha256": "f4a1f987b5fb30f5b54a9379744870f634ed022934440e3c8d0217e3814afa84",
+      "receiptSha256": "9c7944a4e76607534a0bd9d81f99820a68acdbacdd9d9df30a5037d1ea8d0bec",
+      "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "phase",
+      "fixture": "queued Forge affordability",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.0840591000000006,
+      "sourceSha256": "04b5c43a0a5b7c725fa55939e7e23e775886ef87298b6445ab6a1fd3447a02ad",
+      "receiptSha256": "aceb84b5372df3fc617d7e7006af06d77695fc96b1ad6bd5c67af6ada5d04999",
+      "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "receipt",
+      "fixture": "Support expiry",
+      "caught": true,
+      "code": 1,
+      "seconds": 3.0195676000000002,
+      "sourceSha256": "f167aebf6ff0351a522783cb11d3ce4b594103f93040133b48fb0b4c8b32ad64",
+      "receiptSha256": "f57f7bf47aac5fe262bce473f2ee238fe4dd37b911bd92ecd4f251e65f6b5a2a",
+      "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact summary ascends",
+      "stderr": ""
+    },
+    {
+      "mutation": "lumen",
+      "fixture": "Support expiry",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.1153320000000004,
+      "sourceSha256": "627634c3205673a47b1e4b33c368da70ecc2b2d14b9fa094ddca188edd107e78",
+      "receiptSha256": "1122a22b92d37cb5aeb93d2ca42472ceb98d29dba9badc76ff4f240d32299581",
+      "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint",
+      "stderr": ""
+    }
+  ]
+}

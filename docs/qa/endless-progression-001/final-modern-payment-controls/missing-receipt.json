@@ -1,0 +1,46 @@
+{
+  "status": "FAIL",
+  "sourcePath": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\index.html",
+  "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+  "mutationSha256": "48ae49f05459d977ab201f29d75332831e789b6572805d5f239dc0e7f71ffed4",
+  "browserIdentity": {
+    "selected": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe",
+    "resolved": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe",
+    "version": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/140.0.7339.207",
+      "revision": "@17230b545fd18b35aad49122e5af97a463bc7a9c",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+      "jsVersion": "14.0.365.10"
+    }
+  },
+  "mutation": "missing-receipt",
+  "observedAt": "2026-10-15T00:03:08.661Z",
+  "records": [
+    {
+      "kind": "contracts",
+      "result": {
+        "checks": 389,
+        "purchaseCap": 20,
+        "finalPrice": 2329,
+        "pricesThroughCap": 7507,
+        "legacyLevels": [
+          21,
+          40,
+          2000
+        ],
+        "migration": "one-time original-curve Prism restitution; raw levels retained"
+      }
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  },
+  "failure": "Error: Error: completed marker cannot refund again after receipt deletion\n    at ok (http://127.0.0.1:55263/index.html:12065:41)\n    at window.runCheaperRefundContracts (http://127.0.0.1:55263/index.html:12176:204)\n    at <anonymous>:1:1\n    at evaluate (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\cheaper-recruitment.cjs:73:154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\cheaper-recruitment.cjs:97:47)\n    at async C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\cheaper-recruitment.cjs:200:6",
+  "stderr": "[22948:1908:1015/020303.316:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\r\n[22948:1908:1015/020303.316:ERROR:google_apis\\gcm\\engine\\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\r\n"
+}

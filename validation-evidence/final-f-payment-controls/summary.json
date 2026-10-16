@@ -1,0 +1,143 @@
+{
+  "status": "INVESTIGATE_STALE_SUMMARY_FIXTURE",
+  "expected": 17,
+  "completed": 17,
+  "records": [
+    {
+      "mutation": "handler",
+      "cause": "UI maxed even with affordable wallet",
+      "actualCause": "Error: Error: UI maxed even with affordable wallet 20",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "3b81a73d605c6558719efc95d3669be8dde716adb19d49a48643a6a1b35b3b8e"
+    },
+    {
+      "mutation": "refund",
+      "cause": "refund receipt prevents a second credit",
+      "actualCause": "Error: Error: refund receipt prevents a second credit 21",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "01c978cef46941a076ae5fe5efdc1b061177d407398e595d9c2c632836ddbb8c"
+    },
+    {
+      "mutation": "credit",
+      "cause": "fractional original wallet retains exact refund value",
+      "actualCause": "Error: Error: fractional original wallet retains exact refund value",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "dc03f4ec6d95fcfe139b3462f31c8652f94e5c0c7057f9b67a123cf1839518c5"
+    },
+    {
+      "mutation": "free-credit",
+      "cause": "large credit quote conserves exact value",
+      "actualCause": "Error: Error: real Swift3 price debits wallet and small credit exactly",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "daf71c0c3673ae27e00b022426cf8cba19c914a33d56099d18e1761be4f08d06"
+    },
+    {
+      "mutation": "wallet",
+      "cause": "large wallet quote conserves exact value",
+      "actualCause": "Error: Error: large wallet quote conserves exact value",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "9890a21634cbb8baff3a9fc68bc0e5a8bb354b3e43b418ad48cacccbcbcd50cf"
+    },
+    {
+      "mutation": "receipt",
+      "cause": "wrong receipt amount rejects for recovery",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "34e614ac3c00aaf0b008c6fbb12044f2f852cf45745cd0fccfccca0b7128d3a4"
+    },
+    {
+      "mutation": "cache",
+      "cause": "completed large refund avoids repeated price calculation at Ascend boundaries",
+      "actualCause": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "9d5fe08ecf5eb90ac0e7a1f73cfdd995a2ef5325510f038eab15a64ab2821f1e"
+    },
+    {
+      "mutation": "credit-record",
+      "cause": "malformed persisted Prism credit rejects for recovery",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "50065e7d517f8507d45b2e139a1b8811c422c21c6e303cda9e2b296eaaa45494"
+    },
+    {
+      "mutation": "ascend-copy",
+      "cause": "actual auto-Ascends avoid repeated refund cloning and validation",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "fc2729b64de5551dd3e42e5f04e57b499613e026b8b4ce0c2f36ee5e95c2db71"
+    },
+    {
+      "mutation": "version-check",
+      "cause": "unsupported migration version rejects before any early return",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "60bb1678fee7905b3b46ad203a74eb68398e1754179f98170ef181a9ae46deec"
+    },
+    {
+      "mutation": "credit-reconcile",
+      "cause": "own credit sequence reconciles with saved receipt",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "2c8170fe57dcb537778cce33cf8e202a94b544be2a040c5c054000d560a7cd60"
+    },
+    {
+      "mutation": "below-cap-receipt",
+      "cause": "below-cap receipt rejects before legitimate purchase",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "83fe1f440bba319de9b41644df4a025a7647630b9e223d2fa56fc27ad4c3fc2b"
+    },
+    {
+      "mutation": "missing-receipt",
+      "cause": "completed marker cannot refund again after receipt deletion",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "9566c380587de3b29958a2fe453a5795dab80a7159b033fc838d991b9652c88c"
+    },
+    {
+      "mutation": "canonical-price",
+      "cause": "all finite original purchase value retained",
+      "actualCause": "Error: Error: all finite original purchase value retained 2000/1000000",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "bcfb8cfbfa71a7b79ddbba7e2e0129c22b845ea0b53b86d7eac2dee150c72983"
+    },
+    {
+      "mutation": "mixed-payment",
+      "cause": "wallet-only payment preserves original small credit",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "6d0d2c18ff7a0662258f5b788d253759b85c46ee61f538f41a25fbbb008671a7"
+    },
+    {
+      "mutation": "power-spacing",
+      "cause": "downward ULP at power of two supports exact mixed payment",
+      "actualCause": "Error: TypeError: Invalid amount",
+      "matches": false,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "64246118a5df15433b00a5d48dc667ee1e0e3bf7000588c67286ee39371aa808"
+    },
+    {
+      "mutation": "funding-sources",
+      "cause": "best exact available contribution finds payable Tree price",
+      "actualCause": "Error: Error: best exact available contribution finds payable Tree price",
+      "matches": true,
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "mutationSha256": "04e738eb5ab3bd8ec4496141f90adfa6546dc62647bd2da18ed01d1a7ea46712"
+    }
+  ]
+}

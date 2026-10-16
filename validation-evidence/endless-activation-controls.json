@@ -1,0 +1,133 @@
+{
+  "status": "PASS",
+  "controls": 21,
+  "records": [
+    {
+      "name": "wrong-mastery-power",
+      "status": "KILLED",
+      "assertion": "own Power compounded10%",
+      "sourceSha256": "dff84a785fe854fd7b65cd9ea7b3b460b932713cb73743d013f9fd0c98b00274"
+    },
+    {
+      "name": "missing-next-record",
+      "status": "KILLED",
+      "assertion": "next rank needs deeper record",
+      "sourceSha256": "88bbd78bf4761b0b2991279688e61a395d80b4cdd3b890170302db4d9f6ebb74"
+    },
+    {
+      "name": "free-mastery-sigils",
+      "status": "KILLED",
+      "assertion": "Mastery Sigil debit",
+      "sourceSha256": "2a6ed2a29071534455864c7e7c334165a7cc5bf77e45480997490cbebf97edc5"
+    },
+    {
+      "name": "lost-mastery-on-ascend",
+      "status": "KILLED",
+      "assertion": "Mastery survives Ascend",
+      "sourceSha256": "a71a64478bf030f747a107b2ccd0830270b540d65bfc264e9b9f7948961c695c"
+    },
+    {
+      "name": "leaked-paid-mutation",
+      "status": "KILLED",
+      "assertion": "failed primary Mastery rolls back everything",
+      "sourceSha256": "e059c268a1d2c2b648668477bd7b7c45cbf60996eac023badf403bd7eb1013a8"
+    },
+    {
+      "name": "lost-paid-clock",
+      "status": "KILLED",
+      "assertion": "failed purchase preserves paid-work clock continuity",
+      "sourceSha256": "38e286300be8b722d2418675c6133e99b87139e984ac77085f3111f48aa66003"
+    },
+    {
+      "name": "wide-quote-copy",
+      "status": "KILLED",
+      "assertion": "wide price quotes never clone or mutate paid ledgers",
+      "sourceSha256": "8b7eca45396b2718fff2f5ea9956b69132297873b65837a5ec321c868487e6d9"
+    },
+    {
+      "name": "stale-refund-total",
+      "status": "KILLED",
+      "assertion": "in-place held-credit change updates total",
+      "sourceSha256": "917a88683938944e18c257fbcdf30a19c00c7b1ebdcec7967a797ffcf7abc5d0"
+    },
+    {
+      "name": "free-timed-speed",
+      "status": "KILLED",
+      "assertion": "timed boost exactly debits a wide Mote wallet",
+      "sourceSha256": "6d3d7f133db8c01b144c86897ccb7632838de3f9c8dfd185aa238c8ab827dc0c"
+    },
+    {
+      "name": "future-mote-payout",
+      "status": "KILLED",
+      "assertion": "wide count pays only inside the actual window",
+      "sourceSha256": "837adca78f6183eb9ccb1ef53dbc6fb0d40a7c93f22f222b7ea1991fa2df93e5"
+    },
+    {
+      "name": "lost-legacy-ascension-dust",
+      "status": "KILLED",
+      "assertion": "paid Ascension Dust retained when the old Prism wallet would round away the gain",
+      "sourceSha256": "239c96d415649f42ac3e9b9bc1fe6175e77a48670a1490af5fecc6afbf041965"
+    },
+    {
+      "name": "discarded-physical-progress",
+      "status": "KILLED",
+      "assertion": "Authoritative simulation stalled",
+      "sourceSha256": "ab70695847a9bb33863d88373a3079932b2a5cb9ecaf31bad65812b44fb8fca5"
+    },
+    {
+      "name": "unbounded-future-work",
+      "status": "KILLED",
+      "assertion": "bounded future work",
+      "sourceSha256": "eef8b3aa44535e88d6666f120f90befcd7f24197c0271b7fdcfbeca7b39afc42"
+    },
+    {
+      "name": "lost-old-titan-entitlement",
+      "status": "KILLED",
+      "assertion": "old unlocked roster preserved titan",
+      "sourceSha256": "f69fb48f76dbb69f348835fe4f47d3a2a2f59148278a4964c5fc9466770cc463"
+    },
+    {
+      "name": "ability-live-leak",
+      "status": "KILLED",
+      "assertion": "failed ability rolls back wallet and rank ember",
+      "sourceSha256": "655bc21bdae9069e0fe9a6f8dc281cf59bad1db5319736216545d4e24c57f014"
+    },
+    {
+      "name": "early-ultimate",
+      "status": "KILLED",
+      "assertion": "Ultimate needs ability15",
+      "sourceSha256": "669b8d53cbf8d699474293be04d11e84be780ba996db8bfe16be7e785abcca78"
+    },
+    {
+      "name": "comet-native-promotion",
+      "status": "KILLED",
+      "assertion": "native exact Comet debit retains Number",
+      "sourceSha256": "1536088174e84e66a1d632f7bb959acec91af24a22ad6f46ef5969868d58c5be"
+    },
+    {
+      "name": "lost-deep-sigils",
+      "status": "KILLED",
+      "assertion": "independent late Sigil amount",
+      "sourceSha256": "431f65c990042321c2f5dc206c30c62b5dd9ca0f87f09078cf0cabbac5fbfd95"
+    },
+    {
+      "name": "wrong-final-ultimate",
+      "status": "KILLED",
+      "assertion": "independent Ultimate price titan",
+      "sourceSha256": "4f1b4765e1c342560a7ade3ebe2469fefb3c0cab7f98d38e06a4fc3cb2fe1c28"
+    },
+    {
+      "name": "sigil-rounding",
+      "status": "KILLED",
+      "assertion": "independent late Sigil amount",
+      "sourceSha256": "0c1eab7126baa72b1e75c02559a03aa64aa096a76687d9d12bdd915c727958d5"
+    },
+    {
+      "name": "cartography-percent",
+      "status": "KILLED",
+      "assertion": "Cartography retains flat added Sigils",
+      "sourceSha256": "51326ff4523cbdc47560e457cf1c090af01b1f1b6527cd43f39d5e1df831fa6c"
+    }
+  ],
+  "sourceSha256": "2719debe76cf35430faa8ec9556fba54dc61062691e47eea6ecb640f9158ce53"
+}

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+  "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7",
+  "throughDay": 132,
+  "controls": [
+    {
+      "name": "rank-loss",
+      "cause": "permanent mastery/ember never decreases",
+      "exit": 1,
+      "mutationSha256": "f7168a962261ed8fc2f0db192089e4ba2661335daf0d5a9821866ba4af0c8d37"
+    },
+    {
+      "name": "no-post-roster-growth",
+      "cause": "must purchase further Mastery after full roster development",
+      "exit": 1,
+      "mutationSha256": "88a0d0450b8520b7bcd9d3a94c39d5bf02144794a1da74cacd34264f34ae702e"
+    }
+  ]
+}

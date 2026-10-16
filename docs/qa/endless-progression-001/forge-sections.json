@@ -1,0 +1,47 @@
+[
+  {
+    "section": "effects",
+    "status": "PASS",
+    "checks": 124
+  },
+  {
+    "section": "resonance",
+    "status": "FAIL",
+    "error": "[resonance] huge Sigil wallet cannot obtain a free charge refill\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n    achieved: {},\n    activeFormationPreset: '',\n...\n      aurora: 0,\n+     ember: 100,\n-     ember: 0,\n      gale: 0,\n+     stone: 10,\n-     stone: 0,\n      thorn: 0,\n+     tide: 10,\n-     tide: 0,\n      titan: 0,\n      void: 0\n    },\n    lastSeen: 2000000000000,\n    legacyCometPurchases: {},\n...\n    shards: 100,\n+   sigilResonanceUses: 1,\n+   sigils: '1000000000000000019884624838631e0',\n-   sigilResonanceUses: 0,\n-   sigils: 1e+30,\n    spirits: {\n      aurora: 0,\n      ember: 1,\n      gale: 0,\n      stone: 1,\n"
+  },
+  {
+    "section": "saves",
+    "status": "PASS",
+    "checks": 156
+  },
+  {
+    "section": "ascend",
+    "status": "PASS",
+    "checks": 338
+  },
+  {
+    "section": "combined",
+    "status": "PASS",
+    "checks": 32
+  },
+  {
+    "section": "unsafeCounters",
+    "status": "PASS",
+    "checks": 197
+  },
+  {
+    "section": "unsafeRuns",
+    "status": "FAIL",
+    "error": "[unsafeRuns] unsafe run blocks old Spillway damage manual\n+ actual - expected\n\n  [\n+   69,\n+   69\n-   11,\n-   11\n  ]\n"
+  },
+  {
+    "section": "controller",
+    "status": "PASS",
+    "checks": 52
+  },
+  {
+    "section": "controls",
+    "status": "FAIL",
+    "error": "[controls] huge wallet refuses actual free Forge purchase\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n    achieved: {},\n    activeFormationPreset: 'push',\n...\n      luminousKills: 0,\n+     research: 1,\n-     research: 0,\n      taps: 0\n    },\n    depth: 101,\n    empowerQueue: {\n      aurora: false,\n...\n    },\n+   lumen: '1000000000000000019884624345656e0',\n-   lumen: 1e+30,\n    luminousAccum: 0,\n    maxDepthEver: 250,\n    motes: 10000,\n    nodes: {\n      benchmentor: 0,\n...\n      overflowconduit: 0,\n+     relay: 1,\n-     relay: 0,\n      resolve: 0,\n      resonancecascade: 0,\n      resonancecells: 0,\n      resonancereclaim: 0,\n      resonantedge: 0,\n...\n    schemaVersion: 5,\n+   shards: '1000000000000000019884624816656e0',\n-   shards: 1e+30,\n    sigilResonanceUses: 0,\n    sigils: 10000,\n    spirits: {\n      aurora: 0,\n      ember: 1,\n"
+  }
+]

@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "controls": 12,
+  "inputSha256": "b8f3a006c9ef3f32a6e5e87e32378b386df31419efa441094f47fbd87a742cd4",
+  "automationSha256": "1e1bca8da89124c81db4be7ee1e4f777a8e108d2b8164a20b8e2d0eecb599acf",
+  "nativeSha256": "703740fbc895671043eab9a1e824251c7f7c4ea9d2623693a65d3ab19db129a6",
+  "resourceSha256": "1a785bff2b28c1eb82ecaaf011497d2298949e8d3fe18f5e5ca3cde5a2e1ca4b",
+  "records": [
+    {
+      "mutation": "mote",
+      "fixture": "fixed Mote payout boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.2237141,
+      "sourceSha256": "47368c45282ed2ee740ea3fa0c96e1642493684ffae43c088199a4ee60b69e44",
+      "receiptSha256": "72dbbbf5cfc0661640e60653f4e5527348534e2e41182cff4a9ef876e6645211",
+      "failure": "AssertionError [ERR_ASSERTION]: fixed Mote payout boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "lab",
+      "fixture": "paid Lab completion EPS boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.1297732000000003,
+      "sourceSha256": "3eff1f27f0705e6d3086c20a150846952ef7d1d97ad3b014330a28a4e4287965",
+      "receiptSha256": "40a576940d00e7b5c9bc6c415c533a077008987ad8fe300e80d6f661942eb94c",
+      "failure": "AssertionError [ERR_ASSERTION]: paid Lab completion EPS boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "recast",
+      "fixture": "Support recast EPS boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.4220866000000005,
+      "sourceSha256": "408d576106db14fcdc1c6cdaa93850e60d23fe52a73ca5c63140a8c5b0015760",
+      "receiptSha256": "432cc1c5acb152b8e4828aeb6d2a7afa6cea9d9463597d86c588acf85c83c6a3",
+      "failure": "AssertionError [ERR_ASSERTION]: Support recast EPS boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "buff",
+      "fixture": "Support expiry",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.0258358,
+      "sourceSha256": "8516108d6467cf8a3ea29e24d4de7f89daf76066967bd4024bdadab94801e9df",
+      "receiptSha256": "a47b824a69ffe7036221bee67d5fa21a7e86303023441cc6d230ab778dbbb979",
+      "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "economy",
+      "fixture": "queued Forge affordability",
+      "caught": true,
+      "code": 1,
+      "seconds": 0.6530519000000004,
+      "sourceSha256": "86e6fed2c55fa2137552ac96c1567ca8a74a10f4078c4fecb0d7f5714205c9d1",
+      "receiptSha256": "5ea099a328e716d1f3a1090ff5451afb5776bec323cea07052ed281e295d8f2d",
+      "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "phase",
+      "fixture": "queued Forge affordability",
+      "caught": true,
+      "code": 1,
+      "seconds": 0.6996129999999994,
+      "sourceSha256": "5b8952ace598078b8a11026afd36fa581c9ade40f631d2dd14bb9b3ca3035982",
+      "receiptSha256": "ef0216e6912e8d1ebab7c79a8a6bd46813faf0f69db04433bfc44dcd962a32a9",
+      "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "receipt",
+      "fixture": "Support expiry",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.0908202999999994,
+      "sourceSha256": "67ddb1eddd1ba72a97866a10436cefc65f474b6cd81361e688cbbe4a17ed3c1d",
+      "receiptSha256": "0250e34b2bd1869c267d95962b75334b2143cd14cb5d7359804951e386a53e19",
+      "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact summary ascends",
+      "stderr": ""
+    },
+    {
+      "mutation": "lumen",
+      "fixture": "Support expiry",
+      "caught": true,
+      "code": 1,
+      "seconds": 1.9598443000000008,
+      "sourceSha256": "649513f1b869f6e94fa71dbaf69a7b394997b5332c54cb28f81c9e0f1a0e1d0a",
+      "receiptSha256": "a3cce4a32711498dd751aa4e07db60e6b0b9459f1a175666d6b761a7eddb80a5",
+      "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "automation",
+      "fixture": "development-speed due automation",
+      "caught": true,
+      "code": 1,
+      "seconds": 14.6184005,
+      "sourceSha256": "3461972812438b7a2dec04053306373bafd9a2ee24f1df7b23c4643dc675482a",
+      "receiptSha256": "18f8f419533cb5105dba7cd0c2c256cee9271fd2926a0f71b635f400620e660f",
+      "failure": "AssertionError [ERR_ASSERTION]: automation horizon preserves every literal saved field",
+      "stderr": ""
+    },
+    {
+      "mutation": "nativeCredit",
+      "fixture": "Native fractional credit rounding",
+      "caught": true,
+      "code": 1,
+      "seconds": 12.153880400000002,
+      "sourceSha256": "33fd19c91d5a952ea7e1a15bd4b4e899eaf9922d0656e34b20572d757f3560f2",
+      "receiptSha256": "9d5ac2148e6b48e226a3b60aa1d0f9bf48e3b6534bf0a956267c1c9403eb1f96",
+      "failure": "AssertionError [ERR_ASSERTION]: native per-credit rounding retains every literal saved field",
+      "stderr": ""
+    },
+    {
+      "mutation": "nativeParity",
+      "fixture": "Native half-ULP parity",
+      "caught": true,
+      "code": 1,
+      "seconds": 35.310386099999995,
+      "sourceSha256": "7dbbb842cae4bda902c08242dae5e630a7c49a10b8c6bd60c1fc946c051d732e",
+      "receiptSha256": "44c95c0f129cd07d8a4c2b9fb512529bd5b0abe4f64b96a4fbc97b7080db5303",
+      "failure": "AssertionError [ERR_ASSERTION]: native per-credit rounding retains every literal saved field",
+      "stderr": ""
+    },
+    {
+      "mutation": "resourceReplay",
+      "fixture": "Checked ability bar replay",
+      "caught": true,
+      "code": 1,
+      "seconds": 11.628055000000007,
+      "sourceSha256": "d2ac5842b4757d7053ad654cb3b416b43e54111200e6d640cc1dcbfa0e11fb83",
+      "receiptSha256": "85aa6a5fcd9f545bae20853381fc9985ce910981502f21896b6f7421241c4777",
+      "failure": "AssertionError [ERR_ASSERTION]: checked resource replay preserves every literal saved field",
+      "stderr": ""
+    }
+  ]
+}

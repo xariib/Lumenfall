@@ -1,0 +1,39 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "f21d5dad8e24f279e305f50d7cb5766b199ece29835b49ada925f1df411a5c62", "instrumented_sha256": "b31988127af036610bef3c508f06605b00e7d1a01ba57a0c94cc04a3c3a5379a" }
+FAIL lab-motes-numerical
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.2357085, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "lab-motes-numerical", "json_status": "fail", "json_scenario": "lab-motes-numerical", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "B2 exact damage oracle: represented Lumen summary and independently credited final wallet", "stack": "Error: B2 exact damage oracle: represented Lumen summary and independently credited final wallet\n    at assert (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17925:61)\n    at ok (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17734:29)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17792:5\n    at Object.withHp (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:13268:98)\n    at run (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17780:14)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17801:180\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17801:156\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&qaFixture=fresh:17801:114" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\docs\qa\endless-progression-001\corrected-integrated-raw\lab-motes-numerical-LPAR5H
+  stdout tail:
+y){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="lab-motes-numerical">{
+  "scenario": "lab-motes-numerical",
+  "status": "fail",
+  "detail": {
+    "message": "B2 exact damage oracle: represented Lumen summary and independently credited final wallet",
+    "stack": "Error: B2 exact damage oracle: represented Lumen summary and independently credited final wallet\n    at assert (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17925:61)\n    at ok (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17734:29)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17792:5\n    at Object.withHp (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:13268:98)\n    at run (http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17780:14)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17801:180\n    at Array.forEach (&lt;anonymous&gt;)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17801:156\n    at Array.forEach (&lt;anonymous&gt;)\n    at http://127.0.0.1:55128/index.html?qaScenario=lab-motes-numerical&amp;qaFixture=fresh:17801:114"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

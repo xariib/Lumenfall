@@ -1,0 +1,144 @@
+{
+  "status": "PASS",
+  "controls": 17,
+  "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+  "limits": "Combined successful causal runs; initial infrastructure/assertion mismatches remain in the source reports. Actual CI still required.",
+  "records": [
+    {
+      "mutation": "handler",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "UI maxed even with affordable wallet",
+      "assertion": "Error: Error: UI maxed even with affordable wallet 20",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "credit",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "fractional original wallet retains exact refund value",
+      "assertion": "Error: Error: fractional original wallet retains exact refund value",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "free-credit",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "large credit quote conserves exact value",
+      "assertion": "Error: Error: large credit quote conserves exact value",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "wallet",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "large wallet quote conserves exact value",
+      "assertion": "Error: Error: large wallet quote conserves exact value",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "receipt",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "wrong receipt amount rejects for recovery",
+      "assertion": "Error: Error: wrong receipt amount rejects for recovery",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "cache",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "completed large refund avoids repeated price calculation at Ascend boundaries",
+      "assertion": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "credit-record",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "malformed persisted Prism credit rejects for recovery",
+      "assertion": "Error: Error: malformed persisted Prism credit rejects for recovery",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "ascend-copy",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "actual auto-Ascends avoid repeated refund cloning and validation",
+      "assertion": "Error: Error: actual auto-Ascends avoid repeated refund cloning and validation",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "version-check",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "unsupported migration version rejects before any early return",
+      "assertion": "Error: Error: unsupported migration version rejects before any early return",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "credit-reconcile",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "own credit sequence reconciles with saved receipt",
+      "assertion": "Error: Error: own credit sequence reconciles with saved receipt",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "below-cap-receipt",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "below-cap receipt rejects before legitimate purchase",
+      "assertion": "Error: Error: below-cap receipt rejects before legitimate purchase",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "missing-receipt",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "completed marker cannot refund again after receipt deletion",
+      "assertion": "Error: Error: completed marker cannot refund again after receipt deletion",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "canonical-price",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "all finite original purchase value retained",
+      "assertion": "Error: Error: all finite original purchase value retained 2000/1000000",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "power-spacing",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "downward ULP at power of two supports exact mixed payment",
+      "assertion": "Error: Error: downward ULP at power of two supports exact mixed payment",
+      "evidence": "final-modern-payment-controls/summary.json"
+    },
+    {
+      "mutation": "mixed-payment",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "wallet-only payment preserves original small credit",
+      "assertion": "Error: Error: wallet-only payment preserves original small credit",
+      "evidence": "final-modern-payment-controls-recheck/summary.json"
+    },
+    {
+      "mutation": "funding-sources",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "best exact available contribution finds payable Tree price",
+      "assertion": "Error: Error: best exact available contribution finds payable Tree price",
+      "evidence": "final-modern-payment-controls-recheck/summary.json"
+    },
+    {
+      "mutation": "refund",
+      "causal": true,
+      "sourceSha256": "448a2c1b069eae9de22d2edaec006114deec103322c4baf852842d02818e5055",
+      "expected": "refund receipt prevents a second credit",
+      "assertion": "Error: Error: refund receipt prevents a second credit 21",
+      "evidence": "final-modern-payment-controls-refund/summary.json"
+    }
+  ]
+}

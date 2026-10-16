@@ -1,0 +1,42 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "3e87a5c8da01d2d32c1cdff0ba301ca51880d66fe879c2a8275f7914a43a23a4", "instrumented_sha256": "922da699b71b9edfdf508e7a43fd78330f647c81f2d397594099371358369a0b" }
+FAIL self-test-ascend-prisms-rounding
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.3190020999999998, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-rounding", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-rounding", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "reward oracle 16,15,1,0,progressBonus expected 1 got 0", "stack": "Error: reward oracle 16,15,1,0,progressBonus expected 1 got 0\n    at assert (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:17947:61)\n    at ok (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14213:29)\n    at http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14221:43\n    at Array.forEach (<anonymous>)\n    at check (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14221:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:14254:20)\n    at HTMLDocument.run (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:20116:32)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\validation-evidence\endless-activation-negative\raw\self-test-ascend-prisms-rounding-tMpthi
+  stdout tail:
+ssert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash"><span>ASCENDED</span><strong>+2 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-rounding">{
+  "scenario": "self-test-ascend-prisms-rounding",
+  "status": "fail",
+  "detail": {
+    "message": "reward oracle 16,15,1,0,progressBonus expected 1 got 0",
+    "stack": "Error: reward oracle 16,15,1,0,progressBonus expected 1 got 0\n    at assert (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:17947:61)\n    at ok (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:14213:29)\n    at http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:14221:43\n    at Array.forEach (&lt;anonymous&gt;)\n    at check (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:14221:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:14254:20)\n    at HTMLDocument.run (http://127.0.0.1:56933/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:20116:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+
+Behavioral QA failed: self-test-ascend-prisms-rounding null

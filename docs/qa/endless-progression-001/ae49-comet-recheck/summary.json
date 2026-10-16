@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "records": [
+    {
+      "name": "comet-expansion-core",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+      "testSha256": "aca4c6cfa8cef18e42744b955715a27a257a19996a9024f7eb666f10fa4837c2",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 1,
+      "timedOut": false,
+      "seconds": 0.7924335,
+      "status": "FAIL",
+      "error": "one causal mutation anchor: !Number.isFinite(next) || next-before!==amount || next-amount!==before\n\n1 !== 2\n"
+    },
+    {
+      "name": "comet-expansion-numerical",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+      "testSha256": "a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 1.4051906,
+      "status": "PASS",
+      "error": ""
+    },
+    {
+      "name": "comet-expansion-offline",
+      "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+      "testSha256": "e927b7c84d62afdf975f9641a938a8b947d1125f3a5b1e8d6f98dc728e5c85b5",
+      "unchangedSource": true,
+      "unchangedTest": true,
+      "code": 0,
+      "timedOut": false,
+      "seconds": 1.1737256999999999,
+      "status": "PASS",
+      "error": ""
+    }
+  ]
+}

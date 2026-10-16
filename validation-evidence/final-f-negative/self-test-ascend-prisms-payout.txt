@@ -1,0 +1,48 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "3a7e0d823cb59650a1afa866c58bfc9710d5b0ef67036557706cda24bf77c136", "instrumented_sha256": "6d148b2393d0249898569eb6bc142654b1bf6992a601aded3e069c5d139c773f" }
+FAIL self-test-ascend-prisms-payout
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.4511515, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-payout", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-payout", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "manual payout equals preview/oracle", "stack": "Error: manual payout equals preview/oracle\n    at assert (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:17947:61)\n    at ok (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14213:29)\n    at check (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14229:33)\n    at window.runAscendPrismsContract (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14254:3)\n    at HTMLDocument.run (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:20116:32)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\validation-evidence\final-f-negative\raw\self-test-ascend-prisms-payout-PVvgr6
+  stdout tail:
+'pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash"><span>ASCENDED</span><strong>+2 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-payout">{
+  "scenario": "self-test-ascend-prisms-payout",
+  "status": "fail",
+  "detail": {
+    "message": "manual payout equals preview/oracle",
+    "stack": "Error: manual payout equals preview/oracle\n    at assert (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:17947:61)\n    at ok (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:14213:29)\n    at check (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:14229:33)\n    at window.runAscendPrismsContract (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:14254:3)\n    at HTMLDocument.run (http://127.0.0.1:65400/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:20116:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+
+Behavioral QA failed: self-test-ascend-prisms-payout null

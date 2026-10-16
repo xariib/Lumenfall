@@ -1,0 +1,73 @@
+diff --git a/index.html b/index.html
+index f6c5318..d6f9fcb 100644
+--- a/index.html
++++ b/index.html
+@@ -3229,13 +3229,13 @@ function createGameAmount(){
+ var Amount=createGameAmount();
+ 
+ var ENDLESS_PROGRESSION = {
+-  recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:15},thorn:{depth:35,lab:18},void:{depth:55,lab:20},aurora:{depth:75,lab:21},titan:{depth:100,lab:22}},
++  recruit:{ember:{depth:1,lab:0},tide:{depth:3,lab:0},stone:{depth:6,lab:0},gale:{depth:15,lab:15},thorn:{depth:35,lab:18},void:{depth:55,lab:20},aurora:{depth:75,lab:21},titan:{depth:100,lab:24}},
+   recruitLumen:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
+   rarityLumenBase:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
+-  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,29],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
+-  ultimate:{sigils:{ember:15000,tide:18750,stone:22500,gale:30000,thorn:37500,void:45000,aurora:60000,titan:75000},module:15,depth:120,lab:30,forge:10,ascends:50},
+-  mastery:{prismBase:200,prismStep:10,sigilBase:5000,sigilStep:500,depthBase:200,depthStep:25,labBase:30,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
+-  masterworkPowerGrowth:1,speedMoteGrowth:1,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:777600,lateStudyCostStart:30,lateStudyCostGrowth:1.35
++  rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,12,20,31],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
++  ultimate:{sigils:{ember:10000000,tide:15000000,stone:20000000,gale:30000000,thorn:40000000,void:60000000,aurora:80000000,titan:120000000},module:15,depth:120,lab:32,forge:10,ascends:50},
++  mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:32,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
++  masterworkPowerGrowth:1.25,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35
+ };
+ var SPIRITS = [
+   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
+@@ -3318,7 +3318,7 @@ var RESEARCH = [
+   {id:'luminoustracking', name:'Luminous Tracking', desc:'+0.5 percentage points Luminous chance per level for future eligible encounters; total chance at most 35%. No extra Motes per kill.', unlockDepth:32, levelCap:10, effectPerLevel:0.005, lumenBase:2500000, lumenGrowth:1.60, shardBase:1500, shardGrowth:1.60}
+ ];
+ 
+-RESEARCH.push({id:'masterwork',name:'Masterwork Tempering',desc:'Each level opens 5 permanent Mastery ranks for every Wisp. Mastery itself requires Mythic, ability level 20 and Ultimate, plus its shown development requirements and Prisms/Sigils.',unlockDepth:120,lumenBase:50000000,lumenGrowth:1.35,shardBase:500000,shardGrowth:1.35,effectPerLevel:5});
++RESEARCH.push({id:'masterwork',name:'Masterwork Tempering',desc:'Each level opens 5 permanent Mastery ranks for every Wisp. Mastery itself requires Mythic, ability level 20 and Ultimate, plus its shown development requirements and Prisms/Sigils.',unlockDepth:70,lumenBase:1000000,lumenGrowth:1.35,shardBase:25000,shardGrowth:1.35,effectPerLevel:5});
+ 
+ // FORGE_EXPANSION_001: additive IDs; original prices and paid values stay.
+ var FORGE_EXPANSION = [
+@@ -5963,14 +5963,14 @@ function getWispRarityPlan(sp){
+   if(SPIRITS.indexOf(sp)===-1)return {affordable:false,reason:'invalid',requirements:[]};
+   var tier=state.heroRarity[sp.id]||0,g=ENDLESS_PROGRESSION.rarity;
+   if(tier>=5)return {affordable:false,reason:'maxed',requirements:[]};
+-  var requirements=[wispRequirement('level','Wisp Lv.',state.spirits[sp.id]||0,rarityReq(tier)),wispRequirement('depth','Rift',state.maxDepthEver,g.depth[tier]),wispRequirement('ascends','Ascends',state.ascendCount,g.ascends[tier]),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),g.lab[tier]),wispRequirement('forge','Arcane Calibration Lv.',researchLevel('arcanecal'),g.forge[tier])];
++  var requirements=[wispRequirement('level','Wisp Lv.',state.spirits[sp.id]||0,rarityReq(tier)),wispRequirement('depth','Rift',state.maxDepthEver,g.depth[tier]),wispRequirement('ascends','Ascends',state.ascendCount,g.ascends[tier]),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),g.lab[tier]+Math.floor(SPIRITS.indexOf(sp)*tier/2)),wispRequirement('forge','Arcane Calibration Lv.',researchLevel('arcanecal'),g.forge[tier])];
+   var cost=rarityCost(sp,tier),eligible=(state.spirits[sp.id]||0)>0&&requirements.every(function(r){return r.met;});
+   var funded=forgeExactDebit(state.lumen,cost.lumen)&&shardCanPayExactly(cost.shard);
+   return {tier:tier,cost:cost,requirements:requirements,eligible:eligible,affordable:eligible&&funded,reason:!eligible?'requirements':funded?'available':'funds'};
+ }
+ function getWispUltimatePlan(sp){
+   if(SPIRITS.indexOf(sp)===-1)return {affordable:false,reason:'invalid',requirements:[]};
+-  var g=ENDLESS_PROGRESSION.ultimate,requirements=[wispRequirement('rarity','Rarity tier',state.heroRarity[sp.id]||0,5),wispRequirement('module','Ability Lv.',moduleLevel(sp.id),g.module),wispRequirement('depth','Rift',state.maxDepthEver,g.depth),wispRequirement('ascends','Ascends',state.ascendCount,g.ascends),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),g.lab),wispRequirement('forge','Arcane Calibration Lv.',researchLevel('arcanecal'),g.forge)];
++  var g=ENDLESS_PROGRESSION.ultimate,requirements=[wispRequirement('rarity','Rarity tier',state.heroRarity[sp.id]||0,5),wispRequirement('module','Ability Lv.',moduleLevel(sp.id),g.module),wispRequirement('depth','Rift',state.maxDepthEver,g.depth),wispRequirement('ascends','Ascends',state.ascendCount,g.ascends),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),g.lab+2*SPIRITS.indexOf(sp)),wispRequirement('forge','Arcane Calibration Lv.',researchLevel('arcanecal'),g.forge)];
+   var cost=ultimateSigilCost(sp),eligible=(state.spirits[sp.id]||0)>0&&!ultimateUnlocked(sp.id)&&requirements.every(function(r){return r.met;});
+   var funded=forgeExactDebit(state.sigils,cost);
+   return {cost:cost,requirements:requirements,eligible:eligible,affordable:eligible&&funded,reason:ultimateUnlocked(sp.id)?'owned':!eligible?'requirements':funded?'available':'funds'};
+@@ -6552,7 +6552,11 @@ function wispRoleComparison(depth,nowMs){
+   });
+   return {steady:steady,current:wispRoleSnapshot(depth,nowMs)};
+ }
+-function endlessCurveDepth(depth){return depth<=ENDLESS_PROGRESSION.curveStart?depth:ENDLESS_PROGRESSION.curveStart+ENDLESS_PROGRESSION.curveWidth*Math.log1p((depth-ENDLESS_PROGRESSION.curveStart)/ENDLESS_PROGRESSION.curveWidth);}
++function endlessCurveDepth(depth){
++ var g=ENDLESS_PROGRESSION;if(depth>1e9)return endlessCurveDepth(1e9)+g.curveWidth*Math.log(depth/1e9);
++ if(depth>g.tailStart)return endlessCurveDepth(g.tailStart)+(depth-g.tailStart)*g.tailSlope;
++ return depth<=g.curveStart?depth:g.curveStart+g.curveWidth*Math.log1p((depth-g.curveStart)/g.curveWidth);
++}
+ function enemyHpFor(depth){
+   return Amount.round(Amount.mul(Amount.mul(ENDLESS_PROGRESSION.hpBase,Amount.pow(1.145,endlessCurveDepth(depth))),isBoss(depth)?6:1),'round');
+ }
+@@ -7501,8 +7505,8 @@ function studyCost(node, level){
+   };
+ }
+ function futureStudyCostFactor(node,growth,level){
+-  if(node.levelCap!==undefined||level<=ENDLESS_PROGRESSION.lateStudyCostStart)return Amount.pow(growth,level);
+-  return Amount.mul(Amount.pow(growth,ENDLESS_PROGRESSION.lateStudyCostStart),Amount.pow(ENDLESS_PROGRESSION.lateStudyCostGrowth,level-ENDLESS_PROGRESSION.lateStudyCostStart));
++  if(node.levelCap!==undefined||level<=ENDLESS_PROGRESSION.lateStudyCostStart)return Amount.pow(node.levelCap===undefined?1.6:growth,level);
++  return Amount.mul(Amount.pow(1.6,ENDLESS_PROGRESSION.lateStudyCostStart),Amount.pow(ENDLESS_PROGRESSION.lateStudyCostGrowth,level-ENDLESS_PROGRESSION.lateStudyCostStart));
+ }
+ function unlockedLongStudies(){
+   return LONG_STUDIES.filter(function(l){ return state.maxDepthEver >= (l.unlockDepth||1); });

@@ -1,0 +1,502 @@
+{
+  "status": "FAIL",
+  "sourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9",
+  "policySha256": "2222de05d1163efcd61b4db03177582a37b5249cf832f89ccd942d2406e2cd58",
+  "policy": "regular",
+  "error": "Error: Canonical timer deadline mismatch {\"field\":\"_autoEmpowerAccum\",\"base\":0,\"last\":0,\"value\":0,\"elapsed\":1,\"delay\":1}\n    at canonicalAutomationNext (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\forge-expansion-harness.cjs:1:1), <anonymous>:7265:58)\n    at simulationNextAutoEmpowerSeconds (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\forge-expansion-harness.cjs:1:1), <anonymous>:7281:59)\n    at run (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\forge-expansion-harness.cjs:1:1), <anonymous>:9081:27)\n    at run.next (<anonymous>)\n    at cursor.<computed> [as next] (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\forge-expansion-harness.cjs:1:1), <anonymous>:9260:187)\n    at Object.advanceAuthoritativeTime [as advance] (eval at app (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\forge-expansion-harness.cjs:1:1), <anonymous>:9263:21)\n    at advance (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\endless-campaign.cjs:114:20)\n    at campaign (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\endless-campaign.cjs:205:7)\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\docs\\qa\\endless-progression-001\\runtimes\\canonical-basis-daily\\tests\\behavioral\\endless-campaign.cjs:229:14)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)",
+  "elapsed": 231000,
+  "milestones": {
+    "recruit.ember": 0,
+    "recruit.tide": 450,
+    "firstAscend": 510,
+    "recruit.stone": 28800,
+    "firstRarity": 28810
+  },
+  "state": {
+    "schemaVersion": 5,
+    "offline12hRefund": null,
+    "swiftRecoveryRefund": null,
+    "swiftRecoveryRefundAudit": null,
+    "feedbackMigration": {
+      "version": 1,
+      "applied": true,
+      "bondsCreditAuditVersion": 1,
+      "echoCreditAuditVersion": 1,
+      "receipts": {},
+      "history": {
+        "bonds": {
+          "levels": 2
+        },
+        "echo": {
+          "levels": 3
+        }
+      }
+    },
+    "refundCredits": {
+      "prisms": []
+    },
+    "lumen": 2004.2999999999956,
+    "shards": 946324544.4990926,
+    "prisms": 18,
+    "comets": 335,
+    "motes": 5237,
+    "sigils": 170,
+    "moteNextAtMs": 2000231904000,
+    "studyBoosts": {
+      "wispascend": {
+        "mult": 3,
+        "startedAtMs": 2000230400000,
+        "expiresAtMs": 2000259200000
+      }
+    },
+    "studyBoostHours": {
+      "wispascend": 8,
+      "guardmastery": 8,
+      "riftattune": 8,
+      "shardstudy": 8,
+      "lumenstudy": 8,
+      "formationstudy": 8,
+      "motestudy": 8,
+      "prismstudy": 8,
+      "measuredinquiry": 8,
+      "labcapacity": 8,
+      "procurement": 8,
+      "catalysis": 8,
+      "focusprotocol": 8,
+      "fieldnotes": 8,
+      "curriculum": 8,
+      "bossledger": 8,
+      "luminousdistill": 8,
+      "sigilcartography": 8,
+      "rarityappraisal": 8,
+      "modulefabrication": 8,
+      "ultimateanalysis": 8,
+      "resonantefficiency": 8,
+      "adaptivegrowth": 8
+    },
+    "depth": 69,
+    "maxDepthEver": 130,
+    "riftMode": "farm",
+    "farmDepth": 69,
+    "farmReturnDepth": 70,
+    "enemyDepth": 69,
+    "enemyHp": 676342.6984999999,
+    "enemyMaxHp": 685062,
+    "enemyIsLuminous": false,
+    "spirits": {
+      "ember": 52,
+      "tide": 0,
+      "stone": 23,
+      "gale": 0,
+      "thorn": 0,
+      "void": 0,
+      "aurora": 0,
+      "titan": 0
+    },
+    "heroRarity": {
+      "ember": 3,
+      "tide": 1,
+      "stone": 2,
+      "gale": 0,
+      "thorn": 0,
+      "void": 0,
+      "aurora": 0,
+      "titan": 0
+    },
+    "heroResource": {
+      "ember": 57.999999999999545,
+      "tide": 0,
+      "stone": 30,
+      "gale": 0,
+      "thorn": 0,
+      "void": 0,
+      "aurora": 0,
+      "titan": 0
+    },
+    "wispModules": {
+      "ember": 20,
+      "tide": 19,
+      "stone": 15,
+      "gale": 0,
+      "thorn": 0,
+      "void": 0,
+      "aurora": 0,
+      "titan": 0
+    },
+    "wispUltimate": {
+      "ember": false,
+      "tide": false,
+      "stone": false,
+      "gale": false,
+      "thorn": false,
+      "void": false,
+      "aurora": false,
+      "titan": false
+    },
+    "wispMastery": {
+      "ember": 0,
+      "tide": 0,
+      "stone": 0,
+      "gale": 0,
+      "thorn": 0,
+      "void": 0,
+      "aurora": 0,
+      "titan": 0
+    },
+    "canonicalAutomationClock": {
+      "_autoEmpowerAccum": {
+        "base": 0,
+        "elapsed": "99999999999999995836663657655662973411381244659423828125e-56",
+        "last": 1000
+      }
+    },
+    "recruitmentEntitlements": {
+      "ember": true,
+      "tide": true,
+      "stone": true,
+      "gale": false,
+      "thorn": false,
+      "void": false,
+      "aurora": false,
+      "titan": false
+    },
+    "empowerQueue": {
+      "ember": true,
+      "tide": false,
+      "stone": true,
+      "gale": true,
+      "thorn": true,
+      "void": true,
+      "aurora": true,
+      "titan": true
+    },
+    "activeParty": [
+      "ember",
+      "stone"
+    ],
+    "formationPresets": {
+      "push": [
+        "ember",
+        "stone",
+        "tide"
+      ],
+      "farm": [
+        "ember"
+      ],
+      "boss": [
+        "ember"
+      ]
+    },
+    "activeFormationPreset": "push",
+    "formationRebuild": {
+      "members": [
+        "ember",
+        "stone",
+        "tide"
+      ],
+      "preset": "push"
+    },
+    "nodes": {
+      "starlight": 0,
+      "steady": 0,
+      "echo": 3,
+      "bonds": 2,
+      "swift": 3,
+      "momentum": 0,
+      "reserves": 0,
+      "swiftcharter": 0,
+      "lumenmemory": 0,
+      "veteranrecruits": 0,
+      "rosterrecall": 0,
+      "chargememory": 0,
+      "supportmemory": 0,
+      "phasememory": 0,
+      "riftstep": 0,
+      "frontier": 0,
+      "stardust": 0,
+      "gentlegrowth": 0,
+      "formationseat": 0,
+      "benchmentor": 0,
+      "empowerbatch": 0,
+      "wallwisdom": 0,
+      "invitations": 1,
+      "recruitreserve": 0
+    },
+    "treeTrainingProgress": 0,
+    "research": {
+      "focus": 0,
+      "sense": 0,
+      "formation": 0,
+      "resolve": 0,
+      "charge": 10,
+      "arcanecal": 20,
+      "conduction": 17,
+      "luminoustracking": 10,
+      "masterwork": 1,
+      "cauterize": 10,
+      "fracturekey": 10,
+      "guardianseal": 5,
+      "spillway": 3,
+      "sustainedchannel": 1,
+      "tapconduit": 5,
+      "guardiancadence": 5,
+      "relay": 5,
+      "resonantedge": 5,
+      "victorycharge": 5,
+      "amplifiertrim": 3,
+      "dualchannel": 5,
+      "overflowconduit": 2,
+      "resonancecells": 0,
+      "resonancecascade": 0,
+      "resonancereclaim": 0
+    },
+    "researchQueue": {
+      "focus": false,
+      "sense": false,
+      "formation": false,
+      "resolve": false,
+      "charge": true,
+      "arcanecal": true,
+      "conduction": true,
+      "luminoustracking": true,
+      "masterwork": false,
+      "cauterize": true,
+      "fracturekey": true,
+      "guardianseal": true,
+      "spillway": true,
+      "sustainedchannel": true,
+      "tapconduit": true,
+      "guardiancadence": true,
+      "relay": true,
+      "resonantedge": true,
+      "victorycharge": true,
+      "amplifiertrim": true,
+      "dualchannel": true,
+      "overflowconduit": true,
+      "resonancecells": true,
+      "resonancecascade": true,
+      "resonancereclaim": true
+    },
+    "longStudyLevels": {
+      "wispascend": 15,
+      "guardmastery": 3,
+      "riftattune": 0,
+      "shardstudy": 3,
+      "lumenstudy": 0,
+      "formationstudy": 0,
+      "motestudy": 0,
+      "prismstudy": 0,
+      "measuredinquiry": 2,
+      "labcapacity": 2,
+      "procurement": 4,
+      "catalysis": 1,
+      "focusprotocol": 4,
+      "fieldnotes": 3,
+      "curriculum": 1,
+      "bossledger": 2,
+      "luminousdistill": 0,
+      "sigilcartography": 0,
+      "rarityappraisal": 0,
+      "modulefabrication": 0,
+      "ultimateanalysis": 0,
+      "resonantefficiency": 0,
+      "adaptivegrowth": 0
+    },
+    "activeStudies": [
+      {
+        "id": "wispascend",
+        "remainingSec": 114706.21993548376,
+        "totalDurationSec": 157720,
+        "speedMult": 1
+      },
+      {
+        "id": "focusprotocol",
+        "remainingSec": 4630,
+        "totalDurationSec": 6075,
+        "speedMult": 1
+      },
+      {
+        "id": "procurement",
+        "remainingSec": 2215,
+        "totalDurationSec": 3660,
+        "speedMult": 1
+      },
+      {
+        "id": "fieldnotes",
+        "remainingSec": 384,
+        "totalDurationSec": 1829,
+        "speedMult": 1
+      }
+    ],
+    "studyQueue": {
+      "wispascend": true,
+      "guardmastery": false,
+      "riftattune": false,
+      "shardstudy": false,
+      "lumenstudy": false,
+      "formationstudy": false,
+      "motestudy": false,
+      "prismstudy": false,
+      "measuredinquiry": false,
+      "labcapacity": false,
+      "procurement": false,
+      "catalysis": false,
+      "focusprotocol": false,
+      "fieldnotes": false,
+      "curriculum": false,
+      "bossledger": false,
+      "luminousdistill": false,
+      "sigilcartography": false,
+      "rarityappraisal": false,
+      "modulefabrication": false,
+      "ultimateanalysis": false,
+      "resonantefficiency": false,
+      "adaptivegrowth": false
+    },
+    "studyUseMotes": {
+      "wispascend": false,
+      "guardmastery": false,
+      "riftattune": false,
+      "shardstudy": false,
+      "lumenstudy": false,
+      "formationstudy": false,
+      "motestudy": false,
+      "prismstudy": false,
+      "measuredinquiry": false,
+      "labcapacity": false,
+      "procurement": false,
+      "catalysis": false,
+      "focusprotocol": false,
+      "fieldnotes": false,
+      "curriculum": false,
+      "bossledger": false,
+      "luminousdistill": false,
+      "sigilcartography": false,
+      "rarityappraisal": false,
+      "modulefabrication": false,
+      "ultimateanalysis": false,
+      "resonantefficiency": false,
+      "adaptivegrowth": false
+    },
+    "studySpeedTargets": {
+      "wispascend": 3,
+      "guardmastery": 8,
+      "riftattune": 8,
+      "shardstudy": 8,
+      "lumenstudy": 8,
+      "formationstudy": 8,
+      "motestudy": 8,
+      "prismstudy": 8,
+      "measuredinquiry": 8,
+      "labcapacity": 8,
+      "procurement": 8,
+      "catalysis": 8,
+      "focusprotocol": 8,
+      "fieldnotes": 8,
+      "curriculum": 8,
+      "bossledger": 8,
+      "luminousdistill": 8,
+      "sigilcartography": 8,
+      "rarityappraisal": 8,
+      "modulefabrication": 8,
+      "ultimateanalysis": 8,
+      "resonantefficiency": 8,
+      "adaptivegrowth": 8
+    },
+    "achieved": {
+      "d10": true,
+      "d25": true,
+      "d50": true,
+      "d100": true,
+      "tap100": true,
+      "tap1000": true,
+      "asc1": true,
+      "asc5": true,
+      "idle8": true,
+      "labmaster": true,
+      "study1": true,
+      "labqueue": true,
+      "modulemax": true
+    },
+    "owned": {
+      "meteor": false,
+      "starcall": false,
+      "autoascend": true
+    },
+    "riftTheme": "default",
+    "cometUpgrades": {
+      "cometreservoir": 0,
+      "cometcycle": 0,
+      "meteorcore": 0
+    },
+    "cometCharges": 0,
+    "cometWork": 0,
+    "cometMeteorUsed": false,
+    "cometCalled": false,
+    "cometEvents": {
+      "firstCommand": false,
+      "firstRecharge": false,
+      "bossStrike": false,
+      "calledKill": false
+    },
+    "cometClaims": {
+      "policy": "comet-commands-001",
+      "retired": {
+        "comettrials": "absent",
+        "rifttrail": "absent",
+        "starfallcrest": "absent"
+      },
+      "deeds": {}
+    },
+    "cometTrial": null,
+    "cometTrialMarks": {},
+    "cometTrialResult": null,
+    "cometCosmetics": {
+      "trail": false,
+      "crest": false
+    },
+    "legacyCometPurchases": {},
+    "buffUntil": 0,
+    "buffMult": 1,
+    "supportBuffs": null,
+    "supportRecastUntil": {
+      "tide": 2000231003333.3328,
+      "aurora": 0
+    },
+    "ascendCount": 7,
+    "ascendRewardedDepth": 129,
+    "sigilResonanceUses": 0,
+    "totalTaps": 5400,
+    "totalKills": 11064560,
+    "totalOfflineSeconds": 225600,
+    "luminousAccum": 0.05999999999894534,
+    "savedLabMultiplier": 1,
+    "autoAscendEnabled": true,
+    "autoAscendTargetDepth": 130,
+    "loginStreak": 3,
+    "questDay": "2033-05-20",
+    "questIds": [
+      "q_boss",
+      "q_tap_small",
+      "q_luminous"
+    ],
+    "questClaimed": {
+      "q_tap_small": true,
+      "q_boss": true,
+      "q_luminous": true
+    },
+    "dailyQuestRefreshes": 0,
+    "dailyStats": {
+      "taps": 1800,
+      "kills": 1969658,
+      "empowers": 533,
+      "research": 12,
+      "bossKills": 23,
+      "luminousKills": 345049,
+      "ascends": 3
+    },
+    "lastSeen": 2000231000000,
+    "_autoTapAccum": 0,
+    "_autoEmpowerAccum": 0
+  }
+}

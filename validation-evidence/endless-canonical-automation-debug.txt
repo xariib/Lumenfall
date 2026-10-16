@@ -1,0 +1,17 @@
+<anonymous_script>:7244
+ if(Amount.le(left,0)&&(state[field]||0)<1000-1e-7)throw new Error('Canonical timer deadline mismatch '+JSON.stringify({field:field,base:m.base,last:m.last,value:state[field],elapsed:clock.sinceNumber(m.start),delay:m.delay}));
+                                                   ^
+
+Error: Canonical timer deadline mismatch {"field":"_autoTapAccum","base":999.9164568990922,"last":999.9980877824563,"value":999.9980877824563,"elapsed":0.00008354310090783201,"delay":0.00008354310090783201}
+    at canonicalAutomationNext (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:7244:58)
+    at simulationNextAutoTapSeconds (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:7255:57)
+    at run (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:9056:23)
+    at run.next (<anonymous>)
+    at cursor.<computed> [as next] (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:9235:187)
+    at Object.advanceAuthoritativeTime [as advance] (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:9238:21)
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\endless-cycle-split.cjs:16:104)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+
+Node.js v24.19.0

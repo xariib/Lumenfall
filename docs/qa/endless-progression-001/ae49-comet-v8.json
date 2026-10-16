@@ -1,0 +1,36 @@
+{
+  "status": "fail",
+  "phase": "raw-old-schema-migrations-and-idempotency",
+  "checks": 656,
+  "priceCases": 12,
+  "faultCases": 12,
+  "numericCases": 0,
+  "migrationCases": 0,
+  "invalidCases": 0,
+  "records": [
+    {
+      "id": "catalog-and-historical-ledgers",
+      "checks": 24
+    },
+    {
+      "id": "all-purchased-prices-caps-and-storage",
+      "checks": 357
+    },
+    {
+      "id": "purchase-unlocks-lifecycle-and-exact-debit",
+      "checks": 150
+    },
+    {
+      "id": "all-shop-primary-and-recovery-faults",
+      "checks": 120
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: raw-old-schema-migrations-and-idempotency: actual current schema\n    at eq (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-v8.cjs:13:52)\n    at C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-v8.cjs:152:5\n    at Array.forEach (<anonymous>)\n    at C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-v8.cjs:151:11\n    at scenario (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-v8.cjs:17:53)\n    at Object.<anonymous> (C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-v8.cjs:150:1)\n    at Module._compile (module.js:573:30)\n    at Object.Module._extensions..js (module.js:584:10)\n    at Module.load (module.js:507:32)\n    at tryModuleLoad (module.js:470:12)",
+  "actual": 5,
+  "expected": 4,
+  "sourceSha256": "ae49e73ecb2500010be317a6e2abb9b9dc0de2bbaa0dcd9301bf568eb35022e5",
+  "testSha256": "baaddb7b5d565d3cfe873256b101cf4cb70df7bac7c42094301f6757ab33a00a",
+  "harnessSha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928",
+  "node": "v8.3.0",
+  "v8": "6.0.286.52"
+}

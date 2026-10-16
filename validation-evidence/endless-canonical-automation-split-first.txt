@@ -1,0 +1,17 @@
+<anonymous_script>:9209
+      throw new Error(('Authoritative simulation stalled without elapsed-time or state progress | ' + JSON.stringify({
+      ^
+
+Error: Authoritative simulation stalled without elapsed-time or state progress | {"elapsedInRun":0.6106273571545798,"elapsedWholeSec":0,"elapsedFractionSec":0.6106273571545798,"elapsedSec":10,"remaining":"93893726428454202051858198539886768418938345348578877747058868408203125e-70","stepSec":0,"farmGridRemainingSec":0.38937255859375,"farmGridCrossings":0,"riftMode":"push","candidates":{"ability":2.2220374315240847,"autoTap":0,"autoEmpower":0.000001000002026557928,"study":"143893726428454202051858198539886768418938345348578877747058868408203125e-70","bossRetreatGrace":null,"farmGrid":null,"economy":null},"kinds":["autoTap"]}
+    at run (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:9209:13)
+    at run.next (<anonymous>)
+    at cursor.<computed> [as next] (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:9233:187)
+    at Object.advanceAuthoritativeTime [as advance] (eval at app (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\forge-expansion-harness.cjs:141:3), <anonymous>:9236:21)
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\tests\behavioral\endless-cycle-split.cjs:16:104)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+
+Node.js v24.19.0

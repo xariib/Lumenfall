@@ -1,4 +1,9 @@
 * text=auto eol=lf
+# Migration copies preserve original evidence bytes and historical whitespace.
+docs/qa/endless-progression-001/** -text whitespace=-trailing-space
+validation-evidence/** -text whitespace=-trailing-space
+docs/qa/repository-migration-001/** -text whitespace=-trailing-space
+docs/project/PROJECT_STATE_BEFORE_MIGRATION_2026-10-16.md -text whitespace=-trailing-space
 tests/behavioral/fixtures-pre-endless.json -text
 docs/qa/endless-progression-001/applied-*/*.log -text whitespace=-trailing-space
 docs/qa/endless-progression-001/ae49-*/*.log -text whitespace=-trailing-space

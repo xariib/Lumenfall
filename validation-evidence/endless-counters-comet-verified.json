@@ -1,0 +1,794 @@
+{
+  "status": "PASS",
+  "checks": 10491,
+  "groups": [
+    {
+      "name": "fresh schema, fixed catalog and historical reward policy",
+      "checks": 43,
+      "status": "PASS"
+    },
+    {
+      "name": "old0/1/2 paid migrations and one-pass retirement compensation",
+      "checks": 8222,
+      "status": "PASS"
+    },
+    {
+      "name": "strict current4 paid data, recovery preservation and explicit restore",
+      "checks": 227,
+      "status": "PASS"
+    },
+    {
+      "name": "actual six-type purchases and four event Deeds",
+      "checks": 137,
+      "status": "PASS"
+    },
+    {
+      "name": "sticky unlocks, exact wallets and read-only plans",
+      "checks": 151,
+      "status": "PASS"
+    },
+    {
+      "name": "newly earned credits and transactional spend plus settlement",
+      "checks": 47,
+      "status": "PASS"
+    },
+    {
+      "name": "command lifecycle, pure nested preview and no zero-effect charge",
+      "checks": 158,
+      "status": "PASS"
+    },
+    {
+      "name": "Meteor exact HP, no elapsed work or duplicate multipliers",
+      "checks": 206,
+      "status": "PASS"
+    },
+    {
+      "name": "canonical lethal rewards, Auto-Ascend and rollback after state replacement",
+      "checks": 95,
+      "status": "PASS"
+    },
+    {
+      "name": "Call, reload, abandonment and actual defeat owners",
+      "checks": 182,
+      "status": "PASS"
+    },
+    {
+      "name": "exact charge thresholds, unsafe lifetime counters and admitted-state closure",
+      "checks": 332,
+      "status": "PASS"
+    },
+    {
+      "name": "paid Refresh legacy/new routes, determinism, exact counter and rollback",
+      "checks": 138,
+      "status": "PASS"
+    },
+    {
+      "name": "separate original F26 receipts settle before the bounded Comet family",
+      "checks": 47,
+      "status": "PASS"
+    },
+    {
+      "name": "protected original Deed thresholds count all paid Forge levels",
+      "checks": 11,
+      "status": "PASS"
+    },
+    {
+      "name": "Refresh representability, saturation, lifecycle and free refusals",
+      "checks": 443,
+      "status": "PASS"
+    },
+    {
+      "name": "causal controls against the complete original IIFE",
+      "checks": 52,
+      "status": "PASS"
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "old-loader",
+      "rawSha256": "c8f88fb3fa84d49a48cee0552dc69adfff74c5b607976760c5ae840bdc01986a",
+      "finalComets": 450,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "settled",
+          "rifttrail": "settled",
+          "starfallcrest": "settled"
+        },
+        "deeds": {}
+      }
+    },
+    {
+      "id": "strict-schema",
+      "invalidCases": [
+        {
+          "id": "missing-cometUpgrades",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometCharges",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometWork",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometMeteorUsed",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometCalled",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometEvents",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometClaims",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "missing-owned-meteor",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-owned-meteor",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-owned-starcall",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-owned-starcall",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-comettrials",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-rifttrail",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-starfallcrest",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-cometreservoir",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-cometcycle",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-meteorcore",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "unknown-level",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "array-levels",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-NaN",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-null",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "unknown-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-boss",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-called-kill",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "earned-without-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-4",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-4000",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "full-bank-work",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-charge",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-used",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-called",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "marker-no-owner",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "called-not-luminous",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "called-boss",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "marker-wrong-encounter",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "wrong-policy",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "extra-claims-field",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "missing-retirement",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "unknown-retirement",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "unknown-deed",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "false-pending-deed",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "orphan-pending-deed",
+          "code": "invalid-comet-claims"
+        }
+      ],
+      "overcaps": {
+        "cometreservoir": 1e+30,
+        "cometcycle": 9,
+        "meteorcore": 7
+      }
+    },
+    {
+      "id": "complete-real-catalog",
+      "comets": 8670,
+      "upgrades": {
+        "cometreservoir": 2,
+        "cometcycle": 3,
+        "meteorcore": 4
+      },
+      "events": {
+        "firstCommand": true,
+        "firstRecharge": true,
+        "bossStrike": true,
+        "calledKill": true
+      },
+      "earned": [
+        [
+          "comet_first_command",
+          true
+        ],
+        [
+          "comet_first_recharge",
+          true
+        ],
+        [
+          "comet_boss_strike",
+          true
+        ],
+        [
+          "comet_called_kill",
+          true
+        ]
+      ]
+    },
+    {
+      "id": "purchase-settlement-none",
+      "staged": [
+        {
+          "comets": 18014398509481884,
+          "claim": "due"
+        }
+      ],
+      "result": true,
+      "finalComets": 18014398509481934,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "settled",
+          "starfallcrest": "absent"
+        },
+        "deeds": {}
+      },
+      "primarySha256": "4f55b3815b02710b267f279d69340e89d5f1def0043235e94fa8d7b69ebde517"
+    },
+    {
+      "id": "purchase-settlement-primary",
+      "staged": [
+        {
+          "comets": 18014398509481884,
+          "claim": "due"
+        }
+      ],
+      "result": false,
+      "finalComets": 18014398509481934,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "settled",
+          "starfallcrest": "absent"
+        },
+        "deeds": {}
+      },
+      "primarySha256": "4f55b3815b02710b267f279d69340e89d5f1def0043235e94fa8d7b69ebde517"
+    },
+    {
+      "id": "purchase-settlement-recovery",
+      "staged": [
+        {
+          "comets": 18014398509481884,
+          "claim": "due"
+        }
+      ],
+      "result": true,
+      "finalComets": 18014398509481934,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "absent",
+          "rifttrail": "settled",
+          "starfallcrest": "absent"
+        },
+        "deeds": {}
+      },
+      "primarySha256": "4f55b3815b02710b267f279d69340e89d5f1def0043235e94fa8d7b69ebde517"
+    },
+    {
+      "id": "actual-epsilon-nonlethal",
+      "beforeHp": 1.0000000005,
+      "budget": 1,
+      "afterHp": 5.000000413701855e-10,
+      "killOwners": []
+    },
+    {
+      "id": "ending-hit-none",
+      "result": true,
+      "ascends": 1,
+      "saves": 1,
+      "after": {
+        "depth": 1,
+        "ascendCount": 4,
+        "charges": 0,
+        "work": 3990
+      },
+      "tokenChanged": true
+    },
+    {
+      "id": "ending-hit-primary",
+      "result": false,
+      "ascends": 1,
+      "saves": 1,
+      "after": {
+        "depth": 1,
+        "ascendCount": 4,
+        "charges": 0,
+        "work": 3990
+      },
+      "tokenChanged": true
+    },
+    {
+      "id": "ending-hit-recovery",
+      "result": true,
+      "ascends": 1,
+      "saves": 1,
+      "after": {
+        "depth": 1,
+        "ascendCount": 4,
+        "charges": 0,
+        "work": 3990
+      },
+      "tokenChanged": true
+    },
+    {
+      "id": "ending-hit-none-unsafe-count",
+      "result": true,
+      "ascends": 1,
+      "saves": 1,
+      "after": {
+        "depth": 1,
+        "ascendCount": "1000000000000000019884624838657e0",
+        "charges": 0,
+        "work": 3990
+      },
+      "tokenChanged": true
+    },
+    {
+      "id": "ending-hit-primary-unsafe-count",
+      "result": false,
+      "ascends": 1,
+      "saves": 1,
+      "after": {
+        "depth": 1,
+        "ascendCount": "1000000000000000019884624838657e0",
+        "charges": 0,
+        "work": 3990
+      },
+      "tokenChanged": true
+    },
+    {
+      "id": "ending-hit-recovery-unsafe-count",
+      "result": true,
+      "ascends": 1,
+      "saves": 1,
+      "after": {
+        "depth": 1,
+        "ascendCount": "1000000000000000019884624838657e0",
+        "charges": 0,
+        "work": 3990
+      },
+      "tokenChanged": true
+    },
+    {
+      "id": "admitted-state-real-recharge",
+      "kills": 200,
+      "bank": {
+        "charges": 1,
+        "work": 0,
+        "used": false,
+        "called": false,
+        "events": {
+          "firstCommand": false,
+          "firstRecharge": true,
+          "bossStrike": false,
+          "calledKill": false
+        }
+      },
+      "comets": 10010,
+      "saveStatus": {
+        "failureCount": 0,
+        "warningShown": false,
+        "lastError": "",
+        "blocked": false,
+        "blockedReason": "",
+        "recovered": false
+      }
+    }
+  ],
+  "negativeControls": [
+    {
+      "id": "second-command-is-not-another-initial-gift",
+      "function": "buyShopItem",
+      "sourceSha256": "f0c1f65935ac1f49754b9ab89b2e0764679a2a7380216d6437f24249f5e1900e",
+      "positiveWitness": {
+        "charges": 0,
+        "owned": [
+          true,
+          true
+        ]
+      },
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "second purchase must not refill the spent shared gift\n\n1 !== 0\n"
+      }
+    },
+    {
+      "id": "representable-debit-required",
+      "function": "cometExactDebit",
+      "sourceSha256": "11bb3edf1259f29939090d97112238e628c4dc722d0e46d982ca6e9e3415ee68",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "unrepresentable paid debit must refuse\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "unrepresentable-credit-keeps-original-claim",
+      "function": "cometCreditExactly",
+      "sourceSha256": "ee5797e1f59a6f7244e647efda1bbe4b36f24925abefeb4bbae1885bd72de858",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "lost credit must retain its original pending identity\n+ actual - expected\n\n+ undefined\n- true\n"
+      }
+    },
+    {
+      "id": "new-deed-does-not-sweep-older-claims",
+      "function": "cometEarnDeed",
+      "sourceSha256": "2912f1fe020bfe5cf8e5a54f600ac1e8274075b9418675e30fcd07ee3b8a1471",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "new Deed must not sweep an unrelated old claim\n\n'settled' !== 'due'\n"
+      }
+    },
+    {
+      "id": "recharge-does-not-imply-an-earlier-command",
+      "function": "normalizeCometState",
+      "sourceSha256": "9d4c6dde03afb0100fc8d9b484efe108a4499764faa0541b02cc8a4abe0e049c",
+      "positiveWitness": {
+        "charges": 1,
+        "work": 0,
+        "used": false,
+        "called": false,
+        "events": {
+          "firstCommand": false,
+          "firstRecharge": true,
+          "bossStrike": false,
+          "calledKill": false
+        }
+      },
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "accepted owned empty bank must stay valid after 200 actual defeats\n\nfalse !== true\n"
+      }
+    },
+    {
+      "id": "hidden-page-cannot-spend",
+      "function": "cometMutationOpen",
+      "sourceSha256": "29352dd935ce0791d8712042e32b812c2d214738c8ded701c8006204622b3a7d",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "hidden command must remain unavailable\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "ready-auto-ascend-cannot-spend",
+      "function": "getCometCommandPlan",
+      "sourceSha256": "88a4bb189fb2d9c7352ccd6d5f286b390eb3753de97f33d65429bc93f740f5ce",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "already-ready Auto-Ascend must not spend a command\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "positive-epsilon-hp-is-not-a-lethal-command",
+      "function": "activateCometCommand",
+      "sourceSha256": "458435638d88eb1368da011d7e53c421a35d4a0e39d58e064b436ae478083e2c",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "positive Meteor remainder must not become an epsilon kill\n\n1 !== 0\n"
+      }
+    },
+    {
+      "id": "primary-failure-restores-run-identity",
+      "function": "cometCommitMutation",
+      "sourceSha256": "b7c98994e4f5bbc737e20bb054c7ac7da34dbd7539827fd08edb85fd9eff95dd",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "failed ending hit must restore the exact original run token"
+      }
+    },
+    {
+      "id": "capture-working-object-after-actual-ascend",
+      "function": "cometCommitMutation",
+      "sourceSha256": "863389de269be7768886fa9b54153a9ebbe774f42d191f3a6239b175d79123d8",
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "primary failure after actual Ascend replacement must refuse\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "new-encounter-clears-command-use",
+      "function": "spawnEnemy",
+      "sourceSha256": "a47d09e2ebeb552937662c9e502465aa611f777f9f684c334b0030135347bb1b",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "new actual enemy must clear the Meteor use marker\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "farm-batch-captures-called-enemy-before-replacement",
+      "function": "simulationBatchFarmKills",
+      "sourceSha256": "b8f5a8fa2bfe62c1d6387b760b96efcf1423c8050e8539e8746be695d63ed2e1",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "actual called Farm defeat must retain its event\n\nfalse !== true\n"
+      }
+    },
+    {
+      "id": "manual-defeat-owner-awards-work",
+      "function": "defeatEnemy",
+      "sourceSha256": "fcde607c635edc2a286771832c74f1991e3eb8ed12d84f9790e7b1b5e150adf0",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "one original manual defeat must award20 work\n\n0 !== 20\n"
+      }
+    },
+    {
+      "id": "authoritative-defeat-owner-awards-work",
+      "function": "simulationDefeatEnemy",
+      "sourceSha256": "1a891018b908458b101e42524f64acf12c17742d58149f1957d704434cc8b3d4",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "one authoritative defeat must award20 work\n\n0 !== 20\n"
+      }
+    },
+    {
+      "id": "engine-rank-changes-defeat-work-only",
+      "function": "cometWorkPerKill",
+      "sourceSha256": "2e0e0fb30f8db82c9c30629f6bc328da7e707fdafb7eb53a2170535aaa734139",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "124 actual rank2 defeats must produce3968 work\n\n3844 !== 3968\n"
+      }
+    },
+    {
+      "id": "full-bank-discards-bounded-residual",
+      "function": "cometRecordDefeats",
+      "sourceSha256": "ffa124f9450d1fc653a96cfc93a1bb0b72417315c946caf9268f08e0d5a768c7",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "saturated bank must discard all residual work\n\n1 !== 0\n"
+      }
+    },
+    {
+      "id": "refresh-refuses-stagnating-counter",
+      "function": "getDailyQuestRefreshPlan",
+      "sourceSha256": "93e264b7cb80116748a0436f8f62d7c97c2ce2b5d8841bba3c3cf398f989163a",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Refresh must refuse a counter that cannot increment exactly\n\ntrue !== false\n"
+      }
+    },
+    {
+      "id": "paid-forge-deeds-include-current-levels",
+      "function": "legacyResearchLevels",
+      "sourceSha256": "1f27cfe7ff646d56964ef1e37119e2b12e8eb9e7f4b0090470c8dfdf9bda20d7",
+      "positiveWitness": null,
+      "detected": true,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "paid current Forge levels must satisfy the original20-level Deed\n\nfalse !== true\n"
+      }
+    }
+  ],
+  "input": {
+    "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\index.html",
+    "bytes": 952714,
+    "sha256": "db1e62af0bb378338eed480b047c7509115ed8f382514ab0d65ccde4eb6a8a8c"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-core.cjs",
+      "bytes": 59116,
+      "sha256": "0cba6ce620e5e586eb11ab4bd992320a477ceeb6c8cab404db6cb2f94cf27f57"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 15922,
+      "sha256": "567c4a8f3e665fe26f49763cccdd3ac778c091e696d9c784f14c56588e2b5928"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 21885,
+      "sha256": "a49551dfbd81142617937abcddb11be11f711c3ddf4a224625bb7fd5a034c9b4"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51"
+  }
+}

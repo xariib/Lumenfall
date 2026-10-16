@@ -1,0 +1,53 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45", "instrumented_sha256": "0e5d68ea6eb56a2d1685323aee90cd9f9132feda18e3ddbcfa2a41b7e2c832ec" }
+FAIL self-test-endgame-currency-regression
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.3979135999999999, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-endgame-currency-regression", "json_status": "fail", "json_scenario": "self-test-endgame-currency-regression", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected", "stack": "Error: intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected\n    at assert (http://127.0.0.1:50630/index.html?qaScenario=self-test-endgame-currency-regression&qaFixture=fresh:17947:61)\n    at HTMLDocument.run (http://127.0.0.1:50630/index.html?qaScenario=self-test-endgame-currency-regression&qaFixture=fresh:20520:11)" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\validation-evidence\final-f-negative\raw\self-test-endgame-currency-regression-JldZh1
+  stdout tail:
+      var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-endgame-currency-regression">{
+  "scenario": "self-test-endgame-currency-regression",
+  "status": "fail",
+  "detail": {
+    "message": "intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected",
+    "stack": "Error: intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected\n    at assert (http://127.0.0.1:50630/index.html?qaScenario=self-test-endgame-currency-regression&amp;qaFixture=fresh:17947:61)\n    at HTMLDocument.run (http://127.0.0.1:50630/index.html?qaScenario=self-test-endgame-currency-regression&amp;qaFixture=fresh:20520:11)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+
+Behavioral QA failed: self-test-endgame-currency-regression null

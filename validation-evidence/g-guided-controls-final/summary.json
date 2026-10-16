@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "sourceSha256": "b3592be615847af12d0505d462be9a9a7c8d6cf2afcb2a695901f0d7a63fa64c",
+  "controls": [
+    {
+      "name": "sigil-unit",
+      "cause": "exact Sigil ledger",
+      "exit": 1,
+      "mutatedInputSha256": "891c4757b73beb833f9f6e1ed5461b033a5aea8699fb12f8b46113583d29116c"
+    },
+    {
+      "name": "free-rank",
+      "cause": "explicit rank purchases ember",
+      "exit": 1,
+      "mutatedInputSha256": "0e0c1fd3417c2bf005d707f0612531888add1716a4c4c698ba9ad7d87416b738"
+    },
+    {
+      "name": "offline-unit",
+      "cause": "exact offline lifetime accounting",
+      "exit": 1,
+      "mutatedInputSha256": "f29254bd4d7c3422dc6c6fa8f3dd66703fe8e5437e95f06b68454f3fdb0dd518"
+    },
+    {
+      "name": "hidden-open-gap",
+      "cause": "open gap cannot disappear",
+      "exit": 1,
+      "mutatedInputSha256": "c4ae8d32bf4b091177bd510970d7a0b0a209961efe858d6c11b5fbf3033adada"
+    }
+  ]
+}

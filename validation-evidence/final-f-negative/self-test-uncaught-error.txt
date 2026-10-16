@@ -1,0 +1,67 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45", "instrumented_sha256": "0e5d68ea6eb56a2d1685323aee90cd9f9132feda18e3ddbcfa2a41b7e2c832ec" }
+FAIL self-test-uncaught-error
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.5034641999999998, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-uncaught-error", "json_status": "fail", "json_scenario": "self-test-uncaught-error", "runtime_markers": [ "uncaught-error" ], "runtime_error_count": 1, "json_error": null, "valid": true }
+  failure: { "unexpected": "uncaught error was not detected" }
+  raw artifacts: C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\endless-progression-worktree\validation-evidence\final-f-negative\raw\self-test-uncaught-error-5BY3zd
+  stdout tail:
+= bridge.wispPacingContract('ember');
+          assert(
+            compressed.rarity[4].shard<100000,
+            'intentional Wisp pacing regression: Mythic cost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+</body><pre id="qa-result" data-status="fail" data-scenario="self-test-uncaught-error">{
+  "scenario": "self-test-uncaught-error",
+  "status": "fail",
+  "detail": {
+    "unexpected": "uncaught error was not detected"
+  },
+  "runtimeErrors": [
+    {
+      "kind": "uncaught-error",
+      "detail": "Uncaught Error: intentional uncaught QA self-test"
+    }
+  ]
+}</pre></html>
+
+Behavioral QA failed: self-test-uncaught-error null

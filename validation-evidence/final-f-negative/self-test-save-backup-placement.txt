@@ -1,0 +1,7 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45", "instrumented_sha256": "0e5d68ea6eb56a2d1685323aee90cd9f9132feda18e3ddbcfa2a41b7e2c832ec" }
+FAIL self-test-save-backup-placement
+  process: { "exitcode": 1, "timed_out": false, "stderr": "" }
+  detail: { "status": "fail", "profiles": 0, "mutant": "misplaced-backup", "message": "Backup is under Save immediately before separate Reset" }
+
+Behavioral QA failed: self-test-save-backup-placement null

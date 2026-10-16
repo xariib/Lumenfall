@@ -1,0 +1,27 @@
+{
+  "status": "PASS_SO_FAR",
+  "records": [
+    {
+      "mutation": "mote",
+      "fixture": "fixed Mote payout boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.9750037,
+      "sourceSha256": "8759690ff13eb44f34d035f74d9271e1fcf80da14774ed4414a35a02ef325054",
+      "receiptSha256": "fabc5a91d417e9e6f9fa3c0978f739dc96ed88f0dbef7580527f6c3bca18f0e8",
+      "failure": "AssertionError [ERR_ASSERTION]: fixed Mote payout boundary exact chronological saved endpoint",
+      "stderr": ""
+    },
+    {
+      "mutation": "lab",
+      "fixture": "paid Lab completion EPS boundary",
+      "caught": true,
+      "code": 1,
+      "seconds": 2.5883233000000003,
+      "sourceSha256": "4c1c45b23b709c5d6f5d68710358a083cec372a0d9498984a7978ac5524a3cc4",
+      "receiptSha256": "d1907743b81cb42e9b41f2f2605b26826e373d5adfc83de0274087ba9dba8996",
+      "failure": "AssertionError [ERR_ASSERTION]: paid Lab completion EPS boundary exact chronological saved endpoint",
+      "stderr": ""
+    }
+  ]
+}

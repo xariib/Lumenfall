@@ -1,0 +1,80 @@
+[
+  {
+    "ProcessId": 18172,
+    "ParentProcessId": 16240,
+    "Name": "node.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" tests/behavioral/run.cjs --web-root mobile/www --raw-artifacts docs/qa/endless-progression-001/integrated-browser-raw"
+  },
+  {
+    "ProcessId": 9772,
+    "ParentProcessId": 18172,
+    "Name": "node.exe",
+    "CommandLine": "C:\\Users\\xarib\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\endless-progression-worktree\\tests\\behavioral\\rift-status.cjs C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe http://127.0.0.1:49332/index.html?qaScenario=rift-status-stacking-mobile&qaFixture=fresh rift-status-stacking-mobile"
+  },
+  {
+    "ProcessId": 12516,
+    "ParentProcessId": 9772,
+    "Name": "conhost.exe",
+    "CommandLine": "\\??\\C:\\Windows\\system32\\conhost.exe 0x4"
+  },
+  {
+    "ProcessId": 17484,
+    "ParentProcessId": 9772,
+    "Name": "chrome.exe",
+    "CommandLine": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe --headless=new --window-size=1000,1100 --enable-automation --no-sandbox --disable-gpu --disable-dev-shm-usage --remote-debugging-pipe --user-data-dir=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m about:blank"
+  },
+  {
+    "ProcessId": 2552,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe --type=crashpad-handler --user-data-dir=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m /prefetch:4 --monitor-self --monitor-self-argument=--type=crashpad-handler --monitor-self-argument=--user-data-dir=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m --monitor-self-argument=/prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\\Crashpad --annotation=plat=Win64 \"--annotation=prod=Google Chrome for Testing\" --annotation=ver=140.0.7339.207 --initial-client-data=0x13c,0x140,0x144,0x10c,0x148,0x7ff80ff2c728,0x7ff80ff2c734,0x7ff80ff2c740"
+  },
+  {
+    "ProcessId": 9184,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=gpu-process --no-sandbox --headless=new --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --start-stack-profiler --subproc-heap-profiling --gpu-preferences=SAAAAAAAAADgAQAIAAAAAAAAAAAAAMAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --use-gl=disabled --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=1792 /prefetch:2"
+  },
+  {
+    "ProcessId": 21556,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --no-sandbox --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --start-stack-profiler --subproc-heap-profiling --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=2040 /prefetch:11"
+  },
+  {
+    "ProcessId": 9396,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=service --no-sandbox --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --subproc-heap-profiling --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=2172 /prefetch:13"
+  },
+  {
+    "ProcessId": 12984,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --subproc-heap-profiling --no-sandbox --enable-automation --remote-debugging-pipe --disable-gpu-compositing --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1792014029154792 --launch-time-ticks=60728890687 --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=3152 /prefetch:1"
+  },
+  {
+    "ProcessId": 22672,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --subproc-heap-profiling --no-sandbox --enable-automation --remote-debugging-pipe --disable-gpu-compositing --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=8 --time-ticks-at-unix-epoch=-1792014029154792 --launch-time-ticks=60728982779 --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=4300 /prefetch:1"
+  },
+  {
+    "ProcessId": 18960,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --subproc-heap-profiling --no-sandbox --enable-automation --remote-debugging-pipe --disable-gpu-compositing --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1792014029154792 --launch-time-ticks=60728988816 --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=3024 /prefetch:1"
+  },
+  {
+    "ProcessId": 5024,
+    "ParentProcessId": 17484,
+    "Name": "chrome.exe",
+    "CommandLine": "\"C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\" --no-pre-read-main-dll --subproc-heap-profiling --no-sandbox --enable-automation --remote-debugging-pipe --disable-gpu-compositing --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=10 --time-ticks-at-unix-epoch=-1792014029154792 --launch-time-ticks=60732029096 --field-trial-handle=1800,i,2762335333720548479,7092635878669358744,262144 --disable-features=PaintHolding --variations-seed-version --mojo-platform-channel-handle=5532 /prefetch:1"
+  },
+  {
+    "ProcessId": 440,
+    "ParentProcessId": 2552,
+    "Name": "chrome.exe",
+    "CommandLine": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\work\\chrome140\\chrome-win64\\chrome.exe --type=crashpad-handler --user-data-dir=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m /prefetch:4 --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-forge-ui-hMJw6m\\Crashpad --annotation=plat=Win64 \"--annotation=prod=Google Chrome for Testing\" --annotation=ver=140.0.7339.207 --initial-client-data=0x1e8,0x1ec,0x1f0,0x1e4,0x1f4,0x7ff7c5ddc1d0,0x7ff7c5ddc1dc,0x7ff7c5ddc1e8"
+  }
+]

@@ -1,0 +1,28 @@
+<html><head></head><body><script>
+var p=new URLSearchParams(location.search), frame=document.createElement('iframe');
+frame.style.cssText='border:0;width:'+Number(p.get('width'))+'px;height:'+Number(p.get('height'))+'px';
+frame.src='index.html?'+p.toString();document.body.appendChild(frame);
+addEventListener('message',function(e){
+  if(e.origin!==location.origin || e.source!==frame.contentWindow || !e.data.qaLayoutResult)return;
+  var result=document.getElementById('qa-result') || document.createElement('pre');result.id='qa-result';result.dataset.status=e.data.status;
+  result.textContent=e.data.qaLayoutResult;document.body.appendChild(result);
+});
+</script><iframe src="index.html?qaScenario=layout-fresh&amp;qaFixture=fresh&amp;width=412&amp;height=915&amp;safeTop=0&amp;safeBottom=0" style="border: 0px; width: 412px; height: 915px;"></iframe><pre id="qa-result" data-status="pass">{
+  "scenario": "layout-fresh",
+  "status": "pass",
+  "detail": {
+    "viewport": [
+      412,
+      915
+    ],
+    "safeInsets": [
+      "0",
+      "0"
+    ],
+    "minimumEnemyHeight": 359,
+    "hudHeight": 109,
+    "party": 1,
+    "presentationStates": 16
+  },
+  "runtimeErrors": []
+}</pre></body></html>

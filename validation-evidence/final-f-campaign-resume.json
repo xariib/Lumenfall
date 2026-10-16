@@ -1,0 +1,26 @@
+{
+  "status": "VERIFIED_PAUSED",
+  "source": "validation-evidence/endless-focus-f-game.html",
+  "rows": [
+    {
+      "name": "focused",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-focused/tests/behavioral/endless-campaign.cjs",
+      "policy": "regular",
+      "prefix": "validation-evidence/focus-f-focused-regular",
+      "currentDays": 86,
+      "checkpointSha256": "789047644eb8c2f34a33c4141440b8fcaaa3595abe36759412192f36c02ba541",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "policySha256": "776ad8171b9fc65b779a9960043327b192d7546092313007d101298638d946f7"
+    },
+    {
+      "name": "twoVisits",
+      "runner": "docs/qa/endless-progression-001/runtimes/lab-work-aware/tests/behavioral/endless-campaign.cjs",
+      "policy": "regular_two",
+      "prefix": "validation-evidence/focus-f-aware-regular_two",
+      "currentDays": 87,
+      "checkpointSha256": "c5a9ab30a57a3445a1ba60de967a403a5d6caf12b72d5695eb0856c29847fffa",
+      "sourceSha256": "4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45",
+      "policySha256": "210564fbc58a1a9f9114878a45ea20b01db6e53791e58a1d0ecdd91394248b89"
+    }
+  ]
+}
