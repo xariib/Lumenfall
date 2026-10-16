@@ -1,0 +1,121 @@
+{
+  "firstCase": {
+    "status": "pass",
+    "firstCase": [
+      {
+        "case": "ON Clear21",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 369,
+        "kills": 86404,
+        "ascends": 4114,
+        "iterations": 94633,
+        "earned": 368583741.6000981
+      }
+    ],
+    "ms": 18020.1458
+  },
+  "topSelfSamples": [
+    [
+      "prepare:8643",
+      1004
+    ],
+    [
+      "parts:67",
+      749
+    ],
+    [
+      "encode:78",
+      702
+    ],
+    [
+      "amount:7967",
+      612
+    ],
+    [
+      "signature:8550",
+      555
+    ],
+    [
+      "integer:7966",
+      522
+    ],
+    [
+      "(program):0",
+      369
+    ],
+    [
+      "run:8755",
+      289
+    ],
+    [
+      "boundary:8606",
+      283
+    ],
+    [
+      "clean:12",
+      237
+    ],
+    [
+      "exactSeconds:7977",
+      225
+    ],
+    [
+      "(garbage collector):0",
+      224
+    ],
+    [
+      "RegExp: ^(-?)(\\d+)(?:\\.(\\d+))?(?:e([+-]?\\d+))?$:0",
+      203
+    ],
+    [
+      "add:7957",
+      202
+    ],
+    [
+      "mul:7959",
+      187
+    ],
+    [
+      ":4608",
+      163
+    ],
+    [
+      "nativeDyad:7978",
+      159
+    ],
+    [
+      "formulate:8556",
+      154
+    ],
+    [
+      ":7896",
+      147
+    ],
+    [
+      "seconds:7969",
+      137
+    ],
+    [
+      "wide:83",
+      134
+    ],
+    [
+      "divmod:7964",
+      133
+    ],
+    [
+      "getStudyStartPlan:4629",
+      131
+    ],
+    [
+      "simulationResolveTimestamp:7849",
+      124
+    ],
+    [
+      "wispPower:3217",
+      121
+    ]
+  ],
+  "note": "Profiling overhead: not an unprofiled runtime acceptance; original full profiled run passed all assertions in462433ms."
+}

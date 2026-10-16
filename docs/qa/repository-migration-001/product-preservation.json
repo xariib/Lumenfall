@@ -2,11 +2,20 @@
   "status": "PASS",
   "baseline": "8f46153",
   "beforeSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
-  "afterSha256": "bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21",
-  "onlyEdit": {
-    "from": "#tab-battle.has-comet-commands .stage{height:auto;min-height:100%;}",
-    "to": "#tab-battle.has-comet-commands .stage{height:auto;min-height:100%;overflow:visible;}"
-  },
+  "afterSha256": "3c81f08d73dc540d8b284e167759ba2a2a4faf3076889080f02e7b90e09ce324",
+  "onlyEdits": [
+    {
+      "from": "#tab-battle.has-comet-commands .stage{height:auto;min-height:100%;}",
+      "to": "#tab-battle.has-comet-commands .stage{height:auto;min-height:100%;overflow:visible;}"
+    },
+    {
+      "from": "  .ability-effects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:2px 0 8px;}",
+      "to": "  .ability-effects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:2px 0 8px;}\n  .ability-effects>div{min-width:0;overflow-wrap:anywhere;}"
+    }
+  ],
   "allProductionScriptsByteIdentical": true,
-  "reason": "Remove an intermediate hidden overflow scroll container for native vertical panning when Comet commands are owned. Ordinary fixed Rift remains unchanged."
+  "reasons": [
+    "Native Comet panning avoids intermediate hidden-overflow scroll container",
+    "Enlarged 320px Wisp current/next effect text wraps inside its two-column card"
+  ]
 }

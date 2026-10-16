@@ -1,0 +1,42 @@
+name: Migration focused regressions
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [wisp-card-simplicity, offline-catchup-core, rift-status-stacking-mobile]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Stage exact product and assets
+        shell: bash
+        run: |
+          mkdir -p mobile/www/fonts mobile/www/branding validation-evidence/migration-focused
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+          git rev-parse HEAD > validation-evidence/migration-focused/commit.txt
+          sha256sum index.html > validation-evidence/migration-focused/source.txt
+      - name: Run unchanged scenario deadline and assertions
+        shell: bash
+        env:
+          SCENARIO: ${{ matrix.scenario }}
+        run: |
+          set -euo pipefail
+          node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/migration-focused/raw 2>&1 | tee validation-evidence/migration-focused/result.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: migration-focused-${{ matrix.scenario }}-${{ github.run_id }}
+          path: validation-evidence/migration-focused/

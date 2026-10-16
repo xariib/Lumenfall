@@ -29,7 +29,7 @@ window.runWispCardLayoutQa=function(baseline){
     }
     var nodes=Array.from(card.querySelectorAll('div,span,strong,h3,button,summary'));
     nodes.forEach(function(e){var r=e.getBoundingClientRect();if(!r.width||!r.height)return;
-      ok(e.scrollWidth<=e.clientWidth+1&&r.left>=-1&&r.right<=innerWidth+1,'no clipped card text '+id+'/'+stage+': '+e.outerHTML.slice(0,200));
+      ok(e.scrollWidth<=e.clientWidth+1&&r.left>=-1&&r.right<=innerWidth+1,'no clipped card text '+id+'/'+stage+': '+JSON.stringify({className:e.className,scroll:e.scrollWidth,client:e.clientWidth,left:r.left,right:r.right,viewport:innerWidth,text:e.textContent}));
     });
     Array.from(card.querySelectorAll('button,summary')).forEach(function(e){var r=e.getBoundingClientRect();if(r.height)ok(r.width>=44&&r.height>=44,'44px control '+e.outerHTML.slice(0,160));});
     if(stage<2){

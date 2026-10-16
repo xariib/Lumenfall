@@ -1,7 +1,7 @@
 # REPOSITORY_MIGRATION_001 — migrate and release the current combined game
 
 Owner: this feature chat. Status: IN PROGRESS; qualified native upgrade preflight
-PASS, integrated release pending. [PR1](https://github.com/xariib/Lumenfall/pull/1).
+PASS, main integrated; full CI fixes and release pending. [PR1](https://github.com/xariib/Lumenfall/pull/1).
 [Current continuation](../qa/repository-migration-001/CONTINUATION.md) and
 [complete evidence/failed attempts](../qa/repository-migration-001/README.md).
 

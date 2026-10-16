@@ -41,7 +41,7 @@ async function run(){
     if(pathname==='/'||pathname==='/index.html'){res.setHeader('Content-Type','text/html');res.end(page);return;}
     const file=path.resolve(root,'.'+decodeURIComponent(pathname));
     if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}
-    fs.readFile(file,(error,data)=>{res.writeHead(error?404:200,{'Content-Type':file.endsWith('.svg')?'image/svg+xml':file.endsWith('.woff2')?'font/woff2':'application/octet-stream'});res.end(error?'missing':data);});
+    fs.readFile(file,(error,data)=>{res.writeHead(error?404:200,{'Content-Type':file.endsWith('.css')?'text/css':file.endsWith('.svg')?'image/svg+xml':file.endsWith('.woff2')?'font/woff2':'application/octet-stream'});res.end(error?'missing':data);});
   });await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
   browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
   browser.on('error',error=>rejectPending(error.message));browser.on('close',()=>{closed=true;rejectPending('browser closed');});browser.stderr.on('data',data=>{stderr=(stderr+data).slice(-3000);});
@@ -71,6 +71,8 @@ async function run(){
     await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});
     let ready=false;for(let i=0;i<100;i++){ready=await evaluate('!!window.__wispQa && !!document.querySelector("[data-wisp-progression]")');if(ready)break;await new Promise(r=>setTimeout(r,20));}assert(ready,'game initialized');
     await evaluate('document.fonts.ready');
+    const fonts=await evaluate(`Array.from(document.fonts).filter(f=>f.status==='loaded').map(f=>({family:f.family,weight:f.weight}))`);
+    if(!args.includes('--baseline'))for(const weight of ['400','700'])assert(fonts.some(f=>f.family==='Manrope'&&f.weight===weight),'packaged Manrope '+weight+' loaded');
     await evaluate('window.__wispQa.prepare();new Promise(resolve=>setTimeout(resolve,500))');
     if(large)await evaluate('document.documentElement.style.fontSize="32px"');
     const result=await evaluate(cardLayout?'window.runWispCardLayoutQa('+args.includes('--baseline')+')':'window.runWispUpgradeQa()');
@@ -90,7 +92,7 @@ async function run(){
     await evaluate('window.__wispQa.render()');assert(await evaluate('document.activeElement.matches("summary[data-wisp-details=ember]")'),'summary focus survives refresh');
     await key('Enter');assert(await evaluate('document.querySelector("[data-wisp-progression=ember]").open'),'native Enter opens');
     const summary=await evaluate(`(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),c=getComputedStyle(e);return {w:r.width,h:r.height,outline:c.outlineStyle,color:c.color};})()`);assert(summary.w>=44&&summary.h>=44&&summary.outline!=='none','summary touch size and keyboard focus');
-    records.push({width,large,motion,result,geometry,summary});
+    records.push({width,large,motion,fonts,result,geometry,summary});
   }
   return {status:'pass',source,records};
 }

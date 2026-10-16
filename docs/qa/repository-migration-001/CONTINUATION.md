@@ -128,3 +128,26 @@ all six exact-main manual gates, guarded publish=true, actual anonymous download
 verification and README stable link/final docs. No new permission required.
 Origin=new repo, legacy-origin old preserved. Physical/exactWebView60/TalkBack/
 human tests remain unverified. User task still demands carry through release.
+
+## Integrated main and full-CI follow-up — 16 October 2026
+
+Destination main was advanced normally to c9346ec; both initial destination eba021e
+and selected source 8f46153 remain ancestors. PR1 is merged. No release exists.
+All five scoped manual lanes on exact main c9346ec passed. Full runs38896647886
+(attempt2, PRfcf1077) and38902486960 (main) were canceled after live/full logs
+established three stateful failures: Wisp card clipping, offline core300s deadline,
+and Rift stacking arena overflow. Cancellation is not a passing result.
+Downloaded full raw artifact/log retained locally for diagnosis; concise original
+failure evidence will be saved in GitHub. Earlier steps including true-font
+Guidance, Swift, refund/price controls and harness negatives passed.
+
+Wisp server also omitted CSS MIME: fixed text/css and assert real loaded Manrope400/
+700. Still reproduced real Support Ultimate text overflow at320px/enlarged text.
+One CSS min-width/wrap rule fixes it:12 profiles/25368 checks PASS with real fonts.
+No gameplay JS/save changes. Rift original whole native scenario passes local
+Chrome140; repeat-frame geometry probe also passes. Checking exact CIChrome155
+before changing product or assertions. Offline original core profiled; testing
+compile-once/fresh-instance harness caching, same assertions/deadline; not yet
+accepted as a performance fix. Required final six exact-main gates still needed.
+Native38900729111 remains qualified preflight only; final current-source signed
+build/installed-upgrade/publication/download still required. Continue delivery.

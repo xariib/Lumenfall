@@ -397,7 +397,7 @@ window.riftStatusMobile=(()=>{
    boxes[selector]={x:r.x,y:r.y,width:r.width,height:r.height};
   });
   visibleSelectors.forEach(s=>{
-   var el=q(s),r=rect(el);ok(r.top>=mr.top&&r.bottom<=nav.top&&r.left>=mr.left&&r.right<=mr.right,s+' fully visible');ok(el.scrollWidth<=el.clientWidth&&el.scrollHeight<=el.clientHeight+1,s+' text/content unclipped');
+   var el=q(s),r=rect(el);ok(r.top>=mr.top&&r.bottom<=nav.top&&r.left>=mr.left&&r.right<=mr.right,s+' fully visible');ok(el.scrollWidth<=el.clientWidth&&el.scrollHeight<=el.clientHeight+1,s+' text/content unclipped '+JSON.stringify({scroll:[el.scrollWidth,el.scrollHeight],client:[el.clientWidth,el.clientHeight],children:Array.from(el.children).map(e=>({className:e.className,box:{x:rect(e).x,y:rect(e).y,width:rect(e).width,height:rect(e).height}}))}));
    if(el.tagName==='BUTTON'){ok(r.width>=44&&r.height>=44,s+' touch minimum');ok(el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)),s+' hit-test');}
    boxes[s]={x:r.x,y:r.y,width:r.width,height:r.height};
   });

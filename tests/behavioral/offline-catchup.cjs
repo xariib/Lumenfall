@@ -99,6 +99,10 @@ const copy=x=>JSON.parse(JSON.stringify(x)),records=[];
 // Literal original Echo prices for this preserved level20 device fixture.
 const echoFixturePrices=[16,22,30,42,58,81,114,159,223,312,436,610,854,1196];
 const echoFixtureRefund=4153;
+// Compile each exact source/counterfactual once, then invoke it with fresh
+// globals/storage for every app. Recompiling this large closure per fixture
+// throws away V8's warmed simulation code; instances still share no state.
+const compiledApps=new Map();
 function app(seed,html=source,seconds=0){
  let now=seed.lastSeen+seconds*1000,monotonic=0,seq=0,fault=null,primaryFail=false,recoveryFail=false;
  const queue=[],writes=[],storage=new Map([['lumenfall_save_v2',JSON.stringify(seed)],['lumenfall_save_recovery_v1',JSON.stringify(seed)]]);
@@ -110,8 +114,11 @@ function app(seed,html=source,seconds=0){
   storage.set(k,v);writes.push({key:k,state:JSON.parse(v)});
  },removeItem:k=>storage.delete(k)};
  const bridge=`window.qa={set:s=>state=acceptPersistedState(s),get:()=>state,apply:applyOfflineProgress,advance:advanceAuthoritativeTime,study:advanceStudyOnlyTime,summary:simulationSummary,load:loadState,backup:currentSaveBackup,decode:decodeSaveBackup,save:saveState,cancel:typeof cancelOfflineCatchup==='function'?cancelOfflineCatchup:()=>{},flags:()=>({busy:typeof offlineCatchup!=='undefined'&&!!offlineCatchup,pending:typeof offlinePending!=='undefined'&&offlinePending,resume:typeof resumeFlowBusy!=='undefined'&&resumeFlowBusy}),batch:n=>{if(typeof SIM_BATCH_EVENTS!=='undefined')SIM_BATCH_EVENTS=n;},fault:()=>{simulationResolveTimestamp=function(){throw Error('injected simulation failure');};}};`;
- const script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+"if(document.readyState==='loading'){");
- new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,date,(fn)=>{queue.push({id:++seq,fn});return seq;},id=>{const i=queue.findIndex(x=>x.id===id);if(i>=0)queue.splice(i,1);},{now:()=>monotonic});
+ if(!compiledApps.has(html)){
+  const script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+"if(document.readyState==='loading'){");
+  compiledApps.set(html,new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script));
+ }
+ compiledApps.get(html)(window,document,localStorage,date,(fn)=>{queue.push({id:++seq,fn});return seq;},id=>{const i=queue.findIndex(x=>x.id===id);if(i>=0)queue.splice(i,1);},{now:()=>monotonic});
  const b=window.qa;b.set(copy(seed));
  return {b,storage,writes,queue,clock:v=>now=v,monotonic:v=>monotonic=v,failPrimary:v=>primaryFail=v,failRecovery:v=>recoveryFail=v,
   drain(){let batches=0;while(queue.length){queue.shift().fn();batches++;assert(batches<100000,'bounded number of work batches');}return batches;}};
