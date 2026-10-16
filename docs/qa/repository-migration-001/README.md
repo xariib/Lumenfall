@@ -93,3 +93,11 @@ is expressly not save-retention evidence. Stricter attempts fail closed; sentine
 about:blank and reload failures retained. Current38894057323 is build-only with
 native diagnostics. No preflight is published; mandatory receipt binds completed
 old cold restart/real install-r/UID/save/progress/paid work to actual APK SHA/version.
+
+Native diagnostic38894057323 identifies a real stock API29 WebView native GPU/font
+crash BEFORE fixture registration: SkGlyph Unknown mask format, SIGABRT in
+Chrome_InProcGp, then the DevTools target closes. Source/APK/save logic did not
+reach the upgrade. Original logcat retained. The disposable upgrade acceptance
+now uses API35/google_apis with its newer system WebView and identical original
+APK/font assets; all baseline cold-restart/install-r/retention assertions unchanged.
+This does not establish old stock WebView compatibility; that limitation remains.
