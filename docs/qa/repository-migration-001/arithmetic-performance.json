@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "sourceSha256": "d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5",
+  "offlineCore": {
+    "wallMs": 236976.12790000002,
+    "deadlineMs": 300000,
+    "originalSelectedTestByteIdentical": true,
+    "all18OriginalReportRecordsIdentical": true,
+    "referenceReplaysPreserved": true
+  },
+  "integerOracle": {
+    "status": "PASS",
+    "checks": 133966,
+    "oracle": "Independent BigInt rational divisibility; same library/product public behavior"
+  },
+  "memoizationOracle": {
+    "status": "PASS",
+    "checks": 12251,
+    "negativeControls": 1,
+    "oracle": "Independent BigInt debits, interleaved signs, eviction and oversized values"
+  },
+  "actualV8Swift": {
+    "status": "PASS",
+    "checks": 173,
+    "cases": 28,
+    "sourceSha256": "d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5",
+    "node": "v8.3.0",
+    "v8": "6.0.286.52",
+    "limits": "Engine probe; no native Android/WebView/device claim."
+  },
+  "actualV8Clock": {
+    "status": "PASS",
+    "checks": 7,
+    "node": "v8.3.0",
+    "v8": "6.0.286.52",
+    "limits": "Exact-clock/phase modules only; Android/WebView UI and full scheduler acceptance are separate."
+  },
+  "goldenFourFullStatesUnchanged": true,
+  "limits": "Local core237s PASS and engine compatibility; exact-source Linux full CI and final signed installed-upgrade build still required."
+}

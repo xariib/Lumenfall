@@ -151,3 +151,36 @@ compile-once/fresh-instance harness caching, same assertions/deadline; not yet
 accepted as a performance fix. Required final six exact-main gates still needed.
 Native38900729111 remains qualified preflight only; final current-source signed
 build/installed-upgrade/publication/download still required. Continue delivery.
+
+## Latest arithmetic/core milestone — 16 October 2026
+
+Main4d5b974 integrated Wisp wrapping and focused manual diagnostic workflow. All
+five scoped exact-main lanes PASS: Comet38905731377, Forge38905734630,
+Lab38905737997, Shared38905741422, Tree38905745415. Full38905728199 was superseded:
+focused38905529955 proves Wisp and full native Rift stacking PASS on Linux but
+unchanged offline core still hits300s. Specific outdated Full cancel requested;
+five completed passes preserved. Earlier blanket cancellation was auto-review
+rejected; after evidence/five completions, narrower known-failing Full cancel
+accepted. No bypass of required checks. Reference-result reuse was also rejected
+by auto-review and REVERTED. Selected offline-catchup.cjs is BYTE-IDENTICAL8f46153,
+all original replay/assertion paths and300000ms parent deadline preserved.
+
+Compilation caching did not improve enough (411705ms unprofiled) and was removed.
+Profile-guided pure Amount changes now avoid repeated wide integer rounding and
+memoize parsed primitives (256 entries/256-character keys; return private copies).
+Original overflow-exponent rejection retained. Root/library factories identical;
+all other production JS unchanged. Source d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5.
+Independent rational133966 checks, memoization12251/borrowed-object negative,
+original102051 predicate comparisons/overflow parity, Amount412/multiplication,
+actual V8.6.0 Swift173/28 cases and clock7 PASS. Literal one-second four-phase
+full-state golden regenerated; all counters/state hashes EXACTLY unchanged.
+Original offline core now PASS236976ms, all18 report records EXACTLY match old
+unmodified product run. See arithmetic-performance.json and compressed raw proof.
+1509 archive checks PASS. No gate deadline/assertion removed or relaxed.
+
+Commit this coherent candidate/evidence; normal push to migration branch/main,
+run focused Linux and all six required exact-main manual gates. Preserve main SHA
+until qualified signed publish=true build/actual latest download verified; then
+README stable link and final docs. Native38900729111 preflight remains valid for
+its earlier bytes only; final d4a55cde native installed-upgrade still mandatory.
+No release exists. Physical/exact60/TalkBack/human acceptance remain unverified.

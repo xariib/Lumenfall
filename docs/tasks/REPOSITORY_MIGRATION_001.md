@@ -52,10 +52,11 @@ PASS. Reviewed4206 untracked/ignored outputs:3586 retained/877068875 bytes match
 source SHA256 AND committed raw Git blobs,620 temporary/empty outputs excluded;
 no original files deleted. Manifests/proof linked in evidence README.
 
-Only product edit: Comet-owned Rift stage overflow:visible restores real touch
-scrolling. All production JavaScript, package/config, locked dependencies and
-assets are byte-identical to8f46153. Current productSHA256
-bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21.
+Product edits: Comet stage native scrolling, enlarged Wisp effect text wrapping,
+and pure Amount integer/parsing optimization needed for the unchanged CI deadline.
+All other production JS, package/config, locked dependencies and assets remain
+byte-identical to8f46153. Current productSHA256
+d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5.
 [Exact proof](../qa/repository-migration-001/product-preservation.json).
 
 ## Current implementation and checks

@@ -208,3 +208,20 @@ Receipt, original/new synthetic snapshots, identity/assets and complete run log
 are saved as qualified-native-* files. First green receipt-less job remains
 UNVERIFIED; prior failed attempts remain failures, not retroactively accepted.
 This APK is build-only, UNPUBLISHED; final integrated-main checks/build still needed.
+
+## Arithmetic performance follow-up
+
+Current source d4a55cde adds two CSS fixes and pure Amount parsing/integer speedups;
+this supersedes earlier all-JavaScript-identical descriptions. All other product
+JS/package/config/assets are unchanged. [Preservation](product-preservation.json)
+and [arithmetic checks](arithmetic-performance.json) qualify exact bytes. The full
+selected offline core is byte-identical, retains every original replay/assertion
+and300s deadline, and passes locally in237s with all18 original report records
+identical. Four independently regenerated full-state progression goldens are
+unchanged. New independent rational/mutation/legacy-engine checks supplement gates.
+Compilation caching failed to solve the timeout and was removed. Rejected test
+reference reuse was reverted. Focused Linux38905529955 confirms Wisp and native
+Rift stacking PASS; offline timeout retained as failed evidence. The original
+Rift failure did not reproduce in full local Chrome140/155 or subsequent Linux;
+rich geometry diagnostics retained, with no relaxation. New exact-source full CI
+and final signed native build/release/download remain pending.

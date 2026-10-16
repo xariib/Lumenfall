@@ -2,8 +2,8 @@
   "status": "PASS",
   "baseline": "8f46153",
   "beforeSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
-  "afterSha256": "3c81f08d73dc540d8b284e167759ba2a2a4faf3076889080f02e7b90e09ce324",
-  "onlyEdits": [
+  "afterSha256": "d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5",
+  "cssEdits": [
     {
       "from": "#tab-battle.has-comet-commands .stage{height:auto;min-height:100%;}",
       "to": "#tab-battle.has-comet-commands .stage{height:auto;min-height:100%;overflow:visible;}"
@@ -13,9 +13,14 @@
       "to": "  .ability-effects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:2px 0 8px;}\n  .ability-effects>div{min-width:0;overflow-wrap:anywhere;}"
     }
   ],
-  "allProductionScriptsByteIdentical": true,
-  "reasons": [
-    "Native Comet panning avoids intermediate hidden-overflow scroll container",
-    "Enlarged 320px Wisp current/next effect text wraps inside its two-column card"
-  ]
+  "allProductionScriptsByteIdentical": false,
+  "onlyScriptChange": {
+    "function": "createGameAmount",
+    "beforeSha256": "e1be01582648d1f6f3d18aa663b2fc64d9d6c1021130f319b70451b7edc9e75c",
+    "afterSha256": "1f0857a4c0b88e8ae87f0041f0eafa9d660200f7467c1b51bc304cc703b025f5",
+    "purpose": "Bounded decimal parsing memoization returns private copies; exact integer predicate avoids redundant rounding/parsing; original out-of-range exponent errors preserved",
+    "publicSemantics": "133966 independent rational checks; interleaved signs/debits/eviction/oversized values and borrowed-object negative control; literal one-second four-phase complete state hashes unchanged"
+  },
+  "allOtherProductionJavaScriptByteIdentical": true,
+  "libraryMatchesPackagedFactory": true
 }

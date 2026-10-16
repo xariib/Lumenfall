@@ -19,8 +19,10 @@ UI and the previously combined Forge/Lab/Tree/Comet/save/offline work.
 [requirements](qa/endless-progression-001/REQUIREMENTS.md) and
 [late guidance evidence](qa/endless-progression-001/LATE_GUIDANCE.md) retain
 source-qualified results. Original product9cdcd80c is preserved in history. Migration adds native Comet scrolling and enlarged Wisp effect text wrapping CSS
-fixes; all production scripts remain unchanged. Current SHA256
-3c81f08d73dc540d8b284e167759ba2a2a4faf3076889080f02e7b90e09ce324.
+fixes plus a pure Amount integer/parsing performance optimization. All other
+production JS remains unchanged; full offline gate is byte-identical to selected
+source and passes locally in237s. Current SHA256
+d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5.
 [Exact preservation proof](qa/repository-migration-001/product-preservation.json).
 
 Original signing identity has been [recovered and verified](qa/endless-progression-001/signing-recovery/README.md).

@@ -5,6 +5,7 @@
 function createGameAmount(){
   var SAFE=9007199254740991;
   var nativePartsCache=Object.create(null),nativePartsKeys=[];
+  var decimalPartsCache=Object.create(null),decimalPartsKeys=[];
   function clean(p){
     p.d=p.d.replace(/^0+/,'')||'0';
     if(p.d==='0')return {d:'0',e:0,s:1};
@@ -65,11 +66,19 @@ function createGameAmount(){
       if(!Number.isFinite(value))throw new RangeError('Amount must be finite');
       if(Math.abs(value)>SAFE)return nativeInteger(value);
     }else if(typeof value!=='string')throw new TypeError('Invalid amount');
-    var match=String(value).match(/^(-?)(\d+)(?:\.(\d+))?(?:e([+-]?\d+))?$/);
+    var key=String(value),cached=decimalPartsCache[key];
+    if(cached)return {d:cached.d,e:cached.e,s:cached.s};
+    var match=key.match(/^(-?)(\d+)(?:\.(\d+))?(?:e([+-]?\d+))?$/);
     if(!match)throw new TypeError('Invalid amount');
     var e=Number(match[4]||0)-(match[3]||'').length;
     if(!Number.isSafeInteger(e))throw new RangeError('Invalid amount exponent');
-    return clean({d:match[2]+(match[3]||''),e:e,s:match[1]?-1:1});
+    var p=clean({d:match[2]+(match[3]||''),e:e,s:match[1]?-1:1});
+    if(key.length<=256){
+      decimalPartsCache[key]=p;decimalPartsKeys.push(key);
+      if(decimalPartsKeys.length>256)delete decimalPartsCache[decimalPartsKeys.shift()];
+    }
+    // Callers may mutate their parts; never expose the memoized object.
+    return {d:p.d,e:p.e,s:p.s};
   }
   function encode(p){
     p=clean(p);if(p.d==='0')return 0;
@@ -173,7 +182,15 @@ function createGameAmount(){
     else {var first=cut>=0?Number(p.d.charAt(cut)||0):0;up=first>5||(first===5&&(p.s>0||/[1-9]/.test(rest.slice(1))));}
     return encode({d:up?digitAdd(integer,'1'):integer,e:0,s:p.s});
   }
-  function integer(a){return typeof a==='number'?Number.isInteger(a):valid(a)&&cmp(a,round(a,'floor'))===0;}
+  function integer(a){
+    if(typeof a==='number')return Number.isInteger(a);
+    if(!wide(a))return false;
+    // Normalized decimal coefficients have no trailing zeroes. Testing their
+    // exponent avoids rounding/encoding/reparsing every exact clock integer.
+    var p;try{p=parts(a);}catch(e){return false;}
+    if(!Number.isSafeInteger(p.e))return valid(a)&&cmp(a,round(a,'floor'))===0;
+    return p.d==='0'||p.e>=0;
+  }
   function min(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.min.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)<=0?a:b;},Infinity);}
   function max(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.max.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)>=0?a:b;},-Infinity);}
   function text(a){var p=parts(a),e=p.d.length-1+p.e;return (p.s<0?'-':'')+p.d.charAt(0)+(p.d.length>1?'.'+p.d.slice(1,4):'')+'e'+e;}
