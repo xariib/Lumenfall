@@ -34,6 +34,7 @@ async function main(){
  assert.match(adb('install',baseline),/Success/);adb('shell','am','start','-n',packageId+'/.MainActivity');
  console.log('Android upgrade QA: old APK installed; connecting to WebView');let page=await connect(),saved;
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
+ console.log('Android upgrade QA: real old save obtained; preparing pre-document fixture');
  const seed=JSON.parse(saved);Object.assign(seed,{lumen:1234567,shards:4321,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
  seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
  seed.owned.autoascend=true;seed.owned.meteor=true;seed.owned.starcall=true;
@@ -47,11 +48,15 @@ async function main(){
  // storage while its previous in-memory state runs would let autosave overwrite
  // the fixture. The injection is removed before the cold baseline and upgrade.
  const injected=await page.command('Page.addScriptToEvaluateOnNewDocument',{source:seedScript});
- await page.command('Page.reload',{ignoreCache:true});await pause(2000);
- await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injected.identifier});
+ assert(injected.identifier,'Pre-document fixture registered');
+ console.log('Android upgrade QA: fixture registered; reloading old WebView');
+ try{await page.command('Page.reload',{ignoreCache:true});}catch(e){if(!/^DevTools closed:/.test(e.message))throw e;console.log('Android upgrade QA: reload replaced DevTools target; cold restart will verify fixture');}
  // WebView commits DOM storage asynchronously. Establish a durable old-app
  // fixture through an actual cold restart before testing package replacement.
- await pause(6000);
+ // Force-stop destroys this process and its transient CDP pre-document scripts.
+ // Do not issue another command to a target the native reload may have replaced.
+ await pause(8000);
+ console.log('Android upgrade QA: stopping seeded old process; restarting without injection');
  page.close();adb('shell','am','force-stop',packageId);
  adb('shell','am','start','-n',packageId+'/.MainActivity');page=await connect();await pause(3000);
  const oldCold=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);
@@ -78,4 +83,4 @@ async function main(){
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
 const watchdog=setTimeout(()=>{console.error('Android upgrade QA overall deadline');process.exit(1);},600000);
-main().catch(e=>{console.error(e.stack);process.exitCode=1;}).finally(()=>{clearTimeout(watchdog);for(const socket of sockets)socket.close();});
+main().catch(e=>{console.error(e.stack);try{fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/upgrade-failure-logcat.txt',adb('logcat','-d','-t','1500'));}catch(diagnostic){console.error('Native diagnostic failed: '+diagnostic.message);}process.exitCode=1;}).finally(()=>{clearTimeout(watchdog);for(const socket of sockets)socket.close();});

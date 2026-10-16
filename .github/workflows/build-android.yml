@@ -296,6 +296,13 @@ jobs:
       - name: Require completed upgrade receipt for this exact APK
         run: node scripts/ci/verify_upgrade_receipt.cjs
 
+      - name: Preserve failed native upgrade diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-native-upgrade-${{ github.run_id }}
+          path: release-evidence/
+
       - name: Preserve verified build
         uses: actions/upload-artifact@v4
         with:
