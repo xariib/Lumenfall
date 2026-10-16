@@ -1,6 +1,6 @@
 # Late progression guidance — 16 October 2026
 
-Local candidate07c9397a on codex/endless-progression. Feature OPEN.
+Local candidate9cdcd80c on codex/endless-progression. Feature OPEN.
 [Receipts and source hashes](experiments/late-guidance/final-validation.json).
 
 The user requires regular players to avoid30–41-day stalls, receive useful
@@ -20,7 +20,9 @@ base speed. Affordable Forge Power remains a path through a Rift wall.
 
 The guide reports the actual required Lab level, recommends pausing unnecessary
 future starts, and directs funded players out of repeated Ascends/Farm toward
-Push. Find upgrade opens and focuses the existing control. Guidance never
+Push. Prism farming explicitly recommends repeating cleared Rift15, using the
+existing minimum; it leaves the saved target and automation toggle unchanged.
+Find upgrade opens and focuses the existing control. Guidance never
 spends, cancels work, toggles settings or saves. Following Field Best now retains
 its existing selected-preset autosave contract and protects other presets.
 
@@ -47,27 +49,32 @@ purchases and repeated earned-speed purchases. These samples meet the working
 five-day engineering ceiling for “several days”; this is not a calendar lock
 or a new binding project rule.
 
-The G2 simulations retain sourcefb76dd81. Final G4 differs by three display
+The G2 simulations retain sourcefb76dd81. G5 differs by three display
 expressions and a Forge recommendation when a Rift gate is unmet. Exact code
 inverse and conservative daily lower-Rift/upper-rank bounds prove that last
-branch was unreachable throughout all three measured campaigns (54 checks).
-This qualifies the same decisions on G4 without rebasing any raw campaign.
+branch was unreachable throughout all three measured campaigns. Its farming
+tip now exposes the same cleared15 policy;56 checks qualify the same decisions
+on G5 without rebasing any raw campaign.
 The earlier G1 casual2x5-minute recovery is separately preserved; it is not
 presented as a new G4 campaign. Fresh milestone measurements remain F receipts;
 their gameplay and pre-roster advice are unchanged by the exact inverse.
 
 ## Checks and disposition
 
--4550 independent integer/chronology/retention checks pass: Prisms, Sigils,
+- 4550 independent integer/chronology/retention checks pass: Prisms, Sigils,
 Motes, paid speed, Ascension Dust, purchases, permanent paths and entitlements.
 Six defect types are detected in both regular2 and required-Lab audits.
--Guide183, mobile865/12 profiles/72 cases, core235, requirements2528,
+- G5 guide186, mobile913/12 profiles/72 cases and actual V8 6.0 progression62
+pass, including explicit cleared15 advice and complete saved-target preservation.
+G4 core235, requirements2528,
 parity305, strict warm/cold953 each, atomicity24, wide67, Wisp8099 and actual
 V8 6.0 progression59 pass. The mobile checks include200% text, reduced motion,
 44px controls, keyboard routes to Mastery/Lab/Forge and save purity.
--G4's four independent one-second8h phases were regenerated; complete state
+- G4's four independent one-second8h phases were regenerated; complete state
 hashes, kills, Ascends and Prisms exactly match F. Only the regenerated source
-stamp changes. The final browser suite will be rerun alone; no full PASS yet.
+stamp changes. G5's same four phases were actually regenerated and match every
+G4/F complete state hash and counter too. G5 exact gameplay/campaign inverses
+pass. No full-suite PASS is claimed.
 
 The initial fast-click policy was rejected. A zero-to-zero gap mutation was
 invalid and replaced by a dropped-record mutation. An extra audit initially
@@ -79,12 +86,19 @@ correction changes the game or its established acceptance contracts.
 Superseded G1/G3 runs and CPU-contended G4 scroll deadlines are preserved.
 The same deadlines and assertions remain. A G2 enlarged-text failure identified
 the oversized Power label; G4 passes that case. Do not call interrupted or
-failed attempts a full-suite pass.
+failed attempts a full-suite pass. The unloaded G4 suite finished215PASS and
+five original deadline failures: scroll90s, offline core/12h and Rift stacking/
+mobile300s. All five exact-F baseline comparisons pass those unchanged limits.
+Frozen G4 isolated comparisons all pass: scroll75s, offline core259s,
+offline12h136s, Rift stacking265s and Rift mobile265s. This does not relabel
+the failed full run or establish a cause for the timing variation. Direct
+offline stdout statuses were independently parsed; all original limits remain.
 
 ## Delivery limits and continuation
 
 The playable isolated preview uses4175; shared4174 is untouched. No fixture or
-purchase was applied to the user's save. Screenshots and source-qualified
+purchase was applied to the user's save. All15 G5 root/staged/HTTP assets match.
+Small-screen normal/enlarged guide screenshots were inspected. Source-qualified
 receipts are in experiments/late-guidance/. Self-review only.
 
 GitHub login xariib still receives404 for karahaNx/Lumenfall (16 October).
@@ -92,6 +106,8 @@ Required historical Guidance object684bfc52 is absent. Remote Linux CI and
 Android/JDK/SDK/signing/installed-save/device/TalkBack/human acceptance remain
 open; no APK was built. No main/remote integration, release or archive.
 
-Next: complete the isolated final browser run, resolve actual regressions
-without weakening assertions, save its evidence, then restore repository access
-and complete the remaining combined/native/human acceptance.
+Next: restore repository access, reproduce the full required CI gate on the
+integrated candidate without weakening assertions, then complete the remaining
+combined/native/human acceptance. Archived comparison drivers ran from their
+validation-evidence paths on matching G4 source/golden; restore that checkout
+and those paths when reproducing their original command records.

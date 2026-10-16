@@ -2,7 +2,7 @@
 
 Local candidate only; feature OPEN. Measured F baseline SHA256:
 `4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45`.
-Current advice candidate07c9397a: [late pacing work](LATE_GUIDANCE.md).
+Current advice candidate9cdcd80c: [late pacing work](LATE_GUIDANCE.md).
 No main integration, APK or release is claimed. Original scope and protections:
 [requirements](REQUIREMENTS.md).
 

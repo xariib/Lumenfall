@@ -1,6 +1,6 @@
 {
-  "status": "LOCAL_PACING_AND_MOBILE_VERIFIED_FINAL_SERIAL_BROWSER_PENDING",
-  "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+  "status": "LOCAL_PACING_AND_FOCUSED_CHECKS_PASS_FULL_CI_AND_NATIVE_ACCEPTANCE_OPEN",
+  "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
   "measuredSourceSha256": "fb76dd813189fa89e959b13193512460a1b17d373c4e88225902d277325398e8",
   "campaigns": [
     {
@@ -122,14 +122,15 @@
     }
   ],
   "mobile": {
-    "file": "g4-mobile.json.gz",
-    "payloadSha256": "9838b870c5901cf9265659a5c16fc1010f63f5341b13a4714ac6a5abfbc969a1",
-    "checks": 865,
+    "file": "g5-mobile.json.gz",
+    "payloadSha256": "4788b32c727eecc7f5904d9f22c076bb5dd78891124ea1e7058b2635f23d49e7",
+    "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
+    "checks": 913,
     "profiles": 12,
     "cases": 72
   },
-  "equivalence": "g4-campaign-equivalence.json.gz",
-  "wholeGameplayInverse": "g4-exact-inverse.json.gz",
+  "equivalence": "g5-campaign-equivalence.json.gz",
+  "wholeGameplayInverse": "g5-exact-inverse.json.gz",
   "attempts": [
     {
       "file": "g-full-browser.txt",
@@ -170,9 +171,20 @@
         "file": "attempt-g4-scroll-retry.txt.gz",
         "payloadSha256": "9e0bf6a31b74368d3ddefacbcbf533b33af5f0ff9a86ffea04a9e8e048879007"
       }
+    },
+    {
+      "file": "g4-serial-browser.txt",
+      "pass": 215,
+      "failedAttempts": 5,
+      "status": "UNLOADED_DEADLINE_FAIL",
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "receipt": {
+        "file": "g4-serial-browser.txt.gz",
+        "payloadSha256": "6125699f0134d017dbc17c021032a741224684225c0485e22e439c39aea30d78"
+      }
     }
   ],
-  "limits": "Pacing hashes stay source-qualified. G4 equivalence uses exact inverse plus all-day Rift/rank bounds. No fresh campaign rebase, main/remote integration, APK, device or human acceptance.",
+  "limits": "Measured G2 hashes stay source-qualified. G5 equivalence uses exact inverse, existing cleared15 minimum and all-day Rift/rank bounds. G4 checks retain their hashes; G5 changes only farming guidance wording. No fresh campaign rebase, full-suite pass, main/remote integration, APK, device or human acceptance.",
   "checks": [
     {
       "file": "g4-core.json.gz",
@@ -245,6 +257,20 @@
       "checks": 54,
       "payloadSha256": "6f1c716e711358fa1b772c878daf100aa34dd512b43cbef87b037734b86e5b07",
       "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+    },
+    {
+      "file": "g5-guidance.json.gz",
+      "checks": 186,
+      "payloadSha256": "c3cc7a3594c7d141343d5a4d080eae055680af38a47fa7563d709c7110ad1fee",
+      "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8"
+    },
+    {
+      "file": "g5-v8.json.gz",
+      "checks": 62,
+      "payloadSha256": "ee1873e32ef78d9d9717622bd3e04cf01eb0648026e0083aeb0216a38a3b850c",
+      "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
+      "node": "v8.3.0",
+      "v8": "6.0.286.52"
     }
   ],
   "controls": {
@@ -257,5 +283,62 @@
   "finalBrowser": {
     "status": "PENDING_UNLOADED_RUN",
     "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e"
+  },
+  "baselineComparison": "f-baseline-comparison.json",
+  "currentIsolatedComparison": "g4-isolated-comparison.json",
+  "regressionDisposition": {
+    "fullRun": {
+      "sourceSha256": "07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e",
+      "exitcode": 1,
+      "pass": 215,
+      "deadlineFailures": 5,
+      "receipt": "g4-serial-browser.txt.gz"
+    },
+    "sameOriginalDeadlines": {
+      "baselinePass": 5,
+      "currentPass": 5,
+      "limitsMs": [
+        90000,
+        300000,
+        300000,
+        300000,
+        300000
+      ],
+      "baselineSeconds": [
+        79,
+        262,
+        140,
+        266,
+        266
+      ],
+      "currentSeconds": [
+        75,
+        259,
+        136,
+        265,
+        265
+      ]
+    },
+    "conclusion": "All failed cases passed isolated exact-source replays. Original full-run failures remain failures; timing variation cause is unproven and full CI acceptance remains open."
+  },
+  "previousMobile": {
+    "file": "g4-mobile.json.gz",
+    "payloadSha256": "9838b870c5901cf9265659a5c16fc1010f63f5341b13a4714ac6a5abfbc969a1",
+    "checks": 865,
+    "profiles": 12,
+    "cases": 72
+  },
+  "golden": {
+    "file": "g5-offline-golden.json.gz",
+    "payloadSha256": "f6bf59995dd1fddf1c3c912a814ff1c017dc77ef6945dd03735e323f26e5ae8e",
+    "actualRegeneration": true,
+    "phases": 4,
+    "eachSeconds": 28800,
+    "sourceSha256": "9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8",
+    "completePhaseStatesEqualG4AndF": true
+  },
+  "receiptIntegrity": {
+    "file": "g5-receipt-integrity.json",
+    "checks": 58
   }
 }

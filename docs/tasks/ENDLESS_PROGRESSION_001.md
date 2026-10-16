@@ -11,8 +11,8 @@ endless-progression-worktree. Original checkout preserved. Schema5 entitlements/
 Mastery, separate prices/gates, bounded future Lab work, exact wide amounts,
 compact UI implemented. [Evidence](../qa/endless-progression-001/README.md).
 F rosters125.67/133.5d; earlier rejected calibrations remain in README.
-Product07c9397a adds optional late advice to F; Lab UI67e retained.
-F browser220/190 PASS; final full run underway. CI/native acceptance OPEN.
+Product9cdcd80c adds late advice to F; Lab UI67e retained.
+G4 browser215 PASS/5 deadlines; all5 isolated retries PASS. CI/native OPEN.
 
 Preserve fe14b2d timed Lab boosts/60s Motes and67e7d3e idle Lab UI.
 Campaign source/policy records stay frozen.
@@ -24,6 +24,6 @@ Exact window/saved basis fixes retained. F engine12h2195/cold-split471 PASS.
 karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
 16Oct: user requires fixing30-41d late stalls and guiding useful upgrades.
 Advice locates Mastery/rebuild/Forge/farming/gates; never spends or toggles.
-Exact inverse proves gameplay/balance unchanged. Guide183/mobile865 PASS.
-Next: finish G2 campaigns/gates and G4 full checks; retain measured source hashes.
+G5 guide186/mobile913/V8 62 and exact inverse PASS; goldens equal F.
+G2 audits4550 PASS. Next: restore GitHub; complete CI/native acceptance.
 No shared/main/remote/APK/archive; [late fix](../qa/endless-progression-001/LATE_GUIDANCE.md).

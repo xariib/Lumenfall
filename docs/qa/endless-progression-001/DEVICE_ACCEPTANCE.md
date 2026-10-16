@@ -3,7 +3,7 @@
 This records the remaining checks from the [approved requirements](REQUIREMENTS.md).
 It adds no gameplay rule, timing threshold or release authorization.
 The isolated candidate is source SHA256
-`07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e`.
+`9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8`.
 The [current receipt](experiments/late-guidance/final-validation.json) separates executed
 desktop checks from these outstanding checks. No new APK has been built.
 
@@ -13,11 +13,11 @@ desktop checks from these outstanding checks. No new APK has been built.
 | Packaged assets | Extracted APK HTML matches the accepted source; all fonts and branding match the staged manifest; no QA bridge, fixtures or CI runtime guard ships | Source/staged/HTTP15 assets match; APK comparison not executed |
 | Installed-save upgrade | Upgrade the previously signed installation without clearing app data; compare recruits, currencies, rarity, abilities, Ultimates, Tree/Forge/Lab, paid running projects, receipts and automation | Engine migration/recovery tests pass; installed upgrade not executed |
 | Recruitment retention | Previously unlocked Wisps remain recruitable after Ascend under the higher new gates; repeat load/import/Ascend does not grant a second migration benefit | Engine checks pass; native not executed |
-| Mastery purchase | Real input buys one rank with the shown exact Prism/Sigil debit and10% own-Power increase; insufficient funds/development refuse without a debit; focus stays in the Wisp card | Chromium493/12 profiles pass; native not executed |
+| Mastery purchase | Real input buys one rank with the shown exact Prism/Sigil debit and10% own-Power increase; insufficient funds/development refuse without a debit; focus stays in the Wisp card | Current Chromium913/12 profiles include Mastery and guidance; native not executed |
 | Mastery retention | Ascend, close/relaunch and backup/import retain rank and existing upgrades; Support duration, strength and recast remain unchanged | Warm/cold/storage/Support checks pass; native not executed |
-| WebView60 | Run the packaged app on the required legacy WebView, including startup, requirements, wide balances, purchase, save and recovery | Actual V8 6.0.286.52 engine143/progression56 pass; native DOM/WebView not executed |
+| WebView60 | Run the packaged app on the required legacy WebView, including startup, requirements, wide balances, purchase, save and recovery | Current actual V8 6.0.286.52 progression62 pass; native DOM/WebView not executed |
 | Catch-up chronology | Complete the requested online/offline window with matching rewards/counters/purchases and strict remaining-HP tolerance; retain unrestricted Auto-Ascend and paid timer boundaries | Full12h accounting/cold split and strict warm/cold checks pass on desktop; native not executed |
-| Catch-up performance | Record device/WebView identity, requested window, total processing time, longest interruption and actual ability to continue playing | Desktop foreground12h296s/max slice281ms; substantial cost, device acceptability unverified |
+| Catch-up performance | Record device/WebView identity, requested window, total processing time, longest interruption and actual ability to continue playing | F baseline desktop foreground12h296s/max slice281ms; device acceptability unverified |
 | Accessibility | Small mobile screen and enlarged text; readable requirements/prices/Current/Next; touch targets, keyboard/switch focus and TalkBack announcements | Chromium mobile/enlarged-text checks pass; physical input/TalkBack not executed |
 | Human pacing | Review source-qualified milestone, wall and purchase-investment evidence; distinguish simulations from observed player/device acceptance | F fresh60d/180d plus regular7d recoveries and further10d Lab gates measured; human acceptance not recorded |
 

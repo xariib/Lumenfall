@@ -89,6 +89,15 @@ async function run(){
      const forgeBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
      check(await ev('document.activeElement.getAttribute("data-research")==="masterwork"'),'guide locates actual Forge control');
      check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===forgeBefore,'Forge recommendation never buys');await ev('endlessUi.set('+JSON.stringify(restore)+')');
+     await ev('(()=>{var s=endlessUi.get();s.prisms=s.lumen=s.shards=0;s.owned.autoascend=true;s.autoAscendTargetDepth=20000;s.autoAscendEnabled=false;endlessUi.set(s);})()');
+     const farmingBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');
+     check(await ev('document.getElementById("late-power-detail").textContent.includes("cleared Rift 15")'),'farming guide states the measured repeat target');
+     check(await ev('(()=>{var root=document.getElementById("late-power-guide");root.scrollIntoView({block:"start"});return Array.from(root.querySelectorAll("h3,p,button")).every(e=>e.scrollWidth<=e.clientWidth+1);})()'),'farming recommendation wraps at enlarged text');
+     if(width===320&&motion==='no-preference'){await ev('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,'guide-prisms-'+scale+'.png'),Buffer.from(shot.data,'base64'));}
+     await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
+     check(await ev('document.getElementById("tab-ascend").classList.contains("active")&&document.activeElement.id==="auto-ascend-controls"'),'keyboard guide locates the existing Auto-Ascend controls');
+     check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===farmingBefore,'farming guide preserves saved target, toggles, wallets and save slots');
+     await ev('endlessUi.set('+JSON.stringify(restore)+')');
     }
     if(width===320&&motion==='no-preference'){await ev('document.querySelector(".tab-btn[data-tab=spirits]").click();document.getElementById("late-power-guide").scrollIntoView({block:"start"})');await ev('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,mode+'-'+scale+'.png'),Buffer.from(shot.data,'base64'));}
    }

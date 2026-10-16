@@ -8388,7 +8388,7 @@ function latePowerAdvice(){
   else if(empower)result=advice('REBUILD','Rebuild your team’s Power','Affordable run levels remain. Enable Auto-Empower for your team while saving for permanent upgrades.','spirits','[data-empower-queue="'+empower.id+'"]',empower.id);
   else if(next.plan.ready&&next.plan.requirements.every(function(r){return r.met||r.key==='depth';})&&forgePlan.buyCount===1&&Amount.le(forgePlan.cost.lumen,Amount.mul(state.lumen,.75)))result=advice('FORGE POWER','Temper Masterwork to level '+(researchLevel('masterwork')+1),'All Wisp Power ×'+ENDLESS_PROGRESSION.masterworkPowerGrowth+' permanently. Keep some Lumen for run levels.','forge','[data-research="masterwork"]','masterwork');
   else if(eligible){
-    if(!prismPurchasePlan(eligible.plan.cost.prism,true))result=advice('FARM PRISMS','Farm Prisms for '+eligible.sp.shortName,'Ascend toward '+formatRiftNumber(eligible.plan.cost.prism)+' Prisms. Rebuild afterwards; stop Auto-Ascend when funded and return to Push.','ascend','#auto-ascend-controls',eligible.sp.id);
+    if(!prismPurchasePlan(eligible.plan.cost.prism,true))result=advice('FARM PRISMS','Farm Prisms for '+eligible.sp.shortName,'Repeat cleared Rift '+(MIN_AUTO_ASCEND_RIFT-1)+' toward '+formatRiftNumber(eligible.plan.cost.prism)+' Prisms. Use Auto-Ascend if owned. When funded, stop, rebuild and Push.','ascend','#auto-ascend-controls',eligible.sp.id);
     else result=advice('FARM SIGILS','Farm Sigils for '+eligible.sp.shortName,'Need '+formatRiftNumber(eligible.plan.cost.sigil)+' Sigils. Clear bosses; keep your run and Empower queues growing.','battle','#rift-farm-btn',eligible.sp.id);
   }else{
     var missing=next.plan.requirements.find(function(r){return !r.met&&r.key!=='depth';});

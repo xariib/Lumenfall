@@ -2,9 +2,10 @@
 
 [Readable current results and limits](RESULTS.md).
 
-16 October: current isolated source07c9397a adds [late guidance](LATE_GUIDANCE.md).
+16 October: current isolated source9cdcd80c adds [late guidance](LATE_GUIDANCE.md).
 Regular recovery gaps8–12h; ten-day required-Lab sample max16.11h. Source-bound
-audits4550/guide183/mobile865 PASS; final serial browser/CI/native acceptance OPEN.
+audits4550/G5 guide186/mobile913/V8 62 PASS. G4 full215 PASS/5 deadlines;
+all5 isolated retries PASS. Full CI/native acceptance remain OPEN.
 The F baseline and earlier measurements below retain their original source hashes.
 
 Applied F baseline [checkpoint](experiments/applied-f-checkpoint.json), source4b052487.
