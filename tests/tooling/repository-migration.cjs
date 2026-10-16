@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),cp=require('node:child_process');
-const {releaseVersion}=require('../../scripts/ci/android-release-version.cjs');
+const {releaseVersion,assertNewerThanPublished}=require('../../scripts/ci/android-release-version.cjs');
 const {setVersion}=require('../../scripts/ci/set_android_version.cjs');
 const {archivedBaseline}=require('../../scripts/ci/guidance-archived-baseline.cjs');
 const {restoreBaselineAssets}=require('../../scripts/ci/guidance-baseline-assets.cjs');
@@ -8,8 +8,9 @@ const {verify:verifyUpgrade}=require('../../scripts/ci/verify_upgrade_receipt.cj
 const root=path.resolve(__dirname,'../..'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-migration-'));
 try{
  const v=releaseVersion('1');assert.equal(v.versionCode,1000001);assert.equal(v.versionName,'0.2.1');assert(releaseVersion('2').versionCode>v.versionCode);
+ const published=[{tag_name:'android-1000002',assets:[{name:'Lumenfall.apk'}]}];assert.throws(()=>assertNewerThanPublished(v.versionCode,published));assert.throws(()=>assertNewerThanPublished(1000002,published));assert.equal(assertNewerThanPublished(1000003,published),1000002);assert.throws(()=>assertNewerThanPublished(1000003,[{tag_name:'unknown',assets:[{name:'Lumenfall.apk'}]}]));assert.equal(assertNewerThanPublished(v.versionCode,[{draft:true,tag_name:'private',assets:[{name:'Lumenfall.apk'}]}]),158);
  const apk=path.join(temp,'test.apk'),receipt=path.join(temp,'upgrade.json');fs.writeFileSync(apk,'synthetic receipt-binding fixture');assert.throws(()=>verifyUpgrade(receipt,apk,v.versionCode));
- const complete={status:'PASS',uidRetained:true,bothSaveSlotsRetained:true,progressAndPaidStudyRetained:true,package:'com.lumenfall.app',origin:'https://localhost',physicalDevice:false,beforeUid:'123',afterUid:'123',candidateVersionCode:v.versionCode,baselineVersionCode:158,apkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync(apk)).digest('hex')};
+ const complete={status:'PASS',baselineColdRestartVerified:true,uidRetained:true,bothSaveSlotsRetained:true,progressAndPaidStudyRetained:true,package:'com.lumenfall.app',origin:'https://localhost',physicalDevice:false,beforeUid:'123',afterUid:'123',candidateVersionCode:v.versionCode,baselineVersionCode:158,apkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync(apk)).digest('hex')};
  fs.writeFileSync(receipt,JSON.stringify(complete));assert.equal(verifyUpgrade(receipt,apk,v.versionCode).status,'PASS');
  for(const change of [{status:'RUNNING'},{bothSaveSlotsRetained:false},{afterUid:'456'},{candidateVersionCode:158},{apkSha256:'0'.repeat(64)}]){fs.writeFileSync(receipt,JSON.stringify({...complete,...change}));assert.throws(()=>verifyUpgrade(receipt,apk,v.versionCode));}
  for(const x of ['',0,-1,'1.5','NaN','2099000001'])assert.throws(()=>releaseVersion(x));

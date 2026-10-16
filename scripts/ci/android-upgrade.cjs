@@ -34,14 +34,23 @@ async function main(){
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
  const seed=JSON.parse(saved);Object.assign(seed,{lumen:1234567,shards:4321,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
  seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
+ seed.owned.autoascend=true;seed.owned.meteor=true;seed.owned.starcall=true;
  for(const obj of ['empowerQueue','researchQueue','studyQueue'])for(const k of Object.keys(seed[obj]||{}))seed[obj][k]=false;
  const study=Object.keys(seed.longStudyLevels)[0];seed.longStudyLevels[study]=3;seed.activeStudies=[{id:study,remainingSec:3500,totalDurationSec:3600,speedMult:2}];
  seed.studyUseMotes[study]=false;seed.studySpeedTargets[study]=2;
  const sentinel='repository-migration-001-synthetic';
  report.beforeOrigin=await page.evaluate('location.origin');assert.equal(report.beforeOrigin,'https://localhost');
  await page.evaluate(`(()=>{const s=${JSON.stringify(JSON.stringify(seed))};localStorage.setItem(${JSON.stringify(primary)},s);localStorage.setItem(${JSON.stringify(recovery)},s);localStorage.setItem('migration-upgrade-probe',${JSON.stringify(sentinel)});return true;})()`);
+ // WebView commits DOM storage asynchronously. Establish a durable old-app
+ // fixture through an actual cold restart before testing package replacement.
+ await pause(6000);
  page.close();adb('shell','am','force-stop',packageId);
- console.log('Android upgrade QA: synthetic old save committed');
+ adb('shell','am','start','-n',packageId+'/.MainActivity');page=await connect();await pause(3000);
+ const oldCold=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);
+ assert.equal(oldCold.origin,report.beforeOrigin);assert.equal(oldCold.sentinel,sentinel,'Old APK fixture must survive its own cold restart before upgrade');assert(oldCold.save&&oldCold.recovery,'Old APK retains both baseline slots');assert.equal(oldCold.save.spirits.ember,33,'Old APK accepted the synthetic progression');assert.equal(oldCold.save.heroRarity.ember,5,'Old APK accepted the synthetic paid rarity');
+ report.baselineColdRestartVerified=true;
+ await pause(6000);page.close();adb('shell','am','force-stop',packageId);
+ console.log('Android upgrade QA: synthetic old save verified after actual old-APK cold restart');
  const beforePackage=adb('shell','dumpsys','package',packageId),beforeUid=beforePackage.match(/userId=(\d+)/)[1];report.baselineVersionCode=Number(beforePackage.match(/versionCode=(\d+)/)[1]);
  assert.match(adb('install','-r',candidate),/Success/,'Actual in-place package replacement');
  const afterPackage=adb('shell','dumpsys','package',packageId),afterUid=afterPackage.match(/userId=(\d+)/)[1];assert.equal(afterUid,beforeUid,'Android UID retained');report.candidateVersionCode=Number(afterPackage.match(/versionCode=(\d+)/)[1]);assert(report.candidateVersionCode>report.baselineVersionCode,'Actual installed Android version increases');report.beforeUid=beforeUid;report.afterUid=afterUid;
@@ -50,10 +59,13 @@ async function main(){
  await pause(3000);
  const observed=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);page.close();
  assert.equal(observed.origin,report.beforeOrigin);assert.equal(observed.sentinel,sentinel);assert(observed.save&&observed.recovery,'Both save slots retained');
- const s=observed.save;for(const field of ['prisms','comets','motes','sigils'])assert(s[field]>=seed[field],field+' retained');
+ const s=observed.save;for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],field+' retained');
  for(const [field,id] of [['spirits','ember'],['spirits','stone'],['heroRarity','ember'],['wispModules','ember'],['wispUltimate','ember'],['nodes','swift'],['research','arcanecal'],['longStudyLevels',study]])assert.equal(s[field][id],seed[field][id],field+'.'+id+' retained');
  const running=s.activeStudies.find(x=>x.id===study);assert(running,'Paid Study retained');assert.equal(running.speedMult,2);assert.equal(running.totalDurationSec,3600);assert(running.remainingSec>0&&running.remainingSec<=3500);
  assert(s.recruitmentEntitlements.ember&&s.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
+ for(const id of ['autoascend','meteor','starcall'])assert.equal(s.owned[id],true,'Paid unlock retained: '+id);
+ assert.equal(s.autoAscendEnabled,false,'Saved Auto-Ascend choice retained');assert.equal(s.autoAscendTargetDepth,seed.autoAscendTargetDepth,'Saved target retained');
+ for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }

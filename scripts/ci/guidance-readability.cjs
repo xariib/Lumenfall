@@ -28,7 +28,7 @@ function execute(id,command,timeout=300000,input){
 }
 function successful(p,code=0){assert.equal(p.record.timedOut,false);assert.equal(p.record.error,null);assert.equal(p.record.signal,null);assert.equal(p.record.exitCode,code);}
 function assets(webroot){
- const rows=[];function walk(relative){const p=path.join(webroot,relative),s=fs.lstatSync(p);assert(!s.isSymbolicLink(),'Regular staged assets required');if(s.isDirectory())for(const n of fs.readdirSync(p).sort())walk(path.join(relative,n));else{assert(s.isFile());rows.push({path:relative,bytes:s.size,sha256:hash(read(p))});}}
+ const rows=[];function walk(relative){const p=path.join(webroot,relative),s=fs.lstatSync(p);assert(!s.isSymbolicLink(),'Regular staged assets required');if(s.isDirectory())for(const n of fs.readdirSync(p).sort())walk(path.join(relative,n));else{assert(s.isFile());rows.push({path:relative.split(path.sep).join('/'),bytes:s.size,sha256:hash(read(p))});}}
  for(const dir of ['fonts','branding'])walk(dir);return rows;
 }
 const driver=path.join(root,'tests/behavioral/rift-guidance.cjs');

@@ -51,7 +51,7 @@ function endingPassive(source,a,config={},mutation) {
   a.near(ending.after._autoEmpowerAccum,empower,1e-14,'ending event-time Auto-Empower phase retained');
   a.eq(ending.after.spirits.ember,3,'ending reset uses Veteran starting level');
   a.eq(ending.after.nodes,ending.before.nodes,'ending passive reset preserves all paid ownership');
-  a.eq(ending.after.ascendCount,config.unsafeCount?1e30:before.ascendCount+1,'unsafe lifetime counter is not used as run identity');
+  a.eq(require('./amount-oracle.cjs').integer(ending.after.ascendCount),BigInt(before.ascendCount)+1n,'exact lifetime counter advances once with the new run');
   a.eq(events[0],{type:'ascend'},'passive death/Ascend precedes any equal-time ready cast');
   if(config.readyAbility){
     a.ok(events.some(e=>e.type==='cast'),'retained full charge executes through actual ready-action resolver');
