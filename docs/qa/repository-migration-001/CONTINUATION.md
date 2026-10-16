@@ -91,3 +91,19 @@ again, no OOM/kill/kernel event and14955MiB available. Next preflight uses suppo
 software GPU rendering instead of deprecated swiftshader_indirect, verbose logs.
 Native remains UNVERIFIED. Current uncommitted changes are that workflow, QA MIME/
 font checks and evidence/checkpoints; no further product changes.
+
+Latest authoritative checkpoint: locald39a619 (PR remainsfcf1077), only task docs
+are uncommitted after the code commit. Local origin has been changed to new repo;
+legacy-origin old URL retained, destination new alias retained. Other files untouched.
+Native38897693824 on d39a619 is IN PROGRESS. It uses software GPU, KVM ignore_msrs
+only on ephemeral CI host (reports kept), continuous logcat, checks BOTH slots'
+progress/paid Study. Earlier kernel WRMSR0xc0010007 correlates with emulator loss;
+compatibility hypothesis is not an acceptance claim. See task/evidence README.
+Full38896647886 attempt1 browser handshake failure retained; unchanged attempt2
+has PASSED actual-font Guidance and is running Tree caps/refunds/collection.
+All five scoped lanes PASS on fcf1077: Comet38896647847, Forge38896647913,
+Lab38896647868, Shared38896647844, Tree38896648089. Need remaining Full PASS and
+native actual completed receipt before integration/final exact-main checks/build.
+Local full Guidance real-font matrix16/160 PASS;80 words verify real Manrope.
+Full and bounded/inverse raw receipts saved compressed in migration evidence.
+Do not rerun already-passed local tests unnecessarily. No release exists yet.

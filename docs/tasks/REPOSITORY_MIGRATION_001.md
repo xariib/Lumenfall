@@ -1,100 +1,115 @@
-# Repository migration and signed Android release
+# REPOSITORY_MIGRATION_001 — migrate and release the current combined game
 
-16 October 2026. IN PROGRESS; same owner, no agents.
-Goal: migrate the complete current candidate to xariib/Lumenfall and deliver a
-verified latest APK that updates existing installations without losing progress.
+Owner: this feature chat. Status: IN PROGRESS; no release or native save-retention
+acceptance claimed. [PR1](https://github.com/xariib/Lumenfall/pull/1).
+[Current continuation](../qa/repository-migration-001/CONTINUATION.md) and
+[complete evidence/failed attempts](../qa/repository-migration-001/README.md).
 
-User requirements: start from codex/endless-progression 8f46153, never the older
-shared checkout. Preserve history, requirements, assets, tests and historical
-evidence, including destination content. Review untracked evidence; exclude
-credentials, private keys, dependencies and temporary browser data. Update
-current repository/setup references, preserving archived originals. README first
-item: “Download latest Android APK”, stable releases/latest/download/Lumenfall.apk
-after matching publication, installation/update help, features/build/docs.
+## Original user requirements
 
-Use only the original Downloads/Lumenfall-debug.keystore, provisioned privately;
-certificate A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
-Retain com.lumenfall.app, Capacitor origin, saves/recovery/migrations, progression,
-purchases and entitlements. Continue versionCode above distributed builds;
-configure triggers/signing/versioning before publication. Required CI and relevant
-regressions must pass without weaker gates. Verify actual APK identity/assets,
-available upgrade/save checks and download. Report physical-device limits.
+Migrate and release to xariib/Lumenfall because the old account is flagged. Start
+from local codex/endless-progression commit8f46153 at
+validation-evidence/endless-progression-worktree, never the older shared checkout.
+Use an isolated migration branch/worktree and inspect overlapping work. Preserve
+available Git history, complete project, requirements/tests/assets and historical
+evidence. Review necessary untracked files; exclude credentials/private keys,
+dependencies and browser temporary files. Preserve existing destination content;
+no force-push or blind overwrite. Update current references/setup/docs while
+preserving archived originals unchanged.
 
-Baseline: 8f46153, product SHA256 9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8.
-Isolated codex/repository-migration, validation-evidence/repository-migration-worktree.
-Destination main eba021e67da1c4f4c8a64fa65b082f978aa92f84 contains README only;
-retain its ancestry and original content. Shared local/full-debug d2ae094 is older.
-Other worktrees remain untouched; overlapping visual work has uncommitted product/
-test/workflow changes and is outside this explicit release baseline.
+README first prominent item must be “Download latest Android APK”. After the
+matching release exists, use and verify this exact stable link:
+https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk
+Then short install/update help, overview/features/build/docs. Existing players
+install the new APK as an update WITHOUT uninstalling or losing progress.
 
-Inherited limitations: full G4 browser run 215 PASS/five deadlines, all five
-isolated retries PASS; missing historical Guidance object684bfc52; Linux CI/native
-acceptance outstanding. See [continuation](../qa/endless-progression-001/experiments/CONTINUATION.md),
-[signing evidence](../qa/endless-progression-001/signing-recovery/README.md).
-Self-review only. No release yet. Acceptance remains OPEN until verified delivery.
+Use only original C:/Users/xarib/Downloads/Lumenfall-debug.keystore outside Git;
+never commit/print/publish it or generate a replacement. Privately provision new
+workflow signing. Expected certificate SHA256:
+A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
+Retain com.lumenfall.app, Capacitor origin, primary/recovery saves/migrations,
+progression, purchases and paid entitlements. Continue Android versionCode above
+previous distributed builds; setter/verifier must agree. Inspect triggers and
+configure signing/versioning before anything can publish. Required CI/regressions
+must pass without weakened gates. Verify APK package/cert/version/assets and
+available installed-update/save checks. Do not demand one particular installed old
+version; report physical-device limitations. Publish latest release, verify README
+download and save delivery evidence/limitations in GitHub. Carry through delivery.
 
-Checkpoint: new-account CLI authorized; original key reverified and privately
-provisioned as LUMENFALL_KEYSTORE_BASE64. No key in Git/releases/output.
-PR [1](https://github.com/xariib/Lumenfall/pull/1), head0d13a27, preserves both
-histories and destination description/exact README snapshot. Automatic review
-rejected an initial ours-only conflict command; safer content-preserving merge
-passed. Game/config/locked dependencies/assets still byte-identical to8f46153.
-Dispatch-only release uses shared1000000+run_number version, exact CI commit,
-certificate/package/assets/origin and disposable-emulator upgrade gates.
-Original Guidance source/14 assets recovered from pinned pre-existing evidence.
-Context/1509 archive checks/source/identity/migration controls PASS locally.
+## Baseline and preservation
 
-First six CI lanes failed: missing untracked mature fixture; stale schema4,
-old recruitment/Ultimate Lab gates, stagnant counters/wide-debit assumptions,
-old Lab work cap and frozen-fixture pin. Failures retained in
-[migration evidence](../qa/repository-migration-001/README.md).
-Focused corrections preserve every protection and use independent exact-value
-oracles; no game changes. Forge9319/25 controls, Tree5924, Comet offline34000,
-Lab2677 pass locally; actual V8.6 Forge2486/Tree2881/Lab580 pass. Browser fixture/
-gesture validation and untracked evidence review/copy are ongoing.
+Isolated codex/repository-migration at
+validation-evidence/repository-migration-worktree. Selected8f46153 sourceSHA256
+9cdcd80ca9010f03a71704562c2d3d7cd18bd9795d3c67af6892a1148583ece8.
+Shared local/full-debug d2ae094 is older. Other worktrees, including uncommitted
+visual-polish product/test/workflow work, remain untouched. Origin now points to
+xariib/Lumenfall; old URL remains legacy-origin. Destination initiallyeba021e
+README-only; its ancestry, exact README bytes and visible description preserved.
+Main815b348 contains only that README and safe workflow bootstrap, not the game.
+All available local history preserved; unavailable old pre-import objects404 are
+not claimed recovered. Historical archives remain unchanged;1509 archive checks
+PASS. Reviewed4206 untracked/ignored outputs:3586 retained/877068875 bytes match
+source SHA256 AND committed raw Git blobs,620 temporary/empty outputs excluded;
+no original files deleted. Manifests/proof linked in evidence README.
 
-Latest checkpoint: reviewed3639 untracked files, retained3189 evidence/reproducer
-files (816714332 bytes), excluded450 profiles/staging/empty outputs; committed
-21394f7. No private filenames/material. Forge browser27396 and Tree26744/12
-profiles PASS. Comet exposed a real native scrolling defect: the owned-command
-Rift stage's overflow:hidden created an intermediate scroll container. An isolated
-one-line overflow:visible probe with exact production assets passes12738/12 and
-all10 original causal controls. Applied that same single CSS edit; all production
-scripts, balance, saves and assets remain byte-identical to8f46153. Current source
+Only product edit: Comet-owned Rift stage overflow:visible restores real touch
+scrolling. All production JavaScript, package/config, locked dependencies and
+assets are byte-identical to8f46153. Current productSHA256
 bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21.
-Four actual independent one-second8h oracles regenerated; every complete state
-hash and counter equals the previous golden. Only source stamp differs.
+[Exact proof](../qa/repository-migration-001/product-preservation.json).
 
-Bootstrap main815b348 registers only the guarded dispatch workflow and preserves
-the initial README. Game remains in PR1, not main. Build-only preflight38890225543
-uses published branch0d13a27 (pre-CSS-fix); publish=false. It is not the final APK.
-Reviewed CI corrections/final-source evidence are being committed before rerun.
+## Current implementation and checks
 
-Next: push corrected candidate and merge bootstrap ancestry; rerun six required
-Linux lanes. Inspect preflight Android/emulator failures and fix them. Then
-integrate game, dispatch exact-main checks, build/verify and publish. Switch
-README to the stable download only after matching release exists. Physical
-device/WebView60/TalkBack/human limitations remain open; no final release yet.
+Original key privately provisioned as encrypted Actions secret
+LUMENFALL_KEYSTORE_BASE64, certificate/MAC/private challenge reverified. Publisher
+is dispatch-only, publish=false by default. Shared1000000+run_number versioning
+and published-release guard reject stale/equal/unknown APK versions. Publication
+requires main and latest successful manual runs of all six gates on exact SHA,
+verified final package/certificate/version, exact15 assets/origin and a completed
+native receipt bound to APK SHA/version/UID/save/progress/paid Study. No preflight
+can be published. README currently links /releases pending the matching release.
 
-16 October continuation: PR head662fed8 passes Forge38890547040, Comet38890547111,
-Lab38890547286 and Shared38890547134. Full/Tree failures retained; corrected
-Guidance historical bridge/inverse evidence and stale exact-wide Tree fixtures.
-Local complete Guidance bounded gate recovery3 passes; Tree offline10085,
-economy16802/six controls and actual V8 Cheaper Recruitment pass. Final CI pending.
-All3586 retained evidence files/877068875 bytes now match original SHA256 and
-committed Git blob SHA1 (retained-evidence-verification.json). Excluded620 reviewed
-temporary/empty files; no original files deleted. New migration QA attempts saved.
-Native build identity/assets pass, but upgrade remains UNVERIFIED: preflight1
-silently omitted receipt (explicitly corrected); strict followups failed sentinel,
-about:blank origin, then reload DevTools disconnection. These are failed evidence,
-not acceptance. Current build-only38894057323 adds reload phase diagnostics and
-process-restart validation; mandatory completed receipt prevents false success.
-No release exists yet. Next: final six CI lanes, native completed receipt,
-integration/exact-main dispatch gates, publish and actual stable download verify.
+Current PR headfcf1077: Comet38896647847, Forge38896647913, Lab38896647868,
+Shared38896647844 and Tree38896648089 PASS. Full38896647886 attempt1 failed Chrome
+startup handshake before mobile assertions; failed evidence retained, unchanged
+job rerun attempt2 IN PROGRESS. Earlier Full reached Guidance and exposed its QA
+server's missing .css MIME/fallback fonts; fixed server plus mandatory loaded
+Manrope400/700, original typography/assertions/inverses unchanged. Local actual-
+font bounded probe and full default16 profiles/160 samples/80 word measurements
+PASS. Earlier fallback-font receipts are not real-font acceptance.
 
-Current authoritative run/checkpoint: [continuation](../qa/repository-migration-001/CONTINUATION.md).
-PR ad7135d current Full/Tree/Forge pending; Comet/Lab/Shared pass. Additional Prism/Swift
-harness reconciliation passes locally (original controls preserved). Native256ce58,
-run38895560522 pending; API29 font/GPU crash and API35 emulator disappearance documented.
-Upgrade UNVERIFIED, no release yet. Next: inspect those exact runs, integrate final
-candidate only with honest acceptance, exact-main CI, guarded publication and download proof.
+Stale schema/gates/caps and wide count/debit fixtures reconciled with accepted
+endless behavior without game changes or skipped controls. All focused modern
+and actual V8.6.0 results are source-qualified in evidence. Swift22 positives/16
+original controls; Prism341654/seven; closeout540/1248 V8 cases3277; Tree offline/
+economy/mobile; Comet12738/12/10; Forge27396/12; real one-second8h golden phases
+unchanged; payment3360; recovery/refund/purchase regressions PASS. Self-review and
+automated validation only; no independent review claimed.
+
+Native remains UNVERIFIED. Initial green job silently omitted receipt; explicitly
+corrected to identity/assets-only, never counted as upgrade PASS. Strict attempts
+fail closed. API29 logcat shows stock WebView native font/GPU SIGABRT before
+fixture registration. API35 attempts lose entire emulator before save setup;
+latest host logs show repeated KVM WRMSR0xc0010007 before disappearance, no OOM.
+Current build-only38897693824 on locald39a619 tests a disposable-host KVM MSR
+compatibility setting, keeps diagnostics and streams Android logs. Original APK,
+assets and all save/paid-work assertions unchanged, now explicitly for BOTH slots.
+No native/CPU/performance success is inferred from a build or hypothetical cause.
+
+## Remaining acceptance and next action
+
+1. Inspect current Full and native runs; fix actual failures without weakening
+   gates. Save logs and qualified receipts. Do not label job green as retention
+   without completed receipt. Keep task/continuation current.
+2. Integrate correct combined candidate preserving histories/content. Run all six
+   required manual workflows on exact integrated main SHA, then guarded
+   publish=true build on same SHA with completed identity/assets/native receipt.
+3. Download actual latest APK, compare build hash/assets/identity and verify an
+   anonymous request to stable README URL returns those exact signed bytes.
+   Update README link, task/state and final release evidence in GitHub.
+
+Physical phone, exact WebView60, TalkBack and human pacing/performance acceptance
+remain unverified. Emulator uses an archived signed synthetic baseline and does
+not require a particular version on the user's phone. Historical pre-import Git
+objects unavailable; old external links remain historical. No chat archive or
+complete delivery claim while release/required acceptance remains outstanding.
