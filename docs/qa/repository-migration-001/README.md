@@ -161,3 +161,12 @@ Kernel parameter implementation: https://github.com/torvalds/linux/blob/master/a
 No CPU/native performance acceptance claim. All game assets/code unchanged.
 Local origin now xariib/Lumenfall; old URL retained as legacy-origin, destination
 alias retained. No other worktree files/branch upstreams changed.
+
+KVM compatibility38897693824 also FAILED before real old-save creation. Continuous
+logcat shows original Capacitor serving real HTML/font assets and starting the
+app, then whole guest disappears. No successful retention is inferred; WRMSR
+correlation/ignore_msrs was not a proved fix and is removed. Complete guest logs,
+kernel/memory and failed run saved. Next unchanged signed in-place upgrade test
+uses API31/google_apis (Android12), avoiding unstable API35 guest/image behavior.
+API29 stock WebView native font crash and API35 disappearance remain limitations.
+No requirement for a particular physical installed version or performance claim.
