@@ -291,6 +291,9 @@ jobs:
           disable-animations: true
           script: node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
 
+      - name: Require completed upgrade receipt for this exact APK
+        run: node scripts/ci/verify_upgrade_receipt.cjs
+
       - name: Preserve verified build
         uses: actions/upload-artifact@v4
         with:
