@@ -179,3 +179,15 @@ Page/Runtime domains and must prove actual live primary/recovery writes BEFORE
 cold restart. Live snapshot saved even on failure. Original cold-restart and
 replacement/save assertions remain unchanged. Same WRMSR appears in stable API31,
 so earlier MSR correlation is not established as cause; workaround removed.
+
+Page-agent run38899673390 proves the actual legacy fixture written, surviving
+real old-app cold restart, then actual install-r and same origin/UID. It fails
+at expected ownership of Meteor: archived158 SHOP has only Auto-Ascend, Trials,
+Trail and Crest; old app discarded nonexistent Meteor/Call flags BEFORE update
+(as captured live snapshot proves). This is invalid fixture expectation, not
+proved lost purchase. Next seeds all FOUR actual old purchases plus equipped
+cosmetics/Trial marks, verifies them BEFORE replacement, then requires approved
+legacy entitlement/140+50+160 once credits and cosmetics/marks in BOTH current
+persisted slots. Core Comet CI separately covers new command purchase retention.
+Original progression/paid Study/UID/signature/slots/cold tests unchanged; new
+readiness requires both new schemas actually persisted and saves post-update data.
