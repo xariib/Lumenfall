@@ -1,58 +1,77 @@
-# Endless progression continuation
+# Endless progression continuation — 16 October 2026
 
-Feature OPEN. Use only nested validation-evidence/endless-progression-worktree,
-branch codex/endless-progression. Shared checkout preserved. No agents/chats/messages.
+Feature OPEN. Work only in the nested validation-evidence/endless-progression-worktree,
+branch codex/endless-progression. Commit4e0a375. Shared root local/full-debug is
+preserved; no agents/chats/messages. User latest requires actual late guidance
+and fixes for30–41d stalls. Original requirements and the two human engine
+choices remain in ../REQUIREMENTS.md.
 
-16Oct continuation: user requires actual late guidance for30-41d stalls.
-Current game b3592be6 has optional Next power/advice; baseline gameplay is
-byte-identical under the exact inverse. See ../LATE_GUIDANCE.md before the
-historical F checkpoint below. Regular2/3-visit day180 continuations running
-(g-guided-two-slow.json / g-guided-three-slow.json), one action per30s, plus
-casual2x5min. Both regular saves broke their records on day1 without new Lab.
-Full browser run g-full-browser.txt underway; wisp-rarity-scroll timed out
-under concurrent campaign load, retry separately after jobs finish. Mobile637,
-guide174 and strict warm953 PASS. No claim that new full acceptance is finished.
+Current root/staged/HTTP15 assets:07c9397a5b5c4850b82446e70486ee527edd3d15cf9e7e1abdb6fafc2301d46e.
+Read ../LATE_GUIDANCE.md and late-guidance/final-validation.json. Optional
+post-roster guide follows the most developed Wisp, recommends Mastery/rebuild/
+Forge/farming/required gates and existing earned-Mote Lab speed. It never
+auto-spends. Three late Power labels use the existing compact formatter.
+Exact inverse to F proves unchanged gameplay/balance/save/paid/Support bytes.
 
-- Root/staged game source4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45.
-  F tables/exact cycle engine applied locally; fe14 timed Lab/60s Motes and67e Lab
-  UI retained. Probes do not modify product bytes.
-- Read ../RESULTS.md, ../DEVICE_ACCEPTANCE.md, applied-f-checkpoint.json,
-  applied-f-final-campaigns.json and original ../REQUIREMENTS.md.
-- Six fresh60d free policies: all8 recruits21.33-26d, firstMY42.33-53.33d,
-  firstULT42.67-54d. Primary2/3-visit Day1 pass; casual5min rarity exactly24h disclosed.
-- Both original earned campaigns completed180d without source/policy rebase.
-  Focused3 full roster125.666667d; broad2 at133.5d. Permanent paths/counters and
-  purchase receipts audited42,590 checks, post-roster Mastery growth observed.
-- Conservative policies end with30.33/41.49d open record gaps. Report now exposes
-  open gaps. Do not call all late walls passed: policies disable empowerment
-  while saving beyond current Mastery needs; raw outliers are retained.
-- Choice probes: focused day166 empowerment breaks9691 to9794 within1h, Lab same;
-  two-visit day156 reaches9340 within12h, or9400 with one affordable Forge purchase,
-  Lab178 same. Low-level combat diagnostics are not lifetime-offline-stat acceptance.
-- Separate earned day138 continuation: two10min visits/day, one60s low-Rift Prism
-  burst when needed, explicit Mastery and pushing. Daily records9100/9160/9220/
-  9280/9310/9370/9430;84 Mastery purchases. Independent ledger/rank/retention/clock
-  audit56 plus3 defect controls PASS. No grants, timer/balance changes or primary
-  rebase. An incomplete offline-stat driver was rejected/preserved; corrected
-  daily-Ascend comparison is separate. Existing running work is never cancelled.
-- Helpers: endless-late-priority-probe.cjs (--burst-prisms), audit.cjs in tests/
-  behavioral. Campaign report has retention/post-roster flags for both regular
-  policies and reports open gaps. Archived policy sources/hashes are in applied-f/.
-- Current browser220 executions/190 scenarios PASS, exit0; mobile493/12 profiles,
-  affordability26844/12, collection5892/12 plus4 controls, generic22/payment17
-  controls PASS. Warm/cold953 each, storage29, boundaries2528/core235, income632726,
-  prices13416, Support1782, earlyWisps2801, Formation1408 PASS. Actual V8 6.0.286.52
-  engine143/progression56 includes rank10000 purchase.
-- Foreground12h296028ms/max slice280.57ms;2195 accounting/exact prior state+summary
-  checks PASS. Cold8h+4h471 PASS. Substantial desktop cost, no phone performance
-  claim. Orbit memo experiment was slower, rejected/unintegrated.
-- All test/campaign workers completed, or rejected probe explicitly stopped.
-  Read-only preview4175/session8241 retained; shared4174 untouched.
-- External: login xariib, karahaNx/Lumenfall AGENTS404. No java/javac/adb/keytool/
-  aapt/apksigner on PATH. Configcom.lumenfall.app. Historical Guidance Git object
-  684bfc52 absent and unavailable for fetch; current Guidance browser checks PASS.
-  Linux tooling/remote CI, native/signing/installed-upgrade and human acceptance OPEN.
-- Next: restore authorized repo access, required Linux/Guidance gates, review
-  late-pacing evidence, then combined/native/human acceptance and approved APK
-  identity/signing/assets/device checks. No shared/main/remote integration, PR,
-  APK/release/archive. Self-review only. Keep feature OPEN.
+Measured G2 sourcefb76dd81 is retained separately. Fresh earned F day180
+regular2/3 continuations: seven days, two/three10min visits, one decision/30s.
+Daily records2:10120/11080/12070/13030/13990/14950/15910 (origin9058).
+Daily records3:11320/12760/14200/15640/17080/18520/19960 (origin9691).
+Max gaps12h/8h including open gaps. Actual G2 outcomes are byte-identical to
+G1 state/history/actions/windows/gaps for these recovery windows.
+Further ten days from earned G1 day187: Rift19960→22960, Lab190→203,
+Mastery435→560, max observed gap0.67118056d (16.11h). Required Lab gates,
+earned speed and explicit Mastery purchases continue; no grants.
+
+G4 differs from measured G2 only by three label formatters and a Forge
+recommendation when a Mastery Rift gate is unmet. Exact code inverse and
+daily lower-Rift/upper-rank bounds prove this branch unreachable throughout
+all three measured campaigns:54 checks. Raw source/policy hashes are never
+rebased. Independent ledgers/chronology/retention1286+1897+1367=4550 PASS.
+Six defect types in regular2 and late-Lab audits (12 executions) PASS.
+
+Current07c checks: guide183, mobile865/12 profiles/72 cases, core235,
+requirements2528, parity305, strict warm/cold953 each, atomicity24, wide67,
+Wisp8099 and actual V8 6.0 progression59 PASS. Four independent one-second
+8h phases regenerated on G4: complete state hashes/kills/Ascends/Prisms
+exactly match F. Only the source stamp changed. Context32559/32768 PASS.
+
+ACTIVE FINAL RUN: tool session3535, validation-evidence/g4-serial-browser.txt,
+raw directory validation-evidence/g4-serial-browser-raw. This run started only
+after verifying no other behavioral Node workers remained. Do NOT change
+index.html/mobile/www/golden/used test files while it runs; do NOT start
+parallel CPU-heavy tests/browsers. Read giant logs using Node fs+regex,
+not PowerShell Get-Content -Tail. Keep commentary at least every60s.
+
+Earlier G1/G3 whole runs were stopped as superseded. The first G4 run and
+a concurrent retry hit the original90s scroll deadline under competing work.
+They are preserved as failed/interrupted attempts, not full PASS.
+No timeout/assertion was weakened. The new final run is unloaded.
+Initial fast-click player policy was rejected. A no-op gap mutant was fixed.
+An extra audit incorrectly assumed ALL presets remain static; accepted
+Field Best now intentionally autosaves the selected preset. Corrected audit
+protects unselected presets and its corruption control fails as expected.
+G2 large-text failure caught the native oversized Power label; G4 fixes it.
+
+All pacing workers and standalone checks have completed. Preview4175 is
+running in tool session11942, serves mobile/www; shared4174 untouched.
+G4 preview manifest is late-guidance/g4-preview.json. App open was queued;
+no current visible-user-browser inspection or fixture on user save claimed.
+UI screenshots g4-guide[-lab]-1/2.png were inspected.
+
+External16Oct: connected GitHub xariib; karahaNx/Lumenfall AGENTS404.
+Historical Guidance object684bfc52bb2ca523124fe63981188b9a8004d747 is missing.
+No java/javac/adb/keytool/aapt/apksigner on PATH. Remote Linux CI,
+Guidance baseline, APK/signing/installed-save/device/TalkBack/human
+acceptance remain OPEN. No main/shared/remote integration, PR, APK,
+release or archive. Self-review only. Git writes require escalation;
+no auto-review rejection occurred.
+
+Next: finish final serial browser suite. If it passes, archive exact stdout
+and counts/exit/source, update final-validation.json/LATE_GUIDANCE/RESULTS/
+task/state and commit evidence. Do not rerun already-passed checks without
+new changes/failures. If a gate fails, diagnose and preserve original
+assertions/deadlines. For an unloaded deadline, compare the F baseline
+separately after this suite ends; never relabel failure as success.
+Then restore authorized repository access and complete remaining combined/
+native/human acceptance. Keep the feature OPEN until those conditions pass.
