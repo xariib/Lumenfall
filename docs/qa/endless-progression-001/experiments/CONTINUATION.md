@@ -40,6 +40,9 @@ with in-place APK/save retention. See DEVICE_ACCEPTANCE.md user correction:
 recover original release-asset signing key, retain package/storage/origin,
 continue versionCode beyond distributed APKs rather than resetting run_number.
 Visual work should branch from current local product838dbda/source9cdcd80c.
+User supplied private-draft asset/fingerprint, matching workflow expectations.
+Fresh xariib repo/releases404; browser handoff tab3 awaits original-account
+sign-in. No keystore retrieved/verified/moved; see DEVICE_ACCEPTANCE details.
 
 Next: establish destination access (old repo404), reproduce full
 required CI without weaker gates, recover missing Guidance object684bfc52,

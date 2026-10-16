@@ -46,6 +46,15 @@ workflow downloads `Lumenfall-debug.keystore` from release `lumenfall-signing-v1
 copying Git history alone does not recover that release asset. Keep private
 signing material out of ordinary source commits and chat output.
 
+The user confirms this is a private draft release and supplies certificate
+SHA-256 `A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21`,
+matching both current workflow expectations. Fresh access check16Oct: connected
+login `xariib` gets404 for repository metadata and the releases collection;
+the in-app browser redirects releases to GitHub sign-in. No keystore bytes
+were retrieved, no certificate was verified from a keystore, and no signing
+material was moved. Original-account sign-in or a user-downloaded local key
+is needed before retrieval/verification can continue.
+
 The current workflow derives APK version information and its verification
 expectations from `github.run_number`. A new repository's counter cannot be
 used blindly. Verify the highest distributed/installed versionCode, then make
