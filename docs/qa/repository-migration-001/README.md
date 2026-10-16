@@ -225,3 +225,17 @@ Rift stacking PASS; offline timeout retained as failed evidence. The original
 Rift failure did not reproduce in full local Chrome140/155 or subsequent Linux;
 rich geometry diagnostics retained, with no relaxation. New exact-source full CI
 and final signed native build/release/download remain pending.
+
+## Linux runtime follow-up
+
+Focused38907406127 on734a4b28: Wisp and full native Rift stacking PASS; original
+core still hits300s under LinuxNode20 despite237s localNode24.19.0 PASS. No gate
+removed or relaxed. Full38907499109 on same known-failing runtime canceled.
+Full/focused workflows now pin the same24.19.0 runtime as qualified local tests;
+other scoped gates retain their current runtime. Node24 is supported LTS per
+https://nodejs.org/en/about/previous-releases (checked16Oct2026); Node20 is EOL.
+This is a scoped CI runtime correction, not a game change. Need actual Linux24
+focused PASS and all six manual gates on the new integrated commit. Product root
+remains d4a55cde, no golden or native/game source changes. Earlier734a passes remain
+qualified for that old commit only. Current build-only38907863894 runs734a and
+therefore same exact product; final publisher still must use new main SHA.
