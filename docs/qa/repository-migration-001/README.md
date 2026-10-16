@@ -127,3 +127,20 @@ stops the Gradle build daemon before the emulator, bounds AVD RAM1536M/heap256M
 and records runner kernel/memory diagnostics on failure. Native assertions remain.
 Runner RAM/heap options are documented upstream:
 https://github.com/ReactiveCircus/android-emulator-runner#configurations
+
+Fourth Full38895141716 fails Guidance candidate on Linux fallback font metrics.
+Root cause: rift-guidance QA HTTP server omitted .css MIME, so fonts.css was served
+as octet-stream and self-hosted Manrope never loaded. Windows fallback happened
+to pass; those earlier receipts do not prove real-font readability. Added correct
+text/css and mandatory loaded Manrope400/700 face evidence; original typography,
+complete-word assertions, all cases and inverses remain. Local actual-font bounded
+gate guidance-real-fonts PASS, including baseline and original inverse controls.
+No product edit. Tree38895141710 and Forge38895141663 now PASS along with all other
+four scoped lanes (five scoped lanes total); logs/metadata preserved in ci-pr-ad7135d.
+Full is the remaining CI lane. Native bounded API35 run38895560522 still loses
+emulator. Kernel has no OOM/kill event; available memory14955MiB, swap unused, so
+resource exhaustion is unsupported. Current emulator37.2.12 uses deprecated
+swiftshader_indirect. Next uses supported software GPU backend with verbose
+emulator diagnostics, as documented by Android:
+https://developer.android.com/studio/run/emulator-acceleration#accel-graphics
+Original APK/assets/retention assertions unchanged. Still no upgrade PASS/release.

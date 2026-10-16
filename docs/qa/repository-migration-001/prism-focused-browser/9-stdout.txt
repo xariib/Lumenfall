@@ -1,0 +1,39 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "04cd3899f3a61bb0118c98a4bd03f6d540d42d93a6505498133a0dea046674bc", "instrumented_sha256": "ca48942ea48698a3fb8fce49840c19ab9401e0afc83a0ea5ca9b488ff256517a" }
+FAIL self-test-ascend-prisms-tree
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.6335892, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-tree", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-tree", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "reward oracle 15,0,1,0,full expected 8 got 7", "stack": "Error: reward oracle 15,0,1,0,full expected 8 got 7\n    at assert (http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14292:29)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14300:43\n    at Array.forEach (<anonymous>)\n    at check (http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14300:23)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14337:83\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14337:63\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&qaFixture=fresh:14336:18" }
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-migration-prism-proof\self-test-ascend-prisms-tree-3VJNI6\raw\self-test-ascend-prisms-tree-5mz0P3
+  stdout tail:
+tional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash leaving"><span>ASCENDED</span><strong>+7 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-tree">{
+  "scenario": "self-test-ascend-prisms-tree",
+  "status": "fail",
+  "detail": {
+    "message": "reward oracle 15,0,1,0,full expected 8 got 7",
+    "stack": "Error: reward oracle 15,0,1,0,full expected 8 got 7\n    at assert (http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:14292:29)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:14300:43\n    at Array.forEach (&lt;anonymous&gt;)\n    at check (http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:14300:23)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:14337:83\n    at Array.forEach (&lt;anonymous&gt;)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:14337:63\n    at Array.forEach (&lt;anonymous&gt;)\n    at http://127.0.0.1:55547/index.html?qaScenario=self-test-ascend-prisms-tree&amp;qaFixture=fresh:14336:18"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+

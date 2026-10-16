@@ -1,0 +1,41 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "ed84e4a59f66579e44230697470b59e36c3741e9879345c7cc765eb98cfc1604", "instrumented_sha256": "4da43caf7f2f770b2d3a06e0ac8c328bc025df06f69fe778d28e769c39162acb" }
+FAIL self-test-ascend-prisms-lab
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.1885718, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-lab", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-lab", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "reward oracle 16,15,0,1,reserve expected 2 got 1", "stack": "Error: reward oracle 16,15,0,1,reserve expected 2 got 1\n    at assert (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14292:29)\n    at http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14300:43\n    at Array.forEach (<anonymous>)\n    at check (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14300:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:14333:37)\n    at HTMLDocument.run (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&qaFixture=fresh:20195:32)" }
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-migration-prism-proof\self-test-ascend-prisms-lab-vT1rQ3\raw\self-test-ascend-prisms-lab-4XDCw3
+  stdout tail:
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash leaving"><span>ASCENDED</span><strong>+2 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-lab">{
+  "scenario": "self-test-ascend-prisms-lab",
+  "status": "fail",
+  "detail": {
+    "message": "reward oracle 16,15,0,1,reserve expected 2 got 1",
+    "stack": "Error: reward oracle 16,15,0,1,reserve expected 2 got 1\n    at assert (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&amp;qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&amp;qaFixture=fresh:14292:29)\n    at http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&amp;qaFixture=fresh:14300:43\n    at Array.forEach (&lt;anonymous&gt;)\n    at check (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&amp;qaFixture=fresh:14300:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&amp;qaFixture=fresh:14333:37)\n    at HTMLDocument.run (http://127.0.0.1:62022/index.html?qaScenario=self-test-ascend-prisms-lab&amp;qaFixture=fresh:20195:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+

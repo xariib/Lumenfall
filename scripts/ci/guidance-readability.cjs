@@ -36,6 +36,7 @@ const tests=[__filename,path.join(__dirname,'guidance-baseline-assets.cjs'),path
 function inputs(){return {candidate:pin(path.join(stage,'index.html')),tests:tests.map(pin),assets:assets(stage)};}
 function fonts(m){
  assert.equal(m?.schema,'rift-guidance-readability-001');assert.equal(m.fontStatus,'loaded');
+ for(const weight of ['400','700'])assert(m.fontFaces.some(f=>f.family==='Manrope'&&f.weight===weight&&f.status==='loaded'),'Actual self-hosted Manrope '+weight+' loaded, not platform fallback');
  const sizes=['root','title','detail','toggle'].map(k=>parseFloat(m.fonts?.[k]?.fontSize));
  [32,28,24,28].forEach((n,i)=>assert(Number.isFinite(sizes[i])&&Math.abs(sizes[i]-n)<=0.01,'Unchanged root/title/detail/toggle font sizes'));
  return sizes;

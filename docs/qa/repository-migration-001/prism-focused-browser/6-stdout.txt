@@ -1,0 +1,47 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "b3bd67c3cd73483efaf388d5a5523fe151e590307e541d5d4d3fc92c0f195bfb", "instrumented_sha256": "8cee74e295d8a62dec081c196185c7125ae1fb9002091da2892d7c7b3d89c871" }
+FAIL self-test-ascend-prisms-payout
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.1917976, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-payout", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-payout", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "manual payout equals preview/oracle", "stack": "Error: manual payout equals preview/oracle\n    at assert (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14292:29)\n    at check (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14308:33)\n    at window.runAscendPrismsContract (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:14333:3)\n    at HTMLDocument.run (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&qaFixture=fresh:20195:32)" }
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-migration-prism-proof\self-test-ascend-prisms-payout-kXeubL\raw\self-test-ascend-prisms-payout-q5hOhk
+  stdout tail:
+ was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash leaving"><span>ASCENDED</span><strong>+2 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-payout">{
+  "scenario": "self-test-ascend-prisms-payout",
+  "status": "fail",
+  "detail": {
+    "message": "manual payout equals preview/oracle",
+    "stack": "Error: manual payout equals preview/oracle\n    at assert (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:14292:29)\n    at check (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:14308:33)\n    at window.runAscendPrismsContract (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:14333:3)\n    at HTMLDocument.run (http://127.0.0.1:54596/index.html?qaScenario=self-test-ascend-prisms-payout&amp;qaFixture=fresh:20195:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+

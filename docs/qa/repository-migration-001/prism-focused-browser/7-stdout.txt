@@ -1,0 +1,45 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "resolved_path": "C:\\Users\\xarib\\Documents\\Codex\\2026-10-13\\https-github-com-karahanx-lumenfall-https\\Lumenfall\\validation-evidence\\migration-tools\\chrome\\chrome-win64\\chrome.exe", "sha256": "8a8792b7ea14945bc7fef8f87cc79bd1ed9a893a1b4a421f180d30b24a9c76b7", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "2c1a0736f1d27d151c5df4d71561d25b07e642ef1e23a105a16cb6f04ad6ebe5", "instrumented_sha256": "5b030b69f92ef316c642b59e8cb4fe146a93effea9d350cee54ab011e097e04e" }
+FAIL self-test-ascend-prisms-repeat
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 1.1047906, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-repeat", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-repeat", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "reward oracle 16,15,0,0,reserve expected 1 got 2", "stack": "Error: reward oracle 16,15,0,0,reserve expected 1 got 2\n    at assert (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14292:29)\n    at http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14300:43\n    at Array.forEach (<anonymous>)\n    at check (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14300:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:14333:3)\n    at HTMLDocument.run (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:20195:32)" }
+  raw artifacts: C:\Users\xarib\AppData\Local\Temp\lumenfall-migration-prism-proof\self-test-ascend-prisms-repeat-V2qCpX\raw\self-test-ascend-prisms-repeat-BPMAox
+  stdout tail:
+     }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-repeat">{
+  "scenario": "self-test-ascend-prisms-repeat",
+  "status": "fail",
+  "detail": {
+    "message": "reward oracle 16,15,0,0,reserve expected 1 got 2",
+    "stack": "Error: reward oracle 16,15,0,0,reserve expected 1 got 2\n    at assert (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:18026:61)\n    at ok (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:14292:29)\n    at http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:14300:43\n    at Array.forEach (&lt;anonymous&gt;)\n    at check (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:14300:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:14333:3)\n    at HTMLDocument.run (http://127.0.0.1:63124/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:20195:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+

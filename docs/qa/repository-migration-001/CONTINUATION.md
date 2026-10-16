@@ -1,122 +1,93 @@
 # Migration continuation — 16 October 2026
 
-Same authorized task; continue to release, no agents/chats/messages. Read task,
-this checkpoint and current code before editing. No new general approval needed.
+Continue the same authorized migration AND release; no agents/chats/messages.
+Worktree: validation-evidence/repository-migration-worktree, branch codex/repository-migration.
+Shared root local/full-debug d2ae094 is older. NEVER RELEASE IT. Selected source8f46153
+in codex/endless-progression remains untouched. Other worktrees/uncommitted work untouched.
+Read task, current code and this checkpoint before edits; no new general approval needed.
 
-Shared root is older local/full-debug; never build it. Work in
-validation-evidence/repository-migration-worktree, codex/repository-migration.
-Original selected8f46153 retained. Current productbf7909b5 differs only by one
-Comet-owned Rift CSS overflow:visible; all scripts byte-identical. Qualified
-matching-assets probe12738/12/10 controls PASS; Forge27396 and Tree26744/12 pass.
-Regenerated four independent1s8h golden phases exactly equal prior full hashes.
+Current local HEAD256ce58; remote PR1 headad7135d. Local changes since PR are ONLY
+Android resource diagnostics/workflow and saved failed-native evidence. Remote build-only
+branch codex/android-upgrade-preflight is256ce58. Destination main815b348 remains initial
+README plus safe dispatch-only workflow, not game. PR1 preserves both ancestries/content.
+No force pushes. Old pre-import Git objects unavailable404; all available local history
+and archives retained. Original destination README exact snapshot retained and description
+included visibly in new README. Initial ours-only conflict command was auto-review rejected;
+content-preserving merge succeeded. PR https://github.com/xariib/Lumenfall/pull/1 attached.
 
-GitHub CLI: ../migration-tools/gh/bin/gh.exe, authorized xariib/admin with workflow
-scope; HTTPS auth configured. Network/Git writes require escalation. Do not print
-tokens. Original key remains C:/Users/xarib/Downloads/Lumenfall-debug.keystore,
-verified SHA/cert/MAC/private challenge; provisioned only as encrypted Actions
-secret LUMENFALL_KEYSTORE_BASE64. No key in Git/public releases/output.
-Official Node8 ../migration-tools/node8.exe; Chrome140 QA binary
-../migration-tools/chrome/chrome-win64/chrome.exe. Set LUMENFALL_QA_CDP_CHROME.
+GitHub CLI ../migration-tools/gh/bin/gh.exe authorized xariib/admin/workflow; HTTPS helper.
+Network/Git writes need escalation. Never print tokens/private key. Original Downloads key
+privately provisioned as Actions secret LUMENFALL_KEYSTORE_BASE64, MAC/private challenge/cert
+reverified. Exact certificate A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
+No key in Git/public outputs. Dispatch-only publisher;1000000+run_number continuing version,
+rejects stale/equal/unknown published APK versions. Setter/verifier consistent. Only integrated
+main can publish, after latest workflow_dispatch success on same SHA for all six CI lanes.
+Exact package/cert/15 production assets/origin and COMPLETED emulator receipt mandatory.
+Release assets include APK/hash/assets/identity/commit/emulator receipt. No release yet.
+README first link currently /releases placeholder; switch to exact requested stable /latest/
+download/Lumenfall.apk ONLY after matching release exists and actual bytes verify.
 
-PR https://github.com/xariib/Lumenfall/pull/1 is attached. Remote PR head662fed8;
-local migration branch has7ddf020 (native proof fix), pushed only as the remote
-build-only branch codex/android-upgrade-preflight so existing CI is uninterrupted.
-Destination main815b348 contains initial README plus safe dispatch-only build
-workflow, not the game. That bootstrap ancestry is merged in662fed8.
-Both repository histories/README preserved; no force-push. Initial ours-only
-conflict command was rejected by auto-review; content-preserving merge passed.
+Product bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21 differs from selected
+9cdcd80c only by Comet-owned .stage overflow:visible. All production scripts/config/lock/
+assets unchanged. Matching-assets native scroll probe12738/12/10 controls PASS; Forge27396,
+Tree26744/12 PASS. Four actual one-second8h oracle outputs regenerated; all complete state
+hashes/counters exactly equal old golden. Product preservation receipt committed.
 
-Evidence commit21394f7 retains3189 of3639 reviewed untracked files,816714332 bytes;
-450 profiles/redundant staging/empty outputs excluded. Original files untouched.
-Full manifest untracked-review.json; .gitattributes preserves bytes. All original
-archives1509 checks PASS. GitHub warns about existing/new60MB evidence, no rejection.
-All available local Git history is preserved; pre-import old Git objects remain404.
-Exact historical Guidance source/14 asset blobs recovered from pinned evidence.
+Evidence3586 original bodies/877068875 bytes match reviewed SHA256 AND committed raw Git
+blob SHA1. Includes397 formerly ignored synthetic logs. Reviewed4206/excluded620 temporary/
+empty outputs, no source files deleted. Manifests and exact verification receipts committed.
+All1509 archive checks PASS. Historical Guidance source/14 assets recovered by pinned blobs.
 
-First six CI runs on0d13a27 all failed; logs saved. Reconciled stale schema4,
-old Lab/recruitment/Ultimate gates, stagnant wide counters/debits, fixture pin,
-Masterwork row and ten-day work cap without changing gameplay or skipping gates.
-Core final-source Forge9319/25, Tree5924, Lab2677, Comet offline34000 PASS;
-actual V8.6.0 Forge2486/Tree2881/Lab580 PASS. No independent review claim.
+CI rounds saved first/second/third logs. Fixed stale schema4/current5, old Lab/Ultimate/recruit
+gates/caps, exact wide debits/counters, fixture hashes, Masterwork row and all original causal
+controls. Actual V8.6.0 Forge/Tree/Lab checks pass. Guidance full bounded gate recovery3 PASS.
+Tree offline10085/economy16802/six controls PASS. Swift22 positives/16 negatives PASS: new exact
+clock receipts validated for owner/arithmetic/phase, original game/timer tolerances unchanged,
+plus saved cold continuation and forged-receipt controls. Original clock mutation anchor now
+includes new binary progress guard. Prism closeout probe loads actual Amount engine (missing
+old isolated dependency),540 checks/1248 legacy cases, V8.6.0 legacy3277 PASS. No game edits.
+Other focused current-source PASS: Prism341654/seven controls; recruitment206; Echo627/13;
+Swift actual V8; Support1782/four; earlyWisp2801/five; Wisp8099/seven plus15352 preservation;
+Rift cosmetics170. Prism browser four positives/five causal negatives PASS with short TEMP
+path: first Windows long-path attempt could not write raw negative receipts and FAILED;
+actual short-path receipt/raw compressed evidence saved. No driver assertions changed.
+Cheaper browser --echo PASS; independent payment oracle3360 PASS.
 
-Second PR CI on662fed8:
-- Full38890547127 FAIL at Guidance: current QA bridge directly referenced timed
-  boost functions absent from the immutable old baseline. Optional QA exposures
-  are now null when unsupported (no old production code changed). A later
-  old-title inverse also reached the Ascend title in the dense ordinary case;
-  the inverse-only probe now records that exact expected failure while measuring
-  ALL five ordinary cases plus the dedicated Ascend case. Owner independently
-  validates each measurement; positive/full defaults remain immediate assertions.
-  Local full bounded Guidance gate recovery3 now PASS: baseline defect, five
-  ordinary positives/Ascend, width inverse, exact title inverse and full CSS inverse.
-- Forge38890547040 PASS.
-- Comet38890547111 PASS; Lab38890547286 PASS; Shared38890547134 PASS.
-- Tree38890547224 FAIL: tree-expansion-offline still expected1e30 stagnant count;
-  cheaper-recruitment-v8 still expected a huge wallet payment to be null.
-  Both locally corrected with exact arithmetic, preserving blocked low-wallet
-  and all400 capped attempts. Cheaper V8 PASS. Tree offline10085 PASS; its four
-  unchanged original negative functions pass separately without repeating the
-  expensive positive run. Tree economy16802/six controls PASS. Exact CLI with
-  --negative still remains required in final CI; no deadline was changed.
+Current PR CI on ad7135d:
+Full38895141716 IN PROGRESS (automation clocks); Tree38895141710 IN PROGRESS (mobile; ROI
+now passed); Forge38895141663 IN PROGRESS (8h). Comet38895141644, Lab38895141643,
+Shared38895141778 PASS. Earlier PR0f305b9 Forge/Comet/Lab/Shared PASS; Tree38894225096
+failed missing Amount, downstream missing generated legacy-cases (now fixed). Full old run
+cancelled by corrected push; not a pass. Do not push PR again until current gates finish.
 
-IMPORTANT correction: first Android build-only run38890225543 on0d13a27 exited
-job success and verified package/cert/version1000001/0.2.1/assets, but its emulator
-helper silently exited WITHOUT emulator-upgrade.json. This is NOT upgrade PASS.
-User was explicitly corrected after an overstatement. Public preflight-run.json
-records exact limitation; downloaded APK SHA5ef110bd7c3de9b878d0994ac2d284b49bf907b46dd7d314883e699f294bd2b0
-matches original9cdcd80c assets; final-root verifier correctly rejects that old HTML.
-Artifact under validation-evidence/android-preflight; run.log captures identity.
+Native remains UNVERIFIED. First job38890225543 green silently omitted receipt; user was
+explicitly corrected, public receipt says identity/assets PASS, upgrade UNVERIFIED. Never
+publish that old pre-CSS APK. Strict38891076512 failed sentinel;38892541352 about:blank;
+38893289179/38894057323 lost DevTools. Logcat proves stock API29 WebView native SkGlyph
+font/GPU SIGABRT BEFORE fixture registration; not a proved storage failure. API35/google_apis
+38894502679 lost entire emulator, cause unproven. Native failure logs saved. Latest build-only
+38895560522 on256ce58 is IN PROGRESS (emulator). Stops Gradle daemon, bounds RAM1536M/heap256M,
+saves kernel/memory diagnostics on failure. All assertions unchanged. Watch actual completed
+receipt, not job green. Helper seeds before old initialization, force-stops process to discard
+transient injection, requires OLD app cold restart sentinel/slots/Ember33/Mythic5 BEFORE real
+install-r, then UID/version/origin/slots/currencies/progress/paid Study/unlocks/choices retained.
+Receipt bound to exact APK SHA/version. Physical phone, exact WebView60/TalkBack/human tests
+not done; old stock native font crash remains explicit limitation.
 
-7ddf020 adds DevTools connection/command deadlines/close rejection, a liveness
-watchdog, forced localhost-forward endpoint, and mandatory completed receipt bound
-to actual APK hash/version/UID/progress/save slots. Six missing/invalid receipt
-controls PASS. Stricter build-only run38891076512 on7ddf020 is in progress, last
-seen emulator step. Inspect actual output/receipt, not green action status alone.
-Native helper logs phases. If it fails, fix actual transport/device issue; do not
-weaken asserts. Both preflights have publish=false; neither can be final release.
+Next: inspect native38895560522 and PR CI. Fix genuine failures without weakening gates;
+save logs and current receipts. Once gates/native pass, push final workflow/docs, integrate
+correct game into main preserving history, then dispatch all six exact-main workflows.
+After they pass, publish=true build on SAME main SHA; inspect actual completed native receipt,
+download final release APK/hash/identity/assets. Verify anonymous stable URL actual bytes,
+then update README link and final task/state/evidence docs in GitHub. Set local origin=new
+repo retaining legacy-origin reference safely (no existing remote tracking refs/upstreams).
+No final APK, completion or archive claim until delivered; physical limitations reported.
 
-Newer native outcomes:38891076512 failed strictly after replacement because the
-sentinel was missing. Do NOT claim retention.38892541352 failed before seeding:
-DevTools targeted about:blank and localStorage raised SecurityError. The next
-helper waits for the actual https://localhost app/complete document, seeds only
-the OLD app through a one-time pre-document script (removed before cold restart),
-then checks the old save survives a real cold restart before any replacement.
-This also avoids the old game's5s autosave overwriting a storage-only fixture.
-The first missing sentinel may have been unflushed storage; cause unproven.
-
-Current local HEADd731e92, pushed only to codex/android-upgrade-preflight; PR1
-still remote662fed8. Build-only run38893289179 on d731e92 is in progress, last
-seen emulator. It contains version guard, native cold-baseline/readiness fixes,
-Tree fixtures and complete Guidance reconciliation. Watch actual receipt.
-Published-version guard rejects equal/stale/unknown APK tags, including published
-prereleases, both before build and publication. Live empty-release API probe PASS.
-Receipt verifier rejects missing/partial/wrong UID/version/APK; six controls PASS.
-
-Ignored logs supplement: original .gitignore also hid567 QA/log outputs. Reviewed
-all;397 nonempty synthetic QA logs retained (60354543 bytes),170 profiles/empty
-outputs excluded. Files copied at original paths and ignored-log-review.json
-written, NOT YET committed. Force-add exact ../migration-log-paths.txt only.
-3189 earlier evidence files were actually verified against source SHA256 AND
-committed raw Git blob SHA1; retained-evidence-verification.json PASS on7ddf020.
-After committing logs, extend verification to them. No private filenames/material.
-Current uncommitted work is checkpoint/evidence/logs, not product edits; inspect
-status before edits. Core source stillbf7909b5. Native remains UNVERIFIED.
-
-Next actions:
-1. Finish local Tree offline, inspect stricter Android run and remaining second
-   CI results. Resolve genuine failures or stale fixtures against approved scope.
-2. Commit ignored-log supplement/checkpoint, finish current native acceptance,
-   verify retained evidence against Git/manifest. Commit all final fixes,
-   then push migration branch and rerun six full gates on final candidate.
-3. Once passing, integrate game into main without force (PR merge or fast-forward),
-   dispatch all six workflows on exact integrated SHA. release-ci-gate.cjs requires
-   latest successful workflow_dispatch for each on that SHA.
-4. Dispatch build-android.yml publish=true on exact main. It verifies key/package/
-   continuing version/assets and completed native receipt before immutable new
-   android-VERSION tag/release. Never publish the preflight APK.
-5. Download actual latest APK, compare hash/assets/identity evidence and stable
-   URL redirect. Only then set first README link to
-   https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk.
-   Save final CI/APK/update evidence and limitations in GitHub. No physical phone,
-   exact WebView60, TalkBack or human pacing/performance acceptance claimed.
-   Keep acceptance/chat open where required; no archive performed.
+Superseding update: Full38895141716 FAILED at Guidance: test server missing .css
+MIME caused fallback fonts. Fixed server and require real Manrope400/700 loaded;
+local actual-font bounded gate PASS. Five scoped lanes (including Forge/Tree)
+PASS on ad7135d; Full rerun needed. Native38895560522 FAILED entire emulator loss
+again, no OOM/kill/kernel event and14955MiB available. Next preflight uses supported
+software GPU rendering instead of deprecated swiftshader_indirect, verbose logs.
+Native remains UNVERIFIED. Current uncommitted changes are that workflow, QA MIME/
+font checks and evidence/checkpoints; no further product changes.

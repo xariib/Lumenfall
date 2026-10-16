@@ -119,7 +119,8 @@ function measureGuidanceWord() {
     visualViewport:window.visualViewport?{offsetLeft:visualViewport.offsetLeft,
       offsetTop:visualViewport.offsetTop,width:visualViewport.width,height:visualViewport.height,
       scale:visualViewport.scale}:null,
-    fontStatus:document.fonts?document.fonts.status:null
+    fontStatus:document.fonts?document.fonts.status:null,
+    fontFaces:document.fonts?Array.from(document.fonts).map(function(f){return {family:f.family,weight:f.weight,status:f.status};}):[]
   };
 }
 

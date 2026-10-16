@@ -301,6 +301,7 @@ jobs:
           ram-size: 1536M
           heap-size: 256M
           cores: 2
+          emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim -verbose
           disable-animations: true
           script: node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
 

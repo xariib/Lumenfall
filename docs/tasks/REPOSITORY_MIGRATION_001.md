@@ -91,3 +91,10 @@ not acceptance. Current build-only38894057323 adds reload phase diagnostics and
 process-restart validation; mandatory completed receipt prevents false success.
 No release exists yet. Next: final six CI lanes, native completed receipt,
 integration/exact-main dispatch gates, publish and actual stable download verify.
+
+Current authoritative run/checkpoint: [continuation](../qa/repository-migration-001/CONTINUATION.md).
+PR ad7135d current Full/Tree/Forge pending; Comet/Lab/Shared pass. Additional Prism/Swift
+harness reconciliation passes locally (original controls preserved). Native256ce58,
+run38895560522 pending; API29 font/GPU crash and API35 emulator disappearance documented.
+Upgrade UNVERIFIED, no release yet. Next: inspect those exact runs, integrate final
+candidate only with honest acceptance, exact-main CI, guarded publication and download proof.

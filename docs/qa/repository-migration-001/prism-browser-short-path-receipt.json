@@ -1,0 +1,70 @@
+{
+  "status": "pass",
+  "source_sha256": "bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21",
+  "transport": "unchanged default browser driver",
+  "rows": [
+    {
+      "scenario": "ascend-prisms-contract",
+      "negative": false,
+      "accepted": true,
+      "exitcode": 0,
+      "reason": ""
+    },
+    {
+      "scenario": "ascend-prisms-save-reload",
+      "negative": false,
+      "accepted": true,
+      "exitcode": 0,
+      "reason": ""
+    },
+    {
+      "scenario": "ascend-prisms-backup-restore",
+      "negative": false,
+      "accepted": true,
+      "exitcode": 0,
+      "reason": ""
+    },
+    {
+      "scenario": "ascend-prisms-recovery",
+      "negative": false,
+      "accepted": true,
+      "exitcode": 0,
+      "reason": ""
+    },
+    {
+      "scenario": "self-test-ascend-prisms-tree",
+      "negative": true,
+      "accepted": true,
+      "exitcode": 1,
+      "reason": "completed in-page assertion caught defect"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-lab",
+      "negative": true,
+      "accepted": true,
+      "exitcode": 1,
+      "reason": "completed in-page assertion caught defect"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-payout",
+      "negative": true,
+      "accepted": true,
+      "exitcode": 1,
+      "reason": "completed in-page assertion caught defect"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-repeat",
+      "negative": true,
+      "accepted": true,
+      "exitcode": 1,
+      "reason": "completed in-page assertion caught defect"
+    },
+    {
+      "scenario": "self-test-ascend-prisms-rounding",
+      "negative": true,
+      "accepted": true,
+      "exitcode": 1,
+      "reason": "completed in-page assertion caught defect"
+    }
+  ]
+}
