@@ -77,8 +77,8 @@ try{
  result.baselineAssetsUnit={process:pin(path.join(out,'baseline-assets-unit-process.json')),report:JSON.parse(assetUnit.raw.stdout.toString('utf8'))};assert.equal(result.baselineAssetsUnit.report.status,'pass');
  const unit=execute('inverse-unit',[process.execPath,path.join(root,'tests/behavioral/rift-guidance-inverses.test.cjs'),path.join(stage,'index.html'),path.join(baselineRoot,'index.html')]);successful(unit);
  result.inverseUnit={process:pin(path.join(out,'inverse-unit-process.json')),report:JSON.parse(unit.raw.stdout.toString('utf8'))};assert.equal(result.inverseUnit.report.status,'pass');
- function run(id,webroot,expectedExit=id==='baseline'?1:0){
-  const evidence=path.join(out,id),p=execute(id,[process.execPath,driver,chrome,webroot,evidence,'--readability-probe']);
+ function run(id,webroot,expectedExit=id==='baseline'?1:0,extraFlags=[]){
+  const evidence=path.join(out,id),p=execute(id,[process.execPath,driver,chrome,webroot,evidence,'--readability-probe',...extraFlags]);
   successful(p,expectedExit);
   const report=json(path.join(evidence,'results.json')),summary=JSON.parse(p.raw.stdout.toString('utf8'));
   assert.equal(summary.status,report.status);assert.equal(path.resolve(summary.result),path.join(evidence,'results.json'));
@@ -112,8 +112,16 @@ try{
  const oldCopyHtml=Buffer.from(copyMutation.html);
  fs.mkdirSync(oldCopyRoot);fs.writeFileSync(path.join(oldCopyRoot,'index.html'),oldCopyHtml);for(const dir of ['fonts','branding'])fs.cpSync(path.join(stage,dir),path.join(oldCopyRoot,dir),{recursive:true});
  assert.deepEqual(assets(oldCopyRoot),before.assets,'Copy inverse retains all fonts/branding');
- const oldCopy=run('old-copy',oldCopyRoot,1);assert.equal(oldCopy.report.status,'fail');assert.equal(oldCopy.report.error?.code,CAUSE);assert.equal(oldCopy.report.records.length,1);
- const oldRecord=oldCopy.report.records[0];assert.equal(oldRecord.profile,record.profile);assert.deepEqual(oldRecord.samples.map(s=>s.kind),record.samples.map(s=>s.kind));for(const sample of oldRecord.samples)measurement(sample.readability);
+ const oldCopy=run('old-copy',oldCopyRoot,1,['--collect-title-inverse']);assert.equal(oldCopy.report.status,'fail');assert.equal(oldCopy.report.error?.code,CAUSE);assert.equal(oldCopy.report.records.length,1);
+ const oldRecord=oldCopy.report.records[0];assert.equal(oldRecord.profile,record.profile);assert.deepEqual(oldRecord.samples.map(s=>s.kind),record.samples.map(s=>s.kind));
+ const ordinaryTitleFailures=[];
+ for(const sample of oldRecord.samples){
+  if(sample.readability.title.text==='Permanent power is waiting'){
+   assert.equal(record.samples.find(s=>s.kind===sample.kind).readability.title.text,'Ascend for permanent power','Only the exact reversed title may fail in an ordinary fixture');
+   ordinaryTitleFailures.push({kind:sample.kind,code:CAUSE,details:measurement(sample.readability,true)});
+  }else measurement(sample.readability);
+ }
+ assert.deepEqual(oldRecord.titleInverseOrdinaryFailures||[],ordinaryTitleFailures,'Every exact-title failure is measured and independently verified');
  const oldAscend=oldRecord.ascendReadability;assert(oldAscend,'Old-copy failure must occur in the actual Ascend-ready hint');
  assert.equal(oldAscend.measurement.word.text,'Permanent');assert.equal(oldAscend.measurement.title.text,'Permanent power is waiting');
  assert.deepEqual(oldCopy.report.error.details,measurement(oldAscend.measurement,true),'Actual old-copy failure agrees with saved complete word/glyph measurement');

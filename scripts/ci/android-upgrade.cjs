@@ -10,7 +10,7 @@ async function connect(){
   try{
    const pid=adb('shell','pidof',packageId).trim();if(!pid)throw Error('App not started');
    adb('forward','tcp:9222','localabstract:webview_devtools_remote_'+pid);
-   const pages=await (await fetch('http://127.0.0.1:9222/json')).json(),page=pages.find(p=>p.type==='page'&&p.webSocketDebuggerUrl);
+   const pages=await (await fetch('http://127.0.0.1:9222/json')).json(),page=pages.find(p=>p.type==='page'&&/^https:\/\/localhost(?:\/|$)/.test(p.url)&&p.webSocketDebuggerUrl);
    if(!page)throw Error('WebView not ready');
    const endpoint=new URL(page.webSocketDebuggerUrl);assert.equal(endpoint.protocol,'ws:');endpoint.hostname='127.0.0.1';endpoint.port='9222';console.log('Android upgrade QA: WebView endpoint '+endpoint.href);
    const socket=new WebSocket(endpoint.href);sockets.add(socket);socket.addEventListener('close',()=>sockets.delete(socket));await new Promise((resolve,reject)=>{const timer=setTimeout(()=>{socket.close();reject(Error('DevTools handshake deadline'));},30000);socket.addEventListener('open',()=>{clearTimeout(timer);resolve();},{once:true});socket.addEventListener('error',()=>{clearTimeout(timer);socket.close();reject(Error('DevTools handshake failed'));},{once:true});});
@@ -19,7 +19,9 @@ async function connect(){
    socket.addEventListener('close',event=>rejectPending('DevTools closed: '+event.code+' '+event.reason));socket.addEventListener('error',()=>rejectPending('DevTools socket error'));
    socket.addEventListener('message',event=>{const m=JSON.parse(event.data),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}});
    const send=(method,params)=>new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);socket.close();reject(Error('DevTools command deadline: '+method));},30000);pending.set(id,{resolve,reject,timer});try{socket.send(JSON.stringify({id,method,params}));}catch(e){pending.delete(id);clearTimeout(timer);reject(e);}});
-   return {close:()=>socket.close(),evaluate:async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});assert(!r.exceptionDetails,JSON.stringify(r.exceptionDetails));return r.result.value;}};
+   const client={close:()=>socket.close(),command:send,evaluate:async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});assert(!r.exceptionDetails,JSON.stringify(r.exceptionDetails));return r.result.value;}};
+   for(let n=0;n<90;n++){if(await client.evaluate("location.origin==='https://localhost'&&document.readyState==='complete'&&!!document.querySelector('#settings-btn')"))return client;await pause(200);}
+   socket.close();throw Error('WebView app document readiness deadline');
   }catch(e){if(i===89)throw e;await pause(1000);}
  }
 }
@@ -40,7 +42,13 @@ async function main(){
  seed.studyUseMotes[study]=false;seed.studySpeedTargets[study]=2;
  const sentinel='repository-migration-001-synthetic';
  report.beforeOrigin=await page.evaluate('location.origin');assert.equal(report.beforeOrigin,'https://localhost');
- await page.evaluate(`(()=>{const s=${JSON.stringify(JSON.stringify(seed))};localStorage.setItem(${JSON.stringify(primary)},s);localStorage.setItem(${JSON.stringify(recovery)},s);localStorage.setItem('migration-upgrade-probe',${JSON.stringify(sentinel)});return true;})()`);
+ const seedScript=`(()=>{const s=${JSON.stringify(JSON.stringify(seed))};localStorage.setItem(${JSON.stringify(primary)},s);localStorage.setItem(${JSON.stringify(recovery)},s);localStorage.setItem('migration-upgrade-probe',${JSON.stringify(sentinel)});})()`;
+ // Load the synthetic legacy save before the old game initializes. Writing only
+ // storage while its previous in-memory state runs would let autosave overwrite
+ // the fixture. The injection is removed before the cold baseline and upgrade.
+ const injected=await page.command('Page.addScriptToEvaluateOnNewDocument',{source:seedScript});
+ await page.command('Page.reload',{ignoreCache:true});await pause(2000);
+ await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injected.identifier});
  // WebView commits DOM storage asynchronously. Establish a durable old-app
  // fixture through an actual cold restart before testing package replacement.
  await pause(6000);

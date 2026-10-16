@@ -12,6 +12,8 @@ const {spawn}=require('node:child_process'),fs=require('node:fs'),os=require('no
 const [chrome,webRoot,evidenceDir,...flags]=process.argv.slice(2);
 if(!chrome||!webRoot||!evidenceDir)throw Error('Expected chrome, instrumented webRoot, evidenceDir');
 const sourceRoot=path.resolve(webRoot),root=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-guidance-www-')),out=path.resolve(evidenceDir),baseline=flags.includes('--baseline-probe'),contract=flags.includes('--existing-contract'),readabilityProbe=flags.includes('--readability-probe');
+const collectTitleInverse=flags.includes('--collect-title-inverse');
+if(collectTitleInverse&&!readabilityProbe)throw Error('Title inverse collection requires the bounded readability probe');
 const {instrumentHtml,loadFixtures}=require('./run.cjs'),source=fs.readFileSync(path.join(sourceRoot,'index.html'),'utf8');
 const {measureGuidanceWord,assertGuidanceWord}=require('./rift-guidance-readability.cjs');
 fs.cpSync(sourceRoot,root,{recursive:true});fs.writeFileSync(path.join(root,'index.html'),instrumentHtml(source,loadFixtures()));
@@ -251,7 +253,14 @@ async function run(url){
    if(!longHint){
     // Preserve actual measurements before a readability assertion can fail.
     sample.readability=await wordReadability();sample.toggleName=await toggleAccessibleName();
-    assertGuidanceWord(sample.readability);
+    try{assertGuidanceWord(sample.readability);}catch(error){
+     // The dense current fixture can itself show the Ascend-ready title.
+     // Collect only this exact controlled reversion so all five ordinary
+     // cases and the dedicated Ascend case are still measured. Other failures
+     // remain immediate; the CI owner independently rechecks every measurement.
+     if(!collectTitleInverse||error.code!=='guidance-leading-word-fragmented'||sample.readability.title.text!=='Permanent power is waiting')throw error;
+     (record.titleInverseOrdinaryFailures||(record.titleInverseOrdinaryFailures=[])).push({kind,code:error.code,details:error.details});
+    }
     if(width===320&&scale===2&&motion==='no-preference'&&kind==='fresh'){
      await screenshot(name+'-readability-normal');await readabilityNegative(record,name);
     }
