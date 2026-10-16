@@ -26,7 +26,7 @@ async function main(){
  let page=await connect(),saved;
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
  const seed=JSON.parse(saved);Object.assign(seed,{lumen:1234567,shards:4321,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
- seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=2;seed.wispModules.ember=3;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
+ seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
  for(const obj of ['empowerQueue','researchQueue','studyQueue'])for(const k of Object.keys(seed[obj]||{}))seed[obj][k]=false;
  const study=Object.keys(seed.longStudyLevels)[0];seed.longStudyLevels[study]=3;seed.activeStudies=[{id:study,remainingSec:3500,totalDurationSec:3600,speedMult:2}];
  seed.studyUseMotes[study]=false;seed.studySpeedTargets[study]=2;
