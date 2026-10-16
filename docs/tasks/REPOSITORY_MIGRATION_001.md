@@ -123,3 +123,13 @@ remain unverified. Emulator uses an archived signed synthetic baseline and does
 not require a particular version on the user's phone. Historical pre-import Git
 objects unavailable; old external links remain historical. No chat archive or
 complete delivery claim while release/required acceptance remains outstanding.
+
+Latest CI follow-up: Full38908438759/a5e hit the original300s offline deadline
+inside the long suite; isolated Linux24 case had passed276s. Both results saved.
+Full CI now requires main189 plus isolatedoffline1 on same SHA, complete190-case
+coverage with original fixtures/viewport expansion/assertions/deadlines. Coverage
+and publisher controls reject missing cases/jobs. Game-loop experiment reverted;
+product remains qualifiedd4a55cde. Current native1000013 preflight retains original
+identity and BOTH slots/progression/paid work/entitlements, but is unpublished.
+New exact-main six-lane CI, final guarded signed build/publication/anonymous actual
+APK download and README link remain OPEN. No release claim yet.

@@ -239,3 +239,32 @@ focused PASS and all six manual gates on the new integrated commit. Product root
 remains d4a55cde, no golden or native/game source changes. Earlier734a passes remain
 qualified for that old commit only. Current build-only38907863894 runs734a and
 therefore same exact product; final publisher still must use new main SHA.
+
+## Required offline job and complete coverage
+
+Full38908438759 on a5e95632 passed all early steps and Wisp/save/Comet/Lab cases,
+but offline core exceeded300s again under the long combined job. The isolated
+Linux24.19.0 run had passed276378ms with identical18 records; variability remains
+an observation, not a proven host diagnosis. This full run remains FAILED/canceled
+and its log is saved. A cycle-planning experiment passed136 boundary checks and14
+causal controls but did not provide reliable time margin; it was fully REVERTED.
+Its patch/results are historical evidence only, never the shipped product.
+
+The full workflow now requires TWO independent jobs on the same commit: main189
+and offline1. Both use the existing behavioral runner with identical fixtures,
+viewport expansion, assertions and per-case deadlines. Default local suite still
+runs all190. Complete/disjoint coverage is verified on each CI group;8 negative
+controls reject missing/duplicate/unknown cases, missing offline and invalid
+selection. The original offline test body remains byte-identical8f46153 and its
+actual dispatch deadline remains300000ms. Publisher additionally requires BOTH
+named jobs successful;11 negative controls reject omitted/failed/canceled/skipped
+jobs and wrong/unpassed manual commits. No gate or reference replay was removed,
+relaxed or re-labelled. New exact-main six-lane CI is still required.
+
+Product source remains d4a55cde (two CSS fixes and pure Amount optimization only).
+All five previous a5e scoped passes and current-product native1000013 rehearsal
+are saved in ci-a5e-before-isolation/ and final-source-preflight/. They qualify
+those exact bytes/commits; no final release is claimed. Native receipt/hash/15
+assets were separately reverified; package/key/origin/UID/BOTH slots/progression/
+paid Study/legacy purchases retained. Final publish=true on the next fully tested
+main SHA and anonymous latest-download verification still mandatory.

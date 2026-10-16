@@ -36,6 +36,8 @@ jobs:
         run: |
           node tests/tooling/run.cjs
           node tests/tooling/process-tree.cjs
+          node tests/tooling/behavioral-plan.cjs
+          node tests/tooling/release-ci-job-gate.cjs
 
       - name: Validate game source
         shell: bash
@@ -210,7 +212,7 @@ jobs:
           mkdir -p validation-evidence
           git rev-parse HEAD > validation-evidence/commit.txt
           sha256sum index.html > validation-evidence/source-sha256.txt
-          node tests/behavioral/run.cjs --web-root mobile/www --raw-artifacts validation-evidence/raw 2>&1 | tee validation-evidence/behavioral.log | node scripts/ci/behavioral-console.cjs
+          node tests/behavioral/run.cjs --web-root mobile/www --ci-group main --raw-artifacts validation-evidence/raw 2>&1 | tee validation-evidence/behavioral.log | node scripts/ci/behavioral-console.cjs
 
       - name: Install runtime error guard in staged copy
         shell: bash
@@ -270,3 +272,32 @@ jobs:
             /tmp/lumenfall-dom.html
             /tmp/lumenfall-chrome.log
             /tmp/lumenfall-http.log
+
+  offline_catchup:
+    name: Lumenfall isolated offline catch-up
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+      - name: Stage exact product and assets
+        shell: bash
+        run: |
+          mkdir -p mobile/www/fonts mobile/www/branding validation-evidence/isolated-offline
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+          git rev-parse HEAD > validation-evidence/isolated-offline/commit.txt
+          sha256sum index.html > validation-evidence/isolated-offline/source.txt
+      - name: Original offline regression with unchanged assertions and deadline
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/behavioral/run.cjs --web-root mobile/www --ci-group offline --raw-artifacts validation-evidence/isolated-offline/raw 2>&1 | tee validation-evidence/isolated-offline/behavioral.log | node scripts/ci/behavioral-console.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-offline-evidence-${{ github.run_id }}
+          path: validation-evidence/isolated-offline/

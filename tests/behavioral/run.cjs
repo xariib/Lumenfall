@@ -218,16 +218,23 @@ function mutateSource(source, scenario) {
   return source;
 }
 async function main(argv = process.argv.slice(2)) {
-  const args = parseArgs(argv, ['--web-root', '--scenario', '--raw-artifacts']);
+  const args = parseArgs(argv, ['--web-root', '--scenario', '--raw-artifacts', '--ci-group']);
   if (args.positional.length) throw Error('Unexpected positional argument');
   const all = { ...SCENARIOS, ...PREP_SCENARIOS, ...NEGATIVE_SCENARIOS };
   if (args.scenario && !Object.hasOwn(all, args.scenario)) throw Error('Unknown scenario: ' + args.scenario);
+  assert(!(args.scenario && args['ci-group']), 'Use either one scenario or a complete CI group');
+  const ciPlan=require('../../scripts/ci/behavioral-plan.cjs');
+  const selected = args.scenario ? { [args.scenario]: all[args.scenario] } : args['ci-group'] ? ciPlan.select(SCENARIOS,args['ci-group']) : SCENARIOS;
   const webRoot = resolvePath(args['web-root'] || 'mobile/www');
   if (!fs.existsSync(path.join(webRoot, 'index.html'))) throw Error('Behavioral QA failed: ' + path.join(webRoot, 'index.html') + ' not found');
   const fixtures = loadFixtures(), chrome = findChrome();
   await browserIdentity(chrome);
   const rawArtifactRoot = args['raw-artifacts'] ? resolvePath(args['raw-artifacts']) : temporary('lumenfall-qa-raw-');
-  const selected = args.scenario ? { [args.scenario]: all[args.scenario] } : SCENARIOS;
+  if(args['ci-group']){
+    fs.mkdirSync(rawArtifactRoot,{recursive:true});
+    fs.writeFileSync(path.join(rawArtifactRoot,'ci-coverage-plan.json'),JSON.stringify({group:args['ci-group'],allCases:Object.keys(SCENARIOS),groups:ciPlan.plan(SCENARIOS)},null,2)+'\n');
+    console.log('Behavioral QA coverage: '+args['ci-group']+' '+Object.keys(selected).length+'/'+Object.keys(SCENARIOS).length+' cases; both groups are required.');
+  }
   const temporaryStage = temporary('lumenfall-behavioral-'), stage = path.join(temporaryStage, 'www');
   let server;
   const failures = [];
