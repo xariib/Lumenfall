@@ -21,6 +21,7 @@ async function connect(){
    socket.addEventListener('message',event=>{const m=JSON.parse(event.data),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}});
    const send=(method,params)=>new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);socket.close();reject(Error('DevTools command deadline: '+method));},30000);pending.set(id,{resolve,reject,timer});try{socket.send(JSON.stringify({id,method,params}));}catch(e){pending.delete(id);clearTimeout(timer);reject(e);}});
    const client={close:()=>socket.close(),command:send,evaluate:async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});assert(!r.exceptionDetails,JSON.stringify(r.exceptionDetails));return r.result.value;}};
+   await send('Page.enable',{});await send('Runtime.enable',{});
    for(let n=0;n<90;n++){if(await client.evaluate("location.origin==='https://localhost'&&document.readyState==='complete'&&!!document.querySelector('#settings-btn')"))return client;await pause(200);}
    socket.close();throw Error('WebView app document readiness deadline');
   }catch(e){if(i===89)throw e;await pause(1000);}
@@ -48,7 +49,7 @@ async function main(){
  seed.studyUseMotes[study]=false;seed.studySpeedTargets[study]=2;
  const sentinel='repository-migration-001-synthetic';
  report.beforeOrigin=await page.evaluate('location.origin');assert.equal(report.beforeOrigin,'https://localhost');
- const seedScript=`(()=>{const s=${JSON.stringify(JSON.stringify(seed))};localStorage.setItem(${JSON.stringify(primary)},s);localStorage.setItem(${JSON.stringify(recovery)},s);localStorage.setItem('migration-upgrade-probe',${JSON.stringify(sentinel)});})()`;
+ const seedScript=`(()=>{const s=${JSON.stringify(JSON.stringify(seed))};localStorage.setItem(${JSON.stringify(primary)},s);localStorage.setItem(${JSON.stringify(recovery)},s);localStorage.setItem('migration-upgrade-probe',${JSON.stringify(sentinel)});window.__migrationSeedApplied=true;})()`;
  // Load the synthetic legacy save before the old game initializes. Writing only
  // storage while its previous in-memory state runs would let autosave overwrite
  // the fixture. The injection is removed before the cold baseline and upgrade.
@@ -61,6 +62,12 @@ async function main(){
  // Force-stop destroys this process and its transient CDP pre-document scripts.
  // Do not issue another command to a target the native reload may have replaced.
  await pause(8000);
+ page.close();page=await connect();
+ const liveFixture=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);
+ fs.writeFileSync('release-evidence/old-fixture-live.json',JSON.stringify(liveFixture,null,2)+'\n');
+ assert.equal(liveFixture.sentinel,sentinel,'Reload injection must actually write the old fixture before cold restart');
+ assert.equal(liveFixture.save.spirits.ember,33,'Old live fixture progression accepted');assert.equal(liveFixture.recovery.spirits.ember,33,'Old live recovery progression accepted');
+ await pause(6000);
  console.log('Android upgrade QA: stopping seeded old process; restarting without injection');
  page.close();adb('shell','am','force-stop',packageId);
  adb('shell','am','start','-n',packageId+'/.MainActivity');page=await connect();await pause(3000);

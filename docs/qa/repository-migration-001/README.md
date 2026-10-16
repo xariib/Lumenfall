@@ -170,3 +170,12 @@ kernel/memory and failed run saved. Next unchanged signed in-place upgrade test
 uses API31/google_apis (Android12), avoiding unstable API35 guest/image behavior.
 API29 stock WebView native font crash and API35 disappearance remain limitations.
 No requirement for a particular physical installed version or performance claim.
+
+Android12/API31 run38898937569 keeps emulator/app alive and obtains a real old
+save, then FAILS the mandatory OLD app cold fixture sentinel before replacement.
+This establishes fixture setup failure, not a proved APK update/data failure.
+Harness omitted Page.enable before registering a new-document script; now enables
+Page/Runtime domains and must prove actual live primary/recovery writes BEFORE
+cold restart. Live snapshot saved even on failure. Original cold-restart and
+replacement/save assertions remain unchanged. Same WRMSR appears in stable API31,
+so earlier MSR correlation is not established as cause; workaround removed.
