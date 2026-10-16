@@ -48,12 +48,20 @@ signing material out of ordinary source commits and chat output.
 
 The user confirms this is a private draft release and supplies certificate
 SHA-256 `A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21`,
-matching both current workflow expectations. Fresh access check16Oct: connected
+matching both current workflow expectations. Before owner sign-in, connected
 login `xariib` gets404 for repository metadata and the releases collection;
 the in-app browser redirects releases to GitHub sign-in. No keystore bytes
 were retrieved, no certificate was verified from a keystore, and no signing
 material was moved. Original-account sign-in or a user-downloaded local key
-is needed before retrieval/verification can continue.
+was needed before retrieval/verification could continue.
+
+After original-account browser sign-in, the recorded private draft URL worked
+despite an empty releases list and pending-tag404. Its 2682-byte keystore was
+downloaded outside Git and [verified locally](signing-recovery/README.md): exact
+file digest, matching certificate fingerprint, container MAC and private-key
+sign/verify all pass. Wrong-password/tampered-input controls fail as intended.
+The old retrieval blocker is resolved for this local file; connector access,
+new-repository provisioning and actual APK/installed-save acceptance remain open.
 
 The current workflow derives APK version information and its verification
 expectations from `github.run_number`. A new repository's counter cannot be

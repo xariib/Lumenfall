@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
 16 October: [ENDLESS_PROGRESSION_001](tasks/ENDLESS_PROGRESSION_001.md) local
-G5 late advice verified; five G4 timeout replays PASS. CI/native/human OPEN.
+G5 late advice verified; original signing key recovered. Migration/CI/native/human OPEN.
 
 15 October: [Lab controls](tasks/LAB_SPEED_CONTROLS_001.md),67e7d3e locally verified;
 idle boost action removed/current levels shown. Combined/native acceptance OPEN.

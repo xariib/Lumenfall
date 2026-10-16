@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": 7,
+  "verifierSha256": "2cb14b3f43a126f8eb2aaab636e11d8cc8c91b79ba654977c45007018f8ba4e9",
+  "records": [
+    {
+      "case": "tampered-file",
+      "status": "EXPECTED_FAILURE",
+      "passReceiptEmitted": false
+    },
+    {
+      "case": "wrong-password",
+      "status": "EXPECTED_FAILURE",
+      "passReceiptEmitted": false
+    }
+  ],
+  "originalFileUnchanged": true,
+  "limits": "Read-only negative verification; no private copies, emitted key material, APK build or installed update."
+}
