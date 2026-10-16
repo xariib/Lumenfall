@@ -13,8 +13,10 @@ const nodesStart=html.indexOf('var NODES = ['),nodesEnd=html.indexOf('function t
 const numericStart=html.indexOf('function finiteNonNegative('),numericEnd=html.indexOf('function boundedInt(',numericStart);
 assert(nodesStart>=0&&nodesEnd>nodesStart&&numericStart>=0&&numericEnd>numericStart,'complete actual Tree dependency spans');
 const nodes=html.slice(numericStart,numericEnd)+'\n'+html.slice(nodesStart,nodesEnd);
+const amountStart=html.indexOf('function createGameAmount(){'),amountEnd=html.indexOf('var Amount=createGameAmount();',amountStart)+'var Amount=createGameAmount();'.length;
+assert(amountStart>=0&&amountEnd>amountStart,'actual wide-amount engine used by production nodeCost');
 const ctx={state:null,ASCEND_REPEAT_REWARD_RATE:0.20};vm.createContext(ctx);
-vm.runInContext(['nodeLevel','longStudyLevel','longStudyPrismMult','prismMult'].map(single).join('\n')+'\n'+nodes+'\n'+cost+'\n'+html.slice(start,end),ctx);
+vm.runInContext(html.slice(amountStart,amountEnd)+'\n'+['nodeLevel','longStudyLevel','longStudyPrismMult','prismMult'].map(single).join('\n')+'\n'+nodes+'\n'+cost+'\n'+html.slice(start,end),ctx);
 function set(c,b,t,l){ctx.state={depth:c+1,nodes:{swift:t},longStudyLevels:{prismstudy:l},ascendRewardedDepth:b};}
 function actual(c,b,t,l){set(c,b,t,l);return ctx.ascendPrismBreakdown(c+1).gain;}
 function price(t){set(20,20,t,0);return ctx.nodeCost(ctx.NODES.find(n=>n.id==='swift'));}

@@ -1,0 +1,108 @@
+tree	Swift actual purchase ROI and independent Prism matrix	﻿2026-10-16T11:34:28.9348353Z ##[group]Run set -euo pipefail
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:28.9348879Z ^[[36;1mset -euo pipefail^[[0m
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:28.9349680Z ^[[36;1mnode tests/behavioral/prism-earning-state.cjs index.html 2>&1 | tee tree-validation/prism-state.json^[[0m
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:28.9351081Z ^[[36;1mnode tests/behavioral/prism-closeout-data.cjs index.html tree-validation/prism 2>&1 | tee tree-validation/prism-economy-summary.json^[[0m
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:28.9446722Z shell: /usr/bin/bash -e {0}
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:28.9447133Z ##[endgroup]
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3277969Z {"status":"pass","source_sha256":"bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21","checks":3506,"payoutCases":180,"routes":["actual manual handler","live/offline authoritative auto","cold load","actual backup restore","primary corruption/recovery","failed write/retry","real Swift purchase","atomic offline failure/rollback/retry"],"scope":"full game logic with DOM presentation stubbed; not browser layout or Android acceptance"}
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3753627Z evalmachine.<anonymous>:54
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3754804Z   if(node.id==='swift' && Amount.ge(level,10) && treeLevel('swiftcharter')) return Amount.mul(6,level);
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3755596Z                           ^
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3755802Z 
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3756029Z ReferenceError: Amount is not defined
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3756585Z     at Object.nodeCost (evalmachine.<anonymous>:54:27)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3757463Z     at price (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/prism-closeout-data.cjs:20:45)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3758713Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/prism-closeout-data.cjs:23:78)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3759689Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3760380Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3761058Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3761671Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3762554Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3763069Z     at node:internal/main/run_main_module:28:49
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3763285Z 
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3763385Z Node.js v20.20.2
+tree	Swift actual purchase ROI and independent Prism matrix	2026-10-16T11:34:31.3791836Z ##[error]Process completed with exit code 1.
+tree	Complete Tree and Prism execution on actual V8 6.0	﻿2026-10-16T11:37:17.9852820Z ##[group]Run set -euo pipefail
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9853179Z ^[[36;1mset -euo pipefail^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9853458Z ^[[36;1mmkdir -p /tmp/tree-node8^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9853722Z ^[[36;1mcd /tmp/tree-node8^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9854149Z ^[[36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9854817Z ^[[36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9855504Z ^[[36;1mgrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9856050Z ^[[36;1mtar -xf node-v8.3.0-linux-x64.tar.xz^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9856353Z ^[[36;1mcd "$GITHUB_WORKSPACE"^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9856990Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/tree-expansion-v8.cjs index.html 2>&1 | tee tree-validation/v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9857902Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/cheaper-recruitment-v8.cjs 2>&1 | tee tree-validation/f21-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9858787Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/echo-refund-v8.cjs 2>&1 | tee tree-validation/f20-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9859808Z ^[[36;1mnode tests/behavioral/refund-schedule-parity.cjs index.html --legacy-node /tmp/tree-node8/node-v8.3.0-linux-x64/bin/node --negative --output tree-validation/refund-parity.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9861005Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/wisp-contribution-core.cjs index.html --v8 --preservation > tree-validation/wisp-contribution-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9862456Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/prism-legacy-runtime.cjs index.html tree-validation/prism/legacy-cases.json 2>&1 | tee tree-validation/prism-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9930381Z shell: /usr/bin/bash -e {0}
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:17.9930657Z ##[endgroup]
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.0115651Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.0116585Z                                  Dload  Upload   Total   Spent    Left  Speed
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.0117274Z 
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.0977272Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.0978204Z 100  3865  100  3865    0     0  44811      0 --:--:-- --:--:-- --:--:-- 44941
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.1060296Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.1061022Z                                  Dload  Upload   Total   Spent    Left  Speed
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.1061394Z 
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.2559449Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.4080252Z   3 10.9M    3  440k    0     0  2932k      0  0:00:03 --:--:--  0:00:03 2933k
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.4081143Z 100 10.9M  100 10.9M    0     0  36.3M      0 --:--:-- --:--:-- --:--:-- 36.2M
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:18.4223869Z node-v8.3.0-linux-x64.tar.xz: OK
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2067519Z {
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2067982Z   "status": "pass",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2068405Z   "checks": 2881,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2068786Z   "inlineScriptsParsed": 2,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2069273Z   "completeIifeInstances": 339,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2069697Z   "priceCases": 94,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2070035Z   "faultCases": 34,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2070368Z   "effects": [
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2070678Z     "echo",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2070971Z     "bonds",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2071268Z     "swift",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2071573Z     "swiftcharter",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2071922Z     "lumenmemory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2072519Z     "veteranrecruits",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2072885Z     "rosterrecall",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2073214Z     "chargememory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2073547Z     "supportmemory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2073891Z     "phasememory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2074215Z     "riftstep",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2074510Z     "frontier",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2074786Z     "stardust",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2075534Z     "gentlegrowth",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2075865Z     "formationseat",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2076173Z     "benchmentor",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2076565Z     "empowerbatch",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2076849Z     "wallwisdom",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2077135Z     "invitations",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2077433Z     "recruitreserve"
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2077733Z   ],
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2078067Z   "bigIntAvailable": false,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2079108Z   "scope": "Actual V8 6.0 complete-IIFE engine, purchases, migration and persistence; browser layout/native Android are separate gates.",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2080561Z   "sourceSha256": "bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2081545Z   "testSha256": "b2bef59e85d6b25341dabc611550fa6ea69acd9602da9a08b244095c17d7322a",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2082416Z   "node": "v8.3.0",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2082740Z   "v8": "6.0.286.52"
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.2083062Z }
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:20.5065450Z {"status":"PASS","node":"v8.3.0","v8":"6.0.286.52","levels":[20,21,40,2000],"blockedAttempts":400,"legacyRefunds":[3376,12655538],"hugeWalletCreditDebit":true,"writes":0,"sourceSha256":"bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21","limitation":"Engine check only; actual Android DOM, lifecycle and storage need APK acceptance"}
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:21.6405427Z {"status":"PASS","node":"v8.3.0","v8":"6.0.286.52","sourceSha256":"bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21","blockedAttempts":400,"originalRefund":4153,"actualEchoCreditPurchase":true,"quoteAttempts":2000,"cachedBoundaries":100,"modernPriceCompatibility":true,"legacyPriceCount":2102,"limitation":"Production IIFE on V8.6.0 with storage shim; exact WebView60 DOM/native/physical acceptance remains separate"}
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:22.9300488Z {"status":"PASS","sourceSha256":"bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21","modern":{"node":"v20.20.2","v8":"11.3.244.8-node.38"},"legacy":{"node":"v8.3.0","v8":"6.0.286.52"},"cases":12,"issuedLegacyCases":4,"negative":[{"id":"echo","sourceSha256":"b5d073176f1cc2fae9baec0175a14f28b740e2aacfd93e15603607b4dfa487d1","assertion":"frozen original modern schedule echo","stderrSha256":"0c50be0f43dbea12834ad4da909d214949e5ee54d03318c1dd83b2dc3bb60586"},{"id":"bonds","sourceSha256":"eaa43a7fac0c2dbc89266f41e1743a54c947075f698a2906bf90bc9a025972a0","assertion":"frozen original modern schedule bonds","stderrSha256":"5ea276aa911bc5d65b206661ace47a92cdc25313ec481b3118c1726045267dab"}],"recordsSha256":"8eda1c889587a4ddf2ff25bbf96e6c268d335856ff1d9258bfbd748a8aa8350a","originalFixtureSha256":"eb1de3966e989ccc0c99bfc51d0cf4b21c431252c39766352efd098acc5b6e43","issuedFixtureSha256":"66da1621626d10be98d4960e61f0eb7d8cae15fa0adf53fb499ed269786f208a","scope":"Both original initial refunds, exact wallet/credit/receipt/history parity and repeat normalization; both engines retain original previously-issued legacy values. No native claim."}
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2133953Z fs.js:652
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2134507Z   return binding.open(pathModule._makeLong(path), stringToFlags(flags), mode);
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2134986Z                  ^
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2135127Z 
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2135497Z Error: ENOENT: no such file or directory, open 'tree-validation/prism/legacy-cases.json'
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2135972Z     at Object.fs.openSync (fs.js:652:18)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2136300Z     at Object.fs.readFileSync (fs.js:553:33)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2136900Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/prism-legacy-runtime.cjs:6:85)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2137451Z     at Module._compile (module.js:573:30)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2137820Z     at Object.Module._extensions..js (module.js:584:10)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2138174Z     at Module.load (module.js:507:32)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2138475Z     at tryModuleLoad (module.js:470:12)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2138801Z     at Function.Module._load (module.js:462:3)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2139151Z     at Function.Module.runMain (module.js:609:10)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2139484Z     at startup (bootstrap_node.js:158:16)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:37:51.2174178Z ##[error]Process completed with exit code 1.

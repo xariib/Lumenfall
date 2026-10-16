@@ -1,0 +1,33 @@
+{"actual":{},"expected":{"_autoTapAccum":{"base":0,"elapsed":"11102230246251565404236316680908203125e-53","last":1.1102230246251565e-13},"_autoEmpowerAccum":{"base":0,"elapsed":"11102230246251565404236316680908203125e-53","last":1.1102230246251565e-13}},"tap":1.8318679906315083e-12,"wholeTap":1.1102230246251565e-13,"emp":1.8318679906315083e-12,"wholeEmp":1.1102230246251565e-13}
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: capped whole/split parity-medium-farm.canonicalAutomationClock
++ actual - expected
+
++ []
+- [
+-   '_autoTapAccum',
+-   '_autoEmpowerAccum'
+- ]
+
+    at parity (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\repository-migration-worktree\tests\behavioral\swift-current-core.cjs:224:191)
+    at parity (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\repository-migration-worktree\tests\behavioral\swift-current-core.cjs:224:266)
+    at C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\repository-migration-worktree\tests\behavioral\swift-current-core.cjs:229:341
+    at test (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\repository-migration-worktree\tests\behavioral\swift-current-core.cjs:63:100)
+    at Object.<anonymous> (C:\Users\xarib\Documents\Codex\2026-10-13\https-github-com-karahanx-lumenfall-https\Lumenfall\validation-evidence\repository-migration-worktree\tests\behavioral\swift-current-core.cjs:222:1)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at [eval]:1:537
+    at runScriptInThisContext (node:internal/vm:219:10)
+    at node:internal/process/execution:451:12
+    at [eval]-wrapper:6:24 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [],
+  expected: [ '_autoTapAccum', '_autoEmpowerAccum' ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

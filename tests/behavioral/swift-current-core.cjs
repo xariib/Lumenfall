@@ -24,7 +24,7 @@ if(mutant==='study-tick-origin'){
   mutate('studyClockMemo.state===state && studyClockMemo.endMs===clockStartMs','false');
 }
 if(mutant==='credit-color')mutate("kind==='shard' && state.swiftRecoveryRefund ? !canSpendShardsWithWallet(amount,state.shards) : ",'');
-if(mutant==='clock'){mutate('var gridCrossingsBefore = farmGridCrossings;','var elapsedWholeBefore = elapsedWholeSec;');mutate('var gridRemainingBefore = farmGridRemainingSec;','var elapsedFractionBefore = elapsedFractionSec;');mutate('farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)','elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0');}
+if(mutant==='clock'){mutate('var gridCrossingsBefore = farmGridCrossings;','var elapsedWholeBefore = elapsedWholeSec;');mutate('var gridRemainingBefore = farmGridRemainingSec;','var elapsedFractionBefore = elapsedFractionSec;');mutate('farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && (!binaryClock||binaryClock.elapsed()===binaryElapsedBefore) && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)','elapsedWholeSec===elapsedWholeBefore && elapsedFractionSec===elapsedFractionBefore && actions===0');}
 if(mutant==='charge-clock')mutate('(anchor.value+(crossings-anchor.crossings)*anchor.rate)+(anchor.remaining-remaining)*anchor.rate','(anchor.value+(crossings-anchor.crossings)*anchor.rate*0.5)+(anchor.remaining-remaining)*anchor.rate*0.5');
 if(mutant==='study-clock')mutate('      advanceStudyProgressToClock();','      simulationAdvanceStudyProgress(next);');
 function app(product=html){
@@ -221,12 +221,30 @@ test('Support durations remain independent; natural-cycle ratios exclude externa
 });
 test('capped Farm cadence crosses tiny clock boundaries and retains whole/split parity',()=>{
   const b=app().b,fixtures=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures.json'),'utf8'));
+  function clockReceipt(s){
+    for(const [field,r] of Object.entries(s.canonicalAutomationClock)){
+      assert(['_autoTapAccum','_autoEmpowerAccum'].includes(field),'known exact timer owner');
+      assert(Number.isFinite(r.base)&&r.base>=0&&Number.isFinite(Number(r.elapsed))&&Number(r.elapsed)>0,'valid exact timer basis');
+      assert.equal(r.last,s[field],'exact timer receipt belongs to actual phase');
+      assert.equal(r.base+Number(r.elapsed)*1000,r.last,'independent timer receipt arithmetic');
+    }
+    const result=copy(s);delete result.canonicalAutomationClock;return result;
+  }
   function parity(a,c,key){if(typeof a==='number'){assert(Math.abs(a-c)<=Math.max(1e-6,Math.max(Math.abs(a),Math.abs(c))*1e-12),key+' '+a+' vs '+c);return;}if(a&&typeof a==='object'){assert.deepEqual(Object.keys(a),Object.keys(c),key);for(const k of Object.keys(a))parity(a[k],c[k],key+'.'+k);return;}assert.deepEqual(a,c,key);}
+  // Exact clock receipts were added by endless progression. Their anchor may
+  // reset at different call boundaries; actual phases retain the original
+  // numeric tolerance. Validate each receipt and a saved cold continuation too.
+  const forged=copy(fixtures['parity-medium-farm'].save);forged.canonicalAutomationClock={_autoTapAccum:{base:0,elapsed:1,last:1000}};forged._autoTapAccum=999;
+  assert.throws(()=>clockReceipt(forged),/belongs to actual phase/);forged._autoTapAccum=1000;forged.canonicalAutomationClock._autoTapAccum.base=1;
+  assert.throws(()=>clockReceipt(forged),/receipt arithmetic/);
   for(const fixture of ['parity-medium-farm','parity-long-high-power'])for(const clock of [2000000000000,2000000000123]){
     const s=fixtures[fixture].save;b.set(copy(s));b.restore();let error=null;
     try{b.advance(60,{kind:'offline',clockStartMs:clock,offlineWindowStartMs:clock});}catch(e){error=e;}
     assert.equal(error,null,'capped Farm grid advances without discarding tiny elapsed steps');const whole=copy(b.get());b.set(copy(s));b.restore();
-    for(let i=0;i<6;i++)b.advance(10,{kind:'offline',clockStartMs:clock+i*10000,offlineWindowStartMs:clock});parity(b.get(),whole,'capped whole/split '+fixture);
+    for(let i=0;i<6;i++)b.advance(10,{kind:'offline',clockStartMs:clock+i*10000,offlineWindowStartMs:clock});const split=copy(b.get());parity(clockReceipt(split),clockReceipt(whole),'capped whole/split '+fixture);
+    const continued=[];
+    for(const endpoint of [whole,split]){b.set(copy(endpoint));assert.equal(b.save(),true,'parity endpoint commits');b.set(b.load());b.advance(1,{kind:'offline',clockStartMs:clock+60000,offlineWindowStartMs:clock});continued.push(clockReceipt(b.get()));}
+    parity(continued[0],continued[1],'capped saved cold continuation '+fixture);
   }
 });
 test('capped Farm charge matches independent elapsed work and retains external grants',()=>{

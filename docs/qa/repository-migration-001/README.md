@@ -101,3 +101,21 @@ reach the upgrade. Original logcat retained. The disposable upgrade acceptance
 now uses API35/google_apis with its newer system WebView and identical original
 APK/font assets; all baseline cold-restart/install-r/retention assertions unchanged.
 This does not establish old stock WebView compatibility; that limitation remains.
+
+Third Linux round on0f305b9: Forge38894225216, Comet38894225833,
+Lab38894225181, Shared38894225120 PASS. Tree38894225096 failed only because its
+extracted nodeCost lacked the new real Amount dependency; downstream legacy
+case file was consequently absent. Price probe now loads the exact production
+amount engine, retaining independent reward oracle. Local540/1248 cases and
+actual V8.6.0 legacy3277 checks PASS. Existing Tree offline/economy/mobile and
+Prism mobile steps pass in that failed run; no missing evidence counted as pass.
+Swift's old whole/split test compared new clock anchor metadata byte-for-byte;
+actual phases differed only1e-12ms under existing1e-6ms tolerance. Updated probe
+validates each receipt's owner/phase/arithmetic, all original game-state/timer
+comparisons and saved cold continuation. Two forged receipts are rejected.
+Updated original clock negative anchor to include binary-clock progress predicate;
+all22 positive cases and all16 original negative controls PASS. No game edits.
+Extra same-source checks: Prism341654/seven controls; recruitment206; Echo627/13;
+Swift V8.6.0 PASS; Support1782/four; earlyWisp2801/five; Wisp8099/seven plus15352
+preservation; Rift cosmetics170 samples PASS unsandboxed. Sandboxed Chrome startup
+attempt fails before samples and remains failed local evidence.
