@@ -28,6 +28,31 @@ already-running paid work during installed-upgrade checks.
 
 Remote Linux CI, the historical Guidance baseline/inverse check, combined
 integration and publication remain open. The connected GitHub account cannot
-currently access `karahaNx/Lumenfall`; do not substitute another repository or
-an invented baseline/signing identity. No main integration, release or archive
+currently access `karahaNx/Lumenfall`; the user-approved new destination URL is
+pending. Preserve verified baseline/signing identity. No main integration, release or archive
 is claimed by this document.
+
+## User correction — 16 October 2026
+
+The user confirms the old GitHub account is flagged and intends to publish from
+another account's repository (destination URL pending). Existing players must
+install the new APK as an update without uninstalling or losing progress.
+Visual work may continue from local product commit838dbda/source9cdcd80c.
+
+The repository owner is separate from Android app identity. Preserve
+`com.lumenfall.app`, the established signing certificate, Capacitor origin and
+save/recovery storage. Recover the original signing key: the current build
+workflow downloads `Lumenfall-debug.keystore` from release `lumenfall-signing-v1`;
+copying Git history alone does not recover that release asset. Keep private
+signing material out of ordinary source commits and chat output.
+
+The current workflow derives APK version information and its verification
+expectations from `github.run_number`. A new repository's counter cannot be
+used blindly. Verify the highest distributed/installed versionCode, then make
+the version setter and verifier use a continuing higher release version.
+These are recorded migration requirements; no repository, workflow or signing
+change has been applied. Check the actual APK certificate/package/version and
+perform an installed-save upgrade test before claiming update compatibility.
+
+Platform references: [Android signing](https://developer.android.com/studio/publish/app-signing#considerations)
+and [versioning](https://developer.android.com/studio/publish/versioning#appversioning).

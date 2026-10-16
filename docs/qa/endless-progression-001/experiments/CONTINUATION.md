@@ -35,7 +35,13 @@ Normal/enlarged small-screen guide images inspected; no user-save fixture or
 purchase. App open was queued, no human/device acceptance claimed.
 Node24.19.0, Chrome140; legacy Node8.3.0/V8 6.0.286.52. Context32547/32768.
 
-Next: restore GitHub access (xariib gets karahaNx/Lumenfall404), reproduce full
+User16Oct confirms flagged account; move to another repository, URL pending,
+with in-place APK/save retention. See DEVICE_ACCEPTANCE.md user correction:
+recover original release-asset signing key, retain package/storage/origin,
+continue versionCode beyond distributed APKs rather than resetting run_number.
+Visual work should branch from current local product838dbda/source9cdcd80c.
+
+Next: establish destination access (old repo404), reproduce full
 required CI without weaker gates, recover missing Guidance object684bfc52,
 then complete combined/native/human acceptance. No JDK/SDK/signing/device tools;
 APK identity/signing/installed-save/TalkBack remain OPEN. No main/remote/PR/APK/

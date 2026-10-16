@@ -21,9 +21,9 @@ Human/CI acceptance OPEN; paid value, saves and Support/Formation protected.
 User15Oct: preserve unrestricted Ascends; optimize repeated-cycle simulation.
 User strict HP retained: current warm/cold953, storage29, V8 143,14 controls PASS.
 Exact window/saved basis fixes retained. F engine12h2195/cold-split471 PASS.
-karahaNx repo404; destination pending. No SDK/Java/adb: native acceptance OPEN.
+Account flagged; new repo pending, retain installed-app updates. No SDK: native OPEN.
 16Oct: user requires fixing30-41d late stalls and guiding useful upgrades.
 Advice locates Mastery/rebuild/Forge/farming/gates; never spends or toggles.
 G5 guide186/mobile913/V8 62 and exact inverse PASS; goldens equal F.
-G2 audits4550 PASS. Next: restore GitHub; complete CI/native acceptance.
+G2 audits4550 PASS. Next: connect new repo; complete CI/native acceptance.
 No shared/main/remote/APK/archive; [late fix](../qa/endless-progression-001/LATE_GUIDANCE.md).
