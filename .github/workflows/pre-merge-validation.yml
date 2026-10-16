@@ -38,6 +38,7 @@ jobs:
           node tests/tooling/process-tree.cjs
           node tests/tooling/behavioral-plan.cjs
           node tests/tooling/release-ci-job-gate.cjs
+          node tests/tooling/offline-parallel.cjs
 
       - name: Validate game source
         shell: bash

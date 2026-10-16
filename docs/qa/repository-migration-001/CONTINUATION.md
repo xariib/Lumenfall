@@ -11,7 +11,7 @@ branch codex/repository-migration. Shared root local/full-debug d2ae094 is OLD.
 Selected original codex/endless-progression8f46153 remains untouched. Read task,
 PROJECT_STATE, evidence README and user original requirements before changes.
 Current integrated main/branch commit:
-a5e95632e665fdbb85be8df2d0cacef5e9924f10
+45bec037e3881d25770958886bcb7bbfc6d92f62
 Product SHA256 d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5.
 Both destination initialeba021e and source8f are ancestors; PR1 merged. Initial
 README preserved. Available selected Git history/current assets/requirements and
@@ -19,45 +19,40 @@ README preserved. Available selected Git history/current assets/requirements and
 unavailable404, never claim recovered.1509 archived-original checks PASS.
 Origin=new xariib repo; legacy-origin old preserved. Other worktrees untouched.
 
-## Latest CI isolation checkpoint
+## Parallel execution of the unchanged offline regression
 
-All five scoped lanes on a5e95632 PASS, saved ci-a5e-before-isolation/. Full
-38908438759 passed early gates and save/Wisp/Comet/Lab cases, then original
-offline core again hit300s. Canceled; full log preserved. Focused Linux24.19.0
-38908434450 passed all3, core276378ms with18 exact old/current records.
+Full38960380540 on45bec037 failed its original offline300s deadline even in the
+isolated job. All five scoped lanes passed; their actual exact-commit metadata
+and failed offline log are retained in ci-45bec-before-parallel/. No full-pass
+claim is made for45bec037.
 
-Cycle-planning experiment passed136 boundary/14 controls but did not provide
-reliable margin (core510s under concurrent local tests). Entire experiment
-REVERTED; root and runtime component exactly a5e bytes. Current product remains
-d4a55cde. No further gameplay code changes adopted. Experimental patch/result
-are saved historical evidence only.
+The new offline driver divides the complete, byte-identical original test into
+five independent virtual-app groups, at most four worker threads. Reconstruction
+requires every original source byte in order; every assertion, historical oracle
+and independent processing-time reference replay remains. The rollback group
+recomputes its required baseline and its complete state hash must match the
+literal-oracle-checked first group. Every worker must report and exit0. The same
+parent300000ms deadline covers all groups together; default190-case coverage,
+main189/offline1 jobs and both required publication gates remain intact.
 
-Current CI-only candidate makes TWO unconditional required jobs in Full:
-main189 and offline1, all190 default scenarios exactly once with same fixtures/
-viewports/assertions/per-case deadlines. Default local command still runs190.
-New coverage8 controls reject omissions/duplicates/unknown/missingoffline/invalid
-selection; actual dispatched original deadline remains300000ms. Publisher now
-checks BOTH named jobs success in addition to all six exact-main manual workflow
-conclusions.11 publisher controls reject omitted/failed/canceled/skipped jobs and
-wrong/unpassed commits. No reference replay/acceptance relaxed. Local real
---ci-group offline run is in progress; actual CI on next commit still required.
+Actual local CLI acceptance with staged d4a55cde product:126949ms PASS. All18
+merged records exactly equal BOTH the selected8f records and current sequential
+records. Original test SHA256d609a4ea is byte-identical8f. Twelve negative controls
+reject missing/duplicate/error/nonzero workers, missing/failed/incomplete reports,
+wrong source/test/group hashes and mismatched independently recomputed baseline.
+Coverage8 and publisher11 controls pass. See offline-parallel/ for raw result,
+controls, source hashes and comparison. No new game change; product remains d4.
 
-Next: commit coherent CI-only patch/evidence and normal-push main; dispatch all
-six manual workflows on its exact new SHA. Watch both Full jobs; never publish
-if either fails. Main must then stay fixed through guarded final publish=true
-build. Do not push later docs while those checks/publication run.
+The normalization experiment did not solve the timeout and was fully REVERTED;
+compressed patch/oracle/failure are retained as historical evidence only.
+New exact-main six-lane Linux CI and final guarded build/release remain pending.
 
-Current-product build-only38907863894 on734a QUALIFIED PASS. Downloaded actual
-APK SHA6c85f7f5c68dd34b0605bac1a345cfc1242c082e1b3a1516aa6bd1379bef163a,
-code1000013/name0.2.13. Original package/cert, exact15 assets/source d4a55cde,
-receipt bound to hash/code reverified locally: old158 cold-save/install-r, same
-UID10145/origin/BOTH slots/progression/paid Study/legacy purchases350 once PASS.
-Saved final-source-preflight/*; no APK/key in Git. Build UNPUBLISHED. Final
-publish=true build on next fully tested main SHA mandatory. Repository PUBLIC.
-
-Anonymous verification helper validation-evidence/verify-final-public-download.cjs
-expects FINAL signedAPK path and output directory; no auth, checks latestAPI and
-stableURL bytes exactly against final verified signed build.
+Next: commit this CI-only change and evidence, normal-push main and branch;
+dispatch all six exact-main manual workflows. The old Full is already failed at
+its isolated job; retain logs and cancel only that run if still running. Do not
+push main again during new exact-SHA checks/publication. Both Full jobs and all
+five scoped workflows must actually pass. No release exists. Final build-only
+preflight13 remains UNPUBLISHED and must never be used as final release.
 
 ## Fixes and acceptance so far
 

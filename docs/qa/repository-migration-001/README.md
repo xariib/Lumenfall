@@ -268,3 +268,31 @@ those exact bytes/commits; no final release is claimed. Native receipt/hash/15
 assets were separately reverified; package/key/origin/UID/BOTH slots/progression/
 paid Study/legacy purchases retained. Final publish=true on the next fully tested
 main SHA and anonymous latest-download verification still mandatory.
+
+## Parallel execution of the unchanged offline regression
+
+Full38960380540 on45bec037 failed its original offline300s deadline even in the
+isolated job. All five scoped lanes passed; their actual exact-commit metadata
+and failed offline log are retained in ci-45bec-before-parallel/. No full-pass
+claim is made for45bec037.
+
+The new offline driver divides the complete, byte-identical original test into
+five independent virtual-app groups, at most four worker threads. Reconstruction
+requires every original source byte in order; every assertion, historical oracle
+and independent processing-time reference replay remains. The rollback group
+recomputes its required baseline and its complete state hash must match the
+literal-oracle-checked first group. Every worker must report and exit0. The same
+parent300000ms deadline covers all groups together; default190-case coverage,
+main189/offline1 jobs and both required publication gates remain intact.
+
+Actual local CLI acceptance with staged d4a55cde product:126949ms PASS. All18
+merged records exactly equal BOTH the selected8f records and current sequential
+records. Original test SHA256d609a4ea is byte-identical8f. Twelve negative controls
+reject missing/duplicate/error/nonzero workers, missing/failed/incomplete reports,
+wrong source/test/group hashes and mismatched independently recomputed baseline.
+Coverage8 and publisher11 controls pass. See offline-parallel/ for raw result,
+controls, source hashes and comparison. No new game change; product remains d4.
+
+The normalization experiment did not solve the timeout and was fully REVERTED;
+compressed patch/oracle/failure are retained as historical evidence only.
+New exact-main six-lane Linux CI and final guarded build/release remain pending.

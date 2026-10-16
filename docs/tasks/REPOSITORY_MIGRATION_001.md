@@ -70,14 +70,13 @@ verified final package/certificate/version, exact15 assets/origin and a complete
 native receipt bound to APK SHA/version/UID/save/progress/paid Study. No preflight
 can be published. README currently links /releases pending the matching release.
 
-Current PR headfcf1077: Comet38896647847, Forge38896647913, Lab38896647868,
-Shared38896647844 and Tree38896648089 PASS. Full38896647886 attempt1 failed Chrome
-startup handshake before mobile assertions; failed evidence retained, unchanged
-job rerun attempt2 IN PROGRESS. Earlier Full reached Guidance and exposed its QA
-server's missing .css MIME/fallback fonts; fixed server plus mandatory loaded
-Manrope400/700, original typography/assertions/inverses unchanged. Local actual-
-font bounded probe and full default16 profiles/160 samples/80 word measurements
-PASS. Earlier fallback-font receipts are not real-font acceptance.
+Integrated main45bec037 preserves source8f and destinationeba histories. All five
+scoped lanes PASS; Full38960380540 fails its original isolated300s offline limit.
+Current CI-only follow-up runs every byte/assertion/reference replay of that
+unchanged test in five independent worker groups, same overall300s deadline.
+Actual local CLI PASS126949ms; all18 records exactly equal original and current
+sequential outputs. Twelve negative controls, coverage8 and publisher11 controls
+PASS. New integrated-commit Linux validation remains mandatory.
 
 Stale schema/gates/caps and wide count/debit fixtures reconciled with accepted
 endless behavior without game changes or skipped controls. All focused modern

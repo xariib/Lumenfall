@@ -7,9 +7,12 @@ release verification are IN PROGRESS. No new release is claimed yet.
 Qualified Android12/WebView91 preflight38900729111 passes actual old158 cold save,
 install-r, original certificate/package/origin/UID, both slots, progression and
 paid work/legacy entitlements. [Verified receipt](qa/repository-migration-001/qualified-native-upgrade.json).
-Main is integrated at c9346ec; five scoped exact-main lanes passed. Full CI found
-three stateful failures; focused fixes/diagnosis and new exact-main validation
-are in progress. Publication remains pending.
+Main45bec037 integrates selected8f and destinationeba histories. All five scoped
+lanes passed; Full original offline job times out300s. The unchanged original
+regression now runs in independent worker groups under the same overall deadline:
+local127s PASS, all18 result records exactly equal original/current sequential.
+Twelve worker controls plus complete190-case/both-job publisher gates pass. New
+exact-main six-lane CI, final signed native build and publication remain pending.
 
 The current game includes endless progression, permanent Wisp Mastery, late
 upgrade guidance, affordability feedback, Formation controls, Wisp progression

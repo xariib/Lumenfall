@@ -102,7 +102,7 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
     if (scenario !== 'save-backup-ui') command.push('--mutant', scenario.endsWith('placement') ? 'misplaced-backup' : 'early-restore');
     return runNativeProcess(command, scenario, 150000, options);
   }
-  if (scenario === 'offline-catchup-core') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-catchup.cjs'), '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 300000, options);
+  if (scenario === 'offline-catchup-core') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-catchup-parallel.cjs'), '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 300000, options);
   if (scenario === 'offline-catchup-ui' || scenario === 'offline-catchup-legacy-dom') return runNativeProcess([process.execPath, path.join(ROOT, 'offline-catchup-ui.cjs'), chrome, urlFor('/index.html'), scenario], scenario, 210000, options);
   if (['formation-autosave-native','formation-autosave-reduced-motion'].includes(scenario)) return runNativeProcess([process.execPath,path.join(ROOT,'formation-autosave.cjs'),chrome,urlFor('/index.html'),scenario],scenario,120000,options);
   if (scenario === 'raw-process-contract') return require('./process_contract.cjs').runContract(runScenario, log);
