@@ -52,6 +52,7 @@ jobs:
           node tests/behavioral/endless-wide-engine.cjs index.html > validation-evidence/endless-progression/wide.json
           node tests/behavioral/endless-ascend-counters.cjs index.html > validation-evidence/endless-progression/ascend-counters.json
           node tests/behavioral/endless-progression-core.cjs index.html --focus-f > validation-evidence/endless-progression/core.json
+          node tests/behavioral/endless-guidance.cjs index.html --negative > validation-evidence/endless-progression/guidance.json
           node tests/behavioral/endless-controls.cjs index.html --focus-f > validation-evidence/endless-progression/controls.json
           node tests/behavioral/endless-parity.cjs index.html > validation-evidence/endless-progression/parity.json
           node tests/behavioral/endless-campaign-offline.cjs index.html > validation-evidence/endless-progression/campaign-offline.json

@@ -1712,6 +1712,11 @@
   #rift-guidance-slot .objective-copy small{font-size:.75rem;line-height:1.2;color:#b5b4cb;}
   #rift-guidance-slot .objective-arrow{color:#b5b4cb;}
   #rift-hints-toggle:focus,#rift-objective-row:focus,#rift-guidance-slot .rift-objective:focus{outline:2px solid #e7c67e;outline-offset:-3px;}
+  .late-power-guide[hidden]{display:none;}
+  .late-power-guide{overflow-wrap:anywhere;}
+  .late-power-guide h3{margin:0 0 8px;font-size:1rem;}
+  .late-power-guide p{margin:8px 0;}
+  .late-power-guide button{min-width:44px;min-height:44px;max-width:100%;white-space:normal;}
   .stage .objective-kind{display:block;font-size:9px;line-height:12px;letter-spacing:.05em;padding:3px 5px;white-space:nowrap;}
   .stage .objective-copy strong{font-size:12px;line-height:16px;}
   .stage .objective-copy small{font-size:11px;line-height:14px;}
@@ -2848,6 +2853,12 @@
 
     <section class="tab-panel" id="tab-spirits">
       <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">Formation &amp; collection</span><h2>Wisps</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-wisps"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
+      <section class="card late-power-guide" id="late-power-guide" aria-labelledby="late-power-title" hidden>
+        <h3 id="late-power-title">Next power</h3>
+        <p id="late-power-action"></p><p class="section-sub" id="late-power-detail"></p>
+        <p class="section-sub" id="late-power-lab"></p>
+        <button type="button" class="mini-btn" id="late-power-open">Find upgrade</button>
+      </section>
       <div id="formation-presets"></div>
       <details class="card formation-help"><summary><span>Formation Bonds &amp; guidance</span><span aria-hidden="true"><span class="formation-help-expand">Expand</span><span class="formation-help-collapse">Collapse</span></span></summary>
         <div class="section-sub">Up to <span id="formation-capacity">5</span> Wisps can be Active at once. Pair specific powered Wisps to activate simple Formation Bonds for Push, Farm or Boss fights.</div>
@@ -8356,8 +8367,64 @@ function renderRiftMode(){
   if(els['rift-farm-btn'].disabled) els['rift-farm-btn'].innerHTML='Farm<span class="control-state">Clear Rift 1</span>';
   else els['rift-farm-btn'].innerHTML='Farm<span class="farm-depth">Rift '+formatRiftNumber(farming ? state.farmDepth : highestFarmableDepth(progressionDepth()))+'</span>';
 }
+// Read-only advice after roster development. Prices, gates and purchases remain
+// authoritative in their existing plans; advice never toggles queues or spends.
+function latePowerAdvice(){
+  if(!SPIRITS.every(function(sp){return wispUpgradesMaxed(sp.id);}))return null;
+  function advice(kind,title,detail,tab,selector,id){return {kind:kind,title:title,detail:detail,tab:tab,selector:selector,id:id,progress:100};}
+  var plans=SPIRITS.map(function(sp){return {sp:sp,plan:getWispMasteryPlan(sp)};});
+  var next=plans.slice().sort(function(a,b){return a.plan.rank-b.plan.rank || SPIRITS.indexOf(a.sp)-SPIRITS.indexOf(b.sp);})[0];
+  var neededLab=next.plan.requirements.filter(function(r){return r.key==='lab';})[0].target;
+  var labNote='Next '+next.sp.shortName+' Mastery: Wisp Ascendancy '+longStudyLevel('wispascend')+' / '+neededLab+'. ';
+  labNote+=longStudyLevel('wispascend')>=neededLab ? 'Lab gate met. Pause its queue to fund run Power and permanent upgrades. Running projects keep their paid work and speed.' : 'Develop the required Lab level while farming useful upgrades.';
+  var result;
+  var ready=plans.find(function(row){return row.plan.affordable;});
+  var recruit=SPIRITS.find(function(sp){return !(state.spirits[sp.id]>0)&&getSpiritBuyPlan(sp).affordable;});
+  var empower=SPIRITS.find(function(sp){return state.activeParty.indexOf(sp.id)!==-1&&getSpiritBuyPlan(sp).affordable&&Amount.le(spiritCost(sp),Amount.mul(state.lumen,.01))&&state.empowerQueue[sp.id]===false;});
+  var forge=RESEARCH.find(function(n){return n.id==='masterwork';}),forgePlan=getResearchBuyPlan(forge,1);
+  var eligible=plans.find(function(row){return row.plan.eligible;});
+  if(ready)result=advice('MASTERY READY','Master '+ready.sp.shortName+' to rank '+(ready.plan.rank+1),'Own Power ×1.10 permanently. '+formatRiftNumber(ready.plan.cost.prism)+' Prisms + '+formatRiftNumber(ready.plan.cost.sigil)+' Sigils.','spirits','[data-mastery="'+ready.sp.id+'"]',ready.sp.id);
+  else if(recruit)result=advice('REBUILD','Recruit '+recruit.shortName+' again','Permanent upgrades are kept. Restore run Power after Ascend.','spirits','[data-empower="'+recruit.id+'"]',recruit.id);
+  else if(empower)result=advice('REBUILD','Rebuild your team’s Power','Affordable run levels remain. Enable Auto-Empower for your team while saving for permanent upgrades.','spirits','[data-empower-queue="'+empower.id+'"]',empower.id);
+  else if(forgePlan.buyCount===1&&Amount.le(forgePlan.cost.lumen,Amount.mul(state.lumen,.75)))result=advice('FORGE POWER','Temper Masterwork to level '+(researchLevel('masterwork')+1),'All Wisp Power ×'+ENDLESS_PROGRESSION.masterworkPowerGrowth+' permanently. Keep some Lumen for run levels.','forge','[data-research="masterwork"]','masterwork');
+  else if(eligible){
+    if(!prismPurchasePlan(eligible.plan.cost.prism,true))result=advice('FARM PRISMS','Farm Prisms for '+eligible.sp.shortName,'Ascend toward '+formatRiftNumber(eligible.plan.cost.prism)+' Prisms. Rebuild afterwards; stop Auto-Ascend when funded and return to Push.','ascend','#auto-ascend-controls',eligible.sp.id);
+    else result=advice('FARM SIGILS','Farm Sigils for '+eligible.sp.shortName,'Need '+formatRiftNumber(eligible.plan.cost.sigil)+' Sigils. Clear bosses; keep your run and Empower queues growing.','battle','#rift-farm-btn',eligible.sp.id);
+  }else{
+    var missing=next.plan.requirements.find(function(r){return !r.met&&r.key!=='depth';});
+    if(missing){
+      var tab=missing.key==='lab'?'research':missing.key==='forge'?'forge':'ascend';
+      var selector=missing.key==='lab'?'[data-study-card="wispascend"],[data-running-study="wispascend"]':missing.key==='forge'?'[data-research="masterwork"]':'[data-node="swift"]';
+      result=advice('MASTERY PATH',missing.label+' '+missing.current+' / '+missing.target,missing.key==='lab'?'Finish this Lab gate; farm and Empower during the wait.':'Develop this permanent upgrade for the next Mastery rank.',tab,selector,missing.key);
+    }else result=advice('PUSH','Push toward Rift '+next.plan.requirements[0].target,'Keep Empower queues active. Use Field Best now for your Push formation; farm Masterwork while building run Power.','spirits','#formation-best-now-btn',next.sp.id);
+  }
+  // Farming settings can otherwise reset a rebuilt run indefinitely even when
+  // the Prism goal is already funded. Stopping is always the player's choice.
+  if(state.autoAscendEnabled&&result.kind!=='FARM PRISMS')result=advice('RETURN TO PUSH','Finish Prism farming','Turn off Auto-Ascend, rebuild your team and return to Push. Permanent upgrades are retained.','ascend','#auto-ascend-controls');
+  else if(state.riftMode==='farm'&&result.kind!=='FARM SIGILS'&&result.kind!=='FARM PRISMS')result=advice('RETURN TO PUSH','Resume your Push','Keep your run Power and permanent upgrades growing. Return to Push to challenge your record.','battle','#rift-push-btn');
+  result.labNote=labNote;
+  result.labTarget=neededLab;
+  return result;
+}
+function renderLatePowerAdvice(){
+  var root=document.getElementById('late-power-guide');if(!root)return;
+  var goal=latePowerAdvice();root.hidden=!goal;if(!goal)return;
+  document.getElementById('late-power-action').textContent=goal.title;
+  document.getElementById('late-power-detail').textContent=goal.detail;
+  document.getElementById('late-power-lab').textContent=goal.labNote;
+}
+function openPowerAdvice(goal){
+  if(!goal||!goal.tab)return;
+  activateTab(goal.tab);
+  var target=goal.selector&&document.querySelector(goal.selector);
+  if(!target)return;
+  if(target.closest('details'))target.closest('details').open=true;
+  if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;
+  target.scrollIntoView({block:'center'});target.focus({preventScroll:true});
+}
 function nextRiftObjective(){
   var p = progressionDepth();
+  var late=latePowerAdvice();if(late)return late;
 
   if(state.riftMode==='farm'){
     return {
@@ -8471,6 +8538,7 @@ function renderRiftObjective(){
     '<span class="objective-arrow">'+(actionable?'›':'')+'</span>';
   el.className = 'rift-objective objective-'+goal.kind.toLowerCase().replace(/[^a-z]+/g,'-')+(actionable?' actionable':'');
   el.setAttribute('data-target-tab',goal.tab||'');
+  el.setAttribute('data-target-selector',goal.selector||'');
   if(actionable){ el.setAttribute('role','button'); el.tabIndex=0; el.setAttribute('aria-label',goal.title+' — '+goal.detail); }
   else { el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-label'); }
 }
@@ -8483,6 +8551,7 @@ function updateBattleFast(){
   if(deedTrialStatus) deedTrialStatus.textContent=cometTrialStatus();
   renderRiftMode();
   renderRiftObjective();
+  renderLatePowerAdvice();
   renderBondSummary();
   renderRiftParty();
   renderLabCapacityBadge();
@@ -12858,8 +12927,9 @@ function init(){
   });
   document.getElementById('rift-objective').addEventListener('click', function(){
     var target = this.getAttribute('data-target-tab');
-    if(target) activateTab(target);
+    if(target) openPowerAdvice({tab:target,selector:this.getAttribute('data-target-selector')});
   });
+  document.getElementById('late-power-open').addEventListener('click',function(){openPowerAdvice(latePowerAdvice());});
   document.getElementById('rift-hints-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
   document.getElementById('formation-best-now-btn').addEventListener('click',fieldBestNowFormation);
   document.getElementById('rift-guidance-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });

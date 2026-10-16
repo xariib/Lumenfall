@@ -1,7 +1,8 @@
 # Endless progression — current measured results
 
-Local candidate only; feature OPEN. Source SHA256:
+Local candidate only; feature OPEN. Measured F baseline SHA256:
 `4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45`.
+Current advice candidate b3592be6: [late pacing work](LATE_GUIDANCE.md).
 No main integration, APK or release is claimed. Original scope and protections:
 [requirements](REQUIREMENTS.md).
 
@@ -84,7 +85,7 @@ is bounded at10d before earned reductions/speed; existing running work is kept.
 
 ## Executed checks and remaining limits
 
-The exact current source passed220 browser executions/190 deterministic
+The F baseline passed220 browser executions/190 deterministic
 scenarios,493 Mastery/mobile checks across12 profiles, strict warm/cold parity
 and storage checks, price/requirement boundaries, migration/recovery, paid-value,
 Formation, Support and deliberate defect controls. Actual V8 6.0.286.52 passed

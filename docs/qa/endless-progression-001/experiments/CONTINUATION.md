@@ -3,6 +3,16 @@
 Feature OPEN. Use only nested validation-evidence/endless-progression-worktree,
 branch codex/endless-progression. Shared checkout preserved. No agents/chats/messages.
 
+16Oct continuation: user requires actual late guidance for30-41d stalls.
+Current game b3592be6 has optional Next power/advice; baseline gameplay is
+byte-identical under the exact inverse. See ../LATE_GUIDANCE.md before the
+historical F checkpoint below. Regular2/3-visit day180 continuations running
+(g-guided-two-slow.json / g-guided-three-slow.json), one action per30s, plus
+casual2x5min. Both regular saves broke their records on day1 without new Lab.
+Full browser run g-full-browser.txt underway; wisp-rarity-scroll timed out
+under concurrent campaign load, retry separately after jobs finish. Mobile637,
+guide174 and strict warm953 PASS. No claim that new full acceptance is finished.
+
 - Root/staged game source4b052487793c768611ff39ba88872c0a3f4ea3aeaf217616e104bfd3eb34ac45.
   F tables/exact cycle engine applied locally; fe14 timed Lab/60s Motes and67e Lab
   UI retained. Probes do not modify product bytes.
