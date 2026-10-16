@@ -75,3 +75,21 @@ Available native acceptance is a disposable Android emulator upgrading an archiv
 signed APK, with synthetic saves and paid Study work; it does not require one
 particular version on the user's phone. Physical device, exact WebView60,
 TalkBack and human pacing/performance acceptance remain unverified.
+
+## Current continuation
+
+[Continuation](CONTINUATION.md) records exact failed/passing runs and next actions.
+All3586 retained original evidence files (877068875 bytes) match source SHA256
+and committed Git blob SHA1. Ignored-log supplement retains397 synthetic logs;
+170 profile/empty outputs excluded. No original files deleted. Full3586 proof:
+[verification receipt](retained-evidence-verification.json).
+
+Second Linux round: Forge/Comet/Lab/Shared PASS; Full/Tree FAIL with saved logs.
+Current Guidance bounded gate recovery3 PASS, Tree offline10085/economy16802/six
+controls and V8 Cheaper Recruitment PASS locally; complete final CI still required.
+
+Native upgrade remains UNVERIFIED. First job green was missing its receipt and
+is expressly not save-retention evidence. Stricter attempts fail closed; sentinel,
+about:blank and reload failures retained. Current38894057323 is build-only with
+native diagnostics. No preflight is published; mandatory receipt binds completed
+old cold restart/real install-r/UID/save/progress/paid work to actual APK SHA/version.

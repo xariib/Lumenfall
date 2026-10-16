@@ -1,0 +1,220 @@
+build-apk	In-place signed APK and save upgrade on emulator	﻿2026-10-16T11:17:31.6554701Z ##[group]Run reactivecircus/android-emulator-runner@v2
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6555071Z with:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6555277Z   api-level: 29
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6555481Z   arch: x86_64
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6555694Z   disable-animations: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6556232Z   script: node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6556798Z   target: default
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6556997Z   cores: 2
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6557186Z   avd-name: test
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6557405Z   force-avd-creation: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6557655Z   emulator-boot-timeout: 600
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6557902Z   emulator-port: 5554
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6558315Z   emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6558801Z   disable-spellchecker: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6559087Z   disable-linux-hw-accel: auto
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6559342Z   enable-hw-keyboard: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6559576Z   channel: stable
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6559801Z env:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6560102Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6560598Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6560983Z   MAVEN_ARGS: -ntp
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6561241Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6561550Z   GRADLE_USER_HOME: /home/runner/.gradle
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6561842Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6562404Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6562857Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6563348Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6563672Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6563938Z   BUILD_NUMBER: 1000003
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6564174Z   EXPECTED_VERSION_CODE: 1000003
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6564429Z   EXPECTED_VERSION_NAME: 0.2.3
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.6564670Z ##[endgroup]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7151303Z ##[group]Configure emulator
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7154417Z API level: 29
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7154951Z System image API level: 29
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7155462Z target: default
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7155940Z CPU architecture: x86_64
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7156466Z Hardware profile: 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7159863Z Cores: 2
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7160303Z RAM size: 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7160697Z Heap size: 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7160984Z SD card path or size: 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7161371Z Disk size: 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7161785Z AVD name: test
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7162397Z force avd creation: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7162831Z Emulator boot timeout: 600
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7163320Z emulator port: 5554
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7164167Z emulator options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7164956Z disable animations: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7165292Z disable spellchecker: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7165696Z disable Linux hardware acceleration: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7166173Z enable hardware keyboard: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7166706Z Channel: 0 (stable)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7167084Z Script:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7167699Z node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7168293Z Pre emulator launch script:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7168804Z ##[endgroup]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7169259Z ##[group]Install Android SDK
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:31.7218959Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:38.4784266Z Installing latest build tools, platform tools, and platform.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:38.4799315Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-29'> /dev/null
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:44.1982592Z Installing latest emulator.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:44.2000708Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:51.8500419Z Installing system images.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:17:51.8516471Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-29;default;x86_64' --channel=0 > /dev/null
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:11.8577761Z ##[endgroup]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:11.8579444Z ##[group]Create AVD
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:11.8580091Z Creating AVD.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:11.8598496Z [command]/usr/bin/sh -c \echo no | avdmanager create avd --force -n test --package 'system-images;android-29;default;x86_64'
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.7255371Z Loading local repository...                                                     
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.7260479Z [=========                              ] 25% Loading local repository...       
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.7261623Z [=========                              ] 25% Fetch remote repository...        
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.7262663Z [=======================================] 100% Fetch remote repository...       
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9085252Z Auto-selecting single ABI x86_64
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9784412Z Do you wish to create a custom hardware profile? [no] [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2\n' >> /home/runner/.android/avd/test.avd/config.ini
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9806271Z ##[endgroup]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9808437Z ##[group]Launch Emulator
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9808799Z Starting emulator.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9823634Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9938159Z INFO         | Android emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9939040Z INFO         | Graphics backend: gfxstream
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:12.9940085Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-29/default/x86_64/
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7606800Z INFO         | Saving last run QEMU version for the AVD to 2
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7607927Z INFO         | Increasing RAM size to 2048MB
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7608733Z ##############################################################################
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7610254Z ##                        WARNING - ACTION REQUIRED                         ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7611060Z ##  Consider using the '-metrics-collection' flag to help improve the       ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7611695Z ##  emulator by sending anonymized usage data. Or use the '-no-metrics'     ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7612790Z ##  flag to bypass this warning and turn off the metrics collection.        ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7613388Z ##  In a future release this warning will turn into a one-time blocking     ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7613978Z ##  prompt to ask for explicit user input regarding metrics collection.     ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7614476Z ##                                                                          ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7614990Z ##  Please see '-help-metrics-collection' for more details. You can use     ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7615583Z ##  '-metrics-to-file' or '-metrics-to-console' flags to see what type of   ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7616172Z ##  data is being collected by emulator as part of usage statistics.        ##
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7616681Z ##############################################################################
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7617094Z INFO         | Guest GLES Driver: Auto (ext controls)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7617987Z INFO         | emuglConfig_init: vulkan_mode_selected:swiftshader gles_mode_selected:swiftshader
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7619126Z WARNING      | FeatureControl is requesting a non existing feature.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7619960Z INFO         | Checking system compatibility:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7620707Z INFO         |   Checking: hasSufficientDiskSpace
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7621603Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7622680Z INFO         |   Checking: hasSufficientHwGpu
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7623654Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7624708Z INFO         |   Checking: hasSufficientSystem
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7625163Z INFO         |      Ok: System requirements to run avd: `test` are met
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7626375Z WARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7627294Z WARNING      | FeatureControl is requesting a non existing feature.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7627786Z ERROR        | Unable to connect to adb daemon on port: 5037
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7628491Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-37.2.12.db, detection is enabled for process: 3599
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7629120Z INFO         | Initializing gfxstream backend
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7629531Z INFO         | startOpenglesRendererImpl: gpu info
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7629844Z INFO         | 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7630241Z INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7631031Z INFO         | Setting ICD filenames for the loader = /usr/local/lib/android/sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7632964Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7634694Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7636196Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7637458Z INFO         | Added library: /usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7638598Z INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7639625Z INFO         | Using Vulkan externalMemoryMode: OpaqueFd for VkEmulation
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7640921Z INFO         | Format VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16 does not support YCbCr sampler conversion
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7642205Z INFO         | SharedLibrary::open for [libX11]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7642948Z WARNING      | Could not open libX11.so, try libX11.so.6
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7643686Z INFO         | SharedLibrary::open for [libX11.so.6]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7644392Z INFO         | SharedLibrary::open for [libX11-xcb]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7645178Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7645974Z INFO         | SharedLibrary::open for [libX11-xcb.so.1]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7646681Z INFO         | Initializing VkEmulation features:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7647367Z INFO         |     glInteropSupported: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7648008Z INFO         |     useDeferredCommands: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7648815Z INFO         |     createResourceWithRequirements: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7649540Z INFO         |     useVulkanComposition: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7650233Z INFO         |     useVulkanNativeSwapchain: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7650918Z INFO         |     enable guestRenderDoc: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7651566Z INFO         |     ASTC LDR emulation mode: Gpu
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7652477Z INFO         |     enable ETC2 emulation: true
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7653127Z INFO         |     enable Ycbcr emulation: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7653741Z INFO         |     guestVulkanOnly: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7654400Z INFO         |     useDedicatedAllocations: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.7898800Z INFO         |     guestVulkanMaxApiVerWARNING: cannnot unmap ptr 0x7f61c4e01000 as it is in the protected range from 0x7f6144e00000 to 0x7f61c5000000
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8015931Z sion: 1.3.0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8026528Z INFO         |     enableProtectedMemoryEmulation: false
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8027778Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8029004Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8030526Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8036860Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8041806Z INFO         | Graphics Device Extensions N/A
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8042537Z INFO         | Disabling sparse binding feature support
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8043429Z INFO         | Userspace boot properties:
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8044171Z INFO         |   android.bootanim=0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8044696Z INFO         |   android.qemud=1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8045748Z INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8046833Z INFO         |   androidboot.hardware=ranchu
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8047483Z INFO         |   androidboot.hardware.vulkan=ranchu
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8048406Z INFO         |   androidboot.serialno=EMULATOR37X2X12X0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8049531Z INFO         |   androidboot.vbmeta.digest=0893f0f3bac935802e7658f39b766acd7344cd0553606784a98cb6a38c2a8629
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8050744Z INFO         |   androidboot.vbmeta.hash_alg=sha256
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8051401Z INFO         |   androidboot.vbmeta.size=4352
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8051909Z INFO         |   qemu=1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8052542Z INFO         |   qemu.avd_name=test
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8053120Z INFO         |   qemu.camera_hq_edge_processing=0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8053955Z INFO         |   qemu.dalvik.vm.heapsize=512m
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8054522Z INFO         |   qemu.encrypt=1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8054977Z INFO         |   qemu.gles=1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8055476Z INFO         |   qemu.gltransport=pipe
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8056133Z INFO         |   qemu.gltransport.drawFlushInterval=800
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8056799Z INFO         |   qemu.opengles.version=196608
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8057539Z INFO         |   qemu.settings.system.screen_off_timeout=2147483647
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8058222Z INFO         |   qemu.skin=320x640
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8058750Z INFO         |   qemu.uirenderer=skiagl
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8059264Z INFO         |   qemu.vsync=60
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8059692Z INFO         |   qemu.wifi=1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8060255Z INFO         | Monitoring duration of emulator setup.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8259343Z INFO         | Setting display: 0 configuration to: 320x640, dpi: 160x160 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8284850Z INFO         | setDisplayActiveConfig: id:0, 320x640
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8285922Z INFO         | emulatorSetupEnvironment: Environment scene is not required
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8346887Z USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.8356088Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:13.9770995Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:22.9883836Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:22.9922411Z * daemon not running; starting now at tcp:5037
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:23.1209597Z * daemon started successfully
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:23.1211255Z adb: device offline
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:23.1222308Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:25.1303889Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:25.1671136Z 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:27.1739733Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:27.2008101Z 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:29.2093538Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:29.3365783Z 1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:29.3384818Z Emulator booted.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:29.3420064Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:30.6392288Z Disabling animations.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:30.6422361Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.1001864Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.5335170Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.5557318Z INFO         | Boot completed in 18530 ms
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.5561772Z INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.7809249Z ##[endgroup]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.7864479Z [command]/usr/bin/sh -c node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:31.8323456Z Android upgrade QA: starting disposable emulator check
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:32.7168411Z Android upgrade QA: old APK installed; connecting to WebView
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.2225367Z Android upgrade QA: WebView endpoint ws://127.0.0.1:9222/devtools/page/025B1A5E75D6FAF927C4ED8ABD17A4CD
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4308083Z AssertionError [ERR_ASSERTION]: {"exceptionId":1,"text":"Uncaught","lineNumber":0,"columnNumber":0,"scriptId":"11","exception":{"type":"object","subtype":"error","className":"DOMException","description":"DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:1:1","objectId":"{\"injectedScriptId\":1,\"id\":2}","preview":{"type":"object","subtype":"error","description":"DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:1:1","overflow":false,"properties":[{"name":"stack","type":"accessor"},{"name":"code","type":"number","value":"18"},{"name":"name","type":"string","value":"SecurityError"},{"name":"message","type":"string","value":"Failed to read the 'localStorage' property from 'Window': Access is denied for this document."}]}}}
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4317538Z     at Object.evaluate (/home/runner/work/Lumenfall/Lumenfall/scripts/ci/android-upgrade.cjs:22:154)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4319444Z     at async main (/home/runner/work/Lumenfall/Lumenfall/scripts/ci/android-upgrade.cjs:34:30)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4543404Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4555373Z ##[group]Terminate Emulator
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4556350Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4601652Z OK: killing emulator, bye bye
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4603443Z OK
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4605347Z INFO         | Wait for emulator (pid 3599) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4606901Z 
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4607374Z ##[endgroup]
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4696364Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.4700234Z INFO         | Saving snapshot 'default_boot' took 0 ms
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.8069800Z ERROR        | stop: Not implemented
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.8070801Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+build-apk	In-place signed APK and save upgrade on emulator	2026-10-16T11:18:34.8179314Z INFO         | removeAll

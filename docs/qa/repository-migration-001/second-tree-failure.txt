@@ -1,0 +1,115 @@
+tree	Tree offline chronology and Auto-Ascend preservation	﻿2026-10-16T10:57:27.1813305Z ##[group]Run set -euo pipefail
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.1813655Z ^[[36;1mset -euo pipefail^[[0m
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.1814202Z ^[[36;1mnode tests/behavioral/tree-expansion-offline.cjs index.html --negative 2>&1 | tee tree-validation/offline.json^[[0m
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.1880440Z shell: /usr/bin/bash -e {0}
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.1880709Z ##[endgroup]
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3045679Z node:assert:90
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3046922Z   throw new AssertionError(obj);
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3047224Z   ^
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3047437Z 
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3048133Z AssertionError [ERR_ASSERTION]: unsafe lifetime counter is not used as run identity
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3048988Z + actual - expected
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3049229Z 
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3049465Z + '1000000000000000019884624838657e0'
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3049888Z - 1e+30
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3050421Z     at Object.eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/tree-expansion-economy.cjs:32:56)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3051283Z     at endingPassive (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/tree-expansion-offline.cjs:54:5)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3052157Z     at verify (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/tree-expansion-offline.cjs:298:21)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3053152Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/tree-expansion-offline.cjs:308:148)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3054329Z     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3055439Z     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3056268Z     at Module.load (node:internal/modules/cjs/loader:1266:32)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3056993Z     at Module._load (node:internal/modules/cjs/loader:1091:12)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3058253Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3059119Z     at node:internal/main/run_main_module:28:49 {
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3059643Z   generatedMessage: false,
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3060051Z   code: 'ERR_ASSERTION',
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3060510Z   actual: '1000000000000000019884624838657e0',
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3060982Z   expected: 1e+30,
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3061367Z   operator: 'deepStrictEqual'
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3061765Z }
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3061923Z 
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3062068Z Node.js v20.20.2
+tree	Tree offline chronology and Auto-Ascend preservation	2026-10-16T10:57:27.3090266Z ##[error]Process completed with exit code 1.
+tree	Complete Tree and Prism execution on actual V8 6.0	﻿2026-10-16T11:00:22.8160052Z ##[group]Run set -euo pipefail
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8160399Z ^[[36;1mset -euo pipefail^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8160673Z ^[[36;1mmkdir -p /tmp/tree-node8^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8160944Z ^[[36;1mcd /tmp/tree-node8^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8161374Z ^[[36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/SHASUMS256.txt -o SHASUMS256.txt^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8162075Z ^[[36;1mcurl -fL --retry 2 https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz -o node-v8.3.0-linux-x64.tar.xz^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8162737Z ^[[36;1mgrep ' node-v8.3.0-linux-x64.tar.xz$' SHASUMS256.txt | sha256sum -c -^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8163168Z ^[[36;1mtar -xf node-v8.3.0-linux-x64.tar.xz^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8163463Z ^[[36;1mcd "$GITHUB_WORKSPACE"^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8164066Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/tree-expansion-v8.cjs index.html 2>&1 | tee tree-validation/v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8165024Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/cheaper-recruitment-v8.cjs 2>&1 | tee tree-validation/f21-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8166302Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/echo-refund-v8.cjs 2>&1 | tee tree-validation/f20-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8167369Z ^[[36;1mnode tests/behavioral/refund-schedule-parity.cjs index.html --legacy-node /tmp/tree-node8/node-v8.3.0-linux-x64/bin/node --negative --output tree-validation/refund-parity.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8168601Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/wisp-contribution-core.cjs index.html --v8 --preservation > tree-validation/wisp-contribution-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8169866Z ^[[36;1m/tmp/tree-node8/node-v8.3.0-linux-x64/bin/node tests/behavioral/prism-legacy-runtime.cjs index.html tree-validation/prism/legacy-cases.json 2>&1 | tee tree-validation/prism-v8.json^[[0m
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8233337Z shell: /usr/bin/bash -e {0}
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8233613Z ##[endgroup]
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8406037Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8407216Z                                  Dload  Upload   Total   Spent    Left  Speed
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8407967Z 
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8821168Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8823661Z 100  3865  100  3865    0     0  92966      0 --:--:-- --:--:-- --:--:-- 94268
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8895078Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8896556Z                                  Dload  Upload   Total   Spent    Left  Speed
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.8896987Z 
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.9858622Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.9860089Z 100 10.9M  100 10.9M    0     0   114M      0 --:--:-- --:--:-- --:--:--  114M
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:22.9984845Z node-v8.3.0-linux-x64.tar.xz: OK
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7647864Z {
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7648228Z   "status": "pass",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7648571Z   "checks": 2881,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7648876Z   "inlineScriptsParsed": 2,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7649267Z   "completeIifeInstances": 339,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7649586Z   "priceCases": 94,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7649855Z   "faultCases": 34,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7650110Z   "effects": [
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7650351Z     "echo",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7650574Z     "bonds",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7650801Z     "swift",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7651075Z     "swiftcharter",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7651361Z     "lumenmemory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7651599Z     "veteranrecruits",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7651842Z     "rosterrecall",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7652063Z     "chargememory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7652286Z     "supportmemory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7652523Z     "phasememory",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7652741Z     "riftstep",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7652954Z     "frontier",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7653162Z     "stardust",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7653388Z     "gentlegrowth",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7653612Z     "formationseat",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7653842Z     "benchmentor",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7654496Z     "empowerbatch",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7654716Z     "wallwisdom",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7654931Z     "invitations",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7655481Z     "recruitreserve"
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7655772Z   ],
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7656004Z   "bigIntAvailable": false,
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7656771Z   "scope": "Actual V8 6.0 complete-IIFE engine, purchases, migration and persistence; browser layout/native Android are separate gates.",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7658105Z   "sourceSha256": "bf7909b56466ee2b8f3434cf74bf4dfca52add29f147cdfc39795e2291391f21",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7659122Z   "testSha256": "b2bef59e85d6b25341dabc611550fa6ea69acd9602da9a08b244095c17d7322a",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7659747Z   "node": "v8.3.0",
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7660104Z   "v8": "6.0.286.52"
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:24.7660411Z }
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0350567Z assert.js:43
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0351371Z   throw new errors.AssertionError({
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0352197Z   ^
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0352570Z 
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0353390Z AssertionError [ERR_ASSERTION]: { prisms: '1000000000000000019884624838655e0',
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0354400Z   credits: [],
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0355022Z   remainingOwnCredits: [],
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0356166Z   remainingEchoCredits: [] } == null
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0357383Z     at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/cheaper-recruitment-v8.cjs:14:394)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0358641Z     at Module._compile (module.js:573:30)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0359402Z     at Object.Module._extensions..js (module.js:584:10)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0360160Z     at Module.load (module.js:507:32)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0360856Z     at tryModuleLoad (module.js:470:12)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0361560Z     at Function.Module._load (module.js:462:3)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0362288Z     at Function.Module.runMain (module.js:609:10)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0362984Z     at startup (bootstrap_node.js:158:16)
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0363645Z     at bootstrap_node.js:578:3
+tree	Complete Tree and Prism execution on actual V8 6.0	2026-10-16T11:00:25.0391945Z ##[error]Process completed with exit code 1.

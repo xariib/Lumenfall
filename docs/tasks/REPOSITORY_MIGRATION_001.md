@@ -75,3 +75,19 @@ Linux lanes. Inspect preflight Android/emulator failures and fix them. Then
 integrate game, dispatch exact-main checks, build/verify and publish. Switch
 README to the stable download only after matching release exists. Physical
 device/WebView60/TalkBack/human limitations remain open; no final release yet.
+
+16 October continuation: PR head662fed8 passes Forge38890547040, Comet38890547111,
+Lab38890547286 and Shared38890547134. Full/Tree failures retained; corrected
+Guidance historical bridge/inverse evidence and stale exact-wide Tree fixtures.
+Local complete Guidance bounded gate recovery3 passes; Tree offline10085,
+economy16802/six controls and actual V8 Cheaper Recruitment pass. Final CI pending.
+All3586 retained evidence files/877068875 bytes now match original SHA256 and
+committed Git blob SHA1 (retained-evidence-verification.json). Excluded620 reviewed
+temporary/empty files; no original files deleted. New migration QA attempts saved.
+Native build identity/assets pass, but upgrade remains UNVERIFIED: preflight1
+silently omitted receipt (explicitly corrected); strict followups failed sentinel,
+about:blank origin, then reload DevTools disconnection. These are failed evidence,
+not acceptance. Current build-only38894057323 adds reload phase diagnostics and
+process-restart validation; mandatory completed receipt prevents false success.
+No release exists yet. Next: final six CI lanes, native completed receipt,
+integration/exact-main dispatch gates, publish and actual stable download verify.
