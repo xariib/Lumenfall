@@ -144,3 +144,20 @@ swiftshader_indirect. Next uses supported software GPU backend with verbose
 emulator diagnostics, as documented by Android:
 https://developer.android.com/studio/run/emulator-acceleration#accel-graphics
 Original APK/assets/retention assertions unchanged. Still no upgrade PASS/release.
+
+Actual-font Guidance bounded gate and full default matrix PASS:16 profiles,
+160 samples,80 word measurements confirm loaded Manrope400/700. Complete default
+receipt and all bounded inverse receipts saved compressed. Source remainsbf7909b5.
+Full38896647886 attempt1 fails Chrome Browser.getVersion handshake BEFORE assertions;
+failed evidence retained. Same unchanged job rerun attempt2 is in progress.
+Native software-GPU38896633015 fails before old-save setup; no upgrade claim.
+Both newest kernel logs show guest Unhandled WRMSR(0xc0010007)=0xffff immediately
+before loss, with no host OOM. Hypothesis: hosted KVM performance-counter MSR
+compatibility, not established game/data failure. Next preflight enables the
+existing KVM ignore_msrs parameter ONLY on the disposable CI host, retaining
+report_ignored_msrs diagnostics, and streams guest logcat before device loss.
+Native gate also explicitly checks original progress/paid work in BOTH slots.
+Kernel parameter implementation: https://github.com/torvalds/linux/blob/master/arch/x86/kvm/msrs.c
+No CPU/native performance acceptance claim. All game assets/code unchanged.
+Local origin now xariib/Lumenfall; old URL retained as legacy-origin, destination
+alias retained. No other worktree files/branch upstreams changed.

@@ -285,6 +285,11 @@ jobs:
           echo KERNEL==\"kvm\",GROUP=\"kvm\",MODE=\"0666\",OPTIONS+=\"static_node=kvm\" | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
+          # Hosted AMD guests have faulted on unsupported performance-counter
+          # WRMSR 0xc0010007. Apply only to this disposable CI VM; keep reports.
+          echo 1 | sudo tee /sys/module/kvm/parameters/ignore_msrs
+          cat /sys/module/kvm/parameters/ignore_msrs
+          cat /sys/module/kvm/parameters/report_ignored_msrs
 
       - name: Free native build memory before emulator acceptance
         working-directory: mobile/android

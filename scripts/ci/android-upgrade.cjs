@@ -3,6 +3,7 @@
 const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict');
 const packageId='com.lumenfall.app',primary='lumenfall_save_v2',recovery='lumenfall_save_recovery_v1';
 const sockets=new Set();
+let nativeLogcat;
 const adb=(...args)=>cp.execFileSync('adb',args,{encoding:'utf8',timeout:120000});
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 async function connect(){
@@ -29,6 +30,10 @@ async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
  assert.match(adb('get-serialno').trim(),/^emulator-/,'Only a disposable emulator is accepted');
+ fs.mkdirSync('release-evidence',{recursive:true});
+ const log=fs.openSync('release-evidence/native-logcat.txt','w');
+ nativeLogcat=cp.spawn('adb',['logcat','-v','threadtime'],{stdio:['ignore',log,log]});fs.closeSync(log);
+ nativeLogcat.on('error',e=>console.error('Live native diagnostic: '+e.message));
  const baseline=process.argv[2],candidate=process.argv[3];assert(baseline&&candidate);
  const report={baseline,candidate,package:packageId,commit:process.env.GITHUB_SHA,apkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync(candidate)).digest('hex'),device:adb('shell','getprop','ro.build.fingerprint').trim(),webview:adb('shell','dumpsys','webviewupdate').slice(0,2000)};
  assert.match(adb('install',baseline),/Success/);adb('shell','am','start','-n',packageId+'/.MainActivity');
@@ -72,15 +77,17 @@ async function main(){
  await pause(3000);
  const observed=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);page.close();
  assert.equal(observed.origin,report.beforeOrigin);assert.equal(observed.sentinel,sentinel);assert(observed.save&&observed.recovery,'Both save slots retained');
- const s=observed.save;for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],field+' retained');
+ for(const [slot,s] of Object.entries({primary:observed.save,recovery:observed.recovery})){
+ for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],slot+': '+field+' retained');
  for(const [field,id] of [['spirits','ember'],['spirits','stone'],['heroRarity','ember'],['wispModules','ember'],['wispUltimate','ember'],['nodes','swift'],['research','arcanecal'],['longStudyLevels',study]])assert.equal(s[field][id],seed[field][id],field+'.'+id+' retained');
  const running=s.activeStudies.find(x=>x.id===study);assert(running,'Paid Study retained');assert.equal(running.speedMult,2);assert.equal(running.totalDurationSec,3600);assert(running.remainingSec>0&&running.remainingSec<=3500);
- assert(s.recruitmentEntitlements.ember&&s.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
  for(const id of ['autoascend','meteor','starcall'])assert.equal(s.owned[id],true,'Paid unlock retained: '+id);
  assert.equal(s.autoAscendEnabled,false,'Saved Auto-Ascend choice retained');assert.equal(s.autoAscendTargetDepth,seed.autoAscendTargetDepth,'Saved target retained');
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
+ }
+ assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
 const watchdog=setTimeout(()=>{console.error('Android upgrade QA overall deadline');process.exit(1);},600000);
-main().catch(e=>{console.error(e.stack);try{fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/upgrade-failure-logcat.txt',adb('logcat','-d','-t','1500'));}catch(diagnostic){console.error('Native diagnostic failed: '+diagnostic.message);}process.exitCode=1;}).finally(()=>{clearTimeout(watchdog);for(const socket of sockets)socket.close();});
+main().catch(e=>{console.error(e.stack);try{fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/upgrade-failure-logcat.txt',adb('logcat','-d','-t','1500'));}catch(diagnostic){console.error('Native diagnostic failed: '+diagnostic.message);}process.exitCode=1;}).finally(()=>{clearTimeout(watchdog);if(nativeLogcat)nativeLogcat.kill();for(const socket of sockets)socket.close();});
