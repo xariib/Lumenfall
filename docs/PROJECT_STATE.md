@@ -31,3 +31,9 @@ Physical-phone, exact WebView60 DOM, TalkBack and human pacing/performance accep
 remain unverified. The available emulator test uses archived signed158 and synthetic
 saves; no particular old version is required on the user's phone. Historical
 pre-import Git objects unavailable404 remain a limitation. [Known issues](project/KNOWN_ISSUES.md).
+
+19 October 2026: [PRODUCT_BASELINE_AUDIT_001](tasks/PRODUCT_BASELINE_AUDIT_001.md)
+reviews the released experience, separates verified defects from design findings
+and device-acceptance gaps, and prioritizes focused improvements. No product
+code or APK was changed for the audit. Its first proposed implementation task
+is WISP_ACTION_HIERARCHY_001; no implementation is started by this status note.
