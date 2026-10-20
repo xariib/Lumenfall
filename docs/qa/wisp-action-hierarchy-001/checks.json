@@ -1,5 +1,5 @@
 {
-  "status": "Local accessibility repair validated; current PR head must pass required CI.",
+  "status": "Local compact/accessibility and QA compatibility checks pass; required CI must pass on the final PR head.",
   "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
   "node": "v24.19.0",
   "pr": "https://github.com/xariib/Lumenfall/pull/3",
@@ -45,6 +45,20 @@
       "scenario": "p1-05-control-regressions",
       "originalHarness": true,
       "negativeHarnessSelfTests": 2
+    },
+    "offlineSourceBinding": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "independentSequentialEightHourWindows": 4,
+      "rewardsAndStateHashesUnchanged": true,
+      "originalBrowserCases": 2
+    },
+    "finalLocalPreflight": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "scenarios": 101,
+      "originalHarnessAndDeadlines": true,
+      "pipeDomTransport": true
     }
   },
   "priorPresentationRevision": {

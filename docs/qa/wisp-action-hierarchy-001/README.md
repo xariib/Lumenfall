@@ -103,3 +103,16 @@ retains the original exact base action, price, native eligibility, geometry and
 save assertions while separately checking the approved Next cue. Focused replay
 passes in the original harness; both selected/focus-return self-tests still
 produce their intended failures. Production source is unchanged.
+
+The original offline UI driver also rejects a reference bound to an older
+product hash. The unchanged original one-second oracle regenerated four
+sequential 8-hour windows on this exact source. All rewards and complete-state
+hashes match the prior reference; only the source-binding checksum changes.
+Both original offline UI and legacy DOM scenarios pass without changing their
+assertions or deadlines. [Source-binding proof and final local preflight](offline-source-binding.json).
+
+Final local preflight: all 101 selected original scenarios pass on the
+final product, including both offline UI cases and every default scenario from
+loadout-memory-mobile through ascend-prisms-recovery. The original harness,
+viewports, assertions and deadlines remain; DOM capture uses its existing pipe
+transport. This supplements, and does not replace, full required final-head CI.

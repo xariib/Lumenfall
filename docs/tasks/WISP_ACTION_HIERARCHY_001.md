@@ -120,11 +120,27 @@ with pipe transport; both original selected/focus-return negative self-tests
 still fail intentionally. [Receipt](../qa/wisp-action-hierarchy-001/control-label-compatibility.json).
 Root product remains `5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`.
 
-Next: inspect the full result of current run 39443240066, publish this QA-only
-legacy-label correction on the same branch, and verify all required CI on that
-head. At `7e232ea`, all five focused workflows and isolated offline passed;
-the main 189-scenario regression is still running. Shared UI's checkout delay
-resolved without cancellation or restart. The user approved browser fallback
-on 20 October 2026; no destructive/restart action was needed. Main/APK remain
-unchanged. Physical Android, exact WebView60 and TalkBack remain unverified.
-Keep the feature open; do not archive it.
+The legacy-label correction was published at `4a75122`. The preceding incomplete
+run was superseded so the full suite can run with the correct UI expectation.
+Its retained log also identified the offline driver's original source-binding
+guard: the independent one-second reference still named main's product hash.
+Regenerate all four sequential 8-hour windows with the unchanged original
+`offline-catchup.cjs --generate-swift-golden` oracle. Every reward and full-state
+hash matches the previous reference exactly; only its source hash changes.
+Both original offline UI/legacy DOM scenarios pass with unchanged assertions
+and 210-second deadlines. [Source-binding proof](../qa/wisp-action-hierarchy-001/offline-source-binding.json).
+
+All required CI must pass on the final PR head; live results and stable run links
+are recorded in PR3. Previous-head successes are not final-head acceptance.
+At `7e232ea`, all five focused workflows and isolated offline passed. Shared UI's
+checkout delay resolved without cancellation or restart. The user approved
+browser fallback on 20 October 2026; no browser restart action was needed.
+Main/APK remain unchanged. Physical Android, exact WebView60 and TalkBack remain
+unverified. Keep the feature open pending integration/device acceptance; do not
+archive it.
+
+Final local preflight: all 101 selected original scenarios pass on the
+final product, including both offline UI cases and every default scenario from
+loadout-memory-mobile through ascend-prisms-recovery. The original harness,
+viewports, assertions and deadlines remain; DOM capture uses its existing pipe
+transport. This supplements, and does not replace, full required final-head CI.
