@@ -78,8 +78,8 @@ Exact-source local results:
 - Compact UI: PASS 38,394 assertions / 18 profiles; normal/reduced motion and
   100/150/200% text at 320/390/430 px; native keyboard/touch purchases.
 - Original card layout: PASS 24,888 / 12 profiles. Original upgrade/persistence/
-  completion suite: PASS 12,912 / 12 profiles. Only badge-appearance assertions
-  were revised for the intentional removal; semantic coverage remains.
+  completion suite: PASS 12,912 / 12 profiles. Badge-appearance assertions were revised for the intentional removal;
+  semantic coverage remains. Follow-up CI fixture corrections are below.
 - Primary-action defect control fails at the intended unfunded-purchase
   assertion, with a distinct mutated source hash and clean teardown.
 - Existing scroll/focus: PASS 3,277 / 312 profiles. Upgrade affordability: PASS
@@ -99,7 +99,21 @@ and create its PR. This resolves the earlier automatic disclosure-review blocker
 The approval covers source, tests, workflow and evidence publication; it does not
 request a merge, Android build or APK release.
 
-Next: publish the isolated feature branch and focused PR, then run all required
-CI and inspect its artifacts. Remote CI results will be recorded in the PR.
-Main and APK remain unchanged. Physical Android, exact WebView60 and TalkBack
-remain unverified; the feature is open and must not be archived.
+Published [PR3](https://github.com/xariib/Lumenfall/pull/3), initial head
+`b6a10a9afb553c4951f08f1075227e3d70fe7618`, exact local tree
+`731e44e835e52736620fb0b87fc9f20f317be824`. Initial CI passed Lab, Comet,
+Forge and isolated offline; compact Wisp stage passed. Two QA compatibility
+findings were fixed without changing product source or weakening assertions:
+- Shared UI's old header inverse was masked by the new scoped wrapping rules.
+  The control now disables the active wrap/min-content guards and fails the
+  same `wisp-glyph-intersects-toggle` assertion. Full local suite PASS:
+  6,985 positive checks / 12 profiles, all three causal controls caught.
+- Tree mobile's exact full “Empower” label now includes the approved Next cue.
+  Retain exact base-label, purchase, wallet and paired-save checks; additionally
+  assert the complete “Next ·Empower” label and primary cue. Local PASS:
+  26,756 checks / 12 profiles, including original viewport defect controls.
+See [repair receipt](../qa/wisp-action-hierarchy-001/ci-test-compatibility.json).
+
+Next: verify all required CI on the repaired PR head; results/run links remain
+in PR3. Main and APK remain unchanged. Physical Android, exact WebView60 and
+TalkBack remain unverified; the feature is open and must not be archived.

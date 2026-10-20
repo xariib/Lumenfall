@@ -25,7 +25,7 @@ jobs:
           node-version: 20
       - name: Exact source, task context and original standalone gate receipts
         run: node scripts/ci/shared-ui-receipts.cjs shared-ui-validation/standalone
-      - name: Twelve native browser profiles and three exact CSS reversions
+      - name: Twelve native browser profiles and three causal CSS controls
         if: always()
         run: |
           set -euo pipefail

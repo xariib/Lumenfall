@@ -348,7 +348,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   // the ordinary affordable transition and the unchanged real paid handler.
   const precision=copy(seed);precision.spirits.ember=1;precision.nodes.bonds=0;precision.lumen=1e30;await install(precision,'spirits');
   const empower='[data-empower="ember"]';
-  async function empowerStatus(){return ev('('+function(){var b=document.querySelector('[data-empower="ember"]');return {disabled:b.disabled,state:b.dataset.state,label:b.querySelector('strong').textContent,aria:b.getAttribute('aria-label'),plan:prismQa.treeSpiritPlan('ember')};}.toString()+')()');}
+  async function empowerStatus(){return ev('('+function(){var b=document.querySelector('[data-empower="ember"]'),label=b.querySelector('strong').cloneNode(true),cue=label.querySelector('.wisp-next-label');if(cue)cue.remove();return {disabled:b.disabled,state:b.dataset.state,label:label.textContent,fullLabel:b.querySelector('strong').textContent,nextLabel:cue&&cue.textContent,primary:b.classList.contains('wisp-action-primary'),aria:b.getAttribute('aria-label'),plan:prismQa.treeSpiritPlan('ember')};}.toString()+')()');}
   const wideInitial=await empowerStatus();ok(wideInitial.plan.cost===11&&wideInitial.plan.reason==='available','exact wide-wallet quote11');
   ok(!wideInitial.disabled&&wideInitial.state==='available'&&wideInitial.label==='Empower','wide wallet can afford an exact debit');
   const wideWrites=await ev('window.__treeWrites.length');await prepare(empower,false);await touchHere(empower);await frames();
@@ -363,6 +363,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   ok(await ev('JSON.stringify(prismQa.get())')===precisionBefore&&await ev('window.__treeWrites.length')===precisionWrites,'trusted unaffordable click changes neither state nor saves');
   await ev('prismQa.treeLumen(11);prismQa.treeRefresh()');const affordableRefresh=await empowerStatus();
   ok(!affordableRefresh.disabled&&affordableRefresh.state==='available'&&affordableRefresh.label==='Empower','ordinary exact wallet restores Empower label and action');
+  ok(affordableRefresh.primary&&affordableRefresh.nextLabel==='Next ·'&&affordableRefresh.fullLabel==='Next ·Empower','restored Empower retains the compact next-action cue');
   await prepare(empower,false);await touchHere(empower);await frames();const precisionAfter=await ev('prismQa.get()');
   ok(precisionAfter.spirits.ember===2&&precisionAfter.lumen===0,'actual restored handler buys exactly one level for11');
   ok(await ev('window.__treeWrites.slice('+precisionWrites+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;}).length')===2,'restored actual Empower saves one primary/recovery pair');

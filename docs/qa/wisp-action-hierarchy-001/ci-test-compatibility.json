@@ -1,0 +1,132 @@
+{
+  "feature": "WISP_ACTION_HIERARCHY_001",
+  "productSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+  "pr": "https://github.com/xariib/Lumenfall/pull/3",
+  "initialHead": "b6a10a9afb553c4951f08f1075227e3d70fe7618",
+  "initialCiFindings": [
+    {
+      "run": 39437774903,
+      "issue": "Positive Shared UI 12 profiles passed, but the old wisp-header inverse no longer removed the active compact wrapping guards.",
+      "repair": "Mutate current scoped wrap/min-content guards. Same geometry assertion, readiness, teardown and all positive checks remain unchanged."
+    },
+    {
+      "run": 39437774962,
+      "issue": "Tree mobile expected the complete strong text to equal Empower after affordability refresh; the approved Next cue now shares this heading.",
+      "repair": "Observe base action separately from cue; retain original exact Empower, purchase and save assertions and add exact full-label/primary-cue checks."
+    }
+  ],
+  "localShared": {
+    "status": "PASS",
+    "identity": {
+      "testSha256": "cf124e45131e9d16be08a5a8a1589fef3230b7ac99d7e103ee15ab3a4dffd5a5",
+      "transportSha256": "71b53389cb80391115dce9c9485aabede52943dd5c75fe635feb8a44f3d16e86",
+      "referenceSha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+      "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612"
+    },
+    "driverSha256": "5927b8828e20ba96a2eb0742d3892a39f2bd0c94072c4069c8452a705dcdd94d",
+    "results": [
+      {
+        "id": "normal",
+        "accepted": true,
+        "exitCode": 0,
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "driverSha256": "5927b8828e20ba96a2eb0742d3892a39f2bd0c94072c4069c8452a705dcdd94d",
+        "checks": 6985,
+        "profiles": 12,
+        "expectedGeometryCode": null,
+        "actualGeometryCode": null,
+        "error": null,
+        "receipt": "normal/receipt.json",
+        "receiptSha256": "4b78e45a19d46dc41a73aab3c2da90745a7d2bfbea2fe0eaba2b779633e27ba7",
+        "browserVersion": {
+          "protocolVersion": "1.3",
+          "product": "HeadlessChrome/155.0.8059.84",
+          "revision": "@5869fe313571d75152b77813cf0a4ee26a4e6df0",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.8059.84 Safari/537.36",
+          "jsVersion": "15.5.35.25"
+        }
+      },
+      {
+        "id": "brand-spacing",
+        "accepted": true,
+        "exitCode": 1,
+        "sourceSha256": "fce19e31c749eceef1fcd14b243b6e10f34529b155e2c3ffa675a9dc5cee72ef",
+        "driverSha256": "5927b8828e20ba96a2eb0742d3892a39f2bd0c94072c4069c8452a705dcdd94d",
+        "checks": 1176,
+        "profiles": 2,
+        "expectedGeometryCode": "brand-glyph-intersects-settings",
+        "actualGeometryCode": "brand-glyph-intersects-settings",
+        "error": "AssertionError [ERR_ASSERTION]: brand-glyph-intersects-settings\n    at ok (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:40:27)\n    at geometry (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:113:7)\n    at brand (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:197:3)\n    at sharedScenario (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:243:89)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:104:3)\n    at async /workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:301:6",
+        "receipt": "brand-spacing/receipt.json",
+        "receiptSha256": "770565c4511e6f342a59eb6b593249274245a9653d6486802d900c9165ed21e1",
+        "browserVersion": {
+          "protocolVersion": "1.3",
+          "product": "HeadlessChrome/155.0.8059.84",
+          "revision": "@5869fe313571d75152b77813cf0a4ee26a4e6df0",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.8059.84 Safari/537.36",
+          "jsVersion": "15.5.35.25"
+        }
+      },
+      {
+        "id": "wisp-header",
+        "accepted": true,
+        "exitCode": 1,
+        "sourceSha256": "5eb131e6b3f82dc37bb9cb9f84a5966e46bfa677947fd31844999f16c7b6a5ff",
+        "driverSha256": "5927b8828e20ba96a2eb0742d3892a39f2bd0c94072c4069c8452a705dcdd94d",
+        "checks": 1268,
+        "profiles": 2,
+        "expectedGeometryCode": "wisp-glyph-intersects-toggle",
+        "actualGeometryCode": "wisp-glyph-intersects-toggle",
+        "error": "AssertionError [ERR_ASSERTION]: wisp-glyph-intersects-toggle\n    at ok (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:40:27)\n    at geometry (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:113:7)\n    at wisp (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:207:3)\n    at sharedScenario (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:273:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:104:3)\n    at async /workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:301:6",
+        "receipt": "wisp-header/receipt.json",
+        "receiptSha256": "f52fb9c6a206dd7edcfb60f3436331246771e52ebe46a80f301babb83ff04373",
+        "browserVersion": {
+          "protocolVersion": "1.3",
+          "product": "HeadlessChrome/155.0.8059.84",
+          "revision": "@5869fe313571d75152b77813cf0a4ee26a4e6df0",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.8059.84 Safari/537.36",
+          "jsVersion": "15.5.35.25"
+        }
+      },
+      {
+        "id": "toast-leading",
+        "accepted": true,
+        "exitCode": 1,
+        "sourceSha256": "70a7c9d30975c75ca6066449fff882a5ceac95950a57b517c6dd78cf04ca39b8",
+        "driverSha256": "5927b8828e20ba96a2eb0742d3892a39f2bd0c94072c4069c8452a705dcdd94d",
+        "checks": 1699,
+        "profiles": 2,
+        "expectedGeometryCode": "toast-adjacent-glyph-lines-intersect",
+        "actualGeometryCode": "toast-adjacent-glyph-lines-intersect",
+        "error": "AssertionError [ERR_ASSERTION]: toast-adjacent-glyph-lines-intersect\n    at ok (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:40:27)\n    at geometry (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:113:7)\n    at toast (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:231:36)\n    at sharedScenario (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:290:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:104:3)\n    at async /workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.shared-layout-13.cjs:301:6",
+        "receipt": "toast-leading/receipt.json",
+        "receiptSha256": "c9d480ac5f88ee59c0134a8d12019bcc977e89180a984e361a0f3ba6933ad315",
+        "browserVersion": {
+          "protocolVersion": "1.3",
+          "product": "HeadlessChrome/155.0.8059.84",
+          "revision": "@5869fe313571d75152b77813cf0a4ee26a4e6df0",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.8059.84 Safari/537.36",
+          "jsVersion": "15.5.35.25"
+        }
+      }
+    ],
+    "expectedProfiles": 12,
+    "expectedNegativeControls": 3,
+    "nativeAndroid": "untested",
+    "visualReview": "Self-reviewed wisp-header/failure.png: enlarged role glyphs intersect Bench after disabling current wrapping guards."
+  },
+  "localTree": {
+    "status": "pass",
+    "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+    "node": "v24.19.0",
+    "checks": 26756,
+    "profiles": 12,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "teardown": null,
+    "receiptSha256": "c904b2a9184346868a64b3282c68d50d4b986ac81c45baed215251d44b010c5f"
+  },
+  "limits": "QA fixture updates only; production source is unchanged. Remote CI on repaired head is required; physical Android/WebView60/TalkBack remain unverified."
+}

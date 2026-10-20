@@ -22,9 +22,11 @@ const WISPS=[
 const REVERSIONS=[
  {id:'brand-spacing',code:'brand-glyph-intersects-settings',
   from:'  @media(max-width:360px){.hud .brand{letter-spacing:.04em;}}\n',to:''},
+ // Break the active compact-card wrapping guards; the older inverse is now
+ // masked by these scoped rules. Keep the same measured glyph/toggle assertion.
  {id:'wisp-header',code:'wisp-glyph-intersects-toggle',
-  from:'  #tab-spirits .hero-top{margin-bottom:6px;flex-wrap:wrap;}\n  #tab-spirits .hero-id{min-width:min-content;}\n',
-  to:'  #tab-spirits .hero-top{margin-bottom:6px;}\n'},
+  from:'  #tab-spirits .hero-card .hero-top{display:flex;flex-wrap:wrap;gap:8px;}\n  #tab-spirits .hero-card .hero-top .wisp-portrait{width:44px;height:44px;padding:2px;}\n  #tab-spirits .hero-card .hero-id{flex:1;min-width:min-content;overflow-wrap:normal;}\n',
+  to:'  #tab-spirits .hero-card .hero-top{display:flex;flex-wrap:nowrap;gap:8px;}\n  #tab-spirits .hero-card .hero-top .wisp-portrait{width:44px;height:44px;padding:2px;}\n  #tab-spirits .hero-card .hero-id{flex:1;min-width:0;overflow-wrap:normal;}\n'},
  {id:'toast-leading',code:'toast-adjacent-glyph-lines-intersect',
   from:'    line-height:1.4;border-radius:12px;\n',
   to:'    line-height:16px;border-radius:12px;\n'}

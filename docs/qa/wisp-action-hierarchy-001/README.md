@@ -76,10 +76,16 @@ node scripts/ci/validate_source.cjs
 
 ## Remaining delivery
 
-On 20 October 2026, the user explicitly approved upload of this reviewed revision
-to public `xariib/Lumenfall` and creation of the focused PR (“Godkendt”). This
-resolves the earlier automatic disclosure-review blocker. Publish the feature
-branch and PR, then pass all required CI; remote results will be recorded in the
-PR. Main, merging and APK publication are outside this delivery step. Keep the
+[PR3](https://github.com/xariib/Lumenfall/pull/3) is published following the user's
+explicit approval on 20 October 2026 (“Godkendt”). The initial remote pass found
+two QA fixture compatibility issues: an obsolete header inverse and an exact
+full-label expectation that omitted the approved Next cue. The
+[repair receipt](ci-test-compatibility.json) records both findings and unchanged
+acceptance assertions. Shared UI now passes 6,985 positive checks / 12 profiles
+and all three causal controls; Tree mobile passes 26,756 checks / 12 profiles.
+The production source hash above is unchanged. All required CI must pass on the
+repaired PR head; current results and run links are recorded in PR3.
+
+Main, merging and APK publication are outside this delivery step. Keep the
 feature open: physical Android, exact WebView60 and TalkBack acceptance remain
 unverified.
