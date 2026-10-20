@@ -1,0 +1,128 @@
+{
+  "baseline": "ff50c13c855459078f494fd27dabc5a93c273a4b",
+  "baselineSourceSha256": "d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5",
+  "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+  "method": "Byte comparison of each selected top-level declaration through the next top-level declaration; browser tests cover changed presentation paths.",
+  "functions": [
+    {
+      "name": "freshState",
+      "bytes": 3095,
+      "sha256": "51b5384434be1bcf88d8ffda2c20642aba24a36ace0f5da7382c7bba58eb0d0e"
+    },
+    {
+      "name": "acceptPersistedState",
+      "bytes": 497,
+      "sha256": "bc19c8b88a148ff041a2df0c95e3b849cd4e734d17abab8d3d842d17e6367025"
+    },
+    {
+      "name": "loadState",
+      "bytes": 1791,
+      "sha256": "0a8b47fe700272629a9aa4168b650e82b2beda2b63fe3fce542ac62d45dae0c9"
+    },
+    {
+      "name": "saveState",
+      "bytes": 1104,
+      "sha256": "8ba73f2f2c61388ea2d85ea9ece9945e5283d68a8ab1fcd215ee35611e0c2874"
+    },
+    {
+      "name": "doAscend",
+      "bytes": 479,
+      "sha256": "924066d0f9f813d3c77fbf6ecee0a4a335201c655b82dc2d3e6e82d8779df9f6"
+    },
+    {
+      "name": "applyAscendMutation",
+      "bytes": 2653,
+      "sha256": "063defc7c58d953f2b69ddf38b9a4647ba3012ac80cfa66d2ddea1e71a74ce52"
+    },
+    {
+      "name": "buySpirit",
+      "bytes": 908,
+      "sha256": "b7c34aa9a173c25c0091251872e858f517b3aeef74065741e1de123e07a1d086"
+    },
+    {
+      "name": "buyRarity",
+      "bytes": 536,
+      "sha256": "eff38c2abb7590ac3cd820de97728f93935ed9d0203e7259e9c74f55bfe5701f"
+    },
+    {
+      "name": "buyModule",
+      "bytes": 634,
+      "sha256": "5442aeadf8806f55e54b65f18d43f2a259ffbc3da5b546293cc744bbaa0b0f3a"
+    },
+    {
+      "name": "buyUltimate",
+      "bytes": 523,
+      "sha256": "b65b128be6eee67a833bb8044f4165bdd987221909287d838f538c4c550dc225"
+    },
+    {
+      "name": "buyWispMastery",
+      "bytes": 723,
+      "sha256": "fea4c7d3131dbe4ea7423dfa5d5a56dabbb4dd1a4640f41b8b35f973bacdb5eb"
+    },
+    {
+      "name": "getSpiritBuyPlan",
+      "bytes": 805,
+      "sha256": "66d83f9bad05d03f95e5970a6091dde7b5b33c3f9327327792cfe30c880213ab"
+    },
+    {
+      "name": "getWispRarityPlan",
+      "bytes": 1079,
+      "sha256": "324cf29d9913ea68c9cc40e5f25a993aba95fc5fbfaa7e16ee26f24a2f2f9e76"
+    },
+    {
+      "name": "getWispUltimatePlan",
+      "bytes": 1007,
+      "sha256": "2787e8be62b4017b2371684e9d42768a0153cf43bbeec58e46ace0c5b723d7a3"
+    },
+    {
+      "name": "getWispMasteryPlan",
+      "bytes": 1289,
+      "sha256": "f0e050d3217312f08dfea570383f6a90e382837332bb406edcce11a99a1d5843"
+    },
+    {
+      "name": "spiritCost",
+      "bytes": 417,
+      "sha256": "8ef8a5ff59bd639ffd4d9982d49ceff85106e1cbb6cac1f78083c39ac18469fa"
+    },
+    {
+      "name": "rarityCost",
+      "bytes": 354,
+      "sha256": "e3ae7e47a3cea640dafbd0cba89de35e3f7c45e53525dceec5aefe46e7b21547"
+    },
+    {
+      "name": "moduleCost",
+      "bytes": 459,
+      "sha256": "96e0798027a3f203faece76da5a986943e8f081ec2e950134fa37fea1b4be1c2"
+    },
+    {
+      "name": "ultimateSigilCost",
+      "bytes": 142,
+      "sha256": "0629d1a49019d4d62cac45ca042a2eb651f0f70183bfb312c725be1142e6866a"
+    },
+    {
+      "name": "wispPower",
+      "bytes": 768,
+      "sha256": "d87bebb123bbacf53bbd2849dec9aeec51f881af46f5148d6c748cae331e79eb"
+    },
+    {
+      "name": "advanceAuthoritativeTime",
+      "bytes": 29436,
+      "sha256": "a53170c31301fb751a99f4b606d7bd353445bb6eff23025c219fb1e20eac5277"
+    },
+    {
+      "name": "applyOfflineProgress",
+      "bytes": 1694,
+      "sha256": "56854906ce0b92cf0b531f19722d824bd4e151abad570506cd51d80d34530664"
+    },
+    {
+      "name": "checkAutoAscend",
+      "bytes": 245,
+      "sha256": "07cb88616358112644356744df6008fef3b4f3b741d3a4dabb5c066d500f2f44"
+    },
+    {
+      "name": "autoEmpowerTick",
+      "bytes": 2997,
+      "sha256": "4d84e773e4166c058e00aeb284275bda3c592a8207219aebfdf72ca71518353d"
+    }
+  ]
+}
