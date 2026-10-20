@@ -56,9 +56,14 @@ window.runP105ControlQa = function(bridge,ctx,assert){
         var r=button.getBoundingClientRect(),a=label.getBoundingClientRect(),p=price.getBoundingClientRect(),style=getComputedStyle(button);
         assert(button.disabled===!affordable&&button.dataset.state===(affordable?'available':'unaffordable'),'Empower native affordability state');
         assert(!button.querySelector('.control-state')&&!/Need Lumen/.test(button.textContent),'no visible Empower shortage/status line');
-        assert(label.textContent===(id==='ember'?'Empower':'Recruit'),'Empower/Recruit wording retained');
+        var baseLabel=label.cloneNode(true),cue=baseLabel.querySelector('.wisp-next-label');
+        if(cue)cue.remove();
+        assert(baseLabel.textContent===(id==='ember'?'Empower':'Recruit'),'Empower/Recruit wording retained');
+        assert(!!cue===affordable&&button.classList.contains('wisp-action-primary')===affordable,'funded Empower/Recruit retains the live next-action cue');
+        assert(label.textContent===(affordable?'Next ·':'')+baseLabel.textContent,'full Empower/Recruit label retains exact cue and action');
         var name=button.getAttribute('aria-label');
-        assert(name.includes(label.textContent)&&name.includes(price.textContent.trim())&&name.includes(id==='ember'?'Ember Wisp':'Tide Sprite')&&name.includes('Lumen'),'Empower accessible identity/action/price/unit');
+        assert(name.includes('Next ·')===affordable,'Empower accessible next cue matches availability');
+        assert(name.includes(baseLabel.textContent)&&name.includes(price.textContent.trim())&&name.includes(id==='ember'?'Ember Wisp':'Tide Sprite')&&name.includes('Lumen'),'Empower accessible identity/action/price/unit');
         assert(!/Need|Cannot afford|Insufficient resources/i.test(name),'Empower accessible action and price have no shortage copy');
         // This synchronous runner freezes panelIn at scale(.995). Layout CSS
         // dimensions stay exact; the native mobile driver measures settled rects.

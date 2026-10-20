@@ -97,3 +97,9 @@ links are recorded in PR3.
 Main, merging and APK publication are outside this delivery step. Keep the
 feature open: physical Android, exact WebView60 and TalkBack acceptance remain
 unverified.
+
+The subsequent [legacy control-label correction](control-label-compatibility.json)
+retains the original exact base action, price, native eligibility, geometry and
+save assertions while separately checking the approved Next cue. Focused replay
+passes in the original harness; both selected/focus-return self-tests still
+produce their intended failures. Production source is unchanged.

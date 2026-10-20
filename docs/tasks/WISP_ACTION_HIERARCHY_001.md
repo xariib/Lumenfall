@@ -110,6 +110,21 @@ this reviewed feature to public `xariib/Lumenfall` and creating its PR. The
 approval resolves the earlier automatic disclosure-review blocker and covers
 necessary source, QA/workflow and evidence fixes. No merge, build or APK release.
 
-Next: publish the focus-name repair on the same branch and pass all required CI
-on that head. Main/APK remain unchanged. Physical Android, exact WebView60 and
-TalkBack remain unverified. Keep the feature open; do not archive it.
+Follow-up QA finding: focused replay of `p1-05-control-regressions` fails the
+legacy whole-label expectation when Next is present. Preserve the exact base
+Empower/Recruit assertion, full accessible identity/price/unit, native disabled,
+geometry, observer-only state/saves/events and exact-price single purchase.
+Separately assert funded cue/primary and exact complete visible/accessibility
+labels. Local replay now passes in both CDP and the original unchanged harness
+with pipe transport; both original selected/focus-return negative self-tests
+still fail intentionally. [Receipt](../qa/wisp-action-hierarchy-001/control-label-compatibility.json).
+Root product remains `5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`.
+
+Next: inspect the full result of current run 39443240066, publish this QA-only
+legacy-label correction on the same branch, and verify all required CI on that
+head. At `7e232ea`, all five focused workflows and isolated offline passed;
+the main 189-scenario regression is still running. Shared UI's checkout delay
+resolved without cancellation or restart. The user approved browser fallback
+on 20 October 2026; no destructive/restart action was needed. Main/APK remain
+unchanged. Physical Android, exact WebView60 and TalkBack remain unverified.
+Keep the feature open; do not archive it.

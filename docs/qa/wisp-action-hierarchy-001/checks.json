@@ -38,7 +38,14 @@
     "protectedGameplayFunctions": 24,
     "compactCausalNegativeControls": 2,
     "nativePurchases": 72,
-    "nativeFocusReturnsWithImmediateName": 36
+    "nativeFocusReturnsWithImmediateName": 36,
+    "legacyControlLabel": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "scenario": "p1-05-control-regressions",
+      "originalHarness": true,
+      "negativeHarnessSelfTests": 2
+    }
   },
   "priorPresentationRevision": {
     "status": "Historical local results before accessible-name repair; source-bound values retained.",
