@@ -22,6 +22,11 @@ if(args.includes('--mutate-primary')){
   if(code.split(from).length!==2)throw Error('unique primary mutation site');
   code=code.replace(from,'if(!button)return false;');
 }
+if(args.includes('--mutate-names')){
+  const from="  // Finalize cue names before render/refresh callers restore native focus.\n  presentControlStates(els['spirit-list']);";
+  if(code.split(from).length!==2)throw Error('unique accessible-name mutation site');
+  code=code.replace(from,'  // QA negative: accessible names remain stale at focus restoration.');
+}
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
 assert(code.split(marker).length===2,'one game closure for test bridge');
@@ -96,14 +101,15 @@ async function run(){
       if(cardLayout && !large){const clip=await evaluate('(()=>{const r=document.querySelector('+JSON.stringify('[data-wisp-card="'+pictureId+'"]')+').getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,scale:1};})()');const card=await send('Page.captureScreenshot',{format:'png',clip});fs.writeFileSync(path.join(evidence,prefix+'-card.png'),Buffer.from(card.data,'base64'));}
       if(cardLayout && large){await evaluate('document.querySelector('+JSON.stringify('[data-ultimate="'+pictureId+'"]')+').scrollIntoView({block:"end"})');const lower=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,prefix+'-actions.png'),Buffer.from(lower.data,'base64'));}
     }
-    if(compact)for(const input of ['keyboard','touch']){
-      await evaluate(`(()=>{var b=__wispQa,s=b.fresh(),cost=b.moduleCost('ember',0);s.lumen=cost.lumen;s.shards=cost.shard;b.set(s);b.render();b.refresh();var button=document.querySelector('[data-module=ember]');button.scrollIntoView({block:'center'});button.focus({preventScroll:true});})()`);
+    if(compact)for(const input of ['keyboard','touch'])for(const keepEnabled of [false,true]){
+      await evaluate(`(()=>{var b=__wispQa,s=b.fresh(),cost=b.moduleCost('ember',0),extra=${keepEnabled}?b.moduleCost('ember',1):{lumen:0,shard:0};s.lumen=cost.lumen+extra.lumen;s.shards=cost.shard+extra.shard;b.set(s);b.render();var button=document.querySelector('[data-module=ember]');button.scrollIntoView({block:'center'});button.focus({preventScroll:true});window.__wispNativeExpected=extra;window.__wispFocusNames=[];})()`);
       if(input==='keyboard')await key('Enter');
       else{
         const r=await evaluate('(()=>{var r=document.querySelector("[data-module=ember]").getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');
         await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await new Promise(r=>setTimeout(r,40));
       }
-      assert(await evaluate('__wispQa.get().wispModules.ember===1&&__wispQa.get().lumen===0&&__wispQa.get().shards===0'),'native '+input+' spends exactly once through the original highlighted control');
+      assert(await evaluate('__wispQa.get().wispModules.ember===1&&__wispQa.get().lumen===__wispNativeExpected.lumen&&__wispQa.get().shards===__wispNativeExpected.shard'),'native '+input+' spends exactly once through the original highlighted control');
+      if(keepEnabled)assert(await evaluate(`document.activeElement===document.querySelector('[data-module=ember]')&&document.activeElement.classList.contains('wisp-action-primary')&&__wispFocusNames.length>0&&__wispFocusNames.every(e=>e.module==='ember'&&e.name.includes('Next ·')&&e.name.includes('Ember Wisp'))`),'native '+input+' restores focus with the current Next accessible name immediately');
     }
     // Real keyboard activation of the completed disclosure and native focus.
     await evaluate(`(()=>{const b=window.__wispQa,s=b.fresh();s.maxDepthEver=101;s.spirits.ember=1;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;b.set(s);b.render();const p=document.querySelector('[data-wisp-progression="ember"]');p.open=true;p.querySelector('summary').scrollIntoView({block:'center'});p.querySelector('summary').focus();})()`);

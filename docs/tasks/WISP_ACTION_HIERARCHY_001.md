@@ -61,59 +61,55 @@ Read [rules](../../AGENTS.md), [bootstrap](../../PROJECT_BOOTSTRAP.txt),
 
 ## Checkpoint
 
-Status: compact revision implemented and locally reviewed on Node 24.19.0 /
-Chrome for Testing Headless Shell 155.0.8059.84. Final product SHA256:
-`12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612`.
+Status: [PR3](https://github.com/xariib/Lumenfall/pull/3) is open. Compact cards
+are implemented; the accessibility-name repair is locally verified and must pass
+CI on its published head. Node 24.19.0 / Chrome for Testing Headless Shell
+155.0.8059.84. Current product SHA256:
+`5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`.
 
-Changes: scoped CSS, effect-row markup, removal of redundant Ability badge,
-explicit Ultimate heading, direct text/gold cue on one existing enabled action,
-and live refresh. No extra summary, new purchase route, new timer or save field.
-Existing full re-render focus/anchor handling remains; wallet refresh preserves
-exact numeric scroll when a live cue wraps. All price/eligibility/purchase/save/
-simulation functions remain unchanged. See [evidence](../qa/wisp-action-hierarchy-001/README.md),
-[check manifest](../qa/wisp-action-hierarchy-001/checks.json) and
-[24-function preservation proof](../qa/wisp-action-hierarchy-001/preservation.json).
+Changes: scoped CSS and compact effect rows; remove the redundant Ability badge;
+explicit Ultimate heading; one enabled original action receives a short text/gold
+cue. Preserve every unfinished upgrade, requirements, prices, role/Formation/
+automation, current/next effects, Mastery and Resonate. Full re-render anchoring
+and exact wallet-refresh scroll remain. No new purchase route, timer or save
+field. The [24-function byte comparison](../qa/wisp-action-hierarchy-001/preservation.json)
+still matches main for all protected gameplay, price, purchase, save and
+online/offline functions. All 24 matched card-height fixtures are unchanged by
+the accessibility repair: unfinished cards remain 22.5–26.9% shorter at 390 px.
 
-Exact-source local results:
-- Compact UI: PASS 38,394 assertions / 18 profiles; normal/reduced motion and
-  100/150/200% text at 320/390/430 px; native keyboard/touch purchases.
-- Original card layout: PASS 24,888 / 12 profiles. Original upgrade/persistence/
-  completion suite: PASS 12,912 / 12 profiles. Badge-appearance assertions were revised for the intentional removal;
-  semantic coverage remains. Follow-up CI fixture corrections are below.
-- Primary-action defect control fails at the intended unfunded-purchase
-  assertion, with a distinct mutated source hash and clean teardown.
-- Existing scroll/focus: PASS 3,277 / 312 profiles. Upgrade affordability: PASS
-  26,844 / 12 profiles, with both causal defect controls caught.
-- Prices PASS 13,416; Wisp contribution/preservation PASS 8,099; progression
-  PASS 235; Formation collapse PASS 541; Best now PASS 1,299; native autosave
-  PASS 6 profiles. Source validation, context check and APK identity self-test
-  PASS. Full remote CI has not run.
-- Matched 390 px / normal-text fixtures: unfinished cards 22.5–26.9% shorter;
-  perfected cards with information open 19.3–21.1% shorter. Fresh Ember
-  719.3 → 526.1 px. Requirements/role text keep their original font sizes.
-  Self-reviewed screenshots show natural header wrapping at large text.
+Automated [PR review](https://github.com/xariib/Lumenfall/pull/3#discussion_r4326057698)
+found that render inserted the cue after accessible names were prepared. Reuse
+`presentControlStates` immediately after highlighting, before callers restore
+focus. The new assertion fails on the prior source before an affordability
+refresh. Native keyboard/touch continuation observes the actual `focusin` name,
+including Next and the Wisp identity; a causal removal control also fails the
+intended assertion. This is automated review and self-verification, not physical
+TalkBack or independent human acceptance. [Repair proof](../qa/wisp-action-hierarchy-001/focus-review.json).
 
-Publication approval: on 20 October 2026, the user answered “Godkendt” to the
-explicit request to upload this reviewed revision to public `xariib/Lumenfall`
-and create its PR. This resolves the earlier automatic disclosure-review blocker.
-The approval covers source, tests, workflow and evidence publication; it does not
-request a merge, Android build or APK release.
+Current-source local checks:
+- Compact UI PASS 39,150 / 18 profiles; widths 320/390/430, text 100/150/200%,
+  both motion settings. 72 original-handler native purchases and 36 immediate
+  focus-return names, plus full state/both-slot preservation.
+- Original layout PASS 24,888 / 12; original upgrades/persistence/completion
+  PASS 12,912 / 12; unchanged scroll/focus PASS 3,277 / 312.
+- Affordability PASS 26,844 / 12; both original causal controls caught.
+- Both compact controls caught: disabled primary and stale accessible name,
+  each with a distinct source hash and clean teardown. Syntax/source check PASS.
+- [Manifest](../qa/wisp-action-hierarchy-001/checks.json) separates current checks
+  from preceding-source results. [QA guide/screenshots](../qa/wisp-action-hierarchy-001/README.md).
 
-Published [PR3](https://github.com/xariib/Lumenfall/pull/3), initial head
-`b6a10a9afb553c4951f08f1075227e3d70fe7618`, exact local tree
-`731e44e835e52736620fb0b87fc9f20f317be824`. Initial CI passed Lab, Comet,
-Forge and isolated offline; compact Wisp stage passed. Two QA compatibility
-findings were fixed without changing product source or weakening assertions:
-- Shared UI's old header inverse was masked by the new scoped wrapping rules.
-  The control now disables the active wrap/min-content guards and fails the
-  same `wisp-glyph-intersects-toggle` assertion. Full local suite PASS:
-  6,985 positive checks / 12 profiles, all three causal controls caught.
-- Tree mobile's exact full “Empower” label now includes the approved Next cue.
-  Retain exact base-label, purchase, wallet and paired-save checks; additionally
-  assert the complete “Next ·Empower” label and primary cue. Local PASS:
-  26,756 checks / 12 profiles, including original viewport defect controls.
-See [repair receipt](../qa/wisp-action-hierarchy-001/ci-test-compatibility.json).
+Remote history: initial head `b6a10a9` exposed two QA compatibility issues;
+[receipt](../qa/wisp-action-hierarchy-001/ci-test-compatibility.json) records the
+same preserved assertions and fixes. At `7c4b4af`, Shared UI, Tree, Lab, Comet,
+Forge and isolated offline passed; the main regression was still running when
+the accessibility review repair was prepared. None of those runs proves the
+new source. Current-head CI results and stable run links are recorded in PR3.
 
-Next: verify all required CI on the repaired PR head; results/run links remain
-in PR3. Main and APK remain unchanged. Physical Android, exact WebView60 and
-TalkBack remain unverified; the feature is open and must not be archived.
+Publication approval: 20 October 2026, the user answered “Godkendt” to uploading
+this reviewed feature to public `xariib/Lumenfall` and creating its PR. The
+approval resolves the earlier automatic disclosure-review blocker and covers
+necessary source, QA/workflow and evidence fixes. No merge, build or APK release.
+
+Next: publish the focus-name repair on the same branch and pass all required CI
+on that head. Main/APK remain unchanged. Physical Android, exact WebView60 and
+TalkBack remain unverified. Keep the feature open; do not archive it.

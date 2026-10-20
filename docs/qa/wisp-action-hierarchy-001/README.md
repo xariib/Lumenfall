@@ -1,7 +1,7 @@
 # Compact Wisp card acceptance
 
 Final product SHA256:
-`12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612`.
+`5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`.
 Baseline main: `ff50c13c855459078f494fd27dabc5a93c273a4b`.
 Node 24.19.0; actual Chrome for Testing Headless Shell 155.0.8059.84.
 See the [task](../../tasks/WISP_ACTION_HIERARCHY_001.md).
@@ -30,12 +30,15 @@ font sizes; compaction comes from arrangement, spacing and less repetition.
 
 ## Tests and preservation
 
-[Browser receipt](browser.json): 18 width/text/motion profiles, 38,394 checks.
+[Browser receipt](browser.json): 18 width/text/motion profiles, 39,150 checks.
 Widths 320/390/430 px; root text 100/150/200%; normal and reduced motion. This
 runs the retained card layout/preservation suite plus live resource transitions,
 priority cases, a single enabled primary, readable naming, correct prices,
 44 px targets and actual native keyboard/touch purchases through original
-handlers. Full game state and both save slots remain unchanged by viewing and
+handlers, including 72 real purchases and 36 immediate focus returns. The
+[automated-review repair](focus-review.json) catches a stale Next accessible name
+before any affordability refresh; native focusin observes the correct name
+before it can be announced. Full game state and both save slots remain unchanged by viewing and
 highlighting. Current/Next visual labels become accessible group names; their
 exact effect values remain tested. The redundant Ability-badge assertions were
 updated to require its intentional absence and retain ability name, level/cap,
@@ -44,7 +47,8 @@ current/next effects, controls, pricing and accessibility assertions.
 [Defect control](negative-control.json): intentionally advertising a disabled
 purchase fails the exact “unfunded card has no suggested purchase” assertion.
 The failure must have a different source hash and clean teardown. CI retains all
-existing gates and adds this positive/negative compact-card gate.
+existing gates and adds the positive compact-card gate plus both disabled-primary
+and stale-name causal controls.
 
 [Preservation proof](preservation.json): 24 selected gameplay function ranges
 compare byte-for-byte with baseline, covering state creation/acceptance/loading/
@@ -83,8 +87,12 @@ full-label expectation that omitted the approved Next cue. The
 [repair receipt](ci-test-compatibility.json) records both findings and unchanged
 acceptance assertions. Shared UI now passes 6,985 positive checks / 12 profiles
 and all three causal controls; Tree mobile passes 26,756 checks / 12 profiles.
-The production source hash above is unchanged. All required CI must pass on the
-repaired PR head; current results and run links are recorded in PR3.
+The subsequent [accessible-name repair](focus-review.json) finalizes names
+before focus restoration. All 24 matched height fixtures remain identical; the
+current screenshots and browser/scroll/affordability receipts use the final
+source hash above. The manifest retains older core results under their original
+source hash. All required CI must pass on the current PR head; results and run
+links are recorded in PR3.
 
 Main, merging and APK publication are outside this delivery step. Keep the
 feature open: physical Android, exact WebView60 and TalkBack acceptance remain

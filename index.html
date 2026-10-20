@@ -9026,6 +9026,8 @@ function highlightWispActions(){
       button.classList.add('wisp-action-primary');card.setAttribute('data-primary-action',key);return true;
     });
   });
+  // Finalize cue names before render/refresh callers restore native focus.
+  presentControlStates(els['spirit-list']);
 }
 function renderSpirits(keepScroll){
   var actionView=captureWispActionView();

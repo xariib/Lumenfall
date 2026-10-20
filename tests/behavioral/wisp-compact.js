@@ -2,8 +2,19 @@
 window.runWispCompactQa=function(){
   var result=window.runWispCardLayoutQa(false),b=window.__wispQa,checks=0,observations=[];
   function ok(value,message){checks++;if(!value)throw Error(message);}
+  window.__wispFocusNames=[];
+  document.addEventListener('focusin',function(event){
+    if(event.target.matches('.wisp-action-primary'))window.__wispFocusNames.push({module:event.target.getAttribute('data-module'),name:event.target.getAttribute('aria-label')});
+  },true);
+  function namesBeforeRefresh(c){
+    c.querySelectorAll('button').forEach(function(button){
+      var cue=!!button.querySelector('.wisp-next-label'),name=button.getAttribute('aria-label')||'';
+      ok(cue===name.includes('Next ·'),'next cue included in accessible name before refresh');
+    });
+  }
   function card(id){return document.querySelector('[data-wisp-card="'+id+'"]');}
   function inspect(id,expected){
+    namesBeforeRefresh(card(id));
     var before=JSON.stringify(b.get()),slots=JSON.stringify(b.slots());b.refresh();
     var c=card(id),primary=c.querySelectorAll('.wisp-action-primary');
     ok(JSON.stringify(b.get())===before&&JSON.stringify(b.slots())===slots,'highlight never changes state or either saved slot');

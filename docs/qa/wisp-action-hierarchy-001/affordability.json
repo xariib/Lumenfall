@@ -1,30 +1,33 @@
 {
-  "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+  "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
   "results": [
     {
-      "status": "pass",
       "accepted": true,
       "expectedFailure": false,
+      "status": "pass",
       "checks": 26844,
       "profiles": 12,
-      "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612"
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "browser": "/tmp/lumenfall-chrome/chrome-headless-shell-linux64/chrome-headless-shell"
     },
     {
-      "status": "fail",
       "accepted": true,
       "expectedFailure": true,
+      "status": "fail",
       "checks": 4,
       "profiles": 0,
-      "sourceSha256": "288dd37d018a5b7d722ca023896631dd4460ca702b235b1c45c8d76d631ddf8a",
+      "sourceSha256": "bc1757b5a827a237b50aa59c1a9c251d95792e895637fb8f6cb47a7baffc85b8",
+      "browser": "/tmp/lumenfall-chrome/chrome-headless-shell-linux64/chrome-headless-shell",
       "error": "AssertionError [ERR_ASSERTION]: wallet color ember empower initial render 320/1/no-preference lumen\n    at ok (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:44:27)\n    at observe (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:104:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:113:4)\n    at async /workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:135:6"
     },
     {
-      "status": "fail",
       "accepted": true,
       "expectedFailure": true,
+      "status": "fail",
       "checks": 246,
       "profiles": 0,
-      "sourceSha256": "76b7d1646f19fb97e41a182dd87ef0876ffe34eef8840acfbc7080fc63b16e14",
+      "sourceSha256": "e2503eb59743e6e3188469819d5b30b586bb61c19ca9edca8ec5f7b920d93a37",
+      "browser": "/tmp/lumenfall-chrome/chrome-headless-shell-linux64/chrome-headless-shell",
       "error": "AssertionError [ERR_ASSERTION]: native disabled affordability ember sigil-resonate funded 320/1/no-preference\n    at ok (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:44:27)\n    at observe (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:108:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:113:46)\n    at async /workspace/scratch/bbd4f4d9692d/Lumenfall/tests/behavioral/.upgrade-affordability-generated-5.cjs:135:6"
     }
   ]
