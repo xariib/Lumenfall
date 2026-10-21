@@ -75,6 +75,33 @@ async function verifyInstalledWispCard(page,report){
  const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
  assert(screenshot.data,'Installed Wisp screenshot captured');
  fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
+ const target=await page.evaluate(`(()=>{
+   const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
+   if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
+   button.scrollIntoView({block:'center',behavior:'instant'});
+   const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+   return {x,y,hit:document.elementFromPoint(x,y)?.closest('button')===button,
+     before:JSON.parse(localStorage.getItem('lumenfall_save_v2')).wispModules.ember};
+ })()`);
+ assert(!target.error,target.error);assert(target.hit,'Native touch reaches highlighted Ability');
+ await page.command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:target.x,y:target.y}]});
+ await page.command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ let purchase;
+ for(let i=0;i<30;i++){
+   purchase=await page.evaluate(`(()=>{
+     const save=JSON.parse(localStorage.getItem('lumenfall_save_v2'));
+     const button=document.querySelector('[data-wisp-card="ember"] [data-module="ember"]');
+     return {level:save.wispModules.ember,priceCount:button?.querySelectorAll('.cost-icon').length||0,
+       focused:document.activeElement===button,
+       name:button?.getAttribute('aria-label')||''};
+   })()`);
+   if(purchase.level===target.before+1)break;
+   await pause(100);
+ }
+ assert.equal(purchase.level,target.before+1,'Trusted Android WebView touch buys exactly one Ability level');
+ assert.equal(purchase.priceCount,2,'Next Ability price remains visible after native purchase');
+ assert(purchase.focused&&purchase.name.includes('Next ·')&&purchase.name.includes('Ember Wisp'),'Native purchase restores focus with fresh accessible action');
+ report.installedWispTouch={status:'PASS',fromLevel:target.before,toLevel:purchase.level,focusedName:purchase.name};
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
  console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
 }
@@ -92,7 +119,7 @@ async function main(){
  console.log('Android upgrade QA: old APK installed; connecting to WebView');let page=await connect(),saved;
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
  console.log('Android upgrade QA: real old save obtained; preparing pre-document fixture');
- const seed=JSON.parse(saved);Object.assign(seed,{lumen:1234567,shards:4321,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
+ const seed=JSON.parse(saved);Object.assign(seed,{lumen:1e12,shards:1e12,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
  seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
  // These are all four actual purchases in the archived158 SHOP. Meteor/Call
  // were introduced later; the old app correctly discards those unknown flags.
