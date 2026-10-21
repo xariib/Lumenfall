@@ -1710,6 +1710,7 @@
   #rift-guidance-slot .objective-copy strong,#rift-guidance-slot .objective-copy small{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;}
   #rift-guidance-slot .objective-copy strong{font-size:.875rem;line-height:1.2;}
   #rift-guidance-slot .objective-copy small{font-size:.75rem;line-height:1.2;color:#b5b4cb;}
+  #rift-guidance-slot .objective-copy small.objective-shortfall{color:#ff9fae;}
   #rift-guidance-slot .objective-arrow{color:#b5b4cb;}
   #rift-hints-toggle:focus,#rift-objective-row:focus,#rift-guidance-slot .rift-objective:focus{outline:2px solid #e7c67e;outline-offset:-3px;}
   .late-power-guide[hidden]{display:none;}
@@ -8479,11 +8480,42 @@ function openPowerAdvice(goal){
   if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;
   target.scrollIntoView({block:'center'});target.focus({preventScroll:true});
 }
+// Farm guidance is a read-only quote from the existing Lab plan. The retired
+// Formation Training Forge entry must never be suggested for a new purchase.
+function midgameFarmPowerOption(){
+  if(state.ascendCount<1 || state.maxDepthEver<16)return null;
+  var node=LONG_STUDIES.find(function(n){return n.id==='wispascend';});
+  var plan=getStudyStartPlan(node);
+  if(!plan.unlocked || plan.maxed || plan.reason==='retired' || plan.reason==='unavailable')return null;
+  var result={kind:'POWER OPTION',tab:'research',selector:'[data-running-study="wispascend"],[data-study-card="wispascend"]',progress:0};
+  if(plan.reason==='active'){
+    result.title='Wisp Ascendancy in progress';
+    result.detail='Paid level '+(plan.level+1)+' is running in Lab';
+  }else if(plan.reason==='slots'){
+    result.title='Wisp Ascendancy: level '+(plan.level+1);
+    result.detail='All '+studySlotCount()+' Lab slots occupied';
+  }else if(plan.affordable){
+    result.title='Power option: Wisp Ascendancy '+(plan.level+1);
+    result.detail='+15% passive Wisp damage after study · '+formatRiftNumber(plan.cost.lumen)+' Lumen + '+formatRiftNumber(plan.cost.shard)+' Shards';
+    result.progress=100;
+  }else if(plan.reason==='unaffordable'){
+    var missing=[];
+    if(Amount.lt(state.lumen,plan.cost.lumen))missing.push(formatRiftNumber(Amount.sub(plan.cost.lumen,state.lumen))+' Lumen');
+    if(Amount.lt(shardsAvailable(),plan.cost.shard))missing.push(formatRiftNumber(Amount.sub(plan.cost.shard,shardsAvailable()))+' Shards');
+    if(!missing.length)return null;
+    result.title='Wisp Ascendancy: level '+(plan.level+1);
+    result.detail='Missing '+missing.join(' + ')+' for Lab';
+    result.unfunded=true;
+  }else return null;
+  return result;
+}
 function nextRiftObjective(){
   var p = progressionDepth();
   var late=latePowerAdvice();if(late)return late;
 
   if(state.riftMode==='farm'){
+    var powerOption=midgameFarmPowerOption();
+    if(powerOption)return powerOption;
     return {
       kind:'FARM',
       title:'Build power for Rift '+state.farmReturnDepth,
@@ -8591,7 +8623,7 @@ function renderRiftObjective(){
   var actionable = !!goal.tab;
   el.innerHTML =
     '<span class="objective-kind">'+goal.kind+'</span>'+
-    '<span class="objective-copy"><strong>'+goal.title+'</strong><small>'+goal.detail+'</small></span>'+
+    '<span class="objective-copy"><strong>'+goal.title+'</strong><small'+(goal.unfunded?' class="objective-shortfall"':'')+'>'+goal.detail+'</small></span>'+
     '<span class="objective-arrow">'+(actionable?'›':'')+'</span>';
   el.className = 'rift-objective objective-'+goal.kind.toLowerCase().replace(/[^a-z]+/g,'-')+(actionable?' actionable':'');
   el.setAttribute('data-target-tab',goal.tab||'');
