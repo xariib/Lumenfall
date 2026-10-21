@@ -1,5 +1,18 @@
 # Lumenfall — current delivery status
 
+21 October 2026: [WISP_ACTION_HIERARCHY_001](tasks/WISP_ACTION_HIERARCHY_001.md)
+was integrated through [PR #3](https://github.com/xariib/Lumenfall/pull/3)
+at `7a498e5be2d060476c9442435768ea1db15d725d`. All six relevant PR
+workflows passed. A signed 0.2.15 APK built without publishing and passed the
+Android 12/API31/WebView91 installed in-place emulator upgrade and save/identity
+checks on [run #15](https://github.com/xariib/Lumenfall/actions/runs/39548821573).
+The exact-main regression run is [ongoing](https://github.com/xariib/Lumenfall/actions/runs/39548886678).
+Wisp card inspection and a native touch purchase inside the installed WebView
+are under [PR #4](https://github.com/xariib/Lumenfall/pull/4), pending CI and
+an APK run on the resulting commit. No new release has been published; physical
+phone/WebView60/TalkBack and human visual acceptance remain open. The Wisp
+improvement is integrated but **not complete**.
+
 16 October 2026: combined endless-progression game released in xariib/Lumenfall as
 [Android 0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014), versionCode1000014.
 [Download latest APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk); existing players install as an update without
