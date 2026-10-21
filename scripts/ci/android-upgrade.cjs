@@ -28,6 +28,13 @@ async function connect(){
  }
 }
 async function verifyInstalledWispCard(page,report){
+ const size=adb('shell','wm','size').match(/(\\d+)x(\\d+)/);
+ assert(size,'Android display dimensions available');
+ const viewport=await page.evaluate('({width:innerWidth,height:innerHeight})');
+ const scale=Number(size[1])/viewport.width;
+ assert(Number.isFinite(scale)&&scale>0,'Android touch scale');
+ const tap=(x,y,offset=0)=>adb('shell','input','tap',String(Math.round(x*scale)),String(Math.round(y*scale+offset)));
+ report.androidTouch={display:[Number(size[1]),Number(size[2])],viewport,scale};
  // The cold upgrade can show the ordinary offline recap. Dismiss it with a
  // trusted touch before measuring the shipped Wisp tab behind the overlay.
  const welcome=await page.evaluate(`(()=>{
@@ -38,8 +45,7 @@ async function verifyInstalledWispCard(page,report){
  })()`);
  if(welcome){
    assert(welcome.hit,'Offline recap Continue is reachable by native touch');
-   await page.command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:welcome.x,y:welcome.y}]});
-   await page.command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   tap(welcome.x,welcome.y);
    await pause(350);
    const stillOpen=await page.evaluate(`Array.from(document.querySelectorAll('button')).some(b=>b.textContent.trim()==='Continue'&&b.getBoundingClientRect().height>0&&document.elementFromPoint(b.getBoundingClientRect().left+b.getBoundingClientRect().width/2,b.getBoundingClientRect().top+b.getBoundingClientRect().height/2)?.closest('button')===b)`);
    assert(!stillOpen,'Offline recap closed before Wisp inspection');
@@ -109,8 +115,7 @@ async function verifyInstalledWispCard(page,report){
      before:JSON.parse(localStorage.getItem('lumenfall_save_v2')).wispModules.ember};
  })()`);
  assert(!target.error,target.error);assert(target.hit,'Native touch reaches highlighted Ability');
- await page.command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:target.x,y:target.y}]});
- await page.command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ tap(target.x,target.y);
  let purchase;
  for(let i=0;i<30;i++){
    purchase=await page.evaluate(`(()=>{
