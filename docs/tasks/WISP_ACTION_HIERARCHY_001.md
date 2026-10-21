@@ -144,3 +144,39 @@ final product, including both offline UI cases and every default scenario from
 loadout-memory-mobile through ascend-prisms-recovery. The original harness,
 viewports, assertions and deadlines remain; DOM capture uses its existing pipe
 transport. This supplements, and does not replace, full required final-head CI.
+
+## Integration checkpoint — 21 October 2026
+
+The user authorized PR #3 review/integration as a distinct step, followed by
+Android acceptance on an installed build before this feature is complete.
+[PR #3](https://github.com/xariib/Lumenfall/pull/3) was reviewed and merged
+without conflict at main commit `7a498e5be2d060476c9442435768ea1db15d725d`.
+Its final head `2980b56061275cf256ed0d8a5279bfd7adeac8e4` had all six relevant
+PR workflows green; the one automated accessibility review thread was resolved.
+This is self-review and automated review, not independent human review.
+
+The [non-publishing Android build #15](https://github.com/xariib/Lumenfall/actions/runs/39548821573)
+passed on that exact integration commit with `publish=false`. It produced
+signed `com.lumenfall.app` 0.2.15 (versionCode 1000015, signing certificate
+SHA-256 A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21),
+APK SHA-256 `389504c033defec33235baf890e1d5338b54e7146da632a5c4faec55034fe13d`.
+The API 31/Android 12 emulator with WebView 91 installed the APK as an in-place
+upgrade from archived signed 0.1.158. UID/origin, both save slots, Wisp levels,
+paid study and legacy purchase entitlements survived. Evidence is artifact
+`signed-apk-39548821573` (ID 12322913245), with the upgrade receipt.
+No release was published; the existing latest release remains 0.2.14.
+
+[Exact-main full validation #19](https://github.com/xariib/Lumenfall/actions/runs/39548886678)
+is running. The existing Android upgrade workflow does not inspect Wisp card UI,
+so [follow-up PR #4](https://github.com/xariib/Lumenfall/pull/4) adds assertions
+inside the installed Android WebView for all cards, complete prices/effects,
+visible and accessible Next cue, and a trusted native touch purchase and focus.
+It changes test code and a disposable synthetic emulator fixture only. Its CI
+and subsequent non-publishing APK run are pending. This feature remains
+**integrated, acceptance pending**. Physical phone, exact WebView60, TalkBack and
+human pacing/performance remain unverified. Do not mark complete or archive.
+
+Next action: review PR #4's final-head CI, integrate its test-only change, run
+Build Android APK with `publish=false` on that commit, inspect its installed
+Wisp receipt/screenshot and original upgrade preservation, then arrange the
+remaining physical-device accessibility/visual acceptance before closeout.
