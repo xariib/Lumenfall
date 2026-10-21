@@ -72,7 +72,7 @@ async function verifyInstalledWispCard(page,report){
        const r=e.getBoundingClientRect();return r.width>0&&(r.right>boundary.right+1||e.scrollWidth>e.clientWidth+1);
      }).slice(0,16).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {tag:e.tagName,cls:String(e.className).slice(0,90),text:e.textContent.slice(0,65),
        right:Math.round(r.right),scroll:e.scrollWidth,client:e.clientWidth,minWidth:s.minWidth,whiteSpace:s.whiteSpace};});
-     return {id,name,visible:visible(card),fits:card.scrollWidth<=card.clientWidth+1,
+     return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
        width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
        unfinished:progression?.tagName==='SECTION',
@@ -87,7 +87,7 @@ async function verifyInstalledWispCard(page,report){
        nextEffect:!!card.querySelector('[data-ability-next]')};
    });
    cards[0].scrollIntoView({block:'start',behavior:'instant'});
-   return {viewport:innerWidth,tabVisible:visible(panel),count:cards.length,observations};
+   return {viewport:innerWidth,viewportFit:document.documentElement.scrollWidth<=innerWidth+1,tabVisible:visible(panel),count:cards.length,observations};
  })()`);
  fs.mkdirSync('release-evidence',{recursive:true});
  fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\n');
@@ -96,7 +96,7 @@ async function verifyInstalledWispCard(page,report){
  fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
  assert(!ui.error,ui.error);
  assert(ui.viewport>=320&&ui.viewport<=500,'Expected mobile Android WebView width: '+ui.viewport);
- assert(ui.tabVisible,'Wisp tab visible in installed WebView');
+ assert(ui.tabVisible&&ui.viewportFit,'Wisp tab visible without horizontal page scroll in installed WebView');
  assert.equal(ui.count,8,'All eight Wisps render in installed WebView');
  for(const card of ui.observations){
    assert(card.visible&&card.fits&&card.identity,'Wisp identity/geometry: '+JSON.stringify(card));
