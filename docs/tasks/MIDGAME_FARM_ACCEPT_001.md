@@ -50,3 +50,14 @@ with `SyntaxError: missing ) after argument list` in the QA-only touch
 assertion's CDP expression (line 99). This is a malformed test selector
 string, not a product failure. Correct the expression and rerun all required
 checks on the final head.
+
+Second head `e948d6c0a6b0ab1897b0bd4e721d9dca17cdd17d`, run
+`39690705502`: context PASS and isolated offline PASS. The mobile acceptance
+passed both 320 px/100% motion profiles, then its generic `touch()` helper
+targeted the center of an objective taller than the fixed 44 px scroll window
+at 150% text. The captured screenshot shows the hint's visible upper section;
+the off-window center was not a hit target. This is a test-driver geometry
+error, while the narrow scroll window is an observed usability limitation.
+Use the visible intersection for native taps; exercise scrolling to the quote
+at every profile and preserve the failure artifact for visual review. Keep the
+feature open for final-head CI and installed acceptance.

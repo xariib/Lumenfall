@@ -147,8 +147,8 @@ async function verifyInstalledMidgameFarmHint(page,report){
    state.longStudyLevels.wispascend=0;state.activeStudies=[];
    state.lumen=800;state.shards=80;
    activateTab('battle');renderRiftObjective();
-   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect();
-   const x=r.left+r.width/2,y=r.top+r.height/2;
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),v=document.querySelector('#rift-objective-row').getBoundingClientRect();
+   const x=r.left+r.width/2,y=(Math.max(r.top,v.top)+Math.min(r.bottom,v.bottom))/2;
    return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
      detail:e.querySelector('small')?.textContent,name:e.getAttribute('aria-label'),
      target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),

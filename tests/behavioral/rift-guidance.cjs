@@ -42,6 +42,14 @@ function send(method,params={},sid=session){return new Promise((resolve,reject)=
 async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 async function key(name,shift=false){const specs={Space:{key:' ',code:'Space',windowsVirtualKeyCode:32},Tab:{key:'Tab',code:'Tab',windowsVirtualKeyCode:9},Enter:{key:'Enter',code:'Enter',windowsVirtualKeyCode:13},Escape:{key:'Escape',code:'Escape',windowsVirtualKeyCode:27},End:{key:'End',code:'End',windowsVirtualKeyCode:35}};const spec=specs[name];await send('Input.dispatchKeyEvent',{type:'rawKeyDown',...spec,modifiers:shift?8:0});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec,modifiers:shift?8:0});}
 async function touch(selector){const box=await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);assert(box.hit,'native touch reaches '+selector);await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x,y:box.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+async function touchVisibleHint(){
+ const box=await evaluate(`(()=>{const e=document.querySelector('#rift-objective'),row=document.querySelector('#rift-objective-row'),r=e.getBoundingClientRect(),v=row.getBoundingClientRect();
+   const x=r.left+r.width/2,y=(Math.max(r.top,v.top)+Math.min(r.bottom,v.bottom))/2;
+   return {x,y,hit:e.contains(document.elementFromPoint(x,y)),visible:Math.min(r.bottom,v.bottom)>Math.max(r.top,v.top)};})()`);
+ assert(box.visible&&box.hit,'native touch reaches the visible part of the scrollable Farm hint');
+ await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x,y:box.y}]});
+ await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+}
 async function ready(){let loaded=false;for(let i=0;i<200&&!loaded;i++){try{loaded=await evaluate('!window.__riftGuidanceReloadToken&&!!window.__forgeUiReady');}catch(error){if(!/context|navigat/i.test(error.message))throw error;}if(!loaded)await pause(20);}assert(loaded,'production document reaches existing bridge');await evaluate('document.fonts.ready');await evaluate('__lumenfallQaBridge.uiMeasurementPause(true)');await evaluate('__qaForgeStartup.promise');await evaluate('__lumenfallQaBridge.resetFeedback()');}
 async function reload(){await evaluate('window.__riftGuidanceReloadToken=true');await send('Page.reload',{ignoreCache:true});await ready();}
 async function waitForHintScroll(){for(let i=0;i<50;i++){if(await evaluate('document.querySelector("#rift-objective-row").scrollTop>0'))return;await pause(20);}const diagnostic=await evaluate('({focus:document.activeElement.id,inert:document.querySelector(".shell").inert,scroll:document.querySelector("#rift-objective-row").scrollTop,hidden:document.querySelector("#rift-objective-row").hidden})');throw Error('long hint scroll did not move: '+JSON.stringify(diagnostic));}
@@ -88,6 +96,16 @@ async function midgameFarmAcceptance(record,name,inset){
  assert(funded.bounds.left>=-1&&funded.bounds.right<=funded.viewport+1&&funded.bounds.height>=44&&funded.pageScroll<=funded.viewport+1,'mobile objective remains reachable without horizontal clipping');
  sameData(before,await snapshot(),'funded hint rendering');
  await screenshot(name+'-funded');
+ const row=await evaluate(`(()=>{const e=document.querySelector('#rift-objective-row');return {client:e.clientHeight,scroll:e.scrollHeight};})()`);
+ if(row.scroll>row.client+1){
+   await scrollHintsWithTouch();await waitForHintScroll();
+   await evaluate('document.querySelector("#rift-objective-row").scrollTop=document.querySelector("#rift-objective-row").scrollHeight');
+   const scrolled=await evaluate(`(()=>{const row=document.querySelector('#rift-objective-row'),small=document.querySelector('#rift-objective small'),r=row.getBoundingClientRect(),d=small.getBoundingClientRect();return {top:row.scrollTop,detailVisible:d.top<r.bottom&&d.bottom>r.top};})()`);
+   assert(scrolled.top>0&&scrolled.detailVisible,'native scroll reveals the full Lab quote at enlarged text');
+   await screenshot(name+'-quote-scrolled');
+   await evaluate('document.querySelector("#rift-objective-row").scrollTop=0');
+   sameData(before,await snapshot(),'hint scrolling');
+ }
  await evaluate('document.querySelector("#rift-objective").focus({preventScroll:true})');await key('Enter');
  const keyboard=await evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
    lab:document.querySelector('#tab-research').classList.contains('active'),focused:document.activeElement===card,
@@ -95,7 +113,7 @@ async function midgameFarmAcceptance(record,name,inset){
  assert(keyboard.lab&&keyboard.focused&&keyboard.card,'native keyboard opens and focuses current Lab card');
  sameData(before,await snapshot(),'keyboard navigation');
  await touch('[data-tab="battle"]');
- await touch('#rift-objective');
+ await touchVisibleHint();
  assert(await evaluate("document.querySelector('#tab-research').classList.contains('active')&&document.activeElement===document.querySelector('[data-study-card=\"wispascend\"]')"),'native touch opens and focuses the same Lab card');
  sameData(before,await snapshot(),'touch navigation');
  await touch('[data-tab="battle"]');
