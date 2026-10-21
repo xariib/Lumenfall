@@ -44,7 +44,13 @@ async function verifyInstalledWispCard(page,report){
      const primary=Array.from(card.querySelectorAll('.wisp-action-primary'));
      const progression=card.querySelector('[data-wisp-progression]');
      const module=card.querySelector('[data-module]');
+     const boundary=card.getBoundingClientRect();
+     const overflow=Array.from(card.querySelectorAll('*')).filter(e=>{
+       const r=e.getBoundingClientRect();return r.width>0&&(r.right>boundary.right+1||e.scrollWidth>e.clientWidth+1);
+     }).slice(0,16).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {tag:e.tagName,cls:String(e.className).slice(0,90),text:e.textContent.slice(0,65),
+       right:Math.round(r.right),scroll:e.scrollWidth,client:e.clientWidth,minWidth:s.minWidth,whiteSpace:s.whiteSpace};});
      return {id,name,visible:visible(card),fits:card.scrollWidth<=card.clientWidth+1,
+       width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
        unfinished:progression?.tagName==='SECTION',
        upgradeVisible:!progression||progression.tagName==='DETAILS'||(
@@ -60,6 +66,11 @@ async function verifyInstalledWispCard(page,report){
    cards[0].scrollIntoView({block:'start',behavior:'instant'});
    return {viewport:innerWidth,tabVisible:visible(panel),count:cards.length,observations};
  })()`);
+ fs.mkdirSync('release-evidence',{recursive:true});
+ fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\\n');
+ const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
+ assert(screenshot.data,'Installed Wisp screenshot captured');
+ fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
  assert(!ui.error,ui.error);
  assert(ui.viewport>=320&&ui.viewport<=500,'Expected mobile Android WebView width: '+ui.viewport);
  assert(ui.tabVisible,'Wisp tab visible in installed WebView');
@@ -72,9 +83,6 @@ async function verifyInstalledWispCard(page,report){
  }
  const ember=ui.observations.find(card=>card.id==='ember');
  assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
- const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
- assert(screenshot.data,'Installed Wisp screenshot captured');
- fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
