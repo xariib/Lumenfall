@@ -2,16 +2,21 @@
 
 21 October 2026: [WISP_ACTION_HIERARCHY_001](tasks/WISP_ACTION_HIERARCHY_001.md)
 was integrated through [PR #3](https://github.com/xariib/Lumenfall/pull/3)
-at `7a498e5be2d060476c9442435768ea1db15d725d`. All six relevant PR
-workflows passed. A signed 0.2.15 APK built without publishing and passed the
-Android 12/API31/WebView91 installed in-place emulator upgrade and save/identity
-checks on [run #15](https://github.com/xariib/Lumenfall/actions/runs/39548821573).
-The exact-main regression run is [ongoing](https://github.com/xariib/Lumenfall/actions/runs/39548886678).
-Wisp card inspection and a native touch purchase inside the installed WebView
-are under [PR #4](https://github.com/xariib/Lumenfall/pull/4), pending CI and
-an APK run on the resulting commit. No new release has been published; physical
-phone/WebView60/TalkBack and human visual acceptance remain open. The Wisp
-improvement is integrated but **not complete**.
+at `7a498e5be2d060476c9442435768ea1db15d725d`; all six relevant PR
+workflows and [exact-main full validation](https://github.com/xariib/Lumenfall/actions/runs/39548886678)
+passed. [PR #4](https://github.com/xariib/Lumenfall/pull/4) added installed
+Android Wisp UI acceptance to the test driver only, passed all six final-head
+workflows, and merged at `4a3085067797b292b32c179e4e4bbb8e33b640d1`.
+The [non-publishing integrated Android run #21](https://github.com/xariib/Lumenfall/actions/runs/39559404175)
+built signed 0.2.21 and passed an in-place installed upgrade on Android 12/
+API31/WebView91: both saves, UID/origin, paid progression and legacy entitlements
+survived. All eight Wisp cards fit at 320 px with their prices/effects and
+accessible Next cue; an Android touch purchased one Ember Ability level and
+returned focus with its refreshed name. APK SHA-256 is
+`5141f8e54290a18854b125677f2f144690d055e06a0c07f95762b6d33d36a026`,
+artifact `signed-apk-39559404175`. No new release has been published.
+**Integrated and installed-emulator accepted; physical phone, exact WebView60,
+TalkBack and human visual/pacing acceptance remain open. Do not mark complete.**
 
 16 October 2026: combined endless-progression game released in xariib/Lumenfall as
 [Android 0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014), versionCode1000014.
