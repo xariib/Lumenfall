@@ -27,6 +27,57 @@ async function connect(){
   }catch(e){if(i===89)throw e;await pause(1000);}
  }
 }
+async function verifyInstalledWispCard(page,report){
+ // Inspect the shipped UI inside the installed APK's actual Android WebView.
+ const ui=await page.evaluate(`(async()=>{
+   const tab=document.querySelector('[data-tab="spirits"]');
+   if(!tab)return {error:'Wisp tab missing'};
+   tab.click();
+   await new Promise(resolve=>setTimeout(resolve,500));
+   const panel=document.getElementById('tab-spirits');
+   const cards=panel&&Array.from(panel.querySelectorAll('[data-wisp-card]'));
+   if(!cards||!cards.length)return {error:'Wisp cards missing after tab activation'};
+   const visible=e=>!!e&&e.getBoundingClientRect().width>0&&e.getBoundingClientRect().height>0;
+   const observations=cards.map(card=>{
+     const id=card.getAttribute('data-wisp-card'),name=card.querySelector('.hero-id .name')?.textContent||'';
+     const actions=Array.from(card.querySelectorAll('[data-empower],[data-rarity],[data-module],[data-ultimate],[data-mastery]'));
+     const primary=Array.from(card.querySelectorAll('.wisp-action-primary'));
+     const progression=card.querySelector('[data-wisp-progression]');
+     const module=card.querySelector('[data-module]');
+     return {id,name,visible:visible(card),fits:card.scrollWidth<=card.clientWidth+1,
+       identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
+       unfinished:progression?.tagName==='SECTION',
+       upgradeVisible:!progression||progression.tagName==='DETAILS'||(
+         visible(card.querySelector('[data-rarity]'))&&visible(card.querySelector('[data-module]'))&&
+         (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),
+       eligible:actions.some(button=>!button.disabled),
+       primary:primary.map(button=>({disabled:button.disabled,cue:button.querySelector('.wisp-next-label')?.textContent||'',
+         name:button.getAttribute('aria-label')||''})),
+       modulePrices:module?.querySelectorAll('.cost-icon').length||0,
+       currentEffect:!!card.querySelector('[data-ability-current]'),
+       nextEffect:!!card.querySelector('[data-ability-next]')};
+   });
+   cards[0].scrollIntoView({block:'start',behavior:'instant'});
+   return {viewport:innerWidth,tabVisible:visible(panel),count:cards.length,observations};
+ })()`);
+ assert(!ui.error,ui.error);
+ assert(ui.viewport>=320&&ui.viewport<=500,'Expected mobile Android WebView width: '+ui.viewport);
+ assert(ui.tabVisible,'Wisp tab visible in installed WebView');
+ assert.equal(ui.count,8,'All eight Wisps render in installed WebView');
+ for(const card of ui.observations){
+   assert(card.visible&&card.fits&&card.identity,'Wisp identity/geometry: '+JSON.stringify(card));
+   assert(card.upgradeVisible&&card.currentEffect&&card.nextEffect,'Unfinished Wisp upgrades/effects: '+JSON.stringify(card));
+   assert.equal(card.primary.length,card.eligible?1:0,'One original enabled next action, or none: '+card.id);
+   for(const action of card.primary)assert(!action.disabled&&action.cue==='Next ·'&&action.name.includes('Next ·')&&action.name.includes(card.name),'Live visible and accessible action: '+card.id);
+ }
+ const ember=ui.observations.find(card=>card.id==='ember');
+ assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
+ const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
+ assert(screenshot.data,'Installed Wisp screenshot captured');
+ fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
+ report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
+ console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -88,7 +139,7 @@ async function main(){
  const currentSchema=Number(fs.readFileSync('index.html','utf8').match(/var SAVE_SCHEMA_VERSION = (\d+);/)[1]);let persisted=false;
  for(let i=0;i<90;i++){persisted=await page.evaluate(`(()=>{try{return [${JSON.stringify(primary)},${JSON.stringify(recovery)}].every(k=>JSON.parse(localStorage.getItem(k)).schemaVersion===${currentSchema});}catch(e){return false;}})()`);if(persisted)break;await pause(1000);}assert(persisted,'Actual new app must persist both migrated slots');
  await pause(3000);
- const observed=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);page.close();fs.writeFileSync('release-evidence/new-upgrade-state.json',JSON.stringify(observed,null,2)+'\n');
+ const observed=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);fs.writeFileSync('release-evidence/new-upgrade-state.json',JSON.stringify(observed,null,2)+'\n');
  assert.equal(observed.origin,report.beforeOrigin);assert.equal(observed.sentinel,sentinel);assert(observed.save&&observed.recovery,'Both save slots retained');
  for(const [slot,s] of Object.entries({primary:observed.save,recovery:observed.recovery})){
  for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],slot+': '+field+' retained');
@@ -102,6 +153,7 @@ async function main(){
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
  }
  assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
+ await verifyInstalledWispCard(page,report);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
