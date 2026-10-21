@@ -27,6 +27,114 @@ async function connect(){
   }catch(e){if(i===89)throw e;await pause(1000);}
  }
 }
+async function verifyInstalledWispCard(page,report){
+ const size=adb('shell','wm','size').match(/(\d+)x(\d+)/);
+ assert(size,'Android display dimensions available');
+ const viewport=await page.evaluate('({width:innerWidth,height:innerHeight})');
+ const scale=Number(size[1])/viewport.width;
+ assert(Number.isFinite(scale)&&scale>0,'Android touch scale');
+ const tap=(x,y,offset=0)=>adb('shell','input','tap',String(Math.round(x*scale)),String(Math.round(y*scale+offset)));
+ report.androidTouch={display:[Number(size[1]),Number(size[2])],viewport,scale};
+ // The cold upgrade can show the ordinary offline recap. Dismiss it with a
+ // trusted touch before measuring the shipped Wisp tab behind the overlay.
+ const welcome=await page.evaluate(`(()=>{
+   const button=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim()==='Continue'&&b.getBoundingClientRect().height>0);
+   if(!button)return null;
+   const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+   return {x,y,hit:document.elementFromPoint(x,y)?.closest('button')===button};
+ })()`);
+ if(welcome){
+   assert(welcome.hit,'Offline recap Continue is reachable by native touch');
+   tap(welcome.x,welcome.y);
+   await pause(350);
+   const stillOpen=await page.evaluate(`Array.from(document.querySelectorAll('button')).some(b=>b.textContent.trim()==='Continue'&&b.getBoundingClientRect().height>0&&document.elementFromPoint(b.getBoundingClientRect().left+b.getBoundingClientRect().width/2,b.getBoundingClientRect().top+b.getBoundingClientRect().height/2)?.closest('button')===b)`);
+   assert(!stillOpen,'Offline recap closed before Wisp inspection');
+ }
+ report.offlineRecapDismissed=!!welcome;
+ // Inspect the shipped UI inside the installed APK's actual Android WebView.
+ const ui=await page.evaluate(`(async()=>{
+   const tab=document.querySelector('[data-tab="spirits"]');
+   if(!tab)return {error:'Wisp tab missing'};
+   tab.click();
+   await new Promise(resolve=>setTimeout(resolve,500));
+   const panel=document.getElementById('tab-spirits');
+   const cards=panel&&Array.from(panel.querySelectorAll('[data-wisp-card]'));
+   if(!cards||!cards.length)return {error:'Wisp cards missing after tab activation'};
+   const visible=e=>!!e&&e.getBoundingClientRect().width>0&&e.getBoundingClientRect().height>0;
+   const observations=cards.map(card=>{
+     const id=card.getAttribute('data-wisp-card'),name=card.querySelector('.hero-id .name')?.textContent||'';
+     const actions=Array.from(card.querySelectorAll('[data-empower],[data-rarity],[data-module],[data-ultimate],[data-mastery]'));
+     const primary=Array.from(card.querySelectorAll('.wisp-action-primary'));
+     const progression=card.querySelector('[data-wisp-progression]');
+     const module=card.querySelector('[data-module]');
+     const boundary=card.getBoundingClientRect();
+     const overflow=Array.from(card.querySelectorAll('*')).filter(e=>{
+       const r=e.getBoundingClientRect();return r.width>0&&(r.right>boundary.right+1||e.scrollWidth>e.clientWidth+1);
+     }).slice(0,16).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {tag:e.tagName,cls:String(e.className).slice(0,90),text:e.textContent.slice(0,65),
+       right:Math.round(r.right),scroll:e.scrollWidth,client:e.clientWidth,minWidth:s.minWidth,whiteSpace:s.whiteSpace};});
+     return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
+       width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
+       identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
+       unfinished:progression?.tagName==='SECTION',
+       upgradeVisible:!progression||progression.tagName==='DETAILS'||(
+         visible(card.querySelector('[data-rarity]'))&&visible(card.querySelector('[data-module]'))&&
+         (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),
+       eligible:actions.some(button=>!button.disabled),
+       primary:primary.map(button=>({disabled:button.disabled,cue:button.querySelector('.wisp-next-label')?.textContent||'',
+         name:button.getAttribute('aria-label')||''})),
+       modulePrices:module?.querySelectorAll('.cost-icon').length||0,
+       currentEffect:!!card.querySelector('[data-ability-current]'),
+       nextEffect:!!card.querySelector('[data-ability-next]')};
+   });
+   cards[0].scrollIntoView({block:'start',behavior:'instant'});
+   return {viewport:innerWidth,viewportFit:document.documentElement.scrollWidth<=innerWidth+1,tabVisible:visible(panel),count:cards.length,observations};
+ })()`);
+ fs.mkdirSync('release-evidence',{recursive:true});
+ fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\n');
+ const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
+ assert(screenshot.data,'Installed Wisp screenshot captured');
+ fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
+ assert(!ui.error,ui.error);
+ assert(ui.viewport>=320&&ui.viewport<=500,'Expected mobile Android WebView width: '+ui.viewport);
+ assert(ui.tabVisible&&ui.viewportFit,'Wisp tab visible without horizontal page scroll in installed WebView');
+ assert.equal(ui.count,8,'All eight Wisps render in installed WebView');
+ for(const card of ui.observations){
+   assert(card.visible&&card.fits&&card.identity,'Wisp identity/geometry: '+JSON.stringify(card));
+   assert(card.upgradeVisible&&card.currentEffect&&card.nextEffect,'Unfinished Wisp upgrades/effects: '+JSON.stringify(card));
+   assert.equal(card.primary.length,card.eligible?1:0,'One original enabled next action, or none: '+card.id);
+   for(const action of card.primary)assert(!action.disabled&&action.cue==='Next ·'&&action.name.includes('Next ·')&&action.name.includes(card.name),'Live visible and accessible action: '+card.id);
+ }
+ const ember=ui.observations.find(card=>card.id==='ember');
+ assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
+ const target=await page.evaluate(`(()=>{
+   const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
+   if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
+   button.scrollIntoView({block:'center',behavior:'instant'});
+   const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+   return {x,y,hit:document.elementFromPoint(x,y)?.closest('button')===button,
+     before:JSON.parse(localStorage.getItem('lumenfall_save_v2')).wispModules.ember};
+ })()`);
+ assert(!target.error,target.error);assert(target.hit,'Native touch reaches highlighted Ability');
+ tap(target.x,target.y);
+ let purchase;
+ for(let i=0;i<30;i++){
+   purchase=await page.evaluate(`(()=>{
+     const save=JSON.parse(localStorage.getItem('lumenfall_save_v2'));
+     const button=document.querySelector('[data-wisp-card="ember"] [data-module="ember"]');
+     return {level:save.wispModules.ember,priceCount:button?.querySelectorAll('.cost-icon').length||0,
+       focused:document.activeElement===button,
+       name:button?.getAttribute('aria-label')||''};
+   })()`);
+   if(purchase.level===target.before+1)break;
+   await pause(100);
+ }
+ assert.equal(purchase.level,target.before+1,'Trusted Android WebView touch buys exactly one Ability level');
+ assert.equal(purchase.priceCount,2,'Next Ability price remains visible after native purchase');
+ assert(purchase.focused&&purchase.name.includes('Next ·')&&purchase.name.includes('Ember Wisp'),'Native purchase restores focus with fresh accessible action');
+ report.installedWispTouch={status:'PASS',fromLevel:target.before,toLevel:purchase.level,focusedName:purchase.name};
+ report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
+ console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -41,7 +149,7 @@ async function main(){
  console.log('Android upgrade QA: old APK installed; connecting to WebView');let page=await connect(),saved;
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
  console.log('Android upgrade QA: real old save obtained; preparing pre-document fixture');
- const seed=JSON.parse(saved);Object.assign(seed,{lumen:1234567,shards:4321,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
+ const seed=JSON.parse(saved);Object.assign(seed,{lumen:1e12,shards:1e12,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
  seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
  // These are all four actual purchases in the archived158 SHOP. Meteor/Call
  // were introduced later; the old app correctly discards those unknown flags.
@@ -88,7 +196,7 @@ async function main(){
  const currentSchema=Number(fs.readFileSync('index.html','utf8').match(/var SAVE_SCHEMA_VERSION = (\d+);/)[1]);let persisted=false;
  for(let i=0;i<90;i++){persisted=await page.evaluate(`(()=>{try{return [${JSON.stringify(primary)},${JSON.stringify(recovery)}].every(k=>JSON.parse(localStorage.getItem(k)).schemaVersion===${currentSchema});}catch(e){return false;}})()`);if(persisted)break;await pause(1000);}assert(persisted,'Actual new app must persist both migrated slots');
  await pause(3000);
- const observed=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);page.close();fs.writeFileSync('release-evidence/new-upgrade-state.json',JSON.stringify(observed,null,2)+'\n');
+ const observed=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);fs.writeFileSync('release-evidence/new-upgrade-state.json',JSON.stringify(observed,null,2)+'\n');
  assert.equal(observed.origin,report.beforeOrigin);assert.equal(observed.sentinel,sentinel);assert(observed.save&&observed.recovery,'Both save slots retained');
  for(const [slot,s] of Object.entries({primary:observed.save,recovery:observed.recovery})){
  for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],slot+': '+field+' retained');
@@ -102,6 +210,7 @@ async function main(){
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
  }
  assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
+ await verifyInstalledWispCard(page,report);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
