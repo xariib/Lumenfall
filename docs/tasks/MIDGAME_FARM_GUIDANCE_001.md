@@ -61,3 +61,21 @@ optimal play or a claim that all developing players need this Study.
 Next: publish isolated PR, inspect its complete diff and all required CI on
 the final head; fix any new failure. Integrate only after checks, then record
 integrated version and separately arrange installed Android/human acceptance.
+
+## CI follow-up — 21 October 2026
+
+Draft PR #5 opened at `039455cd814e6025d6ff432bdd6e55bfc437d8f6`.
+Five triggered validation workflows passed. Pre-merge run `39660799611`
+failed in the stateful browser suite solely at `offline-catchup-ui` and
+`offline-catchup-legacy-dom`: their source-bound, four-window golden still
+identified the earlier product SHA. This is a genuine required gate, not a
+reason to skip either scenario. Regenerated the independent one-second
+oracle using `node tests/behavioral/offline-catchup.cjs --generate-swift-golden`
+on the PR's exact `index.html`. All four phases retained identical kills,
+Ascends, Prisms and full-state SHA-256 values; only the source SHA changed
+from `5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`
+to `bbbc27b1f5fa6a06213a35e2bbf7cd19350fb601bb67f10c1198b846e81c1f01`.
+The focused 24 assertions, context checker (29 entrypoints/45 links), and
+source-bound V8 offline probe passed locally on Node 24.19.0. Re-run the
+complete browser suite and every required workflow on the corrected PR head;
+do not merge while any gate fails.
