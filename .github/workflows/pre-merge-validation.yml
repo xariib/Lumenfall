@@ -96,6 +96,12 @@ jobs:
           cp -r fonts/. mobile/www/fonts/
           cp -r branding/. mobile/www/branding/
 
+      - name: Midgame Farm guidance mobile acceptance
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          node tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www validation-evidence/midgame-farm-mobile --midgame-accept
+
       - name: Guidance baseline readability and exact old-width inverse
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/GUIDANCE_READABILITY_001.md

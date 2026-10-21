@@ -13,6 +13,7 @@ const [chrome,webRoot,evidenceDir,...flags]=process.argv.slice(2);
 if(!chrome||!webRoot||!evidenceDir)throw Error('Expected chrome, instrumented webRoot, evidenceDir');
 const sourceRoot=path.resolve(webRoot),root=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-guidance-www-')),out=path.resolve(evidenceDir),baseline=flags.includes('--baseline-probe'),contract=flags.includes('--existing-contract'),readabilityProbe=flags.includes('--readability-probe');
 const collectTitleInverse=flags.includes('--collect-title-inverse');
+const midgameAccept=flags.includes('--midgame-accept');
 if(collectTitleInverse&&!readabilityProbe)throw Error('Title inverse collection requires the bounded readability probe');
 const {instrumentHtml,loadFixtures}=require('./run.cjs'),source=fs.readFileSync(path.join(sourceRoot,'index.html'),'utf8');
 const {measureGuidanceWord,assertGuidanceWord}=require('./rift-guidance-readability.cjs');
@@ -62,6 +63,53 @@ async function toggleAccessibleName(){
  const button=tree.nodes.find(node=>!node.ignored&&node.role?.value==='button');
  assert(button?.name?.value===label,'hint toggle accessible name must equal its visible label');
  return {label,name:button.name.value};
+}
+async function midgameFarmAcceptance(record,name,inset){
+ await evaluate(`riftStatusMobile.setup(${inset},'farm');(()=>{
+   const b=__lumenfallQaBridge,s=b.getState();b.freeze();
+   s.ascendCount=1;s.maxDepthEver=30;s.depth=s.enemyDepth=26;
+   s.riftMode='farm';s.farmDepth=20;s.farmReturnDepth=26;
+   s.lumen=800;s.shards=80;s.activeStudies=[];
+   b.setState(s);b.renderLayout();
+ })()`);
+ const before=await snapshot();
+ const funded=await evaluate(`(()=>{
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),small=e.querySelector('small');
+   return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
+     detail:small?.textContent,role:e.getAttribute('role'),name:e.getAttribute('aria-label'),
+     target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
+     viewport:innerWidth,pageScroll:document.documentElement.scrollWidth,
+     bounds:{left:r.left,right:r.right,width:r.width,height:r.height},scrollArea:document.querySelector('#rift-objective-row').scrollHeight};
+ })()`);
+ assert(funded.kind==='POWER OPTION'&&funded.title==='Power option: Wisp Ascendancy 1','current funded Lab option');
+ assert(funded.detail==='+15% passive Wisp damage after study · 800 Lumen + 80 Shards','exact funded price and effect');
+ assert(funded.role==='button'&&funded.name===funded.title+' — '+funded.detail&&funded.target==='research','visible and accessible Lab destination');
+ assert(funded.selector.includes('[data-study-card="wispascend"]'),'actual Lab card targeted');
+ assert(funded.bounds.left>=-1&&funded.bounds.right<=funded.viewport+1&&funded.bounds.height>=44&&funded.pageScroll<=funded.viewport+1,'mobile objective remains reachable without horizontal clipping');
+ sameData(before,await snapshot(),'funded hint rendering');
+ await screenshot(name+'-funded');
+ await evaluate('document.querySelector("#rift-objective").focus({preventScroll:true})');await key('Enter');
+ const keyboard=await evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
+   lab:document.querySelector('#tab-research').classList.contains('active'),focused:document.activeElement===card,
+   card:!!card&&card.getBoundingClientRect().width>0};})()`);
+ assert(keyboard.lab&&keyboard.focused&&keyboard.card,'native keyboard opens and focuses current Lab card');
+ sameData(before,await snapshot(),'keyboard navigation');
+ await touch('[data-tab="battle"]');
+ await touch('#rift-objective');
+ assert(await evaluate('document.querySelector("#tab-research").classList.contains("active")&&document.activeElement===document.querySelector("[data-study-card=\"wispascend\"]")'),'native touch opens and focuses the same Lab card');
+ sameData(before,await snapshot(),'touch navigation');
+ await touch('[data-tab="battle"]');
+ await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=799;s.shards=79;b.setState(s);b.renderLayout();})()`);
+ const shortfall=await snapshot();
+ const missing=await evaluate(`(()=>{const e=document.querySelector('#rift-objective'),small=e.querySelector('small');return {
+   title:e.querySelector('strong')?.textContent,detail:small?.textContent,color:getComputedStyle(small).color,
+   marked:small?.classList.contains('objective-shortfall'),name:e.getAttribute('aria-label'),
+   fit:document.documentElement.scrollWidth<=innerWidth+1};})()`);
+ assert(missing.title==='Wisp Ascendancy: level 1'&&missing.detail==='Missing 1 Lumen + 1 Shards for Lab','both exact shortfalls');
+ assert(missing.marked&&missing.color==='rgb(255, 159, 174)'&&missing.name===missing.title+' — '+missing.detail&&missing.fit,'red accessible shortfall at mobile width');
+ sameData(shortfall,await snapshot(),'unfunded hint rendering');
+ await screenshot(name+'-unfunded');
+ record.samples.push({funded,keyboard,missing});
 }
 async function readabilityNegative(record,name){
  const before=await snapshot(),savedStyle=await evaluate('document.querySelector("#rift-hints-toggle").getAttribute("style")');
@@ -235,11 +283,12 @@ async function checkAscendReadability(record,name,inset,capture){
  a.passed=true;
 }
 async function run(url){
- for(const [width,height,inset] of (readabilityProbe?[[320,640,0]]:baseline||contract?[[390,844,24]]:[[320,640,0],[360,640,24],[390,844,24],[430,932,24]]))for(const scale of (readabilityProbe?[2]:baseline||contract?[1]:[1,2]))for(const motion of (baseline||contract||readabilityProbe?['no-preference']:['no-preference','reduce'])){
+ for(const [width,height,inset] of (readabilityProbe?[[320,640,0]]:midgameAccept?[[320,640,0],[390,844,24],[430,932,24]]:baseline||contract?[[390,844,24]]:[[320,640,0],[360,640,24],[390,844,24],[430,932,24]]))for(const scale of (readabilityProbe?[2]:midgameAccept?[1,1.5,2]:baseline||contract?[1]:[1,2]))for(const motion of (baseline||contract||readabilityProbe?['no-preference']:['no-preference','reduce'])){
   const name=`${width}x${height}-safe${inset}-text${scale}-${motion}`,record={profile:name,samples:[]};records.push(record);
   const context=await send('Target.createBrowserContext',{},null),target=await send('Target.createTarget',{url:'about:blank',browserContextId:context.browserContextId},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;
   await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await send('Page.enable');await send('Runtime.enable');await send('Page.navigate',{url});await ready();
   await evaluate(`document.documentElement.style.fontSize=(parseFloat(getComputedStyle(document.documentElement).fontSize)*${scale})+'px'`);
+  if(midgameAccept){await midgameFarmAcceptance(record,name,inset);await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(layoutProbe){await layoutSample(record,name,inset);await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(contract){record.existingContract=await evaluate('(()=>{const b=__lumenfallQaBridge;b.freeze();return runRiftStatusQa(b,__lumenfallQaContext,(value,message)=>{if(!value)throw Error(message);});})()');await reload();record.navContract=await evaluate('(()=>{__lumenfallQaBridge.freeze();return runNavWorkshopQa(__lumenfallQaBridge,__lumenfallQaContext,(value,message)=>{if(!value)throw Error(message);});})()');await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(baseline){await evaluate(`riftStatusMobile.setup(${inset},'boss')`);const shown=await snapshot();await touch('#rift-objective-dismiss');const hidden=await snapshot();record.shown=shown.boxes;record.hidden=hidden.boxes;record.tapDelta={y:hidden.boxes['#enemy-stage'].y-shown.boxes['#enemy-stage'].y,height:hidden.boxes['#enemy-stage'].height-shown.boxes['#enemy-stage'].height};assert(Math.abs(record.tapDelta.y)>1||Math.abs(record.tapDelta.height)>1,'original baseline exposes the reported layout shift');await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
@@ -311,7 +360,7 @@ async function run(url){
  assert(!runtimeErrors.length,'no CDP runtime exceptions');
 }
 (async()=>{
- const result={status:'fail',scope:'RIFT_GUIDANCE_001',baselineProbe:baseline,readabilityProbe,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),instrumentedSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex'),records};
+ const result={status:'fail',scope:midgameAccept?'MIDGAME_FARM_GUIDANCE_001':'RIFT_GUIDANCE_001',baselineProbe:baseline,readabilityProbe,midgameAccept,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),instrumentedSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex'),records};
  try{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
   browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});

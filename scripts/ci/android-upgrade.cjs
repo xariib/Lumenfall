@@ -135,6 +135,44 @@ async function verifyInstalledWispCard(page,report){
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
  console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
 }
+async function verifyInstalledMidgameFarmHint(page,report){
+ // Exercise the shipped WebView after the save/entitlement upgrade checks. This
+ // disposable in-memory fixture is never installed on a player's device.
+ const size=adb('shell','wm','size').match(/(\d+)x(\d+)/),viewport=await page.evaluate('innerWidth');
+ assert(size&&viewport,'Native touch dimensions for Farm guidance');
+ const scale=Number(size[1])/viewport;
+ const hint=await page.evaluate(`(()=>{
+   state.ascendCount=1;state.maxDepthEver=30;state.depth=state.enemyDepth=26;
+   state.riftMode='farm';state.farmDepth=20;state.farmReturnDepth=26;
+   state.longStudyLevels.wispascend=0;state.activeStudies=[];
+   state.lumen=800;state.shards=80;
+   activateTab('battle');renderRiftObjective();
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect();
+   const x=r.left+r.width/2,y=r.top+r.height/2;
+   return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
+     detail:e.querySelector('small')?.textContent,name:e.getAttribute('aria-label'),
+     target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
+     x,y,hit:document.elementFromPoint(x,y)?.closest('#rift-objective')===e,
+     fit:document.documentElement.scrollWidth<=innerWidth+1};
+ })()`);
+ fs.writeFileSync('release-evidence/installed-midgame-farm-diagnostic.json',JSON.stringify(hint,null,2)+'\n');
+ assert.equal(hint.kind,'POWER OPTION');
+ assert.equal(hint.title,'Power option: Wisp Ascendancy 1');
+ assert.equal(hint.detail,'+15% passive Wisp damage after study · 800 Lumen + 80 Shards');
+ assert(hint.name===hint.title+' — '+hint.detail&&hint.target==='research'&&hint.selector.includes('wispascend'),'Installed accessible hint targets the actual Lab study');
+ assert(hint.hit&&hint.fit,'Installed Farm hint fits and receives native touch');
+ const shot=await page.command('Page.captureScreenshot',{format:'png'});
+ assert(shot.data,'Installed Farm screenshot captured');
+ fs.writeFileSync('release-evidence/installed-midgame-farm.png',Buffer.from(shot.data,'base64'));
+ adb('shell','input','tap',String(Math.round(hint.x*scale)),String(Math.round(hint.y*scale)));
+ await pause(350);
+ const destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
+   lab:document.querySelector('#tab-research').classList.contains('active'),
+   card:!!card&&card.getBoundingClientRect().width>0,focused:document.activeElement===card};})()`);
+ assert(destination.lab&&destination.card&&destination.focused,'Native touch navigates to and focuses Wisp Ascendancy');
+ report.installedMidgameFarmHint={status:'PASS',hint,destination,screenshot:'release-evidence/installed-midgame-farm.png',syntheticFixture:true};
+ console.log('Android installed Farm guidance acceptance: '+JSON.stringify(report.installedMidgameFarmHint));
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -210,7 +248,8 @@ async function main(){
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
  }
  assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
- await verifyInstalledWispCard(page,report);page.close();
+ await verifyInstalledWispCard(page,report);
+ await verifyInstalledMidgameFarmHint(page,report);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
