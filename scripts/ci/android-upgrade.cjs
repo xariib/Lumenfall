@@ -28,6 +28,23 @@ async function connect(){
  }
 }
 async function verifyInstalledWispCard(page,report){
+ // The cold upgrade can show the ordinary offline recap. Dismiss it with a
+ // trusted touch before measuring the shipped Wisp tab behind the overlay.
+ const welcome=await page.evaluate(`(()=>{
+   const button=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim()==='Continue'&&b.getBoundingClientRect().height>0);
+   if(!button)return null;
+   const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+   return {x,y,hit:document.elementFromPoint(x,y)?.closest('button')===button};
+ })()`);
+ if(welcome){
+   assert(welcome.hit,'Offline recap Continue is reachable by native touch');
+   await page.command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:welcome.x,y:welcome.y}]});
+   await page.command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   await pause(350);
+   const stillOpen=await page.evaluate(`Array.from(document.querySelectorAll('button')).some(b=>b.textContent.trim()==='Continue'&&b.getBoundingClientRect().height>0&&document.elementFromPoint(b.getBoundingClientRect().left+b.getBoundingClientRect().width/2,b.getBoundingClientRect().top+b.getBoundingClientRect().height/2)?.closest('button')===b)`);
+   assert(!stillOpen,'Offline recap closed before Wisp inspection');
+ }
+ report.offlineRecapDismissed=!!welcome;
  // Inspect the shipped UI inside the installed APK's actual Android WebView.
  const ui=await page.evaluate(`(async()=>{
    const tab=document.querySelector('[data-tab="spirits"]');
