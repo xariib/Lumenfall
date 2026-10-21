@@ -28,7 +28,7 @@ async function connect(){
  }
 }
 async function verifyInstalledWispCard(page,report){
- const size=adb('shell','wm','size').match(/(\\d+)x(\\d+)/);
+ const size=adb('shell','wm','size').match(/(\d+)x(\d+)/);
  assert(size,'Android display dimensions available');
  const viewport=await page.evaluate('({width:innerWidth,height:innerHeight})');
  const scale=Number(size[1])/viewport.width;
