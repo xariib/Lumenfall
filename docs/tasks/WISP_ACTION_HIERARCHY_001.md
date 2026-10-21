@@ -180,3 +180,35 @@ Next action: review PR #4's final-head CI, integrate its test-only change, run
 Build Android APK with `publish=false` on that commit, inspect its installed
 Wisp receipt/screenshot and original upgrade preservation, then arrange the
 remaining physical-device accessibility/visual acceptance before closeout.
+
+## Installed Android acceptance checkpoint — 21 October 2026
+
+[Exact-main full validation #19](https://github.com/xariib/Lumenfall/actions/runs/39548886678)
+finished successfully. [PR #4](https://github.com/xariib/Lumenfall/pull/4)
+changed only `scripts/ci/android-upgrade.cjs`; its final head
+`bce0da481efe8beb0904348445c18b8de08bfaf9` passed all six relevant
+workflows and the non-publishing branch Android run #20. It merged at
+`4a3085067797b292b32c179e4e4bbb8e33b640d1`. Product `index.html`
+remained byte-identical to the PR #3 integration; no prices, saves or gameplay
+were changed by the QA follow-up.
+
+[Integrated Android build #21](https://github.com/xariib/Lumenfall/actions/runs/39559404175)
+passed on that exact merge commit with `publish=false`. Signed package
+`com.lumenfall.app` version 0.2.21, versionCode 1000021, APK SHA-256
+`5141f8e54290a18854b125677f2f144690d055e06a0c07f95762b6d33d36a026`.
+Artifact `signed-apk-39559404175` (ID 12326779780) holds APK, upgrade receipt,
+UI diagnostic and screenshot. The Android 12/API31 emulator with installed
+WebView 91 upgraded archived signed 0.1.158 in place with UID/origin, both save
+slots, progression, paid study and legacy entitlements retained. In the
+installed APK, the Wisp tab showed all eight cards at 320 px without visible
+clipping or horizontal page scroll; identity, unfinished upgrades, prices,
+current/next effects and a single enabled Next cue with current accessible name
+were present. A trusted Android touch bought exactly one Ember Ability level
+(10 to 11); both next prices stayed visible and focus returned with the new
+accessible label. The screenshot was inspected and shows the complete Ember
+card and readable action. No release was published.
+
+Status: **integrated; installed emulator acceptance passed; physical-device
+acceptance pending**. A real phone, exact WebView 60, TalkBack, and human visual/
+pacing acceptance remain unverified. Do not mark this improvement complete or
+archive it until the requested installed-device acceptance is recorded.
