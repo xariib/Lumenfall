@@ -2071,6 +2071,38 @@
   @media(max-width:480px){
     .wisp-rarity-section{grid-template-columns:minmax(0,1fr);}
   }
+  /* Compact Wisp rows share one surface; all unfinished content stays visible. */
+  #tab-spirits .hero-card .hero-top{display:flex;flex-wrap:wrap;gap:8px;}
+  #tab-spirits .hero-card .hero-top .wisp-portrait{width:44px;height:44px;padding:2px;}
+  #tab-spirits .hero-card .hero-id{flex:1;min-width:min-content;overflow-wrap:normal;}
+  #tab-spirits .hero-card .hero-id .name{font-size:1rem;}
+  #tab-spirits .hero-card .class-tag{font-size:.6875rem;}
+  #tab-spirits .hero-card .hero-stats{margin:6px 0;padding:0;border:0;background:transparent;}
+  #tab-spirits .hero-card .wisp-empower-action{margin:6px 0;font-size:.75rem;}
+  #tab-spirits .wisp-empower-action strong{flex:1;min-width:0;white-space:normal;text-align:left;}
+  #tab-spirits .wisp-rarity-section,#tab-spirits .wisp-mastery-section{display:flex;flex-wrap:wrap;gap:6px 12px;padding:8px 0;}
+  #tab-spirits .wisp-rarity-info,#tab-spirits .wisp-mastery-section>div:first-child{flex:1 1 11rem;min-width:0;}
+  #tab-spirits .wisp-rarity-section .hero-actions,#tab-spirits .wisp-mastery-section .hero-actions{flex:1 1 7rem;min-width:0;}
+  #tab-spirits .wisp-rarity-info>h3{display:inline;font-size:.8125rem;}
+  #tab-spirits .wisp-rarity-info>p:first-of-type{display:inline;margin-left:6px;}
+  #tab-spirits .wisp-effect-pair{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 6px;margin:4px 0;}
+  #tab-spirits .wisp-effect-pair>div{flex:0 1 auto;min-width:0;max-width:100%;}
+  #tab-spirits .wisp-effect-pair p,#tab-spirits .wisp-effect-pair .module-effect,#tab-spirits .wisp-effect-pair .ability-effect-next{margin:0;font-size:.75rem;line-height:1.45;}
+  #tab-spirits .wisp-effect-arrow{color:var(--ink-dim);font-size:.75rem;}
+  #tab-spirits .wisp-rarity-info .rarity-level-requirement,#tab-spirits .ultimate-requirements{font-size:.75rem;line-height:1.45;margin:4px 0;}
+  #tab-spirits .wisp-ability-title{flex-wrap:wrap;gap:6px;}
+  #tab-spirits .wisp-progression .hero-ability{padding:8px 0 4px;}
+  #tab-spirits .wisp-progression .ability-desc{font-size:.75rem;line-height:1.45;}
+  #tab-spirits .hero-card .module-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;padding-bottom:8px;}
+  #tab-spirits .module-row>.ability-effects{flex:1 1 11rem;}
+  #tab-spirits .module-row>.mini-btn{flex:1 1 7rem;min-width:0;width:auto;}
+  #tab-spirits .wisp-ultimate-title{font:700 .8125rem 'Manrope',sans-serif;margin:0 0 4px;}
+  #tab-spirits .wisp-purchase-title{flex-basis:100%;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px 4px;}
+  #tab-spirits .ultimate-badge{background:transparent;border:0;border-radius:0;box-shadow:none;padding:6px 0;text-align:left;font-size:.75rem;line-height:1.45;}
+  #tab-spirits .wisp-role-readout{margin:4px 0;padding:4px 0;}
+  #tab-spirits .wisp-role-line,#tab-spirits .wisp-role-note{font-size:.8125rem;margin:3px 0;}
+  #tab-spirits #spirit-list .wisp-action-primary:not(:disabled){border-color:var(--lumen);box-shadow:inset 0 0 0 1px var(--lumen);transition:none;}
+  #tab-spirits .wisp-next-label{color:var(--lumen);font-size:.6875rem;}
   .study-card .study-meta{padding:8px 10px;border-radius:8px;background:#0c1b2c;border:1px solid #365365;line-height:1.5;}
   #tab-ascend .node-card{position:relative;align-items:flex-start;border-left:3px solid #9c8bc4;}
   #tab-ascend .node-info{min-width:0;overflow-wrap:break-word;word-break:break-word;overflow-wrap:anywhere;}
@@ -8961,14 +8993,14 @@ function restoreWispActionView(view){
 }
 function masteryFactorText(rank){var value=Amount.pow(1.1,rank);return typeof value==='number'&&value<1000?value.toFixed(2):formatRiftNumber(value);}
 function wispRarityEffectsMarkup(tier){
-  function effect(level){return 'Power ×'+RARITY_MULT[level]+'<br>+'+(level*2)+'% party passive';}
-  return '<div class="ability-effects rarity-effects"><div><span class="ability-effect-label">Current</span><p data-rarity-current>'+effect(tier)+'</p></div>'+
-    '<div><span class="ability-effect-label">Next</span><p data-rarity-next>'+(tier>=5?'Maxed':effect(tier+1))+'</p></div></div>';
+  function effect(level){return 'Power ×'+RARITY_MULT[level]+' · +'+(level*2)+'% party passive';}
+  return '<div class="ability-effects rarity-effects wisp-effect-pair"><div role="group" aria-label="Current rarity effect"><p data-rarity-current>'+effect(tier)+'</p></div>'+
+    '<span class="wisp-effect-arrow" aria-hidden="true">→</span><div role="group" aria-label="Next rarity effect"><p data-rarity-next>'+(tier>=5?'Maxed':effect(tier+1))+'</p></div></div>';
 }
 function wispUltimateEffectsMarkup(sp){
   var current=sp.abilityType==='support' ? 'Support buff +'+(25+forgeLevel('amplifiertrim'))+'% for 1s'+(forgeLevel('resonantedge')?'; Resonant Edge hit ×1':'') : sp.abilityType==='ranged' ? 'Ability damage and Shards ×1' : sp.abilityType==='druid' ? 'Ability damage and Lumen ×1' : 'Ability damage ×1';
-  return '<div class="ability-effects ultimate-effects"><div><span class="ability-effect-label">Current</span><p data-ultimate-current>'+current+'</p></div>'+
-    '<div><span class="ability-effect-label">Next</span><p data-ultimate-next>'+ultimateEffectText(sp)+'</p></div></div>';
+  return '<div class="ability-effects ultimate-effects wisp-effect-pair"><div role="group" aria-label="Current Ultimate effect"><p data-ultimate-current>'+current+'</p></div>'+
+    '<span class="wisp-effect-arrow" aria-hidden="true">→</span><div role="group" aria-label="Next Ultimate effect"><p data-ultimate-next>'+ultimateEffectText(sp)+'</p></div></div>';
 }
 function wispMasteryMarkup(sp){
   if(!wispUpgradesMaxed(sp.id))return '';
@@ -8977,6 +9009,25 @@ function wispMasteryMarkup(sp){
     '<p data-mastery-current>Current: Own Power ×'+masteryFactorText(p.rank)+'</p><p data-mastery-next>Next: Own Power ×'+masteryFactorText(p.rank+1)+'</p>'+
     '<p>Permanent growth. Keeps all Wisp upgrades through Ascend.</p><p id="'+helpId+'">'+(p.ready?'':'Recruit this Wisp first. ')+'Requires '+wispRequirementText(p.requirements)+'</p></div>'+
     '<div class="hero-actions"><button class="mini-btn mastery-btn" data-mastery="'+sp.id+'" aria-describedby="'+helpId+'" '+(p.affordable?'':'disabled')+'>Mastery Up'+purchasePriceMarkup('prism',p.cost.prism,'wisp-upgrade-price')+purchasePriceMarkup('sigil',p.cost.sigil,'wisp-upgrade-price')+'</button></div></section>';
+}
+// The cue points at an existing enabled purchase; it never quotes or buys.
+function highlightWispActions(){
+  if(!els['spirit-list'])return;
+  els['spirit-list'].querySelectorAll('[data-wisp-card]').forEach(function(card){
+    card.querySelectorAll('.wisp-next-label').forEach(function(label){label.remove();});
+    card.querySelectorAll('.wisp-action-primary').forEach(function(button){button.classList.remove('wisp-action-primary');});
+    var id=card.getAttribute('data-wisp-card'),keys=(state.spirits[id]||0)>0?['mastery','ultimate','rarity','module','empower']:['empower'];
+    card.removeAttribute('data-primary-action');
+    keys.some(function(key){
+      var button=card.querySelector('[data-'+key+'="'+id+'"]');
+      if(!button||button.disabled)return false;
+      var label=document.createElement('span');label.className='wisp-next-label';label.textContent='Next ·';
+      var heading=button.querySelector('.wisp-purchase-title,strong')||button;heading.insertBefore(label,heading.firstChild);
+      button.classList.add('wisp-action-primary');card.setAttribute('data-primary-action',key);return true;
+    });
+  });
+  // Finalize cue names before render/refresh callers restore native focus.
+  presentControlStates(els['spirit-list']);
 }
 function renderSpirits(keepScroll){
   var actionView=captureWispActionView();
@@ -9016,7 +9067,7 @@ function renderSpirits(keepScroll){
     var req = rarityReq(tier);
     var rc = rarityCost(sp, tier);
     var rarityPlan=getWispRarityPlan(sp),canRarity=rarityPlan.affordable;
-    var rarityLabel=tier>=5?'Rarity maxed':'<span>Rarity Up</span>'+purchasePriceMarkup('lumen',rc.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',rc.shard,'wisp-upgrade-price');
+    var rarityLabel=tier>=5?'Rarity maxed':'<span class="wisp-purchase-title">Rarity Up</span>'+purchasePriceMarkup('lumen',rc.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',rc.shard,'wisp-upgrade-price');
     var modInfo = MODULE_INFO[sp.abilityType];
     var modLvl = moduleLevel(sp.id);
     var modMaxed = Amount.ge(modLvl,MODULE_MAX_LEVEL);
@@ -9024,10 +9075,10 @@ function renderSpirits(keepScroll){
     var canModule = recruited && !modMaxed && Amount.ge(state.lumen,modCost.lumen) && canSpendShards(modCost.shard);
     var moduleHtml =
       '<div class="module-row">' +
-        '<div class="ability-effects"><div><span class="ability-effect-label">Current</span><div class="module-effect" data-ability-current>'+modInfo.effect(modLvl)+'</div></div>' +
-          '<div><span class="ability-effect-label">Next</span><div class="ability-effect-next" data-ability-next>'+(modMaxed?'Maxed':modInfo.effect(modLvl+1))+'</div></div></div>' +
+        '<div class="ability-effects wisp-effect-pair"><div role="group" aria-label="Current ability effect"><div class="module-effect" data-ability-current>'+modInfo.effect(modLvl)+'</div></div>' +
+          '<span class="wisp-effect-arrow" aria-hidden="true">→</span><div role="group" aria-label="Next ability effect"><div class="ability-effect-next" data-ability-next>'+(modMaxed?'Maxed':modInfo.effect(modLvl+1))+'</div></div></div>' +
         (modMaxed ? '' :
-          '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'>'+modInfo.upgradeLabel +
+          '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'><span class="wisp-purchase-title">'+modInfo.upgradeLabel+'</span>' +
             purchasePriceMarkup('lumen',modCost.lumen,'wisp-upgrade-price') +
             purchasePriceMarkup('shard',modCost.shard,'wisp-upgrade-price') +
           '</button>') +
@@ -9045,7 +9096,7 @@ function renderSpirits(keepScroll){
         'Requires all Wisp Ultimates. '+(sigilResonanceLimit()-resonanceUses)+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText()+'</p>' : '';
     var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
-      : wispUltimateEffectsMarkup(sp)+'<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
+      : '<h3 class="wisp-ultimate-title">Ultimate</h3>'+wispUltimateEffectsMarkup(sp)+'<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
         '<button class="mini-btn ultimate-btn" data-ultimate="'+sp.id+'" aria-describedby="wisp-ultimate-requirement-'+sp.id+'" '+(ultimatePlan.affordable?'':'disabled')+'>Unlock Ultimate'+purchasePriceMarkup('sigil',ultCost,'wisp-upgrade-price')+'</button>')+'</div>';
     var empowerOn = state.empowerQueue[sp.id]!==false;
     var pendingRebuild = intendedFormationIds().indexOf(sp.id)!==-1 && !recruited;
@@ -9054,10 +9105,11 @@ function renderSpirits(keepScroll){
       (' <button class="node-queue-toggle ' + (empowerOn?'active':'') + '" data-empower-queue="' + sp.id + '">Auto-Empower ' + (empowerOn?'ON':'OFF') + '</button>') : '';
     html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatRiftNumber(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + purchasePriceMarkup('lumen',cost,'mono') + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + (upgradesMaxed ?
         Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<details class="wisp-progression" data-wisp-progression="',sp.id),'" '),openProgression.indexOf(sp.id)!==-1?'open':''),'><summary data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' upgrades">Upgrades</summary>') :
-        Amount.add(Amount.add(Amount.add(Amount.add('<section class="wisp-progression" data-wisp-progression="',sp.id),'" aria-labelledby="wisp-progression-'),sp.id),'">')) + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span><span class="ability-badge">Ability</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div><span class="ability-desc">' + forgeAbilityDescription(sp) + '</span></div>' + moduleHtml + ultimateHtml + '</section>' + (upgradesMaxed ? '</details>' : '</section>') + wispMasteryMarkup(sp) + '</div>');
+        Amount.add(Amount.add(Amount.add(Amount.add('<section class="wisp-progression" data-wisp-progression="',sp.id),'" aria-labelledby="wisp-progression-'),sp.id),'">')) + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div><span class="ability-desc">' + forgeAbilityDescription(sp) + '</span></div>' + moduleHtml + ultimateHtml + '</section>' + (upgradesMaxed ? '</details>' : '</section>') + wispMasteryMarkup(sp) + '</div>');
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   renderWispRoles();
+  highlightWispActions();
   if(actionView){
     restoreWispActionView(actionView);
   } else if(focusedProgression){
@@ -12545,6 +12597,8 @@ function checkAffordability(){
   lastAffordabilityAt = now;
   renderLabCapacityBadge();
   var actionView=captureWispActionView();
+  // Live labels can wrap as wallets change; a wallet refresh is not navigation.
+  if(actionView)actionView.anchorTop=null;
   els['spirit-list'].querySelectorAll('[data-empower]').forEach(function(btn){
     var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-empower'); });
     if(!sp) return;
@@ -12583,6 +12637,7 @@ function checkAffordability(){
     var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-sigil-resonate');});
     btn.disabled=!canSigilResonate(sp);
   });
+  highlightWispActions();
   restoreWispActionView(actionView);
   els['research-list'].querySelectorAll('[data-research]').forEach(function(btn){
     var node = RESEARCH.find(function(n){ return n.id===btn.getAttribute('data-research'); });

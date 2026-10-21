@@ -1,0 +1,61 @@
+{
+  "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+  "test": "tests/behavioral/accessibility-controls.js",
+  "beforeTestSha256": "4ecc1af6817cb91e42bb6b33a65aa6ee418e5a0aa1ab6866ac1fd8c635d9a14c",
+  "afterTestSha256": "6f5f7eccfb4546e44fcebdc3469b9b421b8046a8d243a655192368aff4969292",
+  "finding": "Legacy exact strong-text assertion omitted the approved Next cue in p1-05-control-regressions.",
+  "before": {
+    "status": "fail",
+    "message": "Empower/Recruit wording retained"
+  },
+  "after": {
+    "status": "pass",
+    "detail": {
+      "selectedContrast": {
+        ".mult-btn.active": 10.820790238811385,
+        ".study-level": 7.514016275792294,
+        ".study-boost-start": 10.315572422793789
+      },
+      "liveStates": true,
+      "focus": true,
+      "untrustedTapGuard": true,
+      "affordabilityFunding": {
+        "multiplier": "5",
+        "price": {
+          "lumen": 15000,
+          "shard": 120
+        },
+        "wallet": {
+          "lumen": 15000,
+          "shards": 120
+        }
+      }
+    }
+  },
+  "originalHarness": {
+    "command": "LUMENFALL_QA_DOM_TRANSPORT=pipe node tests/behavioral/run.cjs --scenario <case>",
+    "results": [
+      {
+        "scenario": "p1-05-control-regressions",
+        "exitCode": 0,
+        "error": null,
+        "expected": "pass"
+      },
+      {
+        "scenario": "self-test-p1-05-selected",
+        "exitCode": 1,
+        "error": null,
+        "expected": "intentional selected/focus-return assertion failure"
+      },
+      {
+        "scenario": "self-test-p1-05-focus-return",
+        "exitCode": 1,
+        "error": null,
+        "expected": "intentional selected/focus-return assertion failure"
+      }
+    ]
+  },
+  "preserved": "Exact Empower/Recruit base action, accessible Wisp/action/price/unit, shortage copy, native disabled state, horizontal target geometry, observer-only state/save/events and exact-price single purchase assertions remain.",
+  "added": "Assert cue and primary class exactly when funded, exact full visible cue/action and matching accessible cue.",
+  "limits": "This is an intentional UI expectation update, not a gameplay or source change. Required CI must pass after publication."
+}

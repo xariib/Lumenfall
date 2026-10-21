@@ -135,6 +135,36 @@ jobs:
           node tests/behavioral/wisp-contribution-core.cjs index.html --negative --preservation > validation-evidence/wisp-contribution-core.json
           node tests/behavioral/wisp-contribution-mobile.cjs index.html validation-evidence/wisp-contribution-mobile
 
+      - name: Compact Wisp cards, live next action and original purchase preservation
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/WISP_ACTION_HIERARCHY_001.md
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          node tests/behavioral/wisp-upgrades.cjs --chrome "$CHROME" --compact --evidence validation-evidence/wisp-compact/current
+          if node tests/behavioral/wisp-upgrades.cjs --chrome "$CHROME" --compact --mutate-primary --evidence validation-evidence/wisp-compact/control; then
+            echo "::error::Disabled primary-action defect unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('validation-evidence/wisp-compact/current/wisp-upgrades-result.json'));
+          const bad=JSON.parse(fs.readFileSync('validation-evidence/wisp-compact/control/wisp-upgrades-result.json'));
+          assert.equal(good.status,'pass');assert.equal(good.records.length,18);
+          assert.equal(bad.status,'fail');assert.match(bad.message,/unfunded card has no suggested purchase/);
+          assert.notEqual(bad.sourceSha256,good.sourceSha256);assert(!bad.teardown);
+          JS
+
+          if node tests/behavioral/wisp-upgrades.cjs --chrome "$CHROME" --compact --mutate-names --evidence validation-evidence/wisp-compact/control-names; then
+            echo "::error::Stale accessible-name defect unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('validation-evidence/wisp-compact/current/wisp-upgrades-result.json'));
+          const bad=JSON.parse(fs.readFileSync('validation-evidence/wisp-compact/control-names/wisp-upgrades-result.json'));
+          assert.equal(bad.status,'fail');assert.match(bad.message,/next cue included in accessible name before refresh/);
+          assert.notEqual(bad.sourceSha256,good.sourceSha256);assert(!bad.teardown);
+          JS
+
       - name: Development currency UI and retained-value acceptance
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/PRISM_EARNING_001.md

@@ -1,0 +1,1207 @@
+{
+  "status": "pass",
+  "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+  "finding": {
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/39443240066/job/118698682829",
+    "head": "7e232ea88bba38ac1e47cd3bf2ca99495f5fba3e",
+    "scenarios": [
+      "offline-catchup-ui",
+      "offline-catchup-legacy-dom"
+    ],
+    "error": "Regenerate one-second windows after product changes",
+    "cause": "Original source-binding guard rejects a reference naming the pre-UI product."
+  },
+  "generator": {
+    "command": "node tests/behavioral/offline-catchup.cjs --generate-swift-golden",
+    "oracle": "Independent one-second advance calls, fixed whole-window start",
+    "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+    "previousSourceSha256": "d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5",
+    "allFourRewardAndStateHashRecordsUnchanged": true,
+    "phases": [
+      {
+        "kills": 86404,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "aef0652a5db35f6b90baf49267f63524f07120f05316ccefca8735733130c59d"
+      },
+      {
+        "kills": 86401,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "f7c98389dc8e3940fdf001819410539455376ebe5127e86b0f8cab5b9c2d0e88"
+      },
+      {
+        "kills": 86396,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "f57287e75b3c4e4ebfecb03a5df5a8bcb46fcf256cfec1e4f82da7dcacf05481"
+      },
+      {
+        "kills": 86405,
+        "ascends": 4115,
+        "prisms": 94645,
+        "stateSha256": "d5f388dd3af0a5204fadde9a3928ab16146f2f08bc7e296d0ebcb9fb19ad1743"
+      }
+    ]
+  },
+  "unchangedTestInputs": {
+    "tests/behavioral/offline-catchup.cjs": {
+      "sha256": "d609a4eac1a3340b887bd8fc4fed953c67cecd9784692eca4ae93920dbca0caa",
+      "unchangedFromMain": true
+    },
+    "tests/behavioral/offline-catchup-ui.cjs": {
+      "sha256": "7fc76d0e99d78bb57ac0d225c0755ae9de5c9cb311f7100f1b4e33abbfb406d0",
+      "unchangedFromMain": true
+    },
+    "tests/behavioral/run.cjs": {
+      "sha256": "09375bc7756c18fda5652c4adff99c85bc308f59d62b028366400e76a456dbe0",
+      "unchangedFromMain": true
+    }
+  },
+  "browserCases": [
+    {
+      "scenario": "offline-catchup-ui",
+      "status": "pass",
+      "elapsedMs": 62262,
+      "error": null,
+      "originalDeadlineSeconds": 210,
+      "detail": {
+        "status": "pass",
+        "scenario": "offline-catchup-ui",
+        "records": [
+          {
+            "case": "initial cold observation",
+            "before": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": true,
+                "offlinePending": true,
+                "resumeFlowBusy": true
+              },
+              "kills": 385146,
+              "ascends": 15142,
+              "lastSeen": 2052439200000,
+              "offline": 897320.3319999998,
+              "primaryKills": 385146,
+              "primaryLastSeen": 2052439200000,
+              "recoveryMatches": false,
+              "heartbeat": {
+                "frames": 3,
+                "maxGap": 50.1,
+                "last": 99
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "return panel legacy positioning/input",
+            "returnGeometry": {
+              "overlay": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 844
+              },
+              "button": {
+                "x": 47,
+                "y": 510,
+                "width": 296,
+                "height": 44
+              },
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "hit": true
+            }
+          },
+          {
+            "case": "cold8h",
+            "before": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": true,
+                "offlinePending": true,
+                "resumeFlowBusy": true
+              },
+              "kills": 385146,
+              "ascends": 15142,
+              "lastSeen": 2052439200000,
+              "offline": 897320.3319999998,
+              "primaryKills": 385146,
+              "primaryLastSeen": 2052439200000,
+              "recoveryMatches": false,
+              "heartbeat": {
+                "frames": 3,
+                "maxGap": 50.1,
+                "last": 99
+              },
+              "errors": 0
+            },
+            "cold": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 471550,
+              "ascends": 19256,
+              "lastSeen": 2052468000000,
+              "offline": 926120.3319999998,
+              "primaryKills": 471550,
+              "primaryLastSeen": 2052468000000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 603,
+                "maxGap": 133.4,
+                "last": 10248.7
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "resume/repeated",
+            "resumed": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 557951,
+              "ascends": 23370,
+              "lastSeen": 2052496800000,
+              "offline": 954920.3319999998,
+              "primaryKills": 557951,
+              "primaryLastSeen": 2052496800000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 1247,
+                "maxGap": 133.4,
+                "last": 21181.6
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "interruption/restart",
+            "interrupted": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": true,
+                "resumeFlowBusy": false
+              },
+              "kills": 557951,
+              "ascends": 23370,
+              "lastSeen": 2052496800000,
+              "offline": 954920.3319999998,
+              "primaryKills": 557951,
+              "primaryLastSeen": 2052496800000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 1251,
+                "maxGap": 133.4,
+                "last": 21314.9
+              },
+              "errors": 0
+            },
+            "restarted": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 644347,
+              "ascends": 27484,
+              "lastSeen": 2052525600000,
+              "offline": 983720.3319999998,
+              "primaryKills": 644347,
+              "primaryLastSeen": 2052525600000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 780,
+                "maxGap": 83.30000000000001,
+                "last": 13224.5
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "failure/retry",
+            "failed": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": true,
+                "resumeFlowBusy": false
+              },
+              "kills": 644347,
+              "ascends": 27484,
+              "lastSeen": 2052525600000,
+              "offline": 983720.3319999998,
+              "primaryKills": 644347,
+              "primaryLastSeen": 2052525600000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 780,
+                "maxGap": 83.30000000000001,
+                "last": 13224.5
+              },
+              "errors": 0
+            },
+            "recovered": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 730752,
+              "ascends": 31599,
+              "lastSeen": 2052554400000,
+              "offline": 1012520.3319999998,
+              "primaryKills": 730752,
+              "primaryLastSeen": 2052554400000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 1342,
+                "maxGap": 83.30000000000001,
+                "last": 22657.5
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "daily rollover/failure/retry across next midnight",
+            "firstStreak": 3,
+            "comets": 1046
+          }
+        ],
+        "teardown": {
+          "pendingBeforeClose": 0,
+          "events": [
+            {
+              "event": "browser-close",
+              "code": 0,
+              "signal": null,
+              "pending": 0
+            },
+            {
+              "event": "profile-removed",
+              "browserClosed": true
+            }
+          ],
+          "browser": {
+            "code": 0,
+            "signal": null
+          },
+          "pendingAfterClose": 0,
+          "profileRemoved": true
+        }
+      }
+    },
+    {
+      "scenario": "offline-catchup-legacy-dom",
+      "status": "pass",
+      "elapsedMs": 62222,
+      "error": null,
+      "originalDeadlineSeconds": 210,
+      "detail": {
+        "status": "pass",
+        "scenario": "offline-catchup-legacy-dom",
+        "records": [
+          {
+            "case": "initial cold observation",
+            "before": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": true,
+                "offlinePending": true,
+                "resumeFlowBusy": true
+              },
+              "kills": 385146,
+              "ascends": 15142,
+              "lastSeen": 2052439200000,
+              "offline": 897320.3319999998,
+              "primaryKills": 385146,
+              "primaryLastSeen": 2052439200000,
+              "recoveryMatches": false,
+              "heartbeat": {
+                "frames": 3,
+                "maxGap": 66.7,
+                "last": 96.6
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "return panel legacy positioning/input",
+            "returnGeometry": {
+              "overlay": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 844
+              },
+              "button": {
+                "x": 47,
+                "y": 510,
+                "width": 296,
+                "height": 44
+              },
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "hit": true
+            }
+          },
+          {
+            "case": "legacy dialog background without color-mix/alpha hex",
+            "paint": {
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "backgroundImage": "radial-gradient(at 100% 0%, rgba(57, 49, 75, 0.533), rgba(0, 0, 0, 0) 65%), linear-gradient(145deg, rgb(27, 41, 65), rgb(17, 26, 44))"
+            }
+          },
+          {
+            "case": "cold8h",
+            "before": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": true,
+                "offlinePending": true,
+                "resumeFlowBusy": true
+              },
+              "kills": 385146,
+              "ascends": 15142,
+              "lastSeen": 2052439200000,
+              "offline": 897320.3319999998,
+              "primaryKills": 385146,
+              "primaryLastSeen": 2052439200000,
+              "recoveryMatches": false,
+              "heartbeat": {
+                "frames": 3,
+                "maxGap": 66.7,
+                "last": 96.6
+              },
+              "errors": 0
+            },
+            "cold": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 471550,
+              "ascends": 19256,
+              "lastSeen": 2052468000000,
+              "offline": 926120.3319999998,
+              "primaryKills": 471550,
+              "primaryLastSeen": 2052468000000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 590,
+                "maxGap": 116.70000000000002,
+                "last": 9996.3
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "resume/repeated",
+            "resumed": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 557951,
+              "ascends": 23370,
+              "lastSeen": 2052496800000,
+              "offline": 954920.3319999998,
+              "primaryKills": 557951,
+              "primaryLastSeen": 2052496800000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 1246,
+                "maxGap": 116.70000000000002,
+                "last": 21912.5
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "interruption/restart",
+            "interrupted": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": true,
+                "resumeFlowBusy": false
+              },
+              "kills": 557951,
+              "ascends": 23370,
+              "lastSeen": 2052496800000,
+              "offline": 954920.3319999998,
+              "primaryKills": 557951,
+              "primaryLastSeen": 2052496800000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 1249,
+                "maxGap": 116.70000000000002,
+                "last": 21962.5
+              },
+              "errors": 0
+            },
+            "restarted": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 644347,
+              "ascends": 27484,
+              "lastSeen": 2052525600000,
+              "offline": 983720.3319999998,
+              "primaryKills": 644347,
+              "primaryLastSeen": 2052525600000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 735,
+                "maxGap": 116.70000000000002,
+                "last": 12407.7
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "failure/retry",
+            "failed": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": true,
+                "resumeFlowBusy": false
+              },
+              "kills": 644347,
+              "ascends": 27484,
+              "lastSeen": 2052525600000,
+              "offline": 983720.3319999998,
+              "primaryKills": 644347,
+              "primaryLastSeen": 2052525600000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 735,
+                "maxGap": 116.70000000000002,
+                "last": 12407.7
+              },
+              "errors": 0
+            },
+            "recovered": {
+              "flags": {
+                "resetInProgress": false,
+                "resetBootPending": false,
+                "reloadInProgress": false,
+                "offlineBusy": false,
+                "offlinePending": false,
+                "resumeFlowBusy": false
+              },
+              "kills": 730752,
+              "ascends": 31599,
+              "lastSeen": 2052554400000,
+              "offline": 1012520.3319999998,
+              "primaryKills": 730752,
+              "primaryLastSeen": 2052554400000,
+              "recoveryMatches": true,
+              "heartbeat": {
+                "frames": 1287,
+                "maxGap": 116.70000000000002,
+                "last": 21624
+              },
+              "errors": 0
+            }
+          },
+          {
+            "case": "daily rollover/failure/retry across next midnight",
+            "firstStreak": 3,
+            "comets": 1046
+          }
+        ],
+        "teardown": {
+          "pendingBeforeClose": 0,
+          "events": [
+            {
+              "event": "browser-close",
+              "code": 0,
+              "signal": null,
+              "pending": 0
+            },
+            {
+              "event": "profile-removed",
+              "browserClosed": true
+            }
+          ],
+          "browser": {
+            "code": 0,
+            "signal": null
+          },
+          "pendingAfterClose": 0,
+          "profileRemoved": true
+        }
+      }
+    }
+  ],
+  "limits": "Modern Chromium and original browser assertions; physical Android/WebView60/TalkBack remain unverified. Required CI must pass on final head.",
+  "finalLocalPreflight": {
+    "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+    "transport": "Original run.cjs and deadlines, pipe DOM transport",
+    "cases": [
+      {
+        "scenario": "offline-catchup-ui",
+        "status": "pass",
+        "elapsedMs": 62262,
+        "error": null
+      },
+      {
+        "scenario": "offline-catchup-legacy-dom",
+        "status": "pass",
+        "elapsedMs": 62222,
+        "error": null
+      },
+      {
+        "scenario": "loadout-memory-mobile",
+        "status": "pass",
+        "elapsedMs": 130927,
+        "error": null
+      },
+      {
+        "scenario": "forge-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1026,
+        "error": null
+      },
+      {
+        "scenario": "forge-recovery",
+        "status": "pass",
+        "elapsedMs": 908,
+        "error": null
+      },
+      {
+        "scenario": "forge-baseline",
+        "status": "pass",
+        "elapsedMs": 1078,
+        "error": null
+      },
+      {
+        "scenario": "forge-balance",
+        "status": "pass",
+        "elapsedMs": 4981,
+        "error": null
+      },
+      {
+        "scenario": "r3-destinations",
+        "status": "pass",
+        "elapsedMs": 3340,
+        "error": null
+      },
+      {
+        "scenario": "r3-save-reload",
+        "status": "pass",
+        "elapsedMs": 2010,
+        "error": null
+      },
+      {
+        "scenario": "research-duration",
+        "status": "pass",
+        "elapsedMs": 914,
+        "error": null
+      },
+      {
+        "scenario": "research-duration-reduced-motion",
+        "status": "pass",
+        "elapsedMs": 955,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-persistence-review",
+        "status": "pass",
+        "elapsedMs": 769,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-persist-save-reload",
+        "status": "pass",
+        "elapsedMs": 931,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-persist-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1041,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-persist-recovery",
+        "status": "pass",
+        "elapsedMs": 953,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-persist-reset",
+        "status": "pass",
+        "elapsedMs": 947,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-formation-reconstruction",
+        "status": "pass",
+        "elapsedMs": 1236,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-save-reload",
+        "status": "pass",
+        "elapsedMs": 1030,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1202,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-recovery",
+        "status": "pass",
+        "elapsedMs": 994,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-chronology",
+        "status": "pass",
+        "elapsedMs": 1002,
+        "error": null
+      },
+      {
+        "scenario": "layout-p2-07a-reconstruction",
+        "status": "pass",
+        "elapsedMs": 3238,
+        "error": null
+      },
+      {
+        "scenario": "p2-06b-live-feedback",
+        "status": "pass",
+        "elapsedMs": 1197,
+        "error": null
+      },
+      {
+        "scenario": "p2-06b-reduced-motion",
+        "status": "pass",
+        "elapsedMs": 1231,
+        "error": null
+      },
+      {
+        "scenario": "layout-fresh",
+        "status": "pass",
+        "elapsedMs": 4731,
+        "error": null
+      },
+      {
+        "scenario": "layout-dense",
+        "status": "pass",
+        "elapsedMs": 6333,
+        "error": null
+      },
+      {
+        "scenario": "layout-boss",
+        "status": "pass",
+        "elapsedMs": 5694,
+        "error": null
+      },
+      {
+        "scenario": "layout-accessibility-states",
+        "status": "pass",
+        "elapsedMs": 5189,
+        "error": null
+      },
+      {
+        "scenario": "p1-05-accessibility-baseline",
+        "status": "pass",
+        "elapsedMs": 857,
+        "error": null
+      },
+      {
+        "scenario": "p1-05-accessibility-contract",
+        "status": "pass",
+        "elapsedMs": 920,
+        "error": null
+      },
+      {
+        "scenario": "p1-05-control-regressions",
+        "status": "pass",
+        "elapsedMs": 1714,
+        "error": null
+      },
+      {
+        "scenario": "p1-05-reduced-motion",
+        "status": "pass",
+        "elapsedMs": 910,
+        "error": null
+      },
+      {
+        "scenario": "fresh-load",
+        "status": "pass",
+        "elapsedMs": 734,
+        "error": null
+      },
+      {
+        "scenario": "midgame-load",
+        "status": "pass",
+        "elapsedMs": 772,
+        "error": null
+      },
+      {
+        "scenario": "mature-load",
+        "status": "pass",
+        "elapsedMs": 777,
+        "error": null
+      },
+      {
+        "scenario": "legacy-load",
+        "status": "pass",
+        "elapsedMs": 752,
+        "error": null
+      },
+      {
+        "scenario": "corrupted-load",
+        "status": "pass",
+        "elapsedMs": 730,
+        "error": null
+      },
+      {
+        "scenario": "malformed-daily-load",
+        "status": "pass",
+        "elapsedMs": 727,
+        "error": null
+      },
+      {
+        "scenario": "farm-load",
+        "status": "pass",
+        "elapsedMs": 742,
+        "error": null
+      },
+      {
+        "scenario": "farm-roundtrip",
+        "status": "pass",
+        "elapsedMs": 1016,
+        "error": null
+      },
+      {
+        "scenario": "enemy-normal-reload",
+        "status": "pass",
+        "elapsedMs": 883,
+        "error": null
+      },
+      {
+        "scenario": "enemy-boss-reload",
+        "status": "pass",
+        "elapsedMs": 936,
+        "error": null
+      },
+      {
+        "scenario": "active-studies-load",
+        "status": "pass",
+        "elapsedMs": 862,
+        "error": null
+      },
+      {
+        "scenario": "auto-ascend-load",
+        "status": "pass",
+        "elapsedMs": 823,
+        "error": null
+      },
+      {
+        "scenario": "reset-roundtrip",
+        "status": "pass",
+        "elapsedMs": 1084,
+        "error": null
+      },
+      {
+        "scenario": "restore-roundtrip",
+        "status": "pass",
+        "elapsedMs": 977,
+        "error": null
+      },
+      {
+        "scenario": "malformed-backup-rejection",
+        "status": "pass",
+        "elapsedMs": 752,
+        "error": null
+      },
+      {
+        "scenario": "recovery-from-corrupt-primary",
+        "status": "pass",
+        "elapsedMs": 750,
+        "error": null
+      },
+      {
+        "scenario": "unsupported-future-load",
+        "status": "pass",
+        "elapsedMs": 756,
+        "error": null
+      },
+      {
+        "scenario": "legacy-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1192,
+        "error": null
+      },
+      {
+        "scenario": "future-backup-rejection",
+        "status": "pass",
+        "elapsedMs": 838,
+        "error": null
+      },
+      {
+        "scenario": "recovery-offline-once",
+        "status": "pass",
+        "elapsedMs": 871,
+        "error": null
+      },
+      {
+        "scenario": "save-failure-warning",
+        "status": "pass",
+        "elapsedMs": 764,
+        "error": null
+      },
+      {
+        "scenario": "parity-short",
+        "status": "pass",
+        "elapsedMs": 862,
+        "error": null
+      },
+      {
+        "scenario": "parity-medium-farm",
+        "status": "pass",
+        "elapsedMs": 5631,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-farm-retention",
+        "status": "pass",
+        "elapsedMs": 3343,
+        "error": null
+      },
+      {
+        "scenario": "p2-07a-timer-boundary",
+        "status": "pass",
+        "elapsedMs": 816,
+        "error": null
+      },
+      {
+        "scenario": "parity-long-high-power",
+        "status": "pass",
+        "elapsedMs": 6290,
+        "error": null
+      },
+      {
+        "scenario": "parity-boss-short",
+        "status": "pass",
+        "elapsedMs": 809,
+        "error": null
+      },
+      {
+        "scenario": "parity-boss-retry",
+        "status": "pass",
+        "elapsedMs": 2086,
+        "error": null
+      },
+      {
+        "scenario": "parity-auto-ascend",
+        "status": "pass",
+        "elapsedMs": 1189,
+        "error": null
+      },
+      {
+        "scenario": "chronology-research-mid-window",
+        "status": "pass",
+        "elapsedMs": 812,
+        "error": null
+      },
+      {
+        "scenario": "chronology-study-mid-window",
+        "status": "pass",
+        "elapsedMs": 862,
+        "error": null
+      },
+      {
+        "scenario": "chronology-auto-empower-mid-window",
+        "status": "pass",
+        "elapsedMs": 809,
+        "error": null
+      },
+      {
+        "scenario": "chronology-auto-ascend-mid-window",
+        "status": "pass",
+        "elapsedMs": 847,
+        "error": null
+      },
+      {
+        "scenario": "chronology-boss-retry",
+        "status": "pass",
+        "elapsedMs": 955,
+        "error": null
+      },
+      {
+        "scenario": "chronology-simultaneous-order",
+        "status": "pass",
+        "elapsedMs": 863,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-background-resume",
+        "status": "pass",
+        "elapsedMs": 947,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-repeated-resume",
+        "status": "pass",
+        "elapsedMs": 959,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-cold-restart",
+        "status": "pass",
+        "elapsedMs": 1031,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-partial-enemy",
+        "status": "pass",
+        "elapsedMs": 923,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-boss-background-short",
+        "status": "pass",
+        "elapsedMs": 856,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-boss-retry",
+        "status": "pass",
+        "elapsedMs": 1096,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-auto-ascend",
+        "status": "pass",
+        "elapsedMs": 948,
+        "error": null
+      },
+      {
+        "scenario": "p2-ascend-integrity",
+        "status": "pass",
+        "elapsedMs": 988,
+        "error": null
+      },
+      {
+        "scenario": "p2-03b-auto-ascend-integrity",
+        "status": "pass",
+        "elapsedMs": 941,
+        "error": null
+      },
+      {
+        "scenario": "p2-wisp-progression-pacing",
+        "status": "pass",
+        "elapsedMs": 1030,
+        "error": null
+      },
+      {
+        "scenario": "p2-endgame-currency-utility",
+        "status": "pass",
+        "elapsedMs": 1462,
+        "error": null
+      },
+      {
+        "scenario": "p2-03a-wisp-role-integrity",
+        "status": "pass",
+        "elapsedMs": 870,
+        "error": null
+      },
+      {
+        "scenario": "p2-03a-wisp-role-integrity-mature",
+        "status": "pass",
+        "elapsedMs": 949,
+        "error": null
+      },
+      {
+        "scenario": "p2-03a-wisp-role-integrity-endgame",
+        "status": "pass",
+        "elapsedMs": 1042,
+        "error": null
+      },
+      {
+        "scenario": "p2-02a-core-qol",
+        "status": "pass",
+        "elapsedMs": 1546,
+        "error": null
+      },
+      {
+        "scenario": "p2-02b-wisp-hierarchy",
+        "status": "pass",
+        "elapsedMs": 1035,
+        "error": null
+      },
+      {
+        "scenario": "p2-02b-lab-hierarchy",
+        "status": "pass",
+        "elapsedMs": 1016,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-long-study",
+        "status": "pass",
+        "elapsedMs": 962,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-lab-queue",
+        "status": "pass",
+        "elapsedMs": 928,
+        "error": null
+      },
+      {
+        "scenario": "lifecycle-daily-rollover",
+        "status": "pass",
+        "elapsedMs": 997,
+        "error": null
+      },
+      {
+        "scenario": "wisp-formula-contract",
+        "status": "pass",
+        "elapsedMs": 840,
+        "error": null
+      },
+      {
+        "scenario": "formation-bonds-core",
+        "status": "pass",
+        "elapsedMs": 783,
+        "error": null
+      },
+      {
+        "scenario": "formation-bonds-mobile",
+        "status": "pass",
+        "elapsedMs": 43299,
+        "error": null
+      },
+      {
+        "scenario": "auto-ascend-target-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1094,
+        "error": null
+      },
+      {
+        "scenario": "formation-autosave-contract",
+        "status": "pass",
+        "elapsedMs": 1014,
+        "error": null
+      },
+      {
+        "scenario": "formation-autosave-native",
+        "status": "pass",
+        "elapsedMs": 40848,
+        "error": null
+      },
+      {
+        "scenario": "formation-autosave-reduced-motion",
+        "status": "pass",
+        "elapsedMs": 27887,
+        "error": null
+      },
+      {
+        "scenario": "formation-autosave-save-reload",
+        "status": "pass",
+        "elapsedMs": 1239,
+        "error": null
+      },
+      {
+        "scenario": "formation-autosave-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1148,
+        "error": null
+      },
+      {
+        "scenario": "formation-autosave-recovery",
+        "status": "pass",
+        "elapsedMs": 926,
+        "error": null
+      },
+      {
+        "scenario": "ascend-prisms-contract",
+        "status": "pass",
+        "elapsedMs": 15734,
+        "error": null
+      },
+      {
+        "scenario": "ascend-prisms-save-reload",
+        "status": "pass",
+        "elapsedMs": 1082,
+        "error": null
+      },
+      {
+        "scenario": "ascend-prisms-backup-restore",
+        "status": "pass",
+        "elapsedMs": 1113,
+        "error": null
+      },
+      {
+        "scenario": "ascend-prisms-recovery",
+        "status": "pass",
+        "elapsedMs": 1004,
+        "error": null
+      }
+    ],
+    "allSelectedCasesPassed": true,
+    "selection": "Both offline UI cases, then every original default scenario from loadout-memory-mobile through the final ascend-prisms-recovery case. Original main() invoked per case, retaining all scenario viewports and deadlines; pipe DOM transport only.",
+    "command": "node /tmp/wisp-final-regression-preflight.cjs",
+    "reproduction": "LUMENFALL_QA_DOM_TRANSPORT=pipe LUMENFALL_QA_CDP_CHROME=/path/to/chrome node tests/behavioral/run.cjs --web-root <exact-product-and-assets> --scenario <case> --raw-artifacts <evidence>"
+  }
+}

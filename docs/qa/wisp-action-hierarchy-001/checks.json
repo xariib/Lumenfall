@@ -1,0 +1,135 @@
+{
+  "status": "Local compact/accessibility and QA compatibility checks pass; required CI must pass on the final PR head.",
+  "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+  "node": "v24.19.0",
+  "pr": "https://github.com/xariib/Lumenfall/pull/3",
+  "checks": {
+    "compact": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "checks": 39150,
+      "profiles": 18
+    },
+    "layout": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "checks": 24888,
+      "profiles": 12
+    },
+    "originalUpgrades": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "checks": 12912,
+      "profiles": 12
+    },
+    "scroll": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "checks": 3277,
+      "profiles": 312
+    },
+    "affordability": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "checks": 26844,
+      "profiles": 12,
+      "causalNegativeControls": 2
+    },
+    "protectedGameplayFunctions": 24,
+    "compactCausalNegativeControls": 2,
+    "nativePurchases": 72,
+    "nativeFocusReturnsWithImmediateName": 36,
+    "legacyControlLabel": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "scenario": "p1-05-control-regressions",
+      "originalHarness": true,
+      "negativeHarnessSelfTests": 2
+    },
+    "offlineSourceBinding": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "independentSequentialEightHourWindows": 4,
+      "rewardsAndStateHashesUnchanged": true,
+      "originalBrowserCases": 2
+    },
+    "finalLocalPreflight": {
+      "status": "pass",
+      "sourceSha256": "5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd",
+      "scenarios": 101,
+      "originalHarnessAndDeadlines": true,
+      "pipeDomTransport": true
+    }
+  },
+  "priorPresentationRevision": {
+    "status": "Historical local results before accessible-name repair; source-bound values retained.",
+    "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+    "node": "v24.19.0",
+    "checks": {
+      "compact": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 38394,
+        "profiles": 18
+      },
+      "layout": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 24888,
+        "profiles": 12
+      },
+      "originalUpgrades": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 12912,
+        "profiles": 12
+      },
+      "scroll": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 3277,
+        "profiles": 312
+      },
+      "prices": {
+        "status": "PASS",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 13416
+      },
+      "contribution": {
+        "status": "PASS",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 8099,
+        "profiles": 448
+      },
+      "progression": {
+        "status": "PASS",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 235
+      },
+      "formationCollapse": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 541,
+        "profiles": 12
+      },
+      "formationBestNow": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 1299,
+        "profiles": 108
+      },
+      "affordability": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "checks": 26844,
+        "profiles": 12,
+        "causalNegativeControls": 2
+      },
+      "autosave": {
+        "status": "pass",
+        "sourceSha256": "12e264dbf5ea7cdb29c652a81172b5f38c9111fa0d5e997ad8c6bec3a7c34612",
+        "profiles": 6
+      }
+    }
+  }
+}

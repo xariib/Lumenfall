@@ -60,13 +60,13 @@ window.runWispCardLayoutQa=function(baseline){
       ok(heading.textContent===(stage===2?'Upgrades':b.spirit(id).abilityName),'ability leads unfinished section without extra heading');
       ok(heading.getAttribute('aria-label')===b.spirit(id).name+(stage===2?' upgrades':' ability and upgrades'),'heading/disclosure retains Wisp context for assistive technology');
       ok(!card.querySelector('.ability-label'),'no redundant Ability label');
-      var badge=card.querySelector('.ability-badge'),abilityTitle=card.querySelector('.wisp-ability-title h3,.wisp-ability-title strong'),badgeStyle=badge&&getComputedStyle(badge);
-      ok(badge&&badge.textContent==='Ability'&&parseFloat(badgeStyle.borderLeftWidth)>0&&badgeStyle.borderLeftColor===levelStyle.borderLeftColor&&badgeStyle.backgroundColor===levelStyle.backgroundColor,'Ability badge matches level box '+id);
-      ok(badge.getBoundingClientRect().right<=abilityTitle.getBoundingClientRect().left+1,'Ability badge stays left of the name '+id);
+      var abilityTitle=card.querySelector('.wisp-ability-title h3,.wisp-ability-title strong');
+      ok(!card.querySelector('.ability-badge'),'compact card omits redundant Ability badge '+id);
+      ok(abilityTitle&&abilityTitle.textContent===b.spirit(id).abilityName,'compact ability retains its actual name '+id);
       ok(['Overcharge Core','Impact Core','Piercing Lens','Bloom Catalyst','Resonant Focus'].every(function(name){return !card.textContent.includes(name);}),'no second upgrade identity on card '+id);
       var progress=card.querySelector('.ability-level'),savedLevel=b.get().wispModules[id],cap=b.moduleCap();
       ok(progress&&progress.textContent==='Lv. '+savedLevel+'/'+cap&&!card.querySelector('.ability-upgrades'),'ability level has a clear badge '+id);
-      ok(progress.getAttribute('aria-label')==='Ability upgrade level '+savedLevel+' of '+cap&&progress.getBoundingClientRect().right<=badge.getBoundingClientRect().left+1,'ability level is left of Ability badge with distinct accessible name '+id);
+      ok(progress.getAttribute('aria-label')==='Ability upgrade level '+savedLevel+' of '+cap&&progress.getBoundingClientRect().right<=abilityTitle.getBoundingClientRect().left+1,'ability level precedes its named ability with distinct accessible name '+id);
       var raritySection=card.querySelector('.wisp-rarity-section'),abilitySection=card.querySelector('.wisp-ability-section');
       ok(raritySection&&abilitySection&&raritySection!==abilitySection&&raritySection.contains(card.querySelector('[data-rarity]'))&&!abilitySection.querySelector('[data-rarity]'),'Rarity purchase is separate from ability upgrades '+id);
       ok(abilitySection.querySelector('[data-ability-current]').textContent===b.moduleEffect(id,savedLevel),'Current matches purchased upgrade level '+id);
