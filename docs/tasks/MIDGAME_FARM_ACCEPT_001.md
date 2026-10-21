@@ -40,3 +40,13 @@ PR and inspect every required final-head workflow. Merge only when green; run
 the Android workflow with `publish=false` on integrated main and record the
 receipt. If an unavailable device or workflow tool blocks a criterion, keep
 that acceptance open with a precise next action.
+
+## CI correction
+
+Draft PR #6 head `cfb20cadf20574f6f57ac09300bfd46f9b2ecff9` reached
+pre-merge run `39689717491`. Context check PASS (29 entrypoints, 46 links);
+isolated offline job PASS. The new mobile step failed on the first profile
+with `SyntaxError: missing ) after argument list` in the QA-only touch
+assertion's CDP expression (line 99). This is a malformed test selector
+string, not a product failure. Correct the expression and rerun all required
+checks on the final head.

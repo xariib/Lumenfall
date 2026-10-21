@@ -96,7 +96,7 @@ async function midgameFarmAcceptance(record,name,inset){
  sameData(before,await snapshot(),'keyboard navigation');
  await touch('[data-tab="battle"]');
  await touch('#rift-objective');
- assert(await evaluate('document.querySelector("#tab-research").classList.contains("active")&&document.activeElement===document.querySelector("[data-study-card=\"wispascend\"]")'),'native touch opens and focuses the same Lab card');
+ assert(await evaluate("document.querySelector('#tab-research').classList.contains('active')&&document.activeElement===document.querySelector('[data-study-card=\"wispascend\"]')"),'native touch opens and focuses the same Lab card');
  sameData(before,await snapshot(),'touch navigation');
  await touch('[data-tab="battle"]');
  await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=799;s.shards=79;b.setState(s);b.renderLayout();})()`);
