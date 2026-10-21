@@ -67,7 +67,7 @@ async function verifyInstalledWispCard(page,report){
    return {viewport:innerWidth,tabVisible:visible(panel),count:cards.length,observations};
  })()`);
  fs.mkdirSync('release-evidence',{recursive:true});
- fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\\n');
+ fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\n');
  const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
  assert(screenshot.data,'Installed Wisp screenshot captured');
  fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
