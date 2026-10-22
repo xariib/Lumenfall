@@ -1,5 +1,35 @@
 # Lumenfall — current delivery status
 
+22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
+verified the previously integrated midgame Farm guidance through
+[PR #6](https://github.com/xariib/Lumenfall/pull/6), merged at
+`83b1a8e050d0d0bffefbf9023902e6cf3817282d`. No product source,
+save schema, purchases, prices or package identity changed. All six
+relevant final-head workflows passed; [pre-merge validation](https://github.com/xariib/Lumenfall/actions/runs/39861115223)
+passed on attempt 2, including the complete stateful and isolated offline
+jobs. The browser matrix passed 18/18 profiles across 320/390/430 px,
+100/150/200% text and normal/reduced motion, with exact hint, accessible
+name, affordability colors, navigation and unchanged state/save.
+
+[Non-publishing integrated Android run #25](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
+passed on exact merge commit: signed 0.2.25 (`versionCode 1000025`,
+APK SHA-256 `101d007142eede2261befae11adf384d1d2b374f2c9d890153f5def0144eaf93`)
+installed over 0.1.158 on Android 12/API31/WebView 91.0.4472.114.
+Both saves, UID `10145`, origin, paid progression and legacy entitlements
+survived. Installed Wisp UI/touch and the Farm hint's exact content,
+accessible name, fit and native touch to a focused Lab card passed.
+[Artifact 12465868190](https://github.com/xariib/Lumenfall/actions/runs/39870276892/artifacts/12465868190)
+contains the receipt and screenshots; the release step was skipped.
+An earlier exact-main [run #24](https://github.com/xariib/Lumenfall/actions/runs/39868057691)
+failed first at the existing Wisp offline-recap touch timing check and then
+timed out connecting to the old APK WebView on retry; run #25 resolved the
+integrated acceptance, and those failures remain documented in the task.
+**Integrated and installed-emulator accepted; physical phone, exact
+WebView60, TalkBack and human visual/pacing remain open.** At 200% text
+the fixed 44 px Rift hint viewport is scrollable but shows only a small
+portion of the quote; propose a separate readability change. No APK
+release has been published.
+
 21 October 2026: [WISP_ACTION_HIERARCHY_001](tasks/WISP_ACTION_HIERARCHY_001.md)
 was integrated through [PR #3](https://github.com/xariib/Lumenfall/pull/3)
 at `7a498e5be2d060476c9442435768ea1db15d725d`; all six relevant PR
