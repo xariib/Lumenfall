@@ -61,3 +61,9 @@ error, while the narrow scroll window is an observed usability limitation.
 Use the visible intersection for native taps; exercise scrolling to the quote
 at every profile and preserve the failure artifact for visual review. Keep the
 feature open for final-head CI and installed acceptance.
+
+## Installed Android correction — 22 October 2026
+
+Non-publishing [Android run #22](https://github.com/xariib/Lumenfall/actions/runs/39851727638) on `67e73f67c95797d3e9ee8e71a53962f563e68e27` failed after the signed 0.2.22 build and the original in-place upgrade, both save slots, paid/legacy entitlement checks, and installed Wisp UI/touch acceptance passed. The new Farm-only driver attempted to evaluate `state` from DevTools, but production encloses it in a private IIFE; the error was `ReferenceError: state is not defined`. This is a QA fixture defect, not evidence of a game failure. Raw failed-native diagnostics are [artifact 12458730309](https://github.com/xariib/Lumenfall/actions/runs/39851727638/artifacts/12458730309).
+
+Correction `cc171bb0878cf218fe06c63719e254d1dee15324`: after the preservation assertions, inject a synthetic two-slot save before the installed WebView reload, then assert that the disposable emulator loaded Farm mode and first Ascend. Inspect the actual installed UI and use native Android touch. This fixture does write only to the disposable emulator's local storage; it is never used on a player's device. Product `index.html`, save schema, purchases, prices and release workflow are unchanged. JavaScript syntax check passed before publication. Next: inspect final diff and rerun all relevant CI, then non-publishing Android on the exact new head. Keep draft until installed acceptance passes.
