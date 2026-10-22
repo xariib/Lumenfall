@@ -28,7 +28,7 @@ purchase, automation, package identity or publishing behavior.
 
 ## Checkpoint — 22 October 2026
 
-Status: PR #6 ready on `qa/midgame-farm-accept-001`; final-head browser, CI and installed Android acceptance passed. Integrated-main Android acceptance remains pending.
+Status: PR #6 merged into `main` at `83b1a8e050d0d0bffefbf9023902e6cf3817282d`; browser, required PR CI and installed Android acceptance passed on the integration. Full physical-device and human acceptance remains open.
 Files: `tests/behavioral/rift-guidance.cjs`, `scripts/ci/android-upgrade.cjs`,
 `.github/workflows/pre-merge-validation.yml`, this task. The browser driver
 uses the existing instrumented state fixture and native CDP keyboard/touch;
@@ -65,12 +65,50 @@ existing fixed 44 px Rift hint window displays only a small portion of the
 quote at a time, although it is scrollable. Physical phone, exact WebView60,
 TalkBack, and human visual/pacing acceptance remain open.
 
-Next: once the updated PR head is green, merge PR #6 with the owner's explicit
-approval, run `Build Android APK` on exact integrated main with
-`publish=false`, inspect its installed receipt, and record the result in
-this task and `docs/PROJECT_STATE.md`. Keep the full feature open for the
-remaining real-device and human checks. Treat the 200% hint readability as
-a separate improvement proposal.
+The owner's explicit approval to merge PR #6 was received. The automated
+review's stale-checkpoint finding was addressed in `8fb5c59e19b55bee1225732b726e484d4f12b571`
+and its thread resolved. All six relevant final-head workflows passed:
+[pre-merge run 39861115223](https://github.com/xariib/Lumenfall/actions/runs/39861115223)
+passed on attempt 2 with full stateful and isolated offline jobs. Attempt 1
+hit a Chrome CDP `Browser.getVersion` startup timeout in existing
+`endless-mobile` before positive mobile profiles. The corrected checkpoint
+passed context validation (29 entrypoints, 46 local links). PR #6 merged as
+`83b1a8e050d0d0bffefbf9023902e6cf3817282d`; no product code or save
+schema changed after PR-head acceptance.
+
+## Integrated Android acceptance — 22 October 2026
+
+[Run #24](https://github.com/xariib/Lumenfall/actions/runs/39868057691)
+on exact merge commit failed in its first attempt after both save slots and
+entitlements were checked: the pre-existing Wisp QA driver asserted that
+the offline recap remained reachable 350 ms after a native Continue tap.
+Its attempt 2 stalled while connecting to the old APK WebView and hit the
+overall ten-minute QA deadline before installing the candidate. The
+[failed-native artifact](https://github.com/xariib/Lumenfall/actions/runs/39868057691/artifacts/12465556233)
+and logs retain these separate failures. Neither attempt completed Farm
+acceptance; the timing/runner instability is a QA reliability finding.
+
+Fresh [non-publishing run #25](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
+**PASS** on the same exact merge commit. Signed 0.2.25
+(`versionCode 1000025`, APK SHA-256
+`101d007142eede2261befae11adf384d1d2b374f2c9d890153f5def0144eaf93`)
+installed in place over 0.1.158 on Android 12/API31/WebView
+91.0.4472.114. UID `10145`, origin `https://localhost`, both save
+slots, paid progression, legacy entitlements and credits survived. All
+eight Wisp cards fit at 320 px and native touch purchased one Ember Ability
+level. The Farm hint's exact Wisp Ascendancy title/detail, accessible name
+and fit passed; a native tap reached the visible, focused Lab card using
+a synthetic fixture only on the disposable emulator. The exact-APK upgrade
+receipt passed, [artifact 12465868190](https://github.com/xariib/Lumenfall/actions/runs/39870276892/artifacts/12465868190)
+contains receipt and screenshots, and the release step was skipped. No APK
+release was published.
+
+Next: keep the broader feature open for physical-phone, exact WebView60,
+TalkBack and human visual/pacing checks. Separately propose an improvement
+to the 44 px Rift hint window's readability at 200% text. Improve the
+offline-recap touch wait in the Android QA driver if another integrated run
+shows the same 350 ms race; retain the failure evidence rather than treating
+it as a gameplay regression.
 
 ## CI correction
 
