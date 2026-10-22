@@ -135,6 +135,63 @@ async function verifyInstalledWispCard(page,report){
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
  console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
 }
+async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
+ // All original save and entitlement checks have passed. Seed only this
+ // disposable emulator; production state is private to the app's IIFE.
+ const fixture=JSON.parse(JSON.stringify(retainedSave));
+ Object.assign(fixture,{ascendCount:1,maxDepthEver:30,depth:26,enemyDepth:26,
+   riftMode:'farm',farmDepth:20,farmReturnDepth:26,lumen:800,shards:80,
+   activeStudies:[],autoAscendEnabled:false,lastSeen:Date.now()});
+ fixture.longStudyLevels.wispascend=0;
+ const marker='midgame-farm-installed-accept-001';
+ const seedScript=`(()=>{const s=${JSON.stringify(JSON.stringify(fixture))};
+   localStorage.setItem(${JSON.stringify(primary)},s);
+   localStorage.setItem(${JSON.stringify(recovery)},s);
+   localStorage.setItem('midgame-farm-fixture',${JSON.stringify(marker)});})()`;
+ const injected=await page.command('Page.addScriptToEvaluateOnNewDocument',{source:seedScript});
+ assert(injected.identifier,'Disposable Farm fixture registered before document startup');
+ try{await page.command('Page.reload',{ignoreCache:true});}
+ catch(e){if(!/^DevTools closed:/.test(e.message))throw e;}
+ await pause(1500);page.close();
+ page=await connect();
+ const applied=await page.evaluate(`({origin:location.origin,marker:localStorage.getItem('midgame-farm-fixture'),
+   save:JSON.parse(localStorage.getItem('lumenfall_save_v2'))})`);
+ assert.equal(applied.origin,'https://localhost');
+ assert.equal(applied.marker,marker,'Disposable Farm fixture loaded in installed WebView');
+ assert.equal(applied.save.riftMode,'farm','Installed app retained Farm mode');
+ assert.equal(applied.save.ascendCount,1,'Installed app retained first Ascend fixture');
+ const size=adb('shell','wm','size').match(/(\d+)x(\d+)/),viewport=await page.evaluate('innerWidth');
+ assert(size&&viewport,'Native touch dimensions for Farm guidance');
+ const scale=Number(size[1])/viewport;
+ const hint=await page.evaluate(`(()=>{
+   document.querySelector('[data-tab="battle"]').click();
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),v=document.querySelector('#rift-objective-row').getBoundingClientRect();
+   const x=r.left+r.width/2,y=(Math.max(r.top,v.top)+Math.min(r.bottom,v.bottom))/2;
+   return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
+     detail:e.querySelector('small')?.textContent,name:e.getAttribute('aria-label'),
+     target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
+     x,y,hit:document.elementFromPoint(x,y)?.closest('#rift-objective')===e,
+     fit:document.documentElement.scrollWidth<=innerWidth+1};
+ })()`);
+ fs.writeFileSync('release-evidence/installed-midgame-farm-diagnostic.json',JSON.stringify(hint,null,2)+'\n');
+ assert.equal(hint.kind,'POWER OPTION');
+ assert.equal(hint.title,'Power option: Wisp Ascendancy 1');
+ assert.equal(hint.detail,'+15% passive Wisp damage after study · 800 Lumen + 80 Shards');
+ assert(hint.name===hint.title+' — '+hint.detail&&hint.target==='research'&&hint.selector.includes('wispascend'),'Installed accessible hint targets the actual Lab study');
+ assert(hint.hit&&hint.fit,'Installed Farm hint fits and receives native touch');
+ const shot=await page.command('Page.captureScreenshot',{format:'png'});
+ assert(shot.data,'Installed Farm screenshot captured');
+ fs.writeFileSync('release-evidence/installed-midgame-farm.png',Buffer.from(shot.data,'base64'));
+ adb('shell','input','tap',String(Math.round(hint.x*scale)),String(Math.round(hint.y*scale)));
+ await pause(350);
+ const destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
+   lab:document.querySelector('#tab-research').classList.contains('active'),
+   card:!!card&&card.getBoundingClientRect().width>0,focused:document.activeElement===card};})()`);
+ assert(destination.lab&&destination.card&&destination.focused,'Native touch navigates to and focuses Wisp Ascendancy');
+ report.installedMidgameFarmHint={status:'PASS',hint,destination,screenshot:'release-evidence/installed-midgame-farm.png',syntheticFixture:true};
+ console.log('Android installed Farm guidance acceptance: '+JSON.stringify(report.installedMidgameFarmHint));
+ return page;
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -210,7 +267,8 @@ async function main(){
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
  }
  assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
- await verifyInstalledWispCard(page,report);page.close();
+ await verifyInstalledWispCard(page,report);
+ page=await verifyInstalledMidgameFarmHint(page,report,observed.save);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }

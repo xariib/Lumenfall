@@ -13,6 +13,7 @@ const [chrome,webRoot,evidenceDir,...flags]=process.argv.slice(2);
 if(!chrome||!webRoot||!evidenceDir)throw Error('Expected chrome, instrumented webRoot, evidenceDir');
 const sourceRoot=path.resolve(webRoot),root=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-guidance-www-')),out=path.resolve(evidenceDir),baseline=flags.includes('--baseline-probe'),contract=flags.includes('--existing-contract'),readabilityProbe=flags.includes('--readability-probe');
 const collectTitleInverse=flags.includes('--collect-title-inverse');
+const midgameAccept=flags.includes('--midgame-accept');
 if(collectTitleInverse&&!readabilityProbe)throw Error('Title inverse collection requires the bounded readability probe');
 const {instrumentHtml,loadFixtures}=require('./run.cjs'),source=fs.readFileSync(path.join(sourceRoot,'index.html'),'utf8');
 const {measureGuidanceWord,assertGuidanceWord}=require('./rift-guidance-readability.cjs');
@@ -41,6 +42,14 @@ function send(method,params={},sid=session){return new Promise((resolve,reject)=
 async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 async function key(name,shift=false){const specs={Space:{key:' ',code:'Space',windowsVirtualKeyCode:32},Tab:{key:'Tab',code:'Tab',windowsVirtualKeyCode:9},Enter:{key:'Enter',code:'Enter',windowsVirtualKeyCode:13},Escape:{key:'Escape',code:'Escape',windowsVirtualKeyCode:27},End:{key:'End',code:'End',windowsVirtualKeyCode:35}};const spec=specs[name];await send('Input.dispatchKeyEvent',{type:'rawKeyDown',...spec,modifiers:shift?8:0});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec,modifiers:shift?8:0});}
 async function touch(selector){const box=await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);assert(box.hit,'native touch reaches '+selector);await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x,y:box.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+async function touchVisibleHint(){
+ const box=await evaluate(`(()=>{const e=document.querySelector('#rift-objective'),row=document.querySelector('#rift-objective-row'),r=e.getBoundingClientRect(),v=row.getBoundingClientRect();
+   const x=r.left+r.width/2,y=(Math.max(r.top,v.top)+Math.min(r.bottom,v.bottom))/2;
+   return {x,y,hit:e.contains(document.elementFromPoint(x,y)),visible:Math.min(r.bottom,v.bottom)>Math.max(r.top,v.top)};})()`);
+ assert(box.visible&&box.hit,'native touch reaches the visible part of the scrollable Farm hint');
+ await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x,y:box.y}]});
+ await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+}
 async function ready(){let loaded=false;for(let i=0;i<200&&!loaded;i++){try{loaded=await evaluate('!window.__riftGuidanceReloadToken&&!!window.__forgeUiReady');}catch(error){if(!/context|navigat/i.test(error.message))throw error;}if(!loaded)await pause(20);}assert(loaded,'production document reaches existing bridge');await evaluate('document.fonts.ready');await evaluate('__lumenfallQaBridge.uiMeasurementPause(true)');await evaluate('__qaForgeStartup.promise');await evaluate('__lumenfallQaBridge.resetFeedback()');}
 async function reload(){await evaluate('window.__riftGuidanceReloadToken=true');await send('Page.reload',{ignoreCache:true});await ready();}
 async function waitForHintScroll(){for(let i=0;i<50;i++){if(await evaluate('document.querySelector("#rift-objective-row").scrollTop>0'))return;await pause(20);}const diagnostic=await evaluate('({focus:document.activeElement.id,inert:document.querySelector(".shell").inert,scroll:document.querySelector("#rift-objective-row").scrollTop,hidden:document.querySelector("#rift-objective-row").hidden})');throw Error('long hint scroll did not move: '+JSON.stringify(diagnostic));}
@@ -62,6 +71,63 @@ async function toggleAccessibleName(){
  const button=tree.nodes.find(node=>!node.ignored&&node.role?.value==='button');
  assert(button?.name?.value===label,'hint toggle accessible name must equal its visible label');
  return {label,name:button.name.value};
+}
+async function midgameFarmAcceptance(record,name,inset){
+ await evaluate(`riftStatusMobile.setup(${inset},'farm');(()=>{
+   const b=__lumenfallQaBridge,s=b.getState();b.freeze();
+   s.ascendCount=1;s.maxDepthEver=30;s.depth=s.enemyDepth=26;
+   s.riftMode='farm';s.farmDepth=20;s.farmReturnDepth=26;
+   s.lumen=800;s.shards=80;s.activeStudies=[];
+   b.setState(s);b.renderLayout();
+ })()`);
+ const before=await snapshot();
+ const funded=await evaluate(`(()=>{
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),small=e.querySelector('small');
+   return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
+     detail:small?.textContent,role:e.getAttribute('role'),name:e.getAttribute('aria-label'),
+     target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
+     viewport:innerWidth,pageScroll:document.documentElement.scrollWidth,
+     bounds:{left:r.left,right:r.right,width:r.width,height:r.height},scrollArea:document.querySelector('#rift-objective-row').scrollHeight};
+ })()`);
+ assert(funded.kind==='POWER OPTION'&&funded.title==='Power option: Wisp Ascendancy 1','current funded Lab option');
+ assert(funded.detail==='+15% passive Wisp damage after study · 800 Lumen + 80 Shards','exact funded price and effect');
+ assert(funded.role==='button'&&funded.name===funded.title+' — '+funded.detail&&funded.target==='research','visible and accessible Lab destination');
+ assert(funded.selector.includes('[data-study-card="wispascend"]'),'actual Lab card targeted');
+ assert(funded.bounds.left>=-1&&funded.bounds.right<=funded.viewport+1&&funded.bounds.height>=44&&funded.pageScroll<=funded.viewport+1,'mobile objective remains reachable without horizontal clipping');
+ sameData(before,await snapshot(),'funded hint rendering');
+ await screenshot(name+'-funded');
+ const row=await evaluate(`(()=>{const e=document.querySelector('#rift-objective-row');return {client:e.clientHeight,scroll:e.scrollHeight};})()`);
+ if(row.scroll>row.client+1){
+   await scrollHintsWithTouch();await waitForHintScroll();
+   await evaluate('document.querySelector("#rift-objective-row").scrollTop=document.querySelector("#rift-objective-row").scrollHeight');
+   const scrolled=await evaluate(`(()=>{const row=document.querySelector('#rift-objective-row'),small=document.querySelector('#rift-objective small'),r=row.getBoundingClientRect(),d=small.getBoundingClientRect();return {top:row.scrollTop,detailVisible:d.top<r.bottom&&d.bottom>r.top};})()`);
+   assert(scrolled.top>0&&scrolled.detailVisible,'native scroll reveals the full Lab quote at enlarged text');
+   await screenshot(name+'-quote-scrolled');
+   await evaluate('document.querySelector("#rift-objective-row").scrollTop=0');
+   sameData(before,await snapshot(),'hint scrolling');
+ }
+ await evaluate('document.querySelector("#rift-objective").focus({preventScroll:true})');await key('Enter');
+ const keyboard=await evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
+   lab:document.querySelector('#tab-research').classList.contains('active'),focused:document.activeElement===card,
+   card:!!card&&card.getBoundingClientRect().width>0};})()`);
+ assert(keyboard.lab&&keyboard.focused&&keyboard.card,'native keyboard opens and focuses current Lab card');
+ sameData(before,await snapshot(),'keyboard navigation');
+ await touch('[data-tab="battle"]');
+ await touchVisibleHint();
+ assert(await evaluate("document.querySelector('#tab-research').classList.contains('active')&&document.activeElement===document.querySelector('[data-study-card=\"wispascend\"]')"),'native touch opens and focuses the same Lab card');
+ sameData(before,await snapshot(),'touch navigation');
+ await touch('[data-tab="battle"]');
+ await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=799;s.shards=79;b.setState(s);b.renderLayout();})()`);
+ const shortfall=await snapshot();
+ const missing=await evaluate(`(()=>{const e=document.querySelector('#rift-objective'),small=e.querySelector('small');return {
+   title:e.querySelector('strong')?.textContent,detail:small?.textContent,color:getComputedStyle(small).color,
+   marked:small?.classList.contains('objective-shortfall'),name:e.getAttribute('aria-label'),
+   fit:document.documentElement.scrollWidth<=innerWidth+1};})()`);
+ assert(missing.title==='Wisp Ascendancy: level 1'&&missing.detail==='Missing 1 Lumen + 1 Shards for Lab','both exact shortfalls');
+ assert(missing.marked&&missing.color==='rgb(255, 159, 174)'&&missing.name===missing.title+' — '+missing.detail&&missing.fit,'red accessible shortfall at mobile width');
+ sameData(shortfall,await snapshot(),'unfunded hint rendering');
+ await screenshot(name+'-unfunded');
+ record.samples.push({funded,keyboard,missing});
 }
 async function readabilityNegative(record,name){
  const before=await snapshot(),savedStyle=await evaluate('document.querySelector("#rift-hints-toggle").getAttribute("style")');
@@ -235,11 +301,12 @@ async function checkAscendReadability(record,name,inset,capture){
  a.passed=true;
 }
 async function run(url){
- for(const [width,height,inset] of (readabilityProbe?[[320,640,0]]:baseline||contract?[[390,844,24]]:[[320,640,0],[360,640,24],[390,844,24],[430,932,24]]))for(const scale of (readabilityProbe?[2]:baseline||contract?[1]:[1,2]))for(const motion of (baseline||contract||readabilityProbe?['no-preference']:['no-preference','reduce'])){
+ for(const [width,height,inset] of (readabilityProbe?[[320,640,0]]:midgameAccept?[[320,640,0],[390,844,24],[430,932,24]]:baseline||contract?[[390,844,24]]:[[320,640,0],[360,640,24],[390,844,24],[430,932,24]]))for(const scale of (readabilityProbe?[2]:midgameAccept?[1,1.5,2]:baseline||contract?[1]:[1,2]))for(const motion of (baseline||contract||readabilityProbe?['no-preference']:['no-preference','reduce'])){
   const name=`${width}x${height}-safe${inset}-text${scale}-${motion}`,record={profile:name,samples:[]};records.push(record);
   const context=await send('Target.createBrowserContext',{},null),target=await send('Target.createTarget',{url:'about:blank',browserContextId:context.browserContextId},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;
   await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await send('Page.enable');await send('Runtime.enable');await send('Page.navigate',{url});await ready();
   await evaluate(`document.documentElement.style.fontSize=(parseFloat(getComputedStyle(document.documentElement).fontSize)*${scale})+'px'`);
+  if(midgameAccept){await midgameFarmAcceptance(record,name,inset);await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(layoutProbe){await layoutSample(record,name,inset);await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(contract){record.existingContract=await evaluate('(()=>{const b=__lumenfallQaBridge;b.freeze();return runRiftStatusQa(b,__lumenfallQaContext,(value,message)=>{if(!value)throw Error(message);});})()');await reload();record.navContract=await evaluate('(()=>{__lumenfallQaBridge.freeze();return runNavWorkshopQa(__lumenfallQaBridge,__lumenfallQaContext,(value,message)=>{if(!value)throw Error(message);});})()');await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   if(baseline){await evaluate(`riftStatusMobile.setup(${inset},'boss')`);const shown=await snapshot();await touch('#rift-objective-dismiss');const hidden=await snapshot();record.shown=shown.boxes;record.hidden=hidden.boxes;record.tapDelta={y:hidden.boxes['#enemy-stage'].y-shown.boxes['#enemy-stage'].y,height:hidden.boxes['#enemy-stage'].height-shown.boxes['#enemy-stage'].height};assert(Math.abs(record.tapDelta.y)>1||Math.abs(record.tapDelta.height)>1,'original baseline exposes the reported layout shift');await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
@@ -311,7 +378,7 @@ async function run(url){
  assert(!runtimeErrors.length,'no CDP runtime exceptions');
 }
 (async()=>{
- const result={status:'fail',scope:'RIFT_GUIDANCE_001',baselineProbe:baseline,readabilityProbe,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),instrumentedSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex'),records};
+ const result={status:'fail',scope:midgameAccept?'MIDGAME_FARM_GUIDANCE_001':'RIFT_GUIDANCE_001',baselineProbe:baseline,readabilityProbe,midgameAccept,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),instrumentedSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex'),records};
  try{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
   browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
