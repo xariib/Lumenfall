@@ -45,6 +45,15 @@ jobs:
         run: |
           node scripts/ci/validate_source.cjs
 
+      - name: Verify existing independent offline reference binding
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+          const golden=JSON.parse(fs.readFileSync('tests/behavioral/offline-swift-current-golden.json'));
+          const source=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');
+          assert.equal(source,golden.sourceSha256,'Regenerate independent one-second windows after product changes');
+          JS
+
       - name: Stage web assets
         shell: bash
         run: |

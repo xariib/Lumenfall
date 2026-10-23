@@ -31,22 +31,36 @@ full stateful/offline gates remain required and unchanged.
 
 ## Retained receipts
 
-- [Local Node results](local-checks.json): all bound to product SHA-256
-  `05f6516d88c9620bc080986ae3248d3e4888f9a5a448903ee0c0b5cdb0e602bd`.
+- [Local Node results](local-checks.json): bound to the preceding safe-area
+  candidate SHA-256 `d3366466b7fc3a6eaee487e43a3975c990700de243e5844b39d17fb4a77db902`.
+  The final correction changes only summary CSS and QA diagnostics; full
+  final-source CI remains separately qualified in the task.
 - [Source preservation](source-preservation.json): parse the production IIFE
   with Node 24's bundled Acorn; compare each original top-level function's exact
   source span against main `8dabca9`. Of 567, 565 remain byte-identical; only
   the renderer and event registration change. Full diff separately verifies
   the CSS/markup and absence of unrelated constant/asset changes.
+- [Large-text failure](large-text-before-failure.json): the earlier 200%
+  summary exceeded its fixed viewport after four successful profiles. The
+  final CSS correction keeps all fonts and assertions; exact 18-profile and
+  causal-control acceptance is recorded in the task.
+- [Independent offline regeneration](offline-source-binding.json): the
+  original `offline-catchup.cjs --generate-swift-golden` recomputes four
+  sequential eight-hour windows using one-second advances. Every reward and
+  complete-state hash matches the previous accepted reference. Only its
+  source fingerprint changes. The original UI guards/assertions/deadlines
+  remain; CI now also checks the same source binding early.
 - [First browser failure](first-browser-failure.json): exact native-button
   input failure before the QA-only correction; not a passing matrix.
   [Full raw artifact](https://github.com/xariib/Lumenfall/actions/runs/40033985420/artifacts/12536641256)
   retains its screenshots/DOM and clean Chrome teardown. Source assertions,
   state preservation and the failing destination requirement are retained.
-- [Installed candidate summary](android-candidate-summary.json): run #26 on
-  exact `eb589c1`, signed in-place upgrade, both slots and paid
+- [Installed candidate summary](android-candidate-summary.json): run #28 on
+  exact final-product `5b2d1a6`, signed in-place upgrade, both slots and paid
   value retained, native summary/details/Lab navigation PASS. Only synthetic
-  fixtures were used on the disposable emulator. [Workflow proof](android-run-26.jpg).
+  fixtures were used on the disposable emulator. [Workflow proof](android-run-28.jpg)
+  and [installed dialog](installed-midgame-farm.png). Earlier run #26 remains
+  historical evidence in the task and repository history.
 
 The local browser could not create its singleton socket in this sandbox;
 its pre-profile failures are environment evidence, not game failures or PASS.

@@ -1,6 +1,6 @@
 # RIFT_HINT_READABILITY_002 — readable Farm Lab advice
 
-Owner: this feature chat. Status: implemented; browser regression acceptance in progress.
+Owner: this feature chat. Status: focused browser and installed candidate accepted; offline-reference correction awaits full CI.
 
 ## Approved scope and baseline
 
@@ -150,3 +150,58 @@ Corrected product SHA-256:
 Next: inspect the corrected 18-profile matrix and both causal controls,
 complete all final-head CI/review, integrate, then run non-publishing Android
 acceptance on the exact integrated product. Physical/human gaps remain open.
+
+## Corrected mobile acceptance
+
+Head `5b2d1a6250c044ab09b5d7f3f229bca0d5631dad`, tree
+`b3b3b3496c65b6b28d369a071c35f910907e3b9b`, matched the complete local
+published tree. [Full run 40036520804](https://github.com/xariib/Lumenfall/actions/runs/40036520804)
+passed the corrected **18/18** profile matrix and **both** exact causal
+controls, including clean browser teardown and no unrelated runtime errors.
+The 200% summary now passes actual text Range bounds and no nested scrolling;
+full quote, red/live shortfalls, paid running work, occupied slots, keyboard,
+native touch, focus restoration, state/save equality and stable geometry pass.
+No font, assertion or fixture requirement was relaxed.
+
+The same run's original isolated offline job passed. All five other relevant
+scoped workflows (Lab, Shared UI, Tree, Forge and Comet/Deeds) passed, and
+automated review on exact `5b2d1a6` completed without findings. Two separate
+Prism workflows skipped by their unchanged path filters; the full run's exact
+Prism numerical/causal step passed. Full regression remains in progress.
+[Non-publishing Android #28](https://github.com/xariib/Lumenfall/actions/runs/40037849254)
+passed on exact product/head `5b2d1a6`. Both saves, paid work, legacy
+entitlements, Wisp touch and the native summary/details/Lab destination
+passed. No release was published. No integration is claimed yet.
+
+## Independent offline reference correction
+
+The full stateful run later reported `offline-catchup-ui` and
+`offline-catchup-legacy-dom` failures before those drivers started a browser:
+their unchanged source-binding guard still named the earlier `bbbc27b1`
+product. The reference update was missed during the HTML change. This is a
+required gate and is not waived because the UI slice preserves mechanics.
+
+Executed `node tests/behavioral/offline-catchup.cjs --generate-swift-golden`
+against exact final `8d957895` source. The original archived oracle input
+was materialized with its pinned original Git blob verified byte-for-byte.
+All four independent sequential eight-hour windows retained identical kills,
+Ascends, Prisms and complete state SHA-256 values. Only `sourceSha256`
+changes in `offline-swift-current-golden.json`.
+[Regeneration proof](../qa/rift-hint-readability-002/offline-source-binding.json).
+The unchanged source-bound engine probe also passed on Node 24.19.0 (369
+batches); this does not establish Chrome60 engine or Android DOM acceptance.
+
+The same existing source-binding requirement is now checked just after CI
+source validation, before the long gates. Both original offline browser
+cases, their guards, all state/reward assertions and deadlines remain intact.
+No product file changes for this correction. The current full run continues
+to retain its actual failures; it cannot count as passing acceptance.
+
+The environment restart removed the prior checkout's external Git metadata.
+Reattached this worktree to an independent clone of exact `5b2d1a6` under
+the current workspace; its tree matched `b3b3b349` and all working changes
+were retained. This recovery does not restore archive code over the product.
+
+Next: publish the regenerated reference/early preflight and rerun all final-head
+CI, including both original offline UI cases, before integration and the
+non-publishing installed Android check on exact main. Physical/human gaps stay open.
