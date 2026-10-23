@@ -15,7 +15,16 @@ const sourceRoot=path.resolve(webRoot),root=fs.mkdtempSync(path.join(os.tmpdir()
 const collectTitleInverse=flags.includes('--collect-title-inverse');
 const midgameAccept=flags.includes('--midgame-accept');
 if(collectTitleInverse&&!readabilityProbe)throw Error('Title inverse collection requires the bounded readability probe');
-const {instrumentHtml,loadFixtures}=require('./run.cjs'),source=fs.readFileSync(path.join(sourceRoot,'index.html'),'utf8');
+const {instrumentHtml,loadFixtures}=require('./run.cjs');
+let source=fs.readFileSync(path.join(sourceRoot,'index.html'),'utf8');
+const hintMutation=flags.includes('--mutate-hint-open')?'open':flags.includes('--mutate-hint-refresh')?'refresh':null;
+if(hintMutation){
+ if(!midgameAccept)throw Error('Hint controls require --midgame-accept');
+ const from=hintMutation==='open'?'openRiftHintDetails();return;':'if(details && !riftGuidanceHidden)renderRiftHintDetails(goal);';
+ const to=hintMutation==='open'?'return;':'if(false)renderRiftHintDetails(goal);';
+ if(source.split(from).length!==2)throw Error('Unique hint control marker required');
+ source=source.replace(from,to);
+}
 const {measureGuidanceWord,assertGuidanceWord}=require('./rift-guidance-readability.cjs');
 fs.cpSync(sourceRoot,root,{recursive:true});fs.writeFileSync(path.join(root,'index.html'),instrumentHtml(source,loadFixtures()));
 fs.mkdirSync(out,{recursive:true});
@@ -81,53 +90,73 @@ async function midgameFarmAcceptance(record,name,inset){
    b.setState(s);b.renderLayout();
  })()`);
  const before=await snapshot();
- const funded=await evaluate(`(()=>{
-   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),small=e.querySelector('small');
-   return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
-     detail:small?.textContent,role:e.getAttribute('role'),name:e.getAttribute('aria-label'),
-     target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
-     viewport:innerWidth,pageScroll:document.documentElement.scrollWidth,
-     bounds:{left:r.left,right:r.right,width:r.width,height:r.height},scrollArea:document.querySelector('#rift-objective-row').scrollHeight};
+ const summary=await evaluate(`(()=>{
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),s=e.querySelector('strong'),t=s.getBoundingClientRect(),row=document.querySelector('#rift-objective-row');
+   return {kind:e.querySelector('.objective-kind').textContent,title:s.textContent,name:e.getAttribute('aria-label'),
+     popup:e.getAttribute('aria-haspopup'),role:e.getAttribute('role'),target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
+     fit:r.left>=0&&r.right<=innerWidth+1&&document.documentElement.scrollWidth<=innerWidth+1,
+     readable:t.right<=r.right+1&&t.top>=row.getBoundingClientRect().top&&t.bottom<=row.getBoundingClientRect().bottom+1,
+     width:r.width,height:r.height,scroll:row.scrollHeight,rowHeight:row.clientHeight};
  })()`);
- assert(funded.kind==='POWER OPTION'&&funded.title==='Power option: Wisp Ascendancy 1','current funded Lab option');
- assert(funded.detail==='+15% passive Wisp damage after study · 800 Lumen + 80 Shards','exact funded price and effect');
- assert(funded.role==='button'&&funded.name===funded.title+' — '+funded.detail&&funded.target==='research','visible and accessible Lab destination');
- assert(funded.selector.includes('[data-study-card="wispascend"]'),'actual Lab card targeted');
- assert(funded.bounds.left>=-1&&funded.bounds.right<=funded.viewport+1&&funded.bounds.height>=44&&funded.pageScroll<=funded.viewport+1,'mobile objective remains reachable without horizontal clipping');
- sameData(before,await snapshot(),'funded hint rendering');
- await screenshot(name+'-funded');
- const row=await evaluate(`(()=>{const e=document.querySelector('#rift-objective-row');return {client:e.clientHeight,scroll:e.scrollHeight};})()`);
- if(row.scroll>row.client+1){
-   await scrollHintsWithTouch();await waitForHintScroll();
-   await evaluate('document.querySelector("#rift-objective-row").scrollTop=document.querySelector("#rift-objective-row").scrollHeight');
-   const scrolled=await evaluate(`(()=>{const row=document.querySelector('#rift-objective-row'),small=document.querySelector('#rift-objective small'),r=row.getBoundingClientRect(),d=small.getBoundingClientRect();return {top:row.scrollTop,detailVisible:d.top<r.bottom&&d.bottom>r.top};})()`);
-   assert(scrolled.top>0&&scrolled.detailVisible,'native scroll reveals the full Lab quote at enlarged text');
-   await screenshot(name+'-quote-scrolled');
-   await evaluate('document.querySelector("#rift-objective-row").scrollTop=0');
-   sameData(before,await snapshot(),'hint scrolling');
- }
+ assert(summary.kind==='POWER OPTION'&&summary.title==='Lab hint'&&summary.popup==='dialog'&&summary.role==='button','short summary advertises details dialog');
+ assert(summary.fit&&summary.readable&&summary.height>=44&&summary.width>=44&&summary.scroll<=summary.rowHeight+1,'summary fully readable in fixed strip without nested scrolling');
+ assert(summary.name==='Read Lab hint — Power option: Wisp Ascendancy 1 — +15% passive Wisp damage after study · 800 Lumen + 80 Shards','full funded accessible summary');
+ assert(summary.target==='research'&&summary.selector.includes('[data-study-card="wispascend"]'),'existing Lab card destination retained');
+ await screenshot(name+'-summary');
+ async function dialog(){return evaluate(`(()=>{const o=document.querySelector('#rift-hint-overlay'),m=o.querySelector('[role="dialog"]'),r=m.getBoundingClientRect(),d=document.querySelector('#rift-hint-detail');
+   const controls=[...m.querySelectorAll('button')].map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height};});
+   return {open:getComputedStyle(o).display!=='none',title:document.querySelector('#rift-hint-title').textContent,detail:d.textContent,
+     color:getComputedStyle(d).color,shortfall:d.classList.contains('objective-shortfall'),focus:document.activeElement.id,inert:document.querySelector('.shell').inert,
+     fits:r.left>=0&&r.right<=innerWidth+1&&r.top>=0&&r.bottom<=innerHeight+1&&m.scrollWidth<=m.clientWidth+1,
+     controls,described:m.getAttribute('aria-describedby'),labelled:m.getAttribute('aria-labelledby')};})()`);}
  await evaluate('document.querySelector("#rift-objective").focus({preventScroll:true})');await key('Enter');
- const keyboard=await evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
-   lab:document.querySelector('#tab-research').classList.contains('active'),focused:document.activeElement===card,
-   card:!!card&&card.getBoundingClientRect().width>0};})()`);
- assert(keyboard.lab&&keyboard.focused&&keyboard.card,'native keyboard opens and focuses current Lab card');
- sameData(before,await snapshot(),'keyboard navigation');
- await touch('[data-tab="battle"]');
+ const funded=await dialog();
+ assert(funded.open,'keyboard opens Lab details dialog');
+ assert(funded.title==='Power option: Wisp Ascendancy 1'&&funded.detail==='+15% passive Wisp damage after study · 800 Lumen + 80 Shards','full exact funded title, price and effect');
+ assert(funded.fits&&funded.controls.every(c=>c.w>=44&&c.h>=44)&&funded.described==='rift-hint-detail'&&funded.labelled==='rift-hint-title','wrapped dialog fits and names its full content with 44px controls');
+ assert(funded.inert&&funded.focus==='rift-hint-open-lab','existing overlay lifecycle focuses action and makes background inert');
+ sameGeometry(before,await snapshot(),'opening details');sameData(before,await snapshot(),'opening details');
+ await screenshot(name+'-funded');
+ await key('Tab',true);assert(await evaluate('document.activeElement.id')==='rift-hint-close','reverse Tab wraps inside dialog');
+ await key('Tab');assert(await evaluate('document.activeElement.id')==='rift-hint-open-lab','Tab wraps inside dialog');
+ await key('Escape');assert(!(await dialog()).open&&await evaluate('document.activeElement.id')==='rift-objective','Escape returns focus to summary');
+ sameGeometry(before,await snapshot(),'Escape details');sameData(before,await snapshot(),'Escape details');
+ await touchVisibleHint();assert((await dialog()).open,'native touch opens details');
+ await evaluate('document.querySelector("#rift-hint-close").scrollIntoView({block:"center"})');await touch('#rift-hint-close');
+ assert(!(await dialog()).open&&await evaluate('document.activeElement.id')==='rift-objective','native Close restores summary focus');
  await touchVisibleHint();
- assert(await evaluate("document.querySelector('#tab-research').classList.contains('active')&&document.activeElement===document.querySelector('[data-study-card=\"wispascend\"]')"),'native touch opens and focuses the same Lab card');
- sameData(before,await snapshot(),'touch navigation');
- await touch('[data-tab="battle"]');
+ // Existing background refresh updates details in place, preserving focus.
  await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=799;s.shards=79;b.setState(s);b.renderLayout();})()`);
- const shortfall=await snapshot();
- const missing=await evaluate(`(()=>{const e=document.querySelector('#rift-objective'),small=e.querySelector('small');return {
-   title:e.querySelector('strong')?.textContent,detail:small?.textContent,color:getComputedStyle(small).color,
-   marked:small?.classList.contains('objective-shortfall'),name:e.getAttribute('aria-label'),
-   fit:document.documentElement.scrollWidth<=innerWidth+1};})()`);
- assert(missing.title==='Wisp Ascendancy: level 1'&&missing.detail==='Missing 1 Lumen + 1 Shards for Lab','both exact shortfalls');
- assert(missing.marked&&missing.color==='rgb(255, 159, 174)'&&missing.name===missing.title+' — '+missing.detail&&missing.fit,'red accessible shortfall at mobile width');
- sameData(shortfall,await snapshot(),'unfunded hint rendering');
+ const shortfall=await snapshot(),missing=await dialog();
+ assert(missing.title==='Wisp Ascendancy: level 1'&&missing.detail==='Missing 1 Lumen + 1 Shards for Lab','open details refresh both exact shortfalls');
+ assert(missing.shortfall&&missing.color==='rgb(255, 159, 174)'&&missing.fits&&missing.focus==='rift-hint-open-lab','red shortfalls retain dialog focus and fit');
  await screenshot(name+'-unfunded');
- record.samples.push({funded,keyboard,missing});
+ await key('Escape');sameData(shortfall,await snapshot(),'shortfall close');
+ await key('Space');assert((await dialog()).open,'Space opens current details');
+ // Refresh back to funded without closing/recreating the focused control.
+ await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=800;s.shards=80;b.setState(s);b.renderLayout();})()`);
+ assert((await dialog()).detail===funded.detail&&!(await dialog()).shortfall,'resource refresh restores funded quote and clears red');
+ const navigation=await snapshot();await key('Enter');
+ assert(await evaluate('document.querySelector("#tab-research").classList.contains("active")&&document.activeElement===document.querySelector(\'[data-study-card="wispascend"]\')'),'keyboard Go to Lab focuses original card');
+ assert(!(await dialog()).open,'Lab navigation closes details');sameData(navigation,await snapshot(),'keyboard Lab navigation');
+ await touch('[data-tab="battle"]');await touchVisibleHint();
+ await evaluate('document.querySelector("#rift-hint-open-lab").scrollIntoView({block:"center"})');await touch('#rift-hint-open-lab');
+ assert(await evaluate('document.querySelector("#tab-research").classList.contains("active")&&document.activeElement===document.querySelector(\'[data-study-card="wispascend"]\')'),'native Go to Lab focuses original card');
+ sameData(navigation,await snapshot(),'native Lab navigation');
+ await touch('[data-tab="battle"]');
+ for(const [activeStudies,title,detail] of [
+   [[{id:'wispascend',remainingSec:100,totalDurationSec:100,speedMult:1}],'Wisp Ascendancy in progress','Paid level 1 is running in Lab'],
+   [['guardmastery','shardstudy'].map(id=>({id,remainingSec:100,totalDurationSec:100,speedMult:1})),'Wisp Ascendancy: level 1','All 2 Lab slots occupied']]){
+   await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.activeStudies=${JSON.stringify(activeStudies)};b.setState(s);b.renderLayout();})()`);
+   const runningBefore=await snapshot();await touchVisibleHint();const running=await dialog();
+   assert(running.title===title&&running.detail===detail,'paid running work and occupied slots remain exact');
+   sameData(runningBefore,await snapshot(),'running work details');await key('Escape');
+ }
+ // A live change away from this option closes rather than retaining stale advice.
+ await touchVisibleHint();
+ await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.riftMode='push';b.setState(s);b.renderLayout();})()`);
+ assert(!(await dialog()).open&&!await evaluate('document.querySelector(".shell").inert'),'irrelevant advice closes and releases focus lifecycle');
+ record.samples.push({summary,funded,missing});
 }
 async function readabilityNegative(record,name){
  const before=await snapshot(),savedStyle=await evaluate('document.querySelector("#rift-hints-toggle").getAttribute("style")');
@@ -378,7 +407,7 @@ async function run(url){
  assert(!runtimeErrors.length,'no CDP runtime exceptions');
 }
 (async()=>{
- const result={status:'fail',scope:midgameAccept?'MIDGAME_FARM_GUIDANCE_001':'RIFT_GUIDANCE_001',baselineProbe:baseline,readabilityProbe,midgameAccept,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),instrumentedSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex'),records};
+ const result={status:'fail',scope:midgameAccept?'RIFT_HINT_READABILITY_002':'RIFT_GUIDANCE_001',hintMutation,baselineProbe:baseline,readabilityProbe,midgameAccept,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),instrumentedSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex'),records};
  try{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
   browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
