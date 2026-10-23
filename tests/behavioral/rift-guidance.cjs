@@ -50,6 +50,12 @@ function send(method,params={},sid=session){return new Promise((resolve,reject)=
 });}
 async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 async function key(name,shift=false){const specs={Space:{key:' ',code:'Space',windowsVirtualKeyCode:32},Tab:{key:'Tab',code:'Tab',windowsVirtualKeyCode:9},Enter:{key:'Enter',code:'Enter',windowsVirtualKeyCode:13},Escape:{key:'Escape',code:'Escape',windowsVirtualKeyCode:27},End:{key:'End',code:'End',windowsVirtualKeyCode:35}};const spec=specs[name];await send('Input.dispatchKeyEvent',{type:'rawKeyDown',...spec,modifiers:shift?8:0});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec,modifiers:shift?8:0});}
+async function nativeEnter(){
+ // Native buttons activate on the complete Enter sequence, including its
+ // character event. rawKeyDown alone only exercises custom keydown handlers.
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+ await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+}
 async function touch(selector){const box=await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);assert(box.hit,'native touch reaches '+selector);await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x,y:box.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
 async function touchVisibleHint(){
  const box=await evaluate(`(()=>{const e=document.querySelector('#rift-objective'),row=document.querySelector('#rift-objective-row'),r=e.getBoundingClientRect(),v=row.getBoundingClientRect();
@@ -91,7 +97,8 @@ async function midgameFarmAcceptance(record,name,inset){
  })()`);
  const before=await snapshot();
  const summary=await evaluate(`(()=>{
-   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),s=e.querySelector('strong'),t=s.getBoundingClientRect(),row=document.querySelector('#rift-objective-row');
+   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),s=e.querySelector('strong'),range=document.createRange(),row=document.querySelector('#rift-objective-row');
+   range.selectNodeContents(s);const t=range.getBoundingClientRect();
    return {kind:e.querySelector('.objective-kind').textContent,title:s.textContent,name:e.getAttribute('aria-label'),
      popup:e.getAttribute('aria-haspopup'),role:e.getAttribute('role'),target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
      fit:r.left>=0&&r.right<=innerWidth+1&&document.documentElement.scrollWidth<=innerWidth+1,
@@ -136,7 +143,9 @@ async function midgameFarmAcceptance(record,name,inset){
  // Refresh back to funded without closing/recreating the focused control.
  await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=800;s.shards=80;b.setState(s);b.renderLayout();})()`);
  assert((await dialog()).detail===funded.detail&&!(await dialog()).shortfall,'resource refresh restores funded quote and clears red');
- const navigation=await snapshot();await key('Tab');await key('Enter');
+ const navigation=await snapshot();await key('Tab');
+ assert(await evaluate('document.activeElement.id')==='rift-hint-open-lab','Tab reaches original native Go to Lab button');
+ await nativeEnter();
  assert(await evaluate('document.querySelector("#tab-research").classList.contains("active")&&document.activeElement===document.querySelector(\'[data-study-card="wispascend"]\')'),'keyboard Go to Lab focuses original card');
  assert(!(await dialog()).open,'Lab navigation closes details');sameData(navigation,await snapshot(),'keyboard Lab navigation');
  await touch('[data-tab="battle"]');await touchVisibleHint();

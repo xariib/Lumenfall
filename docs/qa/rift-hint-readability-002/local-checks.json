@@ -1,0 +1,39 @@
+{
+  "node": "v24.19.0",
+  "sourceSha256": "05f6516d88c9620bc080986ae3248d3e4888f9a5a448903ee0c0b5cdb0e602bd",
+  "checks": {
+    "midgame": {
+      "status": "PASS",
+      "assertions": 24
+    },
+    "lateGuidance": {
+      "status": "PASS",
+      "assertions": 186
+    },
+    "progression": {
+      "status": "PASS",
+      "assertions": 235
+    },
+    "lab": {
+      "status": "pass",
+      "assertions": 2677,
+      "negativeControls": 10
+    },
+    "forge": {
+      "status": "PASS",
+      "assertions": 9319,
+      "negativeControls": 25
+    }
+  },
+  "otherChecks": {
+    "ascendCounters": 56,
+    "sourceValidation": "PASS",
+    "syntax": "PASS",
+    "diffWhitespace": "PASS"
+  },
+  "browser": {
+    "version": "156.0.8078.47",
+    "status": "BLOCKED",
+    "reason": "Sandbox rejects Chrome singleton socket creation; baseline and candidate fail before profiles. GitHub CI required."
+  }
+}

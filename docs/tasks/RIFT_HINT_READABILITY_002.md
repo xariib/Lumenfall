@@ -1,6 +1,6 @@
 # RIFT_HINT_READABILITY_002 — readable Farm Lab advice
 
-Owner: this feature chat. Status: implementation in progress.
+Owner: this feature chat. Status: implemented; browser regression acceptance in progress.
 
 ## Approved scope and baseline
 
@@ -69,8 +69,55 @@ return, red/live shortfalls, paid running work, occupied slots, unchanged
 state/save and stable combat geometry. Two causal controls remove dialog
 opening and live refresh. Installed Android QA now touches the summary,
 checks full dialog content and touches its original Lab destination.
-These browser/native changes still need execution; no PASS claimed yet.
+The browser/native execution checkpoint below supersedes that initial status.
 
-Next: publish draft PR, inspect required CI and fix any introduced regression,
-then complete review and appropriate non-publishing Android acceptance if
-workflow dispatch is available. No new binding project rule.
+## Published checkpoint — 24 October 2026
+
+[PR #7](https://github.com/xariib/Lumenfall/pull/7) is open for review.
+Implementation `8016a1f528c50add6459095180964f570c6a6c7b`, followed by
+heading-first initial focus `eb589c12835c480ac2230c2f703068e14ba9d0c6`.
+Published tree `aab3c75c5ab3e8e3e76d47342a5a23e1710d3478` exactly matched
+the local tree. Product SHA-256 is
+`05f6516d88c9620bc080986ae3248d3e4888f9a5a448903ee0c0b5cdb0e602bd`.
+[Evidence/reproduction](../qa/rift-hint-readability-002/README.md) includes
+source comparison (565/567 original functions byte-identical; only
+`renderRiftObjective`/`init` changed, four presentation helpers added), local
+results, first browser failure and installed Android test summary.
+
+[Full run 40033985420](https://github.com/xariib/Lumenfall/actions/runs/40033985420)
+passed its original isolated offline job and arithmetic/automation steps, then
+failed the new keyboard Go to Lab assertion on the first 320 px profile.
+The failure screenshot retained a focused native button and open dialog.
+The shared Guidance `key()` helper sent `rawKeyDown` without the Enter
+character event; that is sufficient for the old custom keydown handlers but
+does not activate a native HTML button. Existing Wisp drivers use the complete
+`keyDown`/carriage-return/`keyUp` sequence. The QA correction adds that native
+sequence only for the new button, explicitly asserts its prior focus and
+retains the original destination/state/save assertions. Actual text Range
+bounds now verify the entire summary, rather than its containing box.
+No product code changed for this correction. The first run remains a failure;
+its [raw artifact](https://github.com/xariib/Lumenfall/actions/runs/40033985420/artifacts/12536641256)
+and [failure receipt](../qa/rift-hint-readability-002/first-browser-failure.json)
+are preserved. Initial run 40033845508 was superseded/cancelled by the focus
+commit; it is not counted as acceptance. Automated review on `eb589c1`
+completed with no findings; no independent human review is claimed.
+
+[Android run #26](https://github.com/xariib/Lumenfall/actions/runs/40034260929)
+**PASS** on exact product/head `eb589c1` with `publish=false`. The signed
+in-place upgrade on the disposable Android emulator preserved identity,
+both slots, paid progression/work and legacy entitlements.
+Installed native touch opened the full quote and then reached the
+visible, focused original Wisp Ascendancy card. The existing eight-Wisp and
+purchase/focus check also passed. Exact packaged source/identity and upgrade
+receipt gates passed; release was skipped. This is emulator acceptance,
+not a physical-phone/WebView60/TalkBack or enlarged native text claim.
+The detailed emulator receipt upload was rejected by automatic approval
+review because it contained environment and APK metadata. The repository
+keeps only a minimal test summary and the public workflow reference;
+no UID, detailed device configuration or APK metadata is exported here.
+
+Next: publish the QA correction/evidence, run all required final-head CI and
+inspect mobile screenshots/causal controls. Integrate only after those gates;
+then repeat non-publishing installed acceptance on exact main. Physical phone,
+exact WebView60, TalkBack and human visual/pacing acceptance stay open.
+No new binding project rule and no APK release.
