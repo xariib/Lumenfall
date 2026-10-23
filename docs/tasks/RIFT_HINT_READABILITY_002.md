@@ -121,3 +121,32 @@ inspect mobile screenshots/causal controls. Integrate only after those gates;
 then repeat non-publishing installed acceptance on exact main. Physical phone,
 exact WebView60, TalkBack and human visual/pacing acceptance stay open.
 No new binding project rule and no APK release.
+
+## 200% summary correction
+
+Safe-area candidate `9927243f7f716d7bb7fff59a1582ebe66b978b59`
+passed [non-publishing Android #27](https://github.com/xariib/Lumenfall/actions/runs/40035607792)
+and automated code review without findings. This native result is for those
+bytes, not acceptance of subsequent CSS. [Full CI 40035527105](https://github.com/xariib/Lumenfall/actions/runs/40035527105)
+passed isolated offline, arithmetic and automation, and the first four mobile
+profiles including complete keyboard navigation. At 320 px / 200% text,
+the summary failed the strict no-nested-scroll/readable-text check. The
+[raw artifact](https://github.com/xariib/Lumenfall/actions/runs/40035527105/artifacts/12537396153)
+retains the failure. The enlarged arrow's inherited normal line box plus
+vertical padding can exceed the fixed 44 px window. The correction keeps
+the same fonts, zeroes summary-only vertical padding, fixes its height to
+44 px and sets the decorative arrow's line-height to 1. It changes neither
+the reserved slot nor other hints. Failure measurements are now recorded
+before assertions. No assertion is relaxed and no overflow is hidden.
+
+To shorten feedback on this focused UI correction, the unchanged asset
+staging and Farm mobile acceptance steps run directly after source validation,
+before the longer numerical/automation checks. All original gates and
+controls remain present. The numerical/browser helpers use their own temp
+stages, so the original staged production input stays intact.
+
+Corrected product SHA-256:
+`8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83`.
+Next: inspect the corrected 18-profile matrix and both causal controls,
+complete all final-head CI/review, integrate, then run non-publishing Android
+acceptance on the exact integrated product. Physical/human gaps remain open.

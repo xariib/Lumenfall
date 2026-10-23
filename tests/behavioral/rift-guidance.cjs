@@ -105,6 +105,7 @@ async function midgameFarmAcceptance(record,name,inset){
      readable:t.right<=r.right+1&&t.top>=row.getBoundingClientRect().top&&t.bottom<=row.getBoundingClientRect().bottom+1,
      width:r.width,height:r.height,scroll:row.scrollHeight,rowHeight:row.clientHeight};
  })()`);
+ record.summary=summary;
  assert(summary.kind==='POWER OPTION'&&summary.title==='Lab hint'&&summary.popup==='dialog'&&summary.role==='button','short summary advertises details dialog');
  assert(summary.fit&&summary.readable&&summary.height>=44&&summary.width>=44&&summary.scroll<=summary.rowHeight+1,'summary fully readable in fixed strip without nested scrolling');
  assert(summary.name==='Read Lab hint — Power option: Wisp Ascendancy 1 — +15% passive Wisp damage after study · 800 Lumen + 80 Shards','full funded accessible summary');
