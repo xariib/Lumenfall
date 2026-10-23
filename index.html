@@ -2969,7 +2969,7 @@
 
 <div class="overlay" id="rift-hint-overlay" style="display:none;">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="rift-hint-title" aria-describedby="rift-hint-detail" tabindex="-1">
-    <h2 id="rift-hint-title">Lab hint</h2>
+    <h2 id="rift-hint-title" tabindex="-1">Lab hint</h2>
     <p id="rift-hint-detail"></p>
     <button type="button" class="primary-btn" id="rift-hint-open-lab">Go to Lab</button>
     <button type="button" class="ghost-btn" id="rift-hint-close">Close</button>
@@ -8648,6 +8648,9 @@ function openRiftHintDetails(){
   if(!hasRiftHintDetails(goal) || riftGuidanceHidden)return;
   renderRiftHintDetails(goal);
   openOverlay(document.getElementById('rift-hint-overlay'),closeRiftHintDetails,els['rift-objective']);
+  // Start long advice at its heading, rather than an action below the fold.
+  document.getElementById('rift-hint-overlay').querySelector('.modal').scrollTop=0;
+  document.getElementById('rift-hint-title').focus({preventScroll:true});
 }
 function renderRiftObjective(){
   var el = els['rift-objective'];

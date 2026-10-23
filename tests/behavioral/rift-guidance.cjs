@@ -114,7 +114,7 @@ async function midgameFarmAcceptance(record,name,inset){
  assert(funded.open,'keyboard opens Lab details dialog');
  assert(funded.title==='Power option: Wisp Ascendancy 1'&&funded.detail==='+15% passive Wisp damage after study · 800 Lumen + 80 Shards','full exact funded title, price and effect');
  assert(funded.fits&&funded.controls.every(c=>c.w>=44&&c.h>=44)&&funded.described==='rift-hint-detail'&&funded.labelled==='rift-hint-title','wrapped dialog fits and names its full content with 44px controls');
- assert(funded.inert&&funded.focus==='rift-hint-open-lab','existing overlay lifecycle focuses action and makes background inert');
+ assert(funded.inert&&funded.focus==='rift-hint-title','long advice starts at focused heading with inert background');
  sameGeometry(before,await snapshot(),'opening details');sameData(before,await snapshot(),'opening details');
  await screenshot(name+'-funded');
  await key('Tab',true);assert(await evaluate('document.activeElement.id')==='rift-hint-close','reverse Tab wraps inside dialog');
@@ -129,14 +129,14 @@ async function midgameFarmAcceptance(record,name,inset){
  await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=799;s.shards=79;b.setState(s);b.renderLayout();})()`);
  const shortfall=await snapshot(),missing=await dialog();
  assert(missing.title==='Wisp Ascendancy: level 1'&&missing.detail==='Missing 1 Lumen + 1 Shards for Lab','open details refresh both exact shortfalls');
- assert(missing.shortfall&&missing.color==='rgb(255, 159, 174)'&&missing.fits&&missing.focus==='rift-hint-open-lab','red shortfalls retain dialog focus and fit');
+ assert(missing.shortfall&&missing.color==='rgb(255, 159, 174)'&&missing.fits&&missing.focus==='rift-hint-title','red shortfalls retain dialog focus and fit');
  await screenshot(name+'-unfunded');
  await key('Escape');sameData(shortfall,await snapshot(),'shortfall close');
  await key('Space');assert((await dialog()).open,'Space opens current details');
  // Refresh back to funded without closing/recreating the focused control.
  await evaluate(`(()=>{const b=__lumenfallQaBridge,s=b.getState();s.lumen=800;s.shards=80;b.setState(s);b.renderLayout();})()`);
  assert((await dialog()).detail===funded.detail&&!(await dialog()).shortfall,'resource refresh restores funded quote and clears red');
- const navigation=await snapshot();await key('Enter');
+ const navigation=await snapshot();await key('Tab');await key('Enter');
  assert(await evaluate('document.querySelector("#tab-research").classList.contains("active")&&document.activeElement===document.querySelector(\'[data-study-card="wispascend"]\')'),'keyboard Go to Lab focuses original card');
  assert(!(await dialog()).open,'Lab navigation closes details');sameData(navigation,await snapshot(),'keyboard Lab navigation');
  await touch('[data-tab="battle"]');await touchVisibleHint();
