@@ -1715,7 +1715,7 @@
   #rift-hints-toggle:focus,#rift-objective-row:focus,#rift-guidance-slot .rift-objective:focus{outline:2px solid #e7c67e;outline-offset:-3px;}
   #rift-guidance-slot .rift-hint-summary .objective-copy strong{white-space:nowrap;}
   #rift-guidance-slot .rift-hint-summary .objective-copy small{display:none;}
-  #rift-hint-overlay .modal{text-align:left;overflow-wrap:break-word;max-height:calc(100vh - 48px);overflow-y:auto;}
+  #rift-hint-overlay .modal{text-align:left;overflow-wrap:break-word;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 48px);max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 48px);overflow-y:auto;}
   #rift-hint-overlay h2{font-size:1.25rem;}
   #rift-hint-overlay p,#rift-hint-overlay button{font-size:1rem;line-height:1.4;}
   #rift-hint-overlay button{min-height:44px;white-space:normal;}
