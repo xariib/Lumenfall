@@ -1,0 +1,18 @@
+{
+  "run": "https://github.com/xariib/Lumenfall/actions/runs/40040519633/attempts/1",
+  "commit": "42390366c03c98a3e7fe7803d3dc748975662f70",
+  "sourceSha256": "8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83",
+  "status": "fail",
+  "scenario": "rift-status-stacking-mobile",
+  "message": "#enemy-stage text/content unclipped",
+  "scroll": [
+    324,
+    131
+  ],
+  "client": [
+    324,
+    129
+  ],
+  "diagnosticIncludesActiveVoidAnimation": true,
+  "interpretation": "Phase-sensitive existing animation overflow suspected; not confirmed as a test-only defect. Same product/test passed this scenario in preceding run 40036520804. No assertion or product change to bypass it."
+}

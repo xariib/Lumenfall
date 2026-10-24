@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+24 October 2026: [RIFT_HINT_READABILITY_002](tasks/RIFT_HINT_READABILITY_002.md)
+is approved and in progress on `feat/rift-hint-readability-002`. It replaces
+only the developing Farm Lab hint's cramped quote with a short summary and
+readable details dialog, retaining the reserved combat layout and original
+Lab purchase flow. Browser CI, review and installed acceptance are pending;
+no integration or APK release is claimed. Gameplay, prices and saves stay
+outside scope. See the task for current checks and environment limitations.
+
 22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
 verified the previously integrated midgame Farm guidance through
 [PR #6](https://github.com/xariib/Lumenfall/pull/6), merged at

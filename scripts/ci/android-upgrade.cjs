@@ -175,20 +175,33 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  })()`);
  fs.writeFileSync('release-evidence/installed-midgame-farm-diagnostic.json',JSON.stringify(hint,null,2)+'\n');
  assert.equal(hint.kind,'POWER OPTION');
- assert.equal(hint.title,'Power option: Wisp Ascendancy 1');
+ assert.equal(hint.title,'Lab hint');
  assert.equal(hint.detail,'+15% passive Wisp damage after study · 800 Lumen + 80 Shards');
- assert(hint.name===hint.title+' — '+hint.detail&&hint.target==='research'&&hint.selector.includes('wispascend'),'Installed accessible hint targets the actual Lab study');
+ assert(hint.name==='Read Lab hint — Power option: Wisp Ascendancy 1 — '+hint.detail&&hint.target==='research'&&hint.selector.includes('wispascend'),'Installed accessible hint retains full current Lab quote');
  assert(hint.hit&&hint.fit,'Installed Farm hint fits and receives native touch');
+ adb('shell','input','tap',String(Math.round(hint.x*scale)),String(Math.round(hint.y*scale)));
+ let details;
+ for(let i=0;i<50;i++){
+   details=await page.evaluate(`(()=>{const o=document.querySelector('#rift-hint-overlay'),b=document.querySelector('#rift-hint-open-lab'),r=b.getBoundingClientRect();return {
+     open:getComputedStyle(o).display!=='none',title:document.querySelector('#rift-hint-title').textContent,
+     detail:document.querySelector('#rift-hint-detail').textContent,x:r.x+r.width/2,y:r.y+r.height/2,
+     fit:o.querySelector('.modal').scrollWidth<=o.querySelector('.modal').clientWidth+1,
+     hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
+   if(details.open)break;
+   await pause(100);
+ }
+ assert(details.open&&details.title==='Power option: Wisp Ascendancy 1'&&details.detail===hint.detail,'Native touch opens full current Lab advice');
+ assert(details.fit&&details.hit,'Installed details wrap and Lab action receives touch');
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
  assert(shot.data,'Installed Farm screenshot captured');
  fs.writeFileSync('release-evidence/installed-midgame-farm.png',Buffer.from(shot.data,'base64'));
- adb('shell','input','tap',String(Math.round(hint.x*scale)),String(Math.round(hint.y*scale)));
+ adb('shell','input','tap',String(Math.round(details.x*scale)),String(Math.round(details.y*scale)));
  await pause(350);
  const destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
    lab:document.querySelector('#tab-research').classList.contains('active'),
    card:!!card&&card.getBoundingClientRect().width>0,focused:document.activeElement===card};})()`);
  assert(destination.lab&&destination.card&&destination.focused,'Native touch navigates to and focuses Wisp Ascendancy');
- report.installedMidgameFarmHint={status:'PASS',hint,destination,screenshot:'release-evidence/installed-midgame-farm.png',syntheticFixture:true};
+ report.installedMidgameFarmHint={status:'PASS',hint,details,destination,screenshot:'release-evidence/installed-midgame-farm.png',syntheticFixture:true};
  console.log('Android installed Farm guidance acceptance: '+JSON.stringify(report.installedMidgameFarmHint));
  return page;
 }

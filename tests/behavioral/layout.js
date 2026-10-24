@@ -35,9 +35,30 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     assert(document.elementFromPoint(enemy.x+enemy.width/2,enemy.y+enemy.height/2).closest('#enemy-stage'),'Guardian Tap is not covered');
     minimum=Math.min(minimum,enemy.height);
     assert(enemy.height>=120,'Guardian Tap region at least 120px; got '+enemy.height);
-    ['#hp-text','#enemy-name','#depth-label','#rift-objective','.objective-copy strong','.objective-copy small'].forEach(function(s){
+    ['#hp-text','#enemy-name','#depth-label','#rift-objective','.objective-copy strong'].forEach(function(s){
       visible(s);assert(parseFloat(getComputedStyle(q(s)).fontSize)>=10,s+' legible size');
     });
+    if(q('#rift-objective').classList.contains('rift-hint-summary')){
+      // The approved Farm summary moves the complete quote into its dialog.
+      // Measure that real visible content, rather than silently skipping the
+      // retired inline presentation. Other hints retain the original checks.
+      var hint=q('#rift-objective'),quote=q('.objective-copy small').textContent;
+      var beforeHint=JSON.stringify(bridge.getState()),beforeHintSave=bridge.rawSave();
+      assert(hint.getAttribute('aria-haspopup')==='dialog' && quote.length>0,'Farm summary exposes complete advice through a dialog');
+      hint.click();
+      ['#rift-hint-title','#rift-hint-detail'].forEach(function(s){
+        visible(s);assert(parseFloat(getComputedStyle(q(s)).fontSize)>=10,s+' legible size');
+        assert(q(s).scrollWidth<=q(s).clientWidth+1,s+' full text wraps without clipping');
+      });
+      assert(q('#rift-hint-detail').textContent===quote && hint.getAttribute('aria-label')==='Read Lab hint — '+q('#rift-hint-title').textContent+' — '+quote,'dialog preserves the complete current accessible quote');
+      assert(rect('#rift-hint-overlay .modal').width>0 && q('#rift-hint-overlay .modal').scrollWidth<=q('#rift-hint-overlay .modal').clientWidth+1,'full Farm dialog fits horizontally');
+      q('#rift-hint-close').click();
+      assert(getComputedStyle(q('#rift-hint-overlay')).display==='none' && document.activeElement===hint,'Close hides dialog and restores summary focus');
+      assert(JSON.stringify(bridge.getState())===beforeHint && bridge.rawSave()===beforeHintSave,'reading Farm advice preserves complete state and saved bytes');
+      assert(rect('#enemy-stage').x===enemy.x && rect('#enemy-stage').y===enemy.y && rect('#enemy-stage').width===enemy.width && rect('#enemy-stage').height===enemy.height,'Farm dialog preserves Guardian Tap geometry');
+    }else{
+      visible('.objective-copy small');assert(parseFloat(getComputedStyle(q('.objective-copy small')).fontSize)>=10,'.objective-copy small legible size');
+    }
     ['#rift-push-btn','#rift-farm-btn','#settings-btn'].forEach(function(s){
       var r=visible(s);assert(r.height>=44 && r.width>=44,s+' 44px touch target');
     });

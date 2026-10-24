@@ -45,6 +45,54 @@ jobs:
         run: |
           node scripts/ci/validate_source.cjs
 
+      - name: Verify existing independent offline reference binding
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+          const golden=JSON.parse(fs.readFileSync('tests/behavioral/offline-swift-current-golden.json'));
+          const source=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');
+          assert.equal(source,golden.sourceSha256,'Regenerate independent one-second windows after product changes');
+          JS
+
+      - name: Stage web assets
+        shell: bash
+        run: |
+          rm -rf mobile/www
+          mkdir -p mobile/www/fonts mobile/www/branding
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+
+      - name: Midgame Farm guidance mobile acceptance
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
+          node scripts/codex/check_context.cjs --task docs/tasks/RIFT_HINT_READABILITY_002.md
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          node tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www validation-evidence/midgame-farm-mobile --midgame-accept
+          for CONTROL in open refresh; do
+            if node tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www "validation-evidence/hint-control-$CONTROL" --midgame-accept "--mutate-hint-$CONTROL"; then
+              echo "::error::Hint control unexpectedly passed: $CONTROL"
+              exit 1
+            fi
+          done
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('validation-evidence/midgame-farm-mobile/results.json'));
+          assert.equal(good.status,'pass');assert.equal(good.records.length,18);
+          for(const [control,message] of [['open','keyboard opens Lab details dialog'],['refresh','open details refresh both exact shortfalls']]){
+            const bad=JSON.parse(fs.readFileSync('validation-evidence/hint-control-'+control+'/results.json'));
+            assert.equal(bad.status,'fail');assert(bad.message.includes(message));
+            assert.notEqual(bad.sourceSha256,good.sourceSha256);assert.deepEqual(bad.runtimeErrors,[]);
+            assert.equal(bad.teardown.code,0);assert(!bad.teardown.signal);
+          }
+          JS
+
+      - name: Legacy Rift layout with complete Farm dialog content
+        run: |
+          for SCENARIO in layout-fresh layout-dense layout-boss layout-accessibility-states; do
+            node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/hint-layout-early
+          done
+
       - name: Endless progression amounts, gates, persistence and chronology
         run: |
           mkdir -p validation-evidence/endless-progression
@@ -86,21 +134,6 @@ jobs:
           LUMENFALL_CYCLE_COLD_FRAMES=1 node tests/behavioral/endless-cycle-split.cjs > validation-evidence/endless-progression/cold-parity.json
           node tests/behavioral/endless-cycle-overflow.cjs > validation-evidence/endless-progression/high-mastery.json
           node tests/behavioral/endless-cycle-controls.cjs validation-evidence/endless-progression/cycle-controls > validation-evidence/endless-progression/cycle-controls.json
-
-      - name: Stage web assets
-        shell: bash
-        run: |
-          rm -rf mobile/www
-          mkdir -p mobile/www/fonts mobile/www/branding
-          cp index.html mobile/www/index.html
-          cp -r fonts/. mobile/www/fonts/
-          cp -r branding/. mobile/www/branding/
-
-      - name: Midgame Farm guidance mobile acceptance
-        run: |
-          node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
-          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
-          node tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www validation-evidence/midgame-farm-mobile --midgame-accept
 
       - name: Guidance baseline readability and exact old-width inverse
         run: |

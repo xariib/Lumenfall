@@ -1713,6 +1713,15 @@
   #rift-guidance-slot .objective-copy small.objective-shortfall{color:#ff9fae;}
   #rift-guidance-slot .objective-arrow{color:#b5b4cb;}
   #rift-hints-toggle:focus,#rift-objective-row:focus,#rift-guidance-slot .rift-objective:focus{outline:2px solid #e7c67e;outline-offset:-3px;}
+  #rift-guidance-slot .rift-hint-summary{height:44px;padding:0 2px;}
+  #rift-guidance-slot .rift-hint-summary .objective-arrow{line-height:1;}
+  #rift-guidance-slot .rift-hint-summary .objective-copy strong{white-space:nowrap;}
+  #rift-guidance-slot .rift-hint-summary .objective-copy small{display:none;}
+  #rift-hint-overlay .modal{text-align:left;overflow-wrap:break-word;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 48px);max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 48px);overflow-y:auto;}
+  #rift-hint-overlay h2{font-size:1.25rem;}
+  #rift-hint-overlay p,#rift-hint-overlay button{font-size:1rem;line-height:1.4;}
+  #rift-hint-overlay button{min-height:44px;white-space:normal;}
+  #rift-hint-detail.objective-shortfall{color:#ff9fae;}
   .late-power-guide[hidden]{display:none;}
   .late-power-guide{overflow-wrap:anywhere;}
   .late-power-guide h3{margin:0 0 8px;font-size:1rem;}
@@ -2958,6 +2967,15 @@
     </section>
 
   </main>
+</div>
+
+<div class="overlay" id="rift-hint-overlay" style="display:none;">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="rift-hint-title" aria-describedby="rift-hint-detail" tabindex="-1">
+    <h2 id="rift-hint-title" tabindex="-1">Lab hint</h2>
+    <p id="rift-hint-detail"></p>
+    <button type="button" class="primary-btn" id="rift-hint-open-lab">Go to Lab</button>
+    <button type="button" class="ghost-btn" id="rift-hint-close">Close</button>
+  </div>
 </div>
 
 <div class="overlay settings-overlay" id="settings-overlay" style="display:none;">
@@ -8614,21 +8632,51 @@ function setRiftGuidanceHidden(hidden){
   renderRiftGuidancePreference();
   if(returnFocus) document.getElementById('rift-hints-toggle').focus({preventScroll:true});
 }
+function hasRiftHintDetails(goal){
+  return !!goal && goal.kind==='POWER OPTION';
+}
+function closeRiftHintDetails(){
+  closeOverlay(document.getElementById('rift-hint-overlay'));
+}
+function renderRiftHintDetails(goal){
+  var title=document.getElementById('rift-hint-title');
+  var detail=document.getElementById('rift-hint-detail');
+  if(title.textContent!==goal.title)title.textContent=goal.title;
+  if(detail.textContent!==goal.detail)detail.textContent=goal.detail;
+  detail.className=goal.unfunded ? 'objective-shortfall' : '';
+}
+function openRiftHintDetails(){
+  var goal=nextRiftObjective();
+  if(!hasRiftHintDetails(goal) || riftGuidanceHidden)return;
+  renderRiftHintDetails(goal);
+  openOverlay(document.getElementById('rift-hint-overlay'),closeRiftHintDetails,els['rift-objective']);
+  // Start long advice at its heading, rather than an action below the fold.
+  document.getElementById('rift-hint-overlay').querySelector('.modal').scrollTop=0;
+  document.getElementById('rift-hint-title').focus({preventScroll:true});
+}
 function renderRiftObjective(){
   var el = els['rift-objective'];
   if(!el) return;
   renderRiftGuidancePreference();
   var goal = nextRiftObjective();
+  var details=hasRiftHintDetails(goal);
+  var overlay=document.getElementById('rift-hint-overlay');
+  if(overlayVisible(overlay)){
+    if(details && !riftGuidanceHidden)renderRiftHintDetails(goal);
+    else closeRiftHintDetails();
+  }
   el.style.setProperty('--objective-progress',(goal.progress||0)+'%');
   var actionable = !!goal.tab;
   el.innerHTML =
     '<span class="objective-kind">'+goal.kind+'</span>'+
-    '<span class="objective-copy"><strong>'+goal.title+'</strong><small'+(goal.unfunded?' class="objective-shortfall"':'')+'>'+goal.detail+'</small></span>'+
+    '<span class="objective-copy"><strong>'+(details?'Lab hint':goal.title)+'</strong><small'+(goal.unfunded?' class="objective-shortfall"':'')+'>'+goal.detail+'</small></span>'+
     '<span class="objective-arrow">'+(actionable?'›':'')+'</span>';
   el.className = 'rift-objective objective-'+goal.kind.toLowerCase().replace(/[^a-z]+/g,'-')+(actionable?' actionable':'');
+  if(details)el.classList.add('rift-hint-summary');
+  if(details)el.setAttribute('aria-haspopup','dialog');else el.removeAttribute('aria-haspopup');
   el.setAttribute('data-target-tab',goal.tab||'');
   el.setAttribute('data-target-selector',goal.selector||'');
-  if(actionable){ el.setAttribute('role','button'); el.tabIndex=0; el.setAttribute('aria-label',goal.title+' — '+goal.detail); }
+  if(actionable){ el.setAttribute('role','button'); el.tabIndex=0; el.setAttribute('aria-label',(details?'Read Lab hint — ':'')+goal.title+' — '+goal.detail); }
   else { el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-label'); }
 }
 
@@ -13038,8 +13086,15 @@ function init(){
     }
   });
   document.getElementById('rift-objective').addEventListener('click', function(){
+    if(this.classList.contains('rift-hint-summary')){openRiftHintDetails();return;}
     var target = this.getAttribute('data-target-tab');
     if(target) openPowerAdvice({tab:target,selector:this.getAttribute('data-target-selector')});
+  });
+  document.getElementById('rift-hint-close').addEventListener('click',closeRiftHintDetails);
+  document.getElementById('rift-hint-open-lab').addEventListener('click',function(){
+    var goal=nextRiftObjective();
+    closeRiftHintDetails();
+    if(hasRiftHintDetails(goal))openPowerAdvice(goal);
   });
   document.getElementById('late-power-open').addEventListener('click',function(){openPowerAdvice(latePowerAdvice());});
   document.getElementById('rift-hints-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
