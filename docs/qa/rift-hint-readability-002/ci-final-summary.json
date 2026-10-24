@@ -58,9 +58,11 @@
     "identicalProduct": true
   },
   "exactMainInstalled": {
-    "status": "BLOCKED",
-    "buildStarted": false,
-    "reason": "Execution/browser environment unavailable; connector has no manual workflow-dispatch capability"
+    "status": "PASS",
+    "commit": "6de1789b95db4eff4321241b9474730b909e0d14",
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/40076467803",
+    "buildStarted": true,
+    "receipt": "android-main-summary.json"
   },
   "publishedAPKRelease": false,
   "physicalPhoneWebView60TalkBackHumanPacing": "NOT_VERIFIED",
@@ -70,11 +72,12 @@
     "proposal": "RIFT_VFX_OVERFLOW_001"
   },
   "documentation": {
-    "previousNodeContextCheck": "PASS on 0d7937a, 30951 startup bytes",
-    "finalUTF8StartupBytes": 32397,
-    "finalChangedLinkTargets": "verified in published tree",
-    "postEditNodeContextCommand": "NOT_RUN_ENVIRONMENT_UNAVAILABLE"
+    "node": "v24.22.1",
+    "finalContextCommand": "node scripts/codex/check_context.cjs --task docs/tasks/RIFT_HINT_READABILITY_002.md",
+    "finalContextResult": "PASS",
+    "finalContextOutput": "PASS: 29 entrypoints, 60 local Markdown links, shared startup 17216 bytes; startup with docs/tasks/RIFT_HINT_READABILITY_002.md 32157 bytes",
+    "finalUTF8StartupBytes": 32157
   },
-  "scope": "CI/browser acceptance only",
+  "scope": "Automated CI/browser and integrated installed-emulator acceptance",
   "featureComplete": false
 }

@@ -1,6 +1,6 @@
 # RIFT_HINT_READABILITY_002 — readable Farm Lab advice
 
-Owner: this feature chat. Status: integrated; exact-main Android acceptance blocked by unavailable execution environment.
+Owner: this feature chat. Status: integrated and installed-emulator accepted; physical/human acceptance remains open.
 
 ## Approved scope and baseline
 
@@ -58,16 +58,10 @@ lifecycle. Go to Lab recomputes the current goal and navigates without buying.
 Live refresh updates text in place and closes obsolete advice. Early/Push/late
 guidance and the fixed 46/44 px reservation are unchanged.
 
-Candidate Node checks: source syntax/lifecycle validation PASS; actual task
-context PASS (29 entrypoints, 50 links); original midgame 24, late guidance
-186, Lab 2,677 (with original negative controls), progression 235 PASS.
-Edited QA files pass Node syntax and diff whitespace. The browser matrix now
-checks 18 profiles, complete quotes, native keyboard/touch, focus containment/
-return, red/live shortfalls, paid running work, occupied slots, unchanged
-state/save and stable combat geometry. Two causal controls remove dialog
-opening and live refresh. Installed Android QA now touches the summary,
-checks full dialog content and touches its original Lab destination.
-The browser/native execution checkpoint below supersedes that initial status.
+Initial Node checks passed source syntax/lifecycle, original Farm (24),
+late Guidance (186), Lab (2,677 including controls) and progression (235).
+QA receipts qualify these checks to their exact candidate source versions;
+the final browser/native checkpoints below establish current acceptance.
 
 ## Initial published checkpoint — 24 October 2026
 
@@ -224,24 +218,26 @@ No product changes: SHA-256 remains `8d957895a5e82bf8a6b4f78abc6affea8e796171a22
 exactly matches validated head `0d7937ae39d77543270ec5ce154c34ce83d991b6`.
 [Final CI](https://github.com/xariib/Lumenfall/actions/runs/40046062655) PASS:
 both full jobs, all original layout/offline cases and runtime smoke.
-All five companion workflows PASS; automated code review on exact head
-completed without findings. No independent human review is claimed.
+All five companion workflows PASS; automated review on exact head had no
+findings. No independent human review is claimed.
 [Compact final receipt](../qa/rift-hint-readability-002/ci-final-summary.json).
 
-Candidate Android #28 passed on identical `8d957895` product, including both
-saves, paid work, entitlements and native summary/details/Lab navigation.
-Exact-main installed acceptance is NOT complete: the execution/browser
-environment became unavailable, with no manual-dispatch capability in the
-GitHub connector. No integrated Android build was started. No APK release.
-
-Next required action: restore the environment, verify current main still has
-the accepted product/build/driver, and run the existing Android workflow on
-main with `publish=false`. Inspect its installed save/identity and native
-hint receipts, then update this task and shared status. The post-status-edit
-Node context command also remains to be rerun; final documentation links and
-UTF-8 budget were checked against the published tree without local execution.
+The environment interruption was resolved. [Integrated Android #29](https://github.com/xariib/Lumenfall/actions/runs/40076467803)
+PASS on exact main `6de1789b95db4eff4321241b9474730b909e0d14`,
+with `publish=false`. App/build/driver inputs match the accepted candidate;
+only documentation changed after 0d7937a. Signing/package/production assets/origin
+and the exact-APK upgrade receipt gates passed. Both saves, paid progression/work
+and legacy entitlements survived; native Wisp touch, complete hint content and
+navigation to the visible focused original Lab card passed. No APK release.
+[Minimal installed receipt](../qa/rift-hint-readability-002/android-main-summary.json)
+and [workflow proof](../qa/rift-hint-readability-002/android-main-run-29.jpg).
+Only synthetic disposable-emulator fixtures were used; no detailed environment
+or APK metadata is exported. The final documentation context check is recorded
+in the compact receipt; Node 24.22.1 was used for this documentation-only check.
 
 The unchanged animation gate passed in final CI; the intermittent finding is
 not claimed fixed. [Next proposed task](RIFT_VFX_OVERFLOW_001.md) is not approved
 or implemented. Physical phone, exact WebView60, TalkBack and human visual/pacing
-acceptance remain open. Keep this task/chat open. No new binding project rule.
+acceptance remain open. Keep this task/chat open for those gaps. No new binding
+project rule. Next: physical/human acceptance, or approve the separate VFX
+investigation before any implementation.
