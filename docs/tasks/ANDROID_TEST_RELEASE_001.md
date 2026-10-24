@@ -1,6 +1,6 @@
 # ANDROID_TEST_RELEASE_001 — current game ready for phone testing
 
-Owner: this chat. Status: preparing integrated validation and APK publication.
+Owner: this chat. Live delivery status and final evidence: [PR #8](https://github.com/xariib/Lumenfall/pull/8).
 
 ## User request and scope
 
@@ -36,13 +36,15 @@ download, update-without-uninstalling, backup and two documentation links.
 ## Acceptance and release sequence
 
 1. Context/link check passes for this task; review the complete documentation diff.
-2. Integrate documentation, then dispatch all six existing required validations
-   on that exact main commit. Both full pre-merge jobs must pass.
+2. Keep main frozen at the baseline while the documentation PR validates.
+   Dispatch all six required validations on exact main in parallel with that PR;
+   both full pre-merge jobs must pass. Merge the documentation only after its
+   checks pass and the checked main APK is published.
 3. Dispatch the unchanged Android workflow on main with publish enabled only
    after those exact-main checks pass. Its original signing, asset/origin,
    in-place upgrade and exact-APK receipt gates must pass before publication.
 4. Verify the published version, APK asset and release evidence. Record exact
-   commit/run/release links and the short phone test plan here.
+   commit/run/release links and the short phone test plan in the live PR above.
 5. Physical phone, exact WebView60, TalkBack and human visual/pacing acceptance
    stay open until actually tested. Do not label emulator results as phone PASS.
 
@@ -54,9 +56,12 @@ The GitHub connector supports repository reads/writes but has no dispatch action
 use the signed-in GitHub Actions UI for workflow dispatch, keeping all gates intact.
 Do not implement the separate unapproved Rift VFX overflow proposal.
 
-Next: integrate the checked documentation and run exact-main validation.
+Next at this preparation checkpoint: run exact-main validation and the
+README PR checks, publish the verified APK, then integrate documentation.
+The PR body records final delivery so recording a run does not invalidate that
+run's exact documentation commit. These preparation notes remain historical.
 
-Local checks: context PASS (29 entrypoints, 43 local links, 20,935-byte startup);
-`git diff --check` PASS. Self-review: README reduced from 73 to 10 lines; all
+Local checks: context PASS (29 entrypoints, 42 local links, 20,248-byte startup);
+`git diff --check` PASS. Self-review: README reduced from 79 to 10 lines; all
 removed development detail remains in linked existing documentation. No product,
 Android workflow, test, asset or signing changes.

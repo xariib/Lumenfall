@@ -3,8 +3,9 @@
 24 October 2026: [ANDROID_TEST_RELEASE_001](tasks/ANDROID_TEST_RELEASE_001.md)
 prepares the integrated Wisp/Farm/hint improvements for physical-phone testing.
 The user explicitly authorized a new signed APK publication and a minimal README.
-Exact-main release validation and publication are pending; public APK remains
-0.2.14 until a verified replacement is published. No product code changes.
+At preparation, the public APK was 0.2.14. Live release outcome, exact versions
+and check evidence: [delivery PR #8](https://github.com/xariib/Lumenfall/pull/8).
+No product code changes in this delivery task.
 
 24 October 2026: [RIFT_HINT_READABILITY_002](tasks/RIFT_HINT_READABILITY_002.md)
 was integrated through [PR #7](https://github.com/xariib/Lumenfall/pull/7) at
