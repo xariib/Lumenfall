@@ -1,6 +1,6 @@
 # RIFT_HINT_READABILITY_002 — readable Farm Lab advice
 
-Owner: this feature chat. Status: focused browser and installed candidate accepted; offline-reference correction awaits full CI.
+Owner: this feature chat. Status: focused browser/installed candidate accepted; legacy layout contract correction awaits CI.
 
 ## Approved scope and baseline
 
@@ -205,3 +205,30 @@ were retained. This recovery does not restore archive code over the product.
 Next: publish the regenerated reference/early preflight and rerun all final-head
 CI, including both original offline UI cases, before integration and the
 non-publishing installed Android check on exact main. Physical/human gaps stay open.
+
+## Full-suite layout contract correction
+
+Run [40040519633 attempt 1](https://github.com/xariib/Lumenfall/actions/runs/40040519633/attempts/1)
+passed both original source-bound offline browser cases. Later, all five
+viewports in each of `layout-dense`, `layout-boss` and
+`layout-accessibility-states` failed `.objective-copy small within viewport`
+after entering Farm. The old observer still required the intentionally moved
+inline quote; updating this contract was missed.
+
+`layout.js` now opens the real Farm dialog and checks its visible full title/quote,
+font minimum, wrapping, exact accessible content, Close/focus return and
+unchanged complete state, saved bytes and Guardian Tap geometry. Every other
+hint retains its original visible-inline-quote check. No test case, font
+minimum, viewport or gameplay assertion is removed. These original layout
+cases also run early, before long numerical checks, and remain in the full suite.
+
+The same run separately reported one phase-sensitive Rift animation overflow:
+`enemy-stage` scroll height 131 vs client 129 with active Void VFX. This fixture
+does not use the Farm Lab summary; relevant combat CSS/functions/driver are
+unchanged. Exact same product/driver passed that scenario in run 40036520804.
+Cause is not established as a test-only defect; preserve the failure and
+require final full CI without changing that gate.
+[Animation receipt](../qa/rift-hint-readability-002/rift-animation-failure.json).
+No product changes: SHA-256 remains `8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83`.
+Next: complete final-head full CI/review, then integrate and repeat installed
+non-publishing Android acceptance on exact main. Physical/human gaps remain open.

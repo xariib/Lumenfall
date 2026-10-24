@@ -66,3 +66,19 @@ The local browser could not create its singleton socket in this sandbox;
 its pre-profile failures are environment evidence, not game failures or PASS.
 Browser CI, installed emulator and physical phone/WebView60/TalkBack/human
 acceptance are distinct. See task for latest runs and remaining gates.
+
+## Full-suite contract correction
+
+[Legacy failure](legacy-layout-failure.json): the original observer still expected
+the deliberately moved Farm quote inline. It now opens and measures the real
+visible complete dialog, checks accessible content, Close/focus, state/save and
+unchanged combat geometry. All other inline hints retain their original checks.
+The same cases run early and again in the full suite; no case is skipped.
+[Animation failure](rift-animation-failure.json) is separately retained; the
+unchanged phase-sensitive gate is not waived. See task for current full CI.
+
+[18-profile summary](browser-matrix-summary.json) and inspected 200% text images:
+[320 px summary](summary-320-text200.png), [320 px details](details-320-text200.png),
+[390 px details](details-390-text200.png), [430 px shortfalls](shortfalls-430-text200.png).
+These are qualified to run 40036520804 and identical final product bytes;
+that full run was cancelled after offline-binding failures, not a full PASS.

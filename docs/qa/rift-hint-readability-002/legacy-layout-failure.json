@@ -1,0 +1,14 @@
+{
+  "run": "https://github.com/xariib/Lumenfall/actions/runs/40040519633/attempts/1",
+  "commit": "42390366c03c98a3e7fe7803d3dc748975662f70",
+  "sourceSha256": "8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83",
+  "status": "fail",
+  "message": ".objective-copy small within viewport",
+  "cases": {
+    "layout-dense": 5,
+    "layout-boss": 5,
+    "layout-accessibility-states": 5
+  },
+  "runtimeErrors": 0,
+  "correction": "Assert complete visible content in the actual Farm dialog; retain original inline visibility requirement for all other hints. Preserve fonts, cases, viewports, state/save and geometry requirements."
+}

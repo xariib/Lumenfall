@@ -87,6 +87,12 @@ jobs:
           }
           JS
 
+      - name: Legacy Rift layout with complete Farm dialog content
+        run: |
+          for SCENARIO in layout-fresh layout-dense layout-boss layout-accessibility-states; do
+            node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/hint-layout-early
+          done
+
       - name: Endless progression amounts, gates, persistence and chronology
         run: |
           mkdir -p validation-evidence/endless-progression
