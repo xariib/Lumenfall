@@ -1,4 +1,5 @@
 name: Rift cast baseline diagnosis
+# Diagnosis only; original acceptance gates remain unchanged.
 on:
   push:
     branches: ['qa/rift-cast-baseline-002']
@@ -25,3 +26,4 @@ jobs:
           name: rift-cast-baseline-diagnostic-${{ github.run_id }}
           path: cast-baseline-diagnostic/
           retention-days: 14
+
