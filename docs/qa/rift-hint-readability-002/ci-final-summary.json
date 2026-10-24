@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "validationCommit": "0d7937ae39d77543270ec5ce154c34ce83d991b6",
+  "integrationCommit": "88d9bdd33dafb4d075f8b86254ef050ade99e32d",
+  "validatedAndIntegratedTree": "49607bab6b98196945d689dad611edae6cb3935c",
+  "integratedTreeExactlyMatches": true,
+  "productSha256": "8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83",
+  "fullCI": "https://github.com/xariib/Lumenfall/actions/runs/40046062655",
+  "fullJobs": {
+    "main": "PASS",
+    "isolatedOffline": "PASS",
+    "runtimeSmoke": "PASS"
+  },
+  "focusedProfiles": 18,
+  "causalControls": {
+    "opening": "EXPECTED_FAILURE_CAUGHT",
+    "liveRefresh": "EXPECTED_FAILURE_CAUGHT"
+  },
+  "earlyOriginalLayoutScenarios": 4,
+  "layoutViewports": 5,
+  "actualFailuresInFinalFullRun": 0,
+  "companionWorkflows": [
+    {
+      "name": "Comet shop and Deeds validation",
+      "run": 40046062595,
+      "status": "success"
+    },
+    {
+      "name": "Shared UI layout validation",
+      "run": 40046062623,
+      "status": "success"
+    },
+    {
+      "name": "Research Lab expansion validation",
+      "run": 40046062610,
+      "status": "success"
+    },
+    {
+      "name": "Ascension Tree focused validation",
+      "run": 40046062644,
+      "status": "success"
+    },
+    {
+      "name": "Rift Forge expansion validation",
+      "run": 40046062621,
+      "status": "success"
+    }
+  ],
+  "automatedCodeReview": {
+    "commit": "0d7937ae39d77543270ec5ce154c34ce83d991b6",
+    "status": "COMPLETED",
+    "findings": 0
+  },
+  "independentHumanReview": false,
+  "candidateInstalled": {
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/40037849254",
+    "status": "PASS",
+    "identicalProduct": true
+  },
+  "exactMainInstalled": {
+    "status": "BLOCKED",
+    "buildStarted": false,
+    "reason": "Execution/browser environment unavailable; connector has no manual workflow-dispatch capability"
+  },
+  "publishedAPKRelease": false,
+  "physicalPhoneWebView60TalkBackHumanPacing": "NOT_VERIFIED",
+  "animationFinding": {
+    "gateInFinalCI": "PASS_UNCHANGED",
+    "underlyingFindingClaimedFixed": false,
+    "proposal": "RIFT_VFX_OVERFLOW_001"
+  },
+  "documentation": {
+    "previousNodeContextCheck": "PASS on 0d7937a, 30951 startup bytes",
+    "finalUTF8StartupBytes": 32397,
+    "finalChangedLinkTargets": "verified in published tree",
+    "postEditNodeContextCommand": "NOT_RUN_ENVIRONMENT_UNAVAILABLE"
+  },
+  "scope": "CI/browser acceptance only",
+  "featureComplete": false
+}

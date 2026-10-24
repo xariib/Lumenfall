@@ -1,12 +1,25 @@
 # Lumenfall — current delivery status
 
 24 October 2026: [RIFT_HINT_READABILITY_002](tasks/RIFT_HINT_READABILITY_002.md)
-is approved and in progress on `feat/rift-hint-readability-002`. It replaces
-only the developing Farm Lab hint's cramped quote with a short summary and
-readable details dialog, retaining the reserved combat layout and original
-Lab purchase flow. Browser CI, review and installed acceptance are pending;
-no integration or APK release is claimed. Gameplay, prices and saves stay
-outside scope. See the task for current checks and environment limitations.
+was integrated through [PR #7](https://github.com/xariib/Lumenfall/pull/7) at
+`88d9bdd33dafb4d075f8b86254ef050ade99e32d`. The short Farm Lab summary opens
+complete current advice without changing combat geometry, purchases or saves.
+All six required final-head workflows passed, including both full CI jobs,
+18 mobile profiles, causal controls, original layout cases and runtime smoke;
+automated review had no findings. The integrated tree exactly matches tested
+`0d7937ae39d77543270ec5ce154c34ce83d991b6`.
+
+Installed candidate [Android #28](https://github.com/xariib/Lumenfall/actions/runs/40037849254)
+passed on identical product SHA-256 `8d957895`, retaining both save slots,
+paid work and legacy entitlements. **Exact-main installed acceptance remains
+blocked:** the execution/browser environment became unavailable, and the
+GitHub connector cannot dispatch the manual Android workflow. No exact-main
+build was started and no APK release was published. Resume with a main build
+using `publish=false`, then inspect installed save/identity and native hint
+acceptance. Physical phone, WebView60, TalkBack and human pacing remain open.
+The earlier phase-sensitive VFX failure is retained in the
+[separate, unapproved proposal](tasks/RIFT_VFX_OVERFLOW_001.md); its unchanged
+gate passed in final CI, but the underlying finding is not claimed fixed.
 
 22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
 verified the previously integrated midgame Farm guidance through

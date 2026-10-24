@@ -82,3 +82,26 @@ unchanged phase-sensitive gate is not waived. See task for current full CI.
 [390 px details](details-390-text200.png), [430 px shortfalls](shortfalls-430-text200.png).
 These are qualified to run 40036520804 and identical final product bytes;
 that full run was cancelled after offline-binding failures, not a full PASS.
+
+## Integrated browser acceptance and remaining installed gate
+
+[Final receipt](ci-final-summary.json): all six required workflows PASS on
+`0d7937ae39d77543270ec5ce154c34ce83d991b6`; both full CI jobs and runtime smoke PASS.
+The integrated commit `88d9bdd33dafb4d075f8b86254ef050ade99e32d` has exactly the same tree.
+The 18-profile matrix, both causal controls and original layout cases pass.
+Earlier failures remain failures in their receipts/history. The unchanged
+animation gate also passes; its intermittent finding is not claimed fixed.
+[Separate proposal](../../tasks/RIFT_VFX_OVERFLOW_001.md) is not approved.
+
+Android #28 accepted the identical product on the disposable emulator.
+Exact-main installed acceptance remains blocked by the unavailable
+execution/browser environment; the connector cannot dispatch the manual
+workflow. No integrated build or APK release was performed. Resume main
+with `publish=false` after checking unchanged product/build/driver bytes.
+
+The Node context check passed on 0d7937a before the final status edit.
+Final UTF-8 startup is 32397 bytes, calculated by replacing the exact
+previously checked PROJECT_STATE/task inputs; changed local link targets were
+verified against the published tree. The post-edit Node command could not be
+rerun without an execution environment and remains an explicit next check.
+Physical phone/WebView60/TalkBack/human acceptance is still unverified.

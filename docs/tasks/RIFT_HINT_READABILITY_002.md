@@ -1,6 +1,6 @@
 # RIFT_HINT_READABILITY_002 — readable Farm Lab advice
 
-Owner: this feature chat. Status: focused browser/installed candidate accepted; legacy layout contract correction awaits CI.
+Owner: this feature chat. Status: integrated; exact-main Android acceptance blocked by unavailable execution environment.
 
 ## Approved scope and baseline
 
@@ -47,12 +47,10 @@ Node 24.19.0: original midgame source contract PASS 24 assertions including
 inverse; original late guidance PASS 186 assertions including controls after
 materializing its existing fixture from sparse checkout. The initial late
 check failed only because that fixture was absent, not because of product code.
-The setup script downloaded Chrome but apt installation failed due unavailable
-setgroups/setuid operations. A fully unpacked Chrome 156.0.8078.47 starts its
-version probe; both baseline and candidate browser attempts then fail before
-profiles because this sandbox rejects Chrome's singleton socket creation
-(`Operation not permitted`, followed by ECONNRESET). This is not a product
-failure or browser PASS. Use GitHub CI's browser environment.
+Local baseline/candidate Chrome 156.0.8078.47 probes were blocked before
+profiles by rejected singleton-socket creation (EPERM/ECONNRESET); apt setup
+also lacked setuid/setgroups. No local browser PASS is claimed. CI provides
+browser acceptance.
 
 Implementation: short `Lab hint` summary opens full current quote, red
 shortfalls, running work or occupied slots through the existing overlay
@@ -71,13 +69,12 @@ opening and live refresh. Installed Android QA now touches the summary,
 checks full dialog content and touches its original Lab destination.
 The browser/native execution checkpoint below supersedes that initial status.
 
-## Published checkpoint — 24 October 2026
+## Initial published checkpoint — 24 October 2026
 
-[PR #7](https://github.com/xariib/Lumenfall/pull/7) is open for review.
+[PR #7](https://github.com/xariib/Lumenfall/pull/7) was initially opened for review.
 Implementation `8016a1f528c50add6459095180964f570c6a6c7b`, followed by
 heading-first initial focus `eb589c12835c480ac2230c2f703068e14ba9d0c6`.
-Published tree `aab3c75c5ab3e8e3e76d47342a5a23e1710d3478` exactly matched
-the local tree. Product SHA-256 is
+Product SHA-256 was
 `05f6516d88c9620bc080986ae3248d3e4888f9a5a448903ee0c0b5cdb0e602bd`.
 [Evidence/reproduction](../qa/rift-hint-readability-002/README.md) includes
 source comparison (565/567 original functions byte-identical; only
@@ -116,11 +113,6 @@ review because it contained environment and APK metadata. The repository
 keeps only a minimal test summary and the public workflow reference;
 no UID, detailed device configuration or APK metadata is exported here.
 
-Next: publish the QA correction/evidence, run all required final-head CI and
-inspect mobile screenshots/causal controls. Integrate only after those gates;
-then repeat non-publishing installed acceptance on exact main. Physical phone,
-exact WebView60, TalkBack and human visual/pacing acceptance stay open.
-No new binding project rule and no APK release.
 
 ## 200% summary correction
 
@@ -147,9 +139,6 @@ stages, so the original staged production input stays intact.
 
 Corrected product SHA-256:
 `8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83`.
-Next: inspect the corrected 18-profile matrix and both causal controls,
-complete all final-head CI/review, integrate, then run non-publishing Android
-acceptance on the exact integrated product. Physical/human gaps remain open.
 
 ## Corrected mobile acceptance
 
@@ -202,9 +191,6 @@ Reattached this worktree to an independent clone of exact `5b2d1a6` under
 the current workspace; its tree matched `b3b3b349` and all working changes
 were retained. This recovery does not restore archive code over the product.
 
-Next: publish the regenerated reference/early preflight and rerun all final-head
-CI, including both original offline UI cases, before integration and the
-non-publishing installed Android check on exact main. Physical/human gaps stay open.
 
 ## Full-suite layout contract correction
 
@@ -230,5 +216,32 @@ Cause is not established as a test-only defect; preserve the failure and
 require final full CI without changing that gate.
 [Animation receipt](../qa/rift-hint-readability-002/rift-animation-failure.json).
 No product changes: SHA-256 remains `8d957895a5e82bf8a6b4f78abc6affea8e796171a228e8b185c3261b61cceb83`.
-Next: complete final-head full CI/review, then integrate and repeat installed
-non-publishing Android acceptance on exact main. Physical/human gaps remain open.
+
+## Integrated checkpoint — 24 October 2026
+
+[PR #7](https://github.com/xariib/Lumenfall/pull/7) merged at
+`88d9bdd33dafb4d075f8b86254ef050ade99e32d`. Its tree `49607bab6b98196945d689dad611edae6cb3935c`
+exactly matches validated head `0d7937ae39d77543270ec5ce154c34ce83d991b6`.
+[Final CI](https://github.com/xariib/Lumenfall/actions/runs/40046062655) PASS:
+both full jobs, all original layout/offline cases and runtime smoke.
+All five companion workflows PASS; automated code review on exact head
+completed without findings. No independent human review is claimed.
+[Compact final receipt](../qa/rift-hint-readability-002/ci-final-summary.json).
+
+Candidate Android #28 passed on identical `8d957895` product, including both
+saves, paid work, entitlements and native summary/details/Lab navigation.
+Exact-main installed acceptance is NOT complete: the execution/browser
+environment became unavailable, with no manual-dispatch capability in the
+GitHub connector. No integrated Android build was started. No APK release.
+
+Next required action: restore the environment, verify current main still has
+the accepted product/build/driver, and run the existing Android workflow on
+main with `publish=false`. Inspect its installed save/identity and native
+hint receipts, then update this task and shared status. The post-status-edit
+Node context command also remains to be rerun; final documentation links and
+UTF-8 budget were checked against the published tree without local execution.
+
+The unchanged animation gate passed in final CI; the intermittent finding is
+not claimed fixed. [Next proposed task](RIFT_VFX_OVERFLOW_001.md) is not approved
+or implemented. Physical phone, exact WebView60, TalkBack and human visual/pacing
+acceptance remain open. Keep this task/chat open. No new binding project rule.
