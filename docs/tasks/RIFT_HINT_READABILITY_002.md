@@ -1,6 +1,6 @@
 # RIFT_HINT_READABILITY_002 — readable Farm Lab advice
 
-Status: unintegrated; full regression reports arena overflow; baseline diagnosis pending.
+Status: unintegrated; full regression reports arena overflow; an unrelated baseline defect is verified.
 
 ## Approved scope
 
@@ -50,7 +50,15 @@ Workflow: [.github/workflows/rift-cast-baseline-diagnostic.yml](../../.github/wo
 Driver: [rift-cast-baseline-diagnostic.cjs](../../tests/behavioral/rift-cast-baseline-diagnostic.cjs).
 Its result is diagnosis, never product acceptance.
 
-Next: inspect diagnostic and final full-regression outcome; fix any introduced
-regression in scope, or propose a separate repair if an unrelated baseline defect
-is established. Do not integrate PR #7 while the required gate fails.
+Verified diagnosis: [run 40044533349](https://github.com/xariib/Lumenfall/actions/runs/40044533349)
+reproduces the original arena assertion on both pinned sources. All six profile/
+fixture outcomes match exactly, with state and saved bytes preserved. In the
+360×640, 24 px safe-inset boss fixture, 68 sampled frames overflow; the worst
+Void frame has 136 px content inside 129 px. This establishes an existing defect,
+not a hint regression. [Minimal diagnosis](../qa/rift-hint-readability-002/baseline-diagnosis.json).
+
+Next: [RIFT_CAST_BOUNDS_001](RIFT_CAST_BOUNDS_001.md) is proposed, not approved.
+Keep PR #7 unmerged while the full gate fails. Do not turn a passing diagnostic
+comparison into product acceptance; the existing arena assertion must pass
+after a separately authorized repair.
 Physical phone, exact WebView60, TalkBack and human pacing remain unverified.

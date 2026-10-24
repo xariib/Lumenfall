@@ -1,0 +1,145 @@
+{
+  "result": "PRE_EXISTING_FAILURE_REPRODUCED_IDENTICALLY",
+  "baselineCommit": "8dabca95c379af3e87ff1a03c0f8c615ebf36735",
+  "candidateCommit": "42390366c03c98a3e7fe7803d3dc748975662f70",
+  "comparison": "All deterministic profile outcomes are identical",
+  "profiles": [
+    {
+      "width": 360,
+      "height": 640,
+      "inset": 0,
+      "samples": [
+        {
+          "kind": "dense",
+          "overflowFrames": 0,
+          "worst": {
+            "glyphMs": 0,
+            "castMs": 0,
+            "scroll": [
+              324,
+              196
+            ],
+            "client": [
+              324,
+              196
+            ]
+          },
+          "originalArenaAssertionFails": false,
+          "stateUnchanged": true,
+          "savesUnchanged": true
+        },
+        {
+          "kind": "boss",
+          "overflowFrames": 0,
+          "worst": {
+            "glyphMs": 0,
+            "castMs": 0,
+            "scroll": [
+              324,
+              177
+            ],
+            "client": [
+              324,
+              177
+            ]
+          },
+          "originalArenaAssertionFails": false,
+          "stateUnchanged": true,
+          "savesUnchanged": true
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "inset": 24,
+      "samples": [
+        {
+          "kind": "dense",
+          "overflowFrames": 0,
+          "worst": {
+            "glyphMs": 0,
+            "castMs": 0,
+            "scroll": [
+              324,
+              148
+            ],
+            "client": [
+              324,
+              148
+            ]
+          },
+          "originalArenaAssertionFails": false,
+          "stateUnchanged": true,
+          "savesUnchanged": true
+        },
+        {
+          "kind": "boss",
+          "overflowFrames": 68,
+          "worst": {
+            "glyphMs": 0,
+            "castMs": 60,
+            "scroll": [
+              324,
+              136
+            ],
+            "client": [
+              324,
+              129
+            ]
+          },
+          "originalArenaAssertionFails": true,
+          "stateUnchanged": true,
+          "savesUnchanged": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "inset": 24,
+      "samples": [
+        {
+          "kind": "dense",
+          "overflowFrames": 0,
+          "worst": {
+            "glyphMs": 0,
+            "castMs": 0,
+            "scroll": [
+              354,
+              224
+            ],
+            "client": [
+              354,
+              224
+            ]
+          },
+          "originalArenaAssertionFails": false,
+          "stateUnchanged": true,
+          "savesUnchanged": true
+        },
+        {
+          "kind": "boss",
+          "overflowFrames": 0,
+          "worst": {
+            "glyphMs": 0,
+            "castMs": 0,
+            "scroll": [
+              354,
+              198
+            ],
+            "client": [
+              354,
+              198
+            ]
+          },
+          "originalArenaAssertionFails": false,
+          "stateUnchanged": true,
+          "savesUnchanged": true
+        }
+      ]
+    }
+  ],
+  "acceptance": "Diagnosis only; required full regression is blocked",
+  "proposal": "RIFT_CAST_BOUNDS_001 is proposed, not approved"
+}

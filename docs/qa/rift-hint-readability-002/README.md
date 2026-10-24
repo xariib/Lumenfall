@@ -17,3 +17,9 @@ Self-review and automated checks only; no independent human review claimed.
 The full regression reports arena overflow and is not accepted. The isolated
 animation comparison diagnoses baseline versus candidate; it does not replace
 or weaken any required original gate. No product change, merge or APK release.
+
+Baseline diagnosis: [minimal result](baseline-diagnosis.json),
+[baseline image](baseline-cast-overflow.png), [candidate image](candidate-cast-overflow.png).
+Both pinned sources reproduce the same original arena assertion at the same
+animation frames. This is an existing defect; it does not waive the failing gate.
+[Proposed separate repair](../../tasks/RIFT_CAST_BOUNDS_001.md).
