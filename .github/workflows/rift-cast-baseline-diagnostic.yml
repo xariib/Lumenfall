@@ -1,0 +1,27 @@
+name: Rift cast baseline diagnosis
+on:
+  push:
+    branches: ['qa/rift-cast-baseline-002']
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+      - name: Fetch the two pinned diagnostic sources
+        run: |
+          git fetch --depth=1 origin 8dabca95c379af3e87ff1a03c0f8c615ebf36735
+          git fetch --depth=1 origin 42390366c03c98a3e7fe7803d3dc748975662f70
+      - name: Compare original arena assertion at identical animation frames
+        run: node tests/behavioral/rift-cast-baseline-diagnostic.cjs cast-baseline-diagnostic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rift-cast-baseline-diagnostic-${{ github.run_id }}
+          path: cast-baseline-diagnostic/
+          retention-days: 14

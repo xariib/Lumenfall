@@ -1,0 +1,89 @@
+{
+  "feature": "RIFT_HINT_READABILITY_002",
+  "checkedOn": "2026-10-24",
+  "candidate": "42390366c03c98a3e7fe7803d3dc748975662f70",
+  "artifactProductCommit": "5b2d1a6250c044ab09b5d7f3f229bca0d5631dad",
+  "browserMatrix": {
+    "status": "pass",
+    "profiles": [
+      "320x640-safe0-text1-no-preference",
+      "320x640-safe0-text1-reduce",
+      "320x640-safe0-text1.5-no-preference",
+      "320x640-safe0-text1.5-reduce",
+      "320x640-safe0-text2-no-preference",
+      "320x640-safe0-text2-reduce",
+      "390x844-safe24-text1-no-preference",
+      "390x844-safe24-text1-reduce",
+      "390x844-safe24-text1.5-no-preference",
+      "390x844-safe24-text1.5-reduce",
+      "390x844-safe24-text2-no-preference",
+      "390x844-safe24-text2-reduce",
+      "430x932-safe24-text1-no-preference",
+      "430x932-safe24-text1-reduce",
+      "430x932-safe24-text1.5-no-preference",
+      "430x932-safe24-text1.5-reduce",
+      "430x932-safe24-text2-no-preference",
+      "430x932-safe24-text2-reduce"
+    ],
+    "runtimeErrors": [],
+    "teardown": {
+      "code": 0,
+      "signal": null
+    }
+  },
+  "causalControls": [
+    {
+      "name": "open",
+      "status": "fail",
+      "assertion": "Error: keyboard opens Lab details dialog",
+      "runtimeErrors": [],
+      "teardown": {
+        "code": 0,
+        "signal": null
+      }
+    },
+    {
+      "name": "refresh",
+      "status": "fail",
+      "assertion": "Error: open details refresh both exact shortfalls",
+      "runtimeErrors": [],
+      "teardown": {
+        "code": 0,
+        "signal": null
+      }
+    }
+  ],
+  "screenshotsReviewed": [
+    "320x640-safe0-text2-no-preference-summary.png",
+    "320x640-safe0-text2-no-preference-funded.png",
+    "320x640-safe0-text2-no-preference-unfunded.png",
+    "installed-midgame-farm.png"
+  ],
+  "localNode": {
+    "taskContext": "PASS",
+    "sourceValidation": "PASS",
+    "farm": 24,
+    "lateGuidance": 186,
+    "progression": 235,
+    "lab": {
+      "assertions": 2677,
+      "controls": 10
+    },
+    "forge": {
+      "assertions": 9319,
+      "controls": 25
+    },
+    "ascend": 56,
+    "fullDiffWhitespace": "PASS",
+    "changedOriginalFunctions": [
+      "renderRiftObjective",
+      "init"
+    ],
+    "originalFunctions": 567,
+    "unchangedOriginalFunctions": 565,
+    "removedOriginalFunctions": [],
+    "offlineRewardAndStateHashesUnchanged": true
+  },
+  "review": "Self-review and automated checks; no independent human review.",
+  "physicalDeviceAccepted": false
+}
