@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+25 October 2026: [MOBILE_FEEDBACK_001](tasks/MOBILE_FEEDBACK_001.md),
+[PR #9](https://github.com/xariib/Lumenfall/pull/9), addresses repeated Wisp
+support readouts, touch focus highlights and Rift appearing before intro.
+Implementation and focused startup tests passed; final CI/integration and
+installed Android acceptance remain pending. This does not change the released APK.
+
 24 October 2026: [ANDROID_TEST_RELEASE_001](tasks/ANDROID_TEST_RELEASE_001.md)
 prepares the integrated Wisp/Farm/hint improvements for physical-phone testing.
 The user explicitly authorized a new signed APK publication and a minimal README.

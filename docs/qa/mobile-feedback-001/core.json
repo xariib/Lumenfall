@@ -1,0 +1,558 @@
+{
+  "core": {
+    "status": "PASS",
+    "checks": 8099,
+    "teams": 56,
+    "contexts": 4,
+    "forgeContexts": 2,
+    "controls": [
+      {
+        "id": "double-support",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      },
+      {
+        "id": "missing-kindling",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      },
+      {
+        "id": "wrong-reward-bond",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      },
+      {
+        "id": "wrong-removal",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      },
+      {
+        "id": "missing-legacy",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      },
+      {
+        "id": "missing-forge-uptime",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      },
+      {
+        "id": "missing-cadence",
+        "status": "killed",
+        "failure": "ERR_ASSERTION"
+      }
+    ],
+    "sourceSha256": "a6420cdb2b1a138aa6577f428ffe76d9abe8a95e4461ceab0fc6f985f1e3cbf8",
+    "node": "v24.22.1",
+    "v8": "13.6.233.17-node.58",
+    "preservation": {
+      "status": "PASS",
+      "checks": 15352,
+      "baselineSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+      "defaultFormulaCases": 448,
+      "chronologicalCases": [
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "thorn"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "thorn"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "void"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "void"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "aurora"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "aurora"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "gale",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "thorn",
+            "void"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "thorn",
+            "void"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "thorn",
+            "aurora"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "thorn",
+            "aurora"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "thorn",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "thorn",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "void",
+            "aurora"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "void",
+            "aurora"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "void",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "void",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "aurora",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "stone",
+            "aurora",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "thorn",
+            "void"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "thorn",
+            "void"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "thorn",
+            "aurora"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "thorn",
+            "aurora"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "thorn",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "thorn",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "void",
+            "aurora"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "void",
+            "aurora"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "void",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "void",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "aurora",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "gale",
+            "aurora",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "thorn",
+            "void",
+            "aurora"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "thorn",
+            "void",
+            "aurora"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "thorn",
+            "void",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "thorn",
+            "void",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "thorn",
+            "aurora",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "thorn",
+            "aurora",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "void",
+            "aurora",
+            "titan"
+          ],
+          "kind": "live",
+          "seconds": 60,
+          "kills": 0
+        },
+        {
+          "party": [
+            "ember",
+            "tide",
+            "void",
+            "aurora",
+            "titan"
+          ],
+          "kind": "offline",
+          "seconds": 60,
+          "kills": 0
+        }
+      ]
+    }
+  },
+  "support": {
+    "status": "PASS",
+    "checks": 1782,
+    "controls": [
+      "duration",
+      "bypass",
+      "save",
+      "estimate"
+    ],
+    "sourceSha256": "a6420cdb2b1a138aa6577f428ffe76d9abe8a95e4461ceab0fc6f985f1e3cbf8"
+  },
+  "progression": {
+    "status": "PASS",
+    "checks": 235,
+    "sourceSha256": "a6420cdb2b1a138aa6577f428ffe76d9abe8a95e4461ceab0fc6f985f1e3cbf8"
+  },
+  "guidance": {
+    "status": "PASS",
+    "checks": 24,
+    "sourceSha256": "a6420cdb2b1a138aa6577f428ffe76d9abe8a95e4461ceab0fc6f985f1e3cbf8"
+  }
+}

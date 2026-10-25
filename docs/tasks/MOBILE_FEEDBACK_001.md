@@ -86,3 +86,10 @@ offline-reference checkpoint in a linked QA file; no limit or test is weakened.
 Local startup-order VM regression PASS 21 checks; original main fails the
 intro-before-offline assertion. Contribution core PASS 8,099; support recast
 PASS 1,782; progression PASS 235; Farm guidance PASS 24.
+
+[Focused receipts](../qa/mobile-feedback-001/README.md) preserve exact-source
+results, 29 byte-identical gameplay/persistence/intro declarations and the
+inspected pre-script boot screenshot. The six original CI workflows, both full
+jobs, original negative controls and installed Android gates remain required.
+Final-head results and integration/build receipts are recorded in PR #9 to avoid
+creating a new commit solely to record that same commit’s run result.
