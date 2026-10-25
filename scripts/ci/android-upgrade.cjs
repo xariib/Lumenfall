@@ -149,22 +149,36 @@ async function prepareOfflineRecap(page,retainedSave){
  // offline return only in this disposable emulator, without product test hooks.
  const fixture=JSON.parse(JSON.stringify(retainedSave));
  fixture.tutorialDone=true;
+ const marker='native-offline-recap-'+Date.now();
  const source=`(()=>{const seed=${JSON.stringify(fixture)};seed.lastSeen=Date.now()-60000;
-   seed.questDay=new Date().toISOString().slice(0,10);
+   const d=new Date();seed.questDay=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
    const raw=JSON.stringify(seed);localStorage.setItem(${JSON.stringify(primary)},raw);
    localStorage.setItem(${JSON.stringify(recovery)},raw);
+   localStorage.setItem('native-offline-recap-fixture',${JSON.stringify(marker)});
    localStorage.removeItem('lumenfall_startup_intro_last');})()`;
  const injected=await page.command('Page.addScriptToEvaluateOnNewDocument',{source});
  assert(injected.identifier,'Recap fixture registered');
- try{await page.command('Page.reload',{ignoreCache:true});}catch(e){if(!/^DevTools closed:/.test(e.message))throw e;}
- page.close();page=await connect();
- // CDP removes this session's pre-document scripts when its socket closes.
- // The new session must not remove an identifier owned by the old session.
+ let sameSession=true,applied=false;
+ try{await page.command('Page.reload',{ignoreCache:true});}
+ catch(e){if(!/^DevTools closed:/.test(e.message))throw e;page.close();page=await connect();sameSession=false;}
+ // Page.reload acknowledges navigation before the new document runs. Closing
+ // its CDP session immediately can remove the fixture before it ever executes.
+ for(let n=0;n<120;n++){
+   try{applied=await page.evaluate(`localStorage.getItem('native-offline-recap-fixture')===${JSON.stringify(marker)}`);}
+   catch(e){if(!/^DevTools closed:/.test(e.message))throw e;page.close();page=await connect();sameSession=false;}
+   if(applied)break;await pause(250);
+ }
+ assert(applied,'Pre-document offline fixture actually executed');
+ if(sameSession)await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injected.identifier});
  let shown=false;
  for(let n=0;n<120;n++){
    shown=await page.evaluate(`!document.documentElement.classList.contains('startup-pending')&&getComputedStyle(document.getElementById('welcome-overlay')).display!=='none'`);
    if(shown)break;await pause(250);
  }
+ const diagnostic=await page.evaluate(`({fixture:localStorage.getItem('native-offline-recap-fixture'),ready:!document.documentElement.classList.contains('startup-pending'),recap:getComputedStyle(document.getElementById('welcome-overlay')).display,text:document.getElementById('welcome-text').textContent,save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)}))})`);
+ fs.writeFileSync('release-evidence/offline-recap-startup.json',JSON.stringify(diagnostic,null,2)+'\n');
+ const shot=await page.command('Page.captureScreenshot',{format:'png'});
+ fs.writeFileSync('release-evidence/offline-recap-startup.png',Buffer.from(shot.data,'base64'));
  assert(shown,'Real offline recap appears after intro and catch-up');
  return page;
 }

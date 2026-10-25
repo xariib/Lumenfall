@@ -43,3 +43,13 @@ Local source/startup-order (24 assertions), identity and release-gate controls
 PASS. Local Chrome cannot start its Unix socket (EPERM); browser acceptance
 runs in Actions. Next: rerun the corrected native diagnostic, then fix the
 demonstrated cause and require final CI/integrated release acceptance.
+
+Diagnostic #34 (`40226422376`, artifact `12611527520`) rejected the mandatory
+dialog check. The fixture lacked an execution receipt: Page.reload acknowledges
+navigation before the new document executes, and immediate session teardown can
+remove the injected script before it runs. Keep the originating session until a
+unique storage marker proves the fixture ran, then remove the script through
+that same live session. Reconnect only if navigation actually destroys it.
+Record the marker, ready state, actual reward text, save and startup screenshot
+before the mandatory assertion, including failure. This fixes QA setup, not a
+demonstrated product failure. Next: collect actual Continue input evidence.
