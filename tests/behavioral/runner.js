@@ -485,9 +485,10 @@
       if(ctx.scenario==='offline-catchup-ui' || ctx.scenario==='offline-catchup-legacy-dom'){window.__offlineCatchupReady=true;return;}
       if(ctx.scenario==='formation-bonds-mobile'){window.__bondsNativeReady=true;return;}
       await waitForCatchup();
-      // Inspect settled gameplay only after the actual intro callback. The two
-      // startup-specific native drivers above retain control of their own timing.
-      {
+      // Inspect settled gameplay only after the actual intro callback. Native
+      // startup drivers above own their timing. Reset phase 1 inspects the boot
+      // transaction before the first fresh save, so it must keep that boundary.
+      if(!(ctx.scenario==='reset-roundtrip' && phase()===1)){
         var startup=window.__qaForgeStartup;
         assert(startup && startup.promise,'actual startup completion observer is installed');
         if(!startup.completed){

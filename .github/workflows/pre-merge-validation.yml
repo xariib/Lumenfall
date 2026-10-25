@@ -71,7 +71,7 @@ jobs:
 
       - name: Existing settled-screen UI acceptance after actual startup
         run: |
-          for SCENARIO in formation-collapse resonate-clarity upgrade-identity-ui upgrade-identity-reduced-motion wisp-upgrade-display lab-motes-ui inquiry-ui inquiry-ui-reduced-motion tree-purchase-ui tree-purchase-ui-reduced-motion formation-bonds-mobile offline-catchup-ui offline-catchup-legacy-dom; do
+          for SCENARIO in formation-collapse resonate-clarity upgrade-identity-ui upgrade-identity-reduced-motion wisp-upgrade-display lab-motes-ui inquiry-ui inquiry-ui-reduced-motion tree-purchase-ui tree-purchase-ui-reduced-motion formation-bonds-mobile offline-catchup-ui offline-catchup-legacy-dom reset-roundtrip; do
             node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/settled-startup-ui
           done
           CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"

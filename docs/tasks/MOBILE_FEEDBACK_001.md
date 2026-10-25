@@ -164,3 +164,15 @@ Retain the immediate offline-work/pending-time and endpoint assertions, observe
 the real intro callback, then retain the original cleared-busy/endpoint checks.
 Retry, exact eight-hour golden awards, cancellation, daily rollover and native
 claim checks remain unchanged; no product bytes or deadlines change.
+
+Run 40190458144 on 7a510b3 passed all five focused workflows, isolated offline,
+30 startup profiles and both native offline UI profiles. Full coverage exposed
+the documented phase-sensitive Void VFX overflow (131/129 px, normal-motion
+stacking case; see [existing proposal](RIFT_VFX_OVERFLOW_001.md)). Preserve the
+failure; relevant animation code is unchanged and this task does not fix it.
+The same run also found reset-roundtrip phase 1 observing recovery after the new
+shared startup wait had already performed the first fresh save. This phase is
+explicitly a pre-save boot-transaction check, not a settled-screen measurement.
+Keep its original early boundary and every original null-recovery/reset-marker,
+fresh-save and subsequent-reload assertion. All other phases still await real
+startup completion. Add that original case to the early gate; product unchanged.
