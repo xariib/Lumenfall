@@ -74,3 +74,15 @@ Next: publish PR, inspect all six required CI workflows and new gate, fix any
 regressions, integrate only after successful final-head validation. Installed
 Android and physical-phone visual/startup acceptance remain pending. No APK
 publication has been performed by this task. Record live PR/check evidence below.
+
+## First remote validation
+
+[PR #9](https://github.com/xariib/Lumenfall/pull/9), head `6ebf2c5`.
+New real-Chromium startup/input gate PASS 24/24 profiles in
+[pre-merge run 40184674615](https://github.com/xariib/Lumenfall/actions/runs/40184674615).
+Original full suite then stopped because the added AGENTS rule pushed the old
+RIFT_HINT_READABILITY_002 startup text over 32 KiB. Preserve its full historical
+offline-reference checkpoint in a linked QA file; no limit or test is weakened.
+Local startup-order VM regression PASS 21 checks; original main fails the
+intro-before-offline assertion. Contribution core PASS 8,099; support recast
+PASS 1,782; progression PASS 235; Farm guidance PASS 24.

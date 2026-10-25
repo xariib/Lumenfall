@@ -63,10 +63,10 @@ jobs:
           cp -r fonts/. mobile/www/fonts/
           cp -r branding/. mobile/www/branding/
 
-      - name: Midgame Farm guidance mobile acceptance
-        # Retain the original gate; phone-feedback checks run before it.
+      - name: Phone feedback startup and input acceptance
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/MOBILE_FEEDBACK_001.md
+          node tests/behavioral/startup-order.cjs
           node tests/behavioral/mobile-feedback.cjs validation-evidence/mobile-feedback
 
       - name: Midgame Farm guidance existing acceptance
