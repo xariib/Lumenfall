@@ -93,3 +93,16 @@ inspected pre-script boot screenshot. The six original CI workflows, both full
 jobs, original negative controls and installed Android gates remain required.
 Final-head results and integration/build receipts are recorded in PR #9 to avoid
 creating a new commit solely to record that same commit’s run result.
+
+## Review correction: interrupted intro
+
+Automated review of `6ebf2c5` found a real 500 ms background/foreground race:
+offline processing had committed, hiding invalidated the generation, and the
+short-return optimization skipped the replacement flow. The old callback could
+therefore never remove the cover. Restart even a sub-second return while the
+startup cover is present. A focused regression fails on that reviewed source
+and passes after the fix (24 VM assertions). The browser matrix now also covers
+this visibility transition in both motion modes and all three widths (30 cases).
+The original four eight-hour independent golden phases still match exactly.
+New product SHA-256: b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2.
+Earlier browser/boot receipts retain their old hash and are not final-head proof.

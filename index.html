@@ -13198,7 +13198,9 @@ function init(){
     if(isNewGame || resumeFlowBusy || !appHiddenAt) return;
     var awayMs = Date.now()-appHiddenAt;
     appHiddenAt = 0;
-    if(awayMs < 1000 && !offlinePending) return;
+    // A short interruption also invalidates the intro's generation. Restart
+    // while the boot cover is present, even if offline work already committed.
+    if(awayMs < 1000 && !offlinePending && !document.documentElement.classList.contains('startup-pending')) return;
     beginReturn(ensureDaily());
   });
   // Cooperative simulation releases the event loop with a detached working

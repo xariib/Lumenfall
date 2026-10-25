@@ -54,7 +54,7 @@ async function run(){
  const identity=await send('Browser.getVersion',{},null),tab=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;
  await send('Page.enable');await send('Runtime.enable');await send('DOM.enable');
  await send('Page.addScriptToEvaluateOnNewDocument',{source:"window.feedbackErrors=[];addEventListener('error',e=>feedbackErrors.push(e.message));addEventListener('unhandledrejection',e=>feedbackErrors.push(String(e.reason)));"});
- for(const width of [320,390,430])for(const motion of ['no-preference','reduce'])for(mode of ['fresh','return','cooldown','failure']){
+ for(const width of [320,390,430])for(const motion of ['no-preference','reduce'])for(mode of ['fresh','return','cooldown','failure','interrupted']){
   gateResponse=null;releaseGate=false;
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
   await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/?case='+records.length});
@@ -63,6 +63,16 @@ async function run(){
   if(width===390&&mode==='return')await shot('boot-'+motion);
   releaseGate=true;if(gateResponse)gateResponse.end('');
   await until('!!window.feedbackQa && (typeof document.getElementById("startup-skip").onclick==="function" || !!feedbackQa.release)');
+  if(mode==='interrupted'){
+   await ev('feedbackQa.release()');
+   await until('feedbackQa.events.some(e=>e.event==="offline-end")');
+   // Control only the visibility boundary; use the real handler, timers, intro
+   // and offline implementation. Regression: completed catch-up + <1s away.
+   await ev('window.qaHidden=true;Object.defineProperty(document,"hidden",{configurable:true,get:()=>qaHidden});document.dispatchEvent(new Event("visibilitychange"))');
+   await new Promise(r=>setTimeout(r,500));
+   await ev('qaHidden=false;document.dispatchEvent(new Event("visibilitychange"))');
+   assert(await ev('feedbackQa.events.filter(e=>e.event==="offline-start").length===2'),'short interruption restarts invalidated startup');
+  }
   if(mode!=='cooldown'){
    assert(await ev('getComputedStyle(document.getElementById("startup-intro")).display==="flex"'),'intro is visible');
    if(mode!=='fresh')assert(await ev('feedbackQa.events[0].intro===true'),'intro begins before offline work');
