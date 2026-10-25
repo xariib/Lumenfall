@@ -45,11 +45,20 @@ async function verifyInstalledWispCard(page,report){
  })()`);
  if(welcome){
    assert(welcome.hit,'Offline recap Continue is reachable by native touch');
+   await page.evaluate(`(()=>{window.nativeRecapEvents=[];['pointerdown','pointerup','touchstart','touchend','click'].forEach(type=>document.addEventListener(type,e=>nativeRecapEvents.push({type,trusted:e.isTrusted,target:e.target.id,x:e.clientX,y:e.clientY,time:performance.now(),prevented:e.defaultPrevented}),true));return true;})()`);
+   const before=await page.command('Page.captureScreenshot',{format:'png'});
+   fs.writeFileSync('release-evidence/offline-recap-before.png',Buffer.from(before.data,'base64'));
+   fs.writeFileSync('release-evidence/offline-recap-window.txt',adb('shell','dumpsys','window','windows'));
    tap(welcome.x,welcome.y);
    await pause(350);
    const stillOpen=await page.evaluate(`Array.from(document.querySelectorAll('button')).some(b=>b.textContent.trim()==='Continue'&&b.getBoundingClientRect().height>0&&document.elementFromPoint(b.getBoundingClientRect().left+b.getBoundingClientRect().width/2,b.getBoundingClientRect().top+b.getBoundingClientRect().height/2)?.closest('button')===b)`);
+   const diagnostic=await page.evaluate(`({events:nativeRecapEvents,open:getComputedStyle(document.getElementById('welcome-overlay')).display,ready:!document.documentElement.classList.contains('startup-pending'),height:innerHeight,width:innerWidth,ratio:devicePixelRatio})`);
+   fs.writeFileSync('release-evidence/offline-recap-input.json',JSON.stringify({welcome,stillOpen,...diagnostic},null,2)+'\n');
+   const after=await page.command('Page.captureScreenshot',{format:'png'});
+   fs.writeFileSync('release-evidence/offline-recap-after.png',Buffer.from(after.data,'base64'));
    assert(!stillOpen,'Offline recap closed before Wisp inspection');
  }
+ assert(welcome,'Mandatory synthetic offline recap must be shown before Wisp inspection');
  report.offlineRecapDismissed=!!welcome;
  // Inspect the shipped UI inside the installed APK's actual Android WebView.
  const ui=await page.evaluate(`(async()=>{
@@ -134,6 +143,29 @@ async function verifyInstalledWispCard(page,report){
  report.installedWispTouch={status:'PASS',fromLevel:target.before,toLevel:purchase.level,focusedName:purchase.name};
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
  console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
+}
+async function prepareOfflineRecap(page,retainedSave){
+ // Save/paid-work preservation has already passed. Exercise a real one-minute
+ // offline return only in this disposable emulator, without product test hooks.
+ const fixture=JSON.parse(JSON.stringify(retainedSave));
+ fixture.tutorialDone=true;
+ const source=`(()=>{const seed=${JSON.stringify(fixture)};seed.lastSeen=Date.now()-60000;
+   seed.questDay=new Date().toISOString().slice(0,10);
+   const raw=JSON.stringify(seed);localStorage.setItem(${JSON.stringify(primary)},raw);
+   localStorage.setItem(${JSON.stringify(recovery)},raw);
+   localStorage.removeItem('lumenfall_startup_intro_last');})()`;
+ const injected=await page.command('Page.addScriptToEvaluateOnNewDocument',{source});
+ assert(injected.identifier,'Recap fixture registered');
+ try{await page.command('Page.reload',{ignoreCache:true});}catch(e){if(!/^DevTools closed:/.test(e.message))throw e;}
+ page.close();page=await connect();
+ await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injected.identifier});
+ let shown=false;
+ for(let n=0;n<120;n++){
+   shown=await page.evaluate(`!document.documentElement.classList.contains('startup-pending')&&getComputedStyle(document.getElementById('welcome-overlay')).display!=='none'`);
+   if(shown)break;await pause(250);
+ }
+ assert(shown,'Real offline recap appears after intro and catch-up');
+ return page;
 }
 async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  // All original save and entitlement checks have passed. Seed only this
@@ -280,6 +312,7 @@ async function main(){
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
  }
  assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
+ page=await prepareOfflineRecap(page,observed.save);
  await verifyInstalledWispCard(page,report);
  page=await verifyInstalledMidgameFarmHint(page,report,observed.save);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
