@@ -485,7 +485,10 @@
       if(ctx.scenario==='offline-catchup-ui' || ctx.scenario==='offline-catchup-legacy-dom'){window.__offlineCatchupReady=true;return;}
       if(ctx.scenario==='formation-bonds-mobile'){window.__bondsNativeReady=true;return;}
       await waitForCatchup();
-      if(['auto-ascend-target-contract','self-test-auto-ascend-target-manual','self-test-auto-ascend-target-window','p2-endgame-currency-utility'].indexOf(ctx.scenario)!==-1){
+      // Inspect settled gameplay only after the actual intro callback. Native
+      // startup drivers above own their timing. Reset phase 1 inspects the boot
+      // transaction before the first fresh save, so it must keep that boundary.
+      if(!(ctx.scenario==='reset-roundtrip' && phase()===1)){
         var startup=window.__qaForgeStartup;
         assert(startup && startup.promise,'actual startup completion observer is installed');
         if(!startup.completed){
@@ -495,6 +498,7 @@
         }
         await startup.promise;
         assert(startup.completed && startup.callbacks===1,'original startup completion callback ran exactly once');
+        assert(!document.documentElement.classList.contains('startup-pending'),'startup cover is released before settled-game assertions');
       }
       var s = state();
       if(ctx.scenario==='layout-p2-07a-reconstruction'){

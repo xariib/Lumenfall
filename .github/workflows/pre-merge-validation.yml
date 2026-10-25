@@ -63,7 +63,21 @@ jobs:
           cp -r fonts/. mobile/www/fonts/
           cp -r branding/. mobile/www/branding/
 
-      - name: Midgame Farm guidance mobile acceptance
+      - name: Phone feedback startup and input acceptance
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/MOBILE_FEEDBACK_001.md
+          node tests/behavioral/startup-order.cjs
+          node tests/behavioral/mobile-feedback.cjs validation-evidence/mobile-feedback
+
+      - name: Existing settled-screen UI acceptance after actual startup
+        run: |
+          for SCENARIO in formation-collapse resonate-clarity upgrade-identity-ui upgrade-identity-reduced-motion wisp-upgrade-display lab-motes-ui inquiry-ui inquiry-ui-reduced-motion tree-purchase-ui tree-purchase-ui-reduced-motion formation-bonds-mobile offline-catchup-ui offline-catchup-legacy-dom reset-roundtrip; do
+            node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/settled-startup-ui
+          done
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          LUMENFALL_QA_CDP_CHROME="$CHROME" node tests/behavioral/rift-cast-text.cjs mobile/www validation-evidence/rift-cast-text
+
+      - name: Midgame Farm guidance existing acceptance
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
           node scripts/codex/check_context.cjs --task docs/tasks/RIFT_HINT_READABILITY_002.md

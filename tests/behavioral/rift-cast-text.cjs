@@ -19,6 +19,13 @@ for (const match of source.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)) ne
 const marker = '\n})();\n</script>';
 assert.equal(source.split(marker).length, 2, 'one production IIFE marker');
 const bridge = `
+var castStartupResolve;
+window.__castStartup={completed:false,promise:new Promise(function(resolve){castStartupResolve=resolve;})};
+var castOriginalIntro=playStartupIntro;
+playStartupIntro=function(done){return castOriginalIntro.call(this,function(){
+ if(done)done.apply(this,arguments);
+ window.__castStartup.completed=true;castStartupResolve();
+});};
 window.__riftCastTextQa={
  fresh:function(){return freshState();},
  get:function(){return JSON.parse(JSON.stringify(state));},
@@ -92,6 +99,9 @@ async function run() {
     for(let i=0;i<100&&!await evaluate('!!window.__riftCastTextQa&&!!document.querySelector("[data-rift-wisp]")');i++)await new Promise(resolve=>setTimeout(resolve,25));
     await evaluate(`(async function(){
       await document.fonts.ready;
+      if(!window.__castStartup.completed){var startupSkip=document.getElementById('startup-skip');if(startupSkip&&typeof startupSkip.onclick==='function')startupSkip.click();}
+      await window.__castStartup.promise;
+      if(document.documentElement.classList.contains('startup-pending'))throw Error('real startup must release cover before Rift text measurements');
       document.querySelectorAll('.overlay').forEach(function(el){el.style.display='none';});
       document.getElementById('startup-intro').style.display='none';
       var skip=document.getElementById('tut-skip');if(skip&&skip.getClientRects().length)skip.click();

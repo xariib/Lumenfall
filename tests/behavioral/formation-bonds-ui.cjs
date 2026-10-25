@@ -44,6 +44,9 @@ async function run(){
   assert(rows.length===8&&rows.every(r=>r.partners.includes(' + ')&&r.right<=width+.5&&r.scroll<=r.client+1),'all eight full partner rows fit '+JSON.stringify(rows));
   const controls=await evaluate(`Array.from(document.querySelectorAll('[data-formation-preset]')).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {w:r.width,h:r.height,right:r.right,color:s.color,background:s.backgroundColor};})`);
   assert(controls.length===3&&controls.every(c=>c.w>=44&&c.h>=44&&c.right<=width+.5),'named preset controls fit and >=44px');assert(controls.every(c=>contrast(c.color,c.background)>=4.5),'preset text contrast');
+  // Establish actual keyboard modality before asserting a keyboard focus ring.
+  await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
   await evaluate('document.querySelector("[data-formation-preset=farm]").focus()');const focus=await evaluate(`(()=>{const s=getComputedStyle(document.activeElement);return {width:parseFloat(s.outlineWidth),color:s.outlineColor,bg:s.backgroundColor};})()`);assert(focus.width>=2&&contrast(focus.color,focus.bg)>=3,'visible keyboard focus');
   await key('Enter');await new Promise(r=>setTimeout(r,50));assert(await evaluate('__lumenfallQaBridge.getState().activeFormationPreset==="farm"'),'native Enter selects Farm '+JSON.stringify(await evaluate('({preset:__lumenfallQaBridge.getState().activeFormationPreset,active:document.activeElement.outerHTML})')));
   await touch('[data-toggle="gale"]');assert(await evaluate('__lumenfallQaBridge.getState().formationPresets.farm.join(",")==="thorn"'),'native Bench autosaves Farm');assert(await evaluate('document.activeElement===document.querySelector("[data-toggle=gale]")'),'focus restored after Bench render');

@@ -25,7 +25,9 @@ function qaLifecycleRecord(type,detail){
 }
 // Resolve only after the real startup completion callback (including its save).
 // This is installed before DOMContentLoaded/init in the throwaway instrumented app.
-if(window.__lumenfallQaContext.scenario==='formation-bonds-mobile' || window.__lumenfallQaContext.scenario==='formation-autosave-native' || window.__lumenfallQaContext.scenario==='formation-autosave-reduced-motion' || window.__lumenfallQaContext.scenario.startsWith('comet-unlocks-') || window.__lumenfallQaContext.scenario==='lab-motes-runtime' || window.__lumenfallQaContext.scenario==='lab-motes-native' || window.__lumenfallQaContext.scenario==='lab-motes-reduced-motion' || window.__lumenfallQaContext.scenario==='auto-ascend-target-mobile' || window.__lumenfallQaContext.scenario==='auto-ascend-target-reduced-motion' || ['auto-ascend-target-contract','self-test-auto-ascend-target-manual','self-test-auto-ascend-target-window','p2-endgame-currency-utility'].indexOf(window.__lumenfallQaContext.scenario)!==-1 || window.__lumenfallQaContext.scenario.startsWith('forge-ui-') || window.__lumenfallQaContext.scenario.startsWith('self-test-forge-ui-') || window.__lumenfallQaContext.scenario.startsWith('rift-status-') || window.__lumenfallQaContext.scenario.startsWith('self-test-rift-status-')){
+// Every settled-game scenario observes the same real startup boundary. Native
+// startup drivers may still own Skip; no callback, save or cover is fabricated.
+{
   var qaStartupResolve;
   window.__qaForgeStartup={completed:false,callbacks:0,promise:new Promise(function(resolve){qaStartupResolve=resolve;})};
   var qaOriginalPlayStartupIntro=playStartupIntro;

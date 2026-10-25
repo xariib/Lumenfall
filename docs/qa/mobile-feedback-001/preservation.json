@@ -1,0 +1,151 @@
+{
+  "baseline": "7df7f5c975dbee108c721750b5e5831c6d280c92",
+  "sourceSha256": "b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2",
+  "functions": [
+    {
+      "name": "freshState",
+      "bytes": 3095,
+      "sha256": "51b5384434be1bcf88d8ffda2c20642aba24a36ace0f5da7382c7bba58eb0d0e"
+    },
+    {
+      "name": "acceptPersistedState",
+      "bytes": 497,
+      "sha256": "bc19c8b88a148ff041a2df0c95e3b849cd4e734d17abab8d3d842d17e6367025"
+    },
+    {
+      "name": "loadState",
+      "bytes": 1791,
+      "sha256": "0a8b47fe700272629a9aa4168b650e82b2beda2b63fe3fce542ac62d45dae0c9"
+    },
+    {
+      "name": "saveState",
+      "bytes": 1064,
+      "sha256": "e32ce00b69575a6fcc02ab65d1a9f9dbda95d58d5a4ff2d48067491bfa8f75f8"
+    },
+    {
+      "name": "doAscend",
+      "bytes": 479,
+      "sha256": "924066d0f9f813d3c77fbf6ecee0a4a335201c655b82dc2d3e6e82d8779df9f6"
+    },
+    {
+      "name": "applyAscendMutation",
+      "bytes": 2653,
+      "sha256": "063defc7c58d953f2b69ddf38b9a4647ba3012ac80cfa66d2ddea1e71a74ce52"
+    },
+    {
+      "name": "buySpirit",
+      "bytes": 908,
+      "sha256": "b7c34aa9a173c25c0091251872e858f517b3aeef74065741e1de123e07a1d086"
+    },
+    {
+      "name": "buyRarity",
+      "bytes": 536,
+      "sha256": "eff38c2abb7590ac3cd820de97728f93935ed9d0203e7259e9c74f55bfe5701f"
+    },
+    {
+      "name": "buyModule",
+      "bytes": 634,
+      "sha256": "5442aeadf8806f55e54b65f18d43f2a259ffbc3da5b546293cc744bbaa0b0f3a"
+    },
+    {
+      "name": "buyUltimate",
+      "bytes": 523,
+      "sha256": "b65b128be6eee67a833bb8044f4165bdd987221909287d838f538c4c550dc225"
+    },
+    {
+      "name": "buyWispMastery",
+      "bytes": 723,
+      "sha256": "fea4c7d3131dbe4ea7423dfa5d5a56dabbb4dd1a4640f41b8b35f973bacdb5eb"
+    },
+    {
+      "name": "getSpiritBuyPlan",
+      "bytes": 805,
+      "sha256": "66d83f9bad05d03f95e5970a6091dde7b5b33c3f9327327792cfe30c880213ab"
+    },
+    {
+      "name": "getWispRarityPlan",
+      "bytes": 1079,
+      "sha256": "324cf29d9913ea68c9cc40e5f25a993aba95fc5fbfaa7e16ee26f24a2f2f9e76"
+    },
+    {
+      "name": "getWispUltimatePlan",
+      "bytes": 1007,
+      "sha256": "2787e8be62b4017b2371684e9d42768a0153cf43bbeec58e46ace0c5b723d7a3"
+    },
+    {
+      "name": "getWispMasteryPlan",
+      "bytes": 1289,
+      "sha256": "f0e050d3217312f08dfea570383f6a90e382837332bb406edcce11a99a1d5843"
+    },
+    {
+      "name": "spiritCost",
+      "bytes": 417,
+      "sha256": "8ef8a5ff59bd639ffd4d9982d49ceff85106e1cbb6cac1f78083c39ac18469fa"
+    },
+    {
+      "name": "rarityCost",
+      "bytes": 354,
+      "sha256": "e3ae7e47a3cea640dafbd0cba89de35e3f7c45e53525dceec5aefe46e7b21547"
+    },
+    {
+      "name": "moduleCost",
+      "bytes": 459,
+      "sha256": "96e0798027a3f203faece76da5a986943e8f081ec2e950134fa37fea1b4be1c2"
+    },
+    {
+      "name": "ultimateSigilCost",
+      "bytes": 142,
+      "sha256": "0629d1a49019d4d62cac45ca042a2eb651f0f70183bfb312c725be1142e6866a"
+    },
+    {
+      "name": "wispPower",
+      "bytes": 768,
+      "sha256": "d87bebb123bbacf53bbd2849dec9aeec51f881af46f5148d6c748cae331e79eb"
+    },
+    {
+      "name": "advanceAuthoritativeTime",
+      "bytes": 29436,
+      "sha256": "a53170c31301fb751a99f4b606d7bd353445bb6eff23025c219fb1e20eac5277"
+    },
+    {
+      "name": "applyOfflineProgress",
+      "bytes": 1694,
+      "sha256": "56854906ce0b92cf0b531f19722d824bd4e151abad570506cd51d80d34530664"
+    },
+    {
+      "name": "checkAutoAscend",
+      "bytes": 245,
+      "sha256": "07cb88616358112644356744df6008fef3b4f3b741d3a4dabb5c066d500f2f44"
+    },
+    {
+      "name": "autoEmpowerTick",
+      "bytes": 2926,
+      "sha256": "af4a873b8ceb7a067fe29531f17ef29f444776f73f2ca46fc15be4b13ec46f69"
+    },
+    {
+      "name": "playStartupIntro",
+      "bytes": 1628,
+      "sha256": "b414a5e4e2cb8bbdcdb2039643d0297460efdf39cb9ca9142191b316372ac56f"
+    },
+    {
+      "name": "shouldShowStartupIntro",
+      "bytes": 247,
+      "sha256": "96e86ef567ca9bb170b9bbcd70064e4137a721f36bb0c336299f997d384dd10f"
+    },
+    {
+      "name": "applyOfflineProgress",
+      "bytes": 1694,
+      "sha256": "56854906ce0b92cf0b531f19722d824bd4e151abad570506cd51d80d34530664"
+    },
+    {
+      "name": "offlineProgressSteps",
+      "bytes": 2237,
+      "sha256": "26201dea45227929ec8b04decb739a1106e0a8493f718f61acc3c90df48bbfca"
+    },
+    {
+      "name": "wispRoleComparison",
+      "bytes": 556,
+      "sha256": "9f813731bb698d0c3efa08ddbc130c77267ea1b6361dff3451cd297038d0087f"
+    }
+  ]
+}

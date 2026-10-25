@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="startup-pending pointer-input">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
@@ -30,6 +30,12 @@
   .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;}
   button{font-family:inherit;}
   :focus-visible{outline:2px solid var(--prism);outline-offset:2px;border-radius:4px;}
+  /* Keep keyboard focus, including WebView 60, without touch/click highlights. */
+  html:not(.pointer-input) :focus{outline:2px solid var(--prism);outline-offset:2px;}
+  html.pointer-input :focus{outline:none!important;}
+  .startup-loading{display:none;}
+  html.startup-pending .shell{visibility:hidden;}
+  html.startup-pending .startup-loading{display:flex;position:fixed;top:0;right:0;bottom:0;left:0;z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:#05050b;color:#f7f5ff;font:16px system-ui,sans-serif;}
 
   canvas#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
@@ -1952,7 +1958,6 @@
   }
   .tab-panel:not(#tab-battle) .section-label{color:var(--chapter);letter-spacing:.1em;}
   .tab-panel:not(#tab-battle) .section-label::after{background:linear-gradient(90deg,color-mix(in srgb,var(--chapter) 40%,transparent),transparent);}
-  .tab-panel:not(#tab-battle) .card:focus-within{border-color:var(--chapter);}
   .tab-panel:not(#tab-battle) :is(.mini-btn,.buy-btn,.shop-card button):not(:disabled){
     background:linear-gradient(150deg,color-mix(in srgb,var(--chapter) 17%,#152138),#111a2c);
     border-color:color-mix(in srgb,var(--chapter) 70%,#4b5870);box-shadow:inset 0 1px #ffffff12;
@@ -2314,6 +2319,7 @@
 </style>
 </head>
 <body>
+<div class="startup-loading" role="status" aria-live="polite"><strong>LUMENFALL</strong><span>Preparing your Rift…</span></div>
 
 <canvas id="stars"></canvas>
 <svg class="art-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -8381,6 +8387,13 @@ function closeOverlay(el){
   }
 }
 function setupOverlayFocus(){
+  // Focus remains available for accessibility; only its pointer decoration is suppressed.
+  ['pointerdown','mousedown','touchstart'].forEach(function(type){
+    document.addEventListener(type,function(){document.documentElement.classList.add('pointer-input');},true);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Shift' && e.key!=='Control' && e.key!=='Alt' && e.key!=='Meta') document.documentElement.classList.remove('pointer-input');
+  },true);
   document.addEventListener('focusin',function(e){
     if(overlayFocus && overlayVisible(overlayFocus.el) && !overlayFocus.modal.contains(e.target)) focusOverlay();
   });
@@ -9000,26 +9013,19 @@ function renderWispRoles(){
   if(!els['spirit-list']) return;
   var roleView=captureWispActionView();
   wispRoleLastRenderMs=Date.now();
-  var report=wispRoleComparison(state.depth,wispRoleLastRenderMs),steady=report.steady,current=report.current;
+  var report=wispRoleComparison(state.depth,wispRoleLastRenderMs),steady=report.steady;
   steady.rows.forEach(function(row,i){
     var el=els['spirit-list'].querySelector('[data-wisp-role="'+row.id+'"]');if(!el) return;
     if(!row.active){
-      el.innerHTML='<p class="wisp-role-note">'+((state.spirits[row.id]||0)>0 ? 'Benched · no sustained party contribution.' : 'Not recruited · no power, Bonds or rewards.')+'</p>';
+      el.textContent='';
     }else{
       var text='';
-      if(SPIRITS[i].abilityType==='support'){
-        text+=roleValueLine('Support added to party',formatNum(row.supportDps)+' /s')+
-          '<p class="wisp-role-note">'+Math.round(row.supportUptime*100)+'% preview uptime · actual boost begins when cast.</p>';
-        if(row.moteBonus>0) text+=roleValueLine('Motes from Module','+'+Math.round(row.moteBonus*100)+'%');
-      }
+      // Live support and Bonds already belong to Rift; upgrade effects remain below.
       if(row.lumenPerCast>0) text+=roleValueLine('Lumen per cast',formatNum(row.lumenPerCast));
       if(row.shardsPerCast>0) text+=roleValueLine('Shards per cast',formatNum(row.shardsPerCast));
       if(row.lumenPerCast>0 || row.shardsPerCast>0) text+='<p class="wisp-role-note">Before any overkill reward.</p>';
-      if(row.bondNames.length) text+='<p class="wisp-role-note">Enables '+row.bondNames.join(' · ')+'</p>';
       el.innerHTML=text;
     }
-    var earned=current.rows[i].supportDps;
-    if(earned>0) el.innerHTML+=roleValueLine('Earned boost now',formatNum(earned)+' /s');
   });
   restoreWispActionView(roleView);
 }
@@ -13142,6 +13148,7 @@ function init(){
   var appHiddenAt = 0;
   function finishReturn(offline,dailyWasRolled,error,generation){
     if(generation!==returnFlowGeneration) return;
+    document.documentElement.classList.remove('startup-pending');
     resumeFlowBusy = false;
     document.body.classList.toggle('app-paused',document.hidden);
     if(error){
@@ -13155,22 +13162,26 @@ function init(){
     renderAll();
     var settingsOverlay = document.getElementById('settings-overlay');
     if(settingsOverlay && settingsOverlay.style.display!=='none') closeSettings();
-    playStartupIntro(function(){
-      try{ if(!document.hidden && generation===returnFlowGeneration) showReturnFlow(offline,dailyWasRolled); }
-      finally{ resumeFlowBusy = false; }
-    });
+    showReturnFlow(offline,dailyWasRolled);
   }
   function beginReturn(dailyWasRolled){
     var generation = ++returnFlowGeneration;
     resumeFlowBusy = true;
+    var introDone=false,offlineDone=false,result=null,failure=null;
+    function presentWhenReady(){
+      if(introDone && offlineDone) finishReturn(result,dailyWasRolled,failure,generation);
+    }
+    // Begin the intro before the first cooperative simulation batch. The boot
+    // cover stays until both paths finish, so an inert Rift is never exposed.
+    playStartupIntro(function(){introDone=true;presentWhenReady();});
     try{
       applyOfflineProgress(function(offline,error){
         if(!error && !offline) saveState();
-        finishReturn(offline,dailyWasRolled,error,generation);
+        result=offline;failure=error;offlineDone=true;presentWhenReady();
       });
     }catch(error){
       offlinePending = true;
-      finishReturn(null,dailyWasRolled,error,generation);
+      failure=error;offlineDone=true;presentWhenReady();
     }
   }
   document.addEventListener('visibilitychange', function(){
@@ -13187,7 +13198,9 @@ function init(){
     if(isNewGame || resumeFlowBusy || !appHiddenAt) return;
     var awayMs = Date.now()-appHiddenAt;
     appHiddenAt = 0;
-    if(awayMs < 1000 && !offlinePending) return;
+    // A short interruption also invalidates the intro's generation. Restart
+    // while the boot cover is present, even if offline work already committed.
+    if(awayMs < 1000 && !offlinePending && !document.documentElement.classList.contains('startup-pending')) return;
     beginReturn(ensureDaily());
   });
   // Cooperative simulation releases the event loop with a detached working
@@ -13195,7 +13208,8 @@ function init(){
   ['pointerdown','click','keydown','change','input'].forEach(function(type){
     document.addEventListener(type,function(e){
       var recoveryInput = e.target.closest && (e.target.closest('#settings-overlay') || e.target.closest('#settings-btn'));
-      if(offlineCatchup || (offlinePending && !recoveryInput)){
+      var introInput = e.target.closest && e.target.closest('#startup-intro');
+      if(!introInput && (offlineCatchup || (offlinePending && !recoveryInput))){
         e.preventDefault();
         e.stopImmediatePropagation();
       }
@@ -13203,6 +13217,7 @@ function init(){
   });
   if(isNewGame){
     playStartupIntro(function(){
+      document.documentElement.classList.remove('startup-pending');
       isNewGame = false;
       state.lastSeen = Date.now();
       saveState();

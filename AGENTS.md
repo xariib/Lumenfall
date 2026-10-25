@@ -59,6 +59,11 @@ Read archives and technical guides only when needed.
   action and keep the feature open. Do not weaken acceptance to declare success.
 
 ## Game contracts
+- Do not add transient highlights, glows, pulses or target-flash effects when
+  activating Show hint, Claim rewards or similar actions. Preserve keyboard
+  focus indicators and normal pressed/disabled states. Pointer/touch activation
+  must not leave a focus outline or highlight the containing card. Approved by
+  the user on 25 October 2026; see `docs/tasks/MOBILE_FEEDBACK_001.md`.
 - Android idle RPG with Wisps in Rift, distributed as an APK with HTML/JavaScript
   in the app's WebView.
 - Deterministic progression and purchases with visible prices/effects, no loot

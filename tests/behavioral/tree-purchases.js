@@ -161,7 +161,8 @@ window.runTreePurchaseUiQa=async function(b,ctx,assert){
   style.textContent=['.name','.desc','.lvl','.earned-effect','.effect-note','.buy-btn .cost','.buy-btn .label'].map(function(selector){
     return '#node-list '+selector+'{font-size:'+parseFloat(getComputedStyle(document.querySelector('#node-list '+selector)).fontSize)*2+'px!important;}';
   }).join('');document.head.appendChild(style);measure(2);
-  var button=document.querySelector('[data-node="swift"]');button.focus();
+  var button=document.querySelector('[data-node="swift"]');
+  button.dispatchEvent(new KeyboardEvent('keydown',{key:'Tab',bubbles:true}));button.focus();
   ok(document.activeElement===button,'available Tree control takes focus');
   ok(parseFloat(getComputedStyle(button).outlineWidth)>=2&&getComputedStyle(button).outlineStyle!=='none','visible keyboard focus');
   style.remove();b.treePurchases.render();
