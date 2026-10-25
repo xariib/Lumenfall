@@ -147,3 +147,12 @@ Resonate eligibility, exact debit/refill, focus, save and geometry checks remain
 The same source audit found Rift cast-text measurements hiding the intro without
 its callback. That standalone driver now awaits the original completion too;
 its unchanged 12-profile assertions also run in the early settled-screen gate.
+
+Run 40187627244 passed the 30-case startup gate and early Formation/Resonate
+checks, then rejected upgrade-identity's programmatic-focus-only ring check.
+Keyboard visibility must now follow keyboard input, as requested by the user.
+Keep the exact ring/contrast assertions, but deliver a bubbling keyboard event
+before programmatic-focus measurements in upgrade identity and Tree UI, and
+actual CDP Tab input in native Formation Bonds. The other focus-style assertions
+were audited: they already establish native keyboard modality. Include these
+original UI cases in the early gate; no pointer ring is reintroduced in product.

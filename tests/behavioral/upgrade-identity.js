@@ -122,7 +122,9 @@ window.runUpgradeIdentityQa=async function(b,ctx,assert,parity,summaryParity){
       });
       var controls=Array.from(root.querySelectorAll('button')).filter(function(el){return el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden';});
       controls.forEach(function(el){var r=el.getBoundingClientRect();ok(r.width>=44&&r.height>=44,'44px '+tab+' '+el.outerHTML.slice(0,120)+' '+r.width+'x'+r.height);});
-      var control=controls.find(function(el){return !el.disabled;});control.focus();ok(document.activeElement===control,'keyboard focus '+tab+' '+text);
+      var control=controls.find(function(el){return !el.disabled;});
+      // Programmatic focus alone retains pointer modality; exercise keyboard input.
+      control.dispatchEvent(new KeyboardEvent('keydown',{key:'Tab',bubbles:true}));control.focus();ok(document.activeElement===control,'keyboard focus '+tab+' '+text);
       ok(getComputedStyle(control).outlineStyle!=='none'||getComputedStyle(control).boxShadow!=='none','visible focus indicator '+tab);
       records.push({tab:tab,textScale:text,controls:controls.length,legacy:legacy.length,width:innerWidth,overflow:root.scrollWidth-root.clientWidth});
       main.scrollTop=0;
