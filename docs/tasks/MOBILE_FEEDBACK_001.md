@@ -54,26 +54,31 @@ progression, Auto-Ascend, offline chronology, assets and Android identity.
 
 ## Acceptance and checkpoint
 
-Status: implementation in progress; not integrated or device accepted.
-- Source syntax validation PASS (two scripts, 16 IDs, lifecycle guards).
-- Independent golden regenerated using the unchanged original one-second oracle:
-  all four successive eight-hour state/reward phases match baseline exactly;
-  only the source binding changed.
-- Browser startup/touch gate added for 320/390/430 px, normal/reduced motion,
-  fresh/return/cooldown/failure. Checks pre-JS cover, intro before simulation,
-  skip while busy, one return flow after both completions, recovery and real
-  touch/keyboard focus. Existing Wisp geometry/purchase/state suites retained.
-- Updated only obsolete duplicate-readout expectations in contribution-mobile;
-  retained per-cast rewards, numerical core, touch/keyboard formation, contrast,
-  layout, purity and scroll checks.
-- Local browser cannot create its process socket (Operation not permitted).
-  Sandbox escalation is disabled by environment policy. Browser checks must run
-  in existing GitHub Actions; this is not a product PASS or failure.
+Status: integrated into main through [PR #9](https://github.com/xariib/Lumenfall/pull/9)
+at `c4d5e060b90026822557c038d1e9775b554c2a21`. The integration tree exactly
+matches tested head `952cc951d492ed50832e6b33e9507bd3611847f8` and CI checkout
+`081fefdd29fd689e9d1101facb347026facd174b`.
 
-Next: publish PR, inspect all six required CI workflows and new gate, fix any
-regressions, integrate only after successful final-head validation. Installed
-Android and physical-phone visual/startup acceptance remain pending. No APK
-publication has been performed by this task. Record live PR/check evidence below.
+All six required workflows PASS. Full coverage PASS: 189 main scenarios plus
+the original isolated offline case, original negative controls and runtime smoke.
+Startup/native-input PASS 30 profiles; compact cards PASS 18 profiles. All
+original layout, purchase, persistence, chronology and accessibility assertions
+remain. See [exact-version receipts](../qa/mobile-feedback-001/README.md).
+
+Integrated Android [build #32](https://github.com/xariib/Lumenfall/actions/runs/40199683317)
+PASS on attempt 2, exact integration commit, unchanged APK and driver. Signed
+0.2.32 / 1000032, SHA-256 18010895aebe6af18f45d9b23a3b473ee72fd3d9be36608e78dd1d2ad17c5b2f.
+Android12/API31/WebView91 upgrade over 0.1.158 retained UID, origin, both saves,
+paid study and legacy entitlements. All eight Wisp cards, one native Ability
+purchase and Farm summary → detail → focused Lab card PASS. Release skipped.
+
+Attempt 1 failed native offline-recap Continue dismissal after save checks.
+Attempt 2 did not display that recap, so its pass does not prove that branch
+fixed; preserve the failure and reproduce it with targeted native diagnostics.
+Physical phone, exact WebView60, TalkBack and human visual/startup pacing remain
+unverified. No public release or chat archive. Next: physical-phone acceptance
+and native-recap reproduction. Local browser sockets were unavailable; browser
+acceptance ran in GitHub Actions. Final review was self/automated, not human.
 
 ## First remote validation
 

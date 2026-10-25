@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "sourceSha256": "b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2",
+  "node": "24.19.0",
+  "browser": "Chrome 155.0.8059.39",
+  "testedHead": "952cc951d492ed50832e6b33e9507bd3611847f8",
+  "testedTree": "c9f33af3b1c49355785631e85b03a271c264ff4c",
+  "integrationCommit": "c4d5e060b90026822557c038d1e9775b554c2a21",
+  "integrationTree": "c9f33af3b1c49355785631e85b03a271c264ff4c",
+  "workflows": [
+    {
+      "name": "Research Lab expansion validation",
+      "id": 40195202820,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40195202820",
+      "head": "952cc951d492ed50832e6b33e9507bd3611847f8",
+      "conclusion": "success"
+    },
+    {
+      "name": "Ascension Tree focused validation",
+      "id": 40195202860,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40195202860",
+      "head": "952cc951d492ed50832e6b33e9507bd3611847f8",
+      "conclusion": "success"
+    },
+    {
+      "name": "Rift Forge expansion validation",
+      "id": 40195202749,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40195202749",
+      "head": "952cc951d492ed50832e6b33e9507bd3611847f8",
+      "conclusion": "success"
+    },
+    {
+      "name": "Comet shop and Deeds validation",
+      "id": 40195202808,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40195202808",
+      "head": "952cc951d492ed50832e6b33e9507bd3611847f8",
+      "conclusion": "success"
+    },
+    {
+      "name": "Shared UI layout validation",
+      "id": 40195202836,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40195202836",
+      "head": "952cc951d492ed50832e6b33e9507bd3611847f8",
+      "conclusion": "success"
+    },
+    {
+      "name": "Pre-merge validation",
+      "id": 40195202795,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40195202795",
+      "head": "952cc951d492ed50832e6b33e9507bd3611847f8",
+      "conclusion": "success"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 121174446944,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "success"
+    },
+    {
+      "id": 121174447095,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success"
+    }
+  ],
+  "checkoutCommit": "081fefdd29fd689e9d1101facb347026facd174b",
+  "mainScenarios": 189,
+  "mainFailures": 0,
+  "isolatedOfflineScenario": "PASS",
+  "startupProfiles": 30,
+  "compactProfiles": 18,
+  "allRequiredGates": "PASS",
+  "knownIssue": "The preceding phase-sensitive Void overflow is preserved in preceding-failures.json; the unchanged animation gate passed here. This does not fix RIFT_VFX_OVERFLOW_001."
+}

@@ -1,0 +1,19 @@
+{
+  "status": "FAIL",
+  "run": 40199683317,
+  "attempt": 1,
+  "job": 121188009291,
+  "sourceCommit": "c4d5e060b90026822557c038d1e9775b554c2a21",
+  "sourceSha256": "b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2",
+  "version": "0.2.32",
+  "versionCode": 1000032,
+  "apkSha256": "18010895aebe6af18f45d9b23a3b473ee72fd3d9be36608e78dd1d2ad17c5b2f",
+  "artifact": 12601602385,
+  "error": "AssertionError: Offline recap closed before Wisp inspection (scripts/ci/android-upgrade.cjs:51)",
+  "passedBeforeFailure": [
+    "Signed APK identity and packaged assets/origin",
+    "In-place upgrade primary/recovery saves, paid study and legacy entitlement assertions"
+  ],
+  "rootCause": "Unproven. Native recap touch did not satisfy the existing 350 ms dismissal assertion. No product or harness change was made before attempt 2.",
+  "notAcceptance": true
+}

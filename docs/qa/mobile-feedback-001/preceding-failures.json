@@ -1,0 +1,38 @@
+{
+  "head": "7a510b34fafced1fa829c4fa465bb4dfebbd6caa",
+  "run": 40190458144,
+  "sourceSha256": "b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2",
+  "passedScenarios": 187,
+  "failed": [
+    {
+      "scenario": "rift-status-stacking-mobile",
+      "message": "Error: #enemy-stage text/content unclipped {\"scroll\":[324,131],\"client\":[324,129],\"children\":[{\"className\":\"comet-trail\",\"box\":{\"x\":0,\"y\":0,\"width\":0,\"height\":0}},{\"className\":\"comet-crest\",\"box\":{\"x\":0,\"y\":0,\"width\":0,\"height\":0}},{\"className\":\"enemy-name\",\"box\":{\"x\":22,\"y\":211,\"width\":316,\"height\":22}},{\"className\":\"guardian-label\",\"box\":{\"x\":179.5,\"y\":275,\"width\":1,\"height\":1}},{\"className\":{},\"box\":{\"x\":18,\"y\":211,\"width\":324,\"height\":129}},{\"className\":\"rift-cosmetic-name\",\"box\":{\"x\":26,\"y\":312.609375,\"width\":103.96875,\"height\":23.390625}},{\"className\":\"enemy-glyph boss\",\"box\":{\"x\":127.70832061767578,\"y\":231.7590789794922,\"width\":104.58336639404297,\"height\":104.58335876464844}},{\"className\":\"combat-vfx vfx-ability wisp-cast cast-void\",\"box\":{\"x\":122.4649658203125,\"y\":226.6368408203125,\"width\":115.070068359375,\"height\":115.070068359375}}]}\n    at ok (http://127.0.0.1:45079/index.html?qaScenario=rift-status-stacking-mobile&qaFixture=fresh:14954:31)\n    at http://127.0.0.1:45079/index.html?qaScenario=rift-status-stacking-mobile&qaFixture=fresh:14993:119\n    at Array.forEach (<anonymous>)\n    at Object.measure (http://127.0.0.1:45079/index.html?qaScenario=rift-status-stacking-mobile&qaFixture=fresh:14992:20)\n    at <anonymous>:1:18",
+      "lastCompletedProfile": "360x640-safe24-no-preference",
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "scenario": "reset-roundtrip",
+      "message": "reset boot must clear old recovery before fresh save"
+    }
+  ]
+}
