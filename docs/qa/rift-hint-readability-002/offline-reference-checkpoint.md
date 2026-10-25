@@ -26,5 +26,3 @@ The environment restart removed the prior checkout's external Git metadata.
 Reattached this worktree to an independent clone of exact `5b2d1a6` under
 the current workspace; its tree matched `b3b3b349` and all working changes
 were retained. This recovery does not restore archive code over the product.
-
-

@@ -69,6 +69,12 @@ jobs:
           node tests/behavioral/startup-order.cjs
           node tests/behavioral/mobile-feedback.cjs validation-evidence/mobile-feedback
 
+      - name: Existing settled-screen UI acceptance after actual startup
+        run: |
+          for SCENARIO in formation-collapse resonate-clarity upgrade-identity-ui upgrade-identity-reduced-motion wisp-upgrade-display lab-motes-ui inquiry-ui inquiry-ui-reduced-motion; do
+            node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/settled-startup-ui
+          done
+
       - name: Midgame Farm guidance existing acceptance
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md

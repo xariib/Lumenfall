@@ -118,3 +118,22 @@ startup callback observer/wait to layout scenarios (including the negative
 layout control), use the original Skip handler and wait before freezing.
 All original layout assertions, fixtures, five viewports and deadlines remain.
 Product and independent golden bytes are unchanged by this test-only repair.
+
+## Shared settled-screen boundary
+
+Run 40185557376 passed all five focused workflows, isolated offline (all 18
+original records), 30 startup profiles, 18 compact-card profiles and the original
+layout/hint/claim gates. Its later full suite exposed the same old pre-intro
+measurement shortcut in formation-collapse, resonate-clarity, upgrade-identity
+UI/reduced-motion, wisp-upgrade-display and Lab UI: hidden title/controls and
+focus still on Skip. Observe the real startup callback for every settled-game
+scenario, then await it after catch-up and before fixture manipulation or freeze.
+Native startup drivers keep their existing ownership and early return. Assert
+that the boot cover is actually released; do not clear it or synthesize callbacks.
+All original assertions, fixtures, timeout/deadline and negative controls remain.
+Run the affected original UI scenarios early as well as in the full unchanged
+189-case main coverage. Product, golden and Android candidate bytes are unchanged.
+Local syntax/tooling/190-case coverage plan pass. Also remove a trailing blank
+line in the relocated historical checkpoint found by final diff whitespace QA.
+Next: inspect the new early gate, then require all six final-head workflows and
+both full jobs before merge and integrated Android build. No public APK release.
