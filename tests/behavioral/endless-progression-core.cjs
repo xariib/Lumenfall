@@ -27,7 +27,7 @@ const near=(x,y,m)=>{checks++;assert(Math.abs(x-y)<=Math.max(1,Math.abs(y))*1e-1
 function game(){const x=app(source);return {x,q:x.q,b:x.q.endless};}
 {
  const {q,b}=game(),s=q.fresh();s.maxDepthEver=32;s.lumen=1e9;q.set(s);
- const forge=q.defs().find(node=>node.id==='masterwork');eq({depth:forge.unlockDepth,lumen:forge.lumenBase,shard:forge.shardBase,lumenGrowth:forge.lumenGrowth,shardGrowth:forge.shardGrowth,cap:forge.levelCap}, {depth:expected.forgeDepth,lumen:expected.forgeLumen,shard:expected.forgeShards,lumenGrowth:1.35,shardGrowth:1.35,cap:undefined},'new repeatable Forge independent catalog contract');
+ const forge=q.defs().find(node=>node.id==='masterwork');eq({depth:forge.unlockDepth,lumen:forge.lumenBase,shard:forge.shardBase,lumenGrowth:forge.lumenGrowth,shardGrowth:forge.shardGrowth,cap:forge.levelCap}, {depth:expected.forgeDepth,lumen:expected.forgeLumen,shard:expected.forgeShards,lumenGrowth:1.35,shardGrowth:1.35,cap:500},'finite long-tail Forge catalog contract');
  for(const id of ['ember','tide','stone'])ok(b.unlocked(q.sp(id)),'early team available '+id);
  for(const id of ['gale','thorn','void','aurora','titan'])eq(b.unlocked(q.sp(id)),false,'Rift32 is not whole roster '+id);
  const gates=dailyCalibration?[['gale',15,18],['thorn',35,24],['void',55,30],['aurora',75,35],['titan',100,expected.recruitLab]]:[['gale',15,15],['thorn',35,18],['void',55,20],['aurora',75,21],['titan',100,expected.recruitLab]];
@@ -78,7 +78,7 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
 }
 {
  const {q,b,s}=late();s.heroRarity.ember=5;s.wispUltimate.ember=true;s.wispMastery.ember=10000;s.maxDepthEver=250200;s.longStudyLevels.wispascend=2000+expected.lab;s.research.masterwork=2001;s.nodes.swift=1010;s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';q.set(s);
- ok(amount.valid(q.power('ember')),'rank10000 Power has a finite representation');ok(amount.wide(q.power('ember')),'rank10000 crosses native limit');ok(b.mastery(q.sp('ember')),'high rank remains purchasable');eq(q.get().wispMastery.ember,10001,'no arbitrary Mastery cap');
+ ok(amount.valid(q.power('ember')),'historical rank10000 Power has a finite representation');ok(amount.wide(q.power('ember')),'historical rank10000 crosses native limit');eq(b.masteryPlan(q.sp('ember')).reason,'maxed','new rank2000 cap blocks additional purchase');eq(b.mastery(q.sp('ember')),false,'old paid rank is retained');eq(q.get().wispMastery.ember,10000,'no old Mastery rank removed');
  q.restoreEnemy();const oldDepth=q.get().depth;q.manualTap();eq(q.get().depth,oldDepth+1,'wide damage advances a real encounter');
  b.farm();q.advance(1,{kind:'live',clockStartMs:CLOCK});ok(amount.valid(q.get().lumen),'wide-power Farm timeline stays valid');ok(amount.valid(q.get().totalKills),'wide Farm count remains valid');
  const f=q.fresh();f.depth=1e100;f.maxDepthEver=1e100;q.set(f);q.restoreEnemy();ok(amount.valid(q.get().enemyHp),'extreme-depth health is represented');ok(amount.wide(q.get().enemyHp),'extreme-depth health crosses native limit');q.advance(1,{kind:'live',clockStartMs:CLOCK});ok(amount.valid(q.get().enemyHp),'extreme-depth timeline advances');
@@ -86,12 +86,12 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
 {
  const {q,b}=game();const s=q.fresh();s.longStudyLevels.measuredinquiry=10;q.set(s);const node=q.projects().find(n=>n.id==='wispascend');
  for(const level of [50,500,5000]){const sec=b.studyWork(node,level);ok(Number.isFinite(sec)&&sec>0&&sec<=expected.work,'bounded future work '+level);}
- const s2=q.fresh();s2.activeStudies=[{id:'wispascend',remainingSec:40000000,totalDurationSec:80000000,speedMult:8}];q.set(s2);eq(q.get().activeStudies,s2.activeStudies,'existing paid work and speed unchanged');
+ const s2=q.fresh();s2.activeStudies=[{id:'wispascend',remainingSec:40000000,totalDurationSec:80000000,speedMult:8}];q.set(s2);eq(q.get().activeStudies.map(({slot,...paid})=>paid),s2.activeStudies,'existing paid work and speed unchanged');eq(q.get().activeStudies[0].slot,0,'old work assigned first slot');
 }
 {
  const {x,q,b}=game(),s=q.fresh();s.lumen=s.shards=s.motes='1e400';q.set(s);q.save();
  const before=clone(q.get());x.fail(true,false);eq(b.start('wispascend'),false,'failed primary Study start');eq(q.get(),before,'Study start rolls back funds and work');x.fail(false,false);ok(b.start('wispascend'),'Study retry succeeds once');
- const running=clone(q.get());x.fail(true,false);eq(b.speed('wispascend',1.5),false,'failed primary paid speed');eq(q.get(),running,'paid speed rolls back Motes, target and project');x.fail(false,false);ok(b.speed('wispascend',1.5),'paid speed retry succeeds');eq(q.get().activeStudies[0].speedMult,1,'prepaid boost retains original paid floor');eq(q.get().studyBoosts.wispascend.mult,1.5,'one paid timed speed retained');
+ const running=clone(q.get());x.fail(true,false);eq(b.speed('wispascend',1.5),false,'failed primary paid speed');eq(q.get(),running,'paid speed rolls back Motes, target and project');x.fail(false,false);ok(b.speed('wispascend',1.5),'paid speed retry succeeds');eq(q.get().activeStudies[0].speedMult,1,'prepaid boost retains original paid floor');eq(q.get().studyBoosts.slot0.mult,1.5,'one paid timed speed retained');
 }
 {
  const endpoints=[];
@@ -117,7 +117,7 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
  const s=q.fresh();s.longStudyLevels.wispascend=20;s.longStudyLevels.catalysis=10;s.motes=21999;s.activeStudies=[{id:'wispascend',remainingSec:100000,totalDurationSec:100000,speedMult:1}];q.set(s);
  const short=clone(q.get());eq(b.speed('wispascend',8),false,'scaled Mote price shortage rejects');eq(q.get(),short,'shortage retains paid work and wallet');
  q.get().motes='1e400';const before=clone(q.get());x.fail(true,false);eq(b.speed('wispascend',8),false,'scaled speed failed save');eq(q.get(),before,'scaled speed rollback retains every field');x.fail(false,false);ok(b.speed('wispascend',8),'scaled wide-funded speed purchase');
- eq(amount.exactAdd(q.get().motes,22000),'1e400','timed price exact wide debit');eq(q.get().activeStudies[0],s.activeStudies[0],'prepaid boost retains purchased work and floor');eq(q.get().studyBoosts.wispascend,{mult:8,startedAtMs:CLOCK,expiresAtMs:CLOCK+28800000},'exact8h paid timer');
+ eq(amount.exactAdd(q.get().motes,22000),'1e400','timed price exact wide debit');eq((({slot,...paid})=>paid)(q.get().activeStudies[0]),s.activeStudies[0],'prepaid boost retains purchased work and floor');eq(q.get().studyBoosts.slot0,{mult:8,startedAtMs:CLOCK,expiresAtMs:CLOCK+28800000},'exact8h paid timer');
  const paid=clone(q.get());eq(b.speed('wispascend',8),false,'unexpired boost cannot charge twice');eq(q.get(),paid,'owned speed and work remain intact');
 }
 // Ability purchases use the same atomic boundary as other Wisp development.

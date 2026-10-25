@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+25 October 2026: [Lab/Forge long-tail candidate](tasks/LAB_FORGE_LONGTAIL_001.md)
+is in progress on `feature/lab-forge-slot-caps-001`. Five Lab slots, slot-bound
+timed boosts, pause/resume, finite caps and full-card maxed presentation are
+implemented locally; focused logic checks pass. Full browser/CI and Android
+acceptance remain open. No APK is released for this candidate.
+
 25 October 2026: [Mobile feedback](tasks/MOBILE_FEEDBACK_001.md) (PR #9, c4d5e060):
 simpler Wisp readouts, no touch highlights, intro before Rift.
 [Recap/release](tasks/OFFLINE_RECAP_RELEASE_001.md) (PR #10, 4239bc1): native QA's
