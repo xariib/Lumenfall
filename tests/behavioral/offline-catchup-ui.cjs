@@ -91,8 +91,13 @@ async function run(){
  await send('Page.reload');await until('!!window.__lumenfallQaBridge && window.__lumenfallQaBridge.getFlags().offlineBusy','restart catch-up starts');await until('!window.__lumenfallQaBridge.getFlags().offlineBusy','restart catch-up');
  const restarted=await stateSummary();assert(restarted.kills-resumed.kills===swiftGolden.phases[2].kills&&restarted.primaryKills===restarted.kills,'restart awards interrupted window once');
  records.push({case:'interruption/restart',interrupted,restarted});
- // Runtime failure clears all busy flags; the next real return retries fully.
+ // Failure ends offline work immediately; presentation remains busy until the
+ // real intro callback. The next real return must still retry the whole window.
+ const failureIntroCallbacks=await evaluate('window.__qaForgeStartup.callbacks');
  await evaluate('(()=>{const b=window.__lumenfallQaBridge;b.dispatchVisibility(true);b.advanceTime(28800000);b.offlineTest.failNext();b.dispatchVisibility(false);})()');
+ const failedWork=await stateSummary();assert(!failedWork.flags.offlineBusy&&failedWork.flags.offlinePending,'failed simulation clears work and retains unpaid time');
+ assert(failedWork.kills===restarted.kills&&failedWork.primaryLastSeen===restarted.lastSeen,'failure preserves endpoint while intro finishes');
+ await until('window.__qaForgeStartup.callbacks>'+failureIntroCallbacks,'failed return real intro callback');
  const failed=await stateSummary();assert(!failed.flags.offlineBusy&&!failed.flags.resumeFlowBusy&&failed.flags.offlinePending,'failed resume clears busy flags');assert(failed.kills===restarted.kills&&failed.primaryLastSeen===restarted.lastSeen,'failed resume preserves endpoint');
  await evaluate('(()=>{const b=window.__lumenfallQaBridge;b.dispatchVisibility(true);b.dispatchVisibility(false);})()');
  await until('!window.__lumenfallQaBridge.getFlags().offlineBusy','failure retry');const recovered=await stateSummary();assert(recovered.kills-restarted.kills===swiftGolden.phases[3].kills&&!recovered.flags.offlinePending,'failure retry finishes entire window once');assert(recovered.errors===0,'failure handled without uncaught errors');

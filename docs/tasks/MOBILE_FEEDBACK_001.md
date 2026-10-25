@@ -156,3 +156,11 @@ before programmatic-focus measurements in upgrade identity and Tree UI, and
 actual CDP Tab input in native Formation Bonds. The other focus-style assertions
 were audited: they already establish native keyboard modality. Include these
 original UI cases in the early gate; no pointer ring is reintroduced in product.
+
+Run 40187939139 passed those early UI cases and isolated offline acceptance.
+Both native offline UI profiles then asserted presentation-busy false immediately
+after an injected failure, while the newly concurrent intro was still running.
+Retain the immediate offline-work/pending-time and endpoint assertions, observe
+the real intro callback, then retain the original cleared-busy/endpoint checks.
+Retry, exact eight-hour golden awards, cancellation, daily rollover and native
+claim checks remain unchanged; no product bytes or deadlines change.
