@@ -1,6 +1,7 @@
 'use strict';
 // Synthetic emulator only. Never run against a connected player's installation.
 const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict');
+const {transformFromProbes,nativePoint,requireCenteredPointer}=require('../lib/android-touch.cjs');
 const packageId='com.lumenfall.app',primary='lumenfall_save_v2',recovery='lumenfall_save_recovery_v1';
 const sockets=new Set();
 let nativeLogcat;
@@ -33,8 +34,25 @@ async function verifyInstalledWispCard(page,report){
  const viewport=await page.evaluate('({width:innerWidth,height:innerHeight})');
  const scale=Number(size[1])/viewport.width;
  assert(Number.isFinite(scale)&&scale>0,'Android touch scale');
- const tap=(x,y,offset=0)=>adb('shell','input','tap',String(Math.round(x*scale)),String(Math.round(y*scale+offset)));
- report.androidTouch={display:[Number(size[1]),Number(size[2])],viewport,scale};
+ await page.evaluate(`(()=>{window.nativeRecapEvents=[];['pointerdown','pointerup','touchstart','touchend','click'].forEach(type=>document.addEventListener(type,e=>nativeRecapEvents.push({type,trusted:e.isTrusted,target:e.target.id,x:e.clientX,y:e.clientY,time:performance.now(),interactive:!!e.target.closest('button,input,select,textarea,a,[role="button"]'),prevented:e.defaultPrevented}),true));return true;})()`);
+ const points=await page.evaluate(`(()=>{const r=document.getElementById('welcome-text').getBoundingClientRect();return [{x:r.x+r.width/2-24,y:r.y+r.height/2-12},{x:r.x+r.width/2+24,y:r.y+r.height/2+12}];})()`);
+ const probes=[];
+ for(const point of points){
+   const native={x:Math.round(point.x*scale),y:Math.round(point.y*scale)};
+   adb('shell','input','tap',String(native.x),String(native.y));
+   let event;
+   for(let i=0;i<50;i++){
+     event=await page.evaluate(`nativeRecapEvents.filter(e=>e.type==='pointerdown')[${probes.length}]||null`);
+     if(event)break;await pause(100);
+   }
+   assert(event,'Native calibration pointer delivered');
+   probes.push({native,event});
+ }
+ fs.writeFileSync('release-evidence/native-touch-calibration.json',JSON.stringify({viewport,scale,probes},null,2)+'\n');
+ const transform=transformFromProbes(probes,scale);
+ const tap=(x,y)=>{const p=nativePoint(transform,{x,y});return adb('shell','input','tap',String(p.x),String(p.y));};
+ report.androidTouch={display:[Number(size[1]),Number(size[2])],viewport,scale,transform,probes};
+ assert(await page.evaluate(`getComputedStyle(document.getElementById('welcome-overlay')).display!=='none'`),'Inert calibration leaves recap open');
  // The cold upgrade can show the ordinary offline recap. Dismiss it with a
  // trusted touch before measuring the shipped Wisp tab behind the overlay.
  const welcome=await page.evaluate(`(()=>{
@@ -45,7 +63,7 @@ async function verifyInstalledWispCard(page,report){
  })()`);
  if(welcome){
    assert(welcome.hit,'Offline recap Continue is reachable by native touch');
-   await page.evaluate(`(()=>{window.nativeRecapEvents=[];['pointerdown','pointerup','touchstart','touchend','click'].forEach(type=>document.addEventListener(type,e=>nativeRecapEvents.push({type,trusted:e.isTrusted,target:e.target.id,x:e.clientX,y:e.clientY,time:performance.now(),prevented:e.defaultPrevented}),true));return true;})()`);
+   await page.evaluate('nativeRecapEvents.length=0');
    const before=await page.command('Page.captureScreenshot',{format:'png'});
    fs.writeFileSync('release-evidence/offline-recap-before.png',Buffer.from(before.data,'base64'));
    fs.writeFileSync('release-evidence/offline-recap-window.txt',adb('shell','dumpsys','window','windows'));
@@ -56,6 +74,8 @@ async function verifyInstalledWispCard(page,report){
    fs.writeFileSync('release-evidence/offline-recap-input.json',JSON.stringify({welcome,stillOpen,...diagnostic},null,2)+'\n');
    const after=await page.command('Page.captureScreenshot',{format:'png'});
    fs.writeFileSync('release-evidence/offline-recap-after.png',Buffer.from(after.data,'base64'));
+   requireCenteredPointer(diagnostic.events,welcome,'welcome-claim');
+   assert.equal(diagnostic.open,'none','Actual recap overlay closed after centered native click');
    assert(!stillOpen,'Offline recap closed before Wisp inspection');
  }
  assert(welcome,'Mandatory synthetic offline recap must be shown before Wisp inspection');
@@ -172,7 +192,7 @@ async function prepareOfflineRecap(page,retainedSave){
  if(sameSession)await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injected.identifier});
  let shown=false;
  for(let n=0;n<120;n++){
-   shown=await page.evaluate(`!document.documentElement.classList.contains('startup-pending')&&getComputedStyle(document.getElementById('welcome-overlay')).display!=='none'`);
+   shown=await page.evaluate(`document.readyState==='complete'&&!!document.getElementById('welcome-overlay')&&!document.documentElement.classList.contains('startup-pending')&&getComputedStyle(document.getElementById('welcome-overlay')).display!=='none'`);
    if(shown)break;await pause(250);
  }
  const diagnostic=await page.evaluate(`({fixture:localStorage.getItem('native-offline-recap-fixture'),ready:!document.documentElement.classList.contains('startup-pending'),recap:getComputedStyle(document.getElementById('welcome-overlay')).display,text:document.getElementById('welcome-text').textContent,save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)}))})`);
@@ -207,9 +227,11 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  assert.equal(applied.marker,marker,'Disposable Farm fixture loaded in installed WebView');
  assert.equal(applied.save.riftMode,'farm','Installed app retained Farm mode');
  assert.equal(applied.save.ascendCount,1,'Installed app retained first Ascend fixture');
- const size=adb('shell','wm','size').match(/(\d+)x(\d+)/),viewport=await page.evaluate('innerWidth');
- assert(size&&viewport,'Native touch dimensions for Farm guidance');
- const scale=Number(size[1])/viewport;
+ const size=adb('shell','wm','size').match(/(\d+)x(\d+)/),viewport=await page.evaluate('({width:innerWidth,height:innerHeight})');
+ assert(size&&viewport.width,'Native touch dimensions for Farm guidance');
+ assert.deepEqual(viewport,report.androidTouch.viewport,'Native viewport unchanged after Farm reload');
+ assert.deepEqual([Number(size[1]),Number(size[2])],report.androidTouch.display,'Native display unchanged');
+ const tap=(point)=>{const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));};
  const hint=await page.evaluate(`(()=>{
    document.querySelector('[data-tab="battle"]').click();
    const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),v=document.querySelector('#rift-objective-row').getBoundingClientRect();
@@ -226,7 +248,7 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  assert.equal(hint.detail,'+15% passive Wisp damage after study · 800 Lumen + 80 Shards');
  assert(hint.name==='Read Lab hint — Power option: Wisp Ascendancy 1 — '+hint.detail&&hint.target==='research'&&hint.selector.includes('wispascend'),'Installed accessible hint retains full current Lab quote');
  assert(hint.hit&&hint.fit,'Installed Farm hint fits and receives native touch');
- adb('shell','input','tap',String(Math.round(hint.x*scale)),String(Math.round(hint.y*scale)));
+ tap(hint);
  let details;
  for(let i=0;i<50;i++){
    details=await page.evaluate(`(()=>{const o=document.querySelector('#rift-hint-overlay'),b=document.querySelector('#rift-hint-open-lab'),r=b.getBoundingClientRect();return {
@@ -242,7 +264,7 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
  assert(shot.data,'Installed Farm screenshot captured');
  fs.writeFileSync('release-evidence/installed-midgame-farm.png',Buffer.from(shot.data,'base64'));
- adb('shell','input','tap',String(Math.round(details.x*scale)),String(Math.round(details.y*scale)));
+ tap(details);
  await pause(350);
  const destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
    lab:document.querySelector('#tab-research').classList.contains('active'),
