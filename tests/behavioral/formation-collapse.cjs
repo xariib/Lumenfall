@@ -58,7 +58,7 @@ async function run(){
    ok(o.text.includes('Formation Bonds')&&o.text.includes('Kindling')&&o.text.includes('Pathfinder'),'existing Bond guidance retained');ok(o.fit&&o.target,'toggle fits and has 44px touch target '+JSON.stringify({width,fontPercent,motion,o}));
    const previousSummary=o.text;
    await ev('document.querySelector("[data-toggle=tide]").click();originalToggle.focus();roleQa.readout()');
-   o=await observe();ok(o.expanded==='true'&&o.same&&o.focus,'formation change keeps expanded control');ok(o.text!==previousSummary,'formation change updates Bond guidance');ok(await ev('document.querySelector("[data-wisp-role=tide]").textContent.includes("Benched")'),'formation change updates per-Wisp readout');
+   o=await observe();ok(o.expanded==='true'&&o.same&&o.focus,'formation change keeps expanded control');ok(o.text!==previousSummary,'formation change updates Bond guidance');ok(await ev('!roleQa.get().activeParty.includes("tide") && document.querySelector("[data-toggle=tide]").getAttribute("aria-pressed")==="false" && document.querySelector("[data-wisp-role=tide]").textContent.trim()===""'),'formation change updates Field state without a duplicate bench readout');
    await ev('document.querySelector("[data-tab=battle]").click();document.querySelector("[data-tab=spirits]").click();originalToggle.focus()');await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');ok((await observe()).expanded==='true','tab return keeps expanded choice');
    if(input==='touch')await touch();else await key(input);
    o=await observe();ok(o.expanded==='false'&&o.hidden&&!o.visible&&o.label.includes('Expand'),'native '+input+' collapses');

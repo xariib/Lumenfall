@@ -124,8 +124,8 @@ Product and independent golden bytes are unchanged by this test-only repair.
 Run 40185557376 passed all five focused workflows, isolated offline (all 18
 original records), 30 startup profiles, 18 compact-card profiles and the original
 layout/hint/claim gates. Its later full suite exposed the same old pre-intro
-measurement shortcut in formation-collapse, resonate-clarity, upgrade-identity
-UI/reduced-motion, wisp-upgrade-display and Lab UI: hidden title/controls and
+measurement shortcut in upgrade-identity UI/reduced-motion, wisp-upgrade-display
+and Lab UI: hidden title/controls and
 focus still on Skip. Observe the real startup callback for every settled-game
 scenario, then await it after catch-up and before fixture manipulation or freeze.
 Native startup drivers keep their existing ownership and early return. Assert
@@ -137,3 +137,13 @@ Local syntax/tooling/190-case coverage plan pass. Also remove a trailing blank
 line in the relocated historical checkpoint found by final diff whitespace QA.
 Next: inspect the new early gate, then require all six final-head workflows and
 both full jobs before merge and integrated Android build. No public APK release.
+
+The complete live log also identified two standalone drivers: formation-collapse
+expected the intentionally removed Benched text (replace that obsolete assertion
+with exact inactive-party/Field-toggle state and an empty duplicate readout),
+and Resonate prepared its focus fixture during the intro fade. Its own bridge
+now observes/awaits the original callback before fixture preparation. All native
+Resonate eligibility, exact debit/refill, focus, save and geometry checks remain.
+The same source audit found Rift cast-text measurements hiding the intro without
+its callback. That standalone driver now awaits the original completion too;
+its unchanged 12-profile assertions also run in the early settled-screen gate.

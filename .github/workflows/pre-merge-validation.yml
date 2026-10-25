@@ -74,6 +74,8 @@ jobs:
           for SCENARIO in formation-collapse resonate-clarity upgrade-identity-ui upgrade-identity-reduced-motion wisp-upgrade-display lab-motes-ui inquiry-ui inquiry-ui-reduced-motion; do
             node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/settled-startup-ui
           done
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          LUMENFALL_QA_CDP_CHROME="$CHROME" node tests/behavioral/rift-cast-text.cjs mobile/www validation-evidence/rift-cast-text
 
       - name: Midgame Farm guidance existing acceptance
         run: |
