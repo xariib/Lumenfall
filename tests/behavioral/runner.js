@@ -485,7 +485,7 @@
       if(ctx.scenario==='offline-catchup-ui' || ctx.scenario==='offline-catchup-legacy-dom'){window.__offlineCatchupReady=true;return;}
       if(ctx.scenario==='formation-bonds-mobile'){window.__bondsNativeReady=true;return;}
       await waitForCatchup();
-      if(['auto-ascend-target-contract','self-test-auto-ascend-target-manual','self-test-auto-ascend-target-window','p2-endgame-currency-utility'].indexOf(ctx.scenario)!==-1){
+      if(['auto-ascend-target-contract','self-test-auto-ascend-target-manual','self-test-auto-ascend-target-window','p2-endgame-currency-utility','self-test-layout-collapse'].indexOf(ctx.scenario)!==-1 || ctx.scenario.startsWith('layout-')){
         var startup=window.__qaForgeStartup;
         assert(startup && startup.promise,'actual startup completion observer is installed');
         if(!startup.completed){

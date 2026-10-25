@@ -106,3 +106,15 @@ this visibility transition in both motion modes and all three widths (30 cases).
 The original four eight-hour independent golden phases still match exactly.
 New product SHA-256: b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2.
 Earlier browser/boot receipts retain their old hash and are not final-head proof.
+
+## Settled-layout harness correction
+
+Final product b0377098 passed the 30-case startup/input gate and existing Farm
+mobile acceptance in run 40185187700. The original layout-fresh observer then
+failed all five viewports at “#enemy-stage visible”: it hid the intro element
+and measured Rift before the real intro completion callback. That old shortcut
+now correctly leaves Rift hidden behind the new cover. Extend the existing
+startup callback observer/wait to layout scenarios (including the negative
+layout control), use the original Skip handler and wait before freezing.
+All original layout assertions, fixtures, five viewports and deadlines remain.
+Product and independent golden bytes are unchanged by this test-only repair.
