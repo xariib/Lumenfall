@@ -1,0 +1,597 @@
+{
+  "sourceCommit": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+  "integration": "Fast-forward main from 8763d72f7ee85e1948a432968e786617633993f8 to the exact validated commit. Validation ran on the feature ref with identical SHA/tree.",
+  "productSha256": "b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2",
+  "fullJobs": {
+    "jobs": [
+      {
+        "id": 121274293556,
+        "name": "Lumenfall isolated offline catch-up",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 40228269101,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Stage exact product and assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Original offline regression with unchanged assertions and deadline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          }
+        ]
+      },
+      {
+        "id": 121274293718,
+        "name": "Lumenfall pre-merge validation",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 40228269101,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "APK identity verifier self-test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Repository migration version and historical-baseline controls",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Node tooling regression checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Validate game source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Verify existing independent offline reference binding",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Stage web assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Phone feedback startup and input acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Existing settled-screen UI acceptance after actual startup",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Midgame Farm guidance existing acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Legacy Rift layout with complete Farm dialog content",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Endless progression amounts, gates, persistence and chronology",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Endless automation clock and repeated Ascend regressions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Guidance baseline readability and exact old-width inverse",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Preserve early Guidance readability evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Rift cosmetics selection, persistence and mobile acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18
+          },
+          {
+            "name": "Exact Prism earning numerical and causal regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Tree caps original-value refunds and current collection",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Swift cap, original Shard value and reachable Forge Deeds",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Wisp contribution readability and unchanged gameplay",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Compact Wisp cards, live next action and original purchase preservation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          },
+          {
+            "name": "Development currency UI and retained-value acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24
+          },
+          {
+            "name": "Read Ascend alerts and stationary daily quest claims",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25
+          },
+          {
+            "name": "Cheaper Recruitment cap and refund regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Independent exact Prism funding oracle",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          },
+          {
+            "name": "Cheaper Recruitment defect controls",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28
+          },
+          {
+            "name": "Behavioral harness negative self-test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          },
+          {
+            "name": "Stateful behavioral regression suite",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30
+          },
+          {
+            "name": "Install runtime error guard in staged copy",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31
+          },
+          {
+            "name": "Browser runtime smoke test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32
+          },
+          {
+            "name": "Preserve full regression evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33
+          },
+          {
+            "name": "Post Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 65
+          },
+          {
+            "name": "Post Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 66
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 67
+          }
+        ]
+      }
+    ]
+  },
+  "fullCases": {
+    "startMarker": "Staged source: { \"source_sha256\": \"b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2\", \"instrumented_sha256\": \"fd96fd280463ce62195d3d00843589355784c4a96f4f415d6bd2c5",
+    "summary": "Behavioral QA passed: 189 deterministic scenario(s).",
+    "passedRecords": [
+      "formation-best-now-core",
+      "formation-best-now",
+      "lab-speed-controls",
+      "lab-timed-boosts",
+      "formation-collapse",
+      "wisp-rarity-scroll",
+      "wisp-card-simplicity",
+      "lab-affordable-alert",
+      "resonate-clarity",
+      "upgrade-identity-contracts",
+      "upgrade-identity-chronology",
+      "upgrade-identity-farm-clock",
+      "upgrade-identity-save-reload",
+      "upgrade-identity-backup-restore",
+      "upgrade-identity-recovery",
+      "upgrade-identity-ui [320,844,0,0]",
+      "upgrade-identity-ui [390,844,0,0]",
+      "upgrade-identity-ui [430,844,0,0]",
+      "upgrade-identity-reduced-motion [320,844,0,0]",
+      "upgrade-identity-reduced-motion [390,844,0,0]",
+      "upgrade-identity-reduced-motion [430,844,0,0]",
+      "wisp-upgrade-display",
+      "comet-unlocks-core",
+      "comet-unlocks-mobile",
+      "comet-unlocks-reduced-motion",
+      "lab-motes-offline-integration",
+      "lab-motes-numerical",
+      "lab-motes-runtime",
+      "lab-motes-conservation",
+      "lab-motes-contracts",
+      "lab-motes-chronology",
+      "lab-motes-ui [320,844,0,0]",
+      "lab-motes-ui [390,844,0,0]",
+      "lab-motes-ui [430,844,0,0]",
+      "lab-motes-native",
+      "lab-motes-reduced-motion",
+      "lab-motes-save-reload",
+      "lab-motes-backup-restore",
+      "lab-motes-recovery",
+      "lab-motes-reset",
+      "save-backup-ui",
+      "offline-12h-core",
+      "offline-12h-ui",
+      "offline-catchup-ui",
+      "offline-catchup-legacy-dom",
+      "nav-workshop-contract",
+      "inquiry-contracts",
+      "inquiry-chronology",
+      "inquiry-ui",
+      "inquiry-ui-reduced-motion",
+      "inquiry-save-reload",
+      "inquiry-backup-restore",
+      "inquiry-recovery",
+      "inquiry-reset",
+      "raw-process-contract: 31 result controls, real timeout, artifact bounds, two causal negatives/undo",
+      "support-stacking",
+      "auto-ascend-target-contract",
+      "auto-ascend-target-legacy16",
+      "auto-ascend-target-legacy44",
+      "auto-ascend-target-legacy56",
+      "auto-ascend-target-legacy130",
+      "auto-ascend-target-recovery",
+      "auto-ascend-target-resume",
+      "auto-ascend-target-reset",
+      "auto-ascend-target-manual-reload",
+      "auto-ascend-target-cold-resume",
+      "auto-ascend-target-mobile",
+      "auto-ascend-target-reduced-motion",
+      "rift-status-stacking-mobile",
+      "rift-status-stacking-reduced-motion",
+      "support-save-reload",
+      "support-backup-restore",
+      "support-recovery",
+      "support-resume",
+      "support-recovery-resume",
+      "support-visibility-resume",
+      "support-reset",
+      "upgrade-effects-and-deeds",
+      "tree-purchase-contract",
+      "tree-purchase-ui [320,844,0,0]",
+      "tree-purchase-ui [390,844,0,0]",
+      "tree-purchase-ui [430,844,0,0]",
+      "tree-purchase-ui-reduced-motion [320,844,0,0]",
+      "tree-purchase-ui-reduced-motion [390,844,0,0]",
+      "tree-purchase-ui-reduced-motion [430,844,0,0]",
+      "rift-status-contract",
+      "bond-text-contract",
+      "rift-status-mobile",
+      "rift-guidance-mobile",
+      "rift-status-reduced-motion",
+      "forge-ui-process-contract",
+      "forge-ui-mobile",
+      "forge-ui-reduced-motion",
+      "buff-timing",
+      "buff-save-reload",
+      "forge-contracts",
+      "forge-effects",
+      "forge-chronology",
+      "forge-save-reload",
+      "loadout-memory-core",
+      "loadout-memory-mobile",
+      "forge-backup-restore",
+      "forge-recovery",
+      "forge-baseline",
+      "forge-balance",
+      "r3-destinations",
+      "r3-save-reload",
+      "research-duration",
+      "research-duration-reduced-motion",
+      "p2-07a-persistence-review",
+      "p2-07a-persist-save-reload",
+      "p2-07a-persist-backup-restore",
+      "p2-07a-persist-recovery",
+      "p2-07a-persist-reset",
+      "p2-07a-formation-reconstruction",
+      "p2-07a-save-reload",
+      "p2-07a-backup-restore",
+      "p2-07a-recovery",
+      "p2-07a-chronology",
+      "layout-p2-07a-reconstruction [360,800,0,0]",
+      "layout-p2-07a-reconstruction [360,780,0,0]",
+      "layout-p2-07a-reconstruction [390,844,0,0]",
+      "layout-p2-07a-reconstruction [412,915,0,0]",
+      "layout-p2-07a-reconstruction [360,640,24,24]",
+      "p2-06b-live-feedback",
+      "p2-06b-reduced-motion",
+      "layout-fresh [360,800,0,0]",
+      "layout-fresh [360,780,0,0]",
+      "layout-fresh [390,844,0,0]",
+      "layout-fresh [412,915,0,0]",
+      "layout-fresh [360,640,24,24]",
+      "layout-dense [360,800,0,0]",
+      "layout-dense [360,780,0,0]",
+      "layout-dense [390,844,0,0]",
+      "layout-dense [412,915,0,0]",
+      "layout-dense [360,640,24,24]",
+      "layout-boss [360,800,0,0]",
+      "layout-boss [360,780,0,0]",
+      "layout-boss [390,844,0,0]",
+      "layout-boss [412,915,0,0]",
+      "layout-boss [360,640,24,24]",
+      "layout-accessibility-states [360,800,0,0]",
+      "layout-accessibility-states [360,780,0,0]",
+      "layout-accessibility-states [390,844,0,0]",
+      "layout-accessibility-states [412,915,0,0]",
+      "layout-accessibility-states [360,640,24,24]",
+      "p1-05-accessibility-baseline",
+      "p1-05-accessibility-contract",
+      "p1-05-control-regressions",
+      "p1-05-reduced-motion",
+      "fresh-load",
+      "midgame-load",
+      "mature-load",
+      "legacy-load",
+      "corrupted-load",
+      "malformed-daily-load",
+      "farm-load",
+      "farm-roundtrip",
+      "enemy-normal-reload",
+      "enemy-boss-reload",
+      "active-studies-load",
+      "auto-ascend-load",
+      "reset-roundtrip",
+      "restore-roundtrip",
+      "malformed-backup-rejection",
+      "recovery-from-corrupt-primary",
+      "unsupported-future-load",
+      "legacy-backup-restore",
+      "future-backup-rejection",
+      "recovery-offline-once",
+      "save-failure-warning",
+      "parity-short",
+      "parity-medium-farm",
+      "p2-07a-farm-retention",
+      "p2-07a-timer-boundary",
+      "parity-long-high-power",
+      "parity-boss-short",
+      "parity-boss-retry",
+      "parity-auto-ascend",
+      "chronology-research-mid-window",
+      "chronology-study-mid-window",
+      "chronology-auto-empower-mid-window",
+      "chronology-auto-ascend-mid-window",
+      "chronology-boss-retry",
+      "chronology-simultaneous-order",
+      "lifecycle-background-resume",
+      "lifecycle-repeated-resume",
+      "lifecycle-cold-restart",
+      "lifecycle-partial-enemy",
+      "lifecycle-boss-background-short",
+      "lifecycle-boss-retry",
+      "lifecycle-auto-ascend",
+      "p2-ascend-integrity",
+      "p2-03b-auto-ascend-integrity",
+      "p2-wisp-progression-pacing",
+      "p2-endgame-currency-utility",
+      "p2-03a-wisp-role-integrity",
+      "p2-03a-wisp-role-integrity-mature",
+      "p2-03a-wisp-role-integrity-endgame",
+      "p2-02a-core-qol",
+      "p2-02b-wisp-hierarchy",
+      "p2-02b-lab-hierarchy",
+      "lifecycle-long-study",
+      "lifecycle-lab-queue",
+      "lifecycle-daily-rollover",
+      "wisp-formula-contract",
+      "formation-bonds-core",
+      "formation-bonds-mobile",
+      "auto-ascend-target-backup-restore",
+      "formation-autosave-contract",
+      "formation-autosave-native",
+      "formation-autosave-reduced-motion",
+      "formation-autosave-save-reload",
+      "formation-autosave-backup-restore",
+      "formation-autosave-recovery",
+      "ascend-prisms-contract",
+      "ascend-prisms-save-reload",
+      "ascend-prisms-backup-restore",
+      "ascend-prisms-recovery"
+    ],
+    "failLines": []
+  },
+  "nativeRun36": {
+    "id": 40228197587,
+    "path": ".github/workflows/build-android.yml",
+    "name": "Build Android APK",
+    "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+    "branch": "fix/offline-recap-release-001",
+    "event": "workflow_dispatch",
+    "conclusion": "success",
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/40228197587"
+  },
+  "ciRuns": [
+    {
+      "id": 40228661606,
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "name": "Rift Forge expansion validation",
+      "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+      "branch": "fix/offline-recap-release-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40228661606"
+    },
+    {
+      "id": 40228631051,
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "name": "Shared UI layout validation",
+      "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+      "branch": "fix/offline-recap-release-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40228631051"
+    },
+    {
+      "id": 40228603861,
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "name": "Research Lab expansion validation",
+      "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+      "branch": "fix/offline-recap-release-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40228603861"
+    },
+    {
+      "id": 40228569502,
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "name": "Comet shop and Deeds validation",
+      "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+      "branch": "fix/offline-recap-release-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40228569502"
+    },
+    {
+      "id": 40228421102,
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "name": "Ascension Tree focused validation",
+      "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+      "branch": "fix/offline-recap-release-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40228421102"
+    },
+    {
+      "id": 40228269101,
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "name": "Pre-merge validation",
+      "sha": "4239bc1423c638d266abdc305be6ede01bfa7c11",
+      "branch": "fix/offline-recap-release-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40228269101"
+    }
+  ]
+}

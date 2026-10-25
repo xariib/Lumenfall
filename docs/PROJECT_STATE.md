@@ -1,14 +1,13 @@
 # Lumenfall — current delivery status
 
-25 October 2026: [MOBILE_FEEDBACK_001](tasks/MOBILE_FEEDBACK_001.md),
-[PR #9](https://github.com/xariib/Lumenfall/pull/9), integrated at c4d5e060.
-Wisp duplicate support readouts removed; pointer highlights suppressed and rule
-saved in AGENTS.md; intro precedes offline work behind an initial loading cover.
-Six required workflows, 189+1 scenarios, 30 startup and 18 card profiles PASS.
-Integrated Android #32 (0.2.32) PASS on attempt 2; saves/paid work retained.
-First native recap dismissal failure remains unproven: retry did not show recap.
-Physical phone/WebView60/TalkBack/pacing and targeted recap reproduction remain
-open. Exact receipts and known VFX limitation are in the task. No public release.
+25 October 2026: [Mobile feedback](tasks/MOBILE_FEEDBACK_001.md) (PR #9, c4d5e060):
+simpler Wisp readouts, no touch highlights, intro before Rift.
+[Recap/release](tasks/OFFLINE_RECAP_RELEASE_001.md) (PR #10, 4239bc1): native QA's
+24 px origin fixed. Six release gates, 189+1 scenarios, native upgrade/saves/paid
+work and centered Continue/Wisp/Farm touches PASS.
+[Android 0.2.37](https://github.com/xariib/Lumenfall/releases/tag/android-1000037)
+published; public checksum verified. Phone/WebView60/TalkBack/pacing remain open;
+historical failures and VFX limitation are retained in the tasks.
 
 24 October 2026: [ANDROID_TEST_RELEASE_001](tasks/ANDROID_TEST_RELEASE_001.md)
 prepares the integrated Wisp/Farm/hint improvements for physical-phone testing.

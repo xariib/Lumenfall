@@ -1,5 +1,27 @@
 # OFFLINE_RECAP_RELEASE_001 — verify Continue and publish phone build
 
+Status: signed phone-test release delivered; physical-phone acceptance pending.
+[PR #10](https://github.com/xariib/Lumenfall/pull/10) merged by non-force
+fast-forward to exact tested `4239bc1423c638d266abdc305be6ede01bfa7c11`.
+[Android 0.2.37](https://github.com/xariib/Lumenfall/releases/tag/android-1000037),
+versionCode 1000037, published by [build #37](https://github.com/xariib/Lumenfall/actions/runs/40232297209).
+Public APK SHA-256: `172ad5c6c1ce20042303cd390d4255db3a9fc7a68c6a069aa94d11fa0e668804`.
+Anonymous download, release checksum, exact-APK upgrade receipt and packaged
+production assets match. Package/certificate/UID/origin, both saves and paid
+work retained. Real offline recap closes after a centered trusted native click;
+native Wisp purchase and complete Farm/Lab navigation pass.
+
+All six exact-commit workflow_dispatch release gates PASS, including 189 main
+deterministic scenarios (219 result rows with viewport variants) plus the
+separate original offline job. Startup's 30 profiles and compact cards' 18
+profiles pass within full validation. Android #36 and publishing #37 both PASS.
+Local transform/receipt controls, source/startup/context checks PASS. Review was
+self/automated; the session-lifetime finding was corrected and resolved.
+[Durable receipts, reproduction and limitations](../qa/offline-recap-release-001/README.md).
+Next: user phone check of Wisp size, touch highlights, startup and offline
+Continue after installing as an update. Exact WebView60/TalkBack/human pacing
+remain unverified. No chat archive while user-device acceptance is open.
+
 User: “Gør det”, authorizing investigation of the native offline-recap Continue
 failure and publication of a signed APK with integrated MOBILE_FEEDBACK_001.
 Work / GPT-6.1 Sol High. One maintenance task; no delegated agents.
@@ -24,9 +46,9 @@ all six required workflows on final PR and integrated main; exact signed APK,
 in-place upgrade/save/paid-work checks and completed exact-APK receipt; public
 download verified against release checksum. User's phone acceptance follows.
 
-## Checkpoint
+## Investigation checkpoints (historical)
 
-In progress. Historical Android #32 attempt 1 failed at the 350 ms post-touch
+Initial checkpoint: historical Android #32 attempt 1 failed at the 350 ms post-touch
 assertion; attempt 2 showed no recap. Raw artifact `12601602385` retrieved and
 inspected. It contains no pre/post input geometry or screenshot, so it cannot
 establish a product bug or coordinate/timing cause. Add diagnostic observations
@@ -77,7 +99,8 @@ origins and invalid/moving/untrusted/interactive probes are covered.
 
 No product, price, save schema, assets, package, signing or workflow changes.
 Product SHA-256 remains `b03770981e9fd0a4cc53d37021761cf93f148a0aae82874423780f8015f9efa2`.
-Next: final-head native build and all six CI gates, then integrate the exact
-tested commit with a fast-forward if main is still unchanged. Validate that
-same SHA with all six workflow_dispatch runs for the release gate; publish on
-main only after they pass. User phone/WebView60/TalkBack acceptance stays open.
+Delivery used the exact validated commit and a fast-forward while main remained
+unchanged. All six workflow_dispatch runs passed on that same SHA before it
+became main; no commit/tree bytes changed during integration. The publishing
+workflow independently enforced the six exact-SHA gates on main, then verified
+and released its own APK. User phone/WebView60/TalkBack acceptance stays open.
