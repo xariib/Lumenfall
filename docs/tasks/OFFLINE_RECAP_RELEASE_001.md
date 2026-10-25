@@ -32,4 +32,14 @@ inspected. It contains no pre/post input geometry or screenshot, so it cannot
 establish a product bug or coordinate/timing cause. Add diagnostic observations
 and a forced actual offline return before deciding whether product changes
 are necessary. No product edits yet. Physical phone/WebView60/TalkBack remain
-unverified. Next: run the targeted native diagnostic on this branch.
+unverified.
+
+Diagnostic Android #33 (`40225903851`) stopped before the Continue exercise:
+the new QA driver tried to remove a pre-document script owned by the already
+closed CDP session, yielding “Script not found”. Remove that redundant cleanup;
+the closed session already removes its scripts, matching the existing fixture
+lifecycle. Preserve this failed diagnostic as artifact `12610384652`.
+Local source/startup-order (24 assertions), identity and release-gate controls
+PASS. Local Chrome cannot start its Unix socket (EPERM); browser acceptance
+runs in Actions. Next: rerun the corrected native diagnostic, then fix the
+demonstrated cause and require final CI/integrated release acceptance.

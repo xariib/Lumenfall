@@ -158,7 +158,8 @@ async function prepareOfflineRecap(page,retainedSave){
  assert(injected.identifier,'Recap fixture registered');
  try{await page.command('Page.reload',{ignoreCache:true});}catch(e){if(!/^DevTools closed:/.test(e.message))throw e;}
  page.close();page=await connect();
- await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injected.identifier});
+ // CDP removes this session's pre-document scripts when its socket closes.
+ // The new session must not remove an identifier owned by the old session.
  let shown=false;
  for(let n=0;n<120;n++){
    shown=await page.evaluate(`!document.documentElement.classList.contains('startup-pending')&&getComputedStyle(document.getElementById('welcome-overlay')).display!=='none'`);
