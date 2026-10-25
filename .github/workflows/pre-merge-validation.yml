@@ -64,6 +64,12 @@ jobs:
           cp -r branding/. mobile/www/branding/
 
       - name: Midgame Farm guidance mobile acceptance
+        # Retain the original gate; phone-feedback checks run before it.
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/MOBILE_FEEDBACK_001.md
+          node tests/behavioral/mobile-feedback.cjs validation-evidence/mobile-feedback
+
+      - name: Midgame Farm guidance existing acceptance
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
           node scripts/codex/check_context.cjs --task docs/tasks/RIFT_HINT_READABILITY_002.md
