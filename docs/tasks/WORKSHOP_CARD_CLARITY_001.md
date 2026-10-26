@@ -187,6 +187,18 @@ unchanged keyboard, price and focus checks. Late-power guidance now says Queue
 OFF clears the slot, preserving work and boosts. Android release notes describe
 this feature. The regenerated four-phase one-second offline oracle matches every
 previous state digest and reward tuple on source
-`51682c024a6b983f5554d1274f9062285cefa5e0de92253c99fca27b2d32f2e1`.
+`d6cb6262bd2f26551954c88bfda4a252c27f6ae071ebfadfface7da75f7a19fa`.
 Focused transaction/reachability checks pass 97. Complete CI and the integrated
 publishing build remain required; signed native #42 is prior-source evidence only.
+
+Candidate cfa56554 passed Lab, Tree, Comet, Shared UI and isolated offline gates.
+Its broad run passed Endless/Mastery and automation, then stopped because the
+Tree keyboard fixture expected one Tab from Echo to Recruitment. Native Tab now
+visits the new Details summary first; both refund drivers explicitly test that
+step before retaining the original visible-focus, exact purchase and cap checks.
+Remaining price/native Lab fixtures select a slot first; native Queue OFF now
+checks the empty slot, exact paid remaining work and unchanged timed boost in
+both saves. Single Lab level badges retain the cap as `Lv. n / cap`, replacing
+the old duplicated cap row. The existing cap mobile suite is an early CI gate.
+The scratch checkout was recreated from exact remote cfa56554 after its temporary
+directory became unavailable; the GitHub source tree was intact and verified.

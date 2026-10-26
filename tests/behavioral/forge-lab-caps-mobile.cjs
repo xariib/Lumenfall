@@ -26,8 +26,9 @@ driver=driver.slice(0,start)+String.raw`
   for(const [id,tab,field] of [['arcanecal','forge','research'],['conduction','forge','research'],['bossledger','research','longStudyLevels'],['luminousdistill','research','longStudyLevels']]){
     const s=JSON.parse(JSON.stringify(seed));s[field][id]=19;await install(s,tab);
     if(tab==='forge')await ev("document.querySelector('[data-mult=\"1\"]').click()");
+    else await ev('document.querySelector("[data-study-slot]").click()');
     const card=tab==='forge'?'[data-forge-card="'+id+'"]':'[data-study-card="'+id+'"]',button=tab==='forge'?'[data-research="'+id+'"]':'[data-study="'+id+'"]';
-    const text=await fit(card);ok(text.includes('Level 19 / 20'),'chosen cap visible '+id);
+    const text=await fit(card);ok(text.includes(tab==='forge'?'Level 19 / 20':'Lv. 19 / 20'),'chosen cap visible '+id);
     const plan=await ev(tab==='forge'?'prismQa.capForgePlan('+JSON.stringify(id)+')':'prismQa.capLabPlan('+JSON.stringify(id)+')'),before=await ev('prismQa.get()');
     ok(plan.affordable,'level20 is purchasable '+id);await point(button);
     if(id==='conduction'||id==='luminousdistill'){await ev('document.querySelector('+JSON.stringify(button)+').focus()');await key('Enter','Enter',13);}else await tap(button);
@@ -37,6 +38,7 @@ driver=driver.slice(0,start)+String.raw`
       ok(paid.activeStudies[0].totalDurationSec===plan.duration,'existing final-level work snapshot');
       await fit('[data-running-study="'+id+'"]');
       await ev('prismQa.capDue('+JSON.stringify(id)+')');ok(await ev('prismQa.get().longStudyLevels['+JSON.stringify(id)+']')===20,'authoritative completion earns cap once');
+      await ev('document.querySelector("[data-study-slot]").click()');
     }
     await point(card);const maxText=await fit(card);ok(tab==='forge'?maxText.includes('Level 20 / 20'):maxText.includes('Lv. 20 / 20'),'final cap visible '+id);
     ok(await ev('('+function(sel){const card=document.querySelector(sel);return card.dataset.state==='maxed'&&getComputedStyle(card).borderTopColor==='rgb(217, 180, 94)'&&!card.querySelector('button,[data-price-currency]')&&card.textContent.includes('Current:')&&!/Next:|Purchase impact:|Queue /.test(card.textContent);}.toString()+')('+JSON.stringify(card)+')'),'full gold bonus-only cap card '+id);

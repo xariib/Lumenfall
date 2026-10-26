@@ -2117,6 +2117,7 @@
           bridge.renderLayout();
           document.querySelector('[data-tab="research"]').click();
           var researchBeforeStudy=JSON.stringify(state().research);
+          document.querySelector('[data-study-slot]').click();
           var beginStudy=document.querySelector('[data-study="guardmastery"]');
           assert(beginStudy && !beginStudy.disabled,'funded Long Study action must remain available');
           beginStudy.click();
