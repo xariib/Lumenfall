@@ -2309,8 +2309,7 @@
   .theme-info .name,.theme-info .desc,.theme-active-tag{word-wrap:break-word;overflow-wrap:break-word;}
   .theme-active-tag{flex:none;max-width:100%;white-space:normal;line-height:1.4;}
   @media(prefers-reduced-motion:reduce){.cosmetic-aurora,.cosmetic-radiant{animation:none;opacity:1;}}
-  /* Commands have intrinsic height in the existing Rift. Only command owners
-     use ordinary scrolling; the established starter Rift keeps its viewport. */
+  /* Comet controls live in Deeds; Rift retains its fixed viewport. */
   #comet-commands{position:relative;z-index:2;flex:none;min-width:0;margin:10px 0;padding:12px;border:1px solid #78699a;border-radius:12px;background:#151b30;color:#f0effb;}
   #comet-commands[hidden],#comet-commands button[hidden],#comet-journal[hidden],#comet-journal-heading[hidden],#legacy-comet-trials[hidden]{display:none;}
   #comet-commands h3{font-size:.95rem;line-height:1.4;margin:0 0 8px;}
@@ -8612,7 +8611,7 @@ function latePowerAdvice(){
   var next=plans.slice().sort(function(a,b){return b.plan.rank-a.plan.rank || SPIRITS.indexOf(a.sp)-SPIRITS.indexOf(b.sp);})[0];
   var neededLab=next.plan.requirements.filter(function(r){return r.key==='lab';})[0].target;
   var labNote='Next '+next.sp.shortName+' Mastery: Wisp Ascendancy '+longStudyLevel('wispascend')+' / '+neededLab+'. ';
-  labNote+=longStudyLevel('wispascend')>=neededLab ? 'Lab gate met. Pause its queue to fund run Power and permanent upgrades. Running projects keep their paid work and speed.' : 'Develop the required Lab level while farming useful upgrades.';
+  labNote+=longStudyLevel('wispascend')>=neededLab ? 'Lab gate met. Turn Queue OFF to clear its slot and fund run Power and permanent upgrades. Paid work and slot boosts are kept.' : 'Develop the required Lab level while farming useful upgrades.';
   var result;
   var ready=next.plan.affordable?next:null;
   var recruit=SPIRITS.find(function(sp){return !(state.spirits[sp.id]>0)&&getSpiritBuyPlan(sp).affordable;});

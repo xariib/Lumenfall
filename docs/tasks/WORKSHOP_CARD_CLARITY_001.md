@@ -1,6 +1,6 @@
 # WORKSHOP_CARD_CLARITY_001 — slots, concise cards and long-term Deeds
 
-Status: implementation in progress. Baseline: main `91aea49`. Branch:
+Status: implemented; CI, integration and release acceptance in progress. Baseline: main `91aea49`. Branch:
 `codex/workshop-card-clarity-001`. One owner chat; no delegated work.
 
 ## User requirements, 26 October 2026
@@ -35,10 +35,11 @@ catalogue and Pause Study. Comet ownership explicitly enables Rift scrolling.
 
 ## Next action
 
-Implement slot-first Lab and focused transaction/browser regressions; consolidate
-card content; expand Deeds; remove Comet-driven Rift expansion with preserved
-purchase value. Record final implementation decisions and exact check evidence.
-No APK publication has been requested in this task.
+Finish all six PR workflows, integrate PR #13, run all six workflows manually on
+the exact integrated main commit, then dispatch the publishing Android build.
+The user explicitly approved that sequence and a new APK if acceptance passes.
+The workflow must verify package/signing/assets and installed save upgrade before
+publishing. No physical-phone, legacy WebView or TalkBack pass is claimed.
 
 ## Implementation checkpoint — 26 October 2026
 
@@ -63,8 +64,8 @@ socket in this environment (`Operation not permitted`); its 18-profile UI
 check and older twelve-profile Comet mobile suite require GitHub CI. The
 independent four-phase Swift oracle matched all prior kills, Ascends and Prisms;
 regenerated source-bound hash will be committed with the candidate. Full offline
-comparison and exact PR CI remain pending. No Android APK publication is in this
-feature's authorization.
+comparison and exact PR CI remain pending in this historical checkpoint;
+release authorization was added below.
 
 ## Local candidate and delivery block
 
@@ -180,3 +181,12 @@ caps only. Lab's maximum is 2,635. The independent reward oracles are updated.
 The existing Inquiry UI fixture now selects research through a slot to enable
 repeat, then checks timer focus on a passive rerender; Queue OFF intentionally
 clears work under the new contract.
+
+Final review: native Mastery/price fixtures open Upgrades before exercising their
+unchanged keyboard, price and focus checks. Late-power guidance now says Queue
+OFF clears the slot, preserving work and boosts. Android release notes describe
+this feature. The regenerated four-phase one-second offline oracle matches every
+previous state digest and reward tuple on source
+`51682c024a6b983f5554d1274f9062285cefa5e0de92253c99fca27b2d32f2e1`.
+Focused transaction/reachability checks pass 97. Complete CI and the integrated
+publishing build remain required; signed native #42 is prior-source evidence only.
