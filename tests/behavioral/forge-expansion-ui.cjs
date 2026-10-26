@@ -140,7 +140,7 @@ const cases=String.raw`
    ok(accepted.research.charge===raw&&accepted.swiftRecoveryRefund.from===10&&accepted.swiftRecoveryRefund.to===raw,'historical Swift ownership and original refund range');
    if(raw===12)ok(accepted.shards===6167,'literal original Swift10/11 Shards refund');
    const content=await ev('document.querySelector("[data-forge-card=charge]").textContent');
-   ok(content.includes('Level 10 / 10 ('+raw+' historical)')&&content.includes('Natural ability cycle: at least 3.33 seconds.'),'effective cap and natural-cycle wording visible');
+   ok(content.includes('Level 10 / 10 ('+raw+' historical)')&&content.includes('Current:')&&content.includes('3.33s natural ability cycle'),'effective cap and earned cycle bonus visible');
    ok(!content.includes('Historical levels still count for Forge Deeds.')&&!content.includes('refunded in Shards'),'historic maxed card contains only bonus');
    ok(await ev('!document.querySelector("[data-research=charge]")&&!document.querySelector("[data-queue=charge]")'),'historical cap has no actions');
    await fit('historical Swift '+raw);await install(accepted);ok(JSON.stringify(await ev('prismQa.get()'))===JSON.stringify(accepted),'historical Swift normalization never refunds twice');

@@ -36,21 +36,22 @@ for(const id of ids)for(const level of levels)for(let tier=0;tier<6;tier++){
  if(tier===0)prices.push({id,level,power:q.power(id),cost:q.empowerCost(id)});
 }
 eq(q.sp('titan'),p.sp('titan'),'Titan definition unchanged');
-// FORGE_LAB_CAPS_001 subsequently approved exactly two Forge cap increases.
-// Keep the frozen pre-curve oracle and compare every other catalog field exactly.
+// Account for the two earlier cap20 increases and the approved finite cap250
+// on previously open Forge tracks; compare every other frozen catalog field.
 const expectedForge=clone(p.defs());
+for(const node of expectedForge)if(node.levelCap===undefined){node.levelCap=250;node.grandfatheredCap=true;}
 for(const id of ['arcanecal','conduction']){
  const node=expectedForge.find(n=>n.id===id);
  eq(node.levelCap,10,'frozen Forge cap before the approved increase: '+id);
  node.levelCap=20;
 }
-eq(q.defs().filter(n=>n.id!=='masterwork'),expectedForge,'Forge definitions preserved except the two approved cap20 values');
+eq(q.defs().filter(n=>n.id!=='masterwork'),expectedForge,'Forge definitions preserved except approved cap20 and finite cap250 values');
 eq(q.defs().filter(n=>n.id==='masterwork').length,1,'one new Masterwork track; no duplicate legacy entries');
 const controls=[];
 if(process.argv.includes('--negative'))for(const id of ['missing','boundary','titan','forge-cap','forge-price']){
  const r=require('node:child_process').spawnSync(process.execPath,[__filename,process.argv[2]||'index.html'],{encoding:'utf8',env:{...process.env,EARLY_WISP_MUTANT:id}});
  assert(!r.error);assert.equal(r.status,1);assert(r.stderr.includes('AssertionError'));
- assert(r.stderr.includes(id.startsWith('forge-')?'Forge definitions preserved except the two approved cap20 values':'independent approved power'),'expected causal assertion: '+id);
+ assert(r.stderr.includes(id.startsWith('forge-')?'Forge definitions preserved except approved cap20 and finite cap250 values':'independent approved power'),'expected causal assertion: '+id);
  controls.push(id);
 }
 console.log(JSON.stringify({status:'PASS',checks,controls,prices,sourceSha256:crypto.createHash('sha256').update(html).digest('hex')}));

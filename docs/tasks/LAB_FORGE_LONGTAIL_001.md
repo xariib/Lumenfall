@@ -1,6 +1,6 @@
 # LAB_FORGE_LONGTAIL_001 — finite progression and slot speed
 
-Status: candidate on `feature/lab-forge-slot-caps-001`; acceptance open. Owner: this feature chat. Baseline: `main` b5509637 (still current on 26 October 2026). User explicitly authorized branch publication, main integration and a new test version on 26 October. Release only after required CI and Android acceptance pass.
+Status: [PR #11](https://github.com/xariib/Lumenfall/pull/11) open on `feature/lab-forge-slot-caps-001`; acceptance open. Owner: this feature chat. Baseline: `main` b5509637 (26 October 2026). User explicitly authorized branch publication, main integration and a new test version on 26 October. Release only after required CI and Android acceptance pass.
 
 ## Original request
 
@@ -33,4 +33,4 @@ Local Node 24.22.1, source SHA-256 `b4a3fc3c285b0cae116d4ef582407a64c41d502e64b8
 
 ## Next action
 
-Publish the user-authorized branch update, open a PR and run required CI. Fix every new failure, inspect gold boxes on 320/390/430 px, test offline and save migration on Android, then integrate and publish a verified APK for phone testing. The earlier automatic approval review rejected updating the feature ref because it considered the destination and upload unverified; the user now explicitly named `xariib/Lumenfall` and authorized branch → main → new version. The repository is public, the connected account has admin/write access, and main still matches baseline. No PR, integrated commit, CI or new APK is yet claimed.
+Branch tree `81483ce7` matches the local commit tree byte for byte; PR #11 opened at head `46dfad0c`. First CI wave: Shared UI PASS, isolated full offline PASS; Lab, Forge, Tree, Comet and pre-merge failed. Local fixes in progress update frozen-cap expectations without erasing old paid values, handle a focused Lab speed control when its card becomes maxed, and align migrated active records with their new stable `slot` field. The first failed CI results are not acceptance. Republish these fixes, run all six workflows on the new PR head, inspect gold boxes on 320/390/430 px, test offline and save migration on Android, then integrate and publish a verified APK for phone testing. Do not claim a new APK until its identity and installed-upgrade receipts pass.

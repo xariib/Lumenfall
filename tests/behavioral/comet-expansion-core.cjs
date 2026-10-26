@@ -99,7 +99,7 @@ function runCore(source,options={}){
       }
       eq(accepted.cometCosmetics,old.cometCosmetics,'paid cosmetics retained');eq(accepted.cometTrial,old.cometTrial,'active paid Trial retained');
       eq(accepted.cometTrialMarks,old.cometTrialMarks,'marks retained');eq(accepted.cometTrialResult,old.cometTrialResult,'result retained');
-      for(const key of ['nodes','research','longStudyLevels','activeStudies','studyQueue','studySpeedTargets','formationPresets','lastSeen','autoAscendEnabled','autoAscendTargetDepth','ascendCount'])eq(accepted[key],old[key],'old paid/progression field '+key);
+      for(const key of ['nodes','research','longStudyLevels','activeStudies','studyQueue','studySpeedTargets','formationPresets','lastSeen','autoAscendEnabled','autoAscendTargetDepth','ascendCount'])eq(accepted[key],key==='activeStudies'?old.activeStudies.map((work,i)=>({...work,slot:i})):old[key],'old paid/progression field '+key);
     }
     for(const value of [1,'true',{},false,null]){
       const old=legacyFixture(q,2,0,0);old.owned.comettrials=value;
