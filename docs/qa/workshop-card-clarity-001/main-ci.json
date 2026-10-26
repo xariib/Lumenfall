@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "phase": "Integrated main acceptance",
+  "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+  "sourceHtmlSha256": "62672c9cbabc1c25ed5dbf5bad083133b3bae45d918210bbb2bf26db5795046a",
+  "workflows": [
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "name": "Rift Forge expansion validation",
+      "runId": 40399093618,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40399093618",
+      "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "name": "Ascension Tree focused validation",
+      "runId": 40399077906,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40399077906",
+      "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "name": "Research Lab expansion validation",
+      "runId": 40399073081,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40399073081",
+      "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "name": "Comet shop and Deeds validation",
+      "runId": 40399054501,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40399054501",
+      "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "name": "Shared UI layout validation",
+      "runId": 40399048978,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40399048978",
+      "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "workflow": "pre-merge-validation.yml",
+      "name": "Pre-merge validation",
+      "runId": 40399039138,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40399039138",
+      "sourceCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "attempt": 1
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": 121839669808,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 121839670423,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success"
+    }
+  ],
+  "mainScenarios": 189,
+  "isolatedOfflineScenarios": 1
+}

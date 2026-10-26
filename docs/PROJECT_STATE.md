@@ -1,12 +1,21 @@
 # Lumenfall — current delivery status
 
-26 October 2026: [Lab/Forge long-tail progression](tasks/LAB_FORGE_LONGTAIL_001.md)
-merged through PR #11 at `e287b121`; five Lab slots, slot-bound timed boosts,
-pause/resume, finite caps and full-card gold maxed presentation are integrated.
-All six integrated-commit workflows, both complete pre-merge jobs and the
-installed Android emulator upgrade passed. [Android 0.2.40](https://github.com/xariib/Lumenfall/releases/tag/android-1000040)
-is published. One earlier emulator recap assertion failed; two subsequent
-native runs passed. Physical-phone and exact WebView 60 acceptance remain open.
+26 October 2026: [Workshop/card clarity](tasks/WORKSHOP_CARD_CLARITY_001.md)
+merged through [PR #13](https://github.com/xariib/Lumenfall/pull/13) at bba2db5e.
+[Android 0.2.43](https://github.com/xariib/Lumenfall/releases/tag/android-1000043)
+is published: five visible Lab slots, click-to-choose catalogue, Queue OFF clearing
+with paid work/boosts retained, concise cards, 49 additional Deeds (76 total) and
+Comet commands in Deeds so Rift stays fixed. All six exact-main workflows,
+both complete jobs and 189+1 scenarios pass. The signed installed Android upgrade
+retained UID/origin, both saves, paid work and legacy entitlements; native Wisp
+purchase and Farm navigation pass. Anonymous public download, checksum and actual
+packaged source were verified. [Evidence](qa/workshop-card-clarity-001/release.json).
+Physical phone, exact WebView60 DOM, TalkBack and human pacing remain open.
+
+[Lab/Forge long-tail progression](tasks/LAB_FORGE_LONGTAIL_001.md) previously merged
+through PR #11 at e287b121 and released 0.2.40. Its paid timed boosts and caps remain;
+the new slot workflow replaces its Pause Study UI. Phone, exact WebView60,
+TalkBack and human pacing acceptance remain open.
 
 25 October 2026: [Mobile feedback](tasks/MOBILE_FEEDBACK_001.md) (PR #9, c4d5e060):
 simpler Wisp readouts, no touch highlights, intro before Rift.

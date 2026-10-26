@@ -1,0 +1,77 @@
+{
+  "phase": "PR acceptance and integration",
+  "status": "PASS",
+  "candidateCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+  "integrationCommit": "bba2db5e1807c61305693758863e3de672535e5f",
+  "gitTree": "039580fedd780a6c3c67cdfdf0d5ea7014df29f6",
+  "sourceHtmlSha256": "62672c9cbabc1c25ed5dbf5bad083133b3bae45d918210bbb2bf26db5795046a",
+  "integratedTreeMatchesCandidate": true,
+  "requiredWorkflows": [
+    {
+      "name": "Research Lab expansion validation",
+      "runId": 40389046994,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40389046994",
+      "sourceCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "name": "Shared UI layout validation",
+      "runId": 40389047010,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40389047010",
+      "sourceCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "name": "Comet shop and Deeds validation",
+      "runId": 40389047178,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40389047178",
+      "sourceCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "name": "Ascension Tree focused validation",
+      "runId": 40389046993,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40389046993",
+      "sourceCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "name": "Rift Forge expansion validation",
+      "runId": 40389047134,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40389047134",
+      "sourceCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "name": "Pre-merge validation",
+      "runId": 40389047008,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40389047008",
+      "sourceCommit": "81645ae1d887f4769e6ca586184e1f0ae674f1aa",
+      "conclusion": "success",
+      "attempt": 2
+    }
+  ],
+  "fullBehavioralScenarios": 189,
+  "isolatedOfflineScenarios": 1,
+  "diagnosticLegacyFlows": {
+    "count": 14,
+    "status": "PASS",
+    "runId": 40389047024
+  },
+  "focusedCoreChecks": 228,
+  "labNativeChecks": 524,
+  "labNativeProfiles": 18,
+  "review": "Self-review only; 48 changed files examined; no remaining product findings. Current CI screenshots at 320/390px normal and 200% text inspected.",
+  "automatedReview": "Older-commit review remains marked running; no findings or review threads. No completed independent review claimed.",
+  "limitations": {
+    "physicalPhone": "unverified",
+    "exactWebView60Dom": "unverified",
+    "talkBack": "unverified",
+    "humanVisualPacing": "unverified"
+  }
+}
