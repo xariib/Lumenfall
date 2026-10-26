@@ -64,7 +64,7 @@ window.runCheaperRecruitmentContracts=function(){
     var canonical=b.canonical(s);same(b.canonical(canonical),canonical,'canonical normalization idempotent '+raw);
     ok(canonical.nodes.bonds===raw&&canonical.prisms===s.prisms,'raw purchase history and wallet preserved '+raw);
     b.set(s);b.save();var slots=b.disk();
-    [slots.primary,slots.recovery].forEach(function(slot){var restored=JSON.parse(slot);ok(restored.nodes.bonds===raw&&restored.prisms===s.prisms,'both persisted slots keep raw levels '+raw);same(restored.activeStudies,s.activeStudies,'paid snapshot persists '+raw);});
+    [slots.primary,slots.recovery].forEach(function(slot){var restored=JSON.parse(slot);ok(restored.nodes.bonds===raw&&restored.prisms===s.prisms,'both persisted slots keep raw levels '+raw);same(restored.activeStudies,canonical.activeStudies,'paid snapshot and migrated slot persist '+raw);});
     var backup=b.backup(),decoded=b.decode(backup);ok(decoded.nodes.bonds===raw&&decoded.prisms===s.prisms,'backup preserves raw levels '+raw);
     same(b.decode(backup),decoded,'repeated old backup decode has no refund loop '+raw);
   });
