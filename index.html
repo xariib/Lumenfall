@@ -4123,7 +4123,7 @@ addDeedTrack('rift','Reach Rift','Rifts reached',[500,1000,2500,5000,10000,25000
 addDeedTrack('ascend','Ascend','Ascensions',[25,50,100,250,500,1000,10000,100000],function(s){return s.ascendCount;});
 addDeedTrack('kills','Defeat enemies','enemies defeated',[10000,100000,1000000,10000000,100000000,1000000000],function(s){return s.totalKills;});
 addDeedTrack('lab','Complete Lab levels','Lab levels',[50,100,250,500,1000,2000],function(s){return LONG_STUDIES.filter(function(n){return !n.retiredTo;}).reduce(function(sum,n){return sum+(s.longStudyLevels[n.id]||0);},0);});
-addDeedTrack('forge','Buy Forge levels','Forge levels',[100,250,500,1000,2000,4000],legacyResearchLevels);
+addDeedTrack('forge','Buy Forge levels','Forge levels',[100,200,300,400,500,600],legacyResearchLevels);
 addDeedTrack('mastery','Earn Mastery ranks','Mastery ranks',[10,25,50,100,250,500,1000,5000,10000],function(s){return SPIRITS.reduce(function(sum,sp){return sum+((s.wispMastery||{})[sp.id]||0);},0);});
 addDeedTrack('rest','Rest offline for hours','offline hours',[24,72,168,720,2160,8760],function(s){return s.totalOfflineSeconds/3600;});
 

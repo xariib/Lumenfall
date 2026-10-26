@@ -163,7 +163,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
- const targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,250,500,1000,2000,4000],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]};
+ const targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]};
  const rewardById=new Map(Object.entries(targets).flatMap(([track,values])=>values.map((target,index)=>['endless_'+track+'_'+target,10+5*index])));
  let deedRewards=0;
  for(const id of currentSummary.achievements.filter(id=>id.startsWith('endless_'))){

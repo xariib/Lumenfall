@@ -170,3 +170,13 @@ so visual, keyboard and screen-reader order agree even when early slots run
 research and later slots are empty. Its live wrapper remains attached during
 native gestures. The original viewport test can therefore inspect slot 1 rather
 than accidentally inspecting the first empty slot farther down the page.
+
+Reachability correction before release: the currently purchasable Forge caps
+sum to 645, so the unreleased 1,000/2,000/4,000 Forge goals were impossible for
+new players. The six new Forge milestones are now 100/200/300/400/500/600; the
+fixed six reward amounts and original 27 Deeds are unchanged. A focused check
+requires every new Lab/Forge milestone to be reachable using current purchasable
+caps only. Lab's maximum is 2,635. The independent reward oracles are updated.
+The existing Inquiry UI fixture now selects research through a slot to enable
+repeat, then checks timer focus on a passive rerender; Queue OFF intentionally
+clears work under the new contract.

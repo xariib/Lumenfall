@@ -24,7 +24,7 @@ var OLD_DEEDS=[['d10',5],['d25',10],['d50',20],['d100',50],['d250',100],['tap100
 var NEW_DEEDS=[['comet_first_command',5],['comet_first_recharge',10],['comet_boss_strike',15],['comet_called_kill',20]];
 var ENDLESS_DEEDS=[];
 Object.keys({rift:1,ascend:1,kills:1,lab:1,forge:1,mastery:1,rest:1}).forEach(function(track){
-  var targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,250,500,1000,2000,4000],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]}[track];
+  var targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]}[track];
   targets.forEach(function(target,i){ENDLESS_DEEDS.push(['endless_'+track+'_'+target,10+5*i]);});
 });
 var ROWS=[['autoascend',1,[100]],['meteor',1,[100]],['starcall',1,[140]],['cometreservoir',2,[60,120]],['cometcycle',3,[80,140,220]],['meteorcore',4,[45,75,120,180]]];
