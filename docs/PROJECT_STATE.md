@@ -1,10 +1,12 @@
 # Lumenfall — current delivery status
 
-25 October 2026: [Lab/Forge long-tail candidate](tasks/LAB_FORGE_LONGTAIL_001.md)
-is in progress on `feature/lab-forge-slot-caps-001`. Five Lab slots, slot-bound
-timed boosts, pause/resume, finite caps and full-card maxed presentation are
-implemented locally; focused logic checks pass. Full browser/CI and Android
-acceptance remain open. No APK is released for this candidate.
+26 October 2026: [Lab/Forge long-tail progression](tasks/LAB_FORGE_LONGTAIL_001.md)
+merged through PR #11 at `e287b121`; five Lab slots, slot-bound timed boosts,
+pause/resume, finite caps and full-card gold maxed presentation are integrated.
+All six integrated-commit workflows, both complete pre-merge jobs and the
+installed Android emulator upgrade passed. [Android 0.2.40](https://github.com/xariib/Lumenfall/releases/tag/android-1000040)
+is published. One earlier emulator recap assertion failed; two subsequent
+native runs passed. Physical-phone and exact WebView 60 acceptance remain open.
 
 25 October 2026: [Mobile feedback](tasks/MOBILE_FEEDBACK_001.md) (PR #9, c4d5e060):
 simpler Wisp readouts, no touch highlights, intro before Rift.
