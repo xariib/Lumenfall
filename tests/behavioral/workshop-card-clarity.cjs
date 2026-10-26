@@ -19,4 +19,14 @@ for(const [track,defs]of [['lab',q.projects()],['forge',q.forgeDefs()]]){
 }
 for(const a of extra){const p=q.deedProgress(a,q.get());ok(p&&p.target===a.target,'authoritative progress for '+a.id);}
 s=seed(q);s.maxDepthEver=1000;q.set(s);const rewards=extra.filter(a=>a.check(q.get())).reduce((n,a)=>n+a.reward,0);const beforeComets=q.get().comets;q.achievements();const after=q.get().comets;ok(after>=beforeComets+rewards,'new milestones pay fixed rewards');q.achievements();eq(q.get().comets,after,'one-time rewards cannot repeat');ok(q.save(),'milestones save');loaded=app(source,x.storage).q;loaded.achievements();eq(loaded.get().comets,after,'reward receipts survive reload');
+for(const depth of [1,14,15,25,39,40,59,60,90])for(const apparatus of [0,1,2]){
+ const initial=seed(q);initial.maxDepthEver=depth;initial.longStudyLevels.labcapacity=apparatus;q.set(initial);const slots=q.slots();
+ for(let slot=slots;slot<5;slot++){
+  q.set(initial);const hint=q.slotHint(slot),rift=/Rift (\d+)/.exec(hint),level=/level (\d+)/.exec(hint);
+  const requiredDepth=rift?Number(rift[1]):depth,requiredLevel=level?Number(level[1]):apparatus;
+  ok(requiredDepth>depth||requiredLevel>apparatus,'locked slot never names requirements already met: '+depth+'/'+apparatus+'/'+slot+' '+hint);
+  const fulfilled=clone(initial);fulfilled.maxDepthEver=Math.max(depth,requiredDepth);fulfilled.longStudyLevels.labcapacity=Math.max(apparatus,requiredLevel);q.set(fulfilled);
+  ok(q.slots()>slot,'fulfilling the displayed requirements really unlocks the slot: '+hint);
+ }
+}
 console.log(JSON.stringify({status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));

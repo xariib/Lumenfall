@@ -9589,9 +9589,11 @@ function replaceStudyMarkup(html){
 var selectedStudySlot=-1;
 function studySlotUnlockText(slot){
   var apparatus=labExpansionLevel('labcapacity');
-  if(slot===1 && apparatus===0)return 'Rift 15 or Expanded Apparatus';
-  if(slot===2 && apparatus===0)return 'Rift 60 or Expanded Apparatus';
-  return 'Expanded Apparatus · level '+Math.min(2,Math.max(1,slot-2));
+  if(Amount.lt(state.maxDepthEver,15) && slot<2+apparatus)return 'Reach Rift 15';
+  if(Amount.lt(state.maxDepthEver,60) && slot<3+apparatus)return 'Reach Rift 60';
+  var needed=slot+1-(studySlotCount()-apparatus);
+  if(needed<=2)return 'Expanded Apparatus · level '+needed;
+  return 'Rift 60 + Expanded Apparatus · level '+(slot-2);
 }
 function renderLongStudies(){
   var studyView=captureControlViewport(els['study-list']);

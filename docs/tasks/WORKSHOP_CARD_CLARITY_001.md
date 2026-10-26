@@ -39,7 +39,9 @@ Native range controls and every live ancestor stay attached during refresh;
 slot DOM, visual and assistive reading order are 1–5. Completion returns focus
 to the empty slot. Farm/late-power links open a catalogue before focusing a
 hidden research card, without starting or buying anything. Lab level and cap
-are shown once as `Lv. n / cap`. The speed value lives beside its slider.
+are shown once as `Lv. n / cap`. Locked-slot hints name sufficient unmet
+requirements across Rift/Apparatus combinations, including old paid saves.
+The speed value lives beside its slider.
 
 Wisp Rarity, Ability, Ultimate and Mastery are behind native Upgrades. Forge,
 Tree, Lab, Deed and Comet cards use concise effects and optional Details.
@@ -66,11 +68,11 @@ is disabled. No touch glow/highlight is added. Normal keyboard focus remains.
 ## Validation and diagnosed failures
 
 - Baseline local Lab slot contract passed 54; Lab expansion passed 2,676.
-- Feature transaction/save/reachability suite passes 97 on current source.
+- Feature transaction/save/reachability suite passes 205 on current source.
   Other verified local suites include Forge 9,319, Comet numerical 681,739,
   Comet core negative 10,492 and full offline comparison 18 scenarios.
 - Current product SHA-256:
-  `7e2e15e9fc5b3320fd17f7777a4b8e84bc23c61b3a4aee1a33a93db503f8d63c`.
+  `7ebc8a8b99bde098cd975a6866d5ffb0be4103fa4bfda9065da274f9d6a62b26`.
   Its regenerated four-phase, 8h-per-phase independent one-second Swift oracle
   matches every prior state digest and kills/Ascends/Prisms tuple:
   86404/4114/94622, 86401/4114/94622, 86396/4114/94622, 86405/4115/94645.
