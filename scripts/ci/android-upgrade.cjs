@@ -135,6 +135,16 @@ async function verifyInstalledWispCard(page,report){
  }
  const ember=ui.observations.find(card=>card.id==='ember');
  assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
+ // Advanced purchases now live behind each Wisp's native disclosure. Open it
+ // with an actual Android touch before testing the existing Ability purchase.
+ const disclosure=await page.evaluate(`(()=>{
+   const summary=document.querySelector('[data-wisp-details="ember"]');
+   summary.scrollIntoView({block:'center',behavior:'instant'});
+   const r=summary.getBoundingClientRect();
+   return {x:r.left+r.width/2,y:r.top+r.height/2,open:summary.parentElement.open};
+ })()`);
+ if(!disclosure.open){tap(disclosure.x,disclosure.y);await pause(100);}
+ assert(await page.evaluate(`document.querySelector('[data-wisp-progression="ember"]').open`),'Trusted Android touch opens Wisp upgrades');
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};

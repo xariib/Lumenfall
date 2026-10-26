@@ -54,7 +54,7 @@ window.runLabUiQa = function(b,ctx,assert){
 
   ['guardmastery','wispascend'].forEach(function(id){
     var beginning=seed();beginning.activeStudies=[];install(beginning);
-    var begin=q('[data-study="'+id+'"]');begin.focus();b.labMotes.input(function(){begin.click();});
+    q('[data-study-slot]').click();var begin=q('[data-study="'+id+'"]');begin.focus();b.labMotes.input(function(){begin.click();});
     ok(b.getState().activeStudies.some(function(active){return active.id===id;}),'Begin Study starts the selected Study');
     ok(document.activeElement.dataset.studySpeedTarget===id&&document.activeElement.getClientRects().length,'beginning a Study restores focus to its visible speed selector');
     ok(!q('[data-study-inspection="'+id+'"]').hidden,'beginning a Study keeps controls visible');
@@ -72,7 +72,7 @@ window.runLabUiQa = function(b,ctx,assert){
   ok(!q('[data-study-inspection="wispascend"] [data-speed-study]'),'idle controls omit the boost purchase action');
   var finish=seed();finish.activeStudies[0].remainingSec=.1;install(finish);window.selectLabSpeed('guardmastery',2);
   q('[data-speed-study="guardmastery"][data-speed="2"]').focus();b.inquiry.tail(.1);b.renderLayout();
-  ok(!b.getState().activeStudies.length&&document.activeElement.dataset.studySpeedTarget==='guardmastery','completion leaves focus on the same Study selector');
+  ok(!b.getState().activeStudies.length&&document.activeElement.dataset.studySlot==='0','completion leaves focus on the empty slot');
   ok(!q('[data-study-inspection="guardmastery"] [data-speed-study]'),'completed record removes the unpaid boost action');
   ['[data-study-boost-hours="riftattune"]','[data-speed-study="riftattune"][data-speed="3"]','[data-study-speed-target="riftattune"]'].forEach(function(control){
     var legacy=seed();legacy.longStudyLevels.riftattune=2;legacy.studyUseMotes.riftattune=false;legacy.activeStudies=[{id:'riftattune',remainingSec:.1,totalDurationSec:150,speedMult:2}];install(legacy);
@@ -82,13 +82,13 @@ window.runLabUiQa = function(b,ctx,assert){
     b.inquiry.tail(.1);b.renderLayout();
     ok(b.getState().longStudyLevels.riftattune===3&&!b.getState().activeStudies.length,'retired paid work earns its last level');
     ok(!q('[data-legacy-upgrade="riftattune"]'),'completed legacy card stays out of the shop');
-    ok(document.activeElement.id==='study-choices'&&document.activeElement.getClientRects().length,'retired completion focuses visible choices heading from '+control);
+    ok(document.activeElement.dataset.studySlot==='0'&&document.activeElement.getClientRects().length,'retired completion focuses visible choices heading from '+control);
     var settled=JSON.stringify(b.getState()),primary=b.rawSave(),recovery=b.rawRecovery();
-    b.renderLayout();ok(document.activeElement.id==='study-choices'&&document.activeElement.isConnected,'choices heading focus survives rendering');
+    b.renderLayout();ok(document.activeElement.dataset.studySlot==='0'&&document.activeElement.isConnected,'choices heading focus survives rendering');
     ok(JSON.stringify(b.getState())===settled&&b.rawSave()===primary&&b.rawRecovery()===recovery,'focus restoration never changes paid values or saves');
     b.inquiry.tail(.1);b.renderLayout();
     ok(b.getState().longStudyLevels.riftattune===3&&!b.getState().activeStudies.length,'retired completion cannot grant twice');
-    ok(document.activeElement.id==='study-choices','choices heading remains focused after subsequent updates');
+    ok(document.activeElement.dataset.studySlot==='0','choices heading remains focused after subsequent updates');
   });
   install(seed());fit();
   return {checks:checks,progress:records};

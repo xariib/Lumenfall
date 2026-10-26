@@ -57,8 +57,8 @@ window.runWispCardLayoutQa=function(baseline){
       ok(a.borderLeftWidth==='0px'&&a.backgroundColor==='rgba(0, 0, 0, 0)','ability uses plain card surface');
       ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','Module uses plain card surface');
       var heading=card.querySelector('[data-wisp-details]'),level=card.querySelector('.wisp-level'),levelStyle=level&&getComputedStyle(level);
-      ok(heading.textContent===(stage===2?'Upgrades':b.spirit(id).abilityName),'ability leads unfinished section without extra heading');
-      ok(heading.getAttribute('aria-label')===b.spirit(id).name+(stage===2?' upgrades':' ability and upgrades'),'heading/disclosure retains Wisp context for assistive technology');
+      ok(heading.textContent.indexOf('Upgrades')===0,'one concise upgrade disclosure names the next action');
+      ok(heading.getAttribute('aria-label')===b.spirit(id).name+' upgrades','heading/disclosure retains Wisp context for assistive technology');
       ok(!card.querySelector('.ability-label'),'no redundant Ability label');
       var abilityTitle=card.querySelector('.wisp-ability-title h3,.wisp-ability-title strong');
       ok(!card.querySelector('.ability-badge'),'compact card omits redundant Ability badge '+id);

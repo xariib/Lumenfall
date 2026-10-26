@@ -9555,9 +9555,21 @@ function replaceStudyMarkup(html){
   Array.from(card.children).forEach(function(child){if(child!==controls)card.removeChild(child);});
   var nextChildren=Array.from(next.children),rowIndex=nextChildren.indexOf(nextControls);
   nextChildren.forEach(function(child,i){if(child===nextControls)return;if(i<rowIndex)card.insertBefore(child,controls);else card.appendChild(child);});
-  next.parentNode.replaceChild(card,next);
-  while(root.firstChild)root.removeChild(root.firstChild);
-  while(prepared.firstChild)root.appendChild(prepared.firstChild);
+  // Preserve every ancestor of the live native control. Detaching the slot
+  // wrapper cancels a touch drag and can dispatch an early change event.
+  var slots=root.querySelector('.study-slots'),nextSlots=prepared.querySelector('.study-slots');
+  function reconcile(parent,children){
+    children.forEach(function(child,i){
+      if(parent.children[i]===child)return;
+      if(child===card || child===slots)parent.insertBefore(child,parent.children[i]||null);
+      else if(parent.children[i]===card || parent.children[i]===slots)parent.insertBefore(child,parent.children[i]);
+      else if(parent.children[i])parent.replaceChild(child,parent.children[i]);
+      else parent.appendChild(child);
+    });
+    while(parent.children.length>children.length)parent.removeChild(parent.lastElementChild);
+  }
+  reconcile(slots,Array.from(nextSlots.children).map(function(child){return child===next?card:child;}));
+  reconcile(root,Array.from(prepared.children).map(function(child){return child===nextSlots?slots:child;}));
   presentControlStates(root);
   var focus=input.isConnected && !input.disabled?input:controls.querySelector('[data-study-boost-status]') || range;
   if(document.activeElement!==focus)focus.focus({preventScroll:true});

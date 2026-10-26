@@ -108,3 +108,12 @@ explicit Next effect instead of duplicate current/next copy.
 Two product focus guards accompany those changes: completed research returns
 focus to its empty slot, and a Tree purchase restores its viewport after all
 dependent renders. Remaining complete CI and Android gates are still required.
+
+Candidate 3d624df6 passed the complete original Lab purchase/mobile/V8 job;
+its timed-slider lane found a real premature change event during native drag.
+The renderer now keeps the .study-slots ancestor attached while updating its
+siblings. The old Lab UI fixture explicitly selects a slot and expects focus
+on the empty slot after completion. Comet's no-scroll gesture starts on the
+noninteractive Bond summary instead of the Guardian attack surface. Android
+upgrade acceptance opens the Wisp disclosure with a real native touch before
+its original Ability purchase check. No gates have been disabled.
