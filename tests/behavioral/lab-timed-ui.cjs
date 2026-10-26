@@ -21,7 +21,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
    const idle=seed();idle.activeStudies=[];idle.longStudyLevels.guardmastery=level;await install(idle);
    check(await ev('document.querySelector(".study-catalogue").hidden&&!'+range),'idle slot hides catalogue and speed controls');
    await touch('document.querySelector("[data-study-slot]")');
-   check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+'"'),'catalogue badge shows earned level');
+   check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+' / 500"'),'catalogue badge shows earned level');
    await ev('document.querySelector("[data-study=guardmastery]").focus()');await key('Enter');
    check(await ev('uiRegression.get().activeStudies[0].slot===0&&uiRegression.get().motes===100000&&'+range+'.getClientRects().length>0'),'slot research reveals speed without spending Motes');
    await choose(2,12);await ev(range+'.focus();window.idleRange='+range+';uiRegression.render();uiRegression.render()');
@@ -33,7 +33,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   check(await ev(range+'.getClientRects().length>0 && '+hours+'.getClientRects().length>0 && !document.querySelector("[data-study-use-motes],[data-study-details]")'),'direct controls, no old panel/recurring toggle');
   check(await ev('(()=>{var r=document.querySelector("[data-running-study=guardmastery]"),bad=[];r.querySelectorAll("button,input,select,.effect-note").forEach(e=>{var b=e.getBoundingClientRect();if(b.left<0||b.right>innerWidth+1||e.scrollWidth>e.clientWidth+1)bad.push(e.outerHTML);if(e.matches("button,input,select")&&(b.width<44||b.height<44))bad.push(e.outerHTML)});return !bad.length&&document.documentElement.scrollWidth<=innerWidth+1;})()'),'fit and44px targets '+JSON.stringify({width,scale,motion}));
   check(await ev(range+'.type==="range"&&'+range+'.min==="0"&&'+range+'.max==="7"&&'+range+'.step==="1"'),'exact eight speed steps');
-  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
+  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0 / 500"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
   await ev(range+'.focus();window.originalRange='+range+';window.beforePreview=JSON.stringify(uiRegression.get());window.beforeSaves=JSON.stringify(uiRegression.saves())');
   for(const index of [1,2,3,4,5,6,7]){
    await ev(range+'.value='+index+';'+range+'.dispatchEvent(new Event("input",{bubbles:true}));uiRegression.render();uiRegression.render()');

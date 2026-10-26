@@ -138,7 +138,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     ok(earned.textContent.includes((Math.min(k,10)*2)+'% less work'),'earned work percentage '+k);
     ok(!card.textContent.includes('20% faster')&&!card.textContent.includes('80x'),'accurate throughput wording');
     if(k>=10){ok(!button&&card.dataset.state==='maxed'&&!card.querySelector('[data-study-queue],[data-price-currency]'),'full maxed card has no purchase or queue');ok(!card.querySelector('.study-meta')&&!/Next:|Purchase impact:/.test(card.textContent)&&card.textContent.includes('Current:'),'only earned effect on gold card');}
-    else {ok(!button.disabled&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native action and accessible label '+k);ok(card.querySelector('.study-level').textContent==='Lv. '+k&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');}
+    else {ok(!button.disabled&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native action and accessible label '+k);ok(card.querySelector('.study-level').textContent==='Lv. '+k+' / 10'&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');}
     if(k===13)ok(!earned.textContent.includes('Saved purchases preserved; effect capped.')&&card.textContent.includes('Lv. 13 / 10'),'overcap ownership retained while gold card shows earned bonus');
     var before=b.getState(),raw=b.rawSave();b.renderLayout();b.refreshAffordability();same(b.getState(),before,'render/affordability pure');ok(b.rawSave()===raw,'render cannot save/complete');
     ok(q('#tab-research').scrollWidth<=q('#tab-research').clientWidth,'Lab no horizontal overflow '+k);
