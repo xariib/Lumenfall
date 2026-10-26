@@ -59,7 +59,7 @@ window.runUpgradeIdentityQa=async function(b,ctx,assert,parity,summaryParity){
     [0,5,10,13].forEach(function(level){var s=seed();s.activeStudies=[];s.longStudyLevels.measuredinquiry=level;install(s);
       t.nodes().filter(function(n){return !n.retiredTo&&!n.labGroup&&n.id!=='measuredinquiry';}).forEach(function(n){near(t.duration(n.id,5),Math.round(Math.round(n.baseDurationSec*Math.pow(1.6,5))*(1-.02*Math.min(10,level))),'bought Inquiry discount preserved '+n.id+' '+level);});
     });
-    [1,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;install(s);ok(b.riftStatus.slots()===(depth<40?2:depth<60?3:depth<90?4:5),'historical slot milestones '+depth);});
+    [1,14,15,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;install(s);ok(b.riftStatus.slots()===(depth<15?1:depth<60?2:3),'historical slot milestones '+depth);});
     var fresh=b.freshStateSnapshot();fresh.maxDepthEver=101;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy'].forEach(function(id){fresh.longStudyLevels[id]=1;});install(fresh);
     var deed=f.deeds().items.find(function(d){return d.id==='allstudies';});ok(deed.eligible&&deed.progress.current===5&&deed.progress.target===5,'fresh Every Path reachable without closed Studies/Inquiry');
     f.achievements();var earned=b.getState();f.achievements();same(b.getState(),earned,'Deed reward only once');

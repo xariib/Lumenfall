@@ -53,7 +53,8 @@ module.exports=async function({send,ev,pause,check,records,args}){
    await ev(buy+'.focus({preventScroll:true});window.oldBuy='+buy+';oldBuy.click();oldBuy.click();oldBuy.click()');
    check(await ev('uiRegression.get().motes===0&&uiRegression.get().studyBoosts.slot0.mult==='+tier+'&&uiRegression.get().activeStudies[0].speedMult===1&&uiRegression.get().activeStudies[0].remainingSec===150'),'single exact debit/work preserved '+tier);
    check(await ev('document.activeElement==='+status+'&&'+range+'.disabled&&'+hours+'.disabled&&!'+buy),'active timer replaces activation, no double spend');
-   check(await ev('Math.abs(document.querySelector("main").scrollTop-beforeScroll)<=1'),'activation preserves scroll');
+   const scroll=await ev('(()=>{var m=document.querySelector("main");return {actual:m.scrollTop,before:beforeScroll,max:Math.max(0,m.scrollHeight-m.clientHeight)};})()');
+   check(Math.abs(scroll.actual-Math.min(scroll.before,scroll.max))<=1,'activation preserves nearest feasible scroll '+JSON.stringify(scroll));
    await ev('window.originalStatus='+status+';uiRegression.render();uiRegression.render()');
    check(await ev(status+'===originalStatus&&document.activeElement===originalStatus'),'countdown native focus remains attached');
   }

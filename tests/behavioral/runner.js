@@ -1952,7 +1952,7 @@
 
         case 'p2-02b-lab-hierarchy': {
           var labState=cloneJson(state());
-          labState.maxDepthEver=45;labState.autoAscendEnabled=false;
+          labState.maxDepthEver=60;labState.autoAscendEnabled=false;
           labState.lumen=1e30;labState.shards=1e30;
           var labJobs=[
             {id:'wispascend',remainingSec:600,totalDurationSec:2000,speedMult:1},
@@ -2029,7 +2029,7 @@
           qol.lumen=1e12;
           qol.shards=1e12;
           qol.motes=1e9;
-          qol.achieved.labmaster=true;
+          qol.achieved.labmaster=true;qol.longStudyLevels.labcapacity=1;
           wispIds.forEach(function(id){qol.spirits[id]=10;});
           qol.activeParty=['ember','void','gale','thorn','tide'];
           qol.formationPresets={

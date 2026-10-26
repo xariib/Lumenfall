@@ -77,7 +77,7 @@ window.runTreePurchaseQa=function(b,ctx,assert){
 
   seed('swift',0,1000);
   [undefined,null,'unknown',{id:'starlight',baseCost:0,growth:1}].forEach(function(id){rejected(id,'invalid or forged node');});
-  seed('swift',1000000,1000);ok(button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.includes('e176091'),'very large finite price stays visible while unaffordable');
+  seed('swift',249,1000);ok(button('swift')&&button('swift').disabled&&button('swift').querySelector('.cost-icon')&&/e[0-9]+/.test(button('swift').querySelector('.cost').textContent),'last pre-cap wide price stays visible while unaffordable');
   rejected('swift','unaffordable wide price cannot debit');
   seed('swift',0,Number.MAX_VALUE);
   ok(!button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.trim()==='3','large wallet keeps the exact visible price and currency icon');

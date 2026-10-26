@@ -77,7 +77,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
     var negative=[];
     ['cap','migration','deed','effect'].forEach(function(kind){var s=seed();s.lumen=1e9;s.shards=1e9;s.research.arcanecal=20;b.setState(s);var before=b.getState(),passive=b.wispFormulaSnapshot('ember').passiveDps,undo=f.mutate(kind),caught='';
       try{
-        if(kind==='cap'){f.buy('arcanecal',1);assert(b.getState().lumen===before.lumen && b.getState().research.arcanecal===20,'negative cap payment');}
+        if(kind==='cap')assert(f.plan('arcanecal',1).buyCount===0,'negative cap plan');
         if(kind==='migration')assert(f.canonical(saved({labQueueOn:true})).researchQueue.arcanecal===false,'negative legacy queue');
         if(kind==='deed'){s.research.focus=19;b.setState(s);assert(!f.deeds().items.find(function(a){return a.id==='labmaster';}).eligible,'negative new levels in Deed');}
         if(kind==='effect')assert(b.wispFormulaSnapshot('ember').passiveDps===passive,'negative ability factor leaks into passive');

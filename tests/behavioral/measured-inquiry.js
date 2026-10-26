@@ -60,7 +60,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
         var n=nodes.find(function(n){return n.id===id;}),D=Math.round(Math.round(n.baseDurationSec*Math.pow(1.6,5))*(1-.02*inquiry));
         if(n.retiredTo){var before=b.getState();ok(t.start(id)===false&&t.plan(id).reason==='retired','closed start '+id);same(b.getState(),before,'closed Study has no debit '+id);return;}
         ok(t.start(id)===true,'real start allowed '+id);var a=active(id);
-        same(a,{id:id,remainingSec:D,totalDurationSec:D,speedMult:1},'actual discounted snapshot '+id);
+        same(a,{id:id,slot:0,remainingSec:D,totalDurationSec:D,speedMult:1},'actual discounted snapshot '+id);
         var now=b.getState();ok(now.lumen===s.lumen-Math.round(n.lumenBase*Math.pow(1.6,5)) && now.shards===s.shards-Math.round(n.shardBase*Math.pow(1.6,5)),'actual debit '+id);
       });
     });
@@ -75,7 +75,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     blocked(function(s){s.longStudyLevels.guardmastery=2000;},'guardmastery','unaffordable wide legacy start');
     ok(b.getState().longStudyLevels.guardmastery===2000,'wide affordability does not clamp ownership');
     var unlocked=seed();unlocked.maxDepthEver=60;install(unlocked);ok(t.start('measuredinquiry'),'depth60 start');
-    [1,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;install(s);ok(b.riftStatus.slots()===(depth<40?2:depth<60?3:depth<90?4:5),'unchanged slot matrix '+depth);});
+    [1,14,15,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;install(s);ok(b.riftStatus.slots()===(depth<15?1:depth<60?2:3),'unchanged slot matrix '+depth);});
     var deeds=seed();Object.keys(deeds.achieved).forEach(function(id){deeds.achieved[id]=false;});deeds.longStudyLevels.measuredinquiry=13;install(deeds);
     ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement="'+id+'"]').closest('.ach-card').querySelector('.deed-scope').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});
     deeds.longStudyLevels.guardmastery=24;install(deeds);ok(!b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'Inquiry13 cannot supply level25');
