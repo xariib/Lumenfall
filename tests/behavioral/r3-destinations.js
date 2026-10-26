@@ -126,7 +126,7 @@ window.prepareR3Reload = function(b,ctx,assert){
   document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study="guardmastery"]').click();
   window.selectLabSpeed('guardmastery',2);document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
   b.feedbackTick(false);
-  assert(b.getState().studyBoosts.guardmastery.mult===2&&b.getState().activeStudies[0].speedMult===1,'paid timer before real reload');
+  assert(b.getState().studyBoosts.slot0.mult===2&&b.getState().activeStudies[0].speedMult===1,'paid timer before real reload');
 };
 window.checkR3Reload = function(b,ctx,assert,expected){
   var s=b.getState();

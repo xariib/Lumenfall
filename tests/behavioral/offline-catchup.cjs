@@ -93,7 +93,12 @@ function supportRuleReference(original){
   "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
  return original;
 }
-const correctedClockBaseline=clockReference(supportRuleReference(baseline));
+function slotPolicyReference(html){
+ const old='  if(n<=2) return 1;\n  if(n<=5) return 2;\n  if(n===6) return 3;\n  if(n===7) return 4;\n  return 5;';
+ assert.equal(html.split(old).length,2,'one frozen slot policy');
+ return html.replace(old,'  var base=n<=3?1:n<=6?2:3;\n  return Math.min(5,base+Math.min(2,(state.longStudyLevels||{}).labcapacity||0));');
+}
+const correctedClockBaseline=slotPolicyReference(clockReference(supportRuleReference(baseline)));
 const original=JSON.parse(fs.readFileSync(path.join(root,'docs/qa/offline-autoascend-2026-10-07/device_backup.json'),'utf8'));
 const copy=x=>JSON.parse(JSON.stringify(x)),records=[];
 // Literal original Echo prices for this preserved level20 device fixture.
@@ -219,7 +224,9 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Exact F21/F20 receipts and credit defaults were verified above before
  // removing those separately checked additive records from this comparison.
  assert.deepEqual(actual.canonicalAutomationClock,{},label+' legacy Native fallback has no exact-clock basis');
- const {canonicalAutomationClock,studyUseMotes,studySpeedTargets,cometTrial,cometTrialResult,cometTrialMarks,cometCosmetics,legacyCometPurchases,offline12hRefund,feedbackMigration,refundCredits,...existing}=actual;
+ assert.deepEqual(actual.pausedStudies,[],label+' legacy save creates no paused paid work');
+ const assigned=new Set();actual.activeStudies.forEach(record=>{assert.ok(Number.isInteger(record.slot)&&record.slot>=0&&record.slot<7&&!assigned.has(record.slot),label+' legacy paid Study has one stable slot');assigned.add(record.slot);delete record.slot;});
+ const {pausedStudies,canonicalAutomationClock,studyUseMotes,studySpeedTargets,cometTrial,cometTrialResult,cometTrialMarks,cometCosmetics,legacyCometPurchases,offline12hRefund,feedbackMigration,refundCredits,...existing}=actual;
  // F14 changes only the selected destination during a matching partial rebuild.
  const intent=expected.formationRebuild;
  const selected=intent&&intent.preset&&expected.formationPresets[intent.preset]&&

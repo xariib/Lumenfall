@@ -40,7 +40,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
    check(await ev('JSON.stringify(uiRegression.get())===beforePreview&&JSON.stringify(uiRegression.saves())===beforeSaves&&'+range+'===originalRange&&Number('+range+'.value)==='+index+'&&'+range+'.getAttribute("aria-valuetext")==="'+tiers[index]+'x"'),'drag preview pure/attached across refresh '+index);
   }
   await ev(range+'.dispatchEvent(new Event("change",{bubbles:true}));uiRegression.speeds();uiRegression.speeds()');
-  check(await ev('uiRegression.get().studySpeedTargets.guardmastery===8&&uiRegression.get().motes===100000&&!uiRegression.get().studyBoosts.guardmastery'),'selection/old scheduler cannot activate or spend');
+  check(await ev('uiRegression.get().studySpeedTargets.guardmastery===8&&uiRegression.get().motes===100000&&!uiRegression.get().studyBoosts.slot0'),'selection/old scheduler cannot activate or spend');
   check(JSON.stringify(await ev('uiRegression.prices()'))===JSON.stringify(prices),'all package base prices');
   for(let i=0;i<tiers.length;i++){
    const tier=tiers[i],cost=prices[i];
@@ -51,7 +51,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
    await ev(range+'.focus({preventScroll:true});window.originalRange='+range+';'+range+'.scrollIntoView({block:"center"});window.beforeScroll=document.querySelector("main").scrollTop;uiRegression.render();uiRegression.render()');
    check(await ev(range+'===originalRange&&document.activeElement===originalRange&&Math.abs(document.querySelector("main").scrollTop-beforeScroll)<=1'),'native focus/scroll retained');
    await ev(buy+'.focus({preventScroll:true});window.oldBuy='+buy+';oldBuy.click();oldBuy.click();oldBuy.click()');
-   check(await ev('uiRegression.get().motes===0&&uiRegression.get().studyBoosts.guardmastery.mult==='+tier+'&&uiRegression.get().activeStudies[0].speedMult===1&&uiRegression.get().activeStudies[0].remainingSec===150'),'single exact debit/work preserved '+tier);
+   check(await ev('uiRegression.get().motes===0&&uiRegression.get().studyBoosts.slot0.mult==='+tier+'&&uiRegression.get().activeStudies[0].speedMult===1&&uiRegression.get().activeStudies[0].remainingSec===150'),'single exact debit/work preserved '+tier);
    check(await ev('document.activeElement==='+status+'&&'+range+'.disabled&&'+hours+'.disabled&&!'+buy),'active timer replaces activation, no double spend');
    check(await ev('Math.abs(document.querySelector("main").scrollTop-beforeScroll)<=1'),'activation preserves scroll');
    await ev('window.originalStatus='+status+';uiRegression.render();uiRegression.render()');
@@ -63,12 +63,12 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await install(seed());await ev(range+'.scrollIntoView({block:"center"});'+range+'.focus()');await key('ArrowRight');
   check(await ev(range+'.value==="1"&&uiRegression.get().studySpeedTargets.guardmastery===2&&uiRegression.get().motes===100000'),'native keyboard choice saves only target');
   await ev(buy+'.focus()');await key('Enter');
-  check(await ev('uiRegression.get().studyBoosts.guardmastery.mult===2&&uiRegression.get().motes===98500'),'native Enter activates once');await key('Enter');
+  check(await ev('uiRegression.get().studyBoosts.slot0.mult===2&&uiRegression.get().motes===98500'),'native Enter activates once');await key('Enter');
   check(await ev('uiRegression.get().motes===98500'),'repeat Enter on timer cannot spend');
   await install(seed());await choose(3,12);await touch(buy);
-  check(await ev('uiRegression.get().studyBoosts.guardmastery.mult===3&&uiRegression.get().motes===95012'),'native touch activates selected package');
+  check(await ev('uiRegression.get().studyBoosts.slot0.mult===3&&uiRegression.get().motes===95012'),'native touch activates selected package');
   await ev('uiRegression.save();uiRegression.load()');
-  check(await ev('uiRegression.get().studyBoostHours.guardmastery===12&&uiRegression.get().studyBoosts.guardmastery.mult===3&&'+status+'.textContent.includes("3x")'),'actual save/reload retains timer');
+  check(await ev('uiRegression.get().studyBoostHours.guardmastery===12&&uiRegression.get().studyBoosts.slot0.mult===3&&'+status+'.textContent.includes("3x")'),'actual save/reload retains timer');
   await ev(status+'.focus();uiRegression.finish()');
   check(await ev('!uiRegression.get().activeStudies.length&&document.activeElement==='+status+'&&!'+buy),'completion keeps project timer/focus without renewing');
   await ev('document.querySelector("[data-study=guardmastery]").focus();document.querySelector("[data-study=guardmastery]").click()');

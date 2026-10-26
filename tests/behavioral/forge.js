@@ -69,7 +69,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
       ok(document.querySelector('[data-research="'+id+'"]').textContent.includes('Upgrade ×1'),'partial affordability button actual count');
       ok(document.querySelector('[data-forge-card="'+id+'"]').textContent.includes('Purchase impact: 1 level(s)'),'partial affordability impact actual count');
       s.lumen=0;s.shards=0;b.setState(s);b.renderLayout();ok(document.querySelector('[data-research="'+id+'"]').disabled && f.preview(id,5).plan.buyCount===0,'unaffordable UI no promise');
-      s.research[id]=caps[id];s.researchQueue[id]=true;b.setState(s);b.renderLayout();ok(document.querySelector('[data-forge-card="'+id+'"]').textContent.includes('Next: Maxed') && f.preview(id,5).plan.buyCount===0 && b.getState().researchQueue[id],'Maxed preview retains queue');
+      s.research[id]=caps[id];s.researchQueue[id]=true;b.setState(s);b.renderLayout();var gold=document.querySelector('[data-forge-card="'+id+'"]');ok(gold.dataset.state==='maxed'&&gold.textContent.includes('Current:')&&!/Next:|Purchase impact:|Queue /.test(gold.textContent)&&!gold.querySelector('[data-research],[data-queue],[data-price-currency]')&&f.preview(id,5).plan.buyCount===0&&b.getState().researchQueue[id],'Maxed gold card retains historical queue choice without action');
     });
     var s=seed();s.spirits.gale=1;s.lumen=1e8;s.shards=1e6;b.setState(s);b.renderLayout();document.querySelector('[data-mult="1"]').click();
     ok(document.querySelector('[data-forge-card="conduction"]').textContent.includes('actual extra per cast: Gale +0 Shards'),'rounded preview does not promise fractional resource');

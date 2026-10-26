@@ -131,7 +131,7 @@ const cases=String.raw`
    await touchHere(queue);const queueOn=await measure(queue);visible(queueOn,'Queue ON '+id);ok(queueOn.scrollTop===fallback.scrollTop,'Queue ON preserves exact scroll '+id);ok(await ev('prismQa.get().researchQueue['+JSON.stringify(id)+']')===true,'one touch Queue toggle '+id);
    await key(' ','Space',32);const queueOff=await measure(queue);visible(queueOff,'Queue OFF '+id);ok(queueOff.focus.queue===id&&queueOff.scrollTop===queueOn.scrollTop,'keyboard Queue preserves focus/scroll '+id);ok(await ev('prismQa.get().researchQueue['+JSON.stringify(id)+']')===false,'one keyboard Queue toggle '+id);
    paid=await ev('prismQa.get()');paid.lumen=seed.lumen;paid.shards=seed.shards;
-   if(d.levelCap!==undefined){const capped=copy(paid);capped.research[id]=d.levelCap;await install(capped);ok(await ev('document.querySelector('+JSON.stringify(button)+').disabled&&document.querySelector('+JSON.stringify(button)+').textContent.includes("Maxed")'),'cap disables native purchase '+id);ok(await ev('prismQa.forgePreview('+JSON.stringify(id)+',1).next')===null,'cap has no next promise '+id);if(native)ok(await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent')==='Current: '+native[2]+'\nNext: Maxed\nPurchase impact: 0 level(s) · No purchase (0 levels)','independent native cap/no purchase text '+id);await fit('cap '+id);}
+   if(d.levelCap!==undefined){const capped=copy(paid);capped.research[id]=d.levelCap;await install(capped);ok(await ev('('+function(sel){const card=document.querySelector(sel);return card.dataset.state==='maxed'&&getComputedStyle(card).borderTopColor==='rgb(217, 180, 94)'&&!card.querySelector('[data-research],[data-queue],[data-price-currency]')&&!/Next:|Purchase impact:/.test(card.textContent);}.toString()+')('+JSON.stringify(card)+')'),'cap is a full gold bonus-only card '+id);ok(await ev('prismQa.forgePreview('+JSON.stringify(id)+',1).next')===null,'cap has no next promise '+id);if(native)ok(await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent')==='Current: '+native[2],'independent native earned cap effect '+id);await fit('cap '+id);}
    samples.push({id,price:plan.cost,cap:d.levelCap||null,purchase:after.research[id],fallback,queueOn,queueOff});
   }
   for(const raw of [12,1e300]){
@@ -141,8 +141,8 @@ const cases=String.raw`
    if(raw===12)ok(accepted.shards===6167,'literal original Swift10/11 Shards refund');
    const content=await ev('document.querySelector("[data-forge-card=charge]").textContent');
    ok(content.includes('Level 10 / 10 ('+raw+' historical)')&&content.includes('Natural ability cycle: at least 3.33 seconds.'),'effective cap and natural-cycle wording visible');
-   ok(content.includes('Historical levels still count for Forge Deeds.')&&content.includes('refunded in Shards'),'historic paid value explained');
-   ok(await ev('document.querySelector("[data-research=charge]").disabled'),'historical cap blocks purchase');
+   ok(!content.includes('Historical levels still count for Forge Deeds.')&&!content.includes('refunded in Shards'),'historic maxed card contains only bonus');
+   ok(await ev('!document.querySelector("[data-research=charge]")&&!document.querySelector("[data-queue=charge]")'),'historical cap has no actions');
    await fit('historical Swift '+raw);await install(accepted);ok(JSON.stringify(await ev('prismQa.get()'))===JSON.stringify(accepted),'historical Swift normalization never refunds twice');
   }
   const creditOnly=copy(paid);creditOnly.schemaVersion=3;creditOnly.research.charge=11;creditOnly.research.arcanecal=0;creditOnly.shards=1e30;
@@ -167,10 +167,10 @@ const cases=String.raw`
   for(let i=0;i<2;i++){await touchHere(lastQueue);const m=await measure(lastQueue);visible(m,'last touch Queue '+i);ok(m.scrollTop===lastBefore.scrollTop,'last touch exact scroll '+i);ok(!m.focusVisible,'touch does not acquire keyboard indicator');ok(await ev('prismQa.get().researchQueue['+JSON.stringify(last)+']')===(i===0),'last native touch toggles once');queueSamples.push({touch:true,measurement:m});}
   const cap=copy(paid);cap.research[last]=lastNode.levelCap-1;cap.researchQueue[last]=false;
   const finalPrice=await ev('prismQa.forgeCost('+JSON.stringify(last)+','+(lastNode.levelCap-1)+',1)');cap.lumen=finalPrice.lumen;cap.shards=finalPrice.shard;await install(cap);await prepare(lastBuy,true);
-  await key('Enter','Enter',13);const final=await ev('prismQa.get()'),cappedControl=await measure(lastQueue);
-  ok(final.research[last]===lastNode.levelCap&&final.lumen===0&&final.shards===0,'actual last-row Enter buys final level exactly');visible(cappedControl,'last cap fallback');ok(cappedControl.focus.queue===last,'cap fallback stays on final logical row');
-  await frames();await pause(150);const capSettled=await measure(lastQueue);visible(capSettled,'settled final cap fallback');ok(capSettled.focus.queue===last,'settled cap focus retained');
-  ok(await ev('document.querySelector('+JSON.stringify(lastBuy)+').disabled&&document.querySelector('+JSON.stringify(selector('data-forge-card',last))+').textContent.includes("Next: Maxed")'),'native final cap preview');
+  await key('Enter','Enter',13);const final=await ev('prismQa.get()'),lastCard=selector('data-forge-card',last),cappedControl=await measure(lastCard);
+  ok(final.research[last]===lastNode.levelCap&&final.lumen===0&&final.shards===0,'actual last-row Enter buys final level exactly');ok(cappedControl.visible,'last gold card visible');ok(await ev('document.activeElement===document.querySelector('+JSON.stringify(lastCard)+')'),'cap fallback stays on final card');
+  await frames();await pause(150);const capSettled=await measure(lastCard);ok(capSettled.visible,'settled final gold card visible');ok(await ev('document.activeElement===document.querySelector('+JSON.stringify(lastCard)+')'),'settled cap focus retained');
+  ok(await ev('('+function(sel){const card=document.querySelector(sel);return card.dataset.state==='maxed'&&!card.querySelector('[data-research],[data-queue],[data-price-currency]')&&card.querySelector('[data-forge-preview]').textContent.startsWith('Current: ')&&!/Next:|Purchase impact:/.test(card.textContent);}.toString()+')('+JSON.stringify(lastCard)+')'),'native final gold cap card');
   await shot('forge-last-cap-'+width+'-'+scale+'-'+motion);await fit('last cap');
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.code==='Space'||e.trusted&&e.key===' '),'trusted touch and keyboard evidence');
   await ev('prismQa.forgeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready();await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('forge')");

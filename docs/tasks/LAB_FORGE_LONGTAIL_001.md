@@ -1,6 +1,6 @@
 # LAB_FORGE_LONGTAIL_001 — finite progression and slot speed
 
-Status: candidate on `feature/lab-forge-slot-caps-001`; acceptance open. Owner: this feature chat. Baseline: `main` b5509637 (25 October 2026). Do not release an APK until required CI and Android acceptance pass.
+Status: candidate on `feature/lab-forge-slot-caps-001`; acceptance open. Owner: this feature chat. Baseline: `main` b5509637 (still current on 26 October 2026). User explicitly authorized branch publication, main integration and a new test version on 26 October. Release only after required CI and Android acceptance pass.
 
 ## Original request
 
@@ -29,8 +29,8 @@ Finite catalog: original foundation Labs cap 500; originally uncapped core Forge
 
 ## Current checks
 
-Local Node 24.22.1, source SHA-256 `64a67606adc0dc77621cc55b577862083046a8f6ca99e93877df5e9331efa333`: `lab-slot-contract.cjs` PASS 54 focused checks; Lab expansion 2,676 assertions plus 10 causal controls PASS; Forge expansion 9,319 assertions and 25 causal controls PASS; endless progression core 237 assertions PASS (`index.html --focus-f`); Lab offline integration PASS; `git diff --check` PASS. These are logic checks with presentation stubbed. Full browser and native checks remain. The local checkout is sparse; `check_context.cjs` currently stops on missing historical QA directory links, not on a demonstrated product failure. Chromium/Android are unavailable locally. Earlier direct V8 and browser-only entrypoints require their specialized runners and were not valid standalone Node checks.
+Local Node 24.22.1, source SHA-256 `b4a3fc3c285b0cae116d4ef582407a64c41d502e64b8ecdf9bad02cbd5b2d091`: `lab-slot-contract.cjs` PASS 54 focused checks; Lab expansion 2,676 assertions plus 10 causal controls PASS; Forge expansion 9,319 assertions and 25 causal controls PASS; timed Lab boosts 1,480 checks PASS; endless progression core 237 assertions PASS (`index.html --focus-f`); Lab offline integration PASS; full `offline-catchup.cjs` PASS with historical reference adjusted only to the new five-slot policy and additive save fields checked separately; `git diff --check` PASS. The independent 4×8-hour one-second Swift oracle was regenerated on this exact source; kills, Ascends and Prisms match the previous golden. These are logic checks with presentation stubbed. Full browser and native checks remain. The local checkout is sparse; `check_context.cjs` currently stops on missing historical QA directory links, not on a demonstrated product failure. Chromium/Android are unavailable locally. Earlier direct V8 and browser-only entrypoints require their specialized runners and were not valid standalone Node checks.
 
 ## Next action
 
-Update affected UI/behavior tests for the five-slot and slot-key contract without weakening their assertions. Run required PR CI and fix every new failure, inspect gold boxes on 320/390/430 px, test offline and save migration on Android, then integrate and decide whether to publish a new APK with verified identity. Keep the feature open until then; no release or device pass is claimed.
+Publish the user-authorized branch update, open a PR and run required CI. Fix every new failure, inspect gold boxes on 320/390/430 px, test offline and save migration on Android, then integrate and publish a verified APK for phone testing. The earlier automatic approval review rejected updating the feature ref because it considered the destination and upload unverified; the user now explicitly named `xariib/Lumenfall` and authorized branch → main → new version. The repository is public, the connected account has admin/write access, and main still matches baseline. No PR, integrated commit, CI or new APK is yet claimed.

@@ -113,10 +113,10 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     function simultaneousRun(reverse){var s=JSON.parse(JSON.stringify(simultaneous));if(reverse)s.activeStudies.reverse();install(s);return t.tail(1);}
     var forward=simultaneousRun(false),reversed=simultaneousRun(true);
     same(forward.state.longStudyLevels,reversed.state.longStudyLevels,'simultaneous levels independent of array order');
-    var sort=function(a){return a.slice().sort(function(a,c){return a.id.localeCompare(c.id);});};same(sort(forward.state.activeStudies),sort(reversed.state.activeStudies),'simultaneous start snapshots independent of array order');
+    var sort=function(a){return a.map(function(study){var copy=Object.assign({},study);delete copy.slot;return copy;}).sort(function(a,c){return a.id.localeCompare(c.id);});};same(sort(forward.state.activeStudies),sort(reversed.state.activeStudies),'simultaneous paid work independent of legacy array order');
     same([forward.state.lumen,forward.state.shards],[reversed.state.lumen,reversed.state.shards],'simultaneous spend order independent');
     ok(active('guardmastery').totalDurationSec===216,'new start uses completed Inquiry5 and target level1');
-    same(active('wispascend'),{id:'wispascend',remainingSec:48,totalDurationSec:180,speedMult:2},'existing work snapshot untouched except elapsed progress');
+    same(active('wispascend'),{id:'wispascend',slot:0,remainingSec:48,totalDurationSec:180,speedMult:2},'existing work snapshot untouched except elapsed progress, normalized slot retained');
     function chronology(kind,chunk){install(simultaneous);return b.simulate(10,kind,chunk,2000000000000);}
     var live=chronology('live',10),offline=chronology('offline',10),split=chronology('live',.1);
     assertProtectedParity(live.state,offline.state,'Inquiry live/offline');assertSummaryParity(live.summary,offline.summary,'Inquiry live/offline');
@@ -137,11 +137,9 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     q('[data-tab="research"]').click();var card=q('[data-study-card="measuredinquiry"]'),button=q('[data-study="measuredinquiry"]'),earned=q('[data-project-effect="measuredinquiry"]');
     ok(earned.textContent.includes((Math.min(k,10)*2)+'% less work'),'earned work percentage '+k);
     ok(!card.textContent.includes('20% faster')&&!card.textContent.includes('80x'),'accurate throughput wording');
-    ok(button.disabled===(k>=10)&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native disabled and accessible label '+k);
-    if(k>=10)ok(button.dataset.state==='maxed'&&!button.getAttribute('aria-label').includes('Need'),'cap accessible state has no affordability claim');
-    if(k>=10){ok(!card.querySelector('.study-meta')&&!/Next: level (11|14)/.test(card.textContent),'no cap next price or fake nextlevel');ok(card.textContent.includes('Queue ON retained; no new starts.'),'cap retained queue status');}
-    else ok(card.querySelector('.study-level').textContent==='Lv. '+k&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');
-    if(k===13)ok(earned.textContent.includes('Saved purchases preserved; effect capped.'),'overcap ownership explained');
+    if(k>=10){ok(!button&&card.dataset.state==='maxed'&&!card.querySelector('[data-study-queue],[data-price-currency]'),'full maxed card has no purchase or queue');ok(!card.querySelector('.study-meta')&&!/Next:|Purchase impact:/.test(card.textContent)&&card.textContent.includes('Current:'),'only earned effect on gold card');}
+    else {ok(!button.disabled&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native action and accessible label '+k);ok(card.querySelector('.study-level').textContent==='Lv. '+k&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');}
+    if(k===13)ok(!earned.textContent.includes('Saved purchases preserved; effect capped.')&&card.textContent.includes('Lv. 13 / 10'),'overcap ownership retained while gold card shows earned bonus');
     var before=b.getState(),raw=b.rawSave();b.renderLayout();b.refreshAffordability();same(b.getState(),before,'render/affordability pure');ok(b.rawSave()===raw,'render cannot save/complete');
     ok(q('#tab-research').scrollWidth<=q('#tab-research').clientWidth,'Lab no horizontal overflow '+k);
   });
@@ -154,7 +152,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   ok(Array.from(over.querySelectorAll('[data-speed-study]')).every(function(el){return el.disabled;}),'no new paid acceleration for maxed record');
   var speed=seed();speed.longStudyLevels.measuredinquiry=10;install(speed);ok(t.start('guardmastery'),'real legacy start at Inquiry cap');window.selectLabSpeed('guardmastery',8);
   var prior=b.getState();b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="8"]').click();});var accelerated=b.getState();
-  ok(t.speedCost(8)===27500&&accelerated.motes===prior.motes-27500&&accelerated.studyBoosts.guardmastery.mult===8&&active('guardmastery').speedMult===1,'8x timed package exact debit/paid floor preserved');
+  ok(t.speedCost(8)===27500&&accelerated.motes===prior.motes-27500&&accelerated.studyBoosts.slot0.mult===8&&active('guardmastery').speedMult===1,'8x timed package exact debit/paid floor preserved');
   ok(active('guardmastery').remainingSec===120&&active('guardmastery').totalDurationSec===120,'speed preserves discounted snapshot');
   ok(q('[data-study-text="guardmastery"]').textContent==='15s remaining · 8x','capdiscount plus8x actual countdown');
   q('[data-study-boost-status="guardmastery"]').focus();q('[data-study-queue="guardmastery"]').click();ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','timer focus preserved on rerender');

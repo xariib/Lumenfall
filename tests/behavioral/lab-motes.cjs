@@ -52,8 +52,8 @@ async function run(){
   assert(JSON.stringify([rendered.state,rendered.primary,rendered.recovery,rendered.events])===JSON.stringify([before.state,before.primary,before.recovery,before.events]),'render/affordability cannot pay or save');
   assert(await evaluate('!document.querySelector("[data-speed-study=guardmastery]").disabled'),'funded exact package actionable');
   await key('Tab');assert(await evaluate('document.activeElement.dataset.speedStudy')==='guardmastery','Tab reaches funded action');await key('Enter');await key('Enter');let bought=await snapshot();
-  assert(bought.speed===3&&bought.state.motes===0&&bought.focused.studyBoostStatus==='guardmastery'&&bought.state.studyBoosts.guardmastery.expiresAtMs-bought.state.studyBoosts.guardmastery.startedAtMs===43200000,'native Enter pays4988 once for3x12h, timer focused');
-  assert(JSON.parse(bought.primary).studyBoosts.guardmastery.mult===3&&bought.primary===bought.recovery,'paid timer persisted both slots');
+  assert(bought.speed===3&&bought.state.motes===0&&bought.focused.studyBoostStatus==='guardmastery'&&bought.state.studyBoosts.slot0.expiresAtMs-bought.state.studyBoosts.slot0.startedAtMs===43200000,'native Enter pays4988 once for3x12h, timer focused');
+  assert(JSON.parse(bought.primary).studyBoosts.slot0.mult===3&&bought.primary===bought.recovery,'paid timer persisted both slots');
   await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(false)');await new Promise(r=>setTimeout(r,1100));await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(true)');let ticking=await snapshot();
   assert(ticking.focused.studyBoostStatus==='guardmastery'&&ticking.state.motes===0&&ticking.speed===3,'actual timer ticks preserve focus and no recurring charge');
   await evaluate('document.querySelector("[data-study-queue=guardmastery]").focus({preventScroll:true})');await key('Space');let queued=await snapshot();assert(queued.state.studyQueue.guardmastery&&queued.speed===3&&queued.state.motes===0,'Study Queue independent of timed boost');

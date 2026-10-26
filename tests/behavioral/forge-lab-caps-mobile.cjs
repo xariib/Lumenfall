@@ -38,8 +38,8 @@ driver=driver.slice(0,start)+String.raw`
       await fit('[data-running-study="'+id+'"]');
       await ev('prismQa.capDue('+JSON.stringify(id)+')');ok(await ev('prismQa.get().longStudyLevels['+JSON.stringify(id)+']')===20,'authoritative completion earns cap once');
     }
-    await point(button);const maxText=await fit(card);ok(maxText.includes('Level 20 / 20'),'final cap visible '+id);
-    ok(await ev('document.querySelector('+JSON.stringify(button)+').disabled'),'maxed control disabled '+id);
+    await point(card);const maxText=await fit(card);ok(tab==='forge'?maxText.includes('Level 20 / 20'):maxText.includes('Lv. 20 / 20'),'final cap visible '+id);
+    ok(await ev('('+function(sel){const card=document.querySelector(sel);return card.dataset.state==='maxed'&&getComputedStyle(card).borderTopColor==='rgb(217, 180, 94)'&&!card.querySelector('button,[data-price-currency]')&&card.textContent.includes('Current:')&&!/Next:|Purchase impact:|Queue /.test(card.textContent);}.toString()+')('+JSON.stringify(card)+')'),'full gold bonus-only cap card '+id);
     ok(await ev('prismQa.keys().every(k=>JSON.parse(localStorage.getItem(k))['+JSON.stringify(field)+']['+JSON.stringify(id)+']===20)'),'both save slots retain cap20 '+id);
     if(width===320&&scale===2&&motion==='no-preference'||width===390&&scale===1&&motion==='no-preference')await shot(id+'-'+width+'-text'+scale);
     samples.push({id,cap:20,input:id==='conduction'||id==='luminousdistill'?'Enter':'touch',price:plan.cost,work:plan.duration||null});
