@@ -26,6 +26,12 @@ jobs:
         with:
           node-version: 24.19.0
 
+      - name: Slot-first Lab, concise cards and expanded Deeds
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/WORKSHOP_CARD_CLARITY_001.md
+          node tests/behavioral/workshop-card-clarity.cjs index.html
+          node tests/behavioral/lab-speed-controls.cjs index.html --clarity
+
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test
 
