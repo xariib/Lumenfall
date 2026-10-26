@@ -9,6 +9,16 @@ concurrency:
   group: lumenfall-lab-expansion-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
+  timed-slot-speed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Actual browser slot speed and focus regression
+        run: node tests/behavioral/lab-speed-controls.cjs index.html
   lab:
     runs-on: ubuntu-latest
     timeout-minutes: 25
