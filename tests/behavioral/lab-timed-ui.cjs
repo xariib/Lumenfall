@@ -71,7 +71,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await ev('uiRegression.save();uiRegression.load()');
   check(await ev('uiRegression.get().studyBoostHours.guardmastery===12&&uiRegression.get().studyBoosts.slot0.mult===3&&'+status+'.textContent.includes("3x")'),'actual save/reload retains timer');
   await ev(status+'.focus();uiRegression.finish()');
-  check(await ev('!uiRegression.get().activeStudies.length&&document.activeElement==='+range+'&&!'+status+'&&!'+buy+'&&uiRegression.get().studyBoosts.slot0.mult===3&&document.querySelector("[data-slot-boost=0]").textContent.includes("3x")'),'completion returns focus to idle Study and retains slot timer without renewing');
+  check(await ev('!uiRegression.get().activeStudies.length&&document.activeElement==='+range+'&&!'+status+'&&!'+buy+'&&uiRegression.get().studyBoosts.slot0.mult===3&&document.querySelector("[data-slot-boost]").textContent.includes("3x")'),'completion returns focus to idle Study and retains slot timer without renewing');
   await ev('document.querySelector("[data-study=guardmastery]").focus();document.querySelector("[data-study=guardmastery]").click()');
   check(await ev('uiRegression.get().activeStudies[0].id==="guardmastery"&&document.activeElement==='+status),'new level uses remaining timer and focus');
   await ev('document.querySelector("[data-study-queue=guardmastery]").focus()');await key('Space');
