@@ -77,7 +77,9 @@ window.runTreePurchaseQa=function(b,ctx,assert){
 
   seed('swift',0,1000);
   [undefined,null,'unknown',{id:'starlight',baseCost:0,growth:1}].forEach(function(id){rejected(id,'invalid or forged node');});
-  seed('swift',249,1000);ok(button('swift')&&button('swift').disabled&&button('swift').querySelector('.cost-icon')&&/e[0-9]+/.test(button('swift').querySelector('.cost').textContent),'last pre-cap wide price stays visible while unaffordable');
+  seed('swift',249,1000);
+  var widePlan=b.treePurchases.plan('swift'),wideButton=button('swift'),wideQuote=wideButton&&wideButton.querySelector('[data-price-currency="prism"]');
+  ok(wideButton&&wideButton.disabled&&widePlan.reason==='unaffordable'&&wideQuote&&wideQuote.dataset.priceAmount===String(widePlan.cost)&&wideQuote.textContent.trim().length>0,'last pre-cap price remains visible and matches the purchase plan: '+JSON.stringify({reason:widePlan.reason,cost:widePlan.cost,button:wideButton&&wideButton.outerHTML.slice(0,500)}));
   rejected('swift','unaffordable wide price cannot debit');
   seed('swift',0,Number.MAX_VALUE);
   ok(!button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.trim()==='3','large wallet keeps the exact visible price and currency icon');
