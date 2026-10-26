@@ -104,7 +104,7 @@ async function verifyInstalledWispCard(page,report){
      return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
        width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
-       unfinished:progression?.tagName==='SECTION',
+       unfinished:!!module&&progression?.tagName==='DETAILS'&&!!progression.querySelector('summary'),
        upgradeVisible:!progression||progression.tagName==='DETAILS'||(
          visible(card.querySelector('[data-rarity]'))&&visible(card.querySelector('[data-module]'))&&
          (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),

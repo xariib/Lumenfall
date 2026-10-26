@@ -7551,7 +7551,6 @@ function applyRiftTheme(){
 function buyNode(node){
   var plan = getNodeBuyPlan(node,true);
   if(!plan.affordable) return false;
-  var purchaseView=captureControlViewport(els['node-list']);
   if(!forgeCommitPaidMutation(function(){
     state.prisms = plan.payment.prisms;
     state.refundCredits.prisms = plan.payment.credits;
@@ -7566,7 +7565,6 @@ function buyNode(node){
   renderAscendSummary();
   updateBattleFast();
   if(TREE_BY_ID[node.id]) renderSpirits();
-  restoreControlViewport(purchaseView);
   return true;
 }
 

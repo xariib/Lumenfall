@@ -132,3 +132,16 @@ covered Formation cases; arbitrary movement and wrong focus remain failures.
 Original stateful Lab navigation and Forge copy tests are adapted to slot
 selection and the single authoritative purchase result line. No price, cap,
 mechanic or purchase assertions have been removed.
+
+Candidate 12fb3672: Forge, Lab, Comet, Shared UI and isolated offline CI passed.
+Midgame Farm's original positive and causal controls passed. Broad layout at
+200% text now measures the visible slot heading instead of requiring the entire
+running-study card to fit one screen; all five slots, touch sizes and horizontal
+fit retain their separate checks. Tree's negative viewport control showed that
+the extra outer buyNode guard masked removal of the original summary guard.
+That redundant outer guard is removed, preserving the original causal test.
+
+Nonpublishing Android run #41 (40356497883) built signed 0.2.41, preserved the
+old save through upgrade, then stopped at an obsolete SECTION-only unfinished
+Wisp assertion. The check now requires its module and native disclosure before
+the already-added trusted touch opens it. No release was published.
