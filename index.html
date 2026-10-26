@@ -8663,6 +8663,12 @@ function openPowerAdvice(goal){
   activateTab(goal.tab);
   var target=goal.selector&&document.querySelector(goal.selector);
   if(!target)return;
+  if(goal.tab==='research' && target.closest('.study-catalogue')){
+    var availableSlot=freeStudySlot();
+    selectedStudySlot=availableSlot>=0?availableSlot:0;
+    renderLongStudies();
+    target=document.querySelector(goal.selector);
+  }
   if(target.closest('details'))target.closest('details').open=true;
   if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;
   target.scrollIntoView({block:'center'});target.focus({preventScroll:true});

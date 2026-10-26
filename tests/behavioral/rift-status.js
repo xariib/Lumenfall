@@ -109,7 +109,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
         ok(badge()===slots-n,'empty/one/multiple/full capacity');
         var before=b.getState();q('[data-tab="workshop"]').click();q('[data-tab="research"]').focus();q('[data-tab="research"]').click();badge();
         ok(q('#tab-research').classList.contains('active'),'badge/button opens Lab directly');same(b.getState(),before,'Lab opening cannot dismiss capacity or mutate state');
-        ok(!!q('[data-study-choose]')===(n<slots),'Choose Study follows same slot state');
+        ok(document.querySelectorAll('[data-study-slot]').length===slots&&document.querySelectorAll('[data-lab-slot]').length===5,'five slots expose choose or change actions for unlocked capacity');
         q('[data-tab="battle"]').click();badge();
       }
     });

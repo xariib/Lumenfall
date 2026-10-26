@@ -117,3 +117,18 @@ on the empty slot after completion. Comet's no-scroll gesture starts on the
 noninteractive Bond summary instead of the Guardian attack surface. Android
 upgrade acceptance opens the Wisp disclosure with a real native touch before
 its original Ability purchase check. No gates have been disabled.
+
+Candidate 22ed5684 passed the full Lab and Comet workflows, Shared UI, and the
+isolated offline job. The next real integration defect was Farm's Go to Lab
+link focusing the hidden catalogue. It now opens a free slot's catalogue (or
+slot 1 for inspection when full) before focusing the original recommended card;
+this changes UI selection only and starts/spends nothing.
+
+Tree's compact Invitations card exposed a physically unavoidable 2 px scroll
+boundary: the requested scroll 4523 exceeded the new maximum 4521. The receipt
+shows exactly that 2 px displacement. The existing strict nearest-feasible
+boundary assertions are now used for funded purchases as for the already
+covered Formation cases; arbitrary movement and wrong focus remain failures.
+Original stateful Lab navigation and Forge copy tests are adapted to slot
+selection and the single authoritative purchase result line. No price, cap,
+mechanic or purchase assertions have been removed.

@@ -316,7 +316,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
     // The immediate check still reads its original pre-frame snapshot.
     diagnostic.deltas={immediateTop:now.top-m.top,settledTop:settled.top-m.top,immediateScroll:now.scroll-m.scroll,settledScroll:settled.scroll-m.scroll};
     diagnostic.viewportBounds={immediate:viewportBounds(m,now),settled:viewportBounds(m,settled)};
-    stableAction(diagnostic,'node',id,'funded purchase '+id);
+    stableAction(diagnostic,'node',id,'funded purchase '+id,true);
    }
    paid=copy(after);paid.prisms=100000;samples.push({id,levelBefore:level,levelAfter:level+1,cost});
   }
