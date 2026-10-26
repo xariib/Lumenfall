@@ -18,7 +18,7 @@ window.runWispCardLayoutQa=function(baseline){
     var before=JSON.stringify(b.get()),slots=JSON.stringify(b.slots());
     b.render();b.refresh();card=document.querySelector('[data-wisp-card="'+id+'"]');p=card.querySelector('[data-wisp-progression]');
     ok(JSON.stringify(b.get())===before&&JSON.stringify(b.slots())===slots,'render leaves full state and both save slots unchanged '+id+'/'+stage);
-    ok((p.tagName==='DETAILS')===(stage===2),'unfinished upgrades remain visible '+id+'/'+stage);
+    ok(p.tagName==='DETAILS','all upgrades remain reachable through disclosure '+id+'/'+stage);
     ok(card.textContent.includes(b.spirit(id).abilityName),'ability retained '+id);
     ok(card.textContent.includes('Wisp Power')&&card.querySelector('.rarity-badge'),'power/rarity retained '+id);
     var readout=card.querySelector('[data-wisp-role]');
@@ -57,8 +57,8 @@ window.runWispCardLayoutQa=function(baseline){
       ok(a.borderLeftWidth==='0px'&&a.backgroundColor==='rgba(0, 0, 0, 0)','ability uses plain card surface');
       ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','Module uses plain card surface');
       var heading=card.querySelector('[data-wisp-details]'),level=card.querySelector('.wisp-level'),levelStyle=level&&getComputedStyle(level);
-      ok(heading.textContent===(stage===2?'Upgrades':b.spirit(id).abilityName),'ability leads unfinished section without extra heading');
-      ok(heading.getAttribute('aria-label')===b.spirit(id).name+(stage===2?' upgrades':' ability and upgrades'),'heading/disclosure retains Wisp context for assistive technology');
+      ok(heading.textContent.indexOf('Upgrades')===0,'one concise upgrade disclosure names the next action');
+      ok(heading.getAttribute('aria-label')===b.spirit(id).name+' upgrades','heading/disclosure retains Wisp context for assistive technology');
       ok(!card.querySelector('.ability-label'),'no redundant Ability label');
       var abilityTitle=card.querySelector('.wisp-ability-title h3,.wisp-ability-title strong');
       ok(!card.querySelector('.ability-badge'),'compact card omits redundant Ability badge '+id);

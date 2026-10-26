@@ -109,12 +109,14 @@ window.runRiftStatusQa=async function(b,ctx,assert){
         ok(badge()===slots-n,'empty/one/multiple/full capacity');
         var before=b.getState();q('[data-tab="workshop"]').click();q('[data-tab="research"]').focus();q('[data-tab="research"]').click();badge();
         ok(q('#tab-research').classList.contains('active'),'badge/button opens Lab directly');same(b.getState(),before,'Lab opening cannot dismiss capacity or mutate state');
-        ok(!!q('[data-study-choose]')===(n<slots),'Choose Study follows same slot state');
+        var protectedWork=s.activeStudies.filter(function(a){return projects.some(function(p){return p.id===a.id&&p.retired;});});
+        ok(document.querySelectorAll('[data-study-slot]').length===slots-protectedWork.length&&document.querySelectorAll('[data-lab-slot]').length===5,'five slots expose choose/change actions while preserving retired paid work');
+        protectedWork.forEach(function(a){var card=q('[data-running-study="'+a.id+'"]');ok(card&&card.textContent.includes('Last paid level:')&&!card.querySelector('[data-study-slot]'),'retired paid work stays visible and protected from replacement');});
         q('[data-tab="battle"]').click();badge();
       }
     });
-    var s=seed();s.maxDepthEver=1;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;s.lumen=1e8;s.shards=1e8;install(s);
-    q('[data-tab="research"]').click();var free=badge();b.labMotes.input(function(){q('[data-study="guardmastery"]').click();});ok(badge()===free-1,'real start consumes capacity');
+    var s=seed();s.maxDepthEver=1;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;s.lumen=600;s.shards=40;install(s);
+    q('[data-tab="research"]').click();q('[data-study-slot]').click();var free=badge();b.labMotes.input(function(){q('[data-study="guardmastery"]').click();});ok(badge()===free-1,'real start consumes capacity');
     s=b.getState();s.activeStudies[0].remainingSec=.05;install(s);b.feedbackTick(false);ok(badge()===free,'authoritative completion frees slot');
     s=seed();s.maxDepthEver=1;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;s.lumen=1e9;s.shards=1e9;
     install(s);var capacity=b.riftStatus.slots();s.activeStudies=b.riftStatus.projects().filter(x=>x.unlock<=1).slice(0,capacity).map(x=>({id:x.id,totalDurationSec:200,remainingSec:100,speedMult:1}));s.activeStudies[0].remainingSec=.05;s.studyQueue.wispascend=true;install(s);b.feedbackTick(false);
@@ -457,12 +459,19 @@ window.riftStatusMobile=(()=>{
    return {height:m.clientHeight,content:m.scrollHeight,animations:animations.map(a=>a.animationName)};
   }finally{saved.forEach(x=>{x.animation.currentTime=x.time;if(x.state==='running')x.animation.play();});}
  }
+ function shownControl(el){
+  if(!el.getClientRects().length)return false;
+  for(var parent=el.parentElement;parent;parent=parent.parentElement){
+   if(parent.tagName==='DETAILS'&&!parent.open){var summary=Array.from(parent.children).find(child=>child.tagName==='SUMMARY');if(!summary||!summary.contains(el))return false;}
+  }
+  return true;
+ }
  function last(view){
-  var all=[...document.querySelectorAll('#tab-'+view+' button:not(:disabled),#tab-'+view+' summary')].filter(el=>el.getClientRects().length),el=all[all.length-1],r=rect(el),mr=rect(q('main'));
-  ok(el&&r.top>=mr.top&&r.bottom<=mr.bottom,'native touch scroll reaches last '+view+' control '+JSON.stringify({top:r.top,bottom:r.bottom,area:[mr.top,mr.bottom],scroll:q('main').scrollTop,text:el.textContent,mainClass:q('main').className,overflow:getComputedStyle(q('main')).overflowY,content:q('main').scrollHeight,client:q('main').clientHeight,tabs:[...document.querySelectorAll('main .tab-panel.active')].map(x=>x.id),atStart:(function(){var hit=document.elementFromPoint(innerWidth/2,mr.bottom-24);return hit?{tag:hit.tagName,classes:hit.className,touch:getComputedStyle(hit).touchAction,parent:hit.parentNode.className,ancestors:(function(){var a=[],e=hit;while(e){a.push([e.tagName,e.id,e.className,getComputedStyle(e).touchAction]);e=e.parentElement;}return a;})()}:null;})()}));var x=r.x+r.width/2,y=r.y+r.height/2;ok(el.contains(document.elementFromPoint(x,y)),'last '+view+' control hittable');
+  var all=[...document.querySelectorAll('#tab-'+view+' button:not(:disabled),#tab-'+view+' summary')].filter(shownControl),el=all[all.length-1],r=rect(el),mr=rect(q('main'));
+  ok(el&&r.top>=mr.top&&r.bottom<=mr.bottom,'native touch scroll reaches last '+view+' control '+JSON.stringify({top:r.top,bottom:r.bottom,area:[mr.top,mr.bottom],scroll:q('main').scrollTop,text:el.textContent,mainClass:q('main').className,overflow:getComputedStyle(q('main')).overflowY,content:q('main').scrollHeight,client:q('main').clientHeight,tabs:[...document.querySelectorAll('main .tab-panel.active')].map(x=>x.id),atStart:(function(){var hit=document.elementFromPoint(innerWidth/2,mr.bottom-24);return hit?{tag:hit.tagName,classes:hit.className,touch:getComputedStyle(hit).touchAction,parent:hit.parentNode.className,ancestors:(function(){var a=[],e=hit;while(e){a.push([e.tagName,e.id,e.className,getComputedStyle(e).touchAction]);e=e.parentElement;}return a;})()}:null;})()}));var x=r.x+r.width/2,y=r.y+r.height/2;ok(el.contains(document.elementFromPoint(x,y)),'last '+view+' control hittable '+JSON.stringify({element:el.outerHTML.slice(0,240),hit:document.elementFromPoint(x,y)?.outerHTML.slice(0,240),box:{x:r.x,y:r.y,width:r.width,height:r.height}}));
   return {view,text:el.textContent,x,y,scroll:q('main').scrollTop};
  }
- function locate(view){var all=[...document.querySelectorAll('#tab-'+view+' button:not(:disabled),#tab-'+view+' summary')].filter(el=>el.getClientRects().length),el=all[all.length-1],r=rect(el),m=rect(q('main'));return {visible:r.top>=m.top&&r.bottom<=m.bottom,area:{top:m.top,bottom:m.bottom},delta:r.top<m.top?m.top-r.top+12:-(r.bottom-m.bottom+12)};}
+ function locate(view){var all=[...document.querySelectorAll('#tab-'+view+' button:not(:disabled),#tab-'+view+' summary')].filter(shownControl),el=all[all.length-1],r=rect(el),m=rect(q('main'));return {visible:r.top>=m.top&&r.bottom<=m.bottom,area:{top:m.top,bottom:m.bottom},delta:r.top<m.top?m.top-r.top+12:-(r.bottom-m.bottom+12)};}
  function control(selector){var el=q(selector),r=rect(el),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,visible:r.width>0&&r.height>0&&r.top>=0&&r.bottom<=innerHeight,hit:el.contains(document.elementFromPoint(x,y))};}
  return {setup,measure,entry,last,control,locate,mutateBoostLine};
 })();

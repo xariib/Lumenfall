@@ -77,7 +77,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     var unlocked=seed();unlocked.maxDepthEver=60;install(unlocked);ok(t.start('measuredinquiry'),'depth60 start');
     [1,14,15,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;install(s);ok(b.riftStatus.slots()===(depth<15?1:depth<60?2:3),'unchanged slot matrix '+depth);});
     var deeds=seed();Object.keys(deeds.achieved).forEach(function(id){deeds.achieved[id]=false;});deeds.longStudyLevels.measuredinquiry=13;install(deeds);
-    ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement="'+id+'"]').closest('.ach-card').querySelector('.deed-scope').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});
+    ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement="'+id+'"]').closest('.ach-card').querySelector('.card-details>div').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});
     deeds.longStudyLevels.guardmastery=24;install(deeds);ok(!b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'Inquiry13 cannot supply level25');
     deeds.longStudyLevels.guardmastery=25;install(deeds);ok(b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'original level25 still earns');
     deeds.longStudyLevels.guardmastery=0;window.inquiryOriginals.forEach(function(id){deeds.longStudyLevels[id]=1;});install(deeds);
@@ -138,7 +138,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     ok(earned.textContent.includes((Math.min(k,10)*2)+'% less work'),'earned work percentage '+k);
     ok(!card.textContent.includes('20% faster')&&!card.textContent.includes('80x'),'accurate throughput wording');
     if(k>=10){ok(!button&&card.dataset.state==='maxed'&&!card.querySelector('[data-study-queue],[data-price-currency]'),'full maxed card has no purchase or queue');ok(!card.querySelector('.study-meta')&&!/Next:|Purchase impact:/.test(card.textContent)&&card.textContent.includes('Current:'),'only earned effect on gold card');}
-    else {ok(!button.disabled&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native action and accessible label '+k);ok(card.querySelector('.study-level').textContent==='Lv. '+k&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');}
+    else {ok(!button.disabled&&button.getAttribute('aria-label').includes('Measured Inquiry'),'actual native action and accessible label '+k);ok(card.querySelector('.study-level').textContent==='Lv. '+k+' / 10'&&card.textContent.includes('Next: '+(k*2+2)+'% less work'),'current earned level and next effect remain distinct');}
     if(k===13)ok(!earned.textContent.includes('Saved purchases preserved; effect capped.')&&card.textContent.includes('Lv. 13 / 10'),'overcap ownership retained while gold card shows earned bonus');
     var before=b.getState(),raw=b.rawSave();b.renderLayout();b.refreshAffordability();same(b.getState(),before,'render/affordability pure');ok(b.rawSave()===raw,'render cannot save/complete');
     ok(q('#tab-research').scrollWidth<=q('#tab-research').clientWidth,'Lab no horizontal overflow '+k);
@@ -150,12 +150,12 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   running.longStudyLevels.measuredinquiry=13;running.activeStudies[0].remainingSec=50;install(running);var over=q('[data-running-study="measuredinquiry"]');
   ok(!over.textContent.includes('level 14')&&!over.textContent.includes('Lv.14')&&over.textContent.includes('without another level or bonus'),'neutral overcap paid-record presentation');
   ok(Array.from(over.querySelectorAll('[data-speed-study]')).every(function(el){return el.disabled;}),'no new paid acceleration for maxed record');
-  var speed=seed();speed.longStudyLevels.measuredinquiry=10;install(speed);ok(t.start('guardmastery'),'real legacy start at Inquiry cap');window.selectLabSpeed('guardmastery',8);
+  var speed=seed();speed.longStudyLevels.measuredinquiry=10;install(speed);q('[data-study-slot="0"]').click();q('[data-study=guardmastery]').click();ok(active('guardmastery')&&b.getState().studyQueue.guardmastery,'real slot selection starts repeating research at Inquiry cap');window.selectLabSpeed('guardmastery',8);
   var prior=b.getState();b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="8"]').click();});var accelerated=b.getState();
   ok(t.speedCost(8)===27500&&accelerated.motes===prior.motes-27500&&accelerated.studyBoosts.slot0.mult===8&&active('guardmastery').speedMult===1,'8x timed package exact debit/paid floor preserved');
   ok(active('guardmastery').remainingSec===120&&active('guardmastery').totalDurationSec===120,'speed preserves discounted snapshot');
   ok(q('[data-study-text="guardmastery"]').textContent==='15s remaining · 8x','capdiscount plus8x actual countdown');
-  q('[data-study-boost-status="guardmastery"]').focus();q('[data-study-queue="guardmastery"]').click();ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','timer focus preserved on rerender');
+  q('[data-study-boost-status="guardmastery"]').focus();b.renderLayout();ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','timer focus preserved on rerender');
   t.tail(15,b.clockNow());ok(active('guardmastery').speedMult===1&&active('guardmastery').totalDurationSec===192&&b.labMotes.effective(active('guardmastery'))===8,'next queued start keeps timer and base floor1');
   var saved=active('guardmastery');var changed=b.getState();changed.longStudyLevels.measuredinquiry=13;install(changed);same(active('guardmastery'),saved,'render/overcap cannot retroactively change paid work');
   b.feedbackSave();var persisted=JSON.parse(b.rawSave());ok(persisted.studyQueue.guardmastery,'real queue choice persists');

@@ -21,7 +21,7 @@ async function run(){
   for(let i=0;i<150&&!await evaluate('!!window.__labMotesNativeReady');i++)await new Promise(r=>setTimeout(r,20));
   assert(await evaluate('!!window.__labMotesNativeReady'),'native Lab page ready');await evaluate('window.__qaForgeStartup.promise');await evaluate('document.fonts.ready.then(()=>true)');
   await evaluate(`document.documentElement.style.fontSize='${textScale*16}px';window.__lumenfallQaBridge.uiMeasurementPause(true)`);
-  await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=labMotesSeed(b,window.__lumenfallQaContext);s.activeStudies=[];b.setState(s);b.renderLayout();document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study="guardmastery"]').focus();})()`);
+  await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=labMotesSeed(b,window.__lumenfallQaContext);s.activeStudies=[];b.setState(s);b.renderLayout();document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-slot]').click();document.querySelector('[data-study="guardmastery"]').focus();})()`);
   await key('Enter');
   assert(await evaluate(`document.activeElement.dataset.studySpeedTarget==='guardmastery'&&document.activeElement.getClientRects().length>0&&!document.querySelector('[data-study-inspection="guardmastery"]').hidden&&window.__lumenfallQaBridge.getState().activeStudies.some(a=>a.id==='guardmastery')`),'real keyboard Begin retains visible same-Study focus with inline controls');
   const labUi=await evaluate('runLabUiQa(window.__lumenfallQaBridge,window.__lumenfallQaContext,function(v,m){if(!v)throw Error(m);})');
@@ -30,7 +30,7 @@ async function run(){
   await evaluate('document.querySelector("[data-running-study=guardmastery]").scrollIntoView({block:"start"})');
   await new Promise(r=>setTimeout(r,250));
   if(process.env.LUMENFALL_QA_EVIDENCE_DIR){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'lab-ui-card-'+width+'-'+motion+'-text'+textScale+'.png'),Buffer.from(shot.data,'base64'));}
-  await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();const s=labMotesSeed(b,window.__lumenfallQaContext);s.motes=0;s.studySpeedTargets.guardmastery=2;s.activeStudies=[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}];s.enemyHp=s.enemyMaxHp=1e9;b.setState(s);b.save();b.renderLayout();document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-queue="guardmastery"]').focus();})()`);
+  await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();const s=labMotesSeed(b,window.__lumenfallQaContext);s.motes=0;s.studySpeedTargets.guardmastery=2;s.studyQueue.guardmastery=true;s.activeStudies=[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}];s.enemyHp=s.enemyMaxHp=1e9;b.setState(s);b.save();b.renderLayout();document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-queue="guardmastery"]').focus();})()`);
   await key('Tab');assert(await evaluate('document.activeElement.dataset.studyBoostHours')==='guardmastery','Tab reaches duration before range');
   await key('ArrowDown');
   assert(await evaluate('window.__lumenfallQaBridge.getState().studyBoostHours.guardmastery===12'),'native duration choice saves12h');
@@ -56,10 +56,14 @@ async function run(){
   assert(JSON.parse(bought.primary).studyBoosts.slot0.mult===3&&bought.primary===bought.recovery,'paid timer persisted both slots');
   await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(false)');await new Promise(r=>setTimeout(r,1100));await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(true)');let ticking=await snapshot();
   assert(ticking.focused.studyBoostStatus==='guardmastery'&&ticking.state.motes===0&&ticking.speed===3,'actual timer ticks preserve focus and no recurring charge');
-  await evaluate('document.querySelector("[data-study-queue=guardmastery]").focus({preventScroll:true})');await key('Space');let queued=await snapshot();assert(queued.state.studyQueue.guardmastery&&queued.speed===3&&queued.state.motes===0,'Study Queue independent of timed boost');
-  const controls=await evaluate(`Array.from(document.querySelectorAll('[data-study-boost-hours],[data-study-speed-target]')).filter(e=>e.getClientRects().length).map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height,label:e.getAttribute('aria-label')};})`);assert(controls.every(r=>r.w>=44&&r.h>=44&&r.label),'44px named controls');assert(queued.fit&&!queued.errors.length,'no overflow/runtime errors');
+  const controls=await evaluate(`Array.from(document.querySelectorAll('[data-study-boost-hours],[data-study-speed-target]')).filter(e=>e.getClientRects().length).map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height,label:e.getAttribute('aria-label')};})`);assert(controls.every(r=>r.w>=44&&r.h>=44&&r.label),'44px named controls');assert(ticking.fit&&!ticking.errors.length,'no overflow/runtime errors');
   await evaluate('document.querySelector("[data-running-study=guardmastery]").scrollIntoView({block:"start"});document.activeElement.blur()');
   if(process.env.LUMENFALL_QA_EVIDENCE_DIR){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'lab-motes-'+width+'-'+motion+'-text'+textScale+'.png'),Buffer.from(shot.data,'base64'));}
+  await evaluate('document.querySelector("[data-study-queue=guardmastery]").focus({preventScroll:true})');await key('Space');
+  const queued=await evaluate(`(()=>{const b=window.__lumenfallQaBridge;return {state:b.getState(),primary:b.rawSave(),recovery:b.rawRecovery(),empty:!!document.querySelector('[data-lab-slot="0"] [data-study-slot]')};})()`);
+  assert(queued.empty&&!queued.state.studyQueue.guardmastery&&!queued.state.activeStudies.length&&queued.state.motes===0,'native Queue OFF clears the slot without spending');
+  assert(queued.state.pausedStudies[0].id==='guardmastery'&&queued.state.pausedStudies[0].remainingSec===ticking.state.activeStudies[0].remainingSec&&JSON.stringify(queued.state.studyBoosts)===JSON.stringify(ticking.state.studyBoosts),'clearing keeps exact paid work and the independent timed slot boost');
+  assert(queued.primary===queued.recovery&&JSON.parse(queued.primary).pausedStudies[0].remainingSec===queued.state.pausedStudies[0].remainingSec,'cleared work and boost persist in both save slots');
   records.push({width,motion,textScale,labUi,selected,waiting,bought,queued,controls});await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);
 
  }

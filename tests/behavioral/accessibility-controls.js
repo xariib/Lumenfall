@@ -16,8 +16,13 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   q('[data-tab="forge"]').click();
   press('[data-queue="arcanecal"]',function(){return !!bridge.getState().researchQueue.arcanecal;});
   q('[data-tab="research"]').click();
-  var study=q('[data-study-queue]'), studyId=study.getAttribute('data-study-queue');
-  press('[data-study-queue="'+studyId+'"]',function(){return !!bridge.getState().studyQueue[studyId];});
+  var study=q('[data-study-queue]'),studyId=study.getAttribute('data-study-queue'),paidStudy=bridge.getState().activeStudies.find(function(a){return a.id===studyId;});
+  assert(paidStudy,'queue-clear fixture has actual paid work');study.focus();study.click();var clearedStudy=bridge.getState();
+  assert(!clearedStudy.studyQueue[studyId]&&!clearedStudy.activeStudies.some(function(a){return a.id===studyId;}),'Queue OFF clears the assigned study');
+  assert(clearedStudy.pausedStudies.some(function(a){return a.id===studyId&&a.remainingSec===paidStudy.remainingSec;}),'queue clear retains exact paid work');
+  var clearFocus=q('[data-study-slot="'+paidStudy.slot+'"]');
+  assert(document.activeElement===clearFocus&&clearFocus.getClientRects().length,'queue clear returns focus to the visible ready slot');
+  bridge.renderLayout();assert(document.activeElement===q('[data-study-slot="'+paidStudy.slot+'"]'),'ready slot focus survives live refresh');
   q('[data-tab="forge"]').click();
   press('[data-mult="5"]',function(){return true;});
   q('[data-tab="ascend"]').click();

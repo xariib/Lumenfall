@@ -1767,6 +1767,25 @@
   .auto-empower-all{width:100%;min-height:44px;margin-top:8px;}
   .study-slot-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;}
   .study-slot-summary strong{display:block;font-size:15px;}
+  .card-details{font-size:12px;line-height:1.5;color:var(--ink-dim);}
+  .card-details summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:11px;}
+  .card-details summary::before{content:'＋';margin-right:6px;}
+  .card-details[open] summary::before{content:'−';}
+  .card-details>div{padding:0 0 10px;}
+  .hero-card .wisp-rarity-section,.hero-card .wisp-ability-section{padding-top:8px;margin-top:8px;}
+  .hero-card .ability-effects{margin:4px 0;}
+  .hero-card .ultimate-row{padding-top:6px;}
+  .hero-card .hero-top{margin-bottom:6px;}
+  .study-slots{display:flex;flex-direction:column;gap:10px;}
+  .study-slot{margin:0;min-width:0;}
+  .study-slot h3{margin:0 0 8px;font-size:13px;color:var(--ink-dim);}
+  .study-slot p{margin:6px 0;}
+  .study-slot button{min-height:44px;}
+  .study-catalogue[hidden]{display:none;}
+  .study-catalogue-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;}
+  .study-help{margin:14px 0;font-size:12px;}
+  .study-help summary{min-height:44px;display:flex;align-items:center;cursor:pointer;}
+  .study-speed-range output{display:block;font-size:12px;font-weight:700;margin-bottom:4px;}
   .study-slot-summary span{display:block;font-size:12px;color:var(--ink-dim);margin-top:3px;}
   .study-slot-summary.has-open span{color:var(--good);}
   .study-choose-btn{min-height:44px;padding:8px 12px;border:1px solid var(--mote);border-radius:10px;background:var(--bg-elev);color:var(--ink);font:700 12px 'Manrope',sans-serif;}
@@ -2290,15 +2309,7 @@
   .theme-info .name,.theme-info .desc,.theme-active-tag{word-wrap:break-word;overflow-wrap:break-word;}
   .theme-active-tag{flex:none;max-width:100%;white-space:normal;line-height:1.4;}
   @media(prefers-reduced-motion:reduce){.cosmetic-aurora,.cosmetic-radiant{animation:none;opacity:1;}}
-  /* Commands have intrinsic height in the existing Rift. Only command owners
-     use ordinary scrolling; the established starter Rift keeps its viewport. */
-  main.rift-scroll-locked.comet-command-scroll{display:block;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;}
-  #tab-battle.has-comet-commands{touch-action:pan-y;overscroll-behavior-y:contain;}
-  #tab-battle.has-comet-commands.active{height:auto;min-height:100%;}
-  #tab-battle.has-comet-commands .stage{height:auto;min-height:100%;overflow:visible;}
-  #tab-battle.has-comet-commands .battle-row{flex:none;}
-  #tab-battle.has-comet-commands .enemy-stage-wrap{flex:none;}
-  #tab-battle.has-comet-commands .enemy-stage{flex:none;height:180px;min-height:180px;}
+  /* Comet controls live in Deeds; Rift retains its fixed viewport. */
   #comet-commands{position:relative;z-index:2;flex:none;min-width:0;margin:10px 0;padding:12px;border:1px solid #78699a;border-radius:12px;background:#151b30;color:#f0effb;}
   #comet-commands[hidden],#comet-commands button[hidden],#comet-journal[hidden],#comet-journal-heading[hidden],#legacy-comet-trials[hidden]{display:none;}
   #comet-commands h3{font-size:.95rem;line-height:1.4;margin:0 0 8px;}
@@ -2894,7 +2905,7 @@
         <div id="boss-combat" hidden></div>
         <div id="rift-party" role="group" aria-label="Current Wisp formation"></div>
         </div>
-        <section id="comet-commands" aria-labelledby="comet-command-title" tabindex="-1" hidden></section>
+
         <div class="buff-indicator" id="buff-indicator">Boost · passive Wisps + Tap · <strong>Inactive</strong></div>
         <div id="comet-trial-status" class="comet-trial-status" hidden></div>
         <div class="bond-summary" id="bond-summary" role="group" aria-label="No Formation Bond active.">No Formation Bond active.</div>
@@ -2970,7 +2981,7 @@
       <div class="section-label">Deeds</div>
       <div class="ach-grid" id="ach-list"></div>
       <div class="section-label">Exclusive Comet Unlocks</div>
-      <div id="shop-list"></div>
+      <div id="shop-list"></div><section id="comet-commands" aria-labelledby="comet-command-title" tabindex="-1" hidden></section>
       <div class="section-label" id="comet-journal-heading" hidden>Comet Journal</div>
       <section id="comet-journal" aria-labelledby="comet-journal-heading" hidden><div id="legacy-comet-trials"></div><div id="comet-claim-history"></div></section>
       <div class="section-label">Collection</div>
@@ -4097,6 +4108,24 @@ var ACHIEVEMENTS = [
   {id:'comet_called_kill', name:'Called Light', reward:20, unlocks:'Daily Quest Refresh, also requires Auto-Ascend Ritual', check:function(s){return s.cometEvents.calledKill===true;}}
 ];
 
+// One-time long-tail goals use lifetime or permanent paid counters, never wallets.
+var LONGTAIL_DEEDS=[];
+function addDeedTrack(key,label,unit,targets,counter){
+  targets.forEach(function(target,i){
+    var id='endless_'+key+'_'+target,reward=10+5*i;
+    var goal={id:id,name:label+' '+target.toLocaleString('en-US'),reward:reward,track:key,target:target,unit:unit,counter:counter,
+      check:function(snapshot){return Amount.ge(counter(snapshot),target);}};
+    LONGTAIL_DEEDS.push(goal);ACHIEVEMENTS.push(goal);
+  });
+}
+addDeedTrack('rift','Reach Rift','Rifts reached',[500,1000,2500,5000,10000,25000,100000,1000000],function(s){return s.maxDepthEver;});
+addDeedTrack('ascend','Ascend','Ascensions',[25,50,100,250,500,1000,10000,100000],function(s){return s.ascendCount;});
+addDeedTrack('kills','Defeat enemies','enemies defeated',[10000,100000,1000000,10000000,100000000,1000000000],function(s){return s.totalKills;});
+addDeedTrack('lab','Complete Lab levels','Lab levels',[50,100,250,500,1000,2000],function(s){return LONG_STUDIES.filter(function(n){return !n.retiredTo;}).reduce(function(sum,n){return sum+(s.longStudyLevels[n.id]||0);},0);});
+addDeedTrack('forge','Buy Forge levels','Forge levels',[100,200,300,400,500,600],legacyResearchLevels);
+addDeedTrack('mastery','Earn Mastery ranks','Mastery ranks',[10,25,50,100,250,500,1000,5000,10000],function(s){return SPIRITS.reduce(function(sum,sp){return sum+((s.wispMastery||{})[sp.id]||0);},0);});
+addDeedTrack('rest','Rest offline for hours','offline hours',[24,72,168,720,2160,8760],function(s){return s.totalOfflineSeconds/3600;});
+
 // Every current Deed has an authoritative counter. Completed one-time Deeds
 // display their reached target even if a later Ascend resets the underlying run.
 function deedProgress(a,s){
@@ -4119,7 +4148,7 @@ function deedProgress(a,s){
     comet_first_command:[s.cometEvents.firstCommand?1:0,1],comet_first_recharge:[s.cometEvents.firstRecharge?1:0,1],
     comet_boss_strike:[s.cometEvents.bossStrike?1:0,1],comet_called_kill:[s.cometEvents.calledKill?1:0,1]
   };
-  var pair = config[a.id];
+  var pair = a.counter ? [a.counter(s),a.target] : config[a.id];
   if(!pair) return null;
   return {current:Math.max(0,Number(pair[0])||0),target:pair[1],duration:a.id==='idle8'};
 }
@@ -4133,6 +4162,7 @@ function deedProgressText(a,done){
 
 // Presentation metadata never participates in eligibility or one-time rewards.
 function deedPresentation(a){
+  if(a.counter)return {requirement:a.name+'.',unit:a.unit,scope:''};
   var scope='Counts paid levels in all current and historical Forge upgrades. Historical levels above a current cap still count. Lab Project levels do not count.';
   var studyScope='Counts Wisp Ascendancy, Guardian’s Mastery, Rift Attunement, Shard Attunement, Lumen Wellspring, Formation Insight, Luminous Sense and Ascendant Clarity only. Measured Inquiry does not count.';
   var rows={
@@ -4196,6 +4226,13 @@ function projectEarnedEffect(id,level){
   var row=rows[id];
   return '+'+earnedPercent(row[0])+(id==='riftattune'?' ':'% ')+row[1];
 }
+function cardDetails(id,text,title,classes){
+  var current=document.querySelector('[data-card-details="'+id+'"]');
+  if(current)openCardDetails[id]=current.open;
+  return '<details class="'+(classes||'card-details')+'" data-card-details="'+id+'" '+(openCardDetails[id]?'open':'')+'><summary data-card-details-summary="'+id+'">'+(title||'Details')+'</summary><div>'+text+'</div></details>';
+}
+var openCardDetails={};
+document.addEventListener('toggle',function(event){var el=event.target;if(el && el.hasAttribute && el.hasAttribute('data-card-details'))openCardDetails[el.getAttribute('data-card-details')]=el.open;},true);
 function projectEarnedMarkup(id,bonusOnly){
   var level=longStudyLevel(id);
   var node=LONG_STUDIES.find(function(n){return n.id===id;});
@@ -4248,6 +4285,7 @@ var COMET_DEED_ORDER = ['d10','d25','d50','d100','d250','tap100','tap1000','tap1
   'fullparty','asc1','asc5','asc10','all','mythic','idle8','autotap','labmaster',
   'study1','study25','allstudies','labqueue','firstultimate','modulemax',
   'comet_first_command','comet_first_recharge','comet_boss_strike','comet_called_kill'];
+LONGTAIL_DEEDS.forEach(function(a){COMET_DEED_REWARDS[a.id]=a.reward;COMET_DEED_ORDER.push(a.id);});
 var COMET_EVENT_DEEDS = {comet_first_command:'firstCommand',comet_first_recharge:'firstRecharge',
   comet_boss_strike:'bossStrike',comet_called_kill:'calledKill'};
 
@@ -4634,7 +4672,7 @@ function freshState(){
     formationPresets:{push:['ember'],farm:['ember'],boss:['ember']}, activeFormationPreset:'push',
     formationRebuild:null,
     nodes:nodes, treeTrainingProgress:0, research:research, researchQueue:researchQueue,
-    longStudyLevels:longStudyLevels, activeStudies:[], pausedStudies:[], studyQueue:studyQueue, studyUseMotes:studyUseMotes, studySpeedTargets:studySpeedTargets,
+    longStudyLevels:longStudyLevels, activeStudies:[], studySlotProjects:[null,null,null,null,null], pausedStudies:[], studyQueue:studyQueue, studyUseMotes:studyUseMotes, studySpeedTargets:studySpeedTargets,
     achieved:achieved, owned:owned, riftTheme:'default',
     cometUpgrades:{cometreservoir:0,cometcycle:0,meteorcore:0}, cometCharges:0, cometWork:0,
     cometMeteorUsed:false, cometCalled:false,
@@ -5192,6 +5230,11 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
     if(active.slot<0 || occupiedStudySlots[active.slot]){active.slot=0;while(occupiedStudySlots[active.slot])active.slot++;}
     occupiedStudySlots[active.slot]=true;
   });
+  out.studySlotProjects=[null,null,null,null,null];
+  if(Array.isArray(source.studySlotProjects))source.studySlotProjects.slice(0,5).forEach(function(id,i){
+    if(typeof id==='string' && LONG_STUDIES.some(function(n){return n.id===id;}) && out.studyQueue[id] && out.studySlotProjects.indexOf(id)===-1)out.studySlotProjects[i]=id;
+  });
+  out.activeStudies.forEach(function(a){if(a.slot<5){out.studySlotProjects.forEach(function(id,i){if(id===a.id)out.studySlotProjects[i]=null;});out.studySlotProjects[a.slot]=a.id;}});
   var activeIds={};out.activeStudies.forEach(function(active){activeIds[active.id]=true;});
   var pausedIds={};
   out.pausedStudies=(Array.isArray(source.pausedStudies)?source.pausedStudies:[]).filter(function(p){
@@ -7709,10 +7752,8 @@ function researchEffectText(node,value){
 function researchPreviewText(node,preview){
   var p=preview.plan;
   if(p.maxed) return 'Current: '+researchEffectText(node,preview.current);
-  var impact=p.buyCount ? researchEffectText(node,preview.purchase) : 'No purchase (0 levels)';
-  if(p.buyCount && node.id!=='luminoustracking' && node.id!=='masterwork' && !node.forgeGroup) impact=(impact + '; +' + Number((Amount.mul(Amount.sub(Amount.div(preview.purchase.factor,preview.current.factor),1),100)).toFixed(2)) + '% relative source improvement');
-  if(p.buyCount && node.id==='conduction') impact=(impact + '; actual extra per cast: Gale +' + (Amount.sub(preview.purchase.casts.gale.shards,preview.current.casts.gale.shards)).toLocaleString('en-US') + ' Shards, Thorn +' + (Amount.sub(preview.purchase.casts.thorn.lumen,preview.current.casts.thorn.lumen)).toLocaleString('en-US') + ' Lumen');
-  return ('Current: ' + researchEffectText(node,preview.current) + '\nNext: ' + (preview.next?Amount.add(researchEffectText(node,preview.next),' (preview only)'):'Maxed') + '\nPurchase impact: ' + p.buyCount + ' level(s) · ' + impact + (node.id==='luminoustracking'?'\nExisting enemy unchanged; purchases do not reroll it.':''));
+  return 'Current: '+researchEffectText(node,preview.current)+'\n'+(p.buyCount>1?'After '+p.buyCount+' levels: ':'Next: ')+researchEffectText(node,p.buyCount?preview.purchase:preview.next);
+
 }
 function updateResearchCard(node,card){
   var model=researchPreview(node),p=model.plan,btn=card.querySelector('[data-research]');
@@ -7816,23 +7857,30 @@ function findActiveStudy(id){
   return state.activeStudies.find(function(a){ return a.id===id; });
 }
 function findPausedStudy(id){return state.pausedStudies.find(function(a){return a.id===id;});}
-function getStudyStartPlan(node){
+function getStudyStartPlan(node,preferredSlot){
   node=node && LONG_STUDIES.find(function(n){return n.id===node.id;});
   if(!node) return {node:null,eligible:false,affordable:false,reason:'unknown'};
   var level=longStudyLevel(node.id),paused=findPausedStudy(node.id),cost=paused?{lumen:0,shard:0}:studyCost(node,level),duration=paused?paused.remainingSec:studyDuration(node,level);
   var unlocked=Amount.ge(state.maxDepthEver,node.unlockDepth||1);
   var maxed=node.levelCap!==undefined && Amount.ge(level,node.levelCap);
   var valid=Amount.valid(cost.lumen) && Amount.ge(cost.lumen,0) && Amount.valid(cost.shard) && Amount.ge(cost.shard,0) && Amount.valid(duration) && Amount.gt(duration,0);
-  var reason=node.retiredTo && !paused ? 'retired' : !unlocked ? 'locked' : maxed && !paused ? 'maxed' : findActiveStudy(node.id) ? 'active' : Amount.ge(state.activeStudies.length,studySlotCount()) ? 'slots' : !valid ? 'unavailable' : '';
+  var targetSlot=Number.isInteger(preferredSlot)?preferredSlot:null;
+  var occupant=targetSlot===null?null:state.activeStudies.find(function(a){return a.slot===targetSlot;});
+  var unavailableSlot=targetSlot!==null && (targetSlot<0 || targetSlot>=studySlotCount() || (occupant && LONG_STUDIES.some(function(n){return n.id===occupant.id && n.retiredTo;})));
+  var reason=unavailableSlot?'slots':node.retiredTo && !paused ? 'retired' : !unlocked ? 'locked' : maxed && !paused ? 'maxed' : findActiveStudy(node.id) ? 'active' : targetSlot===null && Amount.ge(state.activeStudies.length,studySlotCount()) ? 'slots' : !valid ? 'unavailable' : '';
   var eligible=!reason;
   if(eligible && (Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard))) reason='unaffordable';
   else if(eligible && (!labCanPay(state.lumen,cost.lumen) || !(state.swiftRecoveryRefund ? canSpendShards(cost.shard) : labCanPay(state.shards,cost.shard)))){reason='unavailable';eligible=false;}
   return {node:node,level:level,cost:cost,duration:duration,paused:paused,unlocked:unlocked,maxed:maxed,eligible:eligible,affordable:!reason,reason:reason};
 }
-function commitStudyStart(node){
-  var plan=getStudyStartPlan(node);
+function commitStudyStart(node,preferredSlot){
+  var plan=getStudyStartPlan(node,preferredSlot);
   if(!plan.affordable) return false;
-  var slot=freeStudySlot();if(slot<0)return false;
+  var assigned=state.studySlotProjects.indexOf(node.id);
+  var slot=Number.isInteger(preferredSlot)?preferredSlot:assigned>=0 && assigned<studySlotCount() && !state.activeStudies.some(function(a){return a.slot===assigned;})?assigned:freeStudySlot();
+  if(slot<0 || state.activeStudies.some(function(a){return a.slot===slot;}))return false;
+  state.studySlotProjects.forEach(function(id,i){if(id===node.id)state.studySlotProjects[i]=null;});
+  if(slot<5)state.studySlotProjects[slot]=node.id;
   if(plan.paused){
     if(state.studyBoosts[node.id] && !state.studyBoosts['slot'+slot]){state.studyBoosts['slot'+slot]=state.studyBoosts[node.id];delete state.studyBoosts[node.id];}
     state.pausedStudies.splice(state.pausedStudies.indexOf(plan.paused),1);
@@ -7845,23 +7893,50 @@ function commitStudyStart(node){
   state.activeStudies.push({id:plan.node.id,slot:slot,remainingSec:plan.duration,totalDurationSec:plan.duration,speedMult:1});
   return true;
 }
-function startStudy(node){
-  if(!getStudyStartPlan(node).affordable) return false;
-  if(!forgeCommitPaidMutation(function(){commitStudyStart(node);})) return false;
+function startStudy(node,preferredSlot){
+  if(!getStudyStartPlan(node,preferredSlot).affordable) return false;
+  if(!forgeCommitPaidMutation(function(){
+    if(Number.isInteger(preferredSlot)){
+      var previousId=state.studySlotProjects[preferredSlot];
+      var old=state.activeStudies.find(function(a){return a.slot===preferredSlot;});
+      if(old)storeStudyWork(old);
+      if(previousId && previousId!==node.id)state.studyQueue[previousId]=false;
+    }
+    // Recalculate work after removing the replaced record. The transaction
+    // rolls back the old paid record and wallet together if anything fails.
+    if(!commitStudyStart(node,preferredSlot))throw Error('Study could not start');
+    if(Number.isInteger(preferredSlot))state.studyQueue[node.id]=true;
+  })) return false;
+  selectedStudySlot=-1;
   renderLongStudies();
   updateBattleFast();
   return true;
+}
+function storeStudyWork(active){
+  if(active.slot>=5 && state.studyBoosts['slot'+active.slot]){
+    state.studyBoosts[active.id]=state.studyBoosts['slot'+active.slot];delete state.studyBoosts['slot'+active.slot];
+  }
+  state.activeStudies.splice(state.activeStudies.indexOf(active),1);
+  state.pausedStudies.push({id:active.id,remainingSec:active.remainingSec,totalDurationSec:active.totalDurationSec,speedMult:active.speedMult});
+  state.studyQueue[active.id]=false;
+  if(active.slot<5)state.studySlotProjects[active.slot]=null;
+}
+function clearStudySlot(slot){
+  if(!Number.isInteger(slot)||slot<0||slot>=studySlotCount()||offlineCatchup||offlinePending||reloadInProgress||resetInProgress)return false;
+  var active=state.activeStudies.find(function(a){return a.slot===slot;});
+  if(active && LONG_STUDIES.some(function(n){return n.id===active.id && n.retiredTo;}))return false;
+  if(!forgeCommitPaidMutation(function(){
+    if(active)storeStudyWork(active);
+    var id=state.studySlotProjects[slot];if(id)state.studyQueue[id]=false;
+    state.studySlotProjects[slot]=null;
+  }))return false;
+  selectedStudySlot=-1;renderLongStudies();return true;
 }
 function pauseStudy(id){
   if(!findActiveStudy(id) || LONG_STUDIES.some(function(n){return n.id===id && n.retiredTo;}) || offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
   if(!forgeCommitPaidMutation(function(){
     var active=findActiveStudy(id);
-    if(active.slot>=5 && state.studyBoosts['slot'+active.slot]){
-      state.studyBoosts[id]=state.studyBoosts['slot'+active.slot];delete state.studyBoosts['slot'+active.slot];
-    }
-    state.activeStudies.splice(state.activeStudies.indexOf(active),1);
-    state.pausedStudies.push({id:active.id,remainingSec:active.remainingSec,totalDurationSec:active.totalDurationSec,speedMult:active.speedMult});
-    state.studyQueue[id]=false;
+    storeStudyWork(active);
   }))return false;
   renderLongStudies();return true;
 }
@@ -7886,6 +7961,9 @@ function finishStudyRecord(index){
   if(active.slot>=5 && state.studyBoosts['slot'+active.slot]){
     state.studyBoosts[active.id]=state.studyBoosts['slot'+active.slot];
     delete state.studyBoosts['slot'+active.slot];
+  }
+  if(active.slot<5 && !state.studyQueue[active.id] && state.studySlotProjects[active.slot]===active.id){
+    state.studySlotProjects[active.slot]=null;
   }
   state.activeStudies.splice(index,1);
   return {earned:earned,name:node ? node.name : active.id,moteBonus:moteBonus};
@@ -8339,7 +8417,7 @@ function presentControlStates(root){
       }
       if(btn.hasAttribute('data-study')){
         var node=LONG_STUDIES.find(function(n){return n.id===btn.getAttribute('data-study');});subject=node.name;
-        var plan=getStudyStartPlan(node);
+        var plan=getStudyStartPlan(node,selectedStudySlot>=0?selectedStudySlot:undefined);
         if(plan.maxed){kind='maxed';reason='Maxed';}
         else if(!plan.unlocked){kind='locked';reason='Reach Rift '+node.unlockDepth;}
         else if(plan.reason==='slots'){kind='unavailable';reason='No open slots';}
@@ -8424,7 +8502,7 @@ function replaceControlMarkup(root,html,keepAutoAscend,focusHandled,preparedMark
   if(!preparedMarkup)presentControlStates(root);
   if(previous && !previous.isConnected && !focusHandled){
     var buttons=Array.from(root.querySelectorAll('button,select,input'));
-    var replacement=keys.length && buttons.find(function(btn){return keys.every(function(a){return btn.getAttribute(a.name)===a.value;});});
+    var replacement=keys.length && Array.from(root.querySelectorAll('button,select,input,summary[data-card-details-summary]')).find(function(btn){return keys.every(function(a){return btn.getAttribute(a.name)===a.value;});});
     if(replacement && !replacement.disabled) replacement.focus({preventScroll:true});
     else {
       var next=buttons.slice(Math.max(0,index)).concat(buttons.slice(0,Math.max(0,index))).find(function(btn){return !btn.disabled;});
@@ -8540,7 +8618,7 @@ function latePowerAdvice(){
   var next=plans.slice().sort(function(a,b){return b.plan.rank-a.plan.rank || SPIRITS.indexOf(a.sp)-SPIRITS.indexOf(b.sp);})[0];
   var neededLab=next.plan.requirements.filter(function(r){return r.key==='lab';})[0].target;
   var labNote='Next '+next.sp.shortName+' Mastery: Wisp Ascendancy '+longStudyLevel('wispascend')+' / '+neededLab+'. ';
-  labNote+=longStudyLevel('wispascend')>=neededLab ? 'Lab gate met. Pause its queue to fund run Power and permanent upgrades. Running projects keep their paid work and speed.' : 'Develop the required Lab level while farming useful upgrades.';
+  labNote+=longStudyLevel('wispascend')>=neededLab ? 'Lab gate met. Turn Queue OFF to clear its slot and fund run Power and permanent upgrades. Paid work and slot boosts are kept.' : 'Develop the required Lab level while farming useful upgrades.';
   var result;
   var ready=next.plan.affordable?next:null;
   var recruit=SPIRITS.find(function(sp){return !(state.spirits[sp.id]>0)&&getSpiritBuyPlan(sp).affordable;});
@@ -8589,6 +8667,12 @@ function openPowerAdvice(goal){
   activateTab(goal.tab);
   var target=goal.selector&&document.querySelector(goal.selector);
   if(!target)return;
+  if(goal.tab==='research' && target.closest('.study-catalogue')){
+    var availableSlot=freeStudySlot();
+    selectedStudySlot=availableSlot>=0?availableSlot:0;
+    renderLongStudies();
+    target=document.querySelector(goal.selector);
+  }
   if(target.closest('details'))target.closest('details').open=true;
   if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;
   target.scrollIntoView({block:'center'});target.focus({preventScroll:true});
@@ -9176,7 +9260,7 @@ function wispMasteryMarkup(sp){
   if(p.reason==='maxed')return '<section class="wisp-mastery-section"><h3>Mastery · Rank '+p.rank+' / 2000 · Maxed</h3><p>Current: Own Power ×'+masteryFactorText(p.rank)+'</p></section>';
   return '<section class="wisp-mastery-section" aria-label="'+sp.name+' Mastery"><div><h3>Mastery <span class="wisp-mastery-rank">Rank '+p.rank+'</span></h3>'+
     '<p data-mastery-current>Current: Own Power ×'+masteryFactorText(p.rank)+'</p><p data-mastery-next>Next: Own Power ×'+masteryFactorText(p.rank+1)+'</p>'+
-    '<p>Permanent growth. Keeps all Wisp upgrades through Ascend.</p><p id="'+helpId+'">'+(p.ready?'':'Recruit this Wisp first. ')+'Requires '+wispRequirementText(p.requirements)+'</p></div>'+
+    '<p id="'+helpId+'">'+(p.ready?'':'Recruit this Wisp first. ')+'Requires '+wispRequirementText(p.requirements)+'</p></div>'+
     '<div class="hero-actions"><button class="mini-btn mastery-btn" data-mastery="'+sp.id+'" aria-describedby="'+helpId+'" '+(p.affordable?'':'disabled')+'>Mastery Up'+purchasePriceMarkup('prism',p.cost.prism,'wisp-upgrade-price')+purchasePriceMarkup('sigil',p.cost.sigil,'wisp-upgrade-price')+'</button></div></section>';
 }
 // The cue points at an existing enabled purchase; it never quotes or buys.
@@ -9185,6 +9269,7 @@ function highlightWispActions(){
   els['spirit-list'].querySelectorAll('[data-wisp-card]').forEach(function(card){
     card.querySelectorAll('.wisp-next-label').forEach(function(label){label.remove();});
     card.querySelectorAll('.wisp-action-primary').forEach(function(button){button.classList.remove('wisp-action-primary');});
+    var summary=card.querySelector('summary[data-wisp-details]');if(summary)summary.textContent='Upgrades';
     var id=card.getAttribute('data-wisp-card'),keys=(state.spirits[id]||0)>0?['mastery','ultimate','rarity','module','empower']:['empower'];
     card.removeAttribute('data-primary-action');
     keys.some(function(key){
@@ -9192,7 +9277,9 @@ function highlightWispActions(){
       if(!button||button.disabled)return false;
       var label=document.createElement('span');label.className='wisp-next-label';label.textContent='Next ·';
       var heading=button.querySelector('.wisp-purchase-title,strong')||button;heading.insertBefore(label,heading.firstChild);
-      button.classList.add('wisp-action-primary');card.setAttribute('data-primary-action',key);return true;
+      button.classList.add('wisp-action-primary');card.setAttribute('data-primary-action',key);
+      if(summary && key!=='empower'){var title=button.querySelector('.wisp-purchase-title');summary.textContent='Upgrades · '+(title?title.textContent.replace('Next ·','').trim():key==='mastery'?'Mastery':key==='ultimate'?'Ultimate':key);}
+      return true;
     });
   });
   // Finalize cue names before render/refresh callers restore native focus.
@@ -9261,8 +9348,7 @@ function renderSpirits(keepScroll){
     var resonanceHtml = ultimateUnlocked(sp.id) ?
       (resonanceOwned ? '<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="'+sp.id+'" aria-describedby="'+resonanceHelpId+'" '+(resonanceDisabled?'disabled':'')+'>Resonate — Fill ability to 100'+
         purchasePriceMarkup('sigil',sigilResonanceCost(),'',false,true)+'</button>' : '')+
-      '<p class="sigil-resonance-help" id="'+resonanceHelpId+'">Spend '+sigilResonanceCost()+' Sigils to fill this Active Wisp\'s ability resource to 100. This is a refill, not a permanent upgrade. '+
-        'Requires all Wisp Ultimates. '+(sigilResonanceLimit()-resonanceUses)+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText()+'</p>' : '';
+      '<p class="sigil-resonance-help" id="'+resonanceHelpId+'">Requires all Wisp Ultimates. '+(sigilResonanceLimit()-resonanceUses)+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText()+'</p>' : '';
     var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
       : '<h3 class="wisp-ultimate-title">Ultimate</h3>'+wispUltimateEffectsMarkup(sp)+'<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';}))+'</p>'+
@@ -9272,9 +9358,7 @@ function renderSpirits(keepScroll){
     var chosen = chosenMembers.indexOf(sp.id)!==-1;
     var empowerHtml = ((recruited || pendingRebuild) && state.achieved.labmaster) ?
       (' <button class="node-queue-toggle ' + (empowerOn?'active':'') + '" data-empower-queue="' + sp.id + '">Auto-Empower ' + (empowerOn?'ON':'OFF') + '</button>') : '';
-    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatRiftNumber(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='maxed'?'Maxed':empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + (empowerPlan.reason==='maxed'?'':purchasePriceMarkup('lumen',cost,'mono')) + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + (upgradesMaxed ?
-        Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<details class="wisp-progression" data-wisp-progression="',sp.id),'" '),openProgression.indexOf(sp.id)!==-1?'open':''),'><summary data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' upgrades">Upgrades</summary>') :
-        Amount.add(Amount.add(Amount.add(Amount.add('<section class="wisp-progression" data-wisp-progression="',sp.id),'" aria-labelledby="wisp-progression-'),sp.id),'">')) + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info"><h3>Rarity</h3>' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-details="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div><span class="ability-desc">' + forgeAbilityDescription(sp) + '</span></div>' + moduleHtml + ultimateHtml + '</section>' + (upgradesMaxed ? '</details>' : '</section>') + wispMasteryMarkup(sp) + '</div>');
+    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatRiftNumber(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='maxed'?'Maxed':empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + (empowerPlan.reason==='maxed'?'':purchasePriceMarkup('lumen',cost,'mono')) + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + '<details class="wisp-progression" data-wisp-progression="'+sp.id+'" '+(openProgression.indexOf(sp.id)!==-1?'open':'')+'><summary data-wisp-details="'+sp.id+'" aria-label="'+sp.name+' upgrades">Upgrades</summary>' + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info">' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),wispRequirementText(rarityPlan.requirements)),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-heading="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div>' + cardDetails('wisp-'+sp.id,forgeAbilityDescription(sp)) + '</div>' + moduleHtml + ultimateHtml + '</section>' + wispMasteryMarkup(sp) + '</details>' + '</div>');
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   renderWispRoles();
@@ -9370,7 +9454,7 @@ function renderResearch(){
     var level = state.research[node.id];
     var queueOn = !!state.researchQueue[node.id];
     var maxed=node.levelCap!==undefined && Amount.ge(level,node.levelCap);
-    html=(html + '<div class="card node-card" data-forge-card="' + node.id + '"' + (maxed?' data-state="maxed" tabindex="-1"':'') + '>' + '<div class="forge-head"><svg class="upgrade-emblem" viewBox="0 0 32 38" aria-hidden="true" focusable="false"><use href="#upgrade-forge"/></svg>' + '<div class="node-info"><div class="name">' + node.name + '</div>' + '<div class="lvl">Level ' + (node.id==='charge'?researchEffectiveLevel(node,level):level) + (node.levelCap===undefined?'':Amount.add(' / ',node.levelCap)) + (node.id==='charge' && Amount.gt(level,node.levelCap)?Amount.add(Amount.add(' (',level),' historical)'):'') + '</div></div></div>' + (maxed?'':'<div class="desc forge-description">' + forgeDescription(node) + '</div>') + (node.id==='charge' && state.swiftRecoveryRefund && !maxed?Amount.add(Amount.add('<div class="effect-note">Historical levels still count for Forge Deeds. Purchases above level 10 were refunded in Shards',state.swiftRecoveryRefund.unpricedFrom?' where original prices are available':''),'.</div>'):'') + '<div class="desc" data-forge-preview></div>' + (maxed?'':'<div class="forge-actions"><button class="node-queue-toggle ' + (queueOn?'active':'') + '" data-queue="' + node.id + '">Queue ' + (queueOn?'ON':'OFF') + '</button>' + '<button class="buy-btn" data-research="' + node.id + '"></button></div>') + '</div>');
+    html=(html + '<div class="card node-card" data-forge-card="' + node.id + '"' + (maxed?' data-state="maxed" tabindex="-1"':'') + '>' + '<div class="forge-head"><svg class="upgrade-emblem" viewBox="0 0 32 38" aria-hidden="true" focusable="false"><use href="#upgrade-forge"/></svg>' + '<div class="node-info"><div class="name">' + node.name + '</div>' + '<div class="lvl">Level ' + (node.id==='charge'?researchEffectiveLevel(node,level):level) + (node.levelCap===undefined?'':Amount.add(' / ',node.levelCap)) + (node.id==='charge' && Amount.gt(level,node.levelCap)?Amount.add(Amount.add(' (',level),' historical)'):'') + '</div></div></div>' + (maxed?'':cardDetails('forge-'+node.id,forgeDescription(node))) + (node.id==='charge' && state.swiftRecoveryRefund && !maxed?Amount.add(Amount.add('<div class="effect-note">Historical levels still count for Forge Deeds. Purchases above level 10 were refunded in Shards',state.swiftRecoveryRefund.unpricedFrom?' where original prices are available':''),'.</div>'):'') + '<div class="desc" data-forge-preview></div>' + (maxed?'':'<div class="forge-actions"><button class="node-queue-toggle ' + (queueOn?'active':'') + '" data-queue="' + node.id + '">Queue ' + (queueOn?'ON':'OFF') + '</button>' + '<button class="buy-btn" data-research="' + node.id + '"></button></div>') + '</div>');
   });
   var root=els['research-list'],main=document.querySelector('main');
   var focused=root.contains(document.activeElement) ? document.activeElement : null;
@@ -9431,9 +9515,9 @@ function studySpeedMarkup(node,active,maxed){
   var hours=held?(boost.expiresAtMs-boost.startedAtMs)/3600000:state.studyBoostHours[node.id];
   var plan=getStudyBoostPlan(node.id,target,hours);
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
-    '<div class="study-speed-heading"><span>'+(active?'Slot '+(active.slot+1)+' speed':'Speed target')+' <strong data-study-speed-value="'+node.id+'">'+target+'x</strong></span>'+
+    '<div class="study-speed-heading">'+
     '<select data-study-boost-hours="'+node.id+'" aria-label="'+node.name+' — Boost duration" aria-describedby="study-speed-help" '+(held?'disabled':'')+'>'+LAB_BOOST_HOURS.map(function(h,i){return '<option value="'+h+'" '+(hours===h?'selected':'')+'>'+h+' hours'+(i?' · '+[0,5,10][i]+'% off':'')+'</option>';}).join('')+'</select></div>'+
-    '<div class="study-speed-range"><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" '+(held?'disabled':'')+' aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
+    '<div class="study-speed-range"><output data-study-speed-value="'+node.id+'" aria-label="Selected speed">'+target+'x</output><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" '+(held?'disabled':'')+' aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
     '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div>'+
     '<div class="study-boost-action">'+(held?
       '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">'+target+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
@@ -9445,12 +9529,18 @@ function replaceStudyMarkup(html){
   var isChoice=input && input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status]');
   var card=isChoice && root.contains(input) && input.closest('[data-running-study],[data-study-card]');
   var prepared=document.createElement('div');prepared.innerHTML=html;
+  var orderedSlots=prepared.querySelector('.study-slots');
+  if(orderedSlots)Array.from(orderedSlots.children).sort(function(a,b){
+    var ai=a.getAttribute('data-lab-slot'),bi=b.getAttribute('data-lab-slot');
+    return (ai!==null?Number(ai):100+Number(a.getAttribute('data-legacy-slot')))-(bi!==null?Number(bi):100+Number(b.getAttribute('data-legacy-slot')));
+  }).forEach(function(slot){orderedSlots.appendChild(slot);});
   var attr=card && (card.hasAttribute('data-running-study')?'data-running-study':'data-study-card');
   var studyId=card && card.getAttribute(attr);
   var next=card && prepared.querySelector('[data-running-study="'+studyId+'"],[data-study-card="'+studyId+'"]');
   if(isChoice)input.studyRendering=true;
   if(!next || !next.querySelector('.study-speed-controls')){
-    replaceControlMarkup(root,html);
+    replaceControlMarkup(root,null,false,false,prepared);
+    presentControlStates(root);
     if(isChoice){
       input.studyRendering=false;
       var completed=next && root.querySelector('[data-study-card="'+studyId+'"]');
@@ -9481,19 +9571,41 @@ function replaceStudyMarkup(html){
   Array.from(card.children).forEach(function(child){if(child!==controls)card.removeChild(child);});
   var nextChildren=Array.from(next.children),rowIndex=nextChildren.indexOf(nextControls);
   nextChildren.forEach(function(child,i){if(child===nextControls)return;if(i<rowIndex)card.insertBefore(child,controls);else card.appendChild(child);});
-  var children=Array.from(prepared.children);children[children.indexOf(next)]=card;
-  children.forEach(function(child,i){if(root.children[i]===child)return;if(child===card)root.insertBefore(card,root.children[i]||null);else if(root.children[i]===card)root.insertBefore(child,card);else if(root.children[i])root.replaceChild(child,root.children[i]);else root.appendChild(child);});
-  while(root.children.length>children.length)root.removeChild(root.lastElementChild);
+  // Preserve every ancestor of the live native control. Detaching the slot
+  // wrapper cancels a touch drag and can dispatch an early change event.
+  var slots=root.querySelector('.study-slots'),nextSlots=prepared.querySelector('.study-slots');
+  function reconcile(parent,children){
+    children.forEach(function(child,i){
+      if(parent.children[i]===child)return;
+      if(child===card || child===slots)parent.insertBefore(child,parent.children[i]||null);
+      else if(parent.children[i]===card || parent.children[i]===slots)parent.insertBefore(child,parent.children[i]);
+      else if(parent.children[i])parent.replaceChild(child,parent.children[i]);
+      else parent.appendChild(child);
+    });
+    while(parent.children.length>children.length)parent.removeChild(parent.lastElementChild);
+  }
+  reconcile(slots,Array.from(nextSlots.children).map(function(child){return child===next?card:child;}));
+  reconcile(root,Array.from(prepared.children).map(function(child){return child===nextSlots?slots:child;}));
   presentControlStates(root);
   var focus=input.isConnected && !input.disabled?input:controls.querySelector('[data-study-boost-status]') || range;
   if(document.activeElement!==focus)focus.focus({preventScroll:true});
   input.studyRendering=false;range.studyRendering=false;
+}
+var selectedStudySlot=-1;
+function studySlotUnlockText(slot){
+  var apparatus=labExpansionLevel('labcapacity');
+  if(Amount.lt(state.maxDepthEver,15) && slot<2+apparatus)return 'Reach Rift 15';
+  if(Amount.lt(state.maxDepthEver,60) && slot<3+apparatus)return 'Reach Rift 60';
+  var needed=slot+1-(studySlotCount()-apparatus);
+  if(needed<=2)return 'Expanded Apparatus · level '+needed;
+  return 'Rift 60 + Expanded Apparatus · level '+(slot-2);
 }
 function renderLongStudies(){
   var studyView=captureControlViewport(els['study-list']);
   var focusedStudyChoices=document.activeElement && document.activeElement.id==='study-choices';
   var focusedCard=document.activeElement && document.activeElement.closest('[data-running-study],[data-study-card]');
   var focusedStudy=focusedCard && (focusedCard.getAttribute('data-running-study') || focusedCard.getAttribute('data-study-card'));
+  var focusedSlot=focusedCard && focusedCard.getAttribute('data-lab-slot');
   var focusedLegacy=document.activeElement && document.activeElement.getAttribute('data-legacy-upgrade');
   var focusedBegin=document.activeElement && document.activeElement.getAttribute('data-study');
   var focusedSpeed=document.activeElement && document.activeElement.getAttribute('data-speed-study');
@@ -9503,28 +9615,32 @@ function renderLongStudies(){
   renderLabCapacityBadge();
   var slots = studySlotCount();
   var openSlots = Amount.sub(slots,state.activeStudies.length);
-  var html = ('<div class="study-slot-summary' + (Amount.gt(openSlots,0)?' has-open':'') + '"><div><strong>Studies ' + state.activeStudies.length + ' / ' + slots + '</strong><span>' + (Amount.gt(openSlots,0)?Amount.add(Amount.add(Amount.add(openSlots,' slot'),openSlots===1?'':'s'),' available'):'All slots occupied') + '</span></div>' + (Amount.gt(openSlots,0)?'<button class="study-choose-btn" data-study-choose>Choose Study</button>':'') + '</div>');
-  var slotStatus='<div class="study-slot-status" aria-label="Lab slots">';
-  for(var slotIndex=0;slotIndex<slots;slotIndex++){
-    var slotWork=state.activeStudies.find(function(a){return a.slot===slotIndex;}),slotBoost=state.studyBoosts['slot'+slotIndex];
-    var boosted=slotBoost && slotBoost.expiresAtMs>Date.now();
-    slotStatus+='<span'+(boosted?' data-slot-boost-time="'+slotBoost.expiresAtMs+'" data-slot-boost="'+slotIndex+'"':'')+'>Slot '+(slotIndex+1)+' · '+(boosted?slotBoost.mult+'x · '+fmtStudyDuration((slotBoost.expiresAtMs-Date.now())/1000)+' left':slotWork?'Working':'Ready')+'</span>';
+  var html='<div class="study-slots" aria-label="Five Lab slots">';
+  for(var si=0;si<5;si++){
+    var work=state.activeStudies.find(function(a){return a.slot===si;});
+    if(work)continue;
+    var locked=si>=slots,boost=state.studyBoosts['slot'+si],held=boost && boost.expiresAtMs>Date.now();
+    var queued=LONG_STUDIES.find(function(n){return n.id===state.studySlotProjects[si] && state.studyQueue[n.id] && !n.retiredTo && !getStudyStartPlan(n).maxed;});
+    html+='<div class="card study-slot '+(locked?'locked-node':'')+'" style="order:'+si+'" data-lab-slot="'+si+'">'+
+      '<h3>Slot '+(si+1)+'</h3>'+(locked?'<p class="lock-note">'+studySlotUnlockText(si)+'</p>':
+      (queued?'<div class="name"><span class="study-title">'+queued.name+'</span><button class="node-queue-toggle active" data-study-queue="'+queued.id+'">Queue ON</button></div><p>Queued for next level</p>':'<p>Empty</p>')+(held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':'')+
+      '<button class="mini-btn" data-study-slot="'+si+'">'+(queued?'Change research':'Choose research')+'</button>')+'</div>';
   }
-  html+=slotStatus+'</div>';
 
   if(state.activeStudies.length){
     // Presentation-only ordering uses the simulation's remaining-work / speed relationship.
-    state.activeStudies.slice().sort(function(a,b){return studyCompletionSeconds(a)-studyCompletionSeconds(b);}).forEach(function(active,index){
+    state.activeStudies.slice().sort(function(a,b){return a.slot-b.slot;}).forEach(function(active,index){
       var node = LONG_STUDIES.find(function(n){ return n.id===active.id; });
       var maxed=node && node.levelCap!==undefined && Amount.ge(longStudyLevel(active.id),node.levelCap);
       var pct = Amount.max(0,Amount.min(100,Amount.sub(100,Amount.mul(Amount.div(active.remainingSec,active.totalDurationSec),100))));
       var progressValue=Amount.gt(active.remainingSec,0)?Amount.min(99,Amount.round(pct,'round')):100;
-      html=(html + '<div class="card study-card study-running" data-running-study="' + active.id + '">' + '<div class="name"><span class="study-identity"><span class="study-title">' + (node?node.name:'') + '</span><span class="study-level" aria-label="Current level ' + longStudyLevel(active.id) + '">Lv. ' + longStudyLevel(active.id) + (maxed?' · Maxed':'') + '</span></span>' + (node && !node.retiredTo?Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="node-queue-toggle ',state.studyQueue[active.id]?'active':''),'" data-study-queue="'),active.id),'">Queue '),state.studyQueue[active.id]?'ON':'OFF'),'</button>'):'') + '</div>' + (node ? studySpeedMarkup(node,active,maxed) : '') + (node ? projectEarnedMarkup(active.id) : '') + (node && node.retiredTo?Amount.add(Amount.add('<div class="effect-note">Last paid level: work, speed and completion bonus kept. Future upgrades: ',node.retiredTo),'.</div>'):'') + '<div class="effect-note">' + (maxed?'Level cap already reached. Paid work finishes without another level or bonus.':
-          Amount.add(Amount.add('Next: ',projectEarnedEffect(active.id,Amount.add(longStudyLevel(active.id),1))),'.')) + '</div>' + '<div class="study-bar-track" role="progressbar" aria-label="' + (node?node.name:'Study') + ' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + progressValue + '" aria-valuetext="' + progressValue + '% · ' + studyRemainingText(active) + '">' + '<div class="study-bar-fill" aria-hidden="true" data-study-bar="' + active.id + '" style="width:' + pct + '%;"></div>' + '<span class="study-time" data-study-text="' + active.id + '">' + studyRemainingText(active) + '</span></div>' + (node && node.retiredTo?'':'<button class="mini-btn" data-study-pause="'+active.id+'" aria-label="Pause '+(node?node.name:'Study')+' in slot '+(active.slot+1)+'">Pause Study · Slot '+(active.slot+1)+'</button>') + '</div>');
+      html=(html + '<div class="card study-card study-running '+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="' + active.id + '"><h3>'+(active.slot<5?'Slot '+(active.slot+1):'Legacy paid study')+'</h3>' + '<div class="name"><span class="study-identity"><span class="study-title">' + (node?node.name:'') + '</span><span class="study-level" aria-label="Current level ' + longStudyLevel(active.id) + '">Lv. ' + longStudyLevel(active.id) + (node && node.levelCap!==undefined?' / '+node.levelCap:'') + (maxed?' · Maxed':'') + '</span></span>' + (node && !node.retiredTo?Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="node-queue-toggle ',state.studyQueue[active.id]?'active':''),'" data-study-queue="'),active.id),'">'),state.studyQueue[active.id]?'Queue ON':'Clear slot'),'</button>'):'') + '</div>' + (node ? studySpeedMarkup(node,active,maxed) : '') + (node ? projectEarnedMarkup(active.id) : '') + (node && node.retiredTo?Amount.add(Amount.add('<div class="effect-note">Last paid level: work, speed and completion bonus kept. Future upgrades: ',node.retiredTo),'.</div>'):'') + '<div class="effect-note">' + (maxed?'Level cap already reached. Paid work finishes without another level or bonus.':
+          Amount.add(Amount.add('Next: ',projectEarnedEffect(active.id,Amount.add(longStudyLevel(active.id),1))),'.')) + '</div>' + '<div class="study-bar-track" role="progressbar" aria-label="' + (node?node.name:'Study') + ' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + progressValue + '" aria-valuetext="' + progressValue + '% · ' + studyRemainingText(active) + '">' + '<div class="study-bar-fill" aria-hidden="true" data-study-bar="' + active.id + '" style="width:' + pct + '%;"></div>' + '<span class="study-time" data-study-text="' + active.id + '">' + studyRemainingText(active) + '</span></div>' + (node && !node.retiredTo && active.slot<5?'<button class="mini-btn" data-study-slot="'+active.slot+'">Change research</button>':'') + '</div>');
     });
   }
 
-  html=(html + '<h3 class="study-choices-title" id="study-choices" tabindex="-1">' + (Amount.gt(openSlots,0) ? 'Choose a Study to begin' : 'Study choices — no open slots') + '</h3>');
+  html+='</div><section class="study-catalogue" '+(selectedStudySlot<0?'hidden':'')+' aria-labelledby="study-choices">'+
+    '<div class="study-catalogue-heading"><h3 id="study-choices" tabindex="-1">Research for slot '+(selectedStudySlot+1)+'</h3><button class="mini-btn" data-study-close>Close</button></div>';
   var legacyHtml='',lastStudyGroup='';
   LONG_STUDIES.forEach(function(lnode){
     if(findActiveStudy(lnode.id)) return;
@@ -9534,7 +9650,7 @@ function renderLongStudies(){
     }
     var group=lnode.labGroup||'Foundations';
     if(group!==lastStudyGroup){html=(html + '<h4 class="study-choices-title" data-study-group="' + group + '">' + group + '</h4>');lastStudyGroup=group;}
-    var plan=getStudyStartPlan(lnode);
+    var plan=getStudyStartPlan(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);
     if(!plan.unlocked){
       html=(html + '<div class="card study-card locked-node" data-state="locked" aria-disabled="true" style="margin-bottom:10px;">' + '<div class="name">' + (lnode.labGroup?lnode.name:'???') + '</div>' + '<div class="desc lock-note">Unlocks at Rift ' + lnode.unlockDepth + '</div>' + '</div>');
       return;
@@ -9542,18 +9658,18 @@ function renderLongStudies(){
     var level=plan.level,cost=plan.cost,dur=plan.duration;
     var queueOn = !!state.studyQueue[lnode.id];
     if(plan.paused){
-      html += '<div class="card study-card" data-study-card="'+lnode.id+'"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' · Paused</span></div>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note">'+fmtStudyDuration(dur)+' of paid work remains.</div><button class="mini-btn" data-study="'+lnode.id+'" '+(plan.affordable?'':'disabled')+'>Resume Study</button></div>';
+      html += '<div class="card study-card" data-study-card="'+lnode.id+'"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' · Saved work</span></div>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note">'+fmtStudyDuration(dur)+' of paid work remains.</div><button class="mini-btn" data-study="'+lnode.id+'" '+(plan.affordable?'':'disabled')+'>Select research</button></div>';
       return;
     }
     if(plan.maxed){
       html += '<div class="card study-card" data-study-card="'+lnode.id+'" data-state="maxed" tabindex="-1"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' / '+lnode.levelCap+' · Maxed</span></div>'+projectEarnedMarkup(lnode.id,true)+'</div>';
       return;
     }
-    html=(html + '<div class="card study-card" data-study-card="' + lnode.id + '" data-state="' + (plan.maxed?'maxed':plan.affordable?'affordable':'unavailable') + '" style="margin-bottom:10px;">' + '<div class="name"><span class="study-identity"><span class="study-title">' + lnode.name + '</span><span class="study-level" aria-label="Current level ' + level + '">Lv. ' + level + (plan.maxed?' · Maxed':'') + '</span></span>' + '<button class="node-queue-toggle ' + (queueOn?'active':'') + '" data-study-queue="' + lnode.id + '">Queue ' + (queueOn?'ON':'OFF') + '</button></div>' + studySpeedMarkup(lnode,null,plan.maxed) + (lnode.labGroup?Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="desc">',lnode.desc),'</div><div class="effect-note">Level '),level),' / '),lnode.levelCap),'</div>'):'') + projectEarnedMarkup(lnode.id) + '<div class="effect-note">' + (plan.maxed?Amount.add(Amount.add('Effect cap reached. Queue ',queueOn?'ON':'OFF'),' retained; no new starts.'):
-        Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':Amount.gt(openSlots,0)?'Begin Study':'No open slots') + '</button>' + '</div>');
+    html=(html + '<div class="card study-card" data-study-card="' + lnode.id + '" data-state="' + (plan.maxed?'maxed':plan.affordable?'affordable':'unavailable') + '" style="margin-bottom:10px;">' + '<div class="name"><span class="study-identity"><span class="study-title">' + lnode.name + '</span><span class="study-level" aria-label="Current level ' + level + '">Lv. ' + level + (lnode.levelCap!==undefined?' / '+lnode.levelCap:'') + (plan.maxed?' · Maxed':'') + '</span></span>' + '</div>' + (lnode.labGroup?cardDetails('lab-'+lnode.id,lnode.desc):'') + projectEarnedMarkup(lnode.id) + '<div class="effect-note">' + (plan.maxed?Amount.add(Amount.add('Effect cap reached. Queue ',queueOn?'ON':'OFF'),' retained; no new starts.'):
+        Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':selectedStudySlot>=0?'Select research':'Choose a slot') + '</button>' + '</div>');
   });
 
-  html += '<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours, then activate once for the shown Motes. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. It expires without another payment. Existing speed already paid for a level remains protected.</div>';
+  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours, then activate once for the shown Motes. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. It expires without another payment. Existing speed already paid for a level remains protected. Queue OFF clears a slot and preserves paid work for later.</div>','How research works','study-help');
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -9584,6 +9700,10 @@ function renderLongStudies(){
     var preservedFocus=els['study-list'].querySelector(('[data-legacy-upgrade="' + focusedLegacy + '"]'));
     if(preservedFocus){preservedFocus.tabIndex=-1;preservedFocus.focus();}
   }
+  if(focusedStudy && !findActiveStudy(focusedStudy) && focusedSlot!==null){
+    var readySlot=els['study-list'].querySelector('[data-study-slot="'+focusedSlot+'"]');
+    if(readySlot)readySlot.focus({preventScroll:true});
+  }
   var choose=els['study-list'].querySelector('[data-study-choose]');
   if(choose) choose.addEventListener('click',function(){
     var target=document.getElementById('study-choices');
@@ -9592,21 +9712,25 @@ function renderLongStudies(){
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var lnode = LONG_STUDIES.find(function(n){ return n.id===btn.getAttribute('data-study'); });
-      startStudy(lnode);
+      startStudy(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);
     });
   });
-  els['study-list'].querySelectorAll('[data-study-pause]').forEach(function(btn){
-    btn.addEventListener('click',function(){pauseStudy(btn.getAttribute('data-study-pause'));});
+  els['study-list'].querySelectorAll('[data-study-slot]').forEach(function(btn){
+    btn.onclick=function(){selectedStudySlot=Number(btn.getAttribute('data-study-slot'));renderLongStudies();var heading=document.getElementById('study-choices');heading.focus({preventScroll:true});heading.scrollIntoView({block:'start'});};
   });
+  var close=els['study-list'].querySelector('[data-study-close]');
+  if(close)close.onclick=function(){var slot=selectedStudySlot;selectedStudySlot=-1;renderLongStudies();var button=els['study-list'].querySelector('[data-study-slot="'+slot+'"]');if(button)button.focus({preventScroll:true});};
   els['study-list'].querySelectorAll('[data-study-queue]').forEach(function(btn){
     if(btn.studyBound) return;
     btn.studyBound=true;
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       var id = btn.getAttribute('data-study-queue');
-      state.studyQueue[id] = !state.studyQueue[id];
-      saveState();
-      renderLongStudies();
+      var active=findActiveStudy(id);
+      if(active){if(active.slot<5)clearStudySlot(active.slot);else pauseStudy(id);return;}
+      var assignedSlot=state.studySlotProjects.indexOf(id);
+      if(assignedSlot>=0){clearStudySlot(assignedSlot);return;}
+      if(forgeCommitPaidMutation(function(){state.studyQueue[id]=!state.studyQueue[id];}))renderLongStudies();
     });
   });
   els['study-list'].querySelectorAll('[data-study-boost-hours]').forEach(function(select){
@@ -9717,7 +9841,7 @@ function renderNodes(){
       var reqAch = ACHIEVEMENTS.find(function(a){ return a.id===node.requiresAchievement; });
       var requirement=node.requiresAchievement ? ('Unlocks with the Deed “' + (reqAch?reqAch.name:'') + '”') : ('Unlocks at Rift ' + (node.unlockDepth||1));
       if(node.requiresSwift) requirement=(requirement + ' · Swift Ascension level ' + node.requiresSwift);
-      html=(html + '<div class="card node-card locked-node" data-tree-node="' + node.id + '" data-state="locked" aria-disabled="true">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--ink-dim);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<div class="desc">' + node.desc + '</div>' + '<div class="desc lock-note">' + requirement + '</div>' + (Amount.gt(nodeLevel(node.id),0)?Amount.add(Amount.add(Amount.add(Amount.add('<div class="earned-effect" data-node-effect="',node.id),'">'),nodeEarnedEffect(node.id)),'</div>'):'') + '</div>' + '</div>');
+      html=(html + '<div class="card node-card locked-node" data-tree-node="' + node.id + '" data-state="locked" aria-disabled="true">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--ink-dim);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + cardDetails('tree-'+node.id,node.desc) + '<div class="desc lock-note">' + requirement + '</div>' + (Amount.gt(nodeLevel(node.id),0)?Amount.add(Amount.add(Amount.add(Amount.add('<div class="earned-effect" data-node-effect="',node.id),'">'),nodeEarnedEffect(node.id)),'</div>'):'') + '</div>' + '</div>');
       return;
     }
     var plan = getNodeBuyPlan(node);
@@ -9727,7 +9851,7 @@ function renderNodes(){
     var priced = Amount.valid(plan.cost);
     var levelText=('Level ' + level + (node.levelCap!==undefined?Amount.add(' · Cap ',node.levelCap):'') + (node.levelCap!==undefined && Amount.gt(level,node.levelCap)?' · Saved level preserved':''));
     if(node.id==='bonds'){levelText=('Level ' + Amount.min(level,20) + ' / 20');if(Amount.gt(level,20))levelText=(levelText + ' · ' + level.toLocaleString('en-US') + ' purchased levels preserved');}
-    html=(html + '<div class="card node-card" data-tree-node="' + node.id + '">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--prism);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<div class="desc">' + node.desc + '</div>' + '<div class="lvl" style="color:var(--prism);">' + levelText + '</div>' + '<div class="earned-effect" data-node-effect="' + node.id + '"><strong>Current node contribution:</strong> ' + nodeEarnedEffect(node.id) + '</div>' + '<div class="effect-note">From this node only; other upgrades contribute separately.</div>' + (node.id==='bonds' && state.feedbackMigration.receipts['node.bonds'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; ',state.feedbackMigration.receipts['node.bonds'].unpricedFrom ? 'refunds cover purchases with available prices.' : 'purchases above level 20 refunded in Prisms.'),'</div>') : '') + (node.id==='bonds' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + (node.id==='echo' && state.feedbackMigration.receipts['node.echo'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; purchases above level 6 refunded in Prisms',state.feedbackMigration.receipts['node.echo'].unpricedFrom ? ' where original prices are available' : ''),'.</div>') : '') + (node.id==='echo' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + '</div>' + '<button class="buy-btn" data-node="' + node.id + '" ' + (plan.affordable?'':'disabled') + ' aria-label="' + (capped?Amount.add(node.name,' maximum level reached'):unavailable?Amount.add(node.name,' price unavailable'):Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('Buy ',node.name),' level '),Amount.add(level,1)),' for '),formatNum(plan.cost)),' Prisms')) + '" style="min-width:78px;">' + (capped?'<span class="label">Maxed</span>':unavailable&&!priced?'<span class="label">Unavailable</span>':Amount.add(Amount.add(Amount.add(purchasePriceMarkup('prism',plan.cost,'cost mono'),'<span class="label">'),unavailable?'Unavailable':'Prisms'),'</span>')) + '</button>' + '</div>');
+    html=(html + '<div class="card node-card" data-tree-node="' + node.id + '">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--prism);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + cardDetails('tree-'+node.id,node.desc) + '<div class="lvl" style="color:var(--prism);">' + levelText + '</div>' + '<div class="earned-effect" data-node-effect="' + node.id + '">Bonus: ' + nodeEarnedEffect(node.id) + '</div>' + '' + (node.id==='bonds' && state.feedbackMigration.receipts['node.bonds'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; ',state.feedbackMigration.receipts['node.bonds'].unpricedFrom ? 'refunds cover purchases with available prices.' : 'purchases above level 20 refunded in Prisms.'),'</div>') : '') + (node.id==='bonds' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + (node.id==='echo' && state.feedbackMigration.receipts['node.echo'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; purchases above level 6 refunded in Prisms',state.feedbackMigration.receipts['node.echo'].unpricedFrom ? ' where original prices are available' : ''),'.</div>') : '') + (node.id==='echo' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + '</div>' + '<button class="buy-btn" data-node="' + node.id + '" ' + (plan.affordable?'':'disabled') + ' aria-label="' + (capped?Amount.add(node.name,' maximum level reached'):unavailable?Amount.add(node.name,' price unavailable'):Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('Buy ',node.name),' level '),Amount.add(level,1)),' for '),formatNum(plan.cost)),' Prisms')) + '" style="min-width:78px;">' + (capped?'<span class="label">Maxed</span>':unavailable&&!priced?'<span class="label">Unavailable</span>':Amount.add(Amount.add(Amount.add(purchasePriceMarkup('prism',plan.cost,'cost mono'),'<span class="label">'),unavailable?'Unavailable':'Prisms'),'</span>')) + '</button>' + '</div>');
   });
   replaceControlMarkup(els['node-list'],html);
   els['node-list'].querySelectorAll('[data-node]').forEach(function(btn){
@@ -9810,8 +9934,8 @@ function renderCometCommands(){
   if(!root) return;
   var owned=state.owned.meteor || state.owned.starcall;
   var panel=document.getElementById('tab-battle'),main=document.querySelector('main');
-  panel.classList.toggle('has-comet-commands',!!owned);
-  if(main) main.classList.toggle('comet-command-scroll',!!owned && panel.classList.contains('active'));
+  panel.classList.remove('has-comet-commands');
+  if(main) main.classList.remove('comet-command-scroll');
   root.hidden=!owned;
   if(!root.querySelector('[data-comet-command]')){
     var html='<h3 id="comet-command-title">Comet Commands</h3><div class="comet-bank">'+
@@ -9881,9 +10005,9 @@ function updateCometShopCard(item,card){
   var level=upgrade ? cometUpgradeLevel(item.id) : plan.level;
   card.querySelector('[data-comet-level]').textContent=upgrade ? 'Level '+level+' / '+plan.cap+
     (plan.level>plan.cap?' · Saved level '+formatNum(plan.level)+' retained':'') : plan.owned?'Owned':'Not owned';
-  card.querySelector('[data-comet-effect]').textContent='Current: '+cometShopEffect(item.id,level);
+  card.querySelector('[data-comet-effect]').textContent=(plan.maxed?'Current: ':'Next: ')+cometShopEffect(item.id,plan.maxed?level:level+1);
   var next=card.querySelector('[data-comet-next]');
-  next.textContent=plan.maxed ? 'Fully purchased.' : 'Next: '+cometShopEffect(item.id,level+1);
+  next.textContent='';
   var button=card.querySelector('[data-shop]');
   if(button){
     button.disabled=!plan.available;
@@ -9955,9 +10079,9 @@ function renderAchievements(){
     var pending=done && state.cometClaims.deeds[a.id]===true;
     html+='<div class="card ach-card '+(done?'done':'')+'" data-deed="'+a.id+'" data-state="'+(done?'completed':'available')+'">'+
       '<span class="dot"></span><div class="info"><div class="name">'+a.name+(done?' · Completed':'')+'</div>'+
-      '<div class="deed-requirement" data-deed-requirement="'+a.id+'">'+presentation.requirement+'</div>'+
+      (presentation.requirement.replace(/\.$/,'')===a.name?'':'<div class="deed-requirement" data-deed-requirement="'+a.id+'">'+presentation.requirement+'</div>')+
       '<div class="ach-progress mono" data-deed-progress="'+a.id+'" data-current="'+current+'" data-target="'+(progress?progress.target:0)+'">'+deedProgressText(a,done)+'</div>'+
-      (presentation.scope?'<div class="deed-scope">'+presentation.scope+'</div>':'')+
+      (presentation.scope?cardDetails('deed-'+a.id,presentation.scope):'')+
       (a.unlocks?'<div class="ach-unlock">Unlocks: '+a.unlocks+'</div>':'')+
       (pending?'<div class="deed-credit-state" data-deed-credit-state="due">Reward pending · '+COMET_DEED_REWARDS[a.id]+' Comets preserved</div>':'')+
       '</div><span class="reward mono" aria-label="Reward: '+a.reward+' Comets'+(pending?', pending':'')+'">+'+a.reward+' '+costIcon('comet')+'</span></div>';
@@ -9978,7 +10102,7 @@ function renderAchievements(){
     var button=item.id==='autoascend' && plan.owned ? '<button type="button" data-autoascend-open>Open Ascend</button>' :
       '<button type="button" data-shop="'+item.id+'"'+(!plan.available?' disabled':'')+'></button>';
     shopHtml+='<div class="card shop-card comet-purchase" data-comet-card="'+item.id+'" tabindex="-1">'+
-      '<div class="info"><div class="name">'+item.name+'</div><div class="desc">'+item.desc+'</div>'+
+      '<div class="info"><div class="name">'+item.name+'</div>'+cardDetails('comet-'+item.id,item.desc)+
       '<div class="comet-level" data-comet-level></div><div class="desc" data-comet-requirement>'+cometBuyRequirement(item)+'</div>'+
       '<div class="earned-effect" data-comet-effect></div><div class="desc" data-comet-next></div>'+
       (item.id==='autoascend' && plan.owned?'<div class="desc">'+(state.autoAscendEnabled?'ON':'OFF')+' · Clear Rift '+autoAscendClearedTarget()+'. Controls are on Ascend.</div>':'')+
@@ -10357,11 +10481,8 @@ function syncMainScrollMode(tabName){
   if(main.classList.contains('rift-scroll-locked')!==battleActive){
     main.classList.toggle('rift-scroll-locked', battleActive);
   }
-  var commandScroll=battleActive && !!(state && (state.owned.meteor || state.owned.starcall));
-  main.classList.toggle('comet-command-scroll',commandScroll);
-  if(!commandScroll){
-    if(battleActive && main.scrollTop!==0) main.scrollTop = 0;
-  }
+  main.classList.remove('comet-command-scroll');
+  if(battleActive && main.scrollTop!==0) main.scrollTop = 0;
 }
 var workshopSection='forge';
 function activateTab(tabName){

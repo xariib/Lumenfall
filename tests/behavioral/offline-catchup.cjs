@@ -150,6 +150,9 @@ function baselineSummary(actual,expected,label){
  assert.equal(actual.studySpeedPurchases,0,label+' no legacy repeat purchases');
  assert.equal(actual.studyMotesSpent,0,label+' no legacy repeat spending');
  const {studySpeedPurchases,studyMotesSpent,...existing}=actual;
+ const newlyEarned=actual.achievements.filter(id=>id.startsWith('endless_'));
+ assert.equal(new Set(newlyEarned).size,newlyEarned.length,label+' distinct new Deeds');
+ existing.achievements=actual.achievements.filter(id=>!id.startsWith('endless_'));
  // The separately accepted timed-Lab revision changes only eligible Mote
  // frequency here. Its exact cooldown/amount/chronology oracle lives in
  // lab-timed-boosts.cjs. Retain every other historical summary field.
@@ -160,6 +163,18 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
+ const targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]};
+ const rewardById=new Map(Object.entries(targets).flatMap(([track,values])=>values.map((target,index)=>['endless_'+track+'_'+target,10+5*index])));
+ let deedRewards=0;
+ for(const id of currentSummary.achievements.filter(id=>id.startsWith('endless_'))){
+  assert(rewardById.has(id),label+' known long-term Deed '+id);
+  assert.equal(actual.achieved[id],true,label+' new Deed persisted '+id);
+  deedRewards+=rewardById.get(id);
+ }
+ for(const id of rewardById.keys())delete actual.achieved[id];
+ assert(Array.isArray(actual.studySlotProjects)&&actual.studySlotProjects.length===5,label+' five saved slots');
+ actual.activeStudies.forEach(record=>{if(record.slot<5)assert.equal(actual.studySlotProjects[record.slot],record.id,label+' paid work owns assigned slot');});
+ delete actual.studySlotProjects;
  assert.deepEqual(actual.studyBoosts,{},label+' old save receives no free timed boosts');
  assert.deepEqual(actual.studyBoostHours,Object.fromEntries(Object.keys(actual.longStudyLevels).map(id=>[id,8])),label+' exact default boost durations');
  assert(actual.moteNextAtMs===0 || actual.moteNextAtMs>=seed.lastSeen && actual.moteNextAtMs<=seed.lastSeen+seconds*1000+60000,label+' actual eligible payout clock stays inside the simulated window');
@@ -235,7 +250,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  let refund=0;for(let i=0;i<(seed.nodes?.reserves||0);i++)refund+=Math.ceil(6*Math.pow(1.6,i));
  assert.equal(actual.schemaVersion,5,label+' migrated schema');
  assert.deepEqual(existing,{...expected,schemaVersion:5,owned:oldOwnership,activeFormationPreset:selected,
-  prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0),motes:expected.motes-oldSummary.motesGained+currentSummary.motesGained},label);
+  prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0)+deedRewards,motes:expected.motes-oldSummary.motesGained+currentSummary.motesGained},label);
 }
 function runAsync(seed,seconds,batch=256){
  const x=app(seed,source,seconds),before=copy(x.b.get());x.b.batch(batch);

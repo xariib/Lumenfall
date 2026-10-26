@@ -27,6 +27,7 @@ const cases=String.raw`
   ];
   for(const spec of specs){
    await ev('prismQa.set(prismQa.collectionSeed());prismQa.ready();prismQa.tab('+JSON.stringify(spec.tab)+')');
+   if(spec.tab==='research')await ev('document.querySelector("[data-study-slot]").click()');
    // Observe actual entry-animation completion before strict 44px geometry checks.
    await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+spec.tab)+').getAnimations().map(function(a){return a.finished;})).then(function(){return true;})');
    const wantedNames={lumen:'Lumen',shard:'Shards',prism:'Prisms',comet:'Comets'},walletKeys={lumen:'lumen',shard:'shards',prism:'prisms',comet:'comets'};

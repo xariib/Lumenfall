@@ -1968,21 +1968,21 @@
             document.querySelector('[data-tab="research"]').focus();
             document.querySelector('[data-tab="research"]').click();
             assert(document.activeElement===document.querySelector('[data-tab="research"]'),'Rift arrival focuses Long Studies tab');
-            var status=document.querySelector('.study-slot-summary');
+            var status=document.querySelector('.study-slots');
             assert(status===document.getElementById('study-list').firstElementChild,'occupancy leads Study content');
-            assert(status.textContent.indexOf('Studies '+count+' / 3')!==-1,'slot occupancy uses authoritative count');
-            assert(status.textContent.indexOf(count===3?'All slots occupied':(3-count)+' slot'+(count===2?'':'s')+' available')!==-1,'free/full slot text is explicit');
+            assert(status.querySelectorAll('[data-lab-slot]').length===5,'five slot cards always present');
+            assert(status.querySelectorAll('.study-slot:not(.study-running):not(.locked-node)').length===3-count,'empty unlocked slots use authoritative count');
             var running=Array.from(document.querySelectorAll('[data-running-study]'));
             assert(running.length===count,'every active Study remains visible');
             if(count){
-              assert(running[0].dataset.runningStudy==='shardstudy','next completion accounts for speed, without mutating queue order');
-              assert(running[0].querySelector('[data-study-text]').textContent==='5m 50s remaining · 2x','remaining display preserves seconds from authoritative work divided by speed');
+              assert(running[0].dataset.runningStudy==='wispascend','running studies retain stable slot order');
+              assert(document.querySelector('[data-running-study=shardstudy] [data-study-text]').textContent==='5m 50s remaining · 2x','remaining display preserves seconds from authoritative work divided by speed');
               window.checkLabSpeedControls(bridge,assert,'shardstudy');
             }
-            var choose=document.querySelector('[data-study-choose]');
-            assert(!!choose===(count<3),'choose action is offered when a slot is free');
+            var choose=document.querySelector('[data-study-slot]');
+            assert(!!choose,'unlocked slot offers choose or change');
             if(choose){choose.click();assert(document.activeElement===document.getElementById('study-choices'),'choose action moves focus to existing choices');}
-            if(count===3) assert(Array.from(document.querySelectorAll('[data-study]')).every(function(btn){return btn.disabled;}),'full slots preserve disabled start controls');
+            if(count===3)assert(state().activeStudies.length===3,'opening replacement catalogue preserves all paid records');
             assert(JSON.stringify(state())===beforeLab,'Lab inspection/navigation must not mutate gameplay');
           });
           finish('pass',{occupancy:[0,2,3],nextCompletion:'shardstudy',focus:true,stateUnchanged:true});return;
@@ -2007,11 +2007,11 @@
           var progression=document.querySelector('.wisp-progression');
           var inspectId=progression.dataset.wispProgression;
           var complete=state().heroRarity[inspectId]>=5 && state().wispModules[inspectId]>=20 && state().wispUltimate[inspectId];
-          assert((progression.tagName==='DETAILS')===!!complete,'only completed Wisp progression has native disclosure');
+          assert(progression.tagName==='DETAILS','all Wisp progression has native disclosure');
           var title=progression.querySelector('[data-wisp-details]');
-          title.focus();if(complete) progression.open=true;bridge.renderLayout();
+          title.focus();progression.open=true;bridge.renderLayout();
           progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');
-          assert(complete ? progression.open : !progression.querySelector('summary'),'progression stays open through refresh');
+          assert(progression.open,'progression stays open through refresh');
           assert(document.activeElement===progression.querySelector('[data-wisp-details]'),'refresh preserves progression keyboard focus');
           assert(progression.querySelector('[data-rarity]') && progression.querySelector('.hero-ability'),'secondary upgrade information remains reachable');
           assert(JSON.stringify(state())===beforeHierarchy,'hierarchy/navigation/inspection must not mutate gameplay state');
@@ -2117,6 +2117,7 @@
           bridge.renderLayout();
           document.querySelector('[data-tab="research"]').click();
           var researchBeforeStudy=JSON.stringify(state().research);
+          document.querySelector('[data-study-slot]').click();
           var beginStudy=document.querySelector('[data-study="guardmastery"]');
           assert(beginStudy && !beginStudy.disabled,'funded Long Study action must remain available');
           beginStudy.click();
@@ -2411,7 +2412,8 @@
           assert(economy.restStopCometTotal===450,'the historical four Rest Stop purchases retain their independent 450-Comet value');
           assert(economy.retirementCometTotal===350&&economy.retiredEntitlements.every(function(v){return v===true;}),'actual migration preserves all three retired entitlements and their 350-Comet compensation');
           assert(economy.deedCometTotal===683,'original23 one-time Deeds must total 683 Comets');
-          assert(economy.newDeedCometTotal===50,'the four new event Deeds separately total 50 Comets');
+          assert(economy.eventDeedCometTotal===50,'the four original event Deeds separately total 50 Comets');
+          assert(economy.longtailDeedCount===49&&economy.longtailDeedCometTotal===1250&&economy.newDeedCometTotal===1300,'49 long-term Deeds add their fixed 1250 Comets without changing the original event rewards');
           assert(economy.questRefreshCost>=economy.maxQuestCometReward,'Daily Quest Refresh must never be cheaper than the richest Comet quest reward');
           assert(economy.sigilResonanceCost===25 && economy.sigilResonanceRunLimit===3,'Sigil Resonance must remain fixed at 25 Sigils and 3 uses per Ascension run');
 

@@ -17,6 +17,16 @@ const NEW_DEEDS = [
   ['comet_first_command',5], ['comet_first_recharge',10],
   ['comet_boss_strike',15], ['comet_called_kill',20]
 ];
+// New long-term rewards extend the catalogue. The original bounded migration
+// claim family below remains unchanged for historical purchase settlement.
+const ENDLESS_DEEDS = Object.entries({
+  rift:[500,1000,2500,5000,10000,25000,100000,1000000],
+  ascend:[25,50,100,250,500,1000,10000,100000],
+  kills:[10000,100000,1000000,10000000,100000000,1000000000],
+  lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],
+  mastery:[10,25,50,100,250,500,1000,5000,10000],
+  rest:[24,72,168,720,2160,8760]
+}).flatMap(([track,targets])=>targets.map((target,i)=>['endless_'+track+'_'+target,10+5*i]));
 const RETIRED = [['comettrials',140], ['rifttrail',50], ['starfallcrest',160]];
 const CATALOG = [
   {id:'autoascend',cap:1,prices:[100],deeds:[]},
@@ -183,7 +193,7 @@ function runNumerical(source,options={}) {
   equal(q.schema(),5,'current save schema5');
   equal(CLAIMS.length,30,'fixed bounded identity count');
   equal(CLAIMS.reduce((sum,row)=>sum+row[1],0),1083,'fixed old+new+retirement credit family');
-  equal(q.achievementDefs().map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'independent old23 + new4 reward table/order');
+  equal(q.achievementDefs().map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS,ENDLESS_DEEDS),'original and long-term Deed reward table/order');
   let randomState=0x43da01b9;
   function random32(){randomState^=randomState<<13;randomState^=randomState>>>17;randomState^=randomState<<5;return randomState>>>0;}
   function randomFinite(){return fromBits((BigInt(random32()%2047)<<52n)|(BigInt(random32()&0xfffff)<<32n)|BigInt(random32()));}

@@ -19,21 +19,21 @@ module.exports=async function({send,ev,pause,check,records,args}){
   // identify earned progress, including zero and the level currently running.
   for(const level of [0,5]){
    const idle=seed();idle.activeStudies=[];idle.longStudyLevels.guardmastery=level;await install(idle);
-   check(await ev('!'+buy+' && !/Start a Study to boost/.test(document.querySelector("[data-study-card=guardmastery]").textContent)'),'idle Study has no boost action box');
-   check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+'"'),'idle badge shows current earned level '+level);
-   await choose(2,12);await ev(range+'.focus();window.idleRange='+range+';window.idleWallet=uiRegression.get().motes;uiRegression.render();uiRegression.render()');
-   check(await ev(range+'===idleRange&&document.activeElement===idleRange&&'+hours+'.value==="12"&&!'+buy+'&&uiRegression.get().motes===idleWallet'),'idle choices/focus survive refresh without spending');
+   check(await ev('document.querySelector(".study-catalogue").hidden&&!'+range),'idle slot hides catalogue and speed controls');
+   await touch('document.querySelector("[data-study-slot]")');
+   check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+' / 500"'),'catalogue badge shows earned level');
    await ev('document.querySelector("[data-study=guardmastery]").focus()');await key('Enter');
-   check(await ev(buy+' && '+buy+'.dataset.speed==="2"&&'+buy+'.dataset.hours==="12"&&uiRegression.get().motes===idleWallet'),'Begin Study reveals selected boost quote without spending Motes');
-   check(await ev('document.querySelector("[data-running-study=guardmastery] .study-level").textContent==="Lv. '+level+'"'),'running badge retains earned level');
-   await ev(range+'.focus();uiRegression.finish()');
-   check(await ev('!'+buy+'&&document.activeElement==='+range+'&&document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+(level+1)+'"'),'completion hides unpaid action, increments current badge and retains focus');
+   check(await ev('uiRegression.get().activeStudies[0].slot===0&&uiRegression.get().motes===100000&&'+range+'.getClientRects().length>0'),'slot research reveals speed without spending Motes');
+   await choose(2,12);await ev(range+'.focus();window.idleRange='+range+';uiRegression.render();uiRegression.render()');
+   check(await ev(range+'===idleRange&&document.activeElement===idleRange&&'+hours+'.value==="12"&&uiRegression.get().motes===100000'),'slot speed choices/focus survive refresh without spending');
+   await ev('uiRegression.finish()');
+   check(await ev('!'+buy+'&&document.activeElement===document.querySelector("[data-study-slot]")&&uiRegression.get().longStudyLevels.guardmastery==='+ (level+1)),'completion returns focus to empty slot and preserves earned level');
   }
   await install(seed());
   check(await ev(range+'.getClientRects().length>0 && '+hours+'.getClientRects().length>0 && !document.querySelector("[data-study-use-motes],[data-study-details]")'),'direct controls, no old panel/recurring toggle');
   check(await ev('(()=>{var r=document.querySelector("[data-running-study=guardmastery]"),bad=[];r.querySelectorAll("button,input,select,.effect-note").forEach(e=>{var b=e.getBoundingClientRect();if(b.left<0||b.right>innerWidth+1||e.scrollWidth>e.clientWidth+1)bad.push(e.outerHTML);if(e.matches("button,input,select")&&(b.width<44||b.height<44))bad.push(e.outerHTML)});return !bad.length&&document.documentElement.scrollWidth<=innerWidth+1;})()'),'fit and44px targets '+JSON.stringify({width,scale,motion}));
   check(await ev(range+'.type==="range"&&'+range+'.min==="0"&&'+range+'.max==="7"&&'+range+'.step==="1"'),'exact eight speed steps');
-  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
+  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0 / 500"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
   await ev(range+'.focus();window.originalRange='+range+';window.beforePreview=JSON.stringify(uiRegression.get());window.beforeSaves=JSON.stringify(uiRegression.saves())');
   for(const index of [1,2,3,4,5,6,7]){
    await ev(range+'.value='+index+';'+range+'.dispatchEvent(new Event("input",{bubbles:true}));uiRegression.render();uiRegression.render()');
@@ -71,11 +71,11 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await ev('uiRegression.save();uiRegression.load()');
   check(await ev('uiRegression.get().studyBoostHours.guardmastery===12&&uiRegression.get().studyBoosts.slot0.mult===3&&'+status+'.textContent.includes("3x")'),'actual save/reload retains timer');
   await ev(status+'.focus();uiRegression.finish()');
-  check(await ev('!uiRegression.get().activeStudies.length&&document.activeElement==='+range+'&&!'+status+'&&!'+buy+'&&uiRegression.get().studyBoosts.slot0.mult===3&&document.querySelector("[data-slot-boost]").textContent.includes("3x")'),'completion returns focus to idle Study and retains slot timer without renewing');
-  await ev('document.querySelector("[data-study=guardmastery]").focus();document.querySelector("[data-study=guardmastery]").click()');
+  check(await ev('!uiRegression.get().activeStudies.length&&document.activeElement===document.querySelector("[data-study-slot]")&&!'+status+'&&!'+buy+'&&uiRegression.get().studyBoosts.slot0.mult===3&&document.querySelector("[data-slot-boost]").textContent.includes("3x")'),'completion returns focus to idle Study and retains slot timer without renewing');
+  await touch('document.querySelector("[data-study-slot]")');await ev('document.querySelector("[data-study=guardmastery]").focus();document.querySelector("[data-study=guardmastery]").click()');
   check(await ev('uiRegression.get().activeStudies[0].id==="guardmastery"&&document.activeElement==='+status),'new level uses remaining timer and focus');
   await ev('document.querySelector("[data-study-queue=guardmastery]").focus()');await key('Space');
-  check(await ev('uiRegression.get().studyQueue.guardmastery&&uiRegression.get().motes===95012'),'Study Queue independently toggles without debit');
+  check(await ev('!uiRegression.get().studyQueue.guardmastery&&!uiRegression.get().activeStudies.length&&uiRegression.get().motes===95012'),'Study Queue independently toggles without debit');
   // Actual drag and held keys preview until release, never buy intermediate tiers.
   await install(seed());await ev(range+'.scrollIntoView({block:"center"})');
   const drag=await ev('(()=>{var r='+range+'.getBoundingClientRect();return {x:r.x+12,y:r.y+r.height/2,width:r.width-24};})()');

@@ -21,10 +21,10 @@ window.runWispUpgradeQa = function(){
         same(b.get(),before,'render preserves all gameplay data '+id+'/'+mask);
         same(b.slots(),raw,'render preserves primary and recovery '+id+'/'+mask);
         var p=progression(id),complete=mask===7;
-        ok((p.tagName==='DETAILS')===complete,'fold available iff all three tracks complete '+id+'/'+mask);
+        ok(p.tagName==='DETAILS','all Wisp upgrades use disclosure '+id+'/'+mask);p.open=true;
         if(complete){p.open=true;ok(visible(p.querySelector('.ultimate-badge')),'completed Ultimate readable');}
         else {
-          ok(p.tagName==='SECTION' && !p.querySelector('summary'),'unfinished section has no disclosure '+id);
+          ok(p.tagName==='DETAILS' && !!p.querySelector('summary'),'unfinished upgrades remain behind their disclosure '+id);
           ok(visible(p.querySelector('.hero-ability')),'unfinished ability stays visible');
           if(module<20) ok(visible(p.querySelector('[data-module]')),'unfinished Module stays visible');
           if(rarity<5) ok(visible(p.querySelector('[data-rarity]')),'unfinished Rarity stays visible');
@@ -37,7 +37,7 @@ window.runWispUpgradeQa = function(){
   });
   // Unrecruited and level-gated purchases stay visible, with their reason.
   var s=seed('tide',0,0,false,false);s.spirits.tide=0;b.set(s);b.render();
-  var p=progression('tide');
+  var p=progression('tide');p.open=true;
   ['module','rarity','ultimate'].forEach(function(action){var el=p.querySelector('[data-'+action+']');ok(visible(el)&&el.disabled,'unrecruited '+action+' visible/disabled');});
   ok(p.querySelector('[data-module]').dataset.state==='locked','Module recruit gate labelled');
   ok(p.querySelector('.ultimate-requirements').textContent.includes('Mythic')&&p.querySelector('[data-ultimate]').getAttribute('aria-describedby')===p.querySelector('.ultimate-requirements').id,'Ultimate visible rarity gate is linked to its control');
@@ -49,7 +49,7 @@ window.runWispUpgradeQa = function(){
   b.refresh();ok(progression('ember').querySelector('[data-ultimate]').disabled,'funded Ultimate remains Mythic-gated after affordability refresh');
   ok(progression('ember').querySelector('[data-rarity]').disabled,'Rarity level requirement does not become a fold gate');
   // The predicate follows the same Module cap used by buying, not a UI literal.
-  b.cap(21);try{b.set(seed('ember',5,20,true,false));b.render();ok(progression('ember').tagName==='SECTION','authoritative cap change leaves Module unfinished');}finally{b.cap(20);}
+  b.cap(21);try{b.set(seed('ember',5,20,true,false));b.render();progression('ember').open=true;ok(visible(progression('ember').querySelector('[data-module]')),'authoritative cap change keeps unfinished Module available');}finally{b.cap(20);}
   // Empower, resource and exhausted/shared Resonate uses never block folding.
   s=seed('ember',5,20,true,false);s.sigilResonanceUses=3;s.heroResource.ember=100;
   b.ids.forEach(function(id){s.heroRarity[id]=5;s.wispUltimate[id]=true;});
@@ -60,7 +60,7 @@ window.runWispUpgradeQa = function(){
     b.set(seed('ember',5,action==='module'?19:20,action==='module',true));b.render();
     var sp=b.spirit('ember'),before=b.get();
     var cost=action==='module'?b.moduleCost('ember',19):{sigil:b.ultimateCost('ember')};
-    var btn=progression('ember').querySelector('[data-'+action+']');btn.focus();btn.click();
+    progression('ember').open=true;var btn=progression('ember').querySelector('[data-'+action+']');btn.focus();btn.click();
     var after=b.get();p=progression('ember');
     ok(after.heroRarity.ember===5 && after.wispModules.ember===20 && after.wispUltimate.ember,'last '+action+' completes existing purchase');
     ok(after.lumen===before.lumen-(cost.lumen||0) && after.shards===before.shards-(cost.shard||0) && after.sigils===before.sigils-(cost.sigil||0),'existing deterministic '+action+' debit');
@@ -76,11 +76,11 @@ window.runWispUpgradeQa = function(){
   });
   s=seed('ember',4,20,false,true);s.spirits.ember=b.rarityRequirement(4);b.set(s);b.render();
   var beforeRarity=b.get(),rarityPrice=b.rarityCost('ember',4);
-  progression('ember').querySelector('[data-rarity]').click();
+  progression('ember').open=true;progression('ember').querySelector('[data-rarity]').click();
   var afterRarity=b.get();p=progression('ember');
   ok(afterRarity.heroRarity.ember===5 && !afterRarity.wispUltimate.ember,'final Rarity purchase retains unowned Ultimate');
   ok(afterRarity.lumen===beforeRarity.lumen-rarityPrice.lumen && afterRarity.shards===beforeRarity.shards-rarityPrice.shard,'existing deterministic final Rarity debit');
-  ok(p.tagName==='SECTION' && visible(p.querySelector('[data-ultimate]')) && !p.querySelector('[data-ultimate]').disabled,'reaching Mythic still exposes the unfinished Ultimate');
+  ok(p.tagName==='DETAILS' && visible(p.querySelector('[data-ultimate]')) && !p.querySelector('[data-ultimate]').disabled,'reaching Mythic still exposes the unfinished Ultimate');
   p.querySelector('[data-ultimate]').focus();p.querySelector('[data-ultimate]').click();
   ok(progression('ember').tagName==='DETAILS' && progression('ember').open,'Rarity then Ultimate permits folding only at completion');
   // Old data has no new schema/ownership rewrite on any persistence path.
@@ -89,10 +89,10 @@ window.runWispUpgradeQa = function(){
       s=seed('ember',5,complete?20:19,true,false);b.set(s);b.save();
       var before=b.get();b.roundTrip(route);b.render();
       var after=b.get();['spirits','heroRarity','wispModules','wispUltimate','lumen','shards','sigils','schemaVersion'].forEach(function(key){same(after[key],before[key],route+' preserves '+key);});
-      ok((progression('ember').tagName==='DETAILS')===complete,route+' derives fold from saved progress');
-      if(complete){progression('ember').open=false;var old=progression('ember').querySelector('summary');old.focus();s.wispModules.ember=19;b.set(s);b.render();ok(progression('ember').tagName==='SECTION'&&visible(progression('ember').querySelector('[data-module]')),'stale fold discarded on incomplete restore');ok(document.activeElement===progression('ember').querySelector('[data-wisp-details]'),'restore preserves same Wisp focus');}
+      ok(progression('ember').tagName==='DETAILS',route+' retains upgrade disclosure');
+      if(complete){progression('ember').open=false;var old=progression('ember').querySelector('summary');old.focus();s.wispModules.ember=19;b.set(s);b.render();ok(progression('ember').tagName==='DETAILS'&&!progression('ember').open,'chosen fold survives incomplete restore');progression('ember').open=true;ok(visible(progression('ember').querySelector('[data-module]')),'unfinished Module remains reachable');ok(document.activeElement===progression('ember').querySelector('[data-wisp-details]'),'restore preserves same Wisp focus');}
     });
   });
-  b.set(seed('ember',0,0,false,false));b.render();
+  b.set(seed('ember',0,0,false,false));b.render();progression('ember').open=true;
   return {checks:checks,fixtures:fixtures,paths:['canonical','recovery','backup'],finalPurchases:['module','ultimate','rarity'],noGameplayMigration:true};
 };

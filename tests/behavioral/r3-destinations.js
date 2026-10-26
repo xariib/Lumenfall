@@ -51,7 +51,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
     go('battle');go('workshop');q('[data-tab="research"]').focus();q('[data-tab="research"]').click();
     ok(q('#tab-research').classList.contains('active') && !q('#tab-forge').classList.contains('active'),'R3 Lab navigation must open Lab, never Forge');
     ok(document.activeElement===q('[data-tab="research"]'),'Lab button focuses Lab navigation');
-    ok(!!q('[data-study-choose]'),'free slots retain Choose Study access');
+    ok(!!q('[data-study-slot]'),'free slots retain Choose Study access');
   }
   shortcut();
   var before=b.getState();
@@ -98,9 +98,13 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   });
   go('research');
   ['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id){
-    q('[data-study-queue="'+id+'"]').click();ok(b.getState().studyQueue[id]===true,'individual Lab queue ON');
-    q('[data-study-queue="'+id+'"]').click();ok(b.getState().studyQueue[id]===false,'individual Lab queue OFF');
+    q('[data-study-slot]').click();q('[data-study="'+id+'"]').click();var paid=b.getState().activeStudies.find(function(a){return a.id===id;});
+    ok(b.getState().studyQueue[id]===true&&paid,'selecting research enables its individual queue');
+    q('[data-study-queue="'+id+'"]').click();var cleared=b.getState();
+    ok(cleared.studyQueue[id]===false&&!cleared.activeStudies.some(function(a){return a.id===id;}),'individual Lab Queue OFF clears its slot');
+    ok(cleared.pausedStudies.some(function(a){return a.id===id&&a.remainingSec===paid.remainingSec;}),'Queue OFF retains the paid remaining work');
   });
+  b.setState(seed);b.renderLayout();go('research');q('[data-study-slot]').click();
   var project=b.r3.project('guardmastery'),prior=b.getState();q('[data-study="guardmastery"]').click();var active=b.getState();
   ok(active.lumen===prior.lumen-project.cost.lumen && active.shards===prior.shards-project.cost.shard,'project uses exact original start price');
   ok(active.activeStudies[0].remainingSec===project.duration,'project uses original duration');

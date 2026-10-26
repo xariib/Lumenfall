@@ -29,12 +29,14 @@ window.runBondTextQa=function(b,assert){
     seed(bond.ids,bond.ids[1]);render();checkRows(bond,false);
   });
   seed(['ember','void']);render();
+  document.querySelector('[data-tab="spirits"]').click();
   wisps.forEach(function(sp){
     var desc=sp.description;
-    var row=document.querySelector('[data-wisp-card="'+sp.id+'"] .ability-desc');
+    var card=document.querySelector('[data-wisp-card="'+sp.id+'"]');card.querySelector('[data-wisp-progression]').open=true;
+    var details=card.querySelector('[data-card-details="wisp-'+sp.id+'"]');details.open=true;var row=details.querySelector('div');
     var upgradeEffect=document.querySelector('[data-wisp-card="'+sp.id+'"] .module-effect');
     var encyclopedia=document.querySelector('[data-ency-wisp="'+sp.id+'"] .ency-desc');
-    ok(row&&row.textContent===desc,sp.id+' Wisp ability uses its explanation');
+    ok(row&&row.getClientRects().length&&row.textContent===desc,sp.id+' Wisp ability exposes its full explanation through Details');
     ok(encyclopedia&&encyclopedia.textContent.endsWith(desc),sp.id+' Encyclopedia ability uses its explanation');
     ok(upgradeEffect&&upgradeEffect.textContent===sp.moduleEffect20,sp.id+' shows its full permanent upgrade effect beside the ability');
     ok(!/bond|formation|\+.*(?:Stone|Titan)/i.test(desc),sp.id+' ability does not repeat Bond partnerships');

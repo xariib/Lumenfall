@@ -78,7 +78,7 @@ async function run(){
    for(const depth of [11,10,21,20]){await ev('uiRegression.roleDepth('+depth+')');const after=await observe();records.push({action:'periodic-roles',width,scale,motion,input,depth,before,after});check(Math.abs(after.top-before.top)<=1,'periodic role update keeps Empower screen position '+JSON.stringify(records.at(-1)));check(after.focus==='stone','periodic role update keeps same card focus');check(after.level===before.level,'periodic role update cannot Empower');}
   }
   if(!args.includes('--debug-repeat') && !args.includes('--role-only') && !args.includes('--empower-only') && motion==='reduce')for(const input of ['touch','keyboard'])for(const kind of ['module','module-cap','ultimate','rarity']){
-   const config=await ev('uiRegression.setupUpgrade('+JSON.stringify(kind)+')');const sel='[data-'+config.action+'=stone]';await pause(50);
+   const config=await ev('uiRegression.setupUpgrade('+JSON.stringify(kind)+')');await ev('document.querySelector("[data-wisp-progression=stone]").open=true');const sel='[data-'+config.action+'=stone]';await pause(50);
    await ev('(()=>{var e=document.querySelector('+JSON.stringify(sel)+');e.scrollIntoView({block:"center"});'+(input==='keyboard'?'e.focus({preventScroll:true});':'document.activeElement.blur();')+'})()');await pause(30);
    const snapshot=()=>ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get(),card:document.activeElement.closest("[data-wisp-card]")?.dataset.wispCard,open:document.querySelector("[data-wisp-progression=stone]").open})');
    const touch=async()=>{const r=await ev('(()=>{var e=document.querySelector('+JSON.stringify(sel)+');if(!e)return null;var r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');if(!r)return;await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(30);};
@@ -92,7 +92,7 @@ async function run(){
   }
   if(!args.includes('--role-only') && !args.includes('--empower-only'))
   for(const input of ['touch','keyboard'])for(const mode of ['unaffordable','affordable','capped']){
-   const config=await ev('uiRegression.setup('+(mode==='capped'?4:0)+','+(mode==='affordable')+')');await pause(80);
+   const config=await ev('uiRegression.setup('+(mode==='capped'?4:0)+','+(mode==='affordable')+')');await ev('document.querySelector("[data-wisp-progression=stone]").open=true');await pause(80);
    check(config.cost.shard===[15,1500,150000,5000000,250000000][config.tier],'endless rarity Shard schedule');check(config.cost.lumen===360*[8,50,1000,50000,2500000][config.tier],'independent endless rarity Lumen schedule');
    const sel='[data-rarity="stone"]';await ev('(()=>{var e=document.querySelector('+JSON.stringify(sel)+');e.scrollIntoView({block:"center"});'+(input==='keyboard'?'e.focus({preventScroll:true});':'document.activeElement.blur();')+'})()');await pause(40);
    const before=await ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get()})');

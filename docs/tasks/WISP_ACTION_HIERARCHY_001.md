@@ -1,211 +1,99 @@
 # WISP_ACTION_HIERARCHY_001 — compact Wisp cards
 
-Owner: this feature chat. Setup requested: Work / GPT-6.1 Sol High; actual client
-model selection is not changed by repository code.
+Status: integrated; installed emulator acceptance passed; physical-device
+acceptance pending. This is the 20–21 October feature checkpoint. Later approved
+card disclosures and the current release are tracked in
+[WORKSHOP_CARD_CLARITY_001](WORKSHOP_CARD_CLARITY_001.md).
+The [complete earlier checkpoint](WISP_ACTION_HIERARCHY_001_HISTORY_2026-10-26.md)
+is preserved byte-for-byte; it was compacted because this active startup plus
+shared context exceeded the existing 32 KiB limit during PR #13 validation.
+No test, source behavior or acceptance gate is changed by this compaction.
 
-## Requirements and revised direction
+## Original requirements and implementation
 
-Original: make the next Wisp action clear, without hiding upgrades, changing
-prices or touching saves. Include UI, code, tests and a PR in one focused chat.
-20 October correction: “Wisp kortet skal være meget mere simpelt, men have de
-rigtige oplysninger med. Prøv at finde inspiration fra dribbble.com”. The user
-then approved choosing the design that best fits Lumenfall: “Gør det som passer
-bedst i vores spil”.
+The user asked for simpler Wisp cards with correct information and approved the
+design best suited to Lumenfall. Retain all eight identities, level, rarity,
+Power, Field/Bench, contribution, Empower/Recruit, Rarity, Ability, Ultimate,
+Mastery and Resonate, including every price, current/next effect, gate,
+Formation and automation. No economy, save or Android-identity change.
 
-Use one existing dark navy/gold/violet card, compact upgrade rows and direct
-emphasis on an original purchase control. Do not restore the earlier duplicate
-“Next action” summary. Preserve every unfinished upgrade, actual current/next
-effect, every price, role contribution, requirements, Formation and automation.
-No price/economy/purchase/save/Android identity changes. No merge or APK release.
+The original 20 October scope kept unfinished upgrades visible and folded
+perfected ones. The later Workshop requirement now explicitly simplifies cards
+further with native Upgrades disclosures; use that task for current behavior.
+One original affordable purchase receives a short Next cue, in priority order:
+Recruit, otherwise Mastery, Ultimate, Rarity, Ability, Empower. This is navigation
+priority, not an optimal-investment claim or automatic spending. Keep red
+insufficient resources, native disabled controls, exact prices and readable gates.
+No duplicate Next-action panel or redundant Ability badge.
 
-Inspiration researched in this chat:
-- [Tower of Heroes](https://dribbble.com/shots/27426988-Tower-of-Heroes-Pixel-Art-RPG-Mobile-Game-UI-Design): hierarchy, character identity and rarity.
-- [Fantasy character/skills UI](https://dribbble.com/shots/26193034-Fantasy-Game-UI-Character-Skill-System): consistent character/upgrade presentation.
-- [Mobile Idle Clicker](https://dribbble.com/shots/22759304-Mobile-Idle-Clicker-UI): genre reference.
-These are inspiration, not copied assets or proof of production usability.
+Use the existing navy/gold/violet card, compact effect rows, 44 px controls,
+320/390/430 px widths, 100/150/200% text and both motion preferences. Preserve
+full state/both saves, native purchases and exact focus/scroll. Modern Chromium
+does not establish physical Android, exact WebView60 or TalkBack acceptance.
+The researched Dribbble references, original baseline/recovery and full local
+and remote chronology remain in the historical checkpoint.
 
-## Baseline and recovery
+## Source, review and browser evidence
 
-Live main `ff50c13c855459078f494fd27dabc5a93c273a4b`, product SHA256
+Original main was `ff50c13c855459078f494fd27dabc5a93c273a4b`, product SHA-256
 `d4a55cde9135d078a6da16ff85ddee831129c631312c30c1ea3c90efa00372e5`.
-Checked 20 October 2026. PR2 is audit documentation only; no product overlap.
-The earlier remote `feat/wisp-action-hierarchy-001` still points at main.
-Current isolated branch: `feat/wisp-card-compact-001`.
-
-Workspace maintenance removed the earlier local candidate and evidence. A
-Library recovery search did not find them. This candidate starts from newly
-cloned live main, with fresh tests; earlier reported passes are not reused.
-Read [rules](../../AGENTS.md), [bootstrap](../../PROJECT_BOOTSTRAP.txt),
-[status](../PROJECT_STATE.md), [source index](../CONTEXT_INDEX.md),
-[workflow](../project/FEATURE_WORKFLOW.md), [environment](../project/CODEX_START.md),
-[limitations](../project/KNOWN_ISSUES.md), affected source and Wisp tests.
-
-## Acceptance
-
-- All eight Wisps retain identity, level, rarity, Power, Field/Bench, relevant
-  contribution, Empower/Recruit, Rarity, Ability, Ultimate, Mastery and Resonate.
-- Unfinished upgrades remain visible. Only existing perfected disclosures fold.
-- One original available action receives a short “Next” cue: Recruit first,
-  otherwise available Mastery, Ultimate, Rarity, Ability, then Empower. This is
-  navigation priority, not an optimal investment claim or automatic spending.
-- Full costs/effects and prerequisite explanations remain readable; insufficient
-  resources remain red and purchase controls remain disabled when unavailable.
-- Match baseline fixtures and measure card height reduction at 390 px / 100%
-  text. No height target is satisfied by hiding information or shrinking text.
-- 320/390/430 px, 100/150/200% text, normal/reduced motion; no horizontal clipping,
-  44 px controls, stable focus/scroll and actual keyboard/touch purchasing.
-- Rendering/highlighting preserve full state and both save slots. Protect all
-  gameplay functions byte-for-byte; run relevant existing regression checks.
-- Add focused regression coverage and retain required CI. Modern Chromium is
-  not installed Android, exact WebView60, TalkBack or independent review.
-
-## Checkpoint
-
-Status: [PR3](https://github.com/xariib/Lumenfall/pull/3) is open. Compact cards
-are implemented; the accessibility-name repair is locally verified and must pass
-CI on its published head. Node 24.19.0 / Chrome for Testing Headless Shell
-155.0.8059.84. Current product SHA256:
+The final compact source was
 `5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`.
+The [24-function preservation comparison](../qa/wisp-action-hierarchy-001/preservation.json)
+matched protected gameplay, prices, purchases, saves and online/offline code.
+Matched unfinished card heights were 22.5–26.9% shorter at 390 px.
 
-Changes: scoped CSS and compact effect rows; remove the redundant Ability badge;
-explicit Ultimate heading; one enabled original action receives a short text/gold
-cue. Preserve every unfinished upgrade, requirements, prices, role/Formation/
-automation, current/next effects, Mastery and Resonate. Full re-render anchoring
-and exact wallet-refresh scroll remain. No new purchase route, timer or save
-field. The [24-function byte comparison](../qa/wisp-action-hierarchy-001/preservation.json)
-still matches main for all protected gameplay, price, purchase, save and
-online/offline functions. All 24 matched card-height fixtures are unchanged by
-the accessibility repair: unfinished cards remain 22.5–26.9% shorter at 390 px.
+The automated [PR accessibility review](https://github.com/xariib/Lumenfall/pull/3#discussion_r4326057698)
+found Next cues inserted after accessible names were prepared. Calling
+presentControlStates after highlighting and before focus restoration fixed it.
+Native focusin observes the current Next/Wisp name immediately; causal removal
+controls catch stale names and wrong primary actions. This was automated review
+and self-verification, not independent human or TalkBack acceptance.
+[Focus proof](../qa/wisp-action-hierarchy-001/focus-review.json).
 
-Automated [PR review](https://github.com/xariib/Lumenfall/pull/3#discussion_r4326057698)
-found that render inserted the cue after accessible names were prepared. Reuse
-`presentControlStates` immediately after highlighting, before callers restore
-focus. The new assertion fails on the prior source before an affordability
-refresh. Native keyboard/touch continuation observes the actual `focusin` name,
-including Next and the Wisp identity; a causal removal control also fails the
-intended assertion. This is automated review and self-verification, not physical
-TalkBack or independent human acceptance. [Repair proof](../qa/wisp-action-hierarchy-001/focus-review.json).
+Historical exact-source local checks: compact 39,150/18 profiles; original
+layout 24,888/12; upgrades/persistence/completion 12,912/12; scroll/focus
+3,277/312; affordability 26,844/12 with original negative controls. All 101
+selected original scenarios passed, including both offline UI cases with their
+original 210-second deadlines. The source-bound independent four-window oracle
+retained every full-state/reward digest after regeneration.
+[Manifest](../qa/wisp-action-hierarchy-001/checks.json),
+[QA/screenshots](../qa/wisp-action-hierarchy-001/README.md),
+[label compatibility](../qa/wisp-action-hierarchy-001/control-label-compatibility.json),
+[source binding](../qa/wisp-action-hierarchy-001/offline-source-binding.json).
 
-Current-source local checks:
-- Compact UI PASS 39,150 / 18 profiles; widths 320/390/430, text 100/150/200%,
-  both motion settings. 72 original-handler native purchases and 36 immediate
-  focus-return names, plus full state/both-slot preservation.
-- Original layout PASS 24,888 / 12; original upgrades/persistence/completion
-  PASS 12,912 / 12; unchanged scroll/focus PASS 3,277 / 312.
-- Affordability PASS 26,844 / 12; both original causal controls caught.
-- Both compact controls caught: disabled primary and stale accessible name,
-  each with a distinct source hash and clean teardown. Syntax/source check PASS.
-- [Manifest](../qa/wisp-action-hierarchy-001/checks.json) separates current checks
-  from preceding-source results. [QA guide/screenshots](../qa/wisp-action-hierarchy-001/README.md).
+## Integration and installed Android — 21 October 2026
 
-Remote history: initial head `b6a10a9` exposed two QA compatibility issues;
-[receipt](../qa/wisp-action-hierarchy-001/ci-test-compatibility.json) records the
-same preserved assertions and fixes. At `7c4b4af`, Shared UI, Tree, Lab, Comet,
-Forge and isolated offline passed; the main regression was still running when
-the accessibility review repair was prepared. None of those runs proves the
-new source. Current-head CI results and stable run links are recorded in PR3.
+The user approved public upload/PR on 20 October and separately authorized
+review/integration followed by installed Android acceptance. Initial no-merge/
+no-release scope was superseded for those later steps; no APK was published
+by this feature. Other features subsequently published newer versions.
 
-Publication approval: 20 October 2026, the user answered “Godkendt” to uploading
-this reviewed feature to public `xariib/Lumenfall` and creating its PR. The
-approval resolves the earlier automatic disclosure-review blocker and covers
-necessary source, QA/workflow and evidence fixes. No merge, build or APK release.
+[PR #3](https://github.com/xariib/Lumenfall/pull/3) final head
+`2980b56061275cf256ed0d8a5279bfd7adeac8e4` passed all six relevant workflows
+and merged without conflict at `7a498e5be2d060476c9442435768ea1db15d725d`.
+The automated accessibility thread was resolved.
+[Exact-main validation #19](https://github.com/xariib/Lumenfall/actions/runs/39548886678)
+passed. [PR #4](https://github.com/xariib/Lumenfall/pull/4) changed only the
+installed Android test driver and synthetic fixture, passed all six final-head
+workflows and branch native #20, then merged at
+`4a3085067797b292b32c179e4e4bbb8e33b640d1`. Product HTML stayed byte-identical
+to PR #3 integration.
 
-Follow-up QA finding: focused replay of `p1-05-control-regressions` fails the
-legacy whole-label expectation when Next is present. Preserve the exact base
-Empower/Recruit assertion, full accessible identity/price/unit, native disabled,
-geometry, observer-only state/saves/events and exact-price single purchase.
-Separately assert funded cue/primary and exact complete visible/accessibility
-labels. Local replay now passes in both CDP and the original unchanged harness
-with pipe transport; both original selected/focus-return negative self-tests
-still fail intentionally. [Receipt](../qa/wisp-action-hierarchy-001/control-label-compatibility.json).
-Root product remains `5733c81744ac1dddff50639d710ea542c3a7eedcd30c0764d92a72a0096cafcd`.
-
-The legacy-label correction was published at `4a75122`. The preceding incomplete
-run was superseded so the full suite can run with the correct UI expectation.
-Its retained log also identified the offline driver's original source-binding
-guard: the independent one-second reference still named main's product hash.
-Regenerate all four sequential 8-hour windows with the unchanged original
-`offline-catchup.cjs --generate-swift-golden` oracle. Every reward and full-state
-hash matches the previous reference exactly; only its source hash changes.
-Both original offline UI/legacy DOM scenarios pass with unchanged assertions
-and 210-second deadlines. [Source-binding proof](../qa/wisp-action-hierarchy-001/offline-source-binding.json).
-
-All required CI must pass on the final PR head; live results and stable run links
-are recorded in PR3. Previous-head successes are not final-head acceptance.
-At `7e232ea`, all five focused workflows and isolated offline passed. Shared UI's
-checkout delay resolved without cancellation or restart. The user approved
-browser fallback on 20 October 2026; no browser restart action was needed.
-Main/APK remain unchanged. Physical Android, exact WebView60 and TalkBack remain
-unverified. Keep the feature open pending integration/device acceptance; do not
-archive it.
-
-Final local preflight: all 101 selected original scenarios pass on the
-final product, including both offline UI cases and every default scenario from
-loadout-memory-mobile through ascend-prisms-recovery. The original harness,
-viewports, assertions and deadlines remain; DOM capture uses its existing pipe
-transport. This supplements, and does not replace, full required final-head CI.
-
-## Integration checkpoint — 21 October 2026
-
-The user authorized PR #3 review/integration as a distinct step, followed by
-Android acceptance on an installed build before this feature is complete.
-[PR #3](https://github.com/xariib/Lumenfall/pull/3) was reviewed and merged
-without conflict at main commit `7a498e5be2d060476c9442435768ea1db15d725d`.
-Its final head `2980b56061275cf256ed0d8a5279bfd7adeac8e4` had all six relevant
-PR workflows green; the one automated accessibility review thread was resolved.
-This is self-review and automated review, not independent human review.
-
-The [non-publishing Android build #15](https://github.com/xariib/Lumenfall/actions/runs/39548821573)
-passed on that exact integration commit with `publish=false`. It produced
-signed `com.lumenfall.app` 0.2.15 (versionCode 1000015, signing certificate
-SHA-256 A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21),
-APK SHA-256 `389504c033defec33235baf890e1d5338b54e7146da632a5c4faec55034fe13d`.
-The API 31/Android 12 emulator with WebView 91 installed the APK as an in-place
-upgrade from archived signed 0.1.158. UID/origin, both save slots, Wisp levels,
-paid study and legacy purchase entitlements survived. Evidence is artifact
-`signed-apk-39548821573` (ID 12322913245), with the upgrade receipt.
-No release was published; the existing latest release remains 0.2.14.
-
-[Exact-main full validation #19](https://github.com/xariib/Lumenfall/actions/runs/39548886678)
-is running. The existing Android upgrade workflow does not inspect Wisp card UI,
-so [follow-up PR #4](https://github.com/xariib/Lumenfall/pull/4) adds assertions
-inside the installed Android WebView for all cards, complete prices/effects,
-visible and accessible Next cue, and a trusted native touch purchase and focus.
-It changes test code and a disposable synthetic emulator fixture only. Its CI
-and subsequent non-publishing APK run are pending. This feature remains
-**integrated, acceptance pending**. Physical phone, exact WebView60, TalkBack and
-human pacing/performance remain unverified. Do not mark complete or archive.
-
-That plan was superseded by the installed checkpoint below.
-
-## Installed Android acceptance checkpoint — 21 October 2026
-
-[Exact-main full validation #19](https://github.com/xariib/Lumenfall/actions/runs/39548886678)
-finished successfully. [PR #4](https://github.com/xariib/Lumenfall/pull/4)
-changed only `scripts/ci/android-upgrade.cjs`; its final head
-`bce0da481efe8beb0904348445c18b8de08bfaf9` passed all six relevant
-workflows and the non-publishing branch Android run #20. It merged at
-`4a3085067797b292b32c179e4e4bbb8e33b640d1`. Product `index.html`
-remained byte-identical to the PR #3 integration; no prices, saves or gameplay
-were changed by the QA follow-up.
-
-[Integrated Android build #21](https://github.com/xariib/Lumenfall/actions/runs/39559404175)
-passed on that exact merge commit with `publish=false`. Signed package
-`com.lumenfall.app` version 0.2.21, versionCode 1000021, APK SHA-256
+[Integrated Android #21](https://github.com/xariib/Lumenfall/actions/runs/39559404175)
+passed on that exact merge with publish=false: com.lumenfall.app 0.2.21,
+versionCode1000021; APK SHA-256
 `5141f8e54290a18854b125677f2f144690d055e06a0c07f95762b6d33d36a026`.
-Artifact `signed-apk-39559404175` (ID 12326779780) holds APK, upgrade receipt,
-UI diagnostic and screenshot. The Android 12/API31 emulator with installed
-WebView 91 upgraded archived signed 0.1.158 in place with UID/origin, both save
-slots, progression, paid study and legacy entitlements retained. In the
-installed APK, the Wisp tab showed all eight cards at 320 px without visible
-clipping or horizontal page scroll; identity, unfinished upgrades, prices,
-current/next effects and a single enabled Next cue with current accessible name
-were present. A trusted Android touch bought exactly one Ember Ability level
-(10 to 11); both next prices stayed visible and focus returned with the new
-accessible label. The screenshot was inspected and shows the complete Ember
-card and readable action. No release was published.
+Artifact signed-apk-39559404175 (12326779780) contains APK, receipt, UI diagnostic
+and screenshot. The established certificate was retained. Android12/API31 with
+WebView91 upgraded archived signed0.1.158 in place: UID/origin, both saves,
+progression, paid study and legacy entitlements survived. All eight cards fit
+at 320 px with complete prices/effects and one current accessible Next cue.
+A trusted Android touch bought one Ember Ability level, 10→11, with refreshed
+prices and correct focus/name. The complete Ember screenshot was inspected.
+Earlier nonpublishing native #15 and its receipts remain in the historical file.
 
-Status: **integrated; installed emulator acceptance passed; physical-device
-acceptance pending**. A real phone, exact WebView 60, TalkBack, and human visual/
-pacing acceptance remain unverified. Do not mark this improvement complete or
-archive it until the requested installed-device acceptance is recorded.
+Physical phone, exact WebView60 DOM, TalkBack and human visual/pacing/performance
+remain unverified. Do not claim those passes or archive this acceptance work.
+Current builds must validate their own source; these historical results do not
+prove later product versions.

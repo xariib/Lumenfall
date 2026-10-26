@@ -113,11 +113,11 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
   ['forge','research'].forEach(function(view){
     q('[data-tab="'+view+'"]').click();
     if(view==='research'){
-      var slots=visible('.study-slot-summary');
+      var slots=visible('[data-lab-slot] h3');
       assert(slots.top>=0 && slots.bottom<rect('nav.tabbar').top,'Study slot status is visible on Lab arrival');
-      var choose=q('[data-study-choose]');
+      var choose=q('[data-study-slot]');
       if(choose) assert(choose.getBoundingClientRect().height>=44,'Study choice shortcut has a practical target');
-      assert(q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'Lab Study content does not overflow horizontally');
+      assert(q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'Lab Study content does not overflow horizontally');if(choose)choose.click();
       var speedIds=Array.from(document.querySelectorAll('[data-study-speed-target]')).map(function(el){
         assert(el.getBoundingClientRect().height>=44,'Speed selector has a practical target');return el.dataset.studySpeedTarget;
       });

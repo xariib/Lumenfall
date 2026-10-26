@@ -15,6 +15,9 @@ const emptyEvents=()=>({firstCommand:false,firstRecharge:false,bossStrike:false,
 function fixture(q){
   const s=seed(q);s.comets=10000;
   for(const [id]of OLD_DEEDS)s.achieved[id]=true;
+  // This suite isolates original command prices/events. New milestone payouts
+  // have dedicated boundary, receipt, reload and offline tests.
+  q.achievementDefs().filter(a=>a.counter).forEach(a=>s.achieved[a.id]=true);
   return s;
 }
 function prepared(source){const e=app(source);e.q.set(fixture(e.q));return e;}
@@ -69,7 +72,8 @@ function runCore(source,options={}){
     eq(s.cometClaims,{policy:POLICY,retired:{comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'},deeds:{}},'closed fresh ledger');
     eq(s.owned.meteor,false,'Meteor unowned');eq(s.owned.starcall,false,'Call unowned');
     eq(q.shopDefs().map(r=>r.id),CATALOG.map(r=>r.id),'exact six-row catalog');
-    eq(q.achievementDefs().map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'all23 old rewards/order plus four fixed rewards');
+    eq(q.achievementDefs().slice(0,27).map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'all23 old rewards/order plus four fixed rewards retained in original order');
+    eq(q.achievementDefs().length,76,'49 additional long-tail milestones are appended');
     eq(OLD_DEEDS.reduce((n,r)=>n+r[1],0),683,'old pool');eq(NEW_DEEDS.reduce((n,r)=>n+r[1],0),50,'new pool');
     eq(CATALOG.reduce((n,r)=>n+r.prices.reduce((a,b)=>a+b,0),0),1380,'whole catalog');
     eq(CLAIMS.length,30,'bounded known identities');eq(CLAIMS.reduce((n,r)=>n+r[1],0),1083,'bounded family amount');

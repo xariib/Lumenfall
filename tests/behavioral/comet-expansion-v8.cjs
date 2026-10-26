@@ -22,6 +22,11 @@ function slotsUnchanged(a,before,label){eq(storage(a),before,label);}
 function noAction(a,call,label){var before=clone(a.q.get()),slots=storage(a),attempts=a.attempts.length;eq(call(),false,label+' result');eq(a.q.get(),before,label+' live state');slotsUnchanged(a,slots,label+' stored state');eq(a.attempts.length,attempts,label+' makes no storage attempt');}
 var OLD_DEEDS=[['d10',5],['d25',10],['d50',20],['d100',50],['d250',100],['tap100',3],['tap1000',8],['tap10000',20],['fullparty',12],['asc1',10],['asc5',25],['asc10',50],['all',30],['mythic',40],['idle8',15],['autotap',25],['labmaster',30],['study1',15],['study25',50],['allstudies',35],['labqueue',40],['firstultimate',45],['modulemax',45]];
 var NEW_DEEDS=[['comet_first_command',5],['comet_first_recharge',10],['comet_boss_strike',15],['comet_called_kill',20]];
+var ENDLESS_DEEDS=[];
+Object.keys({rift:1,ascend:1,kills:1,lab:1,forge:1,mastery:1,rest:1}).forEach(function(track){
+  var targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]}[track];
+  targets.forEach(function(target,i){ENDLESS_DEEDS.push(['endless_'+track+'_'+target,10+5*i]);});
+});
 var ROWS=[['autoascend',1,[100]],['meteor',1,[100]],['starcall',1,[140]],['cometreservoir',2,[60,120]],['cometcycle',3,[80,140,220]],['meteorcore',4,[45,75,120,180]]];
 var RETIRED=[['comettrials',140],['rifttrail',50],['starfallcrest',160]];
 var EMPTY_LEVELS={cometreservoir:0,cometcycle:0,meteorcore:0};
@@ -29,7 +34,7 @@ var EMPTY_EVENTS={firstCommand:false,firstRecharge:false,bossStrike:false,called
 var EMPTY_CLAIMS={policy:'comet-commands-001',retired:{comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'},deeds:{}};
 var PAID=['nodes','research','longStudyLevels','activeStudies','heroRarity','wispModules','wispUltimate','spirits','activeParty','formationPresets','formationRebuild','empowerQueue','researchQueue','studyQueue','studyUseMotes','savedLabMultiplier','legacyCometPurchases','offline12hRefund','treeTrainingProgress'];
 function isolated(q){
-  var s=H.seed(q);s.schemaVersion=3;OLD_DEEDS.forEach(function(d){s.achieved[d[0]]=true;});
+  var s=H.seed(q);s.schemaVersion=3;OLD_DEEDS.concat(ENDLESS_DEEDS).forEach(function(d){s.achieved[d[0]]=true;});
   // Nonzero historical paid records make preservation assertions sensitive to
   // destructive resets, while all new Tree/Forge operating additions stay0.
   s.nodes.starlight=7;s.nodes.steady=5;s.nodes.momentum=3;s.nodes.echo=6;s.nodes.bonds=10;s.nodes.swift=12;
@@ -85,7 +90,7 @@ scenario('catalog-and-historical-ledgers',function(){
   var a=world(),q=a.q;
   eq(q.schema(),5,'current schema5');
   eq(q.shopDefs().map(function(x){return x.id;}),ROWS.map(function(x){return x[0];}),'six exact ordered catalog IDs');
-  eq(q.achievementDefs().map(function(x){return [x.id,x.reward];}),OLD_DEEDS.concat(NEW_DEEDS),'all27 exact rewards and original order');
+  eq(q.achievementDefs().map(function(x){return [x.id,x.reward];}),OLD_DEEDS.concat(NEW_DEEDS,ENDLESS_DEEDS),'all76 exact rewards and original order');
   eq(OLD_DEEDS.reduce(function(n,x){return n+x[1];},0),683,'independent original23 pool');
   eq(NEW_DEEDS.reduce(function(n,x){return n+x[1];},0),50,'four additional event rewards');
   eq(ROWS.reduce(function(n,r){return n+r[2].reduce(function(a,b){return a+b;},0);},0),1380,'current full purchased ladder');
