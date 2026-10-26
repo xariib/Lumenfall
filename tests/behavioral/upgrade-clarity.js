@@ -128,6 +128,8 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
   ['labmaster','labqueue'].forEach(function(id){var card=q('[data-deed-progress="'+id+'"]').closest('.ach-card');ok(!q('[data-deed-progress="'+id+'"]').textContent.includes('Battle Focus'),'legacy names outside progress');ok(card.querySelector('.card-details>div').textContent==='Counts paid levels in all current and historical Forge upgrades. Historical levels above a current cap still count. Lab Project levels do not count.','approved paid Forge scope explicit');});
   ok(q('[data-deed-requirement="modulemax"]').textContent==='Raise one Wisp Module to level 20.','Module one-Wisp requirement');
   ok(b.forge.deeds().total===683,'original23 reward catalogue unchanged');
-  same(b.forge.deeds().items.filter(function(a){return ids.indexOf(a.id)===-1;}).map(function(a){return [a.id,a.reward];}),[['comet_first_command',5],['comet_first_recharge',10],['comet_boss_strike',15],['comet_called_kill',20]],'four separate event Deeds retain their own 50C policy');
+  same(b.forge.deeds().items.filter(function(a){return a.id.indexOf('comet_')===0;}).map(function(a){return [a.id,a.reward];}),[['comet_first_command',5],['comet_first_recharge',10],['comet_boss_strike',15],['comet_called_kill',20]],'four separate event Deeds retain their own 50C policy');
+  var longtail=b.forge.deeds().items.filter(function(a){return ids.indexOf(a.id)===-1&&a.id.indexOf('comet_')!==0;});
+  same([longtail.length,longtail.reduce(function(n,a){return n+a.reward;},0),b.forge.deeds().allTotal],[49,1250,1983],'49 added long-term Deeds have their own fixed rewards beside intact originals');
   return {checks:checks,nodeLevels:9,projectLevels:4,deeds:ids.length,exactObserverPurity:true};
 };

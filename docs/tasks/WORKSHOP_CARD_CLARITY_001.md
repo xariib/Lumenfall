@@ -135,7 +135,13 @@ assertions for costs, effects, hit tests, state parity and deadlines are retaine
 Observers now follow the actual native disclosure/slot interactions. The two parity
 cases remain unchanged and exercise the real stale-completion association fix.
 A temporary PR-only 14-scenario diagnostic matrix catches these early; the complete
-original six workflows remain mandatory.
+original six workflows remain mandatory. On 9f93d971, 12/14 diagnostic jobs passed,
+including both unchanged Auto-Ascend parity tests and all four completed Rift
+layout variants. One browser failed before assertions at Target.createBrowserContext
+(no records); another observer still grouped new long-tail Deeds with the four
+original event Deeds. Its exact four-event reward assertion now selects event IDs
+and separately checks 49 long-tail rewards (1,250) and the all-Deed total (1,983).
+No product change or reduced deadline is needed for these two failures.
 
 Next: pass all six workflows and the diagnostic matrix on the final PR head, then
 integrate #13. The command/browser runtime is unavailable. A temporary CI bridge,
