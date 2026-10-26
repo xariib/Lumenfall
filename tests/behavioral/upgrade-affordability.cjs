@@ -25,6 +25,7 @@ driver=driver.slice(0,start)+String.raw`
   for(const id of await ev('prismQa.upgradeIds'))for(const action of ['empower','rarity','module','ultimate','sigil-resonate']){
    await ev('prismQa.set(prismQa.upgradeSeed('+JSON.stringify(id)+','+JSON.stringify(action)+'));prismQa.ready();prismQa.tab("spirits")');
    await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(function(a){return a.finished;})).then(function(){return true;})');
+   await ev('document.querySelector('+JSON.stringify('[data-wisp-progression="'+id+'"]')+').open=true');
    const selector='[data-'+action+'="'+id+'"]',prices=await ev('prismQa.upgradePrices('+JSON.stringify(id)+','+JSON.stringify(action)+')');
    const enough={};for(const [kind,amount] of Object.entries(prices))enough[walletKeys[kind]]=amount;
    async function observe(values,label,initial=false){
