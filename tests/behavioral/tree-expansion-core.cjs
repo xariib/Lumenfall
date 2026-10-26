@@ -573,7 +573,7 @@ function paidAscends(t,mutate) {
       // Canonicalization immediately following automatic mutation must preserve
       // the same paid endpoint, rather than just a transient observer snapshot.
       for(const field of PAID_FIELDS)t.eq(q.get()[field],event.after[field],route+' canonical endpoint retains '+field);
-      t.eq(q.slots(),7,'paid Lab capacity survives Tree Ascend');t.eq(q.capacity(),6,'paid Tree capacity survives Ascend');
+      t.eq(q.slots(),5,'paid Apparatus reaches the five-slot Lab cap after Tree Ascend');t.eq(q.capacity(),6,'paid Tree capacity survives Ascend');
       q.save();const accepted=clone(q.get());t.eq(app(source,a.storage).q.get(),accepted,route+' actual cold load');
       const restore=app(source);restore.area.value=q.export();restore.q.restore();restore.drain();t.eq(restore.reloads(),1,route+' actual backup restore requests reload');
       t.eq(app(source,restore.storage).q.get(),accepted,route+' actual backup import retains all value');

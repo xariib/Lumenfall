@@ -21,7 +21,7 @@ for(const [raw,wallet] of [[0,17],[20,17],[21,17],[40,17],[95,0],[2000,0],[21,1e
   const original=clone(s);q.set(s);const accepted=clone(q.get());
   eq(balance(accepted),BigInt(wallet)+owed(raw),'exact original value '+raw);
   eq(s,original,'input unchanged');eq(accepted.nodes.bonds,raw,'raw history');
-  eq(accepted.activeStudies,s.activeStudies,'paid Study snapshot');
+  eq(accepted.activeStudies,s.activeStudies.map((work,slot)=>({...work,slot})),'paid Study snapshot and migrated slot');
   eq(accepted.nodes.gentlegrowth,3,'current Tree ownership');eq(accepted.research.tapconduit,2,'current Forge ownership');
   eq(q.accept(accepted),accepted,'repeat canonicalization');eq(q.decode(q.encode(accepted)),accepted,'backup roundtrip');
   if(raw>20){for(const lostProof of ['none','marker','history']){const damaged=clone(accepted);delete damaged.feedbackMigration.receipts['node.bonds'];if(lostProof==='marker')delete damaged.feedbackMigration.bondsCreditAuditVersion;if(lostProof==='history')delete damaged.feedbackMigration.history;checks++;assert.throws(()=>q.accept(damaged),{code:'invalid-bonds-refund'},'either completed proof requires recovery: '+lostProof);}}

@@ -106,7 +106,7 @@ for(let i=0;i<3;i++) {
 const study=legacy(); study.activeStudies=[{id:'guardmastery',remainingSec:46800,totalDurationSec:46800,speedMult:1}];
 study.studyQueue.guardmastery=true; study.studyUseMotes.guardmastery=true; study.studySpeedTargets.guardmastery=3;
 study.motes=0; study.lumen=1e9; study.shards=1e9;
-assert.deepEqual(app(study).b.get().activeStudies,study.activeStudies);
+assert.deepEqual(app(study).b.get().activeStudies,study.activeStudies.map((work,slot)=>({...work,slot})));
 const lab12=consume(study,43200,256,true),lab24=consume(study,86400,31,true);
 assert.deepEqual(withoutEndpoint(lab24.state),withoutEndpoint(lab12.state),'24h has exactly 12h Lab/queue/economy');
 assert.equal(lab24.state.activeStudies[0].remainingSec,3600); assert.equal(lab24.state.longStudyLevels.guardmastery,0);

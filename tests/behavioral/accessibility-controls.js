@@ -14,7 +14,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   q('[data-tab="spirits"]').click();
   press('[data-empower-queue="ember"]',function(){return bridge.getState().empowerQueue.ember!==false;});
   q('[data-tab="forge"]').click();
-  press('[data-queue="charge"]',function(){return !!bridge.getState().researchQueue.charge;});
+  press('[data-queue="arcanecal"]',function(){return !!bridge.getState().researchQueue.arcanecal;});
   q('[data-tab="research"]').click();
   var study=q('[data-study-queue]'), studyId=study.getAttribute('data-study-queue');
   press('[data-study-queue="'+studyId+'"]',function(){return !!bridge.getState().studyQueue[studyId];});

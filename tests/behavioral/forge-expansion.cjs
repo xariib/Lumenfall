@@ -418,7 +418,7 @@ function assertAscend(q,before,a,label,elapsed=0) {
   const cleared=before.depth%10===0?before.depth:before.depth-1;
   a.eq(after.prisms,before.prisms+prismReward(cleared,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),label+' independent completed-only Prism payout');
   for(const key of PAID_FIELDS)a.eq(after[key],before[key],label+' retains '+key);
-  a.eq(after.autoAscendEnabled,before.autoAscendEnabled,label+' keeps enabled intent');a.eq(after.autoAscendTargetDepth,before.autoAscendTargetDepth,label+' keeps target');a.eq(q.slots(),7,label+' keeps purchased seventh slot');
+  a.eq(after.autoAscendEnabled,before.autoAscendEnabled,label+' keeps enabled intent');a.eq(after.autoAscendTargetDepth,before.autoAscendTargetDepth,label+' keeps target');a.eq(q.slots(),5,label+' five-slot purchase capacity');
   a.eq(after.activeStudies.length,7,label+' keeps all seven paid records');after.activeStudies.forEach((record,i)=>{
     const old=before.activeStudies[i];a.eq([record.id,record.totalDurationSec,record.speedMult],[old.id,old.totalDurationSec,old.speedMult],label+' paid work and speed unchanged');a.near(record.remainingSec,old.remainingSec-elapsed*old.speedMult,label+' only elapsed work advanced');
   });

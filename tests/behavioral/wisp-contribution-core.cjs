@@ -103,7 +103,7 @@ function preservation(html,baseline){
   "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
  var before=world(baseline),after=world(html),ids=clone(after.spirits()).map(function(s){return s.id;}),checks=0,cases=[];
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
- function oldFields(s){s=clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.canonicalAutomationClock;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;delete s.studyBoosts;delete s.studyBoostHours;delete s.moteNextAtMs;return s;}
+ function oldFields(s){s=clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.canonicalAutomationClock;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;delete s.studyBoosts;delete s.studyBoostHours;delete s.pausedStudies;delete s.moteNextAtMs;return s;}
  var noMastery={};ids.forEach(function(id){noMastery[id]=0;});
  var noBoostHours={};Object.keys(after.fresh().longStudyLevels).forEach(function(id){noBoostHours[id]=8;});
  function combos(xs,k){if(!k)return [[]];var r=[];xs.forEach(function(id,i){combos(xs.slice(i+1),k-1).forEach(function(t){r.push([id].concat(t));});});return r;}

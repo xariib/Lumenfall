@@ -59,8 +59,8 @@ ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load 
  const x=app(source),q=x.q,b=q.endless,s=hugeState();s.maxDepthEver=130;s.activeStudies=[{id:'guardmastery',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.guardmastery=true;s.studySpeedTargets.guardmastery=3;q.set(s);
  const result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});
  eq(big(q.get().motes),10n**400n,'retired queue consent cannot spend wide Motes');eq(result.studyMotesSpent,0,'no automatic timed purchase');eq(q.get().activeStudies[0].speedMult,1,'queue cannot grant free speed');
- ok(b.speed('guardmastery',3),'explicit timed boost accepts wide wallet');eq(big(q.get().motes),10n**400n-3500n,'timed boost exactly debits a wide Mote wallet');eq(q.get().studyBoosts.guardmastery,{mult:3,startedAtMs:CLOCK,expiresAtMs:CLOCK+28800000},'one exact paid8h timer');
- s.longStudyLevels.wispascend=1500;s.activeStudies=[{id:'wispascend',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.wispascend=true;s.studySpeedTargets.wispascend=8;q.set(s);const cost=b.speedCost('wispascend',8);eq(cost,27500,'timed package price remains independent of project level');
+ ok(b.speed('guardmastery',3),'explicit timed boost accepts wide wallet');eq(big(q.get().motes),10n**400n-3500n,'timed boost exactly debits a wide Mote wallet');eq(q.get().studyBoosts.slot0,{mult:3,startedAtMs:CLOCK,expiresAtMs:CLOCK+28800000},'one exact paid8h slot timer');
+ s.longStudyLevels.wispascend=499;s.activeStudies=[{id:'wispascend',remainingSec:100,totalDurationSec:100,speedMult:1}];s.studyUseMotes.wispascend=true;s.studySpeedTargets.wispascend=8;q.set(s);const cost=b.speedCost('wispascend',8);eq(cost,27500,'timed package price remains independent of project level below cap');
  const wide=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(big(q.get().motes),10n**400n,'future project never renews automatically');eq(wide.studyMotesSpent,0,'future project reports no automatic spend');ok(b.speed('wispascend',8),'explicit future boost');eq(big(q.get().motes),10n**400n-27500n,'future timed package exact debit');ok(q.save(),'wide timed endpoint saves');
 }
 {

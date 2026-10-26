@@ -126,7 +126,7 @@ eq(migrated.feedbackMigration.receipts['node.bonds'].amounts.prisms,[3376,4896,7
 eq(migrated.feedbackMigration.receipts['node.echo'].amounts.prisms,[16,22,30],'three original Echo individual prices retained');
 Object.keys(old.nodes).forEach(function(id){eq(migrated.nodes[id],old.nodes[id],'old raw purchase retained '+id);});
 rows.slice(3).forEach(function(r){eq(migrated.nodes[r[0]],0,'new level defaults zero '+r[0]);});eq(migrated.treeTrainingProgress,0,'new operating counter defaults zero');
-['research','longStudyLevels','activeStudies','heroRarity','wispModules','wispUltimate','autoAscendEnabled','autoAscendTargetDepth'].forEach(function(k){eq(migrated[k],old[k],'paid migration preserves '+k);});
+['research','longStudyLevels','activeStudies','heroRarity','wispModules','wispUltimate','autoAscendEnabled','autoAscendTargetDepth'].forEach(function(k){eq(migrated[k],k==='activeStudies'?old.activeStudies.map(function(work,i){return Object.assign({slot:i},work);}):old[k],'paid migration preserves '+k);});
 eq(mq.decode(mq.encode(migrated)),migrated,'backup never replays refund');mq.save();eq(app(migratedApp.storage).q.get(),mq.get(),'second cold load never replays refund');
 eq(mq.capacity(),5,'old save remains five slots');eq(mq.offlineCap(),12,'old paid hours preserve fixed12h policy');
 phase='forged and retired buys';

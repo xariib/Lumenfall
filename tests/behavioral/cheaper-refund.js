@@ -18,7 +18,7 @@ window.runCheaperRefundContracts=function(){
     ok(JSON.stringify(old)===before,'migration does not mutate input '+raw);
     same(b.canonical(s),s,'refund receipt prevents a second credit '+raw);
     ok(s.nodes.bonds===raw,'refund preserves raw history '+raw);
-    same(s.activeStudies,old.activeStudies,'refund preserves paid Study snapshot '+raw);
+    same(s.activeStudies,old.activeStudies.map(function(work,slot){return {id:work.id,slot:slot,remainingSec:work.remainingSec,totalDurationSec:work.totalDurationSec,speedMult:work.speedMult};}),'refund preserves paid Study snapshot and migrated slot '+raw);
     same(b.decode(b.encode(s)),s,'refund/remaining credit backup roundtrip '+raw);
     if(raw>20){var receipt=s.feedbackMigration.receipts['node.bonds'];ok(receipt.from===20&&receipt.to===raw,'complete receipt range '+raw);ok((raw>1900)===!!receipt.unpricedFrom,'nonfinite prices distinguished '+raw);}
     else ok(!s.feedbackMigration.receipts['node.bonds'],'no invented below-cap refund '+raw);

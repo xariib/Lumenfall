@@ -139,7 +139,7 @@ test('queue stops at cap and retains ON intent without spending or incrementing 
 test('raw history, Deeds, queues and paid work retained; original single-price compensation',()=>{
   const b=app().b;for(const level of [10,11,12,20,78,100,1000,1e300]){
     const s=seed(b,level);s.shards=43;s.achieved.labmaster=true;s.researchQueue.charge=true;s.activeStudies=[{id:'guardmastery',remainingSec:123,totalDurationSec:150,speedMult:2}];
-    b.set(s);assert.equal(balance(b),43n+refund(level));assert.equal(b.get().research.charge,level);assert(b.get().achieved.labmaster);assert(b.get().researchQueue.charge);assert.deepEqual(b.get().activeStudies,s.activeStudies);
+    b.set(s);assert.equal(balance(b),43n+refund(level));assert.equal(b.get().research.charge,level);assert(b.get().achieved.labmaster);assert(b.get().researchQueue.charge);assert.deepEqual(b.get().activeStudies,s.activeStudies.map((work,slot)=>({...work,slot})));
     const once=copy(b.get());assert.deepEqual(b.normalize(once),once);assert.equal(s.shards,43);
     if(level>2000)assert(b.get().swiftRecoveryRefund.unpricedFrom>0);
   }

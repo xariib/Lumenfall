@@ -47,7 +47,7 @@ function verify(html){
   s.schemaVersion=2;s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};s.activeStudies=[{id:'riftattune',remainingSec:13.25,totalDurationSec:200,speedMult:3}];
   s.depth=21;s.enemyDepth=21;s.enemyHp=s.enemyMaxHp=1e20;q.set(s);
   ids.forEach(id=>{eq(q.get().longStudyLevels[id],0,'missing earned level starts at0');eq(q.get().studyQueue[id],false,'no inferred queue');eq(q.get().studyUseMotes[id],false,'no inferred Mote spend');});
-  for(const k of ['lumen','motes','sigils','nodes','research','activeStudies'])eq(q.get()[k],s[k],'old value preserved '+k);
+  for(const k of ['lumen','motes','sigils','nodes','research'])eq(q.get()[k],s[k],'old value preserved '+k);eq(q.get().activeStudies.map(({slot,...work})=>work),s.activeStudies,'old paid work preserved with assigned slot');eq(q.get().activeStudies[0].slot,0,'legacy record receives a stable slot');
   eq(q.get().shards,s.shards+11638140,'old Shards plus literal original Swift10..27 restitution');
   eq(q.get().prisms,s.prisms+110,'old Prisms plus literal Echo6..9 restitution');
   eq(q.get().feedbackMigration.receipts['node.echo'].amounts.prisms,[16,22,30,42],'separate original Echo purchase receipt');
@@ -60,12 +60,12 @@ function verify(html){
  }
  // Extra slots are explicitly purchased, never an accident of catalog length.
  for(const depth of [1,14,15,25,39,40,59,60,89,90,250])for(const levels of [0,1,2,1000000]){
-  const s=seed(q);s.maxDepthEver=depth;s.longStudyLevels.labcapacity=levels;q.set(s);eq(q.slots(),(depth<40?2:depth<60?3:depth<90?4:5)+Math.min(2,levels),'capacity curve');
+  const s=seed(q);s.maxDepthEver=depth;s.longStudyLevels.labcapacity=levels;q.set(s);eq(q.slots(),Math.min(5,(depth<15?1:depth<60?2:3)+Math.min(2,levels)),'capacity curve');
  }
  {
   const s=seed(q);s.longStudyLevels.labcapacity=2;q.set(s);
-  const seven=['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','procurement','catalysis'];seven.forEach(id=>eq(q.start(id),true,'fills earned seventh slot'));
-  eq(q.start('bossledger'),false,'eighth slot rejected');const active=clone(q.get().activeStudies);q.save();eq(app(html,x.storage).q.get().activeStudies,active,'all seven paid records survive cold load');eq(q.accept(q.decode(q.export())).activeStudies,active,'all seven survive import');
+  const five=['wispascend','guardmastery','shardstudy','lumenstudy','motestudy'];five.forEach(id=>eq(q.start(id),true,'fills one of five slots'));
+  eq(q.start('bossledger'),false,'sixth slot rejected');const active=clone(q.get().activeStudies);q.save();eq(app(html,x.storage).q.get().activeStudies,active,'all five paid records survive cold load');eq(q.accept(q.decode(q.export())).activeStudies,active,'all five survive import');
  }
  // Actual Ascend routes with every expansion acquired and seven paid snapshots.
  // Pending old Prism work is deliberately present: only its completed level may
@@ -92,7 +92,7 @@ function verify(html){
   eq(after.ascendRewardedDepth,Math.max(cleared,before.ascendRewardedDepth),label+' rewarded-depth benchmark');
   eq(after.spirits.ember,1,label+' Ember restarts at level one');ok(Object.keys(after.spirits).every(id=>id==='ember'||after.spirits[id]===0),label+' other run levels reset');
   for(const field of paidFields)eq(after[field],before[field],label+' preserves '+field);
-  eq(after.autoAscendEnabled,before.autoAscendEnabled,label+' Auto-Ascend ON/OFF intent');eq(after.autoAscendTargetDepth,before.autoAscendTargetDepth,label+' Auto-Ascend target');eq(r.slots(),7,label+' earned seventh slot retained');
+  eq(after.autoAscendEnabled,before.autoAscendEnabled,label+' Auto-Ascend ON/OFF intent');eq(after.autoAscendTargetDepth,before.autoAscendTargetDepth,label+' Auto-Ascend target');eq(r.slots(),5,label+' five-slot capacity retained');
  }
  for(const route of ['manual','live','offline']){
   const y=app(html),r=y.q,s=paidAscendState(r,route!=='manual');
@@ -125,7 +125,7 @@ function verify(html){
   checks++;assert.ifError(error);eq(result.ascends,1,'seven-slot offline transaction actually Ascends');eq(r.get().ascendCount,before.ascendCount+1,'seven-slot offline Ascend count');ok(r.get().depth<before.depth,'offline run resets before further progress');eq(r.get().sigilResonanceUses,0,'offline Ascend resets Resonate use count');
   eq(r.get().prisms,before.prisms+prismReward(120,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),'seven-slot offline exact payout once');eq(r.get().ascendRewardedDepth,120,'offline rewarded benchmark');
   for(const field of paidFields.filter(field=>field!=='activeStudies'))eq(r.get()[field],before[field],'offline preserves paid '+field);
-  eq(r.get().autoAscendEnabled,true,'offline preserves Auto-Ascend enabled');eq(r.get().autoAscendTargetDepth,121,'offline preserves Auto-Ascend target');eq(r.get().activeStudies.length,7,'offline preserves all seven paid records');eq(r.slots(),7,'offline preserves earned capacity');
+  eq(r.get().autoAscendEnabled,true,'offline preserves Auto-Ascend enabled');eq(r.get().autoAscendTargetDepth,121,'offline preserves Auto-Ascend target');eq(r.get().activeStudies.length,7,'offline preserves all seven paid records');eq(r.slots(),5,'offline preserves five-slot capacity');
   r.get().activeStudies.forEach((active,i)=>{const old=before.activeStudies[i];eq([active.id,active.totalDurationSec,active.speedMult],[old.id,old.totalDurationSec,old.speedMult],'offline keeps purchased identity/work/speed');near(active.remainingSec,old.remainingSec-60*old.speedMult,'offline advances only elapsed paid work');ok(active.remainingSec>0,'offline pending work grants no early level');});
   const accepted=clone(r.get());eq(r.offline(),null,'seven-slot offline return window consumed');eq(r.get(),accepted,'repeat offline call adds no payout or work');y.fail(false,false);eq(r.save(),true,'offline accepted state saved to both slots');eq(app(html,y.storage).q.get(),r.get(),'offline cold reload keeps payout and all seven studies');
  }
@@ -143,9 +143,9 @@ function verify(html){
  // Focus/breadth discounts snapshot at each actual start; active work is immutable.
  {
   const s=seed(q);s.longStudyLevels.labcapacity=2;s.longStudyLevels.focusprotocol=5;q.set(s);
-  eq(q.duration('bossledger',0),504,'six empty slots save30% work');eq(q.duration('focusprotocol',0),1200,'focus excludes itself');
-  q.start('bossledger');eq(q.get().activeStudies[0].totalDurationSec,504,'frozen first start');eq(q.duration('luminousdistill',0),720,'one occupied slot reduces saving to25%');
-  q.start('luminousdistill');eq(q.get().activeStudies[0].totalDurationSec,504,'second start cannot stretch earlier work');
+  eq(q.duration('bossledger',0),576,'four unused slots save20% work');eq(q.duration('focusprotocol',0),1200,'focus excludes itself');
+  q.start('bossledger');eq(q.get().activeStudies[0].totalDurationSec,576,'frozen first start');eq(q.duration('luminousdistill',0),816,'one occupied slot leaves three unused');
+  q.start('luminousdistill');eq(q.get().activeStudies[0].totalDurationSec,576,'second start cannot stretch earlier work');
   const breadth=seed(q);ids.forEach(id=>breadth.longStudyLevels[id]=id==='curriculum'?3:1);breadth.longStudyLevels.focusprotocol=0;q.set(breadth);eq(q.curriculum(),10,'breadth capped at ten subjects');eq(q.duration('bossledger',0),504,'breadth30% work reduction');eq(q.duration('curriculum',0),1500,'breadth excludes itself');
  }
  // One Notes reward per genuine completion, not per load, render or close.
@@ -214,10 +214,10 @@ function verify(html){
 const result=verify(source),negatives=[];
 if(process.argv.includes('--negative')){
  const pairs=[
-  ['lost-capacity',"return base+labExpansionLevel('labcapacity');",'return base;'],
+  ['lost-capacity',"return Math.min(5,base+labExpansionLevel('labcapacity'));",'return base;'],
   ['free-start','  state.lumen=debitAmount(state.lumen,plan.cost.lumen);\n  spendShards(plan.cost.shard);','  state.lumen=debitAmount(state.lumen,0);\n  spendShards(plan.cost.shard);'],
   ['early-level','state.activeStudies.push({id:plan.node.id,','state.longStudyLevels[plan.node.id]++;state.activeStudies.push({id:plan.node.id,'],
-  ['lost-seventh-paid-record','}).slice(0,5+Math.min(2,out.longStudyLevels.labcapacity||0)).map(function(active){','}).slice(0,5).map(function(active){'],
+  ['lost-seventh-paid-record','}).slice(0,7).map(function(active){','}).slice(0,5).map(function(active){'],
   ['ascend-drops-paid-slots','  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;','  state.activeStudies=state.activeStudies.slice(0,5);\n  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;'],
   ['ascend-drops-earned-capacity','  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;','  state.longStudyLevels.labcapacity=0;\n  state.sigilResonanceUses = 0;\n  state._autoTapAccum = 0;'],
   ['double-notes','if(moteBonus) state.motes=creditAmount(state.motes,moteBonus);','if(moteBonus) state.motes=creditAmount(state.motes,2*moteBonus);'],

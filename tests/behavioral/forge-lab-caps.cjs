@@ -25,14 +25,16 @@ function verify(html){
   const originalIds=bf.defs().map(n=>n.id);originalIds.splice(8,0,'masterwork');eq(f.defs().map(n=>n.id),originalIds,'all original Forge IDs retained plus explicit Masterwork');
   eq(l.projects().map(n=>n.id),bl.projects().map(n=>n.id),'no Lab ID removed or replaced');
   for(const node of f.defs()){
-    if(node.id==='masterwork'){eq([node.unlockDepth,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.effectPerLevel,node.levelCap,node.retiredTo],[70,1000000,25000,1.35,1.35,5,undefined,''],'independent repeatable Masterwork definition');continue;}
+    if(node.id==='masterwork'){eq([node.unlockDepth,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.effectPerLevel,node.levelCap,node.grandfatheredCap,node.retiredTo],[70,1000000,25000,1.35,1.35,5,500,true,''],'independent finite Masterwork definition');continue;}
     const old=JSON.parse(JSON.stringify(bf.node(node.id)));if(forgeIds.includes(node.id))old.levelCap=20;
-    eq(node,old,'only agreed Forge cap changes: '+node.id);
+    if(old.levelCap===undefined){old.levelCap=250;old.grandfatheredCap=true;}
+    eq(node,old,'only agreed Forge caps change: '+node.id);
   }
   for(const node of l.projects()){
     const old=JSON.parse(JSON.stringify(bl.projects().find(n=>n.id===node.id)));
     if(labIds.includes(node.id)){old.levelCap=20;old.desc=old.desc.replace(node.id==='bossledger'?'up to 50%':'up to 100%',node.id==='bossledger'?'up to 100%':'up to 200%');}
     if(node.id==='catalysis')old.desc='2% lower Mote prices per level for future timed Lab boosts, up to 20%. Existing paid speed and boost time are retained; project levels share unexpired boost time.';
+    if(old.levelCap===undefined){old.levelCap=500;old.grandfatheredCap=true;}
     eq(node,old,'only agreed Lab cap/endpoint wording changes: '+node.id);
   }
   for(const id of forgeIds){
@@ -74,7 +76,7 @@ function verify(html){
       eq(l.get().longStudyLevels[id],level,'start does not grant a level');
       if(level<20){
         eq(l.get().lumen,prior.lumen-plan.cost.lumen,'exact Lab Lumen debit');eq(l.get().shards,prior.shards-plan.cost.shard,'exact Lab Shard debit');
-        eq(l.get().activeStudies[0],{id,remainingSec:plan.duration,totalDurationSec:plan.duration,speedMult:1},'paid fixed work snapshot');
+        eq(l.get().activeStudies[0],{id,slot:0,remainingSec:plan.duration,totalDurationSec:plan.duration,speedMult:1},'paid fixed work snapshot');
         l.finish(plan.duration-.5);eq(l.get().longStudyLevels[id],level,'no early completion');l.finish(.5);eq(l.get().longStudyLevels[id],level+1,'one real completion');
         l.finish(plan.duration);eq(l.get().longStudyLevels[id],level+1,'no double earned level');
       }else eq(l.get(),prior,'maxed start preserves paid state');
@@ -84,7 +86,7 @@ function verify(html){
   }
   // Retain all pre-existing combined-save fields. Schema5 adds only the
   // explicit Mastery/entitlement fields and the new Masterwork path here.
-  function oldFields(s){s=F.clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
+  function oldFields(s){s=F.clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
   for(const schema of [1,2,3])for(const level of [10,13,20,23]){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});
@@ -140,7 +142,7 @@ function verify(html){
 const result=verify(source),negativeControls=[];
 if(process.argv.includes('--negative'))for(const [name,from,to] of [
   ['old-Arcane-cap',"unlockDepth:12, levelCap:20, effectPerLevel:0.03","unlockDepth:12, levelCap:10, effectPerLevel:0.03"],
-  ['old-effective-Forge-cap','return node.levelCap===undefined ? level : Math.min(level,node.levelCap);','return node.levelCap===undefined ? level : Math.min(level,10);'],
+  ['old-effective-Forge-cap','return node.grandfatheredCap ? level : node.levelCap===undefined ? level : Math.min(level,node.levelCap);','return node.grandfatheredCap ? Math.min(level,10) : node.levelCap===undefined ? level : Math.min(level,10);'],
   ['double-earned-Lab-level','if(earned) state.longStudyLevels[active.id]=level+1;','if(earned) state.longStudyLevels[active.id]=level+2;']
 ]){
   assert(source.includes(from),'causal mutation anchor '+name);let caught;

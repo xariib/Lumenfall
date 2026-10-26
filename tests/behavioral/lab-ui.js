@@ -66,7 +66,7 @@ window.runLabUiQa = function(b,ctx,assert){
   var buy=q('[data-speed-study="guardmastery"][data-speed="3"]');buy.focus();b.renderLayout();
   ok(document.activeElement.dataset.speed==='3'&&document.activeElement.dataset.speedStudy==='guardmastery','unrelated rendering preserves an available purchase focus');
   b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="3"]').click();});
-  var paid=b.getState();ok(paid.motes===96500&&paid.studyBoosts.guardmastery.mult===3&&paid.activeStudies[0].speedMult===1,'real button charges exactly3500 Motes without rewriting paid floor');
+  var paid=b.getState();ok(paid.motes===96500&&paid.studyBoosts.slot0.mult===3&&paid.activeStudies[0].speedMult===1,'real button charges exactly3500 Motes without rewriting paid floor');
   ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','purchase returns focus to same Study timer');
   ok(!q('[data-study-inspection="guardmastery"]').hidden&&!q('[data-speed-study="guardmastery"]')&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline countdown marks current speed');
   ok(!q('[data-study-inspection="wispascend"] [data-speed-study]'),'idle controls omit the boost purchase action');

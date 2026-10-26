@@ -26,7 +26,7 @@ for(const [index,id]of ids.entries()){
   boundaries(s,id,{rarity:5,module:15,depth:120,ascends:50,lab:labBase+12*index,forge:10},()=>b.ultimate(sp),()=>q.ultimate(id),false);
   eq(b.ultimate(sp).cost,ultimates[index],id+' independent Ultimate price');ok(q.ultimate(id),id+' real Ultimate purchase');eq(q.get().sigils,A.exactSub('1e400',ultimates[index]),id+' exact Ultimate debit');
  }
- for(const rank of [0,4,5,9,10,99,10000]){
+ for(const rank of [0,4,5,9,10,99,1999]){
   const s=seed(id);s.wispMastery[id]=rank;
   boundaries(s,id,{depth:200+25*rank,lab:labBase+Math.floor(rank/5),forge:Math.ceil((rank+1)/5),tree:10+Math.floor(rank/10)},()=>b.mastery(sp),()=>b.buyMastery(sp),true);
   for(const [key,value]of [['rarity',4],['module',19],['ultimate',false]]){const missing=clone(s);if(key==='ultimate')missing.wispUltimate[id]=value;else setGate(missing,id,key,value,true);if(rank>0){const before=clone(q.get());assert.throws(()=>q.accept(missing),/Incomplete Wisp Mastery prerequisites/,'existing ranks cannot load incomplete prerequisites');checks++;eq(q.get(),before,id+' rejected invalid save retains current state');continue;}q.set(missing);const before=clone(q.get());eq(b.mastery(sp).affordable,false,id+' Mastery needs '+key);eq(b.buyMastery(sp),false,id+' incomplete Wisp cannot buy Mastery');eq(q.get(),before,id+' ready gate is atomic');}

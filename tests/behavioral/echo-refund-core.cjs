@@ -14,7 +14,7 @@ function contracts(html){
   const a=app(html),q=a.q,s=old(q,raw,wallet,bonds),original=clone(s);q.set(s);const accepted=clone(q.get());
   eq(value(accepted),BigInt(Math.floor(wallet))+owed(raw,6,1.4)+owed(bonds,20,1.45),'original total value '+raw+'/'+wallet);
   eq(accepted.prisms-Math.floor(accepted.prisms),wallet-Math.floor(wallet),'original fractional balance');
-  eq(s,original,'input immutable');eq(accepted.nodes.echo,raw,'raw Echo ownership');eq(accepted.nodes.bonds,bonds,'raw recruitment ownership');eq(accepted.activeStudies,s.activeStudies,'paid Study snapshot');
+  eq(s,original,'input immutable');eq(accepted.nodes.echo,raw,'raw Echo ownership');eq(accepted.nodes.bonds,bonds,'raw recruitment ownership');eq(accepted.activeStudies,s.activeStudies.map((work,slot)=>({...work,slot})),'paid Study snapshot and migrated slot');
   eq(q.offlineRate(),Math.min(1,.70+Math.min(raw,6)*.05),'unchanged capped rate');eq(q.offlineCap(),12,'fixed time cap');
   eq(q.accept(accepted),accepted,'second normalization never refunds again');eq(q.decode(q.encode(accepted)),accepted,'full backup roundtrip');
   q.save();eq(app(html,a.storage).q.get(),q.get(),'actual primary cold load');

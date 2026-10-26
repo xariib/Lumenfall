@@ -38,7 +38,7 @@ async function run(){
  for(const width of [320,430]){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
   await install(seed());await badge(false,'no money '+width);
-  let s=seed();s.maxDepthEver=1;await install(s);
+  let s=seed();s.maxDepthEver=15;await install(s);
   await ev('uiRegression.wallet(599,40)');await badge(false,'Lumen one short');
   await ev('uiRegression.wallet(600,39)');await badge(false,'Shards one short');
   await ev('uiRegression.wallet(600,40)');await badge(true,'exact cheapest price');
@@ -48,7 +48,7 @@ async function run(){
   await ev('uiRegression.wallet(600,40)');await badge(false,'active project cannot start twice');
   await ev('uiRegression.wallet(800,80)');check(await ev('uiRegression.start("wispascend")'),'second start fills slots');await ev('uiRegression.wallet(1000000,1000000)');await badge(false,'all slots full');
   await ev('uiRegression.finish()');await badge(true,'completion opens capacity');
-  s=seed();s.maxDepthEver=1;s.lumen=1e9;s.shards=1e9;s.longStudyLevels.wispascend=100;s.longStudyLevels.guardmastery=100;await install(s);check(await ev('uiRegression.plan("labcapacity").reason==="locked"'),'locked project start denied');await badge(false,'rich wallet only locked projects affordable');
+  s=seed();s.maxDepthEver=1;s.lumen=1e9;s.shards=1e9;s.longStudyLevels.wispascend=500;s.longStudyLevels.guardmastery=500;await install(s);check(await ev('uiRegression.plan("labcapacity").reason==="locked"'),'locked project start denied');await badge(false,'rich wallet only locked projects affordable');
   s=seed();s.lumen=1e9;s.shards=1e9;for(const d of defs)s.longStudyLevels[d.id]=d.levelCap===undefined?100:d.levelCap;await install(s);check(await ev('uiRegression.plan("labcapacity").reason==="maxed"'),'capped project start denied');await badge(false,'capped catalog and unaffordable legacy');
   s=seed();s.lumen=1e9;s.shards=1e9;await install(s);const slots=await ev('uiRegression.slots()');
   s.activeStudies=defs.filter(d=>!d.retiredTo&&d.id!=='labcapacity').slice(0,slots).map(d=>({id:d.id,remainingSec:100,totalDurationSec:100,speedMult:1}));await install(s);await badge(false,'full base capacity');

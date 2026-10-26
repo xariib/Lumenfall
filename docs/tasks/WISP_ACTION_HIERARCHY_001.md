@@ -176,10 +176,7 @@ and subsequent non-publishing APK run are pending. This feature remains
 **integrated, acceptance pending**. Physical phone, exact WebView60, TalkBack and
 human pacing/performance remain unverified. Do not mark complete or archive.
 
-Next action: review PR #4's final-head CI, integrate its test-only change, run
-Build Android APK with `publish=false` on that commit, inspect its installed
-Wisp receipt/screenshot and original upgrade preservation, then arrange the
-remaining physical-device accessibility/visual acceptance before closeout.
+That plan was superseded by the installed checkpoint below.
 
 ## Installed Android acceptance checkpoint — 21 October 2026
 
