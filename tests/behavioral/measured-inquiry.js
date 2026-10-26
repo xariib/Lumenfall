@@ -77,7 +77,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     var unlocked=seed();unlocked.maxDepthEver=60;install(unlocked);ok(t.start('measuredinquiry'),'depth60 start');
     [1,14,15,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;install(s);ok(b.riftStatus.slots()===(depth<15?1:depth<60?2:3),'unchanged slot matrix '+depth);});
     var deeds=seed();Object.keys(deeds.achieved).forEach(function(id){deeds.achieved[id]=false;});deeds.longStudyLevels.measuredinquiry=13;install(deeds);
-    ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement="'+id+'"]').closest('.ach-card').querySelector('.deed-scope').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});
+    ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement="'+id+'"]').closest('.ach-card').querySelector('.card-details>div').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});
     deeds.longStudyLevels.guardmastery=24;install(deeds);ok(!b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'Inquiry13 cannot supply level25');
     deeds.longStudyLevels.guardmastery=25;install(deeds);ok(b.forge.deeds().items.find(function(d){return d.id==='study25';}).eligible,'original level25 still earns');
     deeds.longStudyLevels.guardmastery=0;window.inquiryOriginals.forEach(function(id){deeds.longStudyLevels[id]=1;});install(deeds);

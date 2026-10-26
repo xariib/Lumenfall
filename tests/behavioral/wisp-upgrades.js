@@ -24,7 +24,7 @@ window.runWispUpgradeQa = function(){
         ok(p.tagName==='DETAILS','all Wisp upgrades use disclosure '+id+'/'+mask);p.open=true;
         if(complete){p.open=true;ok(visible(p.querySelector('.ultimate-badge')),'completed Ultimate readable');}
         else {
-          ok(p.tagName==='DETAILS' && !!p.querySelector('summary'),'unfinished section has no disclosure '+id);
+          ok(p.tagName==='DETAILS' && !!p.querySelector('summary'),'unfinished upgrades remain behind their disclosure '+id);
           ok(visible(p.querySelector('.hero-ability')),'unfinished ability stays visible');
           if(module<20) ok(visible(p.querySelector('[data-module]')),'unfinished Module stays visible');
           if(rarity<5) ok(visible(p.querySelector('[data-rarity]')),'unfinished Rarity stays visible');
