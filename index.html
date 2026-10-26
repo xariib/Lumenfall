@@ -7551,6 +7551,7 @@ function applyRiftTheme(){
 function buyNode(node){
   var plan = getNodeBuyPlan(node,true);
   if(!plan.affordable) return false;
+  var purchaseView=captureControlViewport(els['node-list']);
   if(!forgeCommitPaidMutation(function(){
     state.prisms = plan.payment.prisms;
     state.refundCredits.prisms = plan.payment.credits;
@@ -7565,6 +7566,7 @@ function buyNode(node){
   renderAscendSummary();
   updateBattleFast();
   if(TREE_BY_ID[node.id]) renderSpirits();
+  restoreControlViewport(purchaseView);
   return true;
 }
 
@@ -9573,6 +9575,7 @@ function renderLongStudies(){
   var focusedStudyChoices=document.activeElement && document.activeElement.id==='study-choices';
   var focusedCard=document.activeElement && document.activeElement.closest('[data-running-study],[data-study-card]');
   var focusedStudy=focusedCard && (focusedCard.getAttribute('data-running-study') || focusedCard.getAttribute('data-study-card'));
+  var focusedSlot=focusedCard && focusedCard.getAttribute('data-lab-slot');
   var focusedLegacy=document.activeElement && document.activeElement.getAttribute('data-legacy-upgrade');
   var focusedBegin=document.activeElement && document.activeElement.getAttribute('data-study');
   var focusedSpeed=document.activeElement && document.activeElement.getAttribute('data-speed-study');
@@ -9665,6 +9668,10 @@ function renderLongStudies(){
   if(focusedLegacy){
     var preservedFocus=els['study-list'].querySelector(('[data-legacy-upgrade="' + focusedLegacy + '"]'));
     if(preservedFocus){preservedFocus.tabIndex=-1;preservedFocus.focus();}
+  }
+  if(focusedStudy && !findActiveStudy(focusedStudy) && focusedSlot!==null){
+    var readySlot=els['study-list'].querySelector('[data-study-slot="'+focusedSlot+'"]');
+    if(readySlot)readySlot.focus({preventScroll:true});
   }
   var choose=els['study-list'].querySelector('[data-study-choose]');
   if(choose) choose.addEventListener('click',function(){

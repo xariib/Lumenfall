@@ -99,9 +99,9 @@ const cases=String.raw`
    ok(plan.level===0&&plan.buyCount===1,'first paid level available '+id);
    ok(plan.cost.lumen===expectedPrices[row][0]&&plan.cost.shard===expectedPrices[row][1],'independent approved first price '+id);
    const text=await ev('document.querySelector('+JSON.stringify(card)+').textContent');
-   ok(text.includes(d.name)&&text.includes(d.desc)&&text.includes('Current:')&&text.includes('Next:')&&text.includes('Purchase impact:'),'native name/effect/current/next/purchase preview '+id);
+   ok(text.includes(d.name)&&text.includes(d.desc)&&text.includes('Current:')&&text.includes('Next:')&&!text.includes('Purchase impact:'),'native name/effect/current/next/purchase preview '+id);
    const native=row>=5?nativeEffects[row-5]:null;
-   if(native)ok(await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent')==='Current: '+native[0]+'\nNext: '+native[1]+' (preview only)\nPurchase impact: 1 level(s) · '+native[1],'independent native 0/1/purchase text '+id);
+   if(native)ok(await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent')==='Current: '+native[0]+'\nNext: '+native[1],'independent native 0/1/purchase text '+id);
    async function wallet(L,S,label){
     await ev('prismQa.forgeWallet({lumen:'+L+',shards:'+S+'})');const before=await ev('JSON.stringify(prismQa.get())');await ev('prismQa.forgeRefresh()');ok(await ev('JSON.stringify(prismQa.get())')===before,'affordability refresh pure '+id+' '+label);
     const seen=await ev('('+function(card){

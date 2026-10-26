@@ -102,11 +102,11 @@ async function run(){
   await evaluate('Promise.all(document.getElementById("tab-spirits").getAnimations({subtree:true}).filter(function(a){return a.effect.getComputedTiming().iterations!==Infinity;}).map(function(a){return a.finished;})).then(function(){return true;})');
   const layout=await evaluate(`(function(){
    function ok(v,m){if(!v)throw Error(m);}
-   var b=resonateQa.button('ember'),h=resonateQa.help('ember');
+   document.querySelector('[data-wisp-progression=ember]').open=true;var b=resonateQa.button('ember'),h=resonateQa.help('ember');
    ok(b&&h,'visible Resonate action and explanation');
    var r=b.getBoundingClientRect(),hr=h.getBoundingClientRect();
    ok(b.textContent.includes('Fill ability to 100')&&b.textContent.includes('25 Sigils'),'explicit refill and price');
-   ok(h.textContent.includes('all Wisp Ultimates')&&h.textContent.includes('not a permanent upgrade'),'unlock and consumption explanation');
+   ok(h.textContent.includes('Requires all Wisp Ultimates.'),'unlock and consumption explanation');
    ok(h.textContent.includes('3 of 3 uses left this run, shared across all Wisps')&&h.textContent.includes('Resets on Ascend'),'shared run limit/reset');
    ok(b.getAttribute('aria-describedby')===h.id,'accessible description');
    ok(b.getAttribute('aria-label').includes('Ember'),'Wisp-specific accessible name');

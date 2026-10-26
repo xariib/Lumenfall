@@ -93,3 +93,18 @@ checks, and a new APK version if acceptance passes. The earlier publication
 block is superseded by that approval. Existing draft PR #13 owns this feature;
 update it rather than opening a duplicate. Current remote candidate efda8180 is
 an earlier version; local changes since then are the reviewed fixes above.
+
+## CI correction checkpoint
+
+PR #13 candidate e043fad9: the dedicated slot-first browser suite passed 218
+checks across all 18 profiles, and the complete isolated offline CI passed.
+Shared UI also passed. Legacy Lab and Wisp tests still required an always-open
+catalogue or incomplete Wisp sections; those expectations are updated to the
+approved disclosures and slot selection while preserving purchase, input,
+focus, price and save assertions. Comet's existing-price tests isolate the
+new milestones from their fixed old reward fixtures. Its shop now tests one
+explicit Next effect instead of duplicate current/next copy.
+
+Two product focus guards accompany those changes: completed research returns
+focus to its empty slot, and a Tree purchase restores its viewport after all
+dependent renders. Remaining complete CI and Android gates are still required.

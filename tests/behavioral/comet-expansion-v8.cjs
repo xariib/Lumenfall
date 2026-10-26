@@ -34,7 +34,7 @@ var EMPTY_EVENTS={firstCommand:false,firstRecharge:false,bossStrike:false,called
 var EMPTY_CLAIMS={policy:'comet-commands-001',retired:{comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'},deeds:{}};
 var PAID=['nodes','research','longStudyLevels','activeStudies','heroRarity','wispModules','wispUltimate','spirits','activeParty','formationPresets','formationRebuild','empowerQueue','researchQueue','studyQueue','studyUseMotes','savedLabMultiplier','legacyCometPurchases','offline12hRefund','treeTrainingProgress'];
 function isolated(q){
-  var s=H.seed(q);s.schemaVersion=3;OLD_DEEDS.forEach(function(d){s.achieved[d[0]]=true;});
+  var s=H.seed(q);s.schemaVersion=3;OLD_DEEDS.concat(ENDLESS_DEEDS).forEach(function(d){s.achieved[d[0]]=true;});
   // Nonzero historical paid records make preservation assertions sensitive to
   // destructive resets, while all new Tree/Forge operating additions stay0.
   s.nodes.starlight=7;s.nodes.steady=5;s.nodes.momentum=3;s.nodes.echo=6;s.nodes.bonds=10;s.nodes.swift=12;

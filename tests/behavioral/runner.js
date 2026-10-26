@@ -2007,11 +2007,11 @@
           var progression=document.querySelector('.wisp-progression');
           var inspectId=progression.dataset.wispProgression;
           var complete=state().heroRarity[inspectId]>=5 && state().wispModules[inspectId]>=20 && state().wispUltimate[inspectId];
-          assert((progression.tagName==='DETAILS')===!!complete,'only completed Wisp progression has native disclosure');
+          assert(progression.tagName==='DETAILS','all Wisp progression has native disclosure');
           var title=progression.querySelector('[data-wisp-details]');
-          title.focus();if(complete) progression.open=true;bridge.renderLayout();
+          title.focus();progression.open=true;bridge.renderLayout();
           progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');
-          assert(complete ? progression.open : !progression.querySelector('summary'),'progression stays open through refresh');
+          assert(progression.open,'progression stays open through refresh');
           assert(document.activeElement===progression.querySelector('[data-wisp-details]'),'refresh preserves progression keyboard focus');
           assert(progression.querySelector('[data-rarity]') && progression.querySelector('.hero-ability'),'secondary upgrade information remains reachable');
           assert(JSON.stringify(state())===beforeHierarchy,'hierarchy/navigation/inspection must not mutate gameplay state');
