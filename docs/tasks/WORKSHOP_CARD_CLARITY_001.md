@@ -1,204 +1,135 @@
 # WORKSHOP_CARD_CLARITY_001 — slots, concise cards and long-term Deeds
 
-Status: implemented; CI, integration and release acceptance in progress. Baseline: main `91aea49`. Branch:
-`codex/workshop-card-clarity-001`. One owner chat; no delegated work.
+Status: implemented; final validation, integration and release pending.
+Baseline: main `91aea49228b6fc8039a0744788e988458c1bb40d` (Android 0.2.40).
+Branch: `codex/workshop-card-clarity-001`; [PR #13](https://github.com/xariib/Lumenfall/pull/13).
+One owner chat; no delegated work.
 
-## User requirements, 26 October 2026
+## Requirements and authorization — 26 October 2026
 
-- Lab opens on five visible slots, including locked slots. Select a slot to see
-  its research catalogue; choose new research there. No Pause Study action.
-- Queue OFF clears the slot. Switching keeps purchased work and slot boosts.
-  Remove the redundant “Speed target 8x” heading; keep the slider's value accessible.
-- Simplify game cards, particularly Wisps: avoid duplicated facts and long
-  explanations. Keep price, effect, requirements and next action accessible.
-- Add substantially more long-term Deeds for an endless game.
-- Comet unlocks must not add Rift panels or make Rift scroll. Prefer useful
-  permanent automation unlocks, comparable to Auto-Ascend.
+- Lab opens on five visible slots, including locked ones. Select a slot to open
+  the research catalogue. Replace its project there; no Pause Study action.
+- Queue OFF empties the slot. Retain paid remaining work and slot-owned boosts.
+  Remove the redundant Speed target heading; keep the slider value accessible.
+- Simplify all game cards, particularly Wisps, by removing duplicate copy.
+  Keep prices, effects, gates and next actions accessible.
+- Add many more objectives appropriate for an endless game.
+- Exclusive Comet unlocks must not occupy Rift space or enable scrolling.
+  The user prefers useful permanent unlocks such as Auto-Ascend.
 
-## Preservation and acceptance
+The user explicitly approved public GitHub upload, PR, integration after passing
+checks and a new signed APK if acceptance passes: “Godkendt og hvis alt er okay,
+så lav en ny version.” This supersedes the initial no-release scope and the
+public-upload automatic-review rejection. Terminal push lacks credentials;
+the GitHub connector publishes exact-tree commits with expected-head leases.
+No further general approval is needed for this authorized delivery.
 
-Keep saves, existing paid research, currencies, caps, automation, offline chronology,
-Android identity and existing purchase value. Five Lab cards are visible at first
-open, and selecting/replacing/clearing a slot is atomic and tested for save failure,
-reload and boost expiry. Catalogue is hidden until selection. Controls meet 44px
-and work at 320/390/430px and enlarged text. Completed/maxed cards retain their gold
-state and earned effects. New Deeds use authoritative existing counters, fixed
-one-time rewards and receipt-backed pending credits. Rift remains fixed without
-command-driven scrolling. Relevant original tests and required CI remain gates.
+## Implemented behavior and preservation
 
-## Baseline evidence
+Five primary slot cards are always rendered. Selecting one reveals its catalogue;
+choosing research starts Queue ON and returns to slots. Queue OFF clears a slot
+atomically. A legacy active save with Queue already OFF instead says Clear slot
+and clears on the first activation without enabling automation. Replaced/cleared
+work goes into the existing paid-work ledger; later resumption is free. The
+slot's purchased boost continues on its original wall-clock deadline while idle.
+The additive five-entry `studySlotProjects` association preserves repeat ownership.
+Existing paid legacy slots 6–7 remain visible without creating new capacity.
 
-Node 24.22.1: Lab slot contract PASS 54; Lab expansion PASS 2,676. Baseline
-product SHA-256 `854dc16c61d802f85af2f7fdf35800b01bbfe60069c5208be19288086e8510aa`.
-Original Lab has five available-capacity slots but only a chip summary, inline
-catalogue and Pause Study. Comet ownership explicitly enables Rift scrolling.
+Native range controls and every live ancestor stay attached during refresh;
+slot DOM, visual and assistive reading order are 1–5. Completion returns focus
+to the empty slot. Farm/late-power links open a catalogue before focusing a
+hidden research card, without starting or buying anything. Lab level and cap
+are shown once as `Lv. n / cap`. The speed value lives beside its slider.
 
-## Next action
+Wisp Rarity, Ability, Ultimate and Mastery are behind native Upgrades. Forge,
+Tree, Lab, Deed and Comet cards use concise effects and optional Details.
+The final disclosure correction samples the live open state before
+rendering and restores the same keyed summary's focus. This also makes How
+research works stay open across passive Lab refreshes. Existing fallback focus
+after a capped purchase still visits purchase controls in its original order.
 
-Finish all six PR workflows, integrate PR #13, run all six workflows manually on
-the exact integrated main commit, then dispatch the publishing Android build.
-The user explicitly approved that sequence and a new APK if acceptance passes.
-The workflow must verify package/signing/assets and installed save upgrade before
-publishing. No physical-phone, legacy WebView or TalkBack pass is claimed.
+Forty-nine fixed, one-time Deeds extend the original 27 to 76. They use existing
+lifetime/permanent counters for Rift, Ascend, kills, Lab, Forge, Mastery and
+offline hours, with receipt-backed pending credits. Current purchasable totals
+are Forge 645 and Lab 2,635; all new finite upgrade goals are reachable. Forge
+milestones are 100/200/300/400/500/600. Original Deeds and their rewards are intact.
 
-## Implementation checkpoint — 26 October 2026
+Existing Comet commands and purchase value are preserved in Deeds; their panel
+and scrolling rules are removed from Rift. No prices, charges, damage, ownership
+or command effect is converted. This preservation choice was disclosed for the
+approved delivery; no new automation type has been invented.
 
-The five primary cards expose locked and open slots. Selecting a slot reveals
-its catalogue; changing a running project preserves its paid remaining work in
-the existing paused-work ledger and retains the slot boost. Queue OFF clears the
-assignment atomically. Legacy paid slots 6–7 remain visible as legacy work but
-cannot create new capacity. The speed value lives with the range input.
+Keep saves, paid work, currencies, balance/caps, automation, offline chronology,
+package `com.lumenfall.app` and the established signing identity. No test or gate
+is disabled. No touch glow/highlight is added. Normal keyboard focus remains.
 
-Card copy is condensed across Wisps, Lab, Forge, Tree, Deeds and Comet. Wisp
-progression including Mastery is behind Upgrades; required prices and effects
-remain available there. Forty-nine fixed one-time long-tail Deeds extend the
-original 27. Existing Comet purchases and command effects remain redeemable in
-Deeds; their panel no longer occupies the fixed Rift viewport. No Comet price,
-charge, damage or ownership state has been converted. This is a conservative
-preservation choice pending real-device judgment of command usefulness.
+## Validation and diagnosed failures
 
-Local source and focused Lab/Deed transaction checks passed (85), original
-Lab slot checks passed (54), Forge and progression core passed, Comet core,
-numerical and offline checks passed. Browser cannot create its local Chromium
-socket in this environment (`Operation not permitted`); its 18-profile UI
-check and older twelve-profile Comet mobile suite require GitHub CI. The
-independent four-phase Swift oracle matched all prior kills, Ascends and Prisms;
-regenerated source-bound hash will be committed with the candidate. Full offline
-comparison and exact PR CI remain pending in this historical checkpoint;
-release authorization was added below.
+- Baseline local Lab slot contract passed 54; Lab expansion passed 2,676.
+- Feature transaction/save/reachability suite passes 97 on current source.
+  Other verified local suites include Forge 9,319, Comet numerical 681,739,
+  Comet core negative 10,492 and full offline comparison 18 scenarios.
+- Current product SHA-256:
+  `7e2e15e9fc5b3320fd17f7777a4b8e84bc23c61b3a4aee1a33a93db503f8d63c`.
+  Its regenerated four-phase, 8h-per-phase independent one-second Swift oracle
+  matches every prior state digest and kills/Ascends/Prisms tuple:
+  86404/4114/94622, 86401/4114/94622, 86396/4114/94622, 86405/4115/94645.
+- Prior public candidate `1519a217` (before the disclosure correction) passed
+  complete Lab, Comet, Shared UI and isolated offline CI. Its broad validation
+  passed Endless/Mastery, repeated Ascend/clock tests and original-value Tree
+  refunds and Wisp contribution acceptance. It then hit the older Wisp task
+  startup budget; the active checkpoint was compacted with a byte-identical
+  historical copy, keeping the 32 KiB gate. Complete final-head and
+  integrated-main CI remain mandatory.
+- Original UI fixtures now select slots/open Upgrades before native purchases.
+  Both Recruitment keyboard drivers visit the new Tree Details summary before
+  the original funded button, retaining focus/price/cap assertions. Native Lab
+  Queue OFF checks the empty slot, exact remaining paid work, retained boost
+  and both saved copies. Cap mobile acceptance is an additional early CI gate.
+- Tree's compact Invitations card can reach a real 2 px maximum-scroll boundary;
+  funded purchases use the existing nearest-feasible boundary checks. A redundant
+  outer viewport guard was removed because it masked the original causal test.
+- Chrome startup occasionally expires before any game assertion (Browser.getVersion
+  or Target.createBrowserContext). Rerun that job with unchanged deadlines;
+  never reinterpret a completed assertion failure as infrastructure failure.
+- Local Chromium socket creation is denied in this command environment. Use CI
+  for actual browser acceptance; do not retry the rejected sandbox escalation.
 
-## Local candidate and delivery block
+The focused mobile matrix covers 18 profiles: 320/390/430 px, 100/150/200% text,
+normal/reduced motion, 44px controls, selection/replacement/clearing, original
+Queue-OFF saves, live range identity, boosts, five-slot order and fixed Rift.
+It now also exercises native keyboard opening and repeated refresh of Lab help,
+Tree, Forge and Comet disclosures, with stable focus and unchanged state/saves.
+The original Lab, Forge, Comet, Tree, V8 6.0, stateful and causal suites stay gates.
+Self-review and automated validation only; no independent human review claimed.
 
-Commit `45119b8` is the local source candidate. On its exact product hash
-`9e1a742c65b3925665f34465c7015f7fc0a9adc2a570d68f3ebcd0211adfcee6`,
-Lab expansion passed 2,676 assertions, Forge expansion passed 9,319,
-Comet numerical passed 681,739, Comet core negative suite passed 10,492,
-full offline comparison passed 18 scenarios, and the V8 generation offline
-probe passed. The source-bound Swift oracle agrees with all four prior
-kills/Ascends/Prisms tuples. UI browser checks are pending because Chromium's
-socket is denied in the local command sandbox; CI and installed Android acceptance
-remain pending.
+## Android evidence and remaining delivery
 
-The external GitHub push was rejected twice by automatic approval review. The
-remote was checked through the GitHub connector and matches public
-`xariib/Lumenfall` with push permission, but the reviewer still said this
-specific public source upload needs explicit user authorization. Do not route
-around this rejection. Next: obtain explicit permission for publishing this
-candidate branch, push it, open PR, run all required checks, fix any regressions,
-then decide main integration and nonpublishing Android acceptance. No APK release.
+Nonpublishing [native #41](https://github.com/xariib/Lumenfall/actions/runs/40356497883)
+built signed 0.2.41 and preserved the upgrade save, then stopped on an obsolete
+SECTION-only unfinished-Wisp assertion. The driver now requires the native
+Details structure, opens Upgrades with an actual Android touch, and performs the
+original exact-price Ability purchase and focus checks.
 
-## Approved delivery — 26 October 2026
+Nonpublishing [native #42](https://github.com/xariib/Lumenfall/actions/runs/40358586049)
+passed on `70390b357e3e6f7ee3a35e9de7caf2792d6d8eb3`: package/certificate/assets,
+in-place Android upgrade, UID and https://localhost origin, both saves, paid
+progression/legacy entitlements, native Wisp disclosure/purchase and installed
+Farm hint navigation. It built 0.2.42/versionCode1000042. Publication was skipped;
+this is prior-source evidence, not the final release acceptance.
 
-The user explicitly approved public branch upload, PR, integration after passing
-checks, and a new APK version if acceptance passes. The earlier publication
-block is superseded by that approval. Existing draft PR #13 owns this feature;
-update it rather than opening a duplicate. Current remote candidate efda8180 is
-an earlier version; local changes since then are the reviewed fixes above.
+Next: pass all six workflows on the exact final PR head, then integrate #13.
+Manually dispatch all six required workflows on the exact integrated main SHA:
+pre-merge-validation.yml (both jobs), comet-expansion-validation.yml,
+forge-expansion-validation.yml, lab-expansion-validation.yml,
+shared-ui-validation.yml and tree-focused-qa.yml. After all pass, dispatch
+Build Android APK on main with publish=true. Its release gate, signing/assets,
+installed emulator upgrade and exact-APK receipt must pass before publication.
+Verify the public APK checksum, version and source; save final receipts and
+update this task plus PROJECT_STATE only after release, so publication source
+cannot move mid-build.
 
-## CI correction checkpoint
-
-PR #13 candidate e043fad9: the dedicated slot-first browser suite passed 218
-checks across all 18 profiles, and the complete isolated offline CI passed.
-Shared UI also passed. Legacy Lab and Wisp tests still required an always-open
-catalogue or incomplete Wisp sections; those expectations are updated to the
-approved disclosures and slot selection while preserving purchase, input,
-focus, price and save assertions. Comet's existing-price tests isolate the
-new milestones from their fixed old reward fixtures. Its shop now tests one
-explicit Next effect instead of duplicate current/next copy.
-
-Two product focus guards accompany those changes: completed research returns
-focus to its empty slot, and a Tree purchase restores its viewport after all
-dependent renders. Remaining complete CI and Android gates are still required.
-
-Candidate 3d624df6 passed the complete original Lab purchase/mobile/V8 job;
-its timed-slider lane found a real premature change event during native drag.
-The renderer now keeps the .study-slots ancestor attached while updating its
-siblings. The old Lab UI fixture explicitly selects a slot and expects focus
-on the empty slot after completion. Comet's no-scroll gesture starts on the
-noninteractive Bond summary instead of the Guardian attack surface. Android
-upgrade acceptance opens the Wisp disclosure with a real native touch before
-its original Ability purchase check. No gates have been disabled.
-
-Candidate 22ed5684 passed the full Lab and Comet workflows, Shared UI, and the
-isolated offline job. The next real integration defect was Farm's Go to Lab
-link focusing the hidden catalogue. It now opens a free slot's catalogue (or
-slot 1 for inspection when full) before focusing the original recommended card;
-this changes UI selection only and starts/spends nothing.
-
-Tree's compact Invitations card exposed a physically unavoidable 2 px scroll
-boundary: the requested scroll 4523 exceeded the new maximum 4521. The receipt
-shows exactly that 2 px displacement. The existing strict nearest-feasible
-boundary assertions are now used for funded purchases as for the already
-covered Formation cases; arbitrary movement and wrong focus remain failures.
-Original stateful Lab navigation and Forge copy tests are adapted to slot
-selection and the single authoritative purchase result line. No price, cap,
-mechanic or purchase assertions have been removed.
-
-Candidate 12fb3672: Forge, Lab, Comet, Shared UI and isolated offline CI passed.
-Midgame Farm's original positive and causal controls passed. Broad layout at
-200% text now measures the visible slot heading instead of requiring the entire
-running-study card to fit one screen; all five slots, touch sizes and horizontal
-fit retain their separate checks. Tree's negative viewport control showed that
-the extra outer buyNode guard masked removal of the original summary guard.
-That redundant outer guard is removed, preserving the original causal test.
-
-Nonpublishing Android run #41 (40356497883) built signed 0.2.41, preserved the
-old save through upgrade, then stopped at an obsolete SECTION-only unfinished
-Wisp assertion. The check now requires its module and native disclosure before
-the already-added trusted touch opens it. No release was published.
-
-## Legacy running-study correction
-
-An existing paid active record can legitimately have studyQueue=false. Its
-button now says Clear slot and clears on the first activation, rather than
-turning automation on. New explicitly selected research still starts Queue ON;
-turning it off clears the slot. The 18-profile suite covers the old OFF save,
-retained paid work and unchanged wallets. Save normalization and saved queue
-choices are unchanged. Nonpublishing native #42 (40358586049) is running on
-70390b35; current full CI is also running on that commit. Neither a merge nor a
-release has occurred yet.
-
-Native #42 passed on 70390b35: signed identity/assets, in-place Android upgrade,
-both save slots, paid work and entitlements, real Wisp disclosure/purchase touch,
-and installed Farm hint navigation. Publication was skipped. Tree's full mobile
-and causal viewport checks also passed on that candidate; its remaining Prism
-browser contract failed before any QA result with a documented 25 s Chromium
-process timeout, not a completed assertion. Keep the original deadline and
-rerun the final candidate without weakening it.
-
-The slot renderer now sorts detached slot markup numerically before adoption,
-so visual, keyboard and screen-reader order agree even when early slots run
-research and later slots are empty. Its live wrapper remains attached during
-native gestures. The original viewport test can therefore inspect slot 1 rather
-than accidentally inspecting the first empty slot farther down the page.
-
-Reachability correction before release: the currently purchasable Forge caps
-sum to 645, so the unreleased 1,000/2,000/4,000 Forge goals were impossible for
-new players. The six new Forge milestones are now 100/200/300/400/500/600; the
-fixed six reward amounts and original 27 Deeds are unchanged. A focused check
-requires every new Lab/Forge milestone to be reachable using current purchasable
-caps only. Lab's maximum is 2,635. The independent reward oracles are updated.
-The existing Inquiry UI fixture now selects research through a slot to enable
-repeat, then checks timer focus on a passive rerender; Queue OFF intentionally
-clears work under the new contract.
-
-Final review: native Mastery/price fixtures open Upgrades before exercising their
-unchanged keyboard, price and focus checks. Late-power guidance now says Queue
-OFF clears the slot, preserving work and boosts. Android release notes describe
-this feature. The regenerated four-phase one-second offline oracle matches every
-previous state digest and reward tuple on source
-`d6cb6262bd2f26551954c88bfda4a252c27f6ae071ebfadfface7da75f7a19fa`.
-Focused transaction/reachability checks pass 97. Complete CI and the integrated
-publishing build remain required; signed native #42 is prior-source evidence only.
-
-Candidate cfa56554 passed Lab, Tree, Comet, Shared UI and isolated offline gates.
-Its broad run passed Endless/Mastery and automation, then stopped because the
-Tree keyboard fixture expected one Tab from Echo to Recruitment. Native Tab now
-visits the new Details summary first; both refund drivers explicitly test that
-step before retaining the original visible-focus, exact purchase and cap checks.
-Remaining price/native Lab fixtures select a slot first; native Queue OFF now
-checks the empty slot, exact paid remaining work and unchanged timed boost in
-both saves. Single Lab level badges retain the cap as `Lv. n / cap`, replacing
-the old duplicated cap row. The existing cap mobile suite is an early CI gate.
-The scratch checkout was recreated from exact remote cfa56554 after its temporary
-directory became unavailable; the GitHub source tree was intact and verified.
+Physical phone, exact WebView60 DOM, TalkBack and human visual/pacing acceptance
+remain open. Do not archive or claim those passes. The temporary checkout became
+unavailable and was recreated from exact public cfa56554; its tree was verified.
+GitHub retains source/history. Ignore unrelated scratch diagnostics and temp files.

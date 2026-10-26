@@ -33,6 +33,19 @@ module.exports=async function({send,ev,pause,check,records}){
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
   await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&!document.getElementById("comet-commands").hidden'),'existing commands remain available in Deeds');
   check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed]").length===76'),'all original and 49 new Deeds render');
+  for(const [tab,id] of [['research','lab-help'],['ascend','tree-bonds'],['forge','forge-arcanecal'],['deeds','comet-autoascend']]){
+   await ev('document.querySelector('+JSON.stringify('[data-tab="'+tab+'"]')+').click()');
+   await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+tab)+').getAnimations().map(a=>a.finished)).then(()=>true)');
+   const summary='[data-card-details-summary="'+id+'"]';
+   await ev('var e=document.querySelector('+JSON.stringify(summary)+');e.parentElement.open=false;e.scrollIntoView({block:"center"});e.focus({preventScroll:true})');
+   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+   await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+   check(await ev('document.querySelector('+JSON.stringify(summary)+').parentElement.open'),'native keyboard opens '+id);
+   const before=await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})');
+   await ev('clarityQA.render();clarityQA.render()');
+   check(await ev('document.activeElement===document.querySelector('+JSON.stringify(summary)+')&&document.activeElement.parentElement.open'),'passive refresh keeps open help and keyboard focus '+id);
+   check(await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})')===before,'help refresh preserves state and both saves '+id);
+  }
   records.push({width,scale,motion,status:'pass'});
  }
 };
