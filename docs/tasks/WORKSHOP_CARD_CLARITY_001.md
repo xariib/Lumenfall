@@ -145,3 +145,28 @@ Nonpublishing Android run #41 (40356497883) built signed 0.2.41, preserved the
 old save through upgrade, then stopped at an obsolete SECTION-only unfinished
 Wisp assertion. The check now requires its module and native disclosure before
 the already-added trusted touch opens it. No release was published.
+
+## Legacy running-study correction
+
+An existing paid active record can legitimately have studyQueue=false. Its
+button now says Clear slot and clears on the first activation, rather than
+turning automation on. New explicitly selected research still starts Queue ON;
+turning it off clears the slot. The 18-profile suite covers the old OFF save,
+retained paid work and unchanged wallets. Save normalization and saved queue
+choices are unchanged. Nonpublishing native #42 (40358586049) is running on
+70390b35; current full CI is also running on that commit. Neither a merge nor a
+release has occurred yet.
+
+Native #42 passed on 70390b35: signed identity/assets, in-place Android upgrade,
+both save slots, paid work and entitlements, real Wisp disclosure/purchase touch,
+and installed Farm hint navigation. Publication was skipped. Tree's full mobile
+and causal viewport checks also passed on that candidate; its remaining Prism
+browser contract failed before any QA result with a documented 25 s Chromium
+process timeout, not a completed assertion. Keep the original deadline and
+rerun the final candidate without weakening it.
+
+The slot renderer now sorts detached slot markup numerically before adoption,
+so visual, keyboard and screen-reader order agree even when early slots run
+research and later slots are empty. Its live wrapper remains attached during
+native gestures. The original viewport test can therefore inspect slot 1 rather
+than accidentally inspecting the first empty slot farther down the page.

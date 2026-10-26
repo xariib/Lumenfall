@@ -9523,12 +9523,18 @@ function replaceStudyMarkup(html){
   var isChoice=input && input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status]');
   var card=isChoice && root.contains(input) && input.closest('[data-running-study],[data-study-card]');
   var prepared=document.createElement('div');prepared.innerHTML=html;
+  var orderedSlots=prepared.querySelector('.study-slots');
+  if(orderedSlots)Array.from(orderedSlots.children).sort(function(a,b){
+    var ai=a.getAttribute('data-lab-slot'),bi=b.getAttribute('data-lab-slot');
+    return (ai!==null?Number(ai):100+Number(a.getAttribute('data-legacy-slot')))-(bi!==null?Number(bi):100+Number(b.getAttribute('data-legacy-slot')));
+  }).forEach(function(slot){orderedSlots.appendChild(slot);});
   var attr=card && (card.hasAttribute('data-running-study')?'data-running-study':'data-study-card');
   var studyId=card && card.getAttribute(attr);
   var next=card && prepared.querySelector('[data-running-study="'+studyId+'"],[data-study-card="'+studyId+'"]');
   if(isChoice)input.studyRendering=true;
   if(!next || !next.querySelector('.study-speed-controls')){
-    replaceControlMarkup(root,html);
+    replaceControlMarkup(root,null,false,false,prepared);
+    presentControlStates(root);
     if(isChoice){
       input.studyRendering=false;
       var completed=next && root.querySelector('[data-study-card="'+studyId+'"]');
@@ -9619,7 +9625,7 @@ function renderLongStudies(){
       var maxed=node && node.levelCap!==undefined && Amount.ge(longStudyLevel(active.id),node.levelCap);
       var pct = Amount.max(0,Amount.min(100,Amount.sub(100,Amount.mul(Amount.div(active.remainingSec,active.totalDurationSec),100))));
       var progressValue=Amount.gt(active.remainingSec,0)?Amount.min(99,Amount.round(pct,'round')):100;
-      html=(html + '<div class="card study-card study-running '+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="' + active.id + '"><h3>'+(active.slot<5?'Slot '+(active.slot+1):'Legacy paid study')+'</h3>' + '<div class="name"><span class="study-identity"><span class="study-title">' + (node?node.name:'') + '</span><span class="study-level" aria-label="Current level ' + longStudyLevel(active.id) + '">Lv. ' + longStudyLevel(active.id) + (maxed?' · Maxed':'') + '</span></span>' + (node && !node.retiredTo?Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="node-queue-toggle ',state.studyQueue[active.id]?'active':''),'" data-study-queue="'),active.id),'">Queue '),state.studyQueue[active.id]?'ON':'OFF'),'</button>'):'') + '</div>' + (node ? studySpeedMarkup(node,active,maxed) : '') + (node ? projectEarnedMarkup(active.id) : '') + (node && node.retiredTo?Amount.add(Amount.add('<div class="effect-note">Last paid level: work, speed and completion bonus kept. Future upgrades: ',node.retiredTo),'.</div>'):'') + '<div class="effect-note">' + (maxed?'Level cap already reached. Paid work finishes without another level or bonus.':
+      html=(html + '<div class="card study-card study-running '+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="' + active.id + '"><h3>'+(active.slot<5?'Slot '+(active.slot+1):'Legacy paid study')+'</h3>' + '<div class="name"><span class="study-identity"><span class="study-title">' + (node?node.name:'') + '</span><span class="study-level" aria-label="Current level ' + longStudyLevel(active.id) + '">Lv. ' + longStudyLevel(active.id) + (maxed?' · Maxed':'') + '</span></span>' + (node && !node.retiredTo?Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="node-queue-toggle ',state.studyQueue[active.id]?'active':''),'" data-study-queue="'),active.id),'">'),state.studyQueue[active.id]?'Queue ON':'Clear slot'),'</button>'):'') + '</div>' + (node ? studySpeedMarkup(node,active,maxed) : '') + (node ? projectEarnedMarkup(active.id) : '') + (node && node.retiredTo?Amount.add(Amount.add('<div class="effect-note">Last paid level: work, speed and completion bonus kept. Future upgrades: ',node.retiredTo),'.</div>'):'') + '<div class="effect-note">' + (maxed?'Level cap already reached. Paid work finishes without another level or bonus.':
           Amount.add(Amount.add('Next: ',projectEarnedEffect(active.id,Amount.add(longStudyLevel(active.id),1))),'.')) + '</div>' + '<div class="study-bar-track" role="progressbar" aria-label="' + (node?node.name:'Study') + ' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + progressValue + '" aria-valuetext="' + progressValue + '% · ' + studyRemainingText(active) + '">' + '<div class="study-bar-fill" aria-hidden="true" data-study-bar="' + active.id + '" style="width:' + pct + '%;"></div>' + '<span class="study-time" data-study-text="' + active.id + '">' + studyRemainingText(active) + '</span></div>' + (node && !node.retiredTo && active.slot<5?'<button class="mini-btn" data-study-slot="'+active.slot+'">Change research</button>':'') + '</div>');
     });
   }
@@ -9712,7 +9718,7 @@ function renderLongStudies(){
       e.stopPropagation();
       var id = btn.getAttribute('data-study-queue');
       var active=findActiveStudy(id);
-      if(active && state.studyQueue[id]){if(active.slot<5)clearStudySlot(active.slot);else pauseStudy(id);return;}
+      if(active){if(active.slot<5)clearStudySlot(active.slot);else pauseStudy(id);return;}
       if(forgeCommitPaidMutation(function(){state.studyQueue[id]=!state.studyQueue[id];}))renderLongStudies();
     });
   });
