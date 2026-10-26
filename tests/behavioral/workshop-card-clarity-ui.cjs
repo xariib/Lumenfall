@@ -29,6 +29,11 @@ module.exports=async function({send,ev,pause,check,records}){
   check(await ev('document.querySelector("[data-study-queue=guardmastery]").textContent==="Clear slot"'),'old running Queue OFF save has an explicit clear action');
   await touch('[data-study-queue=guardmastery]');
   check(await ev('!uiRegression.get().activeStudies.length&&!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().pausedStudies[0].remainingSec===70&&uiRegression.get().lumen===1e12&&uiRegression.get().shards===1e12'),'legacy clear preserves paid work and wallets without enabling automation');
+  const waiting=seed();waiting.lumen=waiting.shards=0;waiting.longStudyLevels.guardmastery=1;waiting.studyQueue.guardmastery=true;waiting.studySlotProjects[1]='guardmastery';await install(waiting);
+  const waitingSlot='document.querySelector('+JSON.stringify('[data-lab-slot="1"]')+')';
+  check(await ev(waitingSlot+'.textContent.includes("Queued for next level")&&document.querySelector("[data-study-queue=guardmastery]")'),'waiting research stays visible with Queue OFF available');
+  await touch('[data-study-queue=guardmastery]');
+  check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().studySlotProjects[1]===null&&'+waitingSlot+'.textContent.includes("Empty")&&uiRegression.get().lumen===0&&uiRegression.get().shards===0'),'native Queue OFF clears waiting intent without spending');
   const comet=seed();comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
   await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&!document.getElementById("comet-commands").hidden'),'existing commands remain available in Deeds');

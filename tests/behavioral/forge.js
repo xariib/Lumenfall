@@ -72,7 +72,8 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
       s.research[id]=caps[id];s.researchQueue[id]=true;b.setState(s);b.renderLayout();var gold=document.querySelector('[data-forge-card="'+id+'"]');ok(gold.dataset.state==='maxed'&&gold.textContent.includes('Current:')&&!/Next:|Purchase impact:|Queue /.test(gold.textContent)&&!gold.querySelector('[data-research],[data-queue],[data-price-currency]')&&f.preview(id,5).plan.buyCount===0&&b.getState().researchQueue[id],'Maxed gold card retains historical queue choice without action');
     });
     var s=seed();s.spirits.gale=1;s.lumen=1e8;s.shards=1e6;b.setState(s);b.renderLayout();document.querySelector('[data-mult="1"]').click();
-    ok(document.querySelector('[data-forge-card="conduction"]').textContent.includes('actual extra per cast: Gale +0 Shards'),'rounded preview does not promise fractional resource');
+    var rounded=f.preview('conduction',1),roundedText=document.querySelector('[data-forge-card="conduction"] [data-forge-preview]').textContent.split('\n').find(function(line){return line.indexOf('Next:')===0;});
+    ok(Number.isInteger(rounded.next.casts.gale.shards)&&rounded.next.casts.gale.shards===rounded.current.casts.gale.shards&&roundedText.includes('Gale '+rounded.next.casts.gale.shards+' Shards'),'rounded Next preview shows the actual integer total without promising an extra fractional Shard');
     var charge=f.preview('charge',1);near(charge.current.cycle,b.simulationDiagnosticsFor(b.getState()).abilityCycleSec,'Swift Current authoritative cycle');f.buy('charge',1);near(charge.next.cycle,b.simulationDiagnosticsFor(b.getState()).abilityCycleSec,'Swift Next becomes actual cycle');
     var negative=[];
     ['cap','migration','deed','effect'].forEach(function(kind){var s=seed();s.lumen=1e9;s.shards=1e9;s.research.arcanecal=20;b.setState(s);var before=b.getState(),passive=b.wispFormulaSnapshot('ember').passiveDps,undo=f.mutate(kind),caught='';

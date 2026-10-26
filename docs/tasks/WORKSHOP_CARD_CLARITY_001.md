@@ -34,6 +34,12 @@ work goes into the existing paid-work ledger; later resumption is free. The
 slot's purchased boost continues on its original wall-clock deadline while idle.
 The additive five-entry `studySlotProjects` association preserves repeat ownership.
 Existing paid legacy slots 6–7 remain visible without creating new capacity.
+Nonrepeating completion clears its stale association, keeping direct, offline and
+normalized full states identical. Replacing a waiting queued project disables its
+old intent; waiting slots name the project and can be cleared with Queue OFF.
+Completion, waiting replacement/clear, reload and failed-save rollback have focused
+coverage. The exact current source passed those 228 local checks before the runtime
+became unavailable; its reconstructed UTF-8 hash matches that tested source.
 
 Native range controls and every live ancestor stay attached during refresh;
 slot DOM, visual and assistive reading order are 1–5. Completion returns focus
@@ -68,11 +74,11 @@ is disabled. No touch glow/highlight is added. Normal keyboard focus remains.
 ## Validation and diagnosed failures
 
 - Baseline local Lab slot contract passed 54; Lab expansion passed 2,676.
-- Feature transaction/save/reachability suite passes 205 on current source.
+- Feature transaction/save/reachability suite passes 228 on current source.
   Other verified local suites include Forge 9,319, Comet numerical 681,739,
   Comet core negative 10,492 and full offline comparison 18 scenarios.
 - Current product SHA-256:
-  `7ebc8a8b99bde098cd975a6866d5ffb0be4103fa4bfda9065da274f9d6a62b26`.
+  `62672c9cbabc1c25ed5dbf5bad083133b3bae45d918210bbb2bf26db5795046a`.
   Its regenerated four-phase, 8h-per-phase independent one-second Swift oracle
   matches every prior state digest and kills/Ascends/Prisms tuple:
   86404/4114/94622, 86401/4114/94622, 86396/4114/94622, 86405/4115/94645.
@@ -120,16 +126,32 @@ progression/legacy entitlements, native Wisp disclosure/purchase and installed
 Farm hint navigation. It built 0.2.42/versionCode1000042. Publication was skipped;
 this is prior-source evidence, not the final release acceptance.
 
-Next: pass all six workflows on the exact final PR head, then integrate #13.
-Manually dispatch all six required workflows on the exact integrated main SHA:
+Head 35b3122 passed Lab, Forge, Tree, Comet, Shared UI and isolated offline CI.
+Its complete 189-case broad suite finished with 14 failures: stale Lab-help,
+requirement, bond-description, Forge rounding-copy and Queue selectors; protected
+retired paid-slot accounting; closed-disclosure hit testing; original-event versus
+new-longtail Deed accounting; and two full-state Auto-Ascend parity cases. Original
+assertions for costs, effects, hit tests, state parity and deadlines are retained.
+Observers now follow the actual native disclosure/slot interactions. The two parity
+cases remain unchanged and exercise the real stale-completion association fix.
+A temporary PR-only 14-scenario diagnostic matrix catches these early; the complete
+original six workflows remain mandatory.
+
+Next: pass all six workflows and the diagnostic matrix on the final PR head, then
+integrate #13. The command/browser runtime is unavailable. A temporary CI bridge,
+restricted to this repository, merged PR #13 and the exact product fingerprint,
+dispatches the six original workflows on the exact integrated main SHA:
 pre-merge-validation.yml (both jobs), comet-expansion-validation.yml,
 forge-expansion-validation.yml, lab-expansion-validation.yml,
-shared-ui-validation.yml and tree-focused-qa.yml. After all pass, dispatch
-Build Android APK on main with publish=true. Its release gate, signing/assets,
+shared-ui-validation.yml and tree-focused-qa.yml. It uses ephemeral actions:write
+only on trusted main jobs, with contents:read on PR diagnostics. After all six pass,
+it dispatches Build Android APK on main with publish=true. Its release gate, signing/assets,
 installed emulator upgrade and exact-APK receipt must pass before publication.
 Verify the public APK checksum, version and source; save final receipts and
 update this task plus PROJECT_STATE only after release, so publication source
-cannot move mid-build.
+cannot move mid-build. The bridge anonymously downloads the public APK, verifies
+its checksum and records a source-bound JSON proof. Remove its two temporary helper
+files with the final documentation/evidence update after verified publication.
 
 Physical phone, exact WebView60 DOM, TalkBack and human visual/pacing acceptance
 remain open. Do not archive or claim those passes. The temporary checkout became

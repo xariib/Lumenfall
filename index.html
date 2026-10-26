@@ -7897,8 +7897,10 @@ function startStudy(node,preferredSlot){
   if(!getStudyStartPlan(node,preferredSlot).affordable) return false;
   if(!forgeCommitPaidMutation(function(){
     if(Number.isInteger(preferredSlot)){
+      var previousId=state.studySlotProjects[preferredSlot];
       var old=state.activeStudies.find(function(a){return a.slot===preferredSlot;});
       if(old)storeStudyWork(old);
+      if(previousId && previousId!==node.id)state.studyQueue[previousId]=false;
     }
     // Recalculate work after removing the replaced record. The transaction
     // rolls back the old paid record and wallet together if anything fails.
@@ -7959,6 +7961,9 @@ function finishStudyRecord(index){
   if(active.slot>=5 && state.studyBoosts['slot'+active.slot]){
     state.studyBoosts[active.id]=state.studyBoosts['slot'+active.slot];
     delete state.studyBoosts['slot'+active.slot];
+  }
+  if(active.slot<5 && !state.studyQueue[active.id] && state.studySlotProjects[active.slot]===active.id){
+    state.studySlotProjects[active.slot]=null;
   }
   state.activeStudies.splice(index,1);
   return {earned:earned,name:node ? node.name : active.id,moteBonus:moteBonus};
@@ -9615,10 +9620,11 @@ function renderLongStudies(){
     var work=state.activeStudies.find(function(a){return a.slot===si;});
     if(work)continue;
     var locked=si>=slots,boost=state.studyBoosts['slot'+si],held=boost && boost.expiresAtMs>Date.now();
+    var queued=LONG_STUDIES.find(function(n){return n.id===state.studySlotProjects[si] && state.studyQueue[n.id] && !n.retiredTo && !getStudyStartPlan(n).maxed;});
     html+='<div class="card study-slot '+(locked?'locked-node':'')+'" style="order:'+si+'" data-lab-slot="'+si+'">'+
       '<h3>Slot '+(si+1)+'</h3>'+(locked?'<p class="lock-note">'+studySlotUnlockText(si)+'</p>':
-      '<p>Empty</p>'+(held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':'')+
-      '<button class="mini-btn" data-study-slot="'+si+'">Choose research</button>')+'</div>';
+      (queued?'<div class="name"><span class="study-title">'+queued.name+'</span><button class="node-queue-toggle active" data-study-queue="'+queued.id+'">Queue ON</button></div><p>Queued for next level</p>':'<p>Empty</p>')+(held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':'')+
+      '<button class="mini-btn" data-study-slot="'+si+'">'+(queued?'Change research':'Choose research')+'</button>')+'</div>';
   }
 
   if(state.activeStudies.length){
@@ -9722,6 +9728,8 @@ function renderLongStudies(){
       var id = btn.getAttribute('data-study-queue');
       var active=findActiveStudy(id);
       if(active){if(active.slot<5)clearStudySlot(active.slot);else pauseStudy(id);return;}
+      var assignedSlot=state.studySlotProjects.indexOf(id);
+      if(assignedSlot>=0){clearStudySlot(assignedSlot);return;}
       if(forgeCommitPaidMutation(function(){state.studyQueue[id]=!state.studyQueue[id];}))renderLongStudies();
     });
   });

@@ -81,6 +81,7 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
     asc1:['ascendCount',1],asc5:['ascendCount',5],asc10:['ascendCount',10],autotap:['ascendCount',12],idle8:['totalOfflineSeconds',28800]
   };
   var ids=b.forge.deeds().originalItems.map(function(a){return a.id;});
+  var titledRequirements={d10:'Reach Rift 10',d25:'Reach Rift 25',d50:'Reach Rift 50',d100:'Reach Rift 100',d250:'Reach Rift 250',tap100:'Strike 100 times',tap1000:'Strike 1,000 times',tap10000:'Strike 10,000 times',asc1:'Ascend once',asc5:'Ascend 5 times',asc10:'Ascend 10 times'};
   same(ids,['d10','d25','d50','d100','d250','tap100','tap1000','tap10000','fullparty','asc1','asc5','asc10','all','mythic','idle8','autotap','labmaster','study1','study25','allstudies','labqueue','firstultimate','modulemax'],'all original23 Deed boundaries remain covered');
   ids.forEach(function(id){
     [false,true].forEach(function(at){
@@ -99,7 +100,9 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
       var p=q('[data-deed-progress="'+id+'"]');
       ok(p.dataset.current===String(Math.min(item.progress.current,item.progress.target)),id+' authoritative current');
       ok(p.dataset.target===String(item.progress.target),id+' authoritative target');
-      ok(q('[data-deed-requirement="'+id+'"]').textContent.length>0,id+' concrete requirement');
+      var requirement=q('[data-deed-requirement="'+id+'"]');
+      if(titledRequirements[id])ok(!requirement&&q('[data-deed="'+id+'"] .name').textContent===titledRequirements[id],id+' concrete requirement appears once as its title');
+      else ok(requirement&&requirement.textContent.length>0,id+' concrete requirement');
       ok(p.textContent.includes('/')&&/[a-z]/i.test(p.textContent),id+' progress has unit');
       if(id==='idle8') ok(p.textContent===(at?'8':'7.99')+' / 8 offline hours','offline hours never round up to unearned target');
       else {

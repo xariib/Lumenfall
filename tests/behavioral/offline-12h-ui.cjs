@@ -60,10 +60,14 @@ async function run(){
   records[records.length-1].backgroundUpperBound=observation.backgroundUpperBound;
   await evaluate('document.querySelector("[data-tab=workshop]").focus({preventScroll:true})');await key(' ','Space');
   await evaluate('document.querySelector("[data-tab=research]").focus({preventScroll:true})');await key(' ','Space');
+  assert(await evaluate('document.activeElement.dataset.tab')==='research','Lab navigation retains its tab focus');
+  const beforeHelp=await evaluate('JSON.stringify({state:__lumenfallQaBridge.getState(),primary:__lumenfallQaBridge.rawSave(),recovery:__lumenfallQaBridge.rawRecovery()})');
+  await evaluate('document.querySelector("[data-card-details-summary=lab-help]").scrollIntoView({block:"center"});document.querySelector("[data-card-details-summary=lab-help]").focus({preventScroll:true})');await key(' ','Space');
   await new Promise(r=>setTimeout(r,450));
-  const lab=await evaluate(`(()=>{const help=document.querySelector('#study-list > .section-sub:last-child');help.scrollIntoView({block:'center'});const r=help.getBoundingClientRect();return {text:help.textContent,left:r.left,right:r.right,overflow:help.scrollWidth-help.clientWidth,visible:!!help.getClientRects().length,focused:document.activeElement.dataset.tab};})()`);
+  const lab=await evaluate(`(()=>{const help=document.getElementById('study-speed-help');help.scrollIntoView({block:'center'});const r=help.getBoundingClientRect();return {text:help.textContent,left:r.left,right:r.right,overflow:help.scrollWidth-help.clientWidth,visible:!!help.getClientRects().length,focused:document.activeElement.dataset.cardDetailsSummary};})()`);
   assert(lab.visible&&lab.text.includes('12-hour offline limit with rewards and automation'));
-  assert(lab.left>=0&&lab.right<=width+1&&lab.overflow<=1&&lab.focused==='research');
+  assert(lab.left>=0&&lab.right<=width+1&&lab.overflow<=1&&lab.focused==='lab-help');
+  assert(await evaluate('JSON.stringify({state:__lumenfallQaBridge.getState(),primary:__lumenfallQaBridge.rawSave(),recovery:__lumenfallQaBridge.rawRecovery()})')===beforeHelp,'opening help preserves state and both save slots');
   records[records.length-1].lab=lab;
   const labShot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,`lab-${width}-${scale}.png`),Buffer.from(labShot.data,'base64'));
   await send('Target.disposeBrowserContext',{browserContextId:ctx.browserContextId},null);
