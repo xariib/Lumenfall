@@ -118,7 +118,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
   ['forge','research'].forEach(function(view){
     q('[data-tab="'+view+'"]').click();
     if(view==='research'){
-      var slots=visible('[data-lab-slot] h3');
+      var slots=visible('[data-lab-slot="0"] .study-slot-number');
       assert(slots.top>=0 && slots.bottom<rect('nav.tabbar').top,'Study slot status is visible on Lab arrival');
       var choose=q('[data-study-slot]');
       if(choose) assert(choose.getBoundingClientRect().height>=44,'Study choice shortcut has a practical target');
