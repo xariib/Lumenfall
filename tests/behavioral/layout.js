@@ -122,16 +122,19 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
       assert(slots.top>=0 && slots.bottom<rect('nav.tabbar').top,'Study slot status is visible on Lab arrival');
       var choose=q('[data-study-slot]');
       if(choose) assert(choose.getBoundingClientRect().height>=44,'Study choice shortcut has a practical target');
-      assert(q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'Lab Study content does not overflow horizontally');if(choose)choose.click();
-      var speedIds=Array.from(document.querySelectorAll('[data-study-speed-target]')).map(function(el){
-        assert(el.getBoundingClientRect().height>=44,'Speed selector has a practical target');return el.dataset.studySpeedTarget;
+      assert(q('#study-list').scrollWidth<=q('#study-list').clientWidth+1,'Lab Study content does not overflow horizontally');
+      Array.from(document.querySelectorAll('[data-study-speed-open]')).map(function(el){return el.dataset.studySpeedOpen;}).forEach(function(slot){
+        var open=q('[data-study-speed-open="'+slot+'"]');
+        var wasOpen=open.getAttribute('aria-expanded')==='true';
+        if(!wasOpen)open.click();
+        open=q('[data-study-speed-open="'+slot+'"]');
+        var panel=q('#'+open.getAttribute('aria-controls'));
+        assert(!panel.hidden&&open.getAttribute('aria-expanded')==='true','Speed Up opens its own editor');
+        assert(panel.querySelector('[data-study-speed-target]').getBoundingClientRect().height>=44,'Speed selector has a practical target');
+        Array.from(panel.querySelectorAll('.cost-icon')).forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0&&r.width<=16&&r.height<=16,'speed price icon sizing');});
+        if(!wasOpen)open.click();
       });
-      speedIds.forEach(function(id){
-        var panel=q('[data-study-inspection="'+id+'"]');
-        assert(!panel.hidden,'Speed controls are directly visible');
-        var prices=Array.from(panel.querySelectorAll('.cost-icon'));
-        prices.forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0&&r.width<=16&&r.height<=16,'disclosed speed price icon sizing');});
-      });
+      if(choose)q('[data-study-slot="'+choose.dataset.studySlot+'"]').click();
     }
     var icons=Array.from(document.querySelectorAll('#tab-'+view+' .cost-icon')).filter(function(el){return el.getClientRects().length;});
     assert(icons.length>0,'research '+view+' cost icons exist');
