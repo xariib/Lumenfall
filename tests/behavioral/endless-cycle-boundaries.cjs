@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),build=require('./endless-cycle-source.cjs'),{app,clone}=require('./forge-expansion-harness.cjs');
-let source=build(fs.readFileSync('index.html','utf8'));const earned=JSON.parse(fs.readFileSync('docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json','utf8'));
+let source=require('./frozen-cycle-power.cjs')(build(fs.readFileSync('index.html','utf8')));const earned=JSON.parse(fs.readFileSync('docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json','utf8'));
 const mutation=process.env.LUMENFALL_CYCLE_MUTATION||null;
 function replace(a,b){assert.equal(source.split(a).length,2,'causal mutation anchor');source=source.replace(a,b);}
 if(mutation==='mote')replace('var mote=clock.latticeUntil(state.moteNextAtMs);if(Amount.le(mote.ticks,0))blocked=true;else consider(mote);','var mote=null;');

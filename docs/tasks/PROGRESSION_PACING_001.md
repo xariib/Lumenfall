@@ -131,8 +131,22 @@ Current main was verified; only historical documentation PR #2 was open and no
 overlapping pacing branch was found. Unrelated checkout/test-generated scratch
 files are not part of the change. [PR #15](https://github.com/xariib/Lumenfall/pull/15)
 is draft; first head `fa65ea23`, then native browser-band tests at `2c44c0ff`.
-Final product/checkpoint publication follows. A transient automatic upload review
+Final gameplay is published at `d6fa701b` (product hash above). At resume, Forge,
+Tree, permanent progression, Comet/Deeds and shared UI workflows PASS; Lab's core,
+native mobile and V8 jobs PASS, with its timed-speed browser job still running.
+Pre-merge's isolated offline job PASS; its full job exposed a numeric fixture
+that assumed unbounded Farm throughput. The pending test-only revision keeps
+its original huge-count arithmetic assertions and additionally requires exactly
+two public Farm kills even with wide legacy Power. Three frozen clock oracles
+pin only their original Masterwork numeric input, preserving the immutable dyadic
+transcript, transaction checks and failure controls. Current-balance automation
+transitions also run alongside the captured historical rate reproduction.
+All 14 clock defect controls are caught; current-balance native/cold-frame parity,
+wide Power, real campaigns and progression tests remain on unmodified production.
+[Clock evidence](../qa/progression-pacing-001/clock-regression.json) distinguishes
+the pinned `f1752f70` oracle source from the actual `6dc24bee` product.
+A transient automatic upload review
 rejection was resolved by verifying authenticated owner xariib, exact public repo,
 admin permission and the existing public test payload; no user data was uploaded.
-Next: publish the final legacy-HP/boundary/arithmetic probe revision, resolve any
-remaining actual failures and require seven green workflows before integration.
+Next: publish the test-only clock/oracle checkpoint, require seven green workflows
+on the resulting PR head, then integrate and verify the exact source on main.

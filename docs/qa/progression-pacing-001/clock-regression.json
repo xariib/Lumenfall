@@ -1,0 +1,284 @@
+{
+  "productSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b",
+  "status": "PASS",
+  "note": "f1752f70 is the explicitly pinned historical Masterwork input for frozen numeric clock oracles; current-balance frame/cold parity and public Farm-policy tests use the unmodified product.",
+  "records": [
+    {
+      "name": "clock-oracle",
+      "status": "PASS",
+      "checks": 989
+    },
+    {
+      "name": "clock-compatibility",
+      "status": "PASS",
+      "checks": 1885
+    },
+    {
+      "name": "clock-activation",
+      "status": "PASS",
+      "checks": 383,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+    },
+    {
+      "name": "requirement-boundaries",
+      "status": "PASS",
+      "checks": 2528,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+    },
+    {
+      "name": "cycle-batch",
+      "status": "PASS",
+      "checks": 94,
+      "sourceSha256": "f1752f705ea0760bc72bc929bbd27d166faea0cecbe3a82913d1076c4b409030"
+    },
+    {
+      "name": "cycle-boundaries",
+      "status": "PASS",
+      "checks": 136,
+      "sourceSha256": "f1752f705ea0760bc72bc929bbd27d166faea0cecbe3a82913d1076c4b409030",
+      "records": [
+        {
+          "seconds": 1e-16,
+          "ascends": 657
+        },
+        {
+          "seconds": 1e-16,
+          "ascends": 831
+        },
+        {
+          "seconds": 1e-16,
+          "ascends": 831
+        },
+        {
+          "seconds": 1e-16,
+          "ascends": 838
+        },
+        {
+          "seconds": 2e-13,
+          "ascends": 316
+        }
+      ]
+    },
+    {
+      "name": "cycle-automation",
+      "status": "PASS",
+      "checks": 112,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+    },
+    {
+      "name": "cycle-ownership",
+      "status": "PASS",
+      "checks": 24,
+      "sourceSha256": "f1752f705ea0760bc72bc929bbd27d166faea0cecbe3a82913d1076c4b409030"
+    },
+    {
+      "name": "timer-storage",
+      "status": "PASS",
+      "checks": 29,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+    },
+    {
+      "name": "resource-replay",
+      "status": "PASS",
+      "checks": 87,
+      "records": [
+        {},
+        {},
+        {}
+      ]
+    },
+    {
+      "name": "native-wallets",
+      "status": "PASS",
+      "checks": 108,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b",
+      "records": [
+        {
+          "ascends": 932
+        },
+        {
+          "ascends": 932
+        },
+        {
+          "ascends": 932
+        },
+        {
+          "ascends": 932
+        }
+      ]
+    },
+    {
+      "name": "live-parity",
+      "status": "PASS",
+      "checks": 1036,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b",
+      "records": [
+        {
+          "developing": false,
+          "seconds": 60,
+          "ascends": 4568266
+        },
+        {
+          "developing": true,
+          "seconds": 10,
+          "ascends": 7229
+        }
+      ]
+    },
+    {
+      "name": "cold-parity",
+      "status": "PASS",
+      "checks": 1036,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b",
+      "records": [
+        {
+          "developing": false,
+          "seconds": 60,
+          "ascends": 4568266
+        },
+        {
+          "developing": true,
+          "seconds": 10,
+          "ascends": 7229
+        }
+      ]
+    },
+    {
+      "name": "high-mastery",
+      "status": "PASS",
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+    },
+    {
+      "name": "current and historical automation transitions",
+      "status": "PASS",
+      "checks": 6,
+      "current": "automation reset and no-purchase ticks",
+      "records": [
+        {
+          "variant": "current balance",
+          "checks": 3,
+          "seconds": 28200,
+          "wallMs": 12903.312045,
+          "emptyTicks": 28067,
+          "empowers": 133,
+          "endMode": "push",
+          "retreats": 3,
+          "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+        },
+        {
+          "variant": "captured historical rates",
+          "checks": 3,
+          "seconds": 28200,
+          "wallMs": 9476.952786,
+          "emptyTicks": 28104,
+          "empowers": 96,
+          "endMode": "push",
+          "retreats": 1,
+          "sourceSha256": "cdb4509bbed18e9c5367a095592166db308b35697aa99731778f41b1aa1a8a2c"
+        }
+      ],
+      "baseSourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b",
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b",
+      "inputSha256": "0c45494ce70667fb8ccf3c75a7a09710dfb55524bcb1b525fe33515efd775b85",
+      "originalSourceSha256": "925896b25efb6efe9eadd461faa1896e450dda816739b7e1e2f4c5797fb35ca9",
+      "limits": "Current balance plus explicit historical rate input; no historical pacing claim for the public game."
+    },
+    {
+      "name": "cycle defect controls",
+      "status": "PASS",
+      "controls": 14,
+      "records": [
+        {
+          "mutation": "mote",
+          "caught": true,
+          "sourceSha256": "f7e946c73f82984ddbae8d3eb29f4bf55fa6c1dee45aa89f340f92aa4837c746",
+          "failure": "AssertionError [ERR_ASSERTION]: fixed Mote payout boundary exact chronological saved endpoint"
+        },
+        {
+          "mutation": "lab",
+          "caught": true,
+          "sourceSha256": "65d056d5c87645f25ea309c95fbd03729f1b73544fa75875dc38771194bea5bd",
+          "failure": "AssertionError [ERR_ASSERTION]: paid Lab completion EPS boundary exact chronological saved endpoint"
+        },
+        {
+          "mutation": "recast",
+          "caught": true,
+          "sourceSha256": "c8e7afbad1768c30f0973ca85f505fd79af360e5828e2d8a359d2f51d2fd9ece",
+          "failure": "AssertionError [ERR_ASSERTION]: Support recast EPS boundary exact chronological saved endpoint"
+        },
+        {
+          "mutation": "buff",
+          "caught": true,
+          "sourceSha256": "7815dcab37d658fb0732dae64317264abb65ce15f2330b076d2d25e7d48166bc",
+          "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint"
+        },
+        {
+          "mutation": "economy",
+          "caught": true,
+          "sourceSha256": "29feeb564d54b233cc1f16498c4e7f1780fc310a5494f96d583f8e0eb1caae1b",
+          "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint"
+        },
+        {
+          "mutation": "phase",
+          "caught": true,
+          "sourceSha256": "dae81a86c8766ed98c96ad3033c40126938f12e039db182d55491b240cb74013",
+          "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint"
+        },
+        {
+          "mutation": "receipt",
+          "caught": true,
+          "sourceSha256": "6f5ef53eff5eb116a1394ad90555381b50c0bd87c44056c049110d283fd50859",
+          "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact summary ascends"
+        },
+        {
+          "mutation": "lumen",
+          "caught": true,
+          "sourceSha256": "3dd4ce430b2ecccb7ca9ca383983b80ecda367b419431f1d47e1e77cb1463493",
+          "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint"
+        },
+        {
+          "mutation": "automation",
+          "caught": true,
+          "sourceSha256": "d3b8f821841f2a4653aa7eb8c1542ac757ba92f6964a2a3c1b5e8bff630064ec",
+          "failure": "AssertionError [ERR_ASSERTION]: automation horizon preserves every literal saved field"
+        },
+        {
+          "mutation": "nativeCredit",
+          "caught": true,
+          "sourceSha256": "18dd9f76f7dd588687c71171fe85caf41be61ba0cb1e4732ce17f37804076f9a",
+          "failure": "AssertionError [ERR_ASSERTION]: native per-credit rounding retains every literal saved field"
+        },
+        {
+          "mutation": "nativeParity",
+          "caught": true,
+          "sourceSha256": "4e8865a0f4289091f3767186f336d840015771fef0f01052a33f5f324a749cb2",
+          "failure": "AssertionError [ERR_ASSERTION]: native per-credit rounding retains every literal saved field"
+        },
+        {
+          "mutation": "resourceReplay",
+          "caught": true,
+          "sourceSha256": "128ab89b6a9c900f29228bb045f534fffb72c872a68a47f56a542ae1f41bad03",
+          "failure": "AssertionError [ERR_ASSERTION]: checked resource replay preserves every literal saved field"
+        },
+        {
+          "mutation": "frameClock",
+          "caught": true,
+          "sourceSha256": "73b708820a09dd7ebd5790ea4ba55b8aa67676f90081775a25ac481758349731",
+          "failure": "AssertionError [ERR_ASSERTION]: saved.enemyHp: 19.195719187307702 vs 19.195719229831468"
+        },
+        {
+          "mutation": "frameOwner",
+          "caught": true,
+          "sourceSha256": "3b38aa6ca0a5f7677daf8bceae5652e2cdee05397e4c4d27e3550e888eddabf1",
+          "failure": "Error: Canonical timer deadline mismatch {\"field\":\"_autoEmpowerAccum\",\"base\":0,\"last\":0,\"value\":0,\"elapsed\":1,\"delay\":1}"
+        }
+      ]
+    },
+    {
+      "name": "production wide-Power Farm and raw arithmetic",
+      "status": "PASS",
+      "checks": 68,
+      "sourceSha256": "6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b"
+    }
+  ]
+}
