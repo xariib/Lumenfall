@@ -1,6 +1,7 @@
 # AUTO_ASCEND_FEEDBACK_001 — readable rapid Ascend rewards
 
-Status: in progress. Baseline: main `cc03df4972808666436eb0386515d20e88d04255`.
+Status: integrated; Android/device acceptance pending.
+Baseline: main `cc03df4972808666436eb0386515d20e88d04255`.
 Branch: `fix/auto-ascend-feedback-001`. Owner: this feature chat.
 
 ## Requirement and verified scope
@@ -104,5 +105,33 @@ screenshots were inspected from the initial browser run; the product hash is
 unchanged by both follow-up corrections. Background/restore cleanup is covered
 by the current browser/source checks; phone acceptance remains unverified.
 
-Next: publish that documentation correction, finish all seven CI workflows,
-integrate serially and save exact-source receipts. No independent review exists.
+## Integrated validation — 27 October 2026
+
+All seven final-head workflows PASS at `97d4d839`: pre-merge `40540305600`,
+Forge `40540305529`, Tree `40540305530`, Lab `40540305531`, Comet/Deeds
+`40540305524`, permanent progression `40540305508`, shared UI `40540305548`.
+Both pre-merge jobs and both Lab jobs pass. Main reports 189 deterministic
+scenarios, matched against the complete current CI plan; the separate original
+offline-catchup scenario also passes (190 total). Runtime smoke passes at 390x844.
+Chrome155 feedback acceptance passes 94 checks/12 profiles, including complete
+actual live-tick gains/counts, real timers and background cleanup.
+
+An automatic approval review initially rejected merge because it did not find
+explicit authorization for this main-branch merge. No alternative merge route
+was used. The user then answered “Ja” to the explicit request to merge PR #16.
+The exact-head guarded merge succeeded at
+`48f95e43af9277e08cc731915163c7ad33254b96`. Its complete tree
+`5331b6af2cebbc1cc9bbdc9c03165839e3326f73` exactly matches CI's tested merge
+`64550ca5576604f17a267cc4b3c2144c3afea70b`; product SHA256 remains
+`3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120`.
+[Final receipt](../qa/auto-ascend-feedback-001/ci-final.json) preserves every
+workflow/job result, all 189 scenario names, the native-browser receipt and
+artifact identities. This follow-up changes documentation only.
+
+Self-review and automated checks only; no independent review exists. No APK was
+published or installed-Android acceptance claimed. Physical phone, exact
+WebView60 DOM, TalkBack and human pacing acceptance remain open. No new binding
+project rule was introduced. Keep the feature open for remaining acceptance.
+
+Next: a separately scoped integrated Android build/upgrade and phone/human
+pacing acceptance before release/completion. No APK publication in this task.

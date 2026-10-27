@@ -1,10 +1,12 @@
 # Lumenfall — current delivery status
 
-27 October 2026: [Readable Auto Ascend](tasks/AUTO_ASCEND_FEEDBACK_001.md),
-[PR #16](https://github.com/xariib/Lumenfall/pull/16), validation in progress.
-One stationary summary combines complete committed gains/counts; manual rewards
-get a reading interval. Gameplay and PR15 balance are unchanged. Mobile browser
-profiles PASS; remaining CI and app/device acceptance pending. No APK release.
+27 October 2026: [Readable Auto Ascend](tasks/AUTO_ASCEND_FEEDBACK_001.md)
+integrated via [PR #16](https://github.com/xariib/Lumenfall/pull/16) at `48f95e43`.
+One stationary summary combines all committed gains/counts; gameplay and PR15
+balance are unchanged. Seven gates, both full jobs, 189+1 scenarios, 12 mobile
+profiles and runtime smoke PASS; integrated tree matches the tested merge.
+[Evidence](qa/auto-ascend-feedback-001/ci-final.json). No APK release;
+app/device and human pacing acceptance remain open.
 
 27 October 2026: [Progression pacing and manual Farm](tasks/PROGRESSION_PACING_001.md) integrated through [PR #15](https://github.com/xariib/Lumenfall/pull/15) at `96af28bd`. Masterwork is additive and Rift-gated; shallow farming is bounded and manual Farm persists with Auto Ascend. Seven required workflows, both full jobs, 189+1 scenarios and runtime smoke PASS; integrated code/tree match the tested merge. [Evidence](qa/progression-pacing-001/ci-final.json). No new APK; app/device and human pacing acceptance remain open.
 
