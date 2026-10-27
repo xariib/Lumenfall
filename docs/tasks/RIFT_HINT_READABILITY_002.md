@@ -11,8 +11,7 @@ gameplay, prices, saves, progression, automation and Android identity.
 No APK release. Work / GPT-6.1 Sol / High recommended.
 
 Baseline: `main` `8dabca95c379af3e87ff1a03c0f8c615ebf36735`.
-PR #6 is merged and its installed-emulator acceptance passed; only PR #2
-(documentation audit) is open, with no open issues or overlapping product PR.
+At that historical baseline, PR #6 and its installed-emulator acceptance had completed.
 Isolated branch: `feat/rift-hint-readability-002`.
 See [current state](../PROJECT_STATE.md), [original guidance](MIDGAME_FARM_GUIDANCE_001.md),
 [previous acceptance](MIDGAME_FARM_ACCEPT_001.md), and
@@ -43,25 +42,9 @@ overlay focus lifecycle, Close/Escape and an explicit Go to Lab action.
 
 ## Baseline checks and checkpoint
 
-Node 24.19.0: original midgame source contract PASS 24 assertions including
-inverse; original late guidance PASS 186 assertions including controls after
-materializing its existing fixture from sparse checkout. The initial late
-check failed only because that fixture was absent, not because of product code.
-Local baseline/candidate Chrome 156.0.8078.47 probes were blocked before
-profiles by rejected singleton-socket creation (EPERM/ECONNRESET); apt setup
-also lacked setuid/setgroups. No local browser PASS is claimed. CI provides
-browser acceptance.
+Baseline Node24.19 checks passed original Farm (24), late Guidance (186, including inverse), Lab (2,677 including controls) and progression (235). A missing sparse fixture initially blocked late Guidance; it was restored before testing. Local Chromium singleton sockets were blocked (EPERM/ECONNRESET), so no initial local browser PASS is claimed. The source-qualified CI and installed-emulator evidence below establishes acceptance.
 
-Implementation: short `Lab hint` summary opens full current quote, red
-shortfalls, running work or occupied slots through the existing overlay
-lifecycle. Go to Lab recomputes the current goal and navigates without buying.
-Live refresh updates text in place and closes obsolete advice. Early/Push/late
-guidance and the fixed 46/44 px reservation are unchanged.
-
-Initial Node checks passed source syntax/lifecycle, original Farm (24),
-late Guidance (186), Lab (2,677 including controls) and progression (235).
-QA receipts qualify these checks to their exact candidate source versions;
-the final browser/native checkpoints below establish current acceptance.
+Implementation uses the existing overlay lifecycle for full advice and current shortfalls; Go to Lab navigates without buying, live refresh removes stale advice, and the46/44px combat reservation remains fixed.
 
 ## Initial published checkpoint — 24 October 2026
 
@@ -75,23 +58,7 @@ source comparison (565/567 original functions byte-identical; only
 `renderRiftObjective`/`init` changed, four presentation helpers added), local
 results, first browser failure and installed Android test summary.
 
-[Full run 40033985420](https://github.com/xariib/Lumenfall/actions/runs/40033985420)
-passed its original isolated offline job and arithmetic/automation steps, then
-failed the new keyboard Go to Lab assertion on the first 320 px profile.
-The failure screenshot retained a focused native button and open dialog.
-The shared Guidance `key()` helper sent `rawKeyDown` without the Enter
-character event; that is sufficient for the old custom keydown handlers but
-does not activate a native HTML button. Existing Wisp drivers use the complete
-`keyDown`/carriage-return/`keyUp` sequence. The QA correction adds that native
-sequence only for the new button, explicitly asserts its prior focus and
-retains the original destination/state/save assertions. Actual text Range
-bounds now verify the entire summary, rather than its containing box.
-No product code changed for this correction. The first run remains a failure;
-its [raw artifact](https://github.com/xariib/Lumenfall/actions/runs/40033985420/artifacts/12536641256)
-and [failure receipt](../qa/rift-hint-readability-002/first-browser-failure.json)
-are preserved. Initial run 40033845508 was superseded/cancelled by the focus
-commit; it is not counted as acceptance. Automated review on `eb589c1`
-completed with no findings; no independent human review is claimed.
+[Full run 40033985420](https://github.com/xariib/Lumenfall/actions/runs/40033985420) passed isolated offline, arithmetic and automation, then failed the first320px native Go to Lab assertion. The driver sent rawKeyDown without Enter's character event. Its correction uses native keyDown/carriage-return/keyUp, preserves the destination/state/save assertions and measures complete summary Range bounds; product code was unchanged. The failure is retained in the [raw artifact](https://github.com/xariib/Lumenfall/actions/runs/40033985420/artifacts/12536641256) and [receipt](../qa/rift-hint-readability-002/first-browser-failure.json). Cancelled40033845508 is not acceptance. Automated review of eb589c1 had no findings; no human review is claimed.
 
 [Android run #26](https://github.com/xariib/Lumenfall/actions/runs/40034260929)
 **PASS** on exact product/head `eb589c1` with `publish=false`. The signed

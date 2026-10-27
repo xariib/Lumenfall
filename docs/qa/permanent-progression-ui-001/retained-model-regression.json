@@ -164,5 +164,153 @@
       "index.html",
       "--negative"
     ]
-  ]
+  ],
+  "automationClock": {
+    "sourceSha256": "9894ed09f9753b3fd76e4092bf7f78e70ab861604a705d44c2de0c9387ccb7fd",
+    "node": "v24.22.1",
+    "results": [
+      {
+        "name": "simulation-binary-clock",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "simulation-limb-clock",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-clock-activation",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-requirement-boundaries",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-batch",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-boundaries",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-automation",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-persistence",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-automation-persistence",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-automation-transitions",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-resource-replay",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-native-wallets",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-split",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-overflow",
+        "status": 0,
+        "signal": null
+      },
+      {
+        "name": "endless-cycle-controls",
+        "status": 0,
+        "signal": null
+      }
+    ],
+    "commands": [
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/simulation-binary-clock.cjs",
+        "../../scripts/lib/simulation-limb-clock.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/simulation-limb-clock.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-clock-activation.cjs",
+        "index.html"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-requirement-boundaries.cjs",
+        "index.html",
+        "--focus-f"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-batch.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-boundaries.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-automation.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-persistence.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-automation-persistence.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-automation-transitions.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-resource-replay.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-native-wallets.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-split.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-overflow.cjs"
+      ],
+      [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/behavioral/endless-cycle-controls.cjs",
+        "/tmp/lumenfall-clock-evidence/controls"
+      ]
+    ]
+  }
 }
