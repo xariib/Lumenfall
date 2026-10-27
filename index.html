@@ -8686,6 +8686,12 @@ function openPowerAdvice(goal){
     renderLongStudies();
     target=document.querySelector(goal.selector);
   }
+  if(goal.tab==='research' && target.closest('[data-running-study]')){
+    var work=findActiveStudy(target.closest('[data-running-study]').getAttribute('data-running-study'));
+    selectedStudySlot=-1;
+    if(work && target.matches('[data-study-speed-target],[data-study-boost-hours],[data-speed-study]'))expandedStudySpeedSlot=work.slot;
+    renderLongStudies();target=document.querySelector(goal.selector);
+  }
   if(target.closest('details'))target.closest('details').open=true;
   if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;
   target.scrollIntoView({block:'center'});target.focus({preventScroll:true});

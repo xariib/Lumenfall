@@ -1,0 +1,48 @@
+{
+  "note": "Same unchanged native hints assertion fails on both original main and candidate in local Chrome156. No production hints logic or original assertions/deadlines were weakened. Committed CI is authoritative.",
+  "driverSha256": "1c04817996c704dbb38314146c904b9eff262d8e2825fcded459a24b2cc63dd3",
+  "baselineCommit": "73f4e3f17504cba50276a17c374d7c4c78a5f7f5",
+  "baseline": {
+    "status": "fail",
+    "sourceSha256": "62672c9cbabc1c25ed5dbf5bad083133b3bae45d918210bbb2bf26db5795046a",
+    "instrumentedSha256": "6c66d54acf2dde465b6a2c7404ec28383118240b52104f8e35386cfe6b159392",
+    "browserVersion": {
+      "protocolVersion": "1.3",
+      "product": "HeadlessChrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.47 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "message": "Error: native hints input did not commit a state change\n    at toggleWithInput (/workspace/scratch/a022b30cc66c/Lumenfall/tests/behavioral/rift-guidance.cjs:210:8)\n    at async run (/workspace/scratch/a022b30cc66c/Lumenfall/tests/behavioral/rift-guidance.cjs:397:671)\n    at async /workspace/scratch/a022b30cc66c/Lumenfall/tests/behavioral/rift-guidance.cjs:432:3",
+    "profiles": 6,
+    "lastProfile": "360x640-safe24-text1-reduce",
+    "lastCompletedThemes": [
+      "default",
+      "ember",
+      "void",
+      "aurora"
+    ],
+    "runtimeErrors": []
+  },
+  "candidate": {
+    "status": "fail",
+    "sourceSha256": "766e2715e656eb67cf25bfb770e73d38ccc12c5d72e18b7e03139cd6bf32bb0e",
+    "instrumentedSha256": "d53e152f41db39953984a482ce1aca91968fd6583bdd248a61ac7aff5b11641d",
+    "browserVersion": {
+      "protocolVersion": "1.3",
+      "product": "HeadlessChrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.47 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "message": "Error: native hints input did not commit a state change\n    at toggleWithInput (/workspace/scratch/a022b30cc66c/Lumenfall/tests/behavioral/rift-guidance.cjs:210:8)\n    at async run (/workspace/scratch/a022b30cc66c/Lumenfall/tests/behavioral/rift-guidance.cjs:397:671)\n    at async /workspace/scratch/a022b30cc66c/Lumenfall/tests/behavioral/rift-guidance.cjs:432:3",
+    "profiles": 16,
+    "lastProfile": "430x932-safe24-text2-reduce",
+    "lastCompletedThemes": [
+      "default",
+      "ember",
+      "void"
+    ],
+    "runtimeErrors": []
+  }
+}
