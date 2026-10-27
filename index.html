@@ -5817,7 +5817,7 @@ function repairPrimaryFromRecovery(recovered){
   }
 }
 function preserveCometPrimary(slot){
-  return slot.error && (slot.error.code==='invalid-comet-claims' || slot.error.code==='invalid-comet-state');
+  return slot.error && (slot.error.code==='invalid-comet-claims' || slot.error.code==='invalid-comet-state' || slot.error.code==='invalid-astral-state' || slot.error.code==='invalid-command-refund');
 }
 function loadState(){
   var resetMarker = null;

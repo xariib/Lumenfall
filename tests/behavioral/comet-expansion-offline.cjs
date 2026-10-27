@@ -34,6 +34,7 @@ function bankAfter(charges,work,count,rank,cap,owned=true){
 function fieldState(s){const copy=clone(s);delete copy.cometUpgrades;delete copy.cometCharges;delete copy.cometWork;return copy;}
 
 function runOffline(source,options={}){
+  if(source.includes('var ASTRAL_UPGRADES='))return runPermanentOffline(source,options);
   const report={status:'RUNNING',checks:0,groups:[],runs:[],witnesses:[],negativeControls:[]};
   if(options.progress)options.progress(report);
   const eq=(a,b,label)=>{assert.deepEqual(a,b,label);report.checks++;};
@@ -210,6 +211,25 @@ function runOffline(source,options={}){
     },/actual offline Ascend must preserve earned bank/);
   });
   report.status='PASS';delete report.currentGroup;return report;
+}
+
+// The user retired recharge and active commands. Keep the original schema5
+// suite above available, and exercise its current replacement at the same gate.
+function runPermanentOffline(source,options){
+ const verify=require('./permanent-progression-offline.cjs').verify;
+ const report={status:'RUNNING',checks:0,groups:[],negativeControls:[]};if(options.progress)options.progress(report);
+ function current(text){const result=verify(text);report.checks+=result.checks;
+  const e=app(text),q=e.q,s=q.fresh();s.schemaVersion=5;s.maxDepthEver=5000;s.owned.meteor=true;s.owned.starcall=true;s.cometUpgrades.cometreservoir=2;s.cometCharges=2;s.cometWork=3970;s.totalKills=1e30;s.activeParty=[];q.set(s);q.save(CLOCK);const before=clone(q.get());e.clock(CLOCK+60000);let failure;q.offline((r,err)=>{failure=err;});e.drain(10000);assert.ifError(failure);assert.equal(q.get().cometCharges,before.cometCharges,'elapsed time cannot spend or refill retired charges');assert.equal(q.get().cometWork,before.cometWork,'elapsed time cannot earn retired work');q.recordDefeats(500,false);assert.equal(q.get().cometWork,before.cometWork,'real defeats cannot recharge retired commands');report.checks+=4;
+ }
+ current(source);report.groups.push({name:'permanent ranks, retired bank, legacy target, split chronology and atomic offline retry',status:'PASS',checks:report.checks});
+ if(options.negative){const controls=[
+  ['defeats-cannot-recharge','cometRecordDefeats',body=>'state.cometWork++;'+body],
+  ['offline-cannot-spend-retired-charge','applyOfflineProgress',body=>replaceOne(body,'var now = Date.now();','if(state.cometCharges>0)state.cometCharges--;var now = Date.now();')],
+  ['saved-called-target-keeps-earned-objective','simulationBatchFarmKills',body=>replaceOne(body,'cometRecordDefeats(count,state.cometCalled);','/* omitted legacy earned target */')],
+  ['called-target-consumed-on-replacement','simulationBatchFarmKills',body=>replaceOne(body,'state.cometMeteorUsed=false;state.cometCalled=false;','state.cometMeteorUsed=false;')],
+  ['offline-primary-failure-rolls-back','applyOfflineProgress',body=>replaceOne(body,'if(!saved && state===job.working){','if(false && !saved && state===job.working){')]
+ ];for(const [id,owner,change]of controls){const variant=replaceFunction(source,owner,change);let error;try{current(variant);}catch(e){error=e;}assert(error&&error.code==='ERR_ASSERTION','semantic offline control '+id);report.negativeControls.push({id,function:owner,detected:true,sourceSha256:sha(variant),error:{name:error.name,code:error.code,message:error.message}});}}
+ report.status='PASS';return report;
 }
 
 function cli(){

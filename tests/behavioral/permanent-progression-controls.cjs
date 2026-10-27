@@ -12,6 +12,8 @@ function verify(source){
   ['defeats-do-not-recharge','cometRecordDefeats',null,'state.cometWork=1;'],
   ['farm-cannot-target-uncleared-frontier','selectFarmDepth','depth>=returning','depth>returning'],
   ['hidden-page-cannot-invest','cometMutationOpen','!document.hidden && ',''],
+  ['malformed-paid-ranks-preserve-primary','preserveCometPrimary'," || slot.error.code==='invalid-astral-state'",''],
+  ['malformed-refund-preserves-primary','preserveCometPrimary'," || slot.error.code==='invalid-command-refund'",''],
   ['primary-failure-rolls-back','cometCommitMutation','if(!saved && state===working){state=base;ascendRunToken=oldRun;return false;}','if(!saved && state===working){return false;}']
  ];
  const out=[];for(const [id,name,from,to]of controls){const changed=replaceFunction(source,name,body=>from===null?to:replaceOne(body,from,to));let error;try{accept(changed);}catch(e){error=e;}assert(error?.code==='ERR_ASSERTION','semantic rejection required, not a parser/runtime failure: '+id+' '+error?.stack);out.push({id,function:name,sourceSha256:crypto.createHash('sha256').update(changed).digest('hex'),detected:true,message:error.message});}return out;

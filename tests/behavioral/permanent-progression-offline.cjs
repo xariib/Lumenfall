@@ -19,7 +19,7 @@ for(const fault of ['none','primary','recovery']){
  const q=C.app(source).q,s=fixture(q,0,'farm');s.schemaVersion=5;s.owned.starcall=true;s.cometCalled=true;s.cometEvents.firstCommand=true;s.enemyIsLuminous=true;
  for(const deed of q.achievementDefs())if(!deed.id.startsWith('comet_'))s.achieved[deed.id]=true;
  s.achieved.comet_first_command=true;q.set(s);const before=q.get().comets;
- q.batch(1);eq(q.get().cometEvents.calledKill,true,'saved legacy target completes through actual defeat');eq(q.get().comets,before+20,'old marked objective paid once');eq(q.get().cometCharges,0,'legacy completion grants no charges');eq(q.get().cometWork,0,'legacy completion grants no work');const paid=q.get().comets;q.batch(1);eq(q.get().comets,paid,'later enemy cannot replay old objective');
+ q.batch(1);eq(q.get().cometCalled,false,'actual Farm replacement consumes saved called marker');eq(q.get().cometEvents.calledKill,true,'saved legacy target completes through actual defeat');eq(q.get().comets,before+20,'old marked objective paid once');eq(q.get().cometCharges,0,'legacy completion grants no charges');eq(q.get().cometWork,0,'legacy completion grants no work');const paid=q.get().comets;q.batch(1);eq(q.get().comets,paid,'later enemy cannot replay old objective');
 }
 return {status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')};}
 module.exports={verify};if(require.main===module)console.log(JSON.stringify(verify(fs.readFileSync(process.argv[2]||'index.html','utf8'))));
