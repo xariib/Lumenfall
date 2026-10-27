@@ -96,16 +96,21 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     var activeBonds=bridge.riftStatus.active();
     assert(activeBonds.length>0 && q('#bond-summary').textContent===activeBonds.map(function(bond){return bond.name.replace(' Bond','');}).join(' · ') && q('#bond-summary').getAttribute('aria-label')==='Active Bonds: '+activeBonds.map(function(bond){return bond.name;}).join(', '),'complete visible and accessible active Formation Bonds');
     if(ctx.scenario==='layout-boss') assert(q('#enemy-glyph').classList.contains('boss'),'boss fixture');
-    q('#rift-farm-btn').click();check('farm');
-    q('#rift-push-btn').click();check('push');
+    // Freeze ambient ticks while allowing actual input/save transactions, as
+    // the existing paid Lab input fixtures do.
+    bridge.labMotes.input(function(){q('#rift-farm-btn').click();});
+    assert(getComputedStyle(q('#farm-picker-overlay')).display!=='none','Farm opens the Rift selection dialog');
+    bridge.labMotes.input(function(){q('#farm-picker-confirm').click();});
+    assert(getComputedStyle(q('#farm-picker-overlay')).display==='none','Confirmed farming Rift closes the dialog');
+    check('farm');
+    bridge.labMotes.input(function(){q('#rift-push-btn').click();});check('push');
     assert(bridge.getState().depth===initial.depth,'Push depth restored after Farm');
   } else assert(q('#rift-farm-btn').disabled,'fresh Farm remains unavailable');
   assert(!q('#rift-details-btn') && !q('#rift-details'),'no obsolete Details controls/dialog');
   // Actual generated purchase markup: shared inline icons stay proportional in both Lab and Ascend.
   ['spirits','ascend'].forEach(function(tab){
     q('[data-tab="'+tab+'"]').click();
-    // Inspect disclosed progression before measuring its actual purchase icons.
-    document.querySelectorAll('#tab-'+tab+' .wisp-progression').forEach(function(el){el.open=true;});
+    assert(!document.querySelector('#tab-'+tab+' details.wisp-progression'),'upgrade progression has no disclosure');
     var icons=Array.from(document.querySelectorAll('#tab-'+tab+' .cost-icon'));
     assert(icons.length>0,tab+' cost icons exist');
     icons.forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0 && r.width<=16 && r.height<=16,tab+' nested icon sizing');});
@@ -132,7 +137,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     assert(icons.length>0,'research '+view+' cost icons exist');
     icons.forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0 && r.width<=16 && r.height<=16,'research '+view+' nested icon sizing');});
     assert(!q('main').classList.contains('rift-scroll-locked') && getComputedStyle(q('main')).overflowY==='auto',view+' main scroll enabled');
-    var last=Array.from(document.querySelectorAll('#tab-'+view+' button:not(:disabled),#tab-'+view+' summary')).pop();
+    var last=Array.from(document.querySelectorAll('#tab-'+view+' button:not(:disabled),#tab-'+view+' summary')).filter(function(el){return el.getClientRects().length>0;}).pop();
     assert(last,view+' final usable control exists');
     last.scrollIntoView({block:'center',behavior:'instant'});
     var end=last.getBoundingClientRect(),main=rect('main');
