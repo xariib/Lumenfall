@@ -104,8 +104,8 @@ async function verifyInstalledWispCard(page,report){
      return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
        width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
-       unfinished:!!module&&progression?.tagName==='DETAILS'&&!!progression.querySelector('summary'),
-       upgradeVisible:!progression||progression.tagName==='DETAILS'||(
+       unfinished:!!module&&!!progression&&progression.tagName!=='DETAILS'&&!progression.querySelector('summary'),
+       upgradeVisible:visible(progression)&&progression.tagName!=='DETAILS'&&(
          visible(card.querySelector('[data-rarity]'))&&visible(card.querySelector('[data-module]'))&&
          (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),
        eligible:actions.some(button=>!button.disabled),
@@ -135,16 +135,9 @@ async function verifyInstalledWispCard(page,report){
  }
  const ember=ui.observations.find(card=>card.id==='ember');
  assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
- // Advanced purchases now live behind each Wisp's native disclosure. Open it
- // with an actual Android touch before testing the existing Ability purchase.
- const disclosure=await page.evaluate(`(()=>{
-   const summary=document.querySelector('[data-wisp-details="ember"]');
-   summary.scrollIntoView({block:'center',behavior:'instant'});
-   const r=summary.getBoundingClientRect();
-   return {x:r.left+r.width/2,y:r.top+r.height/2,open:summary.parentElement.open};
- })()`);
- if(!disclosure.open){tap(disclosure.x,disclosure.y);await pause(100);}
- assert(await page.evaluate(`document.querySelector('[data-wisp-progression="ember"]').open`),'Trusted Android touch opens Wisp upgrades');
+ // Unfinished upgrades are directly available. Preserve the actual Android
+ // touch purchase below; there is no disclosure activation in the new UI.
+ assert(await page.evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]');return p&&p.tagName!=='DETAILS'&&!p.querySelector('summary')&&p.getClientRects().length>0;})()`),'Installed Wisp upgrades stay directly visible');
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
