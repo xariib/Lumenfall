@@ -1503,6 +1503,12 @@
   .ascend-flash strong{display:block;font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:.07em;text-shadow:0 0 18px color-mix(in srgb,var(--prism) 48%,transparent);}
   .ascend-flash small{display:block;margin-top:6px;font-size:.61rem;color:var(--ink-dim);}
   .ascend-flash.leaving{animation:ascendFlashOut .4s ease forwards;}
+  .ascend-flash.auto-ascend-summary{
+    top:auto;bottom:calc(74px + var(--safe-bottom));transform:translateX(-50%);
+    padding:10px 14px;animation:none;
+  }
+  .auto-ascend-summary strong{font-size:1rem;overflow-wrap:anywhere;}
+  @media(prefers-reduced-motion:reduce){.ascend-flash,.ascend-flash.leaving{animation:none;}}
   @keyframes ascendFlashIn{from{opacity:0;transform:translate(-50%,-42%) scale(.86);filter:blur(5px);}to{opacity:1;transform:translate(-50%,-50%) scale(1);filter:none;}}
   @keyframes ascendFlashOut{to{opacity:0;transform:translate(-50%,-57%) scale(1.035);}}
 
@@ -5973,6 +5979,7 @@ function restoreSaveBackup(){
     cancelOfflineCatchup();
     offlinePending = false;
     reloadInProgress = true;
+    clearAscendFeedback();
     document.body.classList.add('app-paused');
     var settingsOverlay = document.getElementById('settings-overlay');
     if(settingsOverlay) settingsOverlay.style.display = 'none';
@@ -8261,19 +8268,79 @@ function applyAscendMutation(){
   beginPendingCometTrial();
   return gain;
 }
-function showAscendFlash(gain,auto){
-  var old = document.querySelector('.ascend-flash');
-  if(old) old.remove();
+// Ephemeral presentation only. Rapid live receipts share one stationary node;
+// the authoritative simulation and offline recap retain their own accounting.
+var ascendFeedback = null;
+function clearAscendFeedback(){
+  if(!ascendFeedback) return;
+  clearTimeout(ascendFeedback.updateTimer);
+  clearTimeout(ascendFeedback.leaveTimer);
+  clearTimeout(ascendFeedback.endTimer);
+  if(ascendFeedback.element.parentNode) ascendFeedback.element.remove();
+  ascendFeedback = null;
+}
+function showAscendFlash(gain,auto,count){
+  if(document.hidden || startupIntroPlaying || offlineCatchup || offlinePending || resetInProgress || reloadInProgress){clearAscendFeedback();return;}
+  count = count===undefined ? 1 : count;
+  if(ascendFeedback && !ascendFeedback.element.parentNode) clearAscendFeedback();
+  if(ascendFeedback && auto){
+    if(!ascendFeedback.auto){
+      var pending=ascendFeedback.pending || {gain:0,count:0};
+      pending.gain=Amount.exactAdd(pending.gain,gain);pending.count=Amount.exactAdd(pending.count,count);
+      ascendFeedback.pending=pending;
+      return;
+    }
+    ascendFeedback.gain=Amount.exactAdd(ascendFeedback.gain,gain);
+    ascendFeedback.count=Amount.exactAdd(ascendFeedback.count,count);
+    clearTimeout(ascendFeedback.endTimer);
+    ascendFeedback.endTimer=setTimeout(clearAscendFeedback,3000);
+    if(!ascendFeedback.updateTimer){
+      ascendFeedback.updateTimer=setTimeout(function(){
+        if(!ascendFeedback) return;
+        ascendFeedback.updateTimer=0;
+        renderAscendFeedback();
+      },1000);
+    }
+    return;
+  }
+  clearAscendFeedback();
   var flash = document.createElement('div');
-  flash.className = 'ascend-flash'+(state.cometCosmetics.crest?' comet-crest-equipped':'');
+  flash.className = 'ascend-flash'+(auto?' auto-ascend-summary':'')+(state.cometCosmetics.crest?' comet-crest-equipped':'');
+  flash.setAttribute('role','status');
+  flash.setAttribute('aria-live','polite');
+  flash.setAttribute('aria-atomic','true');
   flash.innerHTML =
     '<span>'+(auto?'AUTO ASCEND':'ASCENDED')+'</span>'+
-    '<strong>+'+formatNum(gain)+' PRISMS</strong>'+
-    '<small>The Rift begins again. You do not.</small>';
+    '<strong></strong><small></small>';
   document.body.appendChild(flash);
+  ascendFeedback={element:flash,auto:!!auto,gain:gain,count:count,updateTimer:0,leaveTimer:0,endTimer:0};
+  renderAscendFeedback();
   if(navigator.vibrate && !auto) navigator.vibrate([18,35,24]);
-  setTimeout(function(){ flash.classList.add('leaving'); },1250);
-  setTimeout(function(){ if(flash.parentNode) flash.remove(); },1700);
+  if(!auto) ascendFeedback.leaveTimer=setTimeout(function(){flash.classList.add('leaving');},2500);
+  ascendFeedback.endTimer=setTimeout(function(){
+    var pending=ascendFeedback && ascendFeedback.pending;
+    clearAscendFeedback();
+    if(pending) showAscendFlash(pending.gain,true,pending.count);
+  },3000);
+}
+function renderAscendFeedback(){
+  if(!ascendFeedback) return;
+  ascendFeedback.element.querySelector('strong').textContent='+'+formatNum(ascendFeedback.gain)+' PRISMS';
+  ascendFeedback.element.querySelector('small').textContent=ascendFeedback.auto ?
+    formatNum(ascendFeedback.count)+(Amount.cmp(ascendFeedback.count,1)===0?' ascension':' ascensions') : 'The Rift begins again. You do not.';
+}
+function presentLiveAscendResult(sim){
+  if(!Amount.gt(sim.ascends,0)) return;
+  var gain=0;
+  if(sim.ascendGainRuns){
+    sim.ascendGainRuns.forEach(function(run){
+      var count=Amount.exactAdd(run.count,0);
+      gain=Amount.exactAdd(gain,Amount.mul(run.gain,typeof count==='number'?String(count)+'e0':count));
+    });
+  }else{
+    sim.ascendGains.forEach(function(value){gain=Amount.exactAdd(gain,value);});
+  }
+  showAscendFlash(gain,true,sim.ascends);
 }
 function doAscend(auto){
   var cleared = clearedProgressionRift();
@@ -8297,6 +8364,7 @@ function performReset(){
   cancelOfflineCatchup();
   offlinePending = false;
   resetInProgress = true;
+  clearAscendFeedback();
 
   try{
     localStorage.setItem(RESET_PENDING_KEY,'1');
@@ -12806,7 +12874,7 @@ function tick(){
 
   if(sim.ascends>0){
     saveState();
-    showAscendFlash(sim.ascendGains[sim.ascendGains.length-1]||0,true);
+    presentLiveAscendResult(sim);
     renderShop();
     renderCosmetics();
   }
@@ -13406,6 +13474,7 @@ function init(){
   }
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){
+      clearAscendFeedback();
       document.querySelectorAll('.rift-milestone,.vfx-boss-death').forEach(function(el){ el.remove(); });
       document.querySelector('#tab-battle .stage').classList.remove('impact-victory','impact-milestone','impact-boss');
       appHiddenAt = Date.now();

@@ -1,0 +1,93 @@
+{
+  "head": "8edab0ed64f26eadf7416470a499cbf7bab225a3",
+  "run": 40536744321,
+  "job": 122303922926,
+  "browser": {
+    "status": "PASS",
+    "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+    "checks": 94,
+    "profiles": [
+      {
+        "width": 320,
+        "scale": 1,
+        "motion": "no-preference"
+      },
+      {
+        "width": 320,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      {
+        "width": 320,
+        "scale": 2,
+        "motion": "no-preference"
+      },
+      {
+        "width": 320,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      {
+        "width": 390,
+        "scale": 1,
+        "motion": "no-preference"
+      },
+      {
+        "width": 390,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      {
+        "width": 390,
+        "scale": 2,
+        "motion": "no-preference"
+      },
+      {
+        "width": 390,
+        "scale": 2,
+        "motion": "reduce"
+      },
+      {
+        "width": 430,
+        "scale": 1,
+        "motion": "no-preference"
+      },
+      {
+        "width": 430,
+        "scale": 1,
+        "motion": "reduce"
+      },
+      {
+        "width": 430,
+        "scale": 2,
+        "motion": "no-preference"
+      },
+      {
+        "width": 430,
+        "scale": 2,
+        "motion": "reduce"
+      }
+    ],
+    "version": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/155.0.8059.39",
+      "revision": "@3ff7ac5a9224be9156d7f8703a06e22890aafd34",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "jsVersion": "15.5.35.20"
+    },
+    "actual": {
+      "gain": 23482169251,
+      "count": 11741084621,
+      "receipt": {
+        "gain": 23482169251,
+        "count": 11741084621
+      }
+    }
+  },
+  "failure": {
+    "step": "Phone feedback startup and input acceptance",
+    "message": "ReferenceError: clearAscendFeedback is not defined",
+    "scope": "Existing startup-order.cjs extracts only init's return-flow block, without surrounding helpers.",
+    "resolution": "Supply the presentation cleanup dependency in that fixture and assert exactly one invocation on backgrounding; preserve all original assertions."
+  }
+}
