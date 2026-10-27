@@ -20,7 +20,7 @@ s=fixture();s.longStudyLevels.wispascend=91;q.set(s);a=q.endless.advice();eq(a.k
 s=fixture();s.research.masterwork=0;q.set(s);eq(q.endless.advice().id,'forge','missing Forge gate');
 s=fixture();s.nodes.swift=9;q.set(s);eq(q.endless.advice().id,'tree','missing uncapped Tree gate');
 s=fixture();s.depth=199;s.enemyDepth=199;s.farmReturnDepth=199;s.maxDepthEver=199;q.set(s);eq(q.endless.advice().kind,'PUSH','missing Rift gate');
-s.lumen=s.shards='1e400';q.set(s);eq(q.endless.advice().kind,'FORGE POWER','affordable Forge helps overcome a Rift wall');
+s.lumen=s.shards='1e400';q.set(s);eq(q.endless.advice().kind,'PUSH','funds cannot bypass Masterwork record development');
 s=fixture();s.lumen=1e28;s.empowerQueue.ember=false;q.set(s);a=q.endless.advice();eq(a.kind,'REBUILD','cheap levels not blocked by unaffordable next Lab');eq(a.id,'ember','specific Empower control');
 s=fixture();s.spirits.ember=0;s.lumen=10;q.set(s);eq(q.endless.advice().kind,'REBUILD','permanent recruits rebuild after Ascend');
 s=fixture();s.lumen='1e400';s.shards='1e400';q.set(s);eq(q.endless.advice().kind,'FORGE POWER','wide-value affordable Forge remains useful');

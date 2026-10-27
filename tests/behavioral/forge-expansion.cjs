@@ -456,7 +456,8 @@ function combinedCases(html,a) {
     const x=app(html),q=x.q,party=who==='gale'?['gale','stone','tide','aurora']:['thorn','aurora','tide','gale'];
     const s=battle(q,party,1);s.spirits[who]=100;s.wispModules[who]=3;s.wispUltimate[who]=true;s.heroRarity[who]=5;
     s.research.dualchannel=5;s.research.overflowconduit=5;s.research.spillway=5;s.enemyHp=1;s.luminousAccum=0;q.set(s);
-    const native=Math.round(q.power(who)*(who==='gale'?.05:.10)*1.15*2*1.25*1.20),extraNative=Math.floor(native*.10),cross=Math.floor(native*(who==='gale'?1:.10));
+    const resourcePower=Math.min(q.power(who),who==='gale'?40*1.09:100*1.11);
+    const native=Math.round(resourcePower*(who==='gale'?.05:.10)*1.15*2*1.25*1.20),extraNative=Math.floor(native*.10),cross=Math.floor(native*(who==='gale'?1:.10));
     const lumenCasts=who==='gale'?cross:native+extraNative,shardCasts=who==='gale'?native+extraNative:cross;
     const expectedL=lumenCasts+q.lumen(1,false)+q.lumen(2,false),expectedS=shardCasts+q.shards(1,false)+q.shards(2,false),before=clone(q.get()),scale=kind==='offline'?.7:1;
     const out=cast(q,who,kind);a.eq(out.summary.kills,2,'utility cast kills source plus one Spillway child '+who+'/'+kind);a.eq(q.get().depth,3,'combined utility spill is bounded to one child');
@@ -466,7 +467,8 @@ function combinedCases(html,a) {
   }
   for(const who of ['gale','thorn']){
     const x=app(html),q=x.q,s=battle(q,[who]);s.spirits[who]=100;s.research.overflowconduit=5;q.set(s);
-    const native=Math.round(q.power(who)*(who==='gale'?.05:.10)),hit=q.abilityDamage(who),hp=hit*31/32;q.get().enemyHp=hp;
+    const curve=100+40*Math.log1p((s.depth-100)/40),resourcePower=Math.min(q.power(who),(who==='gale'?40*Math.pow(1.09,curve):100*Math.pow(1.11,curve)));
+    const native=Math.round(resourcePower*(who==='gale'?.05:.10)),hit=q.abilityDamage(who),hp=hit*31/32;q.get().enemyHp=hp;
     const expectedExtra=Math.floor(native/32),before=clone(q.get()),key=who==='gale'?'shards':'lumen',kill=who==='gale'?q.shards(s.depth,false):q.lumen(s.depth,false);cast(q,who);
     a.ok(expectedExtra>0,'partial overkill fixture has nonzero grant');a.near(q.get()[key]-before[key],native+expectedExtra+kill,'Overflow uses actual fraction below purchased cap '+who);
   }
@@ -605,7 +607,7 @@ function controllerCases(html,a,mutant=false) {
     const s=clone(ambiguous);s.enemyHp=s.enemyMaxHp=target/rate;q.set(s);
     a.eq(q.assessment(20).verdict,'uncertain','overlap and near-equality do not invent a win/wall');advance(q,0,'offline',{offlineWindowStartMs:CLOCK-301000});a.eq(q.get().riftMode,'push','uncertain Push remains selected');
   }
-  const farm=battle(q,['ember'],19);farm.riftMode='farm';farm.farmDepth=19;farm.farmReturnDepth=20;farm.research.sustainedchannel=5;farm.enemyMaxHp=1e15;farm.enemyHp=1e15;q.set(farm);
+  const farm=battle(q,['ember'],19);farm.riftMode='farm';farm.farmDepth=19;farm.farmReturnDepth=20;farm.farmAutoResume=true;farm.research.sustainedchannel=5;farm.enemyMaxHp=1e15;farm.enemyHp=1e15;q.set(farm);
   a.eq(q.assessment(20).regen,q.enemyHp(20)*q.regen(20),'future Farm retry uses canonical target maximum');
   advance(q,0,'offline');a.eq(q.get().riftMode,'farm','unsupported retry leaves Farm intent');
   farm.spirits.ember=1000;q.set(farm);a.eq(q.assessment(20).verdict,'sustained','guaranteed lower damage proves retry');result=advance(q,0,'offline');a.eq(q.get().riftMode,'push','actual safe retry enters Push');a.eq(q.get().depth,20,'actual retry targets saved boss');a.eq(result.retries,1,'actual safe retry recorded');

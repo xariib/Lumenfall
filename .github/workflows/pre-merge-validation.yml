@@ -36,6 +36,11 @@ jobs:
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test
 
+      - name: Progression pacing and explicit Farm intent
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_PACING_001.md
+          node tests/behavioral/progression-pacing.cjs index.html --negative
+
       - name: Repository migration version and historical-baseline controls
         run: node tests/tooling/repository-migration.cjs
 

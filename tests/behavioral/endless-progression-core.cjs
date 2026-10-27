@@ -132,6 +132,6 @@ for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2100],['th
 }
 if(calibrated){
  const q=app(source).q,s=q.fresh();s.maxDepthEver=70;s.lumen=s.shards='1e400';q.set(s);
- const text=q.previewText('masterwork',1);ok(text.includes('Current: Own Wisp Power ×1.00;'),'explicit current Masterwork Power');ok(text.includes('Next: Own Wisp Power ×1.25;'),'exact first Masterwork multiplier display');ok(q.node('masterwork').desc.includes('25% per level'),'Masterwork description discloses its compounded Power effect');
+ const text=q.previewText('masterwork',1);ok(text.includes('Current: Own Wisp Power ×1.00;'),'explicit current Masterwork Power');ok(text.includes('Next: Own Wisp Power ×1.05;'),'exact first additive Masterwork multiplier display');ok(q.node('masterwork').desc.includes('without compounding'),'Masterwork description discloses its additive Power effect');
 }
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

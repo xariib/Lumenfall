@@ -3377,7 +3377,7 @@ var ENDLESS_PROGRESSION = {
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,15,40,91],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
   ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:92,forge:10,ascends:50},
   mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:92,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
-  masterworkPowerGrowth:1.25,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
+  masterworkPowerPerLevel:.05,masterworkLevelsPerBand:5,masterworkRiftsPerBand:50,farmPassiveKillsPerSecond:2,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
 };
 var SPIRITS = [
   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
@@ -3460,7 +3460,7 @@ var RESEARCH = [
   {id:'luminoustracking', name:'Luminous Tracking', desc:'+0.5 percentage points Luminous chance per level for future eligible encounters; total chance at most 35%. No extra Motes per kill.', unlockDepth:32, levelCap:10, effectPerLevel:0.005, lumenBase:2500000, lumenGrowth:1.60, shardBase:1500, shardGrowth:1.60}
 ];
 
-RESEARCH.push({id:'masterwork',name:'Masterwork Tempering',desc:'Own Wisp Power compounds by 25% per level. Each level opens 5 permanent Mastery ranks for every Wisp. Mastery itself requires Mythic, ability level 20 and Ultimate, plus its shown development requirements and Prisms/Sigils.',unlockDepth:70,lumenBase:1000000,lumenGrowth:1.35,shardBase:25000,shardGrowth:1.35,effectPerLevel:5});
+RESEARCH.push({id:'masterwork',name:'Masterwork Tempering',desc:'Adds 5% of base Wisp Power per level, without compounding. Five levels open at Rift 70, then five more every 50 record Rifts. Each level also opens 5 Mastery ranks; their Wisp, Lab, Rift and currency requirements still apply.',unlockDepth:70,lumenBase:1000000,lumenGrowth:1.35,shardBase:25000,shardGrowth:1.35,effectPerLevel:5});
 
 // FORGE_EXPANSION_001: additive IDs; original prices and paid values stay.
 var FORGE_EXPANSION = [
@@ -4634,7 +4634,7 @@ function freshState(){
     lumen:0, shards:0, prisms:0, comets:0, motes:0, sigils:0, moteNextAtMs:0,
     studyBoosts:{}, studyBoostHours:studyBoostHours,
     depth:1, maxDepthEver:1,
-    riftMode:'push', farmDepth:0, farmReturnDepth:0,
+    riftMode:'push', farmDepth:0, farmReturnDepth:0, farmAutoResume:false,
     enemyDepth:0, enemyHp:0, enemyMaxHp:0, enemyIsLuminous:false,
     spirits:spirits, heroRarity:heroRarity, heroResource:heroResource, wispModules:wispModules, wispUltimate:wispUltimate, wispMastery:wispMastery, canonicalAutomationClock:{}, recruitmentEntitlements:recruitmentEntitlements, empowerQueue:empowerQueue, activeParty:['ember'],
     formationPresets:{push:['ember'],farm:['ember'],boss:['ember']}, activeFormationPreset:'push',
@@ -5098,6 +5098,8 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
   out.maxDepthEver = Math.max(1,nonNegativeInt(source.maxDepthEver,out.depth));
 
   out.riftMode = source.riftMode==='farm' ? 'farm' : 'push';
+  // Old Farm saves have no reliable intent marker: preserve the chosen Farm.
+  out.farmAutoResume = source.farmAutoResume===true;
   out.farmDepth = nonNegativeInt(source.farmDepth,0);
   out.farmReturnDepth = nonNegativeInt(source.farmReturnDepth,0);
   if(out.riftMode==='farm' && out.farmReturnDepth>1){
@@ -5108,6 +5110,7 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
     out.riftMode = 'push';
     out.farmDepth = 0;
     out.farmReturnDepth = 0;
+    out.farmAutoResume = false;
     out.maxDepthEver = Math.max(out.maxDepthEver,out.depth);
   }
 
@@ -6104,14 +6107,16 @@ function canFarmCurrentProgress(){
 function selectFarmDepth(depth){
   var returning=progressionDepth();
   if(!Number.isInteger(depth)||depth<1||depth>=returning||isBoss(depth)||!canFarmCurrentProgress())return false;
-  if(state.riftMode==='farm'&&state.farmDepth===depth)return true;
-  if(!cometCommitMutation(function(){state.farmReturnDepth=returning;state.farmDepth=depth;state.riftMode='farm';state.depth=depth;spawnEnemy(false);}))return false;
+  if(state.riftMode==='farm'&&state.farmDepth===depth){
+    return !state.farmAutoResume || cometCommitMutation(function(){state.farmAutoResume=false;});
+  }
+  if(!cometCommitMutation(function(){state.farmReturnDepth=returning;state.farmDepth=depth;state.farmAutoResume=false;state.riftMode='farm';state.depth=depth;spawnEnemy(false);}))return false;
   renderAll();return true;
 }
 function enterFarmMode(){if(state.riftMode==='farm'||!canFarmCurrentProgress())return false;return selectFarmDepth(highestFarmableDepth(progressionDepth()));}
 function enterPushMode(){
   if(state.riftMode!=='farm')return false;
-  if(!cometCommitMutation(function(){state.depth=Math.max(1,state.farmReturnDepth||state.depth);state.riftMode='push';state.farmDepth=0;state.farmReturnDepth=0;spawnEnemy(false);}))return false;
+  if(!cometCommitMutation(function(){state.depth=Math.max(1,state.farmReturnDepth||state.depth);state.riftMode='push';state.farmDepth=0;state.farmReturnDepth=0;state.farmAutoResume=false;spawnEnemy(false);}))return false;
   renderAll();return true;
 }
 function closeFarmPicker(){closeOverlay(document.getElementById('farm-picker-overlay'));}
@@ -6119,7 +6124,7 @@ function updateFarmPicker(){
   var input=document.getElementById('farm-picker-depth'),depth=Number(input.value),max=highestFarmableDepth(progressionDepth());
   var valid=input.value.trim()!==''&&Number.isInteger(depth)&&depth>=1&&depth<=max&&!isBoss(depth);
   document.getElementById('farm-picker-confirm').disabled=!valid;
-  document.getElementById('farm-picker-note').textContent=valid?'Farm Rift '+depth+' · Push resumes at Rift '+progressionDepth()+'.':'Choose a cleared non-boss Rift from 1 to '+max+'.';
+  document.getElementById('farm-picker-note').textContent=valid?'Farm Rift '+depth+' · Push resumes at Rift '+progressionDepth()+'. Passive farming is limited to 2 kills/s; taps and abilities add defeats. Deeper Rifts give larger rewards.':'Choose a cleared non-boss Rift from 1 to '+max+'.';
 }
 function openFarmPicker(){
   if(!canFarmCurrentProgress())return;
@@ -6194,13 +6199,16 @@ function forgeHasChargeGrants(){
   return !!(forgeLevel('tapconduit') || forgeLevel('relay') || forgeLevel('sustainedchannel') || forgeLevel('victorycharge') || forgeLevel('resonancecascade'));
 }
 function forgeBossPolicyActive(){
-  if(ENDLESS_PROGRESSION.masterworkPowerGrowth>1 && researchLevel('masterwork')>0)return true;
+  if(ENDLESS_PROGRESSION.masterworkPowerPerLevel>0 && researchLevel('masterwork')>0)return true;
   return ['cauterize','fracturekey','guardianseal','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','resonancecascade'].some(function(id){return forgeLevel(id)>0;});
 }
 function sigilResonanceLimit(snapshot){return SIGIL_RESONANCE_RUN_LIMIT+forgeLevel('resonancecells',snapshot);}
 
 function nodeLevel(id){ return state.nodes[id]||0; }
 function researchLevel(id){ return state.research[id]||0; }
+function masterworkPowerFactor(level){
+  return Amount.add(1,Amount.mul(ENDLESS_PROGRESSION.masterworkPowerPerLevel,level===undefined?researchLevel('masterwork'):level));
+}
 function researchEffectiveLevel(node,level){
   level = nonNegativeInt(level,0);
   return node.grandfatheredCap ? level : node.levelCap===undefined ? level : Math.min(level,node.levelCap);
@@ -6401,7 +6409,7 @@ function bestNowFormationPlan(){
  * P1-03 Wisp power / gameplay-language contract
  * ------------------------------------------------
  * Wisp Power = level-scaled spiritPower() × Rarity × Mastery × Masterwork.
- * Mastery compounds 10% per rank; Masterwork compounds the configured growth.
+ * Mastery compounds 10% per rank; Masterwork adds 5% of base Power per level.
  * It is the shared per-Wisp input for passive damage, damaging abilities and
  * Gale/Thorn ability rewards. It does NOT set Support buff strength.
  *
@@ -6438,9 +6446,9 @@ function wispPower(sp,level){
   var tier = state.heroRarity[sp.id]||0;
   // A rank can produce hundreds of digits. Reuse its immutable own-Power
   // value until an actual input changes, including bought Forge development.
-  var key=[level,sp.basePower,tier,RARITY_MULT[tier],wispMasteryLevel(sp.id),researchLevel('masterwork'),ENDLESS_PROGRESSION.masterworkPowerGrowth,astralLevel('astralcore')].join('|');
+  var key=[level,sp.basePower,tier,RARITY_MULT[tier],wispMasteryLevel(sp.id),researchLevel('masterwork'),ENDLESS_PROGRESSION.masterworkPowerPerLevel,astralLevel('astralcore')].join('|');
   var cached=wispPowerCache[sp.id];if(cached && cached.key===key)return cached.value;
-  var value=Amount.mul(Amount.mul(Amount.mul(spiritPower(sp,level),RARITY_MULT[tier]),wispMasteryFactor(sp.id)),Amount.pow(ENDLESS_PROGRESSION.masterworkPowerGrowth,researchLevel('masterwork')));
+  var value=Amount.mul(Amount.mul(Amount.mul(spiritPower(sp,level),RARITY_MULT[tier]),wispMasteryFactor(sp.id)),masterworkPowerFactor());
   value=Amount.mul(value,astralFactor('astralcore'));
   wispPowerCache[sp.id]={key:key,value:value};return value;
 }
@@ -6728,6 +6736,11 @@ function abilityBurstDamage(sp, depth){
 function abilityRewardRaw(sp,level,conductionLevel,ids){
   if(!sp || Amount.le(level,0)) return {lumen:0,shards:0};
   var power = wispPower(sp,level);
+  // Overkill cannot print unlimited currency on a shallow Rift. Cap only the
+  // resource input, before the purchased Module/Ultimate/Bond/Forge factors.
+  // Damage and Support strength continue to use their own uncapped formulas.
+  if(sp.abilityType==='druid')power=Amount.min(power,Amount.mul(100,Amount.pow(1.11,endlessCurveDepth(state.depth))));
+  if(sp.abilityType==='ranged')power=Amount.min(power,Amount.mul(40,Amount.pow(1.09,endlessCurveDepth(state.depth))));
   var mult = Amount.mul(Amount.mul(Amount.mul(moduleMult(sp.id),abilityUltimateMult(sp)),formationRewardMult(ids)),researchFactor('conduction',conductionLevel)*astralFactor('astralecho'));
   return {
     lumen:sp.abilityType==='druid' ? Amount.mul(Amount.mul(Amount.mul(power,0.10),mult),bondActive('harvest',ids)?1.20:1) : 0,
@@ -7612,7 +7625,12 @@ function maxAffordableLevels(node, level, lumenBudget, shardBudget, exactShards)
 }
 function researchEligibility(node){
   var level = researchLevel(node.id);
-  return {level:level,unlocked:!node.retiredTo && state.maxDepthEver>=(node.unlockDepth||1),
+  var requiredDepth=node.unlockDepth||1,limit=node.levelCap;
+  if(node.id==='masterwork'){
+    requiredDepth+=Math.floor(level/ENDLESS_PROGRESSION.masterworkLevelsPerBand)*ENDLESS_PROGRESSION.masterworkRiftsPerBand;
+    limit=Math.min(limit,Math.max(0,1+Math.floor((state.maxDepthEver-node.unlockDepth)/ENDLESS_PROGRESSION.masterworkRiftsPerBand))*ENDLESS_PROGRESSION.masterworkLevelsPerBand);
+  }
+  return {level:level,requiredDepth:requiredDepth,limit:limit,unlocked:!node.retiredTo && state.maxDepthEver>=requiredDepth,
     maxed:node.levelCap!==undefined && level>=node.levelCap};
 }
 function getResearchBuyPlan(node,requested){
@@ -7622,12 +7640,12 @@ function getResearchBuyPlan(node,requested){
   requested=requested===undefined ? labMultiplier : requested;
   var validRequest=requested==='max' || (Amount.integer(requested) && Amount.gt(requested,0));
   var count=0,cost={lumen:0,shard:0},unavailable=false;
-  var reason=node.retiredTo ? 'retired' : !e.unlocked ? 'locked' : e.maxed ? 'maxed' : !validRequest ? 'unavailable' : '';
+  var reason=node.retiredTo ? 'retired' : e.maxed ? 'maxed' : !e.unlocked ? 'locked' : !validRequest ? 'unavailable' : '';
   function eligible(n,c){
     return e.level+n-e.level===n && forgeExactDebit(state.lumen,c.lumen) && shardCanPayExactly(c.shard);
   }
   if(!reason && requested!=='max'){
-    if(node.levelCap!==undefined && requested>node.levelCap-e.level) reason='quantity';
+    if(e.limit!==undefined && requested>e.limit-e.level) reason='quantity';
     else {
       var fixed=researchCostForLevels(node,e.level,requested);cost=fixed;
       if(!Amount.valid(fixed.lumen)||!Amount.valid(fixed.shard))reason='unavailable';
@@ -7637,7 +7655,7 @@ function getResearchBuyPlan(node,requested){
     }
   } else if(!reason){
     if(node.levelCap!==undefined){
-      var limit=Amount.min(Amount.sub(node.levelCap,e.level),requested==='max' ? Infinity : requested);
+      var limit=Amount.min(Amount.sub(e.limit,e.level),requested==='max' ? Infinity : requested);
       for(var attempt=1;Amount.le(attempt,limit);attempt++){
         var next=researchCostForLevels(node,e.level,attempt);
         if(!Amount.valid(next.lumen) || !Amount.valid(next.shard)){unavailable=true;break;}
@@ -7662,7 +7680,7 @@ function getResearchBuyPlan(node,requested){
   }
   var quote=(reason==='unaffordable' || reason==='unavailable' && validRequest || reason==='locked' && node.forgeGroup);
   var needed=quote ? researchCostForLevels(node,e.level,requested==='max' ? 1 : requested) : cost;
-  return {count:count,buyCount:count,cost:cost,needed:needed,affordable:Amount.gt(count,0),reason:reason,level:e.level,unlocked:e.unlocked,maxed:e.maxed};
+  return {count:count,buyCount:count,cost:cost,needed:needed,affordable:Amount.gt(count,0),reason:reason,level:e.level,unlocked:e.unlocked,maxed:e.maxed,requiredDepth:e.requiredDepth,limit:e.limit};
 }
 function forgeEffectText(id,level){
   function n(value){return Number(value.toFixed(4)).toString();}
@@ -7718,7 +7736,7 @@ function forgeMechanicDescription(m){
 }
 
 function researchEffectPreview(node,level){
-  if(node.id==='masterwork')return {level:level,capacity:level*ENDLESS_PROGRESSION.mastery.ranksPerForge,factor:Amount.pow(ENDLESS_PROGRESSION.masterworkPowerGrowth,level),bonus:0};
+  if(node.id==='masterwork')return {level:level,capacity:level*ENDLESS_PROGRESSION.mastery.ranksPerForge,factor:masterworkPowerFactor(level),bonus:0};
   var value = {factor:researchFactor(node.id,level),bonus:researchBonus(node.id,level)};
   if(node.forgeGroup) value.level=researchEffectiveLevel(node,level);
   if(node.id==='charge'){value.cycle=abilityCycleSeconds(level);}
@@ -7739,7 +7757,7 @@ function researchPreview(node,requested){
     purchase:researchEffectPreview(node,Amount.add(level,plan.buyCount))};
 }
 function researchEffectText(node,value){
-  if(node.id==='masterwork')return (ENDLESS_PROGRESSION.masterworkPowerGrowth>1?'Own Wisp Power ×'+(typeof value.factor==='number'&&value.factor<1000?value.factor.toFixed(2):formatRiftNumber(value.factor))+'; ':'')+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
+  if(node.id==='masterwork')return 'Own Wisp Power ×'+(typeof value.factor==='number'&&value.factor<1000?value.factor.toFixed(2):formatRiftNumber(value.factor))+'; '+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
   if(node.forgeGroup) return forgeEffectText(node.id,value.level);
   function decimal(n){return Number(n.toFixed(4)).toString();}
   if(node.id==='luminoustracking') return '+'+decimal(value.bonus*100)+' percentage points; '+
@@ -7760,15 +7778,15 @@ function updateResearchCard(node,card){
   var preview=card.querySelector('[data-forge-preview]'),text=researchPreviewText(node,model);
   if(preview.textContent!==text) preview.textContent=text;
   if(p.maxed){card.dataset.state='maxed';return;}
-  var label=p.reason==='locked'?'Unlocks at Rift '+node.unlockDepth:p.reason==='quantity'?'Choose 1x or Max · '+(node.levelCap-p.level)+' levels left':p.maxed?'Maxed':p.reason==='unavailable'?'Unavailable':'Upgrade ×'+(labMultiplier==='max'?(p.buyCount||1):labMultiplier);
+  var label=p.reason==='locked'?'Unlocks at Rift '+p.requiredDepth:p.reason==='quantity'?'Choose 1x or Max · '+(p.limit-p.level)+' levels available':p.maxed?'Maxed':p.reason==='unavailable'?'Unavailable':'Upgrade ×'+(labMultiplier==='max'?(p.buyCount||1):labMultiplier);
   var displayed=p.buyCount?p.cost:p.needed;
   var hidePrice=p.reason==='locked'||p.reason==='quantity';
   var html=(!hidePrice && node.lumenBase && Amount.valid(displayed.lumen)?purchasePriceMarkup('lumen',displayed.lumen,'cost mono'):'')+
     (!hidePrice && node.shardBase && Amount.valid(displayed.shard)?purchasePriceMarkup('shard',displayed.shard,'cost mono'):'')+'<span class="label">'+label+'</span>';
   if(btn.dataset.planHtml!==html){btn.innerHTML=html;btn.dataset.planHtml=html;}
   btn.disabled=!p.affordable;
-  var queue=card.querySelector('[data-queue]');if(queue)queue.hidden=!p.unlocked;
-  if(!p.unlocked)preview.textContent='';
+  var queue=card.querySelector('[data-queue]');if(queue)queue.hidden=!p.unlocked&&!p.level;
+  if(!p.unlocked)preview.textContent=p.level?'Current: '+researchEffectText(node,model.current):'';
 }
 
 function buyResearch(node){
@@ -8213,6 +8231,7 @@ function applyAscendMutation(){
   state.riftMode = 'push';
   state.farmDepth = 0;
   state.farmReturnDepth = 0;
+  state.farmAutoResume = false;
   state.lumen = Amount.min(Amount.mul(state.lumen,Amount.div(treeLevel('lumenmemory'),20)),Amount.mul(50000,treeLevel('lumenmemory')));
   state.maxDepthEver = Amount.max(state.maxDepthEver,Amount.add(cleared,1));
   if(!treeLevel('supportmemory')){
@@ -8641,7 +8660,7 @@ function latePowerAdvice(){
   if(ready)result=advice('MASTERY READY','Master '+ready.sp.shortName+' to rank '+(ready.plan.rank+1),'Own Power ×1.10 permanently. '+formatRiftNumber(ready.plan.cost.prism)+' Prisms + '+formatRiftNumber(ready.plan.cost.sigil)+' Sigils.','spirits','[data-mastery="'+ready.sp.id+'"]',ready.sp.id);
   else if(recruit)result=advice('REBUILD','Recruit '+recruit.shortName+' again','Permanent upgrades are kept. Restore run Power after Ascend.','spirits','[data-empower="'+recruit.id+'"]',recruit.id);
   else if(empower)result=advice('REBUILD','Rebuild your team’s Power','Affordable run levels remain. Enable Auto-Empower for your team while saving for permanent upgrades.','spirits','[data-empower-queue="'+empower.id+'"]',empower.id);
-  else if(next.plan.ready&&next.plan.requirements.every(function(r){return r.met||r.key==='depth';})&&forgePlan.buyCount===1&&Amount.le(forgePlan.cost.lumen,Amount.mul(state.lumen,.75)))result=advice('FORGE POWER','Temper Masterwork to level '+(researchLevel('masterwork')+1),'All Wisp Power ×'+ENDLESS_PROGRESSION.masterworkPowerGrowth+' permanently. Keep some Lumen for run levels.','forge','[data-research="masterwork"]','masterwork');
+  else if(next.plan.ready&&next.plan.requirements.every(function(r){return r.met||r.key==='depth';})&&forgePlan.buyCount===1&&Amount.le(forgePlan.cost.lumen,Amount.mul(state.lumen,.75)))result=advice('FORGE POWER','Temper Masterwork to level '+(researchLevel('masterwork')+1),'Own Wisp Power ×'+masterworkPowerFactor(researchLevel('masterwork')+1).toFixed(2)+' permanently. Keep some Lumen for run levels.','forge','[data-research="masterwork"]','masterwork');
   else if(eligible){
     if(!prismPurchasePlan(eligible.plan.cost.prism,true))result=advice('FARM PRISMS','Farm Prisms for '+eligible.sp.shortName,'Repeat cleared Rift '+(MIN_AUTO_ASCEND_RIFT-1)+' toward '+formatRiftNumber(eligible.plan.cost.prism)+' Prisms. Use Auto-Ascend if owned. When funded, stop, rebuild and Push.','ascend','#auto-ascend-controls',eligible.sp.id);
     else result=advice('FARM SIGILS','Farm Sigils for '+eligible.sp.shortName,'Need '+formatRiftNumber(eligible.plan.cost.sigil)+' Sigils. Clear bosses; keep your run and Empower queues growing.','battle','#rift-farm-btn',eligible.sp.id);
@@ -10649,7 +10668,8 @@ function simulationBuffMult(nowMs,clock){
   return Math.max(legacy,known);
 }
 function simulationPassiveDps(nowMs,clock){
-  return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(nowMs,clock));
+  var dps=Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(nowMs,clock));
+  return state.riftMode==='farm' ? Amount.min(dps,Amount.mul(enemyHpFor(state.depth),ENDLESS_PROGRESSION.farmPassiveKillsPerSecond)) : dps;
 }
 function simulationNextBuffSeconds(nowMs,clock){
   var remaining = simulationBuffSecondsRemaining(nowMs,clock);
@@ -11210,6 +11230,7 @@ function simulationMaybeRetreatFromBoss(policy,summary,nowMs){
   if(state.depth<=1) return false;
   state.farmReturnDepth = state.depth;
   state.farmDepth = highestFarmableDepth(state.farmReturnDepth);
+  state.farmAutoResume = true;
   state.riftMode = 'farm';
   state.depth = state.farmDepth;
   spawnEnemy(false);
@@ -11218,7 +11239,7 @@ function simulationMaybeRetreatFromBoss(policy,summary,nowMs){
   return true;
 }
 function simulationMaybeRetryBoss(policy,summary){
-  if(!policy.allowBossRetreat || state.riftMode!=='farm' || !state.farmReturnDepth || !isBoss(state.farmReturnDepth)) return false;
+  if(!policy.allowBossRetreat || state.riftMode!=='farm' || !state.farmAutoResume || !state.farmReturnDepth || !isBoss(state.farmReturnDepth)) return false;
   var retryDepth = state.farmReturnDepth;
   if(forgeBossPolicyActive()){if(forgeBossAssessment(retryDepth).verdict!=='sustained') return false;}
   else if(!isFinite(estimatedBossKillSeconds(retryDepth))) return false;
@@ -11228,6 +11249,7 @@ function simulationMaybeRetryBoss(policy,summary){
   state.farmReturnDepth = 0;
   spawnEnemy(false);
   summary.retries++;
+  state.farmAutoResume = false;
   return true;
 }
 function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
