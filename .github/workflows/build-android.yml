@@ -345,7 +345,7 @@ jobs:
           gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json release-evidence/identity.txt release-evidence/commit.txt \
             --target "$GITHUB_SHA" --latest \
             --title "Lumenfall Android $EXPECTED_VERSION_NAME" \
-            --notes "Workshop and card clarity update from $GITHUB_SHA: five visible Lab slots with click-to-choose research, Queue OFF clears a slot while retaining paid work and boosts, concise game cards with Wisp upgrades behind a disclosure, and 49 new long-term Deeds. Existing Comet commands move to Deeds so Rift stays fixed without scrolling. Install Lumenfall.apk as an update without uninstalling. Original package/signing/save identity retained. Automated browser and installed Android emulator acceptance passed; physical-device, legacy WebView and TalkBack limitations are recorded in docs/tasks/WORKSHOP_CARD_CLARITY_001.md."
+            --notes "Permanent progression update from $GITHUB_SHA: visible Wisp upgrades with gold completed paths, five compact Lab slots with direct research selection and slot-owned Speed Up, selectable earlier farming Rifts without Ascending, exact fixed Forge quantities, and permanent Astral upgrades replacing Comet commands. Former command purchases receive a once-only refund. Back up in Settings before updating. Install Lumenfall.apk as an update without uninstalling to retain progress. Original package and signing identity retained. Physical-phone, exact WebView60 and TalkBack acceptance remain separate checks."
 
       - name: Remove temporary signing copy
         if: always()
