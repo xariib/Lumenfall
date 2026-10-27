@@ -348,7 +348,7 @@ window.__lumenfallQaBridge = {
       }
       simulationMaybeRetryBoss=function(policy,summary){
         var before=copy(state),n=summary.retries;
-        var eligible=policy.allowBossRetreat && before.riftMode==='farm' && before.farmReturnDepth>0 &&
+        var eligible=policy.allowBossRetreat && before.riftMode==='farm' && before.farmAutoResume && before.farmReturnDepth>0 &&
           isBoss(before.farmReturnDepth) && isFinite(estimatedBossKillSeconds(before.farmReturnDepth));
         var result=originals.retry(policy,summary);
         if(mutation==='farm-exit' && before.riftMode==='farm' && !eligible){state.riftMode='push';result=true;}
