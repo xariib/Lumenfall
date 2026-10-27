@@ -9,6 +9,7 @@ function app(throwOffline){
  const events=[],classes=new Set(['startup-pending']),ctx={events,classes,returnFlowGeneration:0,resumeFlowBusy:false,offlinePending:false,persistenceBlocked:false};
  ctx.document={hidden:false,documentElement:{classList:{remove:n=>classes.delete(n),contains:n=>classes.has(n)}},body:{classList:{toggle(){}}},getElementById:()=>null,querySelectorAll:()=>[],querySelector:()=>({classList:{remove(){}}}),addEventListener:(type,fn)=>{ctx.visibility=fn;}};
  ctx.clock=10000;ctx.Date={now:()=>ctx.clock};ctx.isNewGame=false;ctx.cancelOfflineCatchup=()=>{};ctx.ensureDaily=()=>false;
+ ctx.feedbackClears=0;ctx.clearAscendFeedback=()=>ctx.feedbackClears++;
  Object.assign(ctx,{playStartupIntro:done=>{events.push('intro');ctx.introDone=done;},applyOfflineProgress:done=>{events.push('offline');ctx.offlineDone=done;if(throwOffline)throw Error('offline failed');},saveState:()=>events.push('save'),renderAll:()=>events.push('render'),showReturnFlow:(result,daily)=>events.push(['return',result,daily]),announcePersistenceStatus:()=>events.push('persistence'),showToast:()=>events.push('error')});
  vm.createContext(ctx);vm.runInContext(code,ctx);return ctx;
 }
@@ -31,6 +32,7 @@ for(const thrown of [false,true]){
 {
  const a=app();a.beginReturn(false);const oldIntro=a.introDone;a.offlineDone({earned:42},null);
  a.document.hidden=true;a.visibility();a.clock+=500;a.document.hidden=false;a.visibility();
+ eq(a.feedbackClears,1,'background discards live Ascend feedback exactly once');
  eq(a.events.filter(e=>e==='intro').length,2,'500ms interruption restarts invalidated startup');
  oldIntro();eq(a.classes.has('startup-pending'),true,'stale intro cannot uncover replacement flow');
  a.introDone();a.offlineDone(null,null);eq(a.classes.has('startup-pending'),false,'short resume cannot leave loading cover stuck');

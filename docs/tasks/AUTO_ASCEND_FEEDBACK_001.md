@@ -80,5 +80,13 @@ sockets are denied. No product test ran in that browser. CI pins Node24.19.0;
 the new native-browser check covers 320/390/430px, normal/double text, both
 motion preferences, real timers, full committed live tick and actual background.
 
-Next: publish the reviewed candidate PR, run all seven required CI workflows,
-resolve any failures, integrate serially and save exact-source receipts.
+[PR #16](https://github.com/xariib/Lumenfall/pull/16) opened at `8edab0ed`.
+Its first native browser check PASS: 94 checks/12 profiles in Chrome155,
+including actual live-tick gain/count equality and background cleanup. Pre-merge
+run `40536744321` then failed at the existing extracted `startup-order.cjs`
+fixture: its sandbox did not supply the new presentation cleanup dependency.
+Add that external dependency to the isolated fixture and assert one background
+cleanup; retain every original startup assertion. No product change is needed.
+
+Next: publish that focused fixture correction, finish all seven CI workflows,
+integrate serially and save exact-source receipts. No independent review exists.
