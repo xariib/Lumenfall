@@ -78,7 +78,10 @@ Related contracts: [Forge/Lab caps](LAB_FORGE_LONGTAIL_001.md),
 
 ## Checkpoint
 
-Current product SHA-256: `6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b`.
+Current product SHA-256: `1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df`.
+The latest revision changes only Farm recap summation; wallets and gameplay
+credits are identical. Earlier campaign/browser evidence below is bound to
+`6dc24bee`, before this recap-only correction; do not relabel those receipts.
 The preceding `b301e15b` candidate used canonical HP for the throughput ceiling;
 the final revision also handles a legacy encounter's actually saved maximum HP.
 The original manual-Farm fixture reproduced a retry and four unintended Ascends
@@ -127,17 +130,12 @@ CI Lab speed initially timed out before Browser.getVersion (zero test cases).
 Preserve this runner failure; rerun unchanged after the full run terminates.
 The numerical Lab fixture failure is addressed as above, not retried away.
 
-Current main was verified; only historical documentation PR #2 was open and no
-overlapping pacing branch was found. Unrelated checkout/test-generated scratch
-files are not part of the change. [PR #15](https://github.com/xariib/Lumenfall/pull/15)
-is draft; first head `fa65ea23`, then native browser-band tests at `2c44c0ff`.
-Final gameplay is published at `d6fa701b` (product hash above). At resume, Forge,
-Tree, permanent progression, Comet/Deeds and shared UI workflows PASS; Lab's core,
-native mobile and V8 jobs PASS, with its timed-speed browser job still running.
-Pre-merge's isolated offline job PASS; its full job exposed a numeric fixture
-that assumed unbounded Farm throughput. The pending test-only revision keeps
-its original huge-count arithmetic assertions and additionally requires exactly
-two public Farm kills even with wide legacy Power. Three frozen clock oracles
+Current main was verified; no overlapping pacing work was found. Unrelated
+checkout/test-generated scratch files are not part of the change.
+[PR #15](https://github.com/xariib/Lumenfall/pull/15) remains draft. Initial heads
+`fa65ea23` / `2c44c0ff` / `d6fa701b` were followed by the clock and mobile fixtures.
+The wide-count arithmetic assertions remain and separately require exactly two
+public Farm kills even with wide legacy Power. Three frozen clock oracles
 pin only their original Masterwork numeric input, preserving the immutable dyadic
 transcript, transaction checks and failure controls. Current-balance automation
 transitions also run alongside the captured historical rate reproduction.
@@ -148,5 +146,25 @@ the pinned `f1752f70` oracle source from the actual `6dc24bee` product.
 A transient automatic upload review
 rejection was resolved by verifying authenticated owner xariib, exact public repo,
 admin permission and the existing public test payload; no user data was uploaded.
-Next: publish the test-only clock/oracle checkpoint, require seven green workflows
-on the resulting PR head, then integrate and verify the exact source on main.
+
+At head `4ae88295`, all six specialist workflows and isolated offline PASS.
+Pre-merge run `40510871105` completed the full suite with three failures:
+the numerical/native arithmetic tests still observed capped DPS via their raw
+input helper; long high-Power parity exceeded its original recap tolerance by
+5.09e-6 Lumen after four hours. All other full-suite scenarios passed. Keep this
+failure; do not increase tolerances or remove the historical arithmetic oracles.
+
+The raw-DPS helper now observes actual uncapped passive Power explicitly. A
+nonserialized compensated sum corrects Farm recap totals only; native wallets,
+Push credits and wide exact credits retain their old policy. The new
+`farm-recap-parity.cjs` runs the original four-hour fixture at 60/300/14400-second
+partitions, preserves its original tolerance and native endpoint wallets, and
+rejects the old recap implementation. Its 352 checks/control PASS. VM numerical
+356 and conservation 15,899 checks with original causal controls PASS. Focused
+pacing 221 and Forge 9,335/25 controls PASS on `1ac463ff`.
+[Latest focused evidence](../qa/progression-pacing-001/recap-fix.json).
+
+Next: publish this recap correction and renewed independent source binding,
+require seven green workflows on the resulting PR head, then integrate and
+verify the exact tree/source on main. App/device and human pacing acceptance
+remain open; no APK has been published by this task.

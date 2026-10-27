@@ -10584,6 +10584,20 @@ function simulationPolicy(kind,options){
 function simulationRewardScale(policy){
   return policy.offline ? offlineRate() : 1;
 }
+function simulationCreditFarmSummary(summary,key,gain){
+  var value=summary[key];
+  // Long Farm recaps can contain thousands of fractional credits. Compensate
+  // their summary only; wallets retain their original ordered native credits.
+  if(state.riftMode==='farm' && typeof value==='number' && typeof gain==='number' && Number.isFinite(value+gain) && Math.abs(value+gain)<=Number.MAX_SAFE_INTEGER){
+    if(!summary._farmCreditError)Object.defineProperty(summary,'_farmCreditError',{value:{}});
+    var memo=summary._farmCreditError[key],error=memo&&memo.value===value?memo.error:0;
+    var adjusted=gain-error,total=value+adjusted;
+    summary._farmCreditError[key]={value:total,error:(total-value)-adjusted};summary[key]=total;
+  }else{
+    if(summary._farmCreditError)delete summary._farmCreditError[key];
+    summary[key]=creditAmount(value,gain);
+  }
+}
 function simulationSummary(elapsedSec){
   return {
     elapsedSec:elapsedSec,
@@ -10951,8 +10965,8 @@ function simulationDefeatEnemy(policy,summary){
 
   gainLumen(lumenGain);
   state.shards=creditAmount(state.shards,shardGain);
-  summary.lumenGained=creditAmount(summary.lumenGained,lumenGain);
-  summary.shardGained=creditAmount(summary.shardGained,shardGain);
+  simulationCreditFarmSummary(summary,'lumenGained',lumenGain);
+  simulationCreditFarmSummary(summary,'shardGained',shardGain);
 
   if(wasLuminous){
     var moteGain = luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now(),policy.clock);
@@ -11015,8 +11029,8 @@ function simulationBatchFarmKills(count,policy,summary){
 
   gainLumen(lumenGain);
   state.shards=creditAmount(state.shards,shardGain);
-  summary.lumenGained=creditAmount(summary.lumenGained,lumenGain);
-  summary.shardGained=creditAmount(summary.shardGained,shardGain);
+  simulationCreditFarmSummary(summary,'lumenGained',lumenGain);
+  simulationCreditFarmSummary(summary,'shardGained',shardGain);
 
   if(Amount.gt(luminousKills,0)){
     var moteGain = batchLuminousMotes(count,state.enemyIsLuminous,startAccum,chance,policy);
@@ -11146,12 +11160,12 @@ function simulationTriggerAbility(sp,level,nowMs,policy,summary,clock){
   if(Amount.gt(rewards.shards,0)){
     var shardGain=Amount.mul(rewards.shards,rewardScale);
     state.shards=creditAmount(state.shards,shardGain);
-    summary.shardGained=creditAmount(summary.shardGained,shardGain);
+    simulationCreditFarmSummary(summary,'shardGained',shardGain);
   }
   if(Amount.gt(rewards.lumen,0)){
     var lumenGain=Amount.mul(rewards.lumen,rewardScale);
     gainLumen(lumenGain);
-    summary.lumenGained=creditAmount(summary.lumenGained,lumenGain);
+    simulationCreditFarmSummary(summary,'lumenGained',lumenGain);
   }
   if(sp.abilityType==='support') applySupportCast(sp,nowMs,clock);
   if(policy.visual){

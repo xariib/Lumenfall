@@ -40,6 +40,7 @@ jobs:
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_PACING_001.md
           node tests/behavioral/progression-pacing.cjs index.html --negative
+          node tests/behavioral/farm-recap-parity.cjs index.html --negative
 
       - name: Repository migration version and historical-baseline controls
         run: node tests/tooling/repository-migration.cjs
