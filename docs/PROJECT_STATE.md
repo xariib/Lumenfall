@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+27 October 2026: [Readable Auto Ascend](tasks/AUTO_ASCEND_FEEDBACK_001.md),
+[PR #16](https://github.com/xariib/Lumenfall/pull/16), validation in progress.
+One stationary summary combines complete committed gains/counts; manual rewards
+get a reading interval. Gameplay and PR15 balance are unchanged. Mobile browser
+profiles PASS; remaining CI and app/device acceptance pending. No APK release.
+
 27 October 2026: [Progression pacing and manual Farm](tasks/PROGRESSION_PACING_001.md) integrated through [PR #15](https://github.com/xariib/Lumenfall/pull/15) at `96af28bd`. Masterwork is additive and Rift-gated; shallow farming is bounded and manual Farm persists with Auto Ascend. Seven required workflows, both full jobs, 189+1 scenarios and runtime smoke PASS; integrated code/tree match the tested merge. [Evidence](qa/progression-pacing-001/ci-final.json). No new APK; app/device and human pacing acceptance remain open.
 
 27 October: [Permanent progression](tasks/PERMANENT_PROGRESSION_UI_001.md) released as **Android 0.2.48**. Seven gates, 189+1 scenarios, installed Android upgrade and public APK verification PASS. Both saves/paid work retained. [Evidence](qa/permanent-progression-ui-001/release.json). Phone/WebView60/TalkBack/pacing remain open.
@@ -58,34 +64,14 @@ The earlier phase-sensitive VFX failure is retained in the
 gate passed in final CI, but the underlying finding is not claimed fixed.
 
 22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
-verified the previously integrated midgame Farm guidance through
-[PR #6](https://github.com/xariib/Lumenfall/pull/6), merged at
-`83b1a8e050d0d0bffefbf9023902e6cf3817282d`. No product source,
-save schema, purchases, prices or package identity changed. All six
-relevant final-head workflows passed; [pre-merge validation](https://github.com/xariib/Lumenfall/actions/runs/39861115223)
-passed on attempt 2, including the complete stateful and isolated offline
-jobs. The browser matrix passed 18/18 profiles across 320/390/430 px,
-100/150/200% text and normal/reduced motion, with exact hint, accessible
-name, affordability colors, navigation and unchanged state/save.
-
-[Non-publishing integrated Android run #25](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
-passed on exact merge commit: signed 0.2.25 (`versionCode 1000025`,
-APK SHA-256 `101d007142eede2261befae11adf384d1d2b374f2c9d890153f5def0144eaf93`)
-installed over 0.1.158 on Android 12/API31/WebView 91.0.4472.114.
-Both saves, UID `10145`, origin, paid progression and legacy entitlements
-survived. Installed Wisp UI/touch and the Farm hint's exact content,
-accessible name, fit and native touch to a focused Lab card passed.
-[Artifact 12465868190](https://github.com/xariib/Lumenfall/actions/runs/39870276892/artifacts/12465868190)
-contains the receipt and screenshots; the release step was skipped.
-An earlier exact-main [run #24](https://github.com/xariib/Lumenfall/actions/runs/39868057691)
-failed first at the existing Wisp offline-recap touch timing check and then
-timed out connecting to the old APK WebView on retry; run #25 resolved the
-integrated acceptance, and those failures remain documented in the task.
-**Integrated and installed-emulator accepted; physical phone, exact
-WebView60, TalkBack and human visual/pacing remain open.** At 200% text
-the fixed 44 px Rift hint viewport is scrollable but shows only a small
-portion of the quote; propose a separate readability change. No APK
-release has been published.
+integrated via [PR #6](https://github.com/xariib/Lumenfall/pull/6) at `83b1a8e`.
+Six workflows, both full jobs and 18 browser profiles PASS.
+[Installed Android run #25](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
+PASS: 0.2.25 over 0.1.158 on API31/WebView91, both saves, UID/origin, paid work,
+legacy entitlements and native hint-to-Lab touch retained. No APK publication.
+The task retains exact versions/checksums/artifacts and earlier run24 failures.
+Phone/WebView60/TalkBack/human acceptance remains open; its 200%-text hint
+readability finding was addressed separately in RIFT_HINT_READABILITY_002 above.
 
 21 October 2026: [WISP_ACTION_HIERARCHY_001](tasks/WISP_ACTION_HIERARCHY_001.md)
 was integrated through [PR #3](https://github.com/xariib/Lumenfall/pull/3)

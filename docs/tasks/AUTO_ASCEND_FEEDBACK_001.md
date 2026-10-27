@@ -88,5 +88,21 @@ fixture: its sandbox did not supply the new presentation cleanup dependency.
 Add that external dependency to the isolated fixture and assert one background
 cleanup; retain every original startup assertion. No product change is needed.
 
-Next: publish that focused fixture correction, finish all seven CI workflows,
+Fixture correction `57736e19` passes the full startup/input check; its native
+Auto Ascend profiles and complete isolated offline job also pass. The full job
+then stopped before Farm browser acceptance: shared startup plus the unchanged
+RIFT_HINT_READABILITY_002 task is 32,995 bytes, above its existing 32,768 limit.
+This is reproducible on PR15's evidence-only main `cc03df49` as well. Compact the
+historical MIDGAME_FARM_ACCEPT status paragraph, retaining full evidence in its
+linked task and preserving the budget gate. Validate every task named by CI.
+
+[Budget receipt](../qa/auto-ascend-feedback-001/context-budget.json): all 20 CI
+task entrypoints now PASS; the former 32,995-byte entrypoint is 32,020 bytes.
+The [normal](../qa/auto-ascend-feedback-001/auto-normal.png) and
+[large-text/reduced-motion](../qa/auto-ascend-feedback-001/auto-large.png)
+screenshots were inspected from the initial browser run; the product hash is
+unchanged by both follow-up corrections. Background/restore cleanup is covered
+by the current browser/source checks; phone acceptance remains unverified.
+
+Next: publish that documentation correction, finish all seven CI workflows,
 integrate serially and save exact-source receipts. No independent review exists.
