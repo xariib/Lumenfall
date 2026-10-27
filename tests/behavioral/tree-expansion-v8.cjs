@@ -121,7 +121,7 @@ old.research.charge=28;old.research.formation=5;old.research.relay=2;old.longStu
 old.activeStudies=[{id:'wispascend',remainingSec:90,totalDurationSec:180,speedMult:1.5},{id:'shardstudy',remainingSec:100,totalDurationSec:200,speedMult:2}];
 old.heroRarity.ember=5;old.wispModules.ember=20;old.wispUltimate.ember=true;
 var migratedApp=app([[P,JSON.stringify(old)],[R,JSON.stringify(old)]]),mq=migratedApp.q,migrated=clone(mq.get());
-eq(migrated.schemaVersion,5,'actual schema1 cold-load migration');eq([migrated.prisms,migrated.comets],[40786,307],'original F26 32 Prisms plus F21 40586 and Echo68 Prisms and300 Comets; no retired-card ownership');
+eq(migrated.schemaVersion,6,'actual schema1 cold-load migration');eq([migrated.prisms,migrated.comets],[40786,307],'original F26 32 Prisms plus F21 40586 and Echo68 Prisms and300 Comets; no retired-card ownership');
 eq(migrated.feedbackMigration.receipts['node.bonds'].amounts.prisms,[3376,4896,7098,10292,14924],'five original F21 individual prices retained');
 eq(migrated.feedbackMigration.receipts['node.echo'].amounts.prisms,[16,22,30],'three original Echo individual prices retained');
 Object.keys(old.nodes).forEach(function(id){eq(migrated.nodes[id],old.nodes[id],'old raw purchase retained '+id);});

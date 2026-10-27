@@ -62,11 +62,11 @@ function retainLegacy(a,ids){
 function trial(id,extras=[]){const a=retainLegacy(ready(),['comettrials',...extras]);assert(a.b.queue(id,15));a.b.ascend();assert.equal(a.b.get().cometTrial.phase,'active');return a;}
 function clear(a,target=15){a.b.get().depth=target+1;a.b.ascend();}
 test('authoritative catalog price, duplicate and unknown purchase rejection',()=>{
-  const a=ready();assert.deepEqual(a.b.catalog().map(item=>item.id),['autoascend','meteor','starcall','cometreservoir','cometcycle','meteorcore']);
+  const a=ready();assert.deepEqual(a.b.catalog().map(item=>item.id),['autoascend','astralcore','astralecho','astralconvergence']);
   assert.equal(a.b.plan('autoascend').cost+Object.values(retiredPrices).reduce((sum,cost)=>sum+cost,0),450,'independent historical four-purchase ledger');
   retainLegacy(ready(),Object.keys(retiredPrices));
   a.b.get().achieved.d25=true;a.b.get().achieved.d50=true;
-  for(const [id,cost] of [['autoascend',100],['meteor',100],['starcall',140]]){
+  for(const [id,cost] of [['autoascend',100]]){
     const before=a.b.get().comets;assert(a.b.buy(id));assert.equal(a.b.get().comets,before-cost);assert.equal(a.b.buy(id),false);assert.equal(a.b.get().comets,before-cost);
   }
   for(const id of ['offline24','comettrials','rifttrail','starfallcrest','unknown']){const before=copy(a.b.get());assert.equal(a.b.buy(id),false);assert.deepEqual(a.b.get(),before,'retired/unknown purchase is inert '+id);}
@@ -143,7 +143,7 @@ test('legacy ownership archive, normalized saves and full-snapshot backup restor
   const a=ready(),old=copy(a.b.get());old.schemaVersion=1;delete old.offline12hRefund;old.owned={autoascend:true,rememberbulk:true,offline24:true,offline48:true};old.nodes.reserves=6;old.comets=789;
   const once=a.b.normalize(old),twice=a.b.normalize(copy(once));assert.deepEqual(twice,once);
   assert.deepEqual(once.legacyCometPurchases,{rememberbulk:true,offline24:true,offline48:true});assert.equal(once.nodes.reserves,6);assert.equal(once.comets,1089);
-  a.b.set(once);assert(a.b.gate());assert.equal(a.b.cap(),12);
+  a.b.set(once);assert.equal(a.b.gate(),false);assert.equal(a.b.cap(),12);
   assert(a.b.save());const backup=a.b.backup();assert.deepEqual(a.b.decode(backup),once);
   a.b.get().comets+=999;a.b.set(a.b.decode(backup));assert.equal(a.b.get().comets,1089);
   a.storage.set('lumenfall_save_v2','broken');a.b.set(a.b.load());assert.deepEqual(a.b.get(),once);
@@ -156,11 +156,8 @@ test('active Trial and equipment survive normalization, backup and recovery',()=
   malformed.cometClaims.retired={comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'};assert.deepEqual(a.b.normalize(malformed).cometCosmetics,{trail:false,crest:false});
   assert.equal(app().b.equip('trail',true),false);
 });
-test('Quest Refresh functional gate and old complete ownership are preserved',()=>{
-  const a=ready();a.b.buy('autoascend');assert.equal(a.b.gate(),false);retainLegacy(a,['comettrials']);assert(a.b.gate());
-  const s=a.b.get();s.questDay='2026-10-08';s.questIds=['q_tap_small','q_kill_small','q_empower'];s.questClaimed={};
-  const snapshot=copy(s);assert(a.b.refresh('q_tap_small'));assert.equal(a.b.get().comets,snapshot.comets-25);
-  const replacement=a.b.get().questIds[0];a.b.set(snapshot);assert(a.b.refresh('q_tap_small'));assert.equal(a.b.get().questIds[0],replacement);
+test('retired Quest Refresh cannot spend historical ownership',()=>{
+ const a=ready();a.b.buy('autoascend');assert.equal(a.b.gate(),false);retainLegacy(a,['comettrials']);assert.equal(a.b.gate(),false);const before=copy(a.b.get());assert.equal(a.b.refresh('q_tap_small'),false);assert.deepEqual(a.b.get(),before);
 });
 test('Auto-Tap/live/offline and whole/split preserve Trial chronology',()=>{
   const seed=JSON.parse(fs.readFileSync(path.join(root,'docs/qa/offline-autoascend-2026-10-07/device_backup.json'),'utf8'));

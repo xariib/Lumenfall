@@ -30,7 +30,7 @@ function expectedProfiles(){return [320,390,430].flatMap(width=>[1,2].flatMap(sc
 function verifyProtectedRecord(record,positive){
  assert.equal(record.phase,'malformed-current3-claims');
  const primary=JSON.parse(record.primary),recovery=JSON.parse(record.recovery);
- assert.equal(primary.schemaVersion,5);assert.equal(recovery.schemaVersion,5);assert.equal(primary.comets,37);assert.equal(recovery.comets,37);
+ assert.equal(primary.schemaVersion,6);assert.equal(recovery.schemaVersion,6);assert.equal(primary.comets,37);assert.equal(recovery.comets,37);
  assert.equal(primary.cometClaims.deeds.unknown_comet_claim,true);delete primary.cometClaims.deeds.unknown_comet_claim;assert.deepEqual(primary,recovery,'only the deliberate invalid current-schema claim differs');
  assert.equal(record.primarySha256,sha(record.primary));assert.equal(record.recoverySha256,sha(record.recovery));
  assert.equal(record.loaded.comets,37,'actual valid recovery endpoint');

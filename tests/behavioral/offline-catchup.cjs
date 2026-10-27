@@ -195,6 +195,9 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  delete actual.feedbackMigration;delete actual.refundCredits;
  // The historical no-command oracle remains complete after the exact new
  // schema3 defaults and nonowner ledger have been independently verified.
+ assert.deepEqual(actual.astralUpgrades,{astralcore:0,astralecho:0,astralconvergence:0},label+' no free permanent Comet ranks');
+ assert.deepEqual(actual.commandRefund,{policy:'commands-retired-v1',total:0,paid:true},label+' no invented retired-command value');
+ delete actual.astralUpgrades;delete actual.commandRefund;
  assert.deepEqual(actual.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},label+' no new paid Comet levels');
  assert.equal(actual.cometCharges,0,label+' no free initial charge');
  assert.equal(actual.cometWork,0,label+' no command work without ownership');
@@ -248,8 +251,8 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
    expected.formationPresets[intent.preset].join(',')===intent.members.join(',')
    ? intent.preset : expected.activeFormationPreset;
  let refund=0;for(let i=0;i<(seed.nodes?.reserves||0);i++)refund+=Math.ceil(6*Math.pow(1.6,i));
- assert.equal(actual.schemaVersion,5,label+' migrated schema');
- assert.deepEqual(existing,{...expected,schemaVersion:5,owned:oldOwnership,activeFormationPreset:selected,
+ assert.equal(actual.schemaVersion,6,label+' migrated schema');
+ assert.deepEqual(existing,{...expected,schemaVersion:6,owned:oldOwnership,activeFormationPreset:selected,
   prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0)+deedRewards,motes:expected.motes-oldSummary.motesGained+currentSummary.motesGained},label);
 }
 function runAsync(seed,seconds,batch=256){

@@ -25,7 +25,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   ok(q('#study-list').closest('.tab-panel').id==='tab-research','projects belong only to Lab');
   ok(document.querySelectorAll('#research-list').length===1 && document.querySelectorAll('#study-list').length===1,'unique live containers');
   ok(q('#tab-forge h2').textContent==='Rift Forge' && q('#tab-research h2').textContent==='Research Lab','destination titles');
-  ok(q('#tab-research').textContent.includes('Research Projects'),'visible content designation');
+  ok(q('#tab-research .section-sub').textContent==='Select a Lab to choose research.','visible content explains direct Lab selection');
   ok(q('#node-list').closest('.tab-panel').id==='tab-ascend','Ascension Tree remains under Ascend');
   nav.forEach(function(btn){
     btn.focus();btn.click();
@@ -84,12 +84,15 @@ window.runR3DestinationsQa = function(b,ctx,assert){
     same(after.activeStudies,prior.activeStudies,'direct upgrade never creates timed project');
   });
   ['50','100'].forEach(function(mult){
-    var funded=JSON.parse(JSON.stringify(seed)),expectedCount=Math.min(Number(mult),Math.max(0,10-funded.research.charge)),exact=b.forge.cost('charge',funded.research.charge,expectedCount);funded.lumen=exact.lumen;funded.shards=exact.shard;
+    var funded=JSON.parse(JSON.stringify(seed)),remaining=Math.max(0,10-funded.research.charge),exact=b.forge.cost('charge',funded.research.charge,remaining);funded.lumen=exact.lumen;funded.shards=exact.shard;
     b.setState(funded);b.renderLayout();go('forge');q('[data-mult="'+mult+'"]').click();
     var plan=b.r3.plan('charge'),prior=b.getState();
-    ok(plan.affordable && plan.buyCount===expectedCount,'funded large bulk respects Swift cap '+mult);
+    ok(!plan.affordable && plan.buyCount===0 && plan.reason==='quantity','fixed quantity exceeding remaining cap refuses '+mult);
     q('[data-research="charge"]').click();var after=b.getState();
-    ok(after.research.charge===prior.research.charge+expectedCount && after.lumen===prior.lumen-plan.cost.lumen && after.shards===prior.shards-plan.cost.shard,'funded large bulk exact capped purchase '+mult);
+    same(after,prior,'oversized fixed quantity changes no balances, levels or paid history '+mult);
+    q('[data-mult="max"]').click();plan=b.r3.plan('charge');ok(plan.affordable&&plan.buyCount===remaining,'Max alone quotes the cap remainder');
+    q('[data-research="charge"]').click();after=b.getState();
+    ok(after.research.charge===prior.research.charge+remaining&&after.lumen===prior.lumen-exact.lumen&&after.shards===prior.shards-exact.shard,'Max buys exact remainder and debits original total');
   });
   b.setState(seed);b.renderLayout();go('forge');
   ['charge','arcanecal','conduction','luminoustracking'].concat(addedForge).forEach(function(id){
@@ -109,7 +112,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   ok(active.lumen===prior.lumen-project.cost.lumen && active.shards===prior.shards-project.cost.shard,'project uses exact original start price');
   ok(active.activeStudies[0].remainingSec===project.duration,'project uses original duration');
   same(active.research,prior.research,'project start never buys Forge levels');
-  window.selectLabSpeed('guardmastery',2);q('[data-speed-study="guardmastery"][data-speed="2"]').click();
+  q('[data-study-speed-open]').click();window.selectLabSpeed('guardmastery',2);q('[data-speed-study="guardmastery"][data-speed="2"]').click();
   go('forge');go('research');
   ok(q('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','speed and countdown survive destination changes');
   b.feedbackTick(false);go('forge');go('research');
@@ -127,8 +130,8 @@ window.prepareR3Reload = function(b,ctx,assert){
   b.setState(s);b.renderLayout();
   document.querySelector('[data-tab="forge"]').click();document.querySelector('[data-mult="5"]').click();
   document.querySelector('[data-research="charge"]').click();
-  document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study="guardmastery"]').click();
-  window.selectLabSpeed('guardmastery',2);document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
+  document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-slot]').click();document.querySelector('[data-study="guardmastery"]').click();
+  document.querySelector('[data-study-speed-open]').click();window.selectLabSpeed('guardmastery',2);document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
   b.feedbackTick(false);
   assert(b.getState().studyBoosts.slot0.mult===2&&b.getState().activeStudies[0].speedMult===1,'paid timer before real reload');
 };
@@ -144,10 +147,12 @@ window.checkR3Reload = function(b,ctx,assert,expected){
   assert(badge.hidden===!b.riftStatus.canStartStudy()&&badge.textContent===String(free),'affordable capacity badge restores from actual loaded Study state');
   assert(document.querySelector('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','active project countdown after reload');
   var count=0;
-  while(b.getState().activeStudies.length && count++<750){ctx.advanceTime(100);b.feedbackTick(false);}
-  assert(!b.getState().activeStudies.length && b.getState().longStudyLevels.guardmastery===1,'original live tick authoritatively completes once');
-  assert(!document.querySelector('[data-study-text="guardmastery"]'),'completed card removed');
+  while(b.getState().longStudyLevels.guardmastery<1 && count++<750){ctx.advanceTime(100);b.feedbackTick(false);}
+  var completed=b.getState();
+  assert(completed.longStudyLevels.guardmastery===1,'original live tick authoritatively completes exactly one level');
+  assert(completed.studyQueue.guardmastery&&completed.activeStudies.length===1&&completed.activeStudies[0].id==='guardmastery','research selection retains Queue ON and starts the next paid level');
+  assert(!!document.querySelector('[data-study-text="guardmastery"]'),'next paid level remains visible in its Lab slot');
   document.querySelector('[data-tab="forge"]').click();document.querySelector('[data-tab="research"]').click();
-  assert(b.getState().longStudyLevels.guardmastery===1 && !b.getState().activeStudies.length,'navigation cannot duplicate completion');
+  assert(b.getState().longStudyLevels.guardmastery===1&&JSON.stringify(b.getState().activeStudies)===JSON.stringify(completed.activeStudies),'navigation cannot duplicate completion or paid queued work');
   return {reload:true,originalSaveIds:true,speed:2,completion:1,liveTicks:count};
 };

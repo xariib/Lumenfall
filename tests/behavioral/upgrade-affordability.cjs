@@ -74,7 +74,7 @@ driver=driver.slice(0,start)+String.raw`
   ok(await ev('document.querySelectorAll("[data-rarity=ember] [data-price-currency]").length===2'),'level-locked rarity still discloses both upgrade prices');
   await ev('var s=prismQa.get();s.wispModules.ember=20;s.heroRarity.ember=5;prismQa.set(s);prismQa.upgradeRefresh()');
   ok(await ev('!document.querySelector("[data-module=ember]")'),'capped ability cannot be repurchased');
-  ok(await ev('document.querySelector("[data-rarity=ember]").disabled'),'capped rarity remains disabled');
+  ok(await ev('!document.querySelector("[data-rarity=ember]")&&!!document.querySelector("[data-wisp-card=ember] .wisp-rarity-section[data-state=maxed]")'),'capped rarity stays gold without a repurchase control');
   ok((await ev('window.__prismErrors')).length===0,'no runtime errors');records.push({width,scale,motion,samples});
 `+driver.slice(end);
 fs.mkdirSync(evidence,{recursive:true});

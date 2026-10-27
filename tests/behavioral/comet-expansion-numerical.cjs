@@ -190,7 +190,7 @@ function runNumerical(source,options={}) {
   if(options.progress)options.progress(report);
   const equal=(a,b,label)=>{assert.deepEqual(a,b,label);report.checks++;};
   const check=(value,label)=>{assert(value,label);report.checks++;};
-  equal(q.schema(),5,'current save schema5');
+  equal(q.schema(),source.includes('var ASTRAL_UPGRADES=')?6:5,'current protected save schema');
   equal(CLAIMS.length,30,'fixed bounded identity count');
   equal(CLAIMS.reduce((sum,row)=>sum+row[1],0),1083,'fixed old+new+retirement credit family');
   equal(q.achievementDefs().map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS,ENDLESS_DEEDS),'original and long-term Deed reward table/order');
@@ -296,14 +296,15 @@ function runNumerical(source,options={}) {
 
   // Test the real read-only shop quote for every actual level. Exact debit is
   // computed from dyadic arithmetic, never from the product's guard expression.
-  for(const row of CATALOG)for(let level=0;level<row.prices.length;level++){
-    const s=claimSnapshot(q,0,[]);
+  const activeCatalog=q.schema()>=6?[{id:'autoascend',prices:[100]}].concat([['astralcore',750],['astralecho',1250],['astralconvergence',2000]].map(([id,base])=>({id,prices:Array.from({length:10},(_,level)=>Math.ceil(base*1.2**level))}))):CATALOG;
+  for(const row of activeCatalog)for(let level=0;level<row.prices.length;level++){
+    const s=q.schema()>=6?q.fresh():claimSnapshot(q,0,[]);if(q.schema()>=6){s.maxDepthEver=5000;if(row.id!=='autoascend')s.astralUpgrades[row.id]=level;}
     if(row.id==='meteor'){
       s.owned.meteor=false;s.cometEvents.bossStrike=false;s.achieved.comet_boss_strike=false;
     }else if(row.id==='starcall'){
       s.owned.starcall=false;s.cometEvents.calledKill=false;s.achieved.comet_called_kill=false;
     }else if(row.id==='autoascend')s.owned.autoascend=false;
-    else s.cometUpgrades[row.id]=level;
+    else if(q.schema()<6)s.cometUpgrades[row.id]=level;
     q.set(s);
     const price=row.prices[level];
     for(const wallet of distinctWallets){

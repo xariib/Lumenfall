@@ -12,7 +12,7 @@ if(mutant==='cap')mutate("effectPerLevel:0.08, levelCap:10, name:'Swift Recovery
 if(mutant==='floor')mutate('Math.max(ABILITY_MIN_CYCLE_SEC,ABILITY_BASE_CYCLE_SEC / researchFactor(\'charge\',level))','ABILITY_BASE_CYCLE_SEC / (1+0.08*(level===undefined?researchLevel(\'charge\'):level))');
 if(mutant==='refund')mutate('    normalizeSwiftRecoveryRefund(source,out,initializeSwiftRefund);','');
 if(mutant==='current-missing-proofs')mutate('  if(!initialize) invalid();','');
-if(mutant==='schema-downgrade'){mutate('var SAVE_SCHEMA_VERSION = 5;','var SAVE_SCHEMA_VERSION = 3;');mutate('  if(!initialize) invalid();','');}
+if(mutant==='schema-downgrade'){mutate('var SAVE_SCHEMA_VERSION = 6;','var SAVE_SCHEMA_VERSION = 3;');mutate('  if(!initialize) invalid();','');}
 if(mutant==='deeds')mutate('return RESEARCH.reduce(function(sum,node){return sum+(s.research[node.id]||0);},0);','return LEGACY_RESEARCH_IDS.reduce(function(sum,id){return sum+(s.research[id]||0);},0);');
 if(mutant==='price')mutate('shardIntegerHex(Math.ceil(swiftOriginalValues[index]))','shardIntegerHex(Math.floor(swiftOriginalValues[index]))');
 if(mutant==='free-debit')mutate('var remaining=shardHexSubtract(shardBudgetHex(state),shardIntegerHex(cost));','var remaining=shardBudgetHex(state);');
@@ -71,7 +71,7 @@ if(process.env.SWIFT_QA_BASELINE){
 }else{
 test('schema4 protects exact refunds from old schema3 readers and rejects lost current receipts',()=>{
   const b=app().b,s=seed(b,11);s.shards=1e30;b.set(s);const accepted=copy(b.get());
-  assert.equal(accepted.schemaVersion,5);assert.equal(accepted.swiftRecoveryMigrationPending,undefined);
+  assert.equal(accepted.schemaVersion,6);assert.equal(accepted.swiftRecoveryMigrationPending,undefined);
   const oldHtml=fs.readFileSync(path.resolve(__dirname,'../../docs/qa/swift-current-001/baseline-21394fff.html'),'utf8');
   assert.equal(crypto.createHash('sha256').update(oldHtml).digest('hex'),'941a70beb8b41008077fbca0af2a568968dfbdd6a8c1c1f4333b83f0ffdd9a1c');
   const old=app(oldHtml);assert.throws(()=>old.b.normalize(accepted),{code:'unsupported-future-schema'});
@@ -80,7 +80,7 @@ test('schema4 protects exact refunds from old schema3 readers and rejects lost c
   const lost=copy(accepted);delete lost.swiftRecoveryRefund;delete lost.swiftRecoveryRefundAudit;
   assert.throws(()=>b.normalize(lost),{code:'invalid-swift-refund'},'current schema cannot initialize another refund after both proofs disappear');
   const historical=b.fresh();historical.schemaVersion=3;historical.research.charge=11;historical.shards=43;b.set(historical);
-  assert.equal(b.get().shards,2445);assert.equal(b.get().schemaVersion,5);assert.deepEqual(b.normalize(b.get()),b.get());
+  assert.equal(b.get().shards,2445);assert.equal(b.get().schemaVersion,6);assert.deepEqual(b.normalize(b.get()),b.get());
 });
 test('cap and effective cycle at 0..10, huge legacy levels and direct forged-node handler',()=>{
   const b=app().b;assert.equal(b.node().levelCap,10);
@@ -119,16 +119,21 @@ test('paid current Forge route reaches both original Deeds; history, rewards and
   const lab=q.fresh();for(const id of Object.keys(lab.longStudyLevels))lab.longStudyLevels[id]=100;q.set(lab);
   assert(!q.deed('labmaster') && !q.deed('labqueue'),'Lab levels excluded');
 });
-test('single/bulk/Max exact price and partial affordability at every boundary',()=>{
+test('fixed quantities buy exactly or refuse; Max alone takes the affordable remainder',()=>{
   const b=app().b;let cases=0;
   for(const level of [0,8,9,10,11])for(const requested of [1,5,10,25,50,100,'max',0,-1,1.5,'10'])for(const funded of [true,false]){
     const s=seed(b,level);s.shards=funded?1e12:Math.ceil(30*Math.pow(1.55,level));b.set(s);
     // Migration compensation is money already owned; test budgets independently.
     b.get().shards=s.shards;if(b.get().swiftRecoveryRefund)b.get().swiftRecoveryRefund.remainingShardsHex='0';
-    const expected=(requested==='max'||Number.isInteger(requested)&&requested>0)?Math.max(0,Math.min(10-level,requested==='max'?10:requested,funded?10:1)):0;
+    const valid=Number.isInteger(requested)&&requested>0,remaining=Math.max(0,10-level);
+    const expected=requested==='max'?Math.min(remaining,funded?10:1):valid&&requested<=remaining&&(funded||requested===1)?requested:0;
     const before=copy(b.get()),plan=b.plan(requested);assert.equal(plan.buyCount,expected);
     const price=expected?Math.ceil(30*Math.pow(1.55,level)*(Math.pow(1.55,expected)-1)/0.55):0;
-    assert.equal(plan.cost.shard,price);b.buy(requested);assert.equal(b.get().research.charge,level+expected);assert.equal(b.get().shards,before.shards-price);
+    const quoted=valid&&requested<=remaining?Math.ceil(30*Math.pow(1.55,level)*(Math.pow(1.55,requested)-1)/0.55):price;
+    assert.equal(plan.cost.shard,quoted);assert.equal(plan.affordable,expected>0);
+    if(valid&&requested<=remaining)assert.equal(plan.needed.shard,quoted,'fixed quote retains full requested price');
+    b.buy(requested);assert.equal(b.get().research.charge,level+expected);assert.equal(b.get().shards,before.shards-price);
+    if(!expected)assert.deepEqual(b.get(),before,'refused batch changes no currency, progression or paid history');
     assert.equal(b.get().dailyStats.research||0,(before.dailyStats.research||0)+expected);assert.equal(b.get().enemyHp,before.enemyHp);cases++;
   }
   assert.equal(cases,110);const s=seed(b,9);s.shards=0;b.set(s);assert.equal(b.plan('max').reason,'unaffordable');

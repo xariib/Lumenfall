@@ -1,13 +1,13 @@
 /* LAB_UI_001 presentation checks against real rendering and handlers. */
-window.selectLabSpeed=function(id,mult){var select=document.querySelector('[data-study-speed-target="'+id+'"]');select.focus({preventScroll:true});select.value=String([1.5,2,3,4,5,6,7,8].indexOf(mult));select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));};
+window.selectLabSpeed=function(id,mult){var select=document.querySelector('[data-study-speed-target="'+id+'"]');var open=select.closest('[data-running-study]').querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')!=='true')open.click();select=document.querySelector('[data-study-speed-target="'+id+'"]');select.focus({preventScroll:true});select.value=String([1.5,2,3,4,5,6,7,8].indexOf(mult));select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));};
 window.checkLabSpeedControls = function(b,assert,id){
  var q=function(selector){return document.querySelector(selector);},row=q('[data-study-inspection="'+id+'"]'),select=q('[data-study-speed-target="'+id+'"]');
- assert(!row.hidden&&select.getClientRects().length,'speed controls directly visible');
+ var open=row.querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')!=='true')open.click();row=q('[data-study-inspection="'+id+'"]');select=q('[data-study-speed-target="'+id+'"]');assert(!row.hidden&&select.getClientRects().length,'Speed Up exposes native controls');
  var before=JSON.stringify(b.getState()),save=b.rawSave(),recovery=b.rawRecovery();
  select.focus();b.renderLayout();
  assert(document.activeElement===select&&select.isConnected,'native speed select stays attached across rendering');
  assert(select.type==='range'&&select.min==='0'&&select.max==='7'&&select.step==='1','all original tiers directly reachable');
- assert(row.closest('.study-card').textContent.includes('Next:'),'effect remains on card');
+ assert(row.closest('.study-card').textContent.includes('Current:'),'effect remains on card');
  assert(JSON.stringify(b.getState())===before&&b.rawSave()===save&&b.rawRecovery()===recovery,'focus/render do not pay, advance or save');
 };
 
@@ -27,9 +27,9 @@ window.runLabUiQa = function(b,ctx,assert){
   var card=q('[data-running-study="guardmastery"]');
   ok(card.innerText.split("Guardian's Mastery").length===2,'one visible title');
   ok((card.innerText.match(/Lv\./g)||[]).length===1&&!/Completed level|In progress: level|Details/.test(card.innerText),'one current level and no repeated status');
-  ok(card.innerText.includes('Current: +0%')&&card.innerText.includes('Next: +20% tap damage'),'earned and completion effects distinct');
+  ok(card.innerText.includes('Current: +0%')&&!card.innerText.includes('Next:'),'earned and completion effects distinct');
   ok(!card.querySelector('details')&&!card.querySelector('[data-study-details]'),'direct controls without a separate panel');
-  ok(card.querySelector('[data-study-speed-target]').getClientRects().length,'direct selector visible initially');
+  ok(!card.querySelector('[data-study-speed-target]').getClientRects().length,'speed editor initially closed');card.querySelector('[data-study-speed-open]').click();card=q('[data-running-study="guardmastery"]');ok(card.querySelector('[data-study-speed-target]').getClientRects().length,'Speed Up reveals selector');
   window.checkLabSpeedControls(b,ok,'guardmastery');
 
   [0,50,99.999,100].forEach(function(percent){
@@ -56,7 +56,7 @@ window.runLabUiQa = function(b,ctx,assert){
     var beginning=seed();beginning.activeStudies=[];install(beginning);
     q('[data-study-slot]').click();var begin=q('[data-study="'+id+'"]');begin.focus();b.labMotes.input(function(){begin.click();});
     ok(b.getState().activeStudies.some(function(active){return active.id===id;}),'Begin Study starts the selected Study');
-    ok(document.activeElement.dataset.studySpeedTarget===id&&document.activeElement.getClientRects().length,'beginning a Study restores focus to its visible speed selector');
+    ok(document.activeElement.dataset.studySpeedSummary===id&&document.activeElement.getClientRects().length,'beginning a Study restores focus to its visible speed selector');
     ok(!q('[data-study-inspection="'+id+'"]').hidden,'beginning a Study keeps controls visible');
   });
 
@@ -67,7 +67,7 @@ window.runLabUiQa = function(b,ctx,assert){
   ok(document.activeElement.dataset.speed==='3'&&document.activeElement.dataset.speedStudy==='guardmastery','unrelated rendering preserves an available purchase focus');
   b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="3"]').click();});
   var paid=b.getState();ok(paid.motes===96500&&paid.studyBoosts.slot0.mult===3&&paid.activeStudies[0].speedMult===1,'real button charges exactly3500 Motes without rewriting paid floor');
-  ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','purchase returns focus to same Study timer');
+  ok(document.activeElement.dataset.studySpeedSummary==='guardmastery','purchase returns focus to same Study timer');
   ok(!q('[data-study-inspection="guardmastery"]').hidden&&!q('[data-speed-study="guardmastery"]')&&q('[data-study-text="guardmastery"]').textContent.includes('3x'),'inline countdown marks current speed');
   ok(!q('[data-study-inspection="wispascend"] [data-speed-study]'),'idle controls omit the boost purchase action');
   var finish=seed();finish.activeStudies[0].remainingSec=.1;install(finish);window.selectLabSpeed('guardmastery',2);

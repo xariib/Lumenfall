@@ -150,9 +150,9 @@
       add(findings,'selected-study-speed','Active Study speed tier needs semantic selected state.');
     }
 
-    var maxed=qa('[data-rarity]').find(function(el){return el.disabled && /maxed/i.test(accessibleName(el));});
-    if(!maxed || !stateReason(maxed,['maxed','complete','completed'])){
-      add(findings,'state-maxed','Maxed/completed controls must expose a textual or data-state reason, not only disabled styling.');
+    var maxed=q('.wisp-rarity-section[data-state="maxed"]');
+    if(!maxed || !stateReason(maxed,['maxed','complete','completed']) || !/maxed/i.test(maxed.textContent) || maxed.querySelector('[data-rarity]')){
+      add(findings,'state-maxed','Completed Rarity must expose textual and data-state completion without a repurchase control.');
     }
     var claimed=qa('[data-quest-claim]').find(function(el){return el.disabled && /claimed/i.test(accessibleName(el));});
     if(!claimed || !stateReason(claimed,['claimed','complete','completed'])){
@@ -298,6 +298,10 @@
     q('[data-tab="battle"]').click();
     q('#rift-farm-btn').click();
     assert(bridge.getState().riftMode==='farm','Farm state must remain understandable with reduced motion');
+    var picker=q('#farm-picker-overlay');
+    assert(picker.style.display!=='none'&&picker.contains(document.activeElement),'Farm picker receives focus with reduced motion');
+    q('#farm-picker-close').click();
+    assert(picker.style.display==='none'&&document.activeElement===q('#rift-farm-btn'),'closing Farm picker restores its opener focus');
     q('#rift-push-btn').click();
     assert(bridge.getState().riftMode==='push','Push state must remain understandable with reduced motion');
     assert(!q('#rift-details-btn') && !q('#rift-details'),'Details absent with reduced motion');

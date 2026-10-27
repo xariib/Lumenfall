@@ -168,10 +168,10 @@ async function run(){
  await send('Page.reload');await pause(200);await ready();
  const folding=await evaluate(`(function(){
   var d=document.querySelector('[data-wisp-progression="ember"]');
-  if(d.tagName!=='DETAILS'||d.open)throw Error('maxed Wisp initially folded');
+  if(d.tagName==='DETAILS'||!d.getClientRects().length)throw Error('maxed base upgrades remain directly visible');
   resonateQa.open('ember');resonateQa.button('ember').focus();resonateQa.render();
   d=document.querySelector('[data-wisp-progression="ember"]');
-  if(!d.open||document.activeElement!==resonateQa.button('ember'))throw Error('fold/open/focus preservation');
+  if(d.tagName==='DETAILS'||document.activeElement!==resonateQa.button('ember'))throw Error('direct upgrade focus preservation');
   if(!resonateQa.use('ember')||resonateQa.get().sigils!==75||resonateQa.get().heroResource.ember!==100)throw Error('Resonate in maxed Wisp');
   return {maxedInitiallyFolded:true,openFocusPreserved:true,refill:true};
  })()`);

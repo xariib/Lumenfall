@@ -109,12 +109,15 @@ function catalogueCases(html, a) {
         const s = seed(q); s.research[d.id] = start;
         const cost = exactCost(d, start, funded); s.lumen = cost.lumen; s.shards = cost.shard; q.set(s);
         const before = clone(q.get()), plan = q.plan(d.id, requested), preview = q.preview(d.id, requested);
-        a.eq(plan.buyCount, funded, 'actual affordable count ' + d.id);
-        a.eq(plan.cost, cost, 'actual count quoted cost ' + d.id);
-        q.buy(d.id, requested); purchases++;
-        a.eq(q.get().research[d.id], start + funded, 'real purchased level count ' + d.id);
-        a.eq([q.get().lumen, q.get().shards], [0, 0], 'exact two-wallet debit ' + d.id);
-        a.eq(q.preview(d.id, 1).current, preview.purchase, 'native preview becomes actual effect ' + d.id);
+        const bought=requested==='max'?funded:requested<=d.cap-start&&funded===requested?requested:0;
+        a.eq(plan.buyCount,bought,'fixed batch is exact; only Max may buy an affordable remainder '+d.id);
+        const quote=requested==='max'?cost:requested>d.cap-start?{lumen:0,shard:0}:exactCost(d,start,requested);
+        a.eq(plan.cost,quote,'complete selected batch quoted cost '+d.id);
+        if(!bought&&requested<=d.cap-start)a.eq(plan.needed,quote,'unaffordable fixed batch retains its full price');
+        q.buy(d.id,requested);purchases++;
+        a.eq(q.get().research[d.id],start+bought,'real purchased level count '+d.id);
+        a.eq([q.get().lumen,q.get().shards],bought?[0,0]:[cost.lumen,cost.shard],'exact two-wallet debit or unchanged rejected purchase '+d.id);
+        a.eq(q.preview(d.id,1).current,preview.purchase,'native preview becomes actual effect '+d.id);
         for (const key of ['prisms', 'comets', 'motes', 'sigils', 'enemyHp', 'enemyMaxHp', 'enemyDepth', 'enemyIsLuminous', 'luminousAccum']) a.eq(q.get()[key], before[key], 'purchase preserves ' + key);
       }
     }

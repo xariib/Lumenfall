@@ -1,0 +1,74 @@
+{
+  "productHash": "5956cc78a67d0f414bf1fa3ea41592727ff21e8a877f98fd3eb35cd2261b861c",
+  "status": "focused local acceptance; original full CI pending",
+  "tests": [
+    {
+      "name": "core",
+      "checks": 3736
+    },
+    {
+      "name": "offline",
+      "checks": 208
+    },
+    {
+      "name": "forge",
+      "checks": 9335,
+      "negativeControls": 25
+    },
+    {
+      "name": "lab",
+      "checks": 2676,
+      "negativeControls": [
+        {
+          "name": "lost-capacity",
+          "caught": "capacity curve\n\n1 !== 2\n"
+        },
+        {
+          "name": "free-start",
+          "caught": "exact Lumen debit\n\n20000 !== 0\n"
+        },
+        {
+          "name": "early-level",
+          "caught": "no early bonus\n\n1 !== 0\n"
+        },
+        {
+          "name": "lost-seventh-paid-record",
+          "caught": "manual starts with seven paid records\n\n5 !== 7\n"
+        },
+        {
+          "name": "ascend-drops-paid-slots",
+          "caught": "manual preserves activeStudies\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      id: 'wispascend',\n      remainingSec: 1800,\n      slot: 0,\n...\n    },\n-   {\n-     id: 'focusprotocol',\n-     remainingSec: 2100,\n-     slot: 5,\n-     speedMult: 6,\n-     totalDurationSec: 3000\n-   },\n-   {\n-     id: 'bossledger',\n-     remainingSec: 2160,\n-     slot: 6,\n-     speedMult: 8,\n-     totalDurationSec: 3060\n-   }\n  ]\n"
+        },
+        {
+          "name": "ascend-drops-earned-capacity",
+          "caught": "manual preserves longStudyLevels\n+ actual - expected\n... Skipped lines\n\n  {\n    adaptivegrowth: 1,\n    bossledger: 1,\n    catalysis: 1,\n    curriculum: 1,\n...\n    guardmastery: 0,\n+   labcapacity: 0,\n-   labcapacity: 2,\n    lumenstudy: 0,\n    luminousdistill: 1,\n    measuredinquiry: 0,\n    modulefabrication: 1,\n    motestudy: 0,\n"
+        },
+        {
+          "name": "double-notes",
+          "caught": "earned completion Motes\n\n10012 !== 10006\n"
+        },
+        {
+          "name": "no-procurement",
+          "caught": "future prices reduced20%\n+ actual - expected\n\n  {\n+   lumen: 600,\n+   shard: 40\n-   lumen: 480,\n-   shard: 32\n  }\n"
+        },
+        {
+          "name": "missed-luminous-purchase",
+          "caught": "first affordable kill counts Luminous material rewards\n\n2 !== 1\n"
+        },
+        {
+          "name": "erased-old-value",
+          "caught": "old value preserved research\n+ actual - expected\n\n  {\n    amplifiertrim: 0,\n    arcanecal: 0,\n    cauterize: 0,\n+   charge: 0,\n-   charge: 28,\n    conduction: 0,\n    dualchannel: 0,\n    focus: 0,\n    formation: 0,\n    fracturekey: 0,\n"
+        }
+      ]
+    },
+    {
+      "name": "prices",
+      "checks": 13416
+    },
+    {
+      "name": "mobile",
+      "checks": 416,
+      "profiles": 18
+    }
+  ]
+}

@@ -90,12 +90,15 @@ async function verifyInstalledWispCard(page,report){
    const cards=panel&&Array.from(panel.querySelectorAll('[data-wisp-card]'));
    if(!cards||!cards.length)return {error:'Wisp cards missing after tab activation'};
    const visible=e=>!!e&&e.getBoundingClientRect().width>0&&e.getBoundingClientRect().height>0;
+   const installedSave=JSON.parse(localStorage.getItem('lumenfall_save_v2'));
    const observations=cards.map(card=>{
      const id=card.getAttribute('data-wisp-card'),name=card.querySelector('.hero-id .name')?.textContent||'';
      const actions=Array.from(card.querySelectorAll('[data-empower],[data-rarity],[data-module],[data-ultimate],[data-mastery]'));
      const primary=Array.from(card.querySelectorAll('.wisp-action-primary'));
      const progression=card.querySelector('[data-wisp-progression]');
      const module=card.querySelector('[data-module]');
+     const rarityMaxed=installedSave.heroRarity[id]>=5;
+     const rarityComplete=rarityMaxed&&visible(card.querySelector('.wisp-rarity-section[data-state="maxed"]'))&&!card.querySelector('[data-rarity]');
      const boundary=card.getBoundingClientRect();
      const overflow=Array.from(card.querySelectorAll('*')).filter(e=>{
        const r=e.getBoundingClientRect();return r.width>0&&(r.right>boundary.right+1||e.scrollWidth>e.clientWidth+1);
@@ -104,10 +107,11 @@ async function verifyInstalledWispCard(page,report){
      return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
        width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
-       unfinished:!!module&&progression?.tagName==='DETAILS'&&!!progression.querySelector('summary'),
-       upgradeVisible:!progression||progression.tagName==='DETAILS'||(
-         visible(card.querySelector('[data-rarity]'))&&visible(card.querySelector('[data-module]'))&&
+       unfinished:!!module&&!!progression&&progression.tagName!=='DETAILS'&&!progression.querySelector('summary'),
+       upgradeVisible:visible(progression)&&progression.tagName!=='DETAILS'&&(
+         (rarityMaxed?rarityComplete:visible(card.querySelector('[data-rarity]')))&&visible(card.querySelector('[data-module]'))&&
          (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),
+       rarityMaxed,rarityComplete,
        eligible:actions.some(button=>!button.disabled),
        primary:primary.map(button=>({disabled:button.disabled,cue:button.querySelector('.wisp-next-label')?.textContent||'',
          name:button.getAttribute('aria-label')||''})),
@@ -135,16 +139,10 @@ async function verifyInstalledWispCard(page,report){
  }
  const ember=ui.observations.find(card=>card.id==='ember');
  assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
- // Advanced purchases now live behind each Wisp's native disclosure. Open it
- // with an actual Android touch before testing the existing Ability purchase.
- const disclosure=await page.evaluate(`(()=>{
-   const summary=document.querySelector('[data-wisp-details="ember"]');
-   summary.scrollIntoView({block:'center',behavior:'instant'});
-   const r=summary.getBoundingClientRect();
-   return {x:r.left+r.width/2,y:r.top+r.height/2,open:summary.parentElement.open};
- })()`);
- if(!disclosure.open){tap(disclosure.x,disclosure.y);await pause(100);}
- assert(await page.evaluate(`document.querySelector('[data-wisp-progression="ember"]').open`),'Trusted Android touch opens Wisp upgrades');
+ assert(ember.rarityMaxed&&ember.rarityComplete,'Installed maxed Ember Rarity stays gold without a completed purchase button');
+ // Unfinished upgrades are directly available. Preserve the actual Android
+ // touch purchase below; there is no disclosure activation in the new UI.
+ assert(await page.evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]');return p&&p.tagName!=='DETAILS'&&!p.querySelector('summary')&&p.getClientRects().length>0;})()`),'Installed Wisp upgrades stay directly visible');
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};

@@ -92,7 +92,7 @@ const cases=String.raw`
   await fit('full catalogue');
   const renderBefore=await ev('JSON.stringify(prismQa.get())');await ev('prismQa.forgeRender();prismQa.forgeRender()');ok(await ev('JSON.stringify(prismQa.get())')===renderBefore,'full catalog rendering is pure');
   const locked=copy(seed);locked.maxDepthEver=1;locked.depth=locked.enemyDepth=1;await install(locked);
-  for(const id of added){const d=nodes.find(n=>n.id===id),m=await ev('({disabled:document.querySelector('+JSON.stringify(selector('data-research',id))+').disabled,text:document.querySelector('+JSON.stringify(selector('data-forge-card',id))+').textContent})');ok(m.disabled&&m.text.includes(d.name)&&m.text.includes('Reach Rift '+d.unlockDepth),'named locked row and requirement '+id);}
+  for(const id of added){const d=nodes.find(n=>n.id===id),m=await ev('({disabled:document.querySelector('+JSON.stringify(selector('data-research',id))+').disabled,text:document.querySelector('+JSON.stringify(selector('data-forge-card',id))+').textContent})');ok(m.disabled&&m.text.includes(d.name)&&m.text.includes('Unlocks at Rift '+d.unlockDepth),'named locked row and requirement '+id);}
   for(let row=0;row<nodes.length;row++){
    const d=nodes[row],id=d.id,button=selector('data-research',id),queue=selector('data-queue',id),card=selector('data-forge-card',id);
    await install(paid);const preview=await ev('prismQa.forgePreview('+JSON.stringify(id)+',1)'),plan=preview.plan;

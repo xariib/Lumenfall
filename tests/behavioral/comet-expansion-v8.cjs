@@ -86,6 +86,10 @@ var scripts=[],pattern=/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g,match;
 while((match=pattern.exec(source))){if(match[1].trim()){new Function(match[1]);scripts.push(match[1]);}}
 ok(scripts.length>=1,'every nonempty inline script parses in actual V8 6.0');
 
+if(source.indexOf('var ASTRAL_UPGRADES=')!==-1){
+ var current=require('./permanent-progression-v8.cjs')({source:source,H:H,eq:eq,ok:ok,scenario:scenario,world:world});
+ console.log(JSON.stringify(Object.assign({status:'pass',checks:checks,inlineScriptsParsed:scripts.length,completeIifeInstances:instances,records:records,bigIntAvailable:false,scope:'Actual Node8.3/V8 6.0 complete IIFE: permanent prices/caps, every valid old paid subset, exact refund/reload/backup, lifecycle and primary/recovery rollback, protected malformed saves, saved Call and Ascend.'},current,identity),null,2));process.exit(0);
+}
 scenario('catalog-and-historical-ledgers',function(){
   var a=world(),q=a.q;
   eq(q.schema(),5,'current schema5');

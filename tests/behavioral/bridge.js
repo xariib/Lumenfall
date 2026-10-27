@@ -577,8 +577,8 @@ window.__lumenfallQaBridge = {
       pendingDailyReward = previousDailyReward;
     }
   },
-  enterFarm: function(){ enterFarmMode(); },
-  enterPush: function(){ enterPushMode(); },
+  enterFarm: function(){var old=reloadInProgress;reloadInProgress=false;try{return enterFarmMode();}finally{reloadInProgress=old;}},
+  enterPush: function(){var old=reloadInProgress;reloadInProgress=false;try{return enterPushMode();}finally{reloadInProgress=old;}},
   reset: function(){ performReset(); },
   restoreBackup: function(code){
     var textarea = document.getElementById('save-backup-code');

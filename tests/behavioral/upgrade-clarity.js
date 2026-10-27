@@ -66,7 +66,7 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
     ok(Math.abs(current.offline-(.7+l*.1))<1e-10,'hidden Rift Attunement retains actual offline factor');
     ok(Math.abs(current.formation-(1+l*.05))<1e-10,'hidden Formation Insight retains actual formation factor');
     ok(Math.abs(current.prisms-(1+l*.05))<1e-10,'hidden Clarity retains actual Prism factor');
-    ok(q('[data-running-study="guardmastery"]').textContent.includes('Next: +'+((l+1)*20)+'%'),'pending effect labelled');
+    ok(q('[data-running-study="guardmastery"]').textContent.includes('Current: +'+(l*20)+'%')&&!q('[data-running-study="guardmastery"]').textContent.includes('Next:'),'pending effect labelled');
     ok(q('[data-study-text="guardmastery"]').textContent==='Finishing… · 1x','zero pending does not complete');
   });
   var locked=b.freshStateSnapshot();pureRender(locked);

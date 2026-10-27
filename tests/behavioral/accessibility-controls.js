@@ -30,7 +30,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
 
   var poor=bridge.getState();poor.lumen=0;poor.shards=0;bridge.setState(poor);bridge.renderLayout();
   var purchase=q('[data-research="arcanecal"]');
-  assert(purchase.disabled && purchase.dataset.state==='unaffordable' && purchase.querySelector('.label').textContent==='Upgrade' && !/Need|Cannot afford/i.test(purchase.textContent+' '+purchase.getAttribute('aria-label')),'silent resource shortage retains native disabled and Upgrade label');
+  assert(purchase.disabled && purchase.dataset.state==='unaffordable' && purchase.querySelector('.label').textContent==='Upgrade ×5' && !/Need|Cannot afford/i.test(purchase.textContent+' '+purchase.getAttribute('aria-label')),'silent resource shortage retains native disabled and exact selected quantity');
   // Fund the selected bulk quote exactly; a huge wallet can round a small debit to zero.
   var rich=bridge.getState(),price=bridge.forge.plan('arcanecal').needed;
   rich.lumen=price.lumen;rich.shards=price.shard;bridge.setState(rich);bridge.refreshAffordability();
@@ -93,6 +93,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   [['forge','.mult-btn.active'],['research','.study-level'],['research','.study-boost-start']].forEach(function(entry){
     q('[data-tab="'+entry[0]+'"]').click();
     if(entry[0]==='research'){
+      var editor=q('[data-study-speed-open]');if(editor.getAttribute('aria-expanded')!=='true')editor.click();
       var selected=q('[data-study-speed-target]');assert(selected,'selected speed fixture exists');assert(Number(selected.value)===[1.5,2,3,4,5,6,7,8].indexOf(bridge.getState().studySpeedTargets[selected.dataset.studySpeedTarget]),'selected target retained');
 
     }

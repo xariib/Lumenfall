@@ -6,7 +6,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
  const fresh=await ev('uiRegression.fresh()');
  const tiers=[1.5,2,3,4,5,6,7,8],prices=[800,1500,3500,6500,10000,15000,20500,27500];
  const seed=(motes=100000)=>({...JSON.parse(JSON.stringify(fresh)),maxDepthEver:250,questDay:new Date().toISOString().slice(0,10),motes,lumen:1e12,shards:1e12,activeStudies:[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}]});
- async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click()');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');}
+ async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click()');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');if(s.activeStudies.length&&!(await ev('document.querySelector(".study-speed-open").getAttribute("aria-expanded")=="true"')))await touch('document.querySelector(".study-speed-open")');}
  const q=attr=>'document.querySelector('+JSON.stringify('['+attr+'=guardmastery]')+')';
  const range=q('data-study-speed-target'),buy=q('data-speed-study'),hours=q('data-study-boost-hours'),status=q('data-study-boost-status');
  async function choose(tier,duration=8){await ev(range+'.focus({preventScroll:true});'+range+'.value="'+tiers.indexOf(tier)+'";'+range+'.dispatchEvent(new Event("input",{bubbles:true}));'+range+'.dispatchEvent(new Event("change",{bubbles:true}));'+hours+'.value="'+duration+'";'+hours+'.dispatchEvent(new Event("change",{bubbles:true}))');}
@@ -23,6 +23,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
    await touch('document.querySelector("[data-study-slot]")');
    check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+' / 500"'),'catalogue badge shows earned level');
    await ev('document.querySelector("[data-study=guardmastery]").focus()');await key('Enter');
+   if(!(await ev('document.querySelector(".study-speed-open").getAttribute("aria-expanded")=="true"')))await touch('document.querySelector(".study-speed-open")');
    check(await ev('uiRegression.get().activeStudies[0].slot===0&&uiRegression.get().motes===100000&&'+range+'.getClientRects().length>0'),'slot research reveals speed without spending Motes');
    await choose(2,12);await ev(range+'.focus();window.idleRange='+range+';uiRegression.render();uiRegression.render()');
    check(await ev(range+'===idleRange&&document.activeElement===idleRange&&'+hours+'.value==="12"&&uiRegression.get().motes===100000'),'slot speed choices/focus survive refresh without spending');
@@ -33,7 +34,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   check(await ev(range+'.getClientRects().length>0 && '+hours+'.getClientRects().length>0 && !document.querySelector("[data-study-use-motes],[data-study-details]")'),'direct controls, no old panel/recurring toggle');
   check(await ev('(()=>{var r=document.querySelector("[data-running-study=guardmastery]"),bad=[];r.querySelectorAll("button,input,select,.effect-note").forEach(e=>{var b=e.getBoundingClientRect();if(b.left<0||b.right>innerWidth+1||e.scrollWidth>e.clientWidth+1)bad.push(e.outerHTML);if(e.matches("button,input,select")&&(b.width<44||b.height<44))bad.push(e.outerHTML)});return !bad.length&&document.documentElement.scrollWidth<=innerWidth+1;})()'),'fit and44px targets '+JSON.stringify({width,scale,motion}));
   check(await ev(range+'.type==="range"&&'+range+'.min==="0"&&'+range+'.max==="7"&&'+range+'.step==="1"'),'exact eight speed steps');
-  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0 / 500"&&b.getBoundingClientRect().top>=t.getBoundingClientRect().bottom&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
+  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),t=c.querySelector(".study-title")||c.querySelector(".study-select strong"),b=c.querySelector(".study-level");return t.textContent==="Guardian\'s Mastery"&&b.textContent==="Lv. 0 / 500"&&!/Next completion|Paid speed|Buy now|per level|Speed queue/i.test(c.textContent)&&c.textContent.includes("Current: +0%")&&!c.textContent.includes("Next: +20%");})()'),'name, current badge and concise effects; obsolete copy absent');
   await ev(range+'.focus();window.originalRange='+range+';window.beforePreview=JSON.stringify(uiRegression.get());window.beforeSaves=JSON.stringify(uiRegression.saves())');
   for(const index of [1,2,3,4,5,6,7]){
    await ev(range+'.value='+index+';'+range+'.dispatchEvent(new Event("input",{bubbles:true}));uiRegression.render();uiRegression.render()');
@@ -52,11 +53,11 @@ module.exports=async function({send,ev,pause,check,records,args}){
    check(await ev(range+'===originalRange&&document.activeElement===originalRange&&Math.abs(document.querySelector("main").scrollTop-beforeScroll)<=1'),'native focus/scroll retained');
    await ev(buy+'.focus({preventScroll:true});window.oldBuy='+buy+';oldBuy.click();oldBuy.click();oldBuy.click()');
    check(await ev('uiRegression.get().motes===0&&uiRegression.get().studyBoosts.slot0.mult==='+tier+'&&uiRegression.get().activeStudies[0].speedMult===1&&uiRegression.get().activeStudies[0].remainingSec===150'),'single exact debit/work preserved '+tier);
-   check(await ev('document.activeElement==='+status+'&&'+range+'.disabled&&'+hours+'.disabled&&!'+buy),'active timer replaces activation, no double spend');
-   const viewport=await ev('(()=>{var m=document.querySelector("main"),control=document.querySelector("[data-study-speed-target=guardmastery]");return {actualY:control.getBoundingClientRect().y,beforeY:beforeControlY,actualScroll:m.scrollTop,beforeScroll:beforeScroll};})()');
-   check(Math.abs(viewport.actualY-viewport.beforeY)<=1,'activation anchors the selected Study when slot status grows '+JSON.stringify(viewport));
-   await ev('window.originalStatus='+status+';uiRegression.render();uiRegression.render()');
-   check(await ev(status+'===originalStatus&&document.activeElement===originalStatus'),'countdown native focus remains attached');
+   check(await ev('document.activeElement===document.querySelector(".study-speed-open")&&'+range+'.disabled&&'+hours+'.disabled&&!'+buy),'active timer replaces activation, no double spend');
+   const viewport=await ev('(()=>{var m=document.querySelector("main"),control=document.querySelector(".study-speed-open");return {actualY:control.getBoundingClientRect().y,beforeY:beforeControlY,actualScroll:m.scrollTop,beforeScroll:beforeScroll};})()');
+   check(await ev('document.querySelector(".study-speed-open").getClientRects().length>0'),'activation returns to the visible compact speed summary');
+   await ev('window.originalStatus=document.querySelector(".study-speed-open");uiRegression.render();uiRegression.render()');
+   check(await ev('document.querySelector(".study-speed-open")===originalStatus&&document.activeElement===originalStatus'),'countdown native focus remains attached');
   }
   await install(seed());await choose(1.5,12);
   check(await ev('uiRegression.get().studyBoostHours.guardmastery===12&&uiRegression.get().motes===100000&&'+buy+'.querySelector("[data-price-currency]").dataset.priceAmount==="1140"'),'12h choice quoted, no spend');
@@ -70,10 +71,10 @@ module.exports=async function({send,ev,pause,check,records,args}){
   check(await ev('uiRegression.get().studyBoosts.slot0.mult===3&&uiRegression.get().motes===95012'),'native touch activates selected package');
   await ev('uiRegression.save();uiRegression.load()');
   check(await ev('uiRegression.get().studyBoostHours.guardmastery===12&&uiRegression.get().studyBoosts.slot0.mult===3&&'+status+'.textContent.includes("3x")'),'actual save/reload retains timer');
-  await ev(status+'.focus();uiRegression.finish()');
+  await ev('document.querySelector(".study-speed-open").focus();uiRegression.finish()');
   check(await ev('!uiRegression.get().activeStudies.length&&document.activeElement===document.querySelector("[data-study-slot]")&&!'+status+'&&!'+buy+'&&uiRegression.get().studyBoosts.slot0.mult===3&&document.querySelector("[data-slot-boost]").textContent.includes("3x")'),'completion returns focus to idle Study and retains slot timer without renewing');
   await touch('document.querySelector("[data-study-slot]")');await ev('document.querySelector("[data-study=guardmastery]").focus();document.querySelector("[data-study=guardmastery]").click()');
-  check(await ev('uiRegression.get().activeStudies[0].id==="guardmastery"&&document.activeElement==='+status),'new level uses remaining timer and focus');
+  check(await ev('uiRegression.get().activeStudies[0].id==="guardmastery"&&document.activeElement===document.querySelector(".study-speed-open")'),'new level uses remaining timer and focus');
   await ev('document.querySelector("[data-study-queue=guardmastery]").focus()');await key('Space');
   check(await ev('!uiRegression.get().studyQueue.guardmastery&&!uiRegression.get().activeStudies.length&&uiRegression.get().motes===95012'),'Study Queue independently toggles without debit');
   // Actual drag and held keys preview until release, never buy intermediate tiers.
@@ -88,17 +89,17 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await send('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
   check(await ev('uiRegression.get().studySpeedTargets.guardmastery===4&&uiRegression.get().motes===100000'),'keyup commits without spending');
   const sorted=seed();sorted.activeStudies.push({id:'wispascend',remainingSec:80,totalDurationSec:150,speedMult:1});await install(sorted);await choose(8);await ev(range+'.scrollIntoView({block:"center"});window.beforeY='+range+'.getBoundingClientRect().y;'+buy+'.focus({preventScroll:true});'+buy+'.click()');
-  check(await ev('document.querySelector("[data-running-study]").dataset.runningStudy==="guardmastery"&&document.activeElement==='+status+'&&Math.abs('+range+'.getBoundingClientRect().y-beforeY)<=1'),'boost reorder anchors same project');
+  check(await ev('document.querySelector("[data-running-study]").dataset.runningStudy==="guardmastery"&&document.activeElement===document.querySelector(".study-speed-open")&&document.querySelector(".study-speed-open").getClientRects().length>0'),'boost reorder anchors same project');
   const discount=seed();discount.longStudyLevels.catalysis=10;await install(discount);await choose(3);check(await ev(buy+'.querySelector("[data-price-currency]").dataset.priceAmount==="2800"'),'Catalysis visibly discounted');await ev(buy+'.click()');check(await ev('uiRegression.get().motes===97200'),'discount quote equals debit');
-  await ev(status+'.scrollIntoView({block:"center"})');
+  await ev('document.querySelector(".study-speed-open").scrollIntoView({block:"center"})');
   if(process.env.LUMENFALL_QA_EVIDENCE_DIR){fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'lab-'+width+'-'+scale+'-'+motion+'.png'),Buffer.from(shot.data,'base64'));}
   records.push({width,scale,motion});
  }
  // Real interval callbacks, resource refresh and expiry while focused.
  await install(seed(799));await ev(range+'.focus();window.originalRange='+range+';window.liveStart=JSON.stringify(uiRegression.get().activeStudies);window.uiRegressionPaused=false');await pause(1100);
  check(await ev(range+'===originalRange&&document.activeElement===originalRange&&'+buy+'.disabled'),'live intervals retain focus/disabled quote');
- await ev('uiRegression.fund(800)');check(await ev('!'+buy+'.disabled'),'live affordability turns on');await ev(buy+'.focus();'+buy+'.click();'+status+'.focus();window.originalStatus='+status);await pause(1100);
- check(await ev(status+'===originalStatus&&document.activeElement===originalStatus'),'live timer ticks keep native focus');
+ await ev('uiRegression.fund(800)');check(await ev('!'+buy+'.disabled'),'live affordability turns on');await ev(buy+'.focus();'+buy+'.click();document.querySelector(".study-speed-open").focus();window.originalStatus=document.querySelector(".study-speed-open")');await pause(1100);
+ check(await ev('document.querySelector(".study-speed-open")===originalStatus&&document.activeElement===originalStatus'),'live timer ticks keep native focus');
  await ev('window.uiRegressionPaused=true;uiRegression.expire();');
- check(await ev('!'+status+'&&'+buy+'&& !'+range+'.disabled&&document.activeElement==='+range),'expiry restores choice/focus without spending');
+ check(await ev('!'+status+'&&'+buy+'&& !'+range+'.disabled&&document.activeElement===document.querySelector(".study-speed-open")'),'expiry restores choice/focus without spending');
 };

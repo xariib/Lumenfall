@@ -18,6 +18,7 @@ document.addEventListener('focusin',function(e){var n=e.target,card=n.closest&&n
 document.addEventListener('click',function(e){var n=e.target.closest&&e.target.closest('button[data-shop]');if(!n)return;var r=n.getBoundingClientRect(),m=document.querySelector('main');window.__prismInput.push({type:'comet-purchase-activation',trusted:e.isTrusted,eventPhase:e.eventPhase,shop:n.getAttribute('data-shop'),active:n.matches(':active'),transform:getComputedStyle(n).transform,top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height,scroll:m.scrollTop,scrollHeight:m.scrollHeight,clientHeight:m.clientHeight});},{capture:true,passive:true});
 window.__cometWrites=[];window.__cometFault=null;window.__cometBeforeReady=[];var originalCometStorageSet=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){var row={key:k,bytes:String(v).length,ok:false};if(k==='lumenfall_save_v2'||k==='lumenfall_save_recovery_v1')window.__cometWrites.push(row);if(window.__cometFault&&window.__cometFault.key===k&&window.__cometFault.remaining!==0){if(window.__cometFault.remaining>0)window.__cometFault.remaining--;row.error='deliberate Comet storage fault';throw Error(row.error);}try{var result=originalCometStorageSet.call(this,k,v);row.ok=true;return result;}catch(e){row.error=e.message;throw e;}};`;
 const bridge=String.raw`
+ cometCurrent:function(){return typeof ASTRAL_UPGRADES!=='undefined';},
  cometSeed:function(){var s=freshState();s.maxDepthEver=250;s.depth=s.enemyDepth=21;s.enemyMaxHp=enemyHpFor(21);s.enemyHp=s.enemyMaxHp;s.enemyIsLuminous=false;
   s.lumen=1000000;s.shards=1000000;s.motes=321;s.prisms=1000;s.comets=0;s.sigils=249;s.questDay=todayStr();s.questIds=['q_tap_small','q_empower','q_boss'];s.lastSeen=Date.now();
   s.nodes.starlight=12;s.nodes.steady=9;s.nodes.momentum=7;s.nodes.echo=9;s.nodes.bonds=25;s.nodes.swift=10;delete s.feedbackMigration;delete s.refundCredits;
@@ -52,7 +53,9 @@ const bridge=String.raw`
    this.cometMutation={name:'Comet neutral-press stylesheet',type:'stylesheet',node:sheet,text:originalCss};
    return {kind:kind,name:'Comet neutral-press stylesheet',type:'stylesheet',from:rule,to:'',original:originalCss,mutated:mutatedCss};
   }
-  if(kind==='stale-command'){name='getCometCommandPlan';var cached=getCometCommandPlan('meteor');original=getCometCommandPlan;replacement=function(id){return id==='meteor'?cached:original(id);};from='live Meteor command plan';to='cached plan before same-encounter use flag changed';}
+  if(kind==='stale-rank'){name='getCometBuyPlan';var cached=getCometBuyPlan('astralcore');original=getCometBuyPlan;replacement=function(item){return (typeof item==='string'?item:item.id)==='astralcore'?cached:original(item);};from='live permanent rank';to='cached previous rank and price';}
+  else if(kind==='wrong-astral-cost'){name='getCometBuyPlan';original=getCometBuyPlan;replacement=function(item){var plan=original(item);if(plan.id==='astralcore'&&plan.cost!==null)plan.cost--;return plan;};from='exact permanent price';to='one Comet under-debit';}
+  else if(kind==='stale-command'){name='getCometCommandPlan';var cached=getCometCommandPlan('meteor');original=getCometCommandPlan;replacement=function(id){return id==='meteor'?cached:original(id);};from='live Meteor command plan';to='cached plan before same-encounter use flag changed';}
   else if(kind==='stale-affordability'){name='checkAffordability';original=checkAffordability;replacement=function(){};from='original periodic affordability owner';to='periodic update omitted';}
   else if(kind==='recreate-trial'){name='replaceControlMarkup';original=replaceControlMarkup;replacement=function(root,html){if(root&&root.id==='legacy-comet-trials'){root.innerHTML=html;return;}return original.apply(this,arguments);};from='stable Journal native control retention';to='replace native Trial controls';}
   else if(kind==='wrong-pending-feedback'){name='cometCommandFeedback';original=cometCommandFeedback;replacement=function(text){if(state.cometClaims&&state.cometClaims.deeds&&state.cometClaims.deeds.comet_first_command)text='Deed complete — +5 Comets';return original.call(this,text);};from='actual completion or pending feedback';to='false full reward feedback while fixed claim remains due';}
@@ -143,7 +146,7 @@ async function profile(){
   receipt.loaded=await state();receipt.slots=await slots();receipt.beforeReady=await ev('__cometBeforeReady');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev('document.fonts.ready.then(function(){return true;})');await frames();return receipt;
  }
  function legacy(s,owned){const old=copy(s);old.schemaVersion=2;for(const key of ['cometUpgrades','cometCharges','cometWork','cometMeteorUsed','cometCalled','cometEvents','cometClaims'])delete old[key];delete old.owned.meteor;delete old.owned.starcall;for(const id of ['comettrials','rifttrail','starfallcrest'])old.owned[id]=owned.indexOf(id)!==-1;return old;}
- function migrationAssertions(old,after,entitlements){ok(after.schemaVersion===5,'actual schema2 migration reaches schema5 through3/4');ok(after.comets===old.comets+entitlements.reduce((sum,x)=>sum+({comettrials:140,rifttrail:50,starfallcrest:160}[x]),0),'exact retirement compensation while retaining benefits');
+ function migrationAssertions(old,after,entitlements){ok(after.schemaVersion===(isCurrent?6:5),'actual schema2 migration reaches current schema through3/4/5');ok(after.comets===old.comets+entitlements.reduce((sum,x)=>sum+({comettrials:140,rifttrail:50,starfallcrest:160}[x]),0),'exact retirement compensation while retaining benefits');
   for(const name of ['comettrials','rifttrail','starfallcrest']){ok(!Object.prototype.hasOwnProperty.call(after.owned,name),'retired raw owned removed '+name);ok(after.cometClaims.retired[name]===(entitlements.includes(name)?'settled':'absent'),'retirement disposition '+name);}
   same(after.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},'migration grants no new paid ranks');ok(after.owned.meteor===false&&after.owned.starcall===false&&after.cometCharges===0&&after.cometWork===0,'migration grants no commands/charge/work');preserve(old,after,paidFields.concat(['shards','motes','sigils','autoAscendEnabled','autoAscendTargetDepth']),'legacy migration');
   // F21/F20 restore historical overcap Prisms alongside the independent
@@ -155,6 +158,7 @@ async function profile(){
   ok(prismValue(after)===prismValue(old)+due,'legacy migration preserves exact Prisms plus original-price F21/Echo refunds once');
   for(const deed of oldDeeds)ok(after.achieved[deed]===true,'historical Deed sticky '+deed);
  }
+ const isCurrent=await ev('prismQa.cometCurrent()');
  const seed=await ev('prismQa.cometSeed()');ok(oldRewards.reduce((a,b)=>a+b,0)===683,'independent historical23 reward sum');
  const old=legacy(seed,['comettrials','rifttrail','starfallcrest']);old.comets=7;old.owned.autoascend=true;old.autoAscendEnabled=false;old.autoAscendTargetDepth=200;old.cometTrialMarks={quiet:true,single:true};
  const migrated=await reloadWith(JSON.stringify(old),JSON.stringify(old),'legacy-three-owner');migrationAssertions(old,migrated.loaded,['comettrials','rifttrail','starfallcrest']);
@@ -174,6 +178,7 @@ async function profile(){
  for(const slot of ['trail','crest']){const pre=await state();await input(selector('data-comet-cosmetic',slot),'touch','equip retained '+slot);const after=await state();ok(after.cometCosmetics[slot]===true,'legacy '+slot+' really equips');ok(after.comets===pre.comets,'legacy cosmetic free');}
  await fit('#comet-journal','legacy Journal');await contrast('#comet-journal','legacy Journal');await fit('#theme-list','Collection');await screenshot('journal',target);await screenshot('collection','[data-comet-cosmetic="trail"]');
  const legacyEndpoint=await state();
+ if(isCurrent){await currentSemantics();return;}
  // Six literal definitions and twelve exact paid actions. These earned-event
  // flags are setup for catalog gates only; actual earning is checked below.
  let funded=copy(seed);funded.comets=10000;await install(funded);
@@ -203,6 +208,64 @@ async function profile(){
  // Remaining semantic fixtures and scoped causal controls are appended below.
  await runSemantics();
  const ax=await send('Accessibility.getFullAXTree');ok(ax.nodes.some(n=>!n.ignored&&n.name&&/Meteor|Comet|Auto-Ascend/.test(n.name.value)),'Comet/Ascend accessible names');ok(!(await ev('__prismErrors')).length,'profile has no runtime errors');log.input=await ev('__prismInput');records.push(log);
+
+ // Current acceptance retains native historical Journal, recovery and backup
+ // flows above, and replaces retired commands with permanent paid investments.
+ async function currentSemantics(){
+  const base=copy(seed);base.maxDepthEver=5000;base.comets=100000;
+  await install(base);
+  const currentIds=['autoascend','astralcore','astralecho','astralconvergence'];same((await ev('prismQa.cometDefs()')).map(x=>x.id),currentIds,'four current permanent shop IDs');
+  for(const [i,name]of currentIds.entries())for(let rank=0;rank<(i?10:1);rank++){
+   const cost=i?Math.ceil([750,1250,2000][i-1]*1.2**rank):100,fixture=await state();fixture.comets=cost-1;await install(fixture);
+   const short=await quote(name);ok(short.price.amount===cost&&short.disabled,'exact independent one-short permanent quote '+name+'/'+rank);
+   await ev('prismQa.cometWallet('+cost+');prismQa.cometRefresh()');const funded=await quote(name);ok(!funded.disabled&&funded.price.color!==short.price.color,'live permanent affordability '+name+'/'+rank);
+   const afterSelector=i?selector('data-comet-card',name):'[data-autoascend-open]';const action=await input(selector('data-shop',name),rank%2?'Space':'touch','permanent '+name+'/'+rank,afterSelector);cometDiagnostics.purchases.push(action);
+   ok(action.stateAfter.comets===0,'native exact permanent debit '+name+'/'+rank);ok(i?action.stateAfter.astralUpgrades[name]===rank+1:action.stateAfter.owned.autoascend,'native paid permanent level '+name+'/'+rank);preserve(action.stateBefore,action.stateAfter,paidFields,'permanent purchase');
+   ok(action.writes.filter(x=>x.key==='lumenfall_save_v2'&&x.ok).length===1,'one primary permanent commit');ok(action.writes.filter(x=>x.key==='lumenfall_save_recovery_v1'&&x.ok).length===1,'one recovery permanent commit');
+   viewport(action.before,action.immediate,'permanent purchase immediate');viewport(action.before,action.settled,'permanent purchase settled');log.catalog.push({name,rank,cost});
+  }
+  const allPaid=await state();for(const name of currentIds)ok((await quote(name)).plan.maxed,'all permanent caps retained '+name);
+  ok(await ev('!document.querySelector("[data-comet-command],[data-quest-refresh]")&&document.getElementById("comet-commands").hidden'),'retired actions absent from actual player UI');await fit('#shop-list','permanent shop');await contrast('#shop-list','permanent shop');await screenshot('permanent-shop','[data-comet-card="astralconvergence"]');
+  const good=copy(seed);good.comets=37;const bad=copy(good);bad.cometClaims.deeds.unknown_comet_claim=true;
+  const recovery=await reloadWith(JSON.stringify(bad),JSON.stringify(good),'malformed-current3-claims');ok(recovery.loaded.comets===37,'valid recovery used for display');ok((await ev('prismQa.cometPersistence()')).blocked,'malformed current3 blocks persistence');same(recovery.slots.map(x=>x.raw),[JSON.stringify(bad),JSON.stringify(good)],'exact malformed primary and recovery bytes preserved');ok(recovery.beforeReady.some(x=>x.status.blocked&&x.shown&&/Comet|recovery|recover/i.test(x.toast)),'real protected-load warning observed before cleanup');await show('deeds');ok((await quote('astralcore')).disabled,'protected load blocks purchase UI');
+  await reloadWith(JSON.stringify(good),JSON.stringify(good),'valid-current3-after-protected');ok(!(await ev('prismQa.cometPersistence()')).blocked,'valid subsequent actual load unblocks');
+  // An invalid pasted backup is an actual settings interaction. It must not
+  // erase live state or either slot; it is not a direct decoder-only assertion.
+  // Opening Save Backup exports the current state through a real save, which
+  // advances lastSeen. Observe that checkpoint; compare the rejected import
+  // against the complete endpoint immediately before Restore is activated.
+  await show('deeds');const invalidImport={profile:{width,scale,motion},kind:'invalid-backup-rejection',beforeOpening:{state:await state(),slots:await slots(),writeIndex:await ev('__cometWrites.length')}};cometDiagnostics.preservation.push(invalidImport);await tap('#settings-btn');await tap('#save-backup-btn');invalidImport.afterExport={state:await state(),slots:await slots(),writes:await ev('__cometWrites.slice('+invalidImport.beforeOpening.writeIndex+')')};const invalidCode=await ev('prismQa.cometEncode('+JSON.stringify(bad)+')');await point('#save-backup-code');await ev('document.getElementById("save-backup-code").focus()');await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'a',code:'KeyA',windowsVirtualKeyCode:65,modifiers:2});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'a',code:'KeyA',windowsVirtualKeyCode:65,modifiers:2});await send('Input.insertText',{text:invalidCode});const beforeImport=await state(),slotsImport=await slots();invalidImport.beforeRestore={state:beforeImport,slots:slotsImport,writeIndex:await ev('__cometWrites.length')};await tap('#restore-save-backup');
+  if(await ev('document.getElementById("save-restore-confirm").style.display!=="none"'))await tap('#save-restore-confirm-btn');
+  await frames();invalidImport.afterRestore={state:await state(),slots:await slots(),writes:await ev('__cometWrites.slice('+invalidImport.beforeRestore.writeIndex+')')};same(await state(),beforeImport,'invalid actual backup import preserves live state');same(await slots(),slotsImport,'invalid actual import preserves both slots');await tap('#settings-close');
+  // Actual valid restore owns both writes and the subsequent native reload.
+  const restore=copy(allPaid);restore.comets=73;restore.autoAscendEnabled=false;restore.autoAscendTargetDepth=201;const restoreCode=await ev('prismQa.cometEncode('+JSON.stringify(restore)+')');await tap('#settings-btn');await tap('#save-backup-btn');await point('#save-backup-code');await ev('document.getElementById("save-backup-code").focus()');await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'a',code:'KeyA',windowsVirtualKeyCode:65,modifiers:2});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'a',code:'KeyA',windowsVirtualKeyCode:65,modifiers:2});await send('Input.insertText',{text:restoreCode});await tap('#restore-save-backup');ok(await ev('document.getElementById("save-restore-confirm").style.display')!=='none','valid import requires actual replacement confirmation');await ev('window.prismQa=null');await tap('#save-restore-confirm-btn');await ready('actual-valid-backup-restore');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));const restored=await state();ok(restored.comets===73&&restored.autoAscendEnabled===false&&restored.autoAscendTargetDepth===201,'actual backup restores wallet and AA preference');preserve(restore,restored,paidFields.concat(['cometUpgrades','owned','cometCharges','cometWork','cometEvents']),'actual backup restore');
+
+  if(width===320&&motion==='reduce')await currentControls(base,legacyEndpoint);
+  const slotsPaid=copy(base);slotsPaid.astralUpgrades={astralcore:4,astralecho:3,astralconvergence:2};slotsPaid.comets=10000;await install(slotsPaid);await ev('prismQa.cometSave()');const before=await state(),raw=await slots();await ev('window.__cometFault={key:"lumenfall_save_v2",remaining:1}');await input('[data-shop="astralcore"]','Enter','failed permanent commit');same(await state(),before,'native failed permanent purchase rolls back all fields');same(await slots(),raw,'native failed permanent purchase retains both raw slots');
+  await install(allPaid);const ax=await send('Accessibility.getFullAXTree');ok(ax.nodes.some(n=>!n.ignored&&n.name&&/Astral|Auto-Ascend/.test(n.name.value)),'permanent accessible names');ok(!(await ev('__prismErrors')).length,'current profile has no runtime errors');log.input=await ev('__prismInput');records.push(log);
+ }
+ async function currentControls(base,legacyEndpoint){
+  async function pair(kind,fixture,tab,arrange,perform,assertion,expectedMessage){
+   const prior=await state(),priorSlots=await slots(),receipt={profile:{width,scale,motion},kind,positive:null,negative:null,status:'running'};cometDiagnostics.negatives.push(receipt);let changed=false;
+   try{for(const mutant of [false,true]){await install(fixture,tab);await ev('prismQa.cometSave()');await arrange();let mutation=null;if(mutant){mutation=await ev('prismQa.cometMutant('+JSON.stringify(kind)+')');changed=true;receipt.mutation={...mutation,originalSha256:hash(mutation.original),mutatedSha256:hash(mutation.mutated)};}
+     const before=await state(),errorsBefore=await ev('__prismErrors.length'),outcome=await perform(),after=await state(),record={before,after,outcome,slots:await slots(),runtimeErrors:await ev('__prismErrors.slice('+errorsBefore+')')};receipt[mutant?'negative':'positive']=record;ok(!record.runtimeErrors.length,'causal has no runtime error '+kind);const picture='comet-'+id+'-'+kind+'-'+(mutant?'negative':'positive');await shot(picture);record.screenshot=picture+'.png';cometDiagnostics.images.push({profile:{width,scale,motion},name:record.screenshot,surface:'causal '+kind});
+     if(!mutant){await assertion(record);record.status='pass';}
+     else{let caught;try{await assertion(record);}catch(error){if(!(error instanceof assert.AssertionError)||error.message!==expectedMessage)throw error;caught={name:error.name,message:error.message};}ok(!!caught,'causal assertion catches '+kind);record.caught=caught;record.status='caught';}
+    }receipt.status='pass';
+   }catch(error){receipt.status='fail';receipt.error=error.stack;throw error;}
+   finally{if(changed){const restored=await ev('prismQa.cometRestoreMutant()');if(receipt.mutation.type==='stylesheet'){receipt.restoredStylesheetSha256=hash(restored);ok(receipt.restoredStylesheetSha256===receipt.mutation.originalSha256,'exact original stylesheet restored '+kind);}else{receipt.restoredFunctionSha256=hash(restored);ok(receipt.restoredFunctionSha256===receipt.mutation.originalSha256,'exact original function restored '+kind);}}await install(prior);await ev('('+function(values){values.forEach(function(x){if(x.raw===null)localStorage.removeItem(x.key);else localStorage.setItem(x.key,x.raw);});}.toString()+')('+JSON.stringify(priorSlots)+')');same(await state(),prior,'restore causal live state '+kind);same(await slots(),priorSlots,'restore causal raw slots '+kind);}
+  }
+
+  const short=copy(base);short.comets=749;
+  await pair('stale-affordability',short,'deeds',async()=>{},async()=>{await ev('prismQa.cometWallet(750);prismQa.cometRefresh()');return quote('astralcore');},async r=>{ok(!r.outcome.disabled&&r.outcome.price.amount===750,'causal live permanent exact-wallet affordance');},'causal live permanent exact-wallet affordance');
+  await pair('recreate-trial',legacyEndpoint,'deeds',async()=>{await prepare('[data-trial-target]');await ev('window.__cometCausalTrial=document.activeElement');},async()=>{await paint();return ev('document.activeElement===window.__cometCausalTrial&&document.querySelector("[data-trial-target]")===window.__cometCausalTrial');},async r=>{ok(r.outcome===true,'causal native Journal input retention');},'causal native Journal input retention');
+  const exact=copy(base);exact.comets=750;
+  await pair('wrong-astral-cost',exact,'deeds',async()=>{},async()=>input('[data-shop="astralcore"]','touch','causal exact permanent debit','[data-comet-card="astralcore"]'),async r=>{ok(r.after.comets===0&&r.after.astralUpgrades.astralcore===1,'causal native permanent exact debit');},'causal native permanent exact debit');
+  const updated=copy(base);updated.comets=900;
+  await pair('stale-rank',updated,'deeds',async()=>{},async()=>{await ev('var levels=prismQa.get().astralUpgrades;levels.astralcore=1;prismQa.cometPatch({astralUpgrades:levels})');return input('[data-shop="astralcore"]','Space','causal stale native permanent quote','[data-comet-card="astralcore"]');},async r=>{ok(r.after.comets===0&&r.after.astralUpgrades.astralcore===2,'causal native permanent rank recheck');},'causal native permanent rank recheck');
+  const press=copy(base);press.comets=100;
+  await pair('pressed-purchase',press,'deeds',async()=>{},async()=>input('[data-shop="autoascend"]','touch','causal neutral purchase press','[data-autoascend-open]'),async r=>{const action=r.outcome,activation=action.activationEvents[0];ok(action.activationEvents.length===1&&activation.trusted&&activation.eventPhase===1&&activation.shop==='autoascend'&&activation.active,'actual active trusted purchase capture');ok(action.touchBefore.transform==='none'&&activation.transform==='none','causal neutral Comet purchase press geometry');viewport(action.before,action.immediate,'causal neutral purchase immediate');viewport(action.before,action.settled,'causal neutral purchase settled');},'causal neutral Comet purchase press geometry');
+ }
 
  async function runSemantics(){
   const meteor='[data-comet-command="meteor"]',call='[data-comet-command="starcall"]';

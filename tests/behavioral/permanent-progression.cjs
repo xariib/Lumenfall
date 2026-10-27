@@ -1,0 +1,45 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const C=require('./comet-expansion-harness.cjs'),F=require('./forge-expansion-harness.cjs'),{integer}=require('./amount-oracle.cjs');
+function verify(source){let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert.ok(v,m);},clone=C.clone;
+function ready(q){const s=C.seed(q);s.maxDepthEver=5000;s.comets=1e9;return s;}
+{
+ const q=F.app(source).q;
+ for(const node of q.defs().filter(n=>!n.retiredTo))for(const level of [0,Math.max(0,node.levelCap-3)])for(const count of [1,5,10,25,50,100]){
+  const s=q.fresh();s.maxDepthEver=5000;s.questDay=q.day();s.research[node.id]=level;s.lumen=s.shards=1e100;q.set(s);
+  const full=q.cost(node.id,level,count),fits=level+count<=node.levelCap,p=q.plan(node.id,count);
+  eq(p.buyCount,fits?count:0,'fixed batch never truncates at cap '+node.id+'/'+level+'/'+count);if(!fits){eq(p.affordable,false,'oversized fixed batch disabled');continue;}eq(p.cost,full,'exact fixed batch quote');
+  const three=q.cost(node.id,level,Math.min(count-1,3));s.lumen=count===1?Math.floor(full.lumen/2):three.lumen;s.shards=count===1?Math.floor(full.shard/2):three.shard;q.set(s);
+  const poor=q.plan(node.id,count);eq(poor.buyCount,0,'insufficient batch never partially buys '+node.id+'/'+level+'/'+count);eq(poor.needed,full,'insufficient batch shows full requested price');const before=clone(q.get());eq(q.buy(node.id,count),false,'unaffordable batch rejected');eq(q.get(),before,'rejected batch changes no state');if(count>1)ok(q.plan(node.id,'max').buyCount<count,'Max alone can quote partial quantity');
+  s.lumen=full.lumen;s.shards=full.shard;q.set(s);const wallet=clone(q.get());ok(q.buy(node.id,count),'exactly funded purchase');eq(q.get().research[node.id],level+count,'exact bought levels');eq(q.get().lumen,wallet.lumen-full.lumen,'exact Lumen debit');eq(q.get().shards,wallet.shards-full.shard,'exact Shard debit');
+ }
+}
+const reserves=[0,60,180],cycles=[0,80,220,440],cores=[0,45,120,240,420];
+for(const meteor of [false,true])for(const call of [false,true])for(let reserve=0;reserve<=2;reserve++)for(let cycle=0;cycle<=3;cycle++)for(let core=0;core<=4;core++){
+ if((!meteor&&!call&&(reserve||cycle))||(!meteor&&core))continue;const e=C.app(source),q=e.q,s=ready(q);s.schemaVersion=5;delete s.commandRefund;delete s.astralUpgrades;s.owned.meteor=meteor;s.owned.starcall=call;s.cometUpgrades={cometreservoir:reserve,cometcycle:cycle,meteorcore:core};const refund=(meteor?100:0)+(call?140:0)+reserves[reserve]+cycles[cycle]+cores[core];s.comets=120;s.activeStudies=[{id:'guardmastery',slot:1,totalDurationSec:150,remainingSec:70,speedMult:2}];q.set(s);
+ eq(q.get().schemaVersion,6,'protected paid schema');eq(q.get().comets,120+refund,'independent original prices refunded');eq(q.get().commandRefund,{policy:'commands-retired-v1',total:refund,paid:true},'one refund identity');eq(q.get().activeStudies[0].remainingSec,70,'migration preserves paid work');const normalized=clone(q.get());eq(q.accept(normalized),normalized,'no normalization double grant');ok(q.save(),'refund receipt saved');q.load();eq(q.get(),normalized,'cold load cannot repeat refund');
+ for(const id of ['meteor','starcall']){eq(q.commandPlan(id).available,false,'retired command unavailable');const before=clone(q.get());eq(q.command(id),false,'retired command inert');eq(q.get(),before,'command no-op preserves state');}q.recordDefeats(10000,true);eq(q.get(),normalized,'no retired recharge');
+}
+const catalog=[['astralcore',250,750,1.25],['astralecho',500,1250,1.3],['astralconvergence',1000,2000,1.25]];
+// A malformed paid rank/refund must use recovery for display while protecting
+// both raw originals. It must never silently replace the primary paid record.
+for(const kind of ['rank','refund']){
+ const e=C.app(source),q=e.q;q.set(ready(q));ok(q.save(),'valid recovery seed');const good=e.storage.get(C.P),bad=clone(q.get());if(kind==='rank')bad.astralUpgrades.astralcore=11;else bad.commandRefund.total=1;const raw=JSON.stringify(bad);e.storage.set(C.P,raw);q.load();eq(q.persistenceStatus().blocked,true,'malformed permanent history protects persistence');eq(q.persistenceStatus().recovered,true,'valid recovery used');eq(e.storage.get(C.P),raw,'raw malformed primary retained');eq(e.storage.get(C.R),good,'raw valid recovery retained');eq(q.save(),false,'blocked save refuses overwrite');
+}
+for(const [id,depth,base]of catalog)for(let level=0;level<=10;level++){
+ const e=C.app(source),q=e.q,s=ready(q);s.astralUpgrades[id]=level;s.comets='1e400';q.set(s);const before=clone(q.get()),cost=Math.ceil(base*1.2**level),p=q.buyPlan(id);eq(q.get(),before,'quote read only');if(level===10){eq(p.maxed,true,'permanent cap');eq(q.buy(id),false,'cap rejects purchase');continue;}eq(p.cost,cost,'independent price '+id+'/'+level);ok(p.available,'wide wallet funded');ok(q.save(),'baseline saved');const slots=Array.from(e.storage);e.fail(true,true);eq(q.buy(id),false,'failed write rejects purchase');eq(q.get(),before,'failed purchase restores every field');eq(Array.from(e.storage),slots,'failed purchase preserves both saves');e.fail(false,false);ok(q.buy(id),'buy permanent level');eq(q.get().astralUpgrades[id],level+1,'one level');eq(integer(q.get().comets),10n**400n-BigInt(cost),'exact wide debit');const endpoint=clone(q.get());q.load();eq(q.get(),endpoint,'paid rank cold load');eq(q.accept(q.decode(q.export())),endpoint,'backup retains rank');
+ const locked=ready(q);locked.maxDepthEver=depth-1;q.set(locked);eq(q.buyPlan(id).reason,'locked','rich wallet cannot bypass gate');const old=clone(q.get());eq(q.buy(id),false,'locked purchase rejected');eq(q.get(),old,'locked state preserved');
+ for(const flag of ['hidden','resetInProgress','reloadInProgress','offlinePending','resumeFlowBusy','startupIntroPlaying','persistenceBlocked']){q.set(ready(q));q.lifecycle({[flag]:true});eq(q.buy(id),false,'lifecycle guard '+flag);q.lifecycle({[flag]:false});}
+}
+{
+ const q=C.app(source).q;for(const [id]of catalog)for(const invalid of [-1,0.5,11,NaN,Infinity,'1',null]){const s=ready(q);s.astralUpgrades[id]=invalid;assert.throws(()=>q.accept(s),/Permanent Comet upgrades need recovery/);checks++;}for(const patch of [{total:1},{paid:'yes'},{policy:'unknown'}]){const s=ready(q);Object.assign(s.commandRefund,patch);assert.throws(()=>q.accept(s),/Retired purchase receipt needs recovery/);checks++;}
+ const old=ready(q);old.schemaVersion=5;old.owned.meteor=true;old.comets=1e30;q.set(old);eq(q.get().commandRefund.paid,false,'unrepresentable credit pending');eq(q.get().comets,1e30,'no rounded-away money');const pending=clone(q.get());eq(q.accept(pending),pending,'pending identity stable');q.get().comets=0;ok(q.save(),'later exact credit saved');eq(q.get().comets,100,'one original refund');eq(q.get().commandRefund.paid,true,'settled receipt');q.load();eq(q.get().comets,100,'cold no duplicate credit');const wide=ready(q);wide.schemaVersion=5;wide.owned.meteor=true;wide.comets='1e400';q.set(wide);eq(integer(q.get().comets),10n**400n+100n,'exact wide retirement credit');
+}
+{
+ const q=C.app(source).q,s=ready(q);s.spirits.ember=s.spirits.tide=s.spirits.gale=50;s.heroRarity.tide=5;s.wispUltimate.tide=true;s.activeParty=['ember','tide','gale'];q.set(s);const power=q.power('ember'),burst=q.burst('ember'),support=q.support('tide').strength;ok(q.buy('astralcore'),'buy core');eq(q.power('ember'),power*1.25,'immediate Power cache invalidation');ok(q.buy('astralecho'),'buy echo');eq(q.burst('ember'),burst*1.25*1.3,'each automatic damage bonus once');ok(q.buy('astralconvergence'),'buy convergence');eq(q.support('tide').strength,1+(support-1)*1.25,'Support Ultimate bonus strength');const paid=clone(q.get().astralUpgrades);q.ascend(false);eq(q.get().astralUpgrades,paid,'Ascend retains investments');
+}
+{
+ const e=C.app(source),q=e.q,s=ready(q);q.set(s);const original=clone(q.get());for(const bad of [0,-1,10,100,101,102,1.5,NaN,Infinity,'87',null]){const before=clone(q.get());eq(q.selectFarm(bad),false,'invalid farm '+bad);eq(q.get(),before,'invalid target mutation-free');}for(const depth of [87,89,1,99]){ok(q.selectFarm(depth),'cleared Farm '+depth);eq(q.get().farmDepth,depth,'selected target');eq(q.get().farmReturnDepth,101,'saved Push frontier');eq(q.get().maxDepthEver,original.maxDepthEver,'lifetime frontier unchanged');eq(q.get().prisms,original.prisms,'no Prisms');eq(q.get().ascendCount,original.ascendCount,'no implicit Ascend');ok(q.save(),'Farm saved');q.load();eq(q.get().farmDepth,depth,'target reload');const before=clone(q.get());e.fail(true,true);eq(q.selectFarm(depth===1?2:1),false,'failed save rejects switch');eq(q.get(),before,'failed switch restores encounter');e.fail(false,false);}ok(q.enterPush(),'return Push');eq(q.get().depth,101,'correct return');eq(q.get().farmDepth,0,'Farm cleared');
+}
+return {status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')};}
+module.exports={verify};if(require.main===module)console.log(JSON.stringify(verify(fs.readFileSync(process.argv[2]||'index.html','utf8'))));
