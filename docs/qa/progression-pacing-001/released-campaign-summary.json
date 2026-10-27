@@ -1,0 +1,41 @@
+{
+  "status": "MEASURED",
+  "sourceSha256": "c2107fc911ec39984bf39d03847f49c4c67997b259baf611489ca115495f66f1",
+  "policySha256": "0602a25c14c62e783a2e18690d9cc7c852e11df13e410f1fb6f6c951f00e8c11",
+  "policy": "regular",
+  "policyDetails": {
+    "sessions": 3,
+    "activeSec": 600,
+    "decisionSec": 10,
+    "speed": 8,
+    "budget": 0.5
+  },
+  "days": 3,
+  "history": [
+    {
+      "day": 1,
+      "maxDepth": 70,
+      "lab": 10,
+      "masterwork": 0,
+      "ascends": 1,
+      "forgeLevels": 20
+    },
+    {
+      "day": 2,
+      "maxDepth": 306,
+      "lab": 13,
+      "masterwork": 26,
+      "ascends": 1,
+      "forgeLevels": 171
+    },
+    {
+      "day": 3,
+      "maxDepth": 467,
+      "lab": 16,
+      "masterwork": 36,
+      "ascends": 3,
+      "forgeLevels": 181
+    }
+  ],
+  "limits": "Deterministic real-engine sessions and offline chronology; only earned currencies fund automation/speed; not human/device acceptance."
+}

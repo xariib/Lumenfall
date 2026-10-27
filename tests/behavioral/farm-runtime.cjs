@@ -72,7 +72,9 @@ async function execute(type,use,kind,split,mutant=false){
    s.activeStudies=[{id:'guardmastery',remainingSec:300,totalDurationSec:600,speedMult:1}];s.studyUseMotes.guardmastery=use;s.studySpeedTargets.guardmastery=3;
    if(natural){s.activeParty=['titan'];s.spirits.titan=1635;s.heroRarity.titan=5;s.heroRarity.ember=1;s.heroResource.titan=0;s.research.formation=500;s.longStudyLevels.formationstudy=500;s.longStudyLevels.wispascend=500;s.nodes.momentum=500;s.ascendCount=5;s.achieved.asc5=true;}
    var normalized=b.setState(s),dps=natural?t.naturalDps():type==='core'||type==='fractional-high'?Math.pow(2,55)+16:1100,seconds=type==='core'?1:.9,costs=natural?t.numericCosts():null,undo=${mutant}?t.mutate('rounded-quotient'):function(){};
-   try{var groups=[];function call(dt,start){var traced=t.traceFarm(function(){return t.direct(dt,kind,start);});groups.push(traced.rows);return traced.result;}function go(){var a=call(split||seconds,2000000000000);return split?[a,call(seconds-split,2000000000000+split*1000)]:[a];}var parts=natural?go():t.withDps(dps,go);return {type:type,use:use,kind:kind,split:split,H:H,input:s,normalized:normalized,dps:dps,seconds:seconds,costs:costs,parts:parts,groups:groups,trace:[].concat.apply([],groups)};}finally{undo();}
+   // Supply the independently observed raw Power explicitly: this is the
+   // original damage-arithmetic oracle, not an uncapped public Farm policy.
+   try{var groups=[];function call(dt,start){var traced=t.traceFarm(function(){return t.direct(dt,kind,start);});groups.push(traced.rows);return traced.result;}function go(){var a=call(split||seconds,2000000000000);return split?[a,call(seconds-split,2000000000000+split*1000)]:[a];}var parts=t.withDps(dps,go);return {type:type,use:use,kind:kind,split:split,H:H,input:s,normalized:normalized,dps:dps,seconds:seconds,costs:costs,parts:parts,groups:groups,trace:[].concat.apply([],groups)};}finally{undo();}
   });
  })()`);
 }

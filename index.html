@@ -10669,7 +10669,7 @@ function simulationBuffMult(nowMs,clock){
 }
 function simulationPassiveDps(nowMs,clock){
   var dps=Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(nowMs,clock));
-  return state.riftMode==='farm' ? Amount.min(dps,Amount.mul(enemyHpFor(state.depth),ENDLESS_PROGRESSION.farmPassiveKillsPerSecond)) : dps;
+  return state.riftMode==='farm' ? Amount.min(dps,Amount.mul(state.enemyMaxHp||enemyHpFor(state.depth),ENDLESS_PROGRESSION.farmPassiveKillsPerSecond)) : dps;
 }
 function simulationNextBuffSeconds(nowMs,clock){
   var remaining = simulationBuffSecondsRemaining(nowMs,clock);

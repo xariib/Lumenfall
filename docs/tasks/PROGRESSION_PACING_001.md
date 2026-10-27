@@ -78,9 +78,11 @@ Related contracts: [Forge/Lab caps](LAB_FORGE_LONGTAIL_001.md),
 
 ## Checkpoint
 
-Product candidate SHA-256: `b301e15bec8282b07b67d78bc87e301bbcfe19e4787351c2881e8f8a48ee4640`.
+Current product SHA-256: `6dc24bee0d23f806a4865f96267e9fc116e88886b02cc779f07a432f50daca9b`.
+The preceding `b301e15b` candidate used canonical HP for the throughput ceiling;
+the final revision also handles a legacy encounter's actually saved maximum HP.
 The original manual-Farm fixture reproduced a retry and four unintended Ascends
-within ten seconds. Focused new suite: 219 checks and five defect controls PASS.
+within ten seconds. Focused new suite: 221 checks and five defect controls PASS.
 Forge: 9,335 assertions / 25 controls PASS; paid caps 2,278 PASS; Lab 2,676 PASS;
 permanent upgrades 3,748 PASS; permanent offline 214 PASS; income 632,726 PASS;
 endless core 237 PASS; late advice 186 PASS; slot contract 54 PASS.
@@ -92,9 +94,11 @@ intent default is separately checked before historical state comparisons.
 Frozen resource-reference tests apply only the newly specified current-Rift
 currency ceiling; they retain original rounding, multipliers and chronology.
 
-Three-day regular policy (three ten-minute sessions/day plus real offline play)
+Three-day regular policy rerun on the final product (three ten-minute sessions/day plus real offline play)
 reaches record Rifts 40/50/60 and Wisp Ascendancy 10/13/15; Masterwork is not yet
-unlocked. Longer simulation and identical-policy baseline comparison continue.
+unlocked. Identical policy on the released source reaches Rift70/306/467.
+The preceding candidate's 12-day continuation reaches Rift158, Lab24 and still
+has unfinished Forge investment. Its different source hash is retained explicitly.
 These are observations, not calendar guarantees or target promises. Conceptual
 phases: foundations below Rift70; Masterwork development and roster investment
 70–250; late Comet/Ultimate/Mastery paths 250–1000; very late higher Mastery and
@@ -107,8 +111,28 @@ case runs. Do not call this a product failure or a browser PASS. Required remote
 browser gates, full regression and Android/device acceptance remain pending.
 No APK is requested/published by this task. Keep this feature open for acceptance.
 
+The previous candidate's full isolated offline CI passes; local complete offline
+regression also passes (465.8 s). Final source-bound one-second windows retain
+all four historical outcomes. Actual V8 6.0 parses the full final source and its
+Forge suite passes 2,486 checks. A CI Lab clock fixture expected 31 instant kills:
+its numerical fractional-wallet oracle stays unchanged, while its chronological
+test now uses 2 kills/s, non-damaging Support casts and exact 75% rewards. It
+passes 2,346 checks and original defect controls. Existing huge-count Farm
+arithmetic probes explicitly supply the independently observed raw DPS, keeping
+their original arithmetic expectations/controls; the public ceiling is separately
+required by the new production-path suite. No assertion or gate was deleted.
+Other saved results with `b301e15b` are earlier-candidate results, not final CI.
+
+CI Lab speed initially timed out before Browser.getVersion (zero test cases).
+Preserve this runner failure; rerun unchanged after the full run terminates.
+The numerical Lab fixture failure is addressed as above, not retried away.
+
 Current main was verified; only historical documentation PR #2 was open and no
 overlapping pacing branch was found. Unrelated checkout/test-generated scratch
-files are not part of the change. Remote feature branch now exists at baseline.
-Next: publish this coherent candidate as a draft PR, finish the longer simulation,
-resolve real regression failures and require green CI before integration.
+files are not part of the change. [PR #15](https://github.com/xariib/Lumenfall/pull/15)
+is draft; first head `fa65ea23`, then native browser-band tests at `2c44c0ff`.
+Final product/checkpoint publication follows. A transient automatic upload review
+rejection was resolved by verifying authenticated owner xariib, exact public repo,
+admin permission and the existing public test payload; no user data was uploaded.
+Next: publish the final legacy-HP/boundary/arithmetic probe revision, resolve any
+remaining actual failures and require seven green workflows before integration.

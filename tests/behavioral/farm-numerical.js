@@ -57,7 +57,10 @@ window.runFarmNumericalQa=function(b,ctx,assert){
     if(natural){ok(dps===40052722017724424,'actual natural product DPS');var costs=t.numericCosts();Object.values(costs).forEach(function(c){if(typeof c==='object')Object.values(c).forEach(function(v){ok(Number.isFinite(v)&&v>=0,'finite normalized next price');});else ok(Number.isFinite(c)&&c>0,'finite normalized next price');});ok(normalized.spirits.titan===1635&&normalized.research.formation===500,'normalization preserves stress investments');}
     var trace=t.traceFarm(function(){
       function execute(){var a=t.direct(split||seconds,kind,clock);if(!split)return a;var z=t.direct(seconds-split,kind,clock+split*1000);['kills','luminousKills','lumenGained','shardGained','motesGained','studySpeedPurchases','studyMotesSpent'].forEach(function(k){z.summary[k]=oracleCredit(a.summary[k],z.summary[k]);});z.summary.timeline=a.summary.timeline.concat(z.summary.timeline.map(function(e){return Object.assign({},e,{elapsedSec:e.elapsedSec+split});}));return z;}
-      return natural?execute():t.withDps(dps,execute);
+      // Isolate the represented-damage engine from the new Farm throughput
+      // policy. Keep both original huge-count oracles and their defect controls;
+      // progression-pacing.cjs separately tests the actual production ceiling.
+      return t.withDps(dps,execute);
     });
     var r=trace.result,o=verifySegments(trace,kind),expected=natural?3277040892359271:3275345183542180;
     ok(r.summary.kills===expected&&r.state.totalKills===expected,'documented safe kill count');

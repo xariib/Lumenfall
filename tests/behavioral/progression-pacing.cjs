@@ -10,7 +10,7 @@ const near=(a,b,m)=>ok(Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-10,m);
 const mutations={
   intent:[" || !state.farmAutoResume ||",' || false ||'],
   power:['return Amount.add(1,Amount.mul(ENDLESS_PROGRESSION.masterworkPowerPerLevel,level===undefined?researchLevel(\'masterwork\'):level));',"return Amount.pow(1.25,level===undefined?researchLevel('masterwork'):level);"],
-  farm:["return state.riftMode==='farm' ? Amount.min(dps,Amount.mul(enemyHpFor(state.depth),ENDLESS_PROGRESSION.farmPassiveKillsPerSecond)) : dps;",'return dps;'],
+  farm:["return state.riftMode==='farm' ? Amount.min(dps,Amount.mul(state.enemyMaxHp||enemyHpFor(state.depth),ENDLESS_PROGRESSION.farmPassiveKillsPerSecond)) : dps;",'return dps;'],
   resources:["if(sp.abilityType==='ranged')power=Amount.min(power,Amount.mul(40,Amount.pow(1.09,endlessCurveDepth(state.depth))));",''],
   gate:['requiredDepth+=Math.floor(level/ENDLESS_PROGRESSION.masterworkLevelsPerBand)*ENDLESS_PROGRESSION.masterworkRiftsPerBand;','requiredDepth=node.unlockDepth;']
 };
@@ -77,6 +77,11 @@ for(const depth of [32,51,101,501]){
   income.push({depth,seconds:60,kills:summary.kills,lumen:summary.lumenGained,shards:summary.shardGained});
 }
 ok(income[1].lumen>income[0].lumen,'deeper overpowered farming gives more Lumen');ok(income[1].shards>income[0].shards,'deeper overpowered farming gives more Shards');
+{
+  const {q}=game(),s=farm(q);s.enemyDepth=32;s.enemyMaxHp=11;s.enemyHp=8.03;q.set(s);
+  eq(q.endless.passive(F.CLOCK),22,'legacy saved encounter HP also bounds passive throughput');
+  eq(q.advance(.9,{kind:'live',clockStartMs:F.CLOCK}).kills,2,'actual legacy encounter cannot bypass the Farm ceiling');
+}
 // Resource input caps depend on current Rift, not lifetime depth or Power.
 for(const id of ['gale','thorn'])for(const depth of [1,32,51,101]){
   const {q}=game(),s=q.fresh();s.depth=depth;s.maxDepthEver=10000;s.spirits[id]=10000;s.heroRarity[id]=5;s.research.masterwork=500;q.set(s);
