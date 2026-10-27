@@ -14,3 +14,11 @@ Prior design: Astral Core at Rift250/750Comets, Astral Echo Rift500/1250, Astral
 Preserve original assets, other economy/progression, paid research and deadlines, offline chronology, Auto-Ascend, both saves, recovery, package and certificate. No transient touch glows. No subagents. Follow root AGENTS.md and mandatory CI. Original Comet/disclosure and partial-batch tests encode superseded behavior and need requirement-sensitive updates, retaining relevant migration/arithmetic/rollback/chronology coverage. Full CI and Android acceptance are pending. Do not merge failed gates or publish an APK in this scope.
 
 Next: recover source/test candidate, validate it, publish source and evidence to this branch, create the authorized PR, resolve regression results before integration. Keep work open until acceptance is evidenced.
+
+## Recovered candidate — 27 October 2026
+
+Source SHA-256: 5956cc78a67d0f414bf1fa3ea41592727ff21e8a877f98fd3eb35cd2261b861c. This reconstruction follows the approved behavior but is not byte-identical to the lost candidate. New acceptance: 3,736 core checks, 208 offline checks, 9,335 Forge assertions and 25 negative controls, 2,676 Lab checks and 10 negative controls, 13,416 price-cache checks, 228 existing slot checks, 416 browser checks across 18 profiles. Browser controls use actual touch/keyboard at320/390/430px,100/150/200%text and normal/reduced motion. No browser runtime errors. Relevant screenshots are retained.
+
+The first large-file upload was found to be truncated in transport before any PR or main integration. It was replaced using bounded Base64 chunks; the uploaded Git blob is verified to exactly equal local eb839d25f280804dfb550036ad9f24916199b532. Corrected branch commit ec7a41638cda22d303576241a812d0cec1bd1d38. Only the isolated feature branch was affected. Future writes use exact blob verification.
+
+[Current receipts](../qa/permanent-progression-ui-001/candidate.json). The focused tests are not full CI acceptance. Old command/disclosure/partial-batch tests still need requirements-aware adaptation. The original Forge suite retains its full price/effect/debit, persistence and negative-control checks, now requiring fixed batches to buy exactly or refuse. All original workflow gates remain enabled. No merge or APK release until required checks pass.
