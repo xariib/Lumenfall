@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),C=require('./comet-expansion-harness.cjs');
-const source=fs.readFileSync(process.argv[2]||'index.html','utf8');let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(a,m)=>{checks++;assert.ok(a,m);},clone=C.clone;
+function verify(source){let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(a,m)=>{checks++;assert.ok(a,m);},clone=C.clone;
 function fixture(q,rank,mode){const s=C.seed(q);s.maxDepthEver=5000;s.comets=0;s.spirits.ember=15;s.spirits.tide=10;s.spirits.gale=8;s.activeParty=['ember','tide','gale'];s.heroRarity.tide=5;s.wispUltimate.tide=true;s.astralUpgrades={astralcore:rank,astralecho:rank,astralconvergence:rank};s.riftMode=mode;s.depth=s.enemyDepth=mode==='farm'?9:21;s.enemyHp=s.enemyMaxHp=q.enemyHp(s.depth);s.farmDepth=mode==='farm'?9:0;s.farmReturnDepth=mode==='farm'?101:0;s.activeStudies=[{id:'guardmastery',slot:1,totalDurationSec:150,remainingSec:110,speedMult:1}];s.studySlotProjects[1]='guardmastery';s.studyBoosts={slot1:{mult:2,startedAtMs:C.CLOCK-28800000+120000,expiresAtMs:C.CLOCK+120000}};return s;}
 function scheduled(initial,spans,kind){const q=C.app(source).q;q.set(initial);let at=0;for(const span of spans){q.advance(span,{kind,clockStartMs:C.CLOCK+at*1000,offlineWindowStartMs:C.CLOCK});at+=span;}return clone(q.get());}
 for(const rank of [0,1,5,10])for(const mode of ['farm','push']){
@@ -13,4 +13,13 @@ for(const rank of [0,1,5,10])for(const mode of ['farm','push']){
 for(const fault of ['none','primary','recovery']){
  const e=C.app(source),q=e.q,s=fixture(q,3,'farm');q.set(s);ok(q.save(C.CLOCK),'save starting state');const before=clone(q.get()),slots=Array.from(e.storage);e.clock(C.CLOCK+180000);e.performanceStep(1);let result,failure,calls=0;e.fail(fault==='primary',fault==='recovery');q.offline((r,error)=>{result=r;failure=error;calls++;});if(e.pending()){eq(q.get(),before,'private yielded state');eq(Array.from(e.storage),slots,'no intermediate write');}e.drain(10000);eq(calls,1,'one callback');if(fault==='primary'){ok(failure,'primary reports error');eq(q.get(),before,'full primary rollback');eq(Array.from(e.storage),slots,'both saved slots retained');e.fail(false,false);q.offline((r,error)=>{result=r;failure=error;calls++;});e.drain(10000);eq(calls,2,'one successful retry');}assert.ifError(failure);ok(result.kills>0,'accepted real combat');eq(q.get().farmDepth,9,'accepted target');eq(q.get().farmReturnDepth,101,'accepted frontier');eq(q.get().astralUpgrades,s.astralUpgrades,'retained permanent levels');eq(q.get().lastSeen,C.CLOCK+180000,'one committed endpoint');const endpoint=clone(q.get());eq(C.app(source,Array.from(e.storage)).q.get(),endpoint,'cold saved endpoint');eq(q.offline(),null,'absence cannot repeat');eq(q.get(),endpoint,'no second reward');
 }
-console.log(JSON.stringify({status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
+// A saved pre-retirement Call keeps its already-marked Luminous enemy and
+// earns its old20-Comet objective when that exact enemy is actually defeated.
+{
+ const q=C.app(source).q,s=fixture(q,0,'farm');s.schemaVersion=5;s.owned.starcall=true;s.cometCalled=true;s.cometEvents.firstCommand=true;s.enemyIsLuminous=true;
+ for(const deed of q.achievementDefs())if(!deed.id.startsWith('comet_'))s.achieved[deed.id]=true;
+ s.achieved.comet_first_command=true;q.set(s);const before=q.get().comets;
+ q.batch(1);eq(q.get().cometEvents.calledKill,true,'saved legacy target completes through actual defeat');eq(q.get().comets,before+20,'old marked objective paid once');eq(q.get().cometCharges,0,'legacy completion grants no charges');eq(q.get().cometWork,0,'legacy completion grants no work');const paid=q.get().comets;q.batch(1);eq(q.get().comets,paid,'later enemy cannot replay old objective');
+}
+return {status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')};}
+module.exports={verify};if(require.main===module)console.log(JSON.stringify(verify(fs.readFileSync(process.argv[2]||'index.html','utf8'))));

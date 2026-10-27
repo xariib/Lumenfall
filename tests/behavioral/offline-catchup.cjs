@@ -248,8 +248,8 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
    expected.formationPresets[intent.preset].join(',')===intent.members.join(',')
    ? intent.preset : expected.activeFormationPreset;
  let refund=0;for(let i=0;i<(seed.nodes?.reserves||0);i++)refund+=Math.ceil(6*Math.pow(1.6,i));
- assert.equal(actual.schemaVersion,5,label+' migrated schema');
- assert.deepEqual(existing,{...expected,schemaVersion:5,owned:oldOwnership,activeFormationPreset:selected,
+ assert.equal(actual.schemaVersion,6,label+' migrated schema');
+ assert.deepEqual(existing,{...expected,schemaVersion:6,owned:oldOwnership,activeFormationPreset:selected,
   prisms:expected.prisms+refund+echoFixtureRefund,comets:expected.comets+(legacy.offline24?140:0)+(legacy.offline48?160:0)+deedRewards,motes:expected.motes-oldSummary.motesGained+currentSummary.motesGained},label);
 }
 function runAsync(seed,seconds,batch=256){

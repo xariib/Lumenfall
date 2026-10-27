@@ -46,7 +46,7 @@ function verify(html){
     }
     for(const level of [9,10,11,19,20,21,1000000])for(const request of [1,5,10,25,100,'max']){
       const s=F.seed(f);s.research[id]=level;f.set(s);const prior=F.clone(f.get());
-      const count=Math.min(Math.max(0,20-level),request==='max'?20:request),plan=f.plan(id,request);
+      const remaining=Math.max(0,20-level),count=request==='max'?remaining:request<=remaining?request:0,plan=f.plan(id,request);
       eq(plan.buyCount,count,'approved cap20 bulk count '+id);eq(f.get(),prior,'preview purity');
       eq(f.buy(id,request),count>0,'real manual purchase '+id);
       eq(f.get().research[id],level+count,'actual purchased endpoint');
@@ -86,12 +86,12 @@ function verify(html){
   }
   // Retain all pre-existing combined-save fields. Schema5 adds only the
   // explicit Mastery/entitlement fields and the new Masterwork path here.
-  function oldFields(s){s=F.clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
+  function oldFields(s){s=F.clone(s);delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;delete s.astralUpgrades;delete s.commandRefund;delete s.studySlotProjects;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
   for(const schema of [1,2,3])for(const level of [10,13,20,23]){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});
     s.longStudyLevels.labcapacity=2;s.activeStudies=[{id:'bossledger',remainingSec:12.5,totalDurationSec:123.75,speedMult:8},{id:'prismstudy',remainingSec:17,totalDurationSec:90,speedMult:3}];
-    f.set(s);cf.set(s);const expectedOld=oldFields(cf.get());expectedOld.studyBoosts={};expectedOld.studyBoostHours=l.fresh().studyBoostHours;expectedOld.moteNextAtMs=0;Object.keys(expectedOld.studyUseMotes).forEach(id=>expectedOld.studyUseMotes[id]=false);eq(oldFields(f.get()),expectedOld,'all old combined-save fields retained '+schema+'/'+level);eq(f.get().schemaVersion,5,'current schema5');eq(f.get().wispMastery,Object.fromEntries(Object.keys(s.spirits).map(id=>[id,0])),'migration creates no free Mastery ranks');for(const id of Object.keys(s.spirits))if(s.spirits[id]>0)eq(f.get().recruitmentEntitlements[id],true,'owned recruit entitlement retained '+id);
+    f.set(s);cf.set(s);const expectedOld=oldFields(cf.get());expectedOld.studyBoosts={};expectedOld.studyBoostHours=l.fresh().studyBoostHours;expectedOld.moteNextAtMs=0;Object.keys(expectedOld.studyUseMotes).forEach(id=>expectedOld.studyUseMotes[id]=false);eq(oldFields(f.get()),expectedOld,'all old combined-save fields retained '+schema+'/'+level);eq(f.get().schemaVersion,6,'current protected schema6');eq(f.get().astralUpgrades,{astralcore:0,astralecho:0,astralconvergence:0},'no free permanent Comet levels');eq(f.get().commandRefund,{policy:'commands-retired-v1',total:0,paid:true},'zero historic command cost settled without a gift');eq(f.get().studySlotProjects,['bossledger','prismstudy',null,null,null],'paid slot associations reconstructed without moving work');eq(f.get().wispMastery,Object.fromEntries(Object.keys(s.spirits).map(id=>[id,0])),'migration creates no free Mastery ranks');for(const id of Object.keys(s.spirits))if(s.spirits[id]>0)eq(f.get().recruitmentEntitlements[id],true,'owned recruit entitlement retained '+id);
     const canonical=F.clone(f.get());f.set(canonical);eq(f.get(),canonical,'idempotent normalization');
     f.save();eq(F.app(html,fx.storage).q.get(),canonical,'actual cold save reload');
     eq(f.accept(f.decode(f.export())),canonical,'backup roundtrip keeps raw progress/paid work');

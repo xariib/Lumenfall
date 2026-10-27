@@ -2,7 +2,7 @@
 module.exports=async function({send,ev,pause,check,records}){
  await send('Runtime.enable');await send('DOM.enable');
  const fresh=await ev('uiRegression.fresh()');
- const seed=()=>({...JSON.parse(JSON.stringify(fresh)),maxDepthEver:250,questDay:new Date().toISOString().slice(0,10),lumen:1e12,shards:1e12,motes:100000,comets:1000});
+ const seed=()=>({...JSON.parse(JSON.stringify(fresh)),maxDepthEver:250,questDay:new Date().toISOString().slice(0,10),lumen:1e12,shards:1e12,motes:100000,comets:1000,prisms:1000000});
  async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click()');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');}
  async function touch(selector){await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');await pause(25);const p=await ev('(()=>{var r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
  for(const width of [320,390,430])for(const scale of [100,150,200])for(const motion of ['reduce','no-preference']){
@@ -16,6 +16,7 @@ module.exports=async function({send,ev,pause,check,records}){
   check(await ev('uiRegression.get().activeStudies.some(a=>a.id==="guardmastery"&&a.slot===1)&&document.querySelector(".study-catalogue").hidden'),'choose research starts in selected slot and closes catalogue');
   check(await ev('Array.from(document.querySelectorAll("[data-lab-slot]")).map(e=>e.dataset.labSlot).join(",")==="0,1,2,3,4"'),'visual and assistive reading order keep all five slot numbers stable');
   check(await ev('!document.querySelector("[data-study-pause]")&&!/Speed target/.test(document.querySelector("[data-running-study]").textContent)'),'no pause action or redundant speed target heading');
+  if(!(await ev('document.querySelector(".study-speed-open").getAttribute("aria-expanded")=="true"')))await touch('[data-study-speed-open="1"]');
   await ev('document.querySelector("[data-study-speed-target=guardmastery]").value=1;document.querySelector("[data-study-speed-target=guardmastery]").dispatchEvent(new Event("change",{bubbles:true}));window.rangeBefore=document.querySelector("[data-study-speed-target=guardmastery]");rangeBefore.focus();uiRegression.render();');
   check(await ev('rangeBefore===document.querySelector("[data-study-speed-target=guardmastery]")&&document.activeElement===rangeBefore'),'active slider stays attached and focused');
   await touch('[data-speed-study=guardmastery]');await ev('window.boostBefore=JSON.stringify(uiRegression.get().studyBoosts.slot1)');
@@ -33,15 +34,23 @@ module.exports=async function({send,ev,pause,check,records}){
   const waitingSlot='document.querySelector('+JSON.stringify('[data-lab-slot="1"]')+')';
   check(await ev(waitingSlot+'.textContent.includes("Queued for next level")&&document.querySelector("[data-study-queue=guardmastery]")'),'waiting research stays visible with Queue OFF available');
   await touch('[data-study-queue=guardmastery]');
-  check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().studySlotProjects[1]===null&&'+waitingSlot+'.textContent.includes("Empty")&&uiRegression.get().lumen===0&&uiRegression.get().shards===0'),'native Queue OFF clears waiting intent without spending');
-  const comet=seed();comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
+  check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().studySlotProjects[1]===null&&'+waitingSlot+'.textContent.includes("Select research")&&uiRegression.get().lumen===0&&uiRegression.get().shards===0'),'native Queue OFF clears waiting intent without spending');
+  const comet=seed();comet.schemaVersion=5;comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
-  await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&!document.getElementById("comet-commands").hidden'),'existing commands remain available in Deeds');
-  check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed]").length===76'),'all original and 49 new Deeds render');
+  await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&document.getElementById("comet-commands").hidden&&!document.querySelector("[data-comet-command]")'),'retired commands have no player UI');
+  check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed]").length===72'),'all76 historical identities remain;72 active Deeds render');
   for(const [tab,id] of [['research','lab-help'],['ascend','tree-bonds'],['forge','forge-arcanecal'],['deeds','comet-autoascend']]){
    await ev('document.querySelector('+JSON.stringify('[data-tab="'+tab+'"]')+').click()');
    await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+tab)+').getAnimations().map(a=>a.finished)).then(()=>true)');
    const summary='[data-card-details-summary="'+id+'"]';
+   if(!(await ev('!!document.querySelector('+JSON.stringify(summary)+')'))){
+    const selector=id==='tree-bonds'?'[data-tree-node="bonds"]':id==='forge-arcanecal'?'[data-forge-card="arcanecal"]':'[data-comet-card="autoascend"]';
+    check(await ev('document.querySelector('+JSON.stringify(selector)+').textContent.trim().length>0'),'direct current effects replace redundant disclosure '+id);
+    const button=selector+' button';await ev('document.querySelector('+JSON.stringify(button)+').focus({preventScroll:true})');
+    const before=await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})');await ev('clarityQA.render();clarityQA.render()');
+    check(await ev('document.activeElement===document.querySelector('+JSON.stringify(button)+')'),'direct action focus survives refresh '+id);
+    check(await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})')===before,'direct readout refresh preserves both saves '+id);continue;
+   }
    await ev('var e=document.querySelector('+JSON.stringify(summary)+');e.parentElement.open=false;e.scrollIntoView({block:"center"});e.focus({preventScroll:true})');
    await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
    await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});

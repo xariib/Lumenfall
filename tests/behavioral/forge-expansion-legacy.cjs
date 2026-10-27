@@ -71,7 +71,7 @@ specs.forEach(function(d){
  // rejected for an unrelated lock or shortage before validation executes.
  q.set(seed(q));
  [0,-1,1.5,NaN,Infinity,'1','unknown'].forEach(function(requested){var before=clone(q.get()),writes=x.writes.length;eq(q.plan(id,requested).reason,'unavailable','invalid funded unlocked request '+id);eq(q.buy(id,requested),false,'invalid request handler refuses');eq(q.get(),before,'invalid request preserves all fields');eq(x.writes.length,writes,'invalid request performs no writes');invalidCases++;});
- var one=seed(q);one.lumen=d[3];one.shards=d[4];q.set(one);eq(q.plan(id,5).buyCount,1,'partial bulk buys only affordable level');q.buy(id,5);eq(q.get().research[id],1,'partial count one');eq([q.get().lumen,q.get().shards],[0,0],'partial quote exact debit');
+ var one=seed(q);one.lumen=d[3];one.shards=d[4];q.set(one);eq(q.plan(id,5).buyCount,0,'fixed bulk refuses partial funding');var fixedBefore=clone(q.get());eq(q.buy(id,5),false,'fixed bulk handler refuses');eq(q.get(),fixedBefore,'refusal retains funds and levels');
  var queued=seed(q);queued.lumen=d[3];queued.shards=d[4];queued.researchQueue[id]=true;q.set(queued);q.save();var stored=x.storage.get(P),writeCount=x.writes.length;
  eq(q.queue(),true,'real queue purchases '+id);eq(q.get().research[id],1,'queue grants one');eq([q.get().lumen,q.get().shards],[0,0],'queue debit exact');eq(x.writes.length,writeCount,'queue performs no nested save');eq(x.storage.get(P),stored,'queue leaves owning transaction in charge of persistence');q.save();eq(app(x.storage).q.get().research[id],1,'owner commits queued level');
  ['primary','recovery'].forEach(function(failure){

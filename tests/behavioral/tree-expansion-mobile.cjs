@@ -263,7 +263,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   await send('Page.removeScriptToEvaluateOnNewDocument',{identifier:legacyBootstrap.identifier});
   const legacySeedObservation=await ev('window.__treeLegacySeedObservation');migrationDiagnostic.beforeLoad=legacySeedObservation;ok(legacySeedObservation&&legacySeedObservation.slotsMatch&&legacySeedObservation.sha256===legacySeedSha256,'raw legacy slots installed before actual load');
   await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('ascend')");await frames();
-  const migrated=await ev('prismQa.get()');migrationDiagnostic.loaded={schemaVersion:migrated.schemaVersion,nodes:migrated.nodes,prisms:migrated.prisms,comets:migrated.comets};ok(migrated.schemaVersion===5,'actual load migrates schema1 through2/3/4 to5');
+  const migrated=await ev('prismQa.get()');migrationDiagnostic.loaded={schemaVersion:migrated.schemaVersion,nodes:migrated.nodes,prisms:migrated.prisms,comets:migrated.comets};ok(migrated.schemaVersion===6,'actual load migrates schema1 through2/3/4 to5');
   for(const id of ['starlight','steady','echo','bonds','swift','momentum','reserves'])ok(migrated.nodes[id]===old.nodes[id],'raw old paid level retained '+id);
   ok(added.every(id=>migrated.nodes[id]===0)&&migrated.treeTrainingProgress===0,'all missing new levels/counter start at zero');
   ok(migrated.prisms===40786&&migrated.comets===7+300+350,'F26 prices 6+10+16 plus F21 original40586 and Echo68 Prisms;300 Comets plus separate350 retired-card compensation');

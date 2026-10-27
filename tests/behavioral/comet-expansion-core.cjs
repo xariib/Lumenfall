@@ -46,11 +46,16 @@ function ownedState(e,s){e.q.set(s);return e.q.get();}
 function commandOnlyFields(s){return {charges:s.cometCharges,work:s.cometWork,used:s.cometMeteorUsed,called:s.cometCalled,events:s.cometEvents};}
 
 function runCore(source,options={}){
+  if(source.includes('var ASTRAL_UPGRADES=')&&!options.retainedHistory){
+    const history=runCore(source,{retainedHistory:true,groups:['fresh schema, fixed catalog and historical reward policy','old0/1/2 paid migrations and one-pass retirement compensation','strict current4 paid data, recovery preservation and explicit restore','separate original F26 receipts settle before the bounded Comet family','protected original Deed thresholds count all paid Forge levels']});
+    const current=require('./permanent-progression.cjs').verify(source);
+    return {status:'PASS',checks:history.checks+current.checks,groups:history.groups.concat([{name:'Exact batches, permanent investments and retirement migration',checks:current.checks,status:'PASS'}]),witnesses:history.witnesses,negativeControls:options.negative?require('./permanent-progression-controls.cjs').verify(source):[],limits:'Superseded command activation/recharge and consumable Refresh behavior is tested as unavailable in the current suite; original history/recovery/claim-price coverage is retained.'};
+  }
   const report={status:'RUNNING',checks:0,groups:[],witnesses:[],negativeControls:[]};
   if(options.progress)options.progress(report);
   const eq=(a,b,label)=>{assert.deepEqual(a,b,label);report.checks++;};
   const ok=(value,label)=>{assert(value,label);report.checks++;};
-  function group(name,fn){report.currentGroup=name;const before=report.checks;fn();report.groups.push({name,checks:report.checks-before,status:'PASS'});}
+  function group(name,fn){if(options.groups&&!options.groups.includes(name))return;report.currentGroup=name;const before=report.checks;fn();report.groups.push({name,checks:report.checks-before,status:'PASS'});}
   function unchanged(e,before,label,attempts=true){
     eq(e.q.get(),before.state,label+' live endpoint');eq(Array.from(e.storage),before.slots,label+' raw slots');
     eq(e.q.runToken()===before.token,true,label+' original run token identity');
@@ -66,12 +71,12 @@ function runCore(source,options={}){
   }
   group('fresh schema, fixed catalog and historical reward policy',()=>{
     const e=app(source),q=e.q,s=q.get();
-    eq(q.schema(),5,'schema5 is actual');eq(s.schemaVersion,5,'fresh schema5');
+    eq(q.schema(),source.includes('var ASTRAL_UPGRADES=')?6:5,'actual protected schema');eq(s.schemaVersion,q.schema(),'fresh protected schema');
     eq(s.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},'three separate raw level fields');
     eq(commandOnlyFields(s),{charges:0,work:0,used:false,called:false,events:emptyEvents()},'no gifts/events on fresh load');
     eq(s.cometClaims,{policy:POLICY,retired:{comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'},deeds:{}},'closed fresh ledger');
     eq(s.owned.meteor,false,'Meteor unowned');eq(s.owned.starcall,false,'Call unowned');
-    eq(q.shopDefs().map(r=>r.id),CATALOG.map(r=>r.id),'exact six-row catalog');
+    eq(q.shopDefs().map(r=>r.id),q.schema()>=6?['autoascend','astralcore','astralecho','astralconvergence']:CATALOG.map(r=>r.id),'exact current permanent catalog');
     eq(q.achievementDefs().slice(0,27).map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'all23 old rewards/order plus four fixed rewards retained in original order');
     eq(q.achievementDefs().length,76,'49 additional long-tail milestones are appended');
     eq(OLD_DEEDS.reduce((n,r)=>n+r[1],0),683,'old pool');eq(NEW_DEEDS.reduce((n,r)=>n+r[1],0),50,'new pool');
@@ -89,7 +94,7 @@ function runCore(source,options={}){
       const old=legacyFixture(q,version,mask,wallet),raw=JSON.stringify(old);
       const ids=RETIRED.filter((_,i)=>mask&(1<<i)).map(([id])=>'retirement:'+id),expected=oracle.settleKnownClaims(wallet,ids);
       const accepted=q.accept(old,'synthetic-old'+version);
-      eq(JSON.stringify(old),raw,'migration preserves input bytes/object');eq(accepted.schemaVersion,5,'ordered migration reaches5');
+      eq(JSON.stringify(old),raw,'migration preserves input bytes/object');eq(accepted.schemaVersion,q.schema(),'ordered migration reaches current protected schema');
       eq(accepted.comets,expected.wallet,'fixed once retirement amount');eq(pendingIds(accepted),expected.pendingIds,'unrepresentable identities stay due');
       eq(accepted.owned.meteor,false,'no migrated Meteor');eq(accepted.owned.starcall,false,'no migrated Call');
       eq(accepted.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},'no migrated new levels');
@@ -166,9 +171,9 @@ function runCore(source,options={}){
     }
     const corrupt=app(source,[[P,'{corrupt'],[R,JSON.stringify(valid)]]);
     eq(corrupt.q.persistenceStatus().blocked,false,'ordinary corrupt primary keeps old repair semantics');eq(JSON.parse(corrupt.storage.get(P)),valid,'ordinary recovery repairs primary');
-    const future=clone(valid);future.schemaVersion=6;const futureRaw=JSON.stringify(future),futureLoaded=app(source,[[P,futureRaw],[R,JSON.stringify(valid)]]);
+    const future=clone(valid);future.schemaVersion=q.schema()+1;const futureRaw=JSON.stringify(future),futureLoaded=app(source,[[P,futureRaw],[R,JSON.stringify(valid)]]);
     eq(futureLoaded.q.persistenceStatus().blocked,true,'future schema remains separate blocked case');eq(futureLoaded.storage.get(P),futureRaw,'future primary unchanged');
-    const over=ownedFixture(q);over.cometUpgrades={cometreservoir:1e30,cometcycle:9,meteorcore:7};
+    const over=ownedFixture(q);if(q.schema()>=6)over.schemaVersion=5;over.cometUpgrades={cometreservoir:1e30,cometcycle:9,meteorcore:7};
     const accepted=q.accept(over);eq(accepted.cometUpgrades,over.cometUpgrades,'raw overcaps never rewritten');eq(q.capacity(accepted),3,'capacity effective cap');eq(q.workPerKill(accepted),40,'Engine effective cap');eq(q.upgradeLevel('meteorcore',accepted),4,'Core effective cap');
     eq(q.get(),valid,'all alternate snapshot validation is independent of global state');
     report.witnesses.push({id:'strict-schema',invalidCases:bad.map(x=>({id:x.id,code:x.code})),overcaps:accepted.cometUpgrades});
@@ -411,7 +416,7 @@ function runCore(source,options={}){
     for(const [id,below,at]of [['autotap',11,12],['labmaster',19,20],['labqueue',59,60]]){
       const s=fixture(q);s.achieved[id]=false;
       if(id==='autotap')s.ascendCount=below;else{Object.keys(s.research).forEach(key=>{s.research[key]=0;});s.research.focus=below-15;s.research.arcanecal=10;s.research.spillway=5;}
-      s.owned.meteor=true;s.owned.starcall=true;s.cometUpgrades={cometreservoir:2,cometcycle:3,meteorcore:4};
+      s.owned.meteor=true;s.owned.starcall=true;s.cometUpgrades={cometreservoir:2,cometcycle:3,meteorcore:4};if(q.schema()>=6)s.schemaVersion=5;
       q.set(s);eq(q.achievementDefs().find(row=>row.id===id).check(q.get()),false,'all paid levels remain below '+id+' threshold');
       eq(q.applyAchievements().some(row=>row.id===id),false,'real old Deed owner stays locked below '+id);
       if(id==='autotap')q.get().ascendCount=at;else q.get().research.focus=at-15;

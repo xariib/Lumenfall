@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const C=require('./comet-expansion-harness.cjs'),F=require('./forge-expansion-harness.cjs'),{integer}=require('./amount-oracle.cjs');
-const source=fs.readFileSync(process.argv[2]||'index.html','utf8');let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert.ok(v,m);},clone=C.clone;
+function verify(source){let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert.ok(v,m);},clone=C.clone;
 function ready(q){const s=C.seed(q);s.maxDepthEver=5000;s.comets=1e9;return s;}
 {
  const q=F.app(source).q;
@@ -36,4 +36,5 @@ for(const [id,depth,base]of catalog)for(let level=0;level<=10;level++){
 {
  const e=C.app(source),q=e.q,s=ready(q);q.set(s);const original=clone(q.get());for(const bad of [0,-1,10,100,101,102,1.5,NaN,Infinity,'87',null]){const before=clone(q.get());eq(q.selectFarm(bad),false,'invalid farm '+bad);eq(q.get(),before,'invalid target mutation-free');}for(const depth of [87,89,1,99]){ok(q.selectFarm(depth),'cleared Farm '+depth);eq(q.get().farmDepth,depth,'selected target');eq(q.get().farmReturnDepth,101,'saved Push frontier');eq(q.get().maxDepthEver,original.maxDepthEver,'lifetime frontier unchanged');eq(q.get().prisms,original.prisms,'no Prisms');eq(q.get().ascendCount,original.ascendCount,'no implicit Ascend');ok(q.save(),'Farm saved');q.load();eq(q.get().farmDepth,depth,'target reload');const before=clone(q.get());e.fail(true,true);eq(q.selectFarm(depth===1?2:1),false,'failed save rejects switch');eq(q.get(),before,'failed switch restores encounter');e.fail(false,false);}ok(q.enterPush(),'return Push');eq(q.get().depth,101,'correct return');eq(q.get().farmDepth,0,'Farm cleared');
 }
-console.log(JSON.stringify({status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
+return {status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')};}
+module.exports={verify};if(require.main===module)console.log(JSON.stringify(verify(fs.readFileSync(process.argv[2]||'index.html','utf8'))));

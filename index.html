@@ -4452,7 +4452,11 @@ function getCometBuyPlan(input){
 }
 function getCometCommandPlan(id){return {id:id,owned:false,available:false,reason:'retired',cost:0};}
 
-function cometRecordDefeats(count,called){}
+function cometRecordDefeats(count,called){
+  // Settle only an already saved legacy Call target; no command can activate
+  // and no kill can create recharge work or charges.
+  if(Amount.gt(count,0)&&called&&state.cometCalled&&state.owned.starcall)state.cometEvents.calledKill=true;
+}
 
 function activateCometCommand(id){return false;}
 
@@ -9547,7 +9551,7 @@ function studySpeedMarkup(node,active,maxed){
 // Native controls stay attached while their project and other cards refresh.
 function replaceStudyMarkup(html){
   var root=els['study-list'],input=document.activeElement;
-  var isChoice=input && input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status]');
+  var isChoice=input && input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status],[data-study-speed-open]');
   var card=isChoice && root.contains(input) && input.closest('[data-running-study],[data-study-card]');
   var prepared=document.createElement('div');prepared.innerHTML=html;
   var orderedSlots=prepared.querySelector('.study-slots');
@@ -9710,8 +9714,9 @@ function renderLongStudies(){
   }
   // Beginning removes its button; keep focus on this Study's visible card action.
   if(focusedBegin && findActiveStudy(focusedBegin)){
-    var beganSelector=els['study-list'].querySelector('[data-study-speed-target="'+focusedBegin+'"]');
-    beganSelector=els['study-list'].querySelector('[data-study-boost-status="'+focusedBegin+'"]') || beganSelector;
+    var beganWork=findActiveStudy(focusedBegin);
+    var beganSelector=beganWork&&els['study-list'].querySelector('[data-study-speed-open="'+beganWork.slot+'"]');
+    beganSelector=beganSelector||els['study-list'].querySelector('[data-study-boost-status="'+focusedBegin+'"]');
     if(beganSelector) beganSelector.focus({preventScroll:true});
   }
   // Keep inline controls focused. If completion removes the card or a

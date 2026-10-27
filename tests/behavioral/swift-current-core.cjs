@@ -71,7 +71,7 @@ if(process.env.SWIFT_QA_BASELINE){
 }else{
 test('schema4 protects exact refunds from old schema3 readers and rejects lost current receipts',()=>{
   const b=app().b,s=seed(b,11);s.shards=1e30;b.set(s);const accepted=copy(b.get());
-  assert.equal(accepted.schemaVersion,5);assert.equal(accepted.swiftRecoveryMigrationPending,undefined);
+  assert.equal(accepted.schemaVersion,6);assert.equal(accepted.swiftRecoveryMigrationPending,undefined);
   const oldHtml=fs.readFileSync(path.resolve(__dirname,'../../docs/qa/swift-current-001/baseline-21394fff.html'),'utf8');
   assert.equal(crypto.createHash('sha256').update(oldHtml).digest('hex'),'941a70beb8b41008077fbca0af2a568968dfbdd6a8c1c1f4333b83f0ffdd9a1c');
   const old=app(oldHtml);assert.throws(()=>old.b.normalize(accepted),{code:'unsupported-future-schema'});
@@ -80,7 +80,7 @@ test('schema4 protects exact refunds from old schema3 readers and rejects lost c
   const lost=copy(accepted);delete lost.swiftRecoveryRefund;delete lost.swiftRecoveryRefundAudit;
   assert.throws(()=>b.normalize(lost),{code:'invalid-swift-refund'},'current schema cannot initialize another refund after both proofs disappear');
   const historical=b.fresh();historical.schemaVersion=3;historical.research.charge=11;historical.shards=43;b.set(historical);
-  assert.equal(b.get().shards,2445);assert.equal(b.get().schemaVersion,5);assert.deepEqual(b.normalize(b.get()),b.get());
+  assert.equal(b.get().shards,2445);assert.equal(b.get().schemaVersion,6);assert.deepEqual(b.normalize(b.get()),b.get());
 });
 test('cap and effective cycle at 0..10, huge legacy levels and direct forged-node handler',()=>{
   const b=app().b;assert.equal(b.node().levelCap,10);
