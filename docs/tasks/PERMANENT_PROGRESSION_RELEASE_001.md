@@ -34,3 +34,9 @@ farming and saved progression.
 Current delivery and automated validation are tracked by GitHub Actions and the
 repository's Releases page. Keep this task open until the APK is available and
 the remaining device acceptance is recorded.
+
+## Verified delivery — 27 October 2026
+
+Status: Android 0.2.48 published and anonymously download-verified. Physical-device acceptance remains open. Release source 0f2445e342cf9de2ff07b1fe36438315cdde691d; product SHA-256 c2107fc911ec39984bf39d03847f49c4c67997b259baf611489ca115495f66f1. All seven exact-source integrated workflows and both complete pre-merge jobs (189+1 scenarios) pass. The publishing workflow's unchanged CI gate, signing, exact packaged-assets, installed-upgrade and receipt checks pass before publication. [Release](https://github.com/xariib/Lumenfall/releases/tag/android-1000048) · [Complete concise evidence](../qa/permanent-progression-ui-001/release.json).
+
+The public stable APK matches the checksum and installed-upgrade receipt; its actual certificate and all15 assets were independently verified. Both saves and paid progression survive the installed emulator update. Final documentation/evidence updates preserve product, tests and workflows; they do not require a new binary. Next: physical-phone installation and interaction, exact WebView60 DOM, TalkBack and human pacing acceptance. The owner chat remains open for these results.

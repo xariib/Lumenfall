@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "verifiedAt": "2026-10-27T11:49:46.051Z",
+  "sourceCommit": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+  "sourceHtmlSha256": "c2107fc911ec39984bf39d03847f49c4c67997b259baf611489ca115495f66f1",
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000048",
+  "tag": "android-1000048",
+  "versionName": "0.2.48",
+  "versionCode": 1000048,
+  "apk": "https://github.com/xariib/Lumenfall/releases/download/android-1000048/Lumenfall.apk",
+  "stableDownload": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+  "apkSha256": "7c1450dc72c36afe06132078686a89516feaeeb08ee384ef8ac98c8815302553",
+  "bytes": 7059092,
+  "anonymousDownload": true,
+  "resolvedHost": "release-assets.githubusercontent.com",
+  "exactPackagedAssets": 15,
+  "package": "com.lumenfall.app",
+  "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+  "certificateExtractedFromDownloadedApk": true,
+  "signatureValidityVerifiedInBoundBuild": true,
+  "nativeUpgradeReceiptBoundToExactApk": true,
+  "installedEmulator": {
+    "status": "PASS",
+    "baselineVersionCode": 158,
+    "candidateVersionCode": 1000048,
+    "uidRetained": true,
+    "bothSaveSlotsRetained": true,
+    "progressAndPaidStudyRetained": true,
+    "legacyCometEntitlementsRetained": true,
+    "origin": "https://localhost",
+    "physicalDevice": false
+  },
+  "physicalPhone": "unverified",
+  "exactWebView60Dom": "unverified",
+  "talkBack": "unverified",
+  "humanPacing": "unverified",
+  "nativeBuild": {
+    "id": 40498129270,
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/40498129270",
+    "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+    "number": 48,
+    "conclusion": "success",
+    "job": [
+      {
+        "id": 122168697584,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/40498129270/job/122168697584"
+      }
+    ]
+  },
+  "integratedValidation": [
+    {
+      "id": 40484895582,
+      "name": "Pre-merge validation",
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 2,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40484895582"
+    },
+    {
+      "id": 40485032963,
+      "name": "Comet shop and Deeds validation",
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40485032963"
+    },
+    {
+      "id": 40485209537,
+      "name": "Rift Forge expansion validation",
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40485209537"
+    },
+    {
+      "id": 40485361942,
+      "name": "Research Lab expansion validation",
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40485361942"
+    },
+    {
+      "id": 40485426583,
+      "name": "Shared UI layout validation",
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40485426583"
+    },
+    {
+      "id": 40485482246,
+      "name": "Ascension Tree focused validation",
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40485482246"
+    },
+    {
+      "id": 40485546395,
+      "name": "Permanent progression and direct cards validation",
+      "path": ".github/workflows/permanent-progression-validation.yml",
+      "headSha": "0f2445e342cf9de2ff07b1fe36438315cdde691d",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40485546395"
+    }
+  ],
+  "fullRegressionJobs": [
+    {
+      "id": 122146155015,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40484895582/job/122146155015"
+    },
+    {
+      "id": 122146157216,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40484895582/job/122146157216"
+    }
+  ],
+  "mainScenarios": 189,
+  "isolatedOfflineScenarios": 1,
+  "prePublicationTestBuild": "https://github.com/xariib/Lumenfall/actions/runs/40487175872",
+  "priorValidationAttempt": {
+    "runId": 40484895582,
+    "attempt": 1,
+    "conclusion": "cancelled",
+    "reason": "Operator mistook stale browser log lines for a stalled test; completed log proves ongoing progress. Only the validation job was rerun on identical source; no assertion, deadline or gate was weakened."
+  },
+  "deliveryDocumentationChecks": {
+    "status": "PASS",
+    "tasks": 19
+  }
+}

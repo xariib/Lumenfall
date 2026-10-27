@@ -1,6 +1,6 @@
 # Lumenfall — current delivery status
 
-27 October: [Permanent progression](tasks/PERMANENT_PROGRESSION_UI_001.md), [PR14](https://github.com/xariib/Lumenfall/pull/14): direct upgrades, compact Lab, selectable Farm Rifts, exact Forge batches and permanent Comet paths. Signed test0.2.45 passes installed Android acceptance; final CI/integration tracked in PR14. Public0.2.43 remains; no new APK release.
+27 October: [Permanent progression](tasks/PERMANENT_PROGRESSION_UI_001.md) released as **Android 0.2.48**. Seven gates, 189+1 scenarios, installed Android upgrade and public APK verification PASS. Both saves/paid work retained. [Evidence](qa/permanent-progression-ui-001/release.json). Phone/WebView60/TalkBack/pacing remain open.
 
 26 October 2026: [Workshop/card clarity](tasks/WORKSHOP_CARD_CLARITY_001.md)
 merged through [PR #13](https://github.com/xariib/Lumenfall/pull/13) at bba2db5e.
