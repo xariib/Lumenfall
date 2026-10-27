@@ -1,0 +1,214 @@
+{
+  "baseline": "cc03df4972808666436eb0386515d20e88d04255",
+  "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+  "node": "v24.22.1",
+  "checks": {
+    "core": {
+      "status": "PASS",
+      "checks": 78,
+      "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+      "endpoints": [
+        {
+          "mode": "push",
+          "kind": "live",
+          "kills": 73,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 105,
+          "stateSha256": "e14167484d1e66b3634b08f8001ca589b0c55fb66551000475c66bdc1fcf887e"
+        },
+        {
+          "mode": "push",
+          "kind": "offline",
+          "kills": 73,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 105,
+          "stateSha256": "e14167484d1e66b3634b08f8001ca589b0c55fb66551000475c66bdc1fcf887e"
+        },
+        {
+          "mode": "auto",
+          "kind": "live",
+          "kills": 35223253861169,
+          "ascends": 1174108462039,
+          "prisms": 2348216924087,
+          "depth": 30,
+          "stateSha256": "5ffaa475bb403940d7a9728074429fd7a9a568b47f9c6e76b6a10f8e25bf398d"
+        },
+        {
+          "mode": "auto",
+          "kind": "offline",
+          "kills": 35223253861169,
+          "ascends": 1174108462039,
+          "prisms": 2348216924087,
+          "depth": 30,
+          "stateSha256": "5ffaa475bb403940d7a9728074429fd7a9a568b47f9c6e76b6a10f8e25bf398d"
+        },
+        {
+          "mode": "farm",
+          "kind": "live",
+          "kills": 22,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 32,
+          "stateSha256": "f4d4128f349e7a4203fe301283289205c7e1a85b78c63fee4608006fb8f95e70"
+        },
+        {
+          "mode": "farm",
+          "kind": "offline",
+          "kills": 22,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 32,
+          "stateSha256": "f4d4128f349e7a4203fe301283289205c7e1a85b78c63fee4608006fb8f95e70"
+        }
+      ],
+      "limits": "Controlled DOM and deadlines with full production simulation. Actual browser geometry/motion, Android and physical phone remain separate."
+    },
+    "pacing": {
+      "status": "PASS",
+      "checks": 221,
+      "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+      "income": [
+        {
+          "depth": 32,
+          "seconds": 60,
+          "kills": 140,
+          "lumen": 19740,
+          "shards": 2240
+        },
+        {
+          "depth": 51,
+          "seconds": 60,
+          "kills": 140,
+          "lumen": 143360,
+          "shards": 11340
+        },
+        {
+          "depth": 101,
+          "seconds": 60,
+          "kills": 140,
+          "lumen": 26433960,
+          "shards": 842800
+        },
+        {
+          "depth": 501,
+          "seconds": 60,
+          "kills": 123,
+          "lumen": 470412500010,
+          "shards": 2665301514
+        }
+      ],
+      "limitations": "Synthetic high-power farming, independent mathematical bounds and chronological/persistence regressions; not a year-long player cohort or physical Android acceptance."
+    },
+    "farm-recap": {
+      "status": "PASS",
+      "checks": 353,
+      "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+      "records": [
+        {
+          "chunk": 14400,
+          "lumenGained": 4628836.500000001,
+          "shardGained": 550443,
+          "kills": 50400,
+          "autoTaps": 14400,
+          "empowers": 123,
+          "motesGained": 864,
+          "luminousKills": 1512,
+          "lumen": 15859808.49997822,
+          "shards": 4026523.000008681
+        },
+        {
+          "chunk": 60,
+          "lumenGained": 4628836.500000001,
+          "shardGained": 550443,
+          "kills": 50400,
+          "autoTaps": 14400,
+          "empowers": 123,
+          "motesGained": 864,
+          "luminousKills": 1512,
+          "lumen": 15859808.49997822,
+          "shards": 4026523.000008681
+        },
+        {
+          "chunk": 300,
+          "lumenGained": 4628836.500000001,
+          "shardGained": 550443,
+          "kills": 50400,
+          "autoTaps": 14400,
+          "empowers": 123,
+          "motesGained": 864,
+          "luminousKills": 1512,
+          "lumen": 15859808.49997822,
+          "shards": 4026523.000008681
+        }
+      ],
+      "limits": "Original four-hour fixture and tolerances, unchanged native wallets; modern headless arithmetic is not Android acceptance."
+    },
+    "live-offline": {
+      "status": "PASS",
+      "checks": 1036,
+      "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+      "automationEnabled": true,
+      "literal": false,
+      "coldFrames": false,
+      "records": [
+        {
+          "developing": false,
+          "seconds": 60,
+          "frame": 0.5,
+          "wallMs": 9332.734996000001,
+          "wholeIterations": 3366,
+          "ascends": 4568266
+        },
+        {
+          "developing": true,
+          "seconds": 10,
+          "frame": 0.1,
+          "wallMs": 3294.931992,
+          "wholeIterations": 313,
+          "ascends": 7229
+        }
+      ],
+      "limits": "Focused live/split parity and paid expiry. Broader campaigns, mature8h throughput and Android/device acceptance remain separate."
+    },
+    "offline-reference": {
+      "sourceSha256": "3f34932629f50ddcfa095c0832e8d8df51308d0930dfd4eb70d53e2ecebcf120",
+      "oracle": "Independent one-second advance calls, fixed whole-window start",
+      "phases": [
+        {
+          "kills": 86404,
+          "ascends": 4114,
+          "prisms": 94622,
+          "stateSha256": "8f2522628a1ee7721661ed34a5abbb79829675fc85f8e5b1edc5fd400be8b758"
+        },
+        {
+          "kills": 86401,
+          "ascends": 4114,
+          "prisms": 94622,
+          "stateSha256": "283ddaf0570779d81674ba423e228d9e1889ef5e99141187ece850074ceaf491"
+        },
+        {
+          "kills": 86396,
+          "ascends": 4114,
+          "prisms": 94622,
+          "stateSha256": "8cc504cd62ced2e83e0a8b0075fdf5e12d0a65da6c5c24739afe9cc583fdf9cf"
+        },
+        {
+          "kills": 86405,
+          "ascends": 4115,
+          "prisms": 94645,
+          "stateSha256": "85a2bc90488632030cfad0277d4eadd075ddf744ae55ec61e88ae6556f47005f"
+        }
+      ]
+    },
+    "tooling": {
+      "output": "PASS archive integrity: stored/deflated ZIP CRC, truncation, hash and symlink escape controls\nPASS: restored 96 files; tree 758d9a3f5baee9fd49a5acfaa0e11d13e746b7ef to /tmp/lumenfall-node-tools-i23nYu/candidate\nPASS candidate recovery: 96 exact files/modes, tree 758d9a3f5baee9fd49a5acfaa0e11d13e746b7ef, overwrite and overlap rejection\nRestored 66 verified payloads to /tmp/lumenfall-node-tools-i23nYu/package\nPASS package recovery: 66 byte-identical logical payloads\nPASS APK identity: real subprocess arguments, complete identity, wrong signer and tool failure rejection\nAndroid versionCode=134, versionName=0.1.134\nPASS Android version support: expected fields and invalid build-number rejection\n\nBrowser smoke test passed: game initialized without uncaught runtime errors at a 390x844 mobile viewport.\n<html data-ci-runtime-error=\"uncaught-error\"><script id=\"ci-runtime-error-guard\"></script><main class=\"rift-scroll-locked\" data-zone-index=\"0\"></main><div id=\"enemy-name\">Enemy</div><div id=\"hud-lumen\">0</div></html>\n<html data-ci-runtime-error=\"unhandled-rejection\"><script id=\"ci-runtime-error-guard\"></script><main class=\"rift-scroll-locked\" data-zone-index=\"0\"></main><div id=\"enemy-name\">Enemy</div><div id=\"hud-lumen\">0</div></html>\nInstalled CI-only runtime error guard in staged HTML.\nPASS source/smoke gates: missing/duplicate IDs, syntax failure and runtime error rejection\nPASS: 29 entrypoints, 48 local Markdown links, shared startup 20696 bytes; startup with docs/tasks/.context-check-5F4L3t/feature.md 20750 bytes\nPASS feature checkpoints: real task links/budget and missing, misplaced, traversal/symlink, broken-link and oversized task rejection\nPASS local server: real requests and traversal/symlink rejection\nNode tooling checks passed."
+    }
+  },
+  "browser": {
+    "status": "blocked locally before application startup",
+    "reason": "Chrome 156 process_singleton_posix.cc: socket() failed: Operation not permitted; native browser acceptance delegated to existing GitHub CI runner."
+  },
+  "limits": "Self-review and automated checks only. No APK publication or physical phone, WebView60, TalkBack or human pacing acceptance."
+}

@@ -36,6 +36,13 @@ jobs:
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test
 
+      - name: Stable Auto Ascend summaries and unchanged committed rewards
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/AUTO_ASCEND_FEEDBACK_001.md
+          mkdir -p validation-evidence/auto-ascend-feedback
+          node tests/behavioral/auto-ascend-feedback.cjs index.html --negative > validation-evidence/auto-ascend-feedback/core.json
+          node tests/behavioral/auto-ascend-feedback-mobile.cjs validation-evidence/auto-ascend-feedback/mobile
+
       - name: Progression pacing and explicit Farm intent
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_PACING_001.md
