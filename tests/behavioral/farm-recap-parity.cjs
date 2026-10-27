@@ -5,9 +5,9 @@ const file=process.argv[2]||'index.html',original=fs.readFileSync(file,'utf8');
 let source=original,checks=0;
 const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);};
 function near(a,b,m){checks++;assert(Math.abs(a-b)<=Math.max(1e-6,Math.max(Math.abs(a),Math.abs(b))*1e-12),m+' '+a+' vs '+b);}
-const condition="if(state.riftMode==='farm' && typeof value==='number' && typeof gain==='number'";
+const condition="if(summary._farmCreditError && state.riftMode==='farm' && typeof value==='number' && typeof gain==='number'";
 if(process.env.FARM_RECAP_MUTANT){assert.equal(source.split(condition).length,2);source=source.replace(condition,"if(false && typeof value==='number' && typeof gain==='number'");}
-source=source.replace("if(document.readyState==='loading'){","window.endlessQa={credit:simulationCreditFarmSummary};if(document.readyState==='loading'){");
+source=source.replace("if(document.readyState==='loading'){","window.endlessQa={credit:simulationCreditFarmSummary,summary:simulationSummary};if(document.readyState==='loading'){");
 const fixture=JSON.parse(fs.readFileSync('tests/behavioral/fixtures.json','utf8'))['parity-long-high-power'].save;
 const records=[];
 for(const chunk of [14400,60,300]){
@@ -34,13 +34,16 @@ eq(direct.state.shards,4026523.000008681,'original ordered native Shard wallet')
 eq(direct.summary.kills,50400,'original complete four-hour kill count');
 {
   const {q}=app(source,undefined,{clockDate:true,retainWrites:false}),s=q.fresh();s.riftMode='farm';s.farmDepth=s.depth=1;s.farmReturnDepth=2;q.set(s);
-  const summary={lumenGained:0};for(let i=0;i<100000;i++)q.endless.credit(summary,'lumenGained',.1);
+  const summary=q.endless.summary(0);for(let i=0;i<100000;i++)q.endless.credit(summary,'lumenGained',.1);
   eq(summary.lumenGained,10000,'independent decimal sum does not accumulate recap drift');
-  eq(JSON.stringify(summary),'{"lumenGained":10000}','internal error is absent from JSON');
+  eq(JSON.parse(JSON.stringify(summary))._farmCreditError,undefined,'internal error is absent from JSON');
   summary.lumenGained=0;q.endless.credit(summary,'lumenGained',.1);eq(summary.lumenGained,.1,'an external replacement invalidates the old compensation');
   q.get().riftMode='push';let expected=summary.lumenGained;
   for(let i=0;i<1000;i++){expected+=.1;q.endless.credit(summary,'lumenGained',.1);}
   eq(summary.lumenGained,expected,'Push retains its original native addition order');
+  const pushSummary=q.endless.summary(0);q.get().riftMode='farm';expected=0;
+  for(let i=0;i<1000;i++){expected+=.1;q.endless.credit(pushSummary,'lumenGained',.1);}
+  eq(pushSummary.lumenGained,expected,'a Push-start window retains native order after automatic Farm retreat');
   q.get().riftMode='farm';summary.lumenGained='1e400';q.endless.credit(summary,'lumenGained',.1);
   eq(summary.lumenGained,'1'+'0'.repeat(400)+'1e-1','wide rewards keep exact decimal credit');
 }

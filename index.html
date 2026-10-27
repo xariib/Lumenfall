@@ -10586,10 +10586,10 @@ function simulationRewardScale(policy){
 }
 function simulationCreditFarmSummary(summary,key,gain){
   var value=summary[key];
-  // Long Farm recaps can contain thousands of fractional credits. Compensate
-  // their summary only; wallets retain their original ordered native credits.
-  if(state.riftMode==='farm' && typeof value==='number' && typeof gain==='number' && Number.isFinite(value+gain) && Math.abs(value+gain)<=Number.MAX_SAFE_INTEGER){
-    if(!summary._farmCreditError)Object.defineProperty(summary,'_farmCreditError',{value:{}});
+  // Farm-start recaps can contain thousands of fractional credits. Compensate
+  // their Farm summary only. Push-start windows (including automatic retreat)
+  // and every wallet retain their original ordered native credits.
+  if(summary._farmCreditError && state.riftMode==='farm' && typeof value==='number' && typeof gain==='number' && Number.isFinite(value+gain) && Math.abs(value+gain)<=Number.MAX_SAFE_INTEGER){
     var memo=summary._farmCreditError[key],error=memo&&memo.value===value?memo.error:0;
     var adjusted=gain-error,total=value+adjusted;
     summary._farmCreditError[key]={value:total,error:(total-value)-adjusted};summary[key]=total;
@@ -10599,7 +10599,7 @@ function simulationCreditFarmSummary(summary,key,gain){
   }
 }
 function simulationSummary(elapsedSec){
-  return {
+  var summary={
     elapsedSec:elapsedSec,
     lumenGained:0, shardGained:0, sigilsGained:0, motesGained:0,
     kills:0, bossKills:0, luminousKills:0, ascends:0, autoTaps:0,
@@ -10607,6 +10607,8 @@ function simulationSummary(elapsedSec){
     achievements:[], retreated:false, retreats:0, retries:0,
     fastForwardedKills:0, iterations:0, ascendGains:[]
   };
+  Object.defineProperty(summary,'_farmCreditError',{value:state.riftMode==='farm'?{}:null});
+  return summary;
 }
 function simulationTimelinePush(summary,elapsedSec,type,detail){
   if(!summary.timeline) return;

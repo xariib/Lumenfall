@@ -78,7 +78,7 @@ Related contracts: [Forge/Lab caps](LAB_FORGE_LONGTAIL_001.md),
 
 ## Checkpoint
 
-Current product SHA-256: `1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df`.
+Current product SHA-256: `ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba`.
 The latest revision changes only Farm recap summation; wallets and gameplay
 credits are identical. Earlier campaign/browser evidence below is bound to
 `6dc24bee`, before this recap-only correction; do not relabel those receipts.
@@ -155,16 +155,26 @@ input helper; long high-Power parity exceeded its original recap tolerance by
 failure; do not increase tolerances or remove the historical arithmetic oracles.
 
 The raw-DPS helper now observes actual uncapped passive Power explicitly. A
-nonserialized compensated sum corrects Farm recap totals only; native wallets,
-Push credits and wide exact credits retain their old policy. The new
+nonserialized compensated sum corrects Farm-start recap totals only; native
+wallets, Push-start windows (including automatic retreat), Push credits and wide
+exact credits retain their old policy. The new
 `farm-recap-parity.cjs` runs the original four-hour fixture at 60/300/14400-second
 partitions, preserves its original tolerance and native endpoint wallets, and
-rejects the old recap implementation. Its 352 checks/control PASS. VM numerical
+rejects the old recap implementation. Its 353 checks/control PASS. VM numerical
 356 and conservation 15,899 checks with original causal controls PASS. Focused
-pacing 221 and Forge 9,335/25 controls PASS on `1ac463ff`.
+pacing 221 and Forge 9,335/25 controls PASS again on narrowed `ce4223a7`.
+Lab boundary 2,346, actual V8 6.0 Forge 2,486 and all 14 clock controls PASS.
+The complete original offline regression (all 18 records/five groups) PASS
+locally with unchanged assertions. All four independent 8h windows are rebound
+and retain the original outcomes. [Current evidence](../qa/progression-pacing-001/recap-scope.json).
 [Latest focused evidence](../qa/progression-pacing-001/recap-fix.json).
 
-Next: publish this recap correction and renewed independent source binding,
+At head `8af118e2`, isolated offline job `122244703196` in run `40520146329`
+caught the broader `1ac463ff` recap changing a frozen Push-start total by one ULP.
+The original exact assertion is retained; `ce4223a7` limits compensation to
+Farm-start windows, with a new explicit Push-start/automatic-retreat control.
+
+Next: publish this narrowed recap correction and renewed independent source binding,
 require seven green workflows on the resulting PR head, then integrate and
 verify the exact tree/source on main. App/device and human pacing acceptance
 remain open; no APK has been published by this task.
