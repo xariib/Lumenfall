@@ -217,6 +217,9 @@ window.runP207PersistenceReview = function(b,ctx,assert){
 
 window.runP207FarmReview = function(b,ctx,assert,parity,summaryParity,isolated){
   var seed=b.getState(),clock=2000000000000,t=b.formationTest;
+  // The integrated case represents an automatic Boss retreat. The isolated
+  // case is a player's explicit Farm choice and must never retry on its own.
+  seed.farmAutoResume=!isolated;
   seed.researchQueue.arcanecal=true;b.setState(seed);seed=b.getState();
   // A non-Boss Push return has no automatic Boss retry path, regardless of
   // power growth. Keep automation/Auto-Ascend enabled and the medium economy.

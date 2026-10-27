@@ -55,16 +55,20 @@ function verify(html) {
   eq(check(original, .70 + 2 * .05, 'original fractional-wallet reproduction', 33), 31,
     '31 kills pay 14000 Lumen / 500 Shards; the old predictor incorrectly returned 32');
 
-  // Exercise the authoritative clock as well as the predictor. High but valid
-  // Wisp power reaches this purchase before the first ability/timer boundary.
+  // Exercise the authoritative clock as well as the predictor. A Support-only
+  // formation isolates passive kills: its casts never defeat an extra enemy.
+  // Use the new 2 kills/s policy, not the removed unbounded damage conversion.
   const running = clone(original);
-  running.spirits.ember = 1000; running.activeParty = ['ember'];
+  running.spirits.tide = 1000; running.activeParty = ['tide'];
+  // Binary-exact 75% rewards isolate the timestamp assertion from repeated
+  // decimal-wallet rounding across fifteen seconds. The original fractional
+  // 31-kill reproduction above remains unchanged and independently exercised.
+  running.nodes.echo=1;running.longStudyLevels.luminousdistill=0;
+  running.lumen=13697.75;running.shards=453.5;
   running.enemyHp = running.enemyMaxHp = Math.round(10 * Math.pow(1.145, 9));
   q.set(running);
-  const purchaseAt = 31 * running.enemyMaxHp / q.power();
-  // Keep the original31-kill boundary after the approved power increase:
-  // the old fixed microsecond margin now includes eight additional kills.
-  const margin=Math.min(1e-6,running.enemyMaxHp/q.power()/1000);
+  const purchaseAt = 31 / 2;
+  const margin=1e-6;
   const simulated = q.advance(purchaseAt + margin, {kind:'offline', clockStartMs:running.lastSeen, captureTimeline:true});
   eq(simulated.kills, 31, 'authoritative timeline ends after exactly 31 kills');
   eq(simulated.studiesStarted, 1, 'authoritative offline queue starts without waiting for kill 32');

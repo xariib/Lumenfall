@@ -1,0 +1,97 @@
+{
+  "productSha256": "ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba",
+  "status": "PASS",
+  "scope": "Compensate Farm portions of Farm-start recap windows; preserve original ordered native wallets, Push-start windows including automatic retreat, and exact wide credits.",
+  "regression": {
+    "previousHead": "8af118e2171ad817baa8b4d85dfd1b7bf833b6d9",
+    "runId": 40520146329,
+    "jobId": 122244703196,
+    "oldFailure": "Unintended one-ULP historical Push-start recap change: 4070006203089.6006 versus 4070006203089.6. Original exact assertion retained."
+  },
+  "recap": {
+    "checks": 353,
+    "negativeControls": 1,
+    "originalFourHourTolerance": {
+      "absolute": 0.000001,
+      "relative": 1e-12
+    },
+    "lumenGain": 4628836.500000001,
+    "shardGain": 550443,
+    "kills": 50400,
+    "walletLumen": 15859808.49997822,
+    "walletShards": 4026523.000008681
+  },
+  "pacing": {
+    "checks": 221,
+    "negativeControls": 5
+  },
+  "forge": {
+    "assertions": 9335,
+    "negativeControls": 25
+  },
+  "labBoundary": {
+    "checks": 2346
+  },
+  "legacyForge": {
+    "node": "v8.3.0",
+    "v8": "6.0.286.52",
+    "checks": 2486
+  },
+  "clockControls": {
+    "status": "PASS",
+    "controls": 14
+  },
+  "offline": {
+    "status": "pass",
+    "sourceSha256": "ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba",
+    "originalTestSha256": "5d9777a130dd22a0383768a7a126ba9436ef2de0092e67006f421fd2fa6d521f",
+    "wallMs": 194108.965068,
+    "execution": "All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged",
+    "records": 18,
+    "groups": [
+      {
+        "id": "long-windows",
+        "wallMs": 193988.112987,
+        "records": 8,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "short-boundaries",
+        "wallMs": 40425.242274000004,
+        "records": 2,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "rollback-recovery",
+        "wallMs": 129056.130206,
+        "records": 4,
+        "extraSetupRecords": [
+          {
+            "case": "ON Clear21",
+            "seconds": 28800,
+            "batch": 256,
+            "batches": 369,
+            "kills": 86404,
+            "ascends": 4114,
+            "iterations": 94633,
+            "earned": 368583741.6000981
+          }
+        ]
+      },
+      {
+        "id": "processing-time",
+        "wallMs": 108304.298457,
+        "records": 2,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "wall-clock",
+        "wallMs": 80614.74440599998,
+        "records": 2,
+        "extraSetupRecords": []
+      }
+    ]
+  },
+  "reference": "Independent four 8h one-second windows retain every original kill/Ascend/Prism outcome; renewed binding in tests/behavioral/offline-swift-current-golden.json.",
+  "limitations": "Full final-head CI and integrated source verification still required; no APK/physical-device/year-long pacing acceptance."
+}

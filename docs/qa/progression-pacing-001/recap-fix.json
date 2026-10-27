@@ -1,0 +1,100 @@
+{
+  "productSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df",
+  "status": "PASS",
+  "ciFailure": {
+    "runId": 40510871105,
+    "head": "4ae88295628a59f5ae9a6a593040e9da58e4df0b",
+    "failures": [
+      "lab-motes-numerical: raw-DPS observation still used the capped policy",
+      "lab-motes-runtime: same raw-DPS helper",
+      "parity-long-high-power: recap gained 5.09e-6 Lumen rounding error, exceeding the original 1e-6/1e-12 tolerance"
+    ]
+  },
+  "records": [
+    {
+      "name": "pacing",
+      "status": "PASS",
+      "checks": 221,
+      "sourceSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df"
+    },
+    {
+      "name": "recap",
+      "status": "PASS",
+      "checks": 352,
+      "sourceSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df"
+    },
+    {
+      "name": "forge",
+      "status": "PASS",
+      "checks": 9335,
+      "sourceSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df",
+      "negativeControls": 25
+    },
+    {
+      "name": "cycle-batch",
+      "status": "PASS",
+      "checks": 94,
+      "sourceSha256": "7e8014e57410a04c2809e4d4b3b8c599ae03172464073cad5adab0374b7c397a",
+      "wallMs": 1073.671703
+    },
+    {
+      "name": "cycle-boundaries",
+      "status": "PASS",
+      "checks": 136,
+      "sourceSha256": "7e8014e57410a04c2809e4d4b3b8c599ae03172464073cad5adab0374b7c397a"
+    },
+    {
+      "name": "cycle-persistence",
+      "status": "PASS",
+      "checks": 24,
+      "sourceSha256": "7e8014e57410a04c2809e4d4b3b8c599ae03172464073cad5adab0374b7c397a"
+    },
+    {
+      "name": "cycle-automation",
+      "status": "PASS",
+      "checks": 112,
+      "sourceSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df"
+    },
+    {
+      "name": "transitions",
+      "status": "PASS",
+      "checks": 6,
+      "sourceSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df"
+    },
+    {
+      "name": "permanent-offline",
+      "status": "pass",
+      "checks": 214,
+      "sourceSha256": "1ac463ff61a6c67cf81ded90098991c994382b6e5fef893dfa59ef360e4f80df"
+    },
+    {
+      "name": "clock-controls",
+      "status": "PASS",
+      "controls": 14
+    }
+  ],
+  "numericVm": {
+    "arithmeticChecks": 356,
+    "conservationChecks": 15899,
+    "controls": [
+      "both exact old-R2 minima rejected",
+      "old double-round rejected"
+    ],
+    "runtime": {
+      "cases": 40,
+      "checks": 841,
+      "originalControls": 2,
+      "browser": false
+    }
+  },
+  "limits": "Recap compensation only; native wallets, prices and saves unchanged. Earlier 6dc campaign and browser receipts are retained separately; fresh complete CI is required.",
+  "labBoundary": {
+    "checks": 2346
+  },
+  "legacyForge": {
+    "checks": 2486,
+    "node": "v8.3.0",
+    "v8": "6.0.286.52"
+  },
+  "note": "Pinned clock oracle source 7e8014e5 is distinct from the actual 1ac463ff product; only the historical Masterwork numeric input is adapted. Four independent 8h windows reproduce the original kills/Ascends/Prisms and have renewed source binding."
+}

@@ -93,6 +93,22 @@ const cases=String.raw`
   const renderBefore=await ev('JSON.stringify(prismQa.get())');await ev('prismQa.forgeRender();prismQa.forgeRender()');ok(await ev('JSON.stringify(prismQa.get())')===renderBefore,'full catalog rendering is pure');
   const locked=copy(seed);locked.maxDepthEver=1;locked.depth=locked.enemyDepth=1;await install(locked);
   for(const id of added){const d=nodes.find(n=>n.id===id),m=await ev('({disabled:document.querySelector('+JSON.stringify(selector('data-research',id))+').disabled,text:document.querySelector('+JSON.stringify(selector('data-forge-card',id))+').textContent})');ok(m.disabled&&m.text.includes(d.name)&&m.text.includes('Unlocks at Rift '+d.unlockDepth),'named locked row and requirement '+id);}
+  // Purchased Masterwork is retained at a development boundary, with a precise
+  // next Rift and no price. Queue remains operable while the next band is locked.
+  const band=copy(seed);band.maxDepthEver=70;band.research.masterwork=5;
+  for(const depth of [70,119]){
+   band.maxDepthEver=depth;await install(band);
+   const seen=await ev('(()=>{const c=document.querySelector("[data-forge-card=masterwork]");return {text:c.textContent,disabled:c.querySelector("[data-research]").disabled,prices:c.querySelectorAll("[data-price-currency]").length,queueHidden:c.querySelector("[data-queue]").hidden};})()');
+   ok(seen.text.includes('Own Wisp Power ×1.25')&&seen.text.includes('Unlocks at Rift 120')&&!seen.text.includes('Next:'),'earned additive bonus and next development Rift visible');
+   ok(seen.disabled&&seen.prices===0&&!seen.queueHidden,'development lock hides price but keeps Queue operable');
+   await prepare('[data-queue=masterwork]',true);await touchHere('[data-queue=masterwork]');ok(await ev('prismQa.get().researchQueue.masterwork')===true,'native Queue can toggle at development boundary');
+   await fit('locked Masterwork band');
+  }
+  band.maxDepthEver=120;await install(band);
+  ok(await ev('prismQa.forgePlan("masterwork",1).buyCount')===1,'next band opens at exact record boundary');
+  await prepare('[data-research=masterwork]',true);await touchHere('[data-research=masterwork]');
+  ok(await ev('prismQa.get().research.masterwork')===6,'native touch buys first level of next band');
+  ok(await ev('document.querySelector("[data-forge-card=masterwork]").textContent.includes("Own Wisp Power ×1.30")'),'native purchase refreshes additive earned bonus');
   for(let row=0;row<nodes.length;row++){
    const d=nodes[row],id=d.id,button=selector('data-research',id),queue=selector('data-queue',id),card=selector('data-forge-card',id);
    await install(paid);const preview=await ev('prismQa.forgePreview('+JSON.stringify(id)+',1)'),plan=preview.plan;

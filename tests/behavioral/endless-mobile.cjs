@@ -85,7 +85,13 @@ async function run(){
     check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===before,'Rift hint navigation preserves wallets and queues');
     if(mode==='guide'){
      const restore=await ev('endlessUi.get()');await ev('(()=>{var s=endlessUi.get();s.depth=s.enemyDepth=s.maxDepthEver=s.farmReturnDepth=199;s.riftMode="push";s.lumen=s.shards="1e400";endlessUi.set(s);})()');
-     check(await ev('document.getElementById("late-power-action").textContent.includes("Masterwork")'),'Rift gate recommends affordable permanent Forge Power');
+     check(await ev('document.getElementById("late-power-action").textContent.includes("Rift 200")'),'wallet cannot bypass Masterwork development; guide recommends Push');
+     const lockedBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
+     check(await ev('document.activeElement.id==="formation-best-now-btn"'),'locked development guide locates Push formation');
+     check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===lockedBefore,'locked development guide never spends');
+     await ev('endlessUi.set('+JSON.stringify(restore)+')');
+     await ev('(()=>{var s=endlessUi.get();s.lumen=s.shards="1e400";s.prisms=0;endlessUi.set(s);})()');
+     check(await ev('document.getElementById("late-power-action").textContent.includes("Masterwork")'),'developed record recommends affordable permanent Forge Power');
      const forgeBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
      check(await ev('document.activeElement.getAttribute("data-research")==="masterwork"'),'guide locates actual Forge control');
      check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===forgeBefore,'Forge recommendation never buys');await ev('endlessUi.set('+JSON.stringify(restore)+')');

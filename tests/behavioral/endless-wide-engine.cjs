@@ -3,7 +3,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require(
 const {app,clone,P,R,CLOCK}=require('./forge-expansion-harness.cjs');
 const a=require('../../scripts/lib/game-amount.cjs');
 const original=fs.readFileSync(process.argv[2]||'index.html','utf8');
-const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={speed:applySpeedTier,amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode,speedCost:function(id,mult){return speedTierCost(mult,LONG_STUDIES.find(function(n){return n.id===id;}));},speedGrowth:function(growth){ENDLESS_PROGRESSION.speedMoteGrowth=growth;}};if(document.readyState==='loading'){`);
+const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={rawFarm:function(run){var old=simulationPassiveDps;simulationPassiveDps=function(now,clock){return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(now,clock));};try{return run();}finally{simulationPassiveDps=old;}},speed:applySpeedTier,amount:Amount,format:formatNum,riftFormat:formatRiftNumber,prismPlan:prismPurchasePlan,spendShards:spendShards,canShards:canSpendShards,shardsAvailable:shardsAvailable,node:function(id){return NODES.find(function(n){return n.id===id;});},buyNode:buyNode,speedCost:function(id,mult){return speedTierCost(mult,LONG_STUDIES.find(function(n){return n.id===id;}));},speedGrowth:function(growth){ENDLESS_PROGRESSION.speedMoteGrowth=growth;}};if(document.readyState==='loading'){`);
 let checks=0;function eq(x,y,m){checks++;assert.deepEqual(x,y,m);}function ok(value,m){checks++;assert(value,m);}
 function big(value){if(typeof value==='number')return BigInt(value);const [d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 let x=app(source),q=x.q,b=q.endless;
@@ -77,7 +77,11 @@ ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load 
 {
  const x=app(source),q=x.q,s=hugeState();s.riftMode='farm';s.farmDepth=s.depth=s.enemyDepth=1;s.farmReturnDepth=2;s.spirits.ember=140;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;s.wispMastery.ember=10000;s.research.masterwork=2001;
  Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);q.set(s);q.restoreEnemy();const before=clone(q.get());
- const result=q.advance(1,{kind:'offline',clockStartMs:CLOCK});ok(a.wide(result.kills),'real wide-count Farm batch');eq(result.motesGained,1,'subnormal kill intervals cannot pay past the actual one-second endpoint');eq(big(q.get().motes),big(before.motes)+1n,'wide Farm pays the one eligible fixed Mote exactly');eq(q.get().moteNextAtMs,CLOCK+60000,'wide Farm preserves the exact global cooldown boundary');
- const next=q.advance(1,{kind:'offline',clockStartMs:CLOCK+1000});eq(next.motesGained,0,'next wide-count batch cannot bypass cooldown');
+ eq(q.advance(1,{kind:'offline',clockStartMs:CLOCK}).kills,2,'actual Farm bounds even wide legacy Power');
+ q.set(s);q.restoreEnemy();
+ // Retain the original wide-count arithmetic/cooldown oracle in isolation.
+ // The production throughput assertion immediately above must also pass.
+ const result=q.endless.rawFarm(()=>q.advance(1,{kind:'offline',clockStartMs:CLOCK}));ok(a.wide(result.kills),'real wide-count Farm arithmetic batch');eq(result.motesGained,1,'subnormal kill intervals cannot pay past the actual one-second endpoint');eq(big(q.get().motes),big(before.motes)+1n,'wide Farm pays the one eligible fixed Mote exactly');eq(q.get().moteNextAtMs,CLOCK+60000,'wide Farm preserves the exact global cooldown boundary');
+ const next=q.endless.rawFarm(()=>q.advance(1,{kind:'offline',clockStartMs:CLOCK+1000}));eq(next.motesGained,0,'next wide-count batch cannot bypass cooldown');
 }
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')}));

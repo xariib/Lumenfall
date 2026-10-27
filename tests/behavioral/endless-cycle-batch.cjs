@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),build=require('./endless-cycle-source.cjs'),A=require('../../scripts/lib/game-amount.cjs');
-const {app,CLOCK,clone}=require('./forge-expansion-harness.cjs'),source=build(fs.readFileSync('index.html','utf8')),seed=JSON.parse(fs.readFileSync('docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json','utf8')),start=CLOCK+180*86400000;
+const {app,CLOCK,clone}=require('./forge-expansion-harness.cjs'),source=require('./frozen-cycle-power.cjs')(build(fs.readFileSync('index.html','utf8'))),seed=JSON.parse(fs.readFileSync('docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json','utf8')),start=CLOCK+180*86400000;
 const {integer}=require('./amount-oracle.cjs');
 seed.depth=seed.enemyDepth=16;seed.riftMode='push';seed.autoAscendEnabled=true;seed.autoAscendTargetDepth=16;
 let checks=0;function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}

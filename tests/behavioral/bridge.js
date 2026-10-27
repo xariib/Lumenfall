@@ -96,7 +96,9 @@ window.__lumenfallQaBridge = {
     // APIs as null; never alter their production code or synthesize behavior.
     cost:typeof studyBoostCost==='function'?studyBoostCost:null,activate:typeof activateStudyBoost==='function'?activateStudyBoost:null,effective:typeof studyEffectiveSpeed==='function'?studyEffectiveSpeed:null,payout:typeof luminousMotePayout==='function'?luminousMotePayout:null,
     withHp: function(hp,fn){var original=enemyHpFor;enemyHpFor=function(){return hp;};try{return fn();}finally{enemyHpFor=original;}},
-    naturalDps: function(){return simulationPassiveDps(2000000000000);},
+    // Raw observed damage is the historical arithmetic stress input. The
+    // production Farm throughput policy is tested separately, without overrides.
+    naturalDps: function(){return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(2000000000000));},
     numericCosts: function(){return {titan:spiritCost(SPIRITS.find(function(s){return s.id==='titan';})),formation:researchCostForLevels(RESEARCH.find(function(s){return s.id==='formation';}),state.research.formation,1),momentum:nodeCost(NODES.find(function(s){return s.id==='momentum';})),formationStudy:studyCost(LONG_STUDIES.find(function(s){return s.id==='formationstudy';}),state.longStudyLevels.formationstudy),wispAscend:studyCost(LONG_STUDIES.find(function(s){return s.id==='wispascend';}),state.longStudyLevels.wispascend)};},
     traceFarm: function(fn){
       var original=simulationApplyFarmPassive,rows=[];
@@ -348,7 +350,7 @@ window.__lumenfallQaBridge = {
       }
       simulationMaybeRetryBoss=function(policy,summary){
         var before=copy(state),n=summary.retries;
-        var eligible=policy.allowBossRetreat && before.riftMode==='farm' && before.farmReturnDepth>0 &&
+        var eligible=policy.allowBossRetreat && before.riftMode==='farm' && before.farmAutoResume && before.farmReturnDepth>0 &&
           isBoss(before.farmReturnDepth) && isFinite(estimatedBossKillSeconds(before.farmReturnDepth));
         var result=originals.retry(policy,summary);
         if(mutation==='farm-exit' && before.riftMode==='farm' && !eligible){state.riftMode='push';result=true;}

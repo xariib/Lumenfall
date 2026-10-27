@@ -2,7 +2,7 @@
 // Complete-engine transaction ownership around resumable cycle preparation.
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const build=require('./endless-cycle-source.cjs'),{app,CLOCK,clone,P,R}=require('./forge-expansion-harness.cjs');
-const raw=build(fs.readFileSync('index.html','utf8')),marker="if(document.readyState==='loading'){",source=raw.replace(marker,`window.endlessQa={cancel:cancelOfflineCatchup,cache:function(){return endlessPityCache&&endlessPityCache.orbit.stats();}};`+marker);
+const raw=require('./frozen-cycle-power.cjs')(build(fs.readFileSync('index.html','utf8'))),marker="if(document.readyState==='loading'){",source=raw.replace(marker,`window.endlessQa={cancel:cancelOfflineCatchup,cache:function(){return endlessPityCache&&endlessPityCache.orbit.stats();}};`+marker);
 const seed=JSON.parse(fs.readFileSync('docs/qa/endless-progression-001/candidate-ak-mature-snapshot.json.endpoint.json')),start=CLOCK+180*86400000;
 seed.depth=seed.enemyDepth=16;seed.riftMode='push';seed.autoAscendEnabled=true;seed.autoAscendTargetDepth=16;seed.lastSeen=start;
 let checks=0;const timings=[];function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}function ok(a,m){checks++;assert(a,m);}

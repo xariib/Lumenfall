@@ -32,7 +32,7 @@ window.endlessQa={
   },
   claim:function(){(state.questIds||[]).forEach(function(id){claimQuest(id);});},
   mastery:function(sp){return typeof buyWispMastery==='function' && buyWispMastery(sp);},
-  masterworkPower:function(){return ENDLESS_PROGRESSION.masterworkPowerGrowth||1;},
+  masterworkPower:function(){return typeof masterworkPowerFactor==='function'?masterworkPowerFactor(researchLevel('masterwork')+1):ENDLESS_PROGRESSION.masterworkPowerGrowth||1;},
   speed:function(preferred,budget,hours){
     var node=LONG_STUDIES.find(function(n){return n.id==='wispascend';}),active=findActiveStudy('wispascend');
     if(!active)return false;

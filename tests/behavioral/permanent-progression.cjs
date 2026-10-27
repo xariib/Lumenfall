@@ -6,7 +6,7 @@ function ready(q){const s=C.seed(q);s.maxDepthEver=5000;s.comets=1e9;return s;}
 {
  const q=F.app(source).q;
  for(const node of q.defs().filter(n=>!n.retiredTo))for(const level of [0,Math.max(0,node.levelCap-3)])for(const count of [1,5,10,25,50,100]){
-  const s=q.fresh();s.maxDepthEver=5000;s.questDay=q.day();s.research[node.id]=level;s.lumen=s.shards=1e100;q.set(s);
+  const s=q.fresh();s.maxDepthEver=10000;s.questDay=q.day();s.research[node.id]=level;s.lumen=s.shards=1e100;q.set(s);
   const full=q.cost(node.id,level,count),fits=level+count<=node.levelCap,p=q.plan(node.id,count);
   eq(p.buyCount,fits?count:0,'fixed batch never truncates at cap '+node.id+'/'+level+'/'+count);if(!fits){eq(p.affordable,false,'oversized fixed batch disabled');continue;}eq(p.cost,full,'exact fixed batch quote');
   const three=q.cost(node.id,level,Math.min(count-1,3));s.lumen=count===1?Math.floor(full.lumen/2):three.lumen;s.shards=count===1?Math.floor(full.shard/2):three.shard;q.set(s);
