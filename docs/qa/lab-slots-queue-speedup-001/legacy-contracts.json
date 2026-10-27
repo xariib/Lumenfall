@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "sourceSha256": "5ce88b6ce6f874935fd65e6182acab01069d0eaa61dab2ec904ec0c18419cc7f",
+  "productChanged": false,
+  "firstFullRun": {
+    "id": 40586209415,
+    "job": 122478135680,
+    "positiveFailures": [
+      "r3-destinations",
+      "p1-05-control-regressions",
+      "p2-02b-lab-hierarchy"
+    ],
+    "reason": "Two tests expected superseded Queue OFF clearing. The hierarchy test selected research behind the new modal. All original focus/navigation/preservation checks retained for the permitted interaction order."
+  },
+  "localPositiveScenarios": [
+    "r3-destinations",
+    "p1-05-control-regressions",
+    "p2-02b-lab-hierarchy",
+    "lab-ui-regression"
+  ],
+  "originalLabUiSubscenarios": 22,
+  "negativeControls": [
+    {
+      "mutation": "queue-stops",
+      "scenario": "r3-destinations",
+      "expectedAssertion": "Queue OFF retains exact active paid work",
+      "detected": true
+    },
+    {
+      "mutation": "queue-stops",
+      "scenario": "p1-05-control-regressions",
+      "expectedAssertion": "Queue OFF retains exact active paid work",
+      "detected": true
+    },
+    {
+      "mutation": "menu-never-closes",
+      "scenario": "p2-02b-lab-hierarchy",
+      "expectedAssertion": "close speed inspection before selecting research",
+      "detected": true
+    }
+  ],
+  "earlyCiCoverage": "The three affected scenarios now run in the early Lab step, in addition to the unchanged full suite."
+}

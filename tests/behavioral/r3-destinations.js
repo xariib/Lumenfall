@@ -101,11 +101,14 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   });
   go('research');
   ['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id){
-    q('[data-study-slot]').click();q('[data-study="'+id+'"]').click();var paid=b.getState().activeStudies.find(function(a){return a.id===id;});
+    q('[data-study-slot="0"]').click();q('[data-study="'+id+'"]').click();var beforeToggle=b.getState(),paid=beforeToggle.activeStudies.find(function(a){return a.id===id;});
     ok(b.getState().studyQueue[id]===true&&paid,'selecting research enables its individual queue');
-    q('[data-study-queue="'+id+'"]').click();var cleared=b.getState();
-    ok(cleared.studyQueue[id]===false&&!cleared.activeStudies.some(function(a){return a.id===id;}),'individual Lab Queue OFF clears its slot');
-    ok(cleared.pausedStudies.some(function(a){return a.id===id&&a.remainingSec===paid.remainingSec;}),'Queue OFF retains the paid remaining work');
+    q('[data-study-queue="'+id+'"]').click();var toggled=b.getState();
+    ok(toggled.studyQueue[id]===false,'individual Lab Queue OFF disables only future repeats');
+    same(toggled.activeStudies.find(function(a){return a.id===id;}),paid,'Queue OFF retains exact active paid work');
+    same(toggled.pausedStudies,beforeToggle.pausedStudies,'Queue OFF never pauses research');
+    same(toggled.studyBoosts,beforeToggle.studyBoosts,'Queue OFF preserves paid slot boosts');
+    ['lumen','shards','motes'].forEach(function(key){same(toggled[key],beforeToggle[key],'Queue OFF never spends '+key);});
   });
   b.setState(seed);b.renderLayout();go('research');q('[data-study-slot]').click();
   var project=b.r3.project('guardmastery'),prior=b.getState();q('[data-study="guardmastery"]').click();var active=b.getState();

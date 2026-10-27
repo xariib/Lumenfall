@@ -19,3 +19,7 @@ Image upload was rejected by automated approval review; no images are included.
 
 Current scope ends at a GitHub branch/PR. Main merge, Android build/publication
 and device acceptance are pending a later step; this candidate is not released.
+
+`legacy-contracts.json` records the first full CI failures, the exact contract
+adaptations, original22-scenario replay and causal controls. Product bytes are
+unchanged; revised-head required CI remains necessary before integration.

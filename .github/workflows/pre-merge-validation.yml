@@ -46,6 +46,9 @@ jobs:
           assert(fs.readFileSync('/tmp/lab-queue-negative.log','utf8').includes('Queue OFF retains running paid work'));
           JS
           node tests/behavioral/lab-speed-controls.cjs index.html --slots
+          for SCENARIO in r3-destinations p1-05-control-regressions p2-02b-lab-hierarchy; do
+            node tests/behavioral/run.cjs --web-root . --scenario "$SCENARIO" --raw-artifacts validation-evidence/lab-contracts
+          done
 
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test

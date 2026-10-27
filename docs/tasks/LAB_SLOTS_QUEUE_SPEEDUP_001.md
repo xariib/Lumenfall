@@ -39,3 +39,17 @@ Screenshots remain excluded. Next: obtain explicit authorization to upload the
 reviewed code, workflow changes and text evidence to
 `xariib/Lumenfall:feat/lab-slots-queue-speedup-001`, then create the PR and finish
 required CI. Main merge and APK publication remain separate later steps.
+
+## Full CI contract adaptation
+
+The first full run40586209415 found three stale positive test contracts:
+`r3-destinations` and `p1-05-control-regressions` expected Queue OFF clearing;
+`p2-02b-lab-hierarchy` selected research behind an open Speed Up dialog.
+The tests now verify retained active work, boosts/wallets and repeat-button focus,
+and close the modal before selecting research. Existing navigation assertions
+remain; modal isolation and close/focus-return assertions were added.
+All three, the original22-scenario Lab UI regression and three deliberate-defect
+controls PASS locally. Product source/hash and APK50 acceptance are unchanged.
+The scenarios also run early in CI; the full suite and all other gates remain.
+[Receipt](../qa/lab-slots-queue-speedup-001/legacy-contracts.json).
+Next: pass revised-head CI, merge and validate main, then publish the signed APK.

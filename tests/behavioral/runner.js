@@ -1979,6 +1979,13 @@
               assert(running[0].dataset.runningStudy==='wispascend','running studies retain stable slot order');
               assert(document.querySelector('[data-running-study=shardstudy] [data-study-text]').textContent==='5m 50s remaining · 2x','remaining display preserves seconds from authoritative work divided by speed');
               window.checkLabSpeedControls(bridge,assert,'shardstudy');
+              var speedMenu=document.querySelector('.study-speed-editor:not([hidden])');
+              assert(speedMenu&&speedMenu.querySelector('[data-study-speed-close]'),'speed inspection opens the modal');
+              document.querySelector('[data-study-slot]').focus();
+              assert(speedMenu.contains(document.activeElement),'open speed modal keeps background research selection inert');
+              speedMenu.querySelector('[data-study-speed-close]').click();
+              assert(!document.querySelector('.study-speed-editor:not([hidden])'),'close speed inspection before selecting research');
+              assert(document.activeElement===document.querySelector('[data-running-study=shardstudy] [data-study-speed-open]'),'closing speed inspection returns focus to its slot');
             }
             var choose=document.querySelector('[data-study-slot]');
             assert(!!choose,'unlocked slot offers choose or change');
