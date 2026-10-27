@@ -281,11 +281,11 @@ async function checkAscendReadability(record,name,inset,capture){
   s.enemyMaxHp=b.enemyHpFor(101);s.enemyHp=s.enemyMaxHp;b.setState(s);b.renderLayout();
   const actual=b.getState();return {state:actual,unowned:b.wispRoleContract().filter(sp=>actual.spirits[sp.id]===0).map(sp=>{
    const control=document.querySelector('[data-empower="'+sp.id+'"]');
-   return {id:sp.id,cost:b.formationTest.cost(sp.id),nativeButton:control?.tagName==='BUTTON',disabled:control?.disabled};
+   return {id:sp.id,cost:b.formationTest.cost(sp.id),nativeButton:control?.tagName==='BUTTON',disabled:control?.disabled,locked:document.querySelector('[data-wisp-card="'+sp.id+'"]')?.dataset.state==='locked'};
   })};
  })()`);
  assert(a.fixture.state.riftMode==='push'&&a.fixture.state.depth===101&&a.fixture.state.enemyDepth===101&&a.fixture.state.maxDepthEver===101&&a.fixture.state.ascendCount===0&&a.fixture.state.lumen===0,'actual Ascend-ready fixture survives canonical installation');
- assert(a.fixture.unowned.length===7&&a.fixture.unowned.every(sp=>Number.isFinite(sp.cost)&&sp.cost>0&&sp.nativeButton&&sp.disabled),'no unowned Wisp is affordable before the Ascend-ready hint');
+ assert(a.fixture.unowned.length===7&&a.fixture.unowned.every(sp=>Number.isFinite(sp.cost)&&sp.cost>0&&(sp.nativeButton&&sp.disabled||sp.locked)),'no unowned Wisp is affordable before the Ascend-ready hint');
  await evaluate('document.querySelector("#rift-objective-row").scrollTop=0');
  // Preserve the production title and complete native glyph record before the
  // oracle: the exact old-copy source must fail on its real word "Permanent".

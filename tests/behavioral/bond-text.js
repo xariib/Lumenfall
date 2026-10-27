@@ -33,10 +33,10 @@ window.runBondTextQa=function(b,assert){
   wisps.forEach(function(sp){
     var desc=sp.description;
     var card=document.querySelector('[data-wisp-card="'+sp.id+'"]');card.querySelector('[data-wisp-progression]').open=true;
-    var details=card.querySelector('[data-card-details="wisp-'+sp.id+'"]');details.open=true;var row=details.querySelector('div');
+    var row=card.querySelector('.ability-desc');
     var upgradeEffect=document.querySelector('[data-wisp-card="'+sp.id+'"] .module-effect');
     var encyclopedia=document.querySelector('[data-ency-wisp="'+sp.id+'"] .ency-desc');
-    ok(row&&row.getClientRects().length&&row.textContent===desc,sp.id+' Wisp ability exposes its full explanation through Details');
+    ok(row&&row.getClientRects().length&&row.textContent===desc,sp.id+' Wisp card explains its ability directly');
     ok(encyclopedia&&encyclopedia.textContent.endsWith(desc),sp.id+' Encyclopedia ability uses its explanation');
     ok(upgradeEffect&&upgradeEffect.textContent===sp.moduleEffect20,sp.id+' shows its full permanent upgrade effect beside the ability');
     ok(!/bond|formation|\+.*(?:Stone|Titan)/i.test(desc),sp.id+' ability does not repeat Bond partnerships');

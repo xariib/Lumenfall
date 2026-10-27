@@ -146,7 +146,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   var locked=seed();locked.maxDepthEver=59;install(locked);q('[data-tab="research"]').click();ok(!q('[data-study="measuredinquiry"]')&&q('#study-list').textContent.includes('Unlocks at Rift 60'),'locked60 visible without purchase');
   var running=seed();running.longStudyLevels.measuredinquiry=5;running.activeStudies=[{id:'measuredinquiry',remainingSec:0,totalDurationSec:6291,speedMult:1}];install(running);
   var before=b.getState();ok(q('[data-study-text="measuredinquiry"]').textContent==='Finishing… · 1x','due UI remains pending');b.renderLayout();same(b.getState(),before,'Finishing render cannot earn');
-  ok(q('[data-running-study="measuredinquiry"]').textContent.includes('10% less work')&&q('[data-running-study="measuredinquiry"]').textContent.includes('Next: 12% less work'),'earned/pending distinction');
+  ok(q('[data-running-study="measuredinquiry"]').textContent.includes('10% less work')&&!q('[data-running-study="measuredinquiry"]').textContent.includes('Next:'),'earned/pending distinction');
   running.longStudyLevels.measuredinquiry=13;running.activeStudies[0].remainingSec=50;install(running);var over=q('[data-running-study="measuredinquiry"]');
   ok(!over.textContent.includes('level 14')&&!over.textContent.includes('Lv.14')&&over.textContent.includes('without another level or bonus'),'neutral overcap paid-record presentation');
   ok(Array.from(over.querySelectorAll('[data-speed-study]')).every(function(el){return el.disabled;}),'no new paid acceleration for maxed record');
@@ -155,7 +155,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   ok(t.speedCost(8)===27500&&accelerated.motes===prior.motes-27500&&accelerated.studyBoosts.slot0.mult===8&&active('guardmastery').speedMult===1,'8x timed package exact debit/paid floor preserved');
   ok(active('guardmastery').remainingSec===120&&active('guardmastery').totalDurationSec===120,'speed preserves discounted snapshot');
   ok(q('[data-study-text="guardmastery"]').textContent==='15s remaining · 8x','capdiscount plus8x actual countdown');
-  q('[data-study-boost-status="guardmastery"]').focus();b.renderLayout();ok(document.activeElement.dataset.studyBoostStatus==='guardmastery','timer focus preserved on rerender');
+  q('[data-study-speed-open]').focus();b.renderLayout();ok(document.activeElement.dataset.studySpeedSummary==='guardmastery','timer focus preserved on rerender');
   t.tail(15,b.clockNow());ok(active('guardmastery').speedMult===1&&active('guardmastery').totalDurationSec===192&&b.labMotes.effective(active('guardmastery'))===8,'next queued start keeps timer and base floor1');
   var saved=active('guardmastery');var changed=b.getState();changed.longStudyLevels.measuredinquiry=13;install(changed);same(active('guardmastery'),saved,'render/overcap cannot retroactively change paid work');
   b.feedbackSave();var persisted=JSON.parse(b.rawSave());ok(persisted.studyQueue.guardmastery,'real queue choice persists');

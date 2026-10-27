@@ -88,7 +88,7 @@ const hist=app(legacy()).b.get();
 for(const id of ['offline24','offline48']) { const x=app(hist), before=clone(x.b.get()); x.b.buyShop({id,cost:0,retired:false}); assert.deepEqual(x.b.get(),before); }
 for(const count of [1,5,10,100,'max']) { const x=app(hist), before=clone(x.b.get()); x.b.buyNode({id:'reserves',baseCost:0,growth:1,retired:false},count); assert.deepEqual(x.b.get(),before); }
 const completeRaw=app().b.fresh();completeRaw.schemaVersion=2;completeRaw.owned={autoascend:true,comettrials:true};
-const complete=app(completeRaw);assert.equal(complete.b.get().comets,140,'Trials retirement is separate from old hours');assert(complete.b.complete(),'retired items cannot remain a completion gate');
+const complete=app(completeRaw);assert.equal(complete.b.get().comets,140,'Trials retirement is separate from old hours');assert.equal(complete.b.complete(),false,'retired consumable has no completion gate');
 // Actual restore path replaces primary/recovery and suppresses pre-restore saves.
 const restore=app(legacy()), code=restore.b.backup(legacy());
 restore.document.getElementById=id=>id==='save-backup-code'?{value:code}:null;

@@ -91,7 +91,7 @@ async function run(){
     await evaluate('window.__wispQa.prepare();new Promise(resolve=>setTimeout(resolve,500))');
     if(large)await evaluate('document.documentElement.style.fontSize="'+(16*fontPercent/100)+'px"');
     const result=await evaluate(compact?'window.runWispCompactQa()':cardLayout?'window.runWispCardLayoutQa('+args.includes('--baseline')+')':'window.runWispUpgradeQa()');
-    const geometry=await evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]'),r=p.getBoundingClientRect();return {width:innerWidth,fit:document.documentElement.scrollWidth<=innerWidth&&p.scrollWidth<=p.clientWidth+1,controls:Array.from(p.querySelectorAll('button')).map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height,disabled:e.disabled};}),title:getComputedStyle(p.querySelector('[data-wisp-details]')).color,motion:matchMedia('(prefers-reduced-motion:reduce)').matches,errors:window.__wispErrors};})()`);
+    const geometry=await evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]'),r=p.getBoundingClientRect();return {width:innerWidth,fit:document.documentElement.scrollWidth<=innerWidth&&p.scrollWidth<=p.clientWidth+1,controls:Array.from(p.querySelectorAll('button')).map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height,disabled:e.disabled};}),title:getComputedStyle(p.querySelector('[data-wisp-details]')||p.querySelector('.wisp-ability-title')).color,motion:matchMedia('(prefers-reduced-motion:reduce)').matches,errors:window.__wispErrors};})()`);
     assert(geometry.fit,'progression fits '+width+' large='+large);assert(geometry.controls.every(r=>r.w>=44&&r.h>=44),'all upgrade controls >=44px: '+JSON.stringify(geometry));assert(!geometry.errors.length,'no browser runtime errors');
     if(evidence && (!large || cardLayout) && motion==='no-preference'){
       assert(await evaluate('window.__wispQa.ids.includes('+JSON.stringify(pictureId)+')'),'known screenshot Wisp');
@@ -111,12 +111,23 @@ async function run(){
       assert(await evaluate('__wispQa.get().wispModules.ember===1&&__wispQa.get().lumen===__wispNativeExpected.lumen&&__wispQa.get().shards===__wispNativeExpected.shard'),'native '+input+' spends exactly once through the original highlighted control');
       if(keepEnabled)assert(await evaluate(`document.activeElement===document.querySelector('[data-module=ember]')&&document.activeElement.classList.contains('wisp-action-primary')&&__wispFocusNames.length>0&&__wispFocusNames.every(e=>e.module==='ember'&&e.name.includes('Next ·')&&e.name.includes('Ember Wisp'))`),'native '+input+' restores focus with the current Next accessible name immediately');
     }
+    let summary;
+    if(args.includes('--baseline')){
     // Real keyboard activation of the completed disclosure and native focus.
     await evaluate(`(()=>{const b=window.__wispQa,s=b.fresh();s.maxDepthEver=101;s.spirits.ember=1;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;b.set(s);b.render();const p=document.querySelector('[data-wisp-progression="ember"]');p.open=true;p.querySelector('summary').scrollIntoView({block:'center'});p.querySelector('summary').focus();})()`);
     await key('Enter');assert(await evaluate('!document.querySelector("[data-wisp-progression=ember]").open'),'native Enter folds');
     await evaluate('window.__wispQa.render()');assert(await evaluate('document.activeElement.matches("summary[data-wisp-details=ember]")'),'summary focus survives refresh');
     await key('Enter');assert(await evaluate('document.querySelector("[data-wisp-progression=ember]").open'),'native Enter opens');
-    const summary=await evaluate(`(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),c=getComputedStyle(e);return {w:r.width,h:r.height,outline:c.outlineStyle,color:c.color};})()`);assert(summary.w>=44&&summary.h>=44&&summary.outline!=='none','summary touch size and keyboard focus');
+    summary=await evaluate(`(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),c=getComputedStyle(e);return {w:r.width,h:r.height,outline:c.outlineStyle,color:c.color};})()`);assert(summary.w>=44&&summary.h>=44&&summary.outline!=='none','summary touch size and keyboard focus');
+    }else{
+    // A final native purchase leaves focus on its noninteractive same-card
+    // fallback. Repeated keyboard activation cannot collapse or buy again.
+    await evaluate(`(()=>{const b=window.__wispQa,s=b.fresh(),cost=b.moduleCost('ember',19);s.maxDepthEver=101;s.spirits.ember=1;s.heroRarity.ember=5;s.wispModules.ember=19;s.wispUltimate.ember=true;s.lumen=cost.lumen;s.shards=cost.shard;b.set(s);b.render();const e=document.querySelector('[data-module=ember]');e.scrollIntoView({block:'center'});e.focus();})()`);
+    await key('Enter');assert(await evaluate('__wispQa.get().wispModules.ember===20&&document.activeElement.matches("[data-wisp-card=ember]")'),'native final purchase focuses same Wisp card');
+    await evaluate('window.__wispNativeFinal=JSON.stringify(__wispQa.get());__wispQa.render()');assert(await evaluate('document.activeElement.matches("[data-wisp-card=ember]")'),'completed action focus survives refresh');
+    await key('Enter');await key('Space');assert(await evaluate('JSON.stringify(__wispQa.get())===__wispNativeFinal&&document.querySelector("[data-wisp-progression=ember]").tagName!=="DETAILS"'),'repeated native input cannot collapse or spend');
+    summary=await evaluate(`(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),c=getComputedStyle(e);return {w:r.width,h:r.height,outline:c.outlineStyle,color:c.color};})()`);assert(summary.w>=44&&summary.h>=44&&summary.outline!=='none','same-card native keyboard focus is visible');
+    }
     records.push({width,large,...(compact?{fontPercent}:{}),motion,fonts,result,geometry,summary});
   }
   return {status:'pass',source,sourceSha256,browser:browserIdentity,records};

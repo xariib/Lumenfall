@@ -1962,6 +1962,7 @@
           [0,2,3].forEach(function(count){
             labState.activeStudies=labJobs.slice(0,count);
             bridge.setState(labState);bridge.renderLayout();
+            var catalogue=document.querySelector('.study-catalogue');if(catalogue&&!catalogue.hidden)document.querySelector('[data-study-close]').click();
             var beforeLab=JSON.stringify(state());
             document.querySelector('[data-tab="battle"]').click();
             document.querySelector('[data-tab="workshop"]').click();
@@ -2007,13 +2008,13 @@
           var progression=document.querySelector('.wisp-progression');
           var inspectId=progression.dataset.wispProgression;
           var complete=state().heroRarity[inspectId]>=5 && state().wispModules[inspectId]>=20 && state().wispUltimate[inspectId];
-          assert(progression.tagName==='DETAILS','all Wisp progression has native disclosure');
-          var title=progression.querySelector('[data-wisp-details]');
-          title.focus();progression.open=true;bridge.renderLayout();
+          assert(progression.tagName!=='DETAILS'&&!progression.querySelector('summary'),'Wisp upgrades remain directly visible');
+          var selectedCard=progression.closest('[data-wisp-card]'),action=selectedCard.querySelector('button:not(:disabled)'),actionKey=action&&Array.from(action.attributes).find(function(a){return a.name.indexOf('data-')===0&&a.name!=='data-state';});
+          assert(action&&actionKey,'representative visible card control');action.focus();bridge.renderLayout();
           progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');
-          assert(progression.open,'progression stays open through refresh');
-          assert(document.activeElement===progression.querySelector('[data-wisp-details]'),'refresh preserves progression keyboard focus');
-          assert(progression.querySelector('[data-rarity]') && progression.querySelector('.hero-ability'),'secondary upgrade information remains reachable');
+          assert(progression.getClientRects().length,'upgrades stay visible through refresh');
+          assert(document.activeElement.getAttribute(actionKey.name)===actionKey.value,'refresh preserves same Wisp keyboard action focus');
+          assert(progression.querySelector('.wisp-rarity-section')&&progression.querySelector('.hero-ability'),'secondary upgrade information remains reachable');
           assert(JSON.stringify(state())===beforeHierarchy,'hierarchy/navigation/inspection must not mutate gameplay state');
           finish('pass',{activeFirst:true,empowerFirst:true,stateUnchanged:true});return;
         }
@@ -2442,7 +2443,7 @@
           var endgame=bridge.setState(endgameState());
           var postCap=bridge.endgameEconomyContract();
           assert(postCap.allUltimatesOwned===true,'Sigil utility must unlock after every existing Ultimate is owned');
-          assert(postCap.restStopComplete===true,'Comet refresh must unlock after all four Rest Stop purchases are owned');
+          assert(postCap.restStopComplete===false,'retired consumable does not unlock from old ownership');
 
           var resonance1=bridge.resonateFor('ember');
           assert(resonance1.ok===true,'Sigils must have a valid post-Ultimate Resonance spend');
@@ -2483,18 +2484,13 @@
           assert(state().sigilResonanceUses===0,'manual Ascend must reset the run-bounded Resonance allowance');
           assert(ids.every(function(id){return state().wispUltimate[id]===true;}),'Ascension must still preserve every Ultimate');
 
-          var refreshBase=endgameState();
-          bridge.setState(refreshBase);
+          var refreshBase=bridge.setState(endgameState());
           var refresh1=bridge.refreshQuest('q_tap_small');
-          assert(refresh1.ok===true,'Comets must have a valid post-Rest-Stop Daily Quest Refresh spend');
-          assert(refresh1.state.comets===refreshBase.comets-economy.questRefreshCost,'Quest Refresh must spend exactly its Comet cost');
-          assert(refresh1.state.questIds.length===3 && refresh1.state.questIds[0]!=='q_tap_small','Quest Refresh must replace one quest without adding extra quest slots');
-          assert(refresh1.state.dailyQuestRefreshes===1,'Quest Refresh count must persist deterministically');
-          assert(refresh1.state.owned.autoascend && refresh1.state.legacyCometPurchases.offline24 && refresh1.state.legacyCometPurchases.offline48 && refresh1.state.legacyCometPurchases.rememberbulk,'refreshing a quest must preserve Auto-Ascend and archived legacy purchase ownership');
-
-          bridge.setState(refreshBase);
-          var refresh2=bridge.refreshQuest('q_tap_small');
-          assert(refresh2.ok===true && refresh2.state.questIds[0]===refresh1.state.questIds[0],'identical save/date/slot must choose the same deterministic replacement quest');
+          assert(refresh1.ok===false,'retired Quest Refresh cannot spend Comets');
+          assert(JSON.stringify(refresh1.state)===JSON.stringify(refreshBase),'retired Quest Refresh preserves balances, paid progression, quests and claims');
+          bridge.renderLayout();var permanent=document.querySelector('[data-shop="astralcore"]');assert(permanent&&!permanent.disabled,'Comets have a permanent Wisp investment at Rift250');
+          bridge.labMotes.input(function(){permanent.click();});assert(state().astralUpgrades.astralcore===1&&state().comets===refreshBase.comets-750,'exact permanent investment replaces consumable spending');
+          var permanentSnapshot=cloneJson(state().astralUpgrades),paidAscend=cloneJson(state());paidAscend.depth=101;paidAscend.enemyDepth=101;paidAscend.enemyHp=paidAscend.enemyMaxHp=1;bridge.setState(paidAscend);bridge.ascendManual();assert(state().ascendCount===paidAscend.ascendCount+1&&JSON.stringify(state().astralUpgrades)===JSON.stringify(permanentSnapshot),'permanent investment survives actual Ascend');
 
           var large=endgameState();
           large.sigils=987654321;

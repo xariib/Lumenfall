@@ -18,7 +18,7 @@ window.runWispCardLayoutQa=function(baseline){
     var before=JSON.stringify(b.get()),slots=JSON.stringify(b.slots());
     b.render();b.refresh();card=document.querySelector('[data-wisp-card="'+id+'"]');p=card.querySelector('[data-wisp-progression]');
     ok(JSON.stringify(b.get())===before&&JSON.stringify(b.slots())===slots,'render leaves full state and both save slots unchanged '+id+'/'+stage);
-    ok(p.tagName==='DETAILS','all upgrades remain reachable through disclosure '+id+'/'+stage);
+    ok(baseline?p.tagName==='DETAILS':p.tagName!=='DETAILS'&&!p.querySelector('summary'),'upgrades remain directly reachable '+id+'/'+stage);
     ok(card.textContent.includes(b.spirit(id).abilityName),'ability retained '+id);
     ok(card.textContent.includes('Wisp Power')&&card.querySelector('.rarity-badge'),'power/rarity retained '+id);
     var readout=card.querySelector('[data-wisp-role]');
@@ -56,9 +56,9 @@ window.runWispCardLayoutQa=function(baseline){
     if(!baseline){
       ok(a.borderLeftWidth==='0px'&&a.backgroundColor==='rgba(0, 0, 0, 0)','ability uses plain card surface');
       ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','Module uses plain card surface');
-      var heading=card.querySelector('[data-wisp-details]'),level=card.querySelector('.wisp-level'),levelStyle=level&&getComputedStyle(level);
-      ok(heading.textContent.indexOf('Upgrades')===0,'one concise upgrade disclosure names the next action');
-      ok(heading.getAttribute('aria-label')===b.spirit(id).name+' upgrades','heading/disclosure retains Wisp context for assistive technology');
+      var heading=card.querySelector('.wisp-ability-title'),level=card.querySelector('.wisp-level'),levelStyle=level&&getComputedStyle(level);
+      ok(heading.textContent.includes(b.spirit(id).abilityName),'direct upgrade section names its ability');
+      ok(card.querySelector('.wisp-ability-section').getAttribute('aria-label')===b.spirit(id).name+' ability','section retains Wisp context for assistive technology');
       ok(!card.querySelector('.ability-label'),'no redundant Ability label');
       var abilityTitle=card.querySelector('.wisp-ability-title h3,.wisp-ability-title strong');
       ok(!card.querySelector('.ability-badge'),'compact card omits redundant Ability badge '+id);
@@ -68,7 +68,7 @@ window.runWispCardLayoutQa=function(baseline){
       ok(progress&&progress.textContent==='Lv. '+savedLevel+'/'+cap&&!card.querySelector('.ability-upgrades'),'ability level has a clear badge '+id);
       ok(progress.getAttribute('aria-label')==='Ability upgrade level '+savedLevel+' of '+cap&&progress.getBoundingClientRect().right<=abilityTitle.getBoundingClientRect().left+1,'ability level precedes its named ability with distinct accessible name '+id);
       var raritySection=card.querySelector('.wisp-rarity-section'),abilitySection=card.querySelector('.wisp-ability-section');
-      ok(raritySection&&abilitySection&&raritySection!==abilitySection&&raritySection.contains(card.querySelector('[data-rarity]'))&&!abilitySection.querySelector('[data-rarity]'),'Rarity purchase is separate from ability upgrades '+id);
+      ok(raritySection&&abilitySection&&raritySection!==abilitySection&&(stage===2?raritySection.dataset.state==='maxed'&&!card.querySelector('[data-rarity]'):raritySection.contains(card.querySelector('[data-rarity]')))&&!abilitySection.querySelector('[data-rarity]'),'Rarity purchase is separate from ability upgrades '+id);
       ok(abilitySection.querySelector('[data-ability-current]').textContent===b.moduleEffect(id,savedLevel),'Current matches purchased upgrade level '+id);
       ok(abilitySection.querySelector('[data-ability-next]').textContent===(savedLevel>=cap?'Maxed':b.moduleEffect(id,savedLevel+1)),'Next shows exact next level or Maxed without exceeding cap '+id);
       ok(level&&level.textContent==='Lv. '+b.get().spirits[id]&&parseFloat(levelStyle.borderLeftWidth)>0&&levelStyle.backgroundColor!=='rgba(0, 0, 0, 0)','saved Wisp level in a little box');

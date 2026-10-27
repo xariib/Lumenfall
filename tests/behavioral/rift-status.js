@@ -111,7 +111,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
         ok(q('#tab-research').classList.contains('active'),'badge/button opens Lab directly');same(b.getState(),before,'Lab opening cannot dismiss capacity or mutate state');
         var protectedWork=s.activeStudies.filter(function(a){return projects.some(function(p){return p.id===a.id&&p.retired;});});
         ok(document.querySelectorAll('[data-study-slot]').length===slots-protectedWork.length&&document.querySelectorAll('[data-lab-slot]').length===5,'five slots expose choose/change actions while preserving retired paid work');
-        protectedWork.forEach(function(a){var card=q('[data-running-study="'+a.id+'"]');ok(card&&card.textContent.includes('Last paid level:')&&!card.querySelector('[data-study-slot]'),'retired paid work stays visible and protected from replacement');});
+        protectedWork.forEach(function(a){var card=q('[data-running-study="'+a.id+'"]');ok(card&&card.textContent.includes('Paid work and completion bonus kept')&&!card.querySelector('[data-study-slot]'),'retired paid work stays visible and protected from replacement');});
         q('[data-tab="battle"]').click();badge();
       }
     });
