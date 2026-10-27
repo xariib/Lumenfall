@@ -76,7 +76,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await touch('document.querySelector("[data-study-slot]")');await ev('document.querySelector("[data-study=guardmastery]").focus();document.querySelector("[data-study=guardmastery]").click()');
   check(await ev('uiRegression.get().activeStudies[0].id==="guardmastery"&&document.activeElement===document.querySelector(".study-speed-open")'),'new level uses remaining timer and focus');
   await ev('document.querySelector("[data-study-queue=guardmastery]").focus()');await key('Space');
-  check(await ev('!uiRegression.get().studyQueue.guardmastery&&!uiRegression.get().activeStudies.length&&uiRegression.get().motes===95012'),'Study Queue independently toggles without debit');
+  check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().activeStudies.length===1&&uiRegression.get().motes===95012'),'Study Queue independently toggles without debit');
   // Actual drag and held keys preview until release, never buy intermediate tiers.
   await install(seed());await ev(range+'.scrollIntoView({block:"center"})');
   const drag=await ev('(()=>{var r='+range+'.getBoundingClientRect();return {x:r.x+12,y:r.y+r.height/2,width:r.width-24};})()');

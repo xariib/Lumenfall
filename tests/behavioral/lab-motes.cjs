@@ -40,7 +40,10 @@ async function run(){
   assert(await evaluate('window.__lumenfallQaBridge.getState().studySpeedTargets.guardmastery===3&&window.__lumenfallQaBridge.getState().motes===0'),'native range selects3x without paying');
   const ax=await send('Accessibility.getFullAXTree');
   assert(ax.nodes.some(n=>!n.ignored&&n.role?.value==='slider'&&/Guardian.*Speed target/.test(n.name?.value||'')),'named speed slider in AX');
-  assert(ax.nodes.some(n=>!n.ignored&&n.role?.value==='progressbar'&&/Guardian/.test(n.name?.value||'')),'progress in AX');
+  assert(!ax.nodes.some(n=>!n.ignored&&n.role?.value==='progressbar'&&/Guardian/.test(n.name?.value||'')),'modal isolates background progress from AX');
+  await key('Escape');const backgroundAx=await send('Accessibility.getFullAXTree');
+  assert(backgroundAx.nodes.some(n=>!n.ignored&&n.role?.value==='progressbar'&&/Guardian/.test(n.name?.value||'')),'progress is accessible after closing menu');
+  await evaluate('document.querySelector(".study-speed-open").click();document.querySelector("[data-study-speed-target=guardmastery]").focus()');
   assert(ax.nodes.some(n=>!n.ignored&&/Guardian.*Boost duration/.test(n.name?.value||'')),'named duration in AX');
   await evaluate('document.querySelector("[data-study-speed-target=guardmastery]").scrollIntoView({block:"center"});window.nativeRange=document.activeElement');
   await new Promise(r=>setTimeout(r,350));let before=await snapshot();assert(before.fit&&before.rect.height>=44,'mobile range fits');
@@ -52,7 +55,7 @@ async function run(){
   before=await snapshot();await evaluate('window.__lumenfallQaBridge.renderLayout();window.__lumenfallQaBridge.refreshAffordability()');let rendered=await snapshot();
   assert(JSON.stringify([rendered.state,rendered.primary,rendered.recovery,rendered.events])===JSON.stringify([before.state,before.primary,before.recovery,before.events]),'render/affordability cannot pay or save');
   assert(await evaluate('!document.querySelector("[data-speed-study=guardmastery]").disabled'),'funded exact package actionable');
-  await key('Tab');assert(await evaluate('document.activeElement.dataset.speedStudy')==='guardmastery','Tab reaches funded action');await key('Enter');await key('Enter');let bought=await snapshot();
+  await key('Tab');assert(await evaluate('document.activeElement.dataset.speedStudy')==='guardmastery','Tab reaches funded action');await key('Enter');let firstBought=await snapshot();assert(firstBought.focused.studySpeedSummary==='guardmastery'&&firstBought.state.motes===0,'first Enter returns to slot after exact debit');await key('Enter');assert(await evaluate('window.__lumenfallQaBridge.getState().motes===0&&document.querySelector(".study-speed-menu").contains(document.activeElement)'),'repeat Enter reopens paid timer without spending');await key('Escape');let bought=await snapshot();
   assert(bought.speed===3&&bought.state.motes===0&&bought.focused.studySpeedSummary==='guardmastery'&&bought.state.studyBoosts.slot0.expiresAtMs-bought.state.studyBoosts.slot0.startedAtMs===43200000,'native Enter pays4988 once for3x12h, timer focused');
   assert(JSON.parse(bought.primary).studyBoosts.slot0.mult===3&&bought.primary===bought.recovery,'paid timer persisted both slots');
   await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(false)');await new Promise(r=>setTimeout(r,1100));await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(true)');let ticking=await snapshot();
@@ -62,9 +65,9 @@ async function run(){
   if(process.env.LUMENFALL_QA_EVIDENCE_DIR){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'lab-motes-'+width+'-'+motion+'-text'+textScale+'.png'),Buffer.from(shot.data,'base64'));}
   await evaluate('document.querySelector("[data-study-queue=guardmastery]").focus({preventScroll:true})');await key('Space');
   const queued=await evaluate(`(()=>{const b=window.__lumenfallQaBridge;return {state:b.getState(),primary:b.rawSave(),recovery:b.rawRecovery(),empty:!!document.querySelector('[data-lab-slot="0"] [data-study-slot]')};})()`);
-  assert(queued.empty&&!queued.state.studyQueue.guardmastery&&!queued.state.activeStudies.length&&queued.state.motes===0,'native Queue OFF clears the slot without spending');
-  assert(queued.state.pausedStudies[0].id==='guardmastery'&&queued.state.pausedStudies[0].remainingSec===ticking.state.activeStudies[0].remainingSec&&JSON.stringify(queued.state.studyBoosts)===JSON.stringify(ticking.state.studyBoosts),'clearing keeps exact paid work and the independent timed slot boost');
-  assert(queued.primary===queued.recovery&&JSON.parse(queued.primary).pausedStudies[0].remainingSec===queued.state.pausedStudies[0].remainingSec,'cleared work and boost persist in both save slots');
+  assert(queued.empty&&!queued.state.studyQueue.guardmastery&&queued.state.activeStudies.length===1&&queued.state.motes===0,'native Queue OFF keeps the active level without spending');
+  assert(!queued.state.pausedStudies.length&&queued.state.activeStudies[0].id==='guardmastery'&&queued.state.activeStudies[0].remainingSec===ticking.state.activeStudies[0].remainingSec&&JSON.stringify(queued.state.studyBoosts)===JSON.stringify(ticking.state.studyBoosts),'queue toggle keeps exact running paid work and the timed slot boost');
+  assert(queued.primary===queued.recovery&&JSON.parse(queued.primary).activeStudies[0].remainingSec===queued.state.activeStudies[0].remainingSec,'running work and boost persist in both save slots');
   records.push({width,motion,textScale,labUi,selected,waiting,bought,queued,controls});await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);
 
  }

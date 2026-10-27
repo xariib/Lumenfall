@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-27",
+  "sourceSha256": "5ce88b6ce6f874935fd65e6182acab01069d0eaa61dab2ec904ec0c18419cc7f",
+  "implementationCommit": "1fdcc2cbb5f88f786112bd9d13a9d37babb5cc80",
+  "remoteBaseline": "35c52202b316ea393d3a95f69c23ceb4906e6694",
+  "runtime": "v24.22.1",
+  "browser": "HeadlessChrome/156.0.8078.47",
+  "checks": {
+    "queueContinuity": 64,
+    "timedBoosts": 1480,
+    "expansion": 2676,
+    "boundaries": 2346,
+    "workshop": 228,
+    "modal": 452,
+    "modalProfiles": 18,
+    "queueStopNegativeControl": "pass",
+    "context": "pass",
+    "diffWhitespace": "pass"
+  },
+  "scenarios": [
+    {
+      "name": "lab-motes-ui",
+      "status": "pass",
+      "profiles": 3
+    },
+    {
+      "name": "lab-motes-native",
+      "status": "pass",
+      "profiles": 1
+    },
+    {
+      "name": "lab-motes-reduced-motion",
+      "status": "pass",
+      "profiles": 1
+    }
+  ],
+  "remoteUpload": "rejected by automatic approval review; explicit payload/destination authorization requested",
+  "pr": null,
+  "requiredRemoteCI": "not run",
+  "android": "not built or released; device acceptance open"
+}
