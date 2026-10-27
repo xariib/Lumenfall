@@ -1,6 +1,6 @@
 # PROGRESSION_PACING_001 — stop shallow-farm inflation and preserve Farm intent
 
-Status: in progress. Owner: this feature chat. Baseline: `main` 7f25faf9
+Status: integrated, app/device and human pacing acceptance pending. Owner: this feature chat. Baseline: `main` 7f25faf9
 (Android 0.2.48). Branch: `fix/progression-pacing-farm-intent-001`.
 
 ## User requirement, 27 October 2026
@@ -76,105 +76,95 @@ Related contracts: [Forge/Lab caps](LAB_FORGE_LONGTAIL_001.md),
 [current delivery](../PROJECT_STATE.md),
 [workflow](../project/FEATURE_WORKFLOW.md).
 
-## Checkpoint
+## Checkpoint — integrated, acceptance pending
 
-Current product SHA-256: `ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba`.
-The latest revision changes only Farm recap summation; wallets and gameplay
-credits are identical. Earlier campaign/browser evidence below is bound to
-`6dc24bee`, before this recap-only correction; do not relabel those receipts.
-The preceding `b301e15b` candidate used canonical HP for the throughput ceiling;
-the final revision also handles a legacy encounter's actually saved maximum HP.
-The original manual-Farm fixture reproduced a retry and four unintended Ascends
-within ten seconds. Focused new suite: 221 checks and five defect controls PASS.
-Forge: 9,335 assertions / 25 controls PASS; paid caps 2,278 PASS; Lab 2,676 PASS;
-permanent upgrades 3,748 PASS; permanent offline 214 PASS; income 632,726 PASS;
-endless core 237 PASS; late advice 186 PASS; slot contract 54 PASS.
-Evidence: [source-bound results](../qa/progression-pacing-001/).
+[PR #15](https://github.com/xariib/Lumenfall/pull/15) merged at
+`96af28bd49f008e26474fc786064e7e9575e3da5`. Tested PR head:
+`ea2814fa02a33c660b4c53a7a4e592d3c82a6fac`; tested merge:
+`f4d910d4f9b21fed78787305da34206685eb709d`. The integrated tree exactly matches
+tested tree `b32f63e26a7bae652febd177867d405f89bb10ca`.
+Product SHA-256: `ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba`.
+[Final CI/tree receipt](../qa/progression-pacing-001/ci-final.json).
 
-Independent four eight-hour one-second windows regenerated the source binding:
-kills/Ascends/Prisms match all four historical outcomes exactly. The additive
-intent default is separately checked before historical state comparisons.
-Frozen resource-reference tests apply only the newly specified current-Rift
-currency ceiling; they retain original rounding, multipliers and chronology.
+All seven required workflows PASS on that head: pre-merge, Forge, Lab,
+Tree, Comet/Deeds, shared UI and permanent progression. Both complete
+pre-merge jobs PASS: 189 main + 1 isolated offline scenarios, with runtime smoke
+at 390×844. The actual CI checkout/source binding was verified. Self-review
+of the complete diff and automated checks found no remaining failure; there was
+no independent reviewer and no external review/thread to resolve.
 
-Three-day regular policy rerun on the final product (three ten-minute sessions/day plus real offline play)
-reaches record Rifts 40/50/60 and Wisp Ascendancy 10/13/15; Masterwork is not yet
-unlocked. Identical policy on the released source reaches Rift70/306/467.
-The preceding candidate's 12-day continuation reaches Rift158, Lab24 and still
-has unfinished Forge investment. Its different source hash is retained explicitly.
-These are observations, not calendar guarantees or target promises. Conceptual
-phases: foundations below Rift70; Masterwork development and roster investment
-70–250; late Comet/Ultimate/Mastery paths 250–1000; very late higher Mastery and
-remaining 500-level Lab/Forge investments beyond 1000. Their actual dates depend
-on investment and play policy, and must be assessed after further testing.
+Current source checks: pacing 221/five controls; Farm recap 353/old-recap control;
+Forge 9,335 assertions/25 controls; Lab numerical boundary 2,346; actual
+Node 8.3.0/V8 6.0 Forge 2,486; all 14 clock defect controls PASS. The complete
+original offline regression (18 records/five groups) also passes locally in
+194 seconds with its exact historical assertions. Four independent 8h
+one-second windows retain every original kill/Ascend/Prism result and state
+hash, with renewed source binding.
+[Current focused/offline evidence](../qa/progression-pacing-001/recap-scope.json).
 
-Local Chrome 156 was downloaded/extracted successfully, but browser launch is
-blocked by the environment's UNIX socket policy (socket EPERM), before a test
-case runs. Do not call this a product failure or a browser PASS. Required remote
-browser gates, full regression and Android/device acceptance remain pending.
-No APK is requested/published by this task. Keep this feature open for acceptance.
+## Measured pacing and remaining limits
 
-The previous candidate's full isolated offline CI passes; local complete offline
-regression also passes (465.8 s). Final source-bound one-second windows retain
-all four historical outcomes. Actual V8 6.0 parses the full final source and its
-Forge suite passes 2,486 checks. A CI Lab clock fixture expected 31 instant kills:
-its numerical fractional-wallet oracle stays unchanged, while its chronological
-test now uses 2 kills/s, non-damaging Support casts and exact 75% rewards. It
-passes 2,346 checks and original defect controls. Existing huge-count Farm
-arithmetic probes explicitly supply the independently observed raw DPS, keeping
-their original arithmetic expectations/controls; the public ceiling is separately
-required by the new production-path suite. No assertion or gate was deleted.
-Other saved results with `b301e15b` are earlier-candidate results, not final CI.
+[Final-source campaigns](../qa/progression-pacing-001/campaign-final.json) use
+only earned currencies, actual sessions and chronological offline play.
+Regular policy (3×10 active minutes/day): record Rifts 40/50/60, Lab 10/13/15
+after days 1/2/3; Masterwork remains locked. The identical released-source
+policy reaches Rift70/306/467. Final-source continuation after 12 days:
+Rift158, Lab24, Masterwork10/500, 269 Ascends and 151 total Forge levels.
+Efficient policy (6×15 minutes/day): Rift50/68/70 after three days, Lab16 and
+Masterwork5. These are synthetic observations, not a year-long pacing promise.
+The preceding `b301e15b` and `6dc24bee` campaign receipts remain separately
+bound to their earlier sources; do not relabel them as current measurements.
 
-CI Lab speed initially timed out before Browser.getVersion (zero test cases).
-Preserve this runner failure; rerun unchanged after the full run terminates.
-The numerical Lab fixture failure is addressed as above, not retried away.
+Conceptual phases: foundations below Rift70; Masterwork development and roster
+investment 70–250; late Comet/Ultimate/Mastery paths 250–1000; higher Mastery
+and remaining 500-level Lab/Forge investment beyond 1000. Dates depend on play
+policy and require human testing. Existing saves retain prior ranks, wallets and
+paid work, so already accumulated inflation can leave them ahead of fresh pacing.
 
-Current main was verified; no overlapping pacing work was found. Unrelated
-checkout/test-generated scratch files are not part of the change.
-[PR #15](https://github.com/xariib/Lumenfall/pull/15) remains draft. Initial heads
-`fa65ea23` / `2c44c0ff` / `d6fa701b` were followed by the clock and mobile fixtures.
-The wide-count arithmetic assertions remain and separately require exactly two
-public Farm kills even with wide legacy Power. Three frozen clock oracles
-pin only their original Masterwork numeric input, preserving the immutable dyadic
-transcript, transaction checks and failure controls. Current-balance automation
-transitions also run alongside the captured historical rate reproduction.
-All 14 clock defect controls are caught; current-balance native/cold-frame parity,
-wide Power, real campaigns and progression tests remain on unmodified production.
-[Clock evidence](../qa/progression-pacing-001/clock-regression.json) distinguishes
-the pinned `f1752f70` oracle source from the actual `6dc24bee` product.
-A transient automatic upload review
-rejection was resolved by verifying authenticated owner xariib, exact public repo,
-admin permission and the existing public test payload; no user data was uploaded.
+No APK was requested or published for this change. Android build is an unchanged
+manual workflow; no release is triggered by the merge. Local Chrome launch was
+blocked before startup by the UNIX socket policy; CI supplied browser acceptance.
+V8 6.0 tests establish numerical/syntax compatibility, not physical WebView60
+DOM, Android upgrade, TalkBack or human visual acceptance. Keep the feature open.
 
-At head `4ae88295`, all six specialist workflows and isolated offline PASS.
-Pre-merge run `40510871105` completed the full suite with three failures:
-the numerical/native arithmetic tests still observed capped DPS via their raw
-input helper; long high-Power parity exceeded its original recap tolerance by
-5.09e-6 Lumen after four hours. All other full-suite scenarios passed. Keep this
-failure; do not increase tolerances or remove the historical arithmetic oracles.
+## Preserved regression history
 
-The raw-DPS helper now observes actual uncapped passive Power explicitly. A
-nonserialized compensated sum corrects Farm-start recap totals only; native
-wallets, Push-start windows (including automatic retreat), Push credits and wide
-exact credits retain their old policy. The new
-`farm-recap-parity.cjs` runs the original four-hour fixture at 60/300/14400-second
-partitions, preserves its original tolerance and native endpoint wallets, and
-rejects the old recap implementation. Its 353 checks/control PASS. VM numerical
-356 and conservation 15,899 checks with original causal controls PASS. Focused
-pacing 221 and Forge 9,335/25 controls PASS again on narrowed `ce4223a7`.
-Lab boundary 2,346, actual V8 6.0 Forge 2,486 and all 14 clock controls PASS.
-The complete original offline regression (all 18 records/five groups) PASS
-locally with unchanged assertions. All four independent 8h windows are rebound
-and retain the original outcomes. [Current evidence](../qa/progression-pacing-001/recap-scope.json).
-[Latest focused evidence](../qa/progression-pacing-001/recap-fix.json).
+The original manual-Farm reproduction retried a boss and Ascended four times
+within ten seconds. The saved intent flag fixes that while retaining automatic
+retreat/retry, manual same-Rift takeover, failed-save rollback, both slots and
+backup/recovery. The original `b301e15b` Farm ceiling used canonical HP;
+`6dc24bee` also bound a legacy encounter's actually saved maximum HP.
 
-At head `8af118e2`, isolated offline job `122244703196` in run `40520146329`
-caught the broader `1ac463ff` recap changing a frozen Push-start total by one ULP.
-The original exact assertion is retained; `ce4223a7` limits compensation to
-Farm-start windows, with a new explicit Push-start/automatic-retreat control.
+Historical huge-count arithmetic oracles now supply independently observed raw
+DPS explicitly, preserving their original expected values and causal controls.
+The actual public Farm ceiling is separately required by production-path tests.
+Three frozen clock oracles pin only their historical `1.25^rank` numeric input;
+their modified source hashes are distinct from production. Current-balance
+campaigns, native/cold-frame parity and wide-Power policy use current production.
+[Earlier clock evidence](../qa/progression-pacing-001/clock-regression.json).
 
-Next: publish this narrowed recap correction and renewed independent source binding,
-require seven green workflows on the resulting PR head, then integrate and
-verify the exact tree/source on main. App/device and human pacing acceptance
-remain open; no APK has been published by this task.
+Earlier CI exposed an instant31-kill Lab fixture (its original fractional-wallet
+predictor reproduction is retained), a wide-count Farm assumption, and a mobile
+guide expecting Forge despite a locked development band. The corrected guide
+requires Push while locked and verifies the real Forge focus after development.
+A separate Lab Browser.getVersion timeout ran zero cases; it was preserved as
+runner failure, and final Lab CI passes unchanged acceptance.
+
+At head `4ae88295`, pre-merge run `40510871105` completed with three failures:
+two numerical/native tests still observed capped DPS through their raw helper;
+the original four-hour parity tolerance exposed a 5.09e-6 Lumen recap drift.
+The helper now observes actual raw passive Power, and the recap compensates
+fractional credits without changing any wallet.
+[Broader recap checkpoint](../qa/progression-pacing-001/recap-fix.json).
+
+At `8af118e2`, isolated job `122244703196` in run `40520146329` caught
+a one-ULP change to a historical Push-start recap. Current `ce4223a7`
+compensates only Farm portions of Farm-start windows; Push-start windows,
+including automatic retreat, retain exact native addition. The original
+assertions/tolerances remain, and both full final jobs pass. An earlier automatic
+upload review rejection was resolved by verifying authenticated owner xariib,
+the public repository, admin permission and public/synthetic payload.
+
+Next: authorized app build/installed upgrade and physical phone/WebView60/
+TalkBack checks, followed by human pacing measurements across the phases above.
+The code is integrated; app/device and long-term acceptance remain pending.
