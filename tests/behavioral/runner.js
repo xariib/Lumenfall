@@ -754,7 +754,7 @@
         case 'farm-load':
           assert(s.riftMode==='farm','Farm fixture must stay in Farm mode');
           assert(s.farmReturnDepth===27,'Farm return point must be preserved');
-          assert(s.farmDepth===26 && s.depth===26,'Farm depth must normalize from the return point');
+          assert(s.farmDepth===3 && s.depth===3,'valid selected cleared Farm Rift survives normalization');
           finish('pass',{farmDepth:s.farmDepth,returnDepth:s.farmReturnDepth});
           return;
 

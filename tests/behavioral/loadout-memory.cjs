@@ -34,7 +34,7 @@ function contracts(){
   vm.runInContext(script.replace(marker,vmBridge+marker),ctx,{timeout:3000});
   const b=ctx.f25,fresh=b.fresh(),canonical=s=>b.canonical(s,'f25');
   b.set(fresh);
-  same(b.shop.map(x=>x.id),['autoascend','meteor','starcall','cometreservoir','cometcycle','meteorcore'],'retired purchases absent from the six-row current catalog');
+  same(b.shop.map(x=>x.id),['autoascend','astralcore','astralecho','astralconvergence'],'current catalog has only permanent purchases, without retired commands');
   const historical=b.fresh();historical.schemaVersion=2;historical.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};historical.comets=0;
   const retained=canonical(historical);
   ok(b.plan('autoascend').cost+retained.comets===450,'historical F27 four-purchase450 value, separate from new full catalog1380');
@@ -64,7 +64,7 @@ function contracts(){
   const huge=b.fresh();huge.owned.rememberbulk=true;huge.comets=1e20;
   ok(canonical(huge).comets===huge.comets,'large wallet unchanged');
   const complete=b.fresh();complete.schemaVersion=2;complete.owned={autoascend:true,comettrials:true};b.set(complete);
-  ok(b.complete(),'quest refresh no longer gated by retired purchase');
+  ok(b.complete()===false,'retired consumable cannot unlock through retained purchase history');
   const before=JSON.parse(JSON.stringify(b.get()));b.buy({id:'rememberbulk',cost:50});b.buy({id:'unknown',cost:0});b.buy(null);
   same(b.get(),before,'stale or unknown shop handler cannot charge');
   ok(!('retiredForgeMemoryPurchase' in canonical(fresh)),'no new compensation field');
