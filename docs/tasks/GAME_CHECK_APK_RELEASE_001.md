@@ -39,11 +39,20 @@ chronological online/offline behavior, automation and all existing test gates.
 
 Fresh local checks on integrated product: source validation PASS; queue continuity
 64 checks PASS; APK identity negative self-test PASS (Node24.22.1).
+Tooling, Lab2676/negative controls, paid boosts1480, pacing221/five controls,
+Ascend feedback78/four controls and permanent offline214 also PASS.
 Prior candidate Android run40586397665 attempt2 passed native upgrade acceptance
 for identical product bytes, but is not a substitute for this release's APK gate.
 PR validation: https://github.com/xariib/Lumenfall/actions/runs/40594218959
 
 ## Status and next action
+
+First integrated run40640183538 failed the unchanged startup-budget gate:
+shared20648 + RIFT_HINT_READABILITY_002 task12299 =32947 bytes (>32768).
+The new status paragraph exposed this narrow margin. Condense historical
+PROJECT_STATE summaries while retaining original task/evidence links and Git
+history; do not raise the limit or change tests/product. Check every task
+referenced by current workflows before rerunning all seven on the corrected head.
 
 Integrated; release validation in progress. Run seven exact-main workflows,
 then publish and verify the signed APK. Keep this task open if a required gate
