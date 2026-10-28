@@ -4474,17 +4474,19 @@ function cometMutationOpen(){
 }
 function cometCommitMutation(apply){
   if(!cometMutationOpen()) return false;
-  var base=state,oldRun=ascendRunToken;
+  var base=state,oldRun=ascendRunToken,liveWasBase=liveClockMemo && liveClockMemo.state===state;
   state=clonePersistedValue(base);
+  if(liveWasBase)liveClockMemo.state=state;
   try{
-    if(apply()===false){state=base;ascendRunToken=oldRun;return false;}
+    if(apply()===false){state=base;ascendRunToken=oldRun;if(liveWasBase)liveClockMemo.state=base;return false;}
     // A canonical defeat/Auto-Ascend may replace the staging object. Capture
     // the actual endpoint now, immediately before the single primary write.
     var working=state,saved=saveState();
-    if(!saved && state===working){state=base;ascendRunToken=oldRun;return false;}
+    if(!saved && state===working){state=base;ascendRunToken=oldRun;if(liveWasBase)liveClockMemo.state=base;return false;}
     return true;
   }catch(error){
     state=base;ascendRunToken=oldRun;
+    if(liveWasBase)liveClockMemo.state=base;
     recordPersistenceFailure(error);
     return false;
   }
@@ -4712,7 +4714,7 @@ function freshState(){
     savedLabMultiplier:1,
     autoAscendEnabled:false, autoAscendTargetDepth:16,
     loginStreak:0, questDay:'', questIds:[], questClaimed:{}, dailyQuestRefreshes:0, dailyStats:{},
-    lastSeen:Date.now()
+    lastSeen:Date.now(), offlineClockHighWaterMs:0
   };
 }
 function totalStudyLevels(s){
@@ -4793,7 +4795,9 @@ var pendingDailyReward = null;
 var pendingDailyRewardQueue = [];
 function ensureDaily(){
   var today = todayStr();
-  if(state.questDay === today) return false;
+  // questDay is also the last rewarded calendar date. Clock corrections must
+  // not reset earned quests or reopen an already rewarded day.
+  if(state.questDay && today <= state.questDay) return false;
   var hadPriorDay = !!state.questDay;
   state.loginStreak = hadPriorDay ? (daysBetweenStr(state.questDay, today)===1 ? Amount.add(state.loginStreak,1) : 1) : 1;
   state.questDay = today;
@@ -5293,6 +5297,21 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
 
   var useMotes = isPlainObject(source.studyUseMotes) ? source.studyUseMotes : {};
   var speedTargets = isPlainObject(source.studySpeedTargets) ? source.studySpeedTargets : {};
+  // Establish slot ownership before placing legacy project receipts. A paid
+  // project timer must stay separate when its resumed slot already has one.
+  for(var studySlot=0;studySlot<7;studySlot++){
+    var slotBoost=source.studyBoosts && source.studyBoosts['slot'+studySlot];
+    if(isPlainObject(slotBoost) && LAB_SPEED_TIERS.indexOf(slotBoost.mult)!==-1 &&
+       Number.isSafeInteger(slotBoost.startedAtMs) && slotBoost.startedAtMs>=0 && Number.isSafeInteger(slotBoost.expiresAtMs) &&
+       LAB_BOOST_HOURS.indexOf((slotBoost.expiresAtMs-slotBoost.startedAtMs)/3600000)!==-1)
+      out.studyBoosts['slot'+studySlot]={mult:slotBoost.mult,startedAtMs:slotBoost.startedAtMs,expiresAtMs:slotBoost.expiresAtMs};
+    var queued=source.studyBoostQueue && source.studyBoostQueue['slot'+studySlot];
+    if(isPlainObject(source.studyBoostQueue) && isPlainObject(queued) && typeof queued.enabled==='boolean' &&
+        LAB_SPEED_TIERS.indexOf(queued.mult)!==-1 && LAB_BOOST_HOURS.indexOf(queued.hours)!==-1){
+      if(!out.studyBoostQueue)out.studyBoostQueue={};
+      out.studyBoostQueue['slot'+studySlot]={enabled:queued.enabled,mult:queued.mult,hours:queued.hours};
+    }
+  }
   LONG_STUDIES.forEach(function(node){
     var validTarget=LAB_SPEED_TIERS.indexOf(speedTargets[node.id])!==-1;
     var paid=out.activeStudies.find(function(active){return active.id===node.id;});
@@ -5309,20 +5328,6 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
       out.studyBoosts[slot && !out.studyBoosts[slot]?slot:node.id]={mult:boost.mult,startedAtMs:boost.startedAtMs,expiresAtMs:boost.expiresAtMs};
     }
   });
-  for(var studySlot=0;studySlot<7;studySlot++){
-    var slotBoost=source.studyBoosts && source.studyBoosts['slot'+studySlot];
-    if(isPlainObject(slotBoost) && LAB_SPEED_TIERS.indexOf(slotBoost.mult)!==-1 &&
-       Number.isSafeInteger(slotBoost.startedAtMs) && slotBoost.startedAtMs>=0 && Number.isSafeInteger(slotBoost.expiresAtMs) &&
-       LAB_BOOST_HOURS.indexOf((slotBoost.expiresAtMs-slotBoost.startedAtMs)/3600000)!==-1)
-      out.studyBoosts['slot'+studySlot]={mult:slotBoost.mult,startedAtMs:slotBoost.startedAtMs,expiresAtMs:slotBoost.expiresAtMs};
-    var queued=source.studyBoostQueue && source.studyBoostQueue['slot'+studySlot];
-    if(isPlainObject(source.studyBoostQueue) && isPlainObject(queued) && typeof queued.enabled==='boolean' &&
-        LAB_SPEED_TIERS.indexOf(queued.mult)!==-1 && LAB_BOOST_HOURS.indexOf(queued.hours)!==-1){
-      if(!out.studyBoostQueue)out.studyBoostQueue={};
-      out.studyBoostQueue['slot'+studySlot]={enabled:queued.enabled,mult:queued.mult,hours:queued.hours};
-    }
-  }
-
   out.moteNextAtMs=typeof source.moteNextAtMs==='number' && Number.isFinite(source.moteNextAtMs) && source.moteNextAtMs>=0 && source.moteNextAtMs<=Number.MAX_SAFE_INTEGER ? source.moteNextAtMs : 0;
   var achieved = isPlainObject(source.achieved) ? source.achieved : {};
   ACHIEVEMENTS.forEach(function(a){ if(achieved[a.id]===true) out.achieved[a.id] = true; });
@@ -5417,6 +5422,9 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
 
   out.lastSeen = finiteNonNegative(source.lastSeen,Date.now());
   if(out.lastSeen<=0) out.lastSeen = Date.now();
+  // Backwards-compatible metadata, separate from the display/save wall clock.
+  // Older saves start at their existing endpoint without gaining another window.
+  out.offlineClockHighWaterMs=Math.max(out.lastSeen,finiteNonNegative(source.offlineClockHighWaterMs,0));
   normalizeCometTrials(source,out);
   settleCometClaims(out);
   if(retainRecruitmentRefund){
@@ -5948,6 +5956,7 @@ function saveState(clockMs){
     var candidate = clonePersistedValue(state);
     candidate.schemaVersion = SAVE_SCHEMA_VERSION;
     candidate.lastSeen = Number.isFinite(clockMs) ? clockMs : Date.now();
+    candidate.offlineClockHighWaterMs=Math.max(candidate.offlineClockHighWaterMs||0,candidate.lastSeen);
     var canonical = acceptPersistedState(candidate,'runtime');
     var serialized = JSON.stringify(canonical);
 
@@ -5955,6 +5964,7 @@ function saveState(clockMs){
     // Once primary storage succeeds it owns the endpoint, even if recovery
     // storage subsequently fails. Retrying must not award this window again.
     if(studyClockMemo && studyClockMemo.state===state) studyClockMemo.state=canonical;
+    if(liveClockMemo && liveClockMemo.state===state) liveClockMemo.state=canonical;
     state = canonical;
     localStorage.setItem(RECOVERY_SAVE_KEY,serialized);
     if(resetBootPending){
@@ -5982,7 +5992,7 @@ function decodeSaveBackup(code){
   return acceptPersistedState(parsed,'backup');
 }
 function currentSaveBackup(){
-  saveState();
+  if(flushLiveProgress())saveState();
   return encodeSaveBackup(acceptPersistedState(state,'backup-export'));
 }
 function copyTextFallback(textarea){
@@ -6215,13 +6225,14 @@ function creditAmount(wallet,gain){
   return Amount.exactAdd(wallet,gain);
 }
 function forgeCommitPaidMutation(apply){
-  var base=state,memoWasBase=studyClockMemo && studyClockMemo.state===state;
+  var base=state,memoWasBase=studyClockMemo && studyClockMemo.state===state,liveWasBase=liveClockMemo && liveClockMemo.state===state;
   state=clonePersistedValue(base);
+  if(liveWasBase)liveClockMemo.state=state;
   apply();
   if(studyClockMemo && studyClockMemo.state===base) studyClockMemo.state=state;
   var working=state,saved=saveState();
   // saveState replaces state only after primary storage owns the endpoint.
-  if(!saved && state===working){state=base;if(memoWasBase)studyClockMemo.state=base;return false;}
+  if(!saved && state===working){state=base;if(memoWasBase)studyClockMemo.state=base;if(liveWasBase)liveClockMemo.state=base;return false;}
   return true;
 }
 function forgeGiveCharge(id,amount){
@@ -10724,7 +10735,7 @@ function autoEmpowerTick(){
     var sp = SPIRITS.find(function(s){ return s.id===id; });
     if(!sp) return;
     var plan=getSpiritBuyPlan(sp);
-    if(plan.reason==='unavailable' || plan.reason==='locked') return;
+    if(plan.reason==='unavailable' || plan.reason==='locked' || plan.reason==='maxed') return;
     if(Amount.lt(plan.cost,cheapestCost)){cheapestCost=plan.cost;cheapest=sp;cheapestPlan=plan;}
   });
   if(cheapest && cheapestPlan.affordable && Amount.ge(Amount.sub(state.lumen,cheapestCost),reserved)) return treePaidEmpower(cheapest,cheapestPlan);
@@ -13016,19 +13027,43 @@ function presentLiveRiftResult(before,sim){
     showRiftMilestone('BOSS DEFEATED',sim.bossKills===1 ? 'Rift '+defeatedDepth+' conquered' : sim.bossKills+' Bosses defeated','+'+formatNum(sim.sigilsGained)+' Sigils','#ff8552');
   }
 }
-function advanceLiveTick(){
-  var base=state,transaction=state.studyBoostQueue && Object.keys(state.studyBoostQueue).some(function(slot){return state.studyBoostQueue[slot].enabled;});
+var liveClockMemo={state:null,monoMs:null};
+function liveMonotonicNow(){
+  var now=typeof performance!=='undefined' && performance.now ? performance.now() : null;
+  return Number.isFinite(now) && now>=0 ? now : null;
+}
+function resetLiveClock(){liveClockMemo={state:state,monoMs:liveMonotonicNow()};}
+function flushLiveProgress(){
+  // Timer-less fixtures/unsupported clocks retain the existing fixed-step path.
+  // A real foreground clock must settle before export/hide/autosave consumes it.
+  if(!liveClockMemo || liveClockMemo.state!==state || !(liveMonotonicNow()>0 || liveClockMemo.monoMs>0) ||
+      offlineCatchup || offlinePending || resumeFlowBusy || resetInProgress || reloadInProgress)return true;
+  return advanceLiveTick(false)!==null;
+}
+function advanceLiveTick(visual){
+  var mono=liveMonotonicNow(),owned=liveClockMemo.state===state;
+  var elapsedMs=owned && mono!==null && liveClockMemo.monoMs!==null && (mono>0 || liveClockMemo.monoMs>0)
+    ? Math.max(0,mono-liveClockMemo.monoMs) : TICK_MS;
+  var today=todayStr(),dailyDue=!state.questDay || today>state.questDay;
+  var base=state,oldRun=ascendRunToken,oldPending=pendingDailyReward,oldQueue=pendingDailyRewardQueue.slice();
+  var transaction=dailyDue || state.studyBoostQueue && Object.keys(state.studyBoostQueue).some(function(slot){return state.studyBoostQueue[slot].enabled;});
   if(transaction){
     state=clonePersistedValue(base);
+    if(owned)liveClockMemo.state=state;
     if(studyClockMemo && studyClockMemo.state===base)studyClockMemo.state=state;
   }
-  var sim=advanceAuthoritativeTime(TICK_MS/1000,{kind:'live',visual:true,clockStartMs:Date.now()-TICK_MS,continuousStudyClock:true});
-  if(sim.studySpeedPurchases>0){
+  var dailyRolled=dailyDue && ensureDaily();
+  var sim=advanceAuthoritativeTime(elapsedMs/1000,{kind:'live',visual:visual!==false,clockStartMs:Date.now()-elapsedMs,continuousStudyClock:true});
+  if(sim.studySpeedPurchases>0 || dailyRolled){
     var working=state,saved=saveState();
     if(!saved && state===working){
-      state=base;studyClockMemo={state:null,endMs:null,anchors:{}};return null;
+      state=base;ascendRunToken=oldRun;pendingDailyReward=oldPending;pendingDailyRewardQueue=oldQueue;
+      if(owned)liveClockMemo.state=base;
+      studyClockMemo={state:null,endMs:null,anchors:{}};return null;
     }
   }
+  liveClockMemo={state:state,monoMs:mono};
+  if(dailyRolled)sim.dailyRolled=true;
   return sim;
 }
 function tick(){
@@ -13036,7 +13071,8 @@ function tick(){
   if(offlineCatchup || offlinePending) return;
   var feedbackBefore = {mode:state.riftMode,maxDepth:state.maxDepthEver};
   var sim = advanceLiveTick();
-  if(!sim){renderAll();return;}
+  if(!sim){renderAll();return false;}
+  if(sim.dailyRolled){renderDaily(true);renderHud();}
 
   if(sim.ascends>0){
     saveState();
@@ -13066,6 +13102,8 @@ function tick(){
   checkAffordability();
   if(document.getElementById('tab-spirits').classList.contains('active') && Date.now()-wispRoleLastRenderMs>=1000) renderWispRoles();
   presentLiveRiftResult(feedbackBefore,sim);
+  presentForegroundDailyReward();
+  return true;
 }
 
 // Research-only: round up so a positive remainder never reads as zero.
@@ -13303,6 +13341,7 @@ function* offlineProgressSteps(now,lastSeen,elapsedSec,effectiveSec,processingSt
   applyAchievementChecks();
   // A wall-clock correction changes the save endpoint, not earned live time.
   state.lastSeen = Date.now();
+  state.offlineClockHighWaterMs=Math.max(state.offlineClockHighWaterMs||0,now+processedMs,state.lastSeen);
   return {
     elapsedSec:elapsedSec,effectiveSec:effectiveSec,
     earned:sim.lumenGained,shardEarned:sim.shardGained,
@@ -13328,7 +13367,7 @@ function cancelOfflineCatchup(){
 function applyOfflineProgress(done){
   if(offlineCatchup) return null;
   var now = Date.now();
-  var lastSeen = state.lastSeen||now;
+  var lastSeen = Math.max(state.lastSeen||now,state.offlineClockHighWaterMs||0);
   var elapsedSec = Math.max(0,(now-lastSeen)/1000);
   if(elapsedSec < 5){
     offlinePending = false;
@@ -13504,10 +13543,19 @@ function showReturnFlow(offline,dailyWasRolled){
   }
 }
 
+function presentForegroundDailyReward(){
+  if(!pendingDailyReward || document.hidden || startupIntroPlaying || offlineCatchup || offlinePending || resumeFlowBusy ||
+      Array.from(document.querySelectorAll('.overlay')).some(overlayVisible))return;
+  var reward=pendingDailyReward;
+  pendingDailyReward=pendingDailyRewardQueue.shift() || null;
+  showDailyOverlay(reward,presentForegroundDailyReward);
+}
+
 function init(){
   cacheEls();
   try{ riftGuidanceHidden=localStorage.getItem(RIFT_GUIDANCE_HIDDEN_KEY)==='1'; }catch(e){ riftGuidanceHidden=false; }
   state = loadState();
+  resetLiveClock();
   labMultiplier = state.savedLabMultiplier;
   var dailyRolled = ensureDaily();
   restoreEnemyOrSpawn();
@@ -13611,6 +13659,7 @@ function init(){
       return;
     }
     if(document.hidden) return;
+    resetLiveClock();
     renderAll();
     var settingsOverlay = document.getElementById('settings-overlay');
     if(settingsOverlay && settingsOverlay.style.display!=='none') closeSettings();
@@ -13638,6 +13687,7 @@ function init(){
   }
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){
+      var liveSettled=flushLiveProgress();
       clearAscendFeedback();
       document.querySelectorAll('.rift-milestone,.vfx-boss-death').forEach(function(el){ el.remove(); });
       document.querySelector('#tab-battle .stage').classList.remove('impact-victory','impact-milestone','impact-boss');
@@ -13645,7 +13695,7 @@ function init(){
       returnFlowGeneration++;
       resumeFlowBusy = false;
       cancelOfflineCatchup();
-      saveState();
+      if(liveSettled)saveState();
       return;
     }
     if(isNewGame || resumeFlowBusy || !appHiddenAt) return;
@@ -13673,6 +13723,7 @@ function init(){
       document.documentElement.classList.remove('startup-pending');
       isNewGame = false;
       state.lastSeen = Date.now();
+      resetLiveClock();
       saveState();
       if(pendingDailyReward && pendingDailyReward.reward){
         var welcomeComets = pendingDailyReward.reward.comets||0;
@@ -13687,8 +13738,9 @@ function init(){
     beginReturn(dailyRolled);
   }
   setInterval(tick,TICK_MS);
-  setInterval(function(){ if(!document.hidden) saveState(); },5000);
+  setInterval(function(){ if(!document.hidden && tick()!==false) saveState(); },5000);
   window.addEventListener('beforeunload', function(){
+    if(!flushLiveProgress())return;
     if(!resetInProgress && !reloadInProgress) saveState();
   });
   document.addEventListener('visibilitychange', function(){ document.body.classList.toggle('app-paused', document.hidden); });

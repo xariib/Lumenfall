@@ -115,7 +115,12 @@ function endpointCases(input){
     q.set(s);q.restoreEnemy();const before=F.clone(q.get());
     const summary=q.advance(10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
     const endpoint=F.clone(q.get());
-    results.push({mode,kind,kills:summary.kills,ascends:summary.ascends,prisms:A.exactSub(endpoint.prisms,before.prisms),depth:endpoint.depth,stateSha256:hash(endpoint)});
+    const historicalEndpoint=F.clone(endpoint);
+    if(Object.hasOwn(historicalEndpoint,'offlineClockHighWaterMs')){
+      eq(historicalEndpoint.offlineClockHighWaterMs,F.CLOCK,'new credited-time metadata retains exact fixture save endpoint');
+      delete historicalEndpoint.offlineClockHighWaterMs;
+    }
+    results.push({mode,kind,kills:summary.kills,ascends:summary.ascends,prisms:A.exactSub(endpoint.prisms,before.prisms),depth:endpoint.depth,stateSha256:hash(historicalEndpoint)});
     const cold=F.app(input,x.storage,{clockDate:true});eq(cold.q.get(),endpoint,'both-slot reload retains exact endpoint');
     if(mode==='auto'){
       ok(summary.ascends>1,'multiple real automatic cycles execute');

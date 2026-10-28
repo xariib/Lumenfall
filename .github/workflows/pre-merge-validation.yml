@@ -26,6 +26,12 @@ jobs:
         with:
           node-version: 24.19.0
 
+      - name: Paid boosts, clock replay and capped automation regressions
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_FIXES_0252_001.md
+          mkdir -p validation-evidence/exploit-fixes
+          node tests/behavioral/exploit-fixes.cjs index.html --negative > validation-evidence/exploit-fixes/regressions.json
+
       - name: Slot-first Lab, concise cards and expanded Deeds
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/WORKSHOP_CARD_CLARITY_001.md

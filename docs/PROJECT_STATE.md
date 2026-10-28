@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+28 October: [0.2.52 audit corrections](tasks/EXPLOIT_FIXES_0252_001.md) are implemented
+on `fix/exploits-0252-001`, with source-level regressions for all six findings.
+Full CI/integration and device acceptance remain pending; no new APK is published.
+Documented Patient Growth, Swift Charter and Focused Apparatus balance stays.
+
 28 October: [Android 0.2.52 exploit audit](tasks/EXPLOIT_AUDIT_0252_001.md)
 reproduces six defects and measures three documented balance optimizations against
 unchanged released source `adaf602c`. [Report and reproducer](qa/exploit-audit-0252-001/REPORT.md).

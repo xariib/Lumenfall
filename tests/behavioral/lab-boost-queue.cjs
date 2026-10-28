@@ -3,7 +3,7 @@
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {app,clone,P,R}=require('./lab-expansion-harness.cjs');
 const file=process.argv[2]||'index.html',original=fs.readFileSync(file,'utf8'),T=2000000000000;
-const mutants={overwrite:["state.studyBoostQueue['slot'+active.slot]={enabled:on,mult:mult,hours:hours};","state.studyBoostQueue['slot'+active.slot]={enabled:on,mult:mult,hours:hours};var paid=studySlotBoost(active);if(paid)paid.mult=mult;"],off:['if(!preference || !preference.enabled)return null;','if(!preference)return null;'],free:['state.motes=debitAmount(state.motes,cost);','state.motes=state.motes;'],wall:['var now=nowMs===undefined?Date.now():nowMs,purchases=0;','var now=Date.now(),purchases=0;'],live:['state=base;studyClockMemo={state:null,endMs:null,anchors:{}};return null;','return sim;']};
+const mutants={overwrite:["state.studyBoostQueue['slot'+active.slot]={enabled:on,mult:mult,hours:hours};","state.studyBoostQueue['slot'+active.slot]={enabled:on,mult:mult,hours:hours};var paid=studySlotBoost(active);if(paid)paid.mult=mult;"],off:['if(!preference || !preference.enabled)return null;','if(!preference)return null;'],free:['state.motes=debitAmount(state.motes,cost);','state.motes=state.motes;'],wall:['var now=nowMs===undefined?Date.now():nowMs,purchases=0;','var now=Date.now(),purchases=0;'],live:['if(sim.studySpeedPurchases>0 || dailyRolled){','if(false){']};
 function run(source){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);},near=(a,b,m)=>ok(Math.abs(a-b)<1e-5,m);
  const x=app(source),q=x.q;ok(typeof q.boostPreference==='function','new preference transaction exists');
