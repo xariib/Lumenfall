@@ -13033,7 +13033,10 @@ function liveMonotonicNow(){
   return Number.isFinite(now) && now>=0 ? now : null;
 }
 function resetLiveClock(){liveClockMemo={state:state,monoMs:liveMonotonicNow()};}
-function flushLiveProgress(){
+function flushLiveProgress(allowHidden){
+  // Hidden time belongs to capped offline catch-up. Only the hide transition
+  // itself may settle its final foreground interval before saving.
+  if(document.hidden && !allowHidden)return false;
   // A save settles real elapsed time; without an elapsed interval it must not
   // execute ready abilities or purchases as an incidental zero-time tick.
   var mono=liveMonotonicNow();
@@ -13688,7 +13691,7 @@ function init(){
   }
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){
-      var liveSettled=flushLiveProgress();
+      var liveSettled=flushLiveProgress(true);
       clearAscendFeedback();
       document.querySelectorAll('.rift-milestone,.vfx-boss-death').forEach(function(el){ el.remove(); });
       document.querySelector('#tab-battle .stage').classList.remove('impact-victory','impact-milestone','impact-boss');
@@ -13704,7 +13707,7 @@ function init(){
     appHiddenAt = 0;
     // A short interruption also invalidates the intro's generation. Restart
     // while the boot cover is present, even if offline work already committed.
-    if(awayMs < 1000 && !offlinePending && !document.documentElement.classList.contains('startup-pending')) return;
+    if(awayMs < 1000 && !offlinePending && !document.documentElement.classList.contains('startup-pending')){resetLiveClock();return;}
     beginReturn(ensureDaily());
   });
   // Cooperative simulation releases the event loop with a detached working
