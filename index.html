@@ -4069,6 +4069,13 @@ function setStudyBoostPreference(id,mult,hours,enabled){
   });
   renderLongStudies();return saved;
 }
+function stopStudyBoostQueue(slot){
+  var preference=state.studyBoostQueue && state.studyBoostQueue['slot'+slot];
+  if(!Number.isInteger(slot) || slot<0 || slot>6 || !preference || !preference.enabled ||
+      offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
+  var saved=forgeCommitPaidMutation(function(){state.studyBoostQueue['slot'+slot].enabled=false;});
+  renderLongStudies();return saved;
+}
 function getStudyBoostPlan(id,mult,hours,nowMs,clock){
   var node=LONG_STUDIES.find(function(n){return n.id===id;}),active=findActiveStudy(id),now=nowMs===undefined?Date.now():nowMs;
   var boost=active && studySlotBoost(active,now);
@@ -8608,6 +8615,7 @@ function presentControlStates(root){
     if(btn.hasAttribute('data-study-speed-close'))name='Close Speed Up';
     if(btn.hasAttribute('data-study-speed-open'))name='Lab '+(Number(btn.getAttribute('data-study-speed-open'))+1)+' — Speed Up';
     if(btn.hasAttribute('data-study-boost-queue'))name='Lab '+(Number(btn.getAttribute('data-study-boost-slot'))+1)+' — Queue Speed Up '+(btn.getAttribute('aria-checked')==='true'?'ON':'OFF')+'. Current paid boost continues.';
+    if(btn.hasAttribute('data-study-boost-stop-slot'))name='Lab '+(Number(btn.getAttribute('data-study-boost-stop-slot'))+1)+' — Turn Queue Speed Up OFF. Current paid boost continues.';
     if((btn.hasAttribute('data-empower')||adjacentWispRequirements) && reason && name.toLowerCase().indexOf(reason.toLowerCase())===-1) name+=' — '+reason;
     if(btn.getAttribute('aria-label')!==name) btn.setAttribute('aria-label',name);
   });
@@ -9870,7 +9878,8 @@ function renderLongStudies(){
       (locked?'<h3>Lab '+(si+1)+'</h3><p class="lock-note">'+studySlotUnlockText(si)+'</p>':
       '<button class="study-select" data-study-slot="'+si+'" aria-label="Select research for Lab '+(si+1)+'"><span class="study-slot-number">Lab '+(si+1)+'</span><strong>'+(queued?queued.name:'Select research')+'</strong><span aria-hidden="true">›</span></button>'+
       (queued?'<p>Queued for next level</p><button class="node-queue-toggle active" data-study-queue="'+queued.id+'">Queue ON</button>':'')+
-      (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':''))+'</div>';
+      (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':'')+
+      (state.studyBoostQueue && state.studyBoostQueue['slot'+si] && state.studyBoostQueue['slot'+si].enabled?'<button class="mini-btn" data-study-boost-stop-slot="'+si+'">Queue Speed Up ON · Turn OFF</button>':''))+'</div>';
   }
 
   if(state.activeStudies.length){
@@ -9984,6 +9993,9 @@ function renderLongStudies(){
   els['study-list'].querySelectorAll('[data-study-boost-queue]').forEach(function(button){
     if(button.studyBound)return;button.studyBound=true;
     button.addEventListener('click',function(){var id=button.getAttribute('data-study-boost-queue'),active=findActiveStudy(id);if(!active)return;var preference=getStudyBoostPreference(active);setStudyBoostPreference(id,preference.mult,preference.hours,!preference.enabled);});
+  });
+  els['study-list'].querySelectorAll('[data-study-boost-stop-slot]').forEach(function(button){
+    button.onclick=function(){var slot=Number(button.getAttribute('data-study-boost-stop-slot'));if(stopStudyBoostQueue(slot)){var opener=els['study-list'].querySelector('[data-study-slot="'+slot+'"]');if(opener)opener.focus({preventScroll:true});}};
   });
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(button){
     if(button.studyBound)return;button.studyBound=true;

@@ -19,3 +19,16 @@ when boost consent is ON and commits a paid renewal before presenting it. Primar
 write failure restores the entire tick and resets its study-clock memo; recovery
 write failure retains an accepted primary payment. Failed-write/retry/reload and
 causal live-rollback tests cover this. Product UI also resumes its real interval.
+
+## Final local continuation
+
+Product872390af: final-local-core.json379 checks/five controls;
+final-local-mobile.json327 checks/18profiles; native-focus-regression.json
+retains the original head's Tab failure and corrected full native input passes
+for normal/reduced motion,320/390/430px and100/200% text. Payment, persistence,
+focus and original assertions remain. Empty-slot queue OFF is covered numerically
+and by native touch, including failed-save rollback and preserved paid time.
+empty-slot-queue.png records the usable empty-Lab control.
+final-local-golden.json and final-local-parity.json bind regenerated independent
+one-second offline windows; all four endpoint hashes/rewards match prior source.
+CI/integration/release receipts remain pending at this checkpoint.

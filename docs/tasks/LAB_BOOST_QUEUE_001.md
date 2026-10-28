@@ -66,7 +66,7 @@ Reference imagery informs grouping; keep Lumenfall branding and the slider.
 
 Status: implemented in PR18 (https://github.com/xariib/Lumenfall/pull/18),
 validation and delivery in progress. Product SHA256
-`382f5ed30d1bcb07713a54d2a6ce6564c5b7e111dd64bcefaf64e55ee1618064`.
+`872390af6bfdaacbf606982211a207252f1233c4b47122908e61cdbcd2d58c13`.
 Changed root product, Lab harness/controls/timed UI, focused queue numeric/UI
 tests, independent offline binding and pre-merge workflow. No balance change.
 
@@ -99,3 +99,34 @@ when boost consent is ON and commits a paid renewal before presenting it. Primar
 write failure restores the entire tick and resets its study-clock memo; recovery
 write failure retains an accepted primary payment. Failed-write/retry/reload and
 causal live-rollback tests cover this. Product UI also resumes its real interval.
+
+## PR18 continuation — 28 October 2026
+
+User: "Kør pr18 færdig så." Finish this PR, its required integration checks and
+the signed APK delivery. Continuation uses an isolated detached worktree from
+PR head377d9125; the original dirty feature/release worktrees remain untouched.
+The existing uncommitted empty-slot queue-OFF candidate was copied and reviewed
+in isolation, preserving its original files.
+
+Run40655664375 failed only lab-motes-native and lab-motes-reduced-motion at
+"Tab reaches funded action". Reproduced unchanged head locally. The new queue
+checkbox correctly occupies a Tab stop between range and purchase. The driver
+now asserts that stop and that focus alone keeps queue OFF, research repeat ON
+and the wallet unchanged, then retains the original exact-payment/focus checks.
+No gate, assertion, deadline or tolerance was removed or weakened.
+
+An empty Lab now exposes a44px Queue Speed Up OFF action without requiring a
+research purchase. OFF uses the existing atomic transaction, preserves paid
+time, wallet and next plan, survives reload, and returns focus to that Lab.
+Failed-save rollback and touch/mobile coverage verify the path.
+
+Final local receipts:379 core checks/five causal controls,327 UI checks across
+18 profiles and both native motion cases across six profiles each PASS.
+Source/context/identity self-test and whitespace checks PASS. Independent
+one-second offline windows were regenerated; all four complete endpoint state
+hashes and rewards exactly match prior tested PR source. Receipts are under
+../qa/lab-boost-queue-001/final-local-*.json and native-focus-regression.json.
+
+Next: seven final-head PR workflows, reviewed integration, seven exact-main
+workflows, signed installed upgrade and public exact-byte APK verification.
+Physical phone/WebView60/TalkBack/human pacing remain separate open acceptance.
