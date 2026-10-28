@@ -1,24 +1,27 @@
 # Lumenfall — current delivery status
 
 28 October 2026: [Game verification and APK delivery](tasks/GAME_CHECK_APK_RELEASE_001.md)
-is in progress with explicit GitHub/publication authorization. PR17's seven
-relevant workflows and both full jobs passed; integrated at `bdb341ee` with
-unchanged tested product bytes. Exact-main validation and signed publication
-are next. No new release or physical-device acceptance is claimed yet.
+published [Android 0.2.51](https://github.com/xariib/Lumenfall/releases/tag/android-1000051)
+from `d3420c15`. Seven exact-source workflows, both full jobs (189+1 scenarios),
+runtime smoke, signed installed upgrade and anonymous exact-byte download PASS.
+Both saves, paid work, UID/origin and legacy purchases retained. Includes PR15
+pacing/manual Farm, PR16 Ascend summary and PR17 Lab queue/Speed Up.
+[Release evidence](qa/game-check-apk-release-001/release.json).
+Physical phone, exact WebView60, TalkBack and human pacing remain open.
 
 28 October: [Lab queue/Speed Up](tasks/LAB_SLOTS_QUEUE_SPEEDUP_001.md) merged
 via PR17 at `bdb341ee` after seven PR gates passed. Queue OFF finishes active
-work; replacement retains paid work. This release task owns APK delivery.
+work; replacement retains paid work. Shipped in Android 0.2.51 above.
 
 27 October 2026: [Readable Auto Ascend](tasks/AUTO_ASCEND_FEEDBACK_001.md)
 integrated via [PR #16](https://github.com/xariib/Lumenfall/pull/16) at `48f95e43`.
 One stationary summary combines all committed gains/counts; gameplay and PR15
 balance are unchanged. Seven gates, both full jobs, 189+1 scenarios, 12 mobile
 profiles and runtime smoke PASS; integrated tree matches the tested merge.
-[Evidence](qa/auto-ascend-feedback-001/ci-final.json). No APK release;
-app/device and human pacing acceptance remain open.
+[Evidence](qa/auto-ascend-feedback-001/ci-final.json). Included in Android0.2.51;
+physical-device and human pacing acceptance remain open.
 
-27 October 2026: [Progression pacing and manual Farm](tasks/PROGRESSION_PACING_001.md) integrated through [PR #15](https://github.com/xariib/Lumenfall/pull/15) at `96af28bd`. Masterwork is additive and Rift-gated; shallow farming is bounded and manual Farm persists with Auto Ascend. Seven required workflows, both full jobs, 189+1 scenarios and runtime smoke PASS; integrated code/tree match the tested merge. [Evidence](qa/progression-pacing-001/ci-final.json). No new APK; app/device and human pacing acceptance remain open.
+27 October 2026: [Progression pacing and manual Farm](tasks/PROGRESSION_PACING_001.md) integrated through [PR #15](https://github.com/xariib/Lumenfall/pull/15) at `96af28bd`. Masterwork is additive and Rift-gated; shallow farming is bounded and manual Farm persists with Auto Ascend. Seven required workflows, both full jobs, 189+1 scenarios and runtime smoke PASS; integrated code/tree match the tested merge. [Evidence](qa/progression-pacing-001/ci-final.json). Included in Android0.2.51; physical-device and human pacing acceptance remain open.
 
 27 October: [Permanent progression](tasks/PERMANENT_PROGRESSION_UI_001.md) released as **Android 0.2.48**. Seven gates, 189+1 scenarios, installed Android upgrade and public APK verification PASS. Both saves/paid work retained. [Evidence](qa/permanent-progression-ui-001/release.json). Phone/WebView60/TalkBack/pacing remain open.
 

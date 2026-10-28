@@ -47,15 +47,39 @@ PR validation: https://github.com/xariib/Lumenfall/actions/runs/40594218959
 
 ## Status and next action
 
-First integrated run40640183538 failed the unchanged startup-budget gate:
-shared20648 + RIFT_HINT_READABILITY_002 task12299 =32947 bytes (>32768).
-The new status paragraph exposed this narrow margin. Condense historical
-PROJECT_STATE summaries while retaining original task/evidence links and Git
-history; do not raise the limit or change tests/product. Check every task
-referenced by current workflows before rerunning all seven on the corrected head.
+Released and verified; physical/human acceptance remains open.
+[Android0.2.51](https://github.com/xariib/Lumenfall/releases/tag/android-1000051),
+versionCode1000051, source `d3420c1526bec40e07b3bda8f5af1109c89c5b94`.
+Product bytes still match the reviewed/tested PR17 head. No additional product,
+test, deadline, signing or workflow change was made in this delivery task.
 
-Integrated; release validation in progress. Run seven exact-main workflows,
-then publish and verify the signed APK. Keep this task open if a required gate
-fails or is blocked. Physical phone, exact WebView60 DOM, TalkBack and human
-pacing/performance acceptance remain unverified; emulator/browser tests do not
-claim those results. No subagents or unrelated product edits used.
+[All seven exact-source workflows](../qa/game-check-apk-release-001/ci-final.json)
+PASS, including both complete jobs (189+1 scenarios), causal controls and guarded
+runtime smoke. [Android run51](https://github.com/xariib/Lumenfall/actions/runs/40647708530)
+PASS on attempt1: package/version/signer/assets, actual installed API31/WebView91
+upgrade from signed158, both saves, paid work, UID/origin, legacy purchases and
+native Wisp purchase/Farm-to-Lab navigation. This uses synthetic saves.
+
+[Public download verification](../qa/game-check-apk-release-001/download-verification.json)
+PASS: anonymous stable link HTTP200, 7,062,776 bytes, all15 packaged assets match,
+original certificate extracted, actual tag/commit and exact native APK receipt
+match. APK SHA256 `9d64651cbb35477d0dcd1a9bffd8e0fbb56bca3b48e58c47b33a01a7b86e736b`.
+[Complete release evidence](../qa/game-check-apk-release-001/release.json).
+
+Retained failures: run40640183538 hit the unchanged startup32KiB limit
+(20648+12299=32947). Historical PROJECT_STATE summaries were condensed with
+task/evidence links and Git history retained; all22 workflow/task contexts pass.
+Then Chrome startup failed before assertions in the full job and Lab speed job
+(`Browser.getVersion`, checks0; Lab also hung during browser-close teardown).
+Only affected jobs were rerun on identical source. Both pass on attempt2;
+no assertion, deadline or gate was weakened. Details are in the CI/release JSON.
+
+Self-review and automated checks found no new product release blocker; no
+independent review is claimed. Two P2 enforcement observations are recorded in
+the release JSON: main is unprotected, and the release gate names six workflows
+while this delivery manually required all seven. Neither setting was changed.
+
+Next: install as an update without uninstalling, with a Settings backup first.
+Physical phone, exact WebView60 DOM, TalkBack and human pacing/performance remain
+unverified. Keep those acceptance items open; do not archive as fully accepted.
+No subagents or unrelated product edits used.

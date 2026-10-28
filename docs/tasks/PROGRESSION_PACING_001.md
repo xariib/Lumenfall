@@ -168,3 +168,11 @@ the public repository, admin permission and public/synthetic payload.
 Next: authorized app build/installed upgrade and physical phone/WebView60/
 TalkBack checks, followed by human pacing measurements across the phases above.
 The code is integrated; app/device and long-term acceptance remain pending.
+
+## Android delivery — 28 October 2026
+
+Included in signed Android0.2.51 from `d3420c15`. Seven source-bound workflows,
+both full jobs (189+1), runtime smoke, installed emulator upgrade and public
+APK verification PASS. Both saves/paid work retained.
+[Delivery evidence](../qa/game-check-apk-release-001/release.json).
+Physical phone, exact WebView60, TalkBack and human pacing remain open.

@@ -135,3 +135,11 @@ project rule was introduced. Keep the feature open for remaining acceptance.
 
 Next: a separately scoped integrated Android build/upgrade and phone/human
 pacing acceptance before release/completion. No APK publication in this task.
+
+## Android delivery — 28 October 2026
+
+Included in signed Android0.2.51 from `d3420c15`. Seven source-bound workflows,
+both full jobs (189+1), runtime smoke, installed emulator upgrade and public
+APK verification PASS. Both saves/paid work retained.
+[Delivery evidence](../qa/game-check-apk-release-001/release.json).
+Physical phone, exact WebView60, TalkBack and human pacing remain open.

@@ -108,7 +108,7 @@
       "attempt": 2
     }
   ],
-  "status": "VALIDATED_BUILDING",
+  "status": "RELEASED_VERIFIED_PHYSICAL_ACCEPTANCE_PENDING",
   "secondAttempt": {
     "run": 40641211074,
     "job": 122659563329,
@@ -118,9 +118,9 @@
   },
   "validationRun": 40641211074,
   "validationAttempt": 2,
-  "next": "Wait for signed Android run40647708530 (#51), verify package/version/certificate, installed-upgrade receipt and public release bytes; then integrate final docs without changing tested product.",
+  "next": "Physical phone, exact WebView60 DOM, TalkBack and human pacing/performance acceptance remain open. Install the APK as an update without uninstalling; back up in Settings first.",
   "evidenceBranch": "release/game-check-apk-evidence-2026-10-28",
-  "checkpointAt": "2026-10-28T07:06:32.247Z",
+  "checkpointAt": "2026-10-28T07:18:16.482Z",
   "labInfrastructureAttempt1": {
     "run": 40641319134,
     "job": 122659890320,
@@ -161,329 +161,242 @@
   "isolatedOfflineScenarios": 1,
   "runtimeSmoke": "PASS at 390x844",
   "allSevenExactSourceWorkflowsPassed": true,
-  "fullJobs": [
-    {
-      "id": 122661129751,
-      "name": "Lumenfall pre-merge validation",
-      "status": "completed",
-      "conclusion": "success",
-      "run_id": 40641211074,
-      "logs_url": null,
-      "steps": [
-        {
-          "name": "Set up job",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 1
-        },
-        {
-          "name": "Checkout",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 2
-        },
-        {
-          "name": "Set up Node.js",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 3
-        },
-        {
-          "name": "Slot-first Lab, concise cards and expanded Deeds",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 4
-        },
-        {
-          "name": "Lab queue continuity and Speed Up modal",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 5
-        },
-        {
-          "name": "APK identity verifier self-test",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 6
-        },
-        {
-          "name": "Stable Auto Ascend summaries and unchanged committed rewards",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 7
-        },
-        {
-          "name": "Progression pacing and explicit Farm intent",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 8
-        },
-        {
-          "name": "Repository migration version and historical-baseline controls",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 9
-        },
-        {
-          "name": "Node tooling regression checks",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 10
-        },
-        {
-          "name": "Validate game source",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 11
-        },
-        {
-          "name": "Verify existing independent offline reference binding",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 12
-        },
-        {
-          "name": "Stage web assets",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 13
-        },
-        {
-          "name": "Phone feedback startup and input acceptance",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 14
-        },
-        {
-          "name": "Existing settled-screen UI acceptance after actual startup",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 15
-        },
-        {
-          "name": "Midgame Farm guidance existing acceptance",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 16
-        },
-        {
-          "name": "Legacy Rift layout with complete Farm dialog content",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 17
-        },
-        {
-          "name": "Endless progression amounts, gates, persistence and chronology",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 18
-        },
-        {
-          "name": "Endless automation clock and repeated Ascend regressions",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 19
-        },
-        {
-          "name": "Guidance baseline readability and exact old-width inverse",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 20
-        },
-        {
-          "name": "Preserve early Guidance readability evidence",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 21
-        },
-        {
-          "name": "Rift cosmetics selection, persistence and mobile acceptance",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 22
-        },
-        {
-          "name": "Exact Prism earning numerical and causal regression",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 23
-        },
-        {
-          "name": "Tree caps original-value refunds and current collection",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 24
-        },
-        {
-          "name": "Swift cap, original Shard value and reachable Forge Deeds",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 25
-        },
-        {
-          "name": "Wisp contribution readability and unchanged gameplay",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 26
-        },
-        {
-          "name": "Compact Wisp cards, live next action and original purchase preservation",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 27
-        },
-        {
-          "name": "Development currency UI and retained-value acceptance",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 28
-        },
-        {
-          "name": "Read Ascend alerts and stationary daily quest claims",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 29
-        },
-        {
-          "name": "Cheaper Recruitment cap and refund regression",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 30
-        },
-        {
-          "name": "Independent exact Prism funding oracle",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 31
-        },
-        {
-          "name": "Cheaper Recruitment defect controls",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 32
-        },
-        {
-          "name": "Behavioral harness negative self-test",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 33
-        },
-        {
-          "name": "Stateful behavioral regression suite",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 34
-        },
-        {
-          "name": "Install runtime error guard in staged copy",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 35
-        },
-        {
-          "name": "Browser runtime smoke test",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 36
-        },
-        {
-          "name": "Preserve full regression evidence",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 37
-        },
-        {
-          "name": "Post Set up Node.js",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 73
-        },
-        {
-          "name": "Post Checkout",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 74
-        },
-        {
-          "name": "Complete job",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 75
-        }
-      ]
-    },
-    {
-      "id": 122661132192,
-      "name": "Lumenfall isolated offline catch-up",
-      "status": "completed",
-      "conclusion": "success",
-      "run_id": 40641211074,
-      "logs_url": null,
-      "steps": [
-        {
-          "name": "Set up job",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 1
-        },
-        {
-          "name": "Run actions/checkout@v4",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 2
-        },
-        {
-          "name": "Run actions/setup-node@v4",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 3
-        },
-        {
-          "name": "Stage exact product and assets",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 4
-        },
-        {
-          "name": "Original offline regression with unchanged assertions and deadline",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 5
-        },
-        {
-          "name": "Run actions/upload-artifact@v4",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 6
-        },
-        {
-          "name": "Post Run actions/setup-node@v4",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 11
-        },
-        {
-          "name": "Post Run actions/checkout@v4",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 12
-        },
-        {
-          "name": "Complete job",
-          "status": "completed",
-          "conclusion": "success",
-          "number": 13
-        }
-      ]
-    }
-  ],
   "androidBuild": {
     "id": 40647708530,
-    "number": 51,
-    "source": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
     "url": "https://github.com/xariib/Lumenfall/actions/runs/40647708530",
+    "source": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+    "number": 51,
+    "attempt": 1,
+    "conclusion": "success",
     "publishRequested": true,
-    "status": "in_progress"
+    "jobs": [
+      {
+        "id": 122680298854,
+        "name": "build-apk",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 40647708530,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Require integrated validation before publishing",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Set up Java",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Set up Gradle",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Verify Android SDK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Restore and verify stable Android signing key",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Install Capacitor dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Validate game source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Stage Android web assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Browser runtime smoke test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Generate Android project",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Compute continuing Android version",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Set Android app version",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Stage Android icon and splash sources",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Generate Android icons and splash",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Sync Capacitor",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18
+          },
+          {
+            "name": "Build APK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Prepare APK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Verify final APK identity",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Verify exact packaged production assets and origin",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Enable emulator hardware acceleration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          },
+          {
+            "name": "Free native build memory before emulator acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24
+          },
+          {
+            "name": "In-place signed APK and save upgrade on emulator",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25
+          },
+          {
+            "name": "Require completed upgrade receipt for this exact APK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Preserve failed native upgrade diagnostics",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 27
+          },
+          {
+            "name": "Upload failed native upgrade diagnostics",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 28
+          },
+          {
+            "name": "Preserve verified build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          },
+          {
+            "name": "Publish verified APK release",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30
+          },
+          {
+            "name": "Remove temporary signing copy",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31
+          },
+          {
+            "name": "Post Set up Gradle",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 59
+          },
+          {
+            "name": "Post Set up Java",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 60
+          },
+          {
+            "name": "Post Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 61
+          },
+          {
+            "name": "Post Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 62
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 63
+          }
+        ]
+      }
+    ]
   },
   "fullValidation": {
     "status": "PASS",
@@ -493,5 +406,123 @@
     "isolatedOfflineScenarios": 1,
     "runtimeSmoke": "PASS",
     "evidence": "ci-final.json"
-  }
+  },
+  "release": {
+    "id": 426354965,
+    "url": "https://github.com/xariib/Lumenfall/releases/tag/android-1000051",
+    "tag": "android-1000051",
+    "name": "Lumenfall Android 0.2.51",
+    "sourceCommit": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+    "publishedAt": "2026-10-28T07:09:35Z",
+    "draft": false,
+    "prerelease": false,
+    "assets": [
+      {
+        "id": 684155681,
+        "name": "apk-sha256.txt",
+        "bytes": 80,
+        "digest": "sha256:139e091d12919adcdc6517a015a8be734f5e538096b998cfa1e59eafcad63732",
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000051/apk-sha256.txt"
+      },
+      {
+        "id": 684155690,
+        "name": "assets.json",
+        "bytes": 2597,
+        "digest": "sha256:b92aa64480d00309f0b65f5cc19a121bf97442d5dc5e3f5573b06bc72f0df5e7",
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000051/assets.json"
+      },
+      {
+        "id": 684155710,
+        "name": "commit.txt",
+        "bytes": 41,
+        "digest": "sha256:dadbd2b4f421b30a1e7ddde7e5bd30fe6bd986dfd7204583198d7cc3e987422a",
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000051/commit.txt"
+      },
+      {
+        "id": 684155688,
+        "name": "emulator-upgrade.json",
+        "bytes": 9633,
+        "digest": "sha256:d34679597993692425b749cb3d816a7c36179af1d9dd8ab734405771148b40f5",
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000051/emulator-upgrade.json"
+      },
+      {
+        "id": 684155685,
+        "name": "identity.txt",
+        "bytes": 261,
+        "digest": "sha256:04d8cf9f2811be34e6e59b5d0b6e2dda9fb09135d8bb3c91ed1915a9f7801bdb",
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000051/identity.txt"
+      },
+      {
+        "id": 684155684,
+        "name": "Lumenfall.apk",
+        "bytes": 7062776,
+        "digest": "sha256:9d64651cbb35477d0dcd1a9bffd8e0fbb56bca3b48e58c47b33a01a7b86e736b",
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000051/Lumenfall.apk"
+      }
+    ]
+  },
+  "downloadVerification": {
+    "status": "PASS",
+    "verifiedAt": "2026-10-28T07:12:59.683Z",
+    "sourceCommit": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+    "sourceHtmlSha256": "5ce88b6ce6f874935fd65e6182acab01069d0eaa61dab2ec904ec0c18419cc7f",
+    "versionName": "0.2.51",
+    "versionCode": 1000051,
+    "apkSha256": "9d64651cbb35477d0dcd1a9bffd8e0fbb56bca3b48e58c47b33a01a7b86e736b",
+    "bytes": 7062776,
+    "anonymousStableDownload": true,
+    "httpStatus": 200,
+    "resolvedHost": "release-assets.githubusercontent.com",
+    "publicAndBuildApkIdentical": true,
+    "exactPackagedAssets": 15,
+    "package": "com.lumenfall.app",
+    "origin": "https://localhost",
+    "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+    "certificateExtractedFromDownloadedApk": true,
+    "signatureValidityVerifiedInBoundBuild": true,
+    "nativeUpgradeReceiptBoundToExactPublicApk": true,
+    "baselineVersionCode": 158,
+    "uidRetained": true,
+    "bothSaveSlotsRetained": true,
+    "paidWorkRetained": true,
+    "legacyEntitlementsRetained": true,
+    "installedWispTouch": "PASS",
+    "installedFarmHint": "PASS",
+    "physicalDevice": false
+  },
+  "nativeUpgrade": {
+    "evidence": "emulator-upgrade.json",
+    "status": "PASS",
+    "baselineVersionCode": 158,
+    "candidateVersionCode": 1000051,
+    "physicalDevice": false,
+    "webview": "91.0.4472.114",
+    "androidApi": 31,
+    "saveFixture": "Synthetic save on established signed0.1.158, verified through old cold restart and actual in-place upgrade"
+  },
+  "tagSourceVerified": true,
+  "ciEvidence": "ci-final.json",
+  "deliveryDocumentationChecks": {
+    "status": "PASS",
+    "taskContexts": 22,
+    "sharedStartupBytes": 19316,
+    "maxStartupBytes": 31615,
+    "budgetBytes": 32768,
+    "productTestsAssetsMobileWorkflowsUnchangedFromReleasedSource": true
+  },
+  "releaseProof": {
+    "path": "release-proof.jpg",
+    "bytes": 126152,
+    "gitBlobSha": "760dc0b41f735bf501de420609054d288742bde8"
+  },
+  "buildArtifacts": [
+    {
+      "id": 12798536395,
+      "name": "signed-apk-40647708530",
+      "bytes": 7560071,
+      "digest": "sha256:54f03e5b0b7c843d0ff9314eace096cbe34dd96aee0b42826ba3f5687e2ce95a",
+      "url": "https://api.github.com/repos/xariib/Lumenfall/actions/artifacts/12798536395",
+      "expiresAt": "2027-01-26T07:04:13Z"
+    }
+  ]
 }
