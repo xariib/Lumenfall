@@ -29,6 +29,8 @@ jobs:
       - name: Paid boosts, clock replay and capped automation regressions
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_FIXES_0252_001.md
+          node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_FIXES_RELEASE_001.md
+          node tests/behavioral/android-recap-fixture.cjs index.html --negative
           mkdir -p validation-evidence/exploit-fixes
           node tests/behavioral/exploit-fixes.cjs index.html --negative > validation-evidence/exploit-fixes/regressions.json
           node tests/behavioral/exploit-live-clock-browser.cjs index.html validation-evidence/exploit-fixes/live-clock

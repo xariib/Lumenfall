@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+28 October: [0.2.52 defect fixes](tasks/EXPLOIT_FIXES_0252_001.md) integrated
+via [PR19](https://github.com/xariib/Lumenfall/pull/19) at e2baa406. All seven
+PR gates, 189 main scenarios, isolated offline and runtime smoke PASS; integrated
+tree matches the tested source. [Release preparation](tasks/EXPLOIT_FIXES_RELEASE_001.md)
+repairs the native recap's synthetic clock fixture; product bytes are unchanged.
+APK delivery and physical-device acceptance remain pending in its PR receipt.
+
 28 October: [0.2.52 audit and fixes](tasks/EXPLOIT_FIXES_0252_001.md) cover six
 reproduced defects and three unchanged balance choices. [PR19](https://github.com/xariib/Lumenfall/pull/19)
 holds the fixes and current CI/integration receipt. Device acceptance is pending; no new APK.
