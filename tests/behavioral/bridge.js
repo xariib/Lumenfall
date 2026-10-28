@@ -980,5 +980,12 @@ window.__lumenfallQaBridge = {
       buff:els['buff-indicator'] ? els['buff-indicator'].textContent : ''
     };
   },
-  freeze: function(){ if(window.__qaUiMeasurementPause)window.__qaUiMeasurementPause(true); reloadInProgress = true; document.body.classList.add('app-paused'); }
+  freeze: function(){
+    if(window.__qaUiMeasurementPause)window.__qaUiMeasurementPause(true);
+    // Static fixtures start a fresh paused epoch. Boot callback overhead must
+    // not execute their already-ready abilities/Auto Ascend at later input.
+    // Ordinary live measurement windows use uiMeasurementPause above instead.
+    if(typeof resetLiveClock==='function')resetLiveClock();
+    reloadInProgress = true; document.body.classList.add('app-paused');
+  }
 };
