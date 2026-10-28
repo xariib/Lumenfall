@@ -19,7 +19,7 @@ const bridge=`window.endlessUi={
  freeze:function(){window.setInterval=function(){return 0;};}
 };`;
 assert.equal(source.split(marker).length,2);
-const page=source.replace('<head>','<head><script>window.setInterval=function(){return 0;};window.endlessErrors=[];window.addEventListener("error",function(e){endlessErrors.push(e.message);});window.addEventListener("unhandledrejection",function(e){endlessErrors.push(String(e.reason));});</script>').replace(marker,bridge+marker);
+const page=source.replace('<head>','<head><script>window.setInterval=function(){return 0;};Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});window.endlessErrors=[];window.addEventListener("error",function(e){endlessErrors.push(e.message);});window.addEventListener("unhandledrejection",function(e){endlessErrors.push(String(e.reason));});</script>').replace(marker,bridge+marker);
 let browser,server,profile,stage,session,seq=0,buffer='',closed=false;const pending=new Map(),records=[];let checks=0;
 function check(x,m){checks++;assert(x,m);}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP timeout '+method));},20000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}

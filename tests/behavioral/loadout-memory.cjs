@@ -112,7 +112,7 @@ async function click(selector,keyboard=false){
   await new Promise(r=>setTimeout(r,300));
 }
 async function browserContracts(){
-  const prelude=`<script>window.setInterval=function(){return 0;};window.__f25Errors=[];window.addEventListener('error',e=>__f25Errors.push(e.message));window.addEventListener('unhandledrejection',e=>__f25Errors.push(String(e.reason)));<\/script>`;
+  const prelude=`<script>window.setInterval=function(){return 0;};Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});window.__f25Errors=[];window.addEventListener('error',e=>__f25Errors.push(e.message));window.addEventListener('unhandledrejection',e=>__f25Errors.push(String(e.reason)));<\/script>`;
   const staged=html.replace('<head>','<head>'+prelude).replace(marker,browserBridge+marker);
   server=http.createServer((req,res)=>{const name=decodeURIComponent((req.url||'/').split('?')[0]);if(name==='/'||name==='/index.html'){res.setHeader('Content-Type','text/html');res.end(staged);return;}
     const file=path.resolve(sourceWebRoot,'.'+name),asset=/^\/(fonts|branding)\//.test(name);

@@ -13034,9 +13034,10 @@ function liveMonotonicNow(){
 }
 function resetLiveClock(){liveClockMemo={state:state,monoMs:liveMonotonicNow()};}
 function flushLiveProgress(){
-  // Timer-less fixtures/unsupported clocks retain the existing fixed-step path.
-  // A real foreground clock must settle before export/hide/autosave consumes it.
-  if(!liveClockMemo || liveClockMemo.state!==state || !(liveMonotonicNow()>0 || liveClockMemo.monoMs>0) ||
+  // A save settles real elapsed time; without an elapsed interval it must not
+  // execute ready abilities or purchases as an incidental zero-time tick.
+  var mono=liveMonotonicNow();
+  if(!liveClockMemo || liveClockMemo.state!==state || mono===null || liveClockMemo.monoMs===null || mono<=liveClockMemo.monoMs ||
       offlineCatchup || offlinePending || resumeFlowBusy || resetInProgress || reloadInProgress)return true;
   return advanceLiveTick(false)!==null;
 }

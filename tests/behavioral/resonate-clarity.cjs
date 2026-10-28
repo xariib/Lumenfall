@@ -47,6 +47,11 @@ window.resonateQa={
 };`;
 const prelude=String.raw`<script>
 window.__resonateErrors=[];window.__resonatePaused=true;
+// Freeze elapsed gameplay time with the fixture scheduler, retaining actual
+// performance time during its explicit ordinary-interval acceptance window.
+var resonateRealNow=performance.now.bind(performance),resonateClockValue=0,resonateClockStart=resonateRealNow(),resonateClockPaused=true;
+Object.defineProperty(window,'__resonatePaused',{configurable:true,get:function(){return resonateClockPaused;},set:function(value){var now=resonateRealNow();if(!resonateClockPaused)resonateClockValue+=now-resonateClockStart;resonateClockStart=now;resonateClockPaused=!!value;}});
+Object.defineProperty(performance,'now',{configurable:true,value:function(){return resonateClockValue+(resonateClockPaused?0:resonateRealNow()-resonateClockStart);}});
 window.addEventListener('error',function(e){window.__resonateErrors.push(e.message);});
 window.addEventListener('unhandledrejection',function(e){window.__resonateErrors.push(String(e.reason));});
 var originalResonateInterval=window.setInterval;
