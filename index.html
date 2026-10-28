@@ -2377,6 +2377,13 @@
   #study-list .study-speed-menu p{font-size:.75rem;margin:10px 0;overflow-wrap:break-word;}
   #study-list .study-speed-menu select{width:100%;min-height:44px;}
   #study-list .study-speed-menu .study-speed-range{margin-top:16px;}
+  .study-boost-plan-title{color:var(--ink-dim);font-size:.75rem;}
+  .study-boost-next{padding:12px;margin:12px 0;border:1px solid var(--line);border-radius:12px;overflow-wrap:break-word;}
+  #study-list .study-boost-next p{margin:6px 0 0;}
+  #study-list .study-boost-queue{display:flex;flex-direction:row;align-items:center;gap:10px;width:100%;min-height:44px;padding:10px;text-align:left;white-space:normal;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;color:var(--ink);}
+  #study-list .study-boost-queue.active{background:#173c3c;border-color:#79c8c3;color:#e4f7f5;}
+  .study-boost-queue>span:first-child{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid currentColor;border-radius:5px;flex:0 0 24px;}
+  .study-boost-queue>strong{margin-left:auto;}
 </style>
 </head>
 <body>
@@ -4046,9 +4053,33 @@ function nextStudyBoostExpiry(nowMs,clock){
   Object.keys(state.studyBoosts).forEach(function(id){var b=state.studyBoosts[id];if(b.startedAtMs>nowMs)next=Math.min(next,(b.startedAtMs-nowMs)/1000);if(b.expiresAtMs>nowMs)next=Math.min(next,(b.expiresAtMs-nowMs)/1000);});
   return next;
 }
-function getStudyBoostPlan(id,mult,hours){
-  var node=LONG_STUDIES.find(function(n){return n.id===id;}),active=findActiveStudy(id),now=Date.now();
-  var held=active && studySlotBoost(active) && studySlotBoost(active).expiresAtMs>now;
+function getStudyBoostPreference(active){
+  var saved=state.studyBoostQueue && state.studyBoostQueue['slot'+active.slot];
+  return saved || {enabled:false,mult:state.studySpeedTargets[active.id],hours:state.studyBoostHours[active.id]};
+}
+function setStudyBoostPreference(id,mult,hours,enabled){
+  var active=findActiveStudy(id);
+  if(!active || LAB_SPEED_TIERS.indexOf(mult)<0 || LAB_BOOST_HOURS.indexOf(hours)<0 ||
+      (enabled!==undefined && typeof enabled!=='boolean') || offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
+  var on=enabled===undefined?getStudyBoostPreference(active).enabled:enabled;
+  var saved=forgeCommitPaidMutation(function(){
+    if(!state.studyBoostQueue)state.studyBoostQueue={};
+    state.studyBoostQueue['slot'+active.slot]={enabled:on,mult:mult,hours:hours};
+    state.studySpeedTargets[id]=mult;state.studyBoostHours[id]=hours;
+  });
+  renderLongStudies();return saved;
+}
+function stopStudyBoostQueue(slot){
+  var preference=state.studyBoostQueue && state.studyBoostQueue['slot'+slot];
+  if(!Number.isInteger(slot) || slot<0 || slot>6 || !preference || !preference.enabled ||
+      offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
+  var saved=forgeCommitPaidMutation(function(){state.studyBoostQueue['slot'+slot].enabled=false;});
+  renderLongStudies();return saved;
+}
+function getStudyBoostPlan(id,mult,hours,nowMs,clock){
+  var node=LONG_STUDIES.find(function(n){return n.id===id;}),active=findActiveStudy(id),now=nowMs===undefined?Date.now():nowMs;
+  var boost=active && studySlotBoost(active,now);
+  var held=boost && (clock&&clock.binary?clock.binary.compareMs(boost.expiresAtMs)>0:boost.expiresAtMs>now);
   var cost=studyBoostCost(mult,hours);
   var eligible=!!node && !!active && active.remainingSec>SIM_EPS && state.maxDepthEver>=(node.unlockDepth||1) &&
     !(node.levelCap!==undefined && longStudyLevel(id)>=node.levelCap) && !held && mult>active.speedMult && Number.isFinite(cost);
@@ -4060,6 +4091,9 @@ function activateStudyBoost(id,mult,hours){
   if(!forgeCommitPaidMutation(function(){
     state.motes=debitAmount(state.motes,plan.cost);
     state.studySpeedTargets[id]=mult;state.studyBoostHours[id]=hours;
+    if(state.studyBoostQueue && state.studyBoostQueue['slot'+plan.active.slot]){
+      var preference=state.studyBoostQueue['slot'+plan.active.slot];preference.mult=mult;preference.hours=hours;
+    }
     state.studyBoosts['slot'+plan.active.slot]={mult:mult,startedAtMs:now,expiresAtMs:now+hours*3600000};
   }))return false;
   renderLongStudies();renderHud();return true;
@@ -5281,6 +5315,12 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
        Number.isSafeInteger(slotBoost.startedAtMs) && slotBoost.startedAtMs>=0 && Number.isSafeInteger(slotBoost.expiresAtMs) &&
        LAB_BOOST_HOURS.indexOf((slotBoost.expiresAtMs-slotBoost.startedAtMs)/3600000)!==-1)
       out.studyBoosts['slot'+studySlot]={mult:slotBoost.mult,startedAtMs:slotBoost.startedAtMs,expiresAtMs:slotBoost.expiresAtMs};
+    var queued=source.studyBoostQueue && source.studyBoostQueue['slot'+studySlot];
+    if(isPlainObject(source.studyBoostQueue) && isPlainObject(queued) && typeof queued.enabled==='boolean' &&
+        LAB_SPEED_TIERS.indexOf(queued.mult)!==-1 && LAB_BOOST_HOURS.indexOf(queued.hours)!==-1){
+      if(!out.studyBoostQueue)out.studyBoostQueue={};
+      out.studyBoostQueue['slot'+studySlot]={enabled:queued.enabled,mult:queued.mult,hours:queued.hours};
+    }
   }
 
   out.moteNextAtMs=typeof source.moteNextAtMs==='number' && Number.isFinite(source.moteNextAtMs) && source.moteNextAtMs>=0 && source.moteNextAtMs<=Number.MAX_SAFE_INTEGER ? source.moteNextAtMs : 0;
@@ -8574,6 +8614,8 @@ function presentControlStates(root){
     if(btn.classList.contains('study-repeat'))name=subject+' — Queue '+(state.studyQueue[btn.getAttribute('data-study-queue')]?'ON':'OFF')+'. Current level continues.';
     if(btn.hasAttribute('data-study-speed-close'))name='Close Speed Up';
     if(btn.hasAttribute('data-study-speed-open'))name='Lab '+(Number(btn.getAttribute('data-study-speed-open'))+1)+' — Speed Up';
+    if(btn.hasAttribute('data-study-boost-queue'))name='Lab '+(Number(btn.getAttribute('data-study-boost-slot'))+1)+' — Queue Speed Up '+(btn.getAttribute('aria-checked')==='true'?'ON':'OFF')+'. Current paid boost continues.';
+    if(btn.hasAttribute('data-study-boost-stop-slot'))name='Lab '+(Number(btn.getAttribute('data-study-boost-stop-slot'))+1)+' — Turn Queue Speed Up OFF. Current paid boost continues.';
     if((btn.hasAttribute('data-empower')||adjacentWispRequirements) && reason && name.toLowerCase().indexOf(reason.toLowerCase())===-1) name+=' — '+reason;
     if(btn.getAttribute('aria-label')!==name) btn.setAttribute('aria-label',name);
   });
@@ -9672,19 +9714,22 @@ function renderResearch(){
 
 function studySpeedMarkup(node,active,maxed){
   var boost=active && studySlotBoost(active),held=boost && boost.expiresAtMs>Date.now();
-  var target=held?boost.mult:state.studySpeedTargets[node.id],index=LAB_SPEED_TIERS.indexOf(target);
-  var hours=held?(boost.expiresAtMs-boost.startedAtMs)/3600000:state.studyBoostHours[node.id];
+  var preference=getStudyBoostPreference(active),target=preference.mult,index=LAB_SPEED_TIERS.indexOf(target);
+  var hours=preference.hours;
   var plan=getStudyBoostPlan(node.id,target,hours);
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
     '<button class="study-speed-open mini-btn" data-study-speed-open="'+active.slot+'" data-study-speed-summary="'+node.id+'" aria-expanded="'+(expandedStudySpeedSlot===active.slot)+'" aria-haspopup="dialog" aria-controls="study-speed-editor-'+node.id+'">Speed Up</button>'+
     '<div class="study-speed-editor overlay" id="study-speed-editor-'+node.id+'" '+(expandedStudySpeedSlot===active.slot?'':'hidden')+'><div class="modal study-speed-menu" role="dialog" aria-modal="true" aria-labelledby="study-speed-title-'+node.id+'" aria-describedby="study-speed-note-'+node.id+'" tabindex="-1">'+
     '<div class="study-menu-heading"><h2 id="study-speed-title-'+node.id+'">Speed Up · Lab '+(active.slot+1)+'</h2><button class="mini-btn" data-study-speed-close="'+active.slot+'" aria-label="Close Speed Up">×</button></div><p>'+node.name+'</p><p id="study-speed-note-'+node.id+'">Boost this slot with Motes. The timer continues when you change research.</p>'+
-    '<div class="study-speed-heading">'+
-    '<select data-study-boost-hours="'+node.id+'" aria-label="'+node.name+' — Boost duration" aria-describedby="study-speed-help" '+(held?'disabled':'')+'>'+LAB_BOOST_HOURS.map(function(h,i){return '<option value="'+h+'" '+(hours===h?'selected':'')+'>'+h+' hours'+(i?' · '+[0,5,10][i]+'% off':'')+'</option>';}).join('')+'</select></div>'+
-    '<div class="study-speed-range"><output data-study-speed-value="'+node.id+'" aria-label="Selected speed">'+target+'x</output><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" '+(held?'disabled':'')+' aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
+    '<p class="study-boost-plan-title">'+(held?'Next boost':'Boost settings')+'</p><div class="study-speed-heading">'+
+    '<select data-study-boost-hours="'+node.id+'" aria-label="'+node.name+' — Boost duration" aria-describedby="study-speed-help">'+LAB_BOOST_HOURS.map(function(h,i){return '<option value="'+h+'" '+(hours===h?'selected':'')+'>'+h+' hours'+(i?' · '+[0,5,10][i]+'% off':'')+'</option>';}).join('')+'</select></div>'+
+    '<div class="study-speed-range"><output data-study-speed-value="'+node.id+'" aria-label="Selected speed">'+target+'x</output><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
     '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div>'+
+    '<div class="study-boost-next"><strong data-study-next-summary>'+target+'x · '+hours+'h</strong>'+(held?'<p>Cost per boost · <span data-study-next-price>'+purchasePriceMarkup('mote',plan.cost)+'</span></p>':'')+'</div>'+
+    '<button class="study-boost-queue mini-btn '+(preference.enabled?'active':'')+'" role="checkbox" aria-checked="'+preference.enabled+'" data-study-boost-queue="'+node.id+'" data-study-boost-slot="'+active.slot+'"><span aria-hidden="true">'+(preference.enabled?'✓':'×')+'</span><span>Queue Speed Up</span><strong>'+(preference.enabled?'ON':'OFF')+'</strong></button>'+
+    '<p class="study-boost-queue-note">'+(preference.enabled?'Auto-start and repeat the selected boost when research and Motes are available. Pay once at each start.':'Queue OFF. The current paid boost finishes; no automatic boost follows.')+'</p>'+
     '<div class="study-boost-action">'+(held?
-      '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">'+target+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
+      '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">Active: '+boost.mult+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
       active?'<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">Start '+hours+'h boost · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>':'')+'</div><button class="ghost-btn" data-study-speed-cancel="'+active.slot+'">Back to Labs</button></div></div></div>';
 }
 // Native controls stay attached while their project and other cards refresh.
@@ -9720,6 +9765,8 @@ function replaceStudyMarkup(html){
     var mult=LAB_SPEED_TIERS[range.studyPreview],id=range.getAttribute('data-study-speed-target'),hours=Number(nextSelect.value),plan=getStudyBoostPlan(id,mult,hours);
     nextRange.value=range.studyPreview;
     nextControls.querySelector('[data-study-speed-value]').textContent=mult+'x';
+    nextControls.querySelector('[data-study-next-summary]').textContent=mult+'x · '+hours+'h';
+    var nextPrice=nextControls.querySelector('[data-study-next-price]');if(nextPrice)nextPrice.innerHTML=purchasePriceMarkup('mote',plan.cost);
     var action=nextControls.querySelector('[data-speed-study]');
     if(action){action.setAttribute('data-speed',mult);action.disabled=!plan.affordable;nextControls.querySelector('[data-study-speed-price]').innerHTML=purchasePriceMarkup('mote',plan.cost);}
   }
@@ -9729,6 +9776,9 @@ function replaceStudyMarkup(html){
   range.disabled=nextRange.disabled;range.value=nextRange.value;
   range.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(range.value)]+'x');range.style.backgroundSize=(Number(range.value)/7*100)+'% 8px';
   select.disabled=nextSelect.disabled;select.value=nextSelect.value;
+  ['.study-boost-next','.study-boost-plan-title','.study-boost-queue-note'].forEach(function(selector){controls.querySelector(selector).innerHTML=nextControls.querySelector(selector).innerHTML;});
+  var queueControl=controls.querySelector('[data-study-boost-queue]'),nextQueue=nextControls.querySelector('[data-study-boost-queue]');
+  queueControl.className=nextQueue.className;queueControl.setAttribute('aria-checked',nextQueue.getAttribute('aria-checked'));queueControl.innerHTML=nextQueue.innerHTML;
   var status=controls.querySelector('[data-study-boost-status]'),nextStatus=nextControls.querySelector('[data-study-boost-status]');
   var purchase=controls.querySelector('[data-speed-study]'),nextPurchase=nextControls.querySelector('[data-speed-study]');
   if(status && nextStatus){status.textContent=nextStatus.textContent;status.setAttribute('data-study-boost-time',nextStatus.getAttribute('data-study-boost-time'));}
@@ -9828,7 +9878,8 @@ function renderLongStudies(){
       (locked?'<h3>Lab '+(si+1)+'</h3><p class="lock-note">'+studySlotUnlockText(si)+'</p>':
       '<button class="study-select" data-study-slot="'+si+'" aria-label="Select research for Lab '+(si+1)+'"><span class="study-slot-number">Lab '+(si+1)+'</span><strong>'+(queued?queued.name:'Select research')+'</strong><span aria-hidden="true">›</span></button>'+
       (queued?'<p>Queued for next level</p><button class="node-queue-toggle active" data-study-queue="'+queued.id+'">Queue ON</button>':'')+
-      (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':''))+'</div>';
+      (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':'')+
+      (state.studyBoostQueue && state.studyBoostQueue['slot'+si] && state.studyBoostQueue['slot'+si].enabled?'<button class="mini-btn" data-study-boost-stop-slot="'+si+'">Queue Speed Up ON · Turn OFF</button>':''))+'</div>';
   }
 
   if(state.activeStudies.length){
@@ -9872,7 +9923,7 @@ function renderLongStudies(){
         Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':selectedStudySlot>=0?'Select research':'Choose a slot') + '</button>' + '</div>');
   });
 
-  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours, then activate once for the shown Motes. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. It expires without another payment. Existing speed already paid for a level remains protected. Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
+  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -9937,7 +9988,14 @@ function renderLongStudies(){
   });
   els['study-list'].querySelectorAll('[data-study-boost-hours]').forEach(function(select){
     if(select.studyBound)return;select.studyBound=true;
-    select.addEventListener('change',function(){var id=select.getAttribute('data-study-boost-hours');if(LAB_BOOST_HOURS.indexOf(Number(select.value))<0)return;state.studyBoostHours[id]=Number(select.value);saveState();renderLongStudies();});
+    select.addEventListener('change',function(){var id=select.getAttribute('data-study-boost-hours'),active=findActiveStudy(id);if(!active)return;var preference=getStudyBoostPreference(active);setStudyBoostPreference(id,preference.mult,Number(select.value));});
+  });
+  els['study-list'].querySelectorAll('[data-study-boost-queue]').forEach(function(button){
+    if(button.studyBound)return;button.studyBound=true;
+    button.addEventListener('click',function(){var id=button.getAttribute('data-study-boost-queue'),active=findActiveStudy(id);if(!active)return;var preference=getStudyBoostPreference(active);setStudyBoostPreference(id,preference.mult,preference.hours,!preference.enabled);});
+  });
+  els['study-list'].querySelectorAll('[data-study-boost-stop-slot]').forEach(function(button){
+    button.onclick=function(){var slot=Number(button.getAttribute('data-study-boost-stop-slot'));if(stopStudyBoostQueue(slot)){var opener=els['study-list'].querySelector('[data-study-slot="'+slot+'"]');if(opener)opener.focus({preventScroll:true});}};
   });
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(button){
     if(button.studyBound)return;button.studyBound=true;
@@ -9948,7 +10006,8 @@ function renderLongStudies(){
     function commit(){
       var index=Number(input.value),id=input.getAttribute('data-study-speed-target');
       if(index<0 || index>7 || index!==Math.floor(index))return;
-      input.studyPreview=undefined;state.studySpeedTargets[id]=LAB_SPEED_TIERS[index];saveState();renderLongStudies();
+      var active=findActiveStudy(id);if(!active)return;
+      input.studyPreview=undefined;setStudyBoostPreference(id,LAB_SPEED_TIERS[index],getStudyBoostPreference(active).hours);
     }
     // Keep the live range attached from the start of a touch or mouse gesture.
     ['mousedown','touchstart'].forEach(function(type){input.addEventListener(type,function(){input.focus({preventScroll:true});});});
@@ -10917,6 +10976,10 @@ function simulationAdvanceAutomationTimers(elapsedSec){
 function simulationNextStudySeconds(nowMs,clock){
   nowMs=nowMs===undefined?Date.now():nowMs;
   var next = nextStudyBoostExpiry(nowMs,clock);
+  if(state.studyBoostQueue && queuedStudyBoostPlans(nowMs,clock).some(function(p){return !labCanPay(state.motes,p.plan.cost);})){
+    var moteWait=clock&&clock.binary?clock.binary.until(state.moteNextAtMs):(state.moteNextAtMs-nowMs)/1000;
+    if(Amount.gt(moteWait,0))next=Amount.min(next,moteWait);
+  }
   state.activeStudies.forEach(function(active){
     var speed=studyEffectiveSpeed(active,nowMs,clock);
     if(speed>0) next = Amount.min(next,Math.max(0,active.remainingSec/speed));
@@ -10990,34 +11053,47 @@ function simulationCurrencyKillsNeeded(cost,lumenPerKill,shardPerKill){
   var shardKills = Amount.le(shardDeficit,0) ? 0 : (Amount.gt(shardPerKill,0) ? Amount.max(1,Amount.round(Amount.sub(Amount.ratio(shardDeficit,shardPerKill),1e-12),'ceil')) : Infinity);
   return Amount.max(lumenKills,shardKills);
 }
-function simulationBuyStudySpeeds(summary,elapsedSec){
-  // Timed boosts require one explicit prepaid activation, never automatic renewal.
-  return 0;
+function queuedStudyBoostPlans(nowMs,clock){
+  if(!state.studyBoostQueue)return [];
+  return state.activeStudies.slice().sort(function(a,b){return a.slot-b.slot;}).map(function(active){
+    var preference=state.studyBoostQueue['slot'+active.slot];
+    if(!preference || !preference.enabled)return null;
+    var plan=getStudyBoostPlan(active.id,preference.mult,preference.hours,nowMs,clock);
+    return plan.eligible?{active:active,preference:preference,plan:plan}:null;
+  }).filter(function(p){return !!p;});
 }
-function simulationKillsUntilStudyMotes(){
+function simulationBuyStudySpeeds(summary,elapsedSec,nowMs,clock){
+  var now=nowMs===undefined?Date.now():nowMs,purchases=0;
+  // Paid receipts use whole epoch milliseconds, never backdate an earned boost.
+  var started=Math.ceil(now);
+  if(!Number.isSafeInteger(started) || started<0)return 0;
+  queuedStudyBoostPlans(now,clock).forEach(function(p){
+    var cost=p.plan.cost,preference=p.preference,end=started+preference.hours*3600000;
+    if(!Number.isSafeInteger(end) || !labCanPay(state.motes,cost))return;
+    state.motes=debitAmount(state.motes,cost);
+    state.studyBoosts['slot'+p.active.slot]={mult:preference.mult,startedAtMs:started,expiresAtMs:end};
+    summary.studySpeedPurchases++;summary.studyMotesSpent=creditAmount(summary.studyMotesSpent,cost);purchases++;
+    simulationTimelinePush(summary,elapsedSec,'studySpeed',{slot:p.active.slot,id:p.active.id,mult:preference.mult,hours:preference.hours,cost:cost});
+  });
+  return purchases;
+}
+function simulationKillsUntilStudyMotes(nowMs,clock){
+  var now=nowMs===undefined?Date.now():nowMs;
+  var pending=queuedStudyBoostPlans(now,clock);
+  if(!pending.length)return Infinity;
+  if(pending.some(function(p){return labCanPay(state.motes,p.plan.cost);}))return 0;
+  if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:now<state.moteNextAtMs)return Infinity;
+  // Stop at the next qualifying Luminous payout; the existing cooldown boundary
+  // skips unfunded waiting time without processing every ordinary kill.
   var depth=state.farmDepth||state.depth;
-  var reward=Math.max(1,Math.round(motesDropFor(depth)*(1+supportMoteBonus())));
   var chance=eliteChance(depth);
   var accum=Math.max(0,Math.min(0.999999999999,state.luminousAccum||0));
-  var first=state.enemyIsLuminous ? 1 : 0,best=Infinity;
-  LONG_STUDIES.forEach(function(node){
-    var plan=studyMotesPlan(node);
-    if(!plan) return;
-    var deficit=Amount.sub(plan.cost,state.motes);
-    if(Amount.le(deficit,0)){best=0;return;}
-    // Any positive deficit needs a real Luminous reward, however small it is.
-    var luminousNeeded=Math.max(1,Math.ceil(Amount.ratio(deficit,reward)));
-    if(luminousNeeded<=first){best=Math.min(best,1);return;}
-    if(chance<=0) return;
-    var crossings=luminousNeeded-first;
-    var kills=Math.max(2,Math.ceil((crossings-accum-1e-12)/chance)+1);
-    if(!Number.isSafeInteger(kills)) return;
-    // Match the actual batch/spawn crossing arithmetic, including its epsilon.
-    if(Math.floor(accum+(kills-1)*chance+1e-12)<crossings) kills++;
-    if(kills>2 && Math.floor(accum+(kills-2)*chance+1e-12)>=crossings) kills--;
-    best=Math.min(best,kills);
-  });
-  return best;
+  if(state.enemyIsLuminous)return 1;
+  if(chance<=0)return Infinity;
+  var kills=Math.max(2,Math.ceil((1-accum-1e-12)/chance)+1);
+  if(Math.floor(accum+(kills-1)*chance+1e-12)<1)kills++;
+  if(kills>2 && Math.floor(accum+(kills-2)*chance+1e-12)>=1)kills--;
+  return Number.isSafeInteger(kills)?kills:Infinity;
 }
 // Luminous material research can make a queued purchase affordable earlier.
 // Search the same monotone normal/Luminous batch rewards used by actual Farm.
@@ -11051,11 +11127,11 @@ function simulationLabCurrencyKillsNeeded(cost,lumenPerKill,shardPerKill,rewardS
   while(Amount.lt(low,high)){var middle=Amount.add(low,Amount.floorRatio(Amount.sub(high,low),2));if(enough(middle)) high=middle;else low=Amount.add(middle,1);}
   return low;
 }
-function simulationKillsUntilEconomyMutation(rewardScale){
+function simulationKillsUntilEconomyMutation(rewardScale,nowMs,clock){
   var depth = state.farmDepth||state.depth;
   var lumenPerKill = Amount.mul(enemyRewardFor(depth),rewardScale);
   var shardPerKill = Amount.mul(shardRewardFor(depth),rewardScale);
-  var best = simulationKillsUntilStudyMotes();
+  var best = simulationKillsUntilStudyMotes(nowMs,clock);
 
   RESEARCH.forEach(function(node){
     if(!state.researchQueue[node.id]) return;
@@ -11075,9 +11151,9 @@ function simulationKillsUntilEconomyMutation(rewardScale){
   }
   return best;
 }
-function simulationFarmEconomyBoundarySeconds(dps,rewardScale){
+function simulationFarmEconomyBoundarySeconds(dps,rewardScale,nowMs,clock){
   if(Amount.le(dps,0) || Amount.le(state.enemyMaxHp,0)) return Infinity;
-  var killsNeeded = simulationKillsUntilEconomyMutation(rewardScale);
+  var killsNeeded = simulationKillsUntilEconomyMutation(rewardScale,nowMs,clock);
   if(!isFinite(killsNeeded)) return Infinity;
   if(Amount.le(killsNeeded,0)) return 0;
   return Amount.ratio(Amount.add(state.enemyHp,Amount.mul(Amount.max(0,Amount.sub(killsNeeded,1)),state.enemyMaxHp)),dps);
@@ -11495,7 +11571,7 @@ function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
     actions += studiesStarted;
   }
 
-  actions += simulationBuyStudySpeeds(summary,elapsedSec);
+  actions += simulationBuyStudySpeeds(summary,elapsedSec,nowMs,clock);
   actions += simulationRecordAchievements(summary);
 
   if(simulationMaybeRetryBoss(policy,summary)){
@@ -12600,7 +12676,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
         study:simulationNextStudySeconds(simulationNowMs()),
         farmGrid:traceFarmGrid,
         economy:state.riftMode==='farm'
-          ? simulationFarmEconomyBoundarySeconds(traceDps,traceRewardScale)
+          ? simulationFarmEconomyBoundarySeconds(traceDps,traceRewardScale,traceNowMs,simulationClockPosition())
           : Infinity
       }
     });
@@ -12695,7 +12771,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     var economyStep = Infinity;
     if(state.riftMode==='farm'){
       farmGridStep = farmGridRemainingSec;
-      economyStep = simulationFarmEconomyBoundarySeconds(dps,rewardScale);
+      economyStep = simulationFarmEconomyBoundarySeconds(dps,rewardScale,nowMs,simulationClockPosition());
       next = Amount.min(next,farmGridStep);
       next = Amount.min(next,economyStep);
     } else {
@@ -12873,7 +12949,7 @@ function advanceStudyOnlyTime(elapsedSec,clockStartMs,summary,resumable){
   var nowMs = Amount.valid(clockStartMs) ? clockStartMs : Date.now();
   simulationCompleteDueStudies(summary);
   simulationStartQueuedStudies(summary);
-  simulationBuyStudySpeeds(summary,0);
+  simulationBuyStudySpeeds(summary,0,nowMs);
   var batchEvents = 0, batchStarted = simulationWorkNow();
   while(Amount.gt(remaining,SIM_EPS)){
     if(resumable && (Amount.ge(batchEvents,SIM_BATCH_EVENTS) || Amount.ge(Amount.sub(simulationWorkNow(),batchStarted),SIM_BATCH_MS))){
@@ -12890,7 +12966,7 @@ function advanceStudyOnlyTime(elapsedSec,clockStartMs,summary,resumable){
       nowMs=Amount.add(nowMs,Amount.mul(next,1000));
     }
     var actions = Amount.add(simulationCompleteDueStudies(summary),simulationStartQueuedStudies(summary));
-    actions=Amount.add(actions,simulationBuyStudySpeeds(summary,Amount.sub(Amount.max(0,Number(elapsedSec)||0),remaining)));
+    actions=Amount.add(actions,simulationBuyStudySpeeds(summary,Amount.sub(Amount.max(0,Number(elapsedSec)||0),remaining),nowMs));
     if(Amount.le(next,SIM_EPS) && actions===0) break;
   }
   return nowMs;
@@ -12940,11 +13016,27 @@ function presentLiveRiftResult(before,sim){
     showRiftMilestone('BOSS DEFEATED',sim.bossKills===1 ? 'Rift '+defeatedDepth+' conquered' : sim.bossKills+' Bosses defeated','+'+formatNum(sim.sigilsGained)+' Sigils','#ff8552');
   }
 }
+function advanceLiveTick(){
+  var base=state,transaction=state.studyBoostQueue && Object.keys(state.studyBoostQueue).some(function(slot){return state.studyBoostQueue[slot].enabled;});
+  if(transaction){
+    state=clonePersistedValue(base);
+    if(studyClockMemo && studyClockMemo.state===base)studyClockMemo.state=state;
+  }
+  var sim=advanceAuthoritativeTime(TICK_MS/1000,{kind:'live',visual:true,clockStartMs:Date.now()-TICK_MS,continuousStudyClock:true});
+  if(sim.studySpeedPurchases>0){
+    var working=state,saved=saveState();
+    if(!saved && state===working){
+      state=base;studyClockMemo={state:null,endMs:null,anchors:{}};return null;
+    }
+  }
+  return sim;
+}
 function tick(){
   if(document.hidden || resetInProgress || reloadInProgress) return;
   if(offlineCatchup || offlinePending) return;
   var feedbackBefore = {mode:state.riftMode,maxDepth:state.maxDepthEver};
-  var sim = advanceAuthoritativeTime(TICK_MS/1000,{kind:'live',visual:true,clockStartMs:Date.now()-TICK_MS,continuousStudyClock:true});
+  var sim = advanceLiveTick();
+  if(!sim){renderAll();return;}
 
   if(sim.ascends>0){
     saveState();
@@ -12963,7 +13055,6 @@ function tick(){
   }
   if(sim.empowers>0 || sim.completedStudies.length>0) renderSpirits();
   if(sim.researchBought>0) renderResearch();
-  if(sim.studySpeedPurchases>0) saveState();
   if(sim.completedStudies.length || sim.closedStudies.length || sim.studiesStarted>0 || sim.studySpeedPurchases>0) renderLongStudies();
   else updateStudyProgress();
 
@@ -13013,7 +13104,7 @@ function updateStudyProgress(){
     var running=findActiveStudy(el.getAttribute('data-study-boost-status'));
     var boost=running && studySlotBoost(running);
     if(!boost){expired=true;return;}
-    el.textContent=boost.mult+'x · '+fmtStudyDuration(seconds)+' left';
+    el.textContent='Active: '+boost.mult+'x · '+fmtStudyDuration(seconds)+' left';
   });
   if(expired)renderLongStudies();
   state.activeStudies.forEach(function(active){

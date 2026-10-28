@@ -1,0 +1,146 @@
+{
+  "node": "v24.22.1",
+  "receipts": [
+    {
+      "phase": "baseline",
+      "identity": {
+        "selected_path": "/workspace/scratch/be190f0c0d81/chrome-runtime/chrome-headless-shell-linux64/chrome-headless-shell",
+        "resolved_path": "/workspace/scratch/be190f0c0d81/chrome-runtime/chrome-headless-shell-linux64/chrome-headless-shell",
+        "sha256": "201ce52b0e6e571702a9bd747f2552e3d17818f1789e0967e6392d5e1a6167da",
+        "version": "Google Chrome for Testing 156.0.8078.47",
+        "version_exitcode": 0,
+        "version_stderr": ""
+      },
+      "source": {
+        "source_sha256": "382f5ed30d1bcb07713a54d2a6ce6564c5b7e111dd64bcefaf64e55ee1618064",
+        "instrumented_sha256": "4f76e212dea94c4f93075fe8075581341304e413e5fec91d548dcb448a06313e"
+      },
+      "status": "fail",
+      "scenario": "lab-motes-native",
+      "message": "Tab reaches funded action",
+      "profiles": [],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "phase": "native",
+      "identity": {
+        "selected_path": "/workspace/scratch/be190f0c0d81/chrome-runtime/chrome-headless-shell-linux64/chrome-headless-shell",
+        "resolved_path": "/workspace/scratch/be190f0c0d81/chrome-runtime/chrome-headless-shell-linux64/chrome-headless-shell",
+        "sha256": "201ce52b0e6e571702a9bd747f2552e3d17818f1789e0967e6392d5e1a6167da",
+        "version": "Google Chrome for Testing 156.0.8078.47",
+        "version_exitcode": 0,
+        "version_stderr": ""
+      },
+      "source": {
+        "source_sha256": "872390af6bfdaacbf606982211a207252f1233c4b47122908e61cdbcd2d58c13",
+        "instrumented_sha256": "7f95e48a84c910f7be64f3d0d004ba44fec9d0c06973d5929368d9ad99bb3595"
+      },
+      "status": "pass",
+      "scenario": "lab-motes-reduced-motion",
+      "profiles": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "reduce"
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "reduce"
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "reduce"
+        }
+      ],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "phase": "native-normal",
+      "identity": {
+        "selected_path": "/workspace/scratch/be190f0c0d81/chrome-runtime/chrome-headless-shell-linux64/chrome-headless-shell",
+        "resolved_path": "/workspace/scratch/be190f0c0d81/chrome-runtime/chrome-headless-shell-linux64/chrome-headless-shell",
+        "sha256": "201ce52b0e6e571702a9bd747f2552e3d17818f1789e0967e6392d5e1a6167da",
+        "version": "Google Chrome for Testing 156.0.8078.47",
+        "version_exitcode": 0,
+        "version_stderr": ""
+      },
+      "source": {
+        "source_sha256": "872390af6bfdaacbf606982211a207252f1233c4b47122908e61cdbcd2d58c13",
+        "instrumented_sha256": "7f95e48a84c910f7be64f3d0d004ba44fec9d0c06973d5929368d9ad99bb3595"
+      },
+      "status": "pass",
+      "scenario": "lab-motes-native",
+      "profiles": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "no-preference"
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "no-preference"
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "no-preference"
+        }
+      ],
+      "teardown": {
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pending": 0,
+        "profileRemoved": true
+      }
+    }
+  ]
+}

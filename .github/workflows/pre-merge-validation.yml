@@ -50,6 +50,25 @@ jobs:
             node tests/behavioral/run.cjs --web-root . --scenario "$SCENARIO" --raw-artifacts validation-evidence/lab-contracts
           done
 
+      - name: Editable next boost and independent Speed Up queue
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/LAB_BOOST_QUEUE_001.md
+          mkdir -p validation-evidence/lab-boost-queue
+          node tests/behavioral/lab-boost-queue.cjs index.html --negative > validation-evidence/lab-boost-queue/core.json
+          node tests/behavioral/lab-speed-controls.cjs index.html --boost-queue --evidence validation-evidence/lab-boost-queue/mobile > validation-evidence/lab-boost-queue/ui.json
+          if node tests/behavioral/lab-speed-controls.cjs index.html --boost-queue --mutate-next-lock > validation-evidence/lab-boost-queue/next-lock-control.json; then
+            echo "::error::Locked next boost defect unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const base='validation-evidence/lab-boost-queue/';
+          const good=JSON.parse(fs.readFileSync(base+'ui.json')),bad=JSON.parse(fs.readFileSync(base+'next-lock-control.json'));
+          assert.equal(good.status,'pass');assert.equal(good.profiles.length,18);
+          assert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));
+          assert.notEqual(bad.sourceSha256,good.sourceSha256);assert(!bad.teardown);
+          JS
+
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test
 

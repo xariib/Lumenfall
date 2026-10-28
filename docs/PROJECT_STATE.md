@@ -1,5 +1,9 @@
 # Lumenfall — current delivery status
 
+28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) in progress.
+Separate Queue Speed Up ON/OFF preserves paid time; next settings remain editable.
+Local numeric/mobile checks pass; seven CI gates and signed delivery pending.
+
 28 October 2026: [Game verification and APK delivery](tasks/GAME_CHECK_APK_RELEASE_001.md)
 published [Android 0.2.51](https://github.com/xariib/Lumenfall/releases/tag/android-1000051)
 from `d3420c15`. Seven exact-source workflows, both full jobs (189+1 scenarios),

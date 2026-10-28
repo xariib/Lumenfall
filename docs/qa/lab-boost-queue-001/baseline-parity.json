@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "baseline": "8f8f77286a1df6af5049e289fd1582494a979424",
+  "baselineProductSha256": "5ce88b6ce6f874935fd65e6182acab01069d0eaa61dab2ec904ec0c18419cc7f",
+  "method": "Four independent 8h windows, one-second calls, entire persisted endpoints compared, identical current harness",
+  "phases": [
+    {
+      "phase": 0,
+      "baselineStateSha256": "8f2522628a1ee7721661ed34a5abbb79829675fc85f8e5b1edc5fd400be8b758",
+      "candidateStateSha256": "8f2522628a1ee7721661ed34a5abbb79829675fc85f8e5b1edc5fd400be8b758",
+      "equal": true
+    },
+    {
+      "phase": 1,
+      "baselineStateSha256": "3dbea203baaf4437c97203d833974b14517bd90904fcc4b8937348dad00aae35",
+      "candidateStateSha256": "3dbea203baaf4437c97203d833974b14517bd90904fcc4b8937348dad00aae35",
+      "equal": true
+    },
+    {
+      "phase": 2,
+      "baselineStateSha256": "b441a3ad3da2b4d359de0331eb732936aed37e06c21ad2ad2b66588e13f41336",
+      "candidateStateSha256": "b441a3ad3da2b4d359de0331eb732936aed37e06c21ad2ad2b66588e13f41336",
+      "equal": true
+    },
+    {
+      "phase": 3,
+      "baselineStateSha256": "df35fc018f66ff5af6d6ff8cd18a3a83f49602d042ea5998617cbb55ba3c40b1",
+      "candidateStateSha256": "df35fc018f66ff5af6d6ff8cd18a3a83f49602d042ea5998617cbb55ba3c40b1",
+      "equal": true
+    }
+  ]
+}

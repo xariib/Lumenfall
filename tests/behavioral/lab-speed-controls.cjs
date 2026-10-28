@@ -5,8 +5,9 @@ const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),args=process.argv.slice(2),sourcePath=path.resolve(args[0]||'index.html');
 let source=fs.readFileSync(sourcePath,'utf8');
-const mutation=args.includes('--mutate-selection')?'selection-pays':args.includes('--mutate-select')?'detached-slider':null;
-if(mutation){const anchor=mutation==='selection-pays'?"state.studySpeedTargets[id]=LAB_SPEED_TIERS[index];":"  replaceStudyMarkup(html);";assert.equal(source.split(anchor).length,2);source=source.replace(anchor,mutation==='selection-pays'?anchor+"applySpeedTier(id,LAB_SPEED_TIERS[index]);":"  replaceControlMarkup(els['study-list'],html);");}
+const mutation=args.includes('--mutate-selection')?'selection-pays':args.includes('--mutate-select')?'detached-slider':args.includes('--mutate-next-lock')?'next-locked':null;
+if(mutation&&mutation!=='next-locked'){const anchor=mutation==='selection-pays'?"input.studyPreview=undefined;setStudyBoostPreference(id,LAB_SPEED_TIERS[index],getStudyBoostPreference(active).hours);":"  replaceStudyMarkup(html);";assert.equal(source.split(anchor).length,2);source=source.replace(anchor,mutation==='selection-pays'?anchor+"applySpeedTier(id,LAB_SPEED_TIERS[index]);":"  replaceControlMarkup(els['study-list'],html);");}
+if(mutation==='next-locked'){const a='var hours=preference.hours;';assert.equal(source.split(a).length,2);source=source.replace(a,a+'if(held){target=boost.mult;index=LAB_SPEED_TIERS.indexOf(target);hours=(boost.expiresAtMs-boost.startedAtMs)/3600000;}');}
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 let html=source.replace('<head>','<head><script>window.uiRegressionErrors=[];addEventListener("error",e=>uiRegressionErrors.push(e.message));addEventListener("unhandledrejection",e=>uiRegressionErrors.push(String(e.reason)));window.uiRegressionPaused=true;const normalInterval=window.setInterval;window.setInterval=(fn,ms)=>normalInterval(()=>{if(!window.uiRegressionPaused)fn();},ms);</script>');
 const marker="if(document.readyState==='loading'){";assert.equal(html.split(marker).length,2,'unique production bridge anchor');
@@ -30,7 +31,7 @@ async function run(){
  const o=await ev("({hidden:document.querySelector('[data-study-inspection=guardmastery]').hidden,queueVisible:!!document.querySelector('[data-study-use-motes=guardmastery]').getClientRects().length})");
  check(o.hidden&&!o.queueVisible,'baseline hides direct speed and queue choice behind disclosure');records.push(o);
  }else{
- await require(args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
+ await require(args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
 }
  check((await ev('uiRegressionErrors')).length===0,'no actual browser runtime errors');
  return {status:'pass',sourceSha256,mutation,checks,profiles:records,version};
