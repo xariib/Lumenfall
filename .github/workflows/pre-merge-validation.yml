@@ -33,6 +33,23 @@ jobs:
           node tests/behavioral/lab-speed-controls.cjs index.html --clarity
           node tests/behavioral/forge-lab-caps-mobile.cjs index.html validation-evidence/clarity-caps
 
+      - name: Lab queue continuity and Speed Up modal
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/LAB_SLOTS_QUEUE_SPEEDUP_001.md
+          node tests/behavioral/lab-queue-continuity.cjs index.html
+          if node tests/behavioral/lab-queue-continuity.cjs index.html --mutate-stop > /tmp/lab-queue-negative.log 2>&1; then
+            echo "::error::Queue-stop defect unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          assert(fs.readFileSync('/tmp/lab-queue-negative.log','utf8').includes('Queue OFF retains running paid work'));
+          JS
+          node tests/behavioral/lab-speed-controls.cjs index.html --slots
+          for SCENARIO in r3-destinations p1-05-control-regressions p2-02b-lab-hierarchy; do
+            node tests/behavioral/run.cjs --web-root . --scenario "$SCENARIO" --raw-artifacts validation-evidence/lab-contracts
+          done
+
       - name: APK identity verifier self-test
         run: node scripts/verify_apk_identity.cjs --self-test
 

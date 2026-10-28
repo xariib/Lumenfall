@@ -2358,6 +2358,25 @@
   #study-list .study-running{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;}
   #study-list .study-running>.study-select,#study-list .study-running>.study-bar-track,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
   #study-list .study-running>.study-speed-controls{margin:8px 0 0;}#study-list .study-running>.node-queue-toggle{align-self:start;margin-top:8px;}#study-list .study-speed-expanded>.study-speed-controls{grid-column:1/-1;}
+
+  /* LAB_SLOTS_QUEUE_SPEEDUP_001: one control row, with a focused speed menu. */
+  #study-list .study-running{grid-template-columns:auto minmax(0,1fr) auto;align-items:center;position:relative;}
+  #study-list .study-running>.study-select,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
+  #study-list .study-running>.study-repeat{grid-column:1;align-self:stretch;justify-content:center;margin:8px 0 0;min-width:44px;min-height:44px;padding:5px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+  .study-repeat>span:first-child{font-size:1.1rem;line-height:1;}.study-queue-state{font-size:.55rem;}
+  #study-list .study-running>.study-bar-track{grid-column:2;margin:8px 0 0;min-width:0;min-height:44px;box-sizing:border-box;padding:4px;}
+  #study-list .study-running>.study-speed-controls{grid-column:3;margin:8px 0 0;padding:0;border:0;min-width:0;}
+  #study-list .study-speed-open{width:auto;min-width:44px;max-width:6em;padding:7px;font-size:.7rem;white-space:normal;}
+  #study-list .study-speed-expanded{z-index:30;}
+  html.study-menu-open .shell{backdrop-filter:none;}
+  html.study-menu-open #tab-research{contain:none;animation:none;}
+  #study-list .study-speed-editor.overlay{padding:12px;box-sizing:border-box;background:rgba(4,9,20,.88);z-index:40;}
+  #study-list .study-speed-editor[hidden]{display:none;}
+  #study-list .study-speed-menu{box-sizing:border-box;max-width:420px;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 24px);overflow:auto;text-align:left;padding:16px;}
+  .study-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;}.study-menu-heading h2{margin:0;font-size:1rem;}.study-menu-heading button{width:44px;min-width:44px;flex:0 0 44px;font-size:1.2rem;}
+  #study-list .study-speed-menu p{font-size:.75rem;margin:10px 0;overflow-wrap:break-word;}
+  #study-list .study-speed-menu select{width:100%;min-height:44px;}
+  #study-list .study-speed-menu .study-speed-range{margin-top:16px;}
 </style>
 </head>
 <body>
@@ -7960,6 +7979,16 @@ function clearStudySlot(slot){
   }))return false;
   selectedStudySlot=-1;renderLongStudies();return true;
 }
+// Queue controls only future starts. Paid work stays active until completion or replacement.
+function toggleStudyQueue(id){
+  var node=LONG_STUDIES.find(function(n){return n.id===id;});
+  if(!node || node.retiredTo || offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
+  if(!forgeCommitPaidMutation(function(){
+    state.studyQueue[id]=!state.studyQueue[id];
+    if(!state.studyQueue[id] && !findActiveStudy(id))state.studySlotProjects.forEach(function(project,slot){if(project===id)state.studySlotProjects[slot]=null;});
+  }))return false;
+  renderLongStudies();return true;
+}
 function pauseStudy(id){
   if(!findActiveStudy(id) || LONG_STUDIES.some(function(n){return n.id===id && n.retiredTo;}) || offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
   if(!forgeCommitPaidMutation(function(){
@@ -8542,6 +8571,9 @@ function presentControlStates(root){
       var label=document.createElement('span');label.className='control-state';label.textContent=reason;btn.appendChild(label);
     }
     var name=(subject?subject+' — ':'')+controlText(btn).replace(/\s+/g,' ').trim();
+    if(btn.classList.contains('study-repeat'))name=subject+' — Queue '+(state.studyQueue[btn.getAttribute('data-study-queue')]?'ON':'OFF')+'. Current level continues.';
+    if(btn.hasAttribute('data-study-speed-close'))name='Close Speed Up';
+    if(btn.hasAttribute('data-study-speed-open'))name='Lab '+(Number(btn.getAttribute('data-study-speed-open'))+1)+' — Speed Up';
     if((btn.hasAttribute('data-empower')||adjacentWispRequirements) && reason && name.toLowerCase().indexOf(reason.toLowerCase())===-1) name+=' — '+reason;
     if(btn.getAttribute('aria-label')!==name) btn.setAttribute('aria-label',name);
   });
@@ -8618,7 +8650,18 @@ function overlayVisible(el){ return el && el.style.display!=='none' && getComput
 function overlayControls(modal){
   return Array.from(modal.querySelectorAll('button:not(:disabled),input:not(:disabled),textarea:not(:disabled),select:not(:disabled),a[href],[tabindex="0"]')).filter(function(el){return el.getClientRects().length && getComputedStyle(el).visibility!=='hidden';});
 }
+var studyMenuInert=[];
 function setOverlayInert(active){
+  document.documentElement.classList.toggle('study-menu-open',!!active && active.classList.contains('study-speed-editor'));
+  studyMenuInert.forEach(function(item){item.el.inert=item.inert;});studyMenuInert=[];
+  if(active && active.classList.contains('study-speed-editor')){
+    var branch=active;
+    while(branch.parentElement && branch!==document.body){
+      Array.from(branch.parentElement.children).forEach(function(sibling){if(sibling!==branch){studyMenuInert.push({el:sibling,inert:sibling.inert});sibling.inert=true;}});
+      branch=branch.parentElement;
+    }
+    return;
+  }
   document.querySelector('.shell').inert=!!active;
   document.querySelectorAll('.overlay').forEach(function(el){el.inert=!!active && el!==active;});
 }
@@ -8776,8 +8819,10 @@ function openPowerAdvice(goal){
   if(goal.tab==='research' && target.closest('[data-running-study]')){
     var work=findActiveStudy(target.closest('[data-running-study]').getAttribute('data-running-study'));
     selectedStudySlot=-1;
-    if(work && target.matches('[data-study-speed-target],[data-study-boost-hours],[data-speed-study]'))expandedStudySpeedSlot=work.slot;
-    renderLongStudies();target=document.querySelector(goal.selector);
+    if(work && target.matches('[data-study-speed-target],[data-study-boost-hours],[data-speed-study]')){
+      if(expandedStudySpeedSlot!==work.slot || !overlayFocus){expandedStudySpeedSlot=-1;openStudySpeedMenu(work.slot);}
+    }else renderLongStudies();
+    target=document.querySelector(goal.selector);
   }
   if(target.closest('details'))target.closest('details').open=true;
   if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;
@@ -9631,20 +9676,21 @@ function studySpeedMarkup(node,active,maxed){
   var hours=held?(boost.expiresAtMs-boost.startedAtMs)/3600000:state.studyBoostHours[node.id];
   var plan=getStudyBoostPlan(node.id,target,hours);
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
-    '<button class="study-speed-open mini-btn" data-study-speed-open="'+active.slot+'" data-study-speed-summary="'+node.id+'" aria-expanded="'+(expandedStudySpeedSlot===active.slot)+'" aria-controls="study-speed-editor-'+node.id+'">'+(held?target+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left':'Speed Up')+'</button>'+
-    '<div class="study-speed-editor" id="study-speed-editor-'+node.id+'" '+(expandedStudySpeedSlot===active.slot?'':'hidden')+'>'+
+    '<button class="study-speed-open mini-btn" data-study-speed-open="'+active.slot+'" data-study-speed-summary="'+node.id+'" aria-expanded="'+(expandedStudySpeedSlot===active.slot)+'" aria-haspopup="dialog" aria-controls="study-speed-editor-'+node.id+'">Speed Up</button>'+
+    '<div class="study-speed-editor overlay" id="study-speed-editor-'+node.id+'" '+(expandedStudySpeedSlot===active.slot?'':'hidden')+'><div class="modal study-speed-menu" role="dialog" aria-modal="true" aria-labelledby="study-speed-title-'+node.id+'" aria-describedby="study-speed-note-'+node.id+'" tabindex="-1">'+
+    '<div class="study-menu-heading"><h2 id="study-speed-title-'+node.id+'">Speed Up · Lab '+(active.slot+1)+'</h2><button class="mini-btn" data-study-speed-close="'+active.slot+'" aria-label="Close Speed Up">×</button></div><p>'+node.name+'</p><p id="study-speed-note-'+node.id+'">Boost this slot with Motes. The timer continues when you change research.</p>'+
     '<div class="study-speed-heading">'+
     '<select data-study-boost-hours="'+node.id+'" aria-label="'+node.name+' — Boost duration" aria-describedby="study-speed-help" '+(held?'disabled':'')+'>'+LAB_BOOST_HOURS.map(function(h,i){return '<option value="'+h+'" '+(hours===h?'selected':'')+'>'+h+' hours'+(i?' · '+[0,5,10][i]+'% off':'')+'</option>';}).join('')+'</select></div>'+
     '<div class="study-speed-range"><output data-study-speed-value="'+node.id+'" aria-label="Selected speed">'+target+'x</output><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" '+(held?'disabled':'')+' aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
     '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div>'+
     '<div class="study-boost-action">'+(held?
       '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">'+target+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
-      active?'<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">Start '+hours+'h boost · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>':'')+'</div></div></div>';
+      active?'<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">Start '+hours+'h boost · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>':'')+'</div><button class="ghost-btn" data-study-speed-cancel="'+active.slot+'">Back to Labs</button></div></div></div>';
 }
 // Native controls stay attached while their project and other cards refresh.
 function replaceStudyMarkup(html){
   var root=els['study-list'],input=document.activeElement;
-  var isChoice=input && input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status],[data-study-speed-open]');
+  var isChoice=input && (input.matches('[data-study-speed-target],[data-study-boost-hours],[data-study-boost-status],[data-study-speed-open]') || input.closest('.study-speed-editor'));
   var card=isChoice && root.contains(input) && input.closest('[data-running-study],[data-study-card]');
   var prepared=document.createElement('div');prepared.innerHTML=html;
   var orderedSlots=prepared.querySelector('.study-slots');
@@ -9684,8 +9730,13 @@ function replaceStudyMarkup(html){
   range.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(range.value)]+'x');range.style.backgroundSize=(Number(range.value)/7*100)+'% 8px';
   select.disabled=nextSelect.disabled;select.value=nextSelect.value;
   var status=controls.querySelector('[data-study-boost-status]'),nextStatus=nextControls.querySelector('[data-study-boost-status]');
+  var purchase=controls.querySelector('[data-speed-study]'),nextPurchase=nextControls.querySelector('[data-speed-study]');
   if(status && nextStatus){status.textContent=nextStatus.textContent;status.setAttribute('data-study-boost-time',nextStatus.getAttribute('data-study-boost-time'));}
-  else controls.querySelector('.study-boost-action').innerHTML=nextControls.querySelector('.study-boost-action').innerHTML;
+  else if(purchase && nextPurchase){
+    Array.from(purchase.attributes).forEach(function(a){purchase.removeAttribute(a.name);});
+    Array.from(nextPurchase.attributes).forEach(function(a){purchase.setAttribute(a.name,a.value);});
+    purchase.innerHTML=nextPurchase.innerHTML;
+  }else controls.querySelector('.study-boost-action').innerHTML=nextControls.querySelector('.study-boost-action').innerHTML;
   Array.from(card.attributes).forEach(function(a){card.removeAttribute(a.name);});
   Array.from(next.attributes).forEach(function(a){card.setAttribute(a.name,a.value);});
   Array.from(card.children).forEach(function(child){if(child!==controls)card.removeChild(child);});
@@ -9712,13 +9763,33 @@ function replaceStudyMarkup(html){
   input.studyRendering=false;range.studyRendering=false;
 }
 var selectedStudySlot=-1,expandedStudySpeedSlot=-1;
+function closeStudySpeedMenu(){
+  var slot=expandedStudySpeedSlot,el=els['study-list'].querySelector('.study-speed-editor:not([hidden])');
+  expandedStudySpeedSlot=-1;
+  if(el)closeOverlay(el);
+  renderLongStudies();
+  var opener=els['study-list'].querySelector('[data-study-speed-open="'+slot+'"]') || els['study-list'].querySelector('[data-study-slot="'+slot+'"]');
+  if(opener)opener.focus({preventScroll:true});
+}
+function openStudySpeedMenu(slot){
+  if(expandedStudySpeedSlot===slot){closeStudySpeedMenu();return;}
+  if(overlayFocus && overlayFocus.el.classList.contains('study-speed-editor'))closeStudySpeedMenu();
+  var trigger=els['study-list'].querySelector('[data-study-speed-open="'+slot+'"]');
+  if(trigger)trigger.focus({preventScroll:true});
+  expandedStudySpeedSlot=slot;selectedStudySlot=-1;renderLongStudies();
+  var opener=els['study-list'].querySelector('[data-study-speed-open="'+slot+'"]');
+  var el=opener && document.getElementById(opener.getAttribute('aria-controls'));
+  if(el){el.onclick=function(e){if(e.target===el)closeStudySpeedMenu();};openOverlay(el,closeStudySpeedMenu,opener);}
+}
 function runningStudyMarkup(node,active,maxed,pct,progressValue){
-  var regular=node&&!node.retiredTo&&active.slot<5;
+  var regular=node&&!node.retiredTo&&active.slot<5,queueOn=!!state.studyQueue[active.id];
   return '<div class="card study-card study-running '+(expandedStudySpeedSlot===active.slot?'study-speed-expanded ':'')+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="'+active.id+'">'+
     (regular?'<button class="study-select" data-study-slot="'+active.slot+'" aria-label="Select research for Lab '+(active.slot+1)+'"><span class="study-slot-number">Lab '+(active.slot+1)+'</span><strong>'+node.name+'</strong><span class="study-level">Lv. '+longStudyLevel(active.id)+(node.levelCap!==undefined?' / '+node.levelCap:'')+'</span><span aria-hidden="true">›</span></button>':'<h3>Legacy paid study · '+(node?node.name:'Research')+'</h3>')+
+    (node?projectEarnedMarkup(active.id):'')+
+    (node&&!node.retiredTo?'<button class="node-queue-toggle study-repeat '+(queueOn?'active':'')+'" data-study-queue="'+active.id+'" aria-pressed="'+queueOn+'" aria-label="'+node.name+' — Queue '+(queueOn?'ON':'OFF')+'. Finish current level'+(queueOn?' and repeat.':'.')+'" title="Repeat research after this level"><span aria-hidden="true">↻</span><span class="study-queue-state">'+(queueOn?'ON':'OFF')+'</span></button>':'')+
     '<div class="study-bar-track" role="progressbar" aria-label="'+(node?node.name:'Study')+' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+progressValue+'" aria-valuetext="'+progressValue+'% · '+studyRemainingText(active)+'"><div class="study-bar-fill" aria-hidden="true" data-study-bar="'+active.id+'" style="width:'+pct+'%;"></div><span class="study-time" data-study-text="'+active.id+'">'+studyRemainingText(active)+'</span></div>'+
-    (node?projectEarnedMarkup(active.id):'')+(node&&node.retiredTo?'<div class="effect-note">Paid work and completion bonus kept. Future upgrades: '+node.retiredTo+'.</div>':maxed?'<div class="effect-note">Finishing saved paid work without another level or bonus.</div>':'')+(node?studySpeedMarkup(node,active,maxed):'')+
-    (node&&!node.retiredTo?'<button class="node-queue-toggle '+(state.studyQueue[active.id]?'active':'')+'" data-study-queue="'+active.id+'">'+(state.studyQueue[active.id]?'Queue ON':'Clear slot')+'</button>':'')+'</div>';
+    (node?studySpeedMarkup(node,active,maxed):'')+
+    (node&&node.retiredTo?'<div class="effect-note">Paid work and completion bonus kept. Future upgrades: '+node.retiredTo+'.</div>':maxed?'<div class="effect-note">Finishing saved paid work without another level or bonus.</div>':'')+'</div>';
 }
 function studySlotUnlockText(slot){
   var apparatus=labExpansionLevel('labcapacity');
@@ -9729,6 +9800,10 @@ function studySlotUnlockText(slot){
   return 'Rift 60 + Expanded Apparatus · level '+(slot-2);
 }
 function renderLongStudies(){
+  if(overlayFocus && overlayFocus.el.classList.contains('study-speed-editor')){
+    var menuWork=state.activeStudies.find(function(a){return a.slot===expandedStudySpeedSlot;});
+    if(!menuWork || overlayFocus.el.id!=='study-speed-editor-'+menuWork.id){closeOverlay(overlayFocus.el);expandedStudySpeedSlot=-1;}
+  }
   var studyView=captureControlViewport(els['study-list']);
   var focusedStudyChoices=document.activeElement && document.activeElement.id==='study-choices';
   var focusedCard=document.activeElement && document.activeElement.closest('[data-running-study],[data-study-card]');
@@ -9797,7 +9872,7 @@ function renderLongStudies(){
         Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':selectedStudySlot>=0?'Select research':'Choose a slot') + '</button>' + '</div>');
   });
 
-  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours, then activate once for the shown Motes. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. It expires without another payment. Existing speed already paid for a level remains protected. Queue OFF clears a slot and preserves paid work for later.</div>','How research works','study-help');
+  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours, then activate once for the shown Motes. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. It expires without another payment. Existing speed already paid for a level remains protected. Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -9847,7 +9922,8 @@ function renderLongStudies(){
   els['study-list'].querySelectorAll('[data-study-slot]').forEach(function(btn){
     btn.onclick=function(){selectedStudySlot=Number(btn.getAttribute('data-study-slot'));renderLongStudies();var heading=document.getElementById('study-choices');heading.focus({preventScroll:true});heading.scrollIntoView({block:'start'});};
   });
-  els['study-list'].querySelectorAll('[data-study-speed-open]').forEach(function(btn){if(btn.studyBound)return;btn.studyBound=true;btn.onclick=function(){var slot=Number(btn.getAttribute('data-study-speed-open'));expandedStudySpeedSlot=expandedStudySpeedSlot===slot?-1:slot;renderLongStudies();var control=els['study-list'].querySelector('[data-study-speed-open="'+slot+'"]');if(control)control.focus({preventScroll:true});};});
+  els['study-list'].querySelectorAll('[data-study-speed-open]').forEach(function(btn){if(btn.studyBound)return;btn.studyBound=true;btn.onclick=function(){openStudySpeedMenu(Number(btn.getAttribute('data-study-speed-open')));};});
+  els['study-list'].querySelectorAll('[data-study-speed-close],[data-study-speed-cancel]').forEach(function(btn){if(btn.studyBound)return;btn.studyBound=true;btn.onclick=closeStudySpeedMenu;});
   var close=els['study-list'].querySelector('[data-study-close]');
   if(close)close.onclick=function(){var slot=selectedStudySlot;selectedStudySlot=-1;renderLongStudies();var button=els['study-list'].querySelector('[data-study-slot="'+slot+'"]');if(button)button.focus({preventScroll:true});};
   els['study-list'].querySelectorAll('[data-study-queue]').forEach(function(btn){
@@ -9856,11 +9932,7 @@ function renderLongStudies(){
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       var id = btn.getAttribute('data-study-queue');
-      var active=findActiveStudy(id);
-      if(active){if(active.slot<5)clearStudySlot(active.slot);else pauseStudy(id);return;}
-      var assignedSlot=state.studySlotProjects.indexOf(id);
-      if(assignedSlot>=0){clearStudySlot(assignedSlot);return;}
-      if(forgeCommitPaidMutation(function(){state.studyQueue[id]=!state.studyQueue[id];}))renderLongStudies();
+      toggleStudyQueue(id);
     });
   });
   els['study-list'].querySelectorAll('[data-study-boost-hours]').forEach(function(select){
@@ -9869,7 +9941,7 @@ function renderLongStudies(){
   });
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(button){
     if(button.studyBound)return;button.studyBound=true;
-    button.addEventListener('click',function(){var id=button.getAttribute('data-speed-study'),active=findActiveStudy(id);if(activateStudyBoost(id,Number(button.getAttribute('data-speed')),Number(button.getAttribute('data-hours')))){expandedStudySpeedSlot=-1;renderLongStudies();var open=active&&els['study-list'].querySelector('[data-study-speed-open="'+active.slot+'"]');if(open)open.focus({preventScroll:true});}});
+    button.addEventListener('click',function(){var id=button.getAttribute('data-speed-study'),active=findActiveStudy(id);if(activateStudyBoost(id,Number(button.getAttribute('data-speed')),Number(button.getAttribute('data-hours')))){closeStudySpeedMenu();}});
   });
   els['study-list'].querySelectorAll('[data-study-speed-target]').forEach(function(input){
     if(input.studyBound)return;input.studyBound=true;
@@ -9891,6 +9963,7 @@ function renderLongStudies(){
 
   if(studyView && previousSlider && document.activeElement.getAttribute('data-study-speed-target')===focusedSpeed)studyView.top=previousSliderTop;
   restoreControlViewport(studyView);
+  if(overlayFocus && overlayFocus.el.classList.contains('study-speed-editor'))setOverlayInert(overlayFocus.el);
 }
 
 // Display approximations are marked; the canonical breakdown determines payout.
@@ -10510,6 +10583,7 @@ function syncMainScrollMode(tabName){
 var workshopSection='forge';
 function activateTab(tabName){
   if(tabName==='workshop') tabName=workshopSection;
+  if(tabName!=='research' && expandedStudySpeedSlot>=0)closeStudySpeedMenu();
   var inWorkshop=tabName==='forge' || tabName==='research';
   var destination=inWorkshop ? 'workshop' : tabName;
   var btn=document.querySelector('.tab-btn[data-tab="'+destination+'"]');
@@ -12927,7 +13001,6 @@ function studyRemainingText(active){
 }
 function updateStudyProgress(){
   var expired=false;
-  els['study-list'].querySelectorAll('[data-study-speed-summary]').forEach(function(el){var active=findActiveStudy(el.getAttribute('data-study-speed-summary')),boost=active&&studySlotBoost(active);if(boost&&boost.expiresAtMs>Date.now())el.textContent=boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left';});
   els['study-list'].querySelectorAll('[data-slot-boost-time]').forEach(function(el){
     var seconds=(Number(el.getAttribute('data-slot-boost-time'))-Date.now())/1000;
     if(seconds<=0){expired=true;return;}

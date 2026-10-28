@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+27 October 2026: [Lab slots, queue continuity and Speed Up menu](tasks/LAB_SLOTS_QUEUE_SPEEDUP_001.md)
+is on `feat/lab-slots-queue-speedup-001`, awaiting branch validation/review.
+Queue OFF now finishes active research; manual replacement retains paid work.
+The user has now explicitly authorized upload, main integration and a new APK
+after required checks. Publication and device acceptance are not yet claimed.
+
 27 October 2026: [Readable Auto Ascend](tasks/AUTO_ASCEND_FEEDBACK_001.md)
 integrated via [PR #16](https://github.com/xariib/Lumenfall/pull/16) at `48f95e43`.
 One stationary summary combines all committed gains/counts; gameplay and PR15

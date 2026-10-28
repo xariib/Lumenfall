@@ -23,13 +23,13 @@ module.exports=async function({send,ev,pause,check,records}){
   await touch('[data-study-slot="1"]');await touch('[data-study="wispascend"]');
   check(await ev('uiRegression.get().activeStudies[0].id==="wispascend"&&uiRegression.get().activeStudies[0].slot===1&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===boostBefore'),'native replacement retains slot speed');
   await touch('[data-study-queue=wispascend]');
-  check(await ev('uiRegression.get().activeStudies.length===0&&document.querySelector("[data-lab-slot=\\"1\\"] [data-study-slot]")&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===boostBefore'),'Queue OFF leaves slot empty and boosted');
-  check(await ev('document.documentElement.scrollWidth<=innerWidth+1&&Array.from(document.querySelectorAll(".study-slots button")).every(e=>{var r=e.getBoundingClientRect();return r.width>=44&&r.height>=44&&r.right<=innerWidth+1})'),'slot layout and 44px controls fit');
+  check(await ev('uiRegression.get().activeStudies.length===1&&!uiRegression.get().studyQueue.wispascend&&document.querySelector("[data-lab-slot=\\"1\\"] [data-study-slot]")&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===boostBefore'),'Queue OFF keeps the active research and slot boost');
+  check(await ev('document.documentElement.scrollWidth<=innerWidth+1&&Array.from(document.querySelectorAll(".study-slots button")).filter(e=>e.getClientRects().length).every(e=>{var r=e.getBoundingClientRect();return r.width>=44&&r.height>=44&&r.right<=innerWidth+1})'),'slot layout and 44px controls fit');
   const legacy=seed();legacy.activeStudies=[{id:'guardmastery',slot:1,remainingSec:70,totalDurationSec:150,speedMult:2}];legacy.studyQueue.guardmastery=false;
   await install(legacy);
-  check(await ev('document.querySelector("[data-study-queue=guardmastery]").textContent==="Clear slot"'),'old running Queue OFF save has an explicit clear action');
+  check(await ev('document.querySelector("[data-study-queue=guardmastery]").getAttribute("aria-pressed")==="false"'),'old running Queue OFF save has its repeat state exposed');
   await touch('[data-study-queue=guardmastery]');
-  check(await ev('!uiRegression.get().activeStudies.length&&!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().pausedStudies[0].remainingSec===70&&uiRegression.get().lumen===1e12&&uiRegression.get().shards===1e12'),'legacy clear preserves paid work and wallets without enabling automation');
+  check(await ev('uiRegression.get().activeStudies.length===1&&uiRegression.get().studyQueue.guardmastery&&uiRegression.get().activeStudies[0].remainingSec===70&&uiRegression.get().lumen===1e12&&uiRegression.get().shards===1e12'),'legacy Queue OFF toggles repeat ON without changing paid work or wallets');
   const waiting=seed();waiting.lumen=waiting.shards=0;waiting.longStudyLevels.guardmastery=1;waiting.studyQueue.guardmastery=true;waiting.studySlotProjects[1]='guardmastery';await install(waiting);
   const waitingSlot='document.querySelector('+JSON.stringify('[data-lab-slot="1"]')+')';
   check(await ev(waitingSlot+'.textContent.includes("Queued for next level")&&document.querySelector("[data-study-queue=guardmastery]")'),'waiting research stays visible with Queue OFF available');

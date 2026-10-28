@@ -1,0 +1,53 @@
+'use strict';
+module.exports=async function({send,ev,pause,check,records,args}){
+ const fs=require('node:fs'),path=require('node:path'),evidenceIndex=args.indexOf('--evidence'),evidence=evidenceIndex>=0?args[evidenceIndex+1]:null;
+ await send('Runtime.enable');await send('DOM.enable');
+ const fresh=await ev('uiRegression.fresh()');
+ const seed=()=>({...JSON.parse(JSON.stringify(fresh)),maxDepthEver:250,questDay:new Date().toISOString().slice(0,10),lumen:1e12,shards:1e12,motes:100000});
+ async function touch(selector){await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');await pause(25);const p=await ev('(()=>{var r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ async function key(key,shift=false){await send('Input.dispatchKeyEvent',{type:'keyDown',key,code:key,windowsVirtualKeyCode:{Tab:9,Escape:27,Enter:13}[key],modifiers:shift?8:0});await send('Input.dispatchKeyEvent',{type:'keyUp',key,code:key,windowsVirtualKeyCode:{Tab:9,Escape:27,Enter:13}[key],modifiers:shift?8:0});}
+ async function install(s){if(await ev('!!document.querySelector(".study-speed-editor:not([hidden])")'))await key('Escape');await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click();clarityQA.select(-1)');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');}
+ async function shot(name){if(!evidence)return;fs.mkdirSync(evidence,{recursive:true});const r=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,name+'.png'),Buffer.from(r.data,'base64'));}
+ for(const width of [320,390,430])for(const scale of [100,150,200])for(const motion of ['reduce','no-preference']){
+  await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
+  const s=seed();s.longStudyLevels.labcapacity=2;s.activeStudies=[{id:'guardmastery',slot:1,remainingSec:70,totalDurationSec:150,speedMult:1}];s.studyQueue.guardmastery=true;await install(s);
+  check(await ev('Array.from(document.querySelectorAll("[data-lab-slot]")).map(e=>e.dataset.labSlot).join(",")==="0,1,2,3,4"'),'five primary slots in stable order');
+  check(await ev('(()=>{var c=document.querySelector("[data-running-study=guardmastery]"),q=c.querySelector("[data-study-queue]"),b=c.querySelector("[role=progressbar]"),a=c.querySelector(".study-speed-open"),qr=q.getBoundingClientRect(),br=b.getBoundingClientRect(),ar=a.getBoundingClientRect();return qr.right<=br.left&&br.right<=ar.left&&Math.abs((qr.top+qr.bottom-br.top-br.bottom)/2)<1&&Math.abs((br.top+br.bottom-ar.top-ar.bottom)/2)<1;})()'),'queue, timer and Speed Up share a row in that order');
+  await ev('window.workBefore=JSON.stringify(uiRegression.get().activeStudies);window.walletBefore=JSON.stringify([uiRegression.get().lumen,uiRegression.get().shards,uiRegression.get().motes])');
+  await touch('[data-study-queue=guardmastery]');
+  check(await ev('!uiRegression.get().studyQueue.guardmastery&&JSON.stringify(uiRegression.get().activeStudies)===workBefore&&JSON.stringify([uiRegression.get().lumen,uiRegression.get().shards,uiRegression.get().motes])===walletBefore&&document.querySelector("[data-study-queue=guardmastery]").getAttribute("aria-pressed")==="false"'),'native Queue OFF retains exact current work and all currencies');
+  await ev('uiRegression.save();uiRegression.load()');check(await ev('!uiRegression.get().studyQueue.guardmastery&&JSON.stringify(uiRegression.get().activeStudies)===workBefore'),'actual reload keeps Queue OFF and work');
+  await touch('[data-study-speed-open="1"]');
+  check(await ev('(()=>{var d=document.querySelector(".study-speed-editor:not([hidden]) [role=dialog]");return d&&d.contains(document.activeElement)&&d.getAttribute("aria-modal")==="true"&&document.getElementById(d.getAttribute("aria-labelledby")).textContent.includes("Lab 2");})()'),'Speed Up opens named modal with focus inside');
+  check(await ev('(()=>{var d=document.querySelector(".study-speed-editor:not([hidden]) [role=dialog]"),r=d.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth+1&&r.top>=0&&r.bottom<=innerHeight+1&&d.scrollWidth<=d.clientWidth+1;})()'),'menu stays in viewport without horizontal overflow');
+  check(await ev('(()=>{var r=document.querySelector(".study-speed-editor:not([hidden])").getBoundingClientRect();return r.top===0&&r.left===0&&Math.abs(r.width-innerWidth)<=1&&Math.abs(r.height-innerHeight)<=1;})()'),'backdrop covers the whole viewport including HUD and navigation');
+  check(await ev('Array.from(document.querySelectorAll(".study-speed-editor:not([hidden]) button,.study-speed-editor:not([hidden]) input,.study-speed-editor:not([hidden]) select")).every(e=>{var r=e.getBoundingClientRect();return r.width>=44&&r.height>=44})'),'all modal controls have 44px targets');
+  const before=await ev('JSON.stringify({s:uiRegression.get(),saves:uiRegression.saves()})');
+  await ev('window.originalRange=document.querySelector("[data-study-speed-target=guardmastery]");originalRange.focus();uiRegression.render();uiRegression.render()');
+  check(await ev('document.querySelector("[data-study-speed-target=guardmastery]")===originalRange&&document.activeElement===originalRange'),'modal and native slider stay attached through passive refresh');
+  check(await ev('JSON.stringify({s:uiRegression.get(),saves:uiRegression.saves()})')===before,'opening/rendering menu never pays or changes saves');
+  await ev('document.querySelector("[data-study-speed-cancel]").focus()');await key('Tab');check(await ev('document.activeElement.hasAttribute("data-study-speed-close")'),'Tab cycles to first modal control');await key('Tab',true);check(await ev('document.activeElement.hasAttribute("data-study-speed-cancel")'),'Shift Tab cycles to last modal control');
+  check(await ev('(()=>{var e=document.querySelector("[data-study-queue=guardmastery]");e.focus();return document.querySelector(".study-speed-menu").contains(document.activeElement)})()'),'background cannot take keyboard focus');
+  if(width===390&&motion==='reduce')await shot('menu-'+scale);
+  await key('Escape');check(await ev('!document.querySelector(".study-speed-editor:not([hidden])")&&document.activeElement===document.querySelector("[data-study-speed-open=\\"1\\"]")&&!document.querySelector("main").inert'),'Escape closes and returns to slot action');
+  await touch('[data-study-speed-open="1"]');await touch('[data-study-speed-cancel]');check(await ev('!document.querySelector(".study-speed-editor:not([hidden])")'),'Back closes menu');
+  await touch('[data-study-speed-open="1"]');
+  await ev('document.querySelector("[data-study-speed-target=guardmastery]").value=1;document.querySelector("[data-study-speed-target=guardmastery]").dispatchEvent(new Event("change",{bubbles:true}));uiRegression.fund(1499)');
+  check(await ev('document.querySelector("[data-speed-study=guardmastery]").disabled&&document.querySelector("[data-study-speed-price=guardmastery] [data-price-currency]").style.color==="var(--danger)"'),'one Mote short disables and marks exact quote red');
+  await ev('uiRegression.fund(1500);window.liveBuy=document.querySelector("[data-speed-study=guardmastery]");liveBuy.focus();uiRegression.render();uiRegression.render()');check(await ev('document.activeElement===liveBuy&&document.querySelector("[data-speed-study=guardmastery]")===liveBuy'),'funded activation keeps native focus through refresh');check(await ev('!document.querySelector("[data-speed-study=guardmastery]").disabled'),'live funding enables activation');await touch('[data-speed-study=guardmastery]');
+  check(await ev('uiRegression.get().motes===0&&uiRegression.get().studyBoosts.slot1.mult===2&&JSON.stringify(uiRegression.get().activeStudies)===workBefore&&!document.querySelector(".study-speed-editor:not([hidden])")&&document.activeElement===document.querySelector(".study-speed-open")'),'activation pays once, retains work, closes menu and restores focus');
+  await ev('window.paidBoost=JSON.stringify(uiRegression.get().studyBoosts.slot1)');await touch('[data-study-slot="1"]');await touch('[data-study=wispascend]');
+  check(await ev('uiRegression.get().pausedStudies[0].remainingSec===70&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===paidBoost'),'replacement saves remaining research and slot boost');
+  await ev('uiRegression.save();uiRegression.load();window.switchWallet=JSON.stringify([uiRegression.get().lumen,uiRegression.get().shards,uiRegression.get().motes])');await touch('[data-study-slot="1"]');await touch('[data-study=guardmastery]');
+  check(await ev('uiRegression.get().activeStudies[0].remainingSec===70&&JSON.stringify([uiRegression.get().lumen,uiRegression.get().shards,uiRegression.get().motes])===switchWallet&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===paidBoost'),'saved research resumes after actual reload with no payment or timer reset');
+  await touch('[data-study-queue=guardmastery]');await touch('[data-study-speed-open="1"]');await ev('uiRegression.finish()');
+  check(await ev('uiRegression.get().activeStudies.length===0&&!document.querySelector(".study-speed-editor:not([hidden])")&&document.activeElement===document.querySelector("[data-study-slot=\\"1\\"]")&&uiRegression.get().longStudyLevels.guardmastery===1'),'completion closes open modal safely and leaves its idle slot focused');
+  check(await ev('document.documentElement.scrollWidth<=innerWidth+1'),'Lab stays within viewport');
+  if(width===390&&motion==='reduce')await shot('slots-'+scale);
+  const expired=seed(),expiryNow=Date.now();expired.activeStudies=[{id:'guardmastery',slot:0,remainingSec:150,totalDurationSec:150,speedMult:1}];expired.studyBoosts.slot0={mult:2,startedAtMs:expiryNow-28800001,expiresAtMs:expiryNow-1};await install(expired);
+  check(await ev('!!uiRegression.get().studyBoosts.slot0'),'expired prepaid timer fixture survives canonical save validation');
+  await ev('window.afterExpiry=document.querySelector("[data-running-study=guardmastery]");uiRegression.progress();uiRegression.progress()');
+  check(await ev('document.querySelector("[data-running-study=guardmastery]")===afterExpiry'),'expired paid timer does not repeatedly rebuild slots');
+  records.push({width,scale,motion,status:'pass'});
+ }
+};
