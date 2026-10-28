@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
       const marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
       const html=data.toString('utf8');
       if(html.split(marker).length!==2){res.writeHead(500);res.end('Test bridge marker missing');return;}
-      res.end(html.replace(marker,'\n'+setup+'\nwindow.cosmeticQa.evaluate=function(code){return eval(code);};'+marker));
+      res.end(require('./fixture-live-clock.cjs')(html.replace(marker,'\n'+setup+'\nwindow.cosmeticQa.evaluate=function(code){return eval(code);};'+marker)));
     } else res.end(data);
   });
 });

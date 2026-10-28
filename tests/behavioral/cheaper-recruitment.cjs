@@ -60,6 +60,7 @@ const marker="if(document.readyState==='loading'){";
 if(source.split(marker).length!==2)throw Error('unique production bootstrap marker required');
 const prelude=`<script>window.__f21Errors=[];window.addEventListener('error',function(e){__f21Errors.push(e.message);});window.addEventListener('unhandledrejection',function(e){__f21Errors.push(String(e.reason));});var qaSetInterval=window.setInterval;window.setInterval=function(fn,ms){return qaSetInterval(function(){if(window.__f21RunIntervals)fn();},ms);};</script>`;
 source=source.replace('<head>','<head>'+prelude).replace(marker,bridge+'\n'+marker).replace('</body>','<script>'+fs.readFileSync(path.join(__dirname,'cheaper-recruitment.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'cheaper-refund.js'),'utf8')+'</script></body>');
+source=require('./fixture-live-clock.cjs')(source,'__f21RunIntervals',true);
 const sourceSha256=createHash('sha256').update(fs.readFileSync(sourcePath)).digest('hex'),records=[];
 const server=http.createServer((req,res)=>{
  if(req.url==='/index.html'){res.setHeader('Content-Type','text/html');res.end(source);return;}

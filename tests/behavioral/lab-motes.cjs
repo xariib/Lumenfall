@@ -26,9 +26,11 @@ async function run(){
   await evaluate('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');
   const beforeBegin=await evaluate(`(()=>{const el=document.querySelector('[data-study="guardmastery"]');el.focus();return {focus:document.activeElement.outerHTML.slice(0,300),same:document.activeElement===el,visible:el.getClientRects().length>0,disabled:el.disabled,button:el.outerHTML,research:document.querySelector('#tab-research').className,catalogue:el.closest('.study-catalogue').hidden,inert:!!el.closest('[inert]')};})()`);
   assert(beforeBegin.same&&beforeBegin.visible&&!beforeBegin.disabled&&!beforeBegin.inert,'native Begin starts from the actual visible enabled research action '+JSON.stringify(beforeBegin));
+  await evaluate('window.__lumenfallQaBridge.feedbackTick(false);window.__lumenfallQaContext.advanceTime(1000);window.__qaAdvanceLiveClock(1000)');
   await key('Enter');
   const beginFocus=await evaluate(`(()=>{const b=window.__lumenfallQaBridge,el=document.activeElement,inspection=document.querySelector('[data-study-inspection="guardmastery"]');return {focused:el.outerHTML.slice(0,600),same:el.dataset.studySpeedSummary==='guardmastery',visible:el.getClientRects().length>0,inspection:!!inspection&&!inspection.hidden,active:b.getState().activeStudies.some(a=>a.id==='guardmastery'),flags:b.getFlags(),overlays:Array.from(document.querySelectorAll('.overlay')).filter(e=>getComputedStyle(e).display!=='none').map(e=>e.id)};})()`);
   assert(beginFocus.same&&beginFocus.visible&&beginFocus.inspection&&beginFocus.active,'real keyboard Begin retains visible same-Study focus with inline controls '+JSON.stringify(beginFocus));
+  assert(await evaluate('window.__lumenfallQaBridge.getState().activeStudies.find(a=>a.id==="guardmastery").remainingSec===150'),'native Begin gives the new Study no work from the preceding one-second scheduler stall');
   const labUi=await evaluate('runLabUiQa(window.__lumenfallQaBridge,window.__lumenfallQaContext,function(v,m){if(!v)throw Error(m);})');
   await evaluate('window.selectLabSpeed("guardmastery",1.5)');
   const collapsedAx=await send('Accessibility.getFullAXTree');
