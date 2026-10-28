@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+28 October: [Android 0.2.52 exploit audit](tasks/EXPLOIT_AUDIT_0252_001.md)
+reproduces six defects and measures three documented balance optimizations against
+unchanged released source `adaf602c`. [Report and reproducer](qa/exploit-audit-0252-001/REPORT.md).
+All 26 core items after fixture repairs, seven focused checks and the isolated
+offline scenario/18 records pass. Local full browser main group is blocked by host
+Unix sockets; no new phone acceptance. Findings are unfixed; no game/APK change.
+The user subsequently authorized GitHub publication and correctness fixes.
+
 28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
 [Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)
 from `adaf602c`, after PR18 merged at `8eae1031`. Separate boost queue, editable
