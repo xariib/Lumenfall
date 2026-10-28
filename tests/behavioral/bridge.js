@@ -559,7 +559,9 @@ window.__lumenfallQaBridge = {
   lifecycleTrace: function(){ return JSON.parse(JSON.stringify(qaLifecycleEvents)); },
   clearLifecycleTrace: function(){ qaLifecycleEvents.length = 0; },
   applyOfflineNow: function(){ return applyOfflineProgress(); },
-  setLastSeen: function(value){ state.lastSeen=Number(value); return state.lastSeen; },
+  // Negative-control fault injection only: reopen both credited boundaries so
+  // the unchanged lifecycle oracle still has a real duplicate to detect.
+  reopenCreditedWindowForControl: function(value){ state.lastSeen=Number(value); if(Object.prototype.hasOwnProperty.call(state,'offlineClockHighWaterMs'))state.offlineClockHighWaterMs=Number(value); return state.lastSeen; },
   suppressUnloadSave: function(){ reloadInProgress=true; },
   previewOffline: function(snapshot,seconds,startMs){
     var previousState = state;

@@ -2562,7 +2562,7 @@
 
         case 'self-test-lifecycle-duplicate': {
           var duplicateProbe = await runResumeWindow(20,'lifecycle duplicate negative control');
-          bridge.setLastSeen(duplicateProbe.startMs);
+          bridge.reopenCreditedWindowForControl(duplicateProbe.startMs);
           bridge.applyOfflineNow();
           assertOfflineExactlyOnce(
             bridge.lifecycleTrace(),
