@@ -1,0 +1,291 @@
+{
+  "status": "Released and verified; physical/human acceptance pending",
+  "sourceCommit": "adaf602c52546c491b273862dd2c5c4dfee690fd",
+  "productSha256": "872390af6bfdaacbf606982211a207252f1233c4b47122908e61cdbcd2d58c13",
+  "pr18": {
+    "head": "4a5923af9cbeb1c3d5253128448320d5a6e45916",
+    "merge": "8eae10315e72677a6098820aca92128caf696d41",
+    "allSevenPRGatesPassed": true,
+    "integratedTreeEqualsTested": true
+  },
+  "allSevenExactMainWorkflowsPassed": true,
+  "mainScenarios": 189,
+  "isolatedOfflineScenarios": 1,
+  "android": {
+    "run": 40687869800,
+    "number": 52,
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/40687869800",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 1,
+    "jobs": [
+      {
+        "id": 122814817343,
+        "name": "build-apk",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout",
+            "number": 2,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Require integrated validation before publishing",
+            "number": 3,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Set up Node.js",
+            "number": 4,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Set up Java",
+            "number": 5,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Set up Gradle",
+            "number": 6,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify Android SDK",
+            "number": 7,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore and verify stable Android signing key",
+            "number": 8,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install Capacitor dependencies",
+            "number": 9,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate game source",
+            "number": 10,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Stage Android web assets",
+            "number": 11,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Browser runtime smoke test",
+            "number": 12,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Generate Android project",
+            "number": 13,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Compute continuing Android version",
+            "number": 14,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Set Android app version",
+            "number": 15,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Stage Android icon and splash sources",
+            "number": 16,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Generate Android icons and splash",
+            "number": 17,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Sync Capacitor",
+            "number": 18,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build APK",
+            "number": 19,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Prepare APK",
+            "number": 20,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify final APK identity",
+            "number": 21,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify exact packaged production assets and origin",
+            "number": 22,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Enable emulator hardware acceleration",
+            "number": 23,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Free native build memory before emulator acceptance",
+            "number": 24,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "In-place signed APK and save upgrade on emulator",
+            "number": 25,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Require completed upgrade receipt for this exact APK",
+            "number": 26,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve failed native upgrade diagnostics",
+            "number": 27,
+            "status": "completed",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Upload failed native upgrade diagnostics",
+            "number": 28,
+            "status": "completed",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Preserve verified build",
+            "number": 29,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Publish verified APK release",
+            "number": 30,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Remove temporary signing copy",
+            "number": 31,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Set up Gradle",
+            "number": 59,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Set up Java",
+            "number": 60,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Set up Node.js",
+            "number": 61,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout",
+            "number": 62,
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "number": 63,
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "release": {
+    "tag": "android-1000052",
+    "name": "Lumenfall Android 0.2.52",
+    "url": "https://github.com/xariib/Lumenfall/releases/tag/android-1000052",
+    "publishedAt": "2026-10-28T12:31:11Z",
+    "apk": "https://github.com/xariib/Lumenfall/releases/download/android-1000052/Lumenfall.apk",
+    "apkSha256": "8ebedbf664cc1188c03a4d4489b1a050a6f8326a17859b58b229a1b40e60fd96",
+    "bytes": 7065089
+  },
+  "dispatcher": {
+    "reason": "Cloud Browser calls stopped responding twice; connector lacks workflow dispatch. Temporary isolated branch starts only existing exact-main validation/publishing workflows.",
+    "branch": "ops/pr18-delivery-2026-10-28",
+    "run": 40682568623,
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/40682568623",
+    "status": "completed",
+    "conclusion": "success",
+    "temporaryBranchRemoved": true,
+    "mainProductAndWorkflowFilesUnchanged": true,
+    "initialFailure": {
+      "run": 40682474623,
+      "reason": "Heredoc closing indentation; permanent progression workflow was dispatched before the script failed. Corrected source passed shell/Node syntax and complete delivery; no game test or gate weakened."
+    }
+  },
+  "local": {
+    "coreChecks": 379,
+    "causalControls": 5,
+    "mobileChecks": 327,
+    "mobileProfiles": 18,
+    "bothNativeMotionCases": true,
+    "offlineFourCompleteEndpointsUnchanged": true
+  },
+  "review": "Self-review and automated checks; no independent human review claimed",
+  "remainingAcceptance": [
+    "physical phone",
+    "exact WebView60 DOM",
+    "TalkBack",
+    "human pacing/performance"
+  ],
+  "unchangedEnforcementObservations": [
+    "main remains unprotected",
+    "existing publishing gate names six workflows; this delivery explicitly required all seven"
+  ],
+  "next": "Back up in Settings and install as an update without uninstalling; complete physical/human acceptance."
+}

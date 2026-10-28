@@ -64,8 +64,8 @@ Reference imagery informs grouping; keep Lumenfall branding and the slider.
 
 ## Checkpoint
 
-Status: implemented in PR18 (https://github.com/xariib/Lumenfall/pull/18),
-validation and delivery in progress. Product SHA256
+Status: released and verified as Android0.2.52; physical/human acceptance pending.
+PR18 (https://github.com/xariib/Lumenfall/pull/18) is merged. Product SHA256
 `872390af6bfdaacbf606982211a207252f1233c4b47122908e61cdbcd2d58c13`.
 Changed root product, Lab harness/controls/timed UI, focused queue numeric/UI
 tests, independent offline binding and pre-merge workflow. No balance change.
@@ -89,10 +89,8 @@ regenerated binding retains those outcomes. Lab Motes native UI also passes.
 Self-review only; no independent human review claimed. Evidence will be retained
 under docs/qa/lab-boost-queue-001/ with CI and release receipts.
 
-Next: finish source-bound local checks and endpoint comparison, update feature
-PR, run seven required workflows, integrate, validate exact main and publish the
-signed upgrade APK. Physical phone, exact WebView60, TalkBack/human pacing remain
-separate acceptance and keep the feature open after automated delivery.
+Automated integration/release acceptance is complete; final source-bound evidence
+and remaining physical/human acceptance are recorded in the delivery section below.
 
 Live auto-purchase review correction: the production tick uses a detached state
 when boost consent is ON and commits a paid renewal before presenting it. Primary
@@ -144,6 +142,38 @@ tree9309c269c7bda08e0ae3684c06e1c54e241f46eb exactly matches tested source.
 User continuation request: verify already saved/completed work, then finish the
 remaining delivery. Prior worktrees and unrelated files remain untouched.
 
-Next: all seven exact-main workflows, then the existing signed publishing
-workflow, installed-upgrade receipt and anonymous exact-byte download checks.
-Physical/human acceptance remains open after automated delivery.
+This integration checkpoint preceded the complete delivery below.
+
+## Verified delivery — 28 October 2026
+
+[Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052),
+versionCode1000052, sourceadaf602c52546c491b273862dd2c5c4dfee690fd.
+[All seven exact-main workflows](../qa/lab-boost-queue-001/ci-final.json) PASS,
+including189 main scenarios, the isolated offline case, both native Lab input
+cases and runtime smoke. No PR/main test rerun or weakened gate was required.
+
+[Signed Android run52](https://github.com/xariib/Lumenfall/actions/runs/40687869800)
+PASS on attempt1: package/version/certificate/assets and installed API31/WebView91
+upgrade from signed158. Both saves, paid work, UID/origin and legacy purchases
+retained; actual native Wisp purchase and Farm-to-Lab navigation PASS.
+The emulator uses synthetic saves and is not physical-phone acceptance.
+
+[Anonymous public-byte verification](../qa/lab-boost-queue-001/download-verification.json)
+PASS: HTTP200,7065089 bytes, all15 production assets exactly match source, actual
+downloaded certificate matches and the completed native receipt identifies this
+exact APK. SHA2568ebedbf664cc1188c03a4d4489b1a050a6f8326a17859b58b229a1b40e60fd96.
+[Release/limitations](../qa/lab-boost-queue-001/release.json) and
+[original public receipts](../qa/lab-boost-queue-001/release/emulator-upgrade.json).
+
+Cloud Browser stopped responding during dispatch. A temporary isolated dispatcher
+completed only existing exact-main gates and the existing signed publishing
+workflow, updated release notes and removed its own branch. Its first heredoc
+indentation error was corrected; original CI/product/acceptance remained intact.
+The workflow copy/checkpoint and run40682568623 preserve evidence. Main remained
+frozen atadaf602c until publication and exact-byte checks completed. This final
+documentation follow-up changes no product, tests, mobile files or active workflow.
+
+Next: Settings backup, install as an update without uninstalling, then physical
+phone/WebView60 DOM/TalkBack/human pacing acceptance. Keep those items open and
+do not archive the feature as fully accepted. Self-review/automated checks only;
+no independent human review claimed. Other worktrees remain untouched.

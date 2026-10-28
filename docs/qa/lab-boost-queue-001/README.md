@@ -12,7 +12,9 @@ Node24.22.1 and Chrome156.0.8078.47. Baseline main8f8f7728.
 
 Self-review examined the entire source/test/workflow diff: independent research repeat consent, optional validated slot preferences, unchanged balance and paid receipt, real simulation clock/resource boundaries, rollback and legacy default OFF. No independent human review claimed.
 
-Seven CI workflows, exact-main validation, signed installed upgrade and public-byte verification are pending. Physical phone, exact WebView60 DOM, TalkBack and human pacing remain open.
+Seven PR/main workflows, signed installed upgrade and public-byte verification
+PASS in the final delivery below. Physical phone, exact WebView60 DOM, TalkBack
+and human pacing remain open.
 
 Live auto-purchase review correction: the production tick uses a detached state
 when boost consent is ON and commits a paid renewal before presenting it. Primary
@@ -31,4 +33,20 @@ and by native touch, including failed-save rollback and preserved paid time.
 empty-slot-queue.png records the usable empty-Lab control.
 final-local-golden.json and final-local-parity.json bind regenerated independent
 one-second offline windows; all four endpoint hashes/rewards match prior source.
-CI/integration/release receipts remain pending at this checkpoint.
+This local checkpoint preceded the complete delivery below.
+
+## Delivered Android0.2.52
+
+ci-pr.json and ci-final.json bind all seven PR/main workflows and both complete
+jobs (189+1 scenarios) to reviewed source. release.json records sourceadaf602c,
+Android run40687869800 attempt1, the signed installed upgrade and the temporary
+dispatcher. delivery-checkpoint.json is the historical in-progress checkpoint;
+delivery-dispatch-evidence.yml is an inactive copy of the isolated workflow.
+The dispatcher branch was removed after successful publication; no active main
+workflow or product file was changed by this fallback.
+
+download-verification.json binds the anonymous HTTP200 APK to the exact source,
+all15 assets, certificate and installed native receipt. release/ retains original
+public identity/assets/checksum/commit/emulator receipts. APK0.2.52 is7065089 bytes,
+SHA2568ebedbf664cc1188c03a4d4489b1a050a6f8326a17859b58b229a1b40e60fd96.
+Physical/human acceptance and lack of independent human review remain explicit.

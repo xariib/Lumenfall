@@ -1,0 +1,71 @@
+name: PR18 isolated delivery dispatcher
+
+on:
+  push:
+    branches: [ops/pr18-delivery-2026-10-28]
+    paths: [.github/workflows/pr18-delivery-dispatch.yml]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: pr18-isolated-delivery-dispatch
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - name: Complete only the approved exact-main validation and signed release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          node <<'JS'
+          'use strict';
+          const assert=require('node:assert/strict'),fs=require('node:fs'),{execFileSync}=require('node:child_process');
+          const repo='xariib/Lumenfall',source='adaf602c52546c491b273862dd2c5c4dfee690fd';
+          const branch='ops/pr18-delivery-2026-10-28';
+          const required=['pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml','lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml','permanent-progression-validation.yml'];
+          const gh=args=>execFileSync('gh',args,{encoding:'utf8',maxBuffer:8*1024*1024});
+          const api=path=>JSON.parse(gh(['api','repos/'+repo+'/'+path]));
+          const main=()=>assert.equal(api('git/ref/heads/main').object.sha,source,'Integrated main changed; stop delivery');
+          const runs=file=>api('actions/workflows/'+file+'/runs?head_sha='+source+'&per_page=100').workflow_runs.filter(r=>r.head_sha===source&&r.event==='workflow_dispatch'&&r.head_branch==='main').sort((a,b)=>b.id-a.id);
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          const dispatch=(file,extra=[])=>{main();gh(['workflow','run',file,'--repo',repo,'--ref','main',...extra]);console.log('Dispatched '+file+' at '+source);};
+          (async()=>{
+           assert.equal(process.env.GITHUB_REPOSITORY,repo);assert.equal(process.env.GITHUB_REF,'refs/heads/'+branch);
+           main();if(!runs('permanent-progression-validation.yml').length)dispatch('permanent-progression-validation.yml');
+           let accepted;
+           for(let attempt=0;attempt<150;attempt++){
+            main();accepted=required.map(file=>({file,run:runs(file)[0]}));
+            const failed=accepted.filter(x=>x.run&&x.run.status==='completed'&&x.run.conclusion!=='success');
+            assert.equal(failed.length,0,'Required exact-main gate failed: '+JSON.stringify(failed.map(x=>({file:x.file,id:x.run.id,conclusion:x.run.conclusion}))));
+            console.log(JSON.stringify({phase:'main gates',runs:accepted.map(x=>({file:x.file,id:x.run?.id,status:x.run?.status,conclusion:x.run?.conclusion}))}));
+            if(accepted.every(x=>x.run?.conclusion==='success'))break;
+            if(attempt===149)throw Error('Exact-main validation did not finish within75 minutes');
+            await sleep(30000);
+           }
+           const full=accepted.find(x=>x.file==='pre-merge-validation.yml').run;
+           const jobs=api('actions/runs/'+full.id+'/jobs?filter=latest&per_page=100').jobs;
+           for(const name of ['Lumenfall pre-merge validation','Lumenfall isolated offline catch-up'])assert(jobs.some(j=>j.name===name&&j.conclusion==='success'),name+' incomplete');
+           main();if(!runs('build-android.yml').length)dispatch('build-android.yml',['-f','publish=true']);
+           let build;
+           for(let attempt=0;attempt<45;attempt++){
+            build=runs('build-android.yml')[0];console.log(JSON.stringify({phase:'signed Android',id:build?.id,status:build?.status,conclusion:build?.conclusion}));
+            if(build?.status==='completed'){assert.equal(build.conclusion,'success','Signed Android workflow failed');break;}
+            if(attempt===44)throw Error('Signed Android build did not finish within22.5 minutes');
+            await sleep(30000);
+           }
+           main();const tag='android-'+(1000000+build.run_number),release=api('releases/tags/'+tag);
+           assert.equal(release.target_commitish,source);assert(!release.draft&&!release.prerelease);assert(release.assets.some(a=>a.name==='Lumenfall.apk'));
+           const notes='Independent Lab boost queue update from '+source+': Speed Up keeps the current paid boost separate from editable next multiplier and duration. Queue Speed Up ON starts and repeats the selected plan when research and Motes are available; OFF prevents future purchases and preserves paid time. A running1.5x8h boost finishes unchanged before the selected3x plan begins. Research-level repeat remains independent, and empty Labs expose a direct boost-queue OFF action. Existing prices, durations, saves, progression, paid research and legacy purchases are retained. All seven exact-main workflows and189+1 scenarios passed before this signed build; installed emulator upgrade, package, signer and packaged assets passed. Back up in Settings, then install Lumenfall.apk as an update without uninstalling. Physical-phone, exact WebView60 DOM, TalkBack and human pacing acceptance remain open.';
+           fs.writeFileSync('/tmp/pr18-release-notes.txt',notes+'\n');
+           gh(['release','edit',tag,'--repo',repo,'--notes-file','/tmp/pr18-release-notes.txt']);
+           console.log(JSON.stringify({status:'PASS',source,build:build.id,tag,release:release.html_url,requiredRuns:accepted.map(x=>x.run.id)}));
+           gh(['api','--method','DELETE','repos/'+repo+'/git/refs/heads/'+branch]);
+           console.log('Removed the temporary dispatcher branch; main/product/workflows unchanged.');
+          })().catch(e=>{console.error(e.stack);process.exitCode=1;});
+          JS

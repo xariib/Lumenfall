@@ -1,0 +1,61 @@
+{
+  "task": "LAB_BOOST_QUEUE_001",
+  "recordedAt": "2026-10-28T12:08:10.488Z",
+  "request": "Finish PR18 including required validation, integration and signed APK delivery; preserve other work.",
+  "workspace": "/workspace/scratch/8f93771b105b/Lumenfall-pr18",
+  "pr": 18,
+  "prHead": "4a5923af9cbeb1c3d5253128448320d5a6e45916",
+  "merge": "8eae10315e72677a6098820aca92128caf696d41",
+  "releaseSource": "adaf602c52546c491b273862dd2c5c4dfee690fd",
+  "productSha256": "872390af6bfdaacbf606982211a207252f1233c4b47122908e61cdbcd2d58c13",
+  "completed": [
+    "Original failing native Lab tests reproduced and corrected for approved queue Tab stop; no assertion/gate weakened.",
+    "Empty-slot queue OFF candidate reviewed, implemented and covered without cancelling paid time.",
+    "379 queue/payment checks, five causal controls,327 mobile checks/18 profiles, both native motion cases/6 profiles each passed.",
+    "Independent four offline endpoint states/rewards match prior tested source.",
+    "All seven final PR gates and189+1 scenarios passed; PR18 merged; entire merge tree matches tested tree.",
+    "Integration checkpoint and ci-pr.json saved on main; all seven exact-main workflows dispatched."
+  ],
+  "mainRuns": [
+    40680185953,
+    40680296585,
+    40680448149,
+    40680545919,
+    40680630091,
+    40680726394,
+    40682496834
+  ],
+  "pendingMainRun": 40680185953,
+  "pendingMainJob": 122788646165,
+  "offlineJob": {
+    "id": 122788646549,
+    "status": "success"
+  },
+  "otherSixMainWorkflows": "success",
+  "dispatcher": {
+    "branch": "ops/pr18-delivery-2026-10-28",
+    "workflow": ".github/workflows/pr18-delivery-dispatch.yml",
+    "commit": "d60c58b0a4fbd89fbba4e9bcabebf2f1b081fb16",
+    "run": 40682568623,
+    "firstAttempt": {
+      "run": 40682474623,
+      "reason": "Heredoc closing indentation; corrected. First attempt dispatched permanent-progression validation before failing."
+    },
+    "behavior": "Wait for all seven exact-main manual workflows and both full jobs; require main unchanged; dispatch existing build-android.yml publish=true; wait for signed/emulator/asset acceptance; update release notes; delete only this temporary branch.",
+    "mainProductAndWorkflowFilesChangedByDispatcher": false
+  },
+  "browser": "CUA stopped responding twice; do not repeat stalled calls. Connector and isolated dispatcher continue delivery.",
+  "publicVerification": {
+    "script": "/workspace/scratch/8f93771b105b/verify-pr18-public-release.cjs",
+    "curlRoute": "Anonymous stable APK HEAD200 verified; certificate keytool available.",
+    "next": "After build/release success, download latest APK and six release evidence files; bind metadata, commit, checksum, all15 source assets, actual certificate, exact installed-upgrade receipt and source."
+  },
+  "next": "Await main regression; dispatcher starts signed publishing workflow automatically. Monitor failures; do not bypass gates. Verify public bytes and save final ci/release/download receipts plus task/PROJECT_STATE to main only after publication (moving main earlier aborts guarded delivery).",
+  "limitations": [
+    "physical phone",
+    "exact WebView60 DOM",
+    "TalkBack",
+    "human pacing/performance"
+  ],
+  "preserve": "Original worktrees under /workspace/scratch/be190f0c0d81 remain untouched; do not stage unrelated temporary receipt files."
+}
