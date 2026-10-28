@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
       const marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
       const html=data.toString('utf8');
       if(html.split(marker).length!==2){res.writeHead(500);res.end('Test bridge marker missing');return;}
-      res.end(html.replace(marker,'\n'+setup+'\nwindow.cosmeticQa.evaluate=function(code){return eval(code);};'+marker));
+      res.end(require('./fixture-live-clock.cjs')(html.replace(marker,'\n'+setup+'\nwindow.cosmeticQa.evaluate=function(code){return eval(code);};'+marker)));
     } else res.end(data);
   });
 });
@@ -195,9 +195,9 @@ async function run() {
         var before=JSON.stringify(state);renderCosmetics();a(JSON.stringify(state)===before,'render has no save mutation');
         var results=[];
         RIFT_THEMES.forEach(function(t){
-          var economic=JSON.parse(JSON.stringify(state));delete economic.riftTheme;delete economic.lastSeen;
+          var economic=JSON.parse(JSON.stringify(state)),priorClock=economic.offlineClockHighWaterMs;delete economic.riftTheme;delete economic.lastSeen;delete economic.offlineClockHighWaterMs;
           selectRiftTheme(t.id);
-          var after=JSON.parse(JSON.stringify(state));delete after.riftTheme;delete after.lastSeen;
+          var after=JSON.parse(JSON.stringify(state));if(Object.prototype.hasOwnProperty.call(after,'offlineClockHighWaterMs'))a(after.offlineClockHighWaterMs===Math.max(priorClock,after.lastSeen),'selection preserves exact credited-clock ownership: '+t.id);delete after.riftTheme;delete after.lastSeen;delete after.offlineClockHighWaterMs;
           a(JSON.stringify(after)===JSON.stringify(economic),'selection preserves gameplay and ownership: '+t.id);
           var primary=JSON.parse(localStorage.getItem(SAVE_KEY)),recovery=JSON.parse(localStorage.getItem(RECOVERY_SAVE_KEY));
           a(primary.riftTheme===t.id && recovery.riftTheme===t.id,'immediate primary and recovery persistence: '+t.id);

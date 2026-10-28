@@ -154,7 +154,7 @@ window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
     }
     b.setState(s);if(ctx.scenario.endsWith('manual-reload'))b.autoTarget.manual();b.feedbackSave();var saved=b.getState();
     if(ctx.scenario==='auto-ascend-target-cold-resume'){
-      var oracle=b.previewOffline(saved,6,b.clockNow());oracle.state.lastSeen=b.clockNow()+6000;oracle.state.totalOfflineSeconds=saved.totalOfflineSeconds+6;
+      var oracle=b.previewOffline(saved,6,b.clockNow());oracle.state.lastSeen=b.clockNow()+6000;oracle.state.offlineClockHighWaterMs=Math.max(saved.offlineClockHighWaterMs,oracle.state.lastSeen);oracle.state.totalOfflineSeconds=saved.totalOfflineSeconds+6;
       localStorage.setItem(key,JSON.stringify(oracle.state));b.advanceTime(6000);
     } else localStorage.setItem(key,JSON.stringify(saved));
     nextPhase(1);
@@ -180,7 +180,7 @@ window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
   if(ctx.scenario.endsWith('resume')){
     var s=window.autoTargetSeed(b,43,true);s.depth=43;s.enemyDepth=43;s.enemyHp=1;s.enemyMaxHp=b.enemyHpFor(43);s.spirits.ember=100;s.heroResource.ember=100;s.activeStudies=[{id:'guardmastery',totalDurationSec:150,remainingSec:.5,speedMult:2}];
     b.setState(s);b.feedbackSave();s=b.getState();var now=b.clockNow(),oracle=b.previewOffline(s,6,now);
-    oracle.state.lastSeen=now+6000;oracle.state.totalOfflineSeconds=s.totalOfflineSeconds+6;
+    oracle.state.lastSeen=now+6000;oracle.state.offlineClockHighWaterMs=Math.max(s.offlineClockHighWaterMs,oracle.state.lastSeen);oracle.state.totalOfflineSeconds=s.totalOfflineSeconds+6;
     b.clearLifecycleTrace();b.autoTarget.visibility(true);b.advanceTime(6000);b.autoTarget.visibility(false);
     actual=b.getState();assert(JSON.stringify(actual)===JSON.stringify(oracle.state),'whole-state visibility resume matches authoritative offline window and explicit lifecycle metadata');
     assert(actual.autoAscendTargetDepth===44&&actual.ascendCount===s.ascendCount+1,'resume crosses one target without changing preference');

@@ -26,6 +26,37 @@ jobs:
         with:
           node-version: 24.19.0
 
+      - name: Paid boosts, clock replay and capped automation regressions
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_FIXES_0252_001.md
+          mkdir -p validation-evidence/exploit-fixes
+          node tests/behavioral/exploit-fixes.cjs index.html --negative > validation-evidence/exploit-fixes/regressions.json
+          node tests/behavioral/exploit-live-clock-browser.cjs index.html validation-evidence/exploit-fixes/live-clock
+          if node tests/behavioral/exploit-live-clock-browser.cjs index.html validation-evidence/exploit-fixes/fixed-tick --mutate-fixed-tick; then
+            echo "::error::Fixed-tick time-loss defect unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('validation-evidence/exploit-fixes/live-clock/receipt.json'));
+          const bad=JSON.parse(fs.readFileSync('validation-evidence/exploit-fixes/fixed-tick/receipt.json'));
+          assert.equal(good.status,'pass');assert.equal(good.records.length,2);assert.deepEqual(good.runtimeErrors,[]);
+          assert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));
+          assert.deepEqual(bad.runtimeErrors,[]);assert.notEqual(good.sourceSha256,bad.sourceSha256);
+          JS
+
+      - name: Native Lab Begin focus boundaries
+        run: |
+          mkdir -p mobile/www/fonts mobile/www/branding
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+          boundary_status=0
+          for SCENARIO in lab-motes-native lab-motes-reduced-motion; do
+            node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/exploit-boundaries || boundary_status=1
+          done
+          exit "$boundary_status"
+
       - name: Slot-first Lab, concise cards and expanded Deeds
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/WORKSHOP_CARD_CLARITY_001.md

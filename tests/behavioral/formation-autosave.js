@@ -1,6 +1,6 @@
 /* F14 contracts use the real save, action and Ascend handlers in the Node QA app. */
 window.formationAutosaveSeed = function(b){
-  var s=b.freshStateSnapshot();
+  var s=b.freshStateSnapshot();s.questDay=window.__lumenfallQaContext.currentDay();s.loginStreak=1;
   s.maxDepthEver=s.depth=s.enemyDepth=101;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(101);
   Object.keys(s.spirits).forEach(function(id){s.spirits[id]=10;});
   s.formationPresets={push:['ember','tide'],farm:['stone','gale'],boss:['void','titan']};

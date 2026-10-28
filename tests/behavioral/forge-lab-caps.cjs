@@ -86,7 +86,7 @@ function verify(html){
   }
   // Retain all pre-existing combined-save fields. Schema5 adds only the
   // explicit Mastery/entitlement fields and the new Masterwork path here.
-  function oldFields(s){s=F.clone(s);delete s.farmAutoResume;delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;delete s.astralUpgrades;delete s.commandRefund;delete s.studySlotProjects;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
+  function oldFields(s){s=F.clone(s);if(Object.hasOwn(s,'offlineClockHighWaterMs')){eq(s.offlineClockHighWaterMs,s.lastSeen,'new clock metadata retains exact legacy endpoint');delete s.offlineClockHighWaterMs;}delete s.farmAutoResume;delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;delete s.astralUpgrades;delete s.commandRefund;delete s.studySlotProjects;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
   for(const schema of [1,2,3])for(const level of [10,13,20,23]){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});

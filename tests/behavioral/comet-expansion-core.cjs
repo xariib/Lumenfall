@@ -485,7 +485,7 @@ function runCore(source,options={}){
     control('positive-epsilon-hp-is-not-a-lethal-command','activateCometCommand','if(plan.meteor.lethal) simulationDefeatEnemy','if(plan.meteor.lethal || state.enemyHp<=1e-9) simulationDefeatEnemy',text=>{
       const e=prepared(text),q=e.q,s=ownedFixture(q);s.enemyMaxHp=5;s.enemyHp=1+5e-10;q.set(s);const kills=q.get().totalKills;assert.equal(q.command('meteor'),true);assert.equal(q.get().totalKills,kills,'positive Meteor remainder must not become an epsilon kill');assert(q.get().enemyHp>0);
     },/positive Meteor remainder must not become/);
-    control('primary-failure-restores-run-identity','cometCommitMutation','if(!saved && state===working){state=base;ascendRunToken=oldRun;return false;}','if(!saved && state===working){state=base;return false;}',text=>{
+    control('primary-failure-restores-run-identity','cometCommitMutation','if(!saved && state===working){state=base;ascendRunToken=oldRun;if(liveWasBase)liveClockMemo.state=base;return false;}','if(!saved && state===working){state=base;if(liveWasBase)liveClockMemo.state=base;return false;}',text=>{
       const e=prepared(text),q=e.q,s=ownedFixture(q,'meteor',15);s.enemyHp=1;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=16;s.ascendCount=1e30;q.set(s);q.save();const before=snapshot(e);e.fail(true,false);assert.equal(q.command('meteor'),false);assert.deepEqual(q.get(),before.state);assert(q.runToken()===before.token,'failed ending hit must restore the exact original run token');
     },/failed ending hit must restore/);
     const workingMutated=replaceFunction(source,'cometCommitMutation',body=>replaceOne(replaceOne(body,'try{','var working=state;try{'),'var working=state,saved=saveState();','var saved=saveState();'));

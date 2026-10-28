@@ -43,7 +43,7 @@ var f13Clock=Date.now();Date.now=function(){return f13Clock;};
 var f13Interval=window.setInterval.bind(window);
 window.setInterval=function(){return f13Interval(function(){},100000);};
 </script>`;
-const page = source.replace('<head>', '<head>'+prelude).replace(marker, bridge+marker);
+const page = require('./fixture-live-clock.cjs')(source.replace('<head>', '<head>'+prelude).replace(marker, bridge+marker));
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url, 'http://localhost').pathname;
   if (pathname === '/') { res.setHeader('Content-Type','text/html'); res.end(page); return; }

@@ -86,7 +86,8 @@ async function run(){
   assert(visual.focus.style!=='none'&&parseFloat(visual.focus.width)>=2&&visual.focus.contrast>=3&&visual.noSave&&visual.selected==='boss'&&!visual.errors.length,'visible keyboard focus, selection and no runtime errors '+JSON.stringify(visual));
   const beforeLive=await evaluate('window.__lumenfallQaBridge.getState()');await advance(350);
   const afterLive=await evaluate('window.__lumenfallQaBridge.getState()');assert(afterLive.enemyHp<beforeLive.enemyHp||afterLive.totalKills>beforeLive.totalKills,'actual unpaused production combat advances');
-  assert(await evaluate('document.activeElement.dataset.formationPreset==="boss"'),'actual game ticks keep preset focus');
+  const liveFocus=await evaluate('({focused:document.activeElement.outerHTML.slice(0,600),preset:document.activeElement.dataset.formationPreset,questDay:window.__lumenfallQaBridge.getState().questDay,overlays:Array.from(document.querySelectorAll(".overlay")).filter(e=>getComputedStyle(e).display!=="none").map(e=>e.id)})');
+  assert(liveFocus.preset==='boss','actual game ticks keep preset focus '+JSON.stringify(liveFocus));
   await evaluate('document.querySelector("#formation-presets").scrollIntoView({block:"start"})');
   if(process.env.LUMENFALL_QA_EVIDENCE_DIR){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'formation-'+width+'-'+motion+'-'+(large?'large':'normal')+'.png'),Buffer.from(shot.data,'base64'));}
   records.push({width,large,motion,contract,visual,touch:true,keyboard:true,renderPurity:true});await send('Target.disposeBrowserContext',{browserContextId:ctx.browserContextId},null);

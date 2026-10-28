@@ -163,6 +163,8 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
+ assert.equal(actual.offlineClockHighWaterMs,Math.max(seed.offlineClockHighWaterMs||0,actual.lastSeen),label+' exact backwards-compatible credited clock frontier');
+ delete actual.offlineClockHighWaterMs;
  assert.equal(actual.farmAutoResume,expected.riftMode==='farm',label+' only a historical automatic boss retreat owns retry intent');delete actual.farmAutoResume;
  const targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]};
  const rewardById=new Map(Object.entries(targets).flatMap(([track,values])=>values.map((target,index)=>['endless_'+track+'_'+target,10+5*index])));
@@ -332,7 +334,9 @@ const off=copy(original);off.autoAscendEnabled=false;
 const disabled=runAsync(off,28800),offReference=oneSecondReference(off,28800);assert.equal(disabled.result.kills,offReference.kills);assert.equal(disabled.result.ascends,0);
 compare(disabled.committed,offReference.state,'capped Swift OFF full8h one-second oracle');
 const cap=runAsync(original,72*3600),capReference=oneSecondReference(original,12*3600);assert.equal(cap.result.kills,capReference.kills);assert.equal(cap.result.ascends,capReference.ascends);
-capReference.state.lastSeen=original.lastSeen+72*3600000;compare(cap.committed,capReference.state,'capped Swift full12h one-second oracle');
+capReference.state.lastSeen=original.lastSeen+72*3600000;
+capReference.state.offlineClockHighWaterMs=capReference.state.lastSeen;
+compare(cap.committed,capReference.state,'capped Swift full12h one-second oracle');
 const beyond=copy(original);beyond.activeStudies=[{id:'guardmastery',remainingSec:80*3600,totalDurationSec:80*3600,speedMult:1}];beyond.studyQueue={};
 const long=runAsync(beyond,96*3600);assert.equal(long.result.effectiveSec,12*3600);
 assert(!long.result.completedStudies.includes("Guardian's Mastery"),'Study cannot complete beyond the common cap');assert(Math.abs(long.committed.activeStudies[0].remainingSec-68*3600)<1e-5,'12h paid work within existing scheduler epsilon');
@@ -416,6 +420,8 @@ for(const seconds of [28800,72*3600]){
  const reference=app(original,source,seconds);reference.b.apply();
  reference.b.advance(60,{kind:'live',visual:false,clockStartMs:original.lastSeen+seconds*1000});
  reference.b.get().lastSeen=original.lastSeen+(seconds+60)*1000;
+ reference.b.get().offlineClockHighWaterMs=original.lastSeen+(seconds+60)*1000;
+ assert.equal(slow.b.get().offlineClockHighWaterMs,reference.b.get().offlineClockHighWaterMs,'processing time retains its exact credited frontier');
  compare(slow.b.get(),reference.b.get(),'processing time live parity '+seconds);
  approx(slow.b.get().totalOfflineSeconds-original.totalOfflineSeconds,Math.min(seconds,43200),'processing time does not expand offline cap/accounting');
  records.push({case:'processing time '+seconds,kills:result.kills,lastSeen:slow.b.get().lastSeen});
@@ -425,6 +431,8 @@ for(const jump of [-7*86400000,7*86400000]){
  shifted.clock(original.lastSeen+28800000+60000+jump);shifted.monotonic(60000);shifted.drain();assert.ifError(error);
  const reference=app(original,source,28800);reference.b.apply();reference.b.advance(60,{kind:'live',visual:false,clockStartMs:original.lastSeen+28800000});
  reference.b.get().lastSeen=original.lastSeen+28800000+60000+jump;
+ reference.b.get().offlineClockHighWaterMs=Math.max(original.lastSeen+28800000+60000,reference.b.get().lastSeen);
+ assert.equal(shifted.b.get().offlineClockHighWaterMs,reference.b.get().offlineClockHighWaterMs,'clock correction cannot reopen credited processing time');
  compare(shifted.b.get(),reference.b.get(),'monotonic processing with wall-clock jump '+jump);
  records.push({case:'wall-clock jump '+jump,kills:shifted.b.get().totalKills-original.totalKills,lastSeen:shifted.b.get().lastSeen});
 }

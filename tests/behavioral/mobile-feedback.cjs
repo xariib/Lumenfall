@@ -10,7 +10,7 @@ let mode='return',gateResponse,releaseGate=false;
 function page(){
  const bridge=`
 window.feedbackQa={events:[],release:null};
-window.setInterval=function(){return 0;};
+window.setInterval=function(){return 0;};Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});
 localStorage.clear();
 if(${JSON.stringify(mode)}!=='fresh'){
  var seed=freshState();seed.lastSeen=Date.now()-60000;seed.questDay=todayStr();seed.tutorialDone=true;

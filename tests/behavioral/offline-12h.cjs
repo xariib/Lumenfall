@@ -66,7 +66,12 @@ function consume(seed, seconds, batch=256, quiet=false) {
   records.push({seconds,batch,batches,quiet,kills:result?.kills,ascends:result?.ascends,studyMotesSpent:result?.studyMotesSpent});
   return {x,result,state:clone(x.b.get())};
 }
-function withoutEndpoint(s) { const value=clone(s); delete value.lastSeen; return value; }
+function withoutEndpoint(s) {
+  const value=clone(s);
+  assert.equal(value.offlineClockHighWaterMs,value.lastSeen,'capped absence consumes its whole wall endpoint exactly once');
+  delete value.lastSeen; delete value.offlineClockHighWaterMs;
+  return value;
+}
 // Independent fixed purchase totals; every original single-price ceil matters.
 for(const [level,prisms] of [[0,0],[1,6],[2,16],[3,32],[4,57],[5,97],[8,423],[12,2810]]) {
   for(const a of [false,true]) for(const b of [false,true]) {

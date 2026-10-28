@@ -145,7 +145,7 @@ function app(source, saved, options) {
     },
     fn => { timers.push({id: ++next, fn}); return next; },
     id => { const i = timers.findIndex(timer => timer.id === id); if (i >= 0) timers.splice(i, 1); },
-    {now: () => 0}, undefined, {reload: () => reloads++}, {}, stage
+    {now: () => options && options.performanceNow ? options.performanceNow() : 0}, undefined, {reload: () => reloads++}, {}, stage
   );
   const q = window.qa;
   if (saved) q.load(); else q.set(q.fresh());

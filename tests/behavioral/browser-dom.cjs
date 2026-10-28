@@ -2,14 +2,18 @@
 // Optional CDP pipe transport for the same completed QA DOM assertions. Chrome
 // --dump-dom stalls in this executor; this does not change assertion bodies.
 const {spawn}=require('node:child_process'), fs=require('node:fs'), assert=require('node:assert/strict');
-const [chrome,url,profile,motion,mode]=process.argv.slice(2);
+const [chrome,url,profile,motion,mode,firstCommandTimeoutArg]=process.argv.slice(2);
+// Existing callers retain their eight-second CDP command budget. A new gate
+// that starts the runner's first cold browser can budget startup separately.
+const firstCommandTimeout=firstCommandTimeoutArg===undefined?8000:Number(firstCommandTimeoutArg);
+assert(Number.isFinite(firstCommandTimeout)&&firstCommandTimeout>=8000&&firstCommandTimeout<=30000);
 const browser=spawn(chrome,['--headless=new','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
 let seq=0,buffer='',session,closed=false,stderr='';const pending=new Map();
 const completion=new Promise(resolve=>{browser.once('error',e=>resolve({error:e.message}));browser.once('close',(code,signal)=>{closed=true;for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();resolve({code,signal});});});
 browser.stderr.on('data',b=>stderr=(stderr+b).slice(-2000));
 for(const stream of [browser.stdio[3],browser.stdio[4]])stream.on('error',()=>{});
 browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
-function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP deadline '+method));},method==='Runtime.evaluate'?20000:8000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
+function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP deadline '+method));},method==='Target.createTarget'?firstCommandTimeout:method==='Runtime.evaluate'?20000:8000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
 async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value;}
 async function run(){
  const tab=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:tab.targetId,flatten:true},null)).sessionId;

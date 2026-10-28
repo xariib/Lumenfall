@@ -31,7 +31,7 @@ const sourceSha256=require('node:crypto').createHash('sha256').update(code).dige
 function assert(v,m){if(!v)throw Error(m);}
 assert(code.split(marker).length===2,'one game closure for test bridge');
 const bridge=fs.readFileSync(path.join(__dirname,'wisp-upgrades-bridge.js'),'utf8');
-const prelude='<script>window.setInterval=function(){return 0;};window.__wispErrors=[];window.addEventListener("error",function(e){window.__wispErrors.push(e.message);});window.addEventListener("unhandledrejection",function(e){window.__wispErrors.push(String(e.reason));});</script>';
+const prelude='<script>window.setInterval=function(){return 0;};Object.defineProperty(performance,"now",{configurable:true,value:function(){return 0;}});window.__wispErrors=[];window.addEventListener("error",function(e){window.__wispErrors.push(e.message);});window.addEventListener("unhandledrejection",function(e){window.__wispErrors.push(String(e.reason));});</script>';
 let page=code.replace('<head>','<head>'+prelude).replace(marker,'\n'+bridge+marker).replace('</body>','<script>'+fs.readFileSync(path.join(__dirname,cardLayout?'wisp-card-layout.js':'wisp-upgrades.js'),'utf8')+'</script></body>');
 if(compact)page=page.replace('</body>','<script>'+fs.readFileSync(path.join(__dirname,'wisp-compact.js'),'utf8')+'</script></body>');
 const existing=option('--existing',null),fixtures={};

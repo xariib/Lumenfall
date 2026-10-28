@@ -43,7 +43,15 @@
       return realSetInterval(function(){if(!uiMeasurementPaused) callback.apply(window,args);},delay);
     };
   }
-  window.__qaUiMeasurementPause=function(paused){uiMeasurementPaused=!!paused;};
+  // Pause the gameplay clock with interval callbacks, while keeping the real
+  // performance clock for simulation budgets, animation and measurements.
+  var qaLiveElapsedMs=0,qaLiveClockStarted=performance.now();
+  window.__qaLiveMonotonicNow=function(){return qaLiveElapsedMs+(uiMeasurementPaused?0:performance.now()-qaLiveClockStarted);};
+  window.__qaAdvanceLiveClock=function(ms){qaLiveElapsedMs+=ms;};
+  window.__qaUiMeasurementPause=function(paused){
+    var now=performance.now();if(!uiMeasurementPaused)qaLiveElapsedMs+=now-qaLiveClockStarted;
+    qaLiveClockStarted=now;uiMeasurementPaused=!!paused;
+  };
   var fixtureName = params.get('qaFixture') || '';
   var phaseKey = 'lumenfall_qa_phase_' + scenario;
   var errors = [];

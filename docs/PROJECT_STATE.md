@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+28 October: [0.2.52 audit and fixes](tasks/EXPLOIT_FIXES_0252_001.md) cover six
+reproduced defects and three unchanged balance choices. [PR19](https://github.com/xariib/Lumenfall/pull/19)
+holds the fixes and current CI/integration receipt. Device acceptance is pending; no new APK.
+[Audit report and original evidence](qa/exploit-audit-0252-001/REPORT.md).
+
 28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
 [Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)
 from `adaf602c`, after PR18 merged at `8eae1031`. Separate boost queue, editable

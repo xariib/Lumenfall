@@ -127,6 +127,7 @@ function startupScript() {
       static now() { return window.__saveUiTest.clock; }
     }
     window.Date = TestDate;
+    Object.defineProperty(performance,'now',{configurable:true,value:()=>window.__saveUiTest.clock-clock});
     const realInterval = window.setInterval;
     window.setInterval = (fn, ms, ...rest) => realInterval(() => {
       if (!window.__saveUiTest.paused) {window.__saveUiTest.clock += ms; fn(...rest);}

@@ -1,10 +1,15 @@
+// The fixture scheduler owns gameplay time during immediate UI measurements.
+// The separate real-Chromium clock gate exercises production without this hook.
+if(typeof liveMonotonicNow==='function' && typeof window.__qaLiveMonotonicNow==='function'){
+  liveMonotonicNow=window.__qaLiveMonotonicNow;
+}
 
 var qaLifecycleEvents = [];
 // Lifecycle fixtures advance Date explicitly and compare that exact interval.
 // Keep their host processing clock deterministic too. Actual nonzero processing
 // replay, paid work and slow yielding are covered in offline-catchup.cjs and
 // lab-motes-offline.cjs; machine load must not add unrequested live time here.
-if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-')){
+if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-') || window.__lumenfallQaContext.scenario.startsWith('auto-ascend-target-')){
   offlineProcessingClock=function(){return 0;};
 }
 // Frozen pre-Comet-expansion Deed identities. Historical reward tests keep
@@ -232,7 +237,12 @@ window.__lumenfallQaBridge = {
     metrics: function(){return {lumen:lumenMult(),tap:tapMult(),momentum:momentumMult(),offline:offlineRate(),costReduction:costReduction(),offlineCap:offlineCapHours(),prisms:prismMult()};},
     effects: function(){return {nodes:NODES.map(function(n){return {id:n.id,text:nodeEarnedEffect(n.id)};}),projects:LONG_STUDIES.map(function(n){return {id:n.id,text:projectEarnedEffect(n.id)};})};}
   },
-  uiMeasurementPause: function(paused){ window.__qaUiMeasurementPause(paused); },
+  uiMeasurementPause: function(paused){
+    window.__qaUiMeasurementPause(paused);
+    // End an ordinary live window at its exact measured endpoint. The final
+    // scheduler slice must be settled before taking the paused input snapshot.
+    if(paused && typeof flushLiveProgress==='function')flushLiveProgress(false,true);
+  },
   supportTest: {
     factor: function(now){return simulationBuffMult(now===undefined?Date.now():now);},
     next: function(now){return simulationNextBuffSeconds(now);},
@@ -514,6 +524,9 @@ window.__lumenfallQaBridge = {
     var presenter=presentLiveRiftResult,previousReload=reloadInProgress;
     if(enabled===false) presentLiveRiftResult=function(){};
     reloadInProgress=false;
+    // This helper requests one scheduled tick while fixture intervals are
+    // paused. Move its gameplay clock by the original 100ms tick explicitly.
+    if(window.__qaAdvanceLiveClock)window.__qaAdvanceLiveClock(TICK_MS);
     try { tick(); } finally { presentLiveRiftResult=presenter; reloadInProgress=previousReload; }
     return JSON.parse(JSON.stringify(state));
   },
@@ -554,7 +567,9 @@ window.__lumenfallQaBridge = {
   lifecycleTrace: function(){ return JSON.parse(JSON.stringify(qaLifecycleEvents)); },
   clearLifecycleTrace: function(){ qaLifecycleEvents.length = 0; },
   applyOfflineNow: function(){ return applyOfflineProgress(); },
-  setLastSeen: function(value){ state.lastSeen=Number(value); return state.lastSeen; },
+  // Negative-control fault injection only: reopen both credited boundaries so
+  // the unchanged lifecycle oracle still has a real duplicate to detect.
+  reopenCreditedWindowForControl: function(value){ state.lastSeen=Number(value); if(Object.prototype.hasOwnProperty.call(state,'offlineClockHighWaterMs'))state.offlineClockHighWaterMs=Number(value); return state.lastSeen; },
   suppressUnloadSave: function(){ reloadInProgress=true; },
   previewOffline: function(snapshot,seconds,startMs){
     var previousState = state;
@@ -965,5 +980,12 @@ window.__lumenfallQaBridge = {
       buff:els['buff-indicator'] ? els['buff-indicator'].textContent : ''
     };
   },
-  freeze: function(){ if(window.__qaUiMeasurementPause)window.__qaUiMeasurementPause(true); reloadInProgress = true; document.body.classList.add('app-paused'); }
+  freeze: function(){
+    if(window.__qaUiMeasurementPause)window.__qaUiMeasurementPause(true);
+    // Static fixtures start a fresh paused epoch. Boot callback overhead must
+    // not execute their already-ready abilities/Auto Ascend at later input.
+    // Ordinary live measurement windows use uiMeasurementPause above instead.
+    if(typeof resetLiveClock==='function')resetLiveClock();
+    reloadInProgress = true; document.body.classList.add('app-paused');
+  }
 };

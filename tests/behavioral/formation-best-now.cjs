@@ -1,4 +1,5 @@
 'use strict';
+const expectSaveClock=require('./save-clock-contract.cjs');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),http=require('node:http'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const {spawn,execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'/tmp/wisp-contribution-mobile');
@@ -11,6 +12,7 @@ window.roleQa={today:todayStr,fresh:freshState,get:function(){return JSON.parse(
 if(!localStorage.getItem(SAVE_KEY)){var qaSeed=freshState();qaSeed.questDay=todayStr();localStorage.setItem(SAVE_KEY,JSON.stringify(qaSeed));}
 localStorage.setItem(STARTUP_INTRO_KEY,String(Date.now()));
 `+marker);
+source=require('./fixture-live-clock.cjs')(source,'roleRunIntervals',true);
 const server=http.createServer((req,res)=>{if(req.url==='/index.html'){res.setHeader('Content-Type','text/html');res.end(source);return;}
  const f=path.resolve(root,'.'+decodeURIComponent(req.url.split('?')[0]));if(!f.startsWith(root+path.sep)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.statusCode=404;res.end();return;}
  const types={'.svg':'image/svg+xml','.css':'text/css','.woff2':'font/woff2'};res.setHeader('Content-Type',types[path.extname(f)]||'application/octet-stream');fs.createReadStream(f).pipe(res);});
@@ -46,7 +48,7 @@ async function run(){
    const activate=async()=>{await ev('originalBest.scrollIntoView({block:"center"});originalBest.focus({preventScroll:true})');if(input==='touch'){const point=await ev('(()=>{var r=originalBest.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}else await key();};
    let o=await observe();ok(o.label.includes(mode)&&o.denied==='false','context action available');ok(o.fit&&o.target,'mobile/text button fit and44px '+JSON.stringify({width,fontPercent,motion,mode,input,o}));ok(o.status.includes('saves it to Push')&&o.status.includes('No currencies spent'),'save destination/cost visible');
    const plan=await ev('roleQa.plan()'),before=await ev('roleQa.get()');await activate();const after=await ev('roleQa.get()');
-   const expected=JSON.parse(JSON.stringify(before));expected.activeParty=plan.members;expected.formationPresets.push=plan.members;expected.formationRebuild=null;expected.lastSeen=after.lastSeen;assert.deepEqual(after,expected,'only chosen formation/save timestamp change');checks++;
+   const expected=JSON.parse(JSON.stringify(before));expected.activeParty=plan.members;expected.formationPresets.push=plan.members;expected.formationRebuild=null;expectSaveClock(expected,after);assert.deepEqual(after,expected,'only chosen formation/save timestamp change');checks++;
    o=await observe();ok(o.same&&o.focus&&o.open&&o.denied==='true'&&o.status.includes('already fielded'),'same focused action after native '+input);ok(await ev('roleQa.plan().focus.bonds.every(id=>roleQa.compare().steady.bonds.some(b=>b.id===id))'),'all recommended Bonds active');
    await activate();assert.deepEqual(await ev('roleQa.get()'),after,'repeat input does nothing');checks++;
    await ev('roleQa.render();roleQa.readout()');o=await observe();ok(o.same&&o.focus&&o.denied==='true','refresh retains action focus/availability');
