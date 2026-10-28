@@ -53,7 +53,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
    check(await ev(range+'===originalRange&&document.activeElement===originalRange&&Math.abs(document.querySelector("main").scrollTop-beforeScroll)<=1'),'native focus/scroll retained');
    await ev(buy+'.focus({preventScroll:true});window.oldBuy='+buy+';oldBuy.click();oldBuy.click();oldBuy.click()');
    check(await ev('uiRegression.get().motes===0&&uiRegression.get().studyBoosts.slot0.mult==='+tier+'&&uiRegression.get().activeStudies[0].speedMult===1&&uiRegression.get().activeStudies[0].remainingSec===150'),'single exact debit/work preserved '+tier);
-   check(await ev('document.activeElement===document.querySelector(".study-speed-open")&&'+range+'.disabled&&'+hours+'.disabled&&!'+buy),'active timer replaces activation, no double spend');
+   check(await ev('document.activeElement===document.querySelector(".study-speed-open")&&!'+range+'.disabled&&!'+hours+'.disabled&&!'+buy),'active timer prevents another purchase while next settings stay editable');
    const viewport=await ev('(()=>{var m=document.querySelector("main"),control=document.querySelector(".study-speed-open");return {actualY:control.getBoundingClientRect().y,beforeY:beforeControlY,actualScroll:m.scrollTop,beforeScroll:beforeScroll};})()');
    check(await ev('document.querySelector(".study-speed-open").getClientRects().length>0'),'activation returns to the visible compact speed summary');
    await ev('window.originalStatus=document.querySelector(".study-speed-open");uiRegression.render();uiRegression.render()');
