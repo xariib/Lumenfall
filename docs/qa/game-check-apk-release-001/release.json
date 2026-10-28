@@ -103,12 +103,12 @@
       "path": ".github/workflows/pre-merge-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641211074",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempt": 2
     }
   ],
-  "status": "IN_PROGRESS",
+  "status": "VALIDATED_BUILDING",
   "secondAttempt": {
     "run": 40641211074,
     "job": 122659563329,
@@ -118,9 +118,9 @@
   },
   "validationRun": 40641211074,
   "validationAttempt": 2,
-  "next": "Wait for all seven d3420c1 validation runs; build-android publish=true on same main; verify public APK then integrate final documentation.",
+  "next": "Wait for signed Android run40647708530 (#51), verify package/version/certificate, installed-upgrade receipt and public release bytes; then integrate final docs without changing tested product.",
   "evidenceBranch": "release/game-check-apk-evidence-2026-10-28",
-  "checkpointAt": "2026-10-28T06:34:24.318Z",
+  "checkpointAt": "2026-10-28T07:06:32.247Z",
   "labInfrastructureAttempt1": {
     "run": 40641319134,
     "job": 122659890320,
@@ -157,20 +157,341 @@
       "finding": "release-ci-gate.cjs enforces six workflow names; seventh permanent-progression workflow was also manually required and passed."
     }
   ],
-  "currentFullValidation": {
+  "mainScenarios": 189,
+  "isolatedOfflineScenarios": 1,
+  "runtimeSmoke": "PASS at 390x844",
+  "allSevenExactSourceWorkflowsPassed": true,
+  "fullJobs": [
+    {
+      "id": 122661129751,
+      "name": "Lumenfall pre-merge validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40641211074,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Slot-first Lab, concise cards and expanded Deeds",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Lab queue continuity and Speed Up modal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "APK identity verifier self-test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Progression pacing and explicit Farm intent",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Repository migration version and historical-baseline controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Node tooling regression checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Validate game source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Verify existing independent offline reference binding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Stage web assets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Phone feedback startup and input acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Existing settled-screen UI acceptance after actual startup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Midgame Farm guidance existing acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Legacy Rift layout with complete Farm dialog content",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Endless progression amounts, gates, persistence and chronology",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Endless automation clock and repeated Ascend regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Guidance baseline readability and exact old-width inverse",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Preserve early Guidance readability evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Rift cosmetics selection, persistence and mobile acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Exact Prism earning numerical and causal regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Tree caps original-value refunds and current collection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Swift cap, original Shard value and reachable Forge Deeds",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Wisp contribution readability and unchanged gameplay",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Compact Wisp cards, live next action and original purchase preservation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Development currency UI and retained-value acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Read Ascend alerts and stationary daily quest claims",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Cheaper Recruitment cap and refund regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Independent exact Prism funding oracle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Cheaper Recruitment defect controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32
+        },
+        {
+          "name": "Behavioral harness negative self-test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33
+        },
+        {
+          "name": "Stateful behavioral regression suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34
+        },
+        {
+          "name": "Install runtime error guard in staged copy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Browser runtime smoke test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Preserve full regression evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        },
+        {
+          "name": "Post Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 73
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 74
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 75
+        }
+      ]
+    },
+    {
+      "id": 122661132192,
+      "name": "Lumenfall isolated offline catch-up",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40641211074,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Stage exact product and assets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Original offline regression with unchanged assertions and deadline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    }
+  ],
+  "androidBuild": {
+    "id": 40647708530,
+    "number": 51,
+    "source": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/40647708530",
+    "publishRequested": true,
+    "status": "in_progress"
+  },
+  "fullValidation": {
+    "status": "PASS",
     "run": 40641211074,
     "attempt": 2,
-    "job": 122661129751,
-    "isolatedOffline": "success",
-    "activeStep": "Stateful behavioral regression suite",
-    "latestObservedPasses": [
-      "upgrade-identity-save-reload",
-      "upgrade-identity-backup-restore",
-      "upgrade-identity-recovery",
-      "upgrade-identity-ui 320/390/430",
-      "upgrade-identity-reduced-motion 320/390/430",
-      "wisp-upgrade-display",
-      "comet-unlocks-core"
-    ]
+    "mainScenarios": 189,
+    "isolatedOfflineScenarios": 1,
+    "runtimeSmoke": "PASS",
+    "evidence": "ci-final.json"
   }
 }
