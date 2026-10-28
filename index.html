@@ -4481,6 +4481,7 @@ function cometCommitMutation(apply){
     if(apply()===false){state=base;ascendRunToken=oldRun;if(liveWasBase)liveClockMemo.state=base;return false;}
     // A canonical defeat/Auto-Ascend may replace the staging object. Capture
     // the actual endpoint now, immediately before the single primary write.
+    if(liveWasBase)liveClockMemo.state=state;
     var working=state,saved=saveState();
     if(!saved && state===working){state=base;ascendRunToken=oldRun;if(liveWasBase)liveClockMemo.state=base;return false;}
     return true;
@@ -6229,6 +6230,7 @@ function forgeCommitPaidMutation(apply){
   state=clonePersistedValue(base);
   if(liveWasBase)liveClockMemo.state=state;
   apply();
+  if(liveWasBase)liveClockMemo.state=state;
   if(studyClockMemo && studyClockMemo.state===base) studyClockMemo.state=state;
   var working=state,saved=saveState();
   // saveState replaces state only after primary storage owns the endpoint.
