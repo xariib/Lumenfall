@@ -178,7 +178,11 @@ async function prepareOfflineRecap(page,retainedSave){
  const fixture=JSON.parse(JSON.stringify(retainedSave));
  fixture.tutorialDone=true;
  const marker='native-offline-recap-'+Date.now();
+ // This synthetic absence is created only after both untouched upgrade saves
+ // passed preservation checks. Seed both endpoints of the uncredited minute;
+ // changing lastSeen alone correctly exercises the game's replay rejection.
  const source=`(()=>{const seed=${JSON.stringify(fixture)};seed.lastSeen=Date.now()-60000;
+   seed.offlineClockHighWaterMs=seed.lastSeen;
    const d=new Date();seed.questDay=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
    const raw=JSON.stringify(seed);localStorage.setItem(${JSON.stringify(primary)},raw);
    localStorage.setItem(${JSON.stringify(recovery)},raw);
@@ -205,6 +209,7 @@ async function prepareOfflineRecap(page,retainedSave){
  }
  const diagnostic=await page.evaluate(`({fixture:localStorage.getItem('native-offline-recap-fixture'),ready:!document.documentElement.classList.contains('startup-pending'),recap:getComputedStyle(document.getElementById('welcome-overlay')).display,text:document.getElementById('welcome-text').textContent,save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)}))})`);
  fs.writeFileSync('release-evidence/offline-recap-startup.json',JSON.stringify(diagnostic,null,2)+'\n');
+ assert(diagnostic.save.totalOfflineSeconds>=fixture.totalOfflineSeconds+60,'Synthetic absent minute is actually credited before recap acceptance');
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
  fs.writeFileSync('release-evidence/offline-recap-startup.png',Buffer.from(shot.data,'base64'));
  assert(shown,'Real offline recap appears after intro and catch-up');
