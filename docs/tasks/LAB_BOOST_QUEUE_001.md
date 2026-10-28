@@ -64,8 +64,9 @@ Reference imagery informs grouping; keep Lumenfall branding and the slider.
 
 ## Checkpoint
 
-Status: implemented locally, validation and delivery in progress. Product SHA256
-`5e058d3825bd2c87fa0c277dd16a57c3379412c5a5c18864e58b89eb673ed5bf`.
+Status: implemented in PR18 (https://github.com/xariib/Lumenfall/pull/18),
+validation and delivery in progress. Product SHA256
+`382f5ed30d1bcb07713a54d2a6ce6564c5b7e111dd64bcefaf64e55ee1618064`.
 Changed root product, Lab harness/controls/timed UI, focused queue numeric/UI
 tests, independent offline binding and pre-merge workflow. No balance change.
 
@@ -78,8 +79,8 @@ slider/select/queue identity and focus survive passive rendering. ON/OFF is
 accessible and44px; enlarged content scrolls inside the viewport.
 
 Baseline: timed boosts1480, expansion2676 and queue continuity64 checks PASS.
-Current: new queue351 checks/four causal controls, original queue64, boundary2346
-checks/five controls, original slot UI452 checks/18profiles and timed UI1182 checks/12profiles PASS. New UI272
+Current: new queue368 checks/five causal controls, original queue64, boundary2346
+checks/five controls, original slot UI452 checks/18profiles and timed UI1182 checks/12profiles PASS. New UI273
 checks/18profiles PASS; locked-next defect fails the intended selection assertion.
 Node24.22.1, Chrome156.0.8078.47. Source syntax/lifecycle guards and diff check PASS.
 Independent one-second four-window rewards unchanged. Entire four endpoint
@@ -88,7 +89,13 @@ regenerated binding retains those outcomes. Lab Motes native UI also passes.
 Self-review only; no independent human review claimed. Evidence will be retained
 under docs/qa/lab-boost-queue-001/ with CI and release receipts.
 
-Next: finish source-bound local checks and endpoint comparison, publish feature
+Next: finish source-bound local checks and endpoint comparison, update feature
 PR, run seven required workflows, integrate, validate exact main and publish the
 signed upgrade APK. Physical phone, exact WebView60, TalkBack/human pacing remain
 separate acceptance and keep the feature open after automated delivery.
+
+Live auto-purchase review correction: the production tick uses a detached state
+when boost consent is ON and commits a paid renewal before presenting it. Primary
+write failure restores the entire tick and resets its study-clock memo; recovery
+write failure retains an accepted primary payment. Failed-write/retry/reload and
+causal live-rollback tests cover this. Product UI also resumes its real interval.

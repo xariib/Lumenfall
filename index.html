@@ -13004,11 +13004,27 @@ function presentLiveRiftResult(before,sim){
     showRiftMilestone('BOSS DEFEATED',sim.bossKills===1 ? 'Rift '+defeatedDepth+' conquered' : sim.bossKills+' Bosses defeated','+'+formatNum(sim.sigilsGained)+' Sigils','#ff8552');
   }
 }
+function advanceLiveTick(){
+  var base=state,transaction=state.studyBoostQueue && Object.keys(state.studyBoostQueue).some(function(slot){return state.studyBoostQueue[slot].enabled;});
+  if(transaction){
+    state=clonePersistedValue(base);
+    if(studyClockMemo && studyClockMemo.state===base)studyClockMemo.state=state;
+  }
+  var sim=advanceAuthoritativeTime(TICK_MS/1000,{kind:'live',visual:true,clockStartMs:Date.now()-TICK_MS,continuousStudyClock:true});
+  if(sim.studySpeedPurchases>0){
+    var working=state,saved=saveState();
+    if(!saved && state===working){
+      state=base;studyClockMemo={state:null,endMs:null,anchors:{}};return null;
+    }
+  }
+  return sim;
+}
 function tick(){
   if(document.hidden || resetInProgress || reloadInProgress) return;
   if(offlineCatchup || offlinePending) return;
   var feedbackBefore = {mode:state.riftMode,maxDepth:state.maxDepthEver};
-  var sim = advanceAuthoritativeTime(TICK_MS/1000,{kind:'live',visual:true,clockStartMs:Date.now()-TICK_MS,continuousStudyClock:true});
+  var sim = advanceLiveTick();
+  if(!sim){renderAll();return;}
 
   if(sim.ascends>0){
     saveState();
@@ -13027,7 +13043,6 @@ function tick(){
   }
   if(sim.empowers>0 || sim.completedStudies.length>0) renderSpirits();
   if(sim.researchBought>0) renderResearch();
-  if(sim.studySpeedPurchases>0) saveState();
   if(sim.completedStudies.length || sim.closedStudies.length || sim.studiesStarted>0 || sim.studySpeedPurchases>0) renderLongStudies();
   else updateStudyProgress();
 

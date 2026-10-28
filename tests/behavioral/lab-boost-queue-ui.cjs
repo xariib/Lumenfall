@@ -33,4 +33,8 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await key('Escape');check(await ev('!document.querySelector(".study-speed-editor:not([hidden])")&&document.activeElement===document.querySelector("[data-study-speed-open=\\"0\\"]")'),'Escape closes and returns to slot opener');
   records.push({width,scale,motion,status:'pass'});
  }
+ await ev('window.tickReceipt=JSON.stringify(uiRegression.get().studyBoosts);window.tickWork=uiRegression.get().activeStudies[0].remainingSec;window.uiRegressionPaused=false');
+ for(let i=0;i<100;i++){if(await ev('uiRegression.get().activeStudies[0].remainingSec<tickWork'))break;await pause(20);}
+ await ev('window.uiRegressionPaused=true');
+ check(await ev('uiRegression.get().activeStudies[0].remainingSec<tickWork&&JSON.stringify(uiRegression.get().studyBoosts)===tickReceipt&&uiRegression.get().studyBoostQueue.slot0.enabled'),'actual production interval advances with queue ON and preserves paid receipt');
 };

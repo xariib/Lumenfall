@@ -1,10 +1,10 @@
 # Lab boost queue validation
 
-Candidate source SHA256: 5e058d3825bd2c87fa0c277dd16a57c3379412c5a5c18864e58b89eb673ed5bf.
+Candidate source SHA256: 382f5ed30d1bcb07713a54d2a6ce6564c5b7e111dd64bcefaf64e55ee1618064.
 Node24.22.1 and Chrome156.0.8078.47. Baseline main8f8f7728.
 
-- core.json:351 checks and four independently injected causal defects.
-- mobile.json:272 checks,18 mobile/text/motion profiles, native touch/keys, save/load, prices, focus and expiry. Screenshots at100/150/200% text.
+- core.json:368 checks and five independently injected causal defects.
+- mobile.json:273 checks,18 mobile/text/motion profiles, native touch/keys, save/load, prices, focus and expiry. Screenshots at100/150/200% text.
 - timed.json:1480 existing checks/three causal controls; expansion.json2676 checks; boundary.json2346 checks/five controls.
 - original-mobile.json1182 checks/12profiles and slots-mobile.json452 checks/18profiles. These receipts precede the final queue-only CSS row adjustment; their exact source hashes remain recorded. CI reruns relevant originals on final source.
 - baseline-parity.json: all four independently stepped8h endpoint states exactly equal between released baseline and candidate using the same runner. Reward counts also remain unchanged. The regenerated golden binds this source; no expected reward was relaxed.
@@ -13,3 +13,9 @@ Node24.22.1 and Chrome156.0.8078.47. Baseline main8f8f7728.
 Self-review examined the entire source/test/workflow diff: independent research repeat consent, optional validated slot preferences, unchanged balance and paid receipt, real simulation clock/resource boundaries, rollback and legacy default OFF. No independent human review claimed.
 
 Seven CI workflows, exact-main validation, signed installed upgrade and public-byte verification are pending. Physical phone, exact WebView60 DOM, TalkBack and human pacing remain open.
+
+Live auto-purchase review correction: the production tick uses a detached state
+when boost consent is ON and commits a paid renewal before presenting it. Primary
+write failure restores the entire tick and resets its study-clock memo; recovery
+write failure retains an accepted primary payment. Failed-write/retry/reload and
+causal live-rollback tests cover this. Product UI also resumes its real interval.
