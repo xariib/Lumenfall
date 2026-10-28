@@ -19,7 +19,7 @@ window.ascendUiQa={show:showAscendFlash,present:presentLiveAscendResult,clear:cl
   return {gain:Amount.exactSub(state.prisms,beforePrisms),count:Amount.exactSub(state.ascendCount,beforeCount),receipt:this.receipt()};
  }
 };`;
-const prelude='<script>window.ascendUiErrors=[];addEventListener("error",e=>ascendUiErrors.push(e.message));addEventListener("unhandledrejection",e=>ascendUiErrors.push(String(e.reason)));window.setInterval=function(){return 0;};Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});</script>';
+const prelude='<script>window.ascendUiErrors=[];addEventListener("error",e=>ascendUiErrors.push(e.message));addEventListener("unhandledrejection",e=>ascendUiErrors.push(String(e.reason)));window.setInterval=function(){return 0;};Object.defineProperty(performance,"now",{configurable:true,value:function(){return 0;}});</script>';
 let browser,server,profile,stage,session,seq=0,buffer='',closed=false,stderr='',checks=0;
 const pending=new Map(),records=[];
 function ok(value,message){checks++;assert(value,message);}

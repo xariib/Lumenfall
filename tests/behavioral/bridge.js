@@ -1,3 +1,8 @@
+// The fixture scheduler owns gameplay time during immediate UI measurements.
+// The separate real-Chromium clock gate exercises production without this hook.
+if(typeof liveMonotonicNow==='function' && typeof window.__qaLiveMonotonicNow==='function'){
+  liveMonotonicNow=window.__qaLiveMonotonicNow;
+}
 
 var qaLifecycleEvents = [];
 // Lifecycle fixtures advance Date explicitly and compare that exact interval.
