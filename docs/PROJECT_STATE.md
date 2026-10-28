@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+28 October 2026: [Game verification and APK delivery](tasks/GAME_CHECK_APK_RELEASE_001.md)
+is in progress with explicit GitHub/publication authorization. PR17's seven
+relevant workflows and both full jobs passed; integrated at `bdb341ee` with
+unchanged tested product bytes. Exact-main validation and signed publication
+are next. No new release or physical-device acceptance is claimed yet.
+
 27 October 2026: [Lab slots, queue continuity and Speed Up menu](tasks/LAB_SLOTS_QUEUE_SPEEDUP_001.md)
 is on `feat/lab-slots-queue-speedup-001`, awaiting branch validation/review.
 Queue OFF now finishes active research; manual replacement retains paid work.
