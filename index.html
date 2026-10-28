@@ -13550,7 +13550,7 @@ function showReturnFlow(offline,dailyWasRolled){
 }
 
 function presentForegroundDailyReward(){
-  if(!pendingDailyReward || document.hidden || startupIntroPlaying || offlineCatchup || offlinePending || resumeFlowBusy ||
+  if(!pendingDailyReward || isNewGame || document.hidden || startupIntroPlaying || offlineCatchup || offlinePending || resumeFlowBusy ||
       Array.from(document.querySelectorAll('.overlay')).some(overlayVisible))return;
   var reward=pendingDailyReward;
   pendingDailyReward=pendingDailyRewardQueue.shift() || null;

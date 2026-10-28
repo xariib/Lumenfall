@@ -20,6 +20,7 @@ async function run(){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await send('Page.enable');await send('Runtime.enable');await send('DOM.enable');await send('Page.navigate',{url});
   for(let i=0;i<150&&!await evaluate('!!window.__labMotesNativeReady');i++)await new Promise(r=>setTimeout(r,20));
   assert(await evaluate('!!window.__labMotesNativeReady'),'native Lab page ready');await evaluate('window.__qaForgeStartup.promise');await evaluate('document.fonts.ready.then(()=>true)');
+  assert(await evaluate('!document.querySelector(".shell").inert&&getComputedStyle(document.getElementById("daily-overlay")).display==="none"'),'completed new-game intro leaves gameplay interactive without a premature daily modal');
   await evaluate(`document.documentElement.style.fontSize='${textScale*16}px';window.__lumenfallQaBridge.uiMeasurementPause(true)`);
   await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=labMotesSeed(b,window.__lumenfallQaContext);s.activeStudies=[];b.setState(s);b.renderLayout();document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-slot]').click();})()`);
   await evaluate('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');
