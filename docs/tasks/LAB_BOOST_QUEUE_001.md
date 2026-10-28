@@ -130,3 +130,20 @@ hashes and rewards exactly match prior tested PR source. Receipts are under
 Next: seven final-head PR workflows, reviewed integration, seven exact-main
 workflows, signed installed upgrade and public exact-byte APK verification.
 Physical phone/WebView60/TalkBack/human pacing remain separate open acceptance.
+
+## Integrated checkpoint
+
+All seven final-head PR workflows PASS on4a5923af, including the complete189
+main scenarios, isolated offline case and runtime smoke. Both formerly failing
+native Lab cases PASS in full CI. No rerun or weakened check was required.
+Self-review complete; no external reviews or unresolved threads existed.
+
+PR18 merged at8eae10315e72677a6098820aca92128caf696d41. Entire integrated
+tree9309c269c7bda08e0ae3684c06e1c54e241f46eb exactly matches tested source.
+[PR gates, jobs and prior failure](../qa/lab-boost-queue-001/ci-pr.json).
+User continuation request: verify already saved/completed work, then finish the
+remaining delivery. Prior worktrees and unrelated files remain untouched.
+
+Next: all seven exact-main workflows, then the existing signed publishing
+workflow, installed-upgrade receipt and anonymous exact-byte download checks.
+Physical/human acceptance remains open after automated delivery.
