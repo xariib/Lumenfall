@@ -40,7 +40,6 @@
     {
       "id": 40641427175,
       "name": "Permanent progression and direct cards validation",
-      "path": ".github/workflows/permanent-progression-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641427175",
       "status": "completed",
@@ -50,27 +49,24 @@
     {
       "id": 40641391366,
       "name": "Ascension Tree focused validation",
-      "path": ".github/workflows/tree-focused-qa.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641391366",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempt": 1
     },
     {
       "id": 40641357097,
       "name": "Shared UI layout validation",
-      "path": ".github/workflows/shared-ui-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641357097",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempt": 1
     },
     {
       "id": 40641319134,
       "name": "Research Lab expansion validation",
-      "path": ".github/workflows/lab-expansion-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641319134",
       "status": "in_progress",
@@ -80,17 +76,15 @@
     {
       "id": 40641286178,
       "name": "Rift Forge expansion validation",
-      "path": ".github/workflows/forge-expansion-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641286178",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempt": 1
     },
     {
       "id": 40641251879,
       "name": "Comet shop and Deeds validation",
-      "path": ".github/workflows/comet-expansion-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641251879",
       "status": "completed",
@@ -100,12 +94,11 @@
     {
       "id": 40641211074,
       "name": "Pre-merge validation",
-      "path": ".github/workflows/pre-merge-validation.yml",
       "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/40641211074",
-      "status": "completed",
-      "conclusion": "failure",
-      "attempt": 1
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 2
     }
   ],
   "status": "IN_PROGRESS",
@@ -120,5 +113,14 @@
   "validationAttempt": 2,
   "next": "Wait for all seven d3420c1 validation runs; build-android publish=true on same main; verify public APK then integrate final documentation.",
   "evidenceBranch": "release/game-check-apk-evidence-2026-10-28",
-  "checkpointAt": "2026-10-28T06:05:44.808Z"
+  "checkpointAt": "2026-10-28T06:17:51.007Z",
+  "labInfrastructureAttempt1": {
+    "run": 40641319134,
+    "job": 122659890320,
+    "source": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+    "reason": "CDP deadline Browser.getVersion, checks0; Browser close deadline left process hanging",
+    "observedInLiveLog": true,
+    "action": "Cancelled only workflow's hanging remainder after other lab job passed; rerun timed-slot-speed on identical source",
+    "testsOrDeadlinesChanged": false
+  }
 }
