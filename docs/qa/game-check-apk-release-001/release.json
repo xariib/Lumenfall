@@ -1,0 +1,124 @@
+{
+  "sourceCommit": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+  "productSha256": "5ce88b6ce6f874935fd65e6182acab01069d0eaa61dab2ec904ec0c18419cc7f",
+  "pr17": {
+    "head": "f305ee3326b0076c123194e38a0d9c43e9b9127a",
+    "merge": "bdb341eeba6f781850f8e34693138c6251657de5",
+    "allSevenPassed": true,
+    "mainScenarios": 189,
+    "isolatedOfflineScenarios": 1
+  },
+  "firstAttempt": {
+    "sha": "368a270445e675f019111fe060fc0bf37d5aa47f",
+    "run": 40640183538,
+    "job": 122656269738,
+    "failedStep": "Midgame Farm guidance existing acceptance",
+    "reason": "Mandatory startup exceeds 32 KiB: shared20648 + task12299 =32947",
+    "fix": "Condensed historical PROJECT_STATE summaries; tests/product/limit unchanged",
+    "correctedStartupMax": 31345,
+    "workflowTaskContextsChecked": 22
+  },
+  "local": {
+    "runtime": "v24.22.1",
+    "source": "PASS",
+    "queueChecks": 64,
+    "labChecks": 2676,
+    "paidBoostChecks": 1480,
+    "pacingChecks": 221,
+    "feedbackChecks": 78,
+    "permanentOfflineChecks": 214,
+    "tooling": "PASS",
+    "apkIdentityNegativeSelfTest": "PASS"
+  },
+  "limitations": [
+    "physical phone",
+    "exact WebView60 DOM",
+    "TalkBack",
+    "human pacing/performance"
+  ],
+  "runs": [
+    {
+      "id": 40641427175,
+      "name": "Permanent progression and direct cards validation",
+      "path": ".github/workflows/permanent-progression-validation.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641427175",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "id": 40641391366,
+      "name": "Ascension Tree focused validation",
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641391366",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1
+    },
+    {
+      "id": 40641357097,
+      "name": "Shared UI layout validation",
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641357097",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1
+    },
+    {
+      "id": 40641319134,
+      "name": "Research Lab expansion validation",
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641319134",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1
+    },
+    {
+      "id": 40641286178,
+      "name": "Rift Forge expansion validation",
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641286178",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1
+    },
+    {
+      "id": 40641251879,
+      "name": "Comet shop and Deeds validation",
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641251879",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1
+    },
+    {
+      "id": 40641211074,
+      "name": "Pre-merge validation",
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "headSha": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/40641211074",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1
+    }
+  ],
+  "status": "IN_PROGRESS",
+  "secondAttempt": {
+    "run": 40641211074,
+    "job": 122659563329,
+    "reason": "CDP deadline Browser.getVersion before assertions (checks0); Chrome startup infrastructure failure",
+    "source": "d3420c1526bec40e07b3bda8f5af1109c89c5b94",
+    "action": "Rerun failed validation job only; no changes to source/tests/deadlines"
+  },
+  "validationRun": 40641211074,
+  "validationAttempt": 2,
+  "next": "Wait for all seven d3420c1 validation runs; build-android publish=true on same main; verify public APK then integrate final documentation.",
+  "evidenceBranch": "release/game-check-apk-evidence-2026-10-28",
+  "checkpointAt": "2026-10-28T06:05:44.808Z"
+}
