@@ -16,7 +16,11 @@ function verify(source){
   ['malformed-refund-preserves-primary','preserveCometPrimary'," || slot.error.code==='invalid-command-refund'",''],
   ['primary-failure-rolls-back','cometCommitMutation','if(!saved && state===working){state=base;ascendRunToken=oldRun;if(liveWasBase)liveClockMemo.state=base;return false;}','if(!saved && state===working){return false;}']
  ];
- const out=[];for(const [id,name,from,to]of controls){const changed=replaceFunction(source,name,body=>from===null?to:replaceOne(body,from,to));let error;try{accept(changed);}catch(e){error=e;}assert(error?.code==='ERR_ASSERTION','semantic rejection required, not a parser/runtime failure: '+id+' '+error?.stack);out.push({id,function:name,sourceSha256:crypto.createHash('sha256').update(changed).digest('hex'),detected:true,message:error.message});}return out;
+ const out=[];for(const [id,name,from,to]of controls){let changed=replaceFunction(source,name,body=>from===null?to:replaceOne(body,from,to));
+  // The new pre-quote settlement independently rejects hidden actions. Reopen
+  // both barriers so this unchanged oracle still receives a real hidden buy.
+  if(id==='hidden-page-cannot-invest' && source.includes('function flushLiveProgress('))changed=replaceFunction(changed,'flushLiveProgress',body=>replaceOne(body,'if(document.hidden && !allowHidden)return false;',''));
+  let error;try{accept(changed);}catch(e){error=e;}assert(error?.code==='ERR_ASSERTION','semantic rejection required, not a parser/runtime failure: '+id+' '+error?.stack);out.push({id,function:name,sourceSha256:crypto.createHash('sha256').update(changed).digest('hex'),detected:true,message:error.message});}return out;
 }
 module.exports={verify};
 if(require.main===module){const fs=require('fs');console.log(JSON.stringify({status:'pass',negativeControls:verify(fs.readFileSync(process.argv[2]||'index.html','utf8'))}));}
