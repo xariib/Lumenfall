@@ -237,7 +237,12 @@ window.__lumenfallQaBridge = {
     metrics: function(){return {lumen:lumenMult(),tap:tapMult(),momentum:momentumMult(),offline:offlineRate(),costReduction:costReduction(),offlineCap:offlineCapHours(),prisms:prismMult()};},
     effects: function(){return {nodes:NODES.map(function(n){return {id:n.id,text:nodeEarnedEffect(n.id)};}),projects:LONG_STUDIES.map(function(n){return {id:n.id,text:projectEarnedEffect(n.id)};})};}
   },
-  uiMeasurementPause: function(paused){ window.__qaUiMeasurementPause(paused); },
+  uiMeasurementPause: function(paused){
+    window.__qaUiMeasurementPause(paused);
+    // End an ordinary live window at its exact measured endpoint. The final
+    // scheduler slice must be settled before taking the paused input snapshot.
+    if(paused && typeof flushLiveProgress==='function')flushLiveProgress(false,true);
+  },
   supportTest: {
     factor: function(now){return simulationBuffMult(now===undefined?Date.now():now);},
     next: function(now){return simulationNextBuffSeconds(now);},
