@@ -45,6 +45,18 @@ jobs:
           assert.deepEqual(bad.runtimeErrors,[]);assert.notEqual(good.sourceSha256,bad.sourceSha256);
           JS
 
+      - name: Credited-clock metadata and existing full-suite boundaries
+        run: |
+          mkdir -p mobile/www/fonts mobile/www/branding
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+          boundary_status=0
+          for SCENARIO in lab-motes-native lab-motes-reduced-motion formation-autosave-native formation-autosave-reduced-motion inquiry-chronology auto-ascend-target-resume auto-ascend-target-cold-resume r3-save-reload formation-best-now wisp-rarity-scroll offline-12h-core loadout-memory-mobile; do
+            node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/exploit-boundaries || boundary_status=1
+          done
+          exit "$boundary_status"
+
       - name: Slot-first Lab, concise cards and expanded Deeds
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/WORKSHOP_CARD_CLARITY_001.md

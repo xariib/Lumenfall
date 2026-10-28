@@ -1,3 +1,4 @@
+const expectSaveClock=require('./save-clock-contract.cjs');
 /* F25 regression contract. Node built-ins only; production HTML is never
  * written. VM checks use production canonicalization; browser checks use real
  * handlers, storage, reload and restore. Simulation intervals are paused only
@@ -141,7 +142,7 @@ async function browserContracts(){
     for(const [i,value] of [1,5,10,25,50,100,'max'].entries()){
       const beforeChoice=await evaluate('__f25.get()');
       await click(`[data-mult="${value}"]`,i%2===0);
-      const afterChoice=await evaluate('__f25.get()');beforeChoice.savedLabMultiplier=value;beforeChoice.lastSeen=afterChoice.lastSeen;
+      const afterChoice=await evaluate('__f25.get()');beforeChoice.savedLabMultiplier=value;expectSaveClock(beforeChoice,afterChoice);
       same(afterChoice,beforeChoice,'choice changes only preference and save timestamp');
       ok(await evaluate(`__f25.mult()===${JSON.stringify(value)}&&__f25.get().savedLabMultiplier===${JSON.stringify(value)}&&JSON.parse(localStorage.getItem('lumenfall_save_v2')).savedLabMultiplier===${JSON.stringify(value)}&&JSON.parse(localStorage.getItem('lumenfall_save_recovery_v1')).savedLabMultiplier===${JSON.stringify(value)}`),'choice immediately written to both slots');
       ok(await evaluate(`document.querySelector('[data-mult="${value}"]').getAttribute('aria-pressed')==='true'`),'selected state accessible');

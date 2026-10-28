@@ -23,7 +23,8 @@ async function run(){
   await evaluate(`document.documentElement.style.fontSize='${textScale*16}px';window.__lumenfallQaBridge.uiMeasurementPause(true)`);
   await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=labMotesSeed(b,window.__lumenfallQaContext);s.activeStudies=[];b.setState(s);b.renderLayout();document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-slot]').click();document.querySelector('[data-study="guardmastery"]').focus();})()`);
   await key('Enter');
-  assert(await evaluate(`document.activeElement.dataset.studySpeedSummary==='guardmastery'&&document.activeElement.getClientRects().length>0&&!document.querySelector('[data-study-inspection="guardmastery"]').hidden&&window.__lumenfallQaBridge.getState().activeStudies.some(a=>a.id==='guardmastery')`),'real keyboard Begin retains visible same-Study focus with inline controls');
+  const beginFocus=await evaluate(`(()=>{const b=window.__lumenfallQaBridge,el=document.activeElement,inspection=document.querySelector('[data-study-inspection="guardmastery"]');return {focused:el.outerHTML.slice(0,600),same:el.dataset.studySpeedSummary==='guardmastery',visible:el.getClientRects().length>0,inspection:!!inspection&&!inspection.hidden,active:b.getState().activeStudies.some(a=>a.id==='guardmastery'),flags:b.getFlags(),overlays:Array.from(document.querySelectorAll('.overlay')).filter(e=>getComputedStyle(e).display!=='none').map(e=>e.id)};})()`);
+  assert(beginFocus.same&&beginFocus.visible&&beginFocus.inspection&&beginFocus.active,'real keyboard Begin retains visible same-Study focus with inline controls '+JSON.stringify(beginFocus));
   const labUi=await evaluate('runLabUiQa(window.__lumenfallQaBridge,window.__lumenfallQaContext,function(v,m){if(!v)throw Error(m);})');
   await evaluate('window.selectLabSpeed("guardmastery",1.5)');
   const collapsedAx=await send('Accessibility.getFullAXTree');

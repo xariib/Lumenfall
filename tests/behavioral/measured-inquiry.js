@@ -124,7 +124,9 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     install(simultaneous);var tail=t.tail(10);same(tail.state.longStudyLevels,live.state.longStudyLevels,'study-only earned parity');same(sort(tail.state.activeStudies),sort(live.state.activeStudies),'study-only snapshots/work parity');same([tail.state.lumen,tail.state.shards],[live.state.lumen,live.state.shards],'study-only spend parity');
     var events=offline.timeline||offline.summary.timeline||[];
     var full=seed();full.longStudyLevels.measuredinquiry=13;
-    full.activeStudies=[{id:'measuredinquiry',remainingSec:43201,totalDurationSec:43201,speedMult:1},{id:'guardmastery',remainingSec:43202,totalDurationSec:43202,speedMult:1}];install(full);b.setLastSeen(b.clockNow()-43203*1000);
+    full.activeStudies=[{id:'measuredinquiry',remainingSec:43201,totalDurationSec:43201,speedMult:1},{id:'guardmastery',remainingSec:43202,totalDurationSec:43202,speedMult:1}];
+    // Install an unconsumed absence, rather than rolling back a credited save.
+    full.lastSeen=b.clockNow()-43203*1000;full.offlineClockHighWaterMs=full.lastSeen;install(full);
     // Keep real foreground replay separate from this exact offline-work oracle.
     var clock=performance.now;Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});
     var actual=b.applyOfflineNow();Object.defineProperty(performance,'now',{configurable:true,value:clock});ok(actual.effectiveSec===43200 && b.getState().longStudyLevels.guardmastery===0&&b.getState().longStudyLevels.measuredinquiry===13,'actual applyOfflineProgress stops all Study work at12h');

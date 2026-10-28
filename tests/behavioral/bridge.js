@@ -9,7 +9,7 @@ var qaLifecycleEvents = [];
 // Keep their host processing clock deterministic too. Actual nonzero processing
 // replay, paid work and slow yielding are covered in offline-catchup.cjs and
 // lab-motes-offline.cjs; machine load must not add unrequested live time here.
-if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-')){
+if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-') || window.__lumenfallQaContext.scenario.startsWith('auto-ascend-target-')){
   offlineProcessingClock=function(){return 0;};
 }
 // Frozen pre-Comet-expansion Deed identities. Historical reward tests keep
@@ -519,6 +519,9 @@ window.__lumenfallQaBridge = {
     var presenter=presentLiveRiftResult,previousReload=reloadInProgress;
     if(enabled===false) presentLiveRiftResult=function(){};
     reloadInProgress=false;
+    // This helper requests one scheduled tick while fixture intervals are
+    // paused. Move its gameplay clock by the original 100ms tick explicitly.
+    if(window.__qaAdvanceLiveClock)window.__qaAdvanceLiveClock(TICK_MS);
     try { tick(); } finally { presentLiveRiftResult=presenter; reloadInProgress=previousReload; }
     return JSON.parse(JSON.stringify(state));
   },

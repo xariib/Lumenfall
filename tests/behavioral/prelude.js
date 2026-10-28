@@ -47,6 +47,7 @@
   // performance clock for simulation budgets, animation and measurements.
   var qaLiveElapsedMs=0,qaLiveClockStarted=performance.now();
   window.__qaLiveMonotonicNow=function(){return qaLiveElapsedMs+(uiMeasurementPaused?0:performance.now()-qaLiveClockStarted);};
+  window.__qaAdvanceLiveClock=function(ms){qaLiveElapsedMs+=ms;};
   window.__qaUiMeasurementPause=function(paused){
     var now=performance.now();if(!uiMeasurementPaused)qaLiveElapsedMs+=now-qaLiveClockStarted;
     qaLiveClockStarted=now;uiMeasurementPaused=!!paused;
