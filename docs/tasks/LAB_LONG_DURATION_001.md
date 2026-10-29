@@ -101,7 +101,13 @@ queue continuity64, slot54, boundaries2346, stress, Forge9319 and progression
 pacing PASS. Existing endless core requires its current `--focus-f` option;
 the exploratory invocation without that option fails the older Titan gate,
 and the correct current-policy invocation passes. No acceptance was weakened.
-Full browser suite, original Lab mobile and full offline tests are running.
+Original Lab mobile6588 assertions PASS. Full browser and offline tests continue.
+The first full browser attempt used the default dump-DOM transport, which stalls
+on this Windows/Brave setup (no completed QA marker, unchanged25s deadlines).
+It was stopped and restarted using existing `LUMENFALL_QA_DOM_TRANSPORT=pipe`.
+The initial affordability fixture incorrectly treated maxed old foundations as
+all Rift1 research: it now first verifies that new Wisp Damage is available,
+then maxes that track too and retains the original locked-only assertion.
 
 Independent one-second four-window reference was actually regenerated.
 Kills/Ascends/Prisms match the previous binding; state hashes include the new
@@ -111,7 +117,11 @@ Expansion tests now use the independent accepted pacing table; original price,
 effect, save, payment and defect assertions remain. Original catalogue coverage
 expects23 active tracks and the new Wisp fundamentals group.
 
-[Focused evidence](../qa/lab-long-duration-001/README.md).
+[Focused evidence](../qa/lab-long-duration-001/README.md). Published
+[PR23](https://github.com/xariib/Lumenfall/pull/23), initial remote577e85e3,
+with exact local/remote tree68917141d8948a6beb698bb953cb7e05d84778fa.
+Seven required automatic workflows are running. Git has no push credential;
+publication uses the connected GitHub plugin with every blob/tree verified.
 Next: finish full regressions and self-review, publish the scoped branch/PR,
 address actual CI findings, and integrate only after required gates pass.
 Android dispatch capability and physical/human acceptance remain unverified.
