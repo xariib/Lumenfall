@@ -106,3 +106,14 @@ Next: resolve final CI findings, preserve final receipts, integrate only after
 all required gates pass, then perform signed Android delivery when dispatch is
 available. Physical phone/WebView60/human pacing remain unverified. Do not claim
 completion or archive this feature.
+
+CI checkpoint: ddad95c4 passed Permanent progression, Comet and Lab. Forge
+run40905651339 failed its frozen catalogue equality because the three additive
+enhancements were absent from that historical expectation (job123559545593).
+The corrected test independently specifies the three new definitions and still
+compares every old field and runs all original five defect controls: PASS2802.
+The Wisp historical-save comparison likewise explicitly requires zero/OFF new
+defaults before comparing every old field: PASS8099 role assertions,20112
+preservation assertions and seven defect controls. Support checks PASS1874/four
+controls; endless core PASS237. Product bytes remain unchanged. These focused
+test updates require a fresh CI run; integration remains pending.
