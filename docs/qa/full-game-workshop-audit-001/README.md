@@ -17,6 +17,12 @@ Windows generator outputs, not replacements for the canonical Linux golden.
 `regressions/summary.json` and per-command raw stdout/stderr record the broad
 matrix and exact product/runtime identity. Any failure remains a failure.
 
-Browser receipts/screenshots are being collected into this directory after
-completion. Current claims are self-review/automated evidence. No claim of
+Browser summaries and selected screenshots are in `browser/`. The original
+65 MB shared-browser receipt is preserved as a roundtrip-verified 9 MB gzip in
+local `validation-evidence/full-game-audit/shared-normal.json.gz`; its raw and
+compressed hashes/lengths remain in `browser/shared-normal.json.manifest.json`.
+CI reproduces and uploads the complete shared-browser evidence. The original
+loadout browser-start EPIPE remains in the matrix; `loadout-browser.json` records
+the successful full 1,171-check run with the installed browser configured.
+Current claims are self-review/automated evidence. No claim of
 physical-phone, exact WebView60 DOM, TalkBack or human pacing acceptance.

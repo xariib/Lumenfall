@@ -346,7 +346,7 @@ jobs:
           gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json release-evidence/identity.txt release-evidence/commit.txt \
             --target "$GITHUB_SHA" --latest \
             --title "Lumenfall Android $EXPECTED_VERSION_NAME" \
-            --notes "Bug fixes from $GITHUB_SHA: retain coexisting paid Lab boosts; prevent repeated offline and daily rewards after clock rollback; account for delayed foreground updates before purchases; keep Auto-Empower working with capped Wisps; and roll daily rewards during foreground play. Existing progression and purchases are retained. Back up in Settings before updating. Install Lumenfall.apk as an update without uninstalling. Original package and signing identity retained. Physical-phone, exact WebView60, TalkBack and human pacing acceptance remain separate checks."
+            --notes "Verified game update from $GITHUB_SHA. Changes and exact-source validation are recorded in docs/PROJECT_STATE.md and the merged pull request. Existing progression, purchases, both save slots, package identity and signing certificate are retained. Back up in Settings before updating, then install Lumenfall.apk as an update without uninstalling. Physical-phone, exact WebView60, TalkBack and human pacing acceptance remain separate checks."
 
       - name: Remove temporary signing copy
         if: always()

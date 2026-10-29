@@ -107,9 +107,40 @@ canonical golden endpoint and update only its exact product source binding;
 do not replace canonical economic assertions with local platform outputs.
 
 Current [29-check regression matrix](../qa/full-game-workshop-audit-001/regressions/summary.json)
-is running. Existing gates are retained; the new core/caps/layout regression is
+completed: 28 PASS; the original unconfigured-browser loadout failure is retained
+and resolved by the separate full 1,171-check browser PASS. Existing gates are retained; the new core/caps/layout regression is
 added to pre-merge CI. Self-review and automated checks only.
 
-Next: finish the broad local matrix/mobile controls, inspect the complete diff,
-publish a reviewable PR and run all seven required workflows on its actual head.
-Integration, app build/device acceptance and release are not yet completed.
+[PR #21](https://github.com/xariib/Lumenfall/pull/21) publishes head `97cd87e1`,
+tested merge `e72aa0d5`, tree `eaa89a05`. Complete product/preservation diff
+self-reviewed. CLI push authentication was unavailable; connected GitHub object
+upload reproduced the exact local tree, verified again after fetching the branch.
+Six required workflows and the isolated offline job PASS. Full pre-merge reached
+the quest UI check; local reproduction showed only the two expected persisted
+clock fields changing after the newly durable Claim. Reuse the existing
+`save-clock-contract.cjs` to verify that metadata, additionally bound the save
+to the native input's wall-clock interval, and require the entire new endpoint
+in both save slots. All original other-field, reward, focus, scroll and duplicate
+claim assertions remain. The updated full browser lane PASSes 1,225 checks over
+12 profiles; both original Ascend/focus causal failures still trigger correctly.
+Product source remains unchanged. PR21 holds current CI links and the final receipt.
+Its first Permanent-progression attempt ran zero browser profiles after a CDP
+startup deadline; unchanged attempt 2 PASS. No gate or deadline was weakened.
+
+The user twice confirmed browser access for APK build/publication, but Work still
+reports disabled after session reset. Prepare a one-task adapter only on
+`qa/full-game-workshop-release-001`: use GitHub's ephemeral Actions token to
+dispatch the seven existing workflows on the pinned integrated main SHA, require
+all seven plus both full jobs, then dispatch the unchanged gated Android flow.
+Check main/source identity before dispatch; never substitute old-commit reruns.
+The adapter changes no permanent main trigger or release/signing acceptance gate.
+
+Known limits: standalone local saves and arbitrary unseen future device dates
+cannot be authenticated without a trusted source. This patch does not claim
+tamper-proof offline play. Physical phone/WebView60 DOM/TalkBack and human pacing
+remain unverified; automated evidence does not establish perfection.
+
+Next: finish the original full pre-merge suite, integrate when every required
+workflow passes, then run exact integrated-main workflows and the established
+signed installed-Android/publication flow when browser dispatch is available.
+Integration, app/device acceptance and release are not yet completed.
