@@ -1,5 +1,9 @@
 # Lumenfall — current delivery status
 
+30 October: [Scroll/exploit debug](tasks/DEBUG_SCROLL_EXPLOITS_001.md), PR26:
+stationary purchases, rejected-mutation rollback and unused-helper cleanup.
+96 native purchase scenarios pass; full CI/Android delivery pending.
+
 29 October: [Lab pacing/slots](tasks/LAB_SLOT_CHALLENGES_001.md): PR23 integrated;
 APK blocked.
 

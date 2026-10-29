@@ -28,6 +28,8 @@ const hook=`window.scrollQa={ready:function(){return !!els.toast;},
    var sp=SPIRITS[3];state.lumen=getSpiritBuyPlan(sp).cost;selector='[data-empower="'+sp.id+'"]';tab='spirits';read=function(){return state.spirits[sp.id];};
   }else if(kind==='shop'){
    var n=SHOP.find(function(n){return getCometBuyPlan(n).available;});if(!n)throw Error('shop fixture');state.comets=getCometBuyPlan(n).cost;selector='[data-shop="'+n.id+'"]';tab='deeds';read=function(){return state.owned[n.id]?1:0;};
+  }else if(kind==='astral'){
+   var n=SHOP.find(function(n){return n.id==='astralcore';});state.comets=getCometBuyPlan(n).cost;selector='[data-shop="'+n.id+'"]';tab='deeds';read=function(){return state.astralUpgrades[n.id];};
   }else if(kind==='quest'){
    var n=QUEST_POOL[0];state.questIds=[n.id];state.questClaimed={};state.dailyStats[n.metric]=n.goal;selector='[data-quest-claim="'+n.id+'"]';tab='deeds';read=function(){return state.questClaimed[n.id]?1:0;};
   }else if(kind==='lab'){
@@ -60,7 +62,7 @@ async function run(){
  const version=await send('Browser.getVersion',{},null),target=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;
  await send('Page.enable');await send('Runtime.enable');await send('DOM.enable');await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});
  await until('!!window.scrollQa && scrollQa.ready()');await ev('document.getElementById("startup-skip").click()');await until('!document.documentElement.classList.contains("startup-pending")');await pause(500);await ev('document.fonts.ready');
- for(const [width,height]of (mutation?[[320,568]]:[[320,568],[390,844],[430,932]]))for(const scale of (mutation?[1]:[1,2]))for(const input of (mutation?['touch']:['touch','keyboard']))for(const kind of (mutation?[mutation==='forge'?'forge':'tree']:['forge','tree','wisp','shop','forge-cap','quest','lab'])){
+ for(const [width,height]of (mutation?[[320,568]]:[[320,568],[390,844],[430,932]]))for(const scale of (mutation?[1]:[1,2]))for(const input of (mutation?['touch']:['touch','keyboard']))for(const kind of (mutation?[mutation==='forge'?'forge':'tree']:['forge','tree','wisp','shop','astral','forge-cap','quest','lab'])){
   await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await send('Emulation.setTouchEmulationEnabled',{enabled:true});
   await ev(`document.documentElement.style.fontSize='${scale*100}%'`);const setup=await ev('scrollQa.setup('+JSON.stringify(kind)+')');await pause(300);
   // Place the purchase at the lower edge: its Queue fallback may be below the fold.
