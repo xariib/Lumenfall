@@ -1,0 +1,78 @@
+name: Full-game audit integrated validation and Android delivery
+on:
+  push:
+    branches: ['qa/full-game-workshop-release-001']
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: full-game-workshop-release-001
+  cancel-in-progress: false
+jobs:
+  exact-main-delivery:
+    if: github.repository == 'xariib/Lumenfall' && github.ref == 'refs/heads/qa/full-game-workshop-release-001'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ecf88e3537389d6c855fa7628c0bd518b9077763
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+      - name: Require seven exact-main workflows and complete gated Android delivery
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node <<'NODE'
+          'use strict';
+          // One-task CI adapter, published only on its dedicated QA branch. It dispatches
+          // existing workflows; no release guard, signer or acceptance check is replaced.
+          const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process');
+          const repo='xariib/Lumenfall',expected='ecf88e3537389d6c855fa7628c0bd518b9077763';
+          const workflows=['pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml','lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml','permanent-progression-validation.yml'];
+          const report={expectedMain:expected,sourceSha256:'4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65',checks:[],status:'running'};
+          function gh(args,input){return execFileSync('gh',args,{encoding:'utf8',input,maxBuffer:8*1024*1024});}
+          function get(url){return JSON.parse(gh(['api','repos/'+repo+'/'+url]));}
+          function dispatch(file,inputs){gh(['api','--method','POST','repos/'+repo+'/actions/workflows/'+file+'/dispatches','--input','-'],JSON.stringify({ref:'main',...(inputs?{inputs}:{})}));}
+          function save(){fs.mkdirSync('audit-release-receipt',{recursive:true});fs.writeFileSync('audit-release-receipt/status.json',JSON.stringify(report,null,2));}
+          function mainGuard(){assert.equal(get('git/ref/heads/main').object.sha,expected,'main moved: stop rather than release another source');}
+          function latest(file){return get('actions/workflows/'+file+'/runs?head_sha='+expected+'&event=workflow_dispatch&per_page=30').workflow_runs.filter(r=>r.head_sha===expected&&r.event==='workflow_dispatch').sort((a,b)=>b.id-a.id)[0];}
+          const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+          async function findDispatched(file,after=0){for(let n=0;n<30;n++){const r=latest(file);if(r&&r.id>after)return r;await pause(2000);}throw Error('Dispatched run not found: '+file);}
+          function watch(run){ghWatch(run.id);const actual=get('actions/runs/'+run.id);assert.equal(actual.head_sha,expected);assert.equal(actual.conclusion,'success','workflow failed: '+actual.html_url);return actual;}
+          function ghWatch(id){execFileSync('gh',['run','watch',String(id),'--repo',repo,'--exit-status','--interval','30'],{stdio:'inherit'});}
+          function published(){return get('releases?per_page=50').find(r=>!r.draft&&r.target_commitish===expected&&(r.assets||[]).some(a=>a.name==='Lumenfall.apk'));}
+          async function main(){
+           assert.equal(process.env.GITHUB_REPOSITORY,repo);assert.equal(process.env.GITHUB_REF,'refs/heads/qa/full-game-workshop-release-001');
+           assert(/^[0-9a-f]{40}$/.test(expected));assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),expected,'checkout must be exact integrated commit');
+           assert.equal(crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex'),report.sourceSha256,'product must match tested candidate');
+           mainGuard();save();
+           // Reuse valid exact-commit runs on an adapter retry. Do not rerun successful gates.
+           for(const file of workflows){let run=latest(file);if(!run){mainGuard();dispatch(file);run=await findDispatched(file);}
+            report.checks.push({file,id:run.id,url:run.html_url});save();}
+           for(const row of report.checks){mainGuard();const run=watch(row);assert.equal(latest(row.file).id,row.id,'a newer run requires re-evaluation');row.conclusion=run.conclusion;save();}
+           // Verify both full jobs, in addition to every required workflow.
+           const pre=report.checks.find(r=>r.file==='pre-merge-validation.yml');
+           const jobs=get('actions/runs/'+pre.id+'/jobs?filter=latest&per_page=100').jobs;
+           for(const name of ['Lumenfall pre-merge validation','Lumenfall isolated offline catch-up'])assert(jobs.some(j=>j.name===name&&j.conclusion==='success'),'complete acceptance required: '+name);
+           mainGuard();const existing=published();
+           if(existing){report.release={url:existing.html_url,tag:existing.tag_name};report.status='pass';save();return;}
+           let build=latest('build-android.yml');
+           if(build&&build.status!=='completed'){build=watch(build);const release=published();if(release){report.release={url:release.html_url,tag:release.tag_name};report.status='pass';save();return;}}
+           if(build&&build.conclusion==='failure')throw Error('Existing exact-source Android build failed; inspect/retry its failed job first: '+build.html_url);
+           mainGuard();const previous=build?build.id:0;dispatch('build-android.yml',{publish:'true'});build=await findDispatched('build-android.yml',previous);
+           report.build={id:build.id,url:build.html_url};save();watch(build);mainGuard();
+           const release=published();assert(release,'successful publication must expose an exact-commit release with APK');
+           report.release={url:release.html_url,tag:release.tag_name};report.status='pass';save();
+          }
+          main().catch(error=>{report.status='fail';report.error=error.stack;save();console.error(error.stack);process.exitCode=1;});
+          NODE
+      - name: Preserve source-bound dispatch and publication receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-game-workshop-delivery-${{ github.run_id }}
+          path: audit-release-receipt/
+          if-no-files-found: warn

@@ -1,0 +1,60 @@
+{
+  "status": "pass",
+  "scriptSha256": "49180f7bd09c49ae44459de251a277125e3b055288198053e9f4de70a89ad6f4",
+  "records": [
+    {
+      "name": "all-seven-before-publication",
+      "status": "pass",
+      "dispatches": [
+        "build-android.yml"
+      ],
+      "publishedBuilds": 1
+    },
+    {
+      "name": "reuse-published-exact-source",
+      "status": "pass",
+      "dispatches": [],
+      "publishedBuilds": 0
+    },
+    {
+      "name": "dispatch-only-missing-gate",
+      "status": "pass",
+      "dispatches": [
+        "forge-expansion-validation.yml",
+        "build-android.yml"
+      ],
+      "publishedBuilds": 1
+    },
+    {
+      "name": "reject-failed-gate",
+      "status": "pass",
+      "dispatches": [],
+      "publishedBuilds": 0
+    },
+    {
+      "name": "reject-missing-full-offline-job",
+      "status": "pass",
+      "dispatches": [],
+      "publishedBuilds": 0
+    },
+    {
+      "name": "reject-main-race",
+      "status": "pass",
+      "dispatches": [],
+      "publishedBuilds": 0
+    },
+    {
+      "name": "reject-other-branch",
+      "status": "pass",
+      "dispatches": [],
+      "publishedBuilds": 0
+    },
+    {
+      "name": "reject-different-product",
+      "status": "pass",
+      "dispatches": [],
+      "publishedBuilds": 0
+    }
+  ],
+  "causalControl": "main-head-race killed"
+}
