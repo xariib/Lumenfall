@@ -26,6 +26,13 @@ jobs:
         with:
           node-version: 24.19.0
 
+      - name: Stationary purchases and rejected transaction rollback
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/DEBUG_SCROLL_EXPLOITS_001.md
+          mkdir -p validation-evidence/debug-scroll
+          node tests/behavioral/purchase-rollback.cjs index.html --negative > validation-evidence/debug-scroll/rollback.json
+          node tests/behavioral/stationary-purchases.cjs index.html validation-evidence/debug-scroll/mobile --negative
+
       - name: Paid boosts, clock replay and capped automation regressions
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_FIXES_0252_001.md

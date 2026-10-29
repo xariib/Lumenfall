@@ -118,7 +118,7 @@ window.__lumenfallQaBridge = {
     direct: function(seconds,kind,start){var result=advanceAuthoritativeTime(seconds,{kind:kind||'live',visual:false,clockStartMs:start||2000000000000,offlineWindowStartMs:start||2000000000000,captureTimeline:true});return {state:JSON.parse(JSON.stringify(state)),summary:result};},
     withDps: function(dps,fn){var original=simulationPassiveDps;simulationPassiveDps=function(){return dps;};try{return fn();}finally{simulationPassiveDps=original;}},
     mutate: function(kind){
-      var start=commitStudyStart,plan=studyMotesPlan,boundary=simulationKillsUntilStudyMotes,farm=simulationApplyFarmPassive;
+      var start=commitStudyStart,plan=getStudyBoostPlan,boundary=simulationKillsUntilStudyMotes,farm=simulationApplyFarmPassive;
       if(kind==='double-round')simulationApplyFarmPassive=function simulationApplyFarmPassive(elapsedSec,dps,policy,summary){
   if(elapsedSec<=0 || dps<=0) return;
   var damage = dps*elapsedSec;
@@ -178,9 +178,9 @@ window.__lumenfallQaBridge = {
   if(leftover>0) state.enemyHp = Math.max(SIM_EPS,state.enemyMaxHp-leftover);
 };
       if(kind==='free-carry')commitStudyStart=function(node){var result=start(node);if(result&&state.studyUseMotes[node.id])findActiveStudy(node.id).speedMult=state.studySpeedTargets[node.id];return result;};
-      if(kind==='fallback')studyMotesPlan=function(node){var result=plan(node);if(result&&state.motes<result.cost){result.target=1.5;result.cost=speedTierCost(1.5);}return result;};
+      if(kind==='fallback')getStudyBoostPlan=function(id,mult,hours,nowMs,clock){var result=plan(id,mult,hours,nowMs,clock);return result.reason==='funds'?plan(id,1.5,hours,nowMs,clock):result;};
       if(kind==='batch-end')simulationKillsUntilStudyMotes=function(){return Infinity;};
-      return function(){commitStudyStart=start;studyMotesPlan=plan;simulationKillsUntilStudyMotes=boundary;simulationApplyFarmPassive=farm;};
+      return function(){commitStudyStart=start;getStudyBoostPlan=plan;simulationKillsUntilStudyMotes=boundary;simulationApplyFarmPassive=farm;};
     }
   },
   upgradeIdentity: {
@@ -194,7 +194,7 @@ window.__lumenfallQaBridge = {
     originals: function(){return LEGACY_STUDY_IDS.slice();},
     plan: function(id){return getStudyStartPlan(typeof id==='string'?LONG_STUDIES.find(function(n){return n.id===id;}):id);},
     start: function(id){return window.__lumenfallQaBridge.labMotes.input(function(){return startStudy(typeof id==='string'?LONG_STUDIES.find(function(n){return n.id===id;}):id);});},
-    autoFill: function(){return window.__lumenfallQaBridge.labMotes.input(function(){return autoFillStudySlots();});},
+    autoFill: function(){return window.__lumenfallQaBridge.labMotes.input(function(){var summary=simulationSummary(0);simulationCompleteDueStudies(summary);return simulationStartQueuedStudies(summary)>0;});},
     queued: function(){var summary=simulationSummary(0);simulationStartQueuedStudies(summary);return summary;},
     tail: function(seconds,start){var summary=simulationSummary(seconds);advanceStudyOnlyTime(seconds,start||2000000000000,summary);return {state:JSON.parse(JSON.stringify(state)),summary:summary};},
     due: function(){var summary=simulationSummary(0);return {handled:simulationCompleteDueStudies(summary),summary:summary};},
@@ -654,7 +654,7 @@ window.__lumenfallQaBridge = {
     var sigilsThrough220=0;
     for(var depth=10;depth<=220;depth+=10) sigilsThrough220+=sigilsFromBoss(depth);
     return {
-      ultimateSigilTotal:totalUltimateSigilCost(),
+      ultimateSigilTotal:SPIRITS.reduce(function(sum,sp){return sum+ultimateSigilCost(sp);},0),
       restStopCometTotal:restStopTotal,
       deedCometTotal:deedTotal,
       retirementCometTotal:migrated.comets,
