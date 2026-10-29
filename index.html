@@ -3519,6 +3519,14 @@ var FORGE_EXPANSION = [
   {"id":"resonancereclaim","name":"Resonance Reclaim","forgeGroup":"Resonance","desc":"Each boss kill restores up to one already-spent Resonate use per level, up to 3. Cannot store extra uses beyond the current run capacity.","unlockDepth":100,"levelCap":3,"effectPerLevel":1,"lumenBase":153442000,"lumenGrowth":2.0,"shardBase":2536500,"shardGrowth":2.0}
 ];
 RESEARCH = RESEARCH.concat(FORGE_EXPANSION);
+// Deep currency investments alongside the short, mechanically bounded tracks.
+// Existing saves initialize these IDs to zero with their queues OFF.
+var FORGE_ENHANCEMENTS = [
+  {id:'battletempering',name:'Battle Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate passive Wisp damage multiplier per level, up to ×4. Also strengthens the Wisp-powered part of tap damage. Prices rise with every level.',unlockDepth:100,levelCap:300,effectPerLevel:0.01,lumenBase:10000000,lumenGrowth:1.10,shardBase:250000,shardGrowth:1.10},
+  {id:'arcanetempering',name:'Arcane Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate damaging ability multiplier per level, up to ×4. Includes owned Resonant Edge hits; no ability currencies, Support buff or charge bonus. Prices rise with every level.',unlockDepth:150,levelCap:300,effectPerLevel:0.01,lumenBase:25000000,lumenGrowth:1.10,shardBase:625000,shardGrowth:1.10},
+  {id:'harvesttempering',name:'Harvest Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate Lumen and Shard kill-reward multiplier per level, up to ×4. No ability currencies, Motes, Prisms or Sigils. Prices rise with every level.',unlockDepth:200,levelCap:300,effectPerLevel:0.01,lumenBase:40000000,lumenGrowth:1.10,shardBase:1000000,shardGrowth:1.10}
+];
+RESEARCH = RESEARCH.concat(FORGE_ENHANCEMENTS);
 // Finite long-tail paths retain their existing prices and earned levels.
 // Existing saves beyond a newly introduced cap keep their paid effects.
 RESEARCH.forEach(function(node){
@@ -6289,6 +6297,7 @@ function forgeHasChargeGrants(){
   return !!(forgeLevel('tapconduit') || forgeLevel('relay') || forgeLevel('sustainedchannel') || forgeLevel('victorycharge') || forgeLevel('resonancecascade'));
 }
 function forgeBossPolicyActive(){
+  if(researchLevel('battletempering')>0 || researchLevel('arcanetempering')>0)return true;
   if(ENDLESS_PROGRESSION.masterworkPowerPerLevel>0 && researchLevel('masterwork')>0)return true;
   return ['cauterize','fracturekey','guardianseal','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','resonancecascade'].some(function(id){return forgeLevel(id)>0;});
 }
@@ -6309,8 +6318,8 @@ function researchBonus(id,level){
 }
 function researchFactor(id,level){ return 1 + researchBonus(id,level); }
 
-function lumenMult(){ return (1 + nodeLevel('starlight')*0.10) * researchFactor('focus') * longStudyLumenMult(); }
-function shardMult(){ return researchFactor('sense') * longStudyShardMult(); }
+function lumenMult(){ return (1 + nodeLevel('starlight')*0.10) * researchFactor('focus') * longStudyLumenMult() * researchFactor('harvesttempering'); }
+function shardMult(){ return researchFactor('sense') * longStudyShardMult() * researchFactor('harvesttempering'); }
 function longStudyLevel(id){ return (state.longStudyLevels && state.longStudyLevels[id]) || 0; }
 function longStudyPowerMult(){ return 1 + longStudyLevel('wispascend')*0.15; }
 function longStudyTapMult(){ return 1 + longStudyLevel('guardmastery')*0.20; }
@@ -6321,7 +6330,7 @@ function longStudyFormationMult(){ return 1 + longStudyLevel('formationstudy')*0
 function longStudyMoteMult(){ return 1 + longStudyLevel('motestudy')*0.10; }
 function longStudyPrismMult(){ return 1 + longStudyLevel('prismstudy')*0.05; }
 function tapMult(){ return (1 + nodeLevel('steady')*0.08) * researchFactor('resolve') * longStudyTapMult(); }
-function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }
+function formationMult(){ return researchFactor('formation') * longStudyFormationMult() * researchFactor('battletempering'); }
 function momentumMult(){ return 1 + nodeLevel('momentum')*0.06; }
 function abilityCycleSeconds(level){ return Math.max(ABILITY_MIN_CYCLE_SEC,ABILITY_BASE_CYCLE_SEC / researchFactor('charge',level)); }
 function fillRateMult(level){ return Math.min(researchFactor('charge',level),ABILITY_BASE_CYCLE_SEC / ABILITY_MIN_CYCLE_SEC); }
@@ -6818,7 +6827,7 @@ function abilityUltimateMult(sp){
   return sp && ultimateUnlocked(sp.id) ? 2*astralFactor('astralconvergence') : 1;
 }
 function abilityRawBurst(sp,level){
-  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho'));
+  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho')*researchFactor('arcanetempering'));
 }
 function abilityBurstDamage(sp, depth){
   var level = state.spirits[sp.id]||0;
@@ -7861,6 +7870,7 @@ function researchPreview(node,requested){
     purchase:researchEffectPreview(node,Amount.add(level,plan.buyCount))};
 }
 function researchEffectText(node,value){
+  if(node.forgeGroup==='Enhancements') return '×'+Number(value.factor.toFixed(2))+' '+(node.id==='battletempering'?'passive Wisp damage and its tap component':node.id==='arcanetempering'?'damaging abilities':'Lumen and Shard kill rewards');
   if(node.id==='masterwork')return 'Own Wisp Power ×'+(typeof value.factor==='number'&&value.factor<1000?value.factor.toFixed(2):formatRiftNumber(value.factor))+'; '+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
   if(node.forgeGroup) return forgeEffectText(node.id,value.level);
   function decimal(n){return Number(n.toFixed(4)).toString();}
