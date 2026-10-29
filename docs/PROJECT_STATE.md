@@ -2,13 +2,15 @@
 
 30 October: [Debug PR26](tasks/DEBUG_SCROLL_EXPLOITS_001.md): CI/Android pending.
 
+30 October: [Visual polish/PR25](tasks/VISUAL_POLISH_001.md), `31b24d57`:
+seven gates/190 scenarios PASS. APK/browser access and device acceptance pending.
+
 29 October: [Lab pacing/slots](tasks/LAB_SLOT_CHALLENGES_001.md): PR23 integrated;
 APK blocked.
 
 29 October: [Workshop audit/PR21](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
 [Android0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055),
-`ecf88e35`: Wisp actions, ability purchases, durable quests;21 Forge/20 Lab paths,
-48h earned-currency caps verified. Seven gates,189+1 scenarios, signed installed
+`ecf88e35`: Seven gates,189+1 scenarios, signed installed
 upgrade/public bytes PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
 
 28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as

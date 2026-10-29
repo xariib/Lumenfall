@@ -30,6 +30,24 @@ jobs:
         run: |
           set -euo pipefail
           node tests/behavioral/shared-layout-ui.cjs index.html shared-ui-validation/layout --negative 2>&1 | tee shared-ui-validation/layout.log
+      - name: Visual review, enlarged text and Lab heading regression
+        if: always()
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/VISUAL_POLISH_001.md
+          node tests/behavioral/visual-audit.cjs index.html shared-ui-validation/visual
+          if node tests/behavioral/visual-audit.cjs index.html shared-ui-validation/visual-negative --mutate-lab-heading; then
+            echo "::error::Clipped Lab heading unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('shared-ui-validation/visual/receipt.json'));
+          const bad=JSON.parse(fs.readFileSync('shared-ui-validation/visual-negative/receipt.json'));
+          assert.equal(good.status,'pass');assert.equal(good.profiles.length,16);
+          assert.equal(bad.status,'fail');assert(bad.error.includes('unclipped content')&&bad.error.includes('research'));
+          assert.notEqual(good.sourceSha256,bad.sourceSha256);
+          assert.equal(good.exit.code,0);assert.equal(bad.exit.code,0);
+          JS
       - name: Preserve original source, process receipts, geometry and screenshots
         if: always()
         uses: actions/upload-artifact@v4
