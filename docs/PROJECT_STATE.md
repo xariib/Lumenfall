@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+29 October: [Readable offline recap](tasks/OFFLINE_RECAP_CLARITY_001.md) locally
+verified: resource rows, concise automation updates and expandable grouped Lab
+results; Continue stays visible. 18 core/129 mobile assertions, eight viewport/
+text profiles, existing 30 startup profiles and actual offline return PASS.
+GitHub CI/integration and signed Android delivery pending; browser workflow
+dispatch access currently disabled. [Previews/evidence](qa/offline-recap-clarity-001/README.md).
+
 29 October: [Full-game/Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
 [PR #21](https://github.com/xariib/Lumenfall/pull/21): stationary Wisp actions,
 canonical ability purchases and durable quest claims. All 21 Forge/20 Lab paths
