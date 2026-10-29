@@ -1,9 +1,12 @@
 # Lumenfall — current delivery status
 
-28 October: [Audit fixes](tasks/EXPLOIT_FIXES_0252_001.md), PR19/e2baa406,
-passed seven PR gates and189+offline. [Release preparation](tasks/EXPLOIT_FIXES_RELEASE_001.md)
-and PR20 track native fixture/CI repairs and APK delivery. Their PR receipts hold
-current source-bound outcomes. Product unchanged; physical acceptance pending.
+29 October: [Full-game/Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
+[PR #21](https://github.com/xariib/Lumenfall/pull/21): stationary Wisp actions,
+canonical recruited-Wisp ability purchases and durable atomic quest claims.
+All 21 active Forge/20 active Lab paths reviewed; existing caps retained after
+earned-currency 48-hour campaigns. Candidate source `4246093d`; current CI,
+integration and Android delivery receipt are maintained in PR21. No new APK yet.
+Physical phone/WebView60/TalkBack/human pacing remain separate acceptance.
 
 28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
 [Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)
