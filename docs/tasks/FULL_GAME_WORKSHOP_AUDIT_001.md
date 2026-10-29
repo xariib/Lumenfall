@@ -1,6 +1,9 @@
 # FULL_GAME_WORKSHOP_AUDIT_001 — gameplay, cards and Workshop audit
 
-Status: in progress. Owner: this feature chat. Baseline: main
+Status: integrated, automated acceptance PASS; Android 0.2.55 published and
+public bytes verified. Physical phone/accessibility and human pacing acceptance
+remain open. Owner: this feature
+chat. Baseline: main
 `595619f27b54eee351c5f3f2dfb0dd46a4ecd487`, Android 0.2.54.
 Branch: `fix/full-game-workshop-audit-001`.
 
@@ -44,10 +47,10 @@ Sources: [project state](../PROJECT_STATE.md),
 ## Checkpoint
 
 Repository recovered into local `game/` using a sparse clone because the original
-workspace contains only the released APK verification. GitHub main and the
-published receipt agree. The only open PR is an unrelated documentation audit.
-Root instructions, bootstrap, project state, workflow and affected prior
-requirements read. No product change yet.
+workspace contains only the released APK verification. Root instructions,
+bootstrap, project state, workflow and affected prior requirements read.
+PR21 merged at `ecf88e3537389d6c855fa7628c0bd518b9077763`; its tree
+`825416ece13d8efabd8bcea41fd7e9cdc46e7297` exactly matches the tested PR merge.
 
 ## Verified changes and evidence
 
@@ -111,36 +114,63 @@ completed: 28 PASS; the original unconfigured-browser loadout failure is retaine
 and resolved by the separate full 1,171-check browser PASS. Existing gates are retained; the new core/caps/layout regression is
 added to pre-merge CI. Self-review and automated checks only.
 
-[PR #21](https://github.com/xariib/Lumenfall/pull/21) publishes head `97cd87e1`,
-tested merge `e72aa0d5`, tree `eaa89a05`. Complete product/preservation diff
-self-reviewed. CLI push authentication was unavailable; connected GitHub object
-upload reproduced the exact local tree, verified again after fetching the branch.
-Six required workflows and the isolated offline job PASS. Full pre-merge reached
-the quest UI check; local reproduction showed only the two expected persisted
-clock fields changing after the newly durable Claim. Reuse the existing
-`save-clock-contract.cjs` to verify that metadata, additionally bound the save
-to the native input's wall-clock interval, and require the entire new endpoint
-in both save slots. All original other-field, reward, focus, scroll and duplicate
-claim assertions remain. The updated full browser lane PASSes 1,225 checks over
-12 profiles; both original Ascend/focus causal failures still trigger correctly.
-Product source remains unchanged. PR21 holds current CI links and the final receipt.
-Its first Permanent-progression attempt ran zero browser profiles after a CDP
-startup deadline; unchanged attempt 2 PASS. No gate or deadline was weakened.
+An additional full Windows/Brave attempt passed nine cases, then six successive
+25-second dump-DOM deadlines produced no completed QA result. The task-owned
+runner was stopped; those six cases returned no gameplay assertion result.
+Its [unaltered raw log](../qa/full-game-workshop-audit-001/regressions/windows-full-suite.log.gz)
+is retained (SHA256 `8267446a5044df3235ac25c092b29a9694adeab7234c6dfb5781fff8bcb074a5`).
+This is not a local full-suite pass; complete Linux CI supplies the original
+189+1 scenario acceptance without changing any assertion or deadline.
+
+[PR #21](https://github.com/xariib/Lumenfall/pull/21) final head `8595918f`,
+tested merge `b57c4abf`, tree `825416ec`: seven required workflows PASS, including
+both full jobs, 189+1 deterministic scenarios and guarded mobile runtime smoke.
+Complete product/preservation diff self-reviewed; no independent review claimed.
+CLI push authentication was unavailable; connected GitHub object upload reproduced
+the exact local tree, verified after fetch. First-head pre-merge failed at quest
+metadata: only the two expected persisted clock fields changed after durable
+Claim. The follow-up uses existing `save-clock-contract.cjs`, additionally bounds
+the save to the native input's wall-clock interval, and requires the whole new
+endpoint in both save slots. Every original other-field, reward, focus, scroll
+and duplicate assertion remains. Full browser lane: 1,225 checks/12 profiles PASS;
+both original causal failures still trigger. Product bytes remained unchanged.
+The first Permanent attempt ran zero browser profiles after a CDP startup
+deadline; unchanged attempt 2 PASS. No gate/deadline/assertion was weakened.
 
 The user twice confirmed browser access for APK build/publication, but Work still
-reports disabled after session reset. Prepare a one-task adapter only on
-`qa/full-game-workshop-release-001`: use GitHub's ephemeral Actions token to
+reports disabled after session reset. A self-tested one-task adapter only on
+`qa/full-game-workshop-release-001` uses GitHub's ephemeral Actions token to
 dispatch the seven existing workflows on the pinned integrated main SHA, require
 all seven plus both full jobs, then dispatch the unchanged gated Android flow.
 Check main/source identity before dispatch; never substitute old-commit reruns.
 The adapter changes no permanent main trigger or release/signing acceptance gate.
+[Adapter run](https://github.com/xariib/Lumenfall/actions/runs/40842788058), QA
+commit `1949ec93`, PASS. Seven original exact-main workflows on `ecf88e35` PASS,
+including both full jobs, 189+1 scenarios and mobile runtime smoke.
+[Exact-source CI receipt](../qa/full-game-workshop-audit-001/ci-final.json).
+
+## Android delivery
+
+[Android 0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055),
+versionCode 1000055, published from integrated `ecf88e35` after
+[native build55](https://github.com/xariib/Lumenfall/actions/runs/40848886964) PASS.
+Package `com.lumenfall.app` and established signing certificate `A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21`
+retained. Installed emulator upgrade retains actual UID/origin, both saves,
+progress, paid Lab work and legacy Comet entitlements. Emulator uses WebView91;
+it does not establish physical-phone or exact WebView60 DOM acceptance.
+
+Anonymous public download PASS: 7,067,144 bytes; SHA256
+`0797f3472429deee478df7f4053975ecc94686ee3fc58ce0f2cc117aad76c209`.
+All six downloaded assets match GitHub release digests. All 15 packaged game
+assets exactly match production; certificate extracted from downloaded bytes;
+native receipt bound to the exact APK/version. [Full release receipt](../qa/full-game-workshop-audit-001/release.json).
+The final documentation checkpoint changes no game/build/test bytes; this release
+remains bound to `ecf88e35`. Install as an update without uninstalling.
 
 Known limits: standalone local saves and arbitrary unseen future device dates
 cannot be authenticated without a trusted source. This patch does not claim
 tamper-proof offline play. Physical phone/WebView60 DOM/TalkBack and human pacing
 remain unverified; automated evidence does not establish perfection.
 
-Next: finish the original full pre-merge suite, integrate when every required
-workflow passes, then run exact integrated-main workflows and the established
-signed installed-Android/publication flow when browser dispatch is available.
-Integration, app/device acceptance and release are not yet completed.
+Next: physical-phone, exact WebView60 DOM, TalkBack and human pacing acceptance.
+Keep this feature open for those checks; automated delivery is complete.
