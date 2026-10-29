@@ -41,5 +41,7 @@ all displayed goals and actual paid completion: [Workshop417](workshop-card-clar
 PASS across18 profiles each. All27 workflow-referenced task startup/link checks
 PASS after shortening shared status text (largest32682/32768bytes).
 
-These are local/self-review results. Required CI, integration, signed Android,
-physical phone, exact WebView60, TalkBack and human pacing are separate gates.
+[Final CI/integration](ci-final.json): all seven required workflows,189+1 full
+scenarios and runtime smoke PASS. PR23 merged at888a12f4; integrated tree exactly
+matches testedda739a42. Self-review and automated validation only. Signed Android,
+physical phone, exact WebView60, TalkBack and human pacing remain open.

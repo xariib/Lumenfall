@@ -1,6 +1,6 @@
 # Lab duration at 8x
 
-Status: implementation in progress. Owner: this feature chat. Latest correction:
+Status: integrated; Android acceptance pending. Owner: this feature chat. Latest correction:
 [earned slot challenges](LAB_SLOT_CHALLENGES_001.md) replaces the short-slot exception.
 
 ## Original requirement

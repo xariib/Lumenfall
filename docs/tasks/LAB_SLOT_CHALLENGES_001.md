@@ -86,8 +86,15 @@ new shared status paragraph exceeding the32KiB startup budget for an older
 task. Shorten that paragraph to a continuation link; keep the existing limit
 and verify all workflow-referenced task budgets. This is documentation only.
 
-Status: PR23 published; required exact-head CI is running. Latest head/check
-links are maintained in the PR description; this documentation follow-up changes
-no product/test bytes. Next: inspect required CI and integrate only after all
-gates pass. Android dispatch remains unavailable in this session;
-no release is claimed. Physical phone/WebView60/TalkBack/human pacing remain open.
+Integrated via PR23 at `888a12f46611517f27f7358b0ea2a3c8865474a2` after all seven
+required workflows passed on final head `da739a42edd9b6a72468263a52834c0727bb5a0f`.
+Both full jobs PASS (189+1 scenarios) and runtime smoke PASS. The integrated tree
+matches the tested head exactly (`a0de71fc27898880dd2f4412deaef89c5608d37f`).
+[Final CI/integration receipt](../qa/lab-slot-challenges-001/ci-final.json).
+
+Status: integrated, Android delivery/acceptance pending; task stays open. Next:
+when workflow dispatch is available, build the integrated source and verify the
+signed installed upgrade and public bytes. The plugin lacks dispatch and local
+browser access is disabled in Work settings; no settings were changed or access
+restrictions bypassed. No new APK is claimed. Physical phone/WebView60/TalkBack/
+human pacing remain open. This checkpoint changes documentation/evidence only.

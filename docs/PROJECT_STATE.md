@@ -1,6 +1,6 @@
 # Lumenfall — current delivery status
 
-29 October: [Lab pacing/slots](tasks/LAB_SLOT_CHALLENGES_001.md): PR23 CI pending;
+29 October: [Lab pacing/slots](tasks/LAB_SLOT_CHALLENGES_001.md): PR23 integrated;
 APK blocked.
 
 29 October: [Workshop audit/PR21](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
