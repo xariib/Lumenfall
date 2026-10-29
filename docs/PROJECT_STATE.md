@@ -1,5 +1,14 @@
 # Lumenfall — current delivery status
 
+29 October: [Long Lab pacing](tasks/LAB_LONG_DURATION_001.md) and
+[earned expansion challenges](tasks/LAB_SLOT_CHALLENGES_001.md) are published in
+[PR23](https://github.com/xariib/Lumenfall/pull/23), integration/CI pending.
+Three basic Wisp research tracks last at least365days each at continuous8x;
+fourth/fifth Lab slots require separate Rift/Ascend/research milestones and
+15/100days nominal work. Earned slots and old paid work remain. Focused numeric,
+native mobile and existing regression checks pass; receipts identify exact source.
+No new APK: Android dispatch unavailable; device/human acceptance remains open.
+
 29 October: [Full-game/Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
 [PR #21](https://github.com/xariib/Lumenfall/pull/21): stationary Wisp actions,
 canonical ability purchases and durable quest claims. All 21 Forge/20 Lab paths

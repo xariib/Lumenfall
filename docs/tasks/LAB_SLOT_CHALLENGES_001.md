@@ -68,7 +68,14 @@ PASS. The four-window independent one-second oracle was actually regenerated;
 all four endpoint hashes, kills, Ascends and Prisms match the preceding binding.
 Only its source identity changes. [Evidence](../qa/lab-slot-challenges-001/README.md).
 
-Status: local candidate; existing regressions and publication to PR23 in progress.
-Next: finish focused checks, publish exact tree, inspect required CI and integrate
-only after all gates pass. Android dispatch remains unavailable in this session;
+Published product commit `c634494b04e2bf869a7d29b6b78eab13d979a3ba`, exact
+local/remote tree `b3b54c6e2cc7eda1b2fb54d5f8da4a8a25cb3dcd`. All focused
+checks in the evidence index pass, including original mobile6588, slot452,
+long-tail326, cycle split1068 and boundary136 (instrumented diagnostic source).
+The cycle builder explicitly verifies the new Lab boundary connection.
+
+Status: PR23 published; required exact-head CI is running. Latest head/check
+links are maintained in the PR description; this documentation follow-up changes
+no product/test bytes. Next: inspect required CI and integrate only after all
+gates pass. Android dispatch remains unavailable in this session;
 no release is claimed. Physical phone/WebView60/TalkBack/human pacing remain open.

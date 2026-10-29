@@ -31,7 +31,9 @@ remain enabled. The first cycle-split invocation lacked its diagnostic output
 directory; rerunning with the standard directory passes. Its source-consistency
 builder now expects the new Lab boundary connection explicitly.
 [Cycle split1068](endless-cycle-split.json) and
-[cycle boundaries](endless-cycle-boundaries.json) pass through that builder.
+[cycle boundaries136](endless-cycle-boundaries.json) pass through that builder.
+The latter uses its existing frozen-power diagnostic transform (hash27db61d8),
+derived from productba7acc19; it is not an unmodified-product hash.
 
 These are local/self-review results. Required CI, integration, signed Android,
 physical phone, exact WebView60, TalkBack and human pacing are separate gates.
