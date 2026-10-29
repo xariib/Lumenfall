@@ -4,10 +4,10 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),asse
 const {spawn,spawnSync}=require('node:child_process'),{serve}=require('../../scripts/lib/static-server.cjs'),{findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'validation-evidence/stationary-purchases');
 let source=fs.readFileSync(file,'utf8');const marker="if(document.readyState==='loading'){";
-const mutation=process.argv.includes('--mutate-forge')?'forge':process.argv.includes('--mutate-fallback')?'fallback':null;
+const mutation=process.argv.includes('--mutate-forge')?'forge':process.argv.includes('--mutate-fallback')?'fallback':process.argv.includes('--mutate-card-focus')?'card-focus':null;
 if(mutation){
- const from=mutation==='forge'?'main.getBoundingClientRect();main.scrollTop=scrollTop;':'if(!snapshot.keys.length || !snapshot.keys.every';
- const to=mutation==='forge'?from+"target.scrollIntoView({block:'nearest'});":'if(false && (!snapshot.keys.length) || false && !snapshot.keys.every';
+ const from=mutation==='forge'?'main.getBoundingClientRect();main.scrollTop=scrollTop;':mutation==='card-focus'?"querySelectorAll('button,select,input,summary[data-card-details-summary],.card')":'if(!snapshot.keys.length || !snapshot.keys.every';
+ const to=mutation==='forge'?from+"target.scrollIntoView({block:'nearest'});":mutation==='card-focus'?"querySelectorAll('button,select,input,summary[data-card-details-summary]')":'if(false && (!snapshot.keys.length) || false && !snapshot.keys.every';
  assert.equal(source.split(from).length,2);source=source.replace(from,to);
 }
 assert.equal(source.split(marker).length,2);
@@ -46,7 +46,7 @@ async function ev(expression){const r=await send('Runtime.evaluate',{expression,
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(expression){for(let i=0;i<300;i++){if(await ev(expression))return;await pause(25);}throw Error('Not ready: '+expression);}
 async function key(){await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});}
-async function measure(){return ev(`({scroll:document.querySelector('main').scrollTop,value:scrollQa.read(),focus:document.activeElement.outerHTML.slice(0,250),errors:scrollErrors})`);}
+async function measure(){return ev(`({scroll:document.querySelector('main').scrollTop,value:scrollQa.read(),focus:document.activeElement.outerHTML.slice(0,250),tree:document.activeElement.getAttribute('data-tree-node'),errors:scrollErrors})`);}
 async function run(){
  fs.mkdirSync(out,{recursive:true});stage=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-scroll-'));
  fs.writeFileSync(path.join(stage,'index.html'),source.replace('<head>','<head>'+prelude).replace(marker,hook+marker));
@@ -71,7 +71,8 @@ async function run(){
   if(input==='keyboard')await key();else{await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:point.x,y:point.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
   await pause(120);const after=await measure();const record={width,height,scale,input,kind,before,after};records.push(record);
   ok(after.value===before.value+1,'one real purchase '+kind);ok(Math.abs(after.scroll-before.scroll)<=1,'purchase must preserve scroll '+JSON.stringify(record));
-  await ev('scrollQa.refresh()');await pause(100);const refreshed=await measure();ok(Math.abs(refreshed.scroll-after.scroll)<=1,'refresh must preserve scroll '+kind);ok(refreshed.errors.length===0,'no runtime errors');
+  await ev('scrollQa.refresh()');await pause(100);const refreshed=await measure();record.refreshed=refreshed;ok(Math.abs(refreshed.scroll-after.scroll)<=1,'refresh must preserve scroll '+kind);ok(refreshed.errors.length===0,'no runtime errors');
+  if(kind==='tree')ok(after.tree==='swift'&&refreshed.tree==='swift','refresh must retain purchased Tree card');
  }
  return version;
 }
@@ -81,10 +82,10 @@ async function run(){
  if(server){server.closeAllConnections();await new Promise(r=>server.close(r));}for(const dir of [profile,stage])if(dir)fs.rmSync(dir,{recursive:true,force:true,maxRetries:3,retryDelay:100});
  if(process.argv.includes('--negative')&&result.status==='pass'){
   result.controls=[];
-  for(const name of ['forge','fallback']){
+  for(const name of ['forge','fallback','card-focus']){
    const destination=path.join(out,'negative-'+name),r=spawnSync(process.execPath,[__filename,file,destination,'--mutate-'+name],{encoding:'utf8',timeout:60000});
    const receipt=fs.existsSync(path.join(destination,'receipt.json'))?JSON.parse(fs.readFileSync(path.join(destination,'receipt.json'))):null;
-   const detected=r.status===1&&receipt&&receipt.error.includes('purchase must preserve scroll')&&receipt.sourceSha256!==result.sourceSha256&&receipt.exit.code===0;
+   const detected=r.status===1&&receipt&&receipt.error.includes(name==='card-focus'?'refresh must retain purchased Tree card':'purchase must preserve scroll')&&receipt.sourceSha256!==result.sourceSha256&&receipt.exit.code===0;
    result.controls.push({name,detected,error:receipt&&receipt.error});if(!detected){result.status='fail';result.error='Scroll defect control not detected: '+name;}
   }
  }

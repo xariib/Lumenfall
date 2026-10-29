@@ -8797,8 +8797,12 @@ function replaceControlMarkup(root,html,keepAutoAscend,focusHandled,preparedMark
   if(!preparedMarkup)presentControlStates(root);
   if(previous && !previous.isConnected && !focusHandled){
     var buttons=Array.from(root.querySelectorAll('button,select,input'));
-    var replacement=keys.length && Array.from(root.querySelectorAll('button,select,input,summary[data-card-details-summary]')).find(function(btn){return keys.every(function(a){return btn.getAttribute(a.name)===a.value;});});
-    if(replacement && !replacement.disabled) replacement.focus({preventScroll:true});
+    var replacement=keys.length && Array.from(root.querySelectorAll('button,select,input,summary[data-card-details-summary],.card')).find(function(btn){return keys.every(function(a){return btn.getAttribute(a.name)===a.value;});});
+    if(replacement && !replacement.disabled){
+      // A disabled purchase's card remains the focus owner on later renders.
+      if(replacement.matches('.card')) replacement.tabIndex=-1;
+      replacement.focus({preventScroll:true});
+    }
     else {
       var next=replacement && replacement.closest('.card');
       if(next) next.tabIndex=-1;
