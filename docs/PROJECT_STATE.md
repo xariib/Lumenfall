@@ -1,5 +1,8 @@
 # Lumenfall — current delivery status
 
+29 October: [Forge pacing/PR24](tasks/FORGE_WORKSHOP_PACING_001.md): three300-level
+tracks; local checks pass, CI/integration/Android pending.
+
 29 October: [Full-game/Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
 [PR #21](https://github.com/xariib/Lumenfall/pull/21): stationary Wisp actions,
 canonical ability purchases and durable quest claims. All 21 Forge/20 Lab paths
@@ -8,13 +11,12 @@ reviewed; caps retained after earned-currency 48-hour campaigns.
 from `ecf88e35`: seven main gates, 189+1 scenarios, signed installed upgrade and
 public-byte verification PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
 
-28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
+28 October: [Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
 [Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)
-from `adaf602c`, after PR18 merged at `8eae1031`. Separate boost queue, editable
-next settings and empty-slot OFF preserve paid work. All seven PR/main gates,
-189+1 scenarios, signed installed upgrade and public exact-byte checks PASS.
-[Evidence](qa/lab-boost-queue-001/release.json). Both saves, paid work, UID/origin
-and legacy purchases retained. Phone/WebView60/TalkBack/human pacing remain open.
+from `adaf602c`, PR18/`8eae1031`. Editable next boosts and independent queues
+preserve paid work. Seven gates,189+1 scenarios, signed upgrade/public bytes PASS.
+[Evidence](qa/lab-boost-queue-001/release.json). Saves/UID/purchases retained;
+phone/WebView60/TalkBack/human pacing open.
 
 28 October 2026: [Game verification and APK delivery](tasks/GAME_CHECK_APK_RELEASE_001.md)
 published [Android 0.2.51](https://github.com/xariib/Lumenfall/releases/tag/android-1000051)

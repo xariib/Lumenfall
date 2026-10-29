@@ -19,3 +19,9 @@ Every receipt carries its own exact product hash. The task distinguishes older
 mobile/calibration results from final source. CI and Android/device acceptance
 are required before completion. Fixed-depth cost/income ratios are design
 forecasts; pushing deeper changes the calendar. Human pacing remains unverified.
+
+`mobile-receipt.json.gz` is final-source native Chromium acceptance:32,184
+assertions,12 viewport/text/motion profiles,24 cards, actual touch/Enter/Space
+purchases, single-resource red prices, queues, focus/scroll retention,300-level
+gold cap cards and cold reload. `mobile-cap-320-text2.png` is a representative
+200%-text screenshot. Chromium input is not physical Android/TalkBack acceptance.

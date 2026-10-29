@@ -58,8 +58,7 @@ caps, purchased effects and Masterwork development gates stay.
 Local Node baseline: Forge expansion PASS 9,335 assertions/598 price cases;
 progression pacing PASS 216 checks. Worktree initially failed on Windows long
 paths; creation with git core.longpaths=true succeeded without editing others.
-Next: implement the additive enhancement catalogue and independent pacing,
-transaction, migration and presentation checks. No APK has been built.
+The implementation and local checks below replace this initial checkpoint.
 
 ## Implementation checkpoint
 
@@ -88,14 +87,22 @@ also fail to buy a complete track within three days. These are optimistic fixed
 depth forecasts; deeper records accelerate earnings. They do not prove a real
 account's progression calendar, a global maximum yield or human enjoyment.
 
-Pre-calibration mobile Forge acceptance PASS32184 assertions/12 profiles,
+Final-source mobile Forge acceptance PASS32184 assertions/12 profiles,
 including all new cards, red single-currency shortages, trusted touch/Enter/
 Space, queues, focus/scroll preservation, cap300 gold cards and reload. This
-receipt belongs to earlier source b0d86cc8; final mobile validation is running.
+compressed receipt is saved as ../qa/forge-workshop-pacing-001/mobile-receipt.json.gz.
 Original Lab2676 and slots54 passed. Original Forge calibration3134/seven
 controls passed on b0d86cc8; full offline comparison is still running there.
-Final-source required CI, mobile checks and integration remain pending.
+Final-source required CI and integration remain pending.
 
 Git push has no available noninteractive credential; use the connected GitHub
-plugin to publish the exact locally reviewed Git tree. No APK has been built,
-published or installed. Do not claim completion or archive this feature.
+plugin published the exact locally reviewed Git tree b4b473715ec013522fdaeeabf2124a9d5472460e
+as commit1a29d1a1 in [PR24](https://github.com/xariib/Lumenfall/pull/24).
+All seven required workflows started there. No APK has been built, published or
+installed. The GitHub plugin has no workflow-dispatch action; browser access
+reports “Local browser use is disabled in Work settings” in this session.
+Android dispatch is therefore blocked; no preference or permission was changed.
+Next: resolve final CI findings, preserve final receipts, integrate only after
+all required gates pass, then perform signed Android delivery when dispatch is
+available. Physical phone/WebView60/human pacing remain unverified. Do not claim
+completion or archive this feature.
