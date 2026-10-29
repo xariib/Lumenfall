@@ -133,6 +133,8 @@ jobs:
           node scripts/codex/check_context.cjs --task docs/tasks/LAB_LONG_DURATION_001.md
           node tests/behavioral/lab-longtail.cjs index.html --negative > validation-evidence/lab-longtail/core.json
           node tests/behavioral/lab-speed-controls.cjs index.html --longtail --evidence validation-evidence/lab-longtail/mobile > validation-evidence/lab-longtail/mobile.json
+          node tests/behavioral/lab-slot-challenges.cjs index.html --negative > validation-evidence/lab-longtail/slot-challenges.json
+          node tests/behavioral/lab-speed-controls.cjs index.html --slot-challenges --evidence validation-evidence/lab-longtail/slot-mobile > validation-evidence/lab-longtail/slot-mobile.json
 
       - name: Repository migration version and historical-baseline controls
         run: node tests/tooling/repository-migration.cjs

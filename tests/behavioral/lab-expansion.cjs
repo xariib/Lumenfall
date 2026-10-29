@@ -19,7 +19,7 @@ function verify(html){
  for(const d of defs){
   ok(d.name&&d.desc&&d.labGroup,'defined UI identity '+d.id);ok(d.levelCap>0&&Number.isSafeInteger(d.levelCap),'finite positive cap');
   for(const l of [0,1,d.levelCap-1,d.levelCap,d.levelCap+1,1000000]){
-   const s=seed(q);s.longStudyLevels[d.id]=l;q.set(s);const before=clone(q.get());
+   const s=seed(q);s.longStudyLevels[d.id]=l;if(d.id==='labcapacity'&&l<2)require('./lab-longtail-reference.cjs').capacityReady(s,l);q.set(s);const before=clone(q.get());
    eq(q.level(d.id),Math.min(l,d.levelCap),'new effect cap '+d.id);eq(q.get().longStudyLevels[d.id],l,'raw paid level retained '+d.id);q.plan(d.id);eq(q.get(),before,'plan purity');
    if(l>=d.levelCap){eq(q.plan(d.id).reason,'maxed','cap gate '+d.id);eq(q.start(d.id),false,'cap refuses payment');eq(q.get(),before,'cap is pure');continue;}
    const c=costs(d,l);eq(q.cost(d.id,l),c,'independent unmodified base price '+d.id);eq(q.duration(d.id,l),work(d,l),'independent nominal work '+d.id);

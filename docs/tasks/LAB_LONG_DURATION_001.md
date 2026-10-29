@@ -1,6 +1,7 @@
 # Lab duration at 8x
 
-Status: implementation in progress. Owner: this feature chat.
+Status: implementation in progress. Owner: this feature chat. Latest correction:
+[earned slot challenges](LAB_SLOT_CHALLENGES_001.md) replaces the short-slot exception.
 
 ## Original requirement
 
@@ -68,8 +69,8 @@ First two levels retain their current work. A cubic work tail then makes full
 specialist tracks take30–120days,20-level resource tracks at least180days, and
 three new100-level Wisp tracks at least365days, even with continuously funded8x
 and every applicable work reduction already earned. Existing500-level foundation
-tracks retain their roughly9month fastest-case work. Slot unlock research stays
-short;3/5-level utility research spans7–30days. Prices, caps and existing bonuses
+tracks retain their roughly9month fastest-case work. Extra slots now follow the
+separate expansion challenges;3/5-level utility research spans7–30days. Prices, caps and existing bonuses
 are retained. These are deliberate Lumenfall targets, not copied Tower values.
 
 New Wisp Damage: +2% passive/ability damage per level. New Critical Chance:
@@ -147,13 +148,15 @@ expects23 active tracks and the new Wisp fundamentals group.
 [Focused evidence](../qa/lab-long-duration-001/README.md). Published
 [PR23](https://github.com/xariib/Lumenfall/pull/23), initial remote577e85e3,
 with exact local/remote tree68917141d8948a6beb698bb953cb7e05d84778fa.
-Seven required automatic workflows are running. Git has no push credential;
+All seven required workflows passed on remote562e4f59. The latest slot correction
+and exact-source verification continue in [the slot task](LAB_SLOT_CHALLENGES_001.md).
+Git has no push credential;
 publication uses the connected GitHub plugin with every blob/tree verified.
 Browser inventory again reports `Local browser use is disabled in Work settings`;
 GitHub has no workflow-dispatch action. No settings were changed, no signed build
 or release was started, and no access restriction was bypassed.
 [Local12h limitation](../qa/lab-long-duration-001/offline-12h-local-limit.json) and
 [unchanged historical endpoint checks](../qa/lab-long-duration-001/auto-ascend-feedback.json).
-Next: finish full regressions and self-review, publish the scoped branch/PR,
-address actual CI findings, and integrate only after required gates pass.
+Next: publish the slot correction to the same PR, address actual CI findings,
+and integrate only after required gates pass.
 Android dispatch capability and physical/human acceptance remain unverified.

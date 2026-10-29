@@ -24,7 +24,8 @@ research already earned, unlimited currencies and only one occupied slot:
 
 These are optimistic lower bounds; actual unlocks, funding, boost gaps, other
 occupied slots and the unchanged12h offline productive cap add calendar time.
-The first two levels retain their short work. Expanded Apparatus stays short.
+Other tracks retain their first two short levels. Expanded Apparatus now requires
+its progression challenges and15/100days of nominal research for its two ranks.
 Already-completed tracks remain completed, and already-paid active/paused work
 keeps its old time. This is a deliberate Lumenfall balance, informed by the
 user's year-long Tower experience, not a claim that Tower uses these values.

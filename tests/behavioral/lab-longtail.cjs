@@ -37,8 +37,8 @@ function verify(html){
   q.set(rich());const d=defs.find(n=>n.id===id),total=Array.from({length:d.levelCap},(_,l)=>q.duration(id,l)).reduce((a,b)=>a+b,0)/(8*DAY);
   ok(total>=270,'existing500-level foundation remains a months-long track '+id);records.push({id,levels:d.levelCap,fastestDays8x:total});
  }
- // Existing short slot unlocks and all saved paid work are grandfathered.
- q.set(seed(q));eq(q.duration('labcapacity',0),1800,'first extra slot remains accessible');eq(q.duration('labcapacity',1),3600,'second extra slot retains work');
+ // New expansion work is substantial; already-paid work is grandfathered below.
+ q.set(seed(q));eq(q.duration('labcapacity',0),1296000,'first expansion uses15days nominal work');eq(q.duration('labcapacity',1),8640000,'second expansion uses100days nominal work');
  const old=seed(q);old.longStudyLevels.bossledger=15;old.longStudyLevels.procurement=4;
  old.activeStudies=[{id:'bossledger',slot:0,remainingSec:720,totalDurationSec:1000,speedMult:3}];
  old.pausedStudies=[{id:'procurement',remainingSec:300,totalDurationSec:500,speedMult:4}];
