@@ -1791,6 +1791,8 @@
   .study-slot{margin:0;min-width:0;}
   .study-slot h3{margin:0 0 8px;font-size:13px;color:var(--ink-dim);}
   .study-slot p{margin:6px 0;}
+  .study-challenges{margin:8px 0;padding-left:20px;color:var(--ink-dim);font-size:.75rem;line-height:1.6;overflow-wrap:break-word;}
+  .study-challenges [data-met="true"]{color:var(--good);}
   .study-slot button{min-height:44px;}
   .study-catalogue[hidden]{display:none;}
   .study-catalogue-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;}
@@ -3745,6 +3747,15 @@ var LONG_STUDIES = [
   {id:'measuredinquiry', name:'Measured Inquiry', desc:'2% less work per completed level, up to 20%, for future starts of Wisp Ascendancy, Guardian’s Mastery, Shard Attunement, Lumen Wellspring and Luminous Sense. Running Studies and Measured Inquiry itself are unchanged.', unlockDepth:60, levelCap:10, baseDurationSec:600, durationGrowth:1.6, lumenBase:30000, lumenGrowth:1.8, shardBase:1200, shardGrowth:1.8}
 ];
 
+// Simple, permanent damage research. Critical damage is averaged consistently
+// across passive/ability damage, so live and offline play never roll differently.
+var WISP_STUDIES = [
+  {id:'wispdamage',name:'Wisp Damage',labGroup:'Wisp fundamentals',desc:'+2% passive Wisp and damaging ability damage per level. Also raises the Wisp-powered part of Guardian Tap; ability resource rewards and Support strength are unchanged.',unlockDepth:1,levelCap:100,baseDurationSec:240,durationGrowth:1.12,lumenBase:1000,lumenGrowth:1.35,shardBase:80,shardGrowth:1.35},
+  {id:'wispcritchance',name:'Wisp Critical Chance',labGroup:'Wisp fundamentals',desc:'+0.5 percentage points critical chance per level, up to 50%. Critical damage is averaged evenly across passive Wisp damage and damaging abilities, including offline. No random rolls.',unlockDepth:10,levelCap:100,baseDurationSec:360,durationGrowth:1.12,lumenBase:3000,lumenGrowth:1.35,shardBase:160,shardGrowth:1.35},
+  {id:'wispcritdamage',name:'Wisp Critical Damage',labGroup:'Wisp fundamentals',desc:'+0.02 critical damage multiplier per level, from 2x to 4x. Needs Wisp Critical Chance to add damage. Averaged into Wisp damage; ability resource rewards and Support strength are unchanged.',unlockDepth:15,levelCap:100,baseDurationSec:480,durationGrowth:1.12,lumenBase:6000,lumenGrowth:1.35,shardBase:300,shardGrowth:1.35}
+];
+WISP_STUDIES.forEach(function(node){LONG_STUDIES.push(node);});
+
 // LAB_EXPANSION_001: fourteen research tracks, separate from the original Deed
 // and Measured Inquiry target sets. No old ID, paid level or work is converted.
 var LAB_EXPANSION = [
@@ -3754,13 +3765,14 @@ var LAB_EXPANSION = [
     "labGroup": "Laboratory",
     "unlockDepth": 40,
     "levelCap": 2,
-    "baseDurationSec": 1800,
+    "baseDurationSec": 1296000,
     "durationGrowth": 2,
+    "rankWorkSec": [1296000,8640000],
     "lumenBase": 20000,
     "lumenGrowth": 2,
     "shardBase": 2000,
     "shardGrowth": 2,
-    "desc": "One extra concurrent Study slot per completed level, up to two extra. Existing slots and already-paid work stay."
+    "desc": "Earn the fourth and fifth Lab slots through two expansion challenges. Each requires Rift progress, Ascensions and completed research before its timer starts. Existing slots and already-paid work stay."
   },
   {
     "id": "procurement",
@@ -3949,6 +3961,16 @@ var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
 LONG_STUDIES.forEach(function(node){if(node.levelCap===undefined){node.levelCap=500;node.grandfatheredCap=true;}});
+// Full-track minimum days with continuous 8x and all earned work reductions.
+// Early levels and paid records keep their work; only future starts use this tail.
+var LAB_LONGTAIL_DAYS = {measuredinquiry:90,procurement:90,catalysis:120,focusprotocol:14,fieldnotes:60,curriculum:7,bossledger:180,luminousdistill:240,sigilcartography:30,rarityappraisal:60,modulefabrication:90,ultimateanalysis:120,resonantefficiency:14,adaptivegrowth:14,wispdamage:365,wispcritchance:365,wispcritdamage:365};
+LONG_STUDIES.forEach(function(node){
+  var days=LAB_LONGTAIL_DAYS[node.id];if(!days)return;
+  var n=node.levelCap-2,sumCubes=Math.pow(n*(n+1)/2,2);
+  var fastestFactor=node.id==='focusprotocol'?0.7:node.id==='curriculum'?0.8:0.56;
+  // The small rounding allowance keeps the full sum above its stated minimum.
+  node.tailWorkSec=(days*86400*8+node.levelCap)/(fastestFactor*sumCubes);
+});
 function labExpansionLevel(id){
   var raw=state && state.longStudyLevels ? state.longStudyLevels[id] : 0;
   return Math.min(LAB_EXPANSION_CAPS[id]||0,Math.max(0,Math.floor(raw||0)));
@@ -4297,6 +4319,13 @@ function nodeEarnedEffect(id){
 }
 function projectEarnedEffect(id,level){
   if(level===undefined) level=longStudyLevel(id);
+  var wispNode=WISP_STUDIES.find(function(n){return n.id===id;});
+  if(wispNode){
+    level=studyEffectiveLevel(wispNode,level);
+    if(id==='wispdamage')return '+'+earnedPercent(level*0.02)+'% passive Wisp and damaging ability damage';
+    if(id==='wispcritchance')return earnedPercent(level*0.005)+'% critical chance · damage averaged evenly, including offline';
+    return formatNum(2+level*0.02)+'× critical damage · needs Critical Chance; damage averaged evenly';
+  }
   if(LAB_EXPANSION_CAPS[id]) return labExpansionEffect(id,level);
   if(id==='measuredinquiry') return earnedPercent(0.02*studyEffectiveLevel(LONG_STUDIES.find(function(n){return n.id===id;}),level))+'% less work for future starts of the '+CURRENT_STUDY_IDS.length+' foundation Studies; running work and Measured Inquiry are unchanged';
   var rows={
@@ -6320,6 +6349,12 @@ function longStudyLumenMult(){ return 1 + longStudyLevel('lumenstudy')*0.08; }
 function longStudyFormationMult(){ return 1 + longStudyLevel('formationstudy')*0.05; }
 function longStudyMoteMult(){ return 1 + longStudyLevel('motestudy')*0.10; }
 function longStudyPrismMult(){ return 1 + longStudyLevel('prismstudy')*0.05; }
+function wispStudyDamageMult(){
+  var damage=Math.min(100,longStudyLevel('wispdamage'));
+  var chance=Math.min(100,longStudyLevel('wispcritchance'))*0.005;
+  var critical=2+Math.min(100,longStudyLevel('wispcritdamage'))*0.02;
+  return (1+damage*0.02)*(1+chance*(critical-1));
+}
 function tapMult(){ return (1 + nodeLevel('steady')*0.08) * researchFactor('resolve') * longStudyTapMult(); }
 function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }
 function momentumMult(){ return 1 + nodeLevel('momentum')*0.06; }
@@ -6507,12 +6542,14 @@ function bestNowFormationPlan(){
  *
  * Passive Wisp Damage = Active Wisp Power × passive-only permanent multipliers
  * (Formation Training, Rarity collection synergy, Eternal Momentum,
- * Wisp Ascendancy, Formation Insight) × applicable damage Bonds × Support buff.
+ * Wisp Ascendancy, Formation Insight) × Wisp Damage/averaged critical research
+ * × applicable damage Bonds × Support buff.
  * Modules and Ultimates do not modify passive damage.
  *
  * Ability Damage = Wisp Power × ability coefficient × the Burst/Breaker Module
  * where applicable × Ultimate × applicable Formation damage Bonds ×
- * bossAbilityDamageMult(). Passive-only permanent multipliers and Support buffs
+ * bossAbilityDamageMult() × Wisp Damage/averaged critical research.
+ * Passive-only permanent multipliers and Support buffs
  * do not modify ability hits.
  *
  * Ability Rewards = Wisp Power × reward coefficient × that Ranged/Druid Module
@@ -6631,7 +6668,7 @@ function rarityCost(sp, tier){
 }
 
 function passiveGlobalPowerMult(){
-  return formationMult() * synergyMult() * momentumMult() * longStudyPowerMult();
+  return formationMult() * synergyMult() * momentumMult() * longStudyPowerMult() * wispStudyDamageMult();
 }
 function effectivePartyPower(){
   // General Active-party passive power includes Starcaller, but not the
@@ -6818,7 +6855,7 @@ function abilityUltimateMult(sp){
   return sp && ultimateUnlocked(sp.id) ? 2*astralFactor('astralconvergence') : 1;
 }
 function abilityRawBurst(sp,level){
-  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho'));
+  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho')*wispStudyDamageMult());
 }
 function abilityBurstDamage(sp, depth){
   var level = state.spirits[sp.id]||0;
@@ -7942,6 +7979,8 @@ function measuredInquiryReduction(){
 }
 function studyDuration(node, level){
   var work=Math.round(Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level)));
+  if(node.rankWorkSec)work=node.rankWorkSec[Math.min(node.rankWorkSec.length-1,Math.max(0,level))];
+  if(node.tailWorkSec && level>1)work=Math.max(work,Math.ceil(node.tailWorkSec*Math.pow(Math.min(level,node.levelCap-1)-1,3)));
   work=LEGACY_STUDY_IDS.indexOf(node.id)===-1 ? work : Math.round(work*(1-measuredInquiryReduction()));
   var factor=labFutureWorkFactor(node);
   return factor===1 ? work : Math.max(1,Math.round(work*factor));
@@ -7964,6 +8003,48 @@ function studySlotCount(){
   var n = unlockedLongStudies().filter(function(node){return LEGACY_STUDY_IDS.indexOf(node.id)!==-1;}).length;
   var base=n<=3?1:n<=6?2:3;
   return Math.min(5,base+labExpansionLevel('labcapacity'));
+}
+function labCapacityChallenge(level){
+  var rank=Math.min(1,Math.max(0,level)),goals=rank?{depth:300,ascends:100,levels:150,subjects:10}:{depth:150,ascends:25,levels:60,subjects:6};
+  var levels=0,subjects=0;
+  LONG_STUDIES.forEach(function(node){
+    if(node.id==='labcapacity'||node.retiredTo)return;
+    var paid=longStudyLevel(node.id);
+    if(Amount.gt(paid,0))subjects++;
+    levels=Math.min(goals.levels,levels+Math.min(goals.levels,paid));
+  });
+  var requirements=[['depth','Rift',state.maxDepthEver,goals.depth],['ascends','Ascends',state.ascendCount,goals.ascends],['levels','Lab levels',levels,goals.levels],['subjects','Different studies',subjects,goals.subjects]].map(function(row){
+    return {key:row[0],label:row[1],current:Math.min(row[3],row[2]),target:row[3],met:Amount.ge(row[2],row[3])};
+  });
+  return {rank:rank+1,requirements:requirements,met:requirements.every(function(r){return r.met;})};
+}
+function labCapacityChallengesMarkup(node,plan){
+  if(node.id!=='labcapacity'||plan.paused||plan.maxed)return '';
+  var challenge=plan.challenge;
+  return '<div class="effect-note">Expansion '+challenge.rank+' · Unlock requirements</div><ul class="study-challenges" data-study-capacity-challenges>'+challenge.requirements.map(function(r){
+    return '<li data-study-challenge="'+r.key+'" data-met="'+r.met+'">'+(r.met?'✓ ':'')+r.label+' '+r.current+' / '+r.target+'</li>';
+  }).join('')+'</ul>';
+}
+function labCapacityAscendBatchLimit(){
+  if(!state.studyQueue.labcapacity||longStudyLevel('labcapacity')>=2||findActiveStudy('labcapacity')||findPausedStudy('labcapacity'))return null;
+  var challenge=labCapacityChallenge(longStudyLevel('labcapacity')),ascends=challenge.requirements.find(function(r){return r.key==='ascends';});
+  if(ascends.met||!challenge.requirements.every(function(r){return r.key==='ascends'||r.met;}))return null;
+  // Resolve the unlock Ascend normally so its queue/payment/work timestamp is
+  // identical across live ticks, offline windows and different caller splits.
+  return Amount.max(0,Amount.exactSub(Amount.exactSub(ascends.target,state.ascendCount),1));
+}
+function refreshLabCapacityChallenges(){
+  var root=els['study-list'];if(!root)return;
+  var list=root.querySelector('[data-study-capacity-challenges]');
+  if(list)labCapacityChallenge(longStudyLevel('labcapacity')).requirements.forEach(function(r){
+    var row=list.querySelector('[data-study-challenge="'+r.key+'"]');if(!row)return;
+    var text=(r.met?'✓ ':'')+r.label+' '+r.current+' / '+r.target;
+    row.setAttribute('data-met',String(r.met));if(row.textContent!==text)row.textContent=text;
+  });
+  root.querySelectorAll('[data-lab-slot].locked-node .lock-note').forEach(function(note){
+    var slot=Number(note.closest('[data-lab-slot]').getAttribute('data-lab-slot')),text=studySlotUnlockText(slot);
+    if(note.textContent!==text)note.textContent=text;
+  });
 }
 function renderLabCapacityBadge(){
   var badge=els['lab-capacity-badge'];
@@ -7988,16 +8069,17 @@ function getStudyStartPlan(node,preferredSlot){
   if(!node) return {node:null,eligible:false,affordable:false,reason:'unknown'};
   var level=longStudyLevel(node.id),paused=findPausedStudy(node.id),cost=paused?{lumen:0,shard:0}:studyCost(node,level),duration=paused?paused.remainingSec:studyDuration(node,level);
   var unlocked=Amount.ge(state.maxDepthEver,node.unlockDepth||1);
+  var challenge=node.id==='labcapacity'?labCapacityChallenge(level):null;
   var maxed=node.levelCap!==undefined && Amount.ge(level,node.levelCap);
   var valid=Amount.valid(cost.lumen) && Amount.ge(cost.lumen,0) && Amount.valid(cost.shard) && Amount.ge(cost.shard,0) && Amount.valid(duration) && Amount.gt(duration,0);
   var targetSlot=Number.isInteger(preferredSlot)?preferredSlot:null;
   var occupant=targetSlot===null?null:state.activeStudies.find(function(a){return a.slot===targetSlot;});
   var unavailableSlot=targetSlot!==null && (targetSlot<0 || targetSlot>=studySlotCount() || (occupant && LONG_STUDIES.some(function(n){return n.id===occupant.id && n.retiredTo;})));
-  var reason=unavailableSlot?'slots':node.retiredTo && !paused ? 'retired' : !unlocked ? 'locked' : maxed && !paused ? 'maxed' : findActiveStudy(node.id) ? 'active' : targetSlot===null && Amount.ge(state.activeStudies.length,studySlotCount()) ? 'slots' : !valid ? 'unavailable' : '';
+  var reason=unavailableSlot?'slots':node.retiredTo && !paused ? 'retired' : !unlocked ? 'locked' : maxed && !paused ? 'maxed' : findActiveStudy(node.id) ? 'active' : targetSlot===null && Amount.ge(state.activeStudies.length,studySlotCount()) ? 'slots' : !valid ? 'unavailable' : !paused && challenge && !challenge.met ? 'requirements' : '';
   var eligible=!reason;
   if(eligible && (Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard))) reason='unaffordable';
   else if(eligible && (!labCanPay(state.lumen,cost.lumen) || !(state.swiftRecoveryRefund ? canSpendShards(cost.shard) : labCanPay(state.shards,cost.shard)))){reason='unavailable';eligible=false;}
-  return {node:node,level:level,cost:cost,duration:duration,paused:paused,unlocked:unlocked,maxed:maxed,eligible:eligible,affordable:!reason,reason:reason};
+  return {node:node,level:level,cost:cost,duration:duration,paused:paused,unlocked:unlocked,maxed:maxed,eligible:eligible,affordable:!reason,reason:reason,challenge:challenge};
 }
 function commitStudyStart(node,preferredSlot){
   var plan=getStudyStartPlan(node,preferredSlot);
@@ -9890,9 +9972,8 @@ function studySlotUnlockText(slot){
   var apparatus=labExpansionLevel('labcapacity');
   if(Amount.lt(state.maxDepthEver,15) && slot<2+apparatus)return 'Reach Rift 15';
   if(Amount.lt(state.maxDepthEver,60) && slot<3+apparatus)return 'Reach Rift 60';
-  var needed=slot+1-(studySlotCount()-apparatus);
-  if(needed<=2)return 'Expanded Apparatus · level '+needed;
-  return 'Rift 60 + Expanded Apparatus · level '+(slot-2);
+  var challenge=labCapacityChallenge(Math.max(0,slot-3));
+  return 'Expanded Apparatus '+challenge.rank+' · '+challenge.requirements.map(function(r){return r.label+' '+r.current+'/'+r.target;}).join(' · ');
 }
 function renderLongStudies(){
   if(overlayFocus && overlayFocus.el.classList.contains('study-speed-editor')){
@@ -9964,11 +10045,11 @@ function renderLongStudies(){
       html += '<div class="card study-card" data-study-card="'+lnode.id+'" data-state="maxed" tabindex="-1"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' / '+lnode.levelCap+' · Maxed</span></div>'+projectEarnedMarkup(lnode.id,true)+'</div>';
       return;
     }
-    html=(html + '<div class="card study-card" data-study-card="' + lnode.id + '" data-state="' + (plan.maxed?'maxed':plan.affordable?'affordable':'unavailable') + '" style="margin-bottom:10px;">' + '<div class="name"><span class="study-identity"><span class="study-title">' + lnode.name + '</span><span class="study-level" aria-label="Current level ' + level + '">Lv. ' + level + (lnode.levelCap!==undefined?' / '+lnode.levelCap:'') + (plan.maxed?' · Maxed':'') + '</span></span>' + '</div>' + '<p class="desc">'+lnode.desc+'</p>' + projectEarnedMarkup(lnode.id) + '<div class="effect-note">' + (plan.maxed?Amount.add(Amount.add('Effect cap reached. Queue ',queueOn?'ON':'OFF'),' retained; no new starts.'):
+    html=(html + '<div class="card study-card" data-study-card="' + lnode.id + '" data-state="' + (plan.maxed?'maxed':plan.affordable?'affordable':'unavailable') + '" style="margin-bottom:10px;">' + '<div class="name"><span class="study-identity"><span class="study-title">' + lnode.name + '</span><span class="study-level" aria-label="Current level ' + level + '">Lv. ' + level + (lnode.levelCap!==undefined?' / '+lnode.levelCap:'') + (plan.maxed?' · Maxed':'') + '</span></span>' + '</div>' + '<p class="desc">'+lnode.desc+'</p>' + projectEarnedMarkup(lnode.id) + labCapacityChallengesMarkup(lnode,plan) + '<div class="effect-note">' + (plan.maxed?Amount.add(Amount.add('Effect cap reached. Queue ',queueOn?'ON':'OFF'),' retained; no new starts.'):
         Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':selectedStudySlot>=0?'Select research':'Choose a slot') + '</button>' + '</div>');
   });
 
-  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 20 research tracks across Foundations, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
+  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 23 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -12354,6 +12435,7 @@ var createEndlessCycleRuntime=function createEndlessCycleRuntime(summary,policy,
     var period=cycleLatticeClock(Amount,plan.records.map(function(r){return r.intervals;}),budget,latticeMemo),maximum=period.cycles;
     if(budget.strict&&Amount.cmp(period.remaining.ticks,0)===0)maximum=Amount.max(0,Amount.exactSub(maximum,1));
     var count=cycleEconomyBound(Amount,maximum,plan.maxLumen,shardsAvailable(),plan.maxShard,queuedPrices()).cycles;
+    var capacityLimit=labCapacityAscendBatchLimit();if(capacityLimit!==null)count=Amount.min(count,capacityLimit);
     var creditPlans=[];
     function creditPlan(object,field,reward){
       var hasKills=reward==='lumen'||reward==='shards',fixed=plan.recipes.map(function(r){return hasKills?r[reward+'Credits']:[r[reward]||0];});
@@ -13262,8 +13344,9 @@ function checkAffordability(){
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
     var lnode = LONG_STUDIES.find(function(n){ return n.id===btn.getAttribute('data-study'); });
     if(!lnode) return;
-    btn.disabled = !getStudyStartPlan(lnode).affordable;
+    btn.disabled = !getStudyStartPlan(lnode,selectedStudySlot>=0?selectedStudySlot:undefined).affordable;
   });
+  refreshLabCapacityChallenges();
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(btn){
     btn.disabled=!getStudyBoostPlan(btn.getAttribute('data-speed-study'),Number(btn.getAttribute('data-speed')),Number(btn.getAttribute('data-hours'))).affordable;
   });

@@ -35,6 +35,9 @@ for (let z = 0; z < 3200; z++) {
   initial.enemyIsLuminous = first; initial.luminousAccum = accum;
   initial.studyQueue[project.id] = true;
   initial.longStudyLevels[project.id] = level;
+  // This corpus isolates exact currency boundaries. Meet the independent
+  // expansion milestones; dedicated challenge cases verify each rejection.
+  if(project.id==='labcapacity')require('./lab-longtail-reference.cjs').capacityReady(initial,level);
   initial.lumen = initial.shards = 0;
   q.set(initial);
   const rate = Math.min(1,.7+echo*.05)+at*.1;

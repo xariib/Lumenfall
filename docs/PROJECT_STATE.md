@@ -1,12 +1,13 @@
 # Lumenfall — current delivery status
 
-29 October: [Full-game/Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
-[PR #21](https://github.com/xariib/Lumenfall/pull/21): stationary Wisp actions,
-canonical ability purchases and durable quest claims. All 21 Forge/20 Lab paths
-reviewed; caps retained after earned-currency 48-hour campaigns.
-[Android0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055)
-from `ecf88e35`: seven main gates, 189+1 scenarios, signed installed upgrade and
-public-byte verification PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
+29 October: [Lab pacing/slots](tasks/LAB_SLOT_CHALLENGES_001.md): PR23 CI pending;
+APK blocked.
+
+29 October: [Workshop audit/PR21](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
+[Android0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055),
+`ecf88e35`: Wisp actions, ability purchases, durable quests;21 Forge/20 Lab paths,
+48h earned-currency caps verified. Seven gates,189+1 scenarios, signed installed
+upgrade/public bytes PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
 
 28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
 [Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)

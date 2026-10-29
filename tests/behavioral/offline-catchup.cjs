@@ -224,7 +224,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
   assert.equal(actual[field][id],value,label+' exact unpurchased Forge default '+field+'.'+id);
   delete actual[field][id];
  }
- const newIds=['labcapacity','procurement','catalysis','focusprotocol','fieldnotes','curriculum','bossledger','luminousdistill','sigilcartography','rarityappraisal','modulefabrication','ultimateanalysis','resonantefficiency','adaptivegrowth'];
+ const newIds=['labcapacity','procurement','catalysis','focusprotocol','fieldnotes','curriculum','bossledger','luminousdistill','sigilcartography','rarityappraisal','modulefabrication','ultimateanalysis','resonantefficiency','adaptivegrowth','wispdamage','wispcritchance','wispcritdamage'];
  for(const [field,value] of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5]])for(const id of newIds){
   assert.equal(actual[field][id],value,label+' exact unpurchased Lab default '+field+'.'+id);
   delete actual[field][id];

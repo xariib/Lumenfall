@@ -1,0 +1,16 @@
+{
+  "test": "offline-12h-core",
+  "deadlineSeconds": 300,
+  "candidate": {
+    "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356",
+    "isolated": "timeout",
+    "fullSuite": "timeout"
+  },
+  "baseline": {
+    "sourceSha256": "8b06aa4afde553ee9c582a73c5aee7f5514a77423c6521ab5831620d9f52f026",
+    "version": "Unchanged PR22 presentation-only source",
+    "isolated": "timeout"
+  },
+  "acceptance": "Not passed locally; retain the original deadline. Source-bound Linux CI remains required.",
+  "separatePassedRegression": "Complete offline-catchup.cjs, including12h cap, canonical saves, cancellation, rollback and one-second references."
+}

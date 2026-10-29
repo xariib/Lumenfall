@@ -19,7 +19,9 @@
   }
   // Native UI tests hold interval callbacks only across immediate measurements.
   // Keep real input/save handlers, animation frames and the production flags intact.
-  var uiMeasurementPaused=scenario.startsWith('lifecycle-')||scenario.startsWith('offline-catchup-')||scenario==='formation-bonds-mobile';
+  // Storage fixtures compare unchanged paid timers across reload. Pause from
+  // boot too, before startup can flush a few milliseconds of host work.
+  var uiMeasurementPaused=scenario.startsWith('lifecycle-')||scenario.startsWith('offline-catchup-')||scenario==='formation-bonds-mobile'||/^(lab-motes|inquiry|forge)-(save-reload|backup-restore|recovery|reset)$/.test(scenario);
   // These older purchase scenarios now exercise real committed transactions.
   // Their runner pauses timers instead of setting the production reload flag.
   var forgeTransactionScenario=scenario.startsWith('forge-') || scenario.startsWith('lab-motes-') || scenario.startsWith('inquiry-') || scenario.includes('research-duration') || scenario==='r3-destinations' || scenario==='self-test-r3-shortcut' || scenario==='r3-save-reload';

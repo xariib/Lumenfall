@@ -9,7 +9,7 @@ var qaLifecycleEvents = [];
 // Keep their host processing clock deterministic too. Actual nonzero processing
 // replay, paid work and slow yielding are covered in offline-catchup.cjs and
 // lab-motes-offline.cjs; machine load must not add unrequested live time here.
-if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-') || window.__lumenfallQaContext.scenario.startsWith('auto-ascend-target-')){
+if(window.__lumenfallQaContext.scenario.startsWith('lifecycle-') || window.__lumenfallQaContext.scenario.startsWith('auto-ascend-target-') || /^(lab-motes|inquiry|forge)-(save-reload|backup-restore|recovery|reset)$/.test(window.__lumenfallQaContext.scenario)){
   offlineProcessingClock=function(){return 0;};
 }
 // Frozen pre-Comet-expansion Deed identities. Historical reward tests keep

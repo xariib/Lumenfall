@@ -37,7 +37,17 @@ s=seed(q);s.maxDepthEver=1000;q.set(s);const rewards=extra.filter(a=>a.check(q.g
 for(const depth of [1,14,15,25,39,40,59,60,90])for(const apparatus of [0,1,2]){
  const initial=seed(q);initial.maxDepthEver=depth;initial.longStudyLevels.labcapacity=apparatus;q.set(initial);const slots=q.slots();
  for(let slot=slots;slot<5;slot++){
-  q.set(initial);const hint=q.slotHint(slot),rift=/Rift (\d+)/.exec(hint),level=/level (\d+)/.exec(hint);
+  q.set(initial);const hint=q.slotHint(slot),expansion=/^Expanded Apparatus ([12])/.exec(hint);
+  if(expansion){
+   const rank=Number(expansion[1])-1,goals=rank?[300,100,150,10]:[150,25,60,6],labels=['Rift','Ascends','Lab levels','Different studies'];
+   labels.forEach((label,i)=>ok(hint.includes(label+' '+(i===0?depth:0)+'/'+goals[i]),'locked expansion shows actual current/required '+label));
+   const fulfilled=require('./lab-longtail-reference.cjs').capacityReady(clone(initial),rank);fulfilled.longStudyLevels.labcapacity=rank;q.set(fulfilled);
+   const plan=q.plan('labcapacity');ok(plan.affordable,'fulfilling displayed goals permits the expansion');
+   ok(q.slots()<=slot,'goals alone do not grant an unpaid expansion');ok(q.start('labcapacity'),'displayed expansion can actually start');
+   ok(q.slots()<=slot,'starting expansion does not grant its slot early');q.finish(plan.duration);
+   ok(q.slots()>slot,'completing displayed expansion unlocks the slot');continue;
+  }
+  const rift=/Rift (\d+)/.exec(hint),level=/level (\d+)/.exec(hint);
   const requiredDepth=rift?Number(rift[1]):depth,requiredLevel=level?Number(level[1]):apparatus;
   ok(requiredDepth>depth||requiredLevel>apparatus,'locked slot never names requirements already met: '+depth+'/'+apparatus+'/'+slot+' '+hint);
   const fulfilled=clone(initial);fulfilled.maxDepthEver=Math.max(depth,requiredDepth);fulfilled.longStudyLevels.labcapacity=Math.max(apparatus,requiredLevel);q.set(fulfilled);

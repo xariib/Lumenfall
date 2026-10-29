@@ -8,18 +8,18 @@ function verify(html){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);};
  const near=(a,b,m)=>ok(Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-11,m+': '+a+' vs '+b);
  const x=app(html),q=x.q,defs=q.expansion(),ids=defs.map(d=>d.id);
- eq(ids.length,14,'fourteen added tracks');eq(new Set(ids).size,14,'unique stable IDs');eq(q.projects().filter(n=>!n.retiredTo).length,20,'twenty purchasable Lab tracks');
+ eq(ids.length,14,'fourteen added tracks');eq(new Set(ids).size,14,'unique stable IDs');eq(q.projects().filter(n=>!n.retiredTo).length,23,'twenty-three purchasable Lab tracks including Wisp fundamentals');
  eq(q.projects().filter(n=>n.retiredTo).map(n=>n.id),['riftattune','formationstudy','prismstudy'],'old paid identities stay retired, not erased');
  const record=[];
  const discount=(v,p)=>Number((BigInt(v)*BigInt(100-p)+99n)/100n);
- const work=(d,l)=>Math.round(Math.min(864000,d.baseDurationSec*Math.pow(d.durationGrowth,l)));
+ const work=require('./lab-longtail-reference.cjs').nominal;
  const costs=(d,l)=>({lumen:Math.round(d.lumenBase*Math.pow(d.lumenGrowth,l)),shard:Math.round(d.shardBase*Math.pow(d.shardGrowth,l))});
  // Every project: named unlock, independent base curve, pure rejection, delayed
  // actual completion, exact price, cap, future queue intent and two-slot storage.
  for(const d of defs){
   ok(d.name&&d.desc&&d.labGroup,'defined UI identity '+d.id);ok(d.levelCap>0&&Number.isSafeInteger(d.levelCap),'finite positive cap');
   for(const l of [0,1,d.levelCap-1,d.levelCap,d.levelCap+1,1000000]){
-   const s=seed(q);s.longStudyLevels[d.id]=l;q.set(s);const before=clone(q.get());
+   const s=seed(q);s.longStudyLevels[d.id]=l;if(d.id==='labcapacity'&&l<2)require('./lab-longtail-reference.cjs').capacityReady(s,l);q.set(s);const before=clone(q.get());
    eq(q.level(d.id),Math.min(l,d.levelCap),'new effect cap '+d.id);eq(q.get().longStudyLevels[d.id],l,'raw paid level retained '+d.id);q.plan(d.id);eq(q.get(),before,'plan purity');
    if(l>=d.levelCap){eq(q.plan(d.id).reason,'maxed','cap gate '+d.id);eq(q.start(d.id),false,'cap refuses payment');eq(q.get(),before,'cap is pure');continue;}
    const c=costs(d,l);eq(q.cost(d.id,l),c,'independent unmodified base price '+d.id);eq(q.duration(d.id,l),work(d,l),'independent nominal work '+d.id);

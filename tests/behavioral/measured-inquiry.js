@@ -28,7 +28,8 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   if(ctx.scenario==='inquiry-contracts'){
     var nodes=t.nodes(),ids=nodes.map(function(n){return n.id;});
     same(nodes.filter(function(n){return !n.labGroup;}).map(function(n){return n.id;}),window.inquiryOriginals.concat('measuredinquiry'),'original nine-study catalogue remains intact');
-    ok(ids.length===23&&nodes.filter(function(n){return n.labGroup;}).length===14,'fourteen additive expansion projects, no original removed');
+    ok(ids.length===26&&nodes.filter(function(n){return n.labGroup&&n.labGroup!=='Wisp fundamentals';}).length===14,'fourteen additive expansion projects, no original removed');
+    same(nodes.filter(function(n){return n.labGroup==='Wisp fundamentals';}).map(function(n){return n.id;}),['wispdamage','wispcritchance','wispcritdamage'],'three explicit Wisp fundamentals');
     same(t.originals(),window.inquiryOriginals,'frozen original target IDs');
     var fresh=b.freshStateSnapshot();ok(fresh.longStudyLevels.measuredinquiry===0&&!fresh.studyQueue.measuredinquiry,'fresh0/OFF');
     var current=seed();delete current.longStudyLevels.measuredinquiry;delete current.studyQueue.measuredinquiry;
@@ -37,13 +38,15 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     var migrated=b.forge.canonical(legacy);
     window.inquiryOriginals.forEach(function(id){ok(migrated.studyQueue[id],'v0 original auto-study '+id);});
     ok(!migrated.studyQueue.measuredinquiry && migrated.schemaVersion===6,'v0 InquiryOFF, current schema5');
-    [[0,30000,1200,600],[5,566870,22675,6291],[9,5950779,238031,41232],[10,10711402,428456,65971]].forEach(function(v){
+    // Independent integer oracle for the accepted90-day minimum at8x. For
+    // levels2..9: ceil(1555200250*(level-1)^3/18144), before earned discounts.
+    [[0,30000,1200,600],[5,566870,22675,5485716],[9,5950779,238031,43885722],[10,10711402,428456,43885722]].forEach(function(v){
       install(seed());same(t.cost('measuredinquiry',v[0]),{lumen:v[1],shard:v[2]},'precise raw price '+v[0]);
       ok(t.duration('measuredinquiry',v[0])===v[3],'precise own duration '+v[0]);
     });
     var paid={lumen:0,shard:0},work=0;
     for(var k=0;k<10;k++){var price=t.cost('measuredinquiry',k);paid.lumen+=price.lumen;paid.shard+=price.shard;work+=t.duration('measuredinquiry',k);}
-    same(paid,{lumen:13351752,shard:534070},'exact cap commitment');ok(work===108951,'exact cap work commitment');
+    same(paid,{lumen:13351752,shard:534070},'exact cap commitment');ok(work===111087297,'exact cap work commitment');
     [0,5,10,13].forEach(function(inquiry){
       var s=seed();s.longStudyLevels.measuredinquiry=inquiry;install(s);
       nodes.filter(function(n){return !n.labGroup&&n.id!=='measuredinquiry';}).forEach(function(n){
@@ -52,7 +55,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
           ok(t.duration(n.id,k)===Math.round(nominal*(1-.02*Math.min(inquiry,10))),'nested rounding '+n.id+' '+k+'/'+inquiry);
         });
       });
-      ok(t.duration('measuredinquiry',5)===6291,'Inquiry never self-discounts '+inquiry);
+      ok(t.duration('measuredinquiry',5)===5485716,'Inquiry never self-discounts '+inquiry);
     });
     [0,5,10].forEach(function(inquiry){
       window.inquiryOriginals.forEach(function(id){
@@ -83,7 +86,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     deeds.longStudyLevels.guardmastery=0;window.inquiryOriginals.forEach(function(id){deeds.longStudyLevels[id]=1;});install(deeds);
     var every=b.forge.deeds().items.find(function(d){return d.id==='allstudies';});ok(every.eligible&&every.progress.target===5&&every.progress.current===5,'five retained targets require no Inquiry; old total credit retained');
     b.forge.achievements();var once=b.getState();b.forge.achievements();same(b.getState(),once,'sticky one-time grants');ok(b.forge.deeds().total===683,'unchanged683 pool');
-    function ownDuration(){var s=seed();s.longStudyLevels.measuredinquiry=5;install(s);ok(t.duration('measuredinquiry',5)===6291,'Inquiry oracle: self-discount forbidden');}
+    function ownDuration(){var s=seed();s.longStudyLevels.measuredinquiry=5;install(s);ok(t.duration('measuredinquiry',5)===5485716,'Inquiry oracle: self-discount forbidden');}
     ownDuration();mutationCaught('self',ownDuration);
     return {checks:checks,catalogue:9,originals:8,cap:10,finiteGuards:true,negativeControls:1};
   }
