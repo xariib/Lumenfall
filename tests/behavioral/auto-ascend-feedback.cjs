@@ -116,6 +116,14 @@ function endpointCases(input){
     const summary=q.advance(10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
     const endpoint=F.clone(q.get());
     const historicalEndpoint=F.clone(endpoint);
+    // PR15 predates these additive identities. Require their exact unpurchased
+    // defaults before retaining the complete frozen historical endpoint hash.
+    for(const id of ['wispdamage','wispcritchance','wispcritdamage']){
+      for(const [field,value]of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5],['studyBoostHours',8]]){
+        eq(historicalEndpoint[field][id],value,'new Wisp research stays unpurchased in PR15 oracle '+field+'.'+id);
+        delete historicalEndpoint[field][id];
+      }
+    }
     if(Object.hasOwn(historicalEndpoint,'offlineClockHighWaterMs')){
       eq(historicalEndpoint.offlineClockHighWaterMs,F.CLOCK,'new credited-time metadata retains exact fixture save endpoint');
       delete historicalEndpoint.offlineClockHighWaterMs;

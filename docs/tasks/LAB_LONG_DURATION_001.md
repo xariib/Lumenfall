@@ -102,8 +102,9 @@ pacing PASS. Existing endless core requires its current `--focus-f` option;
 the exploratory invocation without that option fails the older Titan gate,
 and the correct current-policy invocation passes. No acceptance was weakened.
 Original Lab mobile6588 assertions and complete offline-catchup regression PASS.
-Full browser suite continues; full12h local case hit its existing300s deadline
-during concurrent validation and is being checked alone without changing it.
+Full browser suite continues. The full12h local case hits its existing300s
+deadline in both full/isolated candidate runs and on unchanged PR22 source8b06aa4a.
+This is an observed baseline limitation, not a local PASS; the deadline remains.
 The first full browser attempt used the default dump-DOM transport, which stalls
 on this Windows/Brave setup (no completed QA marker, unchanged25s deadlines).
 It was stopped and restarted using existing `LUMENFALL_QA_DOM_TRANSPORT=pipe`.
@@ -130,6 +131,11 @@ retain their clocks. Updated R3, upgrade identity, Inquiry contracts/chronology,
 all Lab/Inquiry/Forge storage cases and original P1/P2 navigation cases PASS.
 Detailed actual/expected timer values are retained on storage assertion failure.
 
+CI98d6f3c then exposed the PR15 Auto Ascend frozen endpoint hash: its historical
+state lacks the new Lab defaults. The oracle now explicitly requires all15 new
+zero/OFF/default values before comparing every original frozen endpoint hash.
+No baseline hashes were changed.174 assertions plus all4 defect controls PASS.
+
 Independent one-second four-window reference was actually regenerated.
 Kills/Ascends/Prisms match the previous binding; state hashes include the new
 zero/OFF Lab defaults. The frozen historical offline comparison separately
@@ -146,6 +152,8 @@ publication uses the connected GitHub plugin with every blob/tree verified.
 Browser inventory again reports `Local browser use is disabled in Work settings`;
 GitHub has no workflow-dispatch action. No settings were changed, no signed build
 or release was started, and no access restriction was bypassed.
+[Local12h limitation](../qa/lab-long-duration-001/offline-12h-local-limit.json) and
+[unchanged historical endpoint checks](../qa/lab-long-duration-001/auto-ascend-feedback.json).
 Next: finish full regressions and self-review, publish the scoped branch/PR,
 address actual CI findings, and integrate only after required gates pass.
 Android dispatch capability and physical/human acceptance remain unverified.
