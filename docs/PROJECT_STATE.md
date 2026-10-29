@@ -1,19 +1,12 @@
 # Lumenfall — current delivery status
 
-29 October: [Readable offline recap](tasks/OFFLINE_RECAP_CLARITY_001.md) locally
-verified: resource rows, concise automation updates and expandable grouped Lab
-results; Continue stays visible. 18 core/129 mobile assertions, eight viewport/
-text profiles, existing 30 startup profiles and actual offline return PASS.
-GitHub CI/integration and signed Android delivery pending; browser workflow
-dispatch access currently disabled. [Previews/evidence](qa/offline-recap-clarity-001/README.md).
+29 October: [Offline recap](tasks/OFFLINE_RECAP_CLARITY_001.md),
+[PR22](https://github.com/xariib/Lumenfall/pull/22): local PASS; CI/Android pending.
 
-29 October: [Full-game/Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
-[PR #21](https://github.com/xariib/Lumenfall/pull/21): stationary Wisp actions,
-canonical ability purchases and durable quest claims. All 21 Forge/20 Lab paths
-reviewed; caps retained after earned-currency 48-hour campaigns.
+29 October: [Workshop audit](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md) released
 [Android0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055)
-from `ecf88e35`: seven main gates, 189+1 scenarios, signed installed upgrade and
-public-byte verification PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
+from `ecf88e35`: seven gates, 189+1 scenarios and signed installed/public APK
+checks PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
 
 28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
 [Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)
