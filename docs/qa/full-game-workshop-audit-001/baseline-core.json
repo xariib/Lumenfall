@@ -1,0 +1,30 @@
+{
+  "status": "fail",
+  "checks": 249,
+  "sourceSha256": "fc7f0b7d5232fd9aedcc670c973acbac2f57ac8e42954a3f8f36e0b95b1b0d43",
+  "records": [
+    {
+      "name": "module-recruitment-and-canonical-price",
+      "status": "fail",
+      "checks": 1,
+      "error": "unrecruited Wisp cannot buy ability upgrades\n\ntrue !== false\n"
+    },
+    {
+      "name": "module-payment-cap-and-storage-failures",
+      "status": "pass",
+      "checks": 52
+    },
+    {
+      "name": "quest-claim-durable-and-once",
+      "status": "fail",
+      "checks": 2,
+      "error": "claim survives immediate cold reload before any other action\n+ actual - expected\n\n+ undefined\n- true\n"
+    },
+    {
+      "name": "workshop-catalogue-and-cap-boundaries",
+      "status": "pass",
+      "checks": 194
+    }
+  ],
+  "controls": []
+}

@@ -1,9 +1,11 @@
 'use strict';
+const expectSaveClock=require('./save-clock-contract.cjs');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {spawn}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),args=process.argv.slice(2),sourcePath=path.resolve(args[0]||'index.html');
+const chromeOption=args.indexOf('--chrome'),chrome=chromeOption>=0?args[chromeOption+1]:null;
 const selected=args.includes('--quest-only')?'quest':args.includes('--ascend-only')?'ascend':'both';
 let source=fs.readFileSync(sourcePath,'utf8');
 const mutation=args.includes('--mutate-attention')?'attention':args.includes('--mutate-quest-focus')?'quest-focus':null;
@@ -26,7 +28,7 @@ async function tap(selector){const r=await ev(`(()=>{var e=document.querySelecto
 async function key(){await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await pause(30);}
 async function run(){
  stage=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-ui-regressions-'));fs.writeFileSync(path.join(stage,'index.html'),html);for(const dir of ['fonts','branding'])fs.cpSync(path.join(root,dir),path.join(stage,dir),{recursive:true});server=await serve(stage);
- profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-ui-regression-browser-'));browser=spawn(findChrome(),['--headless=new','--no-sandbox','--disable-gpu','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
+ profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-ui-regression-browser-'));browser=spawn(chrome||findChrome(),['--headless=new','--no-sandbox','--disable-gpu','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
  browser.stderr.on('data',()=>{});browser.on('close',()=>{closed=true;for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();});browser.on('error',e=>{for(const p of pending.values()){clearTimeout(p.timer);p.reject(e);}pending.clear();});
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});for(const n of [3,4])browser.stdio[n].on('error',()=>{});
  const version=await send('Browser.getVersion',{},null);const target=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;await send('Page.enable');await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});
@@ -42,14 +44,18 @@ async function run(){
    const config=await ev('uiRegression.setup('+restStop+')');await tap('[data-tab="deeds"]');await pause(240);
    for(let slot=0;slot<3;slot++){
     const sel='[data-quest-slot="'+slot+'"] [data-quest-claim]';await ev(`(()=>{var e=document.querySelector(${JSON.stringify(sel)});e.scrollIntoView({block:'center'});e.focus({preventScroll:true});})()`);await pause(40);
-    const before=await ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get()})');
+    const before=await ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get(),observedAt:Date.now()})');
     if(input==='touch'){const rect=await ev(`(()=>{var r=document.querySelector(${JSON.stringify(sel)}).getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rect]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(60);}else await key();
-    const after=await ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get(),slot:document.activeElement.closest("[data-quest-slot]")?.dataset.questSlot,claimed:document.activeElement.closest("[data-quest-slot]")?.querySelector("[data-quest-claim]").disabled})');
+    const after=await ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get(),observedAt:Date.now(),slot:document.activeElement.closest("[data-quest-slot]")?.dataset.questSlot,claimed:document.activeElement.closest("[data-quest-slot]")?.querySelector("[data-quest-claim]").disabled})');
     check(Math.abs(after.scroll-before.scroll)<=1,'claim keeps exact scroll position '+width+'/'+scale+'/'+input+'/'+slot);check(after.slot===String(slot),'claim keeps focus in original quest row');check(after.claimed,'claimed control remains disabled');check(after.state.comets===before.state.comets+(config.rewards[slot].comets||0),'one exact Comet quest award');check(after.state.prisms===before.state.prisms+(config.rewards[slot].prisms||0),'one exact Prism quest award');
     const {questClaimed:oldClaims,comets:oldComets,prisms:oldPrisms,...protectedBefore}=before.state;
     const {questClaimed:newClaims,comets:newComets,prisms:newPrisms,...protectedAfter}=after.state;
+    check(after.state.lastSeen>=before.observedAt&&after.state.lastSeen<=after.observedAt,'claim saves within the actual native-input wall-clock interval');
+    expectSaveClock(protectedBefore,protectedAfter);
     assert.deepEqual(protectedAfter,protectedBefore,'quest claim preserves all other save/paid-value fields');
     assert.deepEqual(newClaims,{...oldClaims,[config.ids[slot]]:true},'only the requested quest becomes claimed');
+    const slots=await ev('["lumenfall_save_v2","lumenfall_save_recovery_v1"].map(function(key){return JSON.parse(localStorage.getItem(key));})');
+    slots.forEach(function(saved){assert.deepEqual(saved,after.state,'claim and exact reward immediately persist in each complete save slot');});
     await key();await ev('uiRegression.daily()');const repeat=await ev('({scroll:document.querySelector("main").scrollTop,state:uiRegression.get(),slot:document.activeElement.closest("[data-quest-slot]")?.dataset.questSlot})');check(repeat.slot===String(slot),'periodic quest rendering retains same-row focus');check(Math.abs(repeat.scroll-after.scroll)<=1,'periodic quest rendering keeps scroll position');assert.deepEqual(repeat.state,after.state,'repeated Enter never claims next quest');
    }
   }

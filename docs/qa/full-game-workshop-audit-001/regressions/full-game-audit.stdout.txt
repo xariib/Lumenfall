@@ -1,0 +1,59 @@
+{
+  "status": "pass",
+  "checks": 276,
+  "sourceSha256": "4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65",
+  "records": [
+    {
+      "name": "module-recruitment-and-canonical-price",
+      "status": "pass",
+      "checks": 5
+    },
+    {
+      "name": "module-payment-cap-and-storage-failures",
+      "status": "pass",
+      "checks": 52
+    },
+    {
+      "name": "quest-claim-durable-and-once",
+      "status": "pass",
+      "checks": 25
+    },
+    {
+      "name": "workshop-catalogue-and-cap-boundaries",
+      "status": "pass",
+      "checks": 194
+    }
+  ],
+  "controls": [
+    {
+      "id": "recruitment",
+      "status": "killed",
+      "failures": [
+        {
+          "name": "module-recruitment-and-canonical-price",
+          "error": "unrecruited Wisp cannot buy ability upgrades\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "id": "canonical",
+      "status": "killed",
+      "failures": [
+        {
+          "name": "module-recruitment-and-canonical-price",
+          "error": "forged Wisp cannot substitute a free price\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "id": "quest",
+      "status": "killed",
+      "failures": [
+        {
+          "name": "quest-claim-durable-and-once",
+          "error": "claim survives immediate cold reload before any other action\n+ actual - expected\n\n+ undefined\n- true\n"
+        }
+      ]
+    }
+  ]
+}

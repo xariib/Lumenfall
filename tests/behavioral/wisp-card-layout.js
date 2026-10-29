@@ -77,12 +77,31 @@ window.runWispCardLayoutQa=function(baseline){
     observations.push({id:id,stage:stage,height:card.getBoundingClientRect().height,moduleColumns:m.gridTemplateColumns});
   });});
   if(!baseline){
+    // Auto-Empower is unlocked only by this Deed; the original static fixtures
+    // above intentionally did not cover changing values with automation visible.
+    b.ids.forEach(function(id){
+      var stable=null;
+      [1,9,10,99,100,999,1000,9999].forEach(function(value){
+        var s=seed(id,0);s.achieved.labmaster=true;s.spirits[id]=value;
+        s.heroRarity[id]=value%6;s.empowerQueue[id]=value%2===0;
+        b.set(s);b.render();b.refresh();
+        var card=document.querySelector('[data-wisp-card="'+id+'"]');
+        var toggle=card.querySelector('[data-empower-queue]'),stats=card.querySelector('.hero-stats');
+        var t=toggle.getBoundingClientRect(),r=stats.getBoundingClientRect(),c=card.getBoundingClientRect();
+        ok(t.top>=r.bottom-1,'Auto-Empower has a dedicated row below every live value '+id+'/'+value);
+        var geometry=[t.top-c.top,t.height,card.querySelector('[data-empower]').getBoundingClientRect().top-c.top];
+        if(stable)ok(geometry.every(function(n,i){return Math.abs(n-stable[i])<=1;}),'live values keep Auto-Empower and Empower stationary '+id+'/'+value);
+        else stable=geometry;
+        ok(t.width>=44&&t.height>=44&&t.right<=c.right+1,'Auto-Empower stays readable and touchable '+id);
+      });
+    });
     var gateState=seed('ember',1);gateState.spirits.ember=1;b.set(gateState);b.render();
     ok(document.querySelector('[data-rarity=ember]').disabled,'high ability level cannot bypass low Wisp-level rarity gate');
     gateState.spirits.ember=100;gateState.wispModules.ember=0;b.set(gateState);b.render();
     ok(!document.querySelector('[data-rarity=ember]').disabled,'zero ability upgrades do not block funded Wisp-level rarity purchase');
   }
   // Leave a representative starting card for the driver's geometry and screenshots.
-  b.set(seed('ember',0));b.render();b.refresh();b.present();
+  var representative=seed('ember',0);representative.achieved.labmaster=true;
+  b.set(representative);b.render();b.refresh();b.present();
   return {checks:checks,fixtures:observations.length,observations:observations};
 };

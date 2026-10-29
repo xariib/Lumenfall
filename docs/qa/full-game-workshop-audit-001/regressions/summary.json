@@ -1,0 +1,338 @@
+{
+  "status": "fail",
+  "sourceSha256": "4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65",
+  "node": "v24.20.0",
+  "results": [
+    {
+      "name": "check_context",
+      "args": [
+        "scripts/codex/check_context.cjs",
+        "--task",
+        "docs/tasks/FULL_GAME_WORKSHOP_AUDIT_001.md"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.43254180000000003
+    },
+    {
+      "name": "validate_source",
+      "args": [
+        "scripts/ci/validate_source.cjs"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.39685300000000007
+    },
+    {
+      "name": "full-game-audit",
+      "args": [
+        "tests/behavioral/full-game-audit.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.4152251999999998
+    },
+    {
+      "name": "exploit-fixes",
+      "args": [
+        "tests/behavioral/exploit-fixes.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.226231600000001
+    },
+    {
+      "name": "startup-order",
+      "args": [
+        "tests/behavioral/startup-order.cjs"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.12535759999999938
+    },
+    {
+      "name": "progression-pacing",
+      "args": [
+        "tests/behavioral/progression-pacing.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.164109200000001
+    },
+    {
+      "name": "forge-expansion",
+      "args": [
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.4612268000000004
+    },
+    {
+      "name": "forge-expansion-calibration",
+      "args": [
+        "tests/behavioral/forge-expansion-calibration.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 82.59700099999999
+    },
+    {
+      "name": "lab-expansion",
+      "args": [
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 5.127101999999999
+    },
+    {
+      "name": "lab-expansion-boundary",
+      "args": [
+        "tests/behavioral/lab-expansion-boundary.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.1680776999999942
+    },
+    {
+      "name": "lab-expansion-stress",
+      "args": [
+        "tests/behavioral/lab-expansion-stress.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.193047600000005
+    },
+    {
+      "name": "forge-lab-caps",
+      "args": [
+        "tests/behavioral/forge-lab-caps.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.032390699999989
+    },
+    {
+      "name": "lab-slot-contract",
+      "args": [
+        "tests/behavioral/lab-slot-contract.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.2634781999999977
+    },
+    {
+      "name": "lab-timed-boosts",
+      "args": [
+        "tests/behavioral/lab-timed-boosts.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 10.047817200000004
+    },
+    {
+      "name": "lab-boost-queue",
+      "args": [
+        "tests/behavioral/lab-boost-queue.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 81.61387140000001
+    },
+    {
+      "name": "lab-queue-continuity",
+      "args": [
+        "tests/behavioral/lab-queue-continuity.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.23900500000000466
+    },
+    {
+      "name": "endless-progression-core",
+      "args": [
+        "tests/behavioral/endless-progression-core.cjs",
+        "index.html",
+        "--focus-f"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.375206600000005
+    },
+    {
+      "name": "endless-price-cache",
+      "args": [
+        "tests/behavioral/endless-price-cache.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.4067537000000011
+    },
+    {
+      "name": "comet-expansion-core",
+      "args": [
+        "tests/behavioral/comet-expansion-core.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.4958744000000006
+    },
+    {
+      "name": "tree-expansion-core",
+      "args": [
+        "tests/behavioral/tree-expansion-core.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.1056620000000112
+    },
+    {
+      "name": "prism-earning-state",
+      "args": [
+        "tests/behavioral/prism-earning-state.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.3875585999999895
+    },
+    {
+      "name": "loadout-memory",
+      "args": [
+        "tests/behavioral/loadout-memory.cjs",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.3800914000000048
+    },
+    {
+      "name": "formation-best-now-core",
+      "args": [
+        "tests/behavioral/formation-best-now-core.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.8383151000000071
+    },
+    {
+      "name": "wisp-contribution-core",
+      "args": [
+        "tests/behavioral/wisp-contribution-core.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 29.199653899999976
+    },
+    {
+      "name": "permanent-progression",
+      "args": [
+        "tests/behavioral/permanent-progression.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.2354369000000005
+    },
+    {
+      "name": "support-recast-current",
+      "args": [
+        "tests/behavioral/support-recast-current.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.9790720999999903
+    },
+    {
+      "name": "early-wisp-curve-current",
+      "args": [
+        "tests/behavioral/early-wisp-curve-current.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.871587700000004
+    },
+    {
+      "name": "farm-recap-parity",
+      "args": [
+        "tests/behavioral/farm-recap-parity.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 15.3581832
+    },
+    {
+      "name": "offline-catchup",
+      "args": [
+        "tests/behavioral/offline-catchup.cjs",
+        "--source",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 517.2458659
+    }
+  ]
+}
