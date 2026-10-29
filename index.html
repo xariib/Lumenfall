@@ -3745,6 +3745,15 @@ var LONG_STUDIES = [
   {id:'measuredinquiry', name:'Measured Inquiry', desc:'2% less work per completed level, up to 20%, for future starts of Wisp Ascendancy, Guardian’s Mastery, Shard Attunement, Lumen Wellspring and Luminous Sense. Running Studies and Measured Inquiry itself are unchanged.', unlockDepth:60, levelCap:10, baseDurationSec:600, durationGrowth:1.6, lumenBase:30000, lumenGrowth:1.8, shardBase:1200, shardGrowth:1.8}
 ];
 
+// Simple, permanent damage research. Critical damage is averaged consistently
+// across passive/ability damage, so live and offline play never roll differently.
+var WISP_STUDIES = [
+  {id:'wispdamage',name:'Wisp Damage',labGroup:'Wisp fundamentals',desc:'+2% passive Wisp and damaging ability damage per level. Also raises the Wisp-powered part of Guardian Tap; ability resource rewards and Support strength are unchanged.',unlockDepth:1,levelCap:100,baseDurationSec:240,durationGrowth:1.12,lumenBase:1000,lumenGrowth:1.35,shardBase:80,shardGrowth:1.35},
+  {id:'wispcritchance',name:'Wisp Critical Chance',labGroup:'Wisp fundamentals',desc:'+0.5 percentage points critical chance per level, up to 50%. Critical damage is averaged evenly across passive Wisp damage and damaging abilities, including offline. No random rolls.',unlockDepth:10,levelCap:100,baseDurationSec:360,durationGrowth:1.12,lumenBase:3000,lumenGrowth:1.35,shardBase:160,shardGrowth:1.35},
+  {id:'wispcritdamage',name:'Wisp Critical Damage',labGroup:'Wisp fundamentals',desc:'+0.02 critical damage multiplier per level, from 2x to 4x. Needs Wisp Critical Chance to add damage. Averaged into Wisp damage; ability resource rewards and Support strength are unchanged.',unlockDepth:15,levelCap:100,baseDurationSec:480,durationGrowth:1.12,lumenBase:6000,lumenGrowth:1.35,shardBase:300,shardGrowth:1.35}
+];
+WISP_STUDIES.forEach(function(node){LONG_STUDIES.push(node);});
+
 // LAB_EXPANSION_001: fourteen research tracks, separate from the original Deed
 // and Measured Inquiry target sets. No old ID, paid level or work is converted.
 var LAB_EXPANSION = [
@@ -3949,6 +3958,16 @@ var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
 LONG_STUDIES.forEach(function(node){if(node.levelCap===undefined){node.levelCap=500;node.grandfatheredCap=true;}});
+// Full-track minimum days with continuous 8x and all earned work reductions.
+// Early levels and paid records keep their work; only future starts use this tail.
+var LAB_LONGTAIL_DAYS = {measuredinquiry:90,procurement:90,catalysis:120,focusprotocol:14,fieldnotes:60,curriculum:7,bossledger:180,luminousdistill:240,sigilcartography:30,rarityappraisal:60,modulefabrication:90,ultimateanalysis:120,resonantefficiency:14,adaptivegrowth:14,wispdamage:365,wispcritchance:365,wispcritdamage:365};
+LONG_STUDIES.forEach(function(node){
+  var days=LAB_LONGTAIL_DAYS[node.id];if(!days)return;
+  var n=node.levelCap-2,sumCubes=Math.pow(n*(n+1)/2,2);
+  var fastestFactor=node.id==='focusprotocol'?0.7:node.id==='curriculum'?0.8:0.56;
+  // The small rounding allowance keeps the full sum above its stated minimum.
+  node.tailWorkSec=(days*86400*8+node.levelCap)/(fastestFactor*sumCubes);
+});
 function labExpansionLevel(id){
   var raw=state && state.longStudyLevels ? state.longStudyLevels[id] : 0;
   return Math.min(LAB_EXPANSION_CAPS[id]||0,Math.max(0,Math.floor(raw||0)));
@@ -4297,6 +4316,13 @@ function nodeEarnedEffect(id){
 }
 function projectEarnedEffect(id,level){
   if(level===undefined) level=longStudyLevel(id);
+  var wispNode=WISP_STUDIES.find(function(n){return n.id===id;});
+  if(wispNode){
+    level=studyEffectiveLevel(wispNode,level);
+    if(id==='wispdamage')return '+'+earnedPercent(level*0.02)+'% passive Wisp and damaging ability damage';
+    if(id==='wispcritchance')return earnedPercent(level*0.005)+'% critical chance · damage averaged evenly, including offline';
+    return formatNum(2+level*0.02)+'× critical damage · needs Critical Chance; damage averaged evenly';
+  }
   if(LAB_EXPANSION_CAPS[id]) return labExpansionEffect(id,level);
   if(id==='measuredinquiry') return earnedPercent(0.02*studyEffectiveLevel(LONG_STUDIES.find(function(n){return n.id===id;}),level))+'% less work for future starts of the '+CURRENT_STUDY_IDS.length+' foundation Studies; running work and Measured Inquiry are unchanged';
   var rows={
@@ -6320,6 +6346,12 @@ function longStudyLumenMult(){ return 1 + longStudyLevel('lumenstudy')*0.08; }
 function longStudyFormationMult(){ return 1 + longStudyLevel('formationstudy')*0.05; }
 function longStudyMoteMult(){ return 1 + longStudyLevel('motestudy')*0.10; }
 function longStudyPrismMult(){ return 1 + longStudyLevel('prismstudy')*0.05; }
+function wispStudyDamageMult(){
+  var damage=Math.min(100,longStudyLevel('wispdamage'));
+  var chance=Math.min(100,longStudyLevel('wispcritchance'))*0.005;
+  var critical=2+Math.min(100,longStudyLevel('wispcritdamage'))*0.02;
+  return (1+damage*0.02)*(1+chance*(critical-1));
+}
 function tapMult(){ return (1 + nodeLevel('steady')*0.08) * researchFactor('resolve') * longStudyTapMult(); }
 function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }
 function momentumMult(){ return 1 + nodeLevel('momentum')*0.06; }
@@ -6507,12 +6539,14 @@ function bestNowFormationPlan(){
  *
  * Passive Wisp Damage = Active Wisp Power × passive-only permanent multipliers
  * (Formation Training, Rarity collection synergy, Eternal Momentum,
- * Wisp Ascendancy, Formation Insight) × applicable damage Bonds × Support buff.
+ * Wisp Ascendancy, Formation Insight) × Wisp Damage/averaged critical research
+ * × applicable damage Bonds × Support buff.
  * Modules and Ultimates do not modify passive damage.
  *
  * Ability Damage = Wisp Power × ability coefficient × the Burst/Breaker Module
  * where applicable × Ultimate × applicable Formation damage Bonds ×
- * bossAbilityDamageMult(). Passive-only permanent multipliers and Support buffs
+ * bossAbilityDamageMult() × Wisp Damage/averaged critical research.
+ * Passive-only permanent multipliers and Support buffs
  * do not modify ability hits.
  *
  * Ability Rewards = Wisp Power × reward coefficient × that Ranged/Druid Module
@@ -6631,7 +6665,7 @@ function rarityCost(sp, tier){
 }
 
 function passiveGlobalPowerMult(){
-  return formationMult() * synergyMult() * momentumMult() * longStudyPowerMult();
+  return formationMult() * synergyMult() * momentumMult() * longStudyPowerMult() * wispStudyDamageMult();
 }
 function effectivePartyPower(){
   // General Active-party passive power includes Starcaller, but not the
@@ -6818,7 +6852,7 @@ function abilityUltimateMult(sp){
   return sp && ultimateUnlocked(sp.id) ? 2*astralFactor('astralconvergence') : 1;
 }
 function abilityRawBurst(sp,level){
-  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho'));
+  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho')*wispStudyDamageMult());
 }
 function abilityBurstDamage(sp, depth){
   var level = state.spirits[sp.id]||0;
@@ -7942,6 +7976,7 @@ function measuredInquiryReduction(){
 }
 function studyDuration(node, level){
   var work=Math.round(Math.min(ENDLESS_PROGRESSION.maxStudyWorkSec,node.baseDurationSec * Math.pow(node.durationGrowth, level)));
+  if(node.tailWorkSec && level>1)work=Math.max(work,Math.ceil(node.tailWorkSec*Math.pow(Math.min(level,node.levelCap-1)-1,3)));
   work=LEGACY_STUDY_IDS.indexOf(node.id)===-1 ? work : Math.round(work*(1-measuredInquiryReduction()));
   var factor=labFutureWorkFactor(node);
   return factor===1 ? work : Math.max(1,Math.round(work*factor));

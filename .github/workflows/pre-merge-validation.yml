@@ -127,6 +127,13 @@ jobs:
           node tests/behavioral/progression-pacing.cjs index.html --negative
           node tests/behavioral/farm-recap-parity.cjs index.html --negative
 
+      - name: Long Lab pacing and basic Wisp research
+        run: |
+          mkdir -p validation-evidence/lab-longtail
+          node scripts/codex/check_context.cjs --task docs/tasks/LAB_LONG_DURATION_001.md
+          node tests/behavioral/lab-longtail.cjs index.html --negative > validation-evidence/lab-longtail/core.json
+          node tests/behavioral/lab-speed-controls.cjs index.html --longtail --evidence validation-evidence/lab-longtail/mobile > validation-evidence/lab-longtail/mobile.json
+
       - name: Repository migration version and historical-baseline controls
         run: node tests/tooling/repository-migration.cjs
 

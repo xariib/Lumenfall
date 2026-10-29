@@ -32,7 +32,7 @@ async function run(){
  const o=await ev("({hidden:document.querySelector('[data-study-inspection=guardmastery]').hidden,queueVisible:!!document.querySelector('[data-study-use-motes=guardmastery]').getClientRects().length})");
  check(o.hidden&&!o.queueVisible,'baseline hides direct speed and queue choice behind disclosure');records.push(o);
  }else{
- await require(args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
+ await require(args.includes('--longtail')?'./lab-longtail-ui.cjs':args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
 }
  check((await ev('uiRegressionErrors')).length===0,'no actual browser runtime errors');
  return {status:'pass',sourceSha256,mutation,checks,profiles:records,version};

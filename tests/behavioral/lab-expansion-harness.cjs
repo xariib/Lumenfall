@@ -34,7 +34,7 @@ function app(source,saved){
  module:buyModule,rarity:buyRarity,ultimate:buyUltimate,resonate:useSigilResonance,
  prices:{rarityShards:RARITY_SHARD_COSTS,rarityLumen:RARITY_LUMEN_BASE_MULTS,rarityLevels:RARITY_LEVEL_REQUIREMENTS},
  lumen:enemyRewardFor,shards:shardRewardFor,sigils:sigilsFromBoss,motes:motesDropFor,lumenMult:lumenMult,shardMult:shardMult,formationReward:formationRewardMult,
- ability:abilityRewardPerCast,burst:abilityRawBurst,tap:tapDamage,power:effectivePartyPower,
+ ability:abilityRewardPerCast,burst:abilityRawBurst,tap:tapDamage,power:effectivePartyPower,ownPower:wispPower,support:supportAbilityProfile,
  batch:function(count,kind){var sum=simulationSummary(0);simulationBatchFarmKills(count,simulationPolicy(kind||'live'),sum);return sum;},
  kill:function(kind){var sum=simulationSummary(0);simulationDefeatEnemy(simulationPolicy(kind||'live'),sum);return sum;},manualKill:defeatEnemy,
  boundary:function(cost,scale){var d=state.farmDepth||state.depth;return simulationLabCurrencyKillsNeeded(cost,enemyRewardFor(d)*scale,shardRewardFor(d)*scale,scale);},
