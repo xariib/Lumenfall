@@ -34,3 +34,11 @@ The second command must fail with `unclipped content` for Research at 320px/200%
 On Windows set LUMENFALL_QA_CDP_CHROME to the installed Chromium executable;
 use LUMENFALL_QA_DOM_TRANSPORT=pipe for the main behavioral runner.
 Physical phone, exact WebView60 DOM and TalkBack remain unverified.
+
+PR25 merged at `31b24d57`; its complete tree matches the tested PR merge.
+[Final CI receipt](ci-final.json): all seven required workflows PASS, including
+189 main scenarios, one isolated offline scenario and runtime smoke. GitHub used
+Node24.19.0 and Chrome156.0.8078.47. The offline browser-version probe timed out,
+but the scenario passed with the same resolved binary path and hash.
+Exact-main release validation and APK dispatch remain blocked by disabled browser
+access; the GitHub connector has no workflow-dispatch action. Task remains open.

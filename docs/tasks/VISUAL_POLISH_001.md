@@ -17,7 +17,7 @@ validation and required CI. Review the complete diff. Record screenshot evidence
 integration and Android delivery status honestly; physical-device acceptance
 cannot be inferred from browser screenshots.
 
-Status: candidate implemented; integration and Android acceptance pending.
+Status: integrated via PR25; Android delivery and device acceptance pending.
 No new binding rules. The active bottom label remains hidden as explicitly
 requested in NAV-001; branding, character art and combat geometry are preserved.
 
@@ -46,7 +46,7 @@ passed after regeneration. These attempts remain in local validation-evidence.
 Changed files: index.html, visual-audit.cjs, independent offline source binding,
 Shared UI CI workflow, this task and its [evidence](../qa/visual-polish-001/README.md).
 Browser screenshots are not physical-phone, exact WebView60 or TalkBack proof.
-Next: save final evidence, required CI, integrate and verify Android delivery.
+Next: dispatch exact-main release validation and verify Android delivery.
 
 Additional acceptance: shared layout6,985 assertions/12 profiles plus all three
 causal controls PASS. Independent one-second simulation regenerated with pinned
@@ -54,6 +54,27 @@ Node24.19.0 on both original baseline and candidate: all four complete endpoint
 hashes and rewards identical. Earlier stored endpoint hashes differed from a
 fresh baseline rerun; no candidate regression or expected reward change.
 Git CLI push waited for unavailable authentication; use connected GitHub tools.
+
+Publication checkpoint: [PR25](https://github.com/xariib/Lumenfall/pull/25),
+head `7d9168188f28f0c0da53b8669bf8783666d61e5d`, tree
+`b3840564c8e1c8c43a40eefcd1033806c7c99080`. The connector-uploaded Git blobs/tree
+were checked against the exact local commit before moving the feature ref.
+All seven required workflows PASS, including pre-merge run40967987534:
+189 main + one isolated offline scenarios and runtime smoke PASS. Integration
+`31b24d57967dbf63d7d0633f4e02abccd134a638` has exactly the same complete tree
+as tested merge `abc170e59cb85dc30cdfa277236a6112711c49e1`. No review threads
+or independent human review. Final [CI receipt](../qa/visual-polish-001/ci-final.json)
+retains workflow/job results, scenario outcomes, source/tree and runtime identity.
+
+Android workflow dispatch is absent from the GitHub connector. Browser access
+reported disabled in Work settings. The user answered "I'll enable browser
+access"; repeated checks through integration still report disabled. No APK was
+dispatched. Retry browser access before integrated-main validation/build.
+Do not change access settings or bypass the restriction. Preserve this task open
+until delivery/acceptance is verified. Next: dispatch the six main workflows
+required by scripts/ci/release-ci-gate.cjs, then build-android with publish=true
+on the same main commit. Verify signing, installed upgrade and public bytes;
+record physical phone/WebView60/TalkBack separately. No new binding rules.
 
 References: [workflow](../project/FEATURE_WORKFLOW.md),
 [brand](../../branding/README.md), [source](../../index.html).
