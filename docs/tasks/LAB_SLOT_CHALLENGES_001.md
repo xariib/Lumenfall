@@ -74,6 +74,13 @@ checks in the evidence index pass, including original mobile6588, slot452,
 long-tail326, cycle split1068 and boundary136 (instrumented diagnostic source).
 The cycle builder explicitly verifies the new Lab boundary connection.
 
+CI oncccd7046 exposed an outdated Workshop hint oracle: it parsed the current
+value in `Rift 1/150` as the target and assumed immediate slot grant. Preserve
+all original base-Rift cases; expansion cases now require all four displayed
+current/target pairs, verify eligibility without an unpaid slot grant, start
+the actual paid research and finish before expecting the slot.417 assertions
+PASS. No product bytes, gate or deadline change in this correction.
+
 Status: PR23 published; required exact-head CI is running. Latest head/check
 links are maintained in the PR description; this documentation follow-up changes
 no product/test bytes. Next: inspect required CI and integrate only after all
