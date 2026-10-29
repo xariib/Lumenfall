@@ -1,7 +1,10 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
 const source=fs.readFileSync(process.argv[2]||'index.html','utf8');
-const eol=source.includes('\r\n')?'\r\n':'\n',transactionPrefix='function forgeCommitPaidMutation(apply){'+eol+'  var base=state,memoWasBase=studyClockMemo && studyClockMemo.state===state,liveWasBase=liveClockMemo && liveClockMemo.state===state;'+eol;
+const eol=source.includes('\r\n')?'\r\n':'\n';
+const transactionStart=source.indexOf('function forgeCommitPaidMutation(apply){'),transactionCopy=source.indexOf('  state=clonePersistedValue(base);',transactionStart);
+assert(transactionStart>=0&&transactionCopy>transactionStart,'paid transaction clone exists');
+const transactionPrefix=source.slice(transactionStart,transactionCopy);
 const singleAscend=source.includes('state.ascendCount=creditAmount(state.ascendCount,1);')?'state.ascendCount=creditAmount(state.ascendCount,1);':'state.ascendCount++;';
 // Exact clock progress is now a second valid witness alongside falling HP.
 // Remove both witnesses to reproduce the same false-stall defect after integration.
