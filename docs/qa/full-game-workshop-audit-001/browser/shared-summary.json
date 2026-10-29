@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "identity": {
+    "testSha256": "cf124e45131e9d16be08a5a8a1589fef3230b7ac99d7e103ee15ab3a4dffd5a5",
+    "transportSha256": "38f6a0c75c6c56170a8dd5c62315d1993b1c68a43118507b6e0fb52cbffb65cd",
+    "referenceSha256": "46d0ce1b498f6a7f37d87d6e5954e717292a6db86f39e2093853164435b51be2",
+    "sourceSha256": "4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65"
+  },
+  "driverSha256": "3c8586d138e360e56a46ddb71947cfd0fc492f8db4535fc8b2e64d7b8da58f2d",
+  "results": [
+    {
+      "id": "normal",
+      "accepted": true,
+      "exitCode": 0,
+      "sourceSha256": "4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65",
+      "driverSha256": "3c8586d138e360e56a46ddb71947cfd0fc492f8db4535fc8b2e64d7b8da58f2d",
+      "checks": 6985,
+      "profiles": 12,
+      "expectedGeometryCode": null,
+      "actualGeometryCode": null,
+      "error": null,
+      "receipt": "normal\\receipt.json",
+      "receiptSha256": "245e9af4e01f0c590f94064fe6641f13cd3d6565135ed97380b76a2c739f6db3",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.74",
+        "revision": "@44a84b1f89d9a35287289d6a3d493e362f5a512",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      }
+    },
+    {
+      "id": "brand-spacing",
+      "accepted": true,
+      "exitCode": 1,
+      "sourceSha256": "cdf6f193ff7fa497dfb8ef11f52bbcad66aaab0e618070f046d358a4e21d728e",
+      "driverSha256": "3c8586d138e360e56a46ddb71947cfd0fc492f8db4535fc8b2e64d7b8da58f2d",
+      "checks": 1176,
+      "profiles": 2,
+      "expectedGeometryCode": "brand-glyph-intersects-settings",
+      "actualGeometryCode": "brand-glyph-intersects-settings",
+      "error": "AssertionError [ERR_ASSERTION]: brand-glyph-intersects-settings\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:40:27)\n    at geometry (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:113:7)\n    at brand (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:197:3)\n    at sharedScenario (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:243:89)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:104:3)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:301:6",
+      "receipt": "brand-spacing\\receipt.json",
+      "receiptSha256": "10e63154e48406bfcc17006aa5902f844e258f8b843d423e41542bef7a7c15b9",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.74",
+        "revision": "@44a84b1f89d9a35287289d6a3d493e362f5a512",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      }
+    },
+    {
+      "id": "wisp-header",
+      "accepted": true,
+      "exitCode": 1,
+      "sourceSha256": "f8d83ee1bf80251a9a054b5afbd8f01e72409308f13d81eaf92afb369ff8d928",
+      "driverSha256": "3c8586d138e360e56a46ddb71947cfd0fc492f8db4535fc8b2e64d7b8da58f2d",
+      "checks": 1268,
+      "profiles": 2,
+      "expectedGeometryCode": "wisp-glyph-intersects-toggle",
+      "actualGeometryCode": "wisp-glyph-intersects-toggle",
+      "error": "AssertionError [ERR_ASSERTION]: wisp-glyph-intersects-toggle\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:40:27)\n    at geometry (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:113:7)\n    at wisp (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:207:3)\n    at sharedScenario (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:273:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:104:3)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:301:6",
+      "receipt": "wisp-header\\receipt.json",
+      "receiptSha256": "c48618834ab2821c194213518d26a6d16e2b2cb47c04a4db5e03bf85b4001eaf",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.74",
+        "revision": "@44a84b1f89d9a35287289d6a3d493e362f5a512",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      }
+    },
+    {
+      "id": "toast-leading",
+      "accepted": true,
+      "exitCode": 1,
+      "sourceSha256": "3bb6bf42ae745ce8b226a3c35f04f65d724f796610265491707e21cf024b7538",
+      "driverSha256": "3c8586d138e360e56a46ddb71947cfd0fc492f8db4535fc8b2e64d7b8da58f2d",
+      "checks": 1699,
+      "profiles": 2,
+      "expectedGeometryCode": "toast-adjacent-glyph-lines-intersect",
+      "actualGeometryCode": "toast-adjacent-glyph-lines-intersect",
+      "error": "AssertionError [ERR_ASSERTION]: toast-adjacent-glyph-lines-intersect\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:40:27)\n    at geometry (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:113:7)\n    at toast (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:231:36)\n    at sharedScenario (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:290:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:104:3)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\game\\tests\\behavioral\\.shared-layout-4580.cjs:301:6",
+      "receipt": "toast-leading\\receipt.json",
+      "receiptSha256": "8018906dda6d9be3e54c290e629945150a641802fbd5cb0f4506adc33a895ada",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.74",
+        "revision": "@44a84b1f89d9a35287289d6a3d493e362f5a512",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      }
+    }
+  ],
+  "expectedProfiles": 12,
+  "expectedNegativeControls": 3,
+  "nativeAndroid": "untested"
+}

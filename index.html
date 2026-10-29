@@ -1151,7 +1151,12 @@
     background:color-mix(in srgb,var(--badge-color) 7%,var(--bg-elev));
     box-shadow:0 0 14px -11px var(--badge-color);
   }
-  .hero-stats .node-queue-toggle{margin-left:auto;}
+  /* Separate live values from touch controls; changing digits cannot wrap a toggle. */
+  #tab-spirits .hero-stats{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;}
+  #tab-spirits .hero-stats .wisp-level{grid-column:1;grid-row:1;justify-self:start;}
+  #tab-spirits .hero-stats .rarity-badge{grid-column:2;grid-row:1;justify-self:end;}
+  #tab-spirits .hero-stats .mono{grid-column:1/-1;grid-row:2;line-height:1.3;min-width:0;font-variant-numeric:tabular-nums;}
+  #tab-spirits .hero-card>[data-empower-queue]{display:block;width:100%;margin:6px 0;min-height:44px;}
   .hero-ability{
     display:grid;grid-template-columns:auto 1fr;column-gap:7px;row-gap:2px;align-items:center;
   }
@@ -7582,12 +7587,18 @@ function setAutoEmpowerAll(enabled){
   showToast('Auto-Empower All '+(enabled?'ON':'OFF')+'.');
 }
 
+function getWispModulePlan(sp){
+  if(SPIRITS.indexOf(sp)===-1)return {affordable:false,reason:'invalid'};
+  var level=moduleLevel(sp.id);
+  if(Amount.ge(level,MODULE_MAX_LEVEL))return {affordable:false,reason:'maxed',level:level};
+  var cost=moduleCost(sp,level),recruited=Amount.gt(state.spirits[sp.id]||0,0);
+  var funded=forgeExactDebit(state.lumen,cost.lumen)&&shardCanPayExactly(cost.shard);
+  return {level:level,cost:cost,affordable:recruited&&funded,reason:!recruited?'recruit':funded?'available':'funds'};
+}
 function buyModule(sp){
   if(!flushLiveProgress())return false;
-  var level = moduleLevel(sp.id);
-  if(Amount.ge(level,MODULE_MAX_LEVEL)) return false;
-  var cost = moduleCost(sp, level);
-  if(Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard)) return false;
+  var plan=getWispModulePlan(sp);if(!plan.affordable)return false;
+  var level=plan.level,cost=plan.cost;
   if(!forgeCommitPaidMutation(function(){
     state.lumen=debitAmount(state.lumen,cost.lumen);
     spendShards(cost.shard);
@@ -9557,7 +9568,7 @@ function renderSpirits(keepScroll){
     var modLvl = moduleLevel(sp.id);
     var modMaxed = Amount.ge(modLvl,MODULE_MAX_LEVEL);
     var modCost = moduleCost(sp, modLvl);
-    var canModule = recruited && !modMaxed && Amount.ge(state.lumen,modCost.lumen) && canSpendShards(modCost.shard);
+    var canModule = getWispModulePlan(sp).affordable;
     var moduleHtml =
       '<div class="module-row">' +
         '<div class="ability-effects wisp-effect-pair"><div role="group" aria-label="Current ability effect"><div class="module-effect" data-ability-current>'+modInfo.effect(modLvl)+'</div></div>' +
@@ -9588,7 +9599,7 @@ function renderSpirits(keepScroll){
     var chosen = chosenMembers.indexOf(sp.id)!==-1;
     var empowerHtml = ((recruited || pendingRebuild) && state.achieved.labmaster) ?
       (' <button class="node-queue-toggle ' + (empowerOn?'active':'') + '" data-empower-queue="' + sp.id + '">Auto-Empower ' + (empowerOn?'ON':'OFF') + '</button>') : '';
-    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + (upgradesMaxed&&level>=10000&&wispMasteryLevel(sp.id)>=2000?' wisp-fully-maxed':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatRiftNumber(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + empowerHtml + '</div>' + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='maxed'?'Maxed':empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + (empowerPlan.reason==='maxed'?'':purchasePriceMarkup('lumen',cost,'mono')) + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + '<div class="wisp-progression" data-wisp-progression="'+sp.id+'">' + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info">' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),(rarityRift?'Rift '+rarityRift.target:wispRequirementText(rarityPlan.requirements))),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-heading="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div>' + '<p class="ability-desc">'+forgeAbilityDescription(sp)+'</p>' + '</div>' + moduleHtml + ultimateHtml + '</section>' + wispMasteryMarkup(sp) + '</div>' + '</div>');
+    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + (upgradesMaxed&&level>=10000&&wispMasteryLevel(sp.id)>=2000?' wisp-fully-maxed':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatRiftNumber(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + '</div>' + empowerHtml + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='maxed'?'Maxed':empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + (empowerPlan.reason==='maxed'?'':purchasePriceMarkup('lumen',cost,'mono')) + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + '<div class="wisp-progression" data-wisp-progression="'+sp.id+'">' + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info">' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),(rarityRift?'Rift '+rarityRift.target:wispRequirementText(rarityPlan.requirements))),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-heading="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div>' + '<p class="ability-desc">'+forgeAbilityDescription(sp)+'</p>' + '</div>' + moduleHtml + ultimateHtml + '</section>' + wispMasteryMarkup(sp) + '</div>' + '</div>');
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   els['spirit-list'].querySelectorAll('[data-wisp-card]').forEach(function(card){
@@ -10565,17 +10576,21 @@ function renderDaily(force){
 }
 
 function claimQuest(id){
+  if(!flushLiveProgress())return false;
   var q = QUEST_POOL.find(function(x){ return x.id===id; });
-  if(!q || (state.questIds||[]).indexOf(id)===-1) return;
-  if(state.questClaimed[id]) return;
+  if(!q || (state.questIds||[]).indexOf(id)===-1) return false;
+  if(state.questClaimed[id]) return false;
   var progress = (state.dailyStats && state.dailyStats[q.metric])||0;
-  if(Amount.lt(progress,q.goal)) return;
-  state.questClaimed[id] = true;
-  state.comets=creditAmount(state.comets,q.reward.comets||0);
-  if(q.reward.prisms) state.prisms=creditAmount(state.prisms,q.reward.prisms);
+  if(Amount.lt(progress,q.goal)) return false;
+  if(!forgeCommitPaidMutation(function(){
+    state.questClaimed[id] = true;
+    state.comets=creditAmount(state.comets,q.reward.comets||0);
+    if(q.reward.prisms) state.prisms=creditAmount(state.prisms,q.reward.prisms);
+  }))return false;
   showToast(('Quest complete — ' + '+' + formatNum(q.reward.comets||0) + ' Comets' + (q.reward.prisms ? Amount.add(Amount.add(' & +',q.reward.prisms),' Prisms') : '')));
   renderDaily(true);
   renderHud();
+  return true;
 }
 
 function renderSideStats(force){
