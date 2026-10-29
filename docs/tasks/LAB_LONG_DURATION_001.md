@@ -97,17 +97,38 @@ native starts, both missing prices red,44px targets, late work and maxed cards.
 Existing slot menu452 assertions/18profiles PASS. Preview visually inspected.
 
 Existing expansion2676/10 causal controls, timed boosts1480, boost queue379,
-queue continuity64, slot54, boundaries2346, stress, Forge9319 and progression
+queue continuity64, slot54, boundaries2346, stress, Forge9338 and progression
 pacing PASS. Existing endless core requires its current `--focus-f` option;
 the exploratory invocation without that option fails the older Titan gate,
 and the correct current-policy invocation passes. No acceptance was weakened.
-Original Lab mobile6588 assertions PASS. Full browser and offline tests continue.
+Original Lab mobile6588 assertions and complete offline-catchup regression PASS.
+Full browser suite continues; full12h local case hit its existing300s deadline
+during concurrent validation and is being checked alone without changing it.
 The first full browser attempt used the default dump-DOM transport, which stalls
 on this Windows/Brave setup (no completed QA marker, unchanged25s deadlines).
 It was stopped and restarted using existing `LUMENFALL_QA_DOM_TRANSPORT=pipe`.
 The initial affordability fixture incorrectly treated maxed old foundations as
 all Rift1 research: it now first verifies that new Wisp Damage is available,
 then maxes that track too and retains the original locked-only assertion.
+
+CI416de8d: Lab (including actualV8 6.0), Comet, permanent cards, shared UI and
+the original isolated offline job PASS. Main stopped at R3's frozen old catalogue;
+Tree stopped at the historical Wisp preservation oracle's missing additive Lab
+defaults. R3/upgrade identity now enumerate26 total/23 active research IDs.
+Inquiry keeps exact original prices and now checks the accepted90-day work sum
+with an independent integer oracle. Its old paid6291/41232-second fixtures stay
+unchanged. Wisp preservation verifies all new zero/OFF defaults before retaining
+its complete historical field/damage comparisons;8099 role assertions and23040
+preservation assertions PASS locally.
+
+Local save/reload failure was reproduced on unchanged PR22 source8b06aa4a:
+startup credited0.023s of host processing and started legitimately queued work
+before a static snapshot assertion. The Lab/Inquiry/Forge storage-only fixtures
+now pause gameplay and processing clocks from boot; exact state/receipt/backup/
+recovery comparisons remain. Ordinary live windows and the real monotonic gate
+retain their clocks. Updated R3, upgrade identity, Inquiry contracts/chronology,
+all Lab/Inquiry/Forge storage cases and original P1/P2 navigation cases PASS.
+Detailed actual/expected timer values are retained on storage assertion failure.
 
 Independent one-second four-window reference was actually regenerated.
 Kills/Ascends/Prisms match the previous binding; state hashes include the new
@@ -122,6 +143,9 @@ expects23 active tracks and the new Wisp fundamentals group.
 with exact local/remote tree68917141d8948a6beb698bb953cb7e05d84778fa.
 Seven required automatic workflows are running. Git has no push credential;
 publication uses the connected GitHub plugin with every blob/tree verified.
+Browser inventory again reports `Local browser use is disabled in Work settings`;
+GitHub has no workflow-dispatch action. No settings were changed, no signed build
+or release was started, and no access restriction was bypassed.
 Next: finish full regressions and self-review, publish the scoped branch/PR,
 address actual CI findings, and integrate only after required gates pass.
 Android dispatch capability and physical/human acceptance remain unverified.

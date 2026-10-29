@@ -1,0 +1,102 @@
+{
+  "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356",
+  "node": "v24.20.0",
+  "records": [
+    {
+      "name": "core",
+      "status": "pass",
+      "checks": 353,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "mobile",
+      "status": "pass",
+      "checks": 326,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356",
+      "profiles": 12
+    },
+    {
+      "name": "original-mobile",
+      "status": "pass",
+      "checks": 6588,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356",
+      "profiles": 12
+    },
+    {
+      "name": "lab-expansion",
+      "status": "pass",
+      "checks": 2676,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "lab-timed-boosts",
+      "status": "pass",
+      "checks": 1480,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "lab-boost-queue",
+      "status": "PASS",
+      "checks": 379,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "lab-queue-continuity",
+      "status": "pass",
+      "checks": 64,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "lab-slot-contract",
+      "status": "pass",
+      "checks": 54
+    },
+    {
+      "name": "lab-expansion-boundary",
+      "status": "pass",
+      "checks": 2346,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "lab-expansion-stress",
+      "status": "pass",
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "forge-expansion",
+      "status": "pass",
+      "checks": 9338,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "progression-pacing",
+      "status": "PASS",
+      "checks": 216,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "endless-progression-core",
+      "status": "PASS",
+      "checks": 237,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    },
+    {
+      "name": "wisp-preservation",
+      "status": "PASS",
+      "checks": 8099,
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356",
+      "preservation": {
+        "checks": 23040
+      }
+    },
+    {
+      "name": "offline-catchup",
+      "status": "pass",
+      "sourceSha256": "5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356"
+    }
+  ],
+  "limitations": [
+    "Full main suite still running; initial default browser transport timeouts, stale catalogue expectations and baseline storage host-clock failures retained separately.",
+    "No Android build or publication: browser API reports local browser use disabled; GitHub connector has no workflow dispatch."
+  ]
+}

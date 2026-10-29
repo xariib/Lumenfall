@@ -107,7 +107,18 @@ function preservation(html,baseline){
   "function abilityRewardRaw(sp,level,conductionLevel){\n  var rift=state.depth<=100?state.depth:100+40*Math.log1p((state.depth-100)/40);\n  var originalPower=wispPower;wispPower=function(w,l){var p=originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
  var before=world(baseline),after=world(html),ids=clone(after.spirits()).map(function(s){return s.id;}),checks=0,cases=[];
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
- function oldFields(s){s=clone(s);if(Object.prototype.hasOwnProperty.call(s,'offlineClockHighWaterMs')){eq(s.offlineClockHighWaterMs,s.lastSeen,'new clock metadata retains exact historical endpoint');delete s.offlineClockHighWaterMs;}delete s.farmAutoResume;delete s.schemaVersion;delete s.astralUpgrades;delete s.commandRefund;delete s.wispMastery;delete s.canonicalAutomationClock;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;delete s.studyBoosts;delete s.studyBoostHours;delete s.pausedStudies;delete s.studySlotProjects;delete s.moteNextAtMs;return s;}
+ function oldFields(s){
+  s=clone(s);
+  // Verify additive unpurchased Wisp research before comparing every historical
+  // field. The frozen oracle predates these identities; no old value is omitted.
+  ['wispdamage','wispcritchance','wispcritdamage'].forEach(function(id){
+   [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5]].forEach(function(row){
+    if(Object.prototype.hasOwnProperty.call(s[row[0]],id)){eq(s[row[0]][id],row[1],'new Wisp research retains exact unpurchased default '+row[0]+'.'+id);delete s[row[0]][id];}
+   });
+  });
+  if(Object.prototype.hasOwnProperty.call(s,'offlineClockHighWaterMs')){eq(s.offlineClockHighWaterMs,s.lastSeen,'new clock metadata retains exact historical endpoint');delete s.offlineClockHighWaterMs;}
+  delete s.farmAutoResume;delete s.schemaVersion;delete s.astralUpgrades;delete s.commandRefund;delete s.wispMastery;delete s.canonicalAutomationClock;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;delete s.studyBoosts;delete s.studyBoostHours;delete s.pausedStudies;delete s.studySlotProjects;delete s.moteNextAtMs;return s;
+ }
  var noMastery={};ids.forEach(function(id){noMastery[id]=0;});
  var noBoostHours={};Object.keys(after.fresh().longStudyLevels).forEach(function(id){noBoostHours[id]=8;});
  function combos(xs,k){if(!k)return [[]];var r=[];xs.forEach(function(id,i){combos(xs.slice(i+1),k-1).forEach(function(t){r.push([id].concat(t));});});return r;}
