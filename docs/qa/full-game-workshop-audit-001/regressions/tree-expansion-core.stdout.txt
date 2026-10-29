@@ -1,0 +1,149 @@
+{
+  "status": "PASS",
+  "checks": 5924,
+  "cases": [
+    {
+      "name": "catalogue",
+      "checks": 3495
+    },
+    {
+      "name": "node-storage-faults",
+      "checks": 280
+    },
+    {
+      "name": "node-huge-debit",
+      "checks": 3
+    },
+    {
+      "name": "delayed-F26-refund",
+      "checks": 32
+    },
+    {
+      "name": "legacy-and-defaults",
+      "checks": 85
+    },
+    {
+      "name": "swiftcharter",
+      "checks": 105
+    },
+    {
+      "name": "veteranrecruits",
+      "checks": 56
+    },
+    {
+      "name": "gentlegrowth",
+      "checks": 300
+    },
+    {
+      "name": "empower-storage-faults",
+      "checks": 30
+    },
+    {
+      "name": "empower-huge-debit",
+      "checks": 8
+    },
+    {
+      "name": "formationseat",
+      "checks": 35
+    },
+    {
+      "name": "benchmentor",
+      "checks": 80
+    },
+    {
+      "name": "empowerbatch",
+      "checks": 39
+    },
+    {
+      "name": "recruitreserve",
+      "checks": 52
+    },
+    {
+      "name": "invitations",
+      "checks": 172
+    },
+    {
+      "name": "transition-lumenmemory",
+      "checks": 20
+    },
+    {
+      "name": "transition-veteranrecruits",
+      "checks": 20
+    },
+    {
+      "name": "transition-rosterrecall",
+      "checks": 33
+    },
+    {
+      "name": "transition-chargememory",
+      "checks": 60
+    },
+    {
+      "name": "transition-supportmemory",
+      "checks": 21
+    },
+    {
+      "name": "transition-phasememory",
+      "checks": 15
+    },
+    {
+      "name": "transition-riftstep",
+      "checks": 28
+    },
+    {
+      "name": "carry-edges",
+      "checks": 8
+    },
+    {
+      "name": "frontier",
+      "checks": 464
+    },
+    {
+      "name": "frontier-repeat",
+      "checks": 5
+    },
+    {
+      "name": "stardust",
+      "checks": 51
+    },
+    {
+      "name": "wallwisdom",
+      "checks": 25
+    },
+    {
+      "name": "all-paid-actual-Ascends",
+      "checks": 214
+    },
+    {
+      "name": "manual-Ascend-storage-fault",
+      "checks": 99
+    },
+    {
+      "name": "manual-kill-Auto-Ascend-failure",
+      "checks": 24
+    },
+    {
+      "name": "no-transition-replay",
+      "checks": 14
+    },
+    {
+      "name": "single-trial",
+      "checks": 18
+    },
+    {
+      "name": "offline-paid-transaction",
+      "checks": 33
+    }
+  ],
+  "negativeCount": 0,
+  "negative": [],
+  "activePurchaseTypes": 20,
+  "newPurchaseTypes": 17,
+  "priceOracle": "independent fixed integer Prism ladders; independent BigInt rational moderate Empower cases",
+  "scope": "Complete production game IIFE, original purchases/save/backup and manual/live/offline mutation paths. Tree supports single purchases only; no Tree bulk or queue acceptance. Long offline/numerical/mobile/actual V8 run in separate suites. Native Android integration untested.",
+  "sourceSha256": "4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65",
+  "harnessSha256": "a924ef6d11e4c8eee1bad4c0ece2bb040068cef3e67e9284bb4b5d240a5edc68",
+  "testSha256": "dee5462d61779053fdbd7d56e37125ea0184e0cd1dbde89397bad83b447de3a8",
+  "node": "24.20.0",
+  "v8": "13.6.233.17-node.53"
+}

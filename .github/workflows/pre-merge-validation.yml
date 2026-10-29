@@ -47,6 +47,15 @@ jobs:
           assert.deepEqual(bad.runtimeErrors,[]);assert.notEqual(good.sourceSha256,bad.sourceSha256);
           JS
 
+      - name: Complete game audit and stationary Auto-Empower targets
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/FULL_GAME_WORKSHOP_AUDIT_001.md
+          mkdir -p validation-evidence/full-game-audit
+          node tests/behavioral/full-game-audit.cjs index.html --negative > validation-evidence/full-game-audit/core.json
+          node scripts/qa/workshop-cap-audit.cjs index.html > validation-evidence/full-game-audit/caps.json
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          node tests/behavioral/wisp-upgrades.cjs --chrome "$CHROME" --card-layout --evidence validation-evidence/full-game-audit/wisps
+
       - name: Native Lab Begin focus boundaries
         run: |
           mkdir -p mobile/www/fonts mobile/www/branding

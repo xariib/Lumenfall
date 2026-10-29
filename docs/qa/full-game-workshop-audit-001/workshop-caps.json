@@ -1,0 +1,986 @@
+{
+  "status": "pass",
+  "sourceSha256": "4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65",
+  "assumptions": "Lab bound grants all capped discounts, five free slots, unlimited currencies/Motes and permanent 8x speed from the beginning; one project still cannot run twice concurrently. Actual fresh progression is slower. Small specialized paths may finish earlier intentionally.",
+  "catalogue": {
+    "forge": 25,
+    "lab": 23,
+    "activeForge": 21,
+    "activeLab": 20
+  },
+  "forge": [
+    {
+      "id": "focus",
+      "name": "Battle Focus",
+      "retiredTo": "Lab: Lumen Wellspring",
+      "cap": 250,
+      "unlockRift": 1,
+      "totalPrice": {
+        "lumen": 4.2157490930018007e+46,
+        "shard": 0
+      },
+      "lastPrice": {
+        "lumen": 1.405249697667267e+46,
+        "shard": 0
+      },
+      "description": "+8% Lumen from every kill, per level.",
+      "effectAtCap": {
+        "factor": 21,
+        "bonus": 20
+      },
+      "decision": "Keep historical ranks and their paid effects; future purchases use the listed successor."
+    },
+    {
+      "id": "sense",
+      "name": "Shard Sense",
+      "retiredTo": "Lab: Shard Attunement",
+      "cap": 250,
+      "unlockRift": 1,
+      "totalPrice": {
+        "lumen": 3.1618118197513503e+46,
+        "shard": 4.215749093001801e+45
+      },
+      "lastPrice": {
+        "lumen": 1.0539372732504503e+46,
+        "shard": 1.4052496976672671e+45
+      },
+      "description": "+8% Shards from every kill, per level.",
+      "effectAtCap": {
+        "factor": 21,
+        "bonus": 20
+      },
+      "decision": "Keep historical ranks and their paid effects; future purchases use the listed successor."
+    },
+    {
+      "id": "formation",
+      "name": "Formation Training",
+      "retiredTo": "Lab: Wisp Ascendancy",
+      "cap": 250,
+      "unlockRift": 1,
+      "totalPrice": {
+        "lumen": 0,
+        "shard": 7.143390714575213e+52
+      },
+      "lastPrice": {
+        "lumen": 0,
+        "shard": 2.6787715179657055e+52
+      },
+      "description": "+5% passive Wisp damage per level; also raises the Wisp-powered part of your tap damage.",
+      "effectAtCap": {
+        "factor": 13.5,
+        "bonus": 12.5
+      },
+      "decision": "Keep historical ranks and their paid effects; future purchases use the listed successor."
+    },
+    {
+      "id": "resolve",
+      "name": "Guardian's Resolve",
+      "retiredTo": "Lab: Guardian’s Mastery",
+      "cap": 250,
+      "unlockRift": 1,
+      "totalPrice": {
+        "lumen": 7.326209001513881e+42,
+        "shard": 0
+      },
+      "lastPrice": {
+        "lumen": 2.2736510694353422e+42,
+        "shard": 0
+      },
+      "description": "+10% tap damage, per level.",
+      "effectAtCap": {
+        "factor": 26,
+        "bonus": 25
+      },
+      "decision": "Keep historical ranks and their paid effects; future purchases use the listed successor."
+    },
+    {
+      "id": "charge",
+      "name": "Swift Recovery",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 1,
+      "totalPrice": {
+        "lumen": 0,
+        "shard": 4312
+      },
+      "lastPrice": {
+        "lumen": 0,
+        "shard": 1550
+      },
+      "description": "+8% faster natural Wisp ability charge per level, up to level 10. Natural ability cycle: at least 3.33 seconds.",
+      "effectAtCap": {
+        "factor": 1.8,
+        "bonus": 0.8,
+        "cycle": 3.3333333333333335
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "arcanecal",
+      "name": "Arcane Calibration",
+      "retiredTo": null,
+      "cap": 20,
+      "unlockRift": 12,
+      "totalPrice": {
+        "lumen": 302206455,
+        "shard": 2417652
+      },
+      "lastPrice": {
+        "lumen": 113336796,
+        "shard": 906695
+      },
+      "description": "+3 percentage points to the damaging Wisp ability factor per level. Burst, Breaker, Gale and Thorn only; no passive or Tap bonus.",
+      "effectAtCap": {
+        "factor": 1.6,
+        "bonus": 0.6
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "conduction",
+      "name": "Resource Conduction",
+      "retiredTo": null,
+      "cap": 20,
+      "unlockRift": 18,
+      "totalPrice": {
+        "lumen": 1813238730,
+        "shard": 5641188
+      },
+      "lastPrice": {
+        "lumen": 680020774,
+        "shard": 2115621
+      },
+      "description": "+4 percentage points to the ability resource factor per level. Gale Shards and Thorn Lumen only; rounded per cast, not kill rewards.",
+      "effectAtCap": {
+        "factor": 1.8,
+        "bonus": 0.8,
+        "casts": {
+          "gale": {
+            "lumen": 0,
+            "shards": 0
+          },
+          "thorn": {
+            "lumen": 0,
+            "shards": 0
+          }
+        }
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "luminoustracking",
+      "name": "Luminous Tracking",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 32,
+      "totalPrice": {
+        "lumen": 453963179,
+        "shard": 272378
+      },
+      "lastPrice": {
+        "lumen": 171798692,
+        "shard": 103080
+      },
+      "description": "+0.5 percentage points Luminous chance per level for future eligible encounters; total chance at most 35%. No extra Motes per kill.",
+      "effectAtCap": {
+        "factor": 1.05,
+        "bonus": 0.05,
+        "chance": 0.08,
+        "depth": 1,
+        "boss": false
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "masterwork",
+      "name": "Masterwork Tempering",
+      "retiredTo": null,
+      "cap": 500,
+      "unlockRift": 70,
+      "totalPrice": {
+        "lumen": 4.195813762662132e+71,
+        "shard": 1.048953440665533e+70
+      },
+      "lastPrice": {
+        "lumen": 1.0878035680975899e+71,
+        "shard": 2.7195089202439753e+69
+      },
+      "description": "Adds 5% of base Wisp Power per level, without compounding. Five levels open at Rift 70, then five more every 50 record Rifts. Each level also opens 5 Mastery ranks; their Wisp, Lab, Rift and currency requirements still apply.",
+      "effectAtCap": {
+        "level": 500,
+        "capacity": 2500,
+        "factor": 26,
+        "bonus": 0
+      },
+      "decision": "Keep 500; additive power and five ranks per 50 record Rifts; last band requires Rift 5020."
+    },
+    {
+      "id": "cauterize",
+      "name": "Cauterize",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 20,
+      "totalPrice": {
+        "lumen": 8228396,
+        "shard": 571417
+      },
+      "lastPrice": {
+        "lumen": 3263308,
+        "shard": 226619
+      },
+      "description": "Each level reduces boss regeneration by 2%, up to 20%. Multiplies with the Vanguard Bond.",
+      "effectAtCap": {
+        "factor": 1.2,
+        "bonus": 0.2,
+        "level": 10
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "fracturekey",
+      "name": "Fracture Key",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 30,
+      "totalPrice": {
+        "lumen": 23542356,
+        "shard": 1371400
+      },
+      "lastPrice": {
+        "lumen": 9336686,
+        "shard": 543885
+      },
+      "description": "Each level adds 0.025 to the Fractured Core boss ability multiplier, from 1.75 up to 2. Other enemies are unchanged.",
+      "effectAtCap": {
+        "factor": 1.25,
+        "bonus": 0.25,
+        "level": 10
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "guardianseal",
+      "name": "Guardian Seal",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 40,
+      "totalPrice": {
+        "lumen": 5524545,
+        "shard": 273399
+      },
+      "lastPrice": {
+        "lumen": 2447166,
+        "shard": 121106
+      },
+      "description": "Each level adds 0.10 to Guardian’s Mark tap damage, from 3 times up to 3.5 times. Applies to manual and Auto-Tap hits.",
+      "effectAtCap": {
+        "factor": 1.5,
+        "bonus": 0.5,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "spillway",
+      "name": "Rift Spillway",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 60,
+      "totalPrice": {
+        "lumen": 44516892,
+        "shard": 1517836
+      },
+      "lastPrice": {
+        "lumen": 19719309,
+        "shard": 672345
+      },
+      "description": "Carry 4% of tap or ability overkill per level into the immediately following non-boss. Overkill is bounded by the original hit; never chains or crosses Ascend.",
+      "effectAtCap": {
+        "factor": 1.2,
+        "bonus": 0.2,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "sustainedchannel",
+      "name": "Sustained Channel",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 70,
+      "totalPrice": {
+        "lumen": 137751887,
+        "shard": 3925200
+      },
+      "lastPrice": {
+        "lumen": 62866809,
+        "shard": 1791372
+      },
+      "description": "After a damaging non-Support ability leaves the same boss alive, return 2 charge per level to its caster, up to 10.",
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "tapconduit",
+      "name": "Tap Conduit",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 25,
+      "totalPrice": {
+        "lumen": 1053875,
+        "shard": 69107
+      },
+      "lastPrice": {
+        "lumen": 452133,
+        "shard": 29649
+      },
+      "description": "Each manual or Auto-Tap hit gives 2 charge per level to the first powered Active Wisp, up to 10. Charge stops at 100.",
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "guardiancadence",
+      "name": "Guardian Cadence",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 35,
+      "totalPrice": {
+        "lumen": 3280788,
+        "shard": 179124
+      },
+      "lastPrice": {
+        "lumen": 1453266,
+        "shard": 79345
+      },
+      "description": "Every fifth lifetime tap deals 10% extra damage per level, up to 50%. Manual and Auto-Tap share the same count, including across Ascend.",
+      "effectAtCap": {
+        "factor": 1.5,
+        "bonus": 0.5,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "relay",
+      "name": "Resonance Relay",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 45,
+      "totalPrice": {
+        "lumen": 9295565,
+        "shard": 414813
+      },
+      "lastPrice": {
+        "lumen": 4117586,
+        "shard": 183747
+      },
+      "description": "Support casts give 2 charge per level to each powered non-Support Active Wisp, after ready abilities have fired. Charge stops at 100.",
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "resonantedge",
+      "name": "Resonant Edge",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 50,
+      "totalPrice": {
+        "lumen": 15668589,
+        "shard": 641074
+      },
+      "lastPrice": {
+        "lumen": 6940596,
+        "shard": 283972
+      },
+      "description": "Support casts also strike for 10% of their own Wisp Power per level. Ability factors apply; Ultimate doubles the hit. Support buffs and its Mote Module do not boost this hit.",
+      "effectAtCap": {
+        "factor": 1.5,
+        "bonus": 0.5,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "victorycharge",
+      "name": "Victory Charge",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 55,
+      "totalPrice": {
+        "lumen": 26415996,
+        "shard": 989893
+      },
+      "lastPrice": {
+        "lumen": 11701293,
+        "shard": 438486
+      },
+      "description": "Each boss kill gives 4 charge per level to every powered Active Wisp, up to 20. Ascend clears it unless Tree Charge Memory carries a share.",
+      "effectAtCap": {
+        "factor": 21,
+        "bonus": 20,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "amplifiertrim",
+      "name": "Amplifier Trim",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 60,
+      "totalPrice": {
+        "lumen": 44516892,
+        "shard": 1517836
+      },
+      "lastPrice": {
+        "lumen": 19719309,
+        "shard": 672345
+      },
+      "description": "Future Support casts gain 1 percentage point of buff strength per level, up to 5. Their durations and already-cast buffs stay unchanged.",
+      "effectAtCap": {
+        "factor": 1.05,
+        "bonus": 0.05,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "dualchannel",
+      "name": "Dual Channel",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 55,
+      "totalPrice": {
+        "lumen": 26415996,
+        "shard": 989893
+      },
+      "lastPrice": {
+        "lumen": 11701293,
+        "shard": 438486
+      },
+      "description": "Gale also gives Lumen equal to 20% of its native Shards per level; Thorn also gives Shards equal to 2% of its native Lumen per level. Each extra payout rounds down; no repeated conversion.",
+      "effectAtCap": {
+        "factor": 2,
+        "bonus": 1,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "overflowconduit",
+      "name": "Overflow Conduit",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 65,
+      "totalPrice": {
+        "lumen": 81751008,
+        "shard": 2548297
+      },
+      "lastPrice": {
+        "lumen": 37309290,
+        "shard": 1162985
+      },
+      "description": "Gale and Thorn gain up to 2% extra native cast resources per level from their original hit’s overkill. The reward fraction cannot exceed overkill divided by that hit; rounds down.",
+      "effectAtCap": {
+        "factor": 1.1,
+        "bonus": 0.1,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "resonancecells",
+      "name": "Resonance Cells",
+      "retiredTo": null,
+      "cap": 2,
+      "unlockRift": 80,
+      "totalPrice": {
+        "lumen": 66612000,
+        "shard": 1583750
+      },
+      "lastPrice": {
+        "lumen": 47580000,
+        "shard": 1131250
+      },
+      "description": "Each level adds one shared Resonate use per Ascension run, from 3 up to 5. Buying capacity keeps already-spent uses.",
+      "effectAtCap": {
+        "factor": 3,
+        "bonus": 2,
+        "level": 2
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "resonancecascade",
+      "name": "Resonance Cascade",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 90,
+      "totalPrice": {
+        "lumen": 1208853184,
+        "shard": 23969027
+      },
+      "lastPrice": {
+        "lumen": 567290304,
+        "shard": 11248179
+      },
+      "description": "A paid Resonate refill also gives 2 charge per level to each other powered Active Wisp, up to 10. The selected Wisp still fills to 100.",
+      "effectAtCap": {
+        "factor": 11,
+        "bonus": 10,
+        "level": 5
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    },
+    {
+      "id": "resonancereclaim",
+      "name": "Resonance Reclaim",
+      "retiredTo": null,
+      "cap": 3,
+      "unlockRift": 100,
+      "totalPrice": {
+        "lumen": 1074094000,
+        "shard": 17755500
+      },
+      "lastPrice": {
+        "lumen": 613768000,
+        "shard": 10146000
+      },
+      "description": "Each boss kill restores up to one already-spent Resonate use per level, up to 3. Cannot store extra uses beyond the current run capacity.",
+      "effectAtCap": {
+        "factor": 4,
+        "bonus": 3,
+        "level": 3
+      },
+      "decision": "Keep bounded cap; charge, regeneration, conversion, resonance or encounter mechanics require finite effect ceilings."
+    }
+  ],
+  "lab": [
+    {
+      "id": "wispascend",
+      "name": "Wisp Ascendancy",
+      "retiredTo": null,
+      "cap": 500,
+      "unlockRift": 1,
+      "firstPrice": {
+        "lumen": 640,
+        "shard": 64
+      },
+      "lastPrice": {
+        "lumen": 1.1384576449782854e+70,
+        "shard": 1.1384576449782856e+69
+      },
+      "optimisticDaysToCap": 270.8289887152778,
+      "description": "+15% passive Wisp damage permanently; also raises the Wisp-powered part of your tap damage.",
+      "decision": "Keep 500; long timed foundation."
+    },
+    {
+      "id": "guardmastery",
+      "name": "Guardian's Mastery",
+      "retiredTo": null,
+      "cap": 500,
+      "unlockRift": 1,
+      "firstPrice": {
+        "lumen": 480,
+        "shard": 32
+      },
+      "lastPrice": {
+        "lumen": 8.538432337337141e+69,
+        "shard": 5.692288224891428e+68
+      },
+      "optimisticDaysToCap": 270.5841550925926,
+      "description": "+20% tap damage, permanently.",
+      "decision": "Keep 500; long timed foundation."
+    },
+    {
+      "id": "riftattune",
+      "name": "Rift Attunement",
+      "retiredTo": "Tree: Echoing Rest",
+      "cap": 500,
+      "unlockRift": 1,
+      "firstPrice": {
+        "lumen": 400,
+        "shard": 80
+      },
+      "lastPrice": {
+        "lumen": 7.115360281114283e+69,
+        "shard": 1.4230720562228568e+69
+      },
+      "optimisticDaysToCap": 271.14405815972225,
+      "description": "+10% offline earning rate, permanently (stacks past 100%).",
+      "decision": "Keep historical ranks and paid work; future purchases use the listed successor."
+    },
+    {
+      "id": "shardstudy",
+      "name": "Shard Attunement",
+      "retiredTo": null,
+      "cap": 500,
+      "unlockRift": 15,
+      "firstPrice": {
+        "lumen": 320,
+        "shard": 120
+      },
+      "lastPrice": {
+        "lumen": 5.692288224891427e+69,
+        "shard": 2.1346080843342852e+69
+      },
+      "optimisticDaysToCap": 270.94004918981483,
+      "description": "+8% Shards earned per kill, permanently.",
+      "decision": "Keep 500; long timed foundation."
+    },
+    {
+      "id": "lumenstudy",
+      "name": "Lumen Wellspring",
+      "retiredTo": null,
+      "cap": 500,
+      "unlockRift": 25,
+      "firstPrice": {
+        "lumen": 1120,
+        "shard": 96
+      },
+      "lastPrice": {
+        "lumen": 1.9923008787119994e+70,
+        "shard": 1.707686467467428e+69
+      },
+      "optimisticDaysToCap": 271.24606047453705,
+      "description": "+8% Lumen earned per kill, permanently.",
+      "decision": "Keep 500; long timed foundation."
+    },
+    {
+      "id": "formationstudy",
+      "name": "Formation Insight",
+      "retiredTo": "Lab: Wisp Ascendancy",
+      "cap": 500,
+      "unlockRift": 40,
+      "firstPrice": {
+        "lumen": 1760,
+        "shard": 176
+      },
+      "lastPrice": {
+        "lumen": 3.1307585236902854e+70,
+        "shard": 3.1307585236902844e+69
+      },
+      "optimisticDaysToCap": 271.49991898148147,
+      "description": "+5% passive Wisp damage permanently; also raises the Wisp-powered part of your tap damage.",
+      "decision": "Keep historical ranks and paid work; future purchases use the listed successor."
+    },
+    {
+      "id": "motestudy",
+      "name": "Luminous Sense",
+      "retiredTo": null,
+      "cap": 500,
+      "unlockRift": 60,
+      "firstPrice": {
+        "lumen": 2560,
+        "shard": 256
+      },
+      "lastPrice": {
+        "lumen": 4.553830579913142e+70,
+        "shard": 4.5538305799131424e+69
+      },
+      "optimisticDaysToCap": 271.69115162037036,
+      "description": "+10% Motes gained from Luminous enemies, permanently.",
+      "decision": "Keep 500; long timed foundation."
+    },
+    {
+      "id": "prismstudy",
+      "name": "Ascendant Clarity",
+      "retiredTo": "Tree: Swift Ascension",
+      "cap": 500,
+      "unlockRift": 90,
+      "firstPrice": {
+        "lumen": 3840,
+        "shard": 384
+      },
+      "lastPrice": {
+        "lumen": 6.830745869869713e+70,
+        "shard": 6.830745869869712e+69
+      },
+      "optimisticDaysToCap": 271.9142607060185,
+      "description": "+5% Prisms earned per Ascend, permanently.",
+      "decision": "Keep historical ranks and paid work; future purchases use the listed successor."
+    },
+    {
+      "id": "measuredinquiry",
+      "name": "Measured Inquiry",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 60,
+      "firstPrice": {
+        "lumen": 24000,
+        "shard": 960
+      },
+      "lastPrice": {
+        "lumen": 4760624,
+        "shard": 190425
+      },
+      "optimisticDaysToCap": 0.08826967592592593,
+      "description": "2% less work per completed level, up to 20%, for future starts of Wisp Ascendancy, Guardian’s Mastery, Shard Attunement, Lumen Wellspring and Luminous Sense. Running Studies and Measured Inquiry itself are unchanged.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "labcapacity",
+      "name": "Expanded Apparatus",
+      "retiredTo": null,
+      "cap": 2,
+      "unlockRift": 40,
+      "firstPrice": {
+        "lumen": 16000,
+        "shard": 1600
+      },
+      "lastPrice": {
+        "lumen": 32000,
+        "shard": 3200
+      },
+      "optimisticDaysToCap": 0.004375,
+      "description": "One extra concurrent Study slot per completed level, up to two extra. Existing slots and already-paid work stay.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "procurement",
+      "name": "Research Procurement",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 25,
+      "firstPrice": {
+        "lumen": 12000,
+        "shard": 600
+      },
+      "lastPrice": {
+        "lumen": 619679,
+        "shard": 30984
+      },
+      "optimisticDaysToCap": 0.06495515046296296,
+      "description": "2% lower Lumen and Shard prices per level for future Lab starts, up to 20%. Does not discount Research Procurement itself or refund running work.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "catalysis",
+      "name": "Mote Catalysis",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 60,
+      "firstPrice": {
+        "lumen": 32000,
+        "shard": 1200
+      },
+      "lastPrice": {
+        "lumen": 1652476,
+        "shard": 61968
+      },
+      "optimisticDaysToCap": 0.08660300925925926,
+      "description": "2% lower Mote prices per level for future timed Lab boosts, up to 20%. Existing paid speed and boost time are retained; project levels share unexpired boost time.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "focusprotocol",
+      "name": "Focused Apparatus",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 40,
+      "firstPrice": {
+        "lumen": 16000,
+        "shard": 640
+      },
+      "lastPrice": {
+        "lumen": 104858,
+        "shard": 4195
+      },
+      "optimisticDaysToCap": 0.016027199074074076,
+      "description": "At the start of another Study, each unused slot saves 1% work per level, up to 30%. Work is then fixed: filling those slots later cannot change paid work. Does not shorten this project.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "fieldnotes",
+      "name": "Field Notes",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 15,
+      "firstPrice": {
+        "lumen": 4800,
+        "shard": 240
+      },
+      "lastPrice": {
+        "lumen": 247872,
+        "shard": 12394
+      },
+      "optimisticDaysToCap": 0.043302951388888886,
+      "description": "Each earned completion of another Study grants 2 Motes per completed Field Notes level. No reward from this project, rendering, loading or closing over-cap paid work.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "curriculum",
+      "name": "Balanced Curriculum",
+      "retiredTo": null,
+      "cap": 3,
+      "unlockRift": 60,
+      "firstPrice": {
+        "lumen": 48000,
+        "shard": 1600
+      },
+      "lastPrice": {
+        "lumen": 147000,
+        "shard": 4900
+      },
+      "optimisticDaysToCap": 0.008958333333333334,
+      "description": "Each different expansion project with an earned level saves 1% future work per Curriculum level, counting at most ten subjects. Maximum 30%; this project and running work are unchanged.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "bossledger",
+      "name": "Boss Survey",
+      "retiredTo": null,
+      "cap": 20,
+      "unlockRift": 20,
+      "firstPrice": {
+        "lumen": 11200,
+        "shard": 400
+      },
+      "lastPrice": {
+        "lumen": 46293529,
+        "shard": 1653340
+      },
+      "optimisticDaysToCap": 2.1867881944444445,
+      "description": "5% more Lumen and Shards from boss kills per level, up to 100%. Does not change ordinary kills, Sigils, Motes or ability rewards.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "luminousdistill",
+      "name": "Luminous Distillation",
+      "retiredTo": null,
+      "cap": 20,
+      "unlockRift": 35,
+      "firstPrice": {
+        "lumen": 20000,
+        "shard": 640
+      },
+      "lastPrice": {
+        "lumen": 82667016,
+        "shard": 2645345
+      },
+      "optimisticDaysToCap": 2.7103052662037035,
+      "description": "10% more Lumen and Shards from Luminous kills per level, up to 200%. Does not change encounter chance, Motes, bosses or ability rewards.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "sigilcartography",
+      "name": "Sigil Cartography",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 60,
+      "firstPrice": {
+        "lumen": 64000,
+        "shard": 2400
+      },
+      "lastPrice": {
+        "lumen": 534535,
+        "shard": 20045
+      },
+      "optimisticDaysToCap": 0.019212962962962963,
+      "description": "One additional Sigil per boss kill per completed level, up to five. No Sigils from ordinary enemies or ability casts.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "rarityappraisal",
+      "name": "Rarity Appraisal",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 15,
+      "firstPrice": {
+        "lumen": 6400,
+        "shard": 400
+      },
+      "lastPrice": {
+        "lumen": 330496,
+        "shard": 20656
+      },
+      "optimisticDaysToCap": 0.043302951388888886,
+      "description": "2% fewer Shards for future Wisp Rarity upgrades per level, up to 20%. Lumen prices, earned tiers and their effects are unchanged.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "modulefabrication",
+      "name": "Module Fabrication",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 30,
+      "firstPrice": {
+        "lumen": 16000,
+        "shard": 800
+      },
+      "lastPrice": {
+        "lumen": 826239,
+        "shard": 41312
+      },
+      "optimisticDaysToCap": 0.06495515046296296,
+      "description": "2% lower Lumen and Shard prices for future Wisp Module upgrades per level, up to 20%. Existing Module levels and effects are unchanged.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "ultimateanalysis",
+      "name": "Ultimate Analysis",
+      "retiredTo": null,
+      "cap": 10,
+      "unlockRift": 70,
+      "firstPrice": {
+        "lumen": 80000,
+        "shard": 3200
+      },
+      "lastPrice": {
+        "lumen": 5497559,
+        "shard": 219903
+      },
+      "optimisticDaysToCap": 0.08660300925925926,
+      "description": "2% fewer Sigils for future Wisp Ultimate unlocks per level, up to 20%. Mythic requirement and Ultimate effects are unchanged.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "resonantefficiency",
+      "name": "Resonance Efficiency",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 50,
+      "firstPrice": {
+        "lumen": 24000,
+        "shard": 960
+      },
+      "lastPrice": {
+        "lumen": 157287,
+        "shard": 6292
+      },
+      "optimisticDaysToCap": 0.01068431712962963,
+      "description": "Each completed level reduces an in-run Resonate refill by 2 Sigils, from 25 down to 15. Unlock conditions, refill amount and run limit are unchanged.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    },
+    {
+      "id": "adaptivegrowth",
+      "name": "Adaptive Growth",
+      "retiredTo": null,
+      "cap": 5,
+      "unlockRift": 45,
+      "firstPrice": {
+        "lumen": 24000,
+        "shard": 1280
+      },
+      "lastPrice": {
+        "lumen": 157287,
+        "shard": 8389
+      },
+      "optimisticDaysToCap": 0.01068431712962963,
+      "description": "Each completed level reduces the Wisp level required for a future Rarity upgrade by one, up to five fewer levels. Never below level one; prices and Rarity bonuses are separate.",
+      "decision": "Keep current cap; bounded utility/discount or specialized timed path."
+    }
+  ]
+}
