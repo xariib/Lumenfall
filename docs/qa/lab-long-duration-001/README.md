@@ -2,7 +2,8 @@
 
 [Requirements, implementation and delivery checkpoint](../../tasks/LAB_LONG_DURATION_001.md).
 
-Source SHA256 `5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356`.
+Historical receipts: source SHA256 `5c1bd9c0eed9e687da8cf7d5bb968c8031c622a332afee339551db5c99489356`.
+Latest [slot correction/source-bound evidence](../lab-slot-challenges-001/README.md).
 Local Node24.20.0, Brave Chromium156.0.8078.74, Windows.
 [Core and causal controls](core.json), [native mobile checks](mobile.json).
 

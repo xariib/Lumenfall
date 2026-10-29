@@ -35,5 +35,11 @@ builder now expects the new Lab boundary connection explicitly.
 The latter uses its existing frozen-power diagnostic transform (hash27db61d8),
 derived from productba7acc19; it is not an unmodified-product hash.
 
+After CI exposed the old immediate-slot hint oracle, its replacement verifies
+all displayed goals and actual paid completion: [Workshop417](workshop-card-clarity.json).
+[Clarity mobile524](clarity-mobile.json) and [permanent mobile416](permanent-mobile.json)
+PASS across18 profiles each. All27 workflow-referenced task startup/link checks
+PASS after shortening shared status text (largest32682/32768bytes).
+
 These are local/self-review results. Required CI, integration, signed Android,
 physical phone, exact WebView60, TalkBack and human pacing are separate gates.

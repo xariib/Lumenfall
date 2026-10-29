@@ -81,6 +81,11 @@ current/target pairs, verify eligibility without an unpaid slot grant, start
 the actual paid research and finish before expecting the slot.417 assertions
 PASS. No product bytes, gate or deadline change in this correction.
 
+CI on8b31ea91 passed six workflows and the full offline job, then caught the
+new shared status paragraph exceeding the32KiB startup budget for an older
+task. Shorten that paragraph to a continuation link; keep the existing limit
+and verify all workflow-referenced task budgets. This is documentation only.
+
 Status: PR23 published; required exact-head CI is running. Latest head/check
 links are maintained in the PR description; this documentation follow-up changes
 no product/test bytes. Next: inspect required CI and integrate only after all
