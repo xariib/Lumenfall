@@ -50,9 +50,9 @@ Focused checks PASS: recap core18 and mobile129/eight profiles; Forge468/four
 controls (including combined Lab/Forge bonuses); Lab challenges238/five controls;
 Auto Ascend historical endpoints/controls; Wisp8099 plus full frozen preservation.
 Pinned Node24.19.0 independent one-second oracle regenerated all four8h windows:
-released kills/Ascends/Prisms unchanged. Git canonical LF source binding is being
-regenerated separately from Windows CRLF bytes. Full189-case main and native
-stationary-purchase checks continue; no exact-source CI/Android acceptance yet.
+released kills/Ascends/Prisms unchanged. Canonical LF source binding was regenerated on the integrated bytes. Native
+stationary purchases PASS492 assertions/96 cases/three controls. Full189-case
+main continues; no exact-source CI/Android acceptance yet.
 Raw local logs: validation-evidence/all-pending (not release evidence).
 
 Next: publish this combined candidate and resolve required CI findings. Preserve
@@ -62,3 +62,5 @@ when browser access is enabled. No APK built or published yet.
 References: [recap](OFFLINE_RECAP_CLARITY_001.md),
 [Lab](LAB_SLOT_CHALLENGES_001.md), [visuals](VISUAL_POLISH_001.md),
 [debug](DEBUG_SCROLL_EXPLOITS_001.md), [workflow](../project/FEATURE_WORKFLOW.md).
+
+[Combined focused receipt](../qa/all-pending-apk-001/focused.json).

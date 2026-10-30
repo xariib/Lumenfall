@@ -1,0 +1,95 @@
+{
+  "status": "focused PASS; required CI and Android pending",
+  "baseline": "9dd63cdb9b0290086d9e253eae1f9767c23eb61d",
+  "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+  "node": "24.20.0 focused; 24.19.0 independent oracle/full suite",
+  "browser": "Brave Chromium156.0.8078.74",
+  "checks": [
+    {
+      "file": "forge-core.json",
+      "status": "pass",
+      "checks": 468,
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 4
+    },
+    {
+      "file": "recap-core.json",
+      "status": "PASS",
+      "checks": 18,
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 0
+    },
+    {
+      "file": "ascend-feedback.json",
+      "status": "PASS",
+      "checks": 210,
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 0
+    },
+    {
+      "file": "lab-challenges.json",
+      "status": "pass",
+      "checks": 238,
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 5
+    },
+    {
+      "file": "wisp.json",
+      "status": "PASS",
+      "checks": 8099,
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 7,
+      "preservationChecks": 25968
+    },
+    {
+      "file": "independent-oracle.json",
+      "status": "PASS",
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 0,
+      "phases": [
+        {
+          "kills": 86404,
+          "ascends": 4114,
+          "prisms": 94622,
+          "stateSha256": "343540b380872d254d1e26ddfc6f30dd268fd281e10290ac1a3fa24e17bcef50"
+        },
+        {
+          "kills": 86401,
+          "ascends": 4114,
+          "prisms": 94622,
+          "stateSha256": "87caffda43ee550fa5c5587d0fddcffaface9b33c14fba8af0828a26e5f4e824"
+        },
+        {
+          "kills": 86396,
+          "ascends": 4114,
+          "prisms": 94622,
+          "stateSha256": "beb5a492e29a7173988aa9c1b910d28c54c817fba316a853c742f0cbdff56e18"
+        },
+        {
+          "kills": 86405,
+          "ascends": 4115,
+          "prisms": 94645,
+          "stateSha256": "7945acbce36c9cbb87d3e1ef049749a82ca46f0853d8e939b24ca2011afc0cec"
+        }
+      ]
+    },
+    {
+      "file": "stationary/receipt.json",
+      "status": "pass",
+      "checks": 492,
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "controls": 3
+    }
+  ],
+  "recapMobile": {
+    "status": "PASS",
+    "checks": 129,
+    "profiles": 8
+  },
+  "r3Destinations": "PASS",
+  "limitations": [
+    "Full combined CI and signed APK delivery pending",
+    "Local browser use disabled in Work settings; connector has no dispatch",
+    "Physical phone, exact WebView60, TalkBack and human pacing unverified"
+  ]
+}
