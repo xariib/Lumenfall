@@ -81,8 +81,25 @@ Full16 profiles/160 samples PASS, all18 midgame profiles PASS, complete immutabl
 baseline/copy/layout inverses PASS, unchanged four golden state hashes PASS.
 [Full guidance receipt](../qa/rift-navigation-001/guidance-complete.json).
 Final product SHA256: `2c2db6f01dfe3c277a332de4fd4b84f250a0e25eb5ee730275558356c9331d36`.
-The0.2.60 test APK above predates this compact refinement; rebuild pending.
+The0.2.60 test APK above predates this compact refinement.
+Final compact build[run41119805999](https://github.com/xariib/Lumenfall/actions/runs/41119805999)
+produced signed Android0.2.62/code1000062 on head86414d5c. Original identity,
+exact packaged source/assets, both saves/paid work and native25→24→14→15→14→4→1
+then Push26 PASS. [Receipt](../qa/rift-navigation-001/android-test.json).
+APK SHA256 `8b12e14d101f2b7a38e9b4a383bdf19e0888eadcaac40d17c437566a9e21113c`.
+Attempt1 stopped in the existing offline-recap startup check before navigation;
+the unchanged retry passed all native assertions. [Failure](../qa/rift-navigation-001/android-recap-failure.json).
 
-Next: final-head CI and signed rebuild, integrate without overwriting PR29, record
-tested-tree/installed-APK evidence. Phone/TalkBack acceptance stays open.
+Full pre-merge run41119815206 completed with four failed scenarios, all reporting
+"native Tab reaches rift-back-one": rift-status-mobile/reduced-motion and both
+stacking variants. The driver enumerated the correct new DOM order but still
+focused Push before traversing it. Start at the first enabled control instead;
+retain every forward/backward Tab assertion and add a nonempty-order assertion.
+This corrects an expectation invalidated by the requested buttons; no game code,
+assertion coverage or limits change. [Failure](../qa/rift-navigation-001/ci-keyboard-failure.txt).
+All four local native reruns and final CI are pending on this test-only correction.
+
+Next: finish keyboard reruns and required CI; integrate the tested tree without
+overwriting PR29 and record final evidence. Verified APK0.2.62 remains current.
+Phone/TalkBack acceptance stays open.
 Workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).
