@@ -52,3 +52,9 @@ remain exactly unchanged; only its source binding changes.
 Full browser regression/long offline cases are running. Actual Node8 acceptance
 will run in existing CI. Source syntax/context/diff checks PASS.
 Next: create PR, resolve CI findings, integrate and run required delivery gates.
+
+GitHub push rejected workflow-file changes because the existing OAuth login
+lacks workflow scope. No permission change requested: new regression/controls
+are invoked from the existing required lab-boost-queue validation entrypoint.
+Its original assertions/controls and single JSON receipt are preserved, with
+a nested offlineLab result. Workflow YAML restored byte-for-byte.

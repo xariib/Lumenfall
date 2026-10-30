@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {app,seed,clone,P,R}=require('./lab-expansion-harness.cjs');
-const source=fs.readFileSync(process.argv[2]||'index.html','utf8'),T=2000000000000,H=3600;
+const T=2000000000000,H=3600;
 function run(html){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);};
  const near=(a,b,m)=>ok(Math.abs(a-b)<1e-5,m+': '+a+' vs '+b);
@@ -70,8 +70,9 @@ function run(html){
  }
  return checks;
 }
+function verify(source,negative=false){
 const result={status:'PASS',checks:run(source),sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),controls:[]};
-if(process.argv.includes('--negative'))for(const [name,a,b]of [
+if(negative)for(const [name,a,b]of [
  ['capped-Lab','if(elapsedSec>effectiveSec){','if(false && elapsedSec>effectiveSec){'],
  ['combat-tail','yield* advanceStudyOnlyTime(elapsedSec-effectiveSec,lastSeen+effectiveSec*1000,sim,true);',"yield* advanceAuthoritativeTime(elapsedSec-effectiveSec,{kind:'offline',clockStartMs:lastSeen+effectiveSec*1000,resumable:true});"],
  ['easy-Vigil','s.ascendCount>=100;','s.ascendCount>=12;'],
@@ -79,4 +80,7 @@ if(process.argv.includes('--negative'))for(const [name,a,b]of [
 ]){
  assert.equal(source.split(a).length,2,'unique control '+name);let error;try{run(source.replace(a,b));}catch(e){error=e;}assert(error instanceof assert.AssertionError,'control must be caught '+name);result.controls.push({name,caught:error.message.split('\n')[0]});
 }
-console.log(JSON.stringify(result));
+return result;
+}
+module.exports={run,verify};
+if(require.main===module)console.log(JSON.stringify(verify(fs.readFileSync(process.argv[2]||'index.html','utf8'),process.argv.includes('--negative'))));

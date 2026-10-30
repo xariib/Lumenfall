@@ -99,12 +99,6 @@ jobs:
             node tests/behavioral/run.cjs --web-root . --scenario "$SCENARIO" --raw-artifacts validation-evidence/lab-contracts
           done
 
-      - name: Full-absence Lab research and harder automation Deeds
-        run: |
-          node scripts/codex/check_context.cjs --task docs/tasks/LAB_OFFLINE_DEED_PACING_001.md
-          mkdir -p validation-evidence/lab-offline-deed-pacing
-          node tests/behavioral/lab-offline-deed-pacing.cjs index.html --negative > validation-evidence/lab-offline-deed-pacing/core.json
-
       - name: Editable next boost and independent Speed Up queue
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/LAB_BOOST_QUEUE_001.md
