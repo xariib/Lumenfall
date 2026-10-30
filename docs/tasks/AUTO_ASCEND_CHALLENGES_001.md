@@ -132,3 +132,13 @@ the existing action-focus/pure-refresh assertions stay unchanged. Local workshop
 UI PASS524checks/18profiles on productc2d44d07. Also qualify offline12h UI's
 Ritual focus fixture so its focus assertion continues testing an enabled purchase,
 with all original refund amounts/keyboard/contrast checks retained.
+
+Third heada353ea3f: Comet/Lab/permanent/shared UI/Tree workflows PASS; isolated
+offline job PASS. Main41116475538 passed prior fixtures, progression, boosts,
+identity/tooling/source checks, then rejected the stale independent reference's
+source hash. Downloaded official checksum-verified Node24.19.0 Windows runtime;
+ran the unchanged generate-offline-swift-golden.cjs --write:115200independent
+one-second calls. All four released outcomes AND full-state hashes match exactly;
+only the golden sourceSha256 line changes. [Replay proof](../qa/auto-ascend-challenges-001/independent-replay.json).
+Preserve the generator, original state hashes, all gates and replay assertions.
+Final CI will validate this binding; no gameplay changes after productc2d44d07.
