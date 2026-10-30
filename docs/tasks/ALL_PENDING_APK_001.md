@@ -139,3 +139,11 @@ performed or claimed effective. After reopening this same task, retry browser
 access and continue the existing exact-main validation/signing workflow above.
 All code and prior seven-workflow/190-case acceptance remain saved; this update
 changes this checkpoint only. Current user authorization remains applicable.
+
+Continuation check after “Continue”: browser inventory still denies access;
+no exact-main release workflows have started. Normal gh CLI is unavailable and
+the GitHub connector still exposes no dispatch action. Read-only process checks
+show the background ChatGPT process started29 October06:46 and remains active;
+a full app restart has not occurred. Actual File menu exposes “Quit ChatGPT”
+(Ctrl+Q); use that complete quit/relaunch before the next retry. Both browser
+settings remain On. No further code changes, tests, APK build or release.
