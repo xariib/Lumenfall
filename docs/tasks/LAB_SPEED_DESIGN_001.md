@@ -9,6 +9,14 @@ run41143134106; signed non-publishing build41143127589. Other required runs:
 permanent41143134150, Comet41143134059, Forge41143134116, Lab41143134170,
 shared UI41143134039, Tree41143134073. All seven must pass before integration.
 The receipt helper outside this checkout is updated for these exact head/IDs.
+The app-code head above is now followed by a documentation correction:
+pre-merge41143134106 passed browser/boost/screens, then failed the unchanged
+32KiB startup gate after upstream status documentation grew. Shared21007+
+RIFT_HINT_READABILITY_00212299=33306 bytes. Compact status summaries retain
+task/release/evidence links; shared19888+task12299=32187. All31 workflow-selected
+task checks PASS (`context-gates.json`); budget/checker unchanged. Failed log
+and byte counts are retained. The documentation head needs fresh seven-gate
+CI; all app/native-check code still matches tested ff92edf2 and the APK below.
 Signed Android0.2.68/code1000068 PASS on build41143127589 attempt2, unchanged
 ff92edf2 source and assertions. Attempt1 missed the first native Rift back-one
 tap (25rather than24); log, calibration and diagnostic logcat are retained.
