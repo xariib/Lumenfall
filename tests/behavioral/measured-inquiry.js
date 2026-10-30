@@ -133,7 +133,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     // Keep real foreground replay separate from this exact offline-work oracle.
     var clock=performance.now;Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});
     var actual=b.applyOfflineNow();Object.defineProperty(performance,'now',{configurable:true,value:clock});ok(actual.effectiveSec===43200 && b.getState().longStudyLevels.guardmastery===1&&b.getState().longStudyLevels.measuredinquiry===13,'combat stops at12h while the full absence finishes Lab work');
-    same(actual.completedStudies,["Guardian’s Mastery"],'paid completion beyond12h');same(actual.closedStudies,['Measured Inquiry'],'overcap paid record closes beyond12h');ok(!active('guardmastery')&&!active('measuredinquiry'),'completed paid work leaves both slots');
+    same(actual.completedStudies,["Guardian's Mastery"],'paid completion beyond12h');same(actual.closedStudies,['Measured Inquiry'],'overcap paid record closes beyond12h');ok(!active('guardmastery')&&!active('measuredinquiry'),'completed paid work leaves both slots');
     return {checks:checks,negativeControls:2,capCompletion:true,overcapTail:true,dueEntry:true,arrayOrder:true,liveOfflineChunkParity:true,actual12hCombatCapWithContinuousLab:true,timelineEvents:events.length};
   }
   // Actual current Lab controls and observer purity, including small viewports.
