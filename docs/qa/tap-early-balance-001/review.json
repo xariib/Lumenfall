@@ -1,0 +1,9 @@
+{
+  "reviewedCommit": "55754f20e7c47a602432f0ccf1b474134f695cf3",
+  "finding": "Driver emitted uppercase PASS although the behavioral runner requires lowercase pass",
+  "fixedBy": "afe5e73f08ad8a5fa5576ff77ee0e3a257d6e4c6",
+  "currentHead": "8ee8d030bb76a749bcac92254f6c230324a0ecfb",
+  "thread": "PRRT_kwDOVI5pCM6yGjFn",
+  "resolved": true,
+  "evidence": "Current driver line126 emits lowercase pass; registered native scenario was verified through run.cjs. Automated review was on the initial head, not an independent review of the final head."
+}

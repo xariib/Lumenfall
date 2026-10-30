@@ -83,6 +83,7 @@ async function browserIdentity(chrome) {
 async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, options = {}) {
   const log = options.log || console.log;
   const urlFor = page => baseUrl + page + '?' + new URLSearchParams({ qaScenario: scenario, qaFixture: fixture });
+  if (scenario === 'tap-early-balance') return runNativeProcess([process.execPath, path.join(ROOT, 'tap-early-balance.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), '--negative'], scenario, 120000, options);
   if (scenario === 'wisp-rarity-scroll') return runNativeProcess([process.execPath, path.join(ROOT, 'wisp-rarity-scroll.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 90000, options);
   if (scenario === 'wisp-card-simplicity') return runNativeProcess([process.execPath, path.join(ROOT, 'wisp-upgrades.cjs'), '--card-layout', '--chrome', chrome, '--source', path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html'), '--evidence', path.join(options.rawArtifactRoot || os.tmpdir(), 'wisp-card-simplicity')], scenario, 90000, options);
   if (scenario === 'lab-speed-controls') return runNativeProcess([process.execPath, path.join(ROOT, 'lab-speed-controls.cjs'), path.join(options.sourceWebRoot || path.join(ROOT, '../..'), 'index.html')], scenario, 240000, options);

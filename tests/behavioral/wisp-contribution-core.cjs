@@ -66,12 +66,20 @@ function preservation(html,baseline){
  // Preserve the complete old gameplay oracle under its original automation
  // unlock policy. New multi-condition eligibility has its own causal checks.
  html=require('./legacy-automation-deeds-reference.cjs')(html);
+ // This frozen no-kill preservation world retains the old clock activation
+ // policy. Actual capped-charge whole/split clocks have separate current-world
+ // offline regressions; retain every old summary field here, even iterations.
+ var exactClockGuard="researchLevel('charge')>=10 && !(state.owned.autoascend&&state.autoAscendEnabled) || ";
+ assert.strictEqual(html.split(exactClockGuard).length,3,'two intentional current clock guards');
+ html=html.split(exactClockGuard).join('');
  // F19 intentionally changes Deed counting and the minimum natural cycle.
  // Apply those approved rules to the immutable pre-readout oracle, retaining
  // its original Wisp formulas/controller. ENDLESS adds explicit state fields
  // and changes combat pacing; compare all prior fields in a no-kill world,
  // while separately asserting the new fields start without free Mastery.
  function approvedRule(from,to){assert.strictEqual(baseline.split(from).length,2,'unique approved Swift oracle anchor');baseline=baseline.replace(from,to);}
+ // TAP_EARLY_BALANCE_001 intentionally raises the flat Guardian base only.
+ approvedRule('return 5 + effectivePartyPower()*0.02;','return 20 + effectivePartyPower()*0.02;');
  approvedRule('var SAVE_SCHEMA_VERSION = 3;','var SAVE_SCHEMA_VERSION = 4;');
  approvedRule('return LEGACY_RESEARCH_IDS.reduce(function(sum,id){return sum+(s.research[id]||0);},0);','return RESEARCH.reduce(function(sum,node){return sum+(s.research[node.id]||0);},0);');
  approvedRule('schemaVersion:SAVE_SCHEMA_VERSION, offline12hRefund:null,','schemaVersion:SAVE_SCHEMA_VERSION, offline12hRefund:null,\n    swiftRecoveryRefund:null, swiftRecoveryRefundAudit:null,');

@@ -4189,7 +4189,9 @@ function activateStudyBoost(id,mult,hours){
   renderLongStudies();renderHud();return true;
 }
 function luminousMotePayout(nowMs,clock){
-  if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;
+  // The saved deadline and batched defeats use epoch milliseconds. Compare
+  // discrete defeats in that same representation at the cooldown boundary.
+  if(nowMs<state.moteNextAtMs)return 0;
   state.moteNextAtMs=nowMs+LUMINOUS_MOTE_INTERVAL_MS;
   var reward=Amount.max(1,Amount.round(Amount.mul(motesDropFor(state.depth),Amount.add(1,supportMoteBonus())),'round'));
   state.motes=creditAmount(state.motes,reward);return reward;
@@ -6775,7 +6777,8 @@ function chipEffectivePower(id){
   return Amount.mul(Amount.mul(wispPower(sp,state.spirits[id]||0),shareMult),simulationBuffMult(Date.now()));
 }
 function guardianTapBaseDamage(){
-  return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));
+  // Strong opening hits; the unchanged party share keeps later damage Wisp-led.
+  return Amount.add(20,Amount.mul(effectivePartyPower(),0.02));
 }
 function guardianTapDamageAt(depth,partyBuffMult,ordinal){
   var damage=Amount.mul(Amount.mul(Amount.mul(Amount.mul(guardianTapBaseDamage(),tapMult()),partyBuffMult||1),bossTapDamageMult(depth)),bondActive('kindling') ? 1.25 : 1);
@@ -7052,7 +7055,7 @@ function wispRoleSnapshot(depth,nowMs,ids,sustained){
     cadenceFrequency=Amount.div(hits,60);
   }
   var tapFactor=state.achieved.autotap ? Amount.mul(Amount.mul(tapMult(),bossTapDamageMult(depth)),Amount.add(1,Amount.mul(Amount.mul(0.10,forgeLevel('guardiancadence')),cadenceFrequency))) : 0;
-  var rawPassive=0,rawAbility=0,rawTap=0,baseTap=Amount.mul(5,tapFactor);
+  var rawPassive=0,rawAbility=0,rawTap=0,baseTap=Amount.mul(20,tapFactor);
   var rows=SPIRITS.map(function(sp){
     var active=ids.indexOf(sp.id)!==-1 && Amount.gt(state.spirits[sp.id]||0,0);
     var level=active ? state.spirits[sp.id] : 0,power=wispPower(sp,level),passive=Amount.mul(power,global);
@@ -10578,7 +10581,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Passive Wisp Damage', meta:'Combat rule', desc:'Active Wisp Power is multiplied by passive-only permanent upgrades, applicable damage Bonds and active Support buffs. Modules and Ultimates do not increase passive damage.'},
   {name:'Ability Charge', meta:'Automatic combat', desc:'Recruited Active Wisps fill their resource bars automatically. At 100 charge, an eligible ability fires without a manual ability button. Charge Rate speeds the natural fill up to its cap; some Forge upgrades grant extra charge. Support still has a minimum interval between its own casts, even with extra charge.'},
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
-  {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 5 damage plus 2% of general Active-party passive power. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
+  {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 20 damage plus 2% of general Active-party passive power. Strong opening hits help you build your Wisp party; Wisps provide the main ongoing damage as their power grows. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
   {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown Wisp level, Rift record, Ascends, completed Wisp Ascendancy and Arcane Calibration, plus Lumen and Shards. The first tier is an early goal; later tiers require repeated permanent development. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
   {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
   {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, uncapped Masterwork Tempering and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
@@ -12897,7 +12900,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
   // boundary cannot give Research/Studies priority over due automation.
   if(elapsedSec>0&&state.riftMode==='push'){
     var firstKill=simulationPassiveKillSeconds(simulationPassiveDps(simulationNowMs(),simulationClockPosition()));
-    if(firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
+    if(researchLevel('charge')>=10 && !(state.owned.autoascend&&state.autoAscendEnabled) || firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
   }
   var initialNowMs = simulationNowMs();
   var initialAscends = summary.ascends;
@@ -12951,7 +12954,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     var dps = simulationPassiveDps(nowMs,simulationClockPosition());
     if(!binaryClock&&state.riftMode==='push'){
       var tinyKill=simulationPassiveKillSeconds(dps);
-      if(tinyKill>0&&(farmGridRemainingSec-tinyKill===farmGridRemainingSec||fastRepeatedPush(tinyKill))){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
+      if(researchLevel('charge')>=10 && !(state.owned.autoascend&&state.autoAscendEnabled) || tinyKill>0&&(farmGridRemainingSec-tinyKill===farmGridRemainingSec||fastRepeatedPush(tinyKill))){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
     }
     policy.clock=simulationClockPosition();
     if(binaryClock)captureStudyProgressAnchors();
@@ -13154,6 +13157,7 @@ function simulationWorkNow(){
   return typeof performance!=='undefined' && performance.now ? performance.now() : Date.now();
 }
 function advanceStudyOnlyTime(elapsedSec,clockStartMs,summary,resumable){
+  canonicalAutomationAnchors={}; // Study-only gaps do not advance combat timers.
   function* run(){
   var remaining = Amount.max(0,Number(elapsedSec)||0);
   var nowMs = Amount.valid(clockStartMs) ? clockStartMs : Date.now();
