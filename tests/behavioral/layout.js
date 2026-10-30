@@ -132,7 +132,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
         open=q('[data-study-speed-open="'+slot+'"]');
         var panel=q('#'+open.getAttribute('aria-controls'));
         assert(!panel.hidden&&open.getAttribute('aria-expanded')==='true','Speed Up opens its own editor');
-        assert(panel.querySelector('[data-study-speed-target]').getBoundingClientRect().height>=44,'Speed selector has a practical target');
+        assert(panel.querySelector('[data-study-mult-preset]').getBoundingClientRect().height>=44,'Speed preset has a practical target');
         Array.from(panel.querySelectorAll('.cost-icon')).forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0&&r.width<=16&&r.height<=16,'speed price icon sizing');});
         if(!wasOpen)open.click();
       });

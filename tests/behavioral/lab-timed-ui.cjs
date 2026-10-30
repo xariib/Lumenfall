@@ -7,6 +7,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
  const tiers=[1.5,2,3,4,5,6,7,8],prices=[800,1500,3500,6500,10000,15000,20500,27500];
  const seed=(motes=100000)=>({...JSON.parse(JSON.stringify(fresh)),maxDepthEver:250,questDay:new Date().toISOString().slice(0,10),motes,lumen:1e12,shards:1e12,activeStudies:[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}]});
  async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click()');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');if(s.activeStudies.length&&!(await ev('document.querySelector(".study-speed-open").getAttribute("aria-expanded")=="true"')))await touch('document.querySelector(".study-speed-open")');}
+ const nativeInstall=install;install=async function(s){await nativeInstall(s);if(s.activeStudies.length)await ev('document.querySelector(".study-slider-controls").open=true;');};
  const q=attr=>'document.querySelector('+JSON.stringify('['+attr+'=guardmastery]')+')';
  const range=q('data-study-speed-target'),buy=q('data-speed-study'),hours=q('data-study-boost-hours'),status=q('data-study-boost-status');
  async function choose(tier,duration=8){await ev(range+'.focus({preventScroll:true});'+range+'.value="'+tiers.indexOf(tier)+'";'+range+'.dispatchEvent(new Event("input",{bubbles:true}));'+range+'.dispatchEvent(new Event("change",{bubbles:true}));'+hours+'.value="'+duration+'";'+hours+'.dispatchEvent(new Event("change",{bubbles:true}))');}
@@ -24,6 +25,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
    check(await ev('document.querySelector("[data-study-card=guardmastery] .study-level").textContent==="Lv. '+level+' / 500"'),'catalogue badge shows earned level');
    await ev('document.querySelector("[data-study=guardmastery]").focus()');await key('Enter');
    if(!(await ev('document.querySelector(".study-speed-open").getAttribute("aria-expanded")=="true"')))await touch('document.querySelector(".study-speed-open")');
+   await ev('document.querySelector(".study-slider-controls").open=true');
    check(await ev('uiRegression.get().activeStudies[0].slot===0&&uiRegression.get().motes===100000&&'+range+'.getClientRects().length>0'),'slot research reveals speed without spending Motes');
    await choose(2,12);await ev(range+'.focus();window.idleRange='+range+';uiRegression.render();uiRegression.render()');
    check(await ev(range+'===idleRange&&document.activeElement===idleRange&&'+hours+'.value==="12"&&uiRegression.get().motes===100000'),'slot speed choices/focus survive refresh without spending');

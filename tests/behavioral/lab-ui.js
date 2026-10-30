@@ -1,8 +1,8 @@
 /* LAB_UI_001 presentation checks against real rendering and handlers. */
-window.selectLabSpeed=function(id,mult){var select=document.querySelector('[data-study-speed-target="'+id+'"]');var open=select.closest('[data-running-study]').querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')!=='true')open.click();select=document.querySelector('[data-study-speed-target="'+id+'"]');select.focus({preventScroll:true});select.value=String([1.5,2,3,4,5,6,7,8].indexOf(mult));select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));};
+window.selectLabSpeed=function(id,mult){var select=document.querySelector('[data-study-speed-target="'+id+'"]');var open=select.closest('[data-running-study]').querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')!=='true')open.click();select=document.querySelector('[data-study-speed-target="'+id+'"]');select.closest('details').open=true;select.focus({preventScroll:true});select.value=String([1.5,2,3,4,5,6,7,8].indexOf(mult));select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));};
 window.checkLabSpeedControls = function(b,assert,id){
  var q=function(selector){return document.querySelector(selector);},row=q('[data-study-inspection="'+id+'"]'),select=q('[data-study-speed-target="'+id+'"]');
- var open=row.querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')!=='true')open.click();row=q('[data-study-inspection="'+id+'"]');select=q('[data-study-speed-target="'+id+'"]');assert(!row.hidden&&select.getClientRects().length,'Speed Up exposes native controls');
+ var open=row.querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')!=='true')open.click();row=q('[data-study-inspection="'+id+'"]');select=q('[data-study-speed-target="'+id+'"]');select.closest('details').open=true;assert(!row.hidden&&select.getClientRects().length,'Speed Up exposes native controls');
  var before=JSON.stringify(b.getState()),save=b.rawSave(),recovery=b.rawRecovery();
  select.focus();b.renderLayout();
  assert(document.activeElement===select&&select.isConnected,'native speed select stays attached across rendering');
@@ -28,8 +28,8 @@ window.runLabUiQa = function(b,ctx,assert){
   ok(card.innerText.split("Guardian's Mastery").length===2,'one visible title');
   ok((card.innerText.match(/Lv\./g)||[]).length===1&&!/Completed level|In progress: level|Details/.test(card.innerText),'one current level and no repeated status');
   ok(card.innerText.includes('Current: +0%')&&!card.innerText.includes('Next:'),'earned and completion effects distinct');
-  ok(!card.querySelector('details')&&!card.querySelector('[data-study-details]'),'direct controls without a separate panel');
-  ok(!card.querySelector('[data-study-speed-target]').getClientRects().length,'speed editor initially closed');card.querySelector('[data-study-speed-open]').click();card=q('[data-running-study="guardmastery"]');ok(card.querySelector('[data-study-speed-target]').getClientRects().length,'Speed Up reveals selector');
+  ok(!card.querySelector('details:not(.study-slider-controls)')&&!card.querySelector('[data-study-details]'),'direct controls without a separate panel');
+  ok(!card.querySelector('[data-study-speed-target]').getClientRects().length,'speed editor initially closed');card.querySelector('[data-study-speed-open]').click();card=q('[data-running-study="guardmastery"]');ok(card.querySelector('[data-study-mult-preset]').getClientRects().length,'Speed Up reveals presets');
   window.checkLabSpeedControls(b,ok,'guardmastery');
 
   [0,50,99.999,100].forEach(function(percent){

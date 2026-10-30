@@ -13,7 +13,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await touch('[data-study-speed-open="0"]');
   check(await ev('!document.querySelector("[data-study-speed-target]").disabled&&!document.querySelector("[data-study-boost-hours]").disabled'),'active paid boost leaves next settings editable');
   check(await ev('document.querySelector("[data-study-boost-status]").textContent.includes("Active: 1.5x")&&document.querySelector("[data-study-boost-queue]").getAttribute("aria-checked")==="false"'),'active1.5x and boost Queue OFF are explicit');
-  await ev('document.querySelector("[data-study-speed-target]").focus()');await key('ArrowRight');await key('ArrowRight');
+  await ev('document.querySelector(".study-slider-controls").open=true;document.querySelector("[data-study-speed-target]").focus()');await key('ArrowRight');await key('ArrowRight');
   check(await ev('document.querySelector("[data-study-next-summary]").textContent==="3x · 8h"&&document.querySelector("[data-study-speed-target]").value==="2"'),'next3x selection remains visible during1.5x boost');
   await ev('(()=>{const e=document.querySelector("[data-study-boost-hours]");e.value="12";e.dispatchEvent(new Event("change",{bubbles:true}));})()');
   check(await ev('document.querySelector("[data-study-next-summary]").textContent==="3x · 12h"'),'future duration updates without changing current receipt');
@@ -29,7 +29,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   if(!await ev('!!document.querySelector(".study-speed-editor:not([hidden])")'))await touch('[data-study-speed-open="0"]');await touch('[data-study-boost-queue]');await ev('uiRegression.fund(3500)');
   check(await ev('document.querySelector("[data-study-next-price] [data-price-currency]").style.color==="var(--ink)"'),'funding refreshes future price');
   check(await ev('(()=>{const d=document.querySelector(".study-speed-menu"),r=d.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth+1&&r.top>=0&&r.bottom<=innerHeight+1&&d.scrollWidth<=d.clientWidth+1;})()'),'menu fits viewport including enlarged text');
-  check(await ev('Array.from(document.querySelectorAll(".study-speed-editor:not([hidden]) button,.study-speed-editor:not([hidden]) input,.study-speed-editor:not([hidden]) select")).every(e=>{const r=e.getBoundingClientRect();return r.width>=44&&r.height>=44;})'),'44px controls including queue during active boost');
+  check(await ev('Array.from(document.querySelectorAll(".study-speed-editor:not([hidden]) button,.study-speed-editor:not([hidden]) input,.study-speed-editor:not([hidden]) select")).filter(e=>e.getClientRects().length).every(e=>{const r=e.getBoundingClientRect();return r.width>=44&&r.height>=44;})'),'44px controls including queue during active boost');
   if(evidence&&width===390&&motion==='reduce'){fs.mkdirSync(evidence,{recursive:true});await ev('document.querySelector(".study-speed-menu").scrollTop=0');const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,'active-next-'+scale+'.png'),Buffer.from(shot.data,'base64'));}
   await ev('uiRegression.expire();uiRegression.speeds();uiRegression.speeds();');
   check(await ev('uiRegression.get().studyBoosts.slot0.mult===3&&uiRegression.get().motes===0&&document.querySelector("[data-study-boost-status]").textContent.includes("Active: 3x")'),'expiry starts chosen3x once and refreshes current summary');
