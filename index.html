@@ -12877,7 +12877,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
   // boundary cannot give Research/Studies priority over due automation.
   if(elapsedSec>0&&state.riftMode==='push'){
     var firstKill=simulationPassiveKillSeconds(simulationPassiveDps(simulationNowMs(),simulationClockPosition()));
-    if(researchLevel('charge')>=10 || firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
+    if(researchLevel('charge')>=10 && !(state.owned.autoascend&&state.autoAscendEnabled) || firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
   }
   var initialNowMs = simulationNowMs();
   var initialAscends = summary.ascends;
@@ -12931,7 +12931,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     var dps = simulationPassiveDps(nowMs,simulationClockPosition());
     if(!binaryClock&&state.riftMode==='push'){
       var tinyKill=simulationPassiveKillSeconds(dps);
-      if(researchLevel('charge')>=10 || tinyKill>0&&(farmGridRemainingSec-tinyKill===farmGridRemainingSec||fastRepeatedPush(tinyKill))){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
+      if(researchLevel('charge')>=10 && !(state.owned.autoascend&&state.autoAscendEnabled) || tinyKill>0&&(farmGridRemainingSec-tinyKill===farmGridRemainingSec||fastRepeatedPush(tinyKill))){activateBinaryClock();nowMs=simulationNowMs();dps=simulationPassiveDps(nowMs,simulationClockPosition());}
     }
     policy.clock=simulationClockPosition();
     if(binaryClock)captureStudyProgressAnchors();
@@ -13134,6 +13134,7 @@ function simulationWorkNow(){
   return typeof performance!=='undefined' && performance.now ? performance.now() : Date.now();
 }
 function advanceStudyOnlyTime(elapsedSec,clockStartMs,summary,resumable){
+  canonicalAutomationAnchors={}; // Study-only gaps do not advance combat timers.
   function* run(){
   var remaining = Amount.max(0,Number(elapsedSec)||0);
   var nowMs = Amount.valid(clockStartMs) ? clockStartMs : Date.now();

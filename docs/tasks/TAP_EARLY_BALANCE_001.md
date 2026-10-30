@@ -129,4 +129,30 @@ with `+=`. Convert each finite physical interval to Number before integrating
 the observation; retain the2e-10 elapsed-time assertion and every damage bound
 and causal control. This is test observation support for the existing exact
 clock representation, not a gameplay formula or acceptance-tolerance change.
+
+## Latest continuation — long-absence resume
+
+Scope the additional capped-charge activation to Push runs that cannot Auto
+Ascend; ordinary Auto-Ascend keeps its existing exact-clock activation policy.
+Its run resets already bound the Native phase history. This preserves the
+established cycle-batching path and avoids unnecessarily changing that path.
+
+Longer-absence processing exposed a stale volatile automation cache across the
+60h Lab-only tail after the12h combat cap. Clear only that cache on entry to
+Study-only advancement; retain saved exact bases and combat phases. A real
+123ms combat →60h research-only →877ms combat test preserves the saved basis
+and yields exactly one Auto-Tap. Restoring the stale cache fails its control.
+
+Focused50/four controls, Support1,950/four (including exact-basis shape and
+self-consistency), Forge9,341/25, workshop468/four and pacing221/five PASS.
+Support partition comparison now observes exact elapsed histories in physical
+milliseconds with the original numeric tolerance; save/load/backup still
+require original bits. This aligns the existing offline oracle's documented
+allowance for distinct valid timer bases; no gameplay phase check is removed.
+Calibration3,134/seven controls PASS on prior source `c8ce6293` in290.73s;
+its scenarios have no Study-only gap and cannot Auto Ascend. Current full
+original18-case offline regression is running on:
+`0336072c2235de0636b9d0d78b111f6a91445933b31a2a2793b5089aceb5012d`.
+Next: finish that regression, all seven final-head CI workflows, integration
+and signed Android test build. Physical phone/human pacing remain unverified.
 Physical phone and human pacing acceptance are unverified. No new binding rule.

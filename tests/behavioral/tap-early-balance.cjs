@@ -10,8 +10,9 @@ const ok=(v,m)=>{checks++;assert(v,m);};
 const near=(a,b,m)=>ok(Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-10,m);
 eq(html.split(marker).length,2,'single authoritative opening formula');
 const prior=html.replace(marker,'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));');
-const mutants={weak:'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));',dominant:'return Amount.add(20,Amount.mul(effectivePartyPower(),0.50));',clock:'if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;'};
-if(process.env.TAP_BALANCE_MUTANT){const id=process.env.TAP_BALANCE_MUTANT;assert(mutants[id]);html=html.replace(id==='clock'?'if(nowMs<state.moteNextAtMs)return 0;':marker,mutants[id]);}
+const studyGap='canonicalAutomationAnchors={}; // Study-only gaps do not advance combat timers.';
+const mutants={weak:'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));',dominant:'return Amount.add(20,Amount.mul(effectivePartyPower(),0.50));',clock:'if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;',pause:'void 0; // Study-only gaps do not advance combat timers.'};
+if(process.env.TAP_BALANCE_MUTANT){const id=process.env.TAP_BALANCE_MUTANT;assert(mutants[id]);html=html.replace(id==='clock'?'if(nowMs<state.moteNextAtMs)return 0;':id==='pause'?studyGap:marker,mutants[id]);}
 function game(source=html,saved){return F.app(source,saved,{clockDate:true,retainWrites:false});}
 function encounter(q,depth=1){const s=q.fresh();s.depth=s.maxDepthEver=depth;s.lastSeen=F.CLOCK;s.questDay=q.day();q.set(s);q.restoreEnemy();}
 function tapsToFirstKill(source){const {q}=game(source);encounter(q);let taps=0;while(!q.get().totalKills&&taps<30){q.manualTap();taps++;}return {taps,depth:q.get().depth};}
@@ -33,6 +34,20 @@ const {q}=game();encounter(q);near(q.tap(),20.02,'fresh uninvested tap');eq(q.en
  eq(r.endless.payout(clock.nowMs(),{binary:clock}),0,'same instant cannot pay twice');
  clock.advance(59.999);eq(r.endless.payout(clock.nowMs(),{binary:clock}),0,'full sixty-second interval remains required');
  clock.advance(.001);eq(r.endless.payout(clock.nowMs(),{binary:clock}),reward,'next exact represented interval pays once');
+}
+
+// Research continues beyond the combat cap. Resume combat from its saved phase,
+// rebuilding the transient exact-clock cache after a Lab-only wall-clock gap.
+{
+ const observed=html.replace("if(document.readyState==='loading'){",`window.endlessQa={study:function(t,at){return advanceStudyOnlyTime(t,at,simulationSummary(t));}};if(document.readyState==='loading'){`);
+ const r=game(observed).q,s=r.fresh();s.depth=s.enemyDepth=1;s.enemyHp=s.enemyMaxHp=1e12;
+ s.research.charge=10;s.achieved.autotap=true;r.set(s);
+ r.advance(.123,{kind:'live',clockStartMs:F.CLOCK});const phase=r.get()._autoTapAccum,basis=F.clone(r.get().canonicalAutomationClock);
+ r.endless.study(216000,F.CLOCK+123);
+ eq(r.get()._autoTapAccum,phase,'sixty hours of research add no combat timer progress');
+ eq(r.get().canonicalAutomationClock,basis,'research gap retains exact saved timer basis');
+ checks++;assert.doesNotThrow(()=>r.advance(.877,{kind:'live',clockStartMs:F.CLOCK+216000123}),'combat resumes from retained phase after research-only gap');
+ eq(r.get().totalTaps,1,'resume earns only the next due Auto-Tap');near(r.get()._autoTapAccum,0,'resume ends at one earned combat second');
 }
 
 // A developed early party already owns most damage at a sustainable input rate.
