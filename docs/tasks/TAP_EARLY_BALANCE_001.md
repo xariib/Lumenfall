@@ -103,4 +103,24 @@ initial CI startup timeout happened before Browser.getVersion/any game check.
 
 Next: finish the unchanged full offline regression and all seven required PR
 workflows on the corrected version; then integrate and build Android.
+
+## Clock checkpoint
+
+The original eight-hour OFF comparison additionally exposed Native-clock phase
+drift (full Auto-Tap phase0.000010229647ms versus split0ms), then a charge-bar
+endpoint mismatch. Use the already-established exact binary scheduler whenever
+Push natural charge is capped (Swift Recovery10+, including legacy overcap),
+both at window start and after an in-window purchase. Existing low-charge
+historical comparisons retain their original clock; no tolerance is changed.
+The two existing activation sites remain intact. No save field or new clock
+implementation is added. Exploratory offset-rebasing changes were discarded.
+
+Current source SHA256:
+`c8ce629318d3dbee4e39a5cb67856fab50b4f7e8c11ed3ce79b010d65e3e26e5`.
+[Original OFF state comparison](../qa/tap-early-balance-001/offline-off.json)
+PASS in33.17 seconds: full8h versus28,800 one-second calls, every original
+state comparison/tolerance retained;1,150 new kills, Motes2,956,466.
+Current focused44/three controls, Forge9,341/25, pacing221/five and
+Mote/timed-boost1,480/three PASS. Full18-case parallel regression and boss
+calibration are running; remote gates will run on this corrected source.
 Physical phone and human pacing acceptance are unverified. No new binding rule.
