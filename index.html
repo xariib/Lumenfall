@@ -2386,7 +2386,19 @@
   .stage .rift-navigation .depth-label{flex:1;min-width:0;text-align:center;overflow:hidden;}
   .rift-step{flex:none;min-width:44px;min-height:44px;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--bg-elev);color:var(--ink);font:700 16px 'Manrope',sans-serif;cursor:pointer;}
   .rift-step:disabled{opacity:.4;cursor:not-allowed;}
-  @media(max-height:680px){.stage .rift-heading{gap:0;}}
+  @media(max-height:680px){
+    .stage .rift-heading{display:grid;grid-template-columns:44px minmax(0,1fr) 88px;gap:2px;height:44px;align-items:center;}
+    .rift-navigation{grid-column:2;gap:2px;}
+    #rift-back-ten{position:absolute;left:0;top:0;width:44px;height:44px;}
+    .stage .rift-heading .rift-mode-row{grid-column:3;width:88px;height:44px;padding:0;gap:0;border:0;background:none;}
+    .stage .rift-mode-btn .farm-depth{display:none;}
+    .stage .rift-mode-btn .control-state{white-space:normal;font-size:10px;line-height:10px;}
+    .stage .rift-navigation .depth-label{font-size:12px;line-height:14px;letter-spacing:0;}
+    .rift-number{display:block;white-space:nowrap;}
+    .stage .rift-navigation .boss-tag{display:block;font-size:10px;line-height:12px;}
+    .stage .rift-navigation .region-label{font-size:10px;line-height:12px;margin-top:0;}
+  }
+  @media(max-height:680px) and (max-width:340px){.rift-prefix{display:none;}}
   #tab-research>.chapter-head{min-height:64px;height:auto;padding:12px;margin-bottom:8px;}#tab-research .chapter-copy{max-width:calc(100% - 56px);}#tab-research .chapter-kicker{display:none;}#tab-research .chapter-head h2{font-size:1.25rem;}#tab-research .chapter-art{width:80px;height:64px;}
   #study-list .study-slot{padding:8px 12px;margin-bottom:8px;}#study-list .study-slot>h3{margin:0;font-size:.75rem;}#study-list .study-slot>.lock-note{margin:5px 0;font-size:.7rem;}
   #study-list .study-running{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;}
@@ -9273,7 +9285,8 @@ function updateBattleFast(){
   els['hp-text'].textContent = (formatRiftNumber(Amount.max(0,state.enemyHp)) + ' / ' + formatRiftNumber(state.enemyMaxHp));
   var zone = riftZoneFor(state.depth);
   applyRiftZoneVisual(state.depth);
-  els['depth-label'].innerHTML = ('Rift ' + state.depth + (isBoss(state.depth) ? ' &mdash; <span class="boss-tag">BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
+  els['depth-label'].innerHTML = ('<span class="rift-number"><span class="rift-prefix">Rift </span>' + formatRiftNumber(state.depth) + '</span>' + (isBoss(state.depth) ? ' <span class="boss-tag">&mdash; BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
+  els['depth-label'].setAttribute('aria-label','Rift '+state.depth+(isBoss(state.depth)?' Boss':'')+' · '+zone.name);
   els['enemy-name'].textContent = Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyNameFor(state.depth));
   var creatureKind = ENEMY_NOUN[Amount.mod(Amount.mul(state.depth,7),ENEMY_NOUN.length)].toLowerCase();
   var creatureEl = els['enemy-glyph'];

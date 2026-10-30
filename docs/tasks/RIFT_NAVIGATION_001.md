@@ -53,7 +53,36 @@ Regenerated the independent golden windows again; all four state hashes match.
 
 Android acceptance now also uses actual adb taps for previous/next/−10, clamping
 at Rift1, no popup, manual intent and saved Push return in the existing disposable
-emulator fixture. This test has not yet executed on Android.
+emulator fixture. Signed test build
+[run41116377937](https://github.com/xariib/Lumenfall/actions/runs/41116377937)
+PASS on head0a315df6: Android0.2.60/code1000060, API31/WebView91.0.4472.114.
+Native sequence25→24→14→15→14→4→1, boundary controls and Push26 PASS.
+UID/origin, both saves, paid work and legacy purchases retained. Original signing
+fingerprint and packaged source/assets verified again locally. APK SHA256
+`ea8b9059b6a5add17613061ff7c12e0cb2c27f2accf30119ffc0f17fb122849a`.
+[Initial native receipt](../qa/rift-navigation-001/android-initial.json).
+No physical-phone, exact WebView60 or TalkBack acceptance claimed.
 
-Next: final-head CI, integrate without overwriting PR29, Android build/native taps.
+Head0a315df6: six focused workflows and isolated offline PASS (the first focused
+browser launch timed out before any check; unchanged retry PASS). Pre-merge
+run41116328546 stopped at an existing task's startup budget: the new shared
+status entry put RIFT_HINT_READABILITY_002 at32952 bytes. Shortened historical
+status summaries while retaining their task/evidence links; unchanged32KiB gate
+now passes all31 workflow task contexts. Product bytes and signed APK unchanged.
+[Budget failure](../qa/rift-navigation-001/ci-budget-failure.txt).
+
+The complete16-profile guidance run additionally exposed a safe-inset/200%-text
+overlap at360×640 on that earlier layout. Restore a44px heading on short screens:
+−10 occupies its own column, arrows surround the number and Push/Farm share the
+right column. All five buttons retain44px targets; redundant Farm-depth text is
+hidden only there and the complete Rift/zone name remains accessible. Taller
+screens retain the two-row layout. Compact Rift formatting prevents wide labels.
+Full16 profiles/160 samples PASS, all18 midgame profiles PASS, complete immutable
+baseline/copy/layout inverses PASS, unchanged four golden state hashes PASS.
+[Full guidance receipt](../qa/rift-navigation-001/guidance-complete.json).
+Final product SHA256: `2c2db6f01dfe3c277a332de4fd4b84f250a0e25eb5ee730275558356c9331d36`.
+The0.2.60 test APK above predates this compact refinement; rebuild pending.
+
+Next: final-head CI and signed rebuild, integrate without overwriting PR29, record
+tested-tree/installed-APK evidence. Phone/TalkBack acceptance stays open.
 Workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

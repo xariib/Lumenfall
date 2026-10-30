@@ -19,3 +19,10 @@ bottom456 overlapped boost top454. The baseline's fragmented word was expected.
 guidance-fixed.json and guidance-five-samples.json record PASS after removing
 only the heading gap on short screens. This preserves the original layout gates.
 golden.json, pacing.json and farm.json were regenerated on that corrected source.
+
+The later complete16-profile run exposed a safe-inset overlap on the two-row
+short-screen layout. The final compact44px heading passes16 profiles/160 samples
+(guidance-complete.json),18 midgame profiles and the complete immutable guidance
+baseline/inverses (guidance-compact.json). Current source is pinned in these files
+and in golden.json; earlier mobile-final.json and Android0.2.60 receipts are
+historical candidates. Final signed compact-layout rebuild remains pending.
