@@ -334,12 +334,17 @@ const off=copy(original);off.autoAscendEnabled=false;
 const disabled=runAsync(off,28800),offReference=oneSecondReference(off,28800);assert.equal(disabled.result.kills,offReference.kills);assert.equal(disabled.result.ascends,0);
 compare(disabled.committed,offReference.state,'capped Swift OFF full8h one-second oracle');
 const cap=runAsync(original,72*3600),capReference=oneSecondReference(original,12*3600);assert.equal(cap.result.kills,capReference.kills);assert.equal(cap.result.ascends,capReference.ascends);
-capReference.state.lastSeen=original.lastSeen+72*3600000;
-capReference.state.offlineClockHighWaterMs=capReference.state.lastSeen;
-compare(cap.committed,capReference.state,'capped Swift full12h one-second oracle');
+// Independent caller partitions preserve the complete state comparison: twelve
+// hours of combat, then one-second Lab-only windows for the rest of the absence.
+const labReference=app(capReference.state,source,60*3600),labSummary=labReference.b.summary(60*3600);
+for(let second=0;second<60*3600;second++)labReference.b.study(1,original.lastSeen+(12*3600+second)*1000,labSummary);
+labReference.b.get().lastSeen=original.lastSeen+72*3600000;
+labReference.b.get().offlineClockHighWaterMs=labReference.b.get().lastSeen;
+labReference.b.save();
+compare(cap.committed,labReference.b.get(),'capped Swift combat plus full-absence one-second Lab oracle');
 const beyond=copy(original);beyond.activeStudies=[{id:'guardmastery',remainingSec:80*3600,totalDurationSec:80*3600,speedMult:1}];beyond.studyQueue={};
 const long=runAsync(beyond,96*3600);assert.equal(long.result.effectiveSec,12*3600);
-assert(!long.result.completedStudies.includes("Guardian's Mastery"),'Study cannot complete beyond the common cap');assert(Math.abs(long.committed.activeStudies[0].remainingSec-68*3600)<1e-5,'12h paid work within existing scheduler epsilon');
+assert(long.result.completedStudies.includes("Guardian's Mastery"),'paid Study completes beyond the combat cap');assert.equal(long.committed.activeStudies.length,0,'Queue OFF leaves no new work after its paid80h completes');
 const samePaidWork=runAsync(beyond,12*3600);assert.equal(long.result.kills,samePaidWork.result.kills,'beyond-cap time earns no extra combat with same paid work');
 // Preserve old numerical policy against the unchanged scheduler for short windows
 // and chronological research/Motes/automation boundaries.

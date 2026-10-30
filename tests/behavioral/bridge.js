@@ -333,7 +333,7 @@ window.__lumenfallQaBridge = {
         return saved.plan(node,n);
       };
       if(kind==='migration') SAVE_MIGRATIONS[0]=function(s){var n=saved.migrate(s);if(s.labQueueOn && s.researchQueue===undefined)n.researchQueue.arcanecal=true;return n;};
-      if(kind==='deed') legacyResearchLevels=function(s){return RESEARCH.reduce(function(n,r){return n+(s.research[r.id]||0);},0);};
+      if(kind==='deed') legacyResearchLevels=function(s){return RESEARCH.filter(function(r){return LEGACY_RESEARCH_IDS.indexOf(r.id)===-1;}).reduce(function(n,r){return n+(s.research[r.id]||0);},0);};
       if(kind==='effect') passiveWispDpsAt=function(d){return saved.passive(d)*researchFactor('arcanecal');};
       return function(){getResearchBuyPlan=saved.plan;SAVE_MIGRATIONS[0]=saved.migrate;legacyResearchLevels=saved.deed;passiveWispDpsAt=saved.passive;};
     }

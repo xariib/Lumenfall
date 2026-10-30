@@ -382,7 +382,8 @@ function savedValues(html, a) {
   a.eq(q.profile(20),null,'zero new charge ownership preserves old estimate path');a.eq(q.policyActive(),false,'zero new combat ownership preserves original controller');
   for(const total of [19,20,59,60]){
     const state=seed(q);state.research.focus=total;IDS.forEach(id=>state.research[id]=100);q.set(state);
-    a.eq(q.deed('labmaster'),total+IDS.length*100>=20,'all paid Forge levels count for20 Deed');a.eq(q.deed('labqueue'),total+IDS.length*100>=60,'all paid Forge levels count for60 Deed');
+    q.get().maxDepthEver=350;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(function(id){q.get().longStudyLevels[id]=10;});
+    a.eq(q.deed('labmaster'),total+IDS.length*100>=200,'all paid Forge levels count for200 Deed with Lab challenges met');a.eq(q.deed('labqueue'),total+IDS.length*100>=60,'all paid Forge levels count for60 Deed');
   }
   for(const owned of [0,1,5,1000000])for(const base of [1.25,1.5])for(const k of [0,1,5,6]){
     const state=battle(q,['tide']);state.research.amplifiertrim=owned;state.supportBuffs={version:1,sources:{tide:{mult:base+.01*k,until:CLOCK+1234}}};q.set(state);

@@ -21,6 +21,7 @@ function app(seed = null, seconds = 0, html = source) {
     window.qa={fresh:freshState,set:s=>state=acceptPersistedState(s),get:()=>state,accept:acceptPersistedState,
     apply:applyOfflineProgress,advance:advanceAuthoritativeTime,save:saveState,load:loadState,
     backup:encodeSaveBackup,decode:decodeSaveBackup,cancel:cancelOfflineCatchup,
+    labTail:(seconds,start)=>{var sum=simulationSummary(seconds);advanceStudyOnlyTime(seconds,start,sum);applyAchievementChecks();return sum;},
     restore:restoreSaveBackup,policy:()=>({cap:offlineCapHours(),rate:offlineRate()}),
     buyNode:buyNode,buyShop:buyShopItem,complete:restStopComplete,
     flags:()=>({busy:!!offlineCatchup,pending:offlinePending,blocked:persistenceBlocked}),
@@ -45,7 +46,7 @@ function legacy(level=3, offline24=true, offline48=true) {
   s.prisms=100; s.comets=100; return s;
 }
 function consume(seed, seconds, batch=256, quiet=false) {
-  const x=app(seed, seconds), before=clone(x.b.get()); x.b.batch(batch); x.b.tailFault(); if(quiet) x.b.quiet();
+  const x=app(seed, seconds), before=clone(x.b.get()); x.b.batch(batch); if(quiet) x.b.quiet();
   let result, error, callbacks=0;
   x.b.apply((r,e)=>{result=r;error=e;callbacks++;});
   if(x.b.flags().busy) {
@@ -113,18 +114,20 @@ study.studyQueue.guardmastery=true; study.studyUseMotes.guardmastery=true; study
 study.motes=0; study.lumen=1e9; study.shards=1e9;
 assert.deepEqual(app(study).b.get().activeStudies,study.activeStudies.map((work,slot)=>({...work,slot})));
 const lab12=consume(study,43200,256,true),lab24=consume(study,86400,31,true);
-assert.deepEqual(withoutEndpoint(lab24.state),withoutEndpoint(lab12.state),'24h has exactly 12h Lab/queue/economy');
-assert.equal(lab24.state.activeStudies[0].remainingSec,3600); assert.equal(lab24.state.longStudyLevels.guardmastery,0);
+const labExpected=app(lab12.state);labExpected.b.labTail(43200,study.lastSeen+43200000);
+assert.deepEqual(withoutEndpoint(lab24.state),withoutEndpoint(labExpected.b.get()),'24h is12h combat followed by12h Lab');
+assert(lab24.state.longStudyLevels.guardmastery>=1,'paid level beyond12h completes');
 assert.equal(lab24.state.studySpeedTargets.guardmastery,3); assert.equal(lab24.state.studyUseMotes.guardmastery,false,'retired repeat consent stays OFF; manual speed target is retained');
 assert.equal(lab24.result.studyMotesSpent,0,'no tail speed debit');
 for(const remaining of [43199.999,43200,43200.001]) {
   const s=clone(study); s.studyQueue.guardmastery=false; s.activeStudies[0].remainingSec=remaining;
-  const r=consume(s,86400,256,true); assert.equal(r.state.longStudyLevels.guardmastery,remaining<=43200?1:0,'exact cap completion boundary');
+  const r=consume(s,86400,256,true); assert.equal(r.state.longStudyLevels.guardmastery,1,'Lab finishes paid work on either side of the combat cap');
 }
 const queueStudy=clone(study); queueStudy.activeStudies[0].remainingSec=3600;
 queueStudy.activeStudies[0].speedMult=3; queueStudy.motes=600;
 const q12=consume(queueStudy,43200,256,true),q24=consume(queueStudy,86400,31,true);
-assert.deepEqual(withoutEndpoint(q24.state),withoutEndpoint(q12.state),'paid queued levels share the12h cap');
+const queueExpected=app(q12.state);queueExpected.b.labTail(43200,queueStudy.lastSeen+43200000);
+assert.deepEqual(withoutEndpoint(q24.state),withoutEndpoint(queueExpected.b.get()),'paid queued levels continue after the combat cap');
 assert.equal(q24.result.studySpeedPurchases,0,'retired repeat consent cannot activate a new timed boost');
 assert.equal(q24.result.studyMotesSpent,0,'queued work cannot spend Motes without explicit activation');
 const paidPrefix=consume(queueStudy,1199,256,true),paidBoundary=consume(queueStudy,1200,256,true);
@@ -137,9 +140,11 @@ for(const on of [false,true]) {
   const seed=clone(original); seed.autoAscendEnabled=on;
   for(const seconds of [0,1,3600,21600]) consume(seed,seconds);
   const a=consume(seed,43200),b=consume(seed,86400,31),c=consume(seed,259200);
-  assert.deepEqual(withoutEndpoint(b.state),withoutEndpoint(a.state),'cap state includes all reward and automation fields');
-  assert.deepEqual(withoutEndpoint(c.state),withoutEndpoint(a.state),'72h cannot extend production');
-  assert.deepEqual(b.result.completedStudies,a.result.completedStudies);
+  const expected24=app(a.state),tail24=expected24.b.labTail(43200,seed.lastSeen+43200000);
+  const expected72=app(a.state);expected72.b.labTail(216000,seed.lastSeen+43200000);
+  assert.deepEqual(withoutEndpoint(b.state),withoutEndpoint(expected24.b.get()),'all state equals capped combat plus remaining Lab');
+  assert.deepEqual(withoutEndpoint(c.state),withoutEndpoint(expected72.b.get()),'72h adds only Lab work after capped combat');
+  assert.deepEqual(b.result.completedStudies,a.result.completedStudies.concat(tail24.completedStudies));
   assert.equal(b.result.kills,a.result.kills); assert.equal(b.result.ascends,a.result.ascends);
 }
 for(const failure of ['cancel','simulation','primary','recovery']) {
@@ -212,12 +217,12 @@ const bad=clone(hist); bad.offline12hRefund.prismsExact='33'; assert.throws(()=>
 // Negative controls against complete entry, migration and restored production.
 for(const [name,oldText,newText] of [
   ['cap','return PRODUCTIVE_OFFLINE_CAP_SEC / 3600;','return 24;'],
-  ['tail','  state.totalOfflineSeconds=Amount.add(state.totalOfflineSeconds,effectiveSec);','  yield* advanceStudyOnlyTime(elapsedSec-effectiveSec,lastSeen+effectiveSec*1000,sim,true);\n  state.totalOfflineSeconds=Amount.add(state.totalOfflineSeconds,effectiveSec);',null],
+  ['tail','if(elapsedSec>effectiveSec){','if(false && elapsedSec>effectiveSec){',null],
   ['refund','out[currency]=result;paid[index]=true;','paid[index]=true;',null]
 ]) {
   assert(source.includes(oldText),name+' mutation marker'); const mutant=source.replace(oldText,newText);
   if(name==='cap') {const m=app(study,86400,mutant);m.b.quiet();assert.notEqual(m.b.apply().effectiveSec,43200,'the mutant actually replays too much time');}
-  if(name==='tail') { const m=app(study,86400,mutant); m.b.tailFault(); assert.throws(()=>m.b.apply(),/forbidden Study tail/); }
+  if(name==='tail') { const m=app(study,86400,mutant);m.b.quiet();m.b.apply();m.drain();assert.equal(m.b.get().longStudyLevels.guardmastery,0,'capped Lab mutant misses paid level');assert(lab24.state.longStudyLevels.guardmastery>0,'restored full absence completes paid level'); }
   if(name==='refund') assert.notEqual(app(legacy(),0,mutant).b.get().prisms,132);
   assert.equal(app(legacy()).b.get().prisms,132,'restored source passes');
   records.push({negative:name,caught:true});

@@ -1,0 +1,1144 @@
+{
+  "status": "focused PASS; required final CI/integration/Android pending",
+  "baseline": "88fd60b",
+  "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+  "localNode": "v24.20.0",
+  "requirements": {
+    "autotap": {
+      "ascends": 100,
+      "rift": 250,
+      "manualTaps": 10000
+    },
+    "labmaster": {
+      "forgeLevels": 200,
+      "rift": 350,
+      "labLevels": 100,
+      "subjects": 10
+    },
+    "offlineCombatHours": 12,
+    "offlineLab": "whole absence; funded enabled queues; paid work finishes without funds"
+  },
+  "focused": {
+    "status": "PASS",
+    "checks": 67,
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+    "controls": [
+      {
+        "name": "capped-Lab",
+        "caught": "paid research continues beyond12h: 64800 vs 21600"
+      },
+      {
+        "name": "combat-tail",
+        "caught": "recap includes beyond-cap completion"
+      },
+      {
+        "name": "easy-Vigil",
+        "caught": "harder Deed boundary autotap/99"
+      },
+      {
+        "name": "easy-Forge",
+        "caught": "harder Deed boundary labmaster/199"
+      },
+      {
+        "name": "easy-Rift",
+        "caught": "every challenge is required autotap/rift"
+      },
+      {
+        "name": "easy-taps",
+        "caught": "every challenge is required autotap/taps"
+      },
+      {
+        "name": "easy-Lab",
+        "caught": "every challenge is required labmaster/lab"
+      },
+      {
+        "name": "easy-subjects",
+        "caught": "every challenge is required labmaster/subjects"
+      }
+    ]
+  },
+  "mobile": {
+    "status": "pass",
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+    "profiles": 9,
+    "conditionMeasurements": 45,
+    "phoneWidths": [
+      320,
+      390,
+      430
+    ],
+    "textScales": [
+      1,
+      1.5,
+      2
+    ],
+    "visualInspection": [
+      "autotap-320-2.png",
+      "labmaster-320-2.png"
+    ],
+    "fit": "All extra counters, card bounds and reward bounds checked; grid keeps the two multi-condition cards readable."
+  },
+  "otherChecks": [
+    {
+      "name": "Forge full/controls",
+      "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+      "status": "PASS",
+      "assertions": 9341
+    },
+    {
+      "name": "Comet full/controls",
+      "status": "PASS",
+      "checks": 12554
+    },
+    {
+      "name": "Clock/purchase exploits",
+      "sourceSha256": "9edf8399f66fc97408fde594bef1d3eb50ee20974c83d80604a029cef7accc99",
+      "status": "PASS",
+      "checks": 267,
+      "controls": 12
+    },
+    {
+      "name": "Swift core",
+      "sourceSha256": "9edf8399f66fc97408fde594bef1d3eb50ee20974c83d80604a029cef7accc99",
+      "status": "pass"
+    },
+    {
+      "name": "Deed UI",
+      "sourceSha256": "86ba983fb45b5353a4a197b93c4fbbb9af12cb82c743ee166ef421dca08c5d2b",
+      "checks": 1071,
+      "status": "PASS"
+    },
+    {
+      "name": "Forge UI/controls",
+      "sourceSha256": "86ba983fb45b5353a4a197b93c4fbbb9af12cb82c743ee166ef421dca08c5d2b",
+      "checks": 6281,
+      "controls": 4,
+      "status": "PASS"
+    }
+  ],
+  "oracle": {
+    "node": "v24.19.0",
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+    "oracle": "Independent one-second advance calls, fixed whole-window start",
+    "phases": [
+      {
+        "kills": 86404,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "343540b380872d254d1e26ddfc6f30dd268fd281e10290ac1a3fa24e17bcef50"
+      },
+      {
+        "kills": 86401,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "87caffda43ee550fa5c5587d0fddcffaface9b33c14fba8af0828a26e5f4e824"
+      },
+      {
+        "kills": 86396,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "beb5a492e29a7173988aa9c1b910d28c54c817fba316a853c742f0cbdff56e18"
+      },
+      {
+        "kills": 86405,
+        "ascends": 4115,
+        "prisms": 94645,
+        "stateSha256": "7945acbce36c9cbb87d3e1ef049749a82ca46f0853d8e939b24ca2011afc0cec"
+      }
+    ]
+  },
+  "earlierEvidence": {
+    "baselineOriginalOffline": {
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "status": "PASS",
+      "records": 34
+    },
+    "initialContinuousLabOffline": {
+      "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+      "status": "PASS",
+      "records": 34
+    }
+  },
+  "limitations": [
+    "Final required CI, integration and Android acceptance remain pending.",
+    "Physical phone, exact WebView60 and TalkBack unverified."
+  ],
+  "supersededAttempts": [
+    "An initial baseline sequence read changed source in later commands; not baseline acceptance.",
+    "Modern Node cannot execute the actual-Node8-only contract; existing CI supplies Node8.3.",
+    "Windows dump-dom stalls; existing CDP pipe transport passes inquiry UI.",
+    "Local wisp-rarity-scroll timed out; broader run stopped when Deed requirements changed.",
+    "Premerge41062701128 caught the old hidden20h Lab cap expectation; only that Lab expectation updated and all267 exploit checks/12 controls pass.",
+    "The Forge Deed mutation was a no-op; now actually omits historical levels and fails its new200-level fixture."
+  ],
+  "ciCheckpoint": {
+    "head": "ed0d78426517a9124bad11a088618cfa375d6f67",
+    "passed": [
+      "Lab including actualNode8",
+      "Comet including actualNode8",
+      "Shared UI",
+      "Permanent progression on unchanged retry"
+    ],
+    "knownFailure": {
+      "runs": [
+        41064744443,
+        41064744477
+      ],
+      "message": "old72h fixture expected12h Lab only; shardstudy21 versus20",
+      "correction": "complete state oracle now includes independent one-second Lab tail; paid80h work must finish by96h, combat remains12h",
+      "localIndependentReplay": "PASS18records in287902ms",
+      "originalRecords": 18,
+      "groups": 5,
+      "toolingControls": 12
+    },
+    "transient": {
+      "run": 41064744490,
+      "first": "Browser.getVersion deadline before UI checks",
+      "retry": "PASS"
+    }
+  },
+  "independentOffline": {
+    "status": "pass",
+    "scenario": "offline-catchup-core",
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+    "originalTestSha256": "481d8c29f816921e49c17fcfee1f9c61413146374b78c108e365f99aef6586a0",
+    "wallMs": 287901.5858,
+    "execution": "All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged",
+    "records": [
+      {
+        "case": "ON Clear21",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 369,
+        "kills": 86404,
+        "ascends": 4114,
+        "iterations": 94633,
+        "earned": 368583741.6000981
+      },
+      {
+        "case": "Prism policy isolation",
+        "perAscend": 23,
+        "newPrisms": 101585,
+        "legacyPrisms": 31647
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 28800,
+        "batch": 31,
+        "batches": 3052,
+        "kills": 86404,
+        "ascends": 4114,
+        "iterations": 94633,
+        "earned": 368583741.6000981
+      },
+      {
+        "case": "ON Clear20",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 367,
+        "kills": 89717,
+        "ascends": 4485,
+        "iterations": 94204,
+        "earned": 378867866.4000847
+      },
+      {
+        "case": "OFF",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 238,
+        "kills": 1149,
+        "ascends": 0,
+        "iterations": 61068,
+        "earned": 83860435381506.17
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 259200,
+        "batch": 256,
+        "batches": 554,
+        "kills": 129605,
+        "ascends": 6171,
+        "iterations": 141948,
+        "earned": 552873108.0000204
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 345600,
+        "batch": 256,
+        "batches": 554,
+        "kills": 129605,
+        "ascends": 6171,
+        "iterations": 141947,
+        "earned": 552873108.0000204
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 43200,
+        "batch": 256,
+        "batches": 554,
+        "kills": 129605,
+        "ascends": 6171,
+        "iterations": 141947,
+        "earned": 552873108.0000204
+      },
+      {
+        "case": "boundaries live",
+        "kills": 17975,
+        "motes": 290,
+        "empowers": 3424,
+        "research": 2,
+        "studies": [
+          "Guardian's Mastery"
+        ]
+      },
+      {
+        "case": "boundaries offline",
+        "kills": 17975,
+        "motes": 290,
+        "empowers": 3424,
+        "research": 4,
+        "studies": [
+          "Guardian's Mastery"
+        ]
+      },
+      {
+        "case": "cancel",
+        "callbacks": 1,
+        "error": "Offline catch-up cancelled",
+        "pending": true
+      },
+      {
+        "case": "simulation",
+        "callbacks": 1,
+        "error": "injected simulation failure",
+        "pending": true
+      },
+      {
+        "case": "primary",
+        "callbacks": 1,
+        "error": "Offline progress could not be saved",
+        "pending": true
+      },
+      {
+        "case": "recovery",
+        "callbacks": 1,
+        "error": null,
+        "pending": false
+      },
+      {
+        "case": "processing time 28800",
+        "kills": 86581,
+        "lastSeen": 1791390424477
+      },
+      {
+        "case": "processing time 259200",
+        "kills": 129780,
+        "lastSeen": 1791620824477
+      },
+      {
+        "case": "wall-clock jump -604800000",
+        "kills": 86581,
+        "lastSeen": 1790785624477
+      },
+      {
+        "case": "wall-clock jump 604800000",
+        "kills": 86581,
+        "lastSeen": 1791995224477
+      }
+    ],
+    "groups": [
+      {
+        "id": "long-windows",
+        "wallMs": 287799.396,
+        "records": 8,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "short-boundaries",
+        "wallMs": 55007.084,
+        "records": 2,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "rollback-recovery",
+        "wallMs": 175030.0352,
+        "records": 4,
+        "extraSetupRecords": [
+          {
+            "case": "ON Clear21",
+            "seconds": 28800,
+            "batch": 256,
+            "batches": 369,
+            "kills": 86404,
+            "ascends": 4114,
+            "iterations": 94633,
+            "earned": 368583741.6000981
+          }
+        ]
+      },
+      {
+        "id": "processing-time",
+        "wallMs": 144098.46469999998,
+        "records": 2,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "wall-clock",
+        "wallMs": 115380.0966,
+        "records": 2,
+        "extraSetupRecords": []
+      }
+    ]
+  },
+  "frozenPolicyChecks": {
+    "feedback": {
+      "status": "PASS",
+      "checks": 360,
+      "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+      "endpoints": [
+        {
+          "mode": "push",
+          "kind": "live",
+          "kills": 73,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 105,
+          "stateSha256": "512f043dc0a42bed2bc5594274312e546941c344431b9c6d64035c6282f85f8e"
+        },
+        {
+          "mode": "push",
+          "kind": "offline",
+          "kills": 73,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 105,
+          "stateSha256": "512f043dc0a42bed2bc5594274312e546941c344431b9c6d64035c6282f85f8e"
+        },
+        {
+          "mode": "auto",
+          "kind": "live",
+          "kills": 35223253861169,
+          "ascends": 1174108462039,
+          "prisms": 2348216924087,
+          "depth": 30,
+          "stateSha256": "8e6981a7cd347d85eae4aaedcc78a649be7c618af8b3a9a279d702ac2983c14a"
+        },
+        {
+          "mode": "auto",
+          "kind": "offline",
+          "kills": 35223253861169,
+          "ascends": 1174108462039,
+          "prisms": 2348216924087,
+          "depth": 30,
+          "stateSha256": "8e6981a7cd347d85eae4aaedcc78a649be7c618af8b3a9a279d702ac2983c14a"
+        },
+        {
+          "mode": "farm",
+          "kind": "live",
+          "kills": 22,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 32,
+          "stateSha256": "f7e5efcbd0d51010e74bf5887ba20a98c811c7decda89332ed592a90502f4673"
+        },
+        {
+          "mode": "farm",
+          "kind": "offline",
+          "kills": 22,
+          "ascends": 0,
+          "prisms": 0,
+          "depth": 32,
+          "stateSha256": "f7e5efcbd0d51010e74bf5887ba20a98c811c7decda89332ed592a90502f4673"
+        }
+      ]
+    },
+    "wisp": {
+      "status": "PASS",
+      "checks": 8099,
+      "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+      "preservation": {
+        "status": "PASS",
+        "checks": 25968,
+        "baselineSha256": "d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8",
+        "defaultFormulaCases": 448,
+        "chronologicalCases": [
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "thorn"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "thorn"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "void"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "void"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "aurora"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "aurora"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "gale",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "thorn",
+              "void"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "thorn",
+              "void"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "thorn",
+              "aurora"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "thorn",
+              "aurora"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "thorn",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "thorn",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "void",
+              "aurora"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "void",
+              "aurora"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "void",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "void",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "aurora",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "stone",
+              "aurora",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "thorn",
+              "void"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "thorn",
+              "void"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "thorn",
+              "aurora"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "thorn",
+              "aurora"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "thorn",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "thorn",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "void",
+              "aurora"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "void",
+              "aurora"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "void",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "void",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "aurora",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "gale",
+              "aurora",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "thorn",
+              "void",
+              "aurora"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "thorn",
+              "void",
+              "aurora"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "thorn",
+              "void",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "thorn",
+              "void",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "thorn",
+              "aurora",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "thorn",
+              "aurora",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "void",
+              "aurora",
+              "titan"
+            ],
+            "kind": "live",
+            "seconds": 60,
+            "kills": 0
+          },
+          {
+            "party": [
+              "ember",
+              "tide",
+              "void",
+              "aurora",
+              "titan"
+            ],
+            "kind": "offline",
+            "seconds": 60,
+            "kills": 0
+          }
+        ]
+      }
+    },
+    "policy": "Only historical12/20 eligibility bodies restored for unchanged complete endpoint/formula comparisons; current conditions independently checked."
+  },
+  "phaseControlCorrection": {
+    "failedMainRun": 41066433157,
+    "previousHead": "be1db712d0dd4db0395c6d289d662ad9f508faf4",
+    "cause": "Fresh phase fixture no longer earned automation under the new multi-condition Deeds; timer defect was inert.",
+    "change": "Explicitly own both automation Deeds in the test-only earned-phase fixture.",
+    "positive": {
+      "status": "PASS_FILTERED",
+      "mutation": null,
+      "filter": "queued Forge affordability",
+      "checks": 27,
+      "records": [
+        {
+          "name": "queued Forge affordability",
+          "seconds": 2e-13,
+          "iterations": 436,
+          "literalIterations": 3033,
+          "ascends": 316
+        }
+      ],
+      "sourceSha256": "4bdcdf6c4d3ff92706e7b8769aa49b2836dcc65ad0e7db7c97aef36821d116a1"
+    },
+    "negative": {
+      "status": "FAIL",
+      "current": "queued Forge affordability",
+      "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+      "sourceSha256": "29ab12b5f68a8f10daed9ef1dc584b2b243eb796757d891baab6b1886db73b3f"
+    },
+    "controls": {
+      "status": "PASS",
+      "controls": 14,
+      "inputSha256": "6ee4a9590b44eb86ddf96d35c25579f66255494ebeafc84af9ddc98d9a9bcc66",
+      "automationSha256": "1e1bca8da89124c81db4be7ee1e4f777a8e108d2b8164a20b8e2d0eecb599acf",
+      "nativeSha256": "703740fbc895671043eab9a1e824251c7f7c4ea9d2623693a65d3ab19db129a6",
+      "resourceSha256": "1a785bff2b28c1eb82ecaaf011497d2298949e8d3fe18f5e5ca3cde5a2e1ca4b",
+      "splitSha256": "0a66cc68c27e59e38ec538f54b1b2f3aae981b6814fc7a2c712dc8575bd9d4b9",
+      "transitionSha256": "e9f6da18738b0b95615551e05ac6428fbd87e18af5892345b1cd802baff76cee",
+      "records": [
+        {
+          "mutation": "mote",
+          "fixture": "fixed Mote payout boundary",
+          "caught": true,
+          "code": 1,
+          "seconds": 3.9139256000000002,
+          "sourceSha256": "a1897cae1187310cc5b4a6138a63bb365ed91f3b1f4b914497cb06d6571c82f9",
+          "receiptSha256": "1c00d3491d8920c9b514ee3949f20d009b97b38cda25b222ff10653aa3629826",
+          "failure": "AssertionError [ERR_ASSERTION]: fixed Mote payout boundary exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "lab",
+          "fixture": "paid Lab completion EPS boundary",
+          "caught": true,
+          "code": 1,
+          "seconds": 4.0077148,
+          "sourceSha256": "a89746ec7080e0d9e37ac8aef252cf26164b2d6df5a0d67ba10c50752d6ab402",
+          "receiptSha256": "06ece1484a599a0fc4efb6b20fc43106d96ca046675d70047969871f929f36b0",
+          "failure": "AssertionError [ERR_ASSERTION]: paid Lab completion EPS boundary exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "recast",
+          "fixture": "Support recast EPS boundary",
+          "caught": true,
+          "code": 1,
+          "seconds": 3.8748134,
+          "sourceSha256": "a83168e1bca9bad3c30058b21c9fbe9a679ea00d834859575e2e2fa049e817e1",
+          "receiptSha256": "97ed7433b13c3cb54d1ad1e3eefaad301699b4ad0e3cdbba79a85ed9acd032b8",
+          "failure": "AssertionError [ERR_ASSERTION]: Support recast EPS boundary exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "buff",
+          "fixture": "Support expiry",
+          "caught": true,
+          "code": 1,
+          "seconds": 3.2205970000000015,
+          "sourceSha256": "f2581ebe299f702fb51727ff4452c91ad67a3d6e0f393b9c1431255591cf9652",
+          "receiptSha256": "dad6d4a60c172b5e27e8f36631248ddf3efbcc326b4b7c1e405c6e0fd5303f06",
+          "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "economy",
+          "fixture": "queued Forge affordability",
+          "caught": true,
+          "code": 1,
+          "seconds": 0.9493649999999998,
+          "sourceSha256": "6828b507756a3265d26cabebf624d062cd45963ea172c8be7d3faff65c7642dd",
+          "receiptSha256": "0921281f358117e596b4ec6e7c8f9856f326757af42ac434ddbd57acc4817cce",
+          "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "phase",
+          "fixture": "queued Forge affordability",
+          "caught": true,
+          "code": 1,
+          "seconds": 1.046770800000002,
+          "sourceSha256": "29ab12b5f68a8f10daed9ef1dc584b2b243eb796757d891baab6b1886db73b3f",
+          "receiptSha256": "404b1957b9044cb90ed39015d54867657e64383f55b72405208f28df234c2bc4",
+          "failure": "AssertionError [ERR_ASSERTION]: queued Forge affordability exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "receipt",
+          "fixture": "Support expiry",
+          "caught": true,
+          "code": 1,
+          "seconds": 3.283213500000002,
+          "sourceSha256": "efc308778e536ea08ac05a4a04159417502175509aceb495343e71f07f9291e2",
+          "receiptSha256": "2ee6f005c217359fd61c64fbbfc63dd59459af976367115273339b464918b036",
+          "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact summary ascends",
+          "stderr": ""
+        },
+        {
+          "mutation": "lumen",
+          "fixture": "Support expiry",
+          "caught": true,
+          "code": 1,
+          "seconds": 3.1990417000000018,
+          "sourceSha256": "eedfb73f8d96bd20e6bfb84c1227ba29bb4042c3ba4c04730ba5d020bb596f14",
+          "receiptSha256": "e18409a968d8f28b2ad6d16a76ce80ecf737225cc8c053209226f5349dd2e15b",
+          "failure": "AssertionError [ERR_ASSERTION]: Support expiry exact chronological saved endpoint",
+          "stderr": ""
+        },
+        {
+          "mutation": "automation",
+          "fixture": "development-speed due automation",
+          "caught": true,
+          "code": 1,
+          "seconds": 6.170185100000002,
+          "sourceSha256": "e4af487da16502e5ee5dfd0e8b5f47c54d4bcdb62a12546b888abbdccb6ed075",
+          "receiptSha256": "0e53ab09935f62f06878de127a79d66534ad3669e93b33730a8a769124977297",
+          "failure": "AssertionError [ERR_ASSERTION]: automation horizon preserves every literal saved field",
+          "stderr": ""
+        },
+        {
+          "mutation": "nativeCredit",
+          "fixture": "Native fractional credit rounding",
+          "caught": true,
+          "code": 1,
+          "seconds": 4.287614799999999,
+          "sourceSha256": "b0d550cf9229883012d93349f2a3f94dcaad31919c5995b8c2fd736c478188c0",
+          "receiptSha256": "d2650cb5bdc7291f9841344607233aa34cc75c2bde320b976d738674e30ad211",
+          "failure": "AssertionError [ERR_ASSERTION]: native per-credit rounding retains every literal saved field",
+          "stderr": ""
+        },
+        {
+          "mutation": "nativeParity",
+          "fixture": "Native half-ULP parity",
+          "caught": true,
+          "code": 1,
+          "seconds": 15.624936800000004,
+          "sourceSha256": "16a3b7e4edf18e7bf85edd6925fa2de666984f3e879e199f00eaba6e8d431dba",
+          "receiptSha256": "e29c393ca619e246453ba7251a234769431e0800d3aafdf841ea9964df8e7a28",
+          "failure": "AssertionError [ERR_ASSERTION]: native per-credit rounding retains every literal saved field",
+          "stderr": ""
+        },
+        {
+          "mutation": "resourceReplay",
+          "fixture": "Checked ability bar replay",
+          "caught": true,
+          "code": 1,
+          "seconds": 5.429508799999996,
+          "sourceSha256": "7f9177c2b4223af37a442988e00fd1fdcc53048f2d6e6ae6e050276918427777",
+          "receiptSha256": "1d9cdb7615594050a560e843581fb64e990f9f9794c9bbb3aa815886b298d667",
+          "failure": "AssertionError [ERR_ASSERTION]: checked resource replay preserves every literal saved field",
+          "stderr": ""
+        },
+        {
+          "mutation": "frameClock",
+          "fixture": "Strict live/offline combat",
+          "caught": true,
+          "code": 1,
+          "seconds": 10.194162799999999,
+          "sourceSha256": "072ddb71a4ba9afcf881d13ee2b7a2c7b52d8c01c213231664300175b6b722fe",
+          "receiptSha256": "b55697c686068a4d7201197c288469fcf4b0918cef11b467e3e37699688cac50",
+          "failure": "AssertionError [ERR_ASSERTION]: saved.enemyHp: 19.195719187307702 vs 19.195719229831468",
+          "stderr": ""
+        },
+        {
+          "mutation": "frameOwner",
+          "fixture": "automation reset and no-purchase ticks",
+          "caught": true,
+          "code": 1,
+          "seconds": 15.287571099999994,
+          "sourceSha256": "aef56f42b3b14d217fa47f2e51bf06afdcf3bc198b639ddcf9bf0d67067ae9dc",
+          "receiptSha256": "40eedccb03712b7454e32da53c12976d9108a959c2b7374b8e49c5c8127e90b1",
+          "failure": "Error: Canonical timer deadline mismatch {\"field\":\"_autoEmpowerAccum\",\"base\":0,\"last\":0,\"value\":0,\"elapsed\":1,\"delay\":1}",
+          "stderr": ""
+        }
+      ]
+    }
+  }
+}

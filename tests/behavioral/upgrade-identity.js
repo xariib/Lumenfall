@@ -63,7 +63,12 @@ window.runUpgradeIdentityQa=async function(b,ctx,assert,parity,summaryParity){
     var fresh=b.freshStateSnapshot();fresh.maxDepthEver=101;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy'].forEach(function(id){fresh.longStudyLevels[id]=1;});install(fresh);
     var deed=f.deeds().items.find(function(d){return d.id==='allstudies';});ok(deed.eligible&&deed.progress.current===5&&deed.progress.target===5,'fresh Every Path reachable without closed Studies/Inquiry');
     f.achievements();var earned=b.getState();f.achievements();same(b.getState(),earned,'Deed reward only once');
-    fresh=b.freshStateSnapshot();fresh.maxDepthEver=101;['charge','arcanecal','conduction','luminoustracking','cauterize','fracturekey'].forEach(function(id){fresh.research[id]=10;});install(fresh);['labmaster','labqueue'].forEach(function(id){ok(f.deeds().items.find(function(d){return d.id===id;}).eligible,'current capped Forge tracks reach original threshold '+id);});
+    fresh=b.freshStateSnapshot();fresh.maxDepthEver=101;['charge','arcanecal','conduction','luminoustracking','cauterize','fracturekey'].forEach(function(id){fresh.research[id]=10;});install(fresh);
+    ok(f.deeds().items.find(function(d){return d.id==='labqueue';}).eligible,'current capped Forge tracks reach the unchanged60-level queue threshold');
+    ok(!f.deeds().items.find(function(d){return d.id==='labmaster';}).eligible,'60Forge levels alone cannot unlock Auto-Empower');
+    fresh.maxDepthEver=350;fresh.research.battletempering=140;
+    ['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(function(id){fresh.longStudyLevels[id]=10;});install(fresh);
+    ok(f.deeds().items.find(function(d){return d.id==='labmaster';}).eligible,'current paid Forge levels and all new milestones reach Auto-Empower');
     ok(f.deeds().total===683,'original one-time Comet reward pool remains683');
     same(f.deeds().originalItems.map(function(a){return [a.id,a.reward];}),[['d10',5],['d25',10],['d50',20],['d100',50],['d250',100],['tap100',3],['tap1000',8],['tap10000',20],['fullparty',12],['asc1',10],['asc5',25],['asc10',50],['all',30],['mythic',40],['idle8',15],['autotap',25],['labmaster',30],['study1',15],['study25',50],['allstudies',35],['labqueue',40],['firstultimate',45],['modulemax',45]],'every original Deed identity and reward remains exact');
     ok(t.nodes().filter(function(n){return !n.retiredTo;}).length===23,'twenty-three independently purchasable Lab tracks');

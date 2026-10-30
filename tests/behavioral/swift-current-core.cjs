@@ -106,16 +106,17 @@ test('paid current Forge route reaches both original Deeds; history, rewards and
       assert(q.buy(node.id,1));paid++;
       assert.equal(q.get().research[node.id],before.research[node.id]+1);
       assert.equal(q.get().lumen,before.lumen-plan.cost.lumen);assert.equal(q.get().shards,before.shards-plan.cost.shard);
-      q.achievements();assert.equal(q.deed('labmaster'),paid>=20);assert.equal(q.deed('labqueue'),paid>=60);
-      assert.equal(!!q.get().achieved.labmaster,paid>=20);assert.equal(!!q.get().achieved.labqueue,paid>=60);
+      q.achievements();assert.equal(q.deed('labmaster'),paid>=200);assert.equal(q.deed('labqueue'),paid>=60);
+      assert.equal(!!q.get().achieved.labmaster,paid>=200);assert.equal(!!q.get().achieved.labqueue,paid>=60);
     }
   }
   assert.equal(paid,60);assert.equal(q.get().research.charge,10);
+  q.get().maxDepthEver=350;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(id=>{q.get().longStudyLevels[id]=10;});q.get().research.focus+=140;q.achievements();assert(q.get().achieved.labmaster,'200 paid levels unlock Auto-Empower');
   const earned=copy(q.get());q.achievements();assert.deepEqual(q.get(),earned,'one-time rewards unchanged on repeated checks');
   for(const id of Object.keys(earned.research))earned.research[id]=0;
   q.set(earned);assert(q.get().achieved.labmaster && q.get().achieved.labqueue,'earned unlocks survive lower counters');
-  const historical=q.fresh();historical.schemaVersion=3;historical.research.focus=20;historical.research.charge=40;historical.lastSeen=s.lastSeen;
-  q.set(historical);assert(q.deed('labmaster') && q.deed('labqueue'),'all historical paid raw levels count');
+  const historical=q.fresh();historical.schemaVersion=3;historical.research.focus=160;historical.research.charge=40;historical.lastSeen=s.lastSeen;
+  historical.maxDepthEver=350;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(id=>historical.longStudyLevels[id]=10);q.set(historical);assert(q.deed('labmaster') && q.deed('labqueue'),'all historical paid raw levels count');
   const lab=q.fresh();for(const id of Object.keys(lab.longStudyLevels))lab.longStudyLevels[id]=100;q.set(lab);
   assert(!q.deed('labmaster') && !q.deed('labqueue'),'Lab levels excluded');
 });

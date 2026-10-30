@@ -132,9 +132,9 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     full.lastSeen=b.clockNow()-43203*1000;full.offlineClockHighWaterMs=full.lastSeen;install(full);
     // Keep real foreground replay separate from this exact offline-work oracle.
     var clock=performance.now;Object.defineProperty(performance,'now',{configurable:true,value:function(){return 0;}});
-    var actual=b.applyOfflineNow();Object.defineProperty(performance,'now',{configurable:true,value:clock});ok(actual.effectiveSec===43200 && b.getState().longStudyLevels.guardmastery===0&&b.getState().longStudyLevels.measuredinquiry===13,'actual applyOfflineProgress stops all Study work at12h');
-    same(actual.completedStudies,[],'no completion beyond12h');same(actual.closedStudies,[],'no disposal beyond12h');ok(Math.abs(active('guardmastery').remainingSec-2)<1e-5,'unpaid tail work stays pending');ok(Math.abs(active('measuredinquiry').remainingSec-1)<1e-5,'overcap paid record stays pending');
-    return {checks:checks,negativeControls:2,capCompletion:true,overcapTail:true,dueEntry:true,arrayOrder:true,liveOfflineChunkParity:true,actual12hCommonCap:true,timelineEvents:events.length};
+    var actual=b.applyOfflineNow();Object.defineProperty(performance,'now',{configurable:true,value:clock});ok(actual.effectiveSec===43200 && b.getState().longStudyLevels.guardmastery===1&&b.getState().longStudyLevels.measuredinquiry===13,'combat stops at12h while the full absence finishes Lab work');
+    same(actual.completedStudies,["Guardian's Mastery"],'paid completion beyond12h');same(actual.closedStudies,['Measured Inquiry'],'overcap paid record closes beyond12h');ok(!active('guardmastery')&&!active('measuredinquiry'),'completed paid work leaves both slots');
+    return {checks:checks,negativeControls:2,capCompletion:true,overcapTail:true,dueEntry:true,arrayOrder:true,liveOfflineChunkParity:true,actual12hCombatCapWithContinuousLab:true,timelineEvents:events.length};
   }
   // Actual current Lab controls and observer purity, including small viewports.
   [0,5,10,13].forEach(function(k){
