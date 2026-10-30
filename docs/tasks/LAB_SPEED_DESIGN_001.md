@@ -4,6 +4,19 @@
 
 Both approved upstream updates are retained: main3f74661b includes Tap/PR29
 and Auto Ascend/PR31. This feature still changes only Lab presentation/input.
+Published PR32 headff92edf204dcd93b17fe75494da01300c4c2558b. Final pre-merge
+run41143134106; signed non-publishing build41143127589. Other required runs:
+permanent41143134150, Comet41143134059, Forge41143134116, Lab41143134170,
+shared UI41143134039, Tree41143134073. All seven must pass before integration.
+The receipt helper outside this checkout is updated for these exact head/IDs.
+Signed Android0.2.68/code1000068 PASS on build41143127589 attempt2, unchanged
+ff92edf2 source and assertions. Attempt1 missed the first native Rift back-one
+tap (25rather than24); log, calibration and diagnostic logcat are retained.
+Attempt2 passes installed upgrade, both saves/paid work/legacy entitlements,
+UID/origin, Wisp/Farm/native Rift navigation and all15 packaged assets.
+Downloaded APK SHA256090b59c73c439864993eebae79ed5e2f7a85cec9627804b36b895006c38e302c,
+local ../lab-speed-design-android-final/Lumenfall.apk. No public publication.
+Final asset/identity/upgrade receipts use the `final-` filename prefix.
 Current product SHA256c1c2e46bc9cf2c24b12cb3010b388fbda72aabfd20ddf6d915bd00f5d85b791b.
 Preset668/18profiles and cap20 mobile552/12profiles PASS on these exact bytes.
 Four paired one-second replay windows match every full endpoint state against
