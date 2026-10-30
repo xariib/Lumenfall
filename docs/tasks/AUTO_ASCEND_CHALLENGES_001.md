@@ -1,6 +1,6 @@
 # AUTO_ASCEND_CHALLENGES_001 — earn Auto-Ascend Ritual
 
-Status: local implementation/targeted checks PASS; PR/CI/integration pending.
+Status: native target fixture corrected; required final CI rerun pending.
 Owner: current feature chat; no delegation.
 Baseline: origin/main41566c97020036934c9529b396420e910b41cb5f.
 Branch: feature/auto-ascend-challenges-001; worktree ../auto-ascend-challenges-001.
@@ -142,3 +142,30 @@ one-second calls. All four released outcomes AND full-state hashes match exactly
 only the golden sourceSha256 line changes. [Replay proof](../qa/auto-ascend-challenges-001/independent-replay.json).
 Preserve the generator, original state hashes, all gates and replay assertions.
 Final CI will validate this binding; no gameplay changes after productc2d44d07.
+
+## Current continuation checkpoint
+
+Previous head963557f658236d498fe0369c799325c3c05e4f91, tree8ba56836dd00acb9e088c9c5d7dfcc0562fbd3a3.
+Tested merge95faca7878b52ef4e953ac9a310796a8e466afdf has the identical tree;
+base main41566c97. Final runs: main41118157227, Comet41118157387,
+Lab41118157487, permanent41118157257, shared UI41118157210,
+Tree41118157169, Forge41118157329. The six focused workflows and isolated
+offline job124277669708 PASS. Main job124277670069 passed187/189scenarios,
+then failed only auto-ascend-target-mobile/reduced-motion: the separate native
+driver still tried buying at Rift56 without goals. Correct its eligible starting
+progress and expected default to150; retain all existing assertions. Local rerun
+PASS all20original mobile/text/motion profiles and clean browser teardown.
+[Failed run](../qa/auto-ascend-challenges-001/ci-attempt-963557f6.json) and
+[corrected native proof](../qa/auto-ascend-challenges-001/native-target.json).
+No game source changes: product remainsc2d44d07; independent replay stays valid.
+Prior failures remain failures. Publish this test-only correction and rerun all
+required CI before integration; no gate, timeout or assertion is weakened.
+
+User chose “I'll enable browser use” when asked about the build dependency.
+Browser tool still reported disabled, including after resetting its session.
+Native computer-use fallback listed windows, then stopped because it could not
+confidently determine the browser URL on Windows to enforce policy. No further
+UI actions are allowed this turn; no build was dispatched. Continue GitHub CI/
+integration independently. APK/signing/upgrade and physical acceptance remain
+pending; keep task/chat open. Next: finish corrected-head CI, verify unchanged
+base/tested tree, merge PR31 and save exact CI/integration/status receipts.
