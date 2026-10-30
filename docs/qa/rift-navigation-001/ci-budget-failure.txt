@@ -1,0 +1,27 @@
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	﻿2026-10-30T19:48:53.9919912Z ##[group]Run node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9920666Z ^[[36;1mnode scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9921282Z ^[[36;1mnode scripts/codex/check_context.cjs --task docs/tasks/RIFT_HINT_READABILITY_002.md^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9922041Z ^[[36;1mCHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9922939Z ^[[36;1mnode tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www validation-evidence/midgame-farm-mobile --midgame-accept^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9923551Z ^[[36;1mfor CONTROL in open refresh; do^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9924274Z ^[[36;1m  if node tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www "validation-evidence/hint-control-$CONTROL" --midgame-accept "--mutate-hint-$CONTROL"; then^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9925563Z ^[[36;1m    echo "::error::Hint control unexpectedly passed: $CONTROL"^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9925961Z ^[[36;1m    exit 1^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9926171Z ^[[36;1m  fi^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9926364Z ^[[36;1mdone^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9926562Z ^[[36;1mnode - <<'JS'^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9926897Z ^[[36;1mconst fs=require('node:fs'),assert=require('node:assert/strict');^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9927506Z ^[[36;1mconst good=JSON.parse(fs.readFileSync('validation-evidence/midgame-farm-mobile/results.json'));^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9928148Z ^[[36;1massert.equal(good.status,'pass');assert.equal(good.records.length,18);^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9928892Z ^[[36;1mfor(const [control,message] of [['open','keyboard opens Lab details dialog'],['refresh','open details refresh both exact shortfalls']]){^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9929722Z ^[[36;1m  const bad=JSON.parse(fs.readFileSync('validation-evidence/hint-control-'+control+'/results.json'));^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9930366Z ^[[36;1m  assert.equal(bad.status,'fail');assert(bad.message.includes(message));^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9930983Z ^[[36;1m  assert.notEqual(bad.sourceSha256,good.sourceSha256);assert.deepEqual(bad.runtimeErrors,[]);^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9931588Z ^[[36;1m  assert.equal(bad.teardown.code,0);assert(!bad.teardown.signal);^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9931959Z ^[[36;1m}^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9932147Z ^[[36;1mJS^[[0m
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9952190Z shell: /usr/bin/bash -e {0}
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:53.9952474Z ##[endgroup]
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:54.0372878Z PASS: 29 entrypoints, 61 local Markdown links, shared startup 20653 bytes; startup with docs/tasks/MIDGAME_FARM_ACCEPT_001.md 30496 bytes
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:54.0797851Z Mandatory startup exceeds 32 KiB
+Lumenfall pre-merge validation	Midgame Farm guidance existing acceptance	2026-10-30T19:48:54.0846007Z ##[error]Process completed with exit code 1.

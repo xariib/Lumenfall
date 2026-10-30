@@ -1,13 +1,13 @@
 {
-  "run": "https://github.com/xariib/Lumenfall/actions/runs/41113891819",
-  "job": 124263725102,
-  "testedMerge": "f9ee5b4b8bf5c0f503a88bc6f1f2e71937dbf3f9",
+  "run": "https://github.com/xariib/Lumenfall/actions/runs/41124696399",
+  "job": 124300029512,
+  "testedMerge": "4f9246d889f1aacc19b2092957b97db332dfbb1b",
   "result": {
     "status": "pass",
     "scenario": "offline-catchup-core",
-    "sourceSha256": "0336072c2235de0636b9d0d78b111f6a91445933b31a2a2793b5089aceb5012d",
+    "sourceSha256": "c64f98d32b39d3060022192a4653b906d7845cca134a58a61f0437b1cebd6653",
     "originalTestSha256": "b93354f075f005b8650cc8765867a7d47f1ee169a17d009273211915cd934e9a",
-    "wallMs": 131285.338492,
+    "wallMs": 284285.46623699996,
     "execution": "All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged",
     "records": [
       {
@@ -154,19 +154,19 @@
     "groups": [
       {
         "id": "long-windows",
-        "wallMs": 131221.868294,
+        "wallMs": 284180.322566,
         "records": 8,
         "extraSetupRecords": []
       },
       {
         "id": "short-boundaries",
-        "wallMs": 29457.103539,
+        "wallMs": 62853.98102,
         "records": 2,
         "extraSetupRecords": []
       },
       {
         "id": "rollback-recovery",
-        "wallMs": 88030.251022,
+        "wallMs": 186033.42768,
         "records": 4,
         "extraSetupRecords": [
           {
@@ -183,13 +183,13 @@
       },
       {
         "id": "processing-time",
-        "wallMs": 75033.86868,
+        "wallMs": 161267.744431,
         "records": 2,
         "extraSetupRecords": []
       },
       {
         "id": "wall-clock",
-        "wallMs": 55928.709475999996,
+        "wallMs": 117954.20069600001,
         "records": 2,
         "extraSetupRecords": []
       }

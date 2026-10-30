@@ -2381,7 +2381,24 @@
   .study-speed-editor{padding:12px 0 0;}
   .study-slots[hidden],.study-speed-editor[hidden]{display:none;}
   .study-catalogue-heading{position:sticky;top:0;background:var(--bg);z-index:2;}
-  .farm-picker-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}.farm-picker-quick button{flex:1;min-height:44px;}
+  .stage .rift-heading{display:flex;flex-direction:column;height:auto;}
+  .rift-navigation{display:flex;align-items:center;gap:4px;min-width:0;}
+  .stage .rift-navigation .depth-label{flex:1;min-width:0;text-align:center;overflow:hidden;}
+  .rift-step{flex:none;min-width:44px;min-height:44px;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--bg-elev);color:var(--ink);font:700 16px 'Manrope',sans-serif;cursor:pointer;}
+  .rift-step:disabled{opacity:.4;cursor:not-allowed;}
+  @media(max-height:680px){
+    .stage .rift-heading{display:grid;grid-template-columns:44px minmax(0,1fr) 88px;gap:2px;height:44px;align-items:center;}
+    .rift-navigation{grid-column:2;gap:2px;}
+    #rift-back-ten{position:absolute;left:0;top:0;width:44px;height:44px;}
+    .stage .rift-heading .rift-mode-row{grid-column:3;width:88px;height:44px;padding:0;gap:0;border:0;background:none;}
+    .stage .rift-mode-btn .farm-depth{display:none;}
+    .stage .rift-mode-btn .control-state{white-space:normal;font-size:10px;line-height:10px;}
+    .stage .rift-navigation .depth-label{font-size:12px;line-height:14px;letter-spacing:0;}
+    .rift-number{display:block;white-space:nowrap;}
+    .stage .rift-navigation .boss-tag{display:block;font-size:10px;line-height:12px;}
+    .stage .rift-navigation .region-label{font-size:10px;line-height:12px;margin-top:0;}
+  }
+  @media(max-height:680px) and (max-width:340px){.rift-prefix{display:none;}}
   #tab-research>.chapter-head{min-height:64px;height:auto;padding:12px;margin-bottom:8px;}#tab-research .chapter-copy{max-width:calc(100% - 56px);}#tab-research .chapter-kicker{display:none;}#tab-research .chapter-head h2{font-size:1.25rem;}#tab-research .chapter-art{width:80px;height:64px;}
   #study-list .study-slot{padding:8px 12px;margin-bottom:8px;}#study-list .study-slot>h3{margin:0;font-size:.75rem;}#study-list .study-slot>.lock-note{margin:5px 0;font-size:.7rem;}
   #study-list .study-running{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;}
@@ -2863,7 +2880,12 @@
 </div></div>
     <section class="tab-panel active" id="tab-battle">
       <div class="card stage">
-        <div class="rift-heading"><div class="depth-label" id="depth-label">Rift 1</div>
+        <div class="rift-heading"><div class="rift-navigation" role="group" aria-label="Rift navigation">
+          <button type="button" class="rift-step" id="rift-back-ten" aria-label="Go back 10 Rifts" title="Go back 10 Rifts; boss Rifts are skipped">−10</button>
+          <button type="button" class="rift-step" id="rift-back-one" aria-label="Previous farming Rift" title="Previous farming Rift; boss Rifts are skipped">‹</button>
+          <div class="depth-label" id="depth-label">Rift 1</div>
+          <button type="button" class="rift-step" id="rift-forward-one" aria-label="Next Rift" title="Next farming Rift; resume Push at your saved Rift">›</button>
+        </div>
         <div class="rift-mode-row">
           <button class="rift-mode-btn active" id="rift-push-btn">Push</button>
           <button class="rift-mode-btn" id="rift-farm-btn">Farm</button>
@@ -3089,7 +3111,6 @@
     <button type="button" class="ghost-btn" id="rift-hint-close">Close</button>
   </div>
 </div>
-<div class="overlay" id="farm-picker-overlay" style="display:none;"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="farm-picker-title" aria-describedby="farm-picker-note" tabindex="-1"><h2 id="farm-picker-title">Choose farming Rift</h2><p>Defeat weaker enemies faster for Lumen and Shards. Your Push progress stays saved.</p><label for="farm-picker-depth">Cleared Rift</label><input id="farm-picker-depth" type="number" min="1" step="1" inputmode="numeric" style="width:100%;min-height:48px;"><div class="farm-picker-quick"><button class="mini-btn" id="farm-picker-back12">12 Rifts back</button><button class="mini-btn" id="farm-picker-highest">Highest cleared</button></div><p id="farm-picker-note" role="status"></p><button type="button" class="primary-btn" id="farm-picker-confirm">Farm selected Rift</button><button type="button" class="ghost-btn" id="farm-picker-close">Back</button></div></div>
 <div class="overlay settings-overlay" id="settings-overlay" style="display:none;">
   <div class="settings-modal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="settings-title">
     <div class="settings-head">
@@ -6303,17 +6324,16 @@ function enterPushMode(){
   if(!cometCommitMutation(function(){state.depth=Math.max(1,state.farmReturnDepth||state.depth);state.riftMode='push';state.farmDepth=0;state.farmReturnDepth=0;state.farmAutoResume=false;spawnEnemy(false);}))return false;
   renderAll();return true;
 }
-function closeFarmPicker(){closeOverlay(document.getElementById('farm-picker-overlay'));}
-function updateFarmPicker(){
-  var input=document.getElementById('farm-picker-depth'),depth=Number(input.value),max=highestFarmableDepth(progressionDepth());
-  var valid=input.value.trim()!==''&&Number.isInteger(depth)&&depth>=1&&depth<=max&&!isBoss(depth);
-  document.getElementById('farm-picker-confirm').disabled=!valid;
-  document.getElementById('farm-picker-note').textContent=valid?'Farm Rift '+depth+' · Push resumes at Rift '+progressionDepth()+'. Passive farming is limited to 2 kills/s; taps and abilities add defeats. Deeper Rifts give larger rewards.':'Choose a cleared non-boss Rift from 1 to '+max+'.';
-}
-function openFarmPicker(){
-  if(!canFarmCurrentProgress())return;
-  var input=document.getElementById('farm-picker-depth');input.max=highestFarmableDepth(progressionDepth());input.value=state.riftMode==='farm'?state.farmDepth:highestFarmableDepth(progressionDepth());
-  updateFarmPicker();openOverlay(document.getElementById('farm-picker-overlay'),closeFarmPicker,els['rift-farm-btn']);input.focus({preventScroll:true});
+function stepRift(offset){
+  if(offset!==-10&&offset!==-1&&offset!==1)return false;
+  if(!flushLiveProgress())return false;
+  var returning=progressionDepth();
+  if(offset>0&&state.riftMode!=='farm')return false;
+  var depth=Math.max(1,state.depth+offset);
+  while(depth>1&&depth<returning&&isBoss(depth))depth+=offset>0?1:-1;
+  if(depth>=returning)return offset>0?enterPushMode():false;
+  if(depth===state.depth)return false;
+  return selectFarmDepth(depth);
 }
 
 function forgeLevel(id,snapshot){
@@ -8954,7 +8974,7 @@ function setupOverlayFocus(){
 }
 
 function cacheEls(){
-  ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-push-btn','rift-farm-btn','rift-objective','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
+  ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-back-ten','rift-back-one','rift-forward-one','rift-push-btn','rift-farm-btn','rift-objective','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
    'hp-fill','hp-text','stat-tap','stat-idle','spirit-list','formation-presets','bond-card','bond-summary','rift-bond-effects','rift-party','boss-combat','research-list','study-list',
    'prism-preview','ascend-btn','ascend-note','auto-ascend-controls','node-list','ach-list','roster-journey','shop-list','comet-commands','comet-journal','legacy-comet-trials','comet-claim-history','theme-list','manifesto','toast',
    'daily-streak-badge','daily-quest-list','settings-overlay','settings-home','settings-encyclopedia','settings-title','settings-back','encyclopedia-content'
@@ -8989,7 +9009,9 @@ function renderRiftMode(){
   els['rift-farm-btn'].setAttribute('aria-label',els['rift-farm-btn'].disabled ? 'Farm unavailable — clear Rift 1 to unlock' : els['rift-farm-btn'].textContent);
   els['rift-farm-btn'].title = els['rift-farm-btn'].disabled ? 'Clear Rift 1 to unlock Farm' : '';
   if(els['rift-farm-btn'].disabled) els['rift-farm-btn'].innerHTML='Farm<span class="control-state">Clear Rift 1</span>';
-  else els['rift-farm-btn'].innerHTML='Farm<span class="farm-depth">Rift '+formatRiftNumber(farming ? state.farmDepth : highestFarmableDepth(progressionDepth()))+' ▾</span>';
+  else els['rift-farm-btn'].innerHTML='Farm<span class="farm-depth">Rift '+formatRiftNumber(farming ? state.farmDepth : highestFarmableDepth(progressionDepth()))+'</span>';
+  els['rift-back-ten'].disabled=els['rift-back-one'].disabled=state.depth<=1;
+  els['rift-forward-one'].disabled=!farming;
 }
 // Read-only advice after roster development. Prices, gates and purchases remain
 // authoritative in their existing plans; advice never toggles queues or spends.
@@ -9266,7 +9288,8 @@ function updateBattleFast(){
   els['hp-text'].textContent = (formatRiftNumber(Amount.max(0,state.enemyHp)) + ' / ' + formatRiftNumber(state.enemyMaxHp));
   var zone = riftZoneFor(state.depth);
   applyRiftZoneVisual(state.depth);
-  els['depth-label'].innerHTML = ('Rift ' + state.depth + (isBoss(state.depth) ? ' &mdash; <span class="boss-tag">BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
+  els['depth-label'].innerHTML = ('<span class="rift-number"><span class="rift-prefix">Rift </span>' + formatRiftNumber(state.depth) + '</span>' + (isBoss(state.depth) ? ' <span class="boss-tag">&mdash; BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
+  els['depth-label'].setAttribute('aria-label','Rift '+state.depth+(isBoss(state.depth)?' Boss':'')+' · '+zone.name);
   els['enemy-name'].textContent = Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyNameFor(state.depth));
   var creatureKind = ENEMY_NOUN[Amount.mod(Amount.mul(state.depth,7),ENEMY_NOUN.length)].toLowerCase();
   var creatureEl = els['enemy-glyph'];
@@ -13794,12 +13817,10 @@ function init(){
   stageEl.addEventListener('keydown',function(e){ if(e.repeat && (e.key==='Enter' || e.key===' ')) e.preventDefault(); });
 
   document.getElementById('rift-push-btn').addEventListener('click', enterPushMode);
-  document.getElementById('rift-farm-btn').addEventListener('click',function(){if(state.riftMode!=='farm')enterFarmMode();openFarmPicker();});
-  document.getElementById('farm-picker-depth').addEventListener('input',updateFarmPicker);
-  document.getElementById('farm-picker-close').onclick=closeFarmPicker;
-  document.getElementById('farm-picker-confirm').onclick=function(){if(selectFarmDepth(Number(document.getElementById('farm-picker-depth').value)))closeFarmPicker();};
-  document.getElementById('farm-picker-back12').onclick=function(){var depth=Math.max(1,progressionDepth()-12);while(isBoss(depth)&&depth>1)depth--;document.getElementById('farm-picker-depth').value=depth;updateFarmPicker();};
-  document.getElementById('farm-picker-highest').onclick=function(){document.getElementById('farm-picker-depth').value=highestFarmableDepth(progressionDepth());updateFarmPicker();};
+  document.getElementById('rift-farm-btn').addEventListener('click',function(){if(state.riftMode==='farm')selectFarmDepth(state.farmDepth);else enterFarmMode();});
+  document.getElementById('rift-back-ten').onclick=function(){stepRift(-10);};
+  document.getElementById('rift-back-one').onclick=function(){stepRift(-1);};
+  document.getElementById('rift-forward-one').onclick=function(){stepRift(1);};
   document.getElementById('rift-objective').addEventListener('keydown',function(e){
     if(this.getAttribute('role')==='button' && (e.key==='Enter' || e.key===' ')){
       e.preventDefault(); if(!e.repeat) this.click();
