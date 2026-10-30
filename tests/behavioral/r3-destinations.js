@@ -141,7 +141,7 @@ window.prepareR3Reload = function(b,ctx,assert){
 window.checkR3Reload = function(b,ctx,assert,expected){
   var s=b.getState();
   ['research','researchQueue','studyQueue','activeStudies','studyBoosts','studyBoostHours','moteNextAtMs','longStudyLevels','savedLabMultiplier','lumen','shards','motes','activeParty','formationRebuild','schemaVersion'].forEach(function(key){
-    assert(JSON.stringify(s[key])===JSON.stringify(expected[key]),'real reload preserves '+key);
+    assert(JSON.stringify(s[key])===JSON.stringify(expected[key]),'real reload preserves '+key+' '+JSON.stringify({actual:s[key],expected:expected[key]}));
   });
   document.querySelector('[data-tab="forge"]').click();
   assert(document.querySelector('[data-mult="5"]').getAttribute('aria-pressed')==='true','remembered bulk restores in Forge');

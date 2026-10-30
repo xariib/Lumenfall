@@ -1,5 +1,7 @@
 # Lumenfall — current delivery status
 
+30 October: [Debug PR26](tasks/DEBUG_SCROLL_EXPLOITS_001.md): CI/Android pending.
+
 30 October: [Visual polish/PR25](tasks/VISUAL_POLISH_001.md), `31b24d57`:
 seven gates/190 scenarios PASS. APK/browser access and device acceptance pending.
 
@@ -19,12 +21,10 @@ next settings and empty-slot OFF preserve paid work. All seven PR/main gates,
 [Evidence](qa/lab-boost-queue-001/release.json). Both saves, paid work, UID/origin
 and legacy purchases retained. Phone/WebView60/TalkBack/human pacing remain open.
 
-28 October 2026: [Game verification and APK delivery](tasks/GAME_CHECK_APK_RELEASE_001.md)
-published [Android 0.2.51](https://github.com/xariib/Lumenfall/releases/tag/android-1000051)
-from `d3420c15`. Seven exact-source workflows, both full jobs (189+1 scenarios),
-runtime smoke, signed installed upgrade and anonymous exact-byte download PASS.
-Both saves, paid work, UID/origin and legacy purchases retained. Includes PR15
-pacing/manual Farm, PR16 Ascend summary and PR17 Lab queue/Speed Up.
+28 October: [Android0.2.51 acceptance](tasks/GAME_CHECK_APK_RELEASE_001.md),
+`d3420c15`: seven workflows,189+1 scenarios, smoke, signed installed upgrade
+and public bytes PASS. Both saves, paid work, UID/origin and legacy purchases
+retained. Includes PR15 pacing/Farm, PR16 Ascend and PR17 Lab queue/Speed Up.
 [Release evidence](qa/game-check-apk-release-001/release.json).
 Physical phone, exact WebView60, TalkBack and human pacing remain open.
 

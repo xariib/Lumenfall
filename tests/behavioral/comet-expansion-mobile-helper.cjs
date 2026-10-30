@@ -110,6 +110,7 @@ async function profile(){
  function visible(m,label){ok(m.width>=44&&m.height>=44,'44px target '+label);ok(m.visible&&m.hit,'visible unobscured target '+label+' '+JSON.stringify(m));}
  function bounds(before,after){const target=after.scroll+after.top-before.top,max=Math.max(0,after.scrollHeight-after.clientHeight),nearest=Math.max(0,Math.min(max,target));return {target,max,nearest,unavoidable:target-nearest,bound:target<0?'minimum':target>max?'maximum':'none',actualTopDelta:after.top-before.top,actualScroll:after.scroll};}
  function viewport(before,after,label){const b=bounds(before,after);if(b.bound==='none')ok(Math.abs(after.top-before.top)<=1,'viewport top stable '+label);else{ok(Math.abs(after.scroll-b.nearest)<=1,'nearest feasible scroll '+label);ok(Math.abs(after.top-before.top-b.unavoidable)<=1,'only unavoidable boundary movement '+label);}return b;}
+ function stationary(before,after,label){const nearest=Math.min(before.scroll,Math.max(0,after.scrollHeight-after.clientHeight));ok(Math.abs(after.scroll-nearest)<=1,'purchase keeps scroll '+label);}
  async function prepare(sel){if(sel.includes('data-comet-command')||sel.includes('data-comet-shop-link'))await show('deeds');await point(sel);await ev('document.querySelector('+JSON.stringify(sel)+').focus({preventScroll:true})');await frames();const m=await measure(sel);visible(m,sel);return m;}
  async function touchHere(m,observePressed){await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:m.x,y:m.y}]});try{if(observePressed)await observePressed();}finally{await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}}
  async function input(sel,kind,label,afterSel=sel,expectClick=true){const before=await prepare(sel),row={profile:{width,scale,motion},label,selector:sel,kind,before,stateBefore:await state(),slotsBefore:await slots(),writeIndex:await ev('__cometWrites.length'),inputIndex:await ev('__prismInput.length')};log.inputs.push(row);
@@ -222,7 +223,11 @@ async function profile(){
    const afterSelector=i?selector('data-comet-card',name):'[data-autoascend-open]';const action=await input(selector('data-shop',name),rank%2?'Space':'touch','permanent '+name+'/'+rank,afterSelector);cometDiagnostics.purchases.push(action);
    ok(action.stateAfter.comets===0,'native exact permanent debit '+name+'/'+rank);ok(i?action.stateAfter.astralUpgrades[name]===rank+1:action.stateAfter.owned.autoascend,'native paid permanent level '+name+'/'+rank);preserve(action.stateBefore,action.stateAfter,paidFields,'permanent purchase');
    ok(action.writes.filter(x=>x.key==='lumenfall_save_v2'&&x.ok).length===1,'one primary permanent commit');ok(action.writes.filter(x=>x.key==='lumenfall_save_recovery_v1'&&x.ok).length===1,'one recovery permanent commit');
-   viewport(action.before,action.immediate,'permanent purchase immediate');viewport(action.before,action.settled,'permanent purchase settled');log.catalog.push({name,rank,cost});
+   // The purchase button becomes a same-card focus destination. Comparing its
+   // old top to the card's top required a scroll jump on every exhausted wallet.
+   // Purchases now retain the user's scroll offset, clamped only by page bounds.
+   for(const phase of ['immediate','settled'])stationary(action.before,action[phase],'permanent '+phase+' '+name+'/'+rank);
+   log.catalog.push({name,rank,cost});
   }
   const allPaid=await state();for(const name of currentIds)ok((await quote(name)).plan.maxed,'all permanent caps retained '+name);
   ok(await ev('!document.querySelector("[data-comet-command],[data-quest-refresh]")&&document.getElementById("comet-commands").hidden'),'retired actions absent from actual player UI');await fit('#shop-list','permanent shop');await contrast('#shop-list','permanent shop');await screenshot('permanent-shop','[data-comet-card="astralconvergence"]');
@@ -264,7 +269,7 @@ async function profile(){
   const updated=copy(base);updated.comets=900;
   await pair('stale-rank',updated,'deeds',async()=>{},async()=>{await ev('var levels=prismQa.get().astralUpgrades;levels.astralcore=1;prismQa.cometPatch({astralUpgrades:levels})');return input('[data-shop="astralcore"]','Space','causal stale native permanent quote','[data-comet-card="astralcore"]');},async r=>{ok(r.after.comets===0&&r.after.astralUpgrades.astralcore===2,'causal native permanent rank recheck');},'causal native permanent rank recheck');
   const press=copy(base);press.comets=100;
-  await pair('pressed-purchase',press,'deeds',async()=>{},async()=>input('[data-shop="autoascend"]','touch','causal neutral purchase press','[data-autoascend-open]'),async r=>{const action=r.outcome,activation=action.activationEvents[0];ok(action.activationEvents.length===1&&activation.trusted&&activation.eventPhase===1&&activation.shop==='autoascend'&&activation.active,'actual active trusted purchase capture');ok(action.touchBefore.transform==='none'&&activation.transform==='none','causal neutral Comet purchase press geometry');viewport(action.before,action.immediate,'causal neutral purchase immediate');viewport(action.before,action.settled,'causal neutral purchase settled');},'causal neutral Comet purchase press geometry');
+  await pair('pressed-purchase',press,'deeds',async()=>{},async()=>input('[data-shop="autoascend"]','touch','causal neutral purchase press','[data-autoascend-open]'),async r=>{const action=r.outcome,activation=action.activationEvents[0];ok(action.activationEvents.length===1&&activation.trusted&&activation.eventPhase===1&&activation.shop==='autoascend'&&activation.active,'actual active trusted purchase capture');ok(action.touchBefore.transform==='none'&&activation.transform==='none','causal neutral Comet purchase press geometry');stationary(action.before,action.immediate,'causal neutral purchase immediate');stationary(action.before,action.settled,'causal neutral purchase settled');},'causal neutral Comet purchase press geometry');
  }
 
  async function runSemantics(){
