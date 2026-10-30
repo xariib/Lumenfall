@@ -2,6 +2,11 @@ name: Build Android APK
 # Node.js validation/build support; established Android signing and release flow.
 
 on:
+  push:
+    branches:
+      - qa/auto-ascend-challenges-001-apk
+    paths:
+      - .github/workflows/build-android.yml
   workflow_dispatch:
     inputs:
       publish:
