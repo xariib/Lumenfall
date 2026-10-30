@@ -1,5 +1,7 @@
 # Lumenfall — current delivery status
 
+31 October: [Ritual challenges](tasks/AUTO_ASCEND_CHALLENGES_001.md), [PR31](https://github.com/xariib/Lumenfall/pull/31), merged at3f74661b: 25 Ascensions, Rift150,50 current Lab levels across6 subjects, then100 Comets. Existing owners keep it. Seven gates/190+1 scenarios and signed0.2.65 installed upgrade PASS. [Receipt](qa/auto-ascend-challenges-001/ci-final.json). Phone acceptance open; no release.
+
 30 October: [Opening tap balance/PR #29](tasks/TAP_EARLY_BALANCE_001.md) integrated; signed 0.2.64 test APK. Base 20 + 2% party power; Wisps take over with development. Seven gates, 190+1 scenarios and signed installed upgrade PASS; phone/human pacing acceptance open. [Receipt](qa/tap-early-balance-001/delivery.json).
 
 30 October: [Direct Rift navigation](tasks/RIFT_NAVIGATION_001.md),

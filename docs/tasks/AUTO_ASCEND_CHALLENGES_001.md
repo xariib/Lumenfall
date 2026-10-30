@@ -1,159 +1,102 @@
 # AUTO_ASCEND_CHALLENGES_001 — earn Auto-Ascend Ritual
 
-Status: combined candidate includes PR30 and depends on PR29; fresh CI/APK pending.
-Owner: current feature chat; no delegation. Keep task/chat open until required acceptance.
-Baseline: main41566c97020036934c9529b396420e910b41cb5f (Lab/Deeds PR28).
-Branch: feature/auto-ascend-challenges-001; worktree ../auto-ascend-challenges-001.
-[PR31](https://github.com/xariib/Lumenfall/pull/31).
+Status31 October2026: integrated; CI and signed installed-emulator acceptance PASS.
+Physical acceptance remains open; do not archive. Owner: this feature chat, no delegation.
+[PR31](https://github.com/xariib/Lumenfall/pull/31), integration
+3f74661b69a30791518a2a67e27193269741ed43. No public release.
 
-## Accepted requirement and scope
+## Original requirement and accepted decision
 
-30 October2026: “Auto ascend ritual is too easy to unlock. There must be some
-challenges there too.” User accepted the recommended requirements with “Let's take that”:
+30 October: “Auto ascend ritual is too easy to unlock. There must be some
+challenges there too.” User accepted the recommended set with “Let's take that”:
 25 Ascensions, highest Rift150,50 completed current Lab levels across6 subjects,
-plus the existing100 Comet price. Every condition is required and progress is visible.
-Saved milestones count; existing owners retain ownership/automation. No new save fields.
-Retired subjects and unfinished paid/paused work do not count as completed.
+plus the existing100 Comets. Every condition is required with visible live progress.
+Saved milestones count; existing owners keep ownership, targets and automation.
+Retired subjects and unfinished paid/paused work do not count. No new save fields.
 
-Previously the Ritual cost100 Comets without gameplay prerequisites. Implement
-first-purchase authorization in getCometBuyPlan/buyShopItem and live progress in
-the existing Deeds card. Ascend's locked shortcut reaches the challenge card.
-Preserve other prices/features, existing paid work, both saves/recovery, rollback,
-Auto-Ascend targets/toggles and chronological online/offline simulation. Preserve
-mobile/touch/focus,320px and200% text, WebView60 syntax and established Android identity.
-No new binding rule. Standing task authorization covers necessary CI/integration/build.
+Previously the Ritual cost100 Comets without gameplay prerequisites. Implemented
+canonical first-purchase authorization, four counters/checkmarks, visible/red-if-short
+price and disabled purchase, wrapping card/button, and the locked Ascend shortcut
+to the challenge card. Shop viewport preservation handles the tall list disappearing
+on purchase. Other callers keep their old viewport policy. Prices, other purchases,
+paid work, saves/recovery, rollback and automation remain intact.
 
-Changed product: root index.html,59-line focused diff. Added canonical requirements,
-four counters/checkmarks, visible/red-if-short100-Comet price, wrapping card/button,
-locked shortcut focus, and shop-only viewport preservation after the tall list vanishes.
-Existing owners bypass only the new challenges. No simulation or save-schema changes.
+Original baseline41566c97 (PR28). PR30 Rift navigation advanced main during final CI;
+its source/tests/Android checks were retained. Pending Tap PR29 head1fb827ea became
+an integration dependency, then merged at941538d0 before PR31. Its tap/timing work
+remains owned by that feature; the Ritual change makes no simulation changes.
+Branch feature/auto-ascend-challenges-001, worktree ../auto-ascend-challenges-001.
+Git-data publishing verified all blob/tree identities because ordinary push lacked
+credentials. The managed nested sourceRoot failed, so a native Git worktree was used.
 
-Tests: new auto-ascend-challenges.cjs and UI helper run from existing Comet entrypoints.
-Old payment/focus fixtures now earn accepted milestones; original assertions, gates,
-timeouts and causal controls remain. Native driver default expectation follows its
-new eligible highest Rift150. bridge.js adds test-only native-input control. The
-independent golden changes only its source hash after an unchanged-generator replay.
+## Integrated identity and validation
 
-## Source and verification
+CI head2a3a54ab265bbed8635dbe58e715e91a1c4445db,
+treeae70d59d1e58448fabd450aea2d05e02a82f88df.
+Product SHA256 e5f2ee84f7422461b0f9b1e66d59567fd01d49437617d46475f725f08842d5fa.
+All seven required workflows/nine jobs PASS, with190 main scenarios plus1 isolated
+offline scenario and runtime smoke. Actual staged source matches the product hash.
+[Exact CI/integration receipt](../qa/auto-ascend-challenges-001/ci-final.json).
 
-Earlier-base candidate a54912a8db5ae67dfb0a121ba4a67607017a1608;
-tree ec885729560dc4f29bb5d1743eca3cb3d54db0fa;
-tested merge5f49b70b7e5ebb5e5d623561c0321f02f80317f0 has the same tree.
-Earlier product SHA256 c2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d.
-Main remained41566c97 at the last check. PR29 Guardian taps and PR30 Rift navigation
-also edit index.html; recheck current main/tested merge before integrating, preserving
-other work. Native Git worktree was used after the managed nested sourceRoot failed;
-core.longpaths fixed the first rolled-back checkout. Git-data publishing verifies
-all blobs/complete tree because normal push has no usable credential.
+Main92e7497d added only13 Tap delivery-document paths beyond the tested candidate.
+The cached GitHub test-merge ref still used the old base, so a local review merge
+computed the current-main result. All non-documentation files match CI exactly;
+context checks passed. Integrated tree930fc9e1964653473ad252b6876e84ab089cd5da
+exactly matches that reviewed tree. The differing full trees are not called equal.
+Local HEAD was aligned to the real integration commit only after verifying equal trees.
 
-Local Node24.20.0. Focused suite PASS118 assertions/seven causal controls: independent
-missing goals/rich-wallet bypass/exact100 debit/duplicate rejection, real25th Ascend
-and Rift150, retired/unfinished exclusion, schemas0..6 ownership, export/recovery,
-primary/both failure rollback and recovery-only authoritative-primary acceptance.
-Original Comet12 cases PASS. Original stationary matrix PASS492checks/96cases/three
-controls on final source; Workshop UI PASS524/18profiles; offline focus PASS9profiles;
-corrected native Auto-Ascend target PASS20profiles/clean teardown. Source validation PASS.
+New actual-IIFE suite PASS118 assertions/seven causal controls: independent missing
+goals and rich-wallet/forged-quote rejection, exact100 debit, duplicate rejection,
+real25th Ascend/Rift150, current/retired/unfinished Lab work, saved ownership across
+schemas0..6, export/recovery, primary/both-failure rollback and successful-primary
+recovery-only policy. [Combined core proof](../qa/auto-ascend-challenges-001/tap-combined-core.json).
+Existing Comet12 cases/two timer controls also PASS. The main CI executes the new
+core and both phone/text/motion modes, plus both original native target modes.
+Original payment/focus fixtures earn the new goals; original assertions remain.
 
-On preceding7af13586 source before the viewport-only correction: Comet12554, Forge9341,
-permanent4003, feedback360/four controls, Lab/offline67/eight, target contract928,
-complete Comet UI12470/12profiles/10causal pairs. Collection prices6180/four controls
-passed on earlier41d9501b source; its receipt preserves that exact provenance.
-Final CI reruns those paths on c2d44d07. Screenshots320px normal/200% top/footer were
-self-inspected. One repeat UI run passed six profiles then failed browser shutdown;
-it remains a failed run. Two exploratory wrong test names were corrected, not counted.
-Evidence: [core](../qa/auto-ascend-challenges-001/core.json),
-[local](../qa/auto-ascend-challenges-001/local.json),
-[regressions](../qa/auto-ascend-challenges-001/regressions.json),
-[focus](../qa/auto-ascend-challenges-001/focus.json),
-[native target](../qa/auto-ascend-challenges-001/native-target.json).
+Initial fixture failures and the introduced purchase-scroll jump were fixed before
+integration. Earlier main963557f6 passed187/189; native purchase fixtures needed
+Rift150/earned goals and then passed20 local profiles. Earlier maina54912a8 passed
+188/189; its enemy HP snapshot observed host-startup combat. Pause only the two
+static reload measurements from boot; original HP/save assertions and0.0005
+tolerance stay unchanged. Both pass, and deliberate HP resets still fail both.
+[Observer proof](../qa/auto-ascend-challenges-001/enemy-reload-observer.json).
+[Prior188/189 run](../qa/auto-ascend-challenges-001/ci-attempt-a54912a8.json).
+All190 current main cases PASS. Prior failures remain failures, not retroactive passes.
 
-Official checksum-verified Node24.19.0 ran the unchanged offline golden generator:
-115200 independent one-second calls/four8h windows. Every released outcome AND full
-state hash matched exactly; only sourceSha256 changed. Generator/old state hashes
-unchanged. [Replay proof](../qa/auto-ascend-challenges-001/independent-replay.json).
+Independent one-second replays each made115200calls/four8h windows. Current candidate
+and unchanged Tap dependency have identical actual full states on Windows
+Node24.19/24.20 and Linux Node22.23.4. Reward triples match the accepted Tap reference.
+The recorded dependency full hashes are not reproduced by either control or candidate;
+retain its vectors and record that upstream provenance limitation. No recorded-hash
+match is claimed. [Qualified replay](../qa/auto-ascend-challenges-001/independent-replay-tap-combined.json)
+and [Linux proof](../qa/auto-ascend-challenges-001/android-combined/independent-reference.json).
+Earlier pre-Tap replay outcomes/full hashes and source-qualified UI/native receipts
+remain in this QA directory and Git history. No gate, timeout or assertion was weakened.
 
-## CI history and current checks
+## Android delivery and remaining acceptance
 
-Earlier heads remain failed:4c6e1fce old payment fixtures;cfb725e7 enabled Workshop/
-offline focus fixtures; a353ea3f stale independent-reference source binding.
-Head963557f6 passed six focused workflows plus isolated offline, but main41118157227
-passed187/189 cases: only two native target modes still bought at Rift56 without
-goals. Corrected fixture/default now passes20 original native profiles locally.
-[All189 prior outcomes](../qa/auto-ascend-challenges-001/ci-attempt-963557f6.json).
-Product has stayedc2d44d07 since the viewport fix; no weakened acceptance.
+Signed test0.2.65/code1000065, package com.lumenfall.app, build41135590295 PASS.
+APK SHA25621afa8eef0a1ddeb940cf3a6adbb6d5ee3304f246c4a75e536422b59ef448974.
+Established certificate A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
+Exact packaged assets/origin match integrated source. Installed Android12/API31/
+WebView91 upgrade retained UID/origin, both saves, paid progress and old Ritual
+ownership below25 Ascensions; native Wisp and direct Rift navigation PASS.
+[Android receipt/artifact metadata](../qa/auto-ascend-challenges-001/android-combined/build.json).
+Local APK: ../auto-ascend-challenges-android-combined/Lumenfall-0.2.65.apk.
+Artifact13017206621 was downloaded and its archive/APK digests verified. No publication.
 
-Earlier-base runs: main41126703259, Comet41126703334, Lab41126703324,
-permanent41126703234, shared UI41126703429, Tree41126703326, Forge41126703361.
-Lab(two jobs), Comet, shared UI, Tree and permanent PASS; isolated offline job
-124306976159 PASS. Permanent's first job124306975292 failed before any assertion
-at CDP Browser.getVersion; same-head retry124308301979 PASS. Forge PASS. Main188/189: only enemy-normal-reload snapshot failed; all Ritual and native target cases PASS.
-Verify all seven workflows/nine jobs against exact head/tree before merge.
+User chose “I'll enable browser use”; the browser API still reported disabled.
+Native Computer Use stopped because it could not verify the browser URL on Windows.
+No further UI actions occurred. A supported Git-data fallback used an isolated
+branch-specific push trigger and paired reference step; only the build workflow
+differed from the exact candidate. After success, retirement0b9a520c restored its
+complete tree. Main's workflow is unchanged. Test0.2.63 is superseded earlier-base proof.
 
-## Android route, limitations and next action
-
-The GitHub connector lacks dispatch; normal push credentials are unavailable.
-User chose “I'll enable browser use”; browser API still reported disabled after
-reset. Native Computer Use then stopped because it could not confidently determine
-the browser URL on Windows. No further UI actions occurred this turn.
-
-A supported Git-data fallback now runs the existing Android workflow on isolated
-QA branch qa/auto-ascend-challenges-001-apk, commit4764c9839c0aa0bcfb036ac2573161a0e3a35854,
-run41127553627. Only five trigger lines differ from the exact tested candidate;
-index.html/mobile/tests/scripts are byte-identical. The added push trigger matches
-only this branch/workflow path; absent publish input is false. Main/PR workflow
-stays unchanged. Signing/package/assets/origin and installed emulator
-upgrade/exact-APK receipt PASS. Local APK checksum8fb3bcdb matches the artifact;
-embedded index.html matchesc2d44d07. Both saves/paid work/old Ritual ownership,
-UID/origin and native Wisp touch retained on Android12/API31/WebView91.
-[Build evidence](../qa/auto-ascend-challenges-001/android/build.json) retains exact
-versions/hashes/artifact metadata and the browser limitation. Trigger retired
-after the successful build; QA branch restored to the tested candidate tree.
-No publication and no release claim.
-
-Automated review covered initial4c6e1fce; later corrections were self-reviewed.
-No independent human review, physical phone, exact WebView60 DOM, TalkBack or human
-pacing/performance acceptance is claimed. Missing required acceptance keeps the task
-open per [feature workflow](../project/FEATURE_WORKFLOW.md).
-
-
-
-## Combined integration checkpoint
-
-Main advanced during the final run: PR30 navigation merged at90c20a26, then
-metadata1f316cc5ece42badac9fb53c851feaad18335ba9. The final preflight caught
-that change before merging. No outdated-source integration occurred.
-[Old188/189 run](../qa/auto-ascend-challenges-001/ci-attempt-a54912a8.json)
-retains every result and the single enemy snapshot miss.
-
-Rift navigation combined cleanly; only the golden source binding conflicted.
-115200 independent calls preserved every original outcome/full state hash.
-[Replay](../qa/auto-ascend-challenges-001/independent-replay-combined.json) and
-[12 native profiles](../qa/auto-ascend-challenges-001/navigation-combined-ui.json)
-PASS on intermediate eb4bfd67. APK0.2.63 is earlier-base proof, not this candidate.
-
-PR31 now also consumes pending PR29 head1fb827eaaa95565e015b84426a2b49984b4ffe9d
-as an integration dependency. Its tap/timing implementation remains owned by that
-feature. DO NOT merge PR31 until PR29 is merged at the tested dependency head.
-This lets the long CI pass validate all overlapping source together. Preserve
-both Comet footer outputs after their test conflict: timer controls/source identity
-and all118 Ritual checks/seven controls. No original assertion is removed.
-
-Combined app SHA256:e5f2ee84f7422461b0f9b1e66d59567fd01d49437617d46475f725f08842d5fa.
-Comet12/two timer controls plus118/seven Ritual controls PASS. Paired Windows
-Node24.19 one-second candidate/dependency replays each made115200calls; all
-actual full states match exactly, as do candidate Node24.20 results. Their
-triples match PR29's new balance; local full hashes differ from its recorded
-reference. Retain its reference vectors and run a Linux paired replay in the
-isolated APK workflow. [Qualified proof](../qa/auto-ascend-challenges-001/independent-replay-tap-combined.json).
-
-The enemy observer was measuring after host-startup combat. Pause only the two
-static reload cases from boot. Both original ratio/tolerance/save-reload assertions
-now PASS; deliberate HP-reset mutations still fail both. Product persistence and
-clock are unchanged. [Observer proof](../qa/auto-ascend-challenges-001/enemy-reload-observer.json).
-
-Next: finish/publish this dependency merge, rerun all seven workflows on the new
-head (190 main plus1 isolated scenario), build a fresh signed non-publishing APK
-with Linux reference proof, wait for PR29 integration, then verify the combined
-product/test identity against current main before merging PR31. Save exact final
-CI/integration/status receipts. Physical phone/WebView60/TalkBack remain open;
-do not archive. No further Computer Use actions this turn.
+Self-review/automated validation only; initial automated review covered4c6e1fce.
+No independent human final-head review is claimed. Physical phone, exact WebView60
+DOM, TalkBack and human pacing/performance remain unverified. The user has been
+asked to test the latest0.2.65 update/progress/challenges or retained ownership.
+Keep this task/chat open per [feature workflow](../project/FEATURE_WORKFLOW.md).
+Next: record that device feedback, resolve relevant findings, and update acceptance.
+No source changes or further shared-file implementation work are pending.
