@@ -63,6 +63,9 @@ function contracts(html){
 }
 function preservation(html,baseline){
  assert.strictEqual(crypto.createHash('sha256').update(baseline).digest('hex'),'d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8','immutable pre-display source');
+ // Preserve the complete old gameplay oracle under its original automation
+ // unlock policy. New multi-condition eligibility has its own causal checks.
+ html=require('./legacy-automation-deeds-reference.cjs')(html);
  // F19 intentionally changes Deed counting and the minimum natural cycle.
  // Apply those approved rules to the immutable pre-readout oracle, retaining
  // its original Wisp formulas/controller. ENDLESS adds explicit state fields
@@ -138,7 +141,7 @@ function preservation(html,baseline){
   var profile=clone(after.profile(depth));if(profile)delete profile.supportUptime;eq(profile,before.profile(depth),'default cast rates/integral/cache result unchanged');
   if(forge && depth===99 && party[0]==='ember' && party[1]==='tide') ['live','offline'].forEach(function(kind){
    var seed=clone(before.get());seed.riftMode='farm';seed.farmDepth=seed.enemyDepth=99;seed.depth=99;seed.enemyHp=seed.enemyMaxHp=1e200;seed.enemyIsLuminous=false;seed.autoAscendEnabled=false;
-   before.set(seed);after.set(seed);var old=before.simulate(60,kind,clock+.125),next=after.simulate(60,kind,clock+.125);eq(next.kills,0,'fixed world isolates unchanged casts and paid effects from the new enemy curve');eq(next,old,'unchanged chronological summary');eq(oldFields(after.get()),oldFields(before.get()),'every prior simulation endpoint field retained');cases.push({party:party,kind:kind,seconds:60,kills:next.kills});
+   before.set(seed);after.set(seed);var old=before.simulate(60,kind,clock+.125),next=after.simulate(60,kind,clock+.125);eq(next.kills,0,'fixed world isolates unchanged casts and paid effects from the new enemy curve');eq(next,old,'unchanged chronological summary under historical Deed policy');eq(oldFields(after.get()),oldFields(before.get()),'every prior simulation endpoint field retained');cases.push({party:party,kind:kind,seconds:60,kills:next.kills});
   });
  });});});
  return {status:'PASS',checks:checks,baselineSha256:'d90742bc1e9377e8a35ac8dc498f3a6d5509d2c05e71353f2c3df33d6e6f21f8',defaultFormulaCases:448,chronologicalCases:cases};

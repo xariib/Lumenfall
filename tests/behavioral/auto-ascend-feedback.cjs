@@ -149,7 +149,13 @@ const endpoints=endpointCases(source);
 if(process.argv.includes('--record-baseline')){
   assert.equal(hash(original),'ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba','record only the verified PR15 baseline source');
   fs.mkdirSync(path.dirname(receiptPath),{recursive:true});fs.writeFileSync(receiptPath,JSON.stringify({commit:'cc03df4972808666436eb0386515d20e88d04255',sourceSha256:hash(original),endpoints},null,2)+'\n');
-}else eq(endpoints,JSON.parse(fs.readFileSync(receiptPath)).endpoints,'all current production endpoints exactly match PR15');
+}else {
+  // Keep every frozen PR15 endpoint/hash intact under its historical Deed
+  // eligibility. Actual new-policy endpoints above still exercise complete
+  // combat, receipt conservation and both-slot reload without substitutions.
+  const historicalEndpoints=endpointCases(require('./legacy-automation-deeds-reference.cjs')(source));
+  eq(historicalEndpoints,JSON.parse(fs.readFileSync(receiptPath)).endpoints,'all production endpoints under historical Deed policy exactly match PR15');
+}
 if(process.argv.includes('--negative')){
   const cp=require('node:child_process');
   for(const name of Object.keys(mutations)){
