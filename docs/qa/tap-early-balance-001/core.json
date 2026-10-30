@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "checks": 36,
+  "opening": {
+    "before": {
+      "taps": 14,
+      "depth": 2
+    },
+    "after": {
+      "taps": 4,
+      "depth": 2
+    }
+  },
+  "shares": [
+    {
+      "levels": [
+        25,
+        10,
+        5
+      ],
+      "passive": 220.70000000000002,
+      "tap": 30.517500000000002,
+      "manualShareAtThreeTaps": 0.2932002145699394
+    },
+    {
+      "levels": [
+        50,
+        25,
+        10
+      ],
+      "passive": 512.9000000000001,
+      "tap": 37.822500000000005,
+      "manualShareAtThreeTaps": 0.18115164021121785
+    },
+    {
+      "levels": [
+        100,
+        50,
+        25
+      ],
+      "passive": 318177.5,
+      "tap": 7979.4375,
+      "manualShareAtThreeTaps": 0.06997137117127551
+    }
+  ],
+  "campaigns": {
+    "before": {
+      "seconds": 180,
+      "rift3": 9,
+      "rift10": 54,
+      "depth": 14,
+      "record": 14,
+      "kills": 13,
+      "purchases": 10,
+      "spirits": {
+        "ember": 11,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      }
+    },
+    "after": {
+      "seconds": 180,
+      "rift3": 2.6666666666666665,
+      "rift10": 18.666666666666668,
+      "depth": 22,
+      "record": 22,
+      "kills": 21,
+      "purchases": 19,
+      "spirits": {
+        "ember": 17,
+        "tide": 3,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      }
+    }
+  },
+  "controls": [
+    "weak",
+    "dominant"
+  ],
+  "sourceSha256": "45a8261ce7b3214cca98a09846482ffa313d2e743c0b0ef5bd8db64523623aa4"
+}
