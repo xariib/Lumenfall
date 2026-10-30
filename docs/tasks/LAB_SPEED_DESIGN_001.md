@@ -1,5 +1,32 @@
 # Lab Speed Up design
 
+## Current checkpoint —31 October
+
+Both approved upstream updates are retained: main3f74661b includes Tap/PR29
+and Auto Ascend/PR31. This feature still changes only Lab presentation/input.
+Current product SHA256c1c2e46bc9cf2c24b12cb3010b388fbda72aabfd20ddf6d915bd00f5d85b791b.
+Preset668/18profiles and cap20 mobile552/12profiles PASS on these exact bytes.
+Four paired one-second replay windows match every full endpoint state against
+accepted main3f74661b; its canonical oracle fields are retained, binding updated.
+`replay-current-main.json`, `presets-ui-current.json` and `caps-ui.json` qualify
+this source; older receipts below are explicitly historical.
+
+Tap/UI head30de063 CI41141947643 failed cap20 browser readiness with
+`Inspected target navigated or closed`; raw failed log is retained. The same
+unchanged cap test passes552checks locally on final source. Its generated
+readiness poll now tolerates only the expected navigation-context transition,
+inside the original10000ms deadline. Every game/input/payment/reload assertion
+is retained. `readiness-controls.cjs/json` proves navigation retry, immediate
+game/browser error propagation, original deadline and original-defect detection.
+The corrected matrix also passes552checks/12profiles. No product workaround.
+
+Next: finish/publish the current-main merge, run seven required workflows and
+a fresh signed non-publishing APK on that combined head, fix any actual failure,
+then integrate PR32 and save final PROJECT_STATE/task/CI/build receipts.
+APK0.2.66 and the intermediate tap build qualify older sources only; a fresh
+combined APK is required. Physical phone/WebView60/TalkBack/human acceptance
+remain open. No public release or chat archive. No local tests are running.
+
 Original request, 30 October 2026: make the Lab Speed Up box close to the
 supplied The Tower screenshot, using Lumenfall's game design. Reference1 shows
 duration presets, a4×2 multiplier grid, selected boost/cost, queue and actions.

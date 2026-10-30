@@ -214,6 +214,7 @@ window.__lumenfallQaBridge = {
     }
   },
   autoTarget: {
+    nativeInput: function(enabled){reloadInProgress=!enabled;},
     render: function(){renderShop();},
     purchase: function(){var old=reloadInProgress;reloadInProgress=false;try{renderShop();document.querySelector('[data-shop="autoascend"]').click();}finally{reloadInProgress=old;}},
     flags: function(){return {resetInProgress:resetInProgress,reloadInProgress:reloadInProgress,offlineBusy:!!offlineCatchup,offlinePending:offlinePending,resumeFlowBusy:resumeFlowBusy};},

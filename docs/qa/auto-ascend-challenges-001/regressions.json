@@ -1,0 +1,579 @@
+{
+  "stationary": {
+    "status": "pass",
+    "sourceSha256": "c2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d",
+    "checks": 492,
+    "records": 96,
+    "controls": [
+      {
+        "name": "forge",
+        "detected": true,
+        "error": "AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\"width\":320,\"height\":568,\"scale\":1,\"input\":\"touch\",\"kind\":\"forge\",\"before\":{\"scroll\":3846,\"value\":0,\"focus\":\"<button class=\\\"buy-btn\\\" data-research=\\\"relay\\\" data-plan-html=\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\",\"tree\":null,\"errors\":[]},\"after\":{\"scroll\":3859,\"value\":1,\"focus\":\"<button class=\\\"node-queue-toggle \\\" data-queue=\\\"relay\\\" aria-pressed=\\\"false\\\" data-state=\\\"available\\\" aria-label=\\\"Resonance Relay — Queue OFF\\\">Queue OFF</button>\",\"tree\":null,\"errors\":[]}}\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:44:27)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:74:62)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:81:21"
+      },
+      {
+        "name": "fallback",
+        "detected": true,
+        "error": "AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\"width\":320,\"height\":568,\"scale\":1,\"input\":\"touch\",\"kind\":\"tree\",\"before\":{\"scroll\":1598,\"value\":0,\"focus\":\"<button class=\\\"buy-btn\\\" data-node=\\\"swift\\\" aria-label=\\\"Swift Ascension — Prisms 3 Prisms\\\" style=\\\"min-width:78px;\\\" data-state=\\\"available\\\"><span class=\\\"cost mono\\\" data-price-currency=\\\"prism\\\" data-price-amount=\\\"3\\\" style=\\\"color:var(--ink)\\\"><span class=\\\"sh\",\"tree\":null,\"errors\":[]},\"after\":{\"scroll\":1586,\"value\":1,\"focus\":\"<div class=\\\"card node-card\\\" data-tree-node=\\\"swift\\\" tabindex=\\\"-1\\\"><span class=\\\"shape shape-diamond\\\" style=\\\"width:30px;height:30px;background:var(--prism);\\\"></span><div class=\\\"node-info\\\" style=\\\"flex:1;\\\"><div class=\\\"name\\\">Swift Ascension</div><p class=\\\"\",\"tree\":\"swift\",\"errors\":[]}}\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:44:27)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:74:62)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:81:21"
+      },
+      {
+        "name": "card-focus",
+        "detected": true,
+        "error": "AssertionError [ERR_ASSERTION]: refresh must retain purchased Tree card\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:44:27)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:76:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\stationary-purchases.cjs:81:21"
+      }
+    ],
+    "ritual": [
+      {
+        "width": 320,
+        "height": 568,
+        "scale": 1,
+        "input": "touch",
+        "kind": "shop",
+        "before": {
+          "scroll": 6816,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 6816,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 6816,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "scale": 1,
+        "input": "keyboard",
+        "kind": "shop",
+        "before": {
+          "scroll": 6816,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 6816,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 6816,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "scale": 2,
+        "input": "touch",
+        "kind": "shop",
+        "before": {
+          "scroll": 19957,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 19957,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 19957,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "scale": 2,
+        "input": "keyboard",
+        "kind": "shop",
+        "before": {
+          "scroll": 19957,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 19957,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 19957,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scale": 1,
+        "input": "touch",
+        "kind": "shop",
+        "before": {
+          "scroll": 6192,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 6192,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 6192,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scale": 1,
+        "input": "keyboard",
+        "kind": "shop",
+        "before": {
+          "scroll": 6192,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 6192,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 6192,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scale": 2,
+        "input": "touch",
+        "kind": "shop",
+        "before": {
+          "scroll": 14819,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 14819,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 14819,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scale": 2,
+        "input": "keyboard",
+        "kind": "shop",
+        "before": {
+          "scroll": 14819,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 14819,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 14819,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "scale": 1,
+        "input": "touch",
+        "kind": "shop",
+        "before": {
+          "scroll": 6039,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 6039,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 6039,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "scale": 1,
+        "input": "keyboard",
+        "kind": "shop",
+        "before": {
+          "scroll": 6039,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 6039,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 6039,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "scale": 2,
+        "input": "touch",
+        "kind": "shop",
+        "before": {
+          "scroll": 13465,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 13465,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 13465,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "scale": 2,
+        "input": "keyboard",
+        "kind": "shop",
+        "before": {
+          "scroll": 13465,
+          "value": 0,
+          "focus": "<button type=\"button\" data-shop=\"autoascend\" data-state=\"available\" aria-label=\"Auto-Ascend Ritual — 100 Comets\"><span data-price-currency=\"comet\" data-price-amount=\"100\" style=\"color:var(--ink)\">100 <span class=\"shape shape-star cost-icon\" role=\"img",
+          "tree": null,
+          "errors": []
+        },
+        "after": {
+          "scroll": 13465,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        },
+        "refreshed": {
+          "scroll": 13465,
+          "value": 1,
+          "focus": "<button type=\"button\" data-autoascend-open=\"\" data-state=\"available\" aria-label=\"Open Ascend\">Open Ascend</button>",
+          "tree": null,
+          "errors": []
+        }
+      }
+    ]
+  },
+  "numerical": {
+    "status": "PASS",
+    "checks": 1097372,
+    "input": {
+      "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\index.html",
+      "bytes": 1121507,
+      "sha256": "7af13586c602739c3812d7c1c5204938e69d78c1ce27e80a329dfe9c51df6a9b"
+    },
+    "controls": [
+      {
+        "id": "native-rounded-floor",
+        "detected": true
+      },
+      {
+        "id": "division-first-safe-floor",
+        "detected": true
+      },
+      {
+        "id": "unused-power-overflow",
+        "detected": true
+      },
+      {
+        "id": "lost-power-ceiling",
+        "detected": true
+      },
+      {
+        "id": "lost-core-rank",
+        "detected": true
+      },
+      {
+        "id": "lost-directed-hp-correction",
+        "detected": true
+      },
+      {
+        "id": "reject-valid-fractional-hp",
+        "detected": true
+      },
+      {
+        "id": "ledger-hidden-rescan",
+        "detected": true
+      }
+    ]
+  },
+  "wideComets": {
+    "status": "PASS",
+    "checks": 693,
+    "sourceSha256": "7af13586c602739c3812d7c1c5204938e69d78c1ce27e80a329dfe9c51df6a9b",
+    "limits": "All fixed Comet prices, exact wide accounting, primary rollback, paid work, cold load, backup and once-only claims; native rounding/claim-order controls remain in the original Comet suites."
+  },
+  "prices": {
+    "sourceSha256": "41d9501bb30d4860e2f4f212932e8ac6dc987bf5644b4da5714d7c047702f758",
+    "results": [
+      {
+        "name": "normal",
+        "accepted": true,
+        "exitcode": 0,
+        "checks": 6180,
+        "sourceSha256": "41d9501bb30d4860e2f4f212932e8ac6dc987bf5644b4da5714d7c047702f758",
+        "profiles": 12,
+        "error": null
+      },
+      {
+        "name": "stale-refresh",
+        "accepted": true,
+        "exitcode": 1,
+        "checks": 154,
+        "sourceSha256": "ee8187d91ddfcde17fd39fe8ffad3df0187c3efdb836acf1143ddc488c65c551",
+        "profiles": 0,
+        "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"research\",\"label\":\"becomes affordable without rerender\",\"kind\":\"lumen\",\"want\":\"rgb(240, 239, 251)\",\"got\":\"rgb(255, 123, 146)\"}\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:40:27)\n    at observe (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:101:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:109:47)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:138:6"
+      },
+      {
+        "name": "all-white",
+        "accepted": true,
+        "exitcode": 1,
+        "checks": 4,
+        "sourceSha256": "cf740bb11a03a40b6ae377000f3a4beccea70d8569cb021e60515a6040c6556b",
+        "profiles": 0,
+        "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"forge\",\"label\":\"initial insufficient\",\"kind\":\"lumen\",\"want\":\"rgb(255, 123, 146)\",\"got\":\"rgb(240, 239, 251)\"}\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:40:27)\n    at observe (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:101:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:109:4)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:138:6"
+      },
+      {
+        "name": "retired-card-returns",
+        "accepted": true,
+        "exitcode": 1,
+        "checks": 2,
+        "sourceSha256": "fdbba23464adf946db9f33a1353f1c6fbf71f135460b699af3f039eb8648cb6b",
+        "profiles": 0,
+        "error": "AssertionError [ERR_ASSERTION]: legacy shop cards must remain absent\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:40:27)\n    at observe (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:98:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:109:4)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:138:6"
+      },
+      {
+        "name": "rounded-wide-debit",
+        "accepted": true,
+        "exitcode": 1,
+        "checks": 512,
+        "sourceSha256": "ed849913a97617d0f3ead3fcae5bda1b7beff03bbe99a85b2cd0b53016c697de",
+        "profiles": 0,
+        "error": "AssertionError [ERR_ASSERTION]: wide wallet exact debit retains every Prism\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:40:27)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:129:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-challenges-001\\tests\\behavioral\\.collection-price-generated-14384.cjs:138:6"
+      }
+    ]
+  },
+  "cometBrowser": {
+    "status": "pass",
+    "sourceSha256": "7af13586c602739c3812d7c1c5204938e69d78c1ce27e80a329dfe9c51df6a9b",
+    "cometIdentity": {
+      "testSha256": "630f432baf2ddafdb4f623de0e7be8770fb6a137fd44595a90ed09df4af2849f",
+      "helperSha256": "f93b387f0e0033eb5ea13b5fd8fe79b843318ae08ac717d4fa9789a9787f7225",
+      "transportSha256": "38f6a0c75c6c56170a8dd5c62315d1993b1c68a43118507b6e0fb52cbffb65cd",
+      "numericalSha256": "0c8dd5c05f3004f0d9f12ed4b72f68e2fb3e19f9864bc6a88223e247a2f4b699"
+    },
+    "checks": 12470,
+    "profiles": 12,
+    "negativeControls": [
+      {
+        "kind": "stale-affordability",
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "recreate-trial",
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "wrong-astral-cost",
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "stale-rank",
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "pressed-purchase",
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "stale-affordability",
+        "profile": {
+          "width": 320,
+          "scale": 2,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "recreate-trial",
+        "profile": {
+          "width": 320,
+          "scale": 2,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "wrong-astral-cost",
+        "profile": {
+          "width": 320,
+          "scale": 2,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "stale-rank",
+        "profile": {
+          "width": 320,
+          "scale": 2,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      },
+      {
+        "kind": "pressed-purchase",
+        "profile": {
+          "width": 320,
+          "scale": 2,
+          "motion": "reduce"
+        },
+        "status": "pass"
+      }
+    ],
+    "browserVersion": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.74",
+      "revision": "@44a84b1f89d9a35287289d6a3d493e362f5a512",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "instrumentedHtmlSha256": "b42623c4e1b44998f3a36b8b6b35738f5e786eb9c5f8ae60a62dab37dead4203",
+    "error": null,
+    "receipt": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\auto-ascend-comet-mobile\\receipt.json",
+    "rawStdoutSha256": "b83bda5a687401d8d5c83e4010e92b691eb8bf47693a4ce3408d7714040a4df4",
+    "rawStdoutBytes": 59281104,
+    "nativeAndroid": "untested"
+  }
+}

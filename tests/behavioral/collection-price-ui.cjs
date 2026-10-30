@@ -26,7 +26,9 @@ const cases=String.raw`
    {tab:'deeds',button:'[data-shop="autoascend"]',card:null,prices:{comet:100},field:'owned',id:'autoascend'}
   ];
   for(const spec of specs){
-   await ev('prismQa.set(prismQa.collectionSeed());prismQa.ready();prismQa.tab('+JSON.stringify(spec.tab)+')');
+   const fixture=await ev('prismQa.collectionSeed()');
+   if(spec.id==='autoascend')require('./auto-ascend-challenges.cjs').qualify(fixture);
+   await ev('prismQa.set('+JSON.stringify(fixture)+');prismQa.ready();prismQa.tab('+JSON.stringify(spec.tab)+')');
    if(spec.tab==='research')await ev('document.querySelector("[data-study-slot]").click()');
    // Observe actual entry-animation completion before strict 44px geometry checks.
    await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+spec.tab)+').getAnimations().map(function(a){return a.finished;})).then(function(){return true;})');

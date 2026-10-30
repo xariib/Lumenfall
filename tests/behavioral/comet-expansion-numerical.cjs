@@ -303,7 +303,7 @@ function runNumerical(source,options={}) {
       s.owned.meteor=false;s.cometEvents.bossStrike=false;s.achieved.comet_boss_strike=false;
     }else if(row.id==='starcall'){
       s.owned.starcall=false;s.cometEvents.calledKill=false;s.achieved.comet_called_kill=false;
-    }else if(row.id==='autoascend')s.owned.autoascend=false;
+    }else if(row.id==='autoascend'){s.owned.autoascend=false;require('./auto-ascend-challenges.cjs').qualify(s);}
     else if(q.schema()<6)s.cometUpgrades[row.id]=level;
     q.set(s);
     const price=row.prices[level];
