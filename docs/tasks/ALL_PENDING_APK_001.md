@@ -1,6 +1,7 @@
 # ALL_PENDING_APK_001 — deliver the pending game improvements
 
-Status: in progress. Owner: current APK delivery chat; no delegation.
+Status: integrated; required CI PASS; signed APK delivery blocked.
+Owner: current APK delivery chat; no delegation.
 
 30 October 2026 user request: “Now we need to make an apk with all the new
 things that is not implemented yet”. Integrate the recent accepted feature
@@ -76,3 +77,47 @@ Standalone forge-lab-caps.cjs still fails its pre-PR23 Lab catalogue equality
 on untouched main and candidate; this non-CI historical check was already
 recorded by PR26 and is not weakened. All actual required workflows remain.
 Next: rerun final-head CI after the catalogue-only test correction.
+
+Final-head checkpoint: PR27 head5b6e725bed9b865c18e32f33ffbc725455ab977f,
+tree31afc24ff07cb51644160d1faa38a6daa364ae61. All six focused workflows and
+isolated offline job PASS. Full pre-merge run41015764034/job123931758099
+continues (07:10 UTC); do not integrate until its required full gate passes.
+Local189-case main finished:187 initial scenarios PASS; two failures above
+replayed successfully after their catalogue/staging corrections. All189 covered,
+not a claimed single clean run. [Receipt](../qa/all-pending-apk-001/local-main.json).
+User selected “I’ll enable local browser use”, but fresh browser runtime still
+reports disabled; asked whether the setting is actually On. No dispatch/build.
+Next: finish final CI, verify unchanged main/tested tree and integrate PR27; save
+CI/integration evidence and concise shared status, then perform signed delivery
+when existing workflow dispatch becomes available. Keep this task open.
+
+## Integrated acceptance — 30 October
+
+PR27 merged at a84616944ed9579574d3bccc2cbebd2fd082837d. All seven required
+workflows/nine jobs PASS on final head5b6e725bed9b865c18e32f33ffbc725455ab977f.
+Full CI log confirms all189 main scenarios, isolated offline1, causal controls
+and guarded browser smoke PASS. Tested merge2871d76e and integrated source
+share exact tree31afc24ff07cb51644160d1faa38a6daa364ae61. Product SHA256 remains
+82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906.
+[Final CI/integration receipt](../qa/all-pending-apk-001/ci-final.json).
+PR22 and PR24 are now marked merged; PR23/25/26 were already integrated.
+All five recent feature worktrees have no omitted uncommitted product edits.
+
+Fresh browser inventory after integration still reports local browser use
+disabled in Work settings. The user selected “I’ll enable local browser use”;
+status clarification remains pending. No workaround, permission change, gate
+bypass, Android dispatch, signing, installed upgrade or publication occurred.
+Latest confirmed public APK remains0.2.55 and does not contain this combined
+update. Physical phone/WebView60/TalkBack/human pacing remain separate checks.
+
+Next: after this evidence-only checkpoint reaches main, run the six existing
+workflow_dispatch validations required by scripts/ci/release-ci-gate.cjs on
+that exact main head: pre-merge-validation.yml, comet-expansion-validation.yml,
+forge-expansion-validation.yml, lab-expansion-validation.yml,
+shared-ui-validation.yml and tree-focused-qa.yml. Once all succeed, dispatch
+build-android.yml on the same main head with publish=true. Retain established
+signing; require final identity/assets, emulator upgrade and exact-APK receipt.
+Download public release bytes, verify checksum/packaged source and save release
+receipt/status before claiming delivery. If browser permission remains inactive,
+the user can dispatch those existing workflows through GitHub Actions directly.
+Keep this task open until required signed APK delivery/acceptance is verified.

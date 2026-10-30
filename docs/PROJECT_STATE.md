@@ -1,12 +1,8 @@
 # Lumenfall — current delivery status
 
-30 October: [Debug PR26](tasks/DEBUG_SCROLL_EXPLOITS_001.md), `7081ca38`: CI PASS; APK pending.
-
-30 October: [Visual polish/PR25](tasks/VISUAL_POLISH_001.md), `31b24d57`:
-seven gates/190 scenarios PASS. APK/browser access and device acceptance pending.
-
-29 October: [Lab pacing/slots](tasks/LAB_SLOT_CHALLENGES_001.md): PR23 integrated;
-APK blocked.
+30 October: [Combined update/PR27](tasks/ALL_PENDING_APK_001.md), a8461694:
+Forge/recap plus Lab/visual/debug merged; seven gates/190 scenarios PASS.
+Signed APK blocked by dispatch access. [CI](qa/all-pending-apk-001/ci-final.json).
 
 29 October: [Workshop audit/PR21](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
 [Android0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055),

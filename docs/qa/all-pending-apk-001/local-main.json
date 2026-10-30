@@ -1,0 +1,27 @@
+{
+  "status": "initial suite FAIL two; corrected individual reruns PASS",
+  "node": "24.19.0",
+  "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+  "initial": {
+    "planned": 189,
+    "passedUnique": 187,
+    "failed": [
+      "upgrade-identity-contracts",
+      "offline-12h-ui"
+    ]
+  },
+  "fixed": [
+    {
+      "scenario": "upgrade-identity-contracts",
+      "passed": true,
+      "log": "upgrade-identity-corrected.log"
+    },
+    {
+      "scenario": "offline-12h-ui",
+      "passed": true,
+      "log": "offline12-ui-staged.log"
+    }
+  ],
+  "uncovered": [],
+  "note": "Catalogue-only correction and missing local mobile asset staging; no game-code change or deadline/assertion weakening. Final-head CI remains required."
+}
