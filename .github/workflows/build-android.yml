@@ -2,6 +2,11 @@ name: Build Android APK
 # Node.js validation/build support; established Android signing and release flow.
 
 on:
+  push:
+    branches:
+      - qa/auto-ascend-challenges-001-combined-apk
+    paths:
+      - .github/workflows/build-android.yml
   workflow_dispatch:
     inputs:
       publish:
@@ -39,6 +44,43 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: mobile/package-lock.json
+
+      - name: Paired independent combined-source reference
+        shell: bash
+        run: |
+          node <<'NODE'
+          'use strict';
+          const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+          const {app,clone}=require('./tests/behavioral/comet-expansion-harness.cjs');
+          const dependency='1fb827eaaa95565e015b84426a2b49984b4ffe9d';
+          const reference=JSON.parse(fs.readFileSync('tests/behavioral/offline-swift-current-golden.json','utf8'));
+          function replay(source,label){
+            const e=app(source),q=e.q,seed=JSON.parse(fs.readFileSync('docs/qa/offline-autoascend-2026-10-07/device_backup.json','utf8'));
+            let end=Date.UTC(2035,0,15,12);seed.lastSeen=end-28800000;e.clock(end);q.set(seed);
+            const phases=[];
+            for(let phase=0;phase<4;phase++){
+              if(phase)end+=28800000;e.clock(end);q.ensureDaily();
+              const start=end-28800000,prisms=q.get().prisms;let kills=0,ascends=0;
+              for(let sec=0;sec<28800;sec++){
+                const r=q.advance(1,{kind:'offline',visual:false,clockStartMs:start+sec*1000,offlineWindowStartMs:start});
+                kills+=r.kills;ascends+=r.ascends;
+              }
+              assert(q.save(end),'canonical endpoint save');
+              const row={kills,ascends,prisms:q.get().prisms-prisms,stateSha256:crypto.createHash('sha256').update(JSON.stringify(clone(q.get()))).digest('hex')};
+              phases.push(row);console.log(label+' phase '+phase+' '+JSON.stringify(row));
+            }
+            return {sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),phases};
+          }
+          const candidate=replay(fs.readFileSync('index.html','utf8'),'candidate');
+          const control=replay(cp.execFileSync('git',['show',dependency+':index.html'],{encoding:'utf8',maxBuffer:16777216}),'control');
+          assert.deepEqual(candidate.phases,control.phases,'Ritual leaves every dependency state unchanged');
+          assert.deepEqual(candidate.phases.map(p=>[p.kills,p.ascends,p.prisms]),reference.phases.map(p=>[p.kills,p.ascends,p.prisms]),'approved dependency reward outcomes');
+          assert.equal(candidate.sourceSha256,reference.sourceSha256,'combined reference source binding');
+          const result={status:'pass',node:process.version,platform:process.platform,dependency,callsPerSource:115200,candidate,control,allPairedFullStatesEqual:true,recordedReferenceFullHashesMatch:JSON.stringify(candidate.phases)===JSON.stringify(reference.phases),recordedReferencePhases:reference.phases};
+          fs.mkdirSync('release-evidence',{recursive:true});
+          fs.writeFileSync('release-evidence/independent-reference.json',JSON.stringify(result,null,2)+'\n');
+          console.log(JSON.stringify({pairedReference:'pass',recordedReferenceFullHashesMatch:result.recordedReferenceFullHashesMatch,node:process.version}));
+          NODE
 
       - name: Set up Java
         uses: actions/setup-java@v5
