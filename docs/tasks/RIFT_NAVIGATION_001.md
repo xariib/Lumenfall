@@ -1,6 +1,7 @@
 # RIFT_NAVIGATION_001 — direct Rift navigation
 
-Status: local candidate validated; CI/integration/Android pending. Owner: this feature chat.
+Status: integrated; automated CI and installed-emulator acceptance PASS.
+Physical-phone/WebView60/TalkBack acceptance remains open. Owner: this feature chat.
 Baseline: main `41566c97`; branch `feature/rift-navigation-001`.
 
 User request (30 October 2026): add left/right buttons beside “Rift xx”
@@ -28,6 +29,12 @@ where the removed picker was required. New navigation regression runs through
 the existing progression-pacing CI entrypoint. GitHub rejected a workflow-file
 edit because the available OAuth token lacks workflow scope; no workflow change
 is needed to run the additional checks in that existing entrypoint.
+
+Changed files: product `index.html`; regression drivers `rift-navigation.cjs`,
+`progression-pacing.cjs`, `rift-status.cjs`, `accessibility.js`, `layout.js`,
+`permanent-progression-ui.cjs`, `visual-audit.cjs` and the golden source binding
+under `tests/behavioral/`; native acceptance `scripts/ci/android-upgrade.cjs`;
+this task, project status and `docs/qa/rift-navigation-001/` receipts.
 
 Local Node24.20 checks: navigation101, pacing322/five controls (221 existing), Farm
 recap353/old-recap control, source syntax/contracts and context PASS. Independent
@@ -97,9 +104,25 @@ focused Push before traversing it. Start at the first enabled control instead;
 retain every forward/backward Tab assertion and add a nonempty-order assertion.
 This corrects an expectation invalidated by the requested buttons; no game code,
 assertion coverage or limits change. [Failure](../qa/rift-navigation-001/ci-keyboard-failure.txt).
-All four local native reruns and final CI are pending on this test-only correction.
+All four local native reruns PASS across12 mobile profiles, retaining every
+forward/backward focus assertion, scrolling, hint causality, reload and clean
+shutdown check. [Receipt](../qa/rift-navigation-001/keyboard-fixed.json).
+Final CI PASS on test/documentation head802ffc9e; app bytes remain2c2db6f0
+and the verified signed APK0.2.62 is unchanged.
 
-Next: finish keyboard reruns and required CI; integrate the tested tree without
-overwriting PR29 and record final evidence. Verified APK0.2.62 remains current.
-Phone/TalkBack acceptance stays open.
+PR30 merged at `90c20a265cb3e0f8ed631f64215ec0aec2886204` after all nine required
+jobs across seven workflows passed. The complete main189 scenarios and isolated
+offline1 PASS. Actual CI checkout be1fabf6, head802ffc9e and integrated90c20a26
+have identical tree `f96d40a685b652e104f5f9af5a5a2f4abc65c1a7`.
+[Final CI/tree receipt](../qa/rift-navigation-001/ci-final.json).
+Native run41119805999 attempt2 PASS on the same application bytes; only tests
+and documentation changed after that APK was built. Local signed test APK is
+`../builds/Lumenfall-0.2.62.apk`. No public release was created in this feature task.
+Self-review and automated checks were performed; there was no independent reviewer.
+
+The final receipt checkpoint changes documentation only; application/test blobs
+retain the tested identity. All31 workflow startup contexts are checked again.
+Next: physical-phone installation and visual/control feedback on the signed
+test APK; record that acceptance here. Exact WebView60 and TalkBack remain open.
+Keep the owner chat open until required human/device acceptance is recorded.
 Workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

@@ -1,9 +1,9 @@
 # Lumenfall — current delivery status
 
 30 October: [Direct Rift navigation](tasks/RIFT_NAVIGATION_001.md),
-[PR30](https://github.com/xariib/Lumenfall/pull/30): −10/previous/next beside
-the Rift number replaces the farming chooser. Local checks PASS; final CI and
-Android acceptance pending after a short-screen spacing correction.
+[PR30](https://github.com/xariib/Lumenfall/pull/30) merged at90c20a26:
+previous/next/−10 replace the Farm chooser. Seven gates,190 scenarios and signed
+Android0.2.62/native upgrade PASS. Phone/WebView60/TalkBack acceptance open.
 
 30 October: [Lab/Deeds PR28](tasks/LAB_OFFLINE_DEED_PACING_001.md): merged; signed0.2.59 test APK. Seven gates/upgrade PASS; phone acceptance open.
 

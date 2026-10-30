@@ -34,4 +34,8 @@ Push26, UID/origin, both saves, paid work and legacy purchases PASS. Packaged
 source/assets were verified locally as identical. Android attempt1 missed its
 existing offline recap before navigation; the unchanged retry passed. Preserve
 android-recap-failure.json. Physical phone, exact WebView60 and TalkBack remain open.
-Six focused CI workflows and isolated offline PASS; complete pre-merge pending.
+All seven required CI workflows PASS: main189 scenarios plus isolated offline1,
+with exact source/tree binding in ci-final.json. PR30 integrated90c20a26 has the
+same complete tree as the tested merge. keyboard-fixed.json preserves all four
+corrected native keyboard scenarios across12 profiles. Final receipt updates are
+documentation only; tested application/test files remain unchanged.

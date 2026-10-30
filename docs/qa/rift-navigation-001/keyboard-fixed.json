@@ -1,0 +1,131 @@
+{
+  "status": "pass",
+  "sourceSha256": "2c2db6f01dfe3c277a332de4fd4b84f250a0e25eb5ee730275558356c9331d36",
+  "node": "v24.20.0",
+  "rows": [
+    {
+      "scenario": "rift-status-mobile",
+      "status": "pass",
+      "profiles": [
+        "360x640-safe0-no-preference",
+        "360x640-safe24-no-preference",
+        "390x844-safe24-no-preference"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "receiptSha256": "922c1c4bc5702400ae0dea22411c3a4a9aa818d57f17c90bc186220485973f59"
+    },
+    {
+      "scenario": "rift-status-reduced-motion",
+      "status": "pass",
+      "profiles": [
+        "360x640-safe0-reduce",
+        "360x640-safe24-reduce",
+        "390x844-safe24-reduce"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "receiptSha256": "d20cc2d47ee9b80cbe67958b5cd347a03f24f1fc45e09032646e80ee56d590dc"
+    },
+    {
+      "scenario": "rift-status-stacking-mobile",
+      "status": "pass",
+      "profiles": [
+        "360x640-safe0-no-preference",
+        "360x640-safe24-no-preference",
+        "390x844-safe24-no-preference"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "receiptSha256": "3b507751a533e6f50dbe1420162d2fbe2ceaf01366afc99272a473d78645ea11"
+    },
+    {
+      "scenario": "rift-status-stacking-reduced-motion",
+      "status": "pass",
+      "profiles": [
+        "360x640-safe0-reduce",
+        "360x640-safe24-reduce",
+        "390x844-safe24-reduce"
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      },
+      "receiptSha256": "78a3f2679618b618d48a8a09732bedb6d63c5cfc72fc7b51b419b4a9bf78029b"
+    }
+  ]
+}
