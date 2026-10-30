@@ -41,11 +41,40 @@ in progress. Source syntax/lifecycle and diff checks PASS. Self-review only.
 Changed product, focused preset UI test/harness, legacy Lab UI tests (explicitly
 open native disclosure; retain input/payment/focus assertions), CI and this task.
 Final product SHA256017fb8594aff3f4dbc1c341e0c546356c4bba37fcaf7706514e0939ebe862409:
-preset input668/18profiles PASS, including disclosure keyboard traversal.
+preset input668/18profiles, timed UI1182/12profiles, native Lab1212/6profiles
+and core379+67checks/13controls PASS, including disclosure keyboard traversal.
+The first local timed run stalled after its browser exited and was interrupted;
+a rerun with progress logging (assertions unchanged) completed with clean teardown.
 Pinned independent replay regenerated all four unchanged complete-state hashes;
 only source binding changed. [Preview and receipts](../qa/lab-speed-design-001/).
-Next: finish native/core/legacy input checks, publish PR, run required CI and
-signed test APK acceptance, then integrate.
+PR32: https://github.com/xariib/Lumenfall/pull/32; head136b0dad.
+Six of seven required workflows PASS. Pre-merge41136000061 has passed every
+focused stage and its separate offline job; the complete stateful suite is now
+running on head136b0dad. Remaining workflow IDs: permanent41135999975,
+Comet41135999987, Forge41135999991, Lab41135999974 (both jobs),
+shared UI41136000074 and Tree41136000016 (all success).
+Signed non-publishing Android test build:
+https://github.com/xariib/Lumenfall/actions/runs/41136004956.
+Android0.2.66/code1000066 PASS on136b0dad: installed Android12/WebView91 upgrade,
+both save slots, paid work, legacy entitlements, UID/origin and native controls.
+Downloaded APK SHA25686f9d0d1086ac858b99c8ff38ca53f6f4e289e569b396d5582500532d9c2122e;
+all15 packaged assets verified locally byte-for-byte against this product.
+Receipts: emulator-upgrade.json, android-identity.txt, downloaded-apk-assets.json
+in the evidence directory. APK retained locally in ../lab-speed-design-android/.
+The available OAuth credential cannot push workflow changes; preset checks run
+through the unchanged workflow's existing boost-queue entrypoint, with separate
+presetProfiles diagnostics and all original queue profiles/assertions retained.
+Next: finish CI and signed test APK acceptance, serialize main integration with
+PR29/31, then save final receipts/status. No public release requested here.
+Delivery tooling: ../lab-speed-design-ci-receipts.cjs asserts all seven final
+run heads/jobs and writes ci.json. Native/core/timed/Android receipts are saved
+locally but not pushed yet (avoid restarting source-qualified CI for docs).
+No local test processes remain. Git global credential helpers were restored to
+the original manager; use a per-command gh credential helper for Git writes.
+Main remains1f316cc5. After green CI, merge PR32 with remote head136b0dad pinned,
+fetch/fast-forward this worktree, retain pending evidence edits, update this
+task/PROJECT_STATE and publish documentation. Verify integrated product hash
+and APK assets still match017fb859. No public release or chat archive yet.
 Physical phone/WebView60/TalkBack and human visual acceptance remain unverified.
 
 Sources: [previous queue contract](LAB_BOOST_QUEUE_001.md),

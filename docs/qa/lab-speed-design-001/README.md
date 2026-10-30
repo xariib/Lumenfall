@@ -12,6 +12,11 @@ qualify the prior footer candidate1174d446; final CI must recheck final bytes.
 for disconnected selection and locked next boost defects on earlier candidates.
 All receipts retain actual product hashes and runtime versions.
 
-Native/legacy/core suites and CI/build acceptance are in progress. Earlier
+Final-source `timed-ui.json`:1182checks/12profiles; `native-ui.json`:1212 Lab
+UI checks/6profiles plus native input/payment/save assertions and clean teardown;
+`core.json`:379+67checks/13controls. All PASS. The timed rerun adds progress
+logging only; its first local run stalled after browser exit and was interrupted.
+
+CI/build acceptance is in progress. Earlier
 native failures were stale Tab-order expectations and the new disclosure missing
 tabindex0 (fixed). No independent human review/device acceptance is claimed.
