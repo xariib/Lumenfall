@@ -363,11 +363,11 @@
   .quest-claim-btn.done{background:var(--bg-elev);color:var(--good);border-color:var(--good);opacity:1;}
 
   /* ---------- Achievements ---------- */
-  .ach-grid{display:grid;grid-template-columns:1fr;gap:8px;}
+  .ach-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;}
   .ach-card{display:flex;align-items:flex-start;gap:10px;}
   .ach-card .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--line);margin-top:3px;}
   .ach-card.done .dot{background:var(--good);}
-  .ach-card .info{flex:1;min-width:0;}
+  .ach-card .info{flex:1;min-width:0;overflow-wrap:break-word;}
   .ach-card .name{font-size:.84rem;font-weight:600;}
   .ach-card.done .name{color:var(--ink-dim);text-decoration:line-through;}
   .ach-card .ach-unlock{font-size:.65rem;color:var(--prism);font-weight:600;margin-top:2px;}
@@ -380,6 +380,8 @@
   .effect-note,.deed-requirement,.deed-scope{font-size:.7rem;line-height:1.5;color:var(--ink-dim);margin-top:4px;}
   .deed-scope{margin-top:6px;}
   .ach-card .reward{white-space:nowrap;}
+  .ach-card[data-deed="autotap"],.ach-card[data-deed="labmaster"]{display:grid;grid-template-columns:16px minmax(0,1fr);}
+  .ach-card[data-deed="autotap"] .reward,.ach-card[data-deed="labmaster"] .reward{grid-column:2;justify-self:start;}
   .shop-card{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
   .shop-card .info{flex:1;}
   .shop-card .name{font-weight:700;font-size:.86rem;}
@@ -4223,6 +4225,26 @@ function speedTierCost(mult){
   return studyBoostCost(mult,8);
 }
 
+function automationDeedRequirements(id,s){
+  if(id==='autotap')return [
+    {key:'ascends',label:'Ascends',current:s.ascendCount,target:100},
+    {key:'rift',label:'Highest Rift',current:s.maxDepthEver,target:250},
+    {key:'taps',label:'Manual Guardian taps',current:s.totalTaps,target:10000}
+  ];
+  if(id==='labmaster'){
+    var projects=LONG_STUDIES.filter(function(node){return !node.retiredTo;});
+    return [
+      {key:'forge',label:'Forge levels',current:legacyResearchLevels(s),target:200},
+      {key:'rift',label:'Highest Rift',current:s.maxDepthEver,target:350},
+      {key:'lab',label:'Lab levels',current:projects.reduce(function(sum,node){return sum+(s.longStudyLevels[node.id]||0);},0),target:100},
+      {key:'subjects',label:'Different Lab subjects',current:projects.filter(function(node){return (s.longStudyLevels[node.id]||0)>0;}).length,target:10}
+    ];
+  }
+  return [];
+}
+function automationDeedReady(id,s){
+  return automationDeedRequirements(id,s).every(function(row){return Amount.ge(row.current,row.target);});
+}
 var ACHIEVEMENTS = [
   {id:'d10',   name:'Reach Rift 10',        reward:5,  check:function(s){return s.maxDepthEver>=10;}},
   {id:'d25',   name:'Reach Rift 25',        reward:10, unlocks:'Lab: Procurement', check:function(s){return s.maxDepthEver>=25;}},
@@ -4239,8 +4261,8 @@ var ACHIEVEMENTS = [
   {id:'all',   name:'Recruit every Wisp',   reward:30, check:function(s){return SPIRITS.every(function(sp){return (s.spirits[sp.id]||0)>0;});}},
   {id:'mythic',name:'Raise a Wisp to Mythic', reward:40, check:function(s){return SPIRITS.some(function(sp){return (s.heroRarity[sp.id]||0)>=5;});}},
   {id:'idle8', name:'Rest 8 hours offline', reward:15, check:function(s){return s.totalOfflineSeconds>=8*3600;}},
-  {id:'autotap',   name:'Tireless Vigil',      reward:25, unlocks:'Auto-Tap — your Guardian strikes on its own, once a second', check:function(s){return s.ascendCount>=100;}},
-  {id:'labmaster', name:'The Forge Never Sleeps', reward:30, unlocks:'Auto-Empower — spare Lumen levels up your party for you, live or while you\'re offline', check:function(s){return legacyResearchLevels(s)>=200;}},
+  {id:'autotap',   name:'Tireless Vigil',      reward:25, unlocks:'Auto-Tap — your Guardian strikes on its own, once a second', check:function(s){return automationDeedReady('autotap',s);}},
+  {id:'labmaster', name:'The Forge Never Sleeps', reward:30, unlocks:'Auto-Empower — spare Lumen levels up your party for you, live or while you\'re offline', check:function(s){return automationDeedReady('labmaster',s);}},
   {id:'study1',    name:'First Discovery',     reward:15, check:function(s){return totalStudyLevels(s)>=1;}},
   {id:'study25',   name:'Devoted Scholar',     reward:50, check:function(s){return totalStudyLevels(s)>=25;}},
   {id:'allstudies',name:'Every Path Studied',  reward:35, check:function(s){return CURRENT_STUDY_IDS.every(function(id){return (s.longStudyLevels[id]||0)>=1;});}},
@@ -4304,6 +4326,12 @@ function deedProgressText(a,done){
   if(progress.duration) return String(Math.floor(current/3600*100)/100)+' / 8 offline hours';
   return current.toLocaleString('en-US')+' / '+progress.target.toLocaleString('en-US')+' '+deedPresentation(a).unit;
 }
+function deedChallengeProgress(a,done){
+  return automationDeedRequirements(a.id,state).slice(1).map(function(row){
+    var current=done ? row.target : Math.max(0,Math.min(Number(row.current)||0,row.target));
+    return '<div class="ach-progress mono" data-deed-condition="'+a.id+'-'+row.key+'" data-current="'+current+'" data-target="'+row.target+'">'+row.label+': '+current.toLocaleString('en-US')+' / '+row.target.toLocaleString('en-US')+'</div>';
+  }).join('');
+}
 
 // Presentation metadata never participates in eligibility or one-time rewards.
 function deedPresentation(a){
@@ -4319,8 +4347,8 @@ function deedPresentation(a){
     all:['Recruit every Wisp in one run.','recruited Wisps'],
     mythic:['Raise one Wisp to Mythic.','rarity upgrades on one Wisp'],
     idle8:['Accumulate 8 hours offline.','offline hours'],
-    autotap:['Ascend 100 times.','Ascensions'],
-    labmaster:['Gain 200 total paid Forge levels.','Forge levels',scope],
+    autotap:['Ascend 100 times, reach Rift 250 and strike manually 10,000 times.','Ascensions'],
+    labmaster:['Gain 200 paid Forge levels, reach Rift 350 and complete 100 Lab levels across at least 10 subjects.','Forge levels',scope+' The separate Lab challenges count completed levels in current research subjects, including preserved levels above their caps.'],
     study1:['Complete one level in the 8 original Research Projects.','completed Project levels',studyScope+' Completed levels in preserved Projects also count.'],
     study25:['Complete 25 levels in total in the 8 original Research Projects.','completed Project levels',studyScope+' Completed levels in preserved Projects also count.'],
     allstudies:['Complete at least one level in each of the 5 foundation Research Projects.','Projects completed','Counts Wisp Ascendancy, Guardian’s Mastery, Shard Attunement, Lumen Wellspring and Luminous Sense. Measured Inquiry does not count.'],
@@ -10400,6 +10428,7 @@ function renderAchievements(){
       '<span class="dot"></span><div class="info"><div class="name">'+a.name+(done?' · Completed':'')+'</div>'+
       (presentation.requirement.replace(/\.$/,'')===a.name?'':'<div class="deed-requirement" data-deed-requirement="'+a.id+'">'+presentation.requirement+'</div>')+
       '<div class="ach-progress mono" data-deed-progress="'+a.id+'" data-current="'+current+'" data-target="'+(progress?progress.target:0)+'">'+deedProgressText(a,done)+'</div>'+
+      deedChallengeProgress(a,done)+
       (presentation.scope?cardDetails('deed-'+a.id,presentation.scope):'')+
       (a.unlocks?'<div class="ach-unlock">Unlocks: '+a.unlocks+'</div>':'')+
       (pending?'<div class="deed-credit-state" data-deed-credit-state="due">Reward pending · '+COMET_DEED_REWARDS[a.id]+' Comets preserved</div>':'')+
@@ -10538,7 +10567,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Lab Speed', meta:'Mote purchases', desc:'Choose one of the 1.5x–8x speeds and 8, 12 or 24 hours. Choices do not spend Motes. Activate once for the displayed total: the timer applies to this slot across projects and levels and counts down while idle and offline. Longer packages discount the proportional price by 5% or 10%, rounded up; Mote Catalysis also applies. There is no automatic renewal. Lab Queue separately pays Lumen and Shards to start new levels. Speed already paid for an old active level remains protected after expiry.'},
   {name:'Ascension Tree', meta:'Permanent Prism upgrades', desc:'Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply.'},
   {name:'Preserved Upgrades', meta:'Earlier purchases', desc:'Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired.'},
-  {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends. The Forge Never Sleeps unlocks Auto-Empower after 200 total Forge levels. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
+  {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends, Rift 250 and 10,000 manual Guardian taps. The Forge Never Sleeps unlocks Auto-Empower after 200 paid Forge levels, Rift 350, 100 completed Lab levels and 10 researched subjects. Guardian taps are manual until Auto-Tap unlocks. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
   {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline.'},
   {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. Eligible Mote payouts are fixed for those bonuses. They require a Luminous kill and share a 60-second cooldown across Rifts; no Motes accrue just by waiting.'},
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},

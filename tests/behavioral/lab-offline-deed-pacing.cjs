@@ -59,13 +59,25 @@ function run(html){
  }
  // The unlock check, visible counter and earned ownership agree at boundaries.
  for(const [id,field,target]of [['autotap','ascendCount',100],['labmaster','research',200]]){
-  const {x,q,s}=fresh();for(const n of [target-1,target]){
+  const {x,q,s}=fresh();s.maxDepthEver=Math.max(s.maxDepthEver||0,350);s.totalTaps=10000;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(function(id){s.longStudyLevels[id]=10;});for(const n of [target-1,target]){
    const v=clone(s);if(field==='research')v.research.focus=n;else v[field]=n;q.set(v);
    eq(q.deed(id),n===target,'harder Deed boundary '+id+'/'+n);
    eq(q.deedProgress(q.deeds().find(d=>d.id===id),q.get()).target,target,'visible target '+id);
    q.achievements();eq(!!q.get().achieved[id],n===target,'new ownership boundary '+id);
   }
-  const old=clone(s);old.achieved[id]=true;q.set(old);q.achievements();q.save();q.load();eq(q.get().achieved[id],true,'earned unlock retained '+id);
+  const ready=clone(s);ready.ascendCount=100;ready.research.focus=200;
+  const missing=id==='autotap'?['rift','taps']:['rift','lab','subjects'];
+  for(const key of missing){
+   const v=clone(ready);
+   if(key==='rift'){v.maxDepthEver=id==='autotap'?249:349;v.depth=v.enemyDepth=v.farmDepth=v.farmReturnDepth=1;}
+   if(key==='taps')v.totalTaps=9999;
+   if(key==='lab')v.longStudyLevels.bossledger=9;
+   if(key==='subjects'){v.longStudyLevels.bossledger=0;v.longStudyLevels.wispdamage+=10;}
+   q.set(v);eq(q.deed(id),false,'every challenge is required '+id+'/'+key);
+   q.achievements();eq(!!q.get().achieved[id],false,'partial challenge cannot grant '+id+'/'+key);
+  }
+  q.set(ready);ok(q.deed(id),'all saved milestones qualify '+id);
+  const old=q.fresh();old.achieved[id]=true;q.set(old);q.achievements();q.save();q.load();eq(q.get().achieved[id],true,'earned unlock retained '+id);
   x.storage.set(P,'invalid');q.load();eq(q.get().achieved[id],true,'recovery retains earned unlock '+id);
  }
  return checks;
@@ -75,8 +87,12 @@ const result={status:'PASS',checks:run(source),sourceSha256:crypto.createHash('s
 if(negative)for(const [name,a,b]of [
  ['capped-Lab','if(elapsedSec>effectiveSec){','if(false && elapsedSec>effectiveSec){'],
  ['combat-tail','yield* advanceStudyOnlyTime(elapsedSec-effectiveSec,lastSeen+effectiveSec*1000,sim,true);',"yield* advanceAuthoritativeTime(elapsedSec-effectiveSec,{kind:'offline',clockStartMs:lastSeen+effectiveSec*1000,resumable:true});"],
- ['easy-Vigil','s.ascendCount>=100;','s.ascendCount>=12;'],
- ['easy-Forge','legacyResearchLevels(s)>=200;','legacyResearchLevels(s)>=20;']
+ ['easy-Vigil','current:s.ascendCount,target:100','current:s.ascendCount,target:12'],
+ ['easy-Forge','current:legacyResearchLevels(s),target:200','current:legacyResearchLevels(s),target:20'],
+ ['easy-Rift','current:s.maxDepthEver,target:250','current:s.maxDepthEver,target:100'],
+ ['easy-taps','current:s.totalTaps,target:10000','current:s.totalTaps,target:1000'],
+ ['easy-Lab',"},0),target:100}","},0),target:25}"],
+ ['easy-subjects',"}).length,target:10}","}).length,target:5}"]
 ]){
  assert.equal(source.split(a).length,2,'unique control '+name);let error;try{run(source.replace(a,b));}catch(e){error=e;}assert(error instanceof assert.AssertionError,'control must be caught '+name);result.controls.push({name,caught:error.message.split('\n')[0]});
 }

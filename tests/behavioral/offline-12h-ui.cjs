@@ -4,7 +4,8 @@ const {serve}=require('../../scripts/lib/static-server.cjs'),{instrumentHtml,loa
 const root=path.resolve(__dirname,'../..'),stage=fs.mkdtempSync(path.join(os.tmpdir(),'offline-12h-ui-'));
 const evidence=process.argv[3] ? path.resolve(process.argv[3]) : fs.mkdtempSync(path.join(os.tmpdir(),'offline-12h-ui-evidence-'));fs.mkdirSync(evidence,{recursive:true});
 fs.cpSync(path.join(root,'mobile/www'),stage,{recursive:true});
-const instrumented=instrumentHtml(fs.readFileSync(path.join(root,'index.html'),'utf8'),loadFixtures());
+const productSource=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const instrumented=instrumentHtml(productSource,loadFixtures());
 fs.writeFileSync(path.join(stage,'index.html'),instrumented.replace('window.__lumenfallQaBridge = {','window.__offline12hRenderHud=renderHud;\nwindow.__lumenfallQaBridge = {'));
 let browser,server,session,seq=0,buffer='',closed=false,completion;const pending=new Map(),records=[];
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP deadline '+method));},10000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
@@ -58,6 +59,17 @@ async function run(){
   const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,`${width}-${scale}.png`),Buffer.from(shot.data,'base64'));
   records[records.length-1].contrast=observation.contrast;
   records[records.length-1].backgroundUpperBound=observation.backgroundUpperBound;
+  const conditions=[];
+  for(const [id,target]of [['autotap-rift',250],['autotap-taps',10000],['labmaster-rift',350],['labmaster-lab',100],['labmaster-subjects',10]]){
+    const row=await evaluate(`(()=>{const el=document.querySelector('[data-deed-condition="${id}"]');el.scrollIntoView({block:'center'});const r=el.getBoundingClientRect();return {id:${JSON.stringify(id)},text:el.textContent,target:Number(el.dataset.target),left:r.left,right:r.right,overflow:el.scrollWidth-el.clientWidth,visible:!!el.getClientRects().length};})()`);
+    assert.equal(row.target,target);assert(row.visible&&row.left>=0&&row.right<=width+1&&row.overflow<=1,'challenge counter wraps within phone width');conditions.push(row);
+  }
+  records[records.length-1].deedConditions=conditions;
+  for(const id of ['autotap','labmaster']){
+    const bounds=await evaluate(`(()=>{const card=document.querySelector('[data-deed="${id}"]');card.scrollIntoView({block:'center'});const c=card.getBoundingClientRect(),r=card.querySelector('.reward').getBoundingClientRect();return {left:c.left,right:c.right,rewardRight:r.right,overflow:card.scrollWidth-card.clientWidth};})()`);
+    assert(bounds.left>=0&&bounds.right<=width+1&&bounds.rewardRight<=width+1&&bounds.overflow<=1,'Deed and reward fit enlarged phone text');
+    const deedShot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,`${id}-${width}-${scale}.png`),Buffer.from(deedShot.data,'base64'));
+  }
   await evaluate('document.querySelector("[data-tab=workshop]").focus({preventScroll:true})');await key(' ','Space');
   await evaluate('document.querySelector("[data-tab=research]").focus({preventScroll:true})');await key(' ','Space');
   assert(await evaluate('document.activeElement.dataset.tab')==='research','Lab navigation retains its tab focus');
@@ -75,5 +87,5 @@ async function run(){
 }
 (async()=>{let error;try{await run();}catch(e){error=e;}
  try{if(browser){assert.equal(pending.size,0);if(!closed)await send('Browser.close',{},null).catch(()=>{});let timer;const done=await Promise.race([completion,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('browser exit deadline')),5000);})]).finally(()=>clearTimeout(timer));assert.equal(done.code,0);assert(!done.error);}if(server)await new Promise(r=>server.close(r));fs.rmSync(stage,{recursive:true,force:true});}catch(e){error=error||e;browser?.kill('SIGKILL');}
- console.log(JSON.stringify({status:error?'fail':'pass',scenario:'offline-12h-ui',message:error?.message,records},null,2));if(error)process.exitCode=1;
+ console.log(JSON.stringify({status:error?'fail':'pass',scenario:'offline-12h-ui',sourceSha256:require('node:crypto').createHash('sha256').update(productSource).digest('hex'),message:error?.message,records},null,2));if(error)process.exitCode=1;
 })();

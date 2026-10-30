@@ -86,8 +86,9 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
   ids.forEach(function(id){
     [false,true].forEach(function(at){
       var s=b.freshStateSnapshot(),value;
+      if(id==='autotap'||id==='labmaster'){s.maxDepthEver=Math.max(s.maxDepthEver||0,350);s.totalTaps=10000;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(function(id){s.longStudyLevels[id]=10;});}
       if(setters[id]){var c=setters[id];s[c[0]]=c[1]-(at?0:1);}
-      else if(id==='labmaster'||id==='labqueue'){s.maxDepthEver=101;s.research.focus=(id==='labmaster'?200:60)-(at?0:1)-15;s.research.arcanecal=10;s.research.spillway=5;}
+      else if(id==='labmaster'||id==='labqueue'){s.maxDepthEver=id==='labmaster'?350:101;s.research.focus=(id==='labmaster'?200:60)-(at?0:1)-15;s.research.arcanecal=10;s.research.spillway=5;}
       else if(id==='modulemax'){s.wispModules.ember=at?20:19;s.wispModules.tide=1;}
       else if(id==='study1'||id==='study25')s.longStudyLevels.guardmastery=(id==='study1'?1:25)-(at?0:1);
       else if(id==='fullparty'){s.maxDepthEver=101;s.activeParty=Object.keys(s.spirits).slice(0,at?5:4);s.activeParty.forEach(function(k){s.spirits[k]=1;});}
@@ -123,9 +124,10 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
   });
   pureRender(seed());
   ok(q('[data-deed-progress="autotap"]').textContent==='0 / 100 Ascensions','Vigil exact progress/units');
-  ok(q('[data-deed-requirement="autotap"]').textContent==='Ascend 100 times.','Vigil concrete requirement');
+  [['autotap-rift',250],['autotap-taps',10000],['labmaster-rift',350],['labmaster-lab',100],['labmaster-subjects',10]].forEach(function(row){var el=q('[data-deed-condition="'+row[0]+'"]');ok(el&&el.dataset.target===String(row[1])&&el.textContent.includes(' / '),'separate challenge counter '+row[0]);});
+  ok(q('[data-deed-requirement="autotap"]').textContent==='Ascend 100 times, reach Rift 250 and strike manually 10,000 times.','Vigil concrete requirement');
   ok(q('[data-deed-progress="autotap"]').closest('.ach-card').querySelector('.ach-unlock').textContent.includes('Auto-Tap'),'Vigil unlock separate');
-  ['labmaster','labqueue'].forEach(function(id){var card=q('[data-deed-progress="'+id+'"]').closest('.ach-card');ok(!q('[data-deed-progress="'+id+'"]').textContent.includes('Battle Focus'),'legacy names outside progress');ok(card.querySelector('.card-details>div').textContent==='Counts paid levels in all current and historical Forge upgrades. Historical levels above a current cap still count. Lab Project levels do not count.','approved paid Forge scope explicit');});
+  ['labmaster','labqueue'].forEach(function(id){var card=q('[data-deed-progress="'+id+'"]').closest('.ach-card');ok(!q('[data-deed-progress="'+id+'"]').textContent.includes('Battle Focus'),'legacy names outside progress');ok(card.querySelector('.card-details>div').textContent===('Counts paid levels in all current and historical Forge upgrades. Historical levels above a current cap still count. Lab Project levels do not count.'+(id==='labmaster'?' The separate Lab challenges count completed levels in current research subjects, including preserved levels above their caps.':'')),'approved paid Forge scope explicit');});
   ok(q('[data-deed-requirement="modulemax"]').textContent==='Raise one Wisp Module to level 20.','Module one-Wisp requirement');
   ok(b.forge.deeds().total===683,'original23 reward catalogue unchanged');
   same(b.forge.deeds().items.filter(function(a){return a.id.indexOf('comet_')===0;}).map(function(a){return [a.id,a.reward];}),[['comet_first_command',5],['comet_first_recharge',10],['comet_boss_strike',15],['comet_called_kill',20]],'four separate event Deeds retain their own 50C policy');

@@ -10,7 +10,7 @@ after the 12 hour afk farm. The lab should continue until there is no resources
 to continue”.
 
 Goal: Research uses the whole absence, continuing selected queues while funded;
-combat farming remains capped at 12h. Increase the two automation Deed targets.
+combat farming remains capped at 12h. Require multiple progression challenges for both automation Deeds.
 An optional user question offered 100 Ascends/200 Forge levels (default),
 250/500, or depth gates. Default announced after independent investigation;
 existing earned Deeds, rewards and automation remain owned.
@@ -58,3 +58,53 @@ lacks workflow scope. No permission change requested: new regression/controls
 are invoked from the existing required lab-boost-queue validation entrypoint.
 Its original assertions/controls and single JSON receipt are preserved, with
 a nested offlineLab result. Workflow YAML restored byte-for-byte.
+
+User correction30Oct: higher Ascend/Forge counts alone are insufficient; add
+other challenges too. A follow-up question proposes100Ascends/Rift100/100boss
+defeats for Vigil and200Forge/25Lab levels/5subjects for Forge Never Sleeps;
+alternatives are manual taps or tougher Rift/Lab milestones. Decision pending;
+do not merge the single-counter candidate as satisfying this correction.
+
+Additional research checks PASS: original offline12h34 records (full saves,
+rollback/retry/refunds and capped-combat-plus-Lab); timed boosts1480; Mote
+offline transaction; help UI12 profiles; inquiry UI45 via the repo
+CDP pipe transport. Windows dump-dom stalls; full local run was restarted
+with existing LUMENFALL_QA_DOM_TRANSPORT=pipe. Native wisp-rarity-scroll timed
+out locally; not yet classified. Baseline offline run confirms long replay
+performance also exists before this change.
+PR28 head e70daab. Premerge run41062701128 fails the old hidden-absence assertion
+that capped Lab work at12h. Preserve its existing background/live and combat
+cap assertions and update only Lab work to full20h; relevant regression rerun
+pending. Other CI jobs remain in progress. No integration or APK yet.
+
+User answered: “Use tougher rift and lab milestones + manual tap challenge”.
+Final announced requirements: Vigil100Ascends + Rift250 +10,000manual Guardian
+taps; Forge Never Sleeps200paid Forge levels + Rift350 +100completed current
+Lab levels +10different current subjects. All conditions must be met.
+No new counter/schema: before first Auto-Tap unlock, saved Guardian taps are
+manual; old earned unlock flags continue to bypass new eligibility as before.
+Each additional condition is visibly counted in the Deed card. Old progress
+counts; current catalogue levels include preserved above-cap paid levels.
+The earlier100boss/25Lab/5subjects proposal was not implemented.
+
+Final source86ba983f. Focused PASS67/eight causal controls (each extra gate
+independently required), Comet12554, Forge9341, Swift, exploits267/12controls,
+Deeds UI1071 and Forge UI6281/four causal controls. Repaired the old Forge
+mutation to actually omit historical levels; it had become a no-op after
+all-Forge counting, and the new fixture proves that omission is caught.
+Pinned24.19.0 oracle again preserves all four original end-state hashes and
+payouts exactly. Native phone-width/200% challenge-counter UI checks running.
+Baseline original offline suite PASS34records; candidate offline suite also
+PASS34 before the final Deed addition; required CI will repeat final source.
+Local broad runs stopped when user changed Deed scope; all future acceptance
+must bind the final source. Current PR is still the earlier candidate; next
+commit/push final requirements, evidence and original-contract corrections.
+
+Final delivery candidate source3e2b6da4. All67new assertions/eight controls and
+nine phone/text profiles/45 condition measurements PASS on those exact bytes;
+reward/card bounds checked too. Self-inspected both320px/200% screenshots.
+Two expanded cards use a full-width condition column and reward below it.
+Pinned oracle again retains every original state hash/payout. Complete diff
+self-reviewed; no independent review claimed. Evidence source identities retained
+separately where checks preceded the final CSS-only layout adjustment.
+Next: push final candidate and require fresh CI before main integration.

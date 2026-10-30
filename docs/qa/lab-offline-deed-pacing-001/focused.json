@@ -1,13 +1,27 @@
 {
-  "status": "focused checks PASS; broader validation in progress",
+  "status": "focused PASS; required final CI/integration/Android pending",
   "baseline": "88fd60b",
-  "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+  "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
   "localNode": "v24.20.0",
-  "goldenNode": "v24.19.0",
+  "requirements": {
+    "autotap": {
+      "ascends": 100,
+      "rift": 250,
+      "manualTaps": 10000
+    },
+    "labmaster": {
+      "forgeLevels": 200,
+      "rift": 350,
+      "labLevels": 100,
+      "subjects": 10
+    },
+    "offlineCombatHours": 12,
+    "offlineLab": "whole absence; funded enabled queues; paid work finishes without funds"
+  },
   "focused": {
     "status": "PASS",
-    "checks": 55,
-    "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+    "checks": 67,
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
     "controls": [
       {
         "name": "capped-Lab",
@@ -24,55 +38,87 @@
       {
         "name": "easy-Forge",
         "caught": "harder Deed boundary labmaster/199"
+      },
+      {
+        "name": "easy-Rift",
+        "caught": "every challenge is required autotap/rift"
+      },
+      {
+        "name": "easy-taps",
+        "caught": "every challenge is required autotap/taps"
+      },
+      {
+        "name": "easy-Lab",
+        "caught": "every challenge is required labmaster/lab"
+      },
+      {
+        "name": "easy-subjects",
+        "caught": "every challenge is required labmaster/subjects"
       }
     ]
   },
-  "boostQueue": {
-    "status": "PASS",
-    "checks": 379,
-    "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
-    "controls": [
-      {
-        "name": "overwrite",
-        "caught": "future edit keeps exact active receipt"
-      },
-      {
-        "name": "off",
-        "caught": "Queue OFF never charges"
-      },
-      {
-        "name": "free",
-        "caught": "exact next boost debit"
-      },
-      {
-        "name": "wall",
-        "caught": "exact expiry purchases next once"
-      },
-      {
-        "name": "live",
-        "caught": "failed live payment is not presented"
-      }
-    ]
+  "mobile": {
+    "status": "pass",
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+    "profiles": 9,
+    "conditionMeasurements": 45,
+    "phoneWidths": [
+      320,
+      390,
+      430
+    ],
+    "textScales": [
+      1,
+      1.5,
+      2
+    ],
+    "visualInspection": [
+      "autotap-320-2.png",
+      "labmaster-320-2.png"
+    ],
+    "fit": "All extra counters, card bounds and reward bounds checked; grid keeps the two multi-condition cards readable."
   },
-  "forge": {
-    "status": true,
-    "assertions": 9341
-  },
-  "comet": {
-    "status": "PASS",
-    "checks": 12554
-  },
-  "swift": {
-    "status": "pass"
-  },
-  "recapMobile": {
-    "status": "PASS",
-    "checks": 129,
-    "profiles": 8,
-    "browser": "Chrome/156.0.8078.74"
-  },
+  "otherChecks": [
+    {
+      "name": "Forge full/controls",
+      "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+      "status": "PASS",
+      "assertions": 9341
+    },
+    {
+      "name": "Comet full/controls",
+      "status": "PASS",
+      "checks": 12554
+    },
+    {
+      "name": "Clock/purchase exploits",
+      "sourceSha256": "9edf8399f66fc97408fde594bef1d3eb50ee20974c83d80604a029cef7accc99",
+      "status": "PASS",
+      "checks": 267,
+      "controls": 12
+    },
+    {
+      "name": "Swift core",
+      "sourceSha256": "9edf8399f66fc97408fde594bef1d3eb50ee20974c83d80604a029cef7accc99",
+      "status": "pass"
+    },
+    {
+      "name": "Deed UI",
+      "sourceSha256": "86ba983fb45b5353a4a197b93c4fbbb9af12cb82c743ee166ef421dca08c5d2b",
+      "checks": 1071,
+      "status": "PASS"
+    },
+    {
+      "name": "Forge UI/controls",
+      "sourceSha256": "86ba983fb45b5353a4a197b93c4fbbb9af12cb82c743ee166ef421dca08c5d2b",
+      "checks": 6281,
+      "controls": 4,
+      "status": "PASS"
+    }
+  ],
   "oracle": {
-    "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+    "node": "v24.19.0",
+    "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
     "oracle": "Independent one-second advance calls, fixed whole-window start",
     "phases": [
       {
@@ -101,14 +147,28 @@
       }
     ]
   },
+  "earlierEvidence": {
+    "baselineOriginalOffline": {
+      "sourceSha256": "82a43d91114e6dbe4e84c60137c936c0506dd97c286755c51dd9ee995ccbd906",
+      "status": "PASS",
+      "records": 34
+    },
+    "initialContinuousLabOffline": {
+      "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+      "status": "PASS",
+      "records": 34
+    }
+  },
   "limitations": [
-    "Physical phone, exact WebView60 and TalkBack unverified.",
-    "Full suite, actual Node8 and Android acceptance pending."
+    "Final required CI, integration and Android acceptance remain pending.",
+    "Physical phone, exact WebView60 and TalkBack unverified."
   ],
-  "initialAttempts": [
-    "Baseline boost-queue PASS379 on released82a43d91 source.",
-    "An initial baseline sequence read changed source in its later commands; those recap/offline failures are superseded by focused candidate reruns.",
-    "Standalone UI required staging mobile/www and its explicit browser-path argument; corrected and rerunning.",
-    "comet-expansion-v8 requires actual Node8.3; local modern-runtime attempt is not compatibility acceptance."
+  "supersededAttempts": [
+    "An initial baseline sequence read changed source in later commands; not baseline acceptance.",
+    "Modern Node cannot execute the actual-Node8-only contract; existing CI supplies Node8.3.",
+    "Windows dump-dom stalls; existing CDP pipe transport passes inquiry UI.",
+    "Local wisp-rarity-scroll timed out; broader run stopped when Deed requirements changed.",
+    "Premerge41062701128 caught the old hidden20h Lab cap expectation; only that Lab expectation updated and all267 exploit checks/12 controls pass.",
+    "The Forge Deed mutation was a no-op; now actually omits historical levels and fails its new200-level fixture."
   ]
 }
