@@ -109,6 +109,12 @@ function preservation(html,baseline){
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
  function oldFields(s){
   s=clone(s);
+  ['battletempering','arcanetempering','harvesttempering'].forEach(function(id){
+   if(Object.prototype.hasOwnProperty.call(s.research,id)){
+    eq(s.research[id],0,'new enhancement has no free level');eq(s.researchQueue[id],false,'new enhancement queue is OFF');
+    delete s.research[id];delete s.researchQueue[id];
+   }
+  });
   // Verify additive unpurchased Wisp research before comparing every historical
   // field. The frozen oracle predates these identities; no old value is omitted.
   ['wispdamage','wispcritchance','wispcritdamage'].forEach(function(id){

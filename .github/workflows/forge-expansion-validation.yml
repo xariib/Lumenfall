@@ -29,6 +29,11 @@ jobs:
         run: |
           set -euo pipefail
           node tests/behavioral/forge-expansion.cjs index.html --negative | tee forge-validation/core.json
+      - name: Long-term workshop investments and three-day farming budgets
+        run: |
+          set -euo pipefail
+          node scripts/codex/check_context.cjs --task docs/tasks/FORGE_WORKSHOP_PACING_001.md
+          node tests/behavioral/forge-workshop-pacing.cjs index.html --negative | tee forge-validation/workshop-pacing.json
       - name: Authoritative charge calibration and conservative boss bounds
         run: |
           set -euo pipefail

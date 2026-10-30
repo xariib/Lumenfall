@@ -22,9 +22,11 @@ function verify(html){
   const fx=F.app(html),f=fx.q,bf=F.app(baseline).q,cf=F.app(combined).q,lx=L.app(html),l=lx.q,bl=L.app(baseline).q;
   function labSeed(){const s=L.seed(l);s.activeStudies=[];Object.keys(s.studyQueue).forEach(id=>s.studyQueue[id]=false);return s;}
   function legacyInput(s,q){s=F.clone(s);s.schemaVersion=q.fresh().schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
-  const originalIds=bf.defs().map(n=>n.id);originalIds.splice(8,0,'masterwork');eq(f.defs().map(n=>n.id),originalIds,'all original Forge IDs retained plus explicit Masterwork');
+  const enhancements=['battletempering','arcanetempering','harvesttempering'];
+  const originalIds=bf.defs().map(n=>n.id);originalIds.splice(8,0,'masterwork');eq(f.defs().map(n=>n.id),originalIds.concat(enhancements),'all original Forge IDs plus Masterwork and three enhancements');
   eq(l.projects().map(n=>n.id),bl.projects().map(n=>n.id),'no Lab ID removed or replaced');
   for(const node of f.defs()){
+    if(enhancements.includes(node.id)){eq([node.levelCap,node.effectPerLevel,node.lumenGrowth,node.shardGrowth],[300,.01,1.1,1.1],'finite linear enhancement with rising prices');continue;}
     if(node.id==='masterwork'){eq([node.unlockDepth,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.effectPerLevel,node.levelCap,node.grandfatheredCap,node.retiredTo],[70,1000000,25000,1.35,1.35,5,500,true,''],'independent finite Masterwork definition');continue;}
     const old=JSON.parse(JSON.stringify(bf.node(node.id)));if(forgeIds.includes(node.id))old.levelCap=20;
     if(old.levelCap===undefined){old.levelCap=250;old.grandfatheredCap=true;}
@@ -86,7 +88,7 @@ function verify(html){
   }
   // Retain all pre-existing combined-save fields. Schema5 adds only the
   // explicit Mastery/entitlement fields and the new Masterwork path here.
-  function oldFields(s){s=F.clone(s);if(Object.hasOwn(s,'offlineClockHighWaterMs')){eq(s.offlineClockHighWaterMs,s.lastSeen,'new clock metadata retains exact legacy endpoint');delete s.offlineClockHighWaterMs;}delete s.farmAutoResume;delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;delete s.astralUpgrades;delete s.commandRefund;delete s.studySlotProjects;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
+  function oldFields(s){s=F.clone(s);for(const id of enhancements)if(Object.hasOwn(s.research,id)){eq(s.research[id],0,'new enhancement starts at zero');eq(s.researchQueue[id],false,'new enhancement Queue OFF');delete s.research[id];delete s.researchQueue[id];}if(Object.hasOwn(s,'offlineClockHighWaterMs')){eq(s.offlineClockHighWaterMs,s.lastSeen,'new clock metadata retains exact legacy endpoint');delete s.offlineClockHighWaterMs;}delete s.farmAutoResume;delete s.schemaVersion;delete s.wispMastery;delete s.recruitmentEntitlements;delete s.canonicalAutomationClock;delete s.pausedStudies;delete s.astralUpgrades;delete s.commandRefund;delete s.studySlotProjects;s.activeStudies.forEach(work=>{delete work.slot;});delete s.research.masterwork;delete s.researchQueue.masterwork;return s;}
   for(const schema of [1,2,3])for(const level of [10,13,20,23]){
     const s=F.seed(f);s.schemaVersion=schema;s.research.charge=28;s.research.focus=37;
     forgeIds.forEach(id=>{s.research[id]=level;s.researchQueue[id]=true;});labIds.forEach(id=>{s.longStudyLevels[id]=level;s.studyQueue[id]=true;s.studyUseMotes[id]=true;s.studySpeedTargets[id]=8;});

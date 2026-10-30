@@ -2197,6 +2197,24 @@
   .rift-objective[role="button"]:focus-visible{outline-offset:-3px;}
   .modal{max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px);overflow-y:auto;}
   .modal p{font-size:14px;line-height:1.5;}
+  #welcome-overlay .modal{display:flex;flex-direction:column;box-sizing:border-box;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 48px);max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 48px);overflow:hidden;}
+  #welcome-title,#welcome-claim{flex-shrink:0;}
+  #welcome-text{min-height:0;overflow-y:auto;text-align:left;overflow-wrap:break-word;font-size:.875rem;line-height:1.5;}
+  #welcome-text .welcome-away{text-align:center;color:var(--ink-dim);margin:0 0 16px;font-size:.875rem;}
+  .welcome-rewards{margin:0 0 16px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);}
+  .welcome-reward{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;column-gap:12px;}
+  .welcome-reward + .welcome-reward{margin-top:6px;}
+  .welcome-reward dt{color:var(--ink-dim);}
+  .welcome-reward dd{margin:0;color:var(--lumen);font-weight:800;}
+  .welcome-progress{margin:0 0 12px;padding-left:20px;}
+  .welcome-progress li + li{margin-top:6px;}
+  .welcome-lab{margin:0 0 12px;border:1px solid var(--line);border-radius:12px;}
+  .welcome-lab summary{padding:10px 12px;min-height:44px;box-sizing:border-box;cursor:pointer;font-weight:700;}
+  .welcome-lab ul{list-style:none;margin:0;padding:0 12px 12px;}
+  .welcome-lab li + li{margin-top:8px;}
+  .welcome-lab-count{color:var(--ink-dim);display:block;}
+  #welcome-text .welcome-cap{font-size:.75rem;line-height:1.5;color:var(--ink-dim);margin:0 0 4px;}
+  #welcome-claim{margin-top:16px;}
   .startup-skip{border:0;background:none;width:100%;min-height:44px;color:var(--ink);font:600 12px 'Manrope',sans-serif;cursor:pointer;}
   body.app-paused *,body.app-paused *::before,body.app-paused *::after{animation-play-state:paused!important;}
 
@@ -3188,7 +3206,7 @@
 <div class="overlay" id="welcome-overlay" style="display:none;">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" tabindex="-1">
     <h2 id="welcome-title">Welcome back</h2>
-    <p id="welcome-text"></p>
+    <div id="welcome-text" tabindex="0" role="region" aria-label="Offline progress"></div>
     <button class="primary-btn" id="welcome-claim">Continue</button>
   </div>
 </div>
@@ -3532,6 +3550,14 @@ var FORGE_EXPANSION = [
   {"id":"resonancereclaim","name":"Resonance Reclaim","forgeGroup":"Resonance","desc":"Each boss kill restores up to one already-spent Resonate use per level, up to 3. Cannot store extra uses beyond the current run capacity.","unlockDepth":100,"levelCap":3,"effectPerLevel":1,"lumenBase":153442000,"lumenGrowth":2.0,"shardBase":2536500,"shardGrowth":2.0}
 ];
 RESEARCH = RESEARCH.concat(FORGE_EXPANSION);
+// Deep currency investments alongside the short, mechanically bounded tracks.
+// Existing saves initialize these IDs to zero with their queues OFF.
+var FORGE_ENHANCEMENTS = [
+  {id:'battletempering',name:'Battle Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate passive Wisp damage multiplier per level, up to ×4. Also strengthens the Wisp-powered part of tap damage. Prices rise with every level.',unlockDepth:100,levelCap:300,effectPerLevel:0.01,lumenBase:10000000,lumenGrowth:1.10,shardBase:250000,shardGrowth:1.10},
+  {id:'arcanetempering',name:'Arcane Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate damaging ability multiplier per level, up to ×4. Includes owned Resonant Edge hits; no ability currencies, Support buff or charge bonus. Prices rise with every level.',unlockDepth:150,levelCap:300,effectPerLevel:0.01,lumenBase:25000000,lumenGrowth:1.10,shardBase:625000,shardGrowth:1.10},
+  {id:'harvesttempering',name:'Harvest Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate Lumen and Shard kill-reward multiplier per level, up to ×4. No ability currencies, Motes, Prisms or Sigils. Prices rise with every level.',unlockDepth:200,levelCap:300,effectPerLevel:0.01,lumenBase:40000000,lumenGrowth:1.10,shardBase:1000000,shardGrowth:1.10}
+];
+RESEARCH = RESEARCH.concat(FORGE_ENHANCEMENTS);
 // Finite long-tail paths retain their existing prices and earned levels.
 // Existing saves beyond a newly introduced cap keep their paid effects.
 RESEARCH.forEach(function(node){
@@ -6339,6 +6365,7 @@ function forgeHasChargeGrants(){
   return !!(forgeLevel('tapconduit') || forgeLevel('relay') || forgeLevel('sustainedchannel') || forgeLevel('victorycharge') || forgeLevel('resonancecascade'));
 }
 function forgeBossPolicyActive(){
+  if(researchLevel('battletempering')>0 || researchLevel('arcanetempering')>0)return true;
   if(ENDLESS_PROGRESSION.masterworkPowerPerLevel>0 && researchLevel('masterwork')>0)return true;
   return ['cauterize','fracturekey','guardianseal','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','resonancecascade'].some(function(id){return forgeLevel(id)>0;});
 }
@@ -6359,8 +6386,8 @@ function researchBonus(id,level){
 }
 function researchFactor(id,level){ return 1 + researchBonus(id,level); }
 
-function lumenMult(){ return (1 + nodeLevel('starlight')*0.10) * researchFactor('focus') * longStudyLumenMult(); }
-function shardMult(){ return researchFactor('sense') * longStudyShardMult(); }
+function lumenMult(){ return (1 + nodeLevel('starlight')*0.10) * researchFactor('focus') * longStudyLumenMult() * researchFactor('harvesttempering'); }
+function shardMult(){ return researchFactor('sense') * longStudyShardMult() * researchFactor('harvesttempering'); }
 function longStudyLevel(id){ return (state.longStudyLevels && state.longStudyLevels[id]) || 0; }
 function longStudyPowerMult(){ return 1 + longStudyLevel('wispascend')*0.15; }
 function longStudyTapMult(){ return 1 + longStudyLevel('guardmastery')*0.20; }
@@ -6377,7 +6404,7 @@ function wispStudyDamageMult(){
   return (1+damage*0.02)*(1+chance*(critical-1));
 }
 function tapMult(){ return (1 + nodeLevel('steady')*0.08) * researchFactor('resolve') * longStudyTapMult(); }
-function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }
+function formationMult(){ return researchFactor('formation') * longStudyFormationMult() * researchFactor('battletempering'); }
 function momentumMult(){ return 1 + nodeLevel('momentum')*0.06; }
 function abilityCycleSeconds(level){ return Math.max(ABILITY_MIN_CYCLE_SEC,ABILITY_BASE_CYCLE_SEC / researchFactor('charge',level)); }
 function fillRateMult(level){ return Math.min(researchFactor('charge',level),ABILITY_BASE_CYCLE_SEC / ABILITY_MIN_CYCLE_SEC); }
@@ -6873,7 +6900,7 @@ function abilityUltimateMult(sp){
   return sp && ultimateUnlocked(sp.id) ? 2*astralFactor('astralconvergence') : 1;
 }
 function abilityRawBurst(sp,level){
-  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho')*wispStudyDamageMult());
+  return Amount.mul(Amount.mul(Amount.mul(Amount.mul(wispPower(sp,level),abilityDamageCoefficient(sp)),abilityDamageModuleMult(sp)),abilityUltimateMult(sp)),researchFactor('arcanecal')*astralFactor('astralecho')*wispStudyDamageMult()*researchFactor('arcanetempering'));
 }
 function abilityBurstDamage(sp, depth){
   var level = state.spirits[sp.id]||0;
@@ -7916,6 +7943,7 @@ function researchPreview(node,requested){
     purchase:researchEffectPreview(node,Amount.add(level,plan.buyCount))};
 }
 function researchEffectText(node,value){
+  if(node.forgeGroup==='Enhancements') return '×'+Number(value.factor.toFixed(2))+' '+(node.id==='battletempering'?'passive Wisp damage and its tap component':node.id==='arcanetempering'?'damaging abilities':'Lumen and Shard kill rewards');
   if(node.id==='masterwork')return 'Own Wisp Power ×'+(typeof value.factor==='number'&&value.factor<1000?value.factor.toFixed(2):formatRiftNumber(value.factor))+'; '+(value.capacity?'Mastery ranks 1–'+value.capacity+' opened':'No Mastery ranks opened');
   if(node.forgeGroup) return forgeEffectText(node.id,value.level);
   function decimal(n){return Number(n.toFixed(4)).toString();}
@@ -13632,17 +13660,41 @@ function hasMeaningfulOfflineProgress(offline){
   return !!(offline && (offline.earned>1 || offline.completedStudies.length || offline.closedStudies.length || offline.ascends>0 || offline.shardEarned>1 || offline.sigilsEarned>0 || offline.motesEarned>0));
 }
 function offlineReturnMessage(offline){
-  var msg = 'You were away for ' + fmtDuration(offline.elapsedSec) + '. Your Wisps kept the Rift lit and gathered ' + formatNum(offline.earned) + ' Lumen' +
-    (offline.shardEarned>1 ? ' and ' + formatNum(offline.shardEarned) + ' Shards' : '') +
-    (offline.sigilsEarned>0 ? ' and ' + formatNum(offline.sigilsEarned) + ' Sigils' : '') +
-    (offline.motesEarned>0 ? ' and ' + formatNum(offline.motesEarned) + ' Motes' : '') + ' while you were gone.';
-  msg += ' Offline progress is limited to 12 hours for rewards, Lab and automation.';
-  if(offline.ascends>0){ msg += ' They ascended ' + (Amount.wide(offline.ascends)?formatNum(offline.ascends):offline.ascends) + ' time' + (offline.ascends===1?'':'s') + ' on their own!'; }
-  if(offline.retreated){ msg += ' After the Boss remained an impossible wall for 5 minutes offline, they switched to Farm at Rift ' + offline.endDepth + '. Your Push point at Rift ' + offline.pushDepth + ' is still saved.'; }
-  if(offline.completedStudies.length===1){ msg += ' Your Long Study "' + offline.completedStudies[0] + '" finished while you were away!'; }
-  else if(offline.completedStudies.length>1){ msg += ' Your Long Studies "' + offline.completedStudies.join('", "') + '" finished while you were away!'; }
-  if(offline.closedStudies.length){ msg += ' Paid work for "'+offline.closedStudies.join('", "')+'" finished with the level cap already reached; no additional levels were earned.'; }
-  return msg;
+  var html = '<p class="welcome-away">Away for ' + fmtDuration(offline.elapsedSec) + '</p>';
+  html += '<dl class="welcome-rewards" aria-label="Resources gathered">';
+  function reward(label,value){
+    html += '<div class="welcome-reward"><dt>' + label + '</dt><dd>+' + formatNum(value) + '</dd></div>';
+  }
+  reward('Lumen',offline.earned);
+  if(offline.shardEarned>1) reward('Shards',offline.shardEarned);
+  if(offline.sigilsEarned>0) reward('Sigils',offline.sigilsEarned);
+  if(offline.motesEarned>0) reward('Motes',offline.motesEarned);
+  html += '</dl>';
+  if(offline.ascends>0 || offline.retreated){
+    html += '<ul class="welcome-progress">';
+    if(offline.ascends>0) html += '<li>Auto Ascend: ' + (Amount.wide(offline.ascends)?formatNum(offline.ascends):offline.ascends) + ' time' + (offline.ascends===1?'':'s') + '</li>';
+    if(offline.retreated) html += '<li>Switched to Farm at Rift ' + formatNum(offline.endDepth) + ' after 5 minutes blocked by a Boss. Push saved at Rift ' + formatNum(offline.pushDepth) + '.</li>';
+    html += '</ul>';
+  }
+  function studies(names,closed){
+    if(!names.length) return;
+    var groups=[];
+    names.forEach(function(name){
+      var group=groups.find(function(item){return item.name===name;});
+      if(group) group.count++;
+      else groups.push({name:name,count:1});
+    });
+    html += '<details class="welcome-lab"><summary tabindex="0">Lab: ' + names.length + (closed ? ' paid stud' + (names.length===1?'y':'ies') + ' finished at cap' : ' level' + (names.length===1?'':'s') + ' completed') + '</summary><ul>';
+    groups.forEach(function(group){
+      var name=String(group.name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      html += '<li>' + name + '<span class="welcome-lab-count">' + (closed ? group.count + ' finished · no levels added' : '+' + group.count + ' level' + (group.count===1?'':'s')) + '</span></li>';
+    });
+    html += '</ul></details>';
+  }
+  studies(offline.completedStudies,false);
+  studies(offline.closedStudies,true);
+  html += '<p class="welcome-cap">Up to 12 hours of rewards, Lab and automation.</p>';
+  return html;
 }
 function showReturnFlow(offline,dailyWasRolled){
   function maybeShowDaily(){
@@ -13655,13 +13707,15 @@ function showReturnFlow(offline,dailyWasRolled){
 
   if(hasMeaningfulOfflineProgress(offline)){
     var welcomeOverlay = document.getElementById('welcome-overlay');
-    document.getElementById('welcome-text').textContent = offlineReturnMessage(offline);
+    var welcomeText = document.getElementById('welcome-text');
+    welcomeText.innerHTML = offlineReturnMessage(offline);
     document.getElementById('welcome-claim').onclick = function(){
       closeOverlay(welcomeOverlay);
       renderAll();
       maybeShowDaily();
     };
     openOverlay(welcomeOverlay,function(){ document.getElementById('welcome-claim').click(); });
+    welcomeText.scrollTop = 0;
   } else {
     maybeShowDaily();
   }

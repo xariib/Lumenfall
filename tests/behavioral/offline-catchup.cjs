@@ -219,7 +219,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  }
  assert.equal(actual.treeTrainingProgress,0,label+' exact unpurchased Tree training default');
  delete actual.treeTrainingProgress;
- const newForgeIds=['masterwork','cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
+ const newForgeIds=['battletempering','arcanetempering','harvesttempering','masterwork','cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
  for(const [field,value] of [['research',0],['researchQueue',false]])for(const id of newForgeIds){
   assert.equal(actual[field][id],value,label+' exact unpurchased Forge default '+field+'.'+id);
   delete actual[field][id];
