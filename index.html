@@ -2360,6 +2360,10 @@
   .comet-purchase .comet-level{font-size:.8rem;line-height:1.5;color:var(--comet);margin-top:8px;}
   .comet-purchase .earned-effect,.comet-purchase [data-comet-next],.comet-purchase [data-comet-requirement]{font-size:.8rem;line-height:1.5;overflow-wrap:break-word;}
   .comet-purchase button{min-width:44px;white-space:normal;font-size:.8rem;}
+  .comet-purchase[data-comet-card="autoascend"]{flex-wrap:wrap;}
+  .comet-purchase[data-comet-card="autoascend"]>.info{flex-basis:100%;}
+  .auto-ascend-challenges{margin:8px 0;padding-left:20px;font-size:.8rem;line-height:1.6;}
+  .auto-ascend-challenges [data-met="true"]{color:var(--good);}
   .comet-journal-card{min-width:0;margin-bottom:10px;font-size:.8rem;line-height:1.5;overflow-wrap:break-word;}
   .comet-journal-card .name{font-weight:700;font-size:.9rem;}
   .comet-journal-card .desc,.comet-claim,.deed-credit-state{font-size:.8rem;line-height:1.5;margin-top:7px;}
@@ -4617,6 +4621,25 @@ function cometCommitMutation(apply){
     return false;
   }
 }
+function autoAscendUnlockRequirements(snapshot){
+  var s=snapshot||state,levels=0,subjects=0;
+  LONG_STUDIES.forEach(function(node){
+    if(node.retiredTo)return;
+    var paid=s.longStudyLevels[node.id]||0;
+    if(Amount.gt(paid,0))subjects++;
+    levels+=Amount.ge(paid,50)?50:Number(paid);
+  });
+  return [
+    {key:'ascends',label:'Ascensions',current:s.ascendCount,target:25},
+    {key:'rift',label:'Highest Rift',current:s.maxDepthEver,target:150},
+    {key:'lab',label:'Completed Lab levels',current:levels,target:50},
+    {key:'subjects',label:'Different Lab subjects',current:subjects,target:6}
+  ].map(function(row){
+    row.met=Amount.ge(row.current,row.target);
+    row.current=row.met?row.target:Number(row.current);
+    return row;
+  });
+}
 function getCometBuyPlan(input){
   var id=typeof input==='string' ? input : input && input.id;
   var item=SHOP.find(function(row){return row.id===id;});
@@ -4625,6 +4648,8 @@ function getCometBuyPlan(input){
   var level=upgrade ? astralLevel(id) : state.owned[id]===true ? 1 : 0;
   var cap=item.cap||1,maxed=Amount.ge(level,cap),cost=maxed?null:upgrade?astralCost(item,level):item.cost;
   var unlocked=(!item.deed||state.achieved[item.deed]===true)&&state.maxDepthEver>=(item.unlockDepth||1);
+  var requirements=id==='autoascend'?autoAscendUnlockRequirements(state):[];
+  if(id==='autoascend')unlocked=level>0||requirements.every(function(row){return row.met;});
   var commandOwned=state.owned.meteor || state.owned.starcall;
   if(id==='cometreservoir' || id==='cometcycle') unlocked=unlocked && commandOwned;
   if(id==='cometcycle') unlocked=unlocked && state.achieved.d100===true;
@@ -4635,7 +4660,7 @@ function getCometBuyPlan(input){
   var reason=maxed ? 'cap' : !unlocked ? 'locked' : !affordable ? 'funds' :
     !exact || !cometMutationOpen() ? 'unavailable' : 'available';
   return {id:id,item:item,level:level,cap:cap,cost:cost,owned:Amount.gt(level,0),maxed:maxed,
-    unlocked:!!unlocked,affordable:affordable,available:reason==='available',reason:reason};
+    unlocked:!!unlocked,affordable:affordable,available:reason==='available',reason:reason,requirements:requirements};
 }
 function getCometCommandPlan(id){return {id:id,owned:false,available:false,reason:'retired',cost:0};}
 
@@ -7387,8 +7412,8 @@ function renderAutoAscendControls(){
       var oldControl=root.querySelector('[data-autoascend-target]');
       if(oldControl) oldControl.onblur=null;
       root.dataset.owned='false';
-      root.innerHTML='<div class="card auto-ascend-card"><div class="name">Auto-Ascend · Locked</div><div class="desc">Unlock Auto-Ascend Ritual in the Deeds Comet Rest Stop.</div><button class="auto-ascend-toggle" type="button" data-autoascend-unlock>Open Deeds</button></div>';
-      root.querySelector('[data-autoascend-unlock]').onclick=function(){activateTab('deeds');var buy=els['shop-list'].querySelector('[data-shop="autoascend"]');if(buy){buy.scrollIntoView({block:'center'});buy.focus({preventScroll:true});}};
+      root.innerHTML='<div class="card auto-ascend-card"><div class="name">Auto-Ascend · Locked</div><div class="desc">Complete the Auto-Ascend Ritual challenges in Deeds, then unlock for 100 Comets.</div><button class="auto-ascend-toggle" type="button" data-autoascend-unlock>Open Deeds</button></div>';
+      root.querySelector('[data-autoascend-unlock]').onclick=function(){activateTab('deeds');var buy=els['shop-list'].querySelector('[data-shop="autoascend"]');if(buy){var target=buy.disabled?buy.closest('[data-comet-card]'):buy;target.scrollIntoView({block:'center'});target.focus({preventScroll:true});}};
     }
     return;
   }
@@ -8827,13 +8852,13 @@ function presentControlStates(root){
 // Live UI updates must not strand keyboard focus on a detached button.
 // Preserve the visible control's position when content above it grows or its
 // Wisp changes groups. A fixed scrollTop would move it with that content.
-function captureControlViewport(root){
+function captureControlViewport(root,includeOffscreen){
   var focused=document.activeElement;
   if(!root || !focused || !root.contains(focused)) return null;
   var main=document.querySelector('main');
   if(!main) return null;
   var rect=focused.getBoundingClientRect(),view=main.getBoundingClientRect();
-  if(!rect.width || !rect.height || rect.bottom<=view.top || rect.top>=view.bottom) return null;
+  if(!rect.width || !rect.height || (!includeOffscreen && (rect.bottom<=view.top || rect.top>=view.bottom))) return null;
   return {root:root,main:main,top:rect.top,scrollTop:main.scrollTop,scrollLeft:main.scrollLeft,
     keys:Array.from(focused.attributes).filter(function(a){return a.name.startsWith('data-') && a.name!=='data-state';})};
 }
@@ -10368,7 +10393,10 @@ function cometTrialControls(){
   return html+'</div>';
 }
 function renderCometCommands(){var root=els['comet-commands'];if(root){root.hidden=true;root.innerHTML='';}}
-function cometBuyRequirement(item){return item.unlockDepth?'Unlocks at Rift '+item.unlockDepth:'Permanent · kept on Ascend';}
+function cometBuyRequirement(item){
+  if(item.id==='autoascend')return 'Complete every challenge, then unlock for 100 Comets. Completed levels in current Lab subjects count; preserved upgrades are excluded.';
+  return item.unlockDepth?'Unlocks at Rift '+item.unlockDepth:'Permanent · kept on Ascend';
+}
 function cometShopEffect(id,level){if(id==='autoascend')return level?'Automatic Ascension unlocked':'Automatic Ascension at your chosen cleared Rift';var item=ASTRAL_UPGRADES.find(function(n){return n.id===id;});return '×'+Number(Math.pow(item.factor,level).toFixed(3))+' '+(id==='astralcore'?'Wisp Power':id==='astralecho'?'ability damage and rewards':'Ultimate damage, rewards and Support strength');}
 function updateCometShopCard(item,card){
   if(!card) return;
@@ -10379,15 +10407,23 @@ function updateCometShopCard(item,card){
   card.querySelector('[data-comet-effect]').textContent=(plan.maxed?'Current: ':'')+cometShopEffect(item.id,level)+(upgrade&&!plan.maxed?' → '+cometShopEffect(item.id,level+1):'');
   var next=card.querySelector('[data-comet-next]');
   next.textContent='';
+  var challenges=card.querySelector('[data-autoascend-challenges]');
+  if(challenges){
+    challenges.hidden=plan.owned;
+    var progress=plan.requirements.map(function(row){
+      return '<li data-autoascend-challenge="'+row.key+'" data-met="'+row.met+'">'+(row.met?'✓ ':'')+row.label+': '+row.current+' / '+row.target+'</li>';
+    }).join('');
+    if(challenges.innerHTML!==progress)challenges.innerHTML=progress;
+  }
   var button=card.querySelector('[data-shop]');
   if(button){
     button.disabled=!plan.available;
-    var html=plan.maxed?(upgrade?'Maxed':'Owned'):!plan.unlocked?'Unlocks at Rift '+item.unlockDepth:purchasePriceMarkup('comet',plan.cost,'',true);
+    var html=plan.maxed?(upgrade?'Maxed':'Owned'):item.id==='autoascend'?purchasePriceMarkup('comet',plan.cost,'',true):!plan.unlocked?'Unlocks at Rift '+item.unlockDepth:purchasePriceMarkup('comet',plan.cost,'',true);
     if(button.innerHTML!==html) button.innerHTML=html;
     button.classList.toggle('owned',plan.maxed);
   }
   card.setAttribute('data-state',plan.maxed?'completed':plan.unlocked?'available':'locked');
-  card.querySelector('[data-comet-requirement]').hidden=plan.unlocked;
+  card.querySelector('[data-comet-requirement]').hidden=item.id==='autoascend'?plan.owned:plan.unlocked;
   updatePurchasePriceColors(card);
 }
 function renderCometJournal(){
@@ -10440,7 +10476,9 @@ function renderCometJournal(){
 function renderAchievements(){
   // Capture before the preceding Deed list can grow, wrap or lose a pending
   // credit row. Capturing only around the shop itself is already too late.
-  var shopView=captureControlViewport(els['shop-list']);
+  // Buying the Ritual removes its challenge list. The surviving focus target
+  // can then be above the viewport; retain it through later pure refreshes too.
+  var shopView=captureControlViewport(els['shop-list'],true);
   var journalView=captureControlViewport(els['comet-journal']);
   var active=document.activeElement;
   var purchase=active && els['shop-list'].contains(active) ? active.getAttribute('data-shop') : null;
@@ -10477,7 +10515,8 @@ function renderAchievements(){
       '<button type="button" data-shop="'+item.id+'"'+(!plan.available?' disabled':'')+'></button>';
     shopHtml+='<div class="card shop-card comet-purchase" data-comet-card="'+item.id+'" tabindex="-1">'+
       '<div class="info"><div class="name">'+item.name+'</div>'+(plan.maxed?'':'<div class="desc">'+item.desc+'</div>')+
-      '<div class="comet-level" data-comet-level></div><div class="desc" data-comet-requirement>'+cometBuyRequirement(item)+'</div>'+
+      '<div class="comet-level" data-comet-level></div><div class="desc" data-comet-requirement'+(item.id==='autoascend'&&plan.owned?' hidden':'')+'>'+cometBuyRequirement(item)+'</div>'+
+      (item.id==='autoascend'?'<ul class="auto-ascend-challenges" data-autoascend-challenges aria-label="Auto-Ascend unlock challenges"'+(plan.owned?' hidden':'')+'></ul>':'')+
       '<div class="earned-effect" data-comet-effect></div><div class="desc" data-comet-next></div>'+
       (item.id==='autoascend' && plan.owned?'<div class="desc">'+(state.autoAscendEnabled?'ON':'OFF')+' · Clear Rift '+autoAscendClearedTarget()+'. Controls are on Ascend.</div>':'')+
       '</div>'+button+'</div>';

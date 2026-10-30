@@ -21,11 +21,14 @@
   // Keep real input/save handlers, animation frames and the production flags intact.
   // Storage fixtures compare unchanged paid timers across reload. Pause from
   // boot too, before startup can flush a few milliseconds of host work.
-  var uiMeasurementPaused=scenario.startsWith('lifecycle-')||scenario.startsWith('offline-catchup-')||scenario==='formation-bonds-mobile'||scenario==='r3-save-reload'||/^(lab-motes|inquiry|forge)-(save-reload|backup-restore|recovery|reset)$/.test(scenario);
+  // Enemy reload assertions observe the stored HP ratio at zero elapsed time.
+  // Host startup work must not add combat damage before that observation.
+  var enemyReloadScenario=scenario==='enemy-normal-reload'||scenario==='enemy-boss-reload';
+  var uiMeasurementPaused=enemyReloadScenario||scenario.startsWith('lifecycle-')||scenario.startsWith('offline-catchup-')||scenario==='formation-bonds-mobile'||scenario==='r3-save-reload'||/^(lab-motes|inquiry|forge)-(save-reload|backup-restore|recovery|reset)$/.test(scenario);
   // These older purchase scenarios now exercise real committed transactions.
   // Their runner pauses timers instead of setting the production reload flag.
   var forgeTransactionScenario=scenario.startsWith('forge-') || scenario.startsWith('lab-motes-') || scenario.startsWith('inquiry-') || scenario.includes('research-duration') || scenario==='r3-destinations' || scenario==='self-test-r3-shortcut' || scenario==='r3-save-reload';
-  if(scenario.startsWith('lifecycle-') || forgeTransactionScenario || scenario.startsWith('tree-purchase-ui') || scenario==='formation-bonds-mobile' || scenario.startsWith('formation-autosave-') || scenario.startsWith('comet-unlocks-') || scenario==='lab-motes-native' || scenario==='lab-motes-reduced-motion' || scenario.startsWith('offline-catchup-') || scenario.startsWith('support-') || scenario==='rift-status-contract' || scenario==='auto-ascend-target-mobile' || scenario==='auto-ascend-target-reduced-motion' || scenario.startsWith('forge-ui-') || scenario.startsWith('self-test-forge-ui-') || scenario.startsWith('rift-status-stacking') || scenario.startsWith('rift-status-mobile') || scenario.startsWith('rift-status-reduced') || scenario.startsWith('self-test-rift-status-line')){
+  if(enemyReloadScenario || scenario.startsWith('lifecycle-') || forgeTransactionScenario || scenario.startsWith('tree-purchase-ui') || scenario==='formation-bonds-mobile' || scenario.startsWith('formation-autosave-') || scenario.startsWith('comet-unlocks-') || scenario==='lab-motes-native' || scenario==='lab-motes-reduced-motion' || scenario.startsWith('offline-catchup-') || scenario.startsWith('support-') || scenario==='rift-status-contract' || scenario==='auto-ascend-target-mobile' || scenario==='auto-ascend-target-reduced-motion' || scenario.startsWith('forge-ui-') || scenario.startsWith('self-test-forge-ui-') || scenario.startsWith('rift-status-stacking') || scenario.startsWith('rift-status-mobile') || scenario.startsWith('rift-status-reduced') || scenario.startsWith('self-test-rift-status-line')){
     // Observe actual registered Queue callbacks, without changing event dispatch.
     var realAddEventListener=EventTarget.prototype.addEventListener;
     EventTarget.prototype.addEventListener=function(type,callback,options){

@@ -1,0 +1,39 @@
+{
+  "sourceSha256": "e5f2ee84f7422461b0f9b1e66d59567fd01d49437617d46475f725f08842d5fa",
+  "status": "pass",
+  "initialFailure": {
+    "source": "c2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d",
+    "run": 41126703259,
+    "expected": 0.25,
+    "actual": 0.24947498666666268
+  },
+  "combinedBeforePause": {
+    "expected": 0.25,
+    "actual": 0.24938938666649657
+  },
+  "change": "Pause the two static enemy reload observers from boot, before host processing advances combat. Product clock, HP restore, original assertions and0.0005 tolerance are unchanged.",
+  "positives": [
+    {
+      "scenario": "enemy-normal-reload",
+      "status": "pass"
+    },
+    {
+      "scenario": "enemy-boss-reload",
+      "status": "pass"
+    }
+  ],
+  "controls": [
+    {
+      "scenario": "enemy-normal-reload",
+      "status": "caught",
+      "mutation": "restoreEnemyOrSpawn resets damaged HP to full",
+      "message": "  failure: { \"message\": \"damaged normal enemy HP ratio must be restored (expected 0.25, got 1)\", \"stack\": \"Error: damaged normal enemy HP ratio must be restored (expected 0.25, got 1)\\n    at approx (http://127.0.0.1:63283/index.html?qaScenario=enemy-normal-reload&qaFixture=damaged-normal-enemy:19130:49)\\n    at HTMLDocument.run (http://127.0.0.1:63283/index.html?qaScenario=enemy-normal-reload&qaFixture=damaged-normal-enemy:19892:11)\" }"
+    },
+    {
+      "scenario": "enemy-boss-reload",
+      "status": "caught",
+      "mutation": "restoreEnemyOrSpawn resets damaged HP to full",
+      "message": "  failure: { \"message\": \"damaged boss HP ratio must be restored (expected 0.4, got 1)\", \"stack\": \"Error: damaged boss HP ratio must be restored (expected 0.4, got 1)\\n    at approx (http://127.0.0.1:62407/index.html?qaScenario=enemy-boss-reload&qaFixture=damaged-boss:19130:49)\\n    at HTMLDocument.run (http://127.0.0.1:62407/index.html?qaScenario=enemy-boss-reload&qaFixture=damaged-boss:19902:11)\" }"
+    }
+  ]
+}

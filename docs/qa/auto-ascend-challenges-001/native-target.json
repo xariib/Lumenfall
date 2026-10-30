@@ -1,0 +1,159 @@
+{
+  "sourceSha256": "c2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d",
+  "receipts": [
+    {
+      "status": "pass",
+      "scenario": "auto-ascend-target-mobile",
+      "profiles": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 360,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 320,
+          "textScale": 1.6,
+          "motion": "no-preference"
+        },
+        {
+          "width": 390,
+          "textScale": 1.6,
+          "motion": "no-preference"
+        },
+        {
+          "width": 430,
+          "textScale": 1.6,
+          "motion": "no-preference"
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "no-preference"
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "no-preference"
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "no-preference"
+        }
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      }
+    },
+    {
+      "status": "pass",
+      "scenario": "auto-ascend-target-reduced-motion",
+      "profiles": [
+        {
+          "width": 320,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 360,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 390,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 430,
+          "textScale": 1,
+          "motion": "reduce"
+        },
+        {
+          "width": 320,
+          "textScale": 1.6,
+          "motion": "reduce"
+        },
+        {
+          "width": 390,
+          "textScale": 1.6,
+          "motion": "reduce"
+        },
+        {
+          "width": 430,
+          "textScale": 1.6,
+          "motion": "reduce"
+        },
+        {
+          "width": 320,
+          "textScale": 2,
+          "motion": "reduce"
+        },
+        {
+          "width": 390,
+          "textScale": 2,
+          "motion": "reduce"
+        },
+        {
+          "width": 430,
+          "textScale": 2,
+          "motion": "reduce"
+        }
+      ],
+      "teardown": {
+        "pendingBeforeClose": 0,
+        "events": [
+          {
+            "event": "browser-close",
+            "code": 0,
+            "signal": null,
+            "pending": 0
+          },
+          {
+            "event": "profile-removed",
+            "browserClosed": true
+          }
+        ],
+        "browser": {
+          "code": 0,
+          "signal": null
+        },
+        "pendingAfterClose": 0,
+        "profileRemoved": true
+      }
+    }
+  ]
+}

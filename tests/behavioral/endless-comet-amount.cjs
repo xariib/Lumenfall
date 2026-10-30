@@ -8,6 +8,7 @@ const source=fs.readFileSync(process.argv[2]||'index.html','utf8');let checks=0;
 function eq(a,b,label){checks++;assert.deepEqual(a,b,label);}function ok(value,label){checks++;assert(value,label);}
 function ready(q,id,level,wallet){
  const s=current?q.fresh():fixture(q);s.maxDepthEver=5000;s.comets=wallet;s.owned.meteor=s.owned.starcall=!current;s.owned.autoascend=false;
+ if(id==='autoascend')require('./auto-ascend-challenges.cjs').qualify(s);
  if(!current){s.cometEvents={firstCommand:true,firstRecharge:true,bossStrike:true,calledKill:true};for(const [deed]of NEW_DEEDS)s.achieved[deed]=true;}
  s.activeStudies=[{id:'guardmastery',remainingSec:15,totalDurationSec:20,speedMult:3}];
  if(id==='meteor'){s.owned.meteor=false;s.cometEvents.bossStrike=false;delete s.achieved.comet_boss_strike;}
