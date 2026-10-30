@@ -82,6 +82,19 @@ for(const stagger of [0,5/3]){
 // Real scheduler must compose and give matching live/offline results; no enemy
 // deaths in this case, so comparisons cover every save field exactly/tightly.
 function closeState(a,b,label){
+ if(/\.canonicalAutomationClock\._auto(?:Tap|Empower)Accum$/.test(label)){
+  for(const basis of [a,b]){
+   eq(Object.keys(basis).sort(),['base','elapsed','last'],label+' exact basis shape');
+   ok(Number.isFinite(Number(basis.elapsed))&&Number(basis.elapsed)>=0&&Number(basis.elapsed)<=2,label+' physical elapsed');
+   eq(basis.base+Number(basis.elapsed)*1000,basis.last,label+' exact represented timer phase');
+  }
+ }
+ if(/\.canonicalAutomationClock\._auto(?:Tap|Empower)Accum\.elapsed$/.test(label)){
+  // Different caller partitions may encode distinct sub-ulp clock histories.
+  // Compare their physical milliseconds with the existing phase tolerance;
+  // cold save/load and backup checks above still require every original bit.
+  closeState(Number(a)*1000,Number(b)*1000,label+'.milliseconds');return;
+ }
  if(typeof a==='number'&&typeof b==='number'){ok(Math.abs(a-b)<=Math.max(1e-6,Math.max(Math.abs(a),Math.abs(b))*1e-12),label);return;}
  if(a&&typeof a==='object'){eq(Object.keys(a),Object.keys(b),label+' keys');for(const k of Object.keys(a))closeState(a[k],b[k],label+'.'+k);return;}
  eq(a,b,label);

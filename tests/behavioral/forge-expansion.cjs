@@ -519,11 +519,11 @@ function unsafeCounterCases(html,a,mutant=false) {
     let ordinal=BigInt(raw),boosted=0;const expectedHits=[];
     for(let i=0;i<60;i++){
       ordinal=BigInt(Number(ordinal+1n));const boost=ordinal>0n && ordinal%5n===0n;
-      if(boost)boosted++;expectedHits.push(5.02*(boost?1.5:1));
+      if(boost)boosted++;expectedHits.push(20.02*(boost?1.5:1));
     }
     const y=app(html),r=y.q,s=battle(r);s.totalTaps=raw;s.research.guardiancadence=5;s.achieved.autotap=true;r.set(s);
     a.eq(r.passive(101),1,'independent cadence window retains fixed level1 Ember power');
-    a.near(r.autoDps(101),5.02*(1+.5*boosted/60),'independent60tap HUD mean '+raw);
+    a.near(r.autoDps(101),20.02*(1+.5*boosted/60),'independent60tap HUD mean '+raw);
     const hits=[],undo=r.observeCalibration(e=>{if(e.type==='damage' && e.source==='autoTap' && e.amount>0)hits.push(e.amount);});let out;
     try{out=advance(r,60);}finally{undo();}
     a.eq(out.autoTaps,60,'sixty actual counted Auto-Tap events '+raw);a.eq(hits,expectedHits,'independent integer oracle matches every actual cadence hit '+raw);a.eq(r.get().totalTaps,Number(ordinal),'sixty-tap counter retains exact historical Number endpoint');

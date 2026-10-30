@@ -1,5 +1,7 @@
 # Lumenfall — current delivery status
 
+30 October: [Opening tap balance/PR #29](tasks/TAP_EARLY_BALANCE_001.md) integrated; signed 0.2.64 test APK. Base 20 + 2% party power; Wisps take over with development. Seven gates, 190+1 scenarios and signed installed upgrade PASS; phone/human pacing acceptance open. [Receipt](qa/tap-early-balance-001/delivery.json).
+
 30 October: [Direct Rift navigation](tasks/RIFT_NAVIGATION_001.md),
 [PR30](https://github.com/xariib/Lumenfall/pull/30) merged at90c20a26:
 previous/next/−10 replace the Farm chooser. Seven gates,190 scenarios and signed

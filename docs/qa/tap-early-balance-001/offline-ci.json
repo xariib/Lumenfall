@@ -1,0 +1,198 @@
+{
+  "run": "https://github.com/xariib/Lumenfall/actions/runs/41133413485",
+  "job": 124329825941,
+  "testedMerge": "fb94bb4bf03a9e4bf9acdeb3517ee8d32b23d9fa",
+  "result": {
+    "status": "pass",
+    "scenario": "offline-catchup-core",
+    "sourceSha256": "3f659a45352fbc14b638903a8b45f6bbb79d1ee8360fb4a9b4962655c288c002",
+    "originalTestSha256": "b93354f075f005b8650cc8765867a7d47f1ee169a17d009273211915cd934e9a",
+    "wallMs": 206457.96080300002,
+    "execution": "All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged",
+    "records": [
+      {
+        "case": "ON Clear21",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 362,
+        "kills": 88592,
+        "ascends": 4218,
+        "iterations": 92812,
+        "earned": 377909306.40009683
+      },
+      {
+        "case": "Prism policy isolation",
+        "perAscend": 23,
+        "newPrisms": 103977,
+        "legacyPrisms": 32271
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 28800,
+        "batch": 31,
+        "batches": 2993,
+        "kills": 88592,
+        "ascends": 4218,
+        "iterations": 92812,
+        "earned": 377909306.40009683
+      },
+      {
+        "case": "ON Clear20",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 375,
+        "kills": 96000,
+        "ascends": 4800,
+        "iterations": 96001,
+        "earned": 405434880.00007343
+      },
+      {
+        "case": "OFF",
+        "seconds": 28800,
+        "batch": 256,
+        "batches": 244,
+        "kills": 1150,
+        "ascends": 0,
+        "iterations": 62529,
+        "earned": 83925186201762.19
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 259200,
+        "batch": 256,
+        "batches": 543,
+        "kills": 132885,
+        "ascends": 6327,
+        "iterations": 139214,
+        "earned": 566861608.7999719
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 345600,
+        "batch": 256,
+        "batches": 543,
+        "kills": 132885,
+        "ascends": 6327,
+        "iterations": 139213,
+        "earned": 566861608.7999719
+      },
+      {
+        "case": "ON Clear21",
+        "seconds": 43200,
+        "batch": 256,
+        "batches": 543,
+        "kills": 132885,
+        "ascends": 6327,
+        "iterations": 139213,
+        "earned": 566861608.7999719
+      },
+      {
+        "case": "boundaries live",
+        "kills": 17975,
+        "motes": 290,
+        "empowers": 3424,
+        "research": 2,
+        "studies": [
+          "Guardian's Mastery"
+        ]
+      },
+      {
+        "case": "boundaries offline",
+        "kills": 17975,
+        "motes": 290,
+        "empowers": 3424,
+        "research": 4,
+        "studies": [
+          "Guardian's Mastery"
+        ]
+      },
+      {
+        "case": "cancel",
+        "callbacks": 1,
+        "error": "Offline catch-up cancelled",
+        "pending": true
+      },
+      {
+        "case": "simulation",
+        "callbacks": 1,
+        "error": "injected simulation failure",
+        "pending": true
+      },
+      {
+        "case": "primary",
+        "callbacks": 1,
+        "error": "Offline progress could not be saved",
+        "pending": true
+      },
+      {
+        "case": "recovery",
+        "callbacks": 1,
+        "error": null,
+        "pending": false
+      },
+      {
+        "case": "processing time 28800",
+        "kills": 88776,
+        "lastSeen": 1791390424477
+      },
+      {
+        "case": "processing time 259200",
+        "kills": 133071,
+        "lastSeen": 1791620824477
+      },
+      {
+        "case": "wall-clock jump -604800000",
+        "kills": 88776,
+        "lastSeen": 1790785624477
+      },
+      {
+        "case": "wall-clock jump 604800000",
+        "kills": 88776,
+        "lastSeen": 1791995224477
+      }
+    ],
+    "groups": [
+      {
+        "id": "long-windows",
+        "wallMs": 206359.351404,
+        "records": 8,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "short-boundaries",
+        "wallMs": 44488.655506,
+        "records": 2,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "rollback-recovery",
+        "wallMs": 135362.156995,
+        "records": 4,
+        "extraSetupRecords": [
+          {
+            "case": "ON Clear21",
+            "seconds": 28800,
+            "batch": 256,
+            "batches": 362,
+            "kills": 88592,
+            "ascends": 4218,
+            "iterations": 92812,
+            "earned": 377909306.40009683
+          }
+        ]
+      },
+      {
+        "id": "processing-time",
+        "wallMs": 118144.418284,
+        "records": 2,
+        "extraSetupRecords": []
+      },
+      {
+        "id": "wall-clock",
+        "wallMs": 88650.60566500001,
+        "records": 2,
+        "extraSetupRecords": []
+      }
+    ]
+  }
+}

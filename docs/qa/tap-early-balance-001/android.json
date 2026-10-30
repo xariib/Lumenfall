@@ -1,0 +1,407 @@
+{
+  "status": "signed test APK and installed upgrade PASS; exact integrated app source/assets; physical acceptance open",
+  "run": "https://github.com/xariib/Lumenfall/actions/runs/41133406252",
+  "successfulAttempt": 1,
+  "artifactId": 13014576603,
+  "artifactName": "signed-apk-41133406252",
+  "published": false,
+  "sourceCommit": "1fb827eaaa95565e015b84426a2b49984b4ffe9d",
+  "sourceTree": "82a8f2f3e273a76b7489f33bd76eeab30acd49ca",
+  "sourceSha256": "3f659a45352fbc14b638903a8b45f6bbb79d1ee8360fb4a9b4962655c288c002",
+  "apkSha256": "ded90a16bc67f78c83d51ce8bbe26af2a4d19cd0206a8c46e96d909cc2812369",
+  "bytes": 7073079,
+  "versionName": "0.2.64",
+  "versionCode": 1000064,
+  "package": "com.lumenfall.app",
+  "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+  "exactLocalPackagedAssets": 15,
+  "installedUpgradeReceipt": {
+    "baseline": "archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk",
+    "candidate": "Lumenfall.apk",
+    "package": "com.lumenfall.app",
+    "commit": "1fb827eaaa95565e015b84426a2b49984b4ffe9d",
+    "apkSha256": "ded90a16bc67f78c83d51ce8bbe26af2a4d19cd0206a8c46e96d909cc2812369",
+    "device": "google/sdk_gphone64_x86_64/emulator64_x86_64_arm64:12/SE1A.220826.008/10564458:userdebug/dev-keys",
+    "webview": "Current WebView Update Service state\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 31\n  Minimum WebView version code: 447211487\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211487, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+    "beforeOrigin": "https://localhost",
+    "baselineColdRestartVerified": true,
+    "baselineVersionCode": 158,
+    "candidateVersionCode": 1000064,
+    "beforeUid": "10145",
+    "afterUid": "10145",
+    "androidTouch": {
+      "display": [
+        320,
+        640
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 616
+      },
+      "scale": 1,
+      "transform": {
+        "scale": 1,
+        "x": 0,
+        "y": 24
+      },
+      "probes": [
+        {
+          "native": {
+            "x": 136,
+            "y": 284
+          },
+          "event": {
+            "type": "pointerdown",
+            "trusted": true,
+            "target": "",
+            "x": 136,
+            "y": 260,
+            "time": 12079.100000000006,
+            "interactive": false,
+            "prevented": false
+          }
+        },
+        {
+          "native": {
+            "x": 184,
+            "y": 308
+          },
+          "event": {
+            "type": "pointerdown",
+            "trusted": true,
+            "target": "",
+            "x": 184,
+            "y": 284,
+            "time": 12597.5,
+            "interactive": false,
+            "prevented": false
+          }
+        }
+      ]
+    },
+    "offlineRecapDismissed": true,
+    "installedWispTouch": {
+      "status": "PASS",
+      "fromLevel": 10,
+      "toLevel": 11,
+      "focusedName": "Ember Wisp — Next · Upgrade Ability Lumen 3.46K Shards 346"
+    },
+    "installedWispCard": {
+      "status": "PASS",
+      "viewport": 320,
+      "viewportFit": true,
+      "tabVisible": true,
+      "count": 8,
+      "observations": [
+        {
+          "id": "ember",
+          "name": "Ember Wisp",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": true,
+          "rarityComplete": true,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Ember Wisp — Next · Upgrade Ability Lumen 2.17K Shards 217"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "tide",
+          "name": "Tide Sprite",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Tide Sprite — Next · Recruit Lumen 60"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "stone",
+          "name": "Stoneheart Golem",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Stoneheart Golem — Next · Rarity Up Lumen 2.88K Shards 15"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "gale",
+          "name": "Gale Dancer",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Gale Dancer — Next · Recruit Lumen 2.10K"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "thorn",
+          "name": "Thornback",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Thornback — Next · Recruit Lumen 12.00K"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "void",
+          "name": "Voidling",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Voidling — Next · Recruit Lumen 70.00K"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "aurora",
+          "name": "Aurora Seer",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Aurora Seer — Next · Recruit Lumen 400.00K"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        },
+        {
+          "id": "titan",
+          "name": "Starforged Titan",
+          "visible": true,
+          "fits": true,
+          "width": {
+            "client": 298,
+            "scroll": 342,
+            "right": 310
+          },
+          "overflow": [],
+          "identity": true,
+          "unfinished": true,
+          "upgradeVisible": true,
+          "rarityMaxed": false,
+          "rarityComplete": false,
+          "eligible": true,
+          "primary": [
+            {
+              "disabled": false,
+              "cue": "Next ·",
+              "name": "Starforged Titan — Next · Recruit Lumen 2.20M"
+            }
+          ],
+          "modulePrices": 2,
+          "currentEffect": true,
+          "nextEffect": true
+        }
+      ],
+      "screenshot": "release-evidence/installed-wisp-card.png"
+    },
+    "installedMidgameFarmHint": {
+      "status": "PASS",
+      "hint": {
+        "kind": "POWER OPTION",
+        "title": "Lab hint",
+        "detail": "+15% passive Wisp damage after study · 800 Lumen + 80 Shards",
+        "name": "Read Lab hint — Power option: Wisp Ascendancy 1 — +15% passive Wisp damage after study · 800 Lumen + 80 Shards",
+        "target": "research",
+        "selector": "[data-running-study=\"wispascend\"],[data-study-card=\"wispascend\"]",
+        "x": 200.2265625,
+        "y": 144,
+        "hit": true,
+        "fit": true
+      },
+      "details": {
+        "open": true,
+        "title": "Power option: Wisp Ascendancy 1",
+        "detail": "+15% passive Wisp damage after study · 800 Lumen + 80 Shards",
+        "x": 160,
+        "y": 354,
+        "fit": true,
+        "hit": true
+      },
+      "destination": {
+        "lab": true,
+        "card": true,
+        "focused": true
+      },
+      "screenshot": "release-evidence/installed-midgame-farm.png",
+      "syntheticFixture": true
+    },
+    "installedRiftNavigation": {
+      "status": "PASS",
+      "steps": [
+        {
+          "selector": "#rift-back-one",
+          "depth": 24
+        },
+        {
+          "selector": "#rift-back-ten",
+          "depth": 14
+        },
+        {
+          "selector": "#rift-forward-one",
+          "depth": 15
+        },
+        {
+          "selector": "#rift-back-one",
+          "depth": 14
+        },
+        {
+          "selector": "#rift-back-ten",
+          "depth": 4
+        },
+        {
+          "selector": "#rift-back-ten",
+          "depth": 1
+        }
+      ],
+      "returning": 26,
+      "resumedDepth": 26,
+      "screenshot": "release-evidence/installed-rift-navigation.png",
+      "syntheticFixture": true
+    },
+    "status": "PASS",
+    "uidRetained": true,
+    "origin": "https://localhost",
+    "bothSaveSlotsRetained": true,
+    "progressAndPaidStudyRetained": true,
+    "legacyCometEntitlementsRetained": true,
+    "legacyPurchaseCredit": 350,
+    "physicalDevice": false
+  },
+  "limitations": "API31/WebView91 emulator with synthetic saved state. Physical phone, exact WebView60 DOM, TalkBack and human pacing remain unverified.",
+  "integration": "941538d0842b55f3486aeba55017395136d3dbc5",
+  "integratedTree": "82a8f2f3e273a76b7489f33bd76eeab30acd49ca",
+  "sourceEquivalentPaths": [
+    "index.html",
+    "fonts",
+    "branding",
+    "mobile"
+  ],
+  "packagedAssetsMatchIntegration": 15,
+  "validatedHead": "1fb827eaaa95565e015b84426a2b49984b4ffe9d"
+}

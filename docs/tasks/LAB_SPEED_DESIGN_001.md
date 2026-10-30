@@ -40,7 +40,7 @@ in progress. Source syntax/lifecycle and diff checks PASS. Self-review only.
 
 Changed product, focused preset UI test/harness, legacy Lab UI tests (explicitly
 open native disclosure; retain input/payment/focus assertions), CI and this task.
-Final product SHA256017fb8594aff3f4dbc1c341e0c546356c4bba37fcaf7706514e0939ebe862409:
+Original candidate SHA256017fb8594aff3f4dbc1c341e0c546356c4bba37fcaf7706514e0939ebe862409:
 preset input668/18profiles, timed UI1182/12profiles, native Lab1212/6profiles
 and core379+67checks/13controls PASS, including disclosure keyboard traversal.
 The first local timed run stalled after its browser exited and was interrupted;
@@ -71,10 +71,33 @@ run heads/jobs and writes ci.json. Native/core/timed/Android receipts are saved
 locally but not pushed yet (avoid restarting source-qualified CI for docs).
 No local test processes remain. Git global credential helpers were restored to
 the original manager; use a per-command gh credential helper for Git writes.
-Main remains1f316cc5. After green CI, merge PR32 with remote head136b0dad pinned,
-fetch/fast-forward this worktree, retain pending evidence edits, update this
-task/PROJECT_STATE and publish documentation. Verify integrated product hash
-and APK assets still match017fb859. No public release or chat archive yet.
+## Upstream integration checkpoint
+
+Main advanced to92e7497d (PR29/tap balance941538d0) during original CI.
+Merged locally; only the golden source-binding line conflicted. Product merges
+cleanly and differs from new main only in this UI's53added/7removed lines.
+Combined product4c8523a47aab09f05da45e589a7fe2445971eb9538c436e32d7bc447f18a6e13:
+preset668checks/18profiles PASS. `replay-current-main.json` proves all four
+complete endpoint states equal current main on pinned Windows Node24.19.0.
+
+The old generator still hardcodes pre-tap rewards and correctly rejects the
+new approved main outcomes. It remains unchanged. The new portable
+`tests/behavioral/lab-speed-replay-compare.cjs` uses the same one-second calls,
+asserts approved baseline rewards and exact baseline/candidate state equality.
+This host's baseline state hashes differ from accepted canonical hashes;
+the paired baseline/candidate hashes match exactly. Preserve main's canonical
+oracle fields and change only their source binding after this proof.
+
+Original PR32 CI136b0dad is still running; retain its eventual receipt as
+ci-original.json. It does not qualify the combined source. Test APK0.2.66
+likewise qualifies only original017fb859, not the new tap baseline.
+PR31/Auto Ascend2a3a54ab is also finishing integration checks. Serialize the
+remaining upstream integration before publishing/revalidating the combined
+UI candidate; do not promote unmerged work or lose accepted changes.
+Next: finish current main merge, retain original CI when complete, incorporate
+PR31 only once integrated, rerun focused/replay checks on final main baseline,
+publish PR32 combined head, run seven gates and a new signed test APK, then merge
+and save final source-qualified documentation. No public release/archive yet.
 Physical phone/WebView60/TalkBack and human visual acceptance remain unverified.
 
 Sources: [previous queue contract](LAB_BOOST_QUEUE_001.md),
