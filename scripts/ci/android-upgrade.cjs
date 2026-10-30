@@ -287,6 +287,36 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  console.log('Android installed Farm guidance acceptance: '+JSON.stringify(report.installedMidgameFarmHint));
  return page;
 }
+async function verifyInstalledRiftNavigation(page,report){
+ await page.evaluate(`document.querySelector('[data-tab="battle"]').click()`);
+ const snapshot=()=>page.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(primary)}))`);
+ const before=await snapshot(),steps=[];
+ assert.equal(before.riftMode,'farm','Navigation uses the existing disposable Farm fixture');
+ assert.equal(before.farmDepth,25,'Existing boss-excluding fixture farms Rift25');
+ const returning=before.farmReturnDepth;
+ async function tap(selector){
+   const point=await page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,disabled:e.disabled,hit:e.contains(document.elementFromPoint(x,y))};})()`);
+   assert(point.width>=44&&point.height>=44&&point.hit&&!point.disabled,'Installed navigation receives touch: '+selector);
+   const p=nativePoint(report.androidTouch.transform,point);
+   adb('shell','input','tap',String(p.x),String(p.y));await pause(200);
+ }
+ for(const [selector,depth]of [['#rift-back-one',24],['#rift-back-ten',14],['#rift-forward-one',15],['#rift-back-one',14],['#rift-back-ten',4],['#rift-back-ten',1]]){
+   await tap(selector);const s=await snapshot();
+   assert.equal(s.riftMode,'farm','Native navigation preserves manual Farm');
+   assert.equal(s.farmDepth,depth,'Native navigation reaches the expected Rift');
+   assert.equal(s.farmReturnDepth,returning,'Native navigation preserves saved Push');
+   assert.equal(s.farmAutoResume,false,'Native navigation cancels automatic retry');
+   steps.push({selector,depth});
+ }
+ assert(await page.evaluate(`!document.getElementById('farm-picker-overlay')&&document.getElementById('rift-back-one').disabled&&document.getElementById('rift-back-ten').disabled`),'No picker and backward controls stop at Rift1');
+ const shot=await page.command('Page.captureScreenshot',{format:'png'});
+ fs.writeFileSync('release-evidence/installed-rift-navigation.png',Buffer.from(shot.data,'base64'));
+ await tap('#rift-push-btn');const resumed=await snapshot();
+ assert.equal(resumed.riftMode,'push','Native Push resumes progression');
+ assert(resumed.depth>=returning,'Native Push retains the saved frontier while combat continues');
+ report.installedRiftNavigation={status:'PASS',steps,returning,resumedDepth:resumed.depth,screenshot:'release-evidence/installed-rift-navigation.png',syntheticFixture:true};
+ console.log('Android installed Rift navigation acceptance: '+JSON.stringify(report.installedRiftNavigation));
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -364,7 +394,8 @@ async function main(){
  assert(observed.save.recruitmentEntitlements.ember&&observed.save.recruitmentEntitlements.stone,'Legacy recruits retain entitlement');
  page=await prepareOfflineRecap(page,observed.save);
  await verifyInstalledWispCard(page,report);
- page=await verifyInstalledMidgameFarmHint(page,report,observed.save);page.close();
+ page=await verifyInstalledMidgameFarmHint(page,report,observed.save);
+ await verifyInstalledRiftNavigation(page,report);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }

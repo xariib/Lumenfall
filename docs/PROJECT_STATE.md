@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+30 October: [Direct Rift navigation](tasks/RIFT_NAVIGATION_001.md),
+[PR30](https://github.com/xariib/Lumenfall/pull/30): −10/previous/next beside
+the Rift number replaces the farming chooser. Local checks PASS; final CI and
+Android acceptance pending after a short-screen spacing correction.
+
 30 October: [Lab/Deeds PR28](tasks/LAB_OFFLINE_DEED_PACING_001.md): merged; signed0.2.59 test APK. Seven gates/upgrade PASS; phone acceptance open.
 
 30 October: [Combined update/PR27](tasks/ALL_PENDING_APK_001.md): Android0.2.58 released.
@@ -11,20 +16,16 @@ Required CI,190 scenarios, signed upgrade and public bytes PASS.
 `ecf88e35`: Seven gates,189+1 scenarios, signed installed
 upgrade/public bytes PASS. [Receipt](qa/full-game-workshop-audit-001/release.json).
 
-28 October: [Editable next Lab boost](tasks/LAB_BOOST_QUEUE_001.md) released as
-[Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052)
-from `adaf602c`, after PR18 merged at `8eae1031`. Separate boost queue, editable
-next settings and empty-slot OFF preserve paid work. All seven PR/main gates,
-189+1 scenarios, signed installed upgrade and public exact-byte checks PASS.
-[Evidence](qa/lab-boost-queue-001/release.json). Both saves, paid work, UID/origin
-and legacy purchases retained. Phone/WebView60/TalkBack/human pacing remain open.
+28 October: [Lab boosts/PR18](tasks/LAB_BOOST_QUEUE_001.md),
+[Android0.2.52](https://github.com/xariib/Lumenfall/releases/tag/android-1000052):
+seven gates,189+1 scenarios, signed upgrade/public bytes PASS; saves/paid work
+retained. [Evidence](qa/lab-boost-queue-001/release.json).
+Phone/WebView60/TalkBack/pacing open; full mechanics/provenance in the task.
 
-28 October: [Android0.2.51 acceptance](tasks/GAME_CHECK_APK_RELEASE_001.md),
-`d3420c15`: seven workflows,189+1 scenarios, smoke, signed installed upgrade
-and public bytes PASS. Both saves, paid work, UID/origin and legacy purchases
-retained. Includes PR15 pacing/Farm, PR16 Ascend and PR17 Lab queue/Speed Up.
-[Release evidence](qa/game-check-apk-release-001/release.json).
-Physical phone, exact WebView60, TalkBack and human pacing remain open.
+28 October: [Android0.2.51/PR15–17](tasks/GAME_CHECK_APK_RELEASE_001.md),
+`d3420c15`: seven gates,189+1 scenarios, signed upgrade/public bytes PASS.
+[Evidence](qa/game-check-apk-release-001/release.json).
+Saves/paid work retained; phone/WebView60/TalkBack/pacing open.
 
 28 October: [Lab queue/Speed Up](tasks/LAB_SLOTS_QUEUE_SPEEDUP_001.md) merged
 via PR17 at `bdb341ee` after seven PR gates passed. Queue OFF finishes active
