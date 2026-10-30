@@ -123,4 +123,10 @@ state comparison/tolerance retained;1,150 new kills, Motes2,956,466.
 Current focused44/three controls, Forge9,341/25, pacing221/five and
 Mote/timed-boost1,480/three PASS. Full18-case parallel regression and boss
 calibration are running; remote gates will run on this corrected source.
+
+The calibration observer originally concatenated exact Amount-string durations
+with `+=`. Convert each finite physical interval to Number before integrating
+the observation; retain the2e-10 elapsed-time assertion and every damage bound
+and causal control. This is test observation support for the existing exact
+clock representation, not a gameplay formula or acceptance-tolerance change.
 Physical phone and human pacing acceptance are unverified. No new binding rule.
