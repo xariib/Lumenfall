@@ -108,3 +108,17 @@ Pinned oracle again retains every original state hash/payout. Complete diff
 self-reviewed; no independent review claimed. Evidence source identities retained
 separately where checks preceded the final CSS-only layout adjustment.
 Next: push final candidate and require fresh CI before main integration.
+
+CI checkpoint on ed0d784/source3e2b6da4: Lab and Comet (including actualNode8),
+shared UI and permanent progression PASS. Permanent progression initial attempt
+failed before any UI checks at Browser.getVersion startup; retry unchanged PASS.
+Forge and isolated offline fail only the old72h comparison against12h of Lab
+(shardstudy21 versus20). Updated original offline regression to retain its full
+state oracle: independent one-second combat for12h then independent one-second
+Lab-only caller windows for60h. Its96h fixture now requires paid80h research to
+finish while kills/Ascends remain exactly12h. Every original scenario, archive
+hash, complete-state comparison and300s CI deadline stays in place. Tooling
+checker PASS:5groups/18records and12negative controls. Local full offline
+reference running; final source unchanged, so the pinned oracle binding holds.
+Main premerge remains in progress; no other observed product regression.
+Next: push this test-contract correction, finish required fresh CI and integrate.

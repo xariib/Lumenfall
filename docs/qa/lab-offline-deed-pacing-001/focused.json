@@ -170,5 +170,31 @@
     "Local wisp-rarity-scroll timed out; broader run stopped when Deed requirements changed.",
     "Premerge41062701128 caught the old hidden20h Lab cap expectation; only that Lab expectation updated and all267 exploit checks/12 controls pass.",
     "The Forge Deed mutation was a no-op; now actually omits historical levels and fails its new200-level fixture."
-  ]
+  ],
+  "ciCheckpoint": {
+    "head": "ed0d78426517a9124bad11a088618cfa375d6f67",
+    "passed": [
+      "Lab including actualNode8",
+      "Comet including actualNode8",
+      "Shared UI",
+      "Permanent progression on unchanged retry"
+    ],
+    "knownFailure": {
+      "runs": [
+        41064744443,
+        41064744477
+      ],
+      "message": "old72h fixture expected12h Lab only; shardstudy21 versus20",
+      "correction": "complete state oracle now includes independent one-second Lab tail; paid80h work must finish by96h, combat remains12h",
+      "localIndependentReplay": "running",
+      "originalRecords": 18,
+      "groups": 5,
+      "toolingControls": 12
+    },
+    "transient": {
+      "run": 41064744490,
+      "first": "Browser.getVersion deadline before UI checks",
+      "retry": "PASS"
+    }
+  }
 }
