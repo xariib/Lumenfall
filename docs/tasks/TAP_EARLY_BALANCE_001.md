@@ -176,3 +176,20 @@ under its300s deadline; local duplicate passed in350.40s (not deadline acceptanc
 Next: final-head CI/integration/signed Android test build; no further code change
 is currently planned. Self-review and automated checks; no independent reviewer.
 Physical phone and human pacing acceptance are unverified. No new binding rule.
+
+## Final-suite timer representation finding
+
+Final-head CI41115928263 passed all six focused workflows and the original18-case
+offline group (285.12s, original300s deadline). The main group completed every
+scenario but rejected Comet Trial whole/split timer metadata: one window used an
+optional exact clock basis while four shorter windows retained direct numeric
+phases. Every gameplay value agreed within the original numeric tolerance.
+
+The observer now validates allowed timer keys, basis shape, saved phase and
+base-plus-elapsed identity, then compares physical phases with that same
+tolerance. All other state fields retain their original checks. Added exact
+cold-load retention and resumed whole/split/live-save comparisons across actual
+Auto-Taps/Ascends; corrupt-basis and real-phase-drift controls must fail.
+Targeted12 Comet cases/two controls PASS. Product C64 source and packaged assets
+are unchanged. Signed0.2.61 passes installed upgrade; full CI will rerun on this
+test correction. Integration remains pending.
