@@ -128,8 +128,10 @@ window.runAutoTargetContract=function(b,ctx,assert,parity){
   ok(select().options.length===136&&select().value==='129','history expands every integer without changing target');same(window.autoTargetObservation(b),before,'history option rebuild pure');
   // Existing purchase cost/initial target/ON behavior retained.
   s=b.freshStateSnapshot();s.maxDepthEver=56;s.depth=43;s.enemyDepth=43;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(43);s.comets=10000;b.setState(s);b.autoTarget.render();
+  b.autoTarget.purchase();ok(!b.getState().owned.autoascend&&b.getState().comets===10000,'purchase stays locked before challenges');
+  s.ascendCount=25;s.maxDepthEver=150;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id,i){s.longStudyLevels[id]=i<2?9:8;});b.setState(s);
   var item=b.autoTarget.shopItem(),funds=s.comets;b.autoTarget.purchase();
-  var bought=b.getState();ok(bought.comets===funds-item.cost&&bought.owned.autoascend&&bought.autoAscendEnabled&&bought.autoAscendTargetDepth===56,'purchase gates/cost/default unchanged');
+  var bought=b.getState();ok(bought.comets===funds-item.cost&&bought.owned.autoascend&&bought.autoAscendEnabled&&bought.autoAscendTargetDepth===150,'earned purchase retains cost/default');
   var windows=runAutoTargetWindows(b,assert);checks+=windows.checks;
   // Exact live/offline/direct/split state parity at the target and Study boundary.
   s=window.autoTargetSeed(b,55,true);s.depth=55;s.enemyDepth=55;s.enemyHp=1;s.enemyMaxHp=b.enemyHpFor(55);s.spirits.ember=100;s.heroResource.ember=100;

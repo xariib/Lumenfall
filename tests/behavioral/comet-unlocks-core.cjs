@@ -66,6 +66,7 @@ test('authoritative catalog price, duplicate and unknown purchase rejection',()=
   assert.equal(a.b.plan('autoascend').cost+Object.values(retiredPrices).reduce((sum,cost)=>sum+cost,0),450,'independent historical four-purchase ledger');
   retainLegacy(ready(),Object.keys(retiredPrices));
   a.b.get().achieved.d25=true;a.b.get().achieved.d50=true;
+  require('./auto-ascend-challenges.cjs').qualify(a.b.get());
   for(const [id,cost] of [['autoascend',100]]){
     const before=a.b.get().comets;assert(a.b.buy(id));assert.equal(a.b.get().comets,before-cost);assert.equal(a.b.buy(id),false);assert.equal(a.b.get().comets,before-cost);
   }
@@ -179,4 +180,4 @@ test('offline atomic failure/retry cannot award partial completion marks',()=>{
   a.fail(false);a.b.offline((result,e)=>error=e);a.drain();assert.ifError(error);assert.deepEqual(a.b.get().cometTrialMarks,{quiet:true});
   const after=copy(a.b.get());assert.equal(a.b.offline(),null);assert.deepEqual(a.b.get(),after);
 });
-console.log(JSON.stringify({status:'pass',cases:records.length,records},null,2));
+console.log(JSON.stringify({status:'pass',cases:records.length,records,autoAscendChallenges:require('./auto-ascend-challenges.cjs').verify(html,true)},null,2));

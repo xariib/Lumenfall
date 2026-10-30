@@ -67,7 +67,8 @@ async function run(){
     const geometry=await evaluate(`(()=>{const hp=document.querySelector('.hp-wrap').getBoundingClientRect(),trail=document.querySelector('.comet-trail').getBoundingClientRect(),crest=document.querySelector('.comet-crest'),r=crest.getBoundingClientRect(),stage=document.querySelector('#enemy-stage');return {hpClear:trail.bottom<=hp.top&&r.bottom<=hp.top,trailPointer:getComputedStyle(document.querySelector('.comet-trail')).pointerEvents,crest:crest.textContent,crestVisible:r.width===32&&r.height===32&&getComputedStyle(crest).display==='block',tapHit:stage.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)),button:stage.tagName};})()`);
     assert(geometry.hpClear&&geometry.trailPointer==='none'&&geometry.crest.includes('✦')&&geometry.crestVisible&&geometry.tapHit&&geometry.button==='BUTTON','cosmetics visible and preserve HP/tap geometry '+JSON.stringify(geometry));
     await screenshot(`comet-rift-${width}-${textScale}-${motion}`);
-    records.push({width,textScale,motion,controls,focus,pendingTrial,cosmetic,geometry,visible});await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);
+    const ritual=await require('./auto-ascend-challenges-ui.cjs')({evaluate,send,assert,screenshot,touch,width,textScale,motion});
+    records.push({width,textScale,motion,controls,focus,pendingTrial,cosmetic,geometry,visible,ritual});await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);
   }
   return {status:'pass',scenario,records};
 }
