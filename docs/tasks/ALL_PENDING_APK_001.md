@@ -1,8 +1,14 @@
 # ALL_PENDING_APK_001 — deliver the pending game improvements
 
-Status: integrated; required CI PASS; signed APK0.2.56 built and verified.
-Public release and physical-device acceptance remain open; do not archive.
+Status: integrated; required CI PASS; signed Android0.2.58 publicly released.
+Physical phone/WebView60/TalkBack/human pacing acceptance remain open; do not archive.
 Owner: current APK delivery chat; no delegation.
+
+Public release completed through user-approved GitHub CLI sign-in as xariib.
+Official CLI2.103.3 archive digest verified; expiring OAuth stored in Windows
+keyring. Browser-service denial remained; CLI supplied all workflow dispatches.
+Main held at 532c87e57193024f2bc10af70f2a8d0638c7fc37 through six validations
+and the publishing build. Final documentation checkpoint changes no product bytes.
 
 30 October 2026 user request: “Now we need to make an apk with all the new
 things that is not implemented yet”. Integrate recent accepted feature work,
@@ -102,29 +108,60 @@ source commit, checksum and identity evidence. Copied the same7071687-byte APK
 to ../builds/Lumenfall-0.2.56.apk and rechecked its SHA256. Local raw evidence:
 validation-evidence/all-pending/android-41026419246. APK binary is not committed.
 
-This is a verified signed APK artifact, not a new public GitHub release.
-Publish step was intentionally skipped. Latest public release remains0.2.55.
+The0.2.56 artifact run intentionally skipped publication. The later public
+release and its verification are recorded below.
 
 ## Access history and remaining acceptance
 
-GitHub connector has no workflow-dispatch action; native gh/JDK/Android SDK and
-normal Git push credentials unavailable. Browser service repeatedly reported
+At initial delivery the connector lacked dispatch; native gh/JDK/Android SDK
+and normal Git push credentials were unavailable. CLI access is now established.
+Browser service repeatedly reported
 “Local browser use is disabled in Work settings”. User authorized activation;
 actual Windows settings showed global Browser On and Local browser use On.
 Reapplied On and one Off→On refresh; fresh runtime still denied access.
 No other permission/settings were changed. Background process showed full
 restart had not occurred; full Quit/relaunch was suggested. This observed
-settings/service mismatch does not block the delivered artifact now that the
-user manually dispatched the unchanged publish=false workflow.
+settings/service mismatch did not block artifact delivery through the user's
+manual publish=false dispatch. CLI access subsequently enabled public release.
 
-Next for public publication: run six existing workflow_dispatch validations on
-one exact main head (scripts/ci/release-ci-gate.cjs): pre-merge-validation.yml,
-comet-expansion-validation.yml, forge-expansion-validation.yml,
-lab-expansion-validation.yml, shared-ui-validation.yml and tree-focused-qa.yml.
-After all succeed, dispatch build-android.yml at that same head with publish=true.
-Require signing/identity/assets/installed upgrade and exact-APK receipt; download
-public bytes and verify before recording a public release. No publication gate
-was bypassed. Keep physical phone/WebView60/TalkBack/human pacing explicit.
+## Public release 0.2.58 — 30 October
+
+User explicitly requested GitHub release publication. All six required exact-main
+workflow_dispatch validations PASS on 532c87e57193024f2bc10af70f2a8d0638c7fc37:
+
+- [pre-merge-validation.yml](https://github.com/xariib/Lumenfall/actions/runs/41039110525)
+- [comet-expansion-validation.yml](https://github.com/xariib/Lumenfall/actions/runs/41039122886)
+- [forge-expansion-validation.yml](https://github.com/xariib/Lumenfall/actions/runs/41039134486)
+- [lab-expansion-validation.yml](https://github.com/xariib/Lumenfall/actions/runs/41039147477)
+- [shared-ui-validation.yml](https://github.com/xariib/Lumenfall/actions/runs/41039159876)
+- [tree-focused-qa.yml](https://github.com/xariib/Lumenfall/actions/runs/41039171984)
+
+First main attempt failed only enemy-normal-reload (188/189 PASS). The observed
+HP deficit matches35.9ms of live startup passive damage; production fixed-clock
+load/save/reload preserved exactly0.25. The original failed job was retried once
+without changing source, tolerances or assertions. Final required CI is the
+complete passing retry; failed-attempt evidence remains in the release receipt.
+
+All eight jobs PASS; complete main log verifies189 distinct scenarios, isolated
+offline1 and smoke PASS. The unchanged release gate passed locally and in CI.
+[Publishing build](https://github.com/xariib/Lumenfall/actions/runs/41055163396),
+job124060751101: SUCCESS, including original signing, identity/assets,
+installed emulator upgrade, exact-APK receipt and publication. Publish was true.
+
+[Public release](https://github.com/xariib/Lumenfall/releases/tag/android-1000058),
+[APK](https://github.com/xariib/Lumenfall/releases/download/android-1000058/Lumenfall.apk), version0.2.58/code1000058.
+APK SHA256: d0ff4f996c7fb6263b4f0ae55b4f89214be91abb87b04e52f2cce1ef40963c64.
+Anonymous versioned and stable-latest downloads return identical verified bytes.
+All six public assets match GitHub digests; package/origin,15 production assets,
+original certificate extracted from actual downloaded APK and exact-APK installed
+upgrade receipt PASS. Both saves, paid progression/legacy purchases and UID retained.
+Copied public APK to ../builds/Lumenfall-0.2.58.apk.
+[Durable public-release receipt](../qa/all-pending-apk-001/release.json).
+
+No gameplay, tests, CI gates or signing identity changed during publication.
+The automated upgrade used Android12/API31/WebView91; physicalDevice=false.
+Next: retain physical phone, exact WebView60, TalkBack and human pacing checks
+as pending. Public publication is complete; no further workflow start is needed.
 
 References: [recap](OFFLINE_RECAP_CLARITY_001.md),
 [Lab](LAB_SLOT_CHALLENGES_001.md),

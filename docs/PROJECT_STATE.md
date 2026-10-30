@@ -1,8 +1,8 @@
 # Lumenfall — current delivery status
 
-30 October: [Combined update/PR27](tasks/ALL_PENDING_APK_001.md): signed APK0.2.56
-and installed upgrade PASS; seven gates/190 scenarios PASS. Public release pending.
-[Build evidence](qa/all-pending-apk-001/apk-0.2.56.json).
+30 October: [Combined update/PR27](tasks/ALL_PENDING_APK_001.md): Android0.2.58 released.
+Required CI,190 scenarios, signed upgrade and public bytes PASS.
+[Release receipt](qa/all-pending-apk-001/release.json).
 
 29 October: [Workshop audit/PR21](tasks/FULL_GAME_WORKSHOP_AUDIT_001.md),
 [Android0.2.55](https://github.com/xariib/Lumenfall/releases/tag/android-1000055),
