@@ -36,7 +36,7 @@ function checks(html=source){const a=app(html),b=a.b,records=[];function test(na
  });
  test('Kindling shared manual/Auto-Tap exact 25%, no passive or ability increase',()=>{
   const s=seed(b,['ember','tide']);s.enemyHp=s.enemyMaxHp=1e7;s.achieved.autotap=true;b.set(s);
-  const ember=b.spirits[0],raw=(5+b.power(ember,40)*.02+b.power(b.spirits[1],40)*.02);
+  const ember=b.spirits[0],raw=(20+b.power(ember,40)*.02+b.power(b.spirits[1],40)*.02);
   near(b.tap(101,1),raw*1.25,'tap');near(b.tap(101,1.5),raw*1.5*1.25,'support stacks');
   const before=b.get().enemyHp;b.manual();near(before-b.get().enemyHp,raw*1.25,'manual hit');
   b.set(s);const start=b.get().enemyHp;b.advance(1,'live',2000000000000);

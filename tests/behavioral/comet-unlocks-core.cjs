@@ -38,13 +38,32 @@ function app(seed){
     drain(){let batches=0;while(queue.length){queue.shift().fn();assert(++batches<100000,'bounded work');}}};
 }
 function test(name,fn){fn();records.push(name);}
-function parity(actual,expected,label='state'){
+function parity(actual,expected,label='state',actualState=actual,expectedState=expected){
+  if(label==='state.canonicalAutomationClock'){
+    // Whole and split windows can choose different exact-clock activation
+    // points. Validate each optional saved basis and compare its physical phase
+    // with the same tolerance as the underlying automation accumulators.
+    const fields=['_autoEmpowerAccum','_autoTapAccum'];
+    for(const [clock,state] of [[actual,actualState],[expected,expectedState]]){
+      assert(Object.keys(clock).every(key=>fields.includes(key)),label+' known timers');
+      for(const field of Object.keys(clock)){
+        const basis=clock[field];
+        assert.deepEqual(Object.keys(basis).sort(),['base','elapsed','last'],label+' basis shape');
+        assert(Number.isFinite(basis.base)&&basis.base>=0&&basis.base<=1000,label+' base');
+        assert(Number.isFinite(Number(basis.elapsed))&&Number(basis.elapsed)>=0,label+' elapsed');
+        assert.equal(basis.last,state[field],label+' saved phase');
+        assert.equal(basis.base+Number(basis.elapsed)*1000,basis.last,label+' represented phase');
+      }
+    }
+    for(const field of fields)parity(actualState[field],expectedState[field],label+'.'+field);
+    return;
+  }
   if(typeof actual==='number' && typeof expected==='number'){
     assert(Math.abs(actual-expected)<=Math.max(1e-6,Math.max(Math.abs(actual),Math.abs(expected))*1e-12),label);return;
   }
   if(actual && typeof actual==='object'){
     assert.deepEqual(Object.keys(actual).sort(),Object.keys(expected).sort(),label+' keys');
-    for(const key of Object.keys(actual))parity(actual[key],expected[key],label+'.'+key);return;
+    for(const key of Object.keys(actual))parity(actual[key],expected[key],label+'.'+key,actualState,expectedState);return;
   }
   assert.equal(actual,expected,label);
 }
@@ -171,6 +190,24 @@ test('Auto-Tap/live/offline and whole/split preserve Trial chronology',()=>{
   assert.deepEqual(live.b.get().cometTrialMarks,whole.b.get().cometTrialMarks);assert.deepEqual(whole.b.get().cometTrialMarks,{quiet:true});
   for(const key of ['lumen','shards','prisms','motes','comets','sigils','ascendCount','totalKills'])assert.equal(whole.b.get()[key],plain.b.get()[key],key+' unchanged');
   assert(summary.autoTaps>0&&summary.ascends>1,'real automation exercised');
+  const savedWhole=copy(whole.b.get()),savedSplit=copy(split.b.get());
+  const resumedWhole=app(savedWhole),resumedSplit=app(savedSplit);
+  assert.deepEqual(resumedWhole.b.get(),savedWhole,'whole saved basis survives cold load exactly');
+  assert.deepEqual(resumedSplit.b.get(),savedSplit,'split saved basis survives cold load exactly');
+  let elapsed=0;
+  for(const seconds of [0.616,0.002,1.382]){
+    const next={...options,clockStartMs:seed.lastSeen+(60+elapsed)*1000};
+    whole.b.advance(seconds,next);split.b.advance(seconds,next);
+    resumedWhole.b.advance(seconds,next);resumedSplit.b.advance(seconds,next);
+    parity(whole.b.get(),split.b.get());
+    parity(resumedWhole.b.get(),whole.b.get());parity(resumedSplit.b.get(),split.b.get());
+    elapsed+=seconds;
+  }
+  assert(whole.b.get().totalTaps>savedWhole.totalTaps,'resumed interval executes real Auto-Taps across Ascend resets');
+  const corrupt=copy(savedWhole);corrupt.canonicalAutomationClock._autoTapAccum.last+=1;
+  assert.throws(()=>parity(corrupt,savedWhole),/saved phase/,'reject corrupt saved basis');
+  const drift=copy(savedSplit);drift.canonicalAutomationClock={};drift._autoTapAccum+=0.01;
+  assert.throws(()=>parity(drift,savedSplit),/canonicalAutomationClock|_autoTapAccum/,'reject real timer drift');
 });
 test('offline atomic failure/retry cannot award partial completion marks',()=>{
   const seed=JSON.parse(fs.readFileSync(path.join(root,'docs/qa/offline-autoascend-2026-10-07/device_backup.json'),'utf8'));
@@ -180,4 +217,4 @@ test('offline atomic failure/retry cannot award partial completion marks',()=>{
   a.fail(false);a.b.offline((result,e)=>error=e);a.drain();assert.ifError(error);assert.deepEqual(a.b.get().cometTrialMarks,{quiet:true});
   const after=copy(a.b.get());assert.equal(a.b.offline(),null);assert.deepEqual(a.b.get(),after);
 });
-console.log(JSON.stringify({status:'pass',cases:records.length,records,autoAscendChallenges:require('./auto-ascend-challenges.cjs').verify(html,true)},null,2));
+console.log(JSON.stringify({status:'pass',cases:records.length,records,controls:['corrupt-saved-basis','timer-phase-drift'],sourceSha256:require('node:crypto').createHash('sha256').update(html).digest('hex'),autoAscendChallenges:require('./auto-ascend-challenges.cjs').verify(html,true)},null,2));

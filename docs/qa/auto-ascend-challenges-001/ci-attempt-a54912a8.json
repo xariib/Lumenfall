@@ -1,0 +1,852 @@
+{
+  "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+  "base": "41566c97020036934c9529b396420e910b41cb5f",
+  "sourceSha256": "c2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d",
+  "run": 41126703259,
+  "job": 124306975771,
+  "passed": 188,
+  "total": 189,
+  "failed": [
+    {
+      "case": "enemy-normal-reload",
+      "message": "damaged normal enemy HP ratio must be restored (expected 0.25, got 0.24947498666666268)"
+    }
+  ],
+  "outcomes": {
+    "formation-best-now-core": "PASS",
+    "formation-best-now": "PASS",
+    "lab-speed-controls": "PASS",
+    "lab-timed-boosts": "PASS",
+    "formation-collapse": "PASS",
+    "wisp-rarity-scroll": "PASS",
+    "wisp-card-simplicity": "PASS",
+    "lab-affordable-alert": "PASS",
+    "resonate-clarity": "PASS",
+    "upgrade-identity-contracts": "PASS",
+    "upgrade-identity-chronology": "PASS",
+    "upgrade-identity-farm-clock": "PASS",
+    "upgrade-identity-save-reload": "PASS",
+    "upgrade-identity-backup-restore": "PASS",
+    "upgrade-identity-recovery": "PASS",
+    "upgrade-identity-ui": "PASS",
+    "upgrade-identity-reduced-motion": "PASS",
+    "wisp-upgrade-display": "PASS",
+    "comet-unlocks-core": "PASS",
+    "comet-unlocks-mobile": "PASS",
+    "comet-unlocks-reduced-motion": "PASS",
+    "lab-motes-offline-integration": "PASS",
+    "lab-motes-numerical": "PASS",
+    "lab-motes-runtime": "PASS",
+    "lab-motes-conservation": "PASS",
+    "lab-motes-contracts": "PASS",
+    "lab-motes-chronology": "PASS",
+    "lab-motes-ui": "PASS",
+    "lab-motes-native": "PASS",
+    "lab-motes-reduced-motion": "PASS",
+    "lab-motes-save-reload": "PASS",
+    "lab-motes-backup-restore": "PASS",
+    "lab-motes-recovery": "PASS",
+    "lab-motes-reset": "PASS",
+    "save-backup-ui": "PASS",
+    "offline-12h-core": "PASS",
+    "offline-12h-ui": "PASS",
+    "offline-catchup-ui": "PASS",
+    "offline-catchup-legacy-dom": "PASS",
+    "nav-workshop-contract": "PASS",
+    "inquiry-contracts": "PASS",
+    "inquiry-chronology": "PASS",
+    "inquiry-ui": "PASS",
+    "inquiry-ui-reduced-motion": "PASS",
+    "inquiry-save-reload": "PASS",
+    "inquiry-backup-restore": "PASS",
+    "inquiry-recovery": "PASS",
+    "inquiry-reset": "PASS",
+    "raw-process-contract:": "PASS",
+    "support-stacking": "PASS",
+    "auto-ascend-target-contract": "PASS",
+    "auto-ascend-target-legacy16": "PASS",
+    "auto-ascend-target-legacy44": "PASS",
+    "auto-ascend-target-legacy56": "PASS",
+    "auto-ascend-target-legacy130": "PASS",
+    "auto-ascend-target-recovery": "PASS",
+    "auto-ascend-target-resume": "PASS",
+    "auto-ascend-target-reset": "PASS",
+    "auto-ascend-target-manual-reload": "PASS",
+    "auto-ascend-target-cold-resume": "PASS",
+    "auto-ascend-target-mobile": "PASS",
+    "auto-ascend-target-reduced-motion": "PASS",
+    "rift-status-stacking-mobile": "PASS",
+    "rift-status-stacking-reduced-motion": "PASS",
+    "support-save-reload": "PASS",
+    "support-backup-restore": "PASS",
+    "support-recovery": "PASS",
+    "support-resume": "PASS",
+    "support-recovery-resume": "PASS",
+    "support-visibility-resume": "PASS",
+    "support-reset": "PASS",
+    "upgrade-effects-and-deeds": "PASS",
+    "tree-purchase-contract": "PASS",
+    "tree-purchase-ui": "PASS",
+    "tree-purchase-ui-reduced-motion": "PASS",
+    "rift-status-contract": "PASS",
+    "bond-text-contract": "PASS",
+    "rift-status-mobile": "PASS",
+    "rift-guidance-mobile": "PASS",
+    "rift-status-reduced-motion": "PASS",
+    "forge-ui-process-contract": "PASS",
+    "forge-ui-mobile": "PASS",
+    "forge-ui-reduced-motion": "PASS",
+    "buff-timing": "PASS",
+    "buff-save-reload": "PASS",
+    "forge-contracts": "PASS",
+    "forge-effects": "PASS",
+    "forge-chronology": "PASS",
+    "forge-save-reload": "PASS",
+    "loadout-memory-core": "PASS",
+    "loadout-memory-mobile": "PASS",
+    "forge-backup-restore": "PASS",
+    "forge-recovery": "PASS",
+    "forge-baseline": "PASS",
+    "forge-balance": "PASS",
+    "r3-destinations": "PASS",
+    "r3-save-reload": "PASS",
+    "research-duration": "PASS",
+    "research-duration-reduced-motion": "PASS",
+    "p2-07a-persistence-review": "PASS",
+    "p2-07a-persist-save-reload": "PASS",
+    "p2-07a-persist-backup-restore": "PASS",
+    "p2-07a-persist-recovery": "PASS",
+    "p2-07a-persist-reset": "PASS",
+    "p2-07a-formation-reconstruction": "PASS",
+    "p2-07a-save-reload": "PASS",
+    "p2-07a-backup-restore": "PASS",
+    "p2-07a-recovery": "PASS",
+    "p2-07a-chronology": "PASS",
+    "layout-p2-07a-reconstruction": "PASS",
+    "p2-06b-live-feedback": "PASS",
+    "p2-06b-reduced-motion": "PASS",
+    "layout-fresh": "PASS",
+    "layout-dense": "PASS",
+    "layout-boss": "PASS",
+    "layout-accessibility-states": "PASS",
+    "p1-05-accessibility-baseline": "PASS",
+    "p1-05-accessibility-contract": "PASS",
+    "p1-05-control-regressions": "PASS",
+    "p1-05-reduced-motion": "PASS",
+    "fresh-load": "PASS",
+    "midgame-load": "PASS",
+    "mature-load": "PASS",
+    "legacy-load": "PASS",
+    "corrupted-load": "PASS",
+    "malformed-daily-load": "PASS",
+    "farm-load": "PASS",
+    "farm-roundtrip": "PASS",
+    "enemy-normal-reload": "FAIL",
+    "enemy-boss-reload": "PASS",
+    "active-studies-load": "PASS",
+    "auto-ascend-load": "PASS",
+    "reset-roundtrip": "PASS",
+    "restore-roundtrip": "PASS",
+    "malformed-backup-rejection": "PASS",
+    "recovery-from-corrupt-primary": "PASS",
+    "unsupported-future-load": "PASS",
+    "legacy-backup-restore": "PASS",
+    "future-backup-rejection": "PASS",
+    "recovery-offline-once": "PASS",
+    "save-failure-warning": "PASS",
+    "parity-short": "PASS",
+    "parity-medium-farm": "PASS",
+    "p2-07a-farm-retention": "PASS",
+    "p2-07a-timer-boundary": "PASS",
+    "parity-long-high-power": "PASS",
+    "parity-boss-short": "PASS",
+    "parity-boss-retry": "PASS",
+    "parity-auto-ascend": "PASS",
+    "chronology-research-mid-window": "PASS",
+    "chronology-study-mid-window": "PASS",
+    "chronology-auto-empower-mid-window": "PASS",
+    "chronology-auto-ascend-mid-window": "PASS",
+    "chronology-boss-retry": "PASS",
+    "chronology-simultaneous-order": "PASS",
+    "lifecycle-background-resume": "PASS",
+    "lifecycle-repeated-resume": "PASS",
+    "lifecycle-cold-restart": "PASS",
+    "lifecycle-partial-enemy": "PASS",
+    "lifecycle-boss-background-short": "PASS",
+    "lifecycle-boss-retry": "PASS",
+    "lifecycle-auto-ascend": "PASS",
+    "p2-ascend-integrity": "PASS",
+    "p2-03b-auto-ascend-integrity": "PASS",
+    "p2-wisp-progression-pacing": "PASS",
+    "p2-endgame-currency-utility": "PASS",
+    "p2-03a-wisp-role-integrity": "PASS",
+    "p2-03a-wisp-role-integrity-mature": "PASS",
+    "p2-03a-wisp-role-integrity-endgame": "PASS",
+    "p2-02a-core-qol": "PASS",
+    "p2-02b-wisp-hierarchy": "PASS",
+    "p2-02b-lab-hierarchy": "PASS",
+    "lifecycle-long-study": "PASS",
+    "lifecycle-lab-queue": "PASS",
+    "lifecycle-daily-rollover": "PASS",
+    "wisp-formula-contract": "PASS",
+    "formation-bonds-core": "PASS",
+    "formation-bonds-mobile": "PASS",
+    "auto-ascend-target-backup-restore": "PASS",
+    "formation-autosave-contract": "PASS",
+    "formation-autosave-native": "PASS",
+    "formation-autosave-reduced-motion": "PASS",
+    "formation-autosave-save-reload": "PASS",
+    "formation-autosave-backup-restore": "PASS",
+    "formation-autosave-recovery": "PASS",
+    "ascend-prisms-contract": "PASS",
+    "ascend-prisms-save-reload": "PASS",
+    "ascend-prisms-backup-restore": "PASS",
+    "ascend-prisms-recovery": "PASS"
+  },
+  "focusedWorkflows": [
+    {
+      "id": 41126703324,
+      "name": "Research Lab expansion validation",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41126703324",
+      "event": "pull_request",
+      "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+      "tree": "ec885729560dc4f29bb5d1743eca3cb3d54db0fa",
+      "conclusion": "success",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124306975962,
+          "name": "lab",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703324,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Complete-game Lab effects purchases save and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Actual mobile touch keyboard seven-slot persistence and currency colors",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Execute full product on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Preserve full source-bound evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        },
+        {
+          "id": 124306976288,
+          "name": "timed-slot-speed",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703324,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Actual browser slot speed and focus regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41126703334,
+      "name": "Comet shop and Deeds validation",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41126703334",
+      "event": "pull_request",
+      "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+      "tree": "ec885729560dc4f29bb5d1743eca3cb3d54db0fa",
+      "conclusion": "success",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124306976170,
+          "name": "comet",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703334,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Exact source identity and Comet task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Actual purchases commands save recovery and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Independent exact Meteor and bounded credit arithmetic",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Actual defeat recharge offline chronology and Auto-Ascend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Twelve browser profiles with real input and causal failures",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Exact protected-save warning reversion after the complete positive browser lane",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Complete actual Comet execution on V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Preserve complete source-bound Comet evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41126703429,
+      "name": "Shared UI layout validation",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41126703429",
+      "event": "pull_request",
+      "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+      "tree": "ec885729560dc4f29bb5d1743eca3cb3d54db0fa",
+      "conclusion": "success",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124306976673,
+          "name": "shared-ui",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703429,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Exact source, task context and original standalone gate receipts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Twelve native browser profiles and three causal CSS controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Visual review, enlarged text and Lab heading regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Preserve original source, process receipts, geometry and screenshots",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41126703234,
+      "name": "Permanent progression and direct cards validation",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41126703234",
+      "event": "pull_request",
+      "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+      "tree": "ec885729560dc4f29bb5d1743eca3cb3d54db0fa",
+      "conclusion": "success",
+      "attempt": 2,
+      "jobs": [
+        {
+          "id": 124308301979,
+          "name": "focused",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703234,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Source and task",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Purchases refunds Farm and chronology",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Native browser input across 18 profiles",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Preserve mobile evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41126703326,
+      "name": "Ascension Tree focused validation",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41126703326",
+      "event": "pull_request",
+      "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+      "tree": "ec885729560dc4f29bb5d1743eca3cb3d54db0fa",
+      "conclusion": "success",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124306976340,
+          "name": "tree",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703326,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Tree prices real effects purchases saves and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Tree offline chronology and Auto-Ascend preservation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Tree independent investment and earned-benefit economy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Swift actual purchase ROI and independent Prism matrix",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Actual browser Prism payouts persistence and causal failures",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Actual Tree mobile input focus prices and all tracks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Prism mobile payout and Auto-Ascend UI acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Complete Tree and Prism execution on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Preserve exact candidate evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41126703361,
+      "name": "Rift Forge expansion validation",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41126703361",
+      "event": "pull_request",
+      "head": "a54912a8db5ae67dfb0a121ba4a67607017a1608",
+      "tree": "ec885729560dc4f29bb5d1743eca3cb3d54db0fa",
+      "conclusion": "success",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124306976300,
+          "name": "forge",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41126703361,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Exact prices real effects transactions Ascends and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Long-term workshop investments and three-day farming budgets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Authoritative charge calibration and conservative boss bounds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Eight-hour Auto-Ascend capped windows and frozen offline oracle",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Actual mobile prices input focus and twenty-card acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Complete product on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Preserve complete source-bound evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "transientBrowserStartupRetry": {
+    "run": 41126703234,
+    "job": 124306975292,
+    "sourceSha256": "c2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d",
+    "checks": 0,
+    "error": "Error: CDP deadline Browser.getVersion\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:19:146)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)",
+    "stderr": "[2447:2472:1030/205405.898346:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2447:2472:1030/205408.169991:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2447:2472:1030/205408.170023:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2447:2472:1030/205408.659951:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2447:2472:1030/205409.431164:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n"
+  },
+  "newChallengeAndBothNativeTargetModesPassed": true,
+  "supersededByIntegrationBase": "1f316cc5ece42badac9fb53c851feaad18335ba9"
+}

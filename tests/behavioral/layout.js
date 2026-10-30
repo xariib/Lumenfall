@@ -99,9 +99,11 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     // Freeze ambient ticks while allowing actual input/save transactions, as
     // the existing paid Lab input fixtures do.
     bridge.labMotes.input(function(){q('#rift-farm-btn').click();});
-    assert(getComputedStyle(q('#farm-picker-overlay')).display!=='none','Farm opens the Rift selection dialog');
-    bridge.labMotes.input(function(){q('#farm-picker-confirm').click();});
-    assert(getComputedStyle(q('#farm-picker-overlay')).display==='none','Confirmed farming Rift closes the dialog');
+    assert(!q('#farm-picker-overlay'),'Farm enters directly without a selection dialog');
+    ['#rift-back-ten','#rift-back-one','#rift-forward-one'].forEach(function(selector){
+      var r=q(selector).getBoundingClientRect();
+      assert(r.width>=44&&r.height>=44,'direct Rift navigation has a 44px touch target: '+selector);
+    });
     check('farm');
     bridge.labMotes.input(function(){q('#rift-push-btn').click();});check('push');
     assert(bridge.getState().depth===initial.depth,'Push depth restored after Farm');

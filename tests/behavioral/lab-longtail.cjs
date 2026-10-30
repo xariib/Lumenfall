@@ -57,7 +57,7 @@ function verify(html){
  for(const [damage,chance,critical]of [[1,0,0],[0,1,0],[0,0,1],[20,40,50],[100,100,100],[101,101,101]]){
   const s=clone(combat);Object.assign(s.longStudyLevels,{wispdamage:damage,wispcritchance:chance,wispcritdamage:critical});q.set(s);
   const factor=(1+Math.min(damage,100)*.02)*(1+Math.min(chance,100)*.005*(1+Math.min(critical,100)*.02)),after=snapshot();
-  near(after.passive,before.passive*factor,'passive damage factor');near(after.tap,(5+before.passive*.02*factor)*before.tap/(5+before.passive*.02),'Wisp part of tap only');
+  near(after.passive,before.passive*factor,'passive damage factor');near(after.tap,(20+before.passive*.02*factor)*before.tap/(20+before.passive*.02),'Wisp part of tap only');
   eq(after.own,before.own,'damage research leaves own Power unchanged');eq(after.support,before.support,'damage research leaves Support unchanged');
   after.burst.forEach((v,i)=>near(v,before.burst[i]*factor,'damage ability factor '+i));eq(after.rewards,before.rewards,'critical research never multiplies currency payouts');
  }

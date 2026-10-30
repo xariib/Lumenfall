@@ -358,7 +358,7 @@ const samePaidWork=runAsync(beyond,12*3600);assert.equal(long.result.kills,sameP
 // inputs. Freeze only those inputs on this explicitly historical comparison;
 // all actual-current long/whole/split, transaction and cap checks remain above.
 // The original archived HTML is still byte-checked and never edited.
-const legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration']);
+const legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration','guardianTapBaseDamage']);
 const legacyBondAnchor=legacyBalanceSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
 assert(legacyBondAnchor,'legacy Bond control function');
 assert.equal(legacyBalanceSource.split(legacyBondAnchor[0]).length,2,'one legacy Bond control anchor');

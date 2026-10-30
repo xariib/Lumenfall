@@ -135,7 +135,8 @@ async function run(){
    await touch('[data-tab="workshop"]');await evaluate('document.querySelector("[data-tab=forge]").focus({preventScroll:true})');await key('ArrowRight');assert(await evaluate('document.activeElement.dataset.tab')==='research','native keyboard focuses Lab');await key('Home');assert(await evaluate('document.activeElement.dataset.tab')==='forge','Workshop Home returns Forge');await evaluate('document.querySelector("[data-tab=workshop]").focus({preventScroll:true})');await key('ArrowRight');assert(await evaluate('document.activeElement.dataset.tab')==='battle','native main ArrowRight returns Rift');
    assert(await evaluate('!document.querySelector("#rift-details-btn")&&!document.querySelector("#rift-details")'),'Details absent');
    const order=await evaluate(`[...document.querySelectorAll('#tab-battle button:not(:disabled),#tab-battle [tabindex="0"]')].filter(x=>x.getClientRects().length&&x.getBoundingClientRect().width>0&&x.getBoundingClientRect().height>0&&getComputedStyle(x).visibility!=='hidden').map(x=>x.id)`);
-   await evaluate('document.querySelector("#rift-push-btn").focus({preventScroll:true})');
+   assert(order.length>0,'Rift has enabled keyboard controls');
+   await evaluate('document.getElementById('+JSON.stringify(order[0])+').focus({preventScroll:true})');
    for(const id of order.slice(1)){await key('Tab');assert(await evaluate('document.activeElement.id')===id,'native Tab reaches '+id);}
    for(const id of order.slice(0,-1).reverse()){await key('Tab',true);assert(await evaluate('document.activeElement.id')===id,'native Shift+Tab reaches '+id);}
    await evaluate('document.querySelector("#enemy-stage").focus({preventScroll:true})');await key('Tab');if(await evaluate('document.activeElement===document.body'))await key('Tab');assert(await evaluate('document.activeElement.id')==='settings-btn','native Tab returns to Settings after document boundary');

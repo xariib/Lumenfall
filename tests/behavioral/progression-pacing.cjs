@@ -102,6 +102,7 @@ for(const id of ['gale','thorn'])for(const depth of [1,32,51,101]){
   }
   for(let i=1;i<parts.length;i++)eq(parts[i],parts[0],'live/offline caller partitions agree on preserved endpoint');
 }
+checks+=require('./rift-navigation.cjs')(file).checks;
 if(process.argv.includes('--negative')){
   const cp=require('node:child_process');for(const id of Object.keys(mutations)){
     const r=cp.spawnSync(process.execPath,[__filename,file],{encoding:'utf8',env:{...process.env,PACING_MUTANT:id},timeout:120000});

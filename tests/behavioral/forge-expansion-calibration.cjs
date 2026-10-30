@@ -64,9 +64,12 @@ function observe(a, seconds, startMs, checks) {
     if (event.type === 'tap') result.taps += event.count;
     if (event.type === 'damage') result.discreteDamage += event.amount;
     if (event.type === 'interval') {
-      result.seconds += event.seconds;
-      result.passiveDamage += event.dps * event.seconds;
-      result.supportSeconds += event.dps / event.baseDps * event.seconds;
+      // Exact-clock intervals may use the Amount decimal-string representation.
+      const elapsed = Number(event.seconds);
+      assert(Number.isFinite(elapsed) && elapsed >= 0, 'finite observed physical interval');
+      result.seconds += elapsed;
+      result.passiveDamage += event.dps * elapsed;
+      result.supportSeconds += event.dps / event.baseDps * elapsed;
       assert.equal(event.depth, before.depth, 'fixed world retains its encounter');
     }
   });

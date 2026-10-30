@@ -1547,7 +1547,7 @@
           parityApprox(emberBase.wispPower,10.9,'Ember Wisp Power level curve');
           parityApprox(emberBase.passiveDps,emberBase.wispPower,'base passive Wisp damage');
           parityApprox(emberBase.abilityDamage,emberBase.wispPower*5,'base DPS ability damage');
-          parityApprox(emberBase.guardianTap,5+emberBase.effectivePartyPower*0.02,'Guardian Tap Wisp-power contribution');
+          parityApprox(emberBase.guardianTap,20+emberBase.effectivePartyPower*0.02,'Guardian Tap Wisp-power contribution');
 
           var rarityState = cloneJson(formulaBase);
           rarityState.heroRarity.ember = 1;
@@ -1690,7 +1690,7 @@
           var tapNormal = formulaSnapshotFor(tapState,'ember',10,1);
           parityApprox(
             tapNormal.guardianTap,
-            (5+tapNormal.effectivePartyPower*0.02)*1.08*1.10*1.20,
+            (20+tapNormal.effectivePartyPower*0.02)*1.08*1.10*1.20,
             'Guardian Tap specific upgrade stack'
           );
           var tapSupport = formulaSnapshotFor(tapState,'ember',10,1.25);
