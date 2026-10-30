@@ -67,7 +67,9 @@ window.runUpgradeIdentityQa=async function(b,ctx,assert,parity,summaryParity){
     ok(f.deeds().total===683,'original one-time Comet reward pool remains683');
     same(f.deeds().originalItems.map(function(a){return [a.id,a.reward];}),[['d10',5],['d25',10],['d50',20],['d100',50],['d250',100],['tap100',3],['tap1000',8],['tap10000',20],['fullparty',12],['asc1',10],['asc5',25],['asc10',50],['all',30],['mythic',40],['idle8',15],['autotap',25],['labmaster',30],['study1',15],['study25',50],['allstudies',35],['labqueue',40],['firstultimate',45],['modulemax',45]],'every original Deed identity and reward remains exact');
     ok(t.nodes().filter(function(n){return !n.retiredTo;}).length===23,'twenty-three independently purchasable Lab tracks');
-    ok(f.nodes().filter(function(n){return !n.retiredTo&&n.id!=='masterwork';}).length===20,'twenty retained independently purchasable Forge tracks');
+    var enhancements=['battletempering','arcanetempering','harvesttempering'];
+    ok(f.nodes().filter(function(n){return !n.retiredTo&&n.id!=='masterwork'&&enhancements.indexOf(n.id)===-1;}).length===20,'twenty retained independently purchasable Forge tracks');
+    same(f.nodes().filter(function(n){return enhancements.indexOf(n.id)!==-1&&!n.retiredTo;}).map(function(n){return n.id;}),enhancements,'three additive independently purchasable Forge enhancements');
     ok(f.nodes().filter(function(n){return n.id==='masterwork'&&!n.retiredTo;}).length===1,'one new repeatable Masterwork track');
     ok(u.nodes().filter(function(n){return !n.retiredTo&&!n.retired;}).length===20,'twenty independently purchasable Tree tracks');
     return {checks:checks,closedTracks:10,activeTracks:61,exactOldFactors:true,currenciesUnchanged:true,idempotent:true,freshDeeds:true};

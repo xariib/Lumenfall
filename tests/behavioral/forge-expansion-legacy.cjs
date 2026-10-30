@@ -38,8 +38,8 @@ var specs=[
 ];
 var ids=specs.map(function(d){return d[0];}),old=['focus','sense','formation','resolve','charge','arcanecal','conduction','luminoustracking'];
 var initial=app(),q=initial.q;
-eq(q.defs().map(function(n){return n.id;}),old.concat(['masterwork'],ids),'eight retained IDs, Masterwork and sixteen approved IDs');
-eq(q.defs().filter(function(n){return !n.retiredTo;}).length,21,'twenty-one active Forge tracks');
+eq(q.defs().map(function(n){return n.id;}),old.concat(['masterwork'],ids,['battletempering','arcanetempering','harvesttempering']),'original catalogue plus three workshop enhancements');
+eq(q.defs().filter(function(n){return !n.retiredTo;}).length,24,'twenty-four active Forge tracks');
 // Independent decimal oracle: the exact IEEE integer represented by 1e30.
 function subtractLarge(price){var digits='1000000000000000019884624838656'.split(''),carry=price;for(var i=digits.length-1;i>=0;i--){var n=Number(digits[i])-carry%10;carry=Math.floor(carry/10);if(n<0){n+=10;carry++;}digits[i]=String(n);}return digits.join('')+'e0';}
 var legacy=seed(q);ids.forEach(function(id){delete legacy.research[id];delete legacy.researchQueue[id];});legacy.labQueueOn=true;delete legacy.researchQueue;
