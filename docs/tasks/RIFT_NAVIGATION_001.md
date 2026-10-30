@@ -41,5 +41,19 @@ layout assertions (all five viewports passed assertions; first two process exits
 failed shutdown). Linux CI remains required. No physical phone, exact WebView60
 or TalkBack acceptance claimed.
 
-Next: publish PR, required CI, integrate without overwriting PR29, Android build.
+[PR30](https://github.com/xariib/Lumenfall/pull/30), initial head500ea828:
+six focused workflows and isolated offline PASS. Full pre-merge run41113142119
+failed its guidance case: on320×640 at200% text the new heading caused a2px
+party/boost overlap. The historical leading-word failure in that gate was an
+expected causal control, initially misread in chat as the cause. Its assertions
+remain unchanged. Remove the4px heading gap only below680px height; the exact
+five-sample case and complete guidance baseline/inverses now PASS locally.
+[Fixed guidance receipt](../qa/rift-navigation-001/guidance-fixed.json).
+Regenerated the independent golden windows again; all four state hashes match.
+
+Android acceptance now also uses actual adb taps for previous/next/−10, clamping
+at Rift1, no popup, manual intent and saved Push return in the existing disposable
+emulator fixture. This test has not yet executed on Android.
+
+Next: final-head CI, integrate without overwriting PR29, Android build/native taps.
 Workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

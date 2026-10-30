@@ -13,3 +13,9 @@ layout assertions but sometimes failed browser shutdown on Windows. Chrome156
 pipe rerun also retained a first-profile shutdown failure alongside passing
 assertions. Preserve these distinctions; no timeout is a passing process check.
 Linux CI and installed Android acceptance remain pending.
+
+Initial Linux pre-merge failed the real candidate at320×640/200% text: party
+bottom456 overlapped boost top454. The baseline's fragmented word was expected.
+guidance-fixed.json and guidance-five-samples.json record PASS after removing
+only the heading gap on short screens. This preserves the original layout gates.
+golden.json, pacing.json and farm.json were regenerated on that corrected source.
