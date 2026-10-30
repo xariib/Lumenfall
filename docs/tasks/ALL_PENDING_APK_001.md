@@ -147,3 +147,16 @@ show the background ChatGPT process started29 October06:46 and remains active;
 a full app restart has not occurred. Actual File menu exposes “Quit ChatGPT”
 (Ctrl+Q); use that complete quit/relaunch before the next retry. Both browser
 settings remain On. No further code changes, tests, APK build or release.
+
+## Direct APK-file fallback
+
+Browser automation remains unavailable on continuation. To deliver the user's
+requested APK file without more browser-toggle loops, the existing build-android
+workflow can run on main with publish=false (the default). This established path
+still restores/verifies the original signing identity, verifies packaged assets,
+performs the installed emulator upgrade and requires the exact-APK receipt before
+uploading its signed-apk artifact. No workflow or publication gate is changed.
+A human must start that workflow once in GitHub; the connected GitHub tools can
+then monitor it and download the artifact. Deliver/verify that signed APK file
+first. Public release remains pending the original six exact-main dispatch gates
+and publish=true acceptance; do not claim a new public release from an artifact.
