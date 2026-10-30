@@ -1,0 +1,174 @@
+{
+  "status": "Integrated CI and signed test APK PASS; physical acceptance open",
+  "verifiedAt": "2026-10-30T15:25:14.974Z",
+  "pr": 28,
+  "url": "https://github.com/xariib/Lumenfall/pull/28",
+  "base": "88fd60b8fe23c01156d172596be741c322520d3e",
+  "head": "bed10314933c6288652761e8d896f32b5b380c08",
+  "testedMerge": "5cbade3a55f9c51eb3f7d00c3afb43d5684c8b88",
+  "integration": "05a52935adb02cdac1153c2348fa580d8feb165c",
+  "testedAndIntegratedTree": "ee733478b1b248f42d0d2443765f6c3a30004415",
+  "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+  "workflows": [
+    {
+      "id": 41071054234,
+      "name": "Pre-merge validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054234"
+    },
+    {
+      "id": 41071054290,
+      "name": "Rift Forge expansion validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054290"
+    },
+    {
+      "id": 41071054222,
+      "name": "Ascension Tree focused validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054222"
+    },
+    {
+      "id": 41071054329,
+      "name": "Comet shop and Deeds validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054329"
+    },
+    {
+      "id": 41071054331,
+      "name": "Shared UI layout validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054331"
+    },
+    {
+      "id": 41071054251,
+      "name": "Permanent progression and direct cards validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054251"
+    },
+    {
+      "id": 41071054260,
+      "name": "Research Lab expansion validation",
+      "head_sha": "bed10314933c6288652761e8d896f32b5b380c08",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41071054260"
+    }
+  ],
+  "jobs": [
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054222/job/124115674808",
+      "name": "tree",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054234/job/124115098738",
+      "name": "Lumenfall pre-merge validation",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054234/job/124115099196",
+      "name": "Lumenfall isolated offline catch-up",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054290/job/124115051512",
+      "name": "forge",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054331/job/124115037730",
+      "name": "shared-ui",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054251/job/124114944091",
+      "name": "focused",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054329/job/124114941705",
+      "name": "comet",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054260/job/124114932617",
+      "name": "timed-slot-speed",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054260/job/124114932859",
+      "name": "lab",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054297/job/124114935274",
+      "name": "prism-feature",
+      "state": "SKIPPED"
+    },
+    {
+      "link": "https://github.com/xariib/Lumenfall/actions/runs/41071054375/job/124114934928",
+      "name": "closeout",
+      "state": "SKIPPED"
+    }
+  ],
+  "behavioral": {
+    "node": "24.19.0",
+    "totalScenarios": 190,
+    "main": 189,
+    "isolatedOffline": 1,
+    "mainLogSha256": "912bbe9d994e68ab3c7660f90fbce7f770e4b14a9a68bc4b6c93cfa312322b2d",
+    "offlineLogSha256": "727f89caf820a6a1756cc541469aaca878459df99182a3653f20d29f593aee01",
+    "sourceBoundTreeArtifact": {
+      "id": 12985551264,
+      "name": "tree-focused-41071054222",
+      "commit": "5cbade3a55f9c51eb3f7d00c3afb43d5684c8b88",
+      "tree": "ee733478b1b248f42d0d2443765f6c3a30004415"
+    },
+    "allMainStepsPassed": 48,
+    "windowsFailuresPassedInLinux": [
+      "offline-12h-core",
+      "wisp-rarity-scroll",
+      "upgrade-identity-contracts"
+    ]
+  },
+  "android": {
+    "receipt": "android.json",
+    "published": false,
+    "versionName": "0.2.59",
+    "versionCode": 1000059,
+    "apkSha256": "6ea99156f10ce2789655ad549b5bbf5191790f1095a38d56afaf0cdb5905ed13",
+    "bytes": 7072859,
+    "all15GameAssetsMatchIntegratedMain": true,
+    "productPathsUnchangedSinceBuild": true
+  },
+  "local": {
+    "fullRun": "local-main.json",
+    "windowsTimingComparison": "local-windows.json",
+    "focused": "focused.json"
+  },
+  "review": "Self-review and automated validation; no independent human review claimed.",
+  "limitations": [
+    "Physical phone, exact WebView60, TalkBack and human pacing unverified.",
+    "Signed test APK; public release remains0.2.58."
+  ]
+}

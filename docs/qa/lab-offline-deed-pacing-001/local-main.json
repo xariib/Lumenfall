@@ -1,0 +1,54 @@
+{
+  "status": "FAIL",
+  "completed": true,
+  "sourceSha256": "3e2b6da487f39007cb1edf1191d33920d977f268f70341efdff6a64e2bfc0630",
+  "testStartCommit": "6f68db2a",
+  "node": "24.19.0",
+  "browser": "Brave Chrome/156.0.8078.74",
+  "transport": "pipe",
+  "group": "main",
+  "selectedScenarios": 189,
+  "passOutputLines": 216,
+  "logBytes": 13743872,
+  "logSha256": "fe9dc0d9f90de5c5e101d899475cf170ff58de1451ee31bb1f02769c22e60083",
+  "failures": [
+    {
+      "scenario": "wisp-rarity-scroll",
+      "evidence": [
+        "  process: { \"exitcode\": null, \"timed_out\": true, \"stderr\": \"\" }",
+        "  detail: { \"status\": \"fail\", \"message\": \"Invalid driver JSON: Unexpected end of JSON input\", \"stdout\": \"\" }"
+      ]
+    },
+    {
+      "scenario": "upgrade-identity-contracts",
+      "evidence": [
+        "  process: { \"exitcode\": 0, \"timed_out\": false, \"elapsed_sec\": 2.1777317999999504, \"timeout_sec\": 25 }",
+        "  observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"upgrade-identity-contracts\", \"json_status\": \"fail\", \"json_scenario\": \"upgrade-identity-contracts\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+        "  failure: \"current capped Forge tracks reach original threshold labmaster\"",
+        "  raw artifacts: C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\lv-lab\\validation-evidence\\lab-offline-deed-pacing\\delivery-main\\upgrade-identity-contracts-zspFwx",
+        "  stdout tail:"
+      ]
+    },
+    {
+      "scenario": "offline-12h-core",
+      "evidence": [
+        "  process: { \"exitcode\": null, \"timed_out\": true, \"stderr\": \"\" }",
+        "  detail: { \"status\": \"fail\", \"message\": \"Invalid driver JSON: Unexpected end of JSON input\", \"stdout\": \"\" }"
+      ]
+    }
+  ],
+  "disposition": {
+    "wisp-rarity-scroll": "Both current and released baseline exceed unchanged90s on Windows; both pass3277 assertions/312 profiles in diagnostic240s runs. See local-windows.json.",
+    "upgrade-identity-contracts": "Old60-level-only Auto-Empower fixture; corrected inbed10314. Standalone rerun PASS. The broad runner loaded modules before this correction.",
+    "offline-12h-core": "Exceeded unchanged300s Windows deadline. No local assertion result. Final Linux CI passes this scenario on the integrated product; the local timeout remains recorded."
+  },
+  "finalMessage": "Behavioral QA failed: wisp-rarity-scroll null, upgrade-identity-contracts null, offline-12h-core null",
+  "processExitCode": 1,
+  "finalLinuxCI": {
+    "status": "PASS",
+    "run": 41071054234,
+    "job": 124115098738,
+    "all189ScenariosPassed": true,
+    "allThreeLocallyFailedScenariosPassed": true
+  }
+}

@@ -1,6 +1,6 @@
 # LAB_OFFLINE_DEED_PACING_001 — continuous Lab and tougher automation Deeds
 
-Status: implementation/focused validation PASS; final CI/integration/Android pending.
+Status: integrated into main; CI/signed test APK PASS. Physical acceptance open.
 Owner: current feature chat; no delegation. PR: https://github.com/xariib/Lumenfall/pull/28
 Baseline: main88fd60b, Android0.2.58. Branch fix/lab-offline-deed-pacing-001,
 worktree ../lv-lab. Current product SHA256:
@@ -52,98 +52,76 @@ workflow changes for missing workflow scope; using the existing entrypoint avoid
 any permission change. Test helper legacy-automation-deeds-reference.cjs replaces
 only the two eligibility bodies in explicit historical counterfactuals.
 
-## Evidence and current validation
+## Validation and current checkpoint
 
-[Focused receipts](../qa/lab-offline-deed-pacing-001/focused.json).
-Node24.20.0 local; independent one-second oracle generated with pinned24.19.0.
-All four released state hashes and payouts remain exactly unchanged; source
-binding regenerated after product edits, never merely relabelled.
+Node24.19.0 pinned for CI/oracles; local helpers also24.20.0. Final-source67new
+assertions/eight controls PASS; nine phone/text profiles,45condition measurements
+plus card/reward bounds PASS. Self-inspected320px/200% screenshots. Forge9341,
+Comet12554, Deed UI1071 and Forge UI6281/four controls PASS. Source-bound receipts:
+[focused.json](../qa/lab-offline-deed-pacing-001/focused.json).
 
-Exact final-source PASS:67new assertions/eight causal controls; nine phone/text
-profiles and45condition measurements, card/reward bounds; self-inspected both
-320px/200% screenshots. Forge9341, Comet12554; source/context/diff checks PASS.
-Original continuous-Lab offline12 suite PASS34records on initial13ac05a6;
-untouched released baseline82a43d91 also PASS34records. Other intermediate checks
-retain their actual source hashes in the receipt; do not call them final-source CI.
+Independent complete offline replay PASS18records/five groups in287902ms,
+within original300s deadline. Its72h oracle uses one-second combat12h then
+one-second Lab-only60h;96h finishes already-funded80h work with exactly12h
+combat. All archive hashes/full-state comparisons/deadlines remain. Four released
+8h Swift state hashes/kills/Ascends/Prism payouts match after actual pinned-runtime
+replay. Original offline12 suite PASS34records on initial13ac and released82a43d.
 
-Final-source independent complete offline replay PASS18records/five groups in
-287902ms locally, within the original300s combined CI deadline. Its72h oracle
-retains one-second combat for12h then one-second Lab-only calls for60h;96h pays
-its already-funded80h project but retains exactly12h kills/Ascends. Every original
-case, archive hash, complete state comparison and deadline remains. Tooling
-partition checker PASS12negative controls, with original18record coverage retained.
+Frozen Auto Ascend/Wisp preservation checks explicitly restore only historical
+12Asc/20Forge eligibility in a test-only counterfactual; archived oracles untouched.
+Actual new-policy endpoints and67/eight-control suite cover the new predicates.
+Feedback360/four controls and Wisp8099 plus448-world preservation PASS.
+Phase fixture no longer relies on easy unlocks: explicit earned flags keep all
+14causal controls active (PASS), with27positive checks. Identity fixture preserves
+60Forge LabQueue success, rejects Auto-Empower there, then supplies all new gates.
+Standalone corrected identity rerun PASS. Production paths unchanged afterbe1db712.
 
-Auto Ascend feedback PASS360checks/four controls, including actual new-policy
-combat, exact receipt conservation and both-slot reload. Its frozen PR15 hashes
-remain unmodified and match exactly under the explicit old12/20 Deed policy.
-Wisp contribution PASS8099 plus complete448-world preservation/chronology under
-that same counterfactual. Actual multi-condition eligibility is separately tested;
-no gameplay formula/controller or archived source is replaced.
+PR28 merged at05a52935adb02cdac1153c2348fa580d8feb165c. Feature headbed10314;
+CI tested merge5cbade3a has treeee733478b1b248f42d0d2443765f6c3a30004415,
+exactly identical to integrated main. All seven workflows/nine required jobs
+PASS, including189main+one isolated offline scenario and runtime smoke.
+[Delivery/CI receipt](../qa/lab-offline-deed-pacing-001/delivery.json) binds each
+run to the expected head/product source. Branch-filter Prism skips are expected.
+Main41071054234, Forge41071054290, Tree41071054222, Comet41071054329,
+shared UI41071054331, permanent41071054251, Lab41071054260. The48main steps
+include the corrected phase controls. Earlier failed runs remain superseded,
+not relabelled. Completed Tree artifact12985551264 confirms commit/tree/source.
 
-Earlier CI head ed0d784: Lab, Comet (actualNode8), shared UI and permanent
-progression PASS. Permanent progression first attempt timed out at Browser.getVersion
-before UI checks; unchanged retry PASS. Forge/isolated offline41064744477/41064744443
-caught the old72h-versus12h Lab oracle; corrected in6fd5c20. Main premerge/tree
-also caught intended Deed-policy differences in frozen feedback/Wisp comparisons;
-new explicit counterfactuals pass locally, pending push/fresh CI.
+Local189-case run finished, exit1,216 PASS output lines and only the three
+recorded failures: ../lv-lab-delivery-main.log. NOT a clean pass.
+[Local receipt](../qa/lab-offline-deed-pacing-001/local-main.json).
+Windows wisp-rarity-scroll timed out at90s; offline-12h-core at300s; identity
+failure corrected/rerun above. Existing pipe browser transport avoids dump-dom
+stalls. Released-baseline Wisp driver PASS3277checks/312profiles with240s diagnostic
+limit. Both released/current sources time out at90s (90210/90283ms); this
+Windows timing limit predates the feature. Current240s diagnostic also PASS3277
+checks/312profiles in100342ms; diagnostic success does not pass the90s gate.
+Retain actual deadlines/results.
+Final Linux CI PASS includes all three locally failed scenarios. No complete
+189-case local PASS or independent human review is claimed.
 
-Windows dump-dom stalls; the existing LUMENFALL_QA_DOM_TRANSPORT=pipe passes
-inquiry UI. Local wisp-rarity-scroll timed out; broad local runs stopped when the
-user changed scope. Do not claim a complete local189-case pass or independent review.
+## Android evidence and next action
 
-Next: push frozen-policy corrections/evidence; finish required fresh CI, fix any
-introduced failures, integrate tested tree and complete the relevant Android build
-and signed save-upgrade acceptance. No merge or APK yet. Keep task open while
-required acceptance is pending; do not archive.
+[Android receipt](../qa/lab-offline-deed-pacing-001/android.json): nonpublishing
+[build41066494884](https://github.com/xariib/Lumenfall/actions/runs/41066494884) PASS;
+artifact12983215925/signed-apk-41066494884. Signed test APK0.2.59/code1000059,
+7072859bytes, SHA2566ea99156f10ce2789655ad549b5bbf5191790f1095a38d56afaf0cdb5905ed13.
+Packagecom.lumenfall.app and established certificate unchanged (full receipt).
+Saved ../builds/lab-offline-deed-pacing-001/Lumenfall.apk and release-evidence.
+All15packaged assets independently extracted and matched checkout/CI hashes.
+Installed API31/WebView91 upgrade retains both save slots, paid work/progression,
+legacy entitlements, UID and https://localhost origin. Recap visually inspected.
+Public latest remains0.2.58. Build sourcebe1db712/treef4ecf6b3 is historical;
+later test/docs changes leave the product identical but change the whole tree.
 
-References: [workflow](../project/FEATURE_WORKFLOW.md),
-[current state](../PROJECT_STATE.md), [Lab queues](LAB_BOOST_QUEUE_001.md),
-[long Lab pacing](LAB_LONG_DURATION_001.md), [combined release](ALL_PENDING_APK_001.md).
+Integrated product paths have zero diff from buildbe1db712. After merge, all15
+game assets were re-extracted from the signed APK and matched integrated main;
+APK hash/size and signing/save-upgrade receipt remain bound (android.json).
+The final evidence/status commit changes documentation only.
 
-Live continuation checkpoint: final head be1db712d0dd4db0395c6d289d662ad9f508faf4
-is pushed; product/tree unchanged. Tested PR merge7cc58740856f4077696b493786922226c27fd574
-has treef4ecf6b3fc7b2a039dd5150b28d6381dbcdfc0eb, identical to feature head.
-Current head CI runs: premerge41066433157 (main124099259793 still running;
-isolated offline124099260031 PASS), Forge41066432914, Tree41066432915 PASS,
-Comet41066432913 PASS, Lab41066433009 PASS, shared UI41066433018 PASS,
-permanent41066433003 PASS. Forge passed its formerly failing full offline
-reference and is in mobile acceptance. Main is in settled-screen UI acceptance.
-Do not merge until Forge and main are green; fresh main still88fd60b.
+Next: physical phone/exact WebView60/TalkBack and human pacing acceptance.
+Signed test APK is ready locally; public release remains0.2.58. No implementation
+work remains. Keep task/chat open for physical acceptance; do not archive.
 
-Signed NONPUBLISHING Android run41066494884 PASS on be1db712. TestAPK0.2.59,
-1000059, SHA2566ea99156f10ce2789655ad549b5bbf5191790f1095a38d56afaf0cdb5905ed13,
-7072859bytes. Signed artifact12983215925, signed-apk-41066494884. Downloaded
-to ../builds/lab-offline-deed-pacing-001/Lumenfall.apk with release-evidence and
-verified-build.json. Local tar extraction independently matched all15 packaged
-assets to both checkout and CI hashes, including exact production index3e2b6da4.
-Installed API31/WebView91 upgrade confirms both saves, paid study/progression,
-legacy entitlements, UID and https://localhost origin retained; certificate is
-the established A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
-Visually checked installed recap before/after: updated cap explanation fits and
-Continue works. It is a test artifact; public latest stays0.2.58.
-
-Next after all CI passes: merge PR28 at exact expected head, verify integrated
-tree equals f4ecf6b3; save CI/Android receipts and concise PROJECT_STATE update
-on GitHub (this checkpoint is intentionally uncommitted while CI finishes).
-No product changes remain. Physical-phone/WebView60/TalkBack acceptance stays open.
-
-Latest correction: all six specialized workflows and isolated offline PASS on
-be1db712, but main41066433157 fails endless-cycle-controls: phase NOT CAUGHT.
-Its queued-Forge fixture was fresh and depended on the old easy Deeds to activate
-timers. Set BOTH earned automation flags explicitly in that test-only fixture;
-positive fast/literal state still matches and the phase mutant now fails the
-intended exact saved-endpoint assertion (different timer bases/accumulators).
-No production bytes changed; the verified0.2.59 APK remains the same game.
-All14controls running locally; completed ones, including phase, are CAUGHT.
-Final-source local189-case main suite also started with pinned24.19.0/pipe
-transport to reveal any later fixture assumptions while fresh CI runs.
-Next: commit/push this focused fixture correction after all14controls pass, then
-require all seven fresh workflows before merging. Do not treat the old be1
-main failure as completed acceptance. Local checkpoint changes are uncommitted.
-
-Phase fixture validation complete: positive27checks PASS; phase mutant now
-fails the exact saved-endpoint assertion, and ALL14existing causal controls
-PASS. Commit the focused test fixture and receipts; production, fonts, branding
-and mobile source paths have zero diff from the signed APK build commitbe1db712.
-Full local189-case run is in progress; do not claim it passed. Fresh CI needed
-after this test-only commit, then integrate. Android evidence saved below.
+References: [workflow](../project/FEATURE_WORKFLOW.md), [state](../PROJECT_STATE.md),
+[Lab queues](LAB_BOOST_QUEUE_001.md), [Lab pacing](LAB_LONG_DURATION_001.md).

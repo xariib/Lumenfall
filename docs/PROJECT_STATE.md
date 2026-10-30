@@ -1,5 +1,7 @@
 # Lumenfall — current delivery status
 
+30 October: [Lab/Deeds PR28](tasks/LAB_OFFLINE_DEED_PACING_001.md): merged; signed0.2.59 test APK. Seven gates/upgrade PASS; phone acceptance open.
+
 30 October: [Combined update/PR27](tasks/ALL_PENDING_APK_001.md): Android0.2.58 released.
 Required CI,190 scenarios, signed upgrade and public bytes PASS.
 [Release receipt](qa/all-pending-apk-001/release.json).
