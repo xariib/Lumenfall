@@ -1,21 +1,17 @@
 {
-  "status": "signed APK and installed upgrade PASS; integration pending",
-  "run": "https://github.com/xariib/Lumenfall/actions/runs/41116394046",
-  "successfulAttempt": 2,
-  "firstAttempt": {
-    "outcome": "failed before device acceptance",
-    "reason": "Android Emulator SDK download was not a readable ZIP; unchanged rerun passed"
-  },
-  "artifactId": 13006982352,
-  "artifactName": "signed-apk-41116394046",
+  "status": "signed test APK and installed upgrade PASS; exact integrated app source/assets; physical acceptance open",
+  "run": "https://github.com/xariib/Lumenfall/actions/runs/41133406252",
+  "successfulAttempt": 1,
+  "artifactId": 13014576603,
+  "artifactName": "signed-apk-41133406252",
   "published": false,
-  "sourceCommit": "8ee8d030bb76a749bcac92254f6c230324a0ecfb",
-  "sourceTree": "2277dc2b71706a0da0352e181f4219604302266b",
-  "sourceSha256": "c64f98d32b39d3060022192a4653b906d7845cca134a58a61f0437b1cebd6653",
-  "apkSha256": "e564386dca8d4111f8bd5263627ba1afdc2d162be32ebc8dd6046387c02aa111",
-  "bytes": 7073086,
-  "versionName": "0.2.61",
-  "versionCode": 1000061,
+  "sourceCommit": "1fb827eaaa95565e015b84426a2b49984b4ffe9d",
+  "sourceTree": "82a8f2f3e273a76b7489f33bd76eeab30acd49ca",
+  "sourceSha256": "3f659a45352fbc14b638903a8b45f6bbb79d1ee8360fb4a9b4962655c288c002",
+  "apkSha256": "ded90a16bc67f78c83d51ce8bbe26af2a4d19cd0206a8c46e96d909cc2812369",
+  "bytes": 7073079,
+  "versionName": "0.2.64",
+  "versionCode": 1000064,
   "package": "com.lumenfall.app",
   "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
   "exactLocalPackagedAssets": 15,
@@ -23,14 +19,14 @@
     "baseline": "archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk",
     "candidate": "Lumenfall.apk",
     "package": "com.lumenfall.app",
-    "commit": "8ee8d030bb76a749bcac92254f6c230324a0ecfb",
-    "apkSha256": "e564386dca8d4111f8bd5263627ba1afdc2d162be32ebc8dd6046387c02aa111",
+    "commit": "1fb827eaaa95565e015b84426a2b49984b4ffe9d",
+    "apkSha256": "ded90a16bc67f78c83d51ce8bbe26af2a4d19cd0206a8c46e96d909cc2812369",
     "device": "google/sdk_gphone64_x86_64/emulator64_x86_64_arm64:12/SE1A.220826.008/10564458:userdebug/dev-keys",
     "webview": "Current WebView Update Service state\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 31\n  Minimum WebView version code: 447211487\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211487, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
     "beforeOrigin": "https://localhost",
     "baselineColdRestartVerified": true,
     "baselineVersionCode": 158,
-    "candidateVersionCode": 1000061,
+    "candidateVersionCode": 1000064,
     "beforeUid": "10145",
     "afterUid": "10145",
     "androidTouch": {
@@ -60,7 +56,7 @@
             "target": "",
             "x": 136,
             "y": 260,
-            "time": 6824.200000000012,
+            "time": 12079.100000000006,
             "interactive": false,
             "prevented": false
           }
@@ -76,7 +72,7 @@
             "target": "",
             "x": 184,
             "y": 284,
-            "time": 7270.700000000012,
+            "time": 12597.5,
             "interactive": false,
             "prevented": false
           }
@@ -355,6 +351,39 @@
       "screenshot": "release-evidence/installed-midgame-farm.png",
       "syntheticFixture": true
     },
+    "installedRiftNavigation": {
+      "status": "PASS",
+      "steps": [
+        {
+          "selector": "#rift-back-one",
+          "depth": 24
+        },
+        {
+          "selector": "#rift-back-ten",
+          "depth": 14
+        },
+        {
+          "selector": "#rift-forward-one",
+          "depth": 15
+        },
+        {
+          "selector": "#rift-back-one",
+          "depth": 14
+        },
+        {
+          "selector": "#rift-back-ten",
+          "depth": 4
+        },
+        {
+          "selector": "#rift-back-ten",
+          "depth": 1
+        }
+      ],
+      "returning": 26,
+      "resumedDepth": 26,
+      "screenshot": "release-evidence/installed-rift-navigation.png",
+      "syntheticFixture": true
+    },
     "status": "PASS",
     "uidRetained": true,
     "origin": "https://localhost",
@@ -364,5 +393,15 @@
     "legacyPurchaseCredit": 350,
     "physicalDevice": false
   },
-  "limitations": "API31/WebView91 emulator with synthetic saved state. Physical phone, exact WebView60 DOM, TalkBack and human pacing remain unverified."
+  "limitations": "API31/WebView91 emulator with synthetic saved state. Physical phone, exact WebView60 DOM, TalkBack and human pacing remain unverified.",
+  "integration": "941538d0842b55f3486aeba55017395136d3dbc5",
+  "integratedTree": "82a8f2f3e273a76b7489f33bd76eeab30acd49ca",
+  "sourceEquivalentPaths": [
+    "index.html",
+    "fonts",
+    "branding",
+    "mobile"
+  ],
+  "packagedAssetsMatchIntegration": 15,
+  "validatedHead": "1fb827eaaa95565e015b84426a2b49984b4ffe9d"
 }
