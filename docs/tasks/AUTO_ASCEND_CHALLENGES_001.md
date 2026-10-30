@@ -122,3 +122,13 @@ The GitHub connector cannot dispatch Android workflows. Browser tool reports
 Continue CI/integration through connected GitHub, then record Android build as
 pending until an authorized dispatch path is available. No signed build exists
 for this feature yet. Physical phone/WebView60/TalkBack also remain open.
+
+Second headcfb725e7/treef12885919f4bce4f7f2d9bc38d69c774b7ad29bd:
+Comet, Lab and permanent workflows PASS. Main41115551829 passed the corrected
+stationary/rollback, clock replay, full-game audit and native Lab input checks,
+then failed an older workshop focus fixture: it focused a now-disabled Ritual
+button without the required milestones. Supply earned goals for that fixture;
+the existing action-focus/pure-refresh assertions stay unchanged. Local workshop
+UI PASS524checks/18profiles on productc2d44d07. Also qualify offline12h UI's
+Ritual focus fixture so its focus assertion continues testing an enabled purchase,
+with all original refund amounts/keyboard/contrast checks retained.
