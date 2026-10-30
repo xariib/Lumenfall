@@ -91,13 +91,15 @@ oracle fields and change only their source binding after this proof.
 Original PR32 CI136b0dad is still running; retain its eventual receipt as
 ci-original.json. It does not qualify the combined source. Test APK0.2.66
 likewise qualifies only original017fb859, not the new tap baseline.
-PR31/Auto Ascend2a3a54ab is also finishing integration checks. Serialize the
-remaining upstream integration before publishing/revalidating the combined
-UI candidate; do not promote unmerged work or lose accepted changes.
-Next: finish current main merge, retain original CI when complete, incorporate
-PR31 only once integrated, rerun focused/replay checks on final main baseline,
-publish PR32 combined head, run seven gates and a new signed test APK, then merge
-and save final source-qualified documentation. No public release/archive yet.
+PR31/Auto Ascend2a3a54ab is also finishing checks; do not promote unmerged work
+or treat another open feature as an approval gate. Main merge completed locally
+at e17908c; publish this verified tap/UI combination now. Its new PR head will
+restart required CI and supersede the original in-progress run (cancelled by
+normal workflow concurrency, not a test failure). Incorporate PR31 only if it
+is accepted into main before this feature integrates.
+Next: publish the combined head, run seven gates and a new signed test APK,
+incorporate any actual main advance, then merge and save final source-qualified
+documentation. No public release/archive yet.
 Physical phone/WebView60/TalkBack and human visual acceptance remain unverified.
 
 Sources: [previous queue contract](LAB_BOOST_QUEUE_001.md),
