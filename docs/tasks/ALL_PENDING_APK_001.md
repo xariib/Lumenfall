@@ -64,3 +64,15 @@ References: [recap](OFFLINE_RECAP_CLARITY_001.md),
 [debug](DEBUG_SCROLL_EXPLOITS_001.md), [workflow](../project/FEATURE_WORKFLOW.md).
 
 [Combined focused receipt](../qa/all-pending-apk-001/focused.json).
+
+Validation continuation: first combined head50a5fd39 passed six focused CI
+workflows and isolated offline. The local full suite found a second obsolete
+Forge count in upgrade-identity-contracts. Preserve its original twenty-track
+assertion excluding only the three new IDs, and independently require those
+three exact additions. Corrected contracts PASS; no product bytes change.
+The local offline12 UI initially lacked required mobile/www staging; assets
+were staged and its unchanged standalone check passes. Original12h core PASS.
+Standalone forge-lab-caps.cjs still fails its pre-PR23 Lab catalogue equality
+on untouched main and candidate; this non-CI historical check was already
+recorded by PR26 and is not weakened. All actual required workflows remain.
+Next: rerun final-head CI after the catalogue-only test correction.
