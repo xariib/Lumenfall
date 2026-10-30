@@ -7035,7 +7035,7 @@ function wispRoleSnapshot(depth,nowMs,ids,sustained){
     cadenceFrequency=Amount.div(hits,60);
   }
   var tapFactor=state.achieved.autotap ? Amount.mul(Amount.mul(tapMult(),bossTapDamageMult(depth)),Amount.add(1,Amount.mul(Amount.mul(0.10,forgeLevel('guardiancadence')),cadenceFrequency))) : 0;
-  var rawPassive=0,rawAbility=0,rawTap=0,baseTap=Amount.mul(5,tapFactor);
+  var rawPassive=0,rawAbility=0,rawTap=0,baseTap=Amount.mul(20,tapFactor);
   var rows=SPIRITS.map(function(sp){
     var active=ids.indexOf(sp.id)!==-1 && Amount.gt(state.spirits[sp.id]||0,0);
     var level=active ? state.spirits[sp.id] : 0,power=wispPower(sp,level),passive=Amount.mul(power,global);

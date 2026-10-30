@@ -11,8 +11,9 @@ const near=(a,b,m)=>ok(Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-10,m);
 eq(html.split(marker).length,2,'single authoritative opening formula');
 const prior=html.replace(marker,'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));');
 const studyGap='canonicalAutomationAnchors={}; // Study-only gaps do not advance combat timers.';
-const mutants={weak:'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));',dominant:'return Amount.add(20,Amount.mul(effectivePartyPower(),0.50));',clock:'if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;',pause:'void 0; // Study-only gaps do not advance combat timers.'};
-if(process.env.TAP_BALANCE_MUTANT){const id=process.env.TAP_BALANCE_MUTANT;assert(mutants[id]);html=html.replace(id==='clock'?'if(nowMs<state.moteNextAtMs)return 0;':id==='pause'?studyGap:marker,mutants[id]);}
+const ledgerBase='baseTap=Amount.mul(20,tapFactor)';
+const mutants={weak:'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));',dominant:'return Amount.add(20,Amount.mul(effectivePartyPower(),0.50));',clock:'if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;',pause:'void 0; // Study-only gaps do not advance combat timers.',ledger:'baseTap=Amount.mul(5,tapFactor)'};
+if(process.env.TAP_BALANCE_MUTANT){const id=process.env.TAP_BALANCE_MUTANT;assert(mutants[id]);html=html.replace(id==='clock'?'if(nowMs<state.moteNextAtMs)return 0;':id==='pause'?studyGap:id==='ledger'?ledgerBase:marker,mutants[id]);}
 function game(source=html,saved){return F.app(source,saved,{clockDate:true,retainWrites:false});}
 function encounter(q,depth=1){const s=q.fresh();s.depth=s.maxDepthEver=depth;s.lastSeen=F.CLOCK;s.questDay=q.day();q.set(s);q.restoreEnemy();}
 function tapsToFirstKill(source){const {q}=game(source);encounter(q);let taps=0;while(!q.get().totalKills&&taps<30){q.manualTap();taps++;}return {taps,depth:q.get().depth};}
@@ -20,6 +21,14 @@ const opening={before:tapsToFirstKill(prior),after:tapsToFirstKill(html)};
 eq(opening.before.taps,14,'historical opening takes fourteen taps');
 eq(opening.after.taps,4,'opening clears in four taps');eq(opening.after.depth,2,'real tap kill advances to Rift2');
 const {q}=game();encounter(q);near(q.tap(),20.02,'fresh uninvested tap');eq(q.enemyHp(1),69,'first enemy remains unchanged');
+
+{
+ const observed=html.replace("if(document.readyState==='loading'){",`window.endlessQa={roles:wispRoleComparison};if(document.readyState==='loading'){`);
+ const r=game(observed).q,s=r.fresh();s.achieved.autotap=true;r.set(s);
+ const ledger=r.endless.roles(1,F.CLOCK).steady;
+ eq(ledger.guardianBaseDps,20,'damage readout uses the stronger flat Guardian base');
+ near(ledger.totalDps,r.dps(1),'displayed total agrees with authoritative combat estimate');
+}
 
 // An exact internal clock can be slightly behind its rounded epoch timestamp.
 // Discrete and batched defeats must use the same saved millisecond deadline.

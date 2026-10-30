@@ -155,4 +155,24 @@ original18-case offline regression is running on:
 `0336072c2235de0636b9d0d78b111f6a91445933b31a2a2793b5089aceb5012d`.
 Next: finish that regression, all seven final-head CI workflows, integration
 and signed Android test build. Physical phone/human pacing remain unverified.
+
+## Damage ledger and final reference binding
+
+The final Tree compatibility check caught a second flat-base literal in the
+Wisp damage ledger. Raise its Guardian base5→20; focused53/five controls now
+also verify the ledger agrees with authoritative DPS and reject the old base.
+Modern and actual Windows Node8.3.0/V8 6.0 contribution contracts PASS:
+8,099 checks, seven modern controls and25,968 historical preservation checks.
+That frozen comparison applies the approved base20 and retains its old clock
+activation policy, keeping every historical summary field including iterations.
+The archived HTML remains unchanged.
+
+Regenerated all four8h one-second reference windows with the provided generator
+on `c64f98d32b39d3060022192a4653b906d7845cca134a58a61f0437b1cebd6653`.
+Original reference retained in `../qa/tap-early-balance-001/previous-offline-golden.json`.
+This renews the unchanged required source-binding gate; no hand-edited outcomes.
+Prior final-source timing CI passed all18 original offline cases in131.29s,
+under its300s deadline; local duplicate passed in350.40s (not deadline acceptance).
+Next: final-head CI/integration/signed Android test build; no further code change
+is currently planned. Self-review and automated checks; no independent reviewer.
 Physical phone and human pacing acceptance are unverified. No new binding rule.
