@@ -27,6 +27,9 @@ try{
  s=base();s.moteNextAtMs=5e-14;compare('fixed Mote payout boundary',s,1e-16,q=>ok(q.get().moteNextAtMs>=60000,'real eligible Luminous defeat starts the cooldown'));
  s=base();s.activeStudies=[{id:'wispascend',remainingSec:1e-9+5e-17,totalDurationSec:1,speedMult:1}];compare('paid Lab completion EPS boundary',s,1e-16,(q,r)=>{eq(q.get().longStudyLevels.wispascend,s.longStudyLevels.wispascend+1,'paid project completes once and changes combat Power');eq(r.completedStudies.length,1,'one actual completion receipt');});
  const q=app(source).q;s=q.fresh();s.depth=s.enemyDepth=16;s.maxDepthEver=10000;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=16;s.research.masterwork=160;s.research.victorycharge=10;s.research.arcanecal=9;s.researchQueue.arcanecal=true;s.longStudyLevels.lumenstudy=100000;s.nodes.riftstep=s.nodes.veteranrecruits=s.nodes.chargememory=s.nodes.rosterrecall=5;s.nodes.phasememory=1;s.nodes.echo=6;
+ // This is an earned automation-phase fixture, independent of how new
+ // players now earn those Deeds. Otherwise the phase defect becomes inert.
+ s.achieved.autotap=s.achieved.labmaster=true;
  s.activeParty=['ember','stone'];s.formationRebuild={members:s.activeParty.slice(),preset:'push'};s.activeFormationPreset='push';s.formationPresets.push=s.activeParty.slice();s.heroRarity.ember=s.heroRarity.stone=5;s.wispModules.ember=s.wispModules.stone=20;s.wispUltimate.ember=s.wispUltimate.stone=true;s.spirits.ember=s.spirits.stone=6;s.moteNextAtMs=60000;
  compare('queued Forge affordability',s,2e-13,q=>ok(q.get().research.arcanecal>9,'the literal paid queue actually purchases across the boundary'));
  console.log(JSON.stringify({status:process.env.LUMENFALL_CYCLE_CASE?'PASS_FILTERED':'PASS',mutation,filter:process.env.LUMENFALL_CYCLE_CASE||null,checks,records,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));

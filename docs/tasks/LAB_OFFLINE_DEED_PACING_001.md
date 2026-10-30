@@ -99,3 +99,51 @@ required acceptance is pending; do not archive.
 References: [workflow](../project/FEATURE_WORKFLOW.md),
 [current state](../PROJECT_STATE.md), [Lab queues](LAB_BOOST_QUEUE_001.md),
 [long Lab pacing](LAB_LONG_DURATION_001.md), [combined release](ALL_PENDING_APK_001.md).
+
+Live continuation checkpoint: final head be1db712d0dd4db0395c6d289d662ad9f508faf4
+is pushed; product/tree unchanged. Tested PR merge7cc58740856f4077696b493786922226c27fd574
+has treef4ecf6b3fc7b2a039dd5150b28d6381dbcdfc0eb, identical to feature head.
+Current head CI runs: premerge41066433157 (main124099259793 still running;
+isolated offline124099260031 PASS), Forge41066432914, Tree41066432915 PASS,
+Comet41066432913 PASS, Lab41066433009 PASS, shared UI41066433018 PASS,
+permanent41066433003 PASS. Forge passed its formerly failing full offline
+reference and is in mobile acceptance. Main is in settled-screen UI acceptance.
+Do not merge until Forge and main are green; fresh main still88fd60b.
+
+Signed NONPUBLISHING Android run41066494884 PASS on be1db712. TestAPK0.2.59,
+1000059, SHA2566ea99156f10ce2789655ad549b5bbf5191790f1095a38d56afaf0cdb5905ed13,
+7072859bytes. Signed artifact12983215925, signed-apk-41066494884. Downloaded
+to ../builds/lab-offline-deed-pacing-001/Lumenfall.apk with release-evidence and
+verified-build.json. Local tar extraction independently matched all15 packaged
+assets to both checkout and CI hashes, including exact production index3e2b6da4.
+Installed API31/WebView91 upgrade confirms both saves, paid study/progression,
+legacy entitlements, UID and https://localhost origin retained; certificate is
+the established A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
+Visually checked installed recap before/after: updated cap explanation fits and
+Continue works. It is a test artifact; public latest stays0.2.58.
+
+Next after all CI passes: merge PR28 at exact expected head, verify integrated
+tree equals f4ecf6b3; save CI/Android receipts and concise PROJECT_STATE update
+on GitHub (this checkpoint is intentionally uncommitted while CI finishes).
+No product changes remain. Physical-phone/WebView60/TalkBack acceptance stays open.
+
+Latest correction: all six specialized workflows and isolated offline PASS on
+be1db712, but main41066433157 fails endless-cycle-controls: phase NOT CAUGHT.
+Its queued-Forge fixture was fresh and depended on the old easy Deeds to activate
+timers. Set BOTH earned automation flags explicitly in that test-only fixture;
+positive fast/literal state still matches and the phase mutant now fails the
+intended exact saved-endpoint assertion (different timer bases/accumulators).
+No production bytes changed; the verified0.2.59 APK remains the same game.
+All14controls running locally; completed ones, including phase, are CAUGHT.
+Final-source local189-case main suite also started with pinned24.19.0/pipe
+transport to reveal any later fixture assumptions while fresh CI runs.
+Next: commit/push this focused fixture correction after all14controls pass, then
+require all seven fresh workflows before merging. Do not treat the old be1
+main failure as completed acceptance. Local checkpoint changes are uncommitted.
+
+Phase fixture validation complete: positive27checks PASS; phase mutant now
+fails the exact saved-endpoint assertion, and ALL14existing causal controls
+PASS. Commit the focused test fixture and receipts; production, fonts, branding
+and mobile source paths have zero diff from the signed APK build commitbe1db712.
+Full local189-case run is in progress; do not claim it passed. Fresh CI needed
+after this test-only commit, then integrate. Android evidence saved below.
