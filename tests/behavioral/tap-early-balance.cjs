@@ -84,4 +84,4 @@ if(process.argv.includes('--negative'))for(const id of Object.keys(mutants)){
  const child=require('node:child_process').spawnSync(process.execPath,[__filename,file],{encoding:'utf8',env:{...process.env,TAP_BALANCE_MUTANT:id},timeout:120000});
  ok(!child.error&&child.status===1&&child.stderr.includes('AssertionError'),'reject causal control '+id);controls.push(id);
 }
-console.log(JSON.stringify({status:'PASS',checks,opening,shares,campaigns,controls,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')},null,2));
+console.log(JSON.stringify({status:'pass',checks,opening,shares,campaigns,controls,sourceSha256:crypto.createHash('sha256').update(original).digest('hex')},null,2));

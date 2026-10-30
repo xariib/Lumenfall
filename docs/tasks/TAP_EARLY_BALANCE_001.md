@@ -68,6 +68,12 @@ required remote CI/integration/APK pending.
 Candidate source SHA256:
 `45a8261ce7b3214cca98a09846482ffa313d2e743c0b0ef5bd8db64523623aa4`.
 
-Next: finish calibration, publish PR, check all seven required workflows and
-integrate only after gates pass; build the integrated Android candidate.
+PR: [#29](https://github.com/xariib/Lumenfall/pull/29). Initial native adapter
+trial exposed an uppercase result status; corrected to the runner's lowercase
+`pass` contract. Local Brave dump-DOM formula test timed out after25 seconds
+with no DOM/stderr/result; remote Linux browser acceptance is pending. No
+gameplay failure is inferred from that empty local browser result.
+
+Next: check all seven required workflows and integrate only after gates pass;
+build the integrated Android candidate.
 Physical phone and human pacing acceptance are unverified. No new binding rule.
