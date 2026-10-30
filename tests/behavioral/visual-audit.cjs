@@ -44,7 +44,7 @@ driver=driver.slice(0,start)+String.raw`
     await ev('prismQa.visualSet(prismQa.visualSeed(),'+JSON.stringify(screen)+');document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"start"})');await pause(300);await shot(selector.slice(1));
    }
    await ev('prismQa.visualSet(prismQa.visualSeed(),"battle")');await tap('#settings-btn');await shot('settings');await tap('#encyclopedia-btn');await shot('encyclopedia');await tap('#settings-close');
-   await tap('#rift-farm-btn');await shot('farm-picker');await tap('#farm-picker-close');
+   await tap('#rift-farm-btn');await tap('#rift-back-ten');await shot('farm-navigation');await tap('#rift-push-btn');
    await ev('prismQa.visualDaily()');await shot('daily-reward');await tap('#daily-claim');
    await ev('prismQa.visualSet(prismQa.visualSeed(),"research")');await tap('[data-study-slot]');await shot('lab-catalogue');
    await ev('prismQa.ready()');

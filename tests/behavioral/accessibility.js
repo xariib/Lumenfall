@@ -298,10 +298,9 @@
     q('[data-tab="battle"]').click();
     q('#rift-farm-btn').click();
     assert(bridge.getState().riftMode==='farm','Farm state must remain understandable with reduced motion');
-    var picker=q('#farm-picker-overlay');
-    assert(picker.style.display!=='none'&&picker.contains(document.activeElement),'Farm picker receives focus with reduced motion');
-    q('#farm-picker-close').click();
-    assert(picker.style.display==='none'&&document.activeElement===q('#rift-farm-btn'),'closing Farm picker restores its opener focus');
+    assert(!q('#farm-picker-overlay'),'Farm enters directly without a picker');
+    q('#rift-back-one').focus();
+    assert(document.activeElement===q('#rift-back-one'),'direct Rift navigation receives keyboard focus');
     q('#rift-push-btn').click();
     assert(bridge.getState().riftMode==='push','Push state must remain understandable with reduced motion');
     assert(!q('#rift-details-btn') && !q('#rift-details'),'Details absent with reduced motion');
