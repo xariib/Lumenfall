@@ -112,15 +112,16 @@ async function run(){
   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:before.rect.x+before.rect.width/2,y:before.rect.y+before.rect.height/2}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   let after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.state.prisms===997671,'real touch final purchase');
   assert(after.disabled&&after.kind==='maxed'&&after.fit,'maxed state fit after native purchase');
-  assert(after.focused&&after.focused!=='bonds','focus moves to available Tree control after final purchase');
+  assert(after.focusedCard==='bonds'&&Math.abs(after.scroll-before.scroll)<=1,'final purchase retains Recruitment card and scroll');
   if(motion==='reduce')assert(after.reduced&&parseFloat(after.animation)<=.001,'reduced motion');
   await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19));b.render();document.querySelector('[data-node="echo"]').focus();})()`);
   await key('Tab');assert(await evaluate(`(()=>{var c=document.querySelector('[data-tree-node="bonds"]'),d=c.querySelector('.desc');return !c.querySelector('details,summary')&&d&&d.getClientRects().length&&d.textContent.includes('normal price before whole-Lumen rounding');})()`),'Recruitment explanation stays visible without a disclosure');
   let focused=await evaluate('cheaperRecruitmentObservation()');
   assert(focused.focused==='bonds'&&focused.focusStyle.style==='solid'&&parseFloat(focused.focusStyle.width)>=2,'visible keyboard focus on Recruitment');
-  await key('Enter');after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.focused==='swift','native Enter cap and next focus '+JSON.stringify({level:after.state.nodes.bonds,focused:after.focused,prisms:after.state.prisms}));
+  await key('Enter');after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.focusedCard==='bonds'&&Math.abs(after.scroll-focused.scroll)<=1,'native Enter cap retains Recruitment card and scroll');
+  await evaluate('__cheaperRecruitment.render()');await key('Enter');const repeated=await evaluate('cheaperRecruitmentObservation()');assert(repeated.focusedCard==='bonds'&&Math.abs(repeated.scroll-after.scroll)<=1&&JSON.stringify(repeated.state)===JSON.stringify(after.state),'refresh and repeated Enter retain cap without buying another upgrade');
   await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(40));b.render();})()`);let legacy=await evaluate('cheaperRecruitmentObservation()');assert(legacy.fit&&legacy.text.includes('40 purchased levels preserved'),'legacy larger text fits');
-  records.push({kind:'mobile',width,fontPercent,motion,contrastMinimum:Math.min(...before.contrasts),target:[before.rect.width,before.rect.height],nativeTouch:true,nativeKeyboard:true,focusAfterCap:after.focused,legacyFit:legacy.fit});
+  records.push({kind:'mobile',width,fontPercent,motion,contrastMinimum:Math.min(...before.contrasts),target:[before.rect.width,before.rect.height],nativeTouch:true,nativeKeyboard:true,focusAfterCap:after.focusedCard,legacyFit:legacy.fit});
  }
  if(args.includes('--screenshot')){
   await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
