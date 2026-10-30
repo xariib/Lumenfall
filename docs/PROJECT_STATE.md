@@ -1,6 +1,6 @@
 # Lumenfall — current delivery status
 
-30 October: [Debug PR26](tasks/DEBUG_SCROLL_EXPLOITS_001.md): CI/Android pending.
+30 October: [Debug PR26](tasks/DEBUG_SCROLL_EXPLOITS_001.md), `7081ca38`: CI PASS; APK pending.
 
 30 October: [Visual polish/PR25](tasks/VISUAL_POLISH_001.md), `31b24d57`:
 seven gates/190 scenarios PASS. APK/browser access and device acceptance pending.
