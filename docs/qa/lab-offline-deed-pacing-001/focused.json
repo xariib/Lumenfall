@@ -1,0 +1,114 @@
+{
+  "status": "focused checks PASS; broader validation in progress",
+  "baseline": "88fd60b",
+  "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+  "localNode": "v24.20.0",
+  "goldenNode": "v24.19.0",
+  "focused": {
+    "status": "PASS",
+    "checks": 55,
+    "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+    "controls": [
+      {
+        "name": "capped-Lab",
+        "caught": "paid research continues beyond12h: 64800 vs 21600"
+      },
+      {
+        "name": "combat-tail",
+        "caught": "recap includes beyond-cap completion"
+      },
+      {
+        "name": "easy-Vigil",
+        "caught": "harder Deed boundary autotap/99"
+      },
+      {
+        "name": "easy-Forge",
+        "caught": "harder Deed boundary labmaster/199"
+      }
+    ]
+  },
+  "boostQueue": {
+    "status": "PASS",
+    "checks": 379,
+    "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+    "controls": [
+      {
+        "name": "overwrite",
+        "caught": "future edit keeps exact active receipt"
+      },
+      {
+        "name": "off",
+        "caught": "Queue OFF never charges"
+      },
+      {
+        "name": "free",
+        "caught": "exact next boost debit"
+      },
+      {
+        "name": "wall",
+        "caught": "exact expiry purchases next once"
+      },
+      {
+        "name": "live",
+        "caught": "failed live payment is not presented"
+      }
+    ]
+  },
+  "forge": {
+    "status": true,
+    "assertions": 9341
+  },
+  "comet": {
+    "status": "PASS",
+    "checks": 12554
+  },
+  "swift": {
+    "status": "pass"
+  },
+  "recapMobile": {
+    "status": "PASS",
+    "checks": 129,
+    "profiles": 8,
+    "browser": "Chrome/156.0.8078.74"
+  },
+  "oracle": {
+    "sourceSha256": "13ac05a618c3d89e90837d46095290975f64be9e06272d4a70299be5476f354a",
+    "oracle": "Independent one-second advance calls, fixed whole-window start",
+    "phases": [
+      {
+        "kills": 86404,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "343540b380872d254d1e26ddfc6f30dd268fd281e10290ac1a3fa24e17bcef50"
+      },
+      {
+        "kills": 86401,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "87caffda43ee550fa5c5587d0fddcffaface9b33c14fba8af0828a26e5f4e824"
+      },
+      {
+        "kills": 86396,
+        "ascends": 4114,
+        "prisms": 94622,
+        "stateSha256": "beb5a492e29a7173988aa9c1b910d28c54c817fba316a853c742f0cbdff56e18"
+      },
+      {
+        "kills": 86405,
+        "ascends": 4115,
+        "prisms": 94645,
+        "stateSha256": "7945acbce36c9cbb87d3e1ef049749a82ca46f0853d8e939b24ca2011afc0cec"
+      }
+    ]
+  },
+  "limitations": [
+    "Physical phone, exact WebView60 and TalkBack unverified.",
+    "Full suite, actual Node8 and Android acceptance pending."
+  ],
+  "initialAttempts": [
+    "Baseline boost-queue PASS379 on released82a43d91 source.",
+    "An initial baseline sequence read changed source in its later commands; those recap/offline failures are superseded by focused candidate reruns.",
+    "Standalone UI required staging mobile/www and its explicit browser-path argument; corrected and rerunning.",
+    "comet-expansion-v8 requires actual Node8.3; local modern-runtime attempt is not compatibility acceptance."
+  ]
+}

@@ -65,7 +65,7 @@ async function run(){
   await evaluate('document.querySelector("[data-card-details-summary=lab-help]").scrollIntoView({block:"center"});document.querySelector("[data-card-details-summary=lab-help]").focus({preventScroll:true})');await key(' ','Space');
   await new Promise(r=>setTimeout(r,450));
   const lab=await evaluate(`(()=>{const help=document.getElementById('study-speed-help');help.scrollIntoView({block:'center'});const r=help.getBoundingClientRect();return {text:help.textContent,left:r.left,right:r.right,overflow:help.scrollWidth-help.clientWidth,visible:!!help.getClientRects().length,focused:document.activeElement.dataset.cardDetailsSummary};})()`);
-  assert(lab.visible&&lab.text.includes('12-hour offline limit with rewards and automation'));
+  assert(lab.visible&&lab.text.includes('full time away, beyond the 12-hour combat limit'));
   assert(lab.left>=0&&lab.right<=width+1&&lab.overflow<=1&&lab.focused==='lab-help');
   assert(await evaluate('JSON.stringify({state:__lumenfallQaBridge.getState(),primary:__lumenfallQaBridge.rawSave(),recovery:__lumenfallQaBridge.rawRecovery()})')===beforeHelp,'opening help preserves state and both save slots');
   records[records.length-1].lab=lab;

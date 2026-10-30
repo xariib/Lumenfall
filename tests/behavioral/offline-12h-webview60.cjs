@@ -36,7 +36,8 @@ var result, error, callbacks=0;
 qa.apply(function(r,e){result=r;error=e;callbacks++;});
 while(tasks.length) tasks.shift()();
 assert.ifError(error);assert.strictEqual(callbacks,1);assert.strictEqual(result.effectiveSec,43200);
-assert.strictEqual(qa.get().activeStudies[0].remainingSec,3600);
+assert.strictEqual(qa.get().longStudyLevels.guardmastery,1);
+assert.strictEqual(qa.get().activeStudies.length,0);
 assert.strictEqual(qa.get().lastSeen,now);
 assert.deepStrictEqual(JSON.parse(storage.lumenfall_save_v2),qa.get());
 assert.deepStrictEqual(JSON.parse(storage.lumenfall_save_recovery_v1),qa.get());
@@ -49,4 +50,4 @@ var interop=[];
 if(process.argv[3]) fs.writeFileSync(process.argv[3],JSON.stringify(interop,null,2));
 console.log(JSON.stringify({status:'pass',scenario:'offline-12h-runtime',node:process.version,
   v8:process.versions.v8,BigIntAvailable:false,cap:12,comets:400,prisms:132,
-  studyRemaining:3600,deviceVerified:false},null,2));
+  studyCompleted:qa.get().longStudyLevels.guardmastery,deviceVerified:false},null,2));

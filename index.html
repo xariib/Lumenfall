@@ -4239,8 +4239,8 @@ var ACHIEVEMENTS = [
   {id:'all',   name:'Recruit every Wisp',   reward:30, check:function(s){return SPIRITS.every(function(sp){return (s.spirits[sp.id]||0)>0;});}},
   {id:'mythic',name:'Raise a Wisp to Mythic', reward:40, check:function(s){return SPIRITS.some(function(sp){return (s.heroRarity[sp.id]||0)>=5;});}},
   {id:'idle8', name:'Rest 8 hours offline', reward:15, check:function(s){return s.totalOfflineSeconds>=8*3600;}},
-  {id:'autotap',   name:'Tireless Vigil',      reward:25, unlocks:'Auto-Tap — your Guardian strikes on its own, once a second', check:function(s){return s.ascendCount>=12;}},
-  {id:'labmaster', name:'The Forge Never Sleeps', reward:30, unlocks:'Auto-Empower — spare Lumen levels up your party for you, live or while you\'re offline', check:function(s){return legacyResearchLevels(s)>=20;}},
+  {id:'autotap',   name:'Tireless Vigil',      reward:25, unlocks:'Auto-Tap — your Guardian strikes on its own, once a second', check:function(s){return s.ascendCount>=100;}},
+  {id:'labmaster', name:'The Forge Never Sleeps', reward:30, unlocks:'Auto-Empower — spare Lumen levels up your party for you, live or while you\'re offline', check:function(s){return legacyResearchLevels(s)>=200;}},
   {id:'study1',    name:'First Discovery',     reward:15, check:function(s){return totalStudyLevels(s)>=1;}},
   {id:'study25',   name:'Devoted Scholar',     reward:50, check:function(s){return totalStudyLevels(s)>=25;}},
   {id:'allstudies',name:'Every Path Studied',  reward:35, check:function(s){return CURRENT_STUDY_IDS.every(function(id){return (s.longStudyLevels[id]||0)>=1;});}},
@@ -4283,8 +4283,8 @@ function deedProgress(a,s){
     all:[SPIRITS.filter(function(sp){return (s.spirits[sp.id]||0)>0;}).length,SPIRITS.length],
     mythic:[Math.max.apply(null,SPIRITS.map(function(sp){return s.heroRarity[sp.id]||0;})),5],
     idle8:[s.totalOfflineSeconds,8*3600],
-    autotap:[s.ascendCount,12],
-    labmaster:[researchLevels(),20],
+    autotap:[s.ascendCount,100],
+    labmaster:[researchLevels(),200],
     study1:[totalStudyLevels(s),1],study25:[totalStudyLevels(s),25],
     allstudies:[CURRENT_STUDY_IDS.filter(function(id){return (s.longStudyLevels[id]||0)>=1;}).length,CURRENT_STUDY_IDS.length],
     labqueue:[researchLevels(),60],
@@ -4319,8 +4319,8 @@ function deedPresentation(a){
     all:['Recruit every Wisp in one run.','recruited Wisps'],
     mythic:['Raise one Wisp to Mythic.','rarity upgrades on one Wisp'],
     idle8:['Accumulate 8 hours offline.','offline hours'],
-    autotap:['Ascend 12 times.','Ascensions'],
-    labmaster:['Gain 20 total paid Forge levels.','Forge levels',scope],
+    autotap:['Ascend 100 times.','Ascensions'],
+    labmaster:['Gain 200 total paid Forge levels.','Forge levels',scope],
     study1:['Complete one level in the 8 original Research Projects.','completed Project levels',studyScope+' Completed levels in preserved Projects also count.'],
     study25:['Complete 25 levels in total in the 8 original Research Projects.','completed Project levels',studyScope+' Completed levels in preserved Projects also count.'],
     allstudies:['Complete at least one level in each of the 5 foundation Research Projects.','Projects completed','Counts Wisp Ascendancy, Guardian’s Mastery, Shard Attunement, Lumen Wellspring and Luminous Sense. Measured Inquiry does not count.'],
@@ -9315,7 +9315,7 @@ var TUTORIAL_STEPS = [
   {title:'Upgrade your Wisps', body:'Rarity Up costs Lumen and Shards and requires the shown Wisp level. Upgrade Ability increases burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes increase those currency rewards. These permanent upgrades are called Modules. At Mythic Rarity, Sigils buy that Wisp’s Ultimate. These upgrades stay after Ascend.'},
   {title:'Use Forge & Lab', body:'Workshop contains Rift Forge for immediate upgrades and Research Lab for timed projects. Lab bonuses apply when a level completes. Queue ON permits automatic spending when affordable. Choose Lab speed and 8, 12 or 24 hours, then activate the boost for its shown Mote price. One payment covers that Lab slot across projects and levels until the timer expires, including while offline.'},
   {title:'Ascend & automate', body:'Clear Rift 15 to unlock Ascend. Check the Prism reward before restarting your Rift run, Wisp levels and Lumen; Tree upgrades can improve that restart. Permanent upgrades, other currencies and paid Lab work stay. Spend Prisms in the Tree. Comets buy Auto-Ascend; Deeds unlock Auto-Tap and Auto-Empower.'},
-  {title:'Return & keep a backup', body:'Offline combat and paid Lab work share up to 12 hours of productive time per absence. Offline Lumen and Shard rewards start at 70%; Echoing Rest improves that rate. In Settings, Save Backup lets you copy progress before reinstalling or changing device. Restoring replaces the current save. You can replay this guide without resetting progress.'}
+  {title:'Return & keep a backup', body:'Offline combat and its automation run for up to 12 hours per absence. Lab research uses the full time away; queued levels continue while Lumen and Shards are available. Offline Lumen and Shard rewards start at 70%; Echoing Rest improves that rate. In Settings, Save Backup lets you copy progress before reinstalling or changing device. Restoring replaces the current save. You can replay this guide without resetting progress.'}
 ];
 
 function showTutorial(onComplete){
@@ -10087,7 +10087,7 @@ function renderLongStudies(){
         Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':selectedStudySlot>=0?'Select research':'Choose a slot') + '</button>' + '</div>');
   });
 
-  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 23 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Studies share the 12-hour offline limit with rewards and automation. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
+  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 23 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Research continues for the full time away, beyond the 12-hour combat limit. Queued levels continue while Lumen and Shards are available; already-paid work finishes even if funds run out. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;
@@ -10408,7 +10408,7 @@ function renderAchievements(){
   els['ach-list'].innerHTML=html;
   var shopHtml='<div class="card shop-card" data-offline-policy><div class="info">'+
     '<div class="name">12 hours of offline progress</div>'+
-    '<div class="desc">Rewards, combat, Lab and automation share the same 12-hour limit. Offline earning rate is separate.</div>';
+    '<div class="desc">Combat rewards and combat automation have a 12-hour limit. Lab research continues for the full time away while resources last. Offline earning rate is separate.</div>';
   var refund=state.offline12hRefund;
   if(refund && (refund.comets>0 || refund.prismsExact!=='0')){
     shopHtml+='<div class="desc" data-offline-refund>Previous offline purchases: '+refund.comets+
@@ -10538,7 +10538,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Lab Speed', meta:'Mote purchases', desc:'Choose one of the 1.5x–8x speeds and 8, 12 or 24 hours. Choices do not spend Motes. Activate once for the displayed total: the timer applies to this slot across projects and levels and counts down while idle and offline. Longer packages discount the proportional price by 5% or 10%, rounded up; Mote Catalysis also applies. There is no automatic renewal. Lab Queue separately pays Lumen and Shards to start new levels. Speed already paid for an old active level remains protected after expiry.'},
   {name:'Ascension Tree', meta:'Permanent Prism upgrades', desc:'Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply.'},
   {name:'Preserved Upgrades', meta:'Earlier purchases', desc:'Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired.'},
-  {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 12 Ascends. The Forge Never Sleeps unlocks Auto-Empower after 20 total Forge levels. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
+  {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends. The Forge Never Sleeps unlocks Auto-Empower after 200 total Forge levels. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
   {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline.'},
   {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. Eligible Mote payouts are fixed for those bonuses. They require a Luminous kill and share a 60-second cooldown across Rifts; no Motes accrue just by waiting.'},
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},
@@ -10546,7 +10546,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Deeds & Daily Quests',meta:'Comet rewards',desc:'Deeds are one-time milestones and unlocks. Daily Quests pay the displayed Comets when you press Claim. Login rewards cycle through seven days, with Prisms on the seventh reward. Comets buy permanent Auto-Ascend and Astral upgrades.'},
   {name:'Collection & Journal', meta:'Appearance and earlier unlocks', desc:'Deeds unlock Rift themes in Collection. Theme: Starlight is the default appearance; themes do not change combat. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic.'},
   {name:'Wisp Power & effects', meta:'Wisp cards', desc:'Wisp Power comes from a Wisp’s level and rarity. Combat also depends on abilities, Forge and Lab bonuses, Support and Bonds. Active Wisp cards show their Support or resource effects and enabled Bonds where relevant. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
-  {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, queues, Auto-Ascend and paid Lab work share up to 12 productive hours per absence. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
+  {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, Forge queues and Auto-Ascend run for up to 12 hours per absence. Lab research continues for the full absence, including queued levels while Lumen and Shards last and queued speed boosts while Motes last. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
   {name:'Save Backup', meta:'Settings · save protection', desc:'Progress is stored in this device or browser’s local save. Copy Current Save exports a backup code before reinstalling or changing device. Restoring requires confirmation and replaces the current save; old backup time cannot grant extra offline earnings. Reset Save permanently deletes progress. Settings and this guide do not pause combat.'}
 ];
 
@@ -13470,8 +13470,11 @@ function* offlineProgressSteps(now,lastSeen,elapsedSec,effectiveSec,processingSt
     kind:'offline',visual:false,clockStartMs:lastSeen,
     offlineWindowStartMs:lastSeen,resumable:true
   });
-  // Every productive system shares this interval; consume the rest of the
-  // absence without a productive Study-only tail. Foreground replay stays live.
+  // Combat and its automation stop at the farming cap. Paid Lab work and
+  // explicitly enabled research/boost queues use the rest of the absence.
+  if(elapsedSec>effectiveSec){
+    yield* advanceStudyOnlyTime(elapsedSec-effectiveSec,lastSeen+effectiveSec*1000,sim,true);
+  }
   state.totalOfflineSeconds=Amount.add(state.totalOfflineSeconds,effectiveSec);
   // Input and live ticks were suspended while the offline transaction ran.
   // Replay that foreground time with the existing live policy before committing.
@@ -13693,7 +13696,7 @@ function offlineReturnMessage(offline){
   }
   studies(offline.completedStudies,false);
   studies(offline.closedStudies,true);
-  html += '<p class="welcome-cap">Up to 12 hours of rewards, Lab and automation.</p>';
+  html += '<p class="welcome-cap">Up to 12 hours of combat rewards and automation. Lab research continues while resources last.</p>';
   return html;
 }
 function showReturnFlow(offline,dailyWasRolled){

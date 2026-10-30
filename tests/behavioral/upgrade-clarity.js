@@ -78,7 +78,7 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
   var setters={
     d10:['maxDepthEver',10],d25:['maxDepthEver',25],d50:['maxDepthEver',50],d100:['maxDepthEver',100],d250:['maxDepthEver',250],
     tap100:['totalTaps',100],tap1000:['totalTaps',1000],tap10000:['totalTaps',10000],
-    asc1:['ascendCount',1],asc5:['ascendCount',5],asc10:['ascendCount',10],autotap:['ascendCount',12],idle8:['totalOfflineSeconds',28800]
+    asc1:['ascendCount',1],asc5:['ascendCount',5],asc10:['ascendCount',10],autotap:['ascendCount',100],idle8:['totalOfflineSeconds',28800]
   };
   var ids=b.forge.deeds().originalItems.map(function(a){return a.id;});
   var titledRequirements={d10:'Reach Rift 10',d25:'Reach Rift 25',d50:'Reach Rift 50',d100:'Reach Rift 100',d250:'Reach Rift 250',tap100:'Strike 100 times',tap1000:'Strike 1,000 times',tap10000:'Strike 10,000 times',asc1:'Ascend once',asc5:'Ascend 5 times',asc10:'Ascend 10 times'};
@@ -87,7 +87,7 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
     [false,true].forEach(function(at){
       var s=b.freshStateSnapshot(),value;
       if(setters[id]){var c=setters[id];s[c[0]]=c[1]-(at?0:1);}
-      else if(id==='labmaster'||id==='labqueue'){s.maxDepthEver=101;s.research.focus=(id==='labmaster'?20:60)-(at?0:1)-15;s.research.arcanecal=10;s.research.spillway=5;}
+      else if(id==='labmaster'||id==='labqueue'){s.maxDepthEver=101;s.research.focus=(id==='labmaster'?200:60)-(at?0:1)-15;s.research.arcanecal=10;s.research.spillway=5;}
       else if(id==='modulemax'){s.wispModules.ember=at?20:19;s.wispModules.tide=1;}
       else if(id==='study1'||id==='study25')s.longStudyLevels.guardmastery=(id==='study1'?1:25)-(at?0:1);
       else if(id==='fullparty'){s.maxDepthEver=101;s.activeParty=Object.keys(s.spirits).slice(0,at?5:4);s.activeParty.forEach(function(k){s.spirits[k]=1;});}
@@ -122,8 +122,8 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
     });
   });
   pureRender(seed());
-  ok(q('[data-deed-progress="autotap"]').textContent==='0 / 12 Ascensions','Vigil exact progress/units');
-  ok(q('[data-deed-requirement="autotap"]').textContent==='Ascend 12 times.','Vigil concrete requirement');
+  ok(q('[data-deed-progress="autotap"]').textContent==='0 / 100 Ascensions','Vigil exact progress/units');
+  ok(q('[data-deed-requirement="autotap"]').textContent==='Ascend 100 times.','Vigil concrete requirement');
   ok(q('[data-deed-progress="autotap"]').closest('.ach-card').querySelector('.ach-unlock').textContent.includes('Auto-Tap'),'Vigil unlock separate');
   ['labmaster','labqueue'].forEach(function(id){var card=q('[data-deed-progress="'+id+'"]').closest('.ach-card');ok(!q('[data-deed-progress="'+id+'"]').textContent.includes('Battle Focus'),'legacy names outside progress');ok(card.querySelector('.card-details>div').textContent==='Counts paid levels in all current and historical Forge upgrades. Historical levels above a current cap still count. Lab Project levels do not count.','approved paid Forge scope explicit');});
   ok(q('[data-deed-requirement="modulemax"]').textContent==='Raise one Wisp Module to level 20.','Module one-Wisp requirement');

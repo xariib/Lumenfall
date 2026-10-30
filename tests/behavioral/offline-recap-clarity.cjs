@@ -12,7 +12,7 @@ const shortHtml=q.endless.message(short);
 ok(shortHtml.includes('Away for 17s'),'actual time away');
 ok(shortHtml.includes('<dt>Lumen</dt><dd>+558.6</dd>')&&shortHtml.includes('<dt>Shards</dt><dd>+106.4</dd>'),'separate exact resource rows');
 ok(!shortHtml.includes('<details')&&!shortHtml.includes('Sigils')&&!shortHtml.includes('Motes')&&!shortHtml.includes('Auto Ascend'),'omit absent results');
-ok(shortHtml.includes('12 hours of rewards, Lab and automation'),'shared cap remains visible');
+ok(shortHtml.includes('12 hours of combat rewards and automation')&&shortHtml.includes('Lab research continues while resources last'),'combat cap and continuous Lab remain visible');
 const receipt={...short,elapsedSec:86400,earned:'1e400',sigilsEarned:32,motesEarned:8,ascends:4114,retreated:true,endDepth:91,pushDepth:101,
  completedStudies:[...Array(120).fill('Measured Inquiry'),...Array(4).fill('Wisp Ascension'),'A < B & C'],closedStudies:['Measured Inquiry','Measured Inquiry']};
 const original=clone(receipt),html=q.endless.message(receipt);
