@@ -356,7 +356,7 @@ jobs:
           node - <<'JS'
           const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
           const original=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');
-          for(const [file,message] of [['ui-attention-control.json','entering Ascend clears notification'],['ui-quest-control.json','claim keeps exact scroll position']]){
+          for(const [file,message] of [['ui-attention-control.json','entering Ascend clears notification'],['ui-quest-control.json','claim keeps focus in original quest row']]){
             const result=JSON.parse(fs.readFileSync('validation-evidence/'+file));
             assert.equal(result.status,'FAIL');assert.match(result.error,/AssertionError/);
             assert(result.error.includes(message));assert.notEqual(result.sourceSha256,original);
