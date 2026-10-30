@@ -27,7 +27,8 @@ const hook=`window.scrollQa={ready:function(){return !!els.toast;},
   }else if(kind==='wisp'){
    var sp=SPIRITS[3];state.lumen=getSpiritBuyPlan(sp).cost;selector='[data-empower="'+sp.id+'"]';tab='spirits';read=function(){return state.spirits[sp.id];};
   }else if(kind==='shop'){
-   var n=SHOP.find(function(n){return getCometBuyPlan(n).available;});if(!n)throw Error('shop fixture');state.comets=getCometBuyPlan(n).cost;selector='[data-shop="'+n.id+'"]';tab='deeds';read=function(){return state.owned[n.id]?1:0;};
+   state.ascendCount=25;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id,i){state.longStudyLevels[id]=i<2?9:8;});
+   var n=SHOP.find(function(n){return n.id==='autoascend';});state.comets=getCometBuyPlan(n).cost;selector='[data-shop="'+n.id+'"]';tab='deeds';read=function(){return state.owned[n.id]?1:0;};
   }else if(kind==='astral'){
    var n=SHOP.find(function(n){return n.id==='astralcore';});state.comets=getCometBuyPlan(n).cost;selector='[data-shop="'+n.id+'"]';tab='deeds';read=function(){return state.astralUpgrades[n.id];};
   }else if(kind==='quest'){

@@ -87,3 +87,38 @@ the extra screenshot of the tall320px/200%card's top. Its top and footer were
 self-inspected. Git credential helper hung; stopped only this task's push tree.
 Noninteractive push reported no usable password. Publish via connected GitHub
 Git-data tools instead, checking every blob and complete tree against local Git.
+
+## PR31 and first CI findings
+
+[PR31](https://github.com/xariib/Lumenfall/pull/31), head4c6e1fce,
+treea35262a314caf2df44294d3246db6d24a493204f, exactly matches the local
+candidate. Seven required workflows started; first main/comet runs41114331355/
+41114331381 failed on older fixtures that bought the Ritual before challenges.
+Updated only their eligible starting progress: stationary purchase, independent
+Comet arithmetic, current permanent Comet browser, collection prices and wide
+Comet wallet. Original debit, rollback, price, scroll and causal assertions remain.
+The first stationary fixture had silently selected Astral Core when Ritual locked,
+then checked boolean ownership instead of the Astral level; it now selects Ritual
+explicitly with earned goals. Numerical1097372checks/seven controls and wide
+Comet693checks PASS after fixture corrections. Collection prices6180checks/four
+controls PASS. The first Lab and permanent workflows passed.
+
+The corrected stationary fixture exposed an introduced320px/200%refresh scroll
+jump after buying Ritual: its taller challenge list disappears, leaving the
+surviving focused Open Ascend button offscreen. Preserve the shop focus snapshot
+even offscreen on later refreshes; other viewport capture callers retain their
+old policy. Also emit owned-only hidden challenge markup before layout. Tests/
+tolerances unchanged. Initial scroll failures and the insufficient markup-only
+attempt remain recorded locally; final original scroll rerun pending.
+
+Final scroll rerun PASS on productc2d44d074fe7fa4a0df56c33190804dd269d16adf43d0a84d10295225e03da1d.
+The complete original fixture matrix and all three causal controls pass unchanged.
+Focused118/seven controls and original Comet12cases also PASS on these bytes.
+Corrected full Comet browser suite PASS12470checks/12profiles/10causal pairs on
+preceding7af13586 product bytes; final CI will exercise the viewport correction.
+
+The GitHub connector cannot dispatch Android workflows. Browser tool reports
+“Local browser use is disabled in Work settings”; no settings change attempted.
+Continue CI/integration through connected GitHub, then record Android build as
+pending until an authorized dispatch path is available. No signed build exists
+for this feature yet. Physical phone/WebView60/TalkBack also remain open.

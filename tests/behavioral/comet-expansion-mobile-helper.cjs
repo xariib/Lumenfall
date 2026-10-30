@@ -214,6 +214,7 @@ async function profile(){
  // flows above, and replaces retired commands with permanent paid investments.
  async function currentSemantics(){
   const base=copy(seed);base.maxDepthEver=5000;base.comets=100000;
+  base.ascendCount=25;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id,i){base.longStudyLevels[id]=i<2?9:8;});
   await install(base);
   const currentIds=['autoascend','astralcore','astralecho','astralconvergence'];same((await ev('prismQa.cometDefs()')).map(x=>x.id),currentIds,'four current permanent shop IDs');
   for(const [i,name]of currentIds.entries())for(let rank=0;rank<(i?10:1);rank++){

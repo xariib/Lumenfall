@@ -8829,13 +8829,13 @@ function presentControlStates(root){
 // Live UI updates must not strand keyboard focus on a detached button.
 // Preserve the visible control's position when content above it grows or its
 // Wisp changes groups. A fixed scrollTop would move it with that content.
-function captureControlViewport(root){
+function captureControlViewport(root,includeOffscreen){
   var focused=document.activeElement;
   if(!root || !focused || !root.contains(focused)) return null;
   var main=document.querySelector('main');
   if(!main) return null;
   var rect=focused.getBoundingClientRect(),view=main.getBoundingClientRect();
-  if(!rect.width || !rect.height || rect.bottom<=view.top || rect.top>=view.bottom) return null;
+  if(!rect.width || !rect.height || (!includeOffscreen && (rect.bottom<=view.top || rect.top>=view.bottom))) return null;
   return {root:root,main:main,top:rect.top,scrollTop:main.scrollTop,scrollLeft:main.scrollLeft,
     keys:Array.from(focused.attributes).filter(function(a){return a.name.startsWith('data-') && a.name!=='data-state';})};
 }
@@ -10450,7 +10450,9 @@ function renderCometJournal(){
 function renderAchievements(){
   // Capture before the preceding Deed list can grow, wrap or lose a pending
   // credit row. Capturing only around the shop itself is already too late.
-  var shopView=captureControlViewport(els['shop-list']);
+  // Buying the Ritual removes its challenge list. The surviving focus target
+  // can then be above the viewport; retain it through later pure refreshes too.
+  var shopView=captureControlViewport(els['shop-list'],true);
   var journalView=captureControlViewport(els['comet-journal']);
   var active=document.activeElement;
   var purchase=active && els['shop-list'].contains(active) ? active.getAttribute('data-shop') : null;
@@ -10487,8 +10489,8 @@ function renderAchievements(){
       '<button type="button" data-shop="'+item.id+'"'+(!plan.available?' disabled':'')+'></button>';
     shopHtml+='<div class="card shop-card comet-purchase" data-comet-card="'+item.id+'" tabindex="-1">'+
       '<div class="info"><div class="name">'+item.name+'</div>'+(plan.maxed?'':'<div class="desc">'+item.desc+'</div>')+
-      '<div class="comet-level" data-comet-level></div><div class="desc" data-comet-requirement>'+cometBuyRequirement(item)+'</div>'+
-      (item.id==='autoascend'?'<ul class="auto-ascend-challenges" data-autoascend-challenges aria-label="Auto-Ascend unlock challenges"></ul>':'')+
+      '<div class="comet-level" data-comet-level></div><div class="desc" data-comet-requirement'+(item.id==='autoascend'&&plan.owned?' hidden':'')+'>'+cometBuyRequirement(item)+'</div>'+
+      (item.id==='autoascend'?'<ul class="auto-ascend-challenges" data-autoascend-challenges aria-label="Auto-Ascend unlock challenges"'+(plan.owned?' hidden':'')+'></ul>':'')+
       '<div class="earned-effect" data-comet-effect></div><div class="desc" data-comet-next></div>'+
       (item.id==='autoascend' && plan.owned?'<div class="desc">'+(state.autoAscendEnabled?'ON':'OFF')+' · Clear Rift '+autoAscendClearedTarget()+'. Controls are on Ascend.</div>':'')+
       '</div>'+button+'</div>';
