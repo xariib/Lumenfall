@@ -139,6 +139,11 @@ jobs:
           node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_PACING_001.md
           node tests/behavioral/progression-pacing.cjs index.html --negative
           node tests/behavioral/farm-recap-parity.cjs index.html --negative
+      - name: Forge workshop long-term progression
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/FORGE_WORKSHOP_PACING_001.md
+          mkdir -p validation-evidence/forge-workshop
+          node tests/behavioral/forge-workshop-pacing.cjs index.html --negative > validation-evidence/forge-workshop/pacing.json
 
       - name: Long Lab pacing and basic Wisp research
         run: |

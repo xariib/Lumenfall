@@ -34,8 +34,9 @@ assert(start>0&&end>start,'one existing mobile profile body');
 const cases=String.raw`
   const samples=[],queueSamples=[];
   const added=['cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'];
-  const activeIds=['charge','arcanecal','conduction','luminoustracking','masterwork'].concat(added);
-  const expectedPrices=[[0,30],[15000,120],[90000,280],[2500000,1500],[1000001,25000],[36000,2500],[103000,6000],[293000,14500],[2361000,80500],[6703000,191000],[61000,4000],[174000,9500],[493000,22000],[831000,34000],[1401000,52500],[2361000,80500],[1401000,52500],[3978000,124000],[19032000,452500],[54040000,1071500],[153442000,2536500]];
+  const enhancements=['battletempering','arcanetempering','harvesttempering'];
+  const activeIds=['charge','arcanecal','conduction','luminoustracking','masterwork'].concat(added,enhancements);
+  const expectedPrices=[[0,30],[15000,120],[90000,280],[2500000,1500],[1000001,25000],[36000,2500],[103000,6000],[293000,14500],[2361000,80500],[6703000,191000],[61000,4000],[174000,9500],[493000,22000],[831000,34000],[1401000,52500],[2361000,80500],[1401000,52500],[3978000,124000],[19032000,452500],[54040000,1071500],[153442000,2536500],[10000000,250000],[25000000,625000],[40000000,1000000]];
   // Approved native effect text at 0, 1 and cap, independent of the product's
   // effect/preview formatters. A correct model with stale rendered values fails.
   const nativeEffects=[
@@ -54,7 +55,10 @@ const cases=String.raw`
    ['Up to 0% extra native cast resource from original-hit overkill','Up to 2% extra native cast resource from original-hit overkill','Up to 10% extra native cast resource from original-hit overkill'],
    ['3 shared Resonate uses per run','4 shared Resonate uses per run','5 shared Resonate uses per run'],
    ['0 charge to each other powered Active per Resonate','2 charge to each other powered Active per Resonate','10 charge to each other powered Active per Resonate'],
-   ['Restore up to 0 spent Resonate use(s) per boss kill','Restore up to 1 spent Resonate use(s) per boss kill','Restore up to 3 spent Resonate use(s) per boss kill']
+   ['Restore up to 0 spent Resonate use(s) per boss kill','Restore up to 1 spent Resonate use(s) per boss kill','Restore up to 3 spent Resonate use(s) per boss kill'],
+   ['×1 passive Wisp damage and its tap component','×1.01 passive Wisp damage and its tap component','×4 passive Wisp damage and its tap component'],
+   ['×1 damaging abilities','×1.01 damaging abilities','×4 damaging abilities'],
+   ['×1 Lumen and Shard kill rewards','×1.01 Lumen and Shard kill rewards','×4 Lumen and Shard kill rewards']
   ];
   const copy=x=>JSON.parse(JSON.stringify(x)),selector=(attr,id)=>'['+attr+'="'+id+'"]';
   async function install(s){
@@ -83,12 +87,12 @@ const cases=String.raw`
   }.toString()+')()');ok(!m.overflow&&!m.bad.length,'Forge fit '+JSON.stringify({width,scale,motion,label,measurement:m}));}
   const seed=await ev('prismQa.forgeSeed()');let paid=copy(seed);await install(seed);
   const nodes=(await ev('prismQa.forgeNodes()')).filter(n=>!n.retiredTo);
-  ok(JSON.stringify(nodes.map(n=>n.id))===JSON.stringify(activeIds),'twenty-one approved active IDs in order');
+  ok(JSON.stringify(nodes.map(n=>n.id))===JSON.stringify(activeIds),'twenty-four approved active IDs in order');
   const catalog=await ev("({ids:Array.from(document.querySelectorAll('#research-list [data-forge-card]')).map(function(e){return e.dataset.forgeCard;}),groups:Array.from(document.querySelectorAll('#research-list [data-forge-group]')).map(function(e){return e.textContent.trim();}),legacy:document.querySelectorAll('[data-legacy-upgrade]').length})");
-  ok(JSON.stringify(catalog.ids)===JSON.stringify(activeIds),'all twenty-one rendered cards in order');
-  ok(catalog.groups.join(',')==='Core,Boss craft,Rhythm,Resources,Resonance','five explicit Forge groups');ok(catalog.legacy===0,'retired shop rows stay absent');
+  ok(JSON.stringify(catalog.ids)===JSON.stringify(activeIds),'all twenty-four rendered cards in order');
+  ok(catalog.groups.join(',')==='Core,Boss craft,Rhythm,Resources,Resonance,Enhancements','six explicit Forge groups');ok(catalog.legacy===0,'retired shop rows stay absent');
   const groupCounts=await ev("(function(){var counts=[],at=-1;document.querySelectorAll('#research-list [data-forge-group],#research-list [data-forge-card]').forEach(function(e){if(e.hasAttribute('data-forge-group')){at++;counts[at]=0;}else counts[at]++;});return counts;})()");
-  ok(JSON.stringify(groupCounts)==='[5,5,6,2,3]','exact active row count in each group');catalog.groupCounts=groupCounts;
+  ok(JSON.stringify(groupCounts)==='[5,5,6,2,3,3]','exact active row count in each group');catalog.groupCounts=groupCounts;
   await fit('full catalogue');
   const renderBefore=await ev('JSON.stringify(prismQa.get())');await ev('prismQa.forgeRender();prismQa.forgeRender()');ok(await ev('JSON.stringify(prismQa.get())')===renderBefore,'full catalog rendering is pure');
   const locked=copy(seed);locked.maxDepthEver=1;locked.depth=locked.enemyDepth=1;await install(locked);
@@ -167,7 +171,7 @@ const cases=String.raw`
   ok(creditColor.color===creditColor.ink&&!creditColor.disabled,'exact Shard-credit-only affordability and color agree');
   await prepare('[data-research=arcanecal]',true);await key('Enter','Enter',13);
   const spentCredit=await ev('prismQa.get()');ok(spentCredit.research.arcanecal===1&&spentCredit.shards===2282,'real Enter spends original2402 Shard credit once');
-  const last='resonancereclaim',lastQueue=selector('data-queue',last),lastBuy=selector('data-research',last),lastNode=nodes[nodes.length-1];
+  const last='harvesttempering',lastQueue=selector('data-queue',last),lastBuy=selector('data-research',last),lastNode=nodes[nodes.length-1];
   await install(paid);ok(await ev("Array.from(document.querySelectorAll('[data-forge-card]')).pop().dataset.forgeCard")===last,'last-row regression targets actual final card');
   let lastBefore=await prepare(lastQueue,true);await shot('forge-last-before-'+width+'-'+scale+'-'+motion);
   const stable=await ev('prismQa.get()');
@@ -192,7 +196,7 @@ const cases=String.raw`
   await ev('prismQa.forgeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready();await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('forge')");
   const cold=await ev('prismQa.get()');for(const field of ['research','researchQueue','nodes','longStudyLevels','activeStudies','owned','cometClaims','autoAscendEnabled','autoAscendTargetDepth','sigilResonanceUses'])ok(JSON.stringify(cold[field])===JSON.stringify(committed[field]),'actual reload preserves paid '+field);
   ok(added.every(id=>cold.research[id]>0),'reload retains all sixteen genuinely purchased additions');
-  const ax=await send('Accessibility.getFullAXTree');ok(ax.nodes.some(n=>!n.ignored&&n.name&&/Resonance Reclaim/.test(n.name.value)),'last added Forge exposed in accessibility tree');
+  const ax=await send('Accessibility.getFullAXTree');ok(ax.nodes.some(n=>!n.ignored&&n.name&&/Harvest Tempering/.test(n.name.value)),'last added Forge exposed in accessibility tree');
   ok((await ev('window.__prismErrors')).length===0,'no browser runtime errors');records.push({width,scale,motion,nativeAnimationFrames:true,independentNativeEffectRows:nativeEffects.length,catalog,samples,queueSamples,finalPrice,cappedControl,capSettled,input});
 `;
 driver=driver.slice(0,start)+cases+driver.slice(end);

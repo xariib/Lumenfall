@@ -80,8 +80,8 @@ function prepareResonate(q, levels = {}) {
 
 function catalogueCases(html, a) {
   const x = app(html), q = x.q, defs = q.defs();
-  a.eq(defs.map(d => d.id), OLD_IDS.concat(['masterwork'],IDS), 'stable original8, repeatable Masterwork, approved grouped16');
-  a.eq(defs.filter(d => !d.retiredTo).length, 21, 'twenty-one active Forge choices');
+  a.eq(defs.map(d => d.id), OLD_IDS.concat(['masterwork'],IDS,['battletempering','arcanetempering','harvesttempering']), 'original catalogue plus three workshop enhancements');
+  a.eq(defs.filter(d => !d.retiredTo).length, 24, 'twenty-four active Forge choices');
   a.eq(defs.filter(d => d.retiredTo).map(d => d.id), OLD_IDS.slice(0, 4), 'retired paid identities retained');
   let priceCases = 0, purchases = 0;
   for (const d of CATALOGUE) {

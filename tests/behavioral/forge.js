@@ -14,7 +14,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
   function exactInteger(value){if(typeof value==='number')return BigInt(value);var p=value.split('e');return BigInt(p[0])*10n**BigInt(p[1]);}
   function seed(){return window.forgeSeed(b,ctx);}
   function saved(raw){var s=Object.assign(seed(),raw);if(raw.schemaVersion===undefined)delete s.schemaVersion;if(raw.researchQueue===undefined)delete s.researchQueue;return s;}
-  var ids=['arcanecal','conduction','luminoustracking'],legacy=['focus','sense','formation','resolve','charge'],expansion=window.forgeExpansionIds;
+  var ids=['arcanecal','conduction','luminoustracking'],legacy=['focus','sense','formation','resolve','charge'],expansion=window.forgeExpansionIds,enhancements=['battletempering','arcanetempering','harvesttempering'];
   var caps={arcanecal:20,conduction:20,luminoustracking:10};
   var nodes=f.nodes(),clock=2000000000000;
   function node(id){return nodes.find(function(n){return n.id===id;});}
@@ -22,10 +22,10 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
   function noEnemyChange(a,c,label){['enemyDepth','enemyHp','enemyMaxHp','enemyIsLuminous','luminousAccum'].forEach(function(k){same(a[k],c[k],label+' '+k);});}
   if(ctx.scenario==='forge-contracts'){
     ok(!b.getFlags().reloadInProgress,'timer-only test pause leaves production persistence enabled');
-    same(nodes.filter(function(n){return n.id!=='masterwork';}).map(function(n){return n.id;}),legacy.concat(ids,expansion),'eight retained IDs followed by sixteen approved Forge additions');
+    same(nodes.filter(function(n){return n.id!=='masterwork';}).map(function(n){return n.id;}),legacy.concat(ids,expansion,enhancements),'original identities and three workshop enhancements');
     ok(nodes.filter(function(n){return n.id==='masterwork';}).length===1,'one additive Masterwork path');
-    ok(new Set(nodes.filter(function(n){return n.id!=='masterwork';}).map(function(n){return n.id;})).size===24,'twenty-four unique retained catalogue IDs');
-    ok(nodes.filter(function(n){return !n.retiredTo&&n.id!=='masterwork';}).length===20,'twenty retained active Forge tracks');
+    ok(new Set(nodes.filter(function(n){return n.id!=='masterwork';}).map(function(n){return n.id;})).size===27,'twenty-seven non-Masterwork catalogue IDs');
+    ok(nodes.filter(function(n){return !n.retiredTo&&n.id!=='masterwork';}).length===23,'twenty-three active non-Masterwork Forge tracks');
     [b.freshStateSnapshot(),{schemaVersion:1,research:{focus:123},researchQueue:{focus:true,charge:false}},{labQueueOn:true,research:{sense:42}}].forEach(function(raw,i){
       var s=f.canonical(saved(raw));ids.concat(expansion).forEach(function(id){ok(s.research[id]===0 && s.researchQueue[id]===false,'missing IDs 0/OFF '+i+' '+id);});
       if(i===1)ok(s.research.focus===123 && s.researchQueue.focus && !s.researchQueue.charge,'v1 legacy values retained');

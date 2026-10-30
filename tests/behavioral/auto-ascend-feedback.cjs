@@ -116,6 +116,11 @@ function endpointCases(input){
     const summary=q.advance(10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
     const endpoint=F.clone(q.get());
     const historicalEndpoint=F.clone(endpoint);
+    for(const id of ['battletempering','arcanetempering','harvesttempering']){
+      eq(historicalEndpoint.research[id],0,'new Forge enhancement stays unpurchased in PR15 oracle '+id);
+      eq(historicalEndpoint.researchQueue[id],false,'new Forge enhancement queue stays OFF in PR15 oracle '+id);
+      delete historicalEndpoint.research[id];delete historicalEndpoint.researchQueue[id];
+    }
     // PR15 predates these additive identities. Require their exact unpurchased
     // defaults before retaining the complete frozen historical endpoint hash.
     for(const id of ['wispdamage','wispcritchance','wispcritdamage']){
