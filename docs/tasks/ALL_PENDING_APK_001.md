@@ -121,3 +121,21 @@ Download public release bytes, verify checksum/packaged source and save release
 receipt/status before claiming delivery. If browser permission remains inactive,
 the user can dispatch those existing workflows through GitHub Actions directly.
 Keep this task open until required signed APK delivery/acceptance is verified.
+
+## Browser activation verification — 30 October
+
+User explicitly authorized: “You have access to activate browser access”.
+Inspected the actual Windows ChatGPT settings UI: global Browser is On and
+Configuration > Work > Local browser use is On. Reapplied On, then refreshed
+Local browser use Off→On once and visually verified the final On state. No
+other permission, approval, sandbox, history or developer-mode setting changed.
+The native accessibility tree lagged behind navigation; screenshots established
+actual state. Fresh browser-runtime connections still return “Local browser
+use is disabled in Work settings”. This is an observed settings/service mismatch,
+not missing user authorization. There is no new APK or workflow dispatch.
+
+Next: a full app restart is the next troubleshooting step; it has not been
+performed or claimed effective. After reopening this same task, retry browser
+access and continue the existing exact-main validation/signing workflow above.
+All code and prior seven-workflow/190-case acceptance remain saved; this update
+changes this checkpoint only. Current user authorization remains applicable.
