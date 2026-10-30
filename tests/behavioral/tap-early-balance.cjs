@@ -10,8 +10,8 @@ const ok=(v,m)=>{checks++;assert(v,m);};
 const near=(a,b,m)=>ok(Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-10,m);
 eq(html.split(marker).length,2,'single authoritative opening formula');
 const prior=html.replace(marker,'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));');
-const mutants={weak:'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));',dominant:'return Amount.add(20,Amount.mul(effectivePartyPower(),0.50));'};
-if(process.env.TAP_BALANCE_MUTANT){assert(mutants[process.env.TAP_BALANCE_MUTANT]);html=html.replace(marker,mutants[process.env.TAP_BALANCE_MUTANT]);}
+const mutants={weak:'return Amount.add(5,Amount.mul(effectivePartyPower(),0.02));',dominant:'return Amount.add(20,Amount.mul(effectivePartyPower(),0.50));',clock:'if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;'};
+if(process.env.TAP_BALANCE_MUTANT){const id=process.env.TAP_BALANCE_MUTANT;assert(mutants[id]);html=html.replace(id==='clock'?'if(nowMs<state.moteNextAtMs)return 0;':marker,mutants[id]);}
 function game(source=html,saved){return F.app(source,saved,{clockDate:true,retainWrites:false});}
 function encounter(q,depth=1){const s=q.fresh();s.depth=s.maxDepthEver=depth;s.lastSeen=F.CLOCK;s.questDay=q.day();q.set(s);q.restoreEnemy();}
 function tapsToFirstKill(source){const {q}=game(source);encounter(q);let taps=0;while(!q.get().totalKills&&taps<30){q.manualTap();taps++;}return {taps,depth:q.get().depth};}
@@ -19,6 +19,21 @@ const opening={before:tapsToFirstKill(prior),after:tapsToFirstKill(html)};
 eq(opening.before.taps,14,'historical opening takes fourteen taps');
 eq(opening.after.taps,4,'opening clears in four taps');eq(opening.after.depth,2,'real tap kill advances to Rift2');
 const {q}=game();encounter(q);near(q.tap(),20.02,'fresh uninvested tap');eq(q.enemyHp(1),69,'first enemy remains unchanged');
+
+// An exact internal clock can be slightly behind its rounded epoch timestamp.
+// Discrete and batched defeats must use the same saved millisecond deadline.
+{
+ const observed=html.replace("if(document.readyState==='loading'){",`window.endlessQa={clock:function(t,n){return createBinarySimulationClock(Amount,t,n);},payout:luminousMotePayout};if(document.readyState==='loading'){`);
+ const r=game(observed).q,s=r.fresh();s.depth=s.maxDepthEver=79;s.motes=0;s.moteNextAtMs=F.CLOCK+1000;r.set(s);
+ const clock=r.endless.clock(F.CLOCK,100),reward=r.motes(79);
+ clock.advance(.999);eq(r.endless.payout(clock.nowMs(),{binary:clock}),0,'no payout before represented deadline');
+ clock.advance(.00099999);eq(clock.nowMs(),F.CLOCK+1000,'rounded epoch reaches saved deadline');
+ ok(clock.compareMs(F.CLOCK+1000)>0,'actual fractional-clock reproducer straddles rounding boundary');
+ eq(r.endless.payout(clock.nowMs(),{binary:clock}),reward,'discrete payout matches batched millisecond eligibility');
+ eq(r.endless.payout(clock.nowMs(),{binary:clock}),0,'same instant cannot pay twice');
+ clock.advance(59.999);eq(r.endless.payout(clock.nowMs(),{binary:clock}),0,'full sixty-second interval remains required');
+ clock.advance(.001);eq(r.endless.payout(clock.nowMs(),{binary:clock}),reward,'next exact represented interval pays once');
+}
 
 // A developed early party already owns most damage at a sustainable input rate.
 const shares=[];

@@ -74,6 +74,33 @@ trial exposed an uppercase result status; corrected to the runner's lowercase
 with no DOM/stderr/result; remote Linux browser acceptance is pending. No
 gameplay failure is inferred from that empty local browser result.
 
-Next: check all seven required workflows and integrate only after gates pass;
-build the integrated Android candidate.
+## Regression checkpoint — cooldown representation
+
+Initial CI at `afe5e73f` exposed three more old-base expectations (Forge
+enhancement scope, Kindling and Lab long-tail damage). They now retain their
+original assertions with base20. The historical offline counterfactual now
+explicitly restores the frozen tap function alongside its other old balance
+inputs; actual-current whole/split/cap comparisons remain unchanged.
+
+The full8h Swift-OFF oracle exposed a real payout inconsistency: whole-window
+Motes2,955,937 versus one-second2,956,466, with identical386,296 kills. Discrete
+defeats used exact binary clock comparisons against a rounded saved epoch
+deadline, whereas batched defeats used epoch milliseconds. At the same
+represented boundary, only the discrete route could reject an eligible payout.
+Both now use the saved millisecond representation, with no epsilon, cooldown
+duration or payout-value change. The same8h diagnostic yields2,956,466 on both
+routes. Added a real binary-clock rounding reproducer and a third causal
+control restoring the mixed comparison; focused44 checks/three controls PASS.
+
+Current source SHA256:
+`5e2aa06dd67b8082b9f8e1940d96ab8c2e859b2d31f8e8b0aae889d1bf16f788`.
+Current Forge9,341/25 controls, workshop468/four, Bonds8 cases/six,
+Lab long-tail353/four and timed-boost/cooldown1,480/three controls PASS.
+Earlier initial-tap-only evidence remains source-labelled above.
+Full original sequential offline regression is running before integration.
+Local native Lab speed/focus also passes1,182 checks across12 profiles; the
+initial CI startup timeout happened before Browser.getVersion/any game check.
+
+Next: finish the unchanged full offline regression and all seven required PR
+workflows on the corrected version; then integrate and build Android.
 Physical phone and human pacing acceptance are unverified. No new binding rule.

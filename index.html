@@ -4168,7 +4168,9 @@ function activateStudyBoost(id,mult,hours){
   renderLongStudies();renderHud();return true;
 }
 function luminousMotePayout(nowMs,clock){
-  if(clock&&clock.binary?clock.binary.compareMs(state.moteNextAtMs)>0:nowMs<state.moteNextAtMs)return 0;
+  // The saved deadline and batched defeats use epoch milliseconds. Compare
+  // discrete defeats in that same representation at the cooldown boundary.
+  if(nowMs<state.moteNextAtMs)return 0;
   state.moteNextAtMs=nowMs+LUMINOUS_MOTE_INTERVAL_MS;
   var reward=Amount.max(1,Amount.round(Amount.mul(motesDropFor(state.depth),Amount.add(1,supportMoteBonus())),'round'));
   state.motes=creditAmount(state.motes,reward);return reward;
