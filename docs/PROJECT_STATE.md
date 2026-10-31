@@ -1,8 +1,10 @@
 # Lumenfall — current delivery status
 
-31 October: [Ritual challenges](tasks/AUTO_ASCEND_CHALLENGES_001.md), [PR31](https://github.com/xariib/Lumenfall/pull/31), merged at3f74661b: 25 Ascensions, Rift150,50 current Lab levels across6 subjects, then100 Comets. Existing owners keep it. Seven gates/190+1 scenarios and signed0.2.65 installed upgrade PASS. [Receipt](qa/auto-ascend-challenges-001/ci-final.json). Phone acceptance open; no release.
+31 October: [Lab Speed Up design/PR32](tasks/LAB_SPEED_DESIGN_001.md): candidate c1c2e46b; mobile presets and signed0.2.68 upgrade PASS. Final CI/integration pending.
 
-30 October: [Opening tap balance/PR #29](tasks/TAP_EARLY_BALANCE_001.md) integrated; signed 0.2.64 test APK. Base 20 + 2% party power; Wisps take over with development. Seven gates, 190+1 scenarios and signed installed upgrade PASS; phone/human pacing acceptance open. [Receipt](qa/tap-early-balance-001/delivery.json).
+31 October: [Ritual challenges/PR31](tasks/AUTO_ASCEND_CHALLENGES_001.md) merged3f74661b; existing owners retained. Seven gates/190+1 scenarios and signed0.2.65 upgrade PASS. [Receipt](qa/auto-ascend-challenges-001/ci-final.json). No release.
+
+30 October: [Tap balance/PR29](tasks/TAP_EARLY_BALANCE_001.md): base20+2% party power. Seven gates/190+1 scenarios and signed0.2.64 upgrade PASS. [Receipt](qa/tap-early-balance-001/delivery.json).
 
 30 October: [Direct Rift navigation](tasks/RIFT_NAVIGATION_001.md),
 [PR30](https://github.com/xariib/Lumenfall/pull/30) merged at90c20a26:
@@ -47,17 +49,13 @@ physical-device and human pacing acceptance remain open.
 
 27 October: [Permanent progression](tasks/PERMANENT_PROGRESSION_UI_001.md) released as **Android 0.2.48**. Seven gates, 189+1 scenarios, installed Android upgrade and public APK verification PASS. Both saves/paid work retained. [Evidence](qa/permanent-progression-ui-001/release.json). Phone/WebView60/TalkBack/pacing remain open.
 
-26 October 2026: [Workshop/card clarity](tasks/WORKSHOP_CARD_CLARITY_001.md)
-merged through [PR #13](https://github.com/xariib/Lumenfall/pull/13) at bba2db5e.
-[Android 0.2.43](https://github.com/xariib/Lumenfall/releases/tag/android-1000043)
-is published: five visible Lab slots, click-to-choose catalogue, Queue OFF clearing
-with paid work/boosts retained, concise cards, 49 additional Deeds (76 total) and
-Comet commands in Deeds so Rift stays fixed. All six exact-main workflows,
-both complete jobs and 189+1 scenarios pass. The signed installed Android upgrade
-retained UID/origin, both saves, paid work and legacy entitlements; native Wisp
-purchase and Farm navigation pass. Anonymous public download, checksum and actual
-packaged source were verified. [Evidence](qa/workshop-card-clarity-001/release.json).
-Physical phone, exact WebView60 DOM, TalkBack and human pacing remain open.
+26 October: [Workshop/card clarity/PR13](tasks/WORKSHOP_CARD_CLARITY_001.md)
+merged bba2db5e and released [Android0.2.43](https://github.com/xariib/Lumenfall/releases/tag/android-1000043):
+five Lab slots/catalogue, retained paid work with Queue OFF, concise cards,
+76 Deeds and Comet commands moved to Deeds. Six exact-main workflows,
+189+1 scenarios, signed upgrade/native Wisp/Farm input and public-byte checks
+PASS; saves, UID/origin and legacy entitlements retained.
+[Evidence](qa/workshop-card-clarity-001/release.json).
 
 [Lab/Forge long-tail progression](tasks/LAB_FORGE_LONGTAIL_001.md) previously merged
 through PR #11 at e287b121 and released 0.2.40. Its paid timed boosts and caps remain;
@@ -80,25 +78,15 @@ At preparation, the public APK was 0.2.14. Live release outcome, exact versions
 and check evidence: [delivery PR #8](https://github.com/xariib/Lumenfall/pull/8).
 No product code changes in this delivery task.
 
-24 October 2026: [RIFT_HINT_READABILITY_002](tasks/RIFT_HINT_READABILITY_002.md)
-was integrated through [PR #7](https://github.com/xariib/Lumenfall/pull/7) at
-`88d9bdd33dafb4d075f8b86254ef050ade99e32d`. The short Farm Lab summary opens
-complete current advice without changing combat geometry, purchases or saves.
-All six required final-head workflows passed, including both full jobs,
-18 mobile profiles, causal controls, original layout cases and runtime smoke;
-automated review had no findings. The integrated tree matches tested 0d7937a.
-
-[Non-publishing integrated Android #29](https://github.com/xariib/Lumenfall/actions/runs/40076467803)
-**PASS** on exact main `6de1789b95db4eff4321241b9474730b909e0d14`.
-Signing/package/assets/origin and the exact-APK receipt gates passed.
-Both save slots, paid work and legacy entitlements survived the installed
-upgrade. Native Wisp touch and summary → complete hint → focused original
-Lab card passed. Release was skipped. The environment interruption is resolved.
-**Integrated and installed-emulator accepted; physical phone, exact WebView60,
-TalkBack and human visual/pacing acceptance remain open.** No APK release.
-The earlier phase-sensitive VFX failure is retained in the
-[separate, unapproved proposal](tasks/RIFT_VFX_OVERFLOW_001.md); its unchanged
-gate passed in final CI, but the underlying finding is not claimed fixed.
+24 October: [Hint readability/PR7](tasks/RIFT_HINT_READABILITY_002.md) integrated
+88d9bdd3; the short Farm hint opens complete advice without changing combat or
+purchases. Six workflows/both full jobs,18 mobile profiles, causal controls,
+original layouts and smoke PASS; automated review had no findings, tested tree
+0d7937a retained. [Non-publishing Android29](https://github.com/xariib/Lumenfall/actions/runs/40076467803)
+PASS on6de1789b: signing/package/assets/origin, both saves/paid work/legacy
+entitlements and native Wisp/hint-to-Lab input retained. No release; environment
+interruption resolved. The [earlier VFX finding](tasks/RIFT_VFX_OVERFLOW_001.md)
+remains open despite its unchanged gate passing. Phone acceptance remains open.
 
 22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
 integrated via [PR #6](https://github.com/xariib/Lumenfall/pull/6) at `83b1a8e`.

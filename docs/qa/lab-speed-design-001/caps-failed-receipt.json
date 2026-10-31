@@ -1,0 +1,53 @@
+{
+  "status": "fail",
+  "sourceSha256": "4c8523a47aab09f05da45e589a7fe2445971eb9538c436e32d7bc447f18a6e13",
+  "checks": 412,
+  "completedProfiles": [
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference"
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "reduce"
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference"
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "reduce"
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "no-preference"
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "reduce"
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "no-preference"
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "reduce"
+    }
+  ],
+  "error": "Error: {\"code\":-32000,\"message\":\"Inspected target navigated or closed\"}\n    at Socket.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.forge-lab-caps-mobile-6421.cjs:61:272)\n    at Socket.emit (node:events:509:28)\n    at addChunk (node:internal/streams/readable:563:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)\n    at Readable.push (node:internal/streams/readable:394:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)",
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "diagnosis": "412 checks = eight complete 46-check profiles + 44 checks in profile nine. The final two checks follow Page.reload/ready; the context-loss error occurs during that intentional navigation readiness boundary."
+}

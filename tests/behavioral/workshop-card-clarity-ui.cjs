@@ -17,7 +17,7 @@ module.exports=async function({send,ev,pause,check,records}){
   check(await ev('Array.from(document.querySelectorAll("[data-lab-slot]")).map(e=>e.dataset.labSlot).join(",")==="0,1,2,3,4"'),'visual and assistive reading order keep all five slot numbers stable');
   check(await ev('!document.querySelector("[data-study-pause]")&&!/Speed target/.test(document.querySelector("[data-running-study]").textContent)'),'no pause action or redundant speed target heading');
   if(!(await ev('document.querySelector(".study-speed-open").getAttribute("aria-expanded")=="true"')))await touch('[data-study-speed-open="1"]');
-  await ev('document.querySelector("[data-study-speed-target=guardmastery]").value=1;document.querySelector("[data-study-speed-target=guardmastery]").dispatchEvent(new Event("change",{bubbles:true}));window.rangeBefore=document.querySelector("[data-study-speed-target=guardmastery]");rangeBefore.focus();uiRegression.render();');
+  await ev('document.querySelector(".study-slider-controls").open=true;document.querySelector("[data-study-speed-target=guardmastery]").value=1;document.querySelector("[data-study-speed-target=guardmastery]").dispatchEvent(new Event("change",{bubbles:true}));window.rangeBefore=document.querySelector("[data-study-speed-target=guardmastery]");rangeBefore.focus();uiRegression.render();');
   check(await ev('rangeBefore===document.querySelector("[data-study-speed-target=guardmastery]")&&document.activeElement===rangeBefore'),'active slider stays attached and focused');
   await touch('[data-speed-study=guardmastery]');await ev('window.boostBefore=JSON.stringify(uiRegression.get().studyBoosts.slot1)');
   await touch('[data-study-slot="1"]');await touch('[data-study="wispascend"]');

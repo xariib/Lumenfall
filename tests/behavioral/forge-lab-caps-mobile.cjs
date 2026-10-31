@@ -5,6 +5,11 @@ const source=path.resolve(process.argv[2]||'index.html'),out=path.resolve(proces
 let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 function one(a,b){assert.equal(driver.split(a).length,2,'one transport extension');driver=driver.replace(a,()=>b);}
 one('window.requestAnimationFrame=function(){return 0;};','');
+// Page.navigate/reload can replace its execution context while ready() polls.
+// Retry only that protocol transition inside the original 10-second deadline;
+// game errors, closed browsers and every purchase/reload assertion still fail.
+one("async function ready(){const deadline=Date.now()+10000;while(Date.now()<deadline){if(await ev('!!window.prismQa&&prismQa.initialized()')){await ev('prismQa.ready()');return;}await pause(30);}throw Error('Game initialization deadline');}",
+    "async function ready(){const deadline=Date.now()+10000;while(Date.now()<deadline){try{if(await ev('!!window.prismQa&&prismQa.initialized()')){await ev('prismQa.ready()');return;}}catch(e){if(!/Inspected target navigated or closed|Execution context was destroyed|Cannot find context with specified id/.test(e.message))throw e;}await pause(30);}throw Error('Game initialization deadline');}");
 one('breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}',String.raw`
  capSeed:function(){var s=freshState();s.maxDepthEver=250;s.lumen=s.shards=1e12;s.motes=10000;s.questDay=todayStr();s.lastSeen=Date.now();s.autoAscendEnabled=false;return s;},
  capSet:function(s,tab){state=acceptPersistedState(s);renderAll();activateTab(tab);},

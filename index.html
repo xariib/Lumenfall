@@ -2422,7 +2422,7 @@
   html.study-menu-open #tab-research{contain:none;animation:none;}
   #study-list .study-speed-editor.overlay{padding:12px;box-sizing:border-box;background:rgba(4,9,20,.88);z-index:40;}
   #study-list .study-speed-editor[hidden]{display:none;}
-  #study-list .study-speed-menu{box-sizing:border-box;max-width:420px;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 24px);overflow:auto;text-align:left;padding:16px;}
+  #study-list .study-speed-menu{box-sizing:border-box;max-width:420px;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 24px);overflow:auto;text-align:left;padding:16px;border:1px solid #739baf;border-radius:18px;background:radial-gradient(ellipse at 100% 0%,#39314b70,transparent 65%),linear-gradient(145deg,#1b2941,#111a2c);}
   .study-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;}.study-menu-heading h2{margin:0;font-size:1rem;}.study-menu-heading button{width:44px;min-width:44px;flex:0 0 44px;font-size:1.2rem;}
   #study-list .study-speed-menu p{font-size:.75rem;margin:10px 0;overflow-wrap:break-word;}
   #study-list .study-speed-menu select{width:100%;min-height:44px;}
@@ -2434,6 +2434,33 @@
   #study-list .study-boost-queue.active{background:#173c3c;border-color:#79c8c3;color:#e4f7f5;}
   .study-boost-queue>span:first-child{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid currentColor;border-radius:5px;flex:0 0 24px;}
   .study-boost-queue>strong{margin-left:auto;}
+  #study-list .study-speed-project{font-family:'Cinzel',Georgia,serif;font-size:1rem;color:var(--ink);margin:14px 0 6px;}
+  #study-list .study-speed-note{color:var(--ink-dim);line-height:1.5;}
+  #study-list .study-boost-plan-title{margin:16px 0 8px;text-align:center;}
+  .study-duration-presets,.study-mult-presets{display:grid;gap:8px;}
+  .study-duration-presets{grid-template-columns:repeat(3,minmax(0,1fr));padding:10px 0 14px;border-bottom:1px solid #68708955;}
+  .study-mult-presets{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:14px;}
+  #study-list .study-preset{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:44px;min-height:48px;padding:8px 3px;border:1px solid #668c9c;border-radius:8px;background:#132537;color:#d8eee9;font:inherit;font-size:.85rem;font-weight:700;line-height:1.3;box-shadow:none;white-space:normal;}
+  #study-list .study-preset small{font-size:.6rem;font-weight:400;color:inherit;}
+  #study-list .study-preset[aria-pressed=true]{background:#244e53;border:2px solid #9bdfd4;color:#effffa;}
+  #study-list .study-mult-presets .study-preset{background:#211f39;border-color:#73698e;color:#e3d9f9;}
+  #study-list .study-mult-presets .study-preset[aria-pressed=true]{background:#4a3868;border:2px solid #c8adeb;color:#fff4ff;}
+  #study-list .study-preset::before{content:none;}
+  #study-list .study-preset:focus-visible,.study-slider-controls summary:focus-visible{outline:2px solid var(--lumen);outline-offset:3px;}
+  .study-slider-controls{margin-top:10px;color:var(--ink-dim);font-size:.7rem;}
+  .study-slider-controls:not([open])>div{display:none;}
+  .study-slider-controls summary{display:flex;align-items:center;min-height:44px;cursor:pointer;list-style:none;}
+  .study-slider-controls summary::after{content:'+';margin-left:auto;}.study-slider-controls[open] summary::after{content:'−';}
+  #study-list .study-slider-controls .study-speed-range{margin-top:10px;}
+  #study-list .study-boost-next{text-align:center;margin:4px 0 14px;padding:12px 8px;border:0;background:transparent;}
+  #study-list [data-study-next-summary]{font-size:1.25rem;color:var(--ink);}
+  #study-list .study-boost-next p{font-size:.7rem;color:var(--ink-dim);}
+  #study-list .study-boost-next [data-price-currency]{display:inline-flex;align-items:center;gap:4px;}
+  #study-list .study-boost-queue{background:#14283a;border-color:#537a88;font-size:.8rem;}
+  #study-list .study-boost-queue-note{font-size:.65rem;line-height:1.5;color:var(--ink-dim);}
+  .study-speed-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px;margin-top:14px;align-items:stretch;}
+  #study-list .study-speed-actions>button{min-height:44px;width:100%;margin:0;padding:8px;border:1px solid #73698e;border-radius:9px;font-size:.8rem;}
+  #study-list .study-speed-actions .study-boost-start,#study-list .study-speed-actions .study-boost-active{height:100%;margin:0;padding:8px;font-size:.8rem;}
 </style>
 </head>
 <body>
@@ -9964,17 +9991,20 @@ function studySpeedMarkup(node,active,maxed){
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
     '<button class="study-speed-open mini-btn" data-study-speed-open="'+active.slot+'" data-study-speed-summary="'+node.id+'" aria-expanded="'+(expandedStudySpeedSlot===active.slot)+'" aria-haspopup="dialog" aria-controls="study-speed-editor-'+node.id+'">Speed Up</button>'+
     '<div class="study-speed-editor overlay" id="study-speed-editor-'+node.id+'" '+(expandedStudySpeedSlot===active.slot?'':'hidden')+'><div class="modal study-speed-menu" role="dialog" aria-modal="true" aria-labelledby="study-speed-title-'+node.id+'" aria-describedby="study-speed-note-'+node.id+'" tabindex="-1">'+
-    '<div class="study-menu-heading"><h2 id="study-speed-title-'+node.id+'">Speed Up · Lab '+(active.slot+1)+'</h2><button class="mini-btn" data-study-speed-close="'+active.slot+'" aria-label="Close Speed Up">×</button></div><p>'+node.name+'</p><p id="study-speed-note-'+node.id+'">Boost this slot with Motes. The timer continues when you change research.</p>'+
-    '<p class="study-boost-plan-title">'+(held?'Next boost':'Boost settings')+'</p><div class="study-speed-heading">'+
+    '<div class="study-menu-heading"><h2 id="study-speed-title-'+node.id+'">Speed Up · Lab '+(active.slot+1)+'</h2><button class="mini-btn" data-study-speed-close="'+active.slot+'" aria-label="Close Speed Up">×</button></div><p class="study-speed-project">'+node.name+'</p><p class="study-speed-note" id="study-speed-note-'+node.id+'">Use Motes to speed up research. The boost stays with this Lab when research changes.</p>'+
+    '<p class="study-boost-plan-title">'+(held?'Next boost':'Boost settings')+'</p>'+
+    '<div class="study-duration-presets" role="group" aria-label="Boost duration">'+LAB_BOOST_HOURS.map(function(h,i){return '<button class="study-preset" data-study-duration-preset="'+h+'" data-study-preset-id="'+node.id+'" aria-pressed="'+(hours===h)+'" aria-label="'+h+' hours'+(i?', '+[0,5,10][i]+' percent off':'')+'"><span>'+h+'h</span>'+(i?'<small>'+[0,5,10][i]+'% off</small>':'')+'</button>';}).join('')+'</div>'+
+    '<div class="study-mult-presets" role="group" aria-label="Research speed">'+LAB_SPEED_TIERS.map(function(mult){return '<button class="study-preset" data-study-mult-preset="'+mult+'" data-study-preset-id="'+node.id+'" aria-pressed="'+(target===mult)+'" aria-label="'+mult+' times research speed">'+mult+'x</button>';}).join('')+'</div>'+
+    '<details class="study-slider-controls"><summary tabindex="0">Slider controls</summary><div class="study-speed-heading">'+
     '<select data-study-boost-hours="'+node.id+'" aria-label="'+node.name+' — Boost duration" aria-describedby="study-speed-help">'+LAB_BOOST_HOURS.map(function(h,i){return '<option value="'+h+'" '+(hours===h?'selected':'')+'>'+h+' hours'+(i?' · '+[0,5,10][i]+'% off':'')+'</option>';}).join('')+'</select></div>'+
     '<div class="study-speed-range"><output data-study-speed-value="'+node.id+'" aria-label="Selected speed">'+target+'x</output><input type="range" min="0" max="7" step="1" value="'+index+'" data-study-speed-target="'+node.id+'" aria-label="'+node.name+' — Speed target" aria-valuetext="'+target+'x" aria-describedby="study-speed-help" style="background-size:'+(index/7*100)+'% 8px;">'+
-    '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div>'+
-    '<div class="study-boost-next"><strong data-study-next-summary>'+target+'x · '+hours+'h</strong>'+(held?'<p>Cost per boost · <span data-study-next-price>'+purchasePriceMarkup('mote',plan.cost)+'</span></p>':'')+'</div>'+
+    '<div class="study-speed-limits" aria-hidden="true"><span>1.5x</span><span>8x</span></div></div></details>'+
+    '<div class="study-boost-next"><strong data-study-next-summary>'+target+'x · '+hours+'h</strong><p>Cost per boost · <span data-study-next-price>'+purchasePriceMarkup('mote',plan.cost)+'</span></p></div>'+
     '<button class="study-boost-queue mini-btn '+(preference.enabled?'active':'')+'" role="checkbox" aria-checked="'+preference.enabled+'" data-study-boost-queue="'+node.id+'" data-study-boost-slot="'+active.slot+'"><span aria-hidden="true">'+(preference.enabled?'✓':'×')+'</span><span>Queue Speed Up</span><strong>'+(preference.enabled?'ON':'OFF')+'</strong></button>'+
     '<p class="study-boost-queue-note">'+(preference.enabled?'Auto-start and repeat the selected boost when research and Motes are available. Pay once at each start.':'Queue OFF. The current paid boost finishes; no automatic boost follows.')+'</p>'+
-    '<div class="study-boost-action">'+(held?
+    '<div class="study-speed-actions"><button class="ghost-btn" data-study-speed-cancel="'+active.slot+'">Cancel</button><div class="study-boost-action">'+(held?
       '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">Active: '+boost.mult+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
-      active?'<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">Start '+hours+'h boost · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>':'')+'</div><button class="ghost-btn" data-study-speed-cancel="'+active.slot+'">Back to Labs</button></div></div></div>';
+      active?'<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">Speed Up · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>':'')+'</div></div></div></div></div>';
 }
 // Native controls stay attached while their project and other cards refresh.
 function replaceStudyMarkup(html){
@@ -10020,6 +10050,11 @@ function replaceStudyMarkup(html){
   range.disabled=nextRange.disabled;range.value=nextRange.value;
   range.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(range.value)]+'x');range.style.backgroundSize=(Number(range.value)/7*100)+'% 8px';
   select.disabled=nextSelect.disabled;select.value=nextSelect.value;
+  controls.querySelectorAll('[data-study-mult-preset],[data-study-duration-preset]').forEach(function(button){
+    var speed=button.getAttribute('data-study-mult-preset');
+    var selected=speed!==null?Number(speed)===LAB_SPEED_TIERS[Number(range.value)]:button.getAttribute('data-study-duration-preset')===select.value;
+    button.setAttribute('aria-pressed',String(selected));
+  });
   ['.study-boost-next','.study-boost-plan-title','.study-boost-queue-note'].forEach(function(selector){controls.querySelector(selector).innerHTML=nextControls.querySelector(selector).innerHTML;});
   var queueControl=controls.querySelector('[data-study-boost-queue]'),nextQueue=nextControls.querySelector('[data-study-boost-queue]');
   queueControl.className=nextQueue.className;queueControl.setAttribute('aria-checked',nextQueue.getAttribute('aria-checked'));queueControl.innerHTML=nextQueue.innerHTML;
@@ -10227,6 +10262,17 @@ function renderLongStudies(){
       e.stopPropagation();
       var id = btn.getAttribute('data-study-queue');
       toggleStudyQueue(id);
+    });
+  });
+  els['study-list'].querySelectorAll('[data-study-preset-id]').forEach(function(button){
+    if(button.studyBound)return;button.studyBound=true;
+    button.addEventListener('click',function(){
+      var id=button.getAttribute('data-study-preset-id'),active=findActiveStudy(id);if(!active)return;
+      var preference=getStudyBoostPreference(active),mult=button.getAttribute('data-study-mult-preset'),hours=button.getAttribute('data-study-duration-preset');
+      // Keep the activated choice attached through the transactional render.
+      button.focus({preventScroll:true});
+      var range=button.closest('.study-speed-controls').querySelector('[data-study-speed-target]');range.studyPreview=undefined;
+      setStudyBoostPreference(id,mult!==null?Number(mult):preference.mult,hours!==null?Number(hours):preference.hours);
     });
   });
   els['study-list'].querySelectorAll('[data-study-boost-hours]').forEach(function(select){

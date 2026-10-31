@@ -1,0 +1,13 @@
+{
+  "status": "FAIL before status compaction",
+  "run": 41143134106,
+  "head": "ff92edf204dcd93b17fe75494da01300c4c2558b",
+  "task": "docs/tasks/RIFT_HINT_READABILITY_002.md",
+  "sharedStartupBytes": 21007,
+  "taskBytes": 12299,
+  "totalBytes": 33306,
+  "limitBytes": 32768,
+  "afterSharedBytes": 19888,
+  "afterTotalBytes": 32187,
+  "fix": "Compact shared delivery summaries while retaining task/release/evidence links; no budget or checker changes; all workflow-selected tasks rechecked."
+}

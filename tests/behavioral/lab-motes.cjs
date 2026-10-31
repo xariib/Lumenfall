@@ -39,7 +39,11 @@ async function run(){
   await new Promise(r=>setTimeout(r,250));
   if(process.env.LUMENFALL_QA_EVIDENCE_DIR){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'lab-ui-card-'+width+'-'+motion+'-text'+textScale+'.png'),Buffer.from(shot.data,'base64'));}
   await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();const s=labMotesSeed(b,window.__lumenfallQaContext);s.motes=0;s.studySpeedTargets.guardmastery=2;s.studyQueue.guardmastery=true;s.activeStudies=[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}];s.enemyHp=s.enemyMaxHp=1e9;b.setState(s);b.save();b.renderLayout();document.querySelector('[data-tab="research"]').click();var open=document.querySelector('[data-study-speed-open]');if(open.getAttribute('aria-expanded')==='true')open.click();document.querySelector('[data-study-speed-open]').focus();})()`);
-  await key('Enter');await key('Tab');assert(await evaluate('document.activeElement.dataset.studyBoostHours')==='guardmastery','Tab reaches duration before range');
+  await evaluate('document.querySelector(".study-slider-controls").open=false');
+  await key('Enter');await key('Tab');assert(await evaluate('document.activeElement.dataset.studyDurationPreset')==='8','Tab reaches duration presets first');
+  for(let i=0;i<11;i++)await key('Tab');
+  assert(await evaluate('document.activeElement.matches(".study-slider-controls summary")'),'Tab reaches optional slider disclosure after presets');
+  await key('Enter');await key('Tab');assert(await evaluate('document.activeElement.dataset.studyBoostHours')==='guardmastery','disclosure exposes duration before range');
   await key('ArrowDown');
   assert(await evaluate('window.__lumenfallQaBridge.getState().studyBoostHours.guardmastery===12'),'native duration choice saves12h');
   await key('Tab');assert(await evaluate('document.activeElement.dataset.studySpeedTarget')==='guardmastery','Tab reaches native speed range');
@@ -50,7 +54,7 @@ async function run(){
   assert(!ax.nodes.some(n=>!n.ignored&&n.role?.value==='progressbar'&&/Guardian/.test(n.name?.value||'')),'modal isolates background progress from AX');
   await key('Escape');const backgroundAx=await send('Accessibility.getFullAXTree');
   assert(backgroundAx.nodes.some(n=>!n.ignored&&n.role?.value==='progressbar'&&/Guardian/.test(n.name?.value||'')),'progress is accessible after closing menu');
-  await evaluate('document.querySelector(".study-speed-open").click();document.querySelector("[data-study-speed-target=guardmastery]").focus()');
+  await evaluate('document.querySelector(".study-speed-open").click();document.querySelector(".study-slider-controls").open=true;document.querySelector("[data-study-speed-target=guardmastery]").focus()');
   assert(ax.nodes.some(n=>!n.ignored&&/Guardian.*Boost duration/.test(n.name?.value||'')),'named duration in AX');
   await evaluate('document.querySelector("[data-study-speed-target=guardmastery]").scrollIntoView({block:"center"});window.nativeRange=document.activeElement');
   await new Promise(r=>setTimeout(r,350));let before=await snapshot();assert(before.fit&&before.rect.height>=44,'mobile range fits');
@@ -64,7 +68,8 @@ async function run(){
   assert(await evaluate('!document.querySelector("[data-speed-study=guardmastery]").disabled'),'funded exact package actionable');
   await key('Tab');assert(await evaluate('document.activeElement.dataset.studyBoostQueue')==='guardmastery','Tab reaches independent boost queue');
   assert(await evaluate('document.activeElement.getAttribute("aria-checked")==="false"&&window.__lumenfallQaBridge.getState().studyQueue.guardmastery&&window.__lumenfallQaBridge.getState().motes===4988'),'focusing boost queue preserves OFF, research repeat and funded wallet');
-  await key('Tab');assert(await evaluate('document.activeElement.dataset.speedStudy')==='guardmastery','Tab reaches funded action after boost queue');await key('Enter');let firstBought=await snapshot();assert(firstBought.focused.studySpeedSummary==='guardmastery'&&firstBought.state.motes===0,'first Enter returns to slot after exact debit');await key('Enter');assert(await evaluate('window.__lumenfallQaBridge.getState().motes===0&&document.querySelector(".study-speed-menu").contains(document.activeElement)'),'repeat Enter reopens paid timer without spending');await key('Escape');let bought=await snapshot();
+  await key('Tab');assert(await evaluate('document.activeElement.hasAttribute("data-study-speed-cancel")'),'Tab reaches Cancel before purchase');
+  await key('Tab');assert(await evaluate('document.activeElement.dataset.speedStudy')==='guardmastery','Tab reaches funded action after Cancel');await key('Enter');let firstBought=await snapshot();assert(firstBought.focused.studySpeedSummary==='guardmastery'&&firstBought.state.motes===0,'first Enter returns to slot after exact debit');await key('Enter');assert(await evaluate('window.__lumenfallQaBridge.getState().motes===0&&document.querySelector(".study-speed-menu").contains(document.activeElement)'),'repeat Enter reopens paid timer without spending');await key('Escape');let bought=await snapshot();
   assert(bought.speed===3&&bought.state.motes===0&&bought.focused.studySpeedSummary==='guardmastery'&&bought.state.studyBoosts.slot0.expiresAtMs-bought.state.studyBoosts.slot0.startedAtMs===43200000,'native Enter pays4988 once for3x12h, timer focused');
   assert(JSON.parse(bought.primary).studyBoosts.slot0.mult===3&&bought.primary===bought.recovery,'paid timer persisted both slots');
   await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(false)');await new Promise(r=>setTimeout(r,1100));await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(true)');let ticking=await snapshot();

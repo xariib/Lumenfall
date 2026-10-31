@@ -1,0 +1,12 @@
+{
+  "status": "FAIL",
+  "run": 41143127589,
+  "attempt": 1,
+  "head": "ff92edf204dcd93b17fe75494da01300c4c2558b",
+  "sourceSha256": "c1c2e46bc9cf2c24b12cb3010b388fbda72aabfd20ddf6d915bd00f5d85b791b",
+  "stage": "Installed Rift navigation after successful save upgrade, Wisp and Farm hint checks",
+  "assertion": "Native navigation reaches the expected Rift",
+  "actual": 25,
+  "expected": 24,
+  "interpretation": "First native back-one tap did not change stored Farm depth; unchanged checks rerun on a fresh emulator, no pass claimed for this attempt."
+}
