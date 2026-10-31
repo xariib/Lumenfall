@@ -1,0 +1,62 @@
+{
+  "status": "INTEGRATED_AUTOMATED_ACCEPTANCE_PASS_PHYSICAL_PENDING",
+  "checkedAt": "2026-10-31T00:39:04.006Z",
+  "pr": "https://github.com/xariib/Lumenfall/pull/32",
+  "baseline": "1f316cc5",
+  "integrationBase": "5acec043c6963a106d55389e1e1c384800bf95d8",
+  "testedHead": "8e4ec15e824ea31c78a6b018d4e38e1e2d118d0f",
+  "integrationCommit": "b7371ced6283b97f58f89ed1accff3dcc383f5ee",
+  "sourceSha256": "c1c2e46bc9cf2c24b12cb3010b388fbda72aabfd20ddf6d915bd00f5d85b791b",
+  "codeEquivalence": {
+    "ciHeadToIntegration": "PASS",
+    "apkHeadToCiHead": "PASS",
+    "paths": [
+      "index.html",
+      "tests/behavioral",
+      "scripts",
+      ".github/workflows",
+      "mobile",
+      "fonts",
+      "branding"
+    ],
+    "laterChanges": "documentation only"
+  },
+  "ci": {
+    "status": "PASS",
+    "workflows": 7,
+    "jobs": 9,
+    "scenarios": 191,
+    "receipt": "ci.json"
+  },
+  "apk": {
+    "version": "0.2.68",
+    "versionCode": 1000068,
+    "package": "com.lumenfall.app",
+    "head": "ff92edf204dcd93b17fe75494da01300c4c2558b",
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/41143127589",
+    "attempt": 2,
+    "sha256": "090b59c73c439864993eebae79ed5e2f7a85cec9627804b36b895006c38e302c",
+    "signingCertificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+    "origin": "https://localhost",
+    "matchingPackagedAssets": 15,
+    "upgrade": "PASS",
+    "receipt": "final-emulator-upgrade.json",
+    "physicalDevice": false,
+    "device": "Android12/API31 emulator, WebView91.0.4472.114",
+    "publicRelease": false
+  },
+  "failureDisposition": {
+    "capNavigation": "Expected navigation-context retry; unchanged deadline/assertions. Causal checks/full CI PASS.",
+    "contextBudget": "Status summaries compacted; unchanged32768-byte checker,31 task gates PASS.",
+    "androidAttempt1": "Native back-one missed; unchanged attempt2 PASS. Failure log/calibration/logcat retained."
+  },
+  "review": "self-review and automation",
+  "openAcceptance": [
+    "Physical phone",
+    "Exact WebView60",
+    "TalkBack",
+    "Human design acceptance"
+  ],
+  "archive": false,
+  "next": "Inspect preview/test APK and record physical/human acceptance."
+}

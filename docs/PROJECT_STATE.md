@@ -1,6 +1,6 @@
 # Lumenfall — current delivery status
 
-31 October: [Lab Speed Up design/PR32](tasks/LAB_SPEED_DESIGN_001.md): candidate c1c2e46b; mobile presets and signed0.2.68 upgrade PASS. Final CI/integration pending.
+31 October: [Lab Speed Up design/PR32](tasks/LAB_SPEED_DESIGN_001.md): merged b7371ced. Seven gates/190+1 scenarios and signed0.2.68 upgrade PASS. [Evidence](qa/lab-speed-design-001/delivery.json). Phone/WebView60/TalkBack review open.
 
 31 October: [Ritual challenges/PR31](tasks/AUTO_ASCEND_CHALLENGES_001.md) merged3f74661b; existing owners retained. Seven gates/190+1 scenarios and signed0.2.65 upgrade PASS. [Receipt](qa/auto-ascend-challenges-001/ci-final.json). No release.
 
