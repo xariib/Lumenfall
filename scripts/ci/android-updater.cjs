@@ -40,10 +40,10 @@ async function main(){
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('not allowed')"),'Permission refusal is explained');
   socket.close();adb('shell','am','force-stop',pkg);adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();await ready();
   // Corrupt an already verified private download: installation must reverify it.
-  const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','files/updates/update.apk']);
+  const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','cache/updates/update.apk']);
   tampered[tampered.length-1]^=1;fs.writeFileSync('release-evidence/updater-tampered.apk',tampered);
   adb('push','release-evidence/updater-tampered.apk','/data/local/tmp/lumenfall-tampered.apk');
-  adb('shell','run-as',pkg,'cp','/data/local/tmp/lumenfall-tampered.apk','files/updates/update.apk');
+  adb('shell','run-as',pkg,'cp','/data/local/tmp/lumenfall-tampered.apk','cache/updates/update.apk');
   fs.unlinkSync('release-evidence/updater-tampered.apk');
   await click();
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-action').textContent==='Download & install'&&document.getElementById('app-update-status').textContent.includes('checksum')"),'tampered APK rejected at installation');

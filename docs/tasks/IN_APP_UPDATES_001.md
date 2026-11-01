@@ -30,12 +30,15 @@ remain under the player's control. Android retains final install approval.
 Use existing GitHub release tag/APK/checksum assets; no new hosting or account.
 
 Baseline checks: source validation PASS (2 scripts,16 IDs); native recap fixture
-PASS (10 checks including negative control), Node v24.13.1.
+PASS (10 checks including negative control), Node v24.20.0.
 
 Implemented: native trust policy/plugin, generated-project installer hook,
 Settings controller, automatic/manual checks, cancellable bounded download,
 checksum/identity verification, private APK storage, permission/installer return,
-save-before-install and persistent verified retry. README documents the flow.
+save-before-install and verified retry across ordinary restarts. APKs use a
+private cache directory excluded from Android backups; system cache eviction
+requires a fresh download. Interrupted partial files are discarded on next start.
+README documents the flow.
 Existing build workflow adds a same-source, same-key older-version disposable
 fixture to exercise an actual public APK download and system-approved update.
 

@@ -36,7 +36,8 @@ public class AppUpdaterPlugin extends Plugin {
 
     private SharedPreferences prefs() { return getContext().getSharedPreferences("app-updates", 0); }
     private File directory() throws IOException {
-        File dir = new File(getContext().getFilesDir(), "updates");
+        // APKs are disposable cache, never player data or Android cloud-backup payloads.
+        File dir = new File(getContext().getCacheDir(), "updates");
         if (!dir.isDirectory() && !dir.mkdirs()) throw new IOException("Cannot prepare update storage.");
         return dir;
     }
@@ -48,6 +49,7 @@ public class AppUpdaterPlugin extends Plugin {
         return data == null ? null : new JSONObject(data);
     }
     private JSObject state() throws Exception {
+        new File(directory(), "update.part").delete(); // Discard an interrupted previous process's download.
         PackageInfo current = installed();
         JSONObject release = pending();
         if (release != null && release.getLong("code") <= version(current)) {

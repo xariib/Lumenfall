@@ -25,7 +25,7 @@ function install(root = 'mobile/android') {
     </application>`).replace('</manifest>', '    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />\n</manifest>');
   fs.writeFileSync(manifest, xml);
   fs.mkdirSync(path.join(main, 'res/xml'), {recursive: true});
-  fs.writeFileSync(path.join(main, 'res/xml/update_paths.xml'), '<?xml version="1.0" encoding="utf-8"?>\n<paths xmlns:android="http://schemas.android.com/apk/res/android"><files-path name="updates" path="updates/" /></paths>\n');
+  fs.writeFileSync(path.join(main, 'res/xml/update_paths.xml'), '<?xml version="1.0" encoding="utf-8"?>\n<paths xmlns:android="http://schemas.android.com/apk/res/android"><cache-path name="updates" path="updates/" /></paths>\n');
 }
 module.exports = {install};
 if (require.main === module) install(process.argv[2]);
