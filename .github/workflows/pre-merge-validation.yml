@@ -54,6 +54,12 @@ jobs:
           assert.deepEqual(bad.runtimeErrors,[]);assert.notEqual(good.sourceSha256,bad.sourceSha256);
           JS
 
+      - name: In-app signed update policy and controller
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/IN_APP_UPDATES_001.md
+          node tests/tooling/app-update-policy.cjs
+          node tests/behavioral/app-updates.cjs
+
       - name: Complete game audit and stationary Auto-Empower targets
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/FULL_GAME_WORKSHOP_AUDIT_001.md

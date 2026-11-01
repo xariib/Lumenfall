@@ -3175,6 +3175,18 @@
           </button>
         </div>
 
+        <div id="app-update-section" style="display:none;">
+          <div class="settings-section-title">App updates</div>
+          <p class="save-backup-note" id="app-update-status" role="status" aria-live="polite">Checking installed version…</p>
+          <progress id="app-update-progress" max="100" value="0" aria-label="Update download" style="display:none;width:100%;"></progress>
+          <div class="save-backup-actions">
+            <button type="button" id="app-update-action">Check for updates</button>
+            <button type="button" id="app-update-check" style="display:none;">Check again</button>
+            <button type="button" id="app-update-cancel" style="display:none;">Cancel download</button>
+          </div>
+          <p class="fine-print">Checks automatically when you play. Downloads use your internet connection. Android asks you to approve installation. Your progress stays on this device.</p>
+        </div>
+
         <div class="settings-section-title">Fair Play</div>
         <div class="manifesto settings-about" id="manifesto"></div>
 
@@ -10917,6 +10929,95 @@ function openSettings(){
   showSettingsView('home');
   openOverlay(document.getElementById('settings-overlay'),closeSettings,document.getElementById('settings-btn'));
 }
+
+// Native updater owns release URLs, verification, storage and Android permissions.
+// Keep this controller ES2017-compatible for WebView60; saves stay in the game.
+var appUpdate = {plugin:null, info:null, busy:false, downloading:false, notified:false};
+function renderAppUpdate(message){
+  var info=appUpdate.info || {}, action=document.getElementById('app-update-action');
+  action.disabled=appUpdate.busy;
+  action.textContent=info.ready ? 'Install update' : (info.available ? 'Download & install' : 'Check for updates');
+  document.getElementById('app-update-check').style.display=info.available && !appUpdate.busy ? '' : 'none';
+  document.getElementById('app-update-cancel').style.display=appUpdate.downloading ? '' : 'none';
+  document.getElementById('app-update-progress').style.display=appUpdate.downloading ? 'block' : 'none';
+  var text=message || ('Installed: '+(info.currentVersion || 'unknown')+'. '+(info.ready ?
+    'Version '+info.version+' is verified and ready to install.' : (info.available ?
+    'Version '+info.version+' is available ('+(info.bytes/1048576).toFixed(1)+' MB).' : 'You are up to date.')));
+  document.getElementById('app-update-status').textContent=text;
+  document.getElementById('settings-btn').setAttribute('aria-label',info.available ? 'Open settings — update available' : 'Open settings');
+}
+function checkAppUpdate(force){
+  if(!appUpdate.plugin || appUpdate.busy || document.hidden)return;
+  appUpdate.busy=true;
+  renderAppUpdate(force ? 'Checking for updates…' : 'Checking installed version…');
+  return appUpdate.plugin.check({force:!!force}).then(function(info){
+    appUpdate.info=info;
+    if(info.available && !appUpdate.notified){
+      appUpdate.notified=true;
+      showToast('Lumenfall '+info.version+' is available in Settings → App updates.');
+    }
+  }).catch(function(error){
+    appUpdate.busy=false;
+    renderAppUpdate(force ? (error.message || 'Could not check for updates. Try again.') : 'Automatic check unavailable. You can check again here.');
+    return false;
+  }).then(function(result){
+    appUpdate.busy=false;
+    if(result!==false)renderAppUpdate();
+  });
+}
+function installAppUpdate(){
+  // Flush real elapsed play time before Android can stop the application.
+  if(resetInProgress || reloadInProgress || !flushLiveProgress())throw Error('Finish loading your save before updating.');
+  if(saveState()!==true)throw Error('Your progress could not be saved. Make a Save Backup before updating.');
+  renderAppUpdate('Approve the update in Android. If asked, allow Lumenfall to install this update.');
+  return appUpdate.plugin.install().then(function(result){
+    return result.status==='cancelled' ? 'Installation cancelled. Your verified update is ready to retry.' : 'Update installed.';
+  });
+}
+function startAppUpdate(){
+  if(!appUpdate.plugin || appUpdate.busy)return;
+  if(!appUpdate.info || !appUpdate.info.available){checkAppUpdate(true);return;}
+  appUpdate.busy=true;
+  var operation;
+  if(appUpdate.info.ready){operation=Promise.resolve();}
+  else{
+    appUpdate.downloading=true;
+    document.getElementById('app-update-progress').value=0;
+    renderAppUpdate('Downloading update… You can keep playing.');
+    operation=appUpdate.plugin.download().then(function(info){appUpdate.info=info;});
+  }
+  operation.then(function(){
+    appUpdate.downloading=false;
+    // Do not suddenly interrupt a player who switched away while downloading.
+    if(document.hidden)return 'Update verified. Return to Settings to install it.';
+    return installAppUpdate();
+  }).then(function(message){
+    appUpdate.busy=false; appUpdate.downloading=false; renderAppUpdate(message);
+  }).catch(function(error){
+    appUpdate.busy=false; appUpdate.downloading=false;
+    var message=error.message || 'Update failed. Please try again.';
+    appUpdate.plugin.getState().then(function(info){appUpdate.info=info;renderAppUpdate(message);},function(){renderAppUpdate(message);});
+  });
+}
+function initAppUpdater(){
+  var cap=window.Capacitor;
+  if(!cap || !cap.isNativePlatform || !cap.isNativePlatform() || !cap.isPluginAvailable('AppUpdater'))return;
+  appUpdate.plugin=(cap.Plugins && cap.Plugins.AppUpdater) || cap.registerPlugin('AppUpdater');
+  document.getElementById('app-update-section').style.display='block';
+  document.getElementById('app-update-action').addEventListener('click',startAppUpdate);
+  document.getElementById('app-update-check').addEventListener('click',function(){checkAppUpdate(true);});
+  document.getElementById('app-update-cancel').addEventListener('click',function(){
+    if(appUpdate.downloading)appUpdate.plugin.cancel().catch(function(){});
+  });
+  Promise.resolve(appUpdate.plugin.addListener('progress',function(progress){
+    if(!appUpdate.downloading)return;
+    var percent=Math.min(100,Math.floor(progress.received*100/progress.total));
+    document.getElementById('app-update-progress').value=percent;
+    document.getElementById('app-update-status').textContent=percent===100 ? 'Verifying update…' : 'Downloading update: '+percent+'%';
+  })).catch(function(){});
+  appUpdate.plugin.getState().then(function(info){appUpdate.info=info;renderAppUpdate();checkAppUpdate(false);},function(){renderAppUpdate('Use Check for updates to try again.');});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)checkAppUpdate(false);});
+}
 function closeSettings(){
   cancelSaveRestore();
   closeOverlay(document.getElementById('settings-overlay'));
@@ -14059,6 +14160,7 @@ function init(){
     // The visibility handlers exist before the first cooperative batch.
     beginReturn(dailyRolled);
   }
+  initAppUpdater();
   setInterval(tick,TICK_MS);
   setInterval(function(){ if(!document.hidden && tick()!==false) saveState(); },5000);
   window.addEventListener('beforeunload', function(){

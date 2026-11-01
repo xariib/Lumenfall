@@ -166,6 +166,12 @@ jobs:
         working-directory: mobile
         run: npx cap add android
 
+      - name: Install native signed APK updater
+        run: |
+          node tests/tooling/app-update-policy.cjs
+          node tests/behavioral/app-updates.cjs
+          node scripts/ci/install_android_updater.cjs
+
       - name: Compute continuing Android version
         env:
           GH_TOKEN: ${{ github.token }}
@@ -287,6 +293,9 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
+      - name: Build disposable older-version updater fixture
+        run: node scripts/ci/build_updater_probe.cjs
+
       - name: Free native build memory before emulator acceptance
         working-directory: mobile/android
         run: |
@@ -304,7 +313,9 @@ jobs:
           cores: 2
           emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim -verbose
           disable-animations: true
-          script: node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
+          script: |
+            node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
+            node scripts/ci/android-updater.cjs
 
       - name: Require completed upgrade receipt for this exact APK
         run: node scripts/ci/verify_upgrade_receipt.cjs
@@ -343,7 +354,7 @@ jobs:
           test "$(gh api repos/$GITHUB_REPOSITORY/git/ref/heads/main --jq .object.sha)" = "$GITHUB_SHA"
           node scripts/ci/android-release-version.cjs --check-published
           TAG="android-$EXPECTED_VERSION_CODE"
-          gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json release-evidence/identity.txt release-evidence/commit.txt \
+          gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json release-evidence/in-app-updater.json release-evidence/identity.txt release-evidence/commit.txt \
             --target "$GITHUB_SHA" --latest \
             --title "Lumenfall Android $EXPECTED_VERSION_NAME" \
             --notes "Verified game update from $GITHUB_SHA. Changes and exact-source validation are recorded in docs/PROJECT_STATE.md and the merged pull request. Existing progression, purchases, both save slots, package identity and signing certificate are retained. Back up in Settings before updating, then install Lumenfall.apk as an update without uninstalling. Physical-phone, exact WebView60, TalkBack and human pacing acceptance remain separate checks."
