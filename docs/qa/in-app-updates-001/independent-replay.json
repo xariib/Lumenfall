@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "kind": "paired independent one-second state preservation",
+  "base": "0f72b061",
+  "baselineSourceSha256": "c1c2e46bc9cf2c24b12cb3010b388fbda72aabfd20ddf6d915bd00f5d85b791b",
+  "candidateSourceSha256": "d28e2bc43f40931818267769037b50c7c1b8b3fd697f387cf9c6c29d617be973",
+  "runtime": "v24.19.0",
+  "platform": "win32",
+  "callsPerReplay": 115200,
+  "baseline": [
+    {
+      "kills": 88592,
+      "ascends": 4218,
+      "prisms": 97014,
+      "stateSha256": "bbd443e8ae290390c55e189c92b9b346206c413b4fff73d4957ef7524d094554"
+    },
+    {
+      "kills": 88584,
+      "ascends": 4218,
+      "prisms": 97014,
+      "stateSha256": "cb4a679f07e104e00dcbad3cf96608c083dcc75a43b67c517f19fd403007cf23"
+    },
+    {
+      "kills": 88659,
+      "ascends": 4222,
+      "prisms": 97106,
+      "stateSha256": "99adf44e4bde6d3bb2a7e71a40d72b83f5f25ecb1a85d1a75c7221ae27b29196"
+    },
+    {
+      "kills": 88854,
+      "ascends": 4231,
+      "prisms": 97313,
+      "stateSha256": "9c985a2098c4e27e66858c6a38a94789fc6ad41e5b05801836516d41a48fcd69"
+    }
+  ],
+  "candidate": [
+    {
+      "kills": 88592,
+      "ascends": 4218,
+      "prisms": 97014,
+      "stateSha256": "bbd443e8ae290390c55e189c92b9b346206c413b4fff73d4957ef7524d094554"
+    },
+    {
+      "kills": 88584,
+      "ascends": 4218,
+      "prisms": 97014,
+      "stateSha256": "cb4a679f07e104e00dcbad3cf96608c083dcc75a43b67c517f19fd403007cf23"
+    },
+    {
+      "kills": 88659,
+      "ascends": 4222,
+      "prisms": 97106,
+      "stateSha256": "99adf44e4bde6d3bb2a7e71a40d72b83f5f25ecb1a85d1a75c7221ae27b29196"
+    },
+    {
+      "kills": 88854,
+      "ascends": 4231,
+      "prisms": 97313,
+      "stateSha256": "9c985a2098c4e27e66858c6a38a94789fc6ad41e5b05801836516d41a48fcd69"
+    }
+  ],
+  "allEndpointStatesEqual": true,
+  "canonicalHashesMatch": false,
+  "qualification": "Upstream canonical full-state hashes are not reproduced by the unchanged baseline on this runtime; preserve them rather than claiming a match."
+}

@@ -59,5 +59,32 @@ Upload initially rejected by GitHub because the saved OAuth login lacked workflo
 scope. User authorized it and GitHub device consent is now confirmed. Native
 temporary filenames retain the APK suffix for parser compatibility; emulator
 permission assertions inspect the resumed activity rather than its history.
-Next: push the feature, run PR gates and signed Android CI. No APK published yet.
+PR: [33](https://github.com/xariib/Lumenfall/pull/33), first source `469b9798`.
+First signed build [41348499741](https://github.com/xariib/Lumenfall/actions/runs/41348499741):
+compilation/signing/assets and original installed upgrade PASS (Android0.2.70,
+API31/WebView91, both saves/UID/origin/paid work retained). Actual updater
+discovery, cancellation, download/signature validation and permission handoff
+worked; the test timed out because Android names the resumed screen
+`ManageAppExternalSourcesActivity`. Fix that test matcher, its binary-buffer
+limit and add UI failure diagnostics. Product code needs no change for this.
+
+First pre-merge run41348501135 failed the mandatory source-hash binding for the
+offline reference, after the isolated offline job passed. Use the established
+paired one-second replay against released0f72b061: assert all complete endpoint
+states and reward triples remain equal, then update only the golden source hash.
+Preserve its canonical vectors and the existing provenance limitation; the old
+pre-Tap generator remains unchanged. Initial unchanged-generator trials reproduce
+the known outdated hardcoded reward failure; they do not establish a game defect.
+
+Paired replay PASS on Node24.19.0: 115200 one-second calls per source, all four
+complete endpoint states identical; all accepted reward triples retained. Only
+the canonical source binding changes to `d28e2bc4…`; canonical vectors and the
+known upstream full-hash provenance limitation remain unchanged. Reproducer:
+`node tests/behavioral/app-update-preservation.cjs 0f72b061 --write`.
+[Replay](../qa/in-app-updates-001/independent-replay.json),
+[first CI failure](../qa/in-app-updates-001/first-ci-attempt.json),
+[original installed-upgrade PASS](../qa/in-app-updates-001/first-installed-upgrade.json).
+
+Next: push test/binding fixes, rerun all PR/native gates, integrate and publish.
+No APK published yet; original failed runs remain recorded as failures.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

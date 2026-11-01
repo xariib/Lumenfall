@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "commit": "469b9798a298a900f9aa8adeef3a67d263a55092",
+  "nativeRun": "https://github.com/xariib/Lumenfall/actions/runs/41348499741",
+  "preMergeRun": "https://github.com/xariib/Lumenfall/actions/runs/41348501135",
+  "native": {
+    "compileSigningAssets": "PASS",
+    "originalInstalledUpgrade": "PASS",
+    "version": "0.2.70",
+    "updaterDiscoveryCancelDownloadVerificationAndHandoff": "observed working in native logs",
+    "failedAssertion": "Timed out: Android install-source permission",
+    "actualResumedActivity": "mResumedActivity: ActivityRecord{9c682cf u0 com.android.settings/.Settings$ManageAppExternalSourcesActivity t16}",
+    "reason": "Test matcher omitted ManageAppExternalSourcesActivity",
+    "remainingUpdaterStages": "not reached"
+  },
+  "preMerge": {
+    "isolatedOffline": "PASS",
+    "sourceBinding": "FAIL",
+    "reason": "HTML changed while independent reference remained bound to released source"
+  },
+  "corrections": [
+    "Recognize the observed Android permission screen.",
+    "Allow complete APK binary size in tampering fixture and capture UI failure context.",
+    "Perform paired independent baseline/candidate one-second replays, retain canonical vectors and update only their source binding."
+  ]
+}

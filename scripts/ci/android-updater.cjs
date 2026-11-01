@@ -36,12 +36,12 @@ async function main(){
   await click();await evaluate("document.getElementById('app-update-cancel').click()");
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-status').textContent.includes('cancelled')"),'download cancellation');
   await click();
-  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(foreground()),'Android install-source permission',120);
+  await until(()=>/Manage(?:App)?ExternalSources|ExternalSourcesDetails/.test(foreground()),'Android install-source permission',120);
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('not allowed')"),'Permission refusal is explained');
   socket.close();adb('shell','am','force-stop',pkg);adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();await ready();
   // Corrupt an already verified private download: installation must reverify it.
-  const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','cache/updates/update.apk']);
+  const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','cache/updates/update.apk'],{maxBuffer:256*1024*1024});
   tampered[tampered.length-1]^=1;fs.writeFileSync('release-evidence/updater-tampered.apk',tampered);
   adb('push','release-evidence/updater-tampered.apk','/data/local/tmp/lumenfall-tampered.apk');
   adb('shell','run-as',pkg,'cp','/data/local/tmp/lumenfall-tampered.apk','cache/updates/update.apk');
@@ -49,7 +49,7 @@ async function main(){
   await click();
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-action').textContent==='Download & install'&&document.getElementById('app-update-status').textContent.includes('checksum')"),'tampered APK rejected at installation');
   await click();
-  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(foreground()),'permission retry after fresh download',120);
+  await until(()=>/Manage(?:App)?ExternalSources|ExternalSourcesDetails/.test(foreground()),'permission retry after fresh download',120);
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','allow');
   await click();
@@ -73,4 +73,10 @@ async function main(){
   console.log('PASS actual in-app official download, permission refusal, restart, installer cancellation and approved installation; both saves/origin retained');
 }
 const deadline=setTimeout(()=>{console.error('Native updater deadline');process.exit(1);},300000);
-main().catch(error=>{console.error(error.stack);process.exitCode=1;try{fs.writeFileSync('release-evidence/updater-failure-logcat.txt',adb('logcat','-d','-t','1000'));fs.writeFileSync('release-evidence/updater-failure-activity.txt',adb('shell','dumpsys','activity','activities'));}catch{}}).finally(()=>{clearTimeout(deadline);if(socket)socket.close();});
+main().catch(async error=>{
+  console.error(error.stack);process.exitCode=1;
+  if(socket&&socket.readyState===WebSocket.OPEN){
+    try{fs.writeFileSync('release-evidence/updater-failure-ui.json',JSON.stringify(await evaluate("({status:document.getElementById('app-update-status')?.textContent,action:document.getElementById('app-update-action')?.textContent,disabled:document.getElementById('app-update-action')?.disabled,plugin:!!window.Capacitor?.Plugins?.AppUpdater})"),null,2)+'\n');}catch{}
+  }
+  try{fs.writeFileSync('release-evidence/updater-failure-logcat.txt',adb('logcat','-d','-t','1000'));fs.writeFileSync('release-evidence/updater-failure-activity.txt',adb('shell','dumpsys','activity','activities'));}catch{}
+}).finally(()=>{clearTimeout(deadline);if(socket)socket.close();});
