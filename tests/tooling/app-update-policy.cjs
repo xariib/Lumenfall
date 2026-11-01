@@ -6,10 +6,14 @@ try {
   const main=path.join(temp,'app/src/main'),java=path.join(main,'java/com/lumenfall/app');
   fs.mkdirSync(java,{recursive:true});
   fs.writeFileSync(path.join(java,'MainActivity.java'),'package com.lumenfall.app;\nimport com.getcapacitor.BridgeActivity;\npublic class MainActivity extends BridgeActivity {}\n');
-  fs.writeFileSync(path.join(main,'AndroidManifest.xml'),'<manifest><application></application></manifest>');
+  fs.writeFileSync(path.join(main,'AndroidManifest.xml'),'<manifest><application><provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.fileprovider" /></application></manifest>');
   install(temp);
   assert(fs.readFileSync(path.join(java,'MainActivity.java'),'utf8').includes('registerPlugin(AppUpdaterPlugin.class);'));
   assert(fs.readFileSync(path.join(main,'AndroidManifest.xml'),'utf8').includes('REQUEST_INSTALL_PACKAGES'));
+  const manifest=fs.readFileSync(path.join(main,'AndroidManifest.xml'),'utf8');
+  assert.equal((manifest.match(/android:name="androidx.core.content.FileProvider"/g)||[]).length,1,'Preserve exactly one original Capacitor provider');
+  assert.equal((manifest.match(/android:name="com.lumenfall.app.UpdateFileProvider"/g)||[]).length,1,'Updater uses its own component class and authority');
+  assert(fs.readFileSync(path.join(java,'UpdateFileProvider.java'),'utf8').includes('extends androidx.core.content.FileProvider'));
   assert(fs.readFileSync(path.join(main,'res/xml/update_paths.xml'),'utf8').includes('path="updates/"'));
   assert.throws(()=>install(temp),/Unexpected generated MainActivity/,'Do not silently overwrite native customizations');
   const bin=process.env.JAVA_HOME ? path.join(process.env.JAVA_HOME,'bin') : '';

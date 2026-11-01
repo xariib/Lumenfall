@@ -126,4 +126,15 @@ that production code; instrument the native driver with stage logs, continuous
 logcat and deadline UI/activity/screenshot capture on the CI follow-up branch.
 No product code, assertions or deadline change for this diagnostic run. Run the
 final required source-bound checks after native acceptance is resolved.
+
+Diagnostic run41353728531/source1a672094 passed cancellation (including the
+queued completion), permission refusal, cold restart and actual tampering
+rejection. Installer staging failed with a real provider-identity error:
+`com.lumenfall.app.updates` was served by the directly registered shared
+FileProvider class for `com.lumenfall.app.fileprovider`. Add a dedicated
+`UpdateFileProvider` subclass/component and keep its narrow cache path, grant
+and non-exported policy unchanged. Generated-project regression now starts with
+Capacitor's provider and requires distinct classes/authorities. Native acceptance
+must wait for `PackageInstallerActivity` before cancelling/approving, so a staging
+error dialog can never be mistaken for a valid installer confirmation.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

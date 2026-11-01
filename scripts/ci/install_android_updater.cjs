@@ -13,12 +13,12 @@ function install(root = 'mobile/android') {
     }
 }`);
   fs.writeFileSync(activity, code);
-  for (const file of ['AppUpdaterPlugin.java', 'UpdatePolicy.java'])
+  for (const file of ['AppUpdaterPlugin.java', 'UpdatePolicy.java', 'UpdateFileProvider.java'])
     fs.copyFileSync(path.join(__dirname, '../../mobile/native', file), path.join(java, file));
   const manifest = path.join(main, 'AndroidManifest.xml');
   let xml = fs.readFileSync(manifest, 'utf8');
   assert(xml.includes('</application>') && xml.includes('</manifest>'), 'Unexpected Android manifest');
-  xml = xml.replace('</application>', `<provider android:name="androidx.core.content.FileProvider"
+  xml = xml.replace('</application>', `<provider android:name="com.lumenfall.app.UpdateFileProvider"
             android:authorities="\${applicationId}.updates" android:exported="false" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/update_paths" />
         </provider>

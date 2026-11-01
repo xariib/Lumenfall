@@ -63,11 +63,12 @@ async function main(){
   mark('allow install source and cancel Android installer');
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','allow');
   await click();
-  await until(()=>/packageinstaller/.test(foreground()),'Android installer');
+  await until(()=>/PackageInstallerActivity/.test(foreground()),'Android installation confirmation');
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('cancelled')"),'Installer cancellation keeps verified retry');
   mark('open Android installer again and approve system Update button');
   await click();
+  await until(()=>/PackageInstallerActivity/.test(foreground()),'Android installation confirmation retry');
   const button=await until(()=>{
     adb('shell','uiautomator','dump','/sdcard/lumenfall-update.xml');
     const xml=adb('shell','cat','/sdcard/lumenfall-update.xml');
