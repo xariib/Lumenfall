@@ -39,6 +39,17 @@ async function main(){
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('not allowed')"),'Permission refusal is explained');
   socket.close();adb('shell','am','force-stop',pkg);adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();await ready();
+  // Corrupt an already verified private download: installation must reverify it.
+  const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','files/updates/update.apk']);
+  tampered[tampered.length-1]^=1;fs.writeFileSync('release-evidence/updater-tampered.apk',tampered);
+  adb('push','release-evidence/updater-tampered.apk','/data/local/tmp/lumenfall-tampered.apk');
+  adb('shell','run-as',pkg,'cp','/data/local/tmp/lumenfall-tampered.apk','files/updates/update.apk');
+  fs.unlinkSync('release-evidence/updater-tampered.apk');
+  await click();
+  await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-action').textContent==='Download & install'&&document.getElementById('app-update-status').textContent.includes('checksum')"),'tampered APK rejected at installation');
+  await click();
+  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(adb('shell','dumpsys','activity','activities')),'permission retry after fresh download',120);
+  adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','allow');
   await click();
   await until(()=>/packageinstaller/.test(adb('shell','dumpsys','window','windows')),'Android installer');
@@ -57,7 +68,7 @@ async function main(){
   const retained=await evaluate("({sentinel:localStorage.getItem('native-updater-sentinel'),primary:!!localStorage.getItem('lumenfall_save_v2'),recovery:!!localStorage.getItem('lumenfall_save_recovery_v1'),origin:location.origin})");
   assert.equal(retained.sentinel,'retain-both-saves');assert(retained.primary&&retained.recovery);assert.equal(retained.origin,'https://localhost');
   socket.close();assert.match(adb('install','-r','Lumenfall.apk'),/Success/,'Restore final candidate on emulator');
-  fs.writeFileSync('release-evidence/in-app-updater.json',JSON.stringify({status:'PASS',commit:process.env.GITHUB_SHA,candidateApkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync('Lumenfall.apk')).digest('hex'),officialVersionCode:expected,downloadCancelled:true,permissionRefusal:true,verifiedDownloadSurvivesRestart:true,installerCancellation:true,systemApprovedInstall:true,retained,physicalDevice:false},null,2)+'\n');
+  fs.writeFileSync('release-evidence/in-app-updater.json',JSON.stringify({status:'PASS',commit:process.env.GITHUB_SHA,candidateApkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync('Lumenfall.apk')).digest('hex'),officialVersionCode:expected,downloadCancelled:true,permissionRefusal:true,verifiedDownloadSurvivesRestart:true,tamperedDownloadRejected:true,installerCancellation:true,systemApprovedInstall:true,retained,physicalDevice:false},null,2)+'\n');
   console.log('PASS actual in-app official download, permission refusal, restart, installer cancellation and approved installation; both saves/origin retained');
 }
 const deadline=setTimeout(()=>{console.error('Native updater deadline');process.exit(1);},300000);
