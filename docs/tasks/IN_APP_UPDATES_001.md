@@ -118,4 +118,12 @@ main to the exact tested commit after all required checks pass, then promote the
 accepted signed APK with the existing source/version/signing/asset/upgrade gates.
 This preserves the tested bytes rather than rebuilding another version solely
 for publication. Record the public checksum and final receipt after publishing.
+
+Fixed production head `dab66944` is in PR33 and manual validation. Native
+run41352689970 compiled, passed the original upgrade, then hit the existing
+300s updater deadline with no stage diagnostics. Keep PR/game checks running on
+that production code; instrument the native driver with stage logs, continuous
+logcat and deadline UI/activity/screenshot capture on the CI follow-up branch.
+No product code, assertions or deadline change for this diagnostic run. Run the
+final required source-bound checks after native acceptance is resolved.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

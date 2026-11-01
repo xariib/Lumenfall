@@ -4,7 +4,8 @@ const fs=require('node:fs'),cp=require('node:child_process'),assert=require('nod
 const pkg='com.lumenfall.app',adb=(...args)=>cp.execFileSync('adb',args,{encoding:'utf8',timeout:120000});
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const foreground=()=>adb('shell','dumpsys','activity','activities').split('\n').filter(line=>/mResumedActivity|topResumedActivity/.test(line)).join('\n');
-let socket,seq=0;const pending=new Map();
+let socket,nativeLogcat,stage='startup',seq=0;const pending=new Map();
+function mark(label){stage=label;console.log('Native updater QA: '+label);}
 async function until(fn,label,seconds=90){for(let i=0;i<seconds*2;i++){try{const value=await fn();if(value)return value;}catch{}await pause(500);}throw Error('Timed out: '+label);}
 async function connect(){
   return until(async()=>{
@@ -26,21 +27,27 @@ async function click(){await evaluate("document.getElementById('app-update-actio
 async function ready(){return until(()=>evaluate("document.getElementById('app-update-action').textContent==='Install update'&&!document.getElementById('app-update-action').disabled"),'verified install retry');}
 async function main(){
   assert.match(adb('get-serialno').trim(),/^emulator-/,'Never operate on a player device');
+  const log=fs.openSync('release-evidence/updater-native-logcat.txt','w');nativeLogcat=cp.spawn('adb',['logcat','-v','threadtime'],{stdio:['ignore',log,log]});fs.closeSync(log);
+  mark('fetch official release and install older-version fixture');
   const official=await (await fetch('https://api.github.com/repos/xariib/Lumenfall/releases/latest')).json();
   assert.match(official.tag_name,/^android-\d+$/);const expected=Number(official.tag_name.substring(8));
   assert.match(adb('install','-r','-d','updater-probe.apk'),/Success/);
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','deny');
   adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();
   await until(()=>evaluate("document.getElementById('app-update-action')&&document.getElementById('app-update-action').textContent==='Download & install'&&!document.getElementById('app-update-action').disabled"),'automatic official release discovery');
+  mark('cancel download, including queued successful completion');
   await evaluate("localStorage.setItem('native-updater-sentinel','retain-both-saves')");
   await click();await evaluate("document.getElementById('app-update-cancel').click()");
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-status').textContent.includes('cancelled')"),'download cancellation');
   const cancelRetainedDownload=await evaluate("document.getElementById('app-update-action').textContent==='Install update'");
+  mark('download/install retry and refuse install-source permission');
   await click();
   await until(()=>/Manage(?:App)?ExternalSources|ExternalSourcesDetails/.test(foreground()),'Android install-source permission',120);
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('not allowed')"),'Permission refusal is explained');
+  mark('cold restart with verified download');
   socket.close();adb('shell','am','force-stop',pkg);adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();await ready();
+  mark('reject tampered cached APK');
   // Corrupt an already verified private download: installation must reverify it.
   const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','cache/updates/update.apk'],{maxBuffer:256*1024*1024});
   tampered[tampered.length-1]^=1;fs.writeFileSync('release-evidence/updater-tampered.apk',tampered);
@@ -49,14 +56,17 @@ async function main(){
   fs.unlinkSync('release-evidence/updater-tampered.apk');
   await click();
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-action').textContent==='Download & install'&&document.getElementById('app-update-status').textContent.includes('checksum')"),'tampered APK rejected at installation');
+  mark('fresh verified download after tampering');
   await click();
   await until(()=>/Manage(?:App)?ExternalSources|ExternalSourcesDetails/.test(foreground()),'permission retry after fresh download',120);
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
+  mark('allow install source and cancel Android installer');
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','allow');
   await click();
   await until(()=>/packageinstaller/.test(foreground()),'Android installer');
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('cancelled')"),'Installer cancellation keeps verified retry');
+  mark('open Android installer again and approve system Update button');
   await click();
   const button=await until(()=>{
     adb('shell','uiautomator','dump','/sdcard/lumenfall-update.xml');
@@ -66,6 +76,7 @@ async function main(){
   const bounds=/bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/.exec(button);assert(bounds);
   adb('shell','input','tap',String(Math.round((+bounds[1]+ +bounds[3])/2)),String(Math.round((+bounds[2]+ +bounds[4])/2)));
   await until(()=>new RegExp('versionCode='+expected+'\\b').test(adb('shell','dumpsys','package',pkg)),'official APK installed');
+  mark('verify actual installed version, both save slots and origin');
   socket.close();adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();
   const retained=await evaluate("({sentinel:localStorage.getItem('native-updater-sentinel'),primary:!!localStorage.getItem('lumenfall_save_v2'),recovery:!!localStorage.getItem('lumenfall_save_recovery_v1'),origin:location.origin})");
   assert.equal(retained.sentinel,'retain-both-saves');assert(retained.primary&&retained.recovery);assert.equal(retained.origin,'https://localhost');
@@ -73,11 +84,14 @@ async function main(){
   fs.writeFileSync('release-evidence/in-app-updater.json',JSON.stringify({status:'PASS',commit:process.env.GITHUB_SHA,candidateApkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync('Lumenfall.apk')).digest('hex'),officialVersionCode:expected,downloadCancellation:{requestAcknowledged:true,automaticInstallPrevented:true,verifiedDownloadRetained:cancelRetainedDownload},permissionRefusal:true,verifiedDownloadSurvivesRestart:true,tamperedDownloadRejected:true,installerCancellation:true,systemApprovedInstall:true,retained,physicalDevice:false},null,2)+'\n');
   console.log('PASS actual in-app official download, permission refusal, restart, installer cancellation and approved installation; both saves/origin retained');
 }
-const deadline=setTimeout(()=>{console.error('Native updater deadline');process.exit(1);},300000);
-main().catch(async error=>{
-  console.error(error.stack);process.exitCode=1;
+async function diagnostics(error){
+  console.error(stage+': '+(error.stack||error));
+  fs.writeFileSync('release-evidence/updater-failure-stage.json',JSON.stringify({stage,error:String(error)},null,2)+'\n');
   if(socket&&socket.readyState===WebSocket.OPEN){
     try{fs.writeFileSync('release-evidence/updater-failure-ui.json',JSON.stringify(await evaluate("({status:document.getElementById('app-update-status')?.textContent,action:document.getElementById('app-update-action')?.textContent,disabled:document.getElementById('app-update-action')?.disabled,plugin:!!window.Capacitor?.Plugins?.AppUpdater})"),null,2)+'\n');}catch{}
   }
   try{fs.writeFileSync('release-evidence/updater-failure-logcat.txt',adb('logcat','-d','-t','1000'));fs.writeFileSync('release-evidence/updater-failure-activity.txt',adb('shell','dumpsys','activity','activities'));}catch{}
-}).finally(()=>{clearTimeout(deadline);if(socket)socket.close();});
+  try{fs.writeFileSync('release-evidence/updater-failure-screen.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{timeout:15000,maxBuffer:16*1024*1024}));}catch{}
+}
+const deadline=setTimeout(async()=>{await diagnostics(Error('Native updater deadline'));if(nativeLogcat)nativeLogcat.kill();if(socket)socket.close();process.exit(1);},300000);
+main().catch(async error=>{process.exitCode=1;await diagnostics(error);}).finally(()=>{clearTimeout(deadline);if(nativeLogcat)nativeLogcat.kill();if(socket)socket.close();});
