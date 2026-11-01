@@ -14,11 +14,11 @@ function prelude(save){
   return `localStorage.setItem('lumenfall_save_v2',${JSON.stringify(JSON.stringify(materialize(save)))});localStorage.setItem('lumenfall_startup_intro_last','${now}');
     window.updateTestErrors=[];addEventListener('error',e=>updateTestErrors.push(e.message));addEventListener('unhandledrejection',e=>updateTestErrors.push(String(e.reason)));
     window.setInterval=function(){return 1;};
-    window.updateTestInfo={currentVersion:'0.2.69',version:'0.2.70',available:true,ready:false,bytes:7340032};
+    window.updateTestInfo={currentVersion:'0.2.69',version:'0.2.70',available:true,ready:false,bytes:7340032};window.updateTestInstallCalls=0;
     window.updateTestPlugin={getState:()=>Promise.resolve({...updateTestInfo}),check:()=>Promise.resolve({...updateTestInfo}),
       addListener:(name,fn)=>{window.updateTestProgress=fn;return {remove:()=>{}};},
       download:()=>new Promise(resolve=>{window.updateTestFinish=()=>{updateTestInfo.ready=true;resolve({...updateTestInfo});};}),
-      cancel:()=>Promise.resolve(),install:()=>Promise.resolve({status:'cancelled'})};
+      cancel:()=>Promise.resolve(),install:()=>{updateTestInstallCalls++;return Promise.resolve({status:'cancelled'});}};
     window.Capacitor={isNativePlatform:()=>true,isPluginAvailable:()=>true,Plugins:{AppUpdater:updateTestPlugin}};`;
 }
 async function main(){
@@ -46,10 +46,17 @@ async function main(){
     await evaluate('updateTestProgress({received:50,total:100})');assert.equal(await evaluate("document.getElementById('app-update-progress').value"),50);
     await evaluate('updateTestFinish()');await until(()=>evaluate("!document.getElementById('app-update-action').disabled"));
     assert((await evaluate("document.getElementById('app-update-status').textContent")).includes('cancelled'));
+    assert.equal(await evaluate('updateTestInstallCalls'),1);
+    await evaluate("updateTestInfo.ready=false;document.getElementById('app-update-check').click()");
+    await until(()=>evaluate("document.getElementById('app-update-action').textContent==='Download & install'&&!document.getElementById('app-update-action').disabled"));
+    await evaluate("document.getElementById('app-update-action').click();document.getElementById('app-update-cancel').click();updateTestFinish()");
+    await until(()=>evaluate("!document.getElementById('app-update-action').disabled"));
+    assert.equal(await evaluate('updateTestInstallCalls'),1,'Late successful download completion must honor Cancel');
+    assert((await evaluate("document.getElementById('app-update-status').textContent")).includes('cancelled'));
     assert.deepEqual(await evaluate('updateTestErrors'),[],'No production runtime errors');
     await evaluate("document.getElementById('app-update-action').scrollIntoView({block:'center'})");
     const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,width+'-'+scale+'x.png'),Buffer.from(shot.data,'base64'));
-    records.push({width,height,scale,layout,progress:true,installerRetry:true});
+    records.push({width,height,scale,layout,progress:true,installerRetry:true,lateCancelPreventsInstaller:true});
     await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);session=null;
   }
   fs.writeFileSync(path.join(out,'receipt.json'),JSON.stringify({status:'PASS',sourceSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync('index.html')).digest('hex'),browser:version.Browser,nativeBoundary:'test double',records},null,2)+'\n');

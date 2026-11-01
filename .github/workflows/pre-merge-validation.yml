@@ -59,6 +59,11 @@ jobs:
           node scripts/codex/check_context.cjs --task docs/tasks/IN_APP_UPDATES_001.md
           node tests/tooling/app-update-policy.cjs
           node tests/behavioral/app-updates.cjs
+          if node tests/behavioral/app-updates.cjs --mutate-late-cancel > /tmp/app-update-cancel-control.log 2>&1; then
+            echo "::error::Late-cancel installer handoff defect unexpectedly passed."
+            exit 1
+          fi
+          node -e "require('node:assert/strict')(require('node:fs').readFileSync('/tmp/app-update-cancel-control.log','utf8').includes('Cancel prevents installer even if native download completes successfully'))"
           node tests/behavioral/app-update-browser.cjs validation-evidence/app-update-browser
 
       - name: Complete game audit and stationary Auto-Empower targets

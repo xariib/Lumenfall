@@ -22,7 +22,8 @@ Acceptance:
 - Explain/handle Android install-source permission, refusal and retry.
 - Save progress before installer handoff; retain verified download across restart.
 - Regression tests, generated-native build, existing gates and installed upgrade.
-- Integrate and publish signed APK using the established release workflow.
+- Build/sign/verify through the established Android workflow; integrate the exact
+  tested source and publish its accepted APK after the existing release gate.
 
 Implementation decision: automatically check at startup/foreground, at most once
 per six hours. Download starts on “Download & install” so mobile data and restart
@@ -96,4 +97,25 @@ is claimed (kernel/memory evidence does not show one). Test the necessary
 Android API31/WebView, memory, deadlines and assertions remain unchanged.
 Integrate that CI-only follow-up with this feature after its acceptance, then
 run required integrated-commit validation before publishing.
+
+The2G configuration booted and passed the original upgrade in run41351743310
+(source3d9c0f5), then exposed a real late-cancel race: native download finished
+while the WebView was busy, and its queued completion opened Settings after the
+Cancel click. Fix: latch the player's cancel intent synchronously in JavaScript
+and check it before automatic installer handoff; retain an already verified APK
+for an explicit later Install action. Ignore further progress events after that
+intent. Add a foreground late-completion regression as well as the separate
+background-completion check. Native receipts distinguish an interrupted transfer
+from a verified APK retained after cancellation. System button matching accepts
+Android's Update/Install capitalization while retaining enabled/clickable checks.
+Controller, production browser and source checks pass after the fix; repeat the
+paired preservation proof and run PR/manual/native acceptance on the fixed head.
+
+Fixed-source paired replay PASS again (115200 calls per source, four complete
+states identical). Both the PR and manual final-commit runs now include the2G
+runner configuration and cancellation fix. Delivery will fast-forward unchanged
+main to the exact tested commit after all required checks pass, then promote the
+accepted signed APK with the existing source/version/signing/asset/upgrade gates.
+This preserves the tested bytes rather than rebuilding another version solely
+for publication. Record the public checksum and final receipt after publishing.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

@@ -10932,7 +10932,7 @@ function openSettings(){
 
 // Native updater owns release URLs, verification, storage and Android permissions.
 // Keep this controller ES2017-compatible for WebView60; saves stay in the game.
-var appUpdate = {plugin:null, info:null, busy:false, downloading:false, notified:false};
+var appUpdate = {plugin:null, info:null, busy:false, downloading:false, cancelRequested:false, notified:false};
 function renderAppUpdate(message){
   var info=appUpdate.info || {}, action=document.getElementById('app-update-action');
   action.disabled=appUpdate.busy;
@@ -10977,6 +10977,7 @@ function installAppUpdate(){
 function startAppUpdate(){
   if(!appUpdate.plugin || appUpdate.busy)return;
   if(!appUpdate.info || !appUpdate.info.available){checkAppUpdate(true);return;}
+  appUpdate.cancelRequested=false;
   appUpdate.busy=true;
   var operation;
   if(appUpdate.info.ready){operation=Promise.resolve();}
@@ -10988,6 +10989,8 @@ function startAppUpdate(){
   }
   operation.then(function(){
     appUpdate.downloading=false;
+    // Native completion can be queued behind a touch while the WebView is busy.
+    if(appUpdate.cancelRequested)return 'Update cancelled. The verified download is ready to install later.';
     // Do not suddenly interrupt a player who switched away while downloading.
     if(document.hidden)return 'Update verified. Return to Settings to install it.';
     return installAppUpdate();
@@ -11007,10 +11010,14 @@ function initAppUpdater(){
   document.getElementById('app-update-action').addEventListener('click',startAppUpdate);
   document.getElementById('app-update-check').addEventListener('click',function(){checkAppUpdate(true);});
   document.getElementById('app-update-cancel').addEventListener('click',function(){
-    if(appUpdate.downloading)appUpdate.plugin.cancel().catch(function(){});
+    if(appUpdate.downloading){
+      appUpdate.cancelRequested=true;
+      document.getElementById('app-update-status').textContent='Cancelling download…';
+      appUpdate.plugin.cancel().catch(function(){});
+    }
   });
   Promise.resolve(appUpdate.plugin.addListener('progress',function(progress){
-    if(!appUpdate.downloading)return;
+    if(!appUpdate.downloading || appUpdate.cancelRequested)return;
     var percent=Math.min(100,Math.floor(progress.received*100/progress.total));
     document.getElementById('app-update-progress').value=percent;
     document.getElementById('app-update-status').textContent=percent===100 ? 'Verifying update…' : 'Downloading update: '+percent+'%';

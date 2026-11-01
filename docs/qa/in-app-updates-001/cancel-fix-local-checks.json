@@ -1,0 +1,99 @@
+{
+  "status": "LOCAL_PASS_NATIVE_PENDING",
+  "date": "2026-11-01T21:33:59.465Z",
+  "runtime": "v24.20.0",
+  "sourceSha256": "500888633ed198775234bf78a817f5d9e5179edbe698f2544cfc2c9cc0cfe696",
+  "controller": "PASS",
+  "lateCancelNegativeControl": "PASS: removing intent guard reintroduces installer handoff",
+  "browser": {
+    "status": "PASS",
+    "sourceSha256": "500888633ed198775234bf78a817f5d9e5179edbe698f2544cfc2c9cc0cfe696",
+    "browser": "Chrome/156.0.8078.80",
+    "nativeBoundary": "test double",
+    "records": [
+      {
+        "width": 320,
+        "height": 568,
+        "scale": 1,
+        "layout": [
+          {
+            "id": "app-update-action",
+            "width": 133,
+            "height": 44,
+            "overflow": false,
+            "inside": true
+          },
+          {
+            "id": "app-update-check",
+            "width": 133,
+            "height": 44,
+            "overflow": false,
+            "inside": true
+          }
+        ],
+        "progress": true,
+        "installerRetry": true,
+        "lateCancelPreventsInstaller": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "scale": 2,
+        "layout": [
+          {
+            "id": "app-update-action",
+            "width": 133,
+            "height": 86,
+            "overflow": false,
+            "inside": true
+          },
+          {
+            "id": "app-update-check",
+            "width": 133,
+            "height": 86,
+            "overflow": false,
+            "inside": true
+          }
+        ],
+        "progress": true,
+        "installerRetry": true,
+        "lateCancelPreventsInstaller": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scale": 1,
+        "layout": [
+          {
+            "id": "app-update-action",
+            "width": 168,
+            "height": 44,
+            "overflow": false,
+            "inside": true
+          },
+          {
+            "id": "app-update-check",
+            "width": 168,
+            "height": 44,
+            "overflow": false,
+            "inside": true
+          }
+        ],
+        "progress": true,
+        "installerRetry": true,
+        "lateCancelPreventsInstaller": true
+      }
+    ]
+  },
+  "nativeFailure": {
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/41351743310",
+    "commit": "3d9c0f53b04c51df14bb14c43f1f536ae8b08bc4",
+    "assertion": "Timed out: download cancellation",
+    "observed": "Native Cancel at21:28:53.448 was followed by Install at21:28:53.449; diagnostics show the permission screen and disabled Install update UI.",
+    "fix": "Latch cancellation synchronously in JavaScript before the queued successful completion can request installation."
+  },
+  "limitations": [
+    "Fixed installed-native acceptance is pending.",
+    "Physical phone/WebView60/TalkBack acceptance remains open."
+  ]
+}

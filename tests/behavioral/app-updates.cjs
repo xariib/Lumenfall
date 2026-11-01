@@ -1,6 +1,10 @@
 'use strict';
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const html=fs.readFileSync('index.html','utf8');
+let html=fs.readFileSync('index.html','utf8');
+if(process.argv.includes('--mutate-late-cancel')){
+  const guard="    if(appUpdate.cancelRequested)return 'Update cancelled. The verified download is ready to install later.';";
+  assert(html.includes(guard),'Late-cancel mutation anchor');html=html.replace(guard,'/* late cancellation ignored */');
+}
 const controller=html.slice(html.indexOf('var appUpdate = {'),html.indexOf('\nfunction closeSettings(){'));
 assert(controller.includes('function initAppUpdater()'),'Production controller found');
 const elements=new Map(),listeners={},calls=[];
@@ -41,7 +45,13 @@ async function main(){
   listeners.progress({received:25,total:100});assert.equal(element('app-update-progress').value,25);
   element('app-update-cancel').click();await settle();assert(calls.some(c=>c[0]==='cancel'));
   const downloadCount=calls.filter(c=>c[0]==='download').length;context.startAppUpdate();assert.equal(calls.filter(c=>c[0]==='download').length,downloadCount,'No double download');
-  document.hidden=true;finish();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs,'Background completion does not launch installer');
+  finish();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs,'Cancel prevents installer even if native download completes successfully');
+  assert(element('app-update-status').textContent.includes('cancelled'),'Late cancellation is acknowledged');
+  assert.equal(element('app-update-action').textContent,'Install update','Already verified download remains available for a deliberate retry');
+  context.startAppUpdate();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs+1,'Explicit Install retry clears the prior cancel intent');
+  info.ready=false;context.appUpdate.info={...info};
+  downloadWait=new Promise(resolve=>{finish=resolve;});context.startAppUpdate();await settle();
+  document.hidden=true;finish();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs+1,'Background completion does not launch installer');
   assert.equal(element('app-update-action').textContent,'Install update');
   document.hidden=false;listeners.visibilitychange();await settle();assert.equal(context.appUpdate.busy,false);
   console.log('PASS production updater controller: browser fallback, automatic/manual checks, download/progress/cancel/retry, save-before-install, denied save, offline retention, background completion');
