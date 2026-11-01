@@ -1,0 +1,103 @@
+{
+  "status": "LOCAL_CHECKS_PASS_NATIVE_PENDING",
+  "date": "2026-11-01T19:59:21.007Z",
+  "baseline": "0f72b061",
+  "node": "v24.20.0",
+  "sourceSha256": "d28e2bc43f40931818267769037b50c7c1b8b3fd697f387cf9c6c29d617be973",
+  "native": {
+    "pluginSha256": "255928ba80c23a858442ccc8efd5ada09242f74fcfd76465858cc4c82597bb9d",
+    "policySha256": "6215a6d2eccd53582542875a801cfee29ed56901abf0063ded896d3a22eb5209",
+    "java": "17.0.18"
+  },
+  "checks": {
+    "policyAssertions": 37,
+    "generatedProject": "PASS",
+    "productionController": "PASS",
+    "sourceContract": "PASS",
+    "taskContext": "PASS",
+    "destinations": "PASS",
+    "saveBackupProfiles": 12,
+    "updaterBrowser": {
+      "status": "PASS",
+      "sourceSha256": "d28e2bc43f40931818267769037b50c7c1b8b3fd697f387cf9c6c29d617be973",
+      "browser": "Chrome/156.0.8078.80",
+      "nativeBoundary": "test double",
+      "records": [
+        {
+          "width": 320,
+          "height": 568,
+          "scale": 1,
+          "layout": [
+            {
+              "id": "app-update-action",
+              "width": 133,
+              "height": 44,
+              "overflow": false,
+              "inside": true
+            },
+            {
+              "id": "app-update-check",
+              "width": 133,
+              "height": 44,
+              "overflow": false,
+              "inside": true
+            }
+          ],
+          "progress": true,
+          "installerRetry": true
+        },
+        {
+          "width": 320,
+          "height": 568,
+          "scale": 2,
+          "layout": [
+            {
+              "id": "app-update-action",
+              "width": 133,
+              "height": 86,
+              "overflow": false,
+              "inside": true
+            },
+            {
+              "id": "app-update-check",
+              "width": 133,
+              "height": 86,
+              "overflow": false,
+              "inside": true
+            }
+          ],
+          "progress": true,
+          "installerRetry": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "scale": 1,
+          "layout": [
+            {
+              "id": "app-update-action",
+              "width": 168,
+              "height": 44,
+              "overflow": false,
+              "inside": true
+            },
+            {
+              "id": "app-update-check",
+              "width": 168,
+              "height": 44,
+              "overflow": false,
+              "inside": true
+            }
+          ],
+          "progress": true,
+          "installerRetry": true
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Native Gradle compilation blocked locally by Java AF_UNIX loopback failure.",
+    "GitHub workflow-scope device consent pending; remote CI/integration/APK not started.",
+    "Android installer and physical-device acceptance not yet verified."
+  ]
+}
