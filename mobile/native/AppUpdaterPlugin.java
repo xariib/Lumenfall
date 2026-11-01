@@ -33,7 +33,6 @@ public class AppUpdaterPlugin extends Plugin {
     private final AtomicBoolean busy = new AtomicBoolean(false);
     private volatile boolean cancelled;
     private volatile HttpURLConnection connection;
-    private static final long CHECK_INTERVAL = 6 * 60 * 60 * 1000L;
 
     private SharedPreferences prefs() { return getContext().getSharedPreferences("app-updates", 0); }
     private File directory() throws IOException {
@@ -111,10 +110,12 @@ public class AppUpdaterPlugin extends Plugin {
         throw new IOException("Too many update redirects.");
     }
     private String text(String url, boolean api, int limit) throws Exception {
+        long started = android.os.SystemClock.elapsedRealtime();
         HttpURLConnection c = open(url, api);
         try (InputStream in = c.getInputStream(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             byte[] bytes = new byte[8192]; int n;
             while ((n = in.read(bytes)) != -1) {
+                if (android.os.SystemClock.elapsedRealtime() - started > 60000) throw new IOException("Update check timed out. Try again.");
                 if (out.size() + n > limit) throw new IOException("Update information is too large.");
                 out.write(bytes, 0, n);
             }
@@ -127,8 +128,7 @@ public class AppUpdaterPlugin extends Plugin {
     @PluginMethod public void check(PluginCall call) {
         run(call, () -> {
             long now = System.currentTimeMillis(), checked = prefs().getLong("checked", 0), installedCode = version(installed());
-            if (!call.getBoolean("force", false) && prefs().getLong("checkedVersion", 0) == installedCode &&
-                checked > 0 && now >= checked && now - checked < CHECK_INTERVAL) {
+            if (UpdatePolicy.useCachedCheck(call.getBoolean("force", false), now, checked, installedCode, prefs().getLong("checkedVersion", 0))) {
                 call.resolve(state()); return;
             }
             JSONObject release = new JSONObject(text(UpdatePolicy.RELEASES, true, 1024 * 1024));
@@ -207,9 +207,10 @@ public class AppUpdaterPlugin extends Plugin {
                 long advertised = c.getContentLength();
                 if (advertised >= 0 && advertised != expected) throw new IOException("Update download size changed.");
                 try (InputStream in = c.getInputStream(); FileOutputStream out = new FileOutputStream(partial)) {
-                    byte[] buffer = new byte[65536]; long received = 0, lastEvent = 0; int n;
+                    byte[] buffer = new byte[65536]; long received = 0, lastEvent = 0, started = android.os.SystemClock.elapsedRealtime(); int n;
                     while ((n = in.read(buffer)) != -1) {
                         if (cancelled || Thread.currentThread().isInterrupted()) throw new IOException("Download cancelled.");
+                        if (android.os.SystemClock.elapsedRealtime() - started > 10 * 60 * 1000L) throw new IOException("Update download timed out. Try again.");
                         received += n;
                         if (received > expected) throw new IOException("Update is larger than expected.");
                         out.write(buffer, 0, n);

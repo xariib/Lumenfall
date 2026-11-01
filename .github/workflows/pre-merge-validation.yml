@@ -59,6 +59,7 @@ jobs:
           node scripts/codex/check_context.cjs --task docs/tasks/IN_APP_UPDATES_001.md
           node tests/tooling/app-update-policy.cjs
           node tests/behavioral/app-updates.cjs
+          node tests/behavioral/app-update-browser.cjs validation-evidence/app-update-browser
 
       - name: Complete game audit and stationary Auto-Empower targets
         run: |

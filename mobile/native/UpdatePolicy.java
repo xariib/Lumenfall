@@ -10,6 +10,10 @@ final class UpdatePolicy {
     static final String RELEASES = "https://api.github.com/repos/xariib/Lumenfall/releases/latest";
     static final long MAX_APK = 256L * 1024 * 1024;
 
+    static boolean useCachedCheck(boolean force, long now, long checked, long installed, long checkedVersion) {
+        return !force && installed == checkedVersion && checked > 0 && now >= checked && now - checked < 6 * 60 * 60 * 1000L;
+    }
+
     static long releaseCode(String tag) {
         if (!tag.matches("android-[0-9]{1,10}")) throw new IllegalArgumentException("Unsupported release version.");
         long code = Long.parseLong(tag.substring(8));

@@ -39,14 +39,21 @@ save-before-install and persistent verified retry. README documents the flow.
 Existing build workflow adds a same-source, same-key older-version disposable
 fixture to exercise an actual public APK download and system-approved update.
 
-Checks: native policy PASS (30 assertions/rejection controls); generated-native
+Checks: native policy PASS (37 assertions/rejection controls, including throttling,
+clock rollback and version invalidation); generated-native
 registration/permission/provider/overwrite checks PASS; production controller
 PASS (browser fallback, auto/manual checks, progress/cancel/retry, save failure,
 offline retention, background completion); source syntax/contract PASS; actual
-task context PASS. Chromium destinations scenario PASS. Node24.20.0/JDK17.0.18.
+task context PASS. Chromium destinations scenario PASS, Save Backup UI PASS
+(12 profiles). Production updater browser PASS (320px,200% text,390px;
+native boundary mocked), screenshots visually checked. Node24.20.0/JDK17.0.18,
+Chrome156.0.8078.80. Actual native installation remains unverified until CI.
 Local Gradle blocked by Java loopback connection; use Linux build CI for native
 compilation and installed acceptance. No tests or signing gates were relaxed.
 
 Status: in progress; remote CI, native acceptance, integration/release pending.
-Next: push coherent implementation, run PR gates and the signed Android workflow.
+Upload initially rejected by GitHub because the saved OAuth login has repo but
+not workflow scope. User explicitly authorized workflow access; device consent
+is pending. No APK is published and no remote source is changed yet.
+Next: after device consent, push the feature, run PR gates and signed Android CI.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

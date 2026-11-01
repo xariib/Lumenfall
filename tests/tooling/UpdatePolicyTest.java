@@ -9,6 +9,13 @@ public class UpdatePolicyTest {
         throw new AssertionError("Expected rejection at " + checks);
     }
     public static void main(String[] args) {
+        ok(UpdatePolicy.CERT.length() == 64);
+        ok(UpdatePolicy.useCachedCheck(false, 20000, 10000, 1000069, 1000069));
+        ok(!UpdatePolicy.useCachedCheck(true, 20000, 10000, 1000069, 1000069));
+        ok(!UpdatePolicy.useCachedCheck(false, 20000, 10000, 1000070, 1000069));
+        ok(!UpdatePolicy.useCachedCheck(false, 20000, 30000, 1000069, 1000069));
+        ok(!UpdatePolicy.useCachedCheck(false, 20000, 0, 1000069, 1000069));
+        ok(!UpdatePolicy.useCachedCheck(false, 21610000, 10000, 1000069, 1000069));
         ok(UpdatePolicy.releaseCode("android-1000069") == 1000069);
         for (String tag : new String[]{"android--1", "beta-1000069", "android-0", "android-2100000001", "android-999999999999"})
             reject(() -> UpdatePolicy.releaseCode(tag));
