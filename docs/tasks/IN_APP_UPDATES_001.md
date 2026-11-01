@@ -55,8 +55,9 @@ Local Gradle blocked by Java loopback connection; use Linux build CI for native
 compilation and installed acceptance. No tests or signing gates were relaxed.
 
 Status: in progress; remote CI, native acceptance, integration/release pending.
-Upload initially rejected by GitHub because the saved OAuth login has repo but
-not workflow scope. User explicitly authorized workflow access; device consent
-is pending. No APK is published and no remote source is changed yet.
-Next: after device consent, push the feature, run PR gates and signed Android CI.
+Upload initially rejected by GitHub because the saved OAuth login lacked workflow
+scope. User authorized it and GitHub device consent is now confirmed. Native
+temporary filenames retain the APK suffix for parser compatibility; emulator
+permission assertions inspect the resumed activity rather than its history.
+Next: push the feature, run PR gates and signed Android CI. No APK published yet.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

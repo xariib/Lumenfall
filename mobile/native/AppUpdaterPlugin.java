@@ -49,7 +49,7 @@ public class AppUpdaterPlugin extends Plugin {
         return data == null ? null : new JSONObject(data);
     }
     private JSObject state() throws Exception {
-        new File(directory(), "update.part").delete(); // Discard an interrupted previous process's download.
+        new File(directory(), "update.part.apk").delete(); // Discard an interrupted previous process's download.
         PackageInfo current = installed();
         JSONObject release = pending();
         if (release != null && release.getLong("code") <= version(current)) {
@@ -199,7 +199,7 @@ public class AppUpdaterPlugin extends Plugin {
         run(call, () -> {
             JSONObject release = pending();
             if (release == null) throw new IOException("Check for an update first.");
-            File partial = new File(directory(), "update.part");
+            File partial = new File(directory(), "update.part.apk");
             prefs().edit().remove("ready").apply(); apk().delete();
             long expected = release.getLong("size"); UpdatePolicy.validateSize(expected);
             if (directory().getUsableSpace() < expected * 2 + 10 * 1024 * 1024) throw new IOException("Not enough storage space for this update.");

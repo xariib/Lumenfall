@@ -3,6 +3,7 @@
 const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict');
 const pkg='com.lumenfall.app',adb=(...args)=>cp.execFileSync('adb',args,{encoding:'utf8',timeout:120000});
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const foreground=()=>adb('shell','dumpsys','activity','activities').split('\n').filter(line=>/mResumedActivity|topResumedActivity/.test(line)).join('\n');
 let socket,seq=0;const pending=new Map();
 async function until(fn,label,seconds=90){for(let i=0;i<seconds*2;i++){try{const value=await fn();if(value)return value;}catch{}await pause(500);}throw Error('Timed out: '+label);}
 async function connect(){
@@ -35,7 +36,7 @@ async function main(){
   await click();await evaluate("document.getElementById('app-update-cancel').click()");
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-status').textContent.includes('cancelled')"),'download cancellation');
   await click();
-  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(adb('shell','dumpsys','activity','activities')),'Android install-source permission',120);
+  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(foreground()),'Android install-source permission',120);
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('not allowed')"),'Permission refusal is explained');
   socket.close();adb('shell','am','force-stop',pkg);adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();await ready();
@@ -48,11 +49,11 @@ async function main(){
   await click();
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-action').textContent==='Download & install'&&document.getElementById('app-update-status').textContent.includes('checksum')"),'tampered APK rejected at installation');
   await click();
-  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(adb('shell','dumpsys','activity','activities')),'permission retry after fresh download',120);
+  await until(()=>/ManageExternalSources|ExternalSourcesDetails/.test(foreground()),'permission retry after fresh download',120);
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','allow');
   await click();
-  await until(()=>/packageinstaller/.test(adb('shell','dumpsys','window','windows')),'Android installer');
+  await until(()=>/packageinstaller/.test(foreground()),'Android installer');
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('cancelled')"),'Installer cancellation keeps verified retry');
   await click();
