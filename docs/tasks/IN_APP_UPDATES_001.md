@@ -87,4 +87,13 @@ known upstream full-hash provenance limitation remain unchanged. Reproducer:
 
 Next: push test/binding fixes, rerun all PR/native gates, integrate and publish.
 No APK published yet; original failed runs remain recorded as failures.
+
+Runner follow-up: PR head `a408644e` keeps its in-progress game gates. Its native
+run41349586993 attempt1 lost the emulator during the original upgrade; attempt2
+never booted: userdata needed7372.80MB but the runner had3882.82MB free. No OOM
+is claimed (kernel/memory evidence does not show one). Test the necessary
+`disk-size: 2G` runner configuration on `ci/in-app-updates-runner-001`; product,
+Android API31/WebView, memory, deadlines and assertions remain unchanged.
+Integrate that CI-only follow-up with this feature after its acceptance, then
+run required integrated-commit validation before publishing.
 Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).

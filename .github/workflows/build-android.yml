@@ -311,6 +311,7 @@ jobs:
           arch: x86_64
           ram-size: 1536M
           heap-size: 256M
+          disk-size: 2G
           cores: 2
           emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim -verbose
           disable-animations: true
