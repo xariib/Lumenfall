@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
+[Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
+source e13c7669. Automatic checks, verified downloads and Android approval. Seven
+exact-source gates/190+1, signed upgrade, actual updater/tamper/cancel tests and
+anonymous exact-byte downloads PASS. [Receipt](qa/in-app-updates-001/release.json).
+Both saves/paid work retained; phone/WebView 60/TalkBack/human review remain open.
+
 31 October: [All updates](tasks/ALL_UPDATES_RELEASE_20261031.md) published as
 [Android0.2.69](https://github.com/xariib/Lumenfall/releases/tag/android-1000069).
 Seven gates/190+1, signed upgrade and public bytes PASS.

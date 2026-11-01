@@ -6,135 +6,92 @@ make it the best way possible.”
 
 Goal: discover official stable releases, download and verify the APK inside
 Lumenfall, then open Android's user-approved installation without losing saves.
+Owner: this feature chat. Baseline: released 0.2.69, main 0f72b061.
 
-Owner: this feature chat. Baseline: origin/main `0f72b061`, released Android
-0.2.69. Isolated branch/worktree: `feature/in-app-updates-001` /
-`in-app-updates-001`. Open PR2 is an unrelated documentation audit.
+Status (2 November, Copenhagen): **integrated and publicly released as 0.2.75**.
+[PR 33](https://github.com/xariib/Lumenfall/pull/33) merged by fast-forward to the
+exact tested source `e13c766921230edc694e3a71d19b0255bce15749`.
+[Release/APK](https://github.com/xariib/Lumenfall/releases/tag/android-1000075).
+[Complete source-bound receipt](../qa/in-app-updates-001/release.json).
 
-Preserve gameplay, both save slots, paid work, package, signing certificate,
-localhost origin, WebView60 and all existing CI gates. No save schema change.
+## Implemented and preserved
 
-Acceptance:
-- Automatic throttled checks plus a manual Settings check; browser stays usable.
-- Stable official releases only; bounded HTTPS downloads with progress/cancel.
-- Verify checksum, byte size, package, newer version, device SDK and pinned
-  signing identity before opening the installer. No caller-supplied APK URL.
-- Explain/handle Android install-source permission, refusal and retry.
-- Save progress before installer handoff; retain verified download across restart.
-- Regression tests, generated-native build, existing gates and installed upgrade.
-- Build/sign/verify through the established Android workflow; integrate the exact
-  tested source and publish its accepted APK after the existing release gate.
+- Native checks at startup/foreground, throttled to six hours, plus Check for
+  updates/Check again in Settings. Browser/iOS remain usable without this plugin.
+- The player starts Download & install; progress/cancel/retry are available.
+  Stable official GitHub APK/checksum assets only, bounded HTTPS redirects,
+  size/storage/time limits, no caller-supplied URL or extra hosting/account.
+- Verify SHA256, bytes, package, strictly newer version, SDK compatibility and
+  established signing identity before installation, including a second check
+  after cached-file retention. A dedicated UpdateFileProvider grants only the
+  private update cache. APKs are excluded from Android backup; cache eviction
+  requires another download. Interrupted partial files are discarded.
+- Save real elapsed progress before Android handoff; refuse handoff on failed
+  save. Permission refusal and installer cancellation retain a verified retry.
+  Late Cancel intent stops automatic handoff even if native completion is queued.
+  Background completion waits for an explicit later Install action.
+- Android keeps source-permission/final-install approval. Install 0.2.75 once over
+  the existing app; future versions use Settings → App updates. Never uninstall
+  to update. README explains the flow.
+- No gameplay, balance, caps, save schema, original provider, signing identity,
+  package com.lumenfall.app or https://localhost origin change. Both save slots,
+  paid work, legacy entitlements and existing UI flows are retained.
 
-Implementation decision: automatically check at startup/foreground, at most once
-per six hours. Download starts on “Download & install” so mobile data and restart
-remain under the player's control. Android retains final install approval.
-Use existing GitHub release tag/APK/checksum assets; no new hosting or account.
+Product: index.html and mobile/native/*.java. Generated project hook:
+scripts/ci/install_android_updater.cjs. Existing Android workflow builds/signs/
+verifies the APK and runs real disposable-emulator update acceptance. Focused
+controller, browser, policy, generation, negative-control and preservation tests
+are in tests/behavioral/ and tests/tooling/ with app-update prefixes.
 
-Baseline checks: source validation PASS (2 scripts,16 IDs); native recap fixture
-PASS (10 checks including negative control), Node v24.20.0.
+## Acceptance and publication
 
-Implemented: native trust policy/plugin, generated-project installer hook,
-Settings controller, automatic/manual checks, cancellable bounded download,
-checksum/identity verification, private APK storage, permission/installer return,
-save-before-install and verified retry across ordinary restarts. APKs use a
-private cache directory excluded from Android backups; system cache eviction
-requires a fresh download. Interrupted partial files are discarded on next start.
-README documents the flow.
-Existing build workflow adds a same-source, same-key older-version disposable
-fixture to exercise an actual public APK download and system-approved update.
+All seven PR workflows and all seven manual exact-commit workflows PASS, including
+both full pre-merge jobs, main 190 scenarios and isolated offline 1. Existing gates,
+assertions and deadlines were preserved. [CI](../qa/in-app-updates-001/ci-final.json).
+[Compressed complete log](../qa/in-app-updates-001/full-validation.log.gz).
 
-Checks: native policy PASS (37 assertions/rejection controls, including throttling,
-clock rollback and version invalidation); generated-native
-registration/permission/provider/overwrite checks PASS; production controller
-PASS (browser fallback, auto/manual checks, progress/cancel/retry, save failure,
-offline retention, background completion); source syntax/contract PASS; actual
-task context PASS. Chromium destinations scenario PASS, Save Backup UI PASS
-(12 profiles). Production updater browser PASS (320px,200% text,390px;
-native boundary mocked), screenshots visually checked. Node24.20.0/JDK17.0.18,
-Chrome156.0.8078.80. Actual native installation remains unverified until CI.
-Local Gradle blocked by Java loopback connection; use Linux build CI for native
-compilation and installed acceptance. No tests or signing gates were relaxed.
+Policy: 37 rejection/assertion checks, generated provider/permission/registration
+checks, production controller and late-cancel causal control PASS. Browser PASS
+at 320px/200% text and 390px; existing Save Backup: 12 profiles and destinations PASS.
+Paired independent replay: 115200 one-second calls per source, all four complete
+states/reward triples equal 0f72b061. Only the golden source binding changed;
+canonical vectors and the pre-existing unreproduced full-hash qualification stay.
+[Replay](../qa/in-app-updates-001/independent-replay.json). The historical pre-Tap
+hardcoded generator was preserved; its known failure is not an updater regression.
 
-Status: in progress; remote CI, native acceptance, integration/release pending.
-Upload initially rejected by GitHub because the saved OAuth login lacked workflow
-scope. User authorized it and GitHub device consent is now confirmed. Native
-temporary filenames retain the APK suffix for parser compatibility; emulator
-permission assertions inspect the resumed activity rather than its history.
-PR: [33](https://github.com/xariib/Lumenfall/pull/33), first source `469b9798`.
-First signed build [41348499741](https://github.com/xariib/Lumenfall/actions/runs/41348499741):
-compilation/signing/assets and original installed upgrade PASS (Android0.2.70,
-API31/WebView91, both saves/UID/origin/paid work retained). Actual updater
-discovery, cancellation, download/signature validation and permission handoff
-worked; the test timed out because Android names the resumed screen
-`ManageAppExternalSourcesActivity`. Fix that test matcher, its binary-buffer
-limit and add UI failure diagnostics. Product code needs no change for this.
+[Signed Android run 41354746788](https://github.com/xariib/Lumenfall/actions/runs/41354746788)
+PASS: package/version/signature/assets, original 158→75 upgrade (same UID/origin,
+both saves, paid work/legacy credits), plus actual official APK download,
+cancellation, permission refusal, cold restart, tampered-cache rejection,
+installer cancellation and system-approved update. The disposable probe uses a
+same-source/key older version; the final 75 candidate is restored afterward.
+[Original upgrade](../qa/in-app-updates-001/native-upgrade.json),
+[updater](../qa/in-app-updates-001/native-updater.json).
+Android 12/API 31/WebView 91; CI native Node 22/JDK 17, full tests Node 24.19.0.
 
-First pre-merge run41348501135 failed the mandatory source-hash binding for the
-offline reference, after the isolated offline job passed. Use the established
-paired one-second replay against released0f72b061: assert all complete endpoint
-states and reward triples remain equal, then update only the golden source hash.
-Preserve its canonical vectors and the existing provenance limitation; the old
-pre-Tap generator remains unchanged. Initial unchanged-generator trials reproduce
-the known outdated hardcoded reward failure; they do not establish a game defect.
+Published the exact accepted signed CI artifact through an atomic draft promotion
+after the established release-ci-gate and continuing-version gate passed. Local
+aapt/apksigner, source assets, receipt binding and server upload digests PASS.
+Both anonymous exact-tag and latest downloads/checksum PASS and match tested bytes.
+[Artifact](../qa/in-app-updates-001/artifact-verification.json),
+[public download](../qa/in-app-updates-001/public-verification.json).
+APK SHA256: a779c1fb690c99bd53760e6da5d7624238991967555bffa4b46aec68e6a60cd8.
 
-Paired replay PASS on Node24.19.0: 115200 one-second calls per source, all four
-complete endpoint states identical; all accepted reward triples retained. Only
-the canonical source binding changes to `d28e2bc4…`; canonical vectors and the
-known upstream full-hash provenance limitation remain unchanged. Reproducer:
-`node tests/behavioral/app-update-preservation.cjs 0f72b061 --write`.
-[Replay](../qa/in-app-updates-001/independent-replay.json),
-[first CI failure](../qa/in-app-updates-001/first-ci-attempt.json),
-[original installed-upgrade PASS](../qa/in-app-updates-001/first-installed-upgrade.json).
+## Earlier findings retained
 
-Next: push test/binding fixes, rerun all PR/native gates, integrate and publish.
-No APK published yet; original failed runs remain recorded as failures.
+- First run 41348499741 passed original upgrade but timed out on an incomplete
+  permission-screen matcher. [Original failure](../qa/in-app-updates-001/first-ci-attempt.json).
+- Run 41349586993 lost an emulator, then lacked disk to boot its retry. Explicit
+  2G userdata fixed the resource issue; no OOM or relaxed test is claimed.
+- Run 41351743310 exposed the real queued-completion/Cancel race. Synchronous cancel
+  intent and a causal regression fixed it. [Evidence](../qa/in-app-updates-001/cancel-fix-local-checks.json).
+- Diagnostic 41353728531 passed earlier updater stages, then exposed shared
+  FileProvider-class authority confusion. A dedicated subclass fixed installer
+  access; acceptance now requires the real PackageInstallerActivity confirmation.
+  Failed-source history/raw links remain in Git history and those workflow runs.
 
-Runner follow-up: PR head `a408644e` keeps its in-progress game gates. Its native
-run41349586993 attempt1 lost the emulator during the original upgrade; attempt2
-never booted: userdata needed7372.80MB but the runner had3882.82MB free. No OOM
-is claimed (kernel/memory evidence does not show one). Test the necessary
-`disk-size: 2G` runner configuration on `ci/in-app-updates-runner-001`; product,
-Android API31/WebView, memory, deadlines and assertions remain unchanged.
-Integrate that CI-only follow-up with this feature after its acceptance, then
-run required integrated-commit validation before publishing.
-
-The2G configuration booted and passed the original upgrade in run41351743310
-(source3d9c0f5), then exposed a real late-cancel race: native download finished
-while the WebView was busy, and its queued completion opened Settings after the
-Cancel click. Fix: latch the player's cancel intent synchronously in JavaScript
-and check it before automatic installer handoff; retain an already verified APK
-for an explicit later Install action. Ignore further progress events after that
-intent. Add a foreground late-completion regression as well as the separate
-background-completion check. Native receipts distinguish an interrupted transfer
-from a verified APK retained after cancellation. System button matching accepts
-Android's Update/Install capitalization while retaining enabled/clickable checks.
-Controller, production browser and source checks pass after the fix; repeat the
-paired preservation proof and run PR/manual/native acceptance on the fixed head.
-
-Fixed-source paired replay PASS again (115200 calls per source, four complete
-states identical). Both the PR and manual final-commit runs now include the2G
-runner configuration and cancellation fix. Delivery will fast-forward unchanged
-main to the exact tested commit after all required checks pass, then promote the
-accepted signed APK with the existing source/version/signing/asset/upgrade gates.
-This preserves the tested bytes rather than rebuilding another version solely
-for publication. Record the public checksum and final receipt after publishing.
-
-Fixed production head `dab66944` is in PR33 and manual validation. Native
-run41352689970 compiled, passed the original upgrade, then hit the existing
-300s updater deadline with no stage diagnostics. Keep PR/game checks running on
-that production code; instrument the native driver with stage logs, continuous
-logcat and deadline UI/activity/screenshot capture on the CI follow-up branch.
-No product code, assertions or deadline change for this diagnostic run. Run the
-final required source-bound checks after native acceptance is resolved.
-
-Diagnostic run41353728531/source1a672094 passed cancellation (including the
-queued completion), permission refusal, cold restart and actual tampering
-rejection. Installer staging failed with a real provider-identity error:
-`com.lumenfall.app.updates` was served by the directly registered shared
-FileProvider class for `com.lumenfall.app.fileprovider`. Add a dedicated
-`UpdateFileProvider` subclass/component and keep its narrow cache path, grant
-and non-exported policy unchanged. Generated-project regression now starts with
-Capacitor's provider and requires distinct classes/authorities. Native acceptance
-must wait for `PackageInstallerActivity` before cancelling/approving, so a staging
-error dialog can never be mistaken for a valid installer confirmation.
-Relevant workflow: [feature workflow](../project/FEATURE_WORKFLOW.md).
+Self-review/automated tests only; initial automatic review on 469b9798 had no
+findings and is not claimed as final independent review. Physical-phone, exact
+WebView 60, TalkBack and human visual/pacing acceptance remain open. No chat was
+archived. Next: install the released APK over the existing app and perform those
+physical-device checks; source/build/public-delivery acceptance above is complete.

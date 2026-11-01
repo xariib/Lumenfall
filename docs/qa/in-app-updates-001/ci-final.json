@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "sourceCommit": "e13c766921230edc694e3a71d19b0255bce15749",
+  "verifiedAt": "2026-11-01T23:05:38.137Z",
+  "ci": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "id": 41354793122,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354793122",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992587471,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success"
+        },
+        {
+          "id": 124992587495,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "id": 41354795283,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354795283",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992465366,
+          "name": "comet",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "id": 41354797619,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354797619",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992473948,
+          "name": "forge",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "id": 41354799888,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354799888",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992481017,
+          "name": "timed-slot-speed",
+          "conclusion": "success"
+        },
+        {
+          "id": 124992481316,
+          "name": "lab",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "id": 41354802187,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354802187",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992487430,
+          "name": "shared-ui",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "id": 41354804432,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354804432",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992493863,
+          "name": "tree",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "id": 41354806868,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354806868",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992502731,
+          "name": "focused",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

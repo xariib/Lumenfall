@@ -1,0 +1,221 @@
+{
+  "status": "PASS",
+  "verifiedAt": "2026-11-01T23:06:32.7464833Z",
+  "sourceCommit": "e13c766921230edc694e3a71d19b0255bce15749",
+  "sourceHtmlSha256": "500888633ed198775234bf78a817f5d9e5179edbe698f2544cfc2c9cc0cfe696",
+  "integration": {
+    "method": "fast-forward exact tested commit",
+    "pr": "https://github.com/xariib/Lumenfall/pull/33",
+    "mergedAt": "2026-11-01T22:58:21Z",
+    "commit": "e13c766921230edc694e3a71d19b0255bce15749"
+  },
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000075",
+  "tag": "android-1000075",
+  "versionName": "0.2.75",
+  "versionCode": 1000075,
+  "package": "com.lumenfall.app",
+  "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+  "apk": "https://github.com/xariib/Lumenfall/releases/download/android-1000075/Lumenfall.apk",
+  "stableDownload": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+  "apkSha256": "a779c1fb690c99bd53760e6da5d7624238991967555bffa4b46aec68e6a60cd8",
+  "bytes": 7090285,
+  "anonymousDownload": true,
+  "stableLatestExactBytes": true,
+  "publication": "Atomic draft promotion of exact signed/installed CI artifact; no rebuild",
+  "nativeRun": "https://github.com/xariib/Lumenfall/actions/runs/41354746788",
+  "nativeUpgrade": "PASS",
+  "nativeUpdater": {
+    "status": "PASS",
+    "commit": "e13c766921230edc694e3a71d19b0255bce15749",
+    "candidateApkSha256": "a779c1fb690c99bd53760e6da5d7624238991967555bffa4b46aec68e6a60cd8",
+    "officialVersionCode": 1000069,
+    "downloadCancellation": {
+      "requestAcknowledged": true,
+      "automaticInstallPrevented": true,
+      "verifiedDownloadRetained": false
+    },
+    "permissionRefusal": true,
+    "verifiedDownloadSurvivesRestart": true,
+    "tamperedDownloadRejected": true,
+    "installerCancellation": true,
+    "systemApprovedInstall": true,
+    "retained": {
+      "sentinel": "retain-both-saves",
+      "primary": true,
+      "recovery": true,
+      "origin": "https://localhost"
+    },
+    "physicalDevice": false
+  },
+  "ci": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "id": 41354793122,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354793122",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992587471,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success"
+        },
+        {
+          "id": 124992587495,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "id": 41354795283,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354795283",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992465366,
+          "name": "comet",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "id": 41354797619,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354797619",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992473948,
+          "name": "forge",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "id": 41354799888,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354799888",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992481017,
+          "name": "timed-slot-speed",
+          "conclusion": "success"
+        },
+        {
+          "id": 124992481316,
+          "name": "lab",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "id": 41354802187,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354802187",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992487430,
+          "name": "shared-ui",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "id": 41354804432,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354804432",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992493863,
+          "name": "tree",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "id": 41354806868,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41354806868",
+      "head": "e13c766921230edc694e3a71d19b0255bce15749",
+      "branch": "ci/in-app-updates-runner-001",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124992502731,
+          "name": "focused",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "regressionScenarios": {
+    "main": 190,
+    "isolatedOffline": 1
+  },
+  "independentReplay": "All four complete endpoint states equal released0f72b061; canonical vectors retained with pre-existing full-hash provenance qualification",
+  "signatureVerifiedLocally": true,
+  "packagedAssetsVerified": true,
+  "preservedLogs": {
+    "status": "PASS",
+    "run": 41354793122,
+    "sourceCommit": "e13c766921230edc694e3a71d19b0255bce15749",
+    "scenarioCounts": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      190,
+      1
+    ],
+    "file": "full-validation.log.gz",
+    "bytes": 72227,
+    "sha256": "f618281dddabc98de400b1b01dcddc2d2ac91cb475f09c72019cf3196062adcb"
+  },
+  "review": "Self-review and automated tests; automated PR review on initial469b9798 only, no final independent-review claim",
+  "openAcceptance": [
+    "Physical phone",
+    "Exact WebView60",
+    "TalkBack",
+    "Human visual/pacing acceptance"
+  ]
+}
