@@ -43,8 +43,15 @@ async function main(){
   await until(()=>evaluate("document.getElementById('app-update-action')&&document.getElementById('app-update-action').textContent==='Download & install'&&!document.getElementById('app-update-action').disabled"),'automatic official release discovery');
   mark('cancel download, including queued successful completion');
   await evaluate("localStorage.setItem('native-updater-sentinel','retain-both-saves')");
-  await click();await evaluate("document.getElementById('app-update-cancel').click()");
+  // Issue both actions in one WebView turn. A second DevTools round trip can
+  // arrive after a fast download has already opened Android's installer.
+  const cancellation=await evaluate(`(()=>{document.getElementById('app-update-action').click();
+    const button=document.getElementById('app-update-cancel');
+    const offered=getComputedStyle(button).display!=='none';button.click();
+    return {offered,status:document.getElementById('app-update-status').textContent};})()`);
+  assert(cancellation.offered&&cancellation.status==='Cancelling download…','Cancel was requested during the download');
   await until(()=>evaluate("!document.getElementById('app-update-action').disabled&&document.getElementById('app-update-status').textContent.includes('cancelled')"),'download cancellation');
+  assert(!/Manage(?:App)?ExternalSources|ExternalSourcesDetails|PackageInstallerActivity/.test(foreground()),'Cancellation prevents Android installer handoff');
   const cancelRetainedDownload=await evaluate("document.getElementById('app-update-action').textContent==='Install update'");
   mark('download/install retry and refuse install-source permission');
   await click();
