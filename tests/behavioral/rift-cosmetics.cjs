@@ -131,8 +131,8 @@ const setup = `window.cosmeticQa = {
     }
     var r=stage.getBoundingClientRect(), hp=document.getElementById('hp-text').getBoundingClientRect(), c=caption.getBoundingClientRect();
     a(r.width>=44 && r.height>=44,'tap target at least 44px');
-    a(c.bottom<=r.bottom && hp.top>=r.bottom-1,'cosmetic does not cover HP');
-    a(c.right<=r.right && c.top>=r.top,'caption stays within tap area');
+    a(c.bottom<=r.top && hp.bottom<=document.getElementById('enemy-glyph').getBoundingClientRect().top,'cosmetic above attack surface and HP above enemy artwork');
+    a(document.querySelector('.rift-heading').contains(caption) && c.right<=r.right && c.left>=r.left,'caption stays in the Rift header');
     a(caption.scrollWidth<=caption.clientWidth && caption.scrollHeight<=caption.clientHeight,'complete theme label fits without clipping');
     var range=document.createRange();range.selectNodeContents(caption);
     Array.from(range.getClientRects()).forEach(function(line){

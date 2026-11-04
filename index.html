@@ -2281,7 +2281,7 @@
   .comet-trail{display:none;position:absolute;top:18%;right:24%;bottom:18%;left:24%;inset:18% 24%;border-radius:50%;border-top:2px solid #ffe0b6;border-bottom:1px solid #b6caff;pointer-events:none;opacity:.65;}
   .comet-trail-equipped .comet-trail{display:block;animation:cometTrailOrbit 12s linear infinite;}
   .comet-crest{display:none;position:absolute;bottom:10px;right:12px;width:32px;height:32px;line-height:30px;border:1px solid #ffe0b6;border-radius:50%;background:#18213a;color:#ffe0b6;font-size:22px;text-align:center;pointer-events:none;z-index:2;}
-  .comet-crest-equipped>.comet-crest{display:block;}
+  .comet-crest-equipped .comet-crest{display:block;}
   .ascend-flash.comet-crest-equipped>span::before{content:'✦ ';color:#ffe0b6;}
   @keyframes cometTrailOrbit{to{transform:rotate(360deg);}}
   @media(max-width:430px){.shop-card{flex-wrap:wrap;}.shop-card>.info{flex-basis:100%;}.shop-card>button{min-height:44px;}}
@@ -2334,7 +2334,7 @@
   #tab-battle .enemy-stage[data-rift-theme]:not([data-rift-theme="default"])::before,
   #tab-battle .enemy-stage[data-rift-theme]:not([data-rift-theme="default"])::after{display:none;}
   #tab-battle .enemy-stage .enemy-glyph{position:relative;z-index:2;}
-  .rift-cosmetic-name{position:absolute;left:8px;bottom:4px;z-index:3;max-width:calc(100% - 16px);padding:3px 7px;border:1px solid #61718d;border-radius:6px;background:#10182b;color:#f1edff;font:600 .6875rem/1.4 'Manrope',sans-serif;pointer-events:none;}
+  .rift-cosmetic-name{align-self:center;max-width:100%;padding:1px 7px;border:1px solid #61718d;border-radius:6px;background:#10182b;color:#f1edff;font:600 10px/14px 'Manrope',sans-serif;white-space:nowrap;pointer-events:none;}
   .cosmetic-aurora{animation:riftCosmeticPulse 5s ease-in-out infinite;}
   .cosmetic-radiant{transform-origin:160px 160px;animation:riftCosmeticOrbit 24s linear infinite;}
   @keyframes riftCosmeticPulse{0%,100%{opacity:.65;}50%{opacity:1;}}
@@ -2427,15 +2427,25 @@
   .study-slots[hidden],.study-speed-editor[hidden]{display:none;}
   .study-catalogue-heading{position:sticky;top:0;background:var(--bg);z-index:2;}
   .stage .rift-heading{display:flex;flex-direction:column;height:auto;}
-  .rift-navigation{display:flex;align-items:center;gap:4px;min-width:0;}
+  .rift-navigation{display:flex;align-items:center;gap:6px;min-width:0;}
   .stage .rift-navigation .depth-label{flex:1;min-width:0;text-align:center;overflow:hidden;}
-  .rift-step{flex:none;min-width:44px;min-height:44px;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--bg-elev);color:var(--ink);font:700 16px 'Manrope',sans-serif;cursor:pointer;}
+  .rift-step{display:flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;min-width:44px;min-height:44px;padding:10px;border:1px solid #756449;border-radius:14px;background:linear-gradient(160deg,#303047,#171e32);color:#f0c567;box-shadow:inset 0 1px 0 #f0c56722,0 2px 4px #050a1644;cursor:pointer;}
+  .rift-step svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
+  .rift-step:active:not(:disabled){background:#383449;box-shadow:inset 0 1px 3px #050a1666;}
   .rift-step:disabled{opacity:.4;cursor:not-allowed;}
+  .stage .enemy-readout{position:absolute;top:0;left:50%;transform:translateX(-50%);width:90%;max-width:340px;z-index:3;pointer-events:none;}
+  .stage .enemy-readout .enemy-name{display:block;position:static;line-height:22px;}
+  .stage .enemy-readout .hp-wrap{display:flex;align-items:center;gap:8px;width:100%;height:16px;max-width:none;}
+  .stage .enemy-readout .hp-bar-track{flex:1;min-width:0;}
+  .stage .enemy-readout .hp-bar-fill{display:block;}
+  .stage .enemy-readout .hp-text{flex:none;margin:0;line-height:16px;}
+  .enemy-visuals{position:absolute;top:42px;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+  #tab-battle .stage .enemy-glyph{margin-top:0;max-height:calc(100% - 8px);}
   @media(max-height:680px){
-    .stage .rift-heading{display:grid;grid-template-columns:44px minmax(0,1fr) 88px;gap:2px;height:44px;align-items:center;}
-    .rift-navigation{grid-column:2;gap:2px;}
-    #rift-back-ten{position:absolute;left:0;top:0;width:44px;height:44px;}
-    .stage .rift-heading .rift-mode-row{grid-column:3;width:88px;height:44px;padding:0;gap:0;border:0;background:none;}
+    .stage .rift-heading{display:grid;grid-template-columns:minmax(0,1fr) 88px;gap:2px;height:auto;align-items:center;}
+    .rift-navigation{grid-column:1;gap:2px;}
+    .stage .rift-heading .rift-mode-row{grid-column:2;width:88px;height:44px;padding:0;gap:0;border:0;background:none;}
+    .rift-cosmetic-name{grid-column:1/-1;justify-self:center;}
     .stage .rift-mode-btn .farm-depth{display:none;}
     .stage .rift-mode-btn .control-state{white-space:normal;font-size:10px;line-height:10px;}
     .stage .rift-navigation .depth-label{font-size:12px;line-height:14px;letter-spacing:0;}
@@ -3036,15 +3046,15 @@
     <section class="tab-panel active" id="tab-battle">
       <div class="card stage">
         <div class="rift-heading"><div class="rift-navigation" role="group" aria-label="Rift navigation">
-          <button type="button" class="rift-step" id="rift-back-ten" aria-label="Go back 10 Rifts" title="Go back 10 Rifts; boss Rifts are skipped">−10</button>
-          <button type="button" class="rift-step" id="rift-back-one" aria-label="Previous farming Rift" title="Previous farming Rift; boss Rifts are skipped">‹</button>
+          <button type="button" class="rift-step" id="rift-back-one" aria-label="Previous farming Rift" title="Previous farming Rift; boss Rifts are skipped"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg></button>
           <div class="depth-label" id="depth-label">Rift 1</div>
-          <button type="button" class="rift-step" id="rift-forward-one" aria-label="Next Rift" title="Next farming Rift; resume Push at your saved Rift">›</button>
+          <button type="button" class="rift-step" id="rift-forward-one" aria-label="Next Rift" title="Next farming Rift; resume Push at your saved Rift"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg></button>
         </div>
         <div class="rift-mode-row">
           <button class="rift-mode-btn active" id="rift-push-btn">Push</button>
           <button class="rift-mode-btn" id="rift-farm-btn">Farm</button>
-        </div></div>
+        </div>
+        <span class="rift-cosmetic-name" id="rift-cosmetic-name" aria-hidden="true">Theme: Starlight</span></div>
 
         <div class="battle-row"><div class="rift-landscape" aria-hidden="true">
  <svg viewBox="0 0 400 440" preserveAspectRatio="xMidYMid slice">
@@ -3117,7 +3127,15 @@
 </div>
 
           <div class="enemy-stage-wrap">
-            <button type="button" class="enemy-stage" id="enemy-stage" aria-label="Tap enemy to attack"><span class="comet-trail" aria-hidden="true"></span><span class="comet-crest" aria-hidden="true">✦</span><span class="enemy-name" id="enemy-name">Hollow Wisp</span><span class="guardian-label">Tap enemy to attack</span>
+            <button type="button" class="enemy-stage" id="enemy-stage" aria-label="Tap enemy to attack" aria-describedby="enemy-name hp-text"><span class="guardian-label">Tap enemy to attack</span>
+            <span class="enemy-readout">
+              <span class="enemy-name" id="enemy-name">Hollow Wisp</span>
+              <span class="hp-wrap">
+                <span class="hp-bar-track"><span class="hp-bar-fill" id="hp-fill"></span></span>
+                <span class="hp-text mono" id="hp-text">10 / 10</span>
+              </span>
+            </span>
+              <span class="enemy-visuals"><span class="comet-trail" aria-hidden="true"></span><span class="comet-crest" aria-hidden="true">✦</span>
               <svg class="rift-cosmetic-aura" viewBox="0 0 320 320" aria-hidden="true" focusable="false">
                 <defs>
                   <radialGradient id="cosmetic-ember-glow"><stop stop-color="#ff9d53" stop-opacity=".32"/><stop offset="1" stop-color="#ff9d53" stop-opacity="0"/></radialGradient>
@@ -3156,18 +3174,13 @@
                   <circle cx="160" cy="160" r="138" stroke="#ded7fb" stroke-width="1" opacity=".55"/>
                 </g>
               </svg>
-              <span class="rift-cosmetic-name" id="rift-cosmetic-name" aria-hidden="true">Theme: Starlight</span>
               <div class="enemy-glyph" id="enemy-glyph"><svg class="creature-art" viewBox="0 0 160 160" aria-hidden="true"><use href="#creature-prowler"/></svg><svg class="boss-regalia" viewBox="0 0 160 160" aria-hidden="true" fill="var(--creature-color)" stroke="var(--creature-rim)" stroke-width="1.5">
                 <g class="boss-crest boss-crest-regrowth"><path d="M18 116Q3 90 11 61 M142 116Q157 90 149 61"/><path d="M10 78Q1 70 8 60Q17 69 10 78Z M11 99Q4 90 17 84Q20 94 11 99Z M150 78Q159 70 152 60Q143 69 150 78Z M149 99Q156 90 143 84Q140 94 149 99Z" fill="var(--creature-rim)" stroke="var(--creature-eye)"/></g>
                 <g class="boss-crest boss-crest-fractured"><path d="M11 52 17 62 11 72 5 62Z M8 83 14 93 8 103 2 93Z M149 52 155 62 149 72 143 62Z M152 83 158 93 152 103 146 93Z" fill="var(--creature-color)"/><path d="M11 58V66 M8 89V97 M149 58V66 M152 89V97" stroke="var(--creature-eye)"/></g>
                 <g class="boss-crest boss-crest-guardian"><path d="M21 55H9V72 M9 91V110L21 118 M139 55H151V72 M151 91V110L139 118"/><path d="M5 77H15V86H5Z M145 77H155V86H145Z" fill="var(--creature-rim)" stroke="var(--creature-eye)"/></g>
-              </svg></div>
+              </svg></div></span>
             </button>
           </div>
-          <div class="hp-wrap">
-          <div class="hp-bar-track"><div class="hp-bar-fill" id="hp-fill"></div></div>
-          <div class="hp-text mono" id="hp-text">10 / 10</div>
-        </div>
         <div id="rift-party" role="group" aria-label="Current Wisp formation"></div>
         <div id="boss-combat" hidden></div>
         </div>
@@ -6544,7 +6557,7 @@ function enterPushMode(){
   renderAll();return true;
 }
 function stepRift(offset){
-  if(offset!==-10&&offset!==-1&&offset!==1)return false;
+  if(offset!==-1&&offset!==1)return false;
   if(!flushLiveProgress())return false;
   var returning=progressionDepth();
   if(offset>0&&state.riftMode!=='farm')return false;
@@ -9246,7 +9259,7 @@ function setupOverlayFocus(){
 }
 
 function cacheEls(){
-  ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-back-ten','rift-back-one','rift-forward-one','rift-push-btn','rift-farm-btn','rift-objective','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
+  ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-back-one','rift-forward-one','rift-push-btn','rift-farm-btn','rift-objective','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
    'hp-fill','hp-text','stat-tap','stat-idle','spirit-list','formation-presets','bond-card','bond-summary','rift-bond-effects','rift-party','boss-combat','research-list','study-list',
    'prism-preview','ascend-btn','ascend-note','auto-ascend-controls','node-list','ach-list','roster-journey','shop-list','comet-commands','comet-journal','legacy-comet-trials','comet-claim-history','theme-list','manifesto','toast',
    'daily-streak-badge','daily-quest-list','settings-overlay','settings-home','settings-encyclopedia','settings-title','settings-back','encyclopedia-content'
@@ -9282,7 +9295,7 @@ function renderRiftMode(){
   els['rift-farm-btn'].title = els['rift-farm-btn'].disabled ? 'Clear Rift 1 to unlock Farm' : '';
   if(els['rift-farm-btn'].disabled) els['rift-farm-btn'].innerHTML='Farm<span class="control-state">Clear Rift 1</span>';
   else els['rift-farm-btn'].innerHTML='Farm<span class="farm-depth">Rift '+formatRiftNumber(farming ? state.farmDepth : highestFarmableDepth(progressionDepth()))+'</span>';
-  els['rift-back-ten'].disabled=els['rift-back-one'].disabled=state.depth<=1;
+  els['rift-back-one'].disabled=state.depth<=1;
   els['rift-forward-one'].disabled=!farming;
 }
 // Read-only advice after roster development. Prices, gates and purchases remain
@@ -14233,7 +14246,6 @@ function init(){
 
   document.getElementById('rift-push-btn').addEventListener('click', enterPushMode);
   document.getElementById('rift-farm-btn').addEventListener('click',function(){if(state.riftMode==='farm')selectFarmDepth(state.farmDepth);else enterFarmMode();});
-  document.getElementById('rift-back-ten').onclick=function(){stepRift(-10);};
   document.getElementById('rift-back-one').onclick=function(){stepRift(-1);};
   document.getElementById('rift-forward-one').onclick=function(){stepRift(1);};
   document.getElementById('rift-objective').addEventListener('keydown',function(e){

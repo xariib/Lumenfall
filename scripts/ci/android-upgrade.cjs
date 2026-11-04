@@ -316,7 +316,7 @@ async function verifyInstalledRiftNavigation(page,report){
    const p=nativePoint(report.androidTouch.transform,point);
    adb('shell','input','tap',String(p.x),String(p.y));await pause(200);
  }
- for(const [selector,depth]of [['#rift-back-one',24],['#rift-back-ten',14],['#rift-forward-one',15],['#rift-back-one',14],['#rift-back-ten',4],['#rift-back-ten',1]]){
+ for(const [selector,depth]of [['#rift-back-one',24],['#rift-forward-one',25],...Array.from({length:22},(_,i)=>{const n=24-i;return ['#rift-back-one',n>20?n:n>11?n-1:n-2];})]){
    await tap(selector);const s=await snapshot();
    assert.equal(s.riftMode,'farm','Native navigation preserves manual Farm');
    assert.equal(s.farmDepth,depth,'Native navigation reaches the expected Rift');
@@ -324,7 +324,7 @@ async function verifyInstalledRiftNavigation(page,report){
    assert.equal(s.farmAutoResume,false,'Native navigation cancels automatic retry');
    steps.push({selector,depth});
  }
- assert(await page.evaluate(`!document.getElementById('farm-picker-overlay')&&document.getElementById('rift-back-one').disabled&&document.getElementById('rift-back-ten').disabled`),'No picker and backward controls stop at Rift1');
+ assert(await page.evaluate(`!document.getElementById('farm-picker-overlay')&&document.getElementById('rift-back-one').disabled&&!document.getElementById('rift-back-ten')`),'No picker and backward controls stop at Rift1');
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
  fs.writeFileSync('release-evidence/installed-rift-navigation.png',Buffer.from(shot.data,'base64'));
  await tap('#rift-push-btn');const resumed=await snapshot();

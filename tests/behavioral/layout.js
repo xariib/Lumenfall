@@ -100,7 +100,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     // the existing paid Lab input fixtures do.
     bridge.labMotes.input(function(){q('#rift-farm-btn').click();});
     assert(!q('#farm-picker-overlay'),'Farm enters directly without a selection dialog');
-    ['#rift-back-ten','#rift-back-one','#rift-forward-one'].forEach(function(selector){
+    ['#rift-back-one','#rift-forward-one'].forEach(function(selector){
       var r=q(selector).getBoundingClientRect();
       assert(r.width>=44&&r.height>=44,'direct Rift navigation has a 44px touch target: '+selector);
     });
