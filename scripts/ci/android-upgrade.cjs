@@ -4,6 +4,7 @@ const fs=require('node:fs'),cp=require('node:child_process'),assert=require('nod
 const {transformFromProbes,nativePoint,requireCenteredPointer}=require('../lib/android-touch.cjs');
 const packageId='com.lumenfall.app',primary='lumenfall_save_v2',recovery='lumenfall_save_recovery_v1';
 const sockets=new Set();
+const releaseProbe=require('../lib/android-release-probe.cjs');
 let nativeLogcat;
 const adb=(...args)=>cp.execFileSync('adb',args,{encoding:'utf8',timeout:120000});
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -399,7 +400,7 @@ async function main(){
  nativeLogcat.on('error',e=>console.error('Live native diagnostic: '+e.message));
  const baseline=process.argv[2],candidate=process.argv[3];assert(baseline&&candidate);
  const report={baseline,candidate,package:packageId,commit:process.env.GITHUB_SHA,apkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync(candidate)).digest('hex'),device:adb('shell','getprop','ro.build.fingerprint').trim(),webview:adb('shell','dumpsys','webviewupdate').slice(0,2000)};
- assert.match(adb('install',baseline),/Success/);adb('shell','am','start','-n',packageId+'/.MainActivity');
+ assert.match(adb('install',baseline),/Success/);releaseProbe.launchForInspection();
  console.log('Android upgrade QA: old APK installed; connecting to WebView');let page=await connect(),saved;
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
  console.log('Android upgrade QA: real old save obtained; preparing pre-document fixture');
@@ -436,7 +437,7 @@ async function main(){
  await pause(6000);
  console.log('Android upgrade QA: stopping seeded old process; restarting without injection');
  page.close();adb('shell','am','force-stop',packageId);
- adb('shell','am','start','-n',packageId+'/.MainActivity');page=await connect();await pause(3000);
+ releaseProbe.launchForInspection();page=await connect();await pause(3000);
  const oldCold=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);
  assert.equal(oldCold.origin,report.beforeOrigin);assert.equal(oldCold.sentinel,sentinel,'Old APK fixture must survive its own cold restart before upgrade');assert(oldCold.save&&oldCold.recovery,'Old APK retains both baseline slots');assert.equal(oldCold.save.spirits.ember,33,'Old APK accepted the synthetic progression');assert.equal(oldCold.save.heroRarity.ember,5,'Old APK accepted the synthetic paid rarity');
  for(const slot of [oldCold.save,oldCold.recovery]){for(const id of ['autoascend',...legacyPurchases])assert.equal(slot.owned[id],true,'Actual old purchase present before update: '+id);assert.deepEqual(slot.cometCosmetics,seed.cometCosmetics);assert.deepEqual(slot.cometTrialMarks,seed.cometTrialMarks);}
@@ -446,7 +447,7 @@ async function main(){
  const beforePackage=adb('shell','dumpsys','package',packageId),beforeUid=beforePackage.match(/userId=(\d+)/)[1];report.baselineVersionCode=Number(beforePackage.match(/versionCode=(\d+)/)[1]);
  assert.match(adb('install','-r',candidate),/Success/,'Actual in-place package replacement');
  const afterPackage=adb('shell','dumpsys','package',packageId),afterUid=afterPackage.match(/userId=(\d+)/)[1];assert.equal(afterUid,beforeUid,'Android UID retained');report.candidateVersionCode=Number(afterPackage.match(/versionCode=(\d+)/)[1]);assert(report.candidateVersionCode>report.baselineVersionCode,'Actual installed Android version increases');report.beforeUid=beforeUid;report.afterUid=afterUid;
- adb('shell','am','start','-n',packageId+'/.MainActivity');page=await connect();
+ releaseProbe.launchForInspection();page=await connect();
  const currentSchema=Number(fs.readFileSync('index.html','utf8').match(/var SAVE_SCHEMA_VERSION = (\d+);/)[1]);let persisted=false;
  for(let i=0;i<90;i++){persisted=await page.evaluate(`(()=>{try{return [${JSON.stringify(primary)},${JSON.stringify(recovery)}].every(k=>JSON.parse(localStorage.getItem(k)).schemaVersion===${currentSchema});}catch(e){return false;}})()`);if(persisted)break;await pause(1000);}assert(persisted,'Actual new app must persist both migrated slots');
  await pause(3000);
@@ -473,4 +474,4 @@ async function main(){
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
 const watchdog=setTimeout(()=>{console.error('Android upgrade QA overall deadline');process.exit(1);},600000);
-main().catch(e=>{console.error(e.stack);try{fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/upgrade-failure-logcat.txt',adb('logcat','-d','-t','1500'));}catch(diagnostic){console.error('Native diagnostic failed: '+diagnostic.message);}process.exitCode=1;}).finally(()=>{clearTimeout(watchdog);if(nativeLogcat)nativeLogcat.kill();for(const socket of sockets)socket.close();});
+main().catch(e=>{console.error(e.stack);try{fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/upgrade-failure-logcat.txt',adb('logcat','-d','-t','1500'));}catch(diagnostic){console.error('Native diagnostic failed: '+diagnostic.message);}process.exitCode=1;}).finally(()=>{clearTimeout(watchdog);releaseProbe.close();if(nativeLogcat)nativeLogcat.kill();for(const socket of sockets)socket.close();});

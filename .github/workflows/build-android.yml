@@ -106,6 +106,12 @@ jobs:
         working-directory: mobile
         run: npm ci --no-audit --no-fund
 
+      - name: Reject high and critical dependency advisories
+        run: |
+          mkdir -p release-evidence
+          npm audit --prefix mobile --audit-level=high --json > release-evidence/dependency-audit.json
+          node tests/tooling/apk-security.cjs
+
       - name: Validate game source
         shell: bash
         run: |
@@ -164,7 +170,10 @@ jobs:
 
       - name: Generate Android project
         working-directory: mobile
-        run: npx cap add android
+        run: node ../scripts/ci/capacitor_cli.cjs add android
+
+      - name: Configure production build and separate native test runner
+        run: node scripts/ci/configure_android_release.cjs
 
       - name: Install native signed APK updater
         run: |
@@ -225,7 +234,7 @@ jobs:
 
       - name: Sync Capacitor
         working-directory: mobile
-        run: npx cap sync android
+        run: node ../scripts/ci/capacitor_cli.cjs sync android
 
       - name: Build APK
         working-directory: mobile/android
@@ -237,7 +246,7 @@ jobs:
           KEYSTORE_FILE="$RUNNER_TEMP/lumenfall-signing/Lumenfall-debug.keystore"
           test -s "$KEYSTORE_FILE"
 
-          ./gradlew assembleDebug --no-daemon \
+          ./gradlew assembleRelease assembleReleaseAndroidTest --no-daemon \
             -Pandroid.injected.signing.store.file="$KEYSTORE_FILE" \
             -Pandroid.injected.signing.store.password=android \
             -Pandroid.injected.signing.key.alias=androiddebugkey \
@@ -245,7 +254,8 @@ jobs:
 
       - name: Prepare APK
         run: |
-          cp mobile/android/app/build/outputs/apk/debug/app-debug.apk Lumenfall.apk
+          cp mobile/android/app/build/outputs/apk/release/app-release.apk Lumenfall.apk
+          cp mobile/android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk release-probe.apk
           test -s Lumenfall.apk
           ls -lh Lumenfall.apk
 
@@ -279,6 +289,10 @@ jobs:
             --expected-version-code "$EXPECTED_VERSION_CODE" \
             --expected-version-name "$EXPECTED_VERSION_NAME" \
             --expected-cert-sha256 "$EXPECTED_SIGNING_SHA256" | tee release-evidence/identity.txt
+
+          node scripts/ci/verify_apk_security.cjs Lumenfall.apk "$BUILD_TOOLS_DIR/aapt" > release-evidence/security.json
+          "$BUILD_TOOLS_DIR/apksigner" verify --print-certs release-probe.apk > release-evidence/test-runner-signature.txt
+          node -e 'const fs=require("fs"),assert=require("assert/strict");const {parseCertificates}=require("./scripts/verify_apk_identity.cjs");assert.deepEqual(parseCertificates(fs.readFileSync("release-evidence/test-runner-signature.txt","utf8")),[process.env.EXPECTED_SIGNING_SHA256.replaceAll(":","")]);'
 
       - name: Verify exact packaged production assets and origin
         run: |
@@ -322,6 +336,21 @@ jobs:
       - name: Require completed upgrade receipt for this exact APK
         run: node scripts/ci/verify_upgrade_receipt.cjs
 
+      - name: Verify normal production launch on a retail Android image
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          target: google_apis_playstore
+          arch: x86_64
+          avd-name: production-user
+          ram-size: 2048M
+          heap-size: 256M
+          disk-size: 2G
+          cores: 2
+          emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim
+          disable-animations: true
+          script: node scripts/ci/verify_android_release_runtime.cjs
+
       - name: Preserve failed native upgrade diagnostics
         if: failure()
         shell: bash
@@ -356,7 +385,7 @@ jobs:
           test "$(gh api repos/$GITHUB_REPOSITORY/git/ref/heads/main --jq .object.sha)" = "$GITHUB_SHA"
           node scripts/ci/android-release-version.cjs --check-published
           TAG="android-$EXPECTED_VERSION_CODE"
-          gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json release-evidence/in-app-updater.json release-evidence/identity.txt release-evidence/commit.txt \
+          gh release create "$TAG" Lumenfall.apk release-evidence/assets.json release-evidence/apk-sha256.txt release-evidence/emulator-upgrade.json release-evidence/in-app-updater.json release-evidence/identity.txt release-evidence/commit.txt release-evidence/security.json release-evidence/dependency-audit.json \
             --target "$GITHUB_SHA" --latest \
             --title "Lumenfall Android $EXPECTED_VERSION_NAME" \
             --notes "Verified game update from $GITHUB_SHA. Changes and exact-source validation are recorded in docs/PROJECT_STATE.md and the merged pull request. Existing progression, purchases, both save slots, package identity and signing certificate are retained. Back up in Settings before updating, then install Lumenfall.apk as an update without uninstalling. Physical-phone, exact WebView60, TalkBack and human pacing acceptance remain separate checks."
