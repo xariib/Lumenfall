@@ -95,6 +95,21 @@ summaries without removing their evidence links. Automated PR review identified
 the initial stale offline reference; verified four-window output committed in
 762c0667 addresses it and the thread is resolved. No independent human review.
 
+Final review caught a live unlock refresh gap inherited from aura rendering:
+newly earned Deeds now refresh Collection from both achievement checks and live
+ticks. Regression asserts real enabled cards without forcing a cosmetic refresh.
+Final source SHA256 b028d76d0edef5ac0cccb6adc457d82f05a72d81148d2a0110a234737e8942bf:
+1,471 checks/12 profiles PASS, missing-dot control detects the intended defect,
+and all four complete baseline/candidate progression windows PASS again. Updated
+reference retains the same rewards and full-state hashes; source binding updated.
+
+Android run41822565837 passed actual signed upgrade, save preservation, native
+Wisp/Farm/navigation and the strengthened Lab input proof. The subsequent updater
+fixture failed: logcat records package-replacement cleanup removing its activity
+120ms after launch. The fixture now allows1s for replacement broadcasts and uses
+am start -W; every updater acceptance remains required. Raw third failure archive
+includes the successful upgrade receipt. Final native/CI reruns remain pending.
+
 Next: pass all required CI, integrate
 and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.

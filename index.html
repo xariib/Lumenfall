@@ -7672,6 +7672,7 @@ function checkAchievements(){
   var changed = applyAchievementChecks();
   if(changed.length){
     renderAchievements();
+    renderCosmetics();
     renderNodes();
     var newest = changed[changed.length-1];
     showToast(cometDeedMessage(newest));
@@ -13703,6 +13704,7 @@ function tick(){
   }
   if(sim.achievements.length){
     renderAchievements();
+    renderCosmetics();
     renderNodes();
   }
   if(sim.empowers>0 || sim.completedStudies.length>0) renderSpirits();

@@ -24,7 +24,8 @@ driver=driver.slice(0,start)+String.raw`
   ok(await run("(function(){var old=freshState();old.riftLook={backdrop:'unknown',wisp:42,enemy:'bad',motion:false};return JSON.stringify(acceptPersistedState(old).riftLook)===JSON.stringify({backdrop:'default',wisp:'default',enemy:'default',motion:false});})()"),'invalid preferences normalize safely');
   ok(await run("(function(){var before=JSON.stringify(state);selectRiftLook('backdrop','grove');selectRiftLook('__proto__','bad');selectRiftLook('wisp','unknown');return before===JSON.stringify(state);})()"),'locked and invalid choices have no effect');
   ok(await run("(function(){state.riftLook.wisp='astral';renderCosmetics();return state.riftLook.wisp==='astral'&&activeRiftLook('wisp').id==='default';})()"),'known locked preference retained without granting access');
-  ok(await run("(function(){state.maxDepthEver=25;checkAchievements();renderCosmetics();return themeUnlocked(RIFT_LOOKS.backdrop[2])&&state.riftLook.backdrop==='default';})()"),'earned Deed unlocks scene without equipping it');
+  ok(await run("(function(){state.maxDepthEver=25;checkAchievements();return themeUnlocked(RIFT_LOOKS.backdrop[2])&&state.riftLook.backdrop==='default'&&!document.querySelector('[data-look-id=grove]').disabled;})()"),'earned Deed immediately unlocks scene without equipping it');
+  ok(await run("(function(){state.maxDepthEver=50;tick();return state.achieved.d50&&!document.querySelector('[data-look-id=crystal]').disabled&&state.riftLook.wisp==='astral'&&activeRiftLook('wisp').id==='default';})()"),'normal live tick refreshes new design unlock without granting locked selection');
   await ev('prismQa.fixture(true)');
   const ids=await run("Object.keys(RIFT_LOOKS).flatMap(function(slot){return RIFT_LOOKS[slot].map(function(item){return {slot:slot,id:item.id};});})");
   for(const item of ids){

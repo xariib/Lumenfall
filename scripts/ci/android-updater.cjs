@@ -33,7 +33,10 @@ async function main(){
   assert.match(official.tag_name,/^android-\d+$/);const expected=Number(official.tag_name.substring(8));
   assert.match(adb('install','-r','-d','updater-probe.apk'),/Success/);
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','deny');
-  adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();
+  // Package replacement can deliver its final force-stop after adb install
+  // reports success. Let that broadcast settle before launching the fixture.
+  await pause(1000);
+  adb('shell','am','start','-W','-n',pkg+'/.MainActivity');await connect();
   await until(()=>evaluate("document.getElementById('app-update-action')&&document.getElementById('app-update-action').textContent==='Download & install'&&!document.getElementById('app-update-action').disabled"),'automatic official release discovery');
   mark('cancel download, including queued successful completion');
   await evaluate("localStorage.setItem('native-updater-sentinel','retain-both-saves')");

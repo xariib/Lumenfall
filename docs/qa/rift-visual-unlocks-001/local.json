@@ -73,5 +73,28 @@
       "pendingAfterClose": 0,
       "profileRemoved": true
     }
+  },
+  "rift-visual-final": {
+    "status": "pass",
+    "checks": 1471,
+    "profiles": 12,
+    "sourceSha256": "b028d76d0edef5ac0cccb6adc457d82f05a72d81148d2a0110a234737e8942bf",
+    "node": "v24.20.0",
+    "exit": {
+      "code": 0,
+      "signal": null
+    }
+  },
+  "rift-visual-final-negative": {
+    "status": "fail",
+    "checks": 53,
+    "profiles": 0,
+    "sourceSha256": "b7bdc04889a89500b1bc633940c647fe72ed0dc4f232d9912ae4b9d17c4cde08",
+    "node": "v24.20.0",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "error": "AssertionError [ERR_ASSERTION]: active dot visible battle\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-unlocks-001\\tests\\behavioral\\.rift-visual-unlocks-17368.cjs:39:27)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-unlocks-001\\tests\\behavioral\\.rift-visual-unlocks-17368.cjs:99:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-unlocks-001\\tests\\behavioral\\.rift-visual-unlocks-17368.cjs:142:6"
   }
 }
