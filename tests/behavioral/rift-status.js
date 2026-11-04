@@ -394,7 +394,7 @@ window.riftStatusMobile=(()=>{
   document.head.appendChild(style);q('.stat-row').appendChild(buff);
   return function(){parent.insertBefore(buff,next);style.remove();};
  }
- function measure(){
+ function measure(legacyReadout){
   var guidanceLine=window.riftGuidanceLineCheck(ok,'mobile / '+kind);
   var m=q('main'),mr=rect(m),nav=rect(q('nav.tabbar')),enemy=rect(q('#enemy-stage'));
   ok(m.scrollTop===0&&m.scrollHeight<=m.clientHeight+1&&scrollY===0,'Rift remains scroll-free without clipped content');
@@ -452,7 +452,18 @@ window.riftStatusMobile=(()=>{
   ok(arena.top>=rect(q('.rift-heading')).bottom&&arena.bottom<=buff.top,'integrated combat region stays below the Rift heading and above boost');
   ok(arena.bottom<=stats.top&&getComputedStyle(q('.stat-row')).position==='relative','stat box top borders paint above the combat layer');
   var party=rect(q('#rift-party'));
-  ok(!q('#enemy-stage').contains(q('#rift-party'))&&enemy.bottom<=hp.top&&hp.bottom<=party.top&&party.bottom<=buff.top,'formation follows the attack surface and HP, before boost '+JSON.stringify({enemy:enemy.bottom,hp:[hp.top,hp.bottom],party:[party.top,party.bottom],buff:buff.top}));
+  // The immutable pre-readability source still has its original below-art HP.
+  // The driver selects this contract only by that exact historical source hash.
+  if(legacyReadout===true){
+   ok(!q('#enemy-stage').contains(q('#rift-party'))&&enemy.bottom<=hp.top&&hp.bottom<=party.top&&party.bottom<=buff.top,'formation follows the attack surface and HP, before boost '+JSON.stringify({enemy:enemy.bottom,hp:[hp.top,hp.bottom],party:[party.top,party.bottom],buff:buff.top}));
+  }else{
+  var name=rect(q('#enemy-name')),track=rect(q('.hp-bar-track')),healthText=rect(q('#hp-text'));
+  ok(q('#enemy-stage').getAttribute('aria-describedby')==='enemy-name hp-text','attack target exposes current name and HP to assistive technology');
+  ok(name.bottom<=hp.top&&hp.bottom<=rect(q('#enemy-glyph')).top,'health directly below enemy name and above enemy artwork');
+  ok(rect(q('#rift-cosmetic-name')).bottom<=enemy.top&&q('.rift-heading').contains(q('#rift-cosmetic-name')),'theme label stays in header clear of attacks');
+  ok(track.right<=healthText.left&&Math.abs((track.top+track.bottom-healthText.top-healthText.bottom)/2)<=1,'health bar and numbers share one line');
+  ok(!q('#enemy-stage').contains(q('#rift-party'))&&enemy.bottom<=party.top&&party.bottom<=buff.top,'formation follows the attack surface and HP, before boost '+JSON.stringify({enemy:enemy.bottom,hp:[hp.top,hp.bottom],party:[party.top,party.bottom],buff:buff.top}));
+  }
   ok(q('.battle-row').contains(q('#enemy-stage'))&&q('.battle-row').contains(q('.hp-wrap'))&&q('.battle-row').contains(q('#boss-combat'))&&q('.battle-row').contains(q('#rift-party')),'attack surface, HP, Boss regen and formation share the integrated scenic region');
   ok(q('#boss-combat').hidden||hp.bottom<=party.top&&party.bottom<=rect(q('#boss-combat')).top,'boss regen sits below HP and the standalone formation, leaving attacks unobscured');
   ok(q('#rift-bond-effects').hidden||bonds.bottom<=rect(q('#rift-bond-effects')).top&&rect(q('#rift-bond-effects')).bottom<=stats.top,'full Bond effects separate from names and precede the numeric row');

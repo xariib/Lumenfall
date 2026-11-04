@@ -17,6 +17,9 @@ const midgameAccept=flags.includes('--midgame-accept');
 if(collectTitleInverse&&!readabilityProbe)throw Error('Title inverse collection requires the bounded readability probe');
 const {instrumentHtml,loadFixtures}=require('./run.cjs');
 let source=fs.readFileSync(path.join(sourceRoot,'index.html'),'utf8');
+// Preserve the historical layout contract only for the pinned baseline. Every
+// current candidate and causal mutation must satisfy the new name/HP layout.
+const legacyReadout=readabilityProbe&&crypto.createHash('sha256').update(source).digest('hex')==='38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f';
 const hintMutation=flags.includes('--mutate-hint-open')?'open':flags.includes('--mutate-hint-refresh')?'refresh':null;
 if(hintMutation){
  if(!midgameAccept)throw Error('Hint controls require --midgame-accept');
@@ -354,7 +357,7 @@ async function run(url){
    await evaluate('__lumenfallQaBridge.uiMeasurementPause(false)');await pause(120);await evaluate('__lumenfallQaBridge.uiMeasurementPause(true)');
    if(longHint)await evaluate(`(()=>{const el=document.querySelector('#rift-objective'),title='Guidance stress sentinel — '+('Long Rift hint with all its words readable. ').repeat(12)+'Unbroken'+('W').repeat(100),detail=('Additional guidance detail with a clear next step. ').repeat(8);el.querySelector('strong').textContent=title;el.querySelector('small').textContent=detail;if(el.getAttribute('role')==='button')el.setAttribute('aria-label',title+' — '+detail);})()`);
    await evaluate('document.querySelector("#rift-objective-row").scrollTop=0');
-   const content=await inspectContent(),shown=await snapshot(),riftMeasure=await evaluate('riftStatusMobile.measure()');
+   const content=await inspectContent(),shown=await snapshot(),riftMeasure=await evaluate('riftStatusMobile.measure('+legacyReadout+')');
    const sample={kind,longHint,content,shown:shown.boxes,riftMeasure};record.samples.push(sample);
    if(!longHint){
     // Preserve actual measurements before a readability assertion can fail.
