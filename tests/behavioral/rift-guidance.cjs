@@ -44,7 +44,7 @@ const server=http.createServer((request,response)=>{
  });
 });
 let browser,session,seq=0,buffer='',stderr='',browserExit,closed=false,closing=false;
-const pending=new Map(),records=[],runtimeErrors=[];
+const pending=new Map(),records=[],runtimeErrors=[],layoutStates=new Map();
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 function assert(value,message){if(!value)throw Error(message);}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{
@@ -76,7 +76,7 @@ async function snapshot(){return evaluate(`(()=>{
  const selectors=['.hud',...['lumen','shard','mote','prism','comet','sigil'].map(x=>'#hud-'+x),'.battle-row','#enemy-stage','.hp-wrap','#hp-text','#boss-combat','#rift-party','#rift-bond-effects','#rift-guidance-slot','#rift-hints-toggle'];
  const boxes={};selectors.forEach(selector=>{const e=document.querySelector(selector);if(!e||!e.getClientRects().length){boxes[selector]=null;return;}const r=e.getBoundingClientRect();boxes[selector]={x:r.x,y:r.y,width:r.width,height:r.height};});
  const saves={};Object.keys(localStorage).sort().filter(k=>k!=='lumenfall_rift_guidance_hidden_v1').forEach(k=>saves[k]=localStorage.getItem(k));
- return {boxes,state:JSON.stringify(__lumenfallQaBridge.getState()),saves};
+ return {boxes,hpText:document.querySelector('#hp-text').textContent,state:JSON.stringify(__lumenfallQaBridge.getState()),saves};
 })()`);}
 function sameGeometry(a,b,label){for(const selector of Object.keys(a.boxes)){const before=a.boxes[selector],after=b.boxes[selector];assert(!!before===!!after,label+' presence '+selector);if(before)for(const axis of ['x','y','width','height'])assert(Math.abs(before[axis]-after[axis])<=0.1,label+' '+selector+' '+axis+': '+before[axis]+' -> '+after[axis]);}}
 function sameData(a,b,label){assert(a.state===b.state,label+' preserves full game state');assert(JSON.stringify(a.saves)===JSON.stringify(b.saves),label+' preserves all other localStorage bytes');}
@@ -355,10 +355,18 @@ async function run(url){
   for(const kind of ['fresh','dense','boss','boss-conditional','farm'])for(const longHint of (readabilityProbe?[false]:[false,true])){
    await evaluate(`riftStatusMobile.setup(${inset},${JSON.stringify(kind)});(()=>{const b=__lumenfallQaBridge,s=b.getState();if(${JSON.stringify(kind)}==='farm'){s.riftMode='farm';s.farmDepth=9;s.farmReturnDepth=10;s.depth=9;s.enemyDepth=9;s.enemyMaxHp=b.enemyHpFor(9);s.enemyHp=s.enemyMaxHp;}b.setState(s);b.renderLayout();})()`);
    await evaluate('__lumenfallQaBridge.uiMeasurementPause(false)');await pause(120);await evaluate('__lumenfallQaBridge.uiMeasurementPause(true)');
+   // Compare hint content/text size against the same post-live combat state.
+   // Separate wall-clock windows can cross a kill or change HP digit count;
+   // that legitimately changes the natural-width HP readout, not hint layout.
+   // Keep every live warm-up and every geometry assertion, then restore the
+   // first measured state for this viewport/motion/fixture before rendering.
+   const layoutKey=JSON.stringify([width,height,inset,motion,kind]);
+   if(!layoutStates.has(layoutKey))layoutStates.set(layoutKey,await evaluate('__lumenfallQaBridge.getState()'));
+   await evaluate(`__lumenfallQaBridge.setState(${JSON.stringify(layoutStates.get(layoutKey))});__lumenfallQaBridge.renderLayout()`);
    if(longHint)await evaluate(`(()=>{const el=document.querySelector('#rift-objective'),title='Guidance stress sentinel — '+('Long Rift hint with all its words readable. ').repeat(12)+'Unbroken'+('W').repeat(100),detail=('Additional guidance detail with a clear next step. ').repeat(8);el.querySelector('strong').textContent=title;el.querySelector('small').textContent=detail;if(el.getAttribute('role')==='button')el.setAttribute('aria-label',title+' — '+detail);})()`);
    await evaluate('document.querySelector("#rift-objective-row").scrollTop=0');
    const content=await inspectContent(),shown=await snapshot(),riftMeasure=await evaluate('riftStatusMobile.measure('+legacyReadout+')');
-   const sample={kind,longHint,content,shown:shown.boxes,riftMeasure};record.samples.push(sample);
+   const sample={kind,longHint,content,hpText:shown.hpText,comparisonStateSha256:crypto.createHash('sha256').update(shown.state).digest('hex'),shown:shown.boxes,riftMeasure};record.samples.push(sample);
    if(!longHint){
     // Preserve actual measurements before a readability assertion can fail.
     sample.readability=await wordReadability();sample.toggleName=await toggleAccessibleName();
@@ -391,8 +399,8 @@ async function run(url){
   await checkAscendReadability(record,name,inset,width===320&&scale===2&&motion==='no-preference');
   if(readabilityProbe){await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);continue;}
   // Content changes and text enlargement leave every protected box in place.
-  for(const sample of record.samples.filter(sample=>sample.longHint)){const normal=record.samples.find(other=>other.kind===sample.kind&&!other.longHint);sameGeometry({boxes:normal.shown},{boxes:sample.shown},'long versus normal hint');}
-  if(scale===2){const normalProfile=records.find(other=>other.profile===name.replace('text2','text1'));for(const sample of record.samples){const normal=normalProfile.samples.find(other=>other.kind===sample.kind&&other.longHint===sample.longHint);const boxes={...normal.shown},enlarged={...sample.shown};delete boxes['#rift-hints-toggle'];delete enlarged['#rift-hints-toggle'];sameGeometry({boxes},{boxes:enlarged},'200% versus normal text');}record.enlargedTextStable=true;}
+  for(const sample of record.samples.filter(sample=>sample.longHint)){const normal=record.samples.find(other=>other.kind===sample.kind&&!other.longHint);assert(normal.hpText===sample.hpText,'long versus normal hint compares identical HP text');assert(normal.comparisonStateSha256===sample.comparisonStateSha256,'long versus normal hint compares identical game state');sameGeometry({boxes:normal.shown},{boxes:sample.shown},'long versus normal hint');}
+  if(scale===2){const normalProfile=records.find(other=>other.profile===name.replace('text2','text1'));for(const sample of record.samples){const normal=normalProfile.samples.find(other=>other.kind===sample.kind&&other.longHint===sample.longHint);assert(normal.hpText===sample.hpText,'200% versus normal text compares identical HP text');assert(normal.comparisonStateSha256===sample.comparisonStateSha256,'200% versus normal text compares identical game state');const boxes={...normal.shown},enlarged={...sample.shown};delete boxes['#rift-hints-toggle'];delete enlarged['#rift-hints-toggle'];sameGeometry({boxes},{boxes:enlarged},'200% versus normal text');}record.enlargedTextStable=true;}
   // Exercise hiding from inside the body through the existing Settings handler.
   await evaluate('document.querySelector("#rift-objective-row").focus({preventScroll:true});document.querySelector("#rift-guidance-toggle").click()');assert(await evaluate('document.activeElement.id==="rift-hints-toggle"&&document.querySelector("#rift-objective-row").hidden'),'hiding focused hints returns focus to the visible toggle');await toggleWithInput();
   // Every existing unlocked cosmetic uses the same unchanged combat contract.

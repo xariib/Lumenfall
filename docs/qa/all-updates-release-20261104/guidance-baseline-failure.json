@@ -1,0 +1,38 @@
+{
+  "status": "fail",
+  "scope": "RIFT_GUIDANCE_001",
+  "hintMutation": null,
+  "baselineProbe": false,
+  "readabilityProbe": true,
+  "midgameAccept": false,
+  "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+  "instrumentedSha256": "db0428fb62bfa2ef3f86d00b8ef8408474d14d99848db775ba4ff6b1ab932ff4",
+  "records": [
+    {
+      "profile": "320x640-safe0-text2-no-preference",
+      "samples": []
+    }
+  ],
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/156.0.8078.80",
+    "revision": "@cc92146ef17860a4511f7de658b078128dbaad5",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "jsVersion": "15.6.75.27"
+  },
+  "message": "Error: Error: attack target exposes current name and HP to assistive technology\n    at ok (http://127.0.0.1:57715/index.html?qaScenario=rift-status-mobile&qaFixture=fresh:12545:31)\n    at Object.measure (http://127.0.0.1:57715/index.html?qaScenario=rift-status-mobile&qaFixture=fresh:12628:3)\n    at <anonymous>:1:18\n    at evaluate (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\tests\\behavioral\\rift-guidance.cjs:51:154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\tests\\behavioral\\rift-guidance.cjs:357:76)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\tests\\behavioral\\rift-guidance.cjs:432:3",
+  "error": {
+    "code": null,
+    "message": "Error: attack target exposes current name and HP to assistive technology\n    at ok (http://127.0.0.1:57715/index.html?qaScenario=rift-status-mobile&qaFixture=fresh:12545:31)\n    at Object.measure (http://127.0.0.1:57715/index.html?qaScenario=rift-status-mobile&qaFixture=fresh:12628:3)\n    at <anonymous>:1:18",
+    "details": null
+  },
+  "teardown": {
+    "timeout": true
+  },
+  "runtimeErrors": [],
+  "chromeStderr": {
+    "path": "chrome.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

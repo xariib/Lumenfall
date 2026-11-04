@@ -1,0 +1,78 @@
+{
+  "status": "fail",
+  "scope": "GUIDANCE_READABILITY_001",
+  "baselineCommit": "684bfc52bb2ca523124fe63981188b9a8004d747",
+  "fullDefaultGateExecutedHere": false,
+  "inputs": {
+    "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\validation-evidence\\all-updates-release-20261104\\guidance-initial\\inputs.json",
+    "bytes": 6431,
+    "sha256": "5ddac624091a7ffa8c7a602cb375f98c56ce8f538b4e3444ce32f1171bb6cece"
+  },
+  "runtime": {
+    "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\validation-evidence\\all-updates-release-20261104\\guidance-initial\\runtime.json",
+    "bytes": 1215,
+    "sha256": "ef901b18df1e5f915ba3402522c74c8d2973627dca1c3c2bfcda3fb58d8c833d"
+  },
+  "baselineAssets": {
+    "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\validation-evidence\\all-updates-release-20261104\\guidance-initial\\baseline-assets.json",
+    "bytes": 3247,
+    "sha256": "45d75259345695d4bb1239c2e480f87db41d015cd81499f94cfb52d5e805245c"
+  },
+  "baselineAssetsUnit": {
+    "process": {
+      "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\validation-evidence\\all-updates-release-20261104\\guidance-initial\\baseline-assets-unit-process.json",
+      "bytes": 1038,
+      "sha256": "790ef72b4169784d10781e58bc3a956bbd08686fc4f1203bafe27c9b1106e3f7"
+    },
+    "report": {
+      "status": "pass",
+      "scope": "Isolated Git asset unit test; no game or browser",
+      "baselineCommit": "d75ceef4364505f184517c4e048912fb71768817",
+      "changedCandidateFontIgnored": true,
+      "changedCandidateBrandingIgnored": true,
+      "candidateOnlyAssetExcluded": true,
+      "candidateUnchanged": true,
+      "corruptBlobRejected": true,
+      "assets": [
+        {
+          "path": "branding/mark.svg",
+          "gitBlob": "2bbcc6e69f4536aaaf04ff076d911471ab2af9fd",
+          "bytes": 19,
+          "sha256": "e997e538df9b512b020e13838852fc861bec311abaef3a4fb3a37bc18ce5090d"
+        },
+        {
+          "path": "fonts/font.woff2",
+          "gitBlob": "577524cbb8865fd5d402a7c147e55099134e8207",
+          "bytes": 8,
+          "sha256": "7a2c00a19bf3d5333bcc16c3311127c02ca95f0ce65d34f9e5ccdee994db5fdd"
+        }
+      ]
+    }
+  },
+  "inverseUnit": {
+    "process": {
+      "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\validation-evidence\\all-updates-release-20261104\\guidance-initial\\inverse-unit-process.json",
+      "bytes": 1326,
+      "sha256": "dad856a7dc53b5644531c359b0ed37e9bc2c8cfb2c08e48fd0de143bc441078f"
+    },
+    "report": {
+      "status": "pass",
+      "scope": "Pure inverse regression; no game/browser executed",
+      "sourceSha256": "1173423bdb0d899616bd3a77b4f3931d8bcde5f5b67d90209f27a1b01f2e65e4",
+      "baselineSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+      "unrelatedFutureProbes": 2,
+      "invalidTitleCases": 3,
+      "completeBaselineCss": true,
+      "roundtripsExact": true,
+      "historicalMatch": false,
+      "oldTitleSourceSha256": "cca7235a17d989263c5eba1989b512e6dc9efce3174e8df09e81e4f5ee120ce2",
+      "oldLayoutSourceSha256": "5b845d8a5bef2880d45733577e81641c665c37e76ae17da2c58b226838a0b125"
+    }
+  },
+  "error": {
+    "code": "ERR_ASSERTION",
+    "message": "Expected values to be strictly equal:\n\nundefined !== 0\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nundefined !== 0\n\n    at healthy (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\scripts\\ci\\guidance-readability.cjs:51:9)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\scripts\\ci\\guidance-readability.cjs:87:81)\n    at Object.<anonymous> (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\scripts\\ci\\guidance-readability.cjs:90:17)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47"
+  },
+  "completedUtc": "2026-11-04T17:10:15.600Z"
+}

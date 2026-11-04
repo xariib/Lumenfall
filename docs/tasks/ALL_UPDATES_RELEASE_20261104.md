@@ -22,15 +22,16 @@ publish latest stable APK with its checksum and clear release notes, and verify
 anonymous download bytes and updater discovery. Physical phone, battery/thermal,
 exact WebView60, TalkBack and human review remain separate unverified checks.
 
-Status: in progress. PR37 seven gates and native41862842909 now PASS. PR36 six
-focused gates PASS; pre-merge41844392956 failed in historical Guidance baseline
-acceptance (expected fragmentation cause, received null), requiring diagnosis.
-Combine changes locally and retain original historical assertions. Only merge
-conflict is the independent offline oracle source hash; original expected
-state/reward values must remain unchanged and combined binding must be verified.
+Status18:20UTC: final candidate237fa928 is pushed in PR38; seven PR and six
+release workflows are running. Signed build41885250652 is Android0.2.91.
+The complete corrected local Guidance driver PASS:16 profiles/160 samples,
+identical compared states, unchanged geometry assertions/causal controls,
+zero runtime errors and clean browser exit. Both remote isolated offline jobs,
+Lab/Comet/progression pass. Main and public latest remain67a9b580/0.2.82.
 
-Next: repair historical harness compatibility, validate combined source, push
-reviewable release branch and run CI/native acceptance before publication.
+Next: finish exact-head full CI/native acceptance, fast-forward integration,
+publish the verified signed artifact, verify public bytes and updater discovery.
+Earlier candidate/checkpoint history follows; it is not a publication claim.
 
 Temporary ownership: ignored validation-evidence/all-updates-release-20261104
 and mobile/www in this isolated checkout hold disposable scripts/staging/tests.
@@ -101,3 +102,20 @@ evidence without moving the tested PR38 head.
 or rerun. All focused PR/release workflows now report success. Only full PR
 41875209044 and full release41875873731 are running their190-scenario suites.
 The signed0.2.90 candidate and tested source remain unchanged.
+
+18:04UTC: release full run41875873731 failed only rift-guidance-mobile in the
+190-scenario positive suite: Farm HP x228.390625→215.1875, width59.40625→72.609375,
+right edge unchanged. The driver independently advances combat120ms before
+normal/long and text-size comparisons, so natural-width HP can differ with live
+damage/kill timing. Failed raw results/log and verified artifact digest are in
+../qa/all-updates-release-20261104/guidance-comparison/. Publication remains held.
+The driver now reuses the first post-live state per viewport/motion/fixture,
+retaining every live warm-up, geometry/readability/input/save assertion and
+negative control. It additionally requires identical HP text and complete state
+hashes before comparing hint length or text size. Product bytes are unchanged.
+Full local mobile comparison and all exact-head remote gates must pass before
+integration; a new signed build will bind the final test/source commit.
+PR full41875209044 independently failed the same Farm HP comparison (second
+profile,20 samples); no other positive regression failed in either full run.
+Local corrected driver has passed the smallest normal/200%-text comparisons;
+remaining profiles continue while the exact-head remote validation restarts.
