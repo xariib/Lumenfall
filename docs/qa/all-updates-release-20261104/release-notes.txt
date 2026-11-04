@@ -1,0 +1,12 @@
+All pending game updates are combined in this release.
+
+- Enemy health sits on one line directly beneath its name. Gold previous/next controls simplify Rift navigation; the -10 control is removed. Theme labels stay clear of Wisp attacks.
+- Reduced repeated rendering and DOM updates across Rift, Wisps, Workshop and Deeds. Hidden pages stop simulation/autosave timer wakeups and resume with normal offline settlement. Selected Live scenes and Still/reduced-motion preferences remain available.
+- Fixed a native updater timing issue that could reject installation immediately after a completed download.
+- Includes the previously released Rift backgrounds/appearances, Lab timer improvements, Ritual challenges, Lab speed presets, progression fixes and all earlier updates.
+
+Update inside the game: Settings → App updates → Check for updates → Download & install. Approve Android's installation prompt; allow Lumenfall to install updates if Android asks. The game also checks automatically when opened or brought back to the foreground.
+
+Back up with Settings → Save Backup first. Install over the existing app without uninstalling to retain progress. Older versions without App updates can download Lumenfall.apk from this release and install it over the existing app.
+
+Release acceptance covers combined regression/offline checks, signed APK identity and exact assets, installed save upgrades, and native update download/cancellation/tamper/installation checks. Both save slots, paid work, package identity and signing identity are retained. Physical-phone battery/thermal measurements, exact WebView60, TalkBack and human review remain unverified.
