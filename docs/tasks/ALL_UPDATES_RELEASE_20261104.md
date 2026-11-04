@@ -96,3 +96,8 @@ Main remains67a9b580 and public latest remains0.2.82. Candidate388030c6 and sign
 workflow conclusions before integration/publication; never infer overall PASS
 from stale incomplete metadata. A separate docs checkpoint preserves current
 evidence without moving the tested PR38 head.
+
+17:45UTC: delayed GitHub statuses recovered without any accepted cancellation
+or rerun. All focused PR/release workflows now report success. Only full PR
+41875209044 and full release41875873731 are running their190-scenario suites.
+The signed0.2.90 candidate and tested source remain unchanged.
