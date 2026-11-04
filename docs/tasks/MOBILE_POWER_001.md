@@ -74,7 +74,14 @@ index.html/fonts/branding) and `validation-evidence/mobile-power`. Browser profi
 have explicit owner records and native Windows cleanup after confirmed exit.
 Durable result receipts belong in `docs/qa/mobile-power-001`; keep the worktree.
 
-Next: finish the original contract rerun, full four-window gameplay replay,
-causal background control and CI; publish the branch/PR, integrate only after
-required gates, then verify the signed Android update. Physical phone thermal,
+The corrected original Rift contract PASS. Full four eight-hour windows replayed
+second-by-second against the original pre-visual baseline on Node24.19 PASS:
+all gameplay fields/rewards and all four accepted state hashes are unchanged.
+Only the golden's source binding changed; expected outcomes were not regenerated
+from bulk execution. [Replay receipt](../qa/mobile-power-001/parity.json).
+
+Implementation pushed as `f0a8117`; non-publishing signed Android workflow
+[41851037992](https://github.com/xariib/Lumenfall/actions/runs/41851037992) running.
+Next: finish causal background control and required CI; integrate only after
+gates, then verify/publish the signed Android update. Physical phone thermal,
 battery, exact WebView60 and TalkBack review remain open.
