@@ -87,6 +87,14 @@ an after screenshot, remeasures the button after screenshot capture, and waits
 up to5s for the same required navigation/focus result. Centered trusted native
 pointer/click is additionally required. Cause remains unconfirmed; rerun required.
 
+Native acceptance now also selects Cinder/Crystal/Ancient through real Android
+touches, verifies both saves, Still motion, full background bounds, Wisp/enemy
+art, dot geometry/color and a rendered screenshot. Existing upgrade assertions
+remain. All32 CI task context checks PASS after compacting historical status
+summaries without removing their evidence links. Automated PR review identified
+the initial stale offline reference; verified four-window output committed in
+762c0667 addresses it and the thread is resolved. No independent human review.
+
 Next: pass all required CI, integrate
 and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.

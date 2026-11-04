@@ -333,6 +333,41 @@ async function verifyInstalledRiftNavigation(page,report){
  report.installedRiftNavigation={status:'PASS',steps,returning,resumedDepth:resumed.depth,screenshot:'release-evidence/installed-rift-navigation.png',syntheticFixture:true};
  console.log('Android installed Rift navigation acceptance: '+JSON.stringify(report.installedRiftNavigation));
 }
+async function verifyInstalledRiftLooks(page,report){
+ // Reuse the disposable upgraded save's earned Deeds; no production test hooks.
+ await page.evaluate(`window.riftLookEvents=[];['pointerdown','click'].forEach(type=>document.addEventListener(type,e=>riftLookEvents.push({type,trusted:e.isTrusted,target:e.target.closest('button')?.getAttribute('data-look-id')||e.target.id,x:e.clientX,y:e.clientY}),true));`);
+ async function tap(selector){
+   await page.evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center'})`);await pause(350);
+   const point=await page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,disabled:e.disabled,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
+   assert(point.width>=44&&point.height>=44&&point.hit&&!point.disabled,'Installed appearance control receives touch: '+selector);
+   const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));await pause(350);
+ }
+ await tap('nav.tabbar [data-tab="deeds"]');
+ for(const [slot,id]of [['backdrop','cinder'],['wisp','crystal'],['enemy','ancient']]){
+   await tap('[data-look-slot="'+slot+'"][data-look-id="'+id+'"]');
+   const saved=await page.evaluate(`[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)).riftLook)`);
+   assert(saved.every(s=>s[slot]===id),'Native selection persists in both save slots: '+slot);
+ }
+ await tap('[data-look-motion]');
+ assert.equal(await page.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(primary)})).riftLook.motion`),false,'Installed Still toggle persists');
+ await tap('nav.tabbar [data-tab="battle"]');
+ const scene=await page.evaluate(`(()=>{const q=s=>document.querySelector(s),box=s=>q(s).getBoundingClientRect().toJSON(),dot=getComputedStyle(q('nav.tabbar [data-tab="battle"]'),'::after');return {
+   stage:box('#tab-battle .stage'),background:box('.rift-backdrop'),party:box('#rift-party'),boss:box('#boss-combat'),bossHidden:q('#boss-combat').hidden,
+   scene:q('#tab-battle .stage').dataset.backdrop,weather:getComputedStyle(q('.rift-backdrop .scene-weather')).animationName,
+   inert:getComputedStyle(q('.rift-backdrop')).pointerEvents,wisps:Array.from(document.querySelectorAll('#rift-party .wisp-portrait')).map(e=>e.dataset.wispDesign),
+   enemy:q('#enemy-glyph').dataset.creature,dot:{width:dot.width,height:dot.height,bottom:dot.bottom,color:dot.backgroundColor,display:dot.display},
+   overflow:document.documentElement.scrollWidth>innerWidth+1,events:window.riftLookEvents};})()`);
+ assert.equal(scene.scene,'cinder');assert.equal(scene.weather,'none');assert.equal(scene.inert,'none');
+ assert(Math.abs(scene.stage.width-scene.background.width)<=2&&Math.abs(scene.stage.height-scene.background.height)<=2,'Installed background covers full combat field');
+ assert(scene.wisps.length&&scene.wisps.every(s=>s==='crystal'),'Installed party uses selected Wisp design');
+ assert(['runegolem','crystalstag','templemoth'].includes(scene.enemy),'Installed enemy uses selected family');
+ assert(scene.bossHidden||scene.boss.top>=scene.party.bottom-1,'Installed regen follows the Wisp row');
+ assert.equal(scene.dot.width,'4px');assert.equal(scene.dot.height,'4px');assert.equal(scene.dot.bottom,'7px');assert.equal(scene.dot.color,'rgb(240, 197, 103)');assert.notEqual(scene.dot.display,'none');assert.equal(scene.overflow,false);
+ for(const id of ['cinder','crystal','ancient'])assert(scene.events.some(e=>e.type==='click'&&e.trusted&&e.target===id),'Trusted appearance click: '+id);
+ const shot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-rift-looks.png',Buffer.from(shot.data,'base64'));
+ report.installedRiftLooks={status:'PASS',scene,screenshot:'release-evidence/installed-rift-looks.png',syntheticFixture:true};
+ console.log('Android installed Rift appearances acceptance: '+JSON.stringify(report.installedRiftLooks));
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -411,7 +446,8 @@ async function main(){
  page=await prepareOfflineRecap(page,observed.save);
  await verifyInstalledWispCard(page,report);
  page=await verifyInstalledMidgameFarmHint(page,report,observed.save);
- await verifyInstalledRiftNavigation(page,report);page.close();
+ await verifyInstalledRiftNavigation(page,report);
+ await verifyInstalledRiftLooks(page,report);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
