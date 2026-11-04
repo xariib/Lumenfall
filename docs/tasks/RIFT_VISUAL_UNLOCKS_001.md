@@ -80,6 +80,13 @@ old APK's cold restart, before candidate installation. Identity/assets/startup
 passed. Raw failure archive retained; retry of the same job requested. No claim
 that device acceptance passed, and no acceptance gate removed.
 
+Android attempt2 installed the candidate and passed save/identity checks, then
+failed the existing native Farm hint-to-Lab focus assertion. The prior test saved
+no destination/input diagnostic. It now captures trusted input, destination and
+an after screenshot, remeasures the button after screenshot capture, and waits
+up to5s for the same required navigation/focus result. Centered trusted native
+pointer/click is additionally required. Cause remains unconfirmed; rerun required.
+
 Next: pass all required CI, integrate
 and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.

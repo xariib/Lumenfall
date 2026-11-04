@@ -277,11 +277,27 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
  assert(shot.data,'Installed Farm screenshot captured');
  fs.writeFileSync('release-evidence/installed-midgame-farm.png',Buffer.from(shot.data,'base64'));
+ // Record the actual native input and resulting destination, including failures.
+ // Re-measure after screenshot capture rather than using an earlier layout sample.
+ details=Object.assign(details,await page.evaluate(`(()=>{window.farmHintEvents=[];
+   ['pointerdown','click'].forEach(type=>document.addEventListener(type,e=>farmHintEvents.push({type,trusted:e.isTrusted,target:e.target.id,x:e.clientX,y:e.clientY}),true));
+   const b=document.querySelector('#rift-hint-open-lab'),r=b.getBoundingClientRect();
+   return {x:r.x+r.width/2,y:r.y+r.height/2,hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`));
+ assert(details.hit,'Installed Lab action remains reachable immediately before native input');
  tap(details);
- await pause(350);
- const destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
-   lab:document.querySelector('#tab-research').classList.contains('active'),
-   card:!!card&&card.getBoundingClientRect().width>0,focused:document.activeElement===card};})()`);
+ let destination;
+ for(let i=0;i<50;i++){
+   destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
+     lab:document.querySelector('#tab-research').classList.contains('active'),
+     card:!!card&&card.getBoundingClientRect().width>0,focused:document.activeElement===card,
+     active:document.activeElement?.outerHTML.slice(0,600),events:window.farmHintEvents};})()`);
+   if(destination.lab&&destination.card&&destination.focused)break;
+   await pause(100);
+ }
+ fs.writeFileSync('release-evidence/installed-midgame-farm-input.json',JSON.stringify({details,destination},null,2)+'\n');
+ const after=await page.command('Page.captureScreenshot',{format:'png'});
+ fs.writeFileSync('release-evidence/installed-midgame-farm-after.png',Buffer.from(after.data,'base64'));
+ requireCenteredPointer(destination.events,details,'rift-hint-open-lab');
  assert(destination.lab&&destination.card&&destination.focused,'Native touch navigates to and focuses Wisp Ascendancy');
  report.installedMidgameFarmHint={status:'PASS',hint,details,destination,screenshot:'release-evidence/installed-midgame-farm.png',syntheticFixture:true};
  console.log('Android installed Farm guidance acceptance: '+JSON.stringify(report.installedMidgameFarmHint));
