@@ -58,6 +58,7 @@ jobs:
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/IN_APP_UPDATES_001.md
           node tests/tooling/app-update-policy.cjs
+          node tests/tooling/app-update-operation.cjs
           node tests/behavioral/app-updates.cjs
           if node tests/behavioral/app-updates.cjs --mutate-late-cancel > /tmp/app-update-cancel-control.log 2>&1; then
             echo "::error::Late-cancel installer handoff defect unexpectedly passed."

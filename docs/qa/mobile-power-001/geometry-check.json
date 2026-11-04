@@ -1,0 +1,152 @@
+{
+  "good": {
+    "status": "pass",
+    "baseline": false,
+    "mutant": false,
+    "autosaveMutant": false,
+    "checks": 47,
+    "sourceSha256": "2b587871f5f080a301feb4a5c5c4f03fc3b0bb6feb89ca04593873a014b3d937",
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.80",
+      "revision": "@cc92146ef17860a4511f7de658b078128dbaad5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.27"
+    },
+    "records": [
+      {
+        "tab": "battle",
+        "calls": {
+          "tick": 50,
+          "updateBattleFast": 50,
+          "checkAffordability": 50,
+          "renderDaily": 10
+        },
+        "mutations": 921,
+        "starDraws": 0,
+        "timerWakes": 51,
+        "overlay": null,
+        "depth": 21,
+        "kills": 10,
+        "remaining": 994.6639000000059,
+        "errors": [],
+        "taskMs": 420.4030000000001,
+        "scriptMs": 131.605,
+        "layoutCount": 45,
+        "layoutMs": 18.458000000000002,
+        "measuredMs": 5000.9190000128
+      },
+      {
+        "tab": "spirits",
+        "calls": {
+          "tick": 50,
+          "renderSpirits": 10,
+          "renderDaily": 10,
+          "checkAffordability": 50
+        },
+        "mutations": 2431,
+        "starDraws": 0,
+        "timerWakes": 51,
+        "overlay": null,
+        "depth": 21,
+        "kills": 10,
+        "remaining": 994.5715999999941,
+        "errors": [],
+        "taskMs": 407.5470000000001,
+        "scriptMs": 173.86099999999993,
+        "layoutCount": 21,
+        "layoutMs": 85.16600000000003,
+        "measuredMs": 5000.986999977613
+      },
+      {
+        "tab": "research",
+        "calls": {
+          "tick": 50,
+          "renderDaily": 10,
+          "checkAffordability": 50
+        },
+        "mutations": 813,
+        "starDraws": 0,
+        "timerWakes": 51,
+        "overlay": null,
+        "depth": 21,
+        "kills": 10,
+        "remaining": 994.5536999999881,
+        "errors": [],
+        "taskMs": 163.52999999999994,
+        "scriptMs": 87.71799999999996,
+        "layoutCount": 33,
+        "layoutMs": 3.87000000000004,
+        "measuredMs": 5007.670999999391
+      },
+      {
+        "tab": "deeds",
+        "calls": {
+          "tick": 50,
+          "renderDaily": 10,
+          "checkAffordability": 50
+        },
+        "mutations": 270,
+        "starDraws": 0,
+        "timerWakes": 51,
+        "overlay": null,
+        "depth": 21,
+        "kills": 10,
+        "remaining": 994.564599999994,
+        "errors": [],
+        "taskMs": 129.8520000000001,
+        "scriptMs": 76.59699999999991,
+        "layoutCount": 20,
+        "layoutMs": 7.3070000000000075,
+        "measuredMs": 5002.14299999061
+      }
+    ],
+    "hidden": {
+      "calls": {},
+      "mutations": 383,
+      "starDraws": 0,
+      "timerWakes": 0,
+      "overlay": null,
+      "depth": 21,
+      "kills": 0,
+      "remaining": 999.9996000000239,
+      "errors": []
+    },
+    "resumed": {
+      "calls": {
+        "tick": 11,
+        "updateBattleFast": 11,
+        "checkAffordability": 11,
+        "renderDaily": 2
+      },
+      "mutations": 189,
+      "starDraws": 0,
+      "timerWakes": 11,
+      "overlay": null,
+      "depth": 21,
+      "kills": 5,
+      "remaining": 997.2274000000358,
+      "errors": []
+    }
+  },
+  "bad": {
+    "status": "fail",
+    "baseline": false,
+    "mutant": true,
+    "autosaveMutant": false,
+    "checks": 19,
+    "sourceSha256": "7716a3e050d64e9d3c9a37cfd761800e2af490f06243c2331b51ae83ba249c47",
+    "error": "AssertionError [ERR_ASSERTION]: no hidden timer wakes\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\mobile-power-001\\tests\\behavioral\\mobile-power-browser.cjs:49:50)\n    at main (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\mobile-power-001\\tests\\behavioral\\mobile-power-browser.cjs:105:17)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "records": []
+  },
+  "save": {
+    "status": "fail",
+    "baseline": false,
+    "mutant": false,
+    "autosaveMutant": true,
+    "checks": 14,
+    "sourceSha256": "92a1353ed798d6ef2f367c1157f277159ca3eeac30a934057a17ac895e6f81f4",
+    "error": "AssertionError [ERR_ASSERTION]: autosave boundary preserves Study completion presentation and committed save\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\mobile-power-001\\tests\\behavioral\\mobile-power-browser.cjs:49:50)\n    at main (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\mobile-power-001\\tests\\behavioral\\mobile-power-browser.cjs:89:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "records": []
+  }
+}

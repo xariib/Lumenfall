@@ -533,6 +533,9 @@ window.__lumenfallQaBridge = {
   },
   resetFeedback: function(){
     if(startupIntroFinish) startupIntroFinish();
+    // Use the production close lifecycle so a dismissed return dialog cannot
+    // leave the arena covered/inert when the next visual fixture begins.
+    if(overlayFocus)closeOverlay(overlayFocus.el);
     document.querySelectorAll('.overlay,#startup-intro').forEach(function(el){el.style.display='none';});
     liveRiftFeedbackAt=-Infinity;
     document.querySelectorAll('.rift-milestone,.combat-vfx').forEach(function(el){el.remove();});

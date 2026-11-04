@@ -1,0 +1,16 @@
+{
+  "run": 41860940147,
+  "commit": "9fb689bd293220860938224346163a8c855f750a",
+  "upgrade": "PASS",
+  "stage": {
+    "stage": "download/install retry and refuse install-source permission",
+    "error": "Error: Timed out: Android install-source permission"
+  },
+  "ui": {
+    "status": "An update operation is already running.",
+    "action": "Install update",
+    "disabled": false,
+    "plugin": true
+  },
+  "orderingRegression": "PASS production gate success/error/cancel and causal late-release rejection; Java17.0.21, Node24.20"
+}
