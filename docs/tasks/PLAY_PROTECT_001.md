@@ -58,8 +58,13 @@ existing Windows Firewall prompt for adb.exe; package commands return error:
 closed. User cannot access the computer now to dismiss it; no security setting was changed.
 Other emulator instances are excluded. No successful local installation claimed.
 
-Next: obtain a fresh Google scan of the exact0.2.95 candidate. The user received
-the build ZIP link for a phone test; no verdict has been reported. If still
+Next: confirm the APK identity in the user's positive phone scan. Screenshot
+19583.jpg shows Google Play Protect saying "This app looks safe" and offering
+Install, but no APK version/hash. A background file row shows7.10MB; it may be
+another file, whereas the verified0.2.95 APK is5,161,721 bytes. User was asked
+whether the scanned APK came from the supplied0.2.95 ZIP or an earlier download.
+Do not infer a wrong file or candidate-specific clearance from that row alone.
+See [phone evidence](../qa/play-protect-001/phone-scan-2026-11-04.json). If still
 flagged, the prepared review requires VirusTotal upload of the same APK and the
 developer's email/submission authorization. Preserve the exact scanned bytes for
 any later promotion; do not describe a rebuilt file as already scanned.
@@ -105,8 +110,10 @@ the prior shared history. Self-review and automated checks only.
 
 Durable [candidate receipts](../qa/play-protect-001/candidate-1000095/ci.json)
 and [Google review draft](../qa/play-protect-001/candidate-1000095/google-review.txt)
-are saved. No VirusTotal upload, Google appeal, stable APK promotion or physical
-Google clearance is claimed. Task stays open; no archive action.
+are saved. No VirusTotal upload, Google appeal or stable APK promotion is claimed.
+The positive phone screenshot is recorded separately from CI's NOT_TESTED result;
+candidate-specific Google clearance awaits identity confirmation. Completed phone
+installation is not shown. Task stays open; no archive action.
 
 References: [updater requirements](IN_APP_UPDATES_001.md),
 [release receipt](../qa/all-updates-release-20261104/release.json),

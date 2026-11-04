@@ -83,6 +83,22 @@ absence. The unchanged check passed on attempt2; its cause remains unestablished
 Failure diagnostics are retained locally and in run41910258484's failed artifact.
 No assertion was removed or relaxed. Self-review/automated validation only.
 
+## User phone scan
+
+The user supplied screenshot19583.jpg after receiving the0.2.95 ZIP link. It shows
+Google Play Protect's green "Denne app ser sikker ud" ("This app looks safe") and
+"Du kan fortsætte installationen" ("You can continue the installation"). This is
+positive scan evidence for the displayed Lumenfall APK, not proof of completed
+installation or a guarantee for future builds/devices.
+
+No version or hash is visible. A background APK row shows7.10MB; the verified
+candidate is5,161,721 bytes. That row may refer to another file, so do not infer
+that the wrong APK was scanned. User confirmation of which download was opened
+is pending. [Observation record](phone-scan-2026-11-04.json). The original image
+remains in the user's attachments; only the relevant text/hash is recorded here.
+Historical CI receipts remain NOT_TESTED because those jobs did not perform a
+Google scan. Stable promotion still awaits candidate attribution.
+
 ## Remaining external work
 
 The dedicated local BlueStacks test phone is obscured by an existing Windows
@@ -91,11 +107,11 @@ user cannot access the computer to dismiss the prompt. No successful local insta
 no unrelated emulator was touched. Local browser automation is disabled in Work
 settings; inventory confirms no alternate browser connection. The web tool could
 not access the public hash report either. No VirusTotal upload or Google appeal
-has been submitted. The user received the0.2.95 ZIP link for a phone scan; no
-result has been reported. Hosted-emulator acceptance above is verified separately.
+has been submitted. The user's positive phone scan is recorded above; its APK
+identity is awaiting confirmation. Hosted-emulator acceptance is separate.
 
-Obtain a fresh Google scan on the corrected candidate's exact
-hash. If still flagged, use the official
+Confirm whether the positive phone scan is for the corrected candidate's exact
+file. If a confirmed candidate is still flagged, use the official
 [appeal form](https://support.google.com/googleplay/android-developer/contact/protectappeals)
 with the VirusTotal-uploaded candidate hash, package com.lumenfall.app and a
 factual remediation explanation. Do not represent the old vulnerable0.2.91 as
