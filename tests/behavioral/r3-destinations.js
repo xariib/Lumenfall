@@ -117,7 +117,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   same(active.research,prior.research,'project start never buys Forge levels');
   q('[data-study-speed-open]').click();window.selectLabSpeed('guardmastery',2);q('[data-speed-study="guardmastery"][data-speed="2"]').click();
   go('forge');go('research');
-  ok(q('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','speed and countdown survive destination changes');
+  ok(q('[data-study-text="guardmastery"]').textContent==='01:15 · 2x','speed and countdown survive destination changes');
   b.feedbackTick(false);go('forge');go('research');
   ok(b.getState().activeStudies[0].remainingSec<150,'live tick still progresses active project');
   if(ctx.scenario==='self-test-r3-shortcut'){b.r3.wrongShortcut();shortcut();}
@@ -148,7 +148,7 @@ window.checkR3Reload = function(b,ctx,assert,expected){
   document.querySelector('[data-tab="research"]').click();
   var badge=document.querySelector('#lab-capacity-badge'),free=b.riftStatus.slots()-s.activeStudies.length;
   assert(badge.hidden===!b.riftStatus.canStartStudy()&&badge.textContent===String(free),'affordable capacity badge restores from actual loaded Study state');
-  assert(document.querySelector('[data-study-text="guardmastery"]').textContent==='1m 15s remaining · 2x','active project countdown after reload');
+  assert(document.querySelector('[data-study-text="guardmastery"]').textContent==='01:15 · 2x','active project countdown after reload');
   var count=0;
   while(b.getState().longStudyLevels.guardmastery<1 && count++<750){ctx.advanceTime(100);b.feedbackTick(false);}
   var completed=b.getState();

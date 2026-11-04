@@ -2289,7 +2289,7 @@
   /* LAB_UI_001: text remains legible at every fill and at enlarged text sizes. */
   #study-list .study-bar-track{position:relative;display:grid;place-items:center;height:auto;min-height:36px;padding:6px 8px;border-radius:10px;background:#0a1625;border-color:#4c6574;}
   #study-list .study-bar-fill{position:absolute;top:0;left:0;height:100%;}
-  #study-list .study-bar-track .study-time{position:relative;margin:0;padding:2px 6px;border-radius:4px;background:#0a1625;color:#f2f7ff;font-size:.82rem;line-height:1.5;text-align:center;overflow-wrap:anywhere;}
+  #study-list .study-bar-track .study-time{position:relative;margin:0;padding:2px 6px;border-radius:4px;background:#0a1625;color:#f2f7ff;font-size:.8125rem;line-height:1.25;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums;}
   #study-list .study-card .name{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px;overflow-wrap:anywhere;}
   #study-list .study-identity{flex:1 1 9em;min-width:0;}
   #study-list .study-title{display:block;font-size:1rem;line-height:1.4;color:#e0f2f1;}
@@ -2409,13 +2409,16 @@
   #study-list .study-running>.study-select,#study-list .study-running>.study-bar-track,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
   #study-list .study-running>.study-speed-controls{margin:8px 0 0;}#study-list .study-running>.node-queue-toggle{align-self:start;margin-top:8px;}#study-list .study-speed-expanded>.study-speed-controls{grid-column:1/-1;}
 
-  /* LAB_SLOTS_QUEUE_SPEEDUP_001: one control row, with a focused speed menu. */
-  #study-list .study-running{grid-template-columns:auto minmax(0,1fr) auto;align-items:center;position:relative;}
+  /* LAB_TIMER_LAYOUT_001: one fixed-height countdown above the control row. */
+  #study-list .study-running{grid-template-columns:auto minmax(0,1fr);align-items:center;position:relative;}
   #study-list .study-running>.study-select,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
-  #study-list .study-running>.study-repeat{grid-column:1;align-self:stretch;justify-content:center;margin:8px 0 0;min-width:44px;min-height:44px;padding:5px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+  #study-list .study-running>.study-select,#study-list .study-running>h3{grid-column:1/-1;grid-row:1;}
+  #study-list .study-running>.earned-effect{grid-row:2;}
+  #study-list .study-running>.effect-note{grid-row:5;}
+  #study-list .study-running>.study-repeat{grid-column:1;grid-row:4;align-self:stretch;justify-content:center;margin:8px 0 0;min-width:44px;min-height:44px;padding:5px;display:flex;flex-direction:column;align-items:center;gap:2px;}
   .study-repeat>span:first-child{font-size:1.1rem;line-height:1;}.study-queue-state{font-size:.55rem;}
-  #study-list .study-running>.study-bar-track{grid-column:2;margin:8px 0 0;min-width:0;min-height:44px;box-sizing:border-box;padding:4px;}
-  #study-list .study-running>.study-speed-controls{grid-column:3;margin:8px 0 0;padding:0;border:0;min-width:0;}
+  #study-list .study-running>.study-bar-track{grid-column:1/-1;grid-row:3;margin:8px 0 0;min-width:0;height:44px;min-height:44px;box-sizing:border-box;padding:4px;}
+  #study-list .study-running>.study-speed-controls{grid-column:2;grid-row:4;justify-self:end;margin:8px 0 0;padding:0;border:0;min-width:0;}
   #study-list .study-speed-open{width:auto;min-width:44px;max-width:6em;padding:7px;font-size:.7rem;white-space:normal;}
   #study-list .study-speed-expanded{z-index:30;}
   html.study-menu-open .shell{backdrop-filter:none;}
@@ -10128,7 +10131,7 @@ function runningStudyMarkup(node,active,maxed,pct,progressValue){
     (regular?'<button class="study-select" data-study-slot="'+active.slot+'" aria-label="Select research for Lab '+(active.slot+1)+'"><span class="study-slot-number">Lab '+(active.slot+1)+'</span><strong>'+node.name+'</strong><span class="study-level">Lv. '+longStudyLevel(active.id)+(node.levelCap!==undefined?' / '+node.levelCap:'')+'</span><span aria-hidden="true">›</span></button>':'<h3>Legacy paid study · '+(node?node.name:'Research')+'</h3>')+
     (node?projectEarnedMarkup(active.id):'')+
     (node&&!node.retiredTo?'<button class="node-queue-toggle study-repeat '+(queueOn?'active':'')+'" data-study-queue="'+active.id+'" aria-pressed="'+queueOn+'" aria-label="'+node.name+' — Queue '+(queueOn?'ON':'OFF')+'. Finish current level'+(queueOn?' and repeat.':'.')+'" title="Repeat research after this level"><span aria-hidden="true">↻</span><span class="study-queue-state">'+(queueOn?'ON':'OFF')+'</span></button>':'')+
-    '<div class="study-bar-track" role="progressbar" aria-label="'+(node?node.name:'Study')+' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+progressValue+'" aria-valuetext="'+progressValue+'% · '+studyRemainingText(active)+'"><div class="study-bar-fill" aria-hidden="true" data-study-bar="'+active.id+'" style="width:'+pct+'%;"></div><span class="study-time" data-study-text="'+active.id+'">'+studyRemainingText(active)+'</span></div>'+
+    '<div class="study-bar-track" role="progressbar" aria-label="'+(node?node.name:'Study')+' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+progressValue+'" aria-valuetext="'+progressValue+'% · '+studyRemainingText(active)+'"><div class="study-bar-fill" aria-hidden="true" data-study-bar="'+active.id+'" style="width:'+pct+'%;"></div><span class="study-time" data-study-text="'+active.id+'">'+studyRemainingText(active,true)+'</span></div>'+
     (node?studySpeedMarkup(node,active,maxed):'')+
     (node&&node.retiredTo?'<div class="effect-note">Paid work and completion bonus kept. Future upgrades: '+node.retiredTo+'.</div>':maxed?'<div class="effect-note">Finishing saved paid work without another level or bonus.</div>':'')+'</div>';
 }
@@ -13508,25 +13511,26 @@ function tick(){
 
 // Research-only: round up so a positive remainder never reads as zero.
 // Keep fmtDuration's shared Deed, boss and offline wording unchanged.
-function fmtStudyDuration(sec){
+function fmtStudyDuration(sec,compact){
   if(!Number.isFinite(sec) || sec<0 || !Number.isSafeInteger(Math.ceil(sec))) return 'Time unavailable';
   sec = Math.ceil(sec);
   var d = Math.floor(sec/86400), h = Math.floor(sec%86400/3600);
   var m = Math.floor(sec%3600/60), s = sec%60;
   function pad(n){ return String(n).padStart(2,'0'); }
+  if(compact) return (d>0?d+'d ':'')+(d>0||h>0?pad(h)+':':'')+pad(m)+':'+pad(s);
   if(d>0) return d+'d '+pad(h)+'h '+pad(m)+'m '+pad(s)+'s';
   if(h>0) return h+'h '+pad(m)+'m '+pad(s)+'s';
   if(m>0) return m+'m '+pad(s)+'s';
   return s+'s';
 }
-function studyRemainingText(active){
+function studyRemainingText(active,compact){
   if(!active || !Number.isFinite(active.remainingSec) || active.remainingSec<0 ||
       !Number.isFinite(active.speedMult) || active.speedMult<=0) return 'Time unavailable';
   // Membership in activeStudies still means pending authoritative completion.
   var speed=studyEffectiveSpeed(active);
   if(active.remainingSec===0) return 'Finishing… · '+speed+'x';
-  var duration = fmtStudyDuration(Math.max(Number.MIN_VALUE,studyCompletionSeconds(active)));
-  return duration==='Time unavailable' ? duration : duration+' remaining · '+speed+'x';
+  var duration = fmtStudyDuration(Math.max(Number.MIN_VALUE,studyCompletionSeconds(active)),compact);
+  return duration==='Time unavailable' ? duration : duration+(compact?' · ':' remaining · ')+speed+'x';
 }
 function updateStudyProgress(){
   var expired=false;
@@ -13552,11 +13556,11 @@ function updateStudyProgress(){
     var pct = Math.max(0, Math.min(100, 100 - (active.remainingSec/active.totalDurationSec*100)));
     var progressValue=active.remainingSec>0?Math.min(99,Math.round(pct)):100;
     fillEl.style.width = pct+'%';
-    var text = studyRemainingText(active);
+    var text = studyRemainingText(active,true);
     if(textEl.textContent!==text) textEl.textContent = text;
     var track=fillEl.parentElement;
     track.setAttribute('aria-valuenow',String(progressValue));
-    track.setAttribute('aria-valuetext',progressValue+'% · '+text);
+    track.setAttribute('aria-valuetext',progressValue+'% · '+studyRemainingText(active));
   });
 }
 

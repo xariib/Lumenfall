@@ -1,5 +1,9 @@
 # Lumenfall — current delivery status
 
+4 November: [Lab timer layout](tasks/LAB_TIMER_LAYOUT_001.md): fixed-height,
+single-line countdowns implemented; 488 checks across18 mobile profiles PASS.
+CI/integration and Android delivery pending.
+
 2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
 [Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
 source e13c7669. Automatic checks, verified downloads and Android approval. Seven
