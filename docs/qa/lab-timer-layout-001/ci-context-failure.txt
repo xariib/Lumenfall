@@ -1,0 +1,32 @@
+Run 41820146342, job 126540988981, head da76c317ad81249f60e32942bba7859ceb37ffa8.
+Baseline 2ca3d3be startup for RIFT_HINT_READABILITY_002: 33049 bytes (limit 32768).
+Product tests preceding this documentation check passed; failure is the startup text budget.
+
+##[group]Run node scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md
+2026-11-04T11:32:33.1451695Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/MIDGAME_FARM_ACCEPT_001.md[0m
+2026-11-04T11:32:33.1452454Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/RIFT_HINT_READABILITY_002.md[0m
+2026-11-04T11:32:33.1453130Z [36;1mCHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"[0m
+2026-11-04T11:32:33.1453928Z [36;1mnode tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www validation-evidence/midgame-farm-mobile --midgame-accept[0m
+2026-11-04T11:32:33.1454483Z [36;1mfor CONTROL in open refresh; do[0m
+2026-11-04T11:32:33.1455113Z [36;1m  if node tests/behavioral/rift-guidance.cjs "$CHROME" mobile/www "validation-evidence/hint-control-$CONTROL" --midgame-accept "--mutate-hint-$CONTROL"; then[0m
+2026-11-04T11:32:33.1455849Z [36;1m    echo "::error::Hint control unexpectedly passed: $CONTROL"[0m
+2026-11-04T11:32:33.1456221Z [36;1m    exit 1[0m
+2026-11-04T11:32:33.1456402Z [36;1m  fi[0m
+2026-11-04T11:32:33.1456570Z [36;1mdone[0m
+2026-11-04T11:32:33.1456746Z [36;1mnode - <<'JS'[0m
+2026-11-04T11:32:33.1457044Z [36;1mconst fs=require('node:fs'),assert=require('node:assert/strict');[0m
+2026-11-04T11:32:33.1457582Z [36;1mconst good=JSON.parse(fs.readFileSync('validation-evidence/midgame-farm-mobile/results.json'));[0m
+2026-11-04T11:32:33.1458152Z [36;1massert.equal(good.status,'pass');assert.equal(good.records.length,18);[0m
+2026-11-04T11:32:33.1459045Z [36;1mfor(const [control,message] of [['open','keyboard opens Lab details dialog'],['refresh','open details refresh both exact shortfalls']]){[0m
+2026-11-04T11:32:33.1459707Z [36;1m  const bad=JSON.parse(fs.readFileSync('validation-evidence/hint-control-'+control+'/results.json'));[0m
+2026-11-04T11:32:33.1460059Z [36;1m  assert.equal(bad.status,'fail');assert(bad.message.includes(message));[0m
+2026-11-04T11:32:33.1460407Z [36;1m  assert.notEqual(bad.sourceSha256,good.sourceSha256);assert.deepEqual(bad.runtimeErrors,[]);[0m
+2026-11-04T11:32:33.1460736Z [36;1m  assert.equal(bad.teardown.code,0);assert(!bad.teardown.signal);[0m
+2026-11-04T11:32:33.1460941Z [36;1m}[0m
+2026-11-04T11:32:33.1461045Z [36;1mJS[0m
+2026-11-04T11:32:33.1478517Z shell: /usr/bin/bash -e {0}
+2026-11-04T11:32:33.1478662Z ##[endgroup]
+2026-11-04T11:32:33.1792811Z PASS: 29 entrypoints, 72 local Markdown links, shared startup 20951 bytes; startup with docs/tasks/MIDGAME_FARM_ACCEPT_001.md 30794 bytes
+2026-11-04T11:32:33.2099947Z Mandatory startup exceeds 32 KiB
+2026-11-04T11:32:33.2136342Z ##[error]Process completed with exit code 1.
+2026-11-04T11:32:33.2214096Z 
