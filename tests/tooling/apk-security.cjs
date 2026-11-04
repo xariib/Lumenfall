@@ -21,6 +21,7 @@ bad(xml.replace('android:debuggable','android:usesCleartextTraffic').replace('0x
 bad(xml.replace('android.permission.INTERNET','android.permission.READ_SMS'));
 bad(xml.replace('E: uses-permission','E: uses-permission-sdk-23').replace('android.permission.INTERNET','android.permission.READ_CONTACTS'));
 bad(xml.replace('com.lumenfall.app.MainActivity','com.attacker.Exported'));
+bad(xml.replace(/        A: android:exported[^\n]+\n/,''));
 bad(xml+'    E: instrumentation (line=20)\n');
 bad(xml,{...config,server:{url:'https://example.com'}});
 bad(xml,{...config,server:{allowNavigation:['*']}});

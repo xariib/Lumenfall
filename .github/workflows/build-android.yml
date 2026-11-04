@@ -170,7 +170,7 @@ jobs:
 
       - name: Generate Android project
         working-directory: mobile
-        run: npx cap add android
+        run: node ../scripts/ci/capacitor_cli.cjs add android
 
       - name: Configure production build and separate native test runner
         run: node scripts/ci/configure_android_release.cjs
@@ -234,7 +234,7 @@ jobs:
 
       - name: Sync Capacitor
         working-directory: mobile
-        run: npx cap sync android
+        run: node ../scripts/ci/capacitor_cli.cjs sync android
 
       - name: Build APK
         working-directory: mobile/android

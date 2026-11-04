@@ -28,6 +28,7 @@ function inspect(nodes,config,entryNames) {
   check(permissions.length>0,'Permissions could not be read');
   for(const permission of permissions)check(allowedPermissions.has(permission),'Unexpected permission: '+permission);
   for(const node of nodes.filter(n=>['provider','service','receiver','activity','activity-alias'].includes(n.name))) {
+    check(Object.hasOwn(node.attributes,'android:exported'),'Component export state must be explicit: '+node.attributes['android:name']);
     if(!node.attributes['android:exported'])continue;
     const name=node.attributes['android:name'];
     check(node.name==='activity'&&name==='com.lumenfall.app.MainActivity'||node.name==='receiver'&&name==='androidx.profileinstaller.ProfileInstallReceiver'&&node.attributes['android:permission']==='android.permission.DUMP','Unexpected exported component: '+name);
