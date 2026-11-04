@@ -1,0 +1,128 @@
+{
+  "task": "PLAY_PROTECT_001",
+  "version": "0.2.95",
+  "versionCode": 1000095,
+  "apkSha256": "3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e",
+  "apkBytes": 5161721,
+  "buildSource": "4982932a1f4903215eb935ca44b682162b9b7603",
+  "integratedValidationHead": "4f9c9637211238439a969ad2c66a9750615868d3",
+  "applicationAndBuildFilesIdentical": true,
+  "noRebuild": true,
+  "requiredReleaseRuns": [
+    {
+      "file": "pre-merge-validation.yml",
+      "id": 41922723198,
+      "attempt": 1,
+      "sha": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41922723198"
+    },
+    {
+      "file": "comet-expansion-validation.yml",
+      "id": 41922728097,
+      "attempt": 1,
+      "sha": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41922728097"
+    },
+    {
+      "file": "forge-expansion-validation.yml",
+      "id": 41922732054,
+      "attempt": 2,
+      "sha": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41922732054"
+    },
+    {
+      "file": "lab-expansion-validation.yml",
+      "id": 41922735660,
+      "attempt": 1,
+      "sha": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41922735660"
+    },
+    {
+      "file": "shared-ui-validation.yml",
+      "id": 41922739374,
+      "attempt": 1,
+      "sha": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41922739374"
+    },
+    {
+      "file": "tree-focused-qa.yml",
+      "id": 41922743507,
+      "attempt": 1,
+      "sha": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41922743507"
+    }
+  ],
+  "priorReleaseAttempts": [
+    {
+      "run": 41922732054,
+      "attempt": 1,
+      "job": 126899111972,
+      "head": "4f9c9637211238439a969ad2c66a9750615868d3",
+      "failedStep": "Actual mobile prices input focus and twenty-card acceptance",
+      "checks": 8033,
+      "error": "Error: {\"code\":-32000,\"message\":\"Inspected target navigated or closed\"}\n    at Socket.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.forge-mobile-2497.cjs:71:272)\n    at Socket.emit (node:events:524:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23)",
+      "completedProfiles": [
+        {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference"
+        },
+        {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce"
+        }
+      ],
+      "artifact": {
+        "id": 13367953407,
+        "sha256": "5cdc59d126ed7f7d75df371eda668290cbf854908e96f924c3051292cd8c4604"
+      },
+      "assessment": "CDP reported target navigated or closed. Harness intentionally reloads pages; same source passed PR Forge validation. No failed gameplay assertion is identified. One unchanged failed-job retry is appropriate; exact cause remains unestablished.",
+      "assertionsChanged": false
+    }
+  ],
+  "nativeRun": {
+    "id": 41910258484,
+    "attempt": 2,
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/41910258484",
+    "conclusion": "success"
+  },
+  "phone": {
+    "date": "2026-11-04",
+    "source": "User-supplied phone screenshot 19583.jpg",
+    "screenshotSha256": "30c0de6209ddd06dd1cbdfe54735dd4ae30ddbe86c4ab0d389dd74e3935fba75",
+    "applicationDisplayed": "Lumenfall",
+    "providerDisplayed": "Google Play Protect",
+    "verdictDisplayed": "Denne app ser sikker ud",
+    "verdictTranslation": "This app looks safe",
+    "continuationDisplayed": "Du kan fortsætte installationen",
+    "continuationTranslation": "You can continue the installation",
+    "installButtonOffered": true,
+    "installationCompletionObserved": false,
+    "apkVersionVisible": false,
+    "apkHashVisible": false,
+    "candidateAttribution": "CONFIRMED_BY_USER",
+    "userConfirmation": "Yes from zip",
+    "googlePlayProtectForCandidate": "USER_CONFIRMED_POSITIVE_PHONE_SCAN",
+    "candidateVersion": "0.2.95",
+    "candidateBytes": 5161721,
+    "candidateSha256": "3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e",
+    "sizeObservation": "A background APK row shows 7.10 MB. The screenshot does not establish that this is the selected APK. The candidate ZIP contains only one APK, the 5,161,721-byte root Lumenfall.apk.",
+    "scope": "Positive Google verdict observed on the user's phone. The user confirms the APK came from the supplied 0.2.95 ZIP; phone-side hash was not independently measured. Completed installation is not shown, and future classifications are not guaranteed.",
+    "questionPending": null,
+    "stableReleasePromoted": false,
+    "googleAppealSubmitted": false
+  }
+}

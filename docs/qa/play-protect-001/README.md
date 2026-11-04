@@ -59,7 +59,7 @@ preserving the32KiB limit and all26 required task contexts.
 Signed Android0.2.95 /1000095 has SHA256
 3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e.
 [Build ZIP](https://github.com/xariib/Lumenfall/actions/runs/41910258484/artifacts/13363262337)
-contains Lumenfall.apk. It is a review candidate, not the stable update feed.
+contains Lumenfall.apk. These exact bytes are now the stable0.2.95 update.
 The established signing certificate, package, origin and source assets verify.
 
 - [CI receipt](candidate-1000095/ci.json) and
@@ -99,7 +99,33 @@ attribution, not an independently measured phone-side APK hash.
 [Observation record](phone-scan-2026-11-04.json). The original image
 remains in the user's attachments; only the relevant text/hash is recorded here.
 Historical CI receipts remain NOT_TESTED because those jobs did not perform a
-Google scan. Stable promotion of those exact bytes is now in progress.
+Google scan. Stable promotion of those exact bytes is complete.
+
+## Stable release verification
+
+[Android0.2.95](https://github.com/xariib/Lumenfall/releases/tag/android-1000095)
+was published at 2026-11-04T23:14:45Z (5 November in Europe/Copenhagen), without
+rebuilding the scanned APK. Build/tag source4982932a is an ancestor of integrated
+validation head4f9c9637; all non-documentation files are identical. All six required
+workflow_dispatch release gates PASS on4f9c9637, including190 main behavioral
+cases, the isolated offline case and runtime smoke.
+
+[Release provenance](release-1000095/release-validation.json),
+[complete gate jobs](release-1000095/release-gate-jobs.json),
+[case results](release-1000095/premerge-results.txt) and
+[anonymous public verification](release-1000095/public-release-verification.json)
+record the checks. GitHub's uploaded digests, both public APK downloads, checksum,
+tag and updater-feed metadata match the verified candidate. No extra APK or
+test runner is published. Public metadata verification does not claim an additional
+native updater installation of0.2.95; the earlier native fixture installed0.2.91.
+
+Forge41922732054 attempt1 reported a CDP target navigation/closure after8,033
+checks; no gameplay assertion was identified. The same job passed unchanged on
+attempt2. The [failure summary](release-1000095/forge-release-attempt1.json) and
+[original mobile receipt](release-1000095/forge-release-attempt1-mobile.json) are
+retained; its exact cause remains unestablished. All other release runs passed
+attempt1. The release's phone-scan asset is a snapshot taken before promotion;
+the current repository record includes the completed promotion.
 
 ## Remaining external work
 
@@ -121,5 +147,4 @@ safe solely because it has the expected signature. Google's classification is
 external and cannot be guaranteed never to change. The factual
 [review draft](candidate-1000095/google-review.txt) is prepared but not submitted.
 Preserve the exact candidate for review/promotion; identify any rebuilt APK by
-its own hash. The stable update feed remains0.2.91 until the required integrated
-release gates and exact-artifact promotion finish.
+its own hash. The stable update feed now provides the verified0.2.95 APK.

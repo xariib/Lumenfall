@@ -32,7 +32,7 @@ Scope/acceptance:
 - Validate, integrate and retain durable evidence; publish only with honest
   status. Do not claim the warning fixed without device/classification evidence.
 
-Status: integrated; positive phone scan confirmed, stable promotion in progress.
+Status: complete; integrated, positive phone scan confirmed, exact APK released.
 PR39 merged at12551152;
 tested source4982932a has the identical tree. User reports last clean install
 was probably before updater and requests actual installation testing. Local browser automation reports "Local browser use
@@ -68,9 +68,10 @@ whether the scanned APK came from the supplied0.2.95 ZIP and confirmed that it d
 The background row does not override that confirmation. Phone-side APK hash was
 not independently measured; completed installation is not shown. See
 [phone evidence](../qa/play-protect-001/phone-scan-2026-11-04.json).
-Next: run the existing six integrated-main release gates, then promote the exact
-scanned0.2.95 APK without rebuilding. Verify anonymous public bytes and update
-feed afterward. No Google appeal is needed for this positive scan result.
+Stable0.2.95 is published without rebuilding. Both anonymous public downloads,
+checksum, tag source and updater-feed metadata PASS. All six integrated-main
+release workflows PASS at4f9c9637, including190 main cases, the separate offline
+case and browser smoke. No Google appeal is needed for this positive scan result.
 
 First native attempts:41905663980 failed CLI tar default-import compatibility;
 fixed in0e8532bb. Run41905985978 built signed production0.2.93 and passed static
@@ -113,12 +114,26 @@ the prior shared history. Self-review and automated checks only.
 
 Durable [candidate receipts](../qa/play-protect-001/candidate-1000095/ci.json)
 and [Google review draft](../qa/play-protect-001/candidate-1000095/google-review.txt)
-are saved. No VirusTotal upload, Google appeal or stable APK promotion is claimed.
+are saved. No VirusTotal upload or Google appeal was submitted.
 The positive phone screenshot is recorded separately from CI's NOT_TESTED result;
 the user has confirmed candidate attribution. Completed phone installation is not
-shown. Task stays open during stable promotion; no archive action.
+shown; hosted Android installation, save upgrade and retail launch acceptance PASS.
+
+Delivery completed 5 November 2026 (Europe/Copenhagen):
+[stable Android0.2.95](https://github.com/xariib/Lumenfall/releases/tag/android-1000095)
+uses the exact scanned SHA256 above. Build/tag source remains4982932a; integrated
+validation head4f9c9637 differs only in documentation. Both versioned and latest
+anonymous APK downloads match5,161,721 bytes and the verified signature/hash.
+[Public receipt](../qa/play-protect-001/release-1000095/public-release-verification.json),
+[release gates/provenance](../qa/play-protect-001/release-1000095/release-validation.json)
+and full job receipts are durable. Forge41922732054 attempt1 lost its browser
+target after8,033 checks; attempt2 passed unchanged. The first failure is retained,
+and its exact cause is unestablished. All other release workflows passed attempt1.
+Next: no remaining implementation or delivery work for this task. Future Google
+classifications remain external. Archive only this owner chat after final status
+is saved; retain the documented physical-phone and local-environment limitations.
 
 References: [updater requirements](IN_APP_UPDATES_001.md),
-[release receipt](../qa/all-updates-release-20261104/release.json),
+[baseline0.2.91 receipt](../qa/all-updates-release-20261104/release.json),
 [Google guidance](https://developers.google.com/android/play-protect/warning-dev-guidance),
 [appeal form](https://support.google.com/googleplay/android-developer/contact/protectappeals).
