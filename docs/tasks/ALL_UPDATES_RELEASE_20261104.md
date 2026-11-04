@@ -22,8 +22,8 @@ publish latest stable APK with its checksum and clear release notes, and verify
 anonymous download bytes and updater discovery. Physical phone, battery/thermal,
 exact WebView60, TalkBack and human review remain separate unverified checks.
 
-Status18:20UTC: final candidate237fa928 is pushed in PR38; seven PR and six
-release workflows are running. Signed build41885250652 is Android0.2.91.
+Status18:22UTC: final candidate237fa928 is pushed in PR38; seven PR and six
+release workflows are running. Signed build41885250652/Android0.2.91 PASS.
 The complete corrected local Guidance driver PASS:16 profiles/160 samples,
 identical compared states, unchanged geometry assertions/causal controls,
 zero runtime errors and clean browser exit. Both remote isolated offline jobs,
@@ -119,3 +119,16 @@ PR full41875209044 independently failed the same Farm HP comparison (second
 profile,20 samples); no other positive regression failed in either full run.
 Local corrected driver has passed the smallest normal/200%-text comparisons;
 remaining profiles continue while the exact-head remote validation restarts.
+
+Final native candidate0.2.91 PASS: package/signing, exact game assets, both
+save slots/UID/origin/paid work, real navigation/appearance, native updater
+cancellation/refusal/restart/tamper/installer cancellation/approved install.
+The updater probe uses candidate code and downloads official0.2.82; it is not
+an actual old82→91 or physical-phone test. APK7102612bytes, SHA256
+de20f5c40eafb2ebd17a98022a3563a18f82d732b5a1c0913dfb831a7e45512d.
+Downloaded artifact13350534292 ZIP digest46ea7dcaea0eb8073bc308f190a9dcd6c3521a8777b95d81f321974c19e359d8
+verified before extraction. Native receipts/screenshots/compressed raw logs:
+../qa/all-updates-release-20261104/native-1000091/.
+Verified APK: ../builds/all-updates-release-20261104/verified-1000091/Lumenfall.apk
+(workspace-relative path outside this checkout). Public release remains held
+until both complete suites and the remaining focused workflows succeed.
