@@ -4509,17 +4509,22 @@ function deedProgress(a,s){
   if(!pair) return null;
   return {current:Math.max(0,Number(pair[0])||0),target:pair[1],duration:a.id==='idle8'};
 }
+var groupedNumberFormatter=typeof Intl!=='undefined' && Intl.NumberFormat ? new Intl.NumberFormat('en-US') : null;
+function formatGroupedNumber(value){
+  // Reuse locale setup across cards; preserve non-number Amount strings.
+  return groupedNumberFormatter && typeof value==='number' ? groupedNumberFormatter.format(value) : value.toLocaleString('en-US');
+}
 function deedProgressText(a,done){
   var progress = deedProgress(a,state);
   if(!progress) return '';
   var current = done ? progress.target : Math.min(progress.current,progress.target);
   if(progress.duration) return String(Math.floor(current/3600*100)/100)+' / 8 offline hours';
-  return current.toLocaleString('en-US')+' / '+progress.target.toLocaleString('en-US')+' '+deedPresentation(a).unit;
+  return formatGroupedNumber(current)+' / '+formatGroupedNumber(progress.target)+' '+deedPresentation(a).unit;
 }
 function deedChallengeProgress(a,done){
   return automationDeedRequirements(a.id,state).slice(1).map(function(row){
     var current=done ? row.target : Math.max(0,Math.min(Number(row.current)||0,row.target));
-    return '<div class="ach-progress mono" data-deed-condition="'+a.id+'-'+row.key+'" data-current="'+current+'" data-target="'+row.target+'">'+row.label+': '+current.toLocaleString('en-US')+' / '+row.target.toLocaleString('en-US')+'</div>';
+    return '<div class="ach-progress mono" data-deed-condition="'+a.id+'-'+row.key+'" data-current="'+current+'" data-target="'+row.target+'">'+row.label+': '+formatGroupedNumber(current)+' / '+formatGroupedNumber(row.target)+'</div>';
   }).join('');
 }
 
@@ -8274,7 +8279,7 @@ function researchEffectText(node,value){
     (value.boss ? 'Boss Rift '+value.depth+': never Luminous' : 'future eligible Rift '+value.depth+' encounter: '+decimal(value.chance*100)+'%');
   var text='×'+decimal(value.factor)+' source factor';
   if(node.id==='charge') text+=' fill; '+decimal(value.cycle)+(forgeHasChargeGrants()?'s natural ability cycle before charge grants':'s ability cycle');
-  if(node.id==='conduction') text+='; per cast at current Wisp levels: Gale '+value.casts.gale.shards.toLocaleString('en-US')+' Shards, Thorn '+value.casts.thorn.lumen.toLocaleString('en-US')+' Lumen';
+  if(node.id==='conduction') text+='; per cast at current Wisp levels: Gale '+formatGroupedNumber(value.casts.gale.shards)+' Shards, Thorn '+formatGroupedNumber(value.casts.thorn.lumen)+' Lumen';
   return text;
 }
 function researchPreviewText(node,preview){
@@ -10653,7 +10658,7 @@ function renderNodes(){
     var unavailable = plan.reason==='unavailable';
     var priced = Amount.valid(plan.cost);
     var levelText=('Level ' + level + (node.levelCap!==undefined?Amount.add(' · Cap ',node.levelCap):'') + (node.levelCap!==undefined && Amount.gt(level,node.levelCap)?' · Saved level preserved':''));
-    if(node.id==='bonds'){levelText=('Level ' + Amount.min(level,20) + ' / 20');if(Amount.gt(level,20))levelText=(levelText + ' · ' + level.toLocaleString('en-US') + ' purchased levels preserved');}
+    if(node.id==='bonds'){levelText=('Level ' + Amount.min(level,20) + ' / 20');if(Amount.gt(level,20))levelText=(levelText + ' · ' + formatGroupedNumber(level) + ' purchased levels preserved');}
     html=(html + '<div class="card node-card" data-tree-node="' + node.id + '">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--prism);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<p class="desc">'+node.desc+'</p>' + '<div class="lvl" style="color:var(--prism);">' + levelText + '</div>' + '<div class="earned-effect" data-node-effect="' + node.id + '">Bonus: ' + nodeEarnedEffect(node.id) + '</div>' + '' + (node.id==='bonds' && state.feedbackMigration.receipts['node.bonds'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; ',state.feedbackMigration.receipts['node.bonds'].unpricedFrom ? 'refunds cover purchases with available prices.' : 'purchases above level 20 refunded in Prisms.'),'</div>') : '') + (node.id==='bonds' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + (node.id==='echo' && state.feedbackMigration.receipts['node.echo'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; purchases above level 6 refunded in Prisms',state.feedbackMigration.receipts['node.echo'].unpricedFrom ? ' where original prices are available' : ''),'.</div>') : '') + (node.id==='echo' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + '</div>' + '<button class="buy-btn" data-node="' + node.id + '" ' + (plan.affordable?'':'disabled') + ' aria-label="' + (capped?Amount.add(node.name,' maximum level reached'):unavailable?Amount.add(node.name,' price unavailable'):Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('Buy ',node.name),' level '),Amount.add(level,1)),' for '),formatNum(plan.cost)),' Prisms')) + '" style="min-width:78px;">' + (capped?'<span class="label">Maxed</span>':unavailable&&!priced?'<span class="label">Unavailable</span>':Amount.add(Amount.add(Amount.add(purchasePriceMarkup('prism',plan.cost,'cost mono'),'<span class="label">'),unavailable?'Unavailable':'Prisms'),'</span>')) + '</button>' + '</div>');
   });
   replaceControlMarkup(els['node-list'],html);

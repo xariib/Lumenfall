@@ -66,6 +66,7 @@ async function main(){
   await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/'});
   const deadline=Date.now()+20000;while(!(await ev('!!window.powerQa && powerQa.evaluate("!!els.toast && !startupIntroPlaying && !resumeFlowBusy")'))){assert(Date.now()<deadline,'startup timeout');await pause(100);}
   await ev('powerQa.seed("battle");powerQa.watch()');
+  if(!baseline)ok(await ev('powerQa.evaluate('+JSON.stringify(`(function(){var values=[0,-0,1,1234,1.23456,-123456.789,Number.MAX_SAFE_INTEGER,1e300,Infinity,NaN,'1e400','1234'];return values.every(function(n){return formatGroupedNumber(n)===n.toLocaleString('en-US');});})()`)+')'),'cached number formatting preserves numbers and large Amount strings exactly');
   for(const tabName of (process.argv.includes('--quick')?[]:['battle','spirits','research','deeds'])){
    await ev('powerQa.seed('+JSON.stringify(tabName)+')');await pause(500);await ev('powerQa.reset()');const before=await metrics();
    await pause(5000);const after=await metrics(),sample=await ev('powerQa.sample()');

@@ -37,25 +37,25 @@ the starfield schedules every display frame although it paints at most 20 Hz.
 Implementation: hidden-panel work is deferred to navigation; affordable controls
 refresh immediately on entry and at 500 ms while visible. Battle HP/charge remain
 at the original 100 ms cadence; other encounter details refresh at 500 ms or an
-enemy change. Wisp rebuilds coalesce at 500 ms. Autosave settles the existing
-ordinary tick before saving, preserving completion presentation without a second
-simulation. Both intervals are cancelled while
+enemy change. Wisp rebuilds coalesce at 500 ms. Autosave follows the next
+ordinary tick, preserving completion presentation without a second simulation.
+Both intervals are cancelled while
 hidden and restarted once. Covered arenas pause animation/VFX/rendering while
 visible hint contents and Lab editors stay live. Ambient stars and notification
 dots are static; combat, all selected Live scenes and Still/reduced motion remain.
 HP/charge/Lab fills use transforms; their accessible values are unchanged. This
 follows [browser animation guidance](https://web.dev/articles/animations-guide).
 
-Product SHA256: `006aca8b9e2ba11370beab88357324b8da694f94e7fb849690b966947398c5b1`.
+Product SHA256: `2b587871f5f080a301feb4a5c5c4f03fc3b0bb6feb89ca04593873a014b3d937`.
 Browser: Brave/Chromium 156, Windows, Node24.20; independent gameplay replay uses
 CI's Node24.19. Full task/checkpoint context and source syntax PASS.
 
 Measured 5-second unobstructed Farm21 windows with real timers, 390x844/DPR2,
 same fixture, baseline before candidate (no concurrent benchmark workloads):
-Rift main-thread 1086→400 ms, Wisps715→416, Lab561→168, Deeds538→117.
-DOM mutations: 8994→953,8568→2431,8497→813,7219→273. Ten kills in each final
+Rift main-thread 1086→410 ms, Wisps715→426, Lab561→185, Deeds538→114.
+DOM mutations: 8994→953,8568→2301,8497→813,7219→270. Ten kills in each final
 candidate window; hidden intervals/canvas paints zero; one tick loop after three
-resumes. 46 browser assertions PASS, including current prices on navigation,
+resumes. 47 browser assertions PASS, including current prices on navigation,
 paid timer continuity, pause/resume, covered combat and actual bar geometry.
 These are workload reductions, not measured phone energy/temperature claims.
 Earlier exploratory receipts with a covered battle are not performance evidence.
@@ -107,6 +107,28 @@ all original state assertions, never resend a tap. Window-capture diagnostics
 also observe input before application handlers. This is emulator acceptance
 timing; physical phone responsiveness remains unmeasured.
 
+Cleanup: the native PowerShell recursive removal of this task's disposable
+`C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\mobile-power-001\mobile\www`
+was rejected by exec_command with exactly “blocked by policy”, without a more
+specific reason. Separate read-only verification confirms the exact resolved
+path, documented task ownership, 15 copied HTML/font/branding files and no links
+or .git entries. No supported escalation is available; it remains in place.
+Do not mislabel this generic tool rejection as automatic approval review.
+
 Next: finish full parity, push corrections, inspect required CI/native evidence;
 integrate after gates, then verify/publish the signed Android update. Physical
 phone thermal, battery, exact WebView60 and TalkBack review remain open.
+
+Android0.2.86 [41854346263](https://github.com/xariib/Lumenfall/actions/runs/41854346263)
+PASS on45cbeec/source006aca: signing/assets, both saves/paid work, trusted
+navigation/looks and actual updater install/cancel/tamper. Native tap delivery
+took349–890ms, confirming the200ms sampling problem. Receipts in android-test.
+Shared UI (including power checks), Lab, Comet, permanent progression and Forge
+passed45cbeec; Tree failed the first browser matrix twice (25s timeout, no result).
+The local original baseline also exceeds that deadline: diagnostic-only runs
+complete all6651 assertions in26.6s baseline /26.3s candidate. Profiling identifies
+repeated locale formatter setup during Deeds/Forge rendering. Reusing one
+Intl.NumberFormat preserves numeric formatting and non-number Amount strings,
+with a fallback for missing Intl. The original6651-assertion contract now passes
+its unchanged deadline. The exploratory test-helper change was reverted; no
+assertions, cases or deadline changed. Final-source replay/browser/CI rerun next.
