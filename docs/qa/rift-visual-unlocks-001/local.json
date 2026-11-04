@@ -1,0 +1,51 @@
+{
+  "rift-visual-full": {
+    "status": "pass",
+    "checks": 1458,
+    "profiles": 12,
+    "sourceSha256": "813aa52d156d75a8310900cdf220d846e7a7c31ec8c85ac17bca47d142ae7f1c",
+    "node": "v24.20.0",
+    "browser": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "exit": {
+      "code": 0,
+      "signal": null
+    }
+  },
+  "rift-visual-reload": {
+    "status": "pass",
+    "checks": 121,
+    "profiles": 1,
+    "sourceSha256": "813aa52d156d75a8310900cdf220d846e7a7c31ec8c85ac17bca47d142ae7f1c",
+    "node": "v24.20.0",
+    "browser": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "exit": {
+      "code": 0,
+      "signal": null
+    }
+  },
+  "rift-visual-negative": {
+    "status": "fail",
+    "checks": 52,
+    "profiles": 0,
+    "sourceSha256": "47122c644193813d1dd96e5080439c22b967256faa4231a3ffa8f606081c37c8",
+    "node": "v24.20.0",
+    "browser": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "error": "AssertionError [ERR_ASSERTION]: active dot visible battle\n    at ok (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-unlocks-001\\tests\\behavioral\\.rift-visual-unlocks-1964.cjs:39:27)\n    at run (C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-unlocks-001\\tests\\behavioral\\.rift-visual-unlocks-1964.cjs:98:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-unlocks-001\\tests\\behavioral\\.rift-visual-unlocks-1964.cjs:141:6"
+  },
+  "rift-visual-baseline": {
+    "status": "fail",
+    "samples": 167,
+    "sourceSha256": "500888633ed198775234bf78a817f5d9e5179edbe698f2544cfc2c9cc0cfe696",
+    "failure": "Error: EBUSY: resource busy or locked, unlink 'C:\\Users\\CUSTOM~1\\AppData\\Local\\Temp\\lumenfall-cosmetics-FxyLAT\\lockfile'"
+  },
+  "rift-cosmetics": {
+    "status": "fail",
+    "samples": 170,
+    "sourceSha256": "813aa52d156d75a8310900cdf220d846e7a7c31ec8c85ac17bca47d142ae7f1c",
+    "failure": "browser did not exit cleanly"
+  }
+}

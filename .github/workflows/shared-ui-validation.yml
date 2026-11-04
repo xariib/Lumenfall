@@ -48,6 +48,24 @@ jobs:
           assert.notEqual(good.sourceSha256,bad.sourceSha256);
           assert.equal(good.exit.code,0);assert.equal(bad.exit.code,0);
           JS
+      - name: Rift backgrounds, character unlocks, visible attacks and navigation dot
+        if: always()
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/RIFT_VISUAL_UNLOCKS_001.md
+          node tests/behavioral/rift-visual-unlocks.cjs index.html shared-ui-validation/rift-looks
+          if node tests/behavioral/rift-visual-unlocks.cjs index.html shared-ui-validation/rift-looks-negative --quick --mutate-dot; then
+            echo "::error::Missing Rift selection indicator unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('shared-ui-validation/rift-looks/receipt.json'));
+          const bad=JSON.parse(fs.readFileSync('shared-ui-validation/rift-looks-negative/receipt.json'));
+          assert.equal(good.status,'pass');assert.equal(good.profiles.length,12);
+          assert.equal(bad.status,'fail');assert(bad.error.includes('active dot visible battle'));
+          assert.notEqual(good.sourceSha256,bad.sourceSha256);
+          assert.equal(good.exit.code,0);assert.equal(bad.exit.code,0);
+          JS
       - name: Preserve original source, process receipts, geometry and screenshots
         if: always()
         uses: actions/upload-artifact@v4

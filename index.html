@@ -2252,7 +2252,7 @@
   nav.tabbar [data-tab="battle"] .nav-art{width:26px;height:26px;color:#f0c567;}
   nav.tabbar [data-tab="battle"] .lb{grid-row:2;}
   nav.tabbar [data-tab="battle"].active{--nav-accent:#f0c567;}
-  nav.tabbar [data-tab="battle"]::after{content:none;display:none;}
+  nav.tabbar [data-tab="battle"].active::after{background:#f0c567;}
   nav.tabbar [data-tab="battle"].active .nav-icon{border-color:#bfa16a;background:radial-gradient(circle at 50% 25%,#3e403e,#162138 78%);box-shadow:0 0 14px #f0c56718,inset 0 1px #f0c56724;}
   nav.tabbar button:active .nav-art{filter:brightness(1.15);}
   nav.tabbar .lab-capacity-badge{top:2px;right:calc(50% - 28px);z-index:2;}
@@ -2344,6 +2344,47 @@
   .theme-info .name,.theme-info .desc,.theme-active-tag{word-wrap:break-word;overflow-wrap:break-word;}
   .theme-active-tag{flex:none;max-width:100%;white-space:normal;line-height:1.4;}
   @media(prefers-reduced-motion:reduce){.cosmetic-aurora,.cosmetic-radiant{animation:none;opacity:1;}}
+  /* Full-field artwork stays behind every combat control. */
+  #tab-battle .stage{isolation:isolate;}
+  #tab-battle .rift-backdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;overflow:hidden;border-radius:inherit;pointer-events:none;background:#0b1528;}
+  .rift-backdrop svg{display:block;width:100%;height:100%;}
+  .rift-backdrop::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,rgba(6,12,27,.52),transparent 35%,rgba(6,12,27,.15) 65%,rgba(6,12,27,.8));}
+  #tab-battle .stage[data-backdrop]:not([data-backdrop="default"]) .rift-landscape{visibility:hidden;}
+  .scene-weather{animation:sceneDrift 9s ease-in-out infinite alternate;}
+  .scene-ribbons{animation:sceneSway 12s ease-in-out infinite alternate;transform-origin:200px 120px;}
+  @keyframes sceneDrift{from{transform:translateY(12px);opacity:.45;}to{transform:translateY(-18px);opacity:.9;}}
+  @keyframes sceneSway{from{transform:translateX(-12px) scaleY(.85);opacity:.4;}to{transform:translateX(12px) scaleY(1.1);opacity:.8;}}
+  [data-scene-motion="still"] .scene-weather,[data-scene-motion="still"] .scene-ribbons{animation:none;}
+  #tab-battle .stage[data-scene-motion="still"] .rift-dust i{animation:none;opacity:.35;}
+  .look-section{margin:18px 0 10px;font-size:.9rem;color:#e4e9f5;}
+  .look-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .look-card{min-width:0;min-height:44px;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:0;overflow:hidden;border:1px solid #3b4b66;border-radius:13px;background:#131f33;color:#e4e9f5;}
+  .look-card[aria-pressed="true"]{border-color:#efd28c;box-shadow:inset 0 0 0 1px #efd28c;}
+  .look-preview{display:block;width:100%;height:100px;background:#111b30;pointer-events:none;color:#a9dce9;--creature-color:#446779;--creature-rim:#b1e6e3;--creature-eye:#ffdf9b;}
+  .look-preview svg{width:100%;height:100%;display:block;}
+  .look-preview .wisp-portrait{width:100%;height:100%;padding:14px;filter:none;}
+  .look-card.locked-look .look-preview{opacity:.55;}
+  .look-copy{display:block;padding:10px;line-height:1.5;font-size:.75rem;overflow-wrap:break-word;}
+  .look-copy strong,.look-copy small{display:block;}
+  .look-copy strong{font-size:.8125rem;color:#f3ead2;}
+  .look-copy small{font-size:.6875rem;color:#bbc7db;margin-top:5px;}
+  .look-state{display:block;margin-top:8px;color:#f3d697;font-weight:700;}
+  .look-motion{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px;border:1px solid #3b4b66;border-radius:12px;background:#131f33;font-size:.8125rem;line-height:1.5;}
+  .look-motion button{min-height:44px;min-width:72px;padding:8px 12px;flex:none;border:1px solid #7f92b3;border-radius:9px;background:#25344f;color:#f4e2af;font:600 .8125rem/1.4 'Manrope',sans-serif;}
+  .look-motion small{display:block;color:#bbc7db;}
+  .stage .combat-vfx{z-index:5;}
+  .stage .combat-vfx.vfx-shot{width:13px;height:13px;box-shadow:0 0 5px #fff5d5,0 0 13px var(--vfx-color);animation-duration:.7s;}
+  .stage .vfx-shot.shot-ember{width:15px;height:20px;}
+  .stage .vfx-shot.shot-void,.stage .vfx-shot.shot-aurora{width:21px;height:21px;}
+  .stage .vfx-shot.shot-gale{width:7px;height:24px;}
+  .stage .vfx-shot.shot-thorn{width:13px;height:20px;}
+  .stage .vfx-shot.shot-tide{border-width:3px;}
+  .stage .combat-vfx.wisp-cast{width:96px;height:96px;}
+  /* Clip decorative impact phases, including Void, without clipping any copy. */
+  .combat-impact-layer{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;overflow:hidden;pointer-events:none;border-radius:inherit;}
+  .rift-projectile-layer{position:absolute;top:0;right:0;bottom:0;left:0;z-index:5;overflow:hidden;pointer-events:none;}
+  @media(max-width:350px){.look-grid{gap:8px;}.look-copy{padding:8px;}}
+  @media(prefers-reduced-motion:reduce){.scene-weather,.scene-ribbons{animation:none!important;}}
   /* Comet controls live in Deeds; Rift retains its fixed viewport. */
   #comet-commands{position:relative;z-index:2;flex:none;min-width:0;margin:10px 0;padding:12px;border:1px solid #78699a;border-radius:12px;background:#151b30;color:#f0effb;}
   #comet-commands[hidden],#comet-commands button[hidden],#comet-journal[hidden],#comet-journal-heading[hidden],#legacy-comet-trials[hidden]{display:none;}
@@ -2744,6 +2785,86 @@
     <linearGradient id="wisp-v4-titan" x1="18" y1="13" x2="48" y2="57" gradientUnits="userSpaceOnUse"><stop stop-color="#f2d68c"/><stop offset=".42" stop-color="#d1a72e"/><stop offset="1" stop-color="#87613f"/></linearGradient>
     <linearGradient id="wisp-v4-titan-core" x1="24" y1="29" x2="39" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#6a667d"/><stop offset=".48" stop-color="#35364f"/><stop offset="1" stop-color="#141e34"/></linearGradient>
 
+    <!-- Landscapes fill the entire combat field; edges carry detail around a calm center. -->
+    <symbol id="scene-default" viewBox="0 0 400 600"><rect width="400" height="600" fill="#151d34"/><path d="M0 443 78 304 143 373 207 279 290 378 355 300 400 413V600H0Z" fill="#29344e"/><path d="M87 510V277Q87 117 200 109q113 8 113 168v233h-27V277q0-127-86-138-86 11-86 138v233Z" fill="#30384f" stroke="#8892b4" stroke-width="2"/><path d="M111 280q0-134 89-146 89 12 89 146" stroke="#baa9eb" fill="none" stroke-width="3"/><path d="M0 544q107-45 200-8t200 0v64H0Z" fill="#0b1529"/><ellipse cx="200" cy="508" rx="80" ry="17" fill="#121d32" stroke="#909db9"/></symbol>
+    <symbol id="scene-moonlit" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#101e3a"/><circle cx="287" cy="139" r="83" fill="#819dcc" opacity=".08"/><circle cx="287" cy="139" r="56" fill="#a6c9e2"/><circle cx="306" cy="120" r="51" fill="#182b48"/>
+      <g fill="#d0e9f2"><circle cx="41" cy="68" r="1.6"/><circle cx="121" cy="110" r="1"/><circle cx="193" cy="56" r="1.4"/><circle cx="354" cy="227" r="1.3"/><circle cx="67" cy="203" r="1"/></g>
+      <path d="M0 340 70 204 127 301 179 245 251 342 321 230 400 329V600H0Z" fill="#263b55"/><path d="m28 287 42-83 41 68-36-19-18 25Z M294 273l27-43 33 41-28-11Z" fill="#7796ac"/>
+      <path d="M0 356 78 318 139 376 221 332 292 383 400 318V600H0Z" fill="#152e43"/><path d="M0 421Q96 382 200 422T400 421V600H0Z" fill="#23495e"/>
+      <g stroke="#8fbecb" opacity=".3"><path d="M231 437h101M251 449h59M224 465h112M241 488h82M262 512h41M26 450h88M326 534h60"/></g>
+      <path d="M0 403 38 394 68 415 52 460 0 482ZM400 388l-52 26-31 61 83 32Z M0 545 80 510 152 563 225 541 310 566 400 528V600H0Z" fill="#0a1a2c"/>
+      <path d="M31 423V275m0 9-20 42h40l-20-31m0 26-28 54h57l-29-41M370 442V303m0 4-23 54h46l-23-39m0 32-32 59h64" stroke="#0c2132" stroke-width="8" fill="#0c2132"/>
+    </symbol>
+    <symbol id="scene-grove" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#0d292d"/><ellipse cx="200" cy="275" rx="137" ry="200" fill="#356351" opacity=".25"/>
+      <path d="M0 0h400v95Q330 143 270 79Q187 144 130 77Q45 143 0 98Z" fill="#163c38"/>
+      <g fill="#10262c" stroke="#426454" stroke-width="2"><path d="M0 600V0h47L38 157l24 95-14 174 42 174Z M400 600V0h-44l8 169-26 101 16 146-43 184Z"/><path d="m32 182 56-59 50-18-39 38-60 89M367 190l-58-53-51-22 41 47 64 72"/></g>
+      <g fill="none" stroke="#57836a" opacity=".65"><path d="M87 0q48 151 5 263M316 0q-49 145-20 219M129 0q-7 120 36 153M274 0q6 125-33 151"/></g>
+      <g fill="#4f8670"><path d="m91 197-18-13 2 22 18 11M95 154l17-14-2 24-15 9M295 175l-14-15-3 21 19 10"/></g>
+      <path d="M0 475Q103 419 204 466T400 458V600H0Z" fill="#193e3a"/><path d="M197 436q-40 73 3 91t-9 73h80q52-54-7-78t-37-86Z" fill="#548473" opacity=".35"/>
+      <g fill="#5b9b84" stroke="#8ed8b1"><path d="M40 512q-22-34 0-36 21 3 0 36m0 0v20M356 485q-29-38 0-40 25 7 0 40m0 0v27"/><path d="M70 566q-32-40-39-15 16 19 39 15M330 571q36-45 43-19-13 23-43 19"/></g>
+      <path d="M0 579q67-26 118 21H0M400 557q-66 4-103 43h103" fill="#0b2028"/>
+    </symbol>
+    <symbol id="scene-cinder" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#291d30"/><ellipse cx="192" cy="282" rx="182" ry="143" fill="#a94c39" opacity=".18"/>
+      <path d="M0 309 65 257 115 299 172 169 221 177 292 300 348 239 400 297V600H0Z" fill="#4c3240"/><path d="m172 169 20 9 29-1 21 49-33-22-17 13-24-19-18 14Z" fill="#c66b48"/>
+      <path d="M0 378 87 322 146 370 244 302 320 372 400 330V600H0Z" fill="#2d2938"/><path d="M198 211q-20 53 13 92t-18 77 30 78-20 142h69q61-75-4-133t-23-87 1-83-42-86Z" fill="#b2533c"/>
+      <path d="M203 232q-7 42 19 76t-14 74 29 80-6 119" fill="none" stroke="#f1a259" stroke-width="4" opacity=".8"/>
+      <path d="M0 412 64 389 119 412 93 464 136 523 117 600H0ZM400 398l-55 30-24 82 21 90h58Z" fill="#181e2c"/>
+      <g fill="none" stroke="#db7745" opacity=".65"><path d="m0 483 50-18 32 24-18 40 47 22M400 485l-38 6-16 52 26 23M19 580l37-23 29 14"/></g>
+      <g fill="#39313b"><path d="m33 401 2-115 19-47 16 55-4 97ZM343 415l6-130 23-51 17 59-9 120Z"/></g>
+    </symbol>
+    <symbol id="scene-glacier" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#182d49"/><circle cx="208" cy="135" r="78" fill="#88c9df" opacity=".12"/><circle cx="208" cy="135" r="34" fill="#bad7df" opacity=".6"/>
+      <path d="M0 357 63 263 126 308 188 239 268 323 334 256 400 341V600H0Z" fill="#35546d"/><path d="m38 300 25-37 31 22-27-3ZM157 276l31-37 35 36-36-17Z" fill="#8ab9cb"/>
+      <g fill="#315c74" stroke="#78b8cd" stroke-width="1.5"><path d="M0 477 21 174 63 108 86 246 65 491Z M52 494l34-202 36-48 13 131-41 151ZM301 514l-11-201 48-151 29 71 8 252ZM355 511l20-183 25-51v260Z"/></g>
+      <g fill="#98e5ef" opacity=".22"><path d="M21 174 63 108 45 448 0 477Z M86 292l36-48-28 282-15-39ZM290 313l48-151-16 325-21 27Z"/></g>
+      <g fill="none" stroke="#bbeced" opacity=".45"><path d="m63 108-18 340 20 43M338 162l-16 325 53-12M21 174l24 274M86 292l8 234"/></g>
+      <path d="M0 516q92-47 184 9t216-14v89H0Z" fill="#203e56"/><path d="m45 544 80-11 51 25 49-13 66 33M270 514l-33 38 4 48M83 600l42-67" stroke="#80bacb" fill="none" opacity=".45"/>
+    </symbol>
+    <symbol id="scene-aurora" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#11233b"/><g fill="#bddfdf"><circle cx="44" cy="82" r="1.5"/><circle cx="116" cy="142" r="1"/><circle cx="272" cy="61" r="1.3"/><circle cx="354" cy="236" r="1.6"/><circle cx="225" cy="189" r="1"/></g>
+      <path d="M0 373 79 292 134 356 222 285 283 350 351 301 400 368V600H0Z" fill="#28495b"/><path d="m51 322 28-30 37 43-38-22ZM192 309l30-24 32 35-34-11Z" fill="#86aeb8"/>
+      <path d="M0 413q100-16 200 3t200-3v187H0Z" fill="#1c3e53"/><g stroke="#68c1bc" fill="none" opacity=".3"><path d="M0 441q100-21 200 0t200 0M0 472q100-21 200 0t200 0M0 509q100-21 200 0t200 0M0 553q100-21 200 0t200 0"/></g>
+      <path d="M0 509 68 477 111 490 80 530 129 551 94 600H0ZM400 481l-68 42-48 12 42 35-25 30h99Z" fill="#102a3f"/><path d="m0 509 68-32 43 13-47 8ZM332 523l-48 12 42 4 74-58Z" fill="#497684"/>
+    </symbol>
+    <symbol id="scene-abyss" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#0d263e"/><path d="M70 0h62l83 600H0ZM247 0h36l117 600H181Z" fill="#447d8c" opacity=".12"/>
+      <path d="M0 458q88-65 191-11t209-15v168H0Z" fill="#163a4b"/>
+      <g fill="#214759" stroke="#527a85" stroke-width="2"><path d="M20 514V245Q20 125 114 102l-8 39Q48 163 48 250v264ZM380 515V245q0-120-94-143l8 39q58 22 58 109v264Z"/><path d="M70 501V261q0-151 130-171 130 20 130 171v240h-22V261q0-124-108-147-108 23-108 147v240Z"/></g>
+      <path d="M87 257q0-133 113-151 113 18 113 151" stroke="#94c9c6" stroke-width="2" fill="none" opacity=".55"/>
+      <path d="M145 473h110l17 22H128ZM128 498h144l20 21H108ZM106 522h188l22 23H84Z" fill="#2b5260"/>
+      <g stroke="#a17a9e" stroke-width="5" stroke-linecap="round" fill="none"><path d="M35 574V493m0 38-19-19v-24m19 56 21-15v-20M358 587V493m0 35 22-21v-19m-22 62-20-21v-18"/></g>
+      <g fill="#72beb7" opacity=".7"><ellipse cx="68" cy="548" rx="13" ry="6"/><ellipse cx="324" cy="565" rx="16" ry="7"/><circle cx="28" cy="493" r="3"/></g><path d="M0 584q98-39 181 16H0M400 573q-64-15-124 27h124" fill="#102c40"/>
+    </symbol>
+    <symbol id="scene-eclipse" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#221e36"/><circle cx="200" cy="166" r="103" fill="#d3a868" opacity=".07"/><circle cx="200" cy="166" r="76" fill="#d3a868" opacity=".12"/><circle cx="200" cy="166" r="59" fill="#161c2d" stroke="#c9a76e" stroke-width="3"/><path d="M139 166a61 61 0 0 1 122 0" fill="none" stroke="#ffe4a1" stroke-width="3"/>
+      <g fill="#3c354b" stroke="#817187"><path d="M0 416V209l28-66 25 68v205ZM348 416V211l25-68 27 66v207ZM52 453V302l22-40 21 40v151ZM306 453V302l21-40 21 40v151Z"/><path d="m81 282 35-21 50 7-25 30-33 15ZM258 319l29-31 42 9-12 37-31 24ZM119 431l81-24 81 24-25 30-56 14-55-14Z"/></g>
+      <g stroke="#c9a76e" fill="none" opacity=".7"><path d="M28 170v226M373 170v226M91 280l25-8 36 3M272 314l18-14 24 5M144 434l56-15 54 15M200 66V36M112 115l-29-16M288 115l29-16"/></g>
+      <path d="M0 546q97-70 190-15t210-14v83H0Z" fill="#151d30"/><path d="m127 600 25-60h96l25 60" fill="#393348"/><path d="M151 554h98M144 574h112M136 594h128" stroke="#78667c"/>
+    </symbol>
+    <symbol id="creature-runegolem" viewBox="0 0 160 160"><g stroke="var(--creature-rim)" stroke-width="2" stroke-linejoin="round">
+      <path d="M43 61 29 52 12 74 18 112 39 106 48 80M117 61l14-9 17 22-6 38-21-6-9-26" fill="var(--creature-color)"/><path d="M46 53 80 39l34 14-6 54-17 17H69l-17-17Z M54 115l20 7-4 25H42ZM106 115l-20 7 4 25h28Z" fill="var(--creature-color)"/><path d="m57 38 4-24 19-8 19 8 4 24-23 15Z" fill="var(--creature-color)"/><path d="m66 28 10 3m8 0 10-3M80 62l14 20-14 21-14-21Z" fill="none" stroke="var(--creature-eye)" stroke-width="4"/><path d="m24 76 8 6-5 11M135 76l-8 6 5 11M58 98l10 8M102 98l-10 8" fill="none"/>
+    </g></symbol>
+    <symbol id="creature-crystalstag" viewBox="0 0 160 160"><g stroke="var(--creature-rim)" stroke-width="2" stroke-linejoin="round">
+      <path d="m71 62-18-18-18-7-9-21 15 6-3-17 19 29 14 8M89 62l18-18 18-7 9-21-15 6 3-17-19 29-14 8" fill="none" stroke-width="4"/><path d="m49 85 22-27 23 2 22 32-11 27-56-1Z M52 111l14 2-10 36H43ZM93 114h14l13 35h-13Z" fill="var(--creature-color)"/><path d="m59 58 21-16 22 16-7 30-15 15-15-15Z" fill="var(--creature-color)"/><path d="m79 51-9 25 10 19 10-19Z" fill="var(--creature-rim)" opacity=".5"/><path d="m66 66 9 4m10 0 9-4" stroke="var(--creature-eye)" stroke-width="4"/><path d="m43 81-12-7 7 27 13 9M111 89l18-12-8 29-15 7" fill="var(--creature-rim)"/>
+    </g></symbol>
+    <symbol id="creature-templemoth" viewBox="0 0 160 160"><g stroke="var(--creature-rim)" stroke-width="2">
+      <path d="M74 67Q43 13 10 28Q5 80 51 94Q10 104 27 137Q62 138 77 102M86 67q31-54 64-39 5 52-41 66 41 10 24 43-35 1-50-35" fill="var(--creature-color)"/><path d="m23 42 36 26-19 8ZM137 42l-36 26 19 8ZM38 111l24-8-8 19ZM122 111l-24-8 8 19Z" fill="var(--creature-rim)" opacity=".5"/><path d="M80 44q-15 18-9 52l9 36 9-36q6-34-9-52Z" fill="var(--creature-color)"/><path d="M75 48 62 25M85 48l13-23" fill="none"/><path d="m74 65 6 6 6-6" stroke="var(--creature-eye)" stroke-width="4"/>
+    </g></symbol>
+    <symbol id="creature-lanternray" viewBox="0 0 160 160"><g stroke="var(--creature-rim)" stroke-width="2">
+      <path d="M80 42Q49 63 10 28Q2 91 48 112l32-13 32 13q46-21 38-84-39 35-70 14Z" fill="var(--creature-color)"/><path d="M80 98q-14 25 7 43t-3 13" fill="none" stroke-width="5"/><path d="M80 45q-12-17 0-26" fill="none"/><circle cx="80" cy="16" r="7" fill="var(--creature-eye)"/><path d="M23 52q16 39 39 32M137 52q-16 39-39 32" fill="none" opacity=".5"/><path d="m64 65 9 4m14 0 9-4" stroke="var(--creature-eye)" stroke-width="4"/>
+    </g></symbol>
+    <symbol id="creature-abyssmedusa" viewBox="0 0 160 160"><g stroke="var(--creature-rim)" stroke-width="3" fill="none">
+      <path d="M43 81q-27 21-5 40t-14 22M62 87q-20 30 2 49l-6 16M98 87q20 30-2 49l6 16M117 81q27 21 5 40t14 22M79 88v53"/><path d="M25 77Q29 17 80 12q51 5 55 65-18 24-55 12-37 12-55-12Z" fill="var(--creature-color)"/><path d="M39 68Q47 31 80 27q33 4 41 41M80 27v35" opacity=".55"/><path d="m57 67 11 3m24 0 11-3" stroke="var(--creature-eye)" stroke-width="5"/><path d="M29 80q51-25 102 0" stroke="var(--creature-eye)" opacity=".6"/>
+    </g></symbol>
+    <symbol id="creature-reefdragon" viewBox="0 0 160 160"><g stroke="var(--creature-rim)" stroke-width="2" stroke-linejoin="round">
+      <path d="M91 25Q53 24 47 61q-5 22 26 33 38 14 16 36-15 17-43-1 26 40 59 17 37-30-3-60-30-20-15-35l29-2 14-15-20-9-2-13Z" fill="var(--creature-color)"/><path d="M50 54 24 33l4 32 21 19M95 100l33-14-7 33-18 14M72 28l-9-20-6 32M43 130l-16-14 4 26 19 11" fill="var(--creature-rim)"/><path d="M66 49q-22 31 18 49t11 37" fill="none" opacity=".7"/><path d="m95 32 11 2" stroke="var(--creature-eye)" stroke-width="5"/><path d="m117 45 20 13" fill="none"/>
+    </g></symbol>
+    <symbol id="wisp-design-crystal" viewBox="0 0 64 64"><g fill="currentColor" stroke="#e0f5ff" stroke-width=".8"><path d="M32 6 49 24 42 48 32 58 22 48 15 24Z"/><path d="m9 18 6 17-6 12-5-20ZM55 18l-6 17 6 12 5-20Z" opacity=".7"/><path d="M32 6v52L15 24l17 6 17-6Z" fill="#eefaff" opacity=".22"/></g><path d="m23 29 5 1m8 0 5-1" stroke="#07162f" stroke-width="3"/></symbol>
+    <symbol id="wisp-design-wild" viewBox="0 0 64 64"><g stroke="currentColor" stroke-width="2" fill="none"><path d="M24 20 15 12V4m0 9L8 8M40 20l9-8V4m0 9 7-5"/></g><path d="M15 24Q3 12 3 30q0 16 19 14M49 24q12-12 12 6 0 16-19 14" fill="currentColor" opacity=".6"/><path d="M32 13q-20 4-17 26l17 19 17-19q3-22-17-26Z" fill="currentColor" stroke="#d9f2dd"/><path d="M32 16v36L19 35Z" fill="#e8ffe8" opacity=".2"/><path d="m22 29 6 2m8 0 6-2" stroke="#10272f" stroke-width="3"/></symbol>
+    <symbol id="wisp-design-astral" viewBox="0 0 64 64"><path d="M17 8Q0 32 17 55Q-8 34 17 8M47 8q17 24 0 47Q72 34 47 8" fill="currentColor"/><path d="m32 10 8 15 16 7-15 8-9 17-9-17-15-8 16-7Z" fill="currentColor" stroke="#f8e8c3"/><path d="m32 14 1 37-9-14Z" fill="#fff9df" opacity=".28"/><path d="m23 29 5 2m8 0 5-2" stroke="#172441" stroke-width="3"/><path d="m24 7 3-5 5 4 5-4 3 5" fill="none" stroke="#ffe6b1" stroke-width="2"/></symbol>
     <symbol id="wisp-ember" viewBox="0 0 64 64">
       <g stroke-linejoin="round" stroke-linecap="round">
         <path d="M29 4C35 18 22 19 23 31C17 30 13 26 13 20C4 32 8 48 18 55C28 63 46 59 53 49C60 39 55 28 51 25C51 32 46 36 42 35C48 20 36 13 29 4Z" fill="url(#wisp-v4-ember)" stroke="#080f21" stroke-width="1.2"/>
@@ -3044,8 +3165,8 @@
           <div class="hp-bar-track"><div class="hp-bar-fill" id="hp-fill"></div></div>
           <div class="hp-text mono" id="hp-text">10 / 10</div>
         </div>
-        <div id="boss-combat" hidden></div>
         <div id="rift-party" role="group" aria-label="Current Wisp formation"></div>
+        <div id="boss-combat" hidden></div>
         </div>
 
         <div class="buff-indicator" id="buff-indicator">Boost · passive Wisps + Tap · <strong>Inactive</strong></div>
@@ -3127,7 +3248,7 @@
       <div class="section-label" id="comet-journal-heading" hidden>Comet Journal</div>
       <section id="comet-journal" aria-labelledby="comet-journal-heading" hidden><div id="legacy-comet-trials"></div><div id="comet-claim-history"></div></section>
       <div class="section-label">Collection</div>
-      <div class="section-sub">Certain Deeds unlock a new aura for the Rift. Purely visual — never a power gain.</div>
+      <div class="section-sub">Deeds unlock full Rift backgrounds, Wisp designs, enemy families and auras. Choose each look separately. Appearances never change combat or rewards.</div>
       <div id="theme-list"></div>
     </section>
 
@@ -4495,6 +4616,31 @@ var RIFT_THEMES = [
   {id:'radiant', name:'Radiant',      desc:'An orbit of every currency color. Still with reduced motion.', unlockAchievement:'modulemax', accent:null}
 ];
 
+// Appearance unlocks share earned Deeds, never currencies or combat modifiers.
+var RIFT_LOOKS = {
+  backdrop:[
+    {id:'default',name:'Regional landscape',desc:'Journey through the six original Rift regions.',unlockAchievement:null},
+    {id:'moonlit',name:'Moonlit Crossing',desc:'A silver moon above layered peaks and a quiet lake.',unlockAchievement:'d10',motion:'Still'},
+    {id:'grove',name:'Firefly Grove',desc:'Ancient trees, hanging vines and drifting fireflies.',unlockAchievement:'d25',motion:'Live'},
+    {id:'cinder',name:'Cinder Caldera',desc:'Volcanic ridges, rivers of lava and rising embers.',unlockAchievement:'d50',motion:'Live'},
+    {id:'glacier',name:'Crystal Expanse',desc:'Faceted ice spires beneath a blue winter sky.',unlockAchievement:'d100',motion:'Still'},
+    {id:'aurora',name:'Aurora Sea',desc:'Flowing curtains of light over a distant polar sea.',unlockAchievement:'asc5',motion:'Live'},
+    {id:'abyss',name:'Sunken Sanctuary',desc:'Submerged arches, coral and luminous drifting bubbles.',unlockAchievement:'d250',motion:'Live'},
+    {id:'eclipse',name:'Eclipse Citadel',desc:'A gilded eclipse above floating ruins and star trails.',unlockAchievement:'asc10',motion:'Live'}
+  ],
+  wisp:[
+    {id:'default',name:'Original Wisps',desc:'Each Wisp’s familiar elemental form.',unlockAchievement:null},
+    {id:'crystal',name:'Crystal Kin',desc:'Faceted bodies with bright, floating crystal fins.',unlockAchievement:'d50'},
+    {id:'wild',name:'Wild Spirits',desc:'Leaf mantles, curled antlers and woodland wings.',unlockAchievement:'asc5'},
+    {id:'astral',name:'Astral Guides',desc:'Star-shaped spirits with crescent wings and celestial crowns.',unlockAchievement:'mythic'}
+  ],
+  enemy:[
+    {id:'default',name:'Rift creatures',desc:'The original 23 creature forms.',unlockAchievement:null},
+    {id:'ancient',name:'Ancient Sentinels',desc:'Encounter a Rune Golem, Crystal Stag and Temple Moth.',unlockAchievement:'d100',forms:['runegolem','crystalstag','templemoth'],names:['Rune Golem','Crystal Stag','Temple Moth']},
+    {id:'deepsea',name:'Abyss Dwellers',desc:'Encounter a Lantern Ray, Abyss Medusa and Reef Dragon.',unlockAchievement:'d250',forms:['lanternray','abyssmedusa','reefdragon'],names:['Lantern Ray','Abyss Medusa','Reef Dragon']}
+  ]
+};
+
 var ASTRAL_UPGRADES=[
 {id:'astralcore',name:'Astral Core',desc:'Permanently multiplies every Wisp’s own Power. Works automatically in Push, Farm and offline.',unlockDepth:250,cap:10,baseCost:750,growth:1.2,factor:1.25},
 {id:'astralecho',name:'Astral Echo',desc:'Permanently multiplies automatic ability damage and ability Lumen/Shard rewards. Support hits also benefit.',unlockDepth:500,cap:10,baseCost:1250,growth:1.2,factor:1.3},
@@ -4893,6 +5039,7 @@ function freshState(){
     nodes:nodes, treeTrainingProgress:0, research:research, researchQueue:researchQueue,
     longStudyLevels:longStudyLevels, activeStudies:[], studySlotProjects:[null,null,null,null,null], pausedStudies:[], studyQueue:studyQueue, studyUseMotes:studyUseMotes, studySpeedTargets:studySpeedTargets,
     achieved:achieved, owned:owned, riftTheme:'default',
+    riftLook:{backdrop:'default',wisp:'default',enemy:'default',motion:true},
     cometUpgrades:{cometreservoir:0,cometcycle:0,meteorcore:0}, cometCharges:0, cometWork:0,
     cometMeteorUsed:false, cometCalled:false,
     cometEvents:{firstCommand:false,firstRecharge:false,bossStrike:false,calledKill:false},
@@ -5537,6 +5684,11 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
 
   var themeId = typeof source.riftTheme==='string' ? source.riftTheme : fresh.riftTheme;
   out.riftTheme = RIFT_THEMES.some(function(theme){ return theme.id===themeId; }) ? themeId : fresh.riftTheme;
+  var look=isPlainObject(source.riftLook) ? source.riftLook : {};
+  Object.keys(RIFT_LOOKS).forEach(function(slot){
+    out.riftLook[slot]=RIFT_LOOKS[slot].some(function(item){return item.id===look[slot];}) ? look[slot] : 'default';
+  });
+  out.riftLook.motion=look.motion!==false;
 
   out.buffUntil = finiteNonNegative(source.buffUntil,fresh.buffUntil);
   out.buffMult = Math.max(1,finiteNonNegative(source.buffMult,fresh.buffMult));
@@ -7241,8 +7393,12 @@ function emitCombatVfx(type,color,wispId){
     if(card && type!=='shot') card.setAttribute('data-cast-until',String(Date.now()+650));
   }
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  // Bound simultaneous decorative nodes even when five abilities fire together.
-  if(stageEl.querySelectorAll('.combat-vfx').length>=8) return;
+  var arena=stageEl.closest('.battle-row');
+  // Bound decoration count; effects never create damage or alter ability timing.
+  if(arena.querySelectorAll('.combat-vfx').length>=12) return;
+  var layerClass=type==='shot'?'rift-projectile-layer':'combat-impact-layer';
+  var parent=type==='shot'?arena:stageEl,layer=parent.querySelector('.'+layerClass);
+  if(!layer){layer=document.createElement('span');layer.className=layerClass;layer.setAttribute('aria-hidden','true');parent.appendChild(layer);}
   var fx = document.createElement('span');
   fx.setAttribute('aria-hidden','true');
   fx.className = 'combat-vfx vfx-'+type;
@@ -7253,16 +7409,15 @@ function emitCombatVfx(type,color,wispId){
   }
   if(type==='shot' && card){
     fx.classList.add('shot-'+wispId);
-    var from=card.getBoundingClientRect(),to=els['enemy-glyph'].getBoundingClientRect(),area=stageEl.getBoundingClientRect();
+    var from=card.querySelector('.wisp-portrait').getBoundingClientRect(),to=els['enemy-glyph'].getBoundingClientRect(),area=layer.getBoundingClientRect();
     fx.style.setProperty('--from-x',(from.x-area.x+from.width/2-5)+'px');
-    // Formation cards sit below HP; project their shots from the arena's lower edge.
-    fx.style.setProperty('--from-y',Math.min(stageEl.clientHeight-12,Math.max(24,from.y-area.y+14))+'px');
+    fx.style.setProperty('--from-y',(from.y-area.y+from.height/2-5)+'px');
     fx.style.setProperty('--to-x',(to.x-area.x+to.width/2-5)+'px');
     fx.style.setProperty('--to-y',(to.y-area.y+to.height/2-5)+'px');
     card.setAttribute('data-shot-until',String(Date.now()+300));
   }
   if(color) fx.style.setProperty('--vfx-color',color);
-  stageEl.appendChild(fx);
+  layer.appendChild(fx);
   setTimeout(function(){ if(fx.parentNode) fx.parentNode.removeChild(fx); },900);
 }
 // Sample the continuous passive-damage stream; this creates no damage event.
@@ -7824,6 +7979,54 @@ function buyUltimate(sp){
 }
 
 function themeUnlocked(theme){ return !theme.unlockAchievement || !!state.achieved[theme.unlockAchievement]; }
+function activeRiftLook(slot){
+  var choice=state.riftLook && state.riftLook[slot];
+  var item=RIFT_LOOKS[slot].find(function(entry){return entry.id===choice;});
+  return item && themeUnlocked(item) ? item : RIFT_LOOKS[slot][0];
+}
+function riftSceneMarkup(id){
+  var scene=id;
+  var weather='';
+  if(['grove','cinder','abyss','eclipse'].indexOf(scene)!==-1){
+    var color={grove:'#b7ed9f',cinder:'#ffc17e',abyss:'#99e7ef',eclipse:'#f3d99c'}[scene];
+    weather='<g class="scene-weather" fill="'+(scene==='abyss'?'none':color)+'" stroke="'+color+'" opacity=".65">'+
+      [[34,227],[351,291],[67,400],[322,182],[28,464],[374,435],[114,187],[280,388],[164,345],[237,264]].map(function(p,i){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(scene==='abyss'?3+i%3:1.3+i%2)+'"/>';}).join('')+'</g>';
+  }
+  if(scene==='aurora') weather='<g class="scene-ribbons" fill="none" stroke-linecap="round" opacity=".6"><path d="M-40 185Q65 30 179 158T440 110" stroke="#64d4bd" stroke-width="37" opacity=".3"/><path d="M-40 179Q65 24 179 152T440 104" stroke="#98efcd" stroke-width="3"/><path d="M-30 132Q91 29 209 108T445 57" stroke="#bd93e0" stroke-width="23" opacity=".45"/><path d="M-30 121Q91 18 209 97T445 46" stroke="#d4b1ea" stroke-width="2"/></g>';
+  return '<svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#scene-'+scene+'"/>'+weather+'</svg>';
+}
+function applyRiftLook(){
+  var stage=document.querySelector('#tab-battle .stage');if(!stage)return;
+  var scene=activeRiftLook('backdrop');
+  stage.setAttribute('data-backdrop',scene.id);
+  stage.setAttribute('data-scene-motion',state.riftLook && state.riftLook.motion===false || scene.motion==='Still' ? 'still':'live');
+  var background=stage.querySelector('.rift-backdrop');
+  if(!background){background=document.createElement('div');background.className='rift-backdrop';background.setAttribute('aria-hidden','true');stage.insertBefore(background,stage.firstChild);}
+  background.hidden=scene.id==='default';
+  if(background.getAttribute('data-scene')!==scene.id){background.setAttribute('data-scene',scene.id);background.innerHTML=scene.id==='default'?'':riftSceneMarkup(scene.id);}
+}
+function selectRiftLook(slot,id){
+  if(!Object.prototype.hasOwnProperty.call(RIFT_LOOKS,slot))return;
+  var item=RIFT_LOOKS[slot].find(function(entry){return entry.id===id;});
+  if(!item || !themeUnlocked(item))return;
+  if(!state.riftLook)state.riftLook={backdrop:'default',wisp:'default',enemy:'default',motion:true};
+  state.riftLook[slot]=id;saveState();renderCosmetics();renderSpirits();updateBattleFast();
+}
+function riftLooksCollectionMarkup(){
+  var html='<h3 class="look-section">Rift backgrounds</h3><div class="look-motion"><span>Background motion<small>Live scenes become still when reduced motion is enabled.</small></span><button type="button" data-look-motion aria-pressed="'+(state.riftLook.motion!==false)+'">'+(state.riftLook.motion!==false?'Live':'Still')+'</button></div>';
+  ['backdrop','wisp','enemy'].forEach(function(slot){
+    if(slot!=='backdrop')html+='<h3 class="look-section">'+(slot==='wisp'?'Wisp designs':'Enemy families')+'</h3>';
+    html+='<div class="look-grid" role="group" aria-label="'+(slot==='backdrop'?'Rift backgrounds':slot==='wisp'?'Wisp designs':'Enemy families')+'">';
+    RIFT_LOOKS[slot].forEach(function(item){
+      var unlocked=themeUnlocked(item),selected=activeRiftLook(slot).id===item.id;
+      var deed=ACHIEVEMENTS.find(function(a){return a.id===item.unlockAchievement;});
+      var preview=slot==='backdrop'?riftSceneMarkup(item.id):slot==='wisp'?wispPortrait(SPIRITS[0],item.id):'<svg viewBox="0 0 160 160" aria-hidden="true" focusable="false"><use href="#creature-'+(item.forms?item.forms[0]:'prowler')+'"/></svg>';
+      html+='<button type="button" class="look-card'+(unlocked?'':' locked-look')+'" data-look-slot="'+slot+'" data-look-id="'+item.id+'" aria-pressed="'+selected+'" '+(unlocked?'':'disabled')+'><span class="look-preview" data-scene-motion="still">'+preview+'</span><span class="look-copy"><strong>'+item.name+'</strong>'+item.desc+'<small>'+(slot==='backdrop'?(item.motion||'Regional')+' background':slot==='wisp'?'Applies to all eight Wisps':'Appearance only · same encounter traits')+'</small><span class="look-state">'+(selected?'✓ Selected':unlocked?'Unlocked · Select':'Deed: '+(deed?deed.name:''))+'</span></span></button>';
+    });
+    html+='</div>';
+  });
+  return html+'<h3 class="look-section">Rift auras</h3>';
+}
 function activeRiftTheme(){
   var theme = RIFT_THEMES.find(function(t){ return t.id===state.riftTheme; });
   // A stale/locked preference never grants an unlock. Keep its saved value intact.
@@ -7838,6 +8041,7 @@ function selectRiftTheme(themeId){
   renderCosmetics();
 }
 function applyRiftTheme(){
+  applyRiftLook();
   var stageEl = document.getElementById('enemy-stage');
   if(!stageEl) return;
   var theme = activeRiftTheme();
@@ -9354,8 +9558,13 @@ function updateBattleFast(){
   applyRiftZoneVisual(state.depth);
   els['depth-label'].innerHTML = ('<span class="rift-number"><span class="rift-prefix">Rift </span>' + formatRiftNumber(state.depth) + '</span>' + (isBoss(state.depth) ? ' <span class="boss-tag">&mdash; BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
   els['depth-label'].setAttribute('aria-label','Rift '+state.depth+(isBoss(state.depth)?' Boss':'')+' · '+zone.name);
-  els['enemy-name'].textContent = Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyNameFor(state.depth));
+  var enemyLook=activeRiftLook('enemy'),enemyTitle=enemyNameFor(state.depth);
   var creatureKind = ENEMY_NOUN[Amount.mod(Amount.mul(state.depth,7),ENEMY_NOUN.length)].toLowerCase();
+  if(enemyLook.forms){
+    var variant=Amount.mod(state.depth,enemyLook.forms.length);
+    creatureKind=enemyLook.forms[variant];enemyTitle=(isBoss(state.depth)?'Boss · ':'')+enemyLook.names[variant];
+  }
+  els['enemy-name'].textContent = Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyTitle);
   var creatureEl = els['enemy-glyph'];
   if(creatureEl.getAttribute('data-creature')!==creatureKind){
     creatureEl.setAttribute('data-creature',creatureKind);
@@ -9504,7 +9713,7 @@ function renderRiftParty(){
     if(bond.ids.every(function(id){return !byId[id];})) bond.ids.forEach(function(id){byId[id]=bond;ordered.push(id);});
   });
   state.activeParty.forEach(function(id){if(!byId[id])ordered.push(id);});
-  var key=state.activeParty.join(',')+'|'+bonds.map(function(b){return b.id;}).join(',');
+  var key=state.activeParty.join(',')+'|'+bonds.map(function(b){return b.id;}).join(',')+'|'+activeRiftLook('wisp').id;
   if(root.getAttribute('data-party')!==key){
     root.setAttribute('data-party',key);
     root.innerHTML=ordered.map(function(id,index){
@@ -9615,8 +9824,11 @@ function renderFormationBonds(){
   renderBondSummary();
 }
 
-function wispPortrait(sp){
-  return '<svg class="wisp-portrait" viewBox="0 0 64 64" style="--wisp-color:'+sp.color+'" aria-hidden="true"><use href="#wisp-'+sp.id+'"/></svg>';
+function wispPortrait(sp,design){
+  var look=design || activeRiftLook('wisp').id;
+  var symbol=look==='default'?'wisp-'+sp.id:'wisp-design-'+look;
+  var emblem=look==='default'?'':'<use href="#wisp-'+sp.id+'" x="21" y="35" width="22" height="22"/>';
+  return '<svg class="wisp-portrait" data-wisp-design="'+look+'" viewBox="0 0 64 64" style="--wisp-color:'+sp.color+'" aria-hidden="true"><use href="#'+symbol+'"/>'+emblem+'</svg>';
 }
 
 
@@ -10609,7 +10821,7 @@ function renderShop(){ renderAchievements(); }
 
 function renderCosmetics(){
   applyRiftTheme();
-  var html = '';
+  var html = riftLooksCollectionMarkup();
   var selected = activeRiftTheme();
   RIFT_THEMES.forEach(function(theme){
     var unlocked = themeUnlocked(theme);
@@ -10640,6 +10852,10 @@ function renderCosmetics(){
     if(state.cometTrialMarks[def.id]) html+='<div class="card comet-mark"><span aria-hidden="true">✦</span> '+def.mark+' · Earned</div>';
   });
   replaceControlMarkup(els['theme-list'],html);
+  els['theme-list'].querySelectorAll('[data-look-slot]').forEach(function(button){
+    button.onclick=function(){selectRiftLook(button.getAttribute('data-look-slot'),button.getAttribute('data-look-id'));};
+  });
+  els['theme-list'].querySelector('[data-look-motion]').onclick=function(){state.riftLook.motion=state.riftLook.motion===false;saveState();renderCosmetics();};
   els['theme-list'].querySelectorAll('[data-theme-select]').forEach(function(card){
     card.addEventListener('click', function(){ selectRiftTheme(card.getAttribute('data-theme-select')); });
   });
@@ -10696,7 +10912,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},
   {name:'Astral Upgrades',meta:'Permanent Comet investments',desc:'Astral Core multiplies Wisp Power. Astral Echo multiplies automatic ability damage and resource rewards. Astral Convergence strengthens unlocked Ultimates. Each has ten permanent levels and a Rift gate; costs rise by 20% per level. No charges, consumables or manual activation. Former command purchases are refunded once in Comets; earned history remains.'},
   {name:'Deeds & Daily Quests',meta:'Comet rewards',desc:'Deeds are one-time milestones and unlocks. Daily Quests pay the displayed Comets when you press Claim. Login rewards cycle through seven days, with Prisms on the seventh reward. Comets buy permanent Auto-Ascend and Astral upgrades.'},
-  {name:'Collection & Journal', meta:'Appearance and earlier unlocks', desc:'Deeds unlock Rift themes in Collection. Theme: Starlight is the default appearance; themes do not change combat. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic.'},
+  {name:'Collection & Journal', meta:'Appearance and earlier unlocks', desc:'Deeds unlock full Rift backgrounds, Wisp designs, enemy families and auras in Collection. Select each separately. Live backgrounds can be set to Still; reduced motion always keeps them still. Enemy families change appearances, never damage, rewards or boss traits. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic.'},
   {name:'Wisp Power & effects', meta:'Wisp cards', desc:'Wisp Power comes from a Wisp’s level and rarity. Combat also depends on abilities, Forge and Lab bonuses, Support and Bonds. Active Wisp cards show their Support or resource effects and enabled Bonds where relevant. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
   {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, Forge queues and Auto-Ascend run for up to 12 hours per absence. Lab research continues for the full absence, including queued levels while Lumen and Shards last and queued speed boosts while Motes last. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
   {name:'Save Backup', meta:'Settings · save protection', desc:'Progress is stored in this device or browser’s local save. Copy Current Save exports a backup code before reinstalling or changing device. Restoring requires confirmation and replaces the current save; old backup time cannot grant extra offline earnings. Reset Save permanently deletes progress. Settings and this guide do not pause combat.'}

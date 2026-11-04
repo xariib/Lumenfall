@@ -444,7 +444,7 @@ window.riftStatusMobile=(()=>{
   var party=rect(q('#rift-party'));
   ok(!q('#enemy-stage').contains(q('#rift-party'))&&enemy.bottom<=hp.top&&hp.bottom<=party.top&&party.bottom<=buff.top,'formation follows the attack surface and HP, before boost '+JSON.stringify({enemy:enemy.bottom,hp:[hp.top,hp.bottom],party:[party.top,party.bottom],buff:buff.top}));
   ok(q('.battle-row').contains(q('#enemy-stage'))&&q('.battle-row').contains(q('.hp-wrap'))&&q('.battle-row').contains(q('#boss-combat'))&&q('.battle-row').contains(q('#rift-party')),'attack surface, HP, Boss regen and formation share the integrated scenic region');
-  ok(q('#boss-combat').hidden||hp.bottom<=rect(q('#boss-combat')).top&&rect(q('#boss-combat')).bottom<=party.top,'boss regen sits between HP and the standalone formation');
+  ok(q('#boss-combat').hidden||hp.bottom<=party.top&&party.bottom<=rect(q('#boss-combat')).top,'boss regen sits below HP and the standalone formation, leaving attacks unobscured');
   ok(q('#rift-bond-effects').hidden||bonds.bottom<=rect(q('#rift-bond-effects')).top&&rect(q('#rift-bond-effects')).bottom<=stats.top,'full Bond effects separate from names and precede the numeric row');
   cards.forEach(card=>ok(!!card.querySelector('.rift-wisp-power')&&!!card.querySelector('.rift-wisp-state')&&!card.querySelector('.rift-wisp-time')&&!/\b\d+(?:\.\d+)?\s*(?:s|sec|seconds)\b/i.test(card.textContent),'mobile cards show power and state without an ability countdown'));
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){ok(!q('.combat-vfx')&&getComputedStyle(q('#enemy-stage'),'::after').animationName==='none','reduced motion has no combat effects or rotating aura');}
