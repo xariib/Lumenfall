@@ -54,7 +54,7 @@ Focused negative security tests/context/syntax/diff checks PASS locally.
 
 Local emulator127.0.0.1:5575 (dedicated Lumenfall Test Phone) is blocked by an
 existing Windows Firewall prompt for adb.exe; package commands return error:
-closed. User asked to dismiss it with Cancel; no security setting was changed.
+closed. User cannot access the computer now to dismiss it; no security setting was changed.
 Other emulator instances are excluded. No successful local installation claimed.
 
 Next: native build/existing CI gates, inspect production APK and normal launch,
@@ -68,7 +68,20 @@ the userdebug Android image. Chromium documents that userdebug/eng images force
 WebView debugging. The check is preserved and moved to a second retail
 google_apis_playstore user image, which must report ro.debuggable=0. Explicitly
 disable WebView debugging in the app config; never ship test instrumentation.
-See [audit](../qa/play-protect-001/README.md). This remains pending validation.
+Run41907598257 (source0fe19168) built signed0.2.94; after an SDK download failure,
+attempt2 passed all Android tests including retail OS debug/storage protections.
+APK SHA256:5380e9f01071bd52232c0914a8a076217d2df91c10bda4833c475e35485a8e99.
+Fresh artifact verification confirms signature, package, source assets and receipt
+hashes. The retail screenshot captured the loading cover after10s, so strengthen
+normal launch to wait for visible game controls through native accessibility,
+without enabling debugging. Google remains NOT_TESTED.
+
+Premerge41907607852 stopped at an existing RIFT_HINT_READABILITY_002 startup
+document size violation; shared state history is preserved in a linked snapshot
+and shortened to retain the32KiB limit unchanged. Locally that task now passes
+at25125 bytes. No gameplay or acceptance assertions were removed. Required CI
+and the strengthened Android launch check will rerun on the revised commit.
+See [audit](../qa/play-protect-001/README.md).
 
 References: [updater requirements](IN_APP_UPDATES_001.md),
 [release receipt](../qa/all-updates-release-20261104/release.json),

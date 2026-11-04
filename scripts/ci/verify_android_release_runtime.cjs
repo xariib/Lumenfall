@@ -13,7 +13,24 @@ async function main(){
   const flags=adb('shell','dumpsys','package',pkg);
   assert(!/\bDEBUGGABLE\b/.test(flags),'Installed production app is not debuggable');
   adb('shell','am','start','-W','-n',pkg+'/.MainActivity');
-  await new Promise(resolve=>setTimeout(resolve,10000));
+  // Inspect through Android accessibility, without enabling WebView debugging.
+  // A live PID or the loading cover alone does not establish a settled launch.
+  let visibleGame=false,ui='';
+  const deadline=Date.now()+120000;
+  while(Date.now()<deadline){
+    await new Promise(resolve=>setTimeout(resolve,2000));
+    try{
+      adb('shell','uiautomator','dump','/sdcard/lumenfall-production.xml');
+      ui=adb('shell','cat','/sdcard/lumenfall-production.xml');
+      visibleGame=ui.includes('package="'+pkg+'"') &&
+        /(?:text|content-desc)="[^"]*(?:Rift|Wisps|Settings)/.test(ui) &&
+        !/Preparing your Rift|Skip intro/.test(ui);
+      if(visibleGame)break;
+    }catch(error){console.log('Waiting for normal launch accessibility: '+error.message.split('\n')[0]);}
+  }
+  fs.writeFileSync('release-evidence/production-normal-launch.xml',ui);
+  fs.writeFileSync('release-evidence/production-normal-launch.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{maxBuffer:16*1024*1024,timeout:30000}));
+  assert(visibleGame,'Normal launch must reach visible game controls beyond the loading cover/intro');
   const pid=adb('shell','pidof',pkg).trim();assert(/^\d+$/.test(pid),'Normal production process stays running');
   const sockets=adb('shell','cat','/proc/net/unix');
   assert(!sockets.includes('webview_devtools_remote_'+pid),'Normal production WebView exposes no debugger socket');
@@ -23,8 +40,7 @@ async function main(){
   const bytes=cp.execFileSync('adb',['exec-out','cat',installed],{maxBuffer:64*1024*1024,timeout:30000});
   const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
   assert.equal(hash(bytes),hash(fs.readFileSync('Lumenfall.apk')),'Installed base APK equals final production artifact');
-  fs.writeFileSync('release-evidence/production-normal-launch.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{maxBuffer:16*1024*1024,timeout:30000}));
-  fs.writeFileSync('release-evidence/production-runtime.json',JSON.stringify({status:'PASS',apkSha256:hash(bytes),device:adb('shell','getprop','ro.build.fingerprint').trim(),systemBuildType:'user',debuggable:false,webViewDebuggerExposed:false,runAsRejected:true,testInstrumentationAbsent:true,normalLaunch:true,googlePlayProtect:'NOT_TESTED',physicalDevice:false},null,2)+'\n');
+  fs.writeFileSync('release-evidence/production-runtime.json',JSON.stringify({status:'PASS',apkSha256:hash(bytes),device:adb('shell','getprop','ro.build.fingerprint').trim(),systemBuildType:'user',debuggable:false,webViewDebuggerExposed:false,runAsRejected:true,testInstrumentationAbsent:true,normalLaunch:true,visibleGameControls:true,googlePlayProtect:'NOT_TESTED',physicalDevice:false},null,2)+'\n');
   console.log('PASS exact production APK normal launch, no debugger socket, private storage protected, no CI instrumentation');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
