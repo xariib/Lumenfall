@@ -311,7 +311,7 @@ async function verifyInstalledRiftNavigation(page,report){
    await Promise.all(panel.getAnimations().map(a=>a.finished.catch(()=>{})));
    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
    window.riftNavigationEvents=[];
-   ['pointerdown','pointerup','click'].forEach(type=>document.addEventListener(type,e=>riftNavigationEvents.push({type,trusted:e.isTrusted,target:e.target.closest('button')?.id||e.target.id,x:e.clientX,y:e.clientY}),true));
+   ['pointerdown','pointerup','click'].forEach(type=>window.addEventListener(type,e=>riftNavigationEvents.push({type,trusted:e.isTrusted,target:e.target.closest('button')?.id||e.target.id,x:e.clientX,y:e.clientY,time:performance.now()}),true));
  })()`);
  const snapshot=()=>page.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(primary)}))`);
  const before=await snapshot(),steps=[],inputs=[];
@@ -323,9 +323,17 @@ async function verifyInstalledRiftNavigation(page,report){
    const point=await page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,disabled:e.disabled,hit:e.contains(document.elementFromPoint(x,y))};})()`);
    assert(point.width>=44&&point.height>=44&&point.hit&&!point.disabled,'Installed navigation receives touch: '+selector);
    const p=nativePoint(report.androidTouch.transform,point);
-   adb('shell','input','tap',String(p.x),String(p.y));await pause(200);
+   const sentAt=Date.now();
+   adb('shell','input','tap',String(p.x),String(p.y));
+   // The software-rendered emulator can deliver Android input over a second
+   // later (runner logcat records that delay). Await this one actual click;
+   // never retry input or wait for the expected game state to hide a failure.
+   for(let i=0;i<50;i++){
+     if(await page.evaluate(`riftNavigationEvents.some(e=>e.trusted&&e.type==='click')`))break;
+     await pause(100);
+   }
    const outcome=await page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});return {events:riftNavigationEvents,rect:e.getBoundingClientRect().toJSON(),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),active:document.activeElement?.id};})()`);
-   inputs.push({selector,point,native:p,...outcome});
+   inputs.push({selector,point,native:p,inputElapsedMs:Date.now()-sentAt,...outcome});
    fs.writeFileSync('release-evidence/installed-rift-navigation-input.json',JSON.stringify(inputs,null,2)+'\n');
    requireCenteredPointer(outcome.events,point,selector.slice(1));
  }

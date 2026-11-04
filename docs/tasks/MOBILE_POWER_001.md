@@ -96,6 +96,17 @@ centered trusted input plus resulting save before every assertion. No retry or
 acceptance waiver. Shared UI failed a racy price assertion on e3f8bd9; corrected
 atomic navigation check passes locally. Required CI/Android must rerun.
 
+Final-source Node24.19 four-window replay PASS; golden rewards/state hashes
+unchanged. Automated PR review independently reported the same autosave edge
+(e3f8bd9); corrected by c0e2d93, positive/causal check PASS, thread resolved.
+Android [41853154270](https://github.com/xariib/Lumenfall/actions/runs/41853154270)
+passed the first three centered native navigation clicks (25→24→14→15), then
+sampled zero events after the fourth tap's fixed200ms wait. Logcat records native
+input/render delays over1s. Wait for the one trusted click (bounded5s), retain
+all original state assertions, never resend a tap. Window-capture diagnostics
+also observe input before application handlers. This is emulator acceptance
+timing; physical phone responsiveness remains unmeasured.
+
 Next: finish full parity, push corrections, inspect required CI/native evidence;
 integrate after gates, then verify/publish the signed Android update. Physical
 phone thermal, battery, exact WebView60 and TalkBack review remain open.
