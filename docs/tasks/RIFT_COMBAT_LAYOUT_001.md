@@ -6,7 +6,7 @@ the Theme label so it cannot cover Wisp attacks.
 
 Owner: this chat. Baseline: PR35 head `278bb66920a67a26d984ea13181480ca2f9baa5b`.
 Isolated branch/worktree: `feature/rift-combat-layout-001` / `rift-combat-layout-001`.
-PR35 remains open with uncommitted evidence in its own worktree; preserve it.
+PR35 was open at initial checkout with uncommitted evidence in its own worktree.
 Canonical main was `29dbb1e9` at startup. This change depends on PR35's visuals.
 
 Scope: compact enemy readout above the enemy artwork, matching chevrons,
@@ -19,8 +19,10 @@ Acceptance: one health line below name; header label clear of attacks;
 320/390/430px, short/tall screens, enlarged text and reduced motion;
 existing affected contracts, source/context checks, required CI and integration.
 
-Status: implemented and locally verified; GitHub CI/integration and Android
-delivery pending. Main/PR35 remain unchanged; do not overwrite that worktree.
+Status: PR36 merged through PR38 and released in Android0.2.91/source237fa928.
+Combined seven PR/six release gates,190+1 scenarios, signed native upgrade and
+public download/update discovery PASS. [Delivery](ALL_UPDATES_RELEASE_20261104.md).
+Physical-phone, exact WebView60, TalkBack and human review remain unverified.
 
 Implementation: one 16px health row beneath the name; art and cosmetic effects
 reserve the top readout space, retaining the full 120px minimum attack target.

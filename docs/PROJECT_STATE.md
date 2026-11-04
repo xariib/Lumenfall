@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+4 November: [All pending updates/PR38](tasks/ALL_UPDATES_RELEASE_20261104.md)
+released as [Android0.2.91](https://github.com/xariib/Lumenfall/releases/tag/android-1000091),
+source237fa928. Includes PR36 Rift health/navigation/layout and PR37 reduced
+rendering/background work plus the native updater race fix. Seven PR/six release
+gates,190+1 scenarios, signed upgrade/updater and public bytes/feed PASS.
+[Receipt](qa/all-updates-release-20261104/release.json). Phone battery/thermal,
+exact WebView60, TalkBack and human review remain open.
+
 4 November: [Rift visuals/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md) released as
 Android0.2.82, source278bb669: backgrounds, Wisp/enemy looks, clearer attacks and
 gold dot. Seven gates, full regression, signed upgrade/public bytes PASS.

@@ -1,0 +1,2448 @@
+{
+  "status": "PASS",
+  "scope": "All required PR and release workflows",
+  "sourceCommit": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+  "records": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "event": "pull_request",
+      "id": 41885193558,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193558",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767658758,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:46Z",
+              "completed_at": "2026-11-04T18:14:47Z"
+            },
+            {
+              "name": "Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:47Z",
+              "completed_at": "2026-11-04T18:15:16Z"
+            },
+            {
+              "name": "Set up Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:16Z",
+              "completed_at": "2026-11-04T18:15:22Z"
+            },
+            {
+              "name": "Stationary purchases and rejected transaction rollback",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:22Z",
+              "completed_at": "2026-11-04T18:16:48Z"
+            },
+            {
+              "name": "Paid boosts, clock replay and capped automation regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:16:48Z",
+              "completed_at": "2026-11-04T18:16:59Z"
+            },
+            {
+              "name": "In-app signed update policy and controller",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:16:59Z",
+              "completed_at": "2026-11-04T18:17:05Z"
+            },
+            {
+              "name": "Complete game audit and stationary Auto-Empower targets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:17:05Z",
+              "completed_at": "2026-11-04T18:17:33Z"
+            },
+            {
+              "name": "Native Lab Begin focus boundaries",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:17:33Z",
+              "completed_at": "2026-11-04T18:18:33Z"
+            },
+            {
+              "name": "Slot-first Lab, concise cards and expanded Deeds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:18:33Z",
+              "completed_at": "2026-11-04T18:19:33Z"
+            },
+            {
+              "name": "Lab queue continuity and Speed Up modal",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:19:33Z",
+              "completed_at": "2026-11-04T18:20:20Z"
+            },
+            {
+              "name": "Editable next boost and independent Speed Up queue",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:20:20Z",
+              "completed_at": "2026-11-04T18:22:49Z"
+            },
+            {
+              "name": "APK identity verifier self-test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-04T18:22:49Z",
+              "completed_at": "2026-11-04T18:22:49Z"
+            },
+            {
+              "name": "Readable offline recap and expanded Lab results",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:22:49Z",
+              "completed_at": "2026-11-04T18:22:55Z"
+            },
+            {
+              "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-04T18:22:55Z",
+              "completed_at": "2026-11-04T18:23:17Z"
+            },
+            {
+              "name": "Progression pacing and explicit Farm intent",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-04T18:23:17Z",
+              "completed_at": "2026-11-04T18:23:33Z"
+            },
+            {
+              "name": "Forge workshop long-term progression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-04T18:23:33Z",
+              "completed_at": "2026-11-04T18:23:35Z"
+            },
+            {
+              "name": "Long Lab pacing and basic Wisp research",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-04T18:23:35Z",
+              "completed_at": "2026-11-04T18:24:01Z"
+            },
+            {
+              "name": "Repository migration version and historical-baseline controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-04T18:24:01Z",
+              "completed_at": "2026-11-04T18:24:01Z"
+            },
+            {
+              "name": "Node tooling regression checks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-04T18:24:01Z",
+              "completed_at": "2026-11-04T18:24:03Z"
+            },
+            {
+              "name": "Validate game source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-04T18:24:03Z",
+              "completed_at": "2026-11-04T18:24:03Z"
+            },
+            {
+              "name": "Verify existing independent offline reference binding",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-04T18:24:03Z",
+              "completed_at": "2026-11-04T18:24:03Z"
+            },
+            {
+              "name": "Stage web assets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-04T18:24:03Z",
+              "completed_at": "2026-11-04T18:24:03Z"
+            },
+            {
+              "name": "Phone feedback startup and input acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-04T18:24:03Z",
+              "completed_at": "2026-11-04T18:24:28Z"
+            },
+            {
+              "name": "Existing settled-screen UI acceptance after actual startup",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-04T18:24:28Z",
+              "completed_at": "2026-11-04T18:30:02Z"
+            },
+            {
+              "name": "Midgame Farm guidance existing acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-04T18:30:02Z",
+              "completed_at": "2026-11-04T18:30:52Z"
+            },
+            {
+              "name": "Legacy Rift layout with complete Farm dialog content",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-04T18:30:52Z",
+              "completed_at": "2026-11-04T18:31:24Z"
+            },
+            {
+              "name": "Endless progression amounts, gates, persistence and chronology",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-04T18:31:24Z",
+              "completed_at": "2026-11-04T18:32:37Z"
+            },
+            {
+              "name": "Endless automation clock and repeated Ascend regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-11-04T18:32:37Z",
+              "completed_at": "2026-11-04T18:35:41Z"
+            },
+            {
+              "name": "Guidance baseline readability and exact old-width inverse",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-11-04T18:35:41Z",
+              "completed_at": "2026-11-04T18:35:55Z"
+            },
+            {
+              "name": "Preserve early Guidance readability evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30,
+              "started_at": "2026-11-04T18:35:55Z",
+              "completed_at": "2026-11-04T18:35:57Z"
+            },
+            {
+              "name": "Rift cosmetics selection, persistence and mobile acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31,
+              "started_at": "2026-11-04T18:35:57Z",
+              "completed_at": "2026-11-04T18:36:06Z"
+            },
+            {
+              "name": "Exact Prism earning numerical and causal regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 32,
+              "started_at": "2026-11-04T18:36:06Z",
+              "completed_at": "2026-11-04T18:36:11Z"
+            },
+            {
+              "name": "Tree caps original-value refunds and current collection",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33,
+              "started_at": "2026-11-04T18:36:11Z",
+              "completed_at": "2026-11-04T18:37:32Z"
+            },
+            {
+              "name": "Swift cap, original Shard value and reachable Forge Deeds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 34,
+              "started_at": "2026-11-04T18:37:32Z",
+              "completed_at": "2026-11-04T18:37:59Z"
+            },
+            {
+              "name": "Wisp contribution readability and unchanged gameplay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 35,
+              "started_at": "2026-11-04T18:37:59Z",
+              "completed_at": "2026-11-04T18:39:01Z"
+            },
+            {
+              "name": "Compact Wisp cards, live next action and original purchase preservation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 36,
+              "started_at": "2026-11-04T18:39:01Z",
+              "completed_at": "2026-11-04T18:39:53Z"
+            },
+            {
+              "name": "Development currency UI and retained-value acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 37,
+              "started_at": "2026-11-04T18:39:53Z",
+              "completed_at": "2026-11-04T18:43:11Z"
+            },
+            {
+              "name": "Read Ascend alerts and stationary daily quest claims",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 38,
+              "started_at": "2026-11-04T18:43:11Z",
+              "completed_at": "2026-11-04T18:44:04Z"
+            },
+            {
+              "name": "Cheaper Recruitment cap and refund regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 39,
+              "started_at": "2026-11-04T18:44:04Z",
+              "completed_at": "2026-11-04T18:44:25Z"
+            },
+            {
+              "name": "Independent exact Prism funding oracle",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 40,
+              "started_at": "2026-11-04T18:44:25Z",
+              "completed_at": "2026-11-04T18:44:26Z"
+            },
+            {
+              "name": "Cheaper Recruitment defect controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 41,
+              "started_at": "2026-11-04T18:44:26Z",
+              "completed_at": "2026-11-04T18:45:10Z"
+            },
+            {
+              "name": "Behavioral harness negative self-test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 42,
+              "started_at": "2026-11-04T18:45:10Z",
+              "completed_at": "2026-11-04T18:45:52Z"
+            },
+            {
+              "name": "Stateful behavioral regression suite",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 43,
+              "started_at": "2026-11-04T18:45:52Z",
+              "completed_at": "2026-11-04T19:21:56Z"
+            },
+            {
+              "name": "Install runtime error guard in staged copy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-04T19:21:56Z",
+              "completed_at": "2026-11-04T19:21:56Z"
+            },
+            {
+              "name": "Browser runtime smoke test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-04T19:21:56Z",
+              "completed_at": "2026-11-04T19:21:58Z"
+            },
+            {
+              "name": "Preserve full regression evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 46,
+              "started_at": "2026-11-04T19:21:58Z",
+              "completed_at": "2026-11-04T19:22:13Z"
+            },
+            {
+              "name": "Post Set up Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 91,
+              "started_at": "2026-11-04T19:22:13Z",
+              "completed_at": "2026-11-04T19:22:13Z"
+            },
+            {
+              "name": "Post Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 92,
+              "started_at": "2026-11-04T19:22:13Z",
+              "completed_at": "2026-11-04T19:22:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 93,
+              "started_at": "2026-11-04T19:22:14Z",
+              "completed_at": "2026-11-04T19:22:14Z"
+            }
+          ]
+        },
+        {
+          "id": 126767659111,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:47Z",
+              "completed_at": "2026-11-04T18:14:48Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:48Z",
+              "completed_at": "2026-11-04T18:15:17Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:17Z",
+              "completed_at": "2026-11-04T18:15:26Z"
+            },
+            {
+              "name": "Stage exact product and assets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:26Z",
+              "completed_at": "2026-11-04T18:15:26Z"
+            },
+            {
+              "name": "Original offline regression with unchanged assertions and deadline",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:26Z",
+              "completed_at": "2026-11-04T18:18:49Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:18:49Z",
+              "completed_at": "2026-11-04T18:18:51Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:18:51Z",
+              "completed_at": "2026-11-04T18:18:51Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-04T18:18:51Z",
+              "completed_at": "2026-11-04T18:18:51Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:18:51Z",
+              "completed_at": "2026-11-04T18:18:51Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41885193411,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193411",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657911,
+          "name": "comet",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:47Z",
+              "completed_at": "2026-11-04T18:14:48Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:48Z",
+              "completed_at": "2026-11-04T18:15:25Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:25Z",
+              "completed_at": "2026-11-04T18:15:29Z"
+            },
+            {
+              "name": "Exact source identity and Comet task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:29Z",
+              "completed_at": "2026-11-04T18:15:30Z"
+            },
+            {
+              "name": "Actual purchases commands save recovery and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:30Z",
+              "completed_at": "2026-11-04T18:15:39Z"
+            },
+            {
+              "name": "Independent exact Meteor and bounded credit arithmetic",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:39Z",
+              "completed_at": "2026-11-04T18:15:42Z"
+            },
+            {
+              "name": "Actual defeat recharge offline chronology and Auto-Ascend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:15:42Z",
+              "completed_at": "2026-11-04T18:15:45Z"
+            },
+            {
+              "name": "Twelve browser profiles with real input and causal failures",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:15:45Z",
+              "completed_at": "2026-11-04T18:18:26Z"
+            },
+            {
+              "name": "Exact protected-save warning reversion after the complete positive browser lane",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:18:26Z",
+              "completed_at": "2026-11-04T18:18:37Z"
+            },
+            {
+              "name": "Complete actual Comet execution on V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:18:37Z",
+              "completed_at": "2026-11-04T18:18:46Z"
+            },
+            {
+              "name": "Preserve complete source-bound Comet evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:18:46Z",
+              "completed_at": "2026-11-04T18:18:49Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-04T18:18:49Z",
+              "completed_at": "2026-11-04T18:18:49Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-04T18:18:49Z",
+              "completed_at": "2026-11-04T18:18:50Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-04T18:18:50Z",
+              "completed_at": "2026-11-04T18:18:50Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41885193372,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193372",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657076,
+          "name": "forge",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:46Z",
+              "completed_at": "2026-11-04T18:14:47Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:47Z",
+              "completed_at": "2026-11-04T18:15:10Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:10Z",
+              "completed_at": "2026-11-04T18:15:15Z"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:15Z",
+              "completed_at": "2026-11-04T18:15:15Z"
+            },
+            {
+              "name": "Exact prices real effects transactions Ascends and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:15Z",
+              "completed_at": "2026-11-04T18:15:17Z"
+            },
+            {
+              "name": "Long-term workshop investments and three-day farming budgets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:17Z",
+              "completed_at": "2026-11-04T18:15:19Z"
+            },
+            {
+              "name": "Authoritative charge calibration and conservative boss bounds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:15:19Z",
+              "completed_at": "2026-11-04T18:17:37Z"
+            },
+            {
+              "name": "Eight-hour Auto-Ascend capped windows and frozen offline oracle",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:17:37Z",
+              "completed_at": "2026-11-04T18:25:18Z"
+            },
+            {
+              "name": "Actual mobile prices input focus and twenty-card acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:25:18Z",
+              "completed_at": "2026-11-04T18:27:26Z"
+            },
+            {
+              "name": "Complete product on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:27:26Z",
+              "completed_at": "2026-11-04T18:27:30Z"
+            },
+            {
+              "name": "Preserve complete source-bound evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:27:30Z",
+              "completed_at": "2026-11-04T18:27:31Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-04T18:27:31Z",
+              "completed_at": "2026-11-04T18:27:31Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-04T18:27:31Z",
+              "completed_at": "2026-11-04T18:27:32Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-04T18:27:32Z",
+              "completed_at": "2026-11-04T18:27:32Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41885193429,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193429",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657329,
+          "name": "timed-slot-speed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:46Z",
+              "completed_at": "2026-11-04T18:14:46Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:46Z",
+              "completed_at": "2026-11-04T18:15:09Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:09Z",
+              "completed_at": "2026-11-04T18:15:13Z"
+            },
+            {
+              "name": "Actual browser slot speed and focus regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:13Z",
+              "completed_at": "2026-11-04T18:16:20Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:16:20Z",
+              "completed_at": "2026-11-04T18:16:20Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:16:20Z",
+              "completed_at": "2026-11-04T18:16:21Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:16:21Z",
+              "completed_at": "2026-11-04T18:16:21Z"
+            }
+          ]
+        },
+        {
+          "id": 126767657931,
+          "name": "lab",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:49Z",
+              "completed_at": "2026-11-04T18:14:50Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:50Z",
+              "completed_at": "2026-11-04T18:15:55Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:55Z",
+              "completed_at": "2026-11-04T18:16:00Z"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:16:00Z",
+              "completed_at": "2026-11-04T18:16:00Z"
+            },
+            {
+              "name": "Complete-game Lab effects purchases save and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:16:00Z",
+              "completed_at": "2026-11-04T18:16:12Z"
+            },
+            {
+              "name": "Actual mobile touch keyboard seven-slot persistence and currency colors",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:16:12Z",
+              "completed_at": "2026-11-04T18:18:27Z"
+            },
+            {
+              "name": "Execute full product on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:18:27Z",
+              "completed_at": "2026-11-04T18:18:29Z"
+            },
+            {
+              "name": "Preserve full source-bound evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:18:29Z",
+              "completed_at": "2026-11-04T18:18:30Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-04T18:18:30Z",
+              "completed_at": "2026-11-04T18:18:31Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-04T18:18:31Z",
+              "completed_at": "2026-11-04T18:18:31Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-04T18:18:31Z",
+              "completed_at": "2026-11-04T18:18:31Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "event": "pull_request",
+      "id": 41885193419,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193419",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657570,
+          "name": "shared-ui",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:56Z",
+              "completed_at": "2026-11-04T18:14:57Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:57Z",
+              "completed_at": "2026-11-04T18:15:14Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:14Z",
+              "completed_at": "2026-11-04T18:15:21Z"
+            },
+            {
+              "name": "Exact source, task context and original standalone gate receipts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:21Z",
+              "completed_at": "2026-11-04T18:16:54Z"
+            },
+            {
+              "name": "Twelve native browser profiles and three causal CSS controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:16:54Z",
+              "completed_at": "2026-11-04T18:19:30Z"
+            },
+            {
+              "name": "Visual review, enlarged text and Lab heading regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:19:30Z",
+              "completed_at": "2026-11-04T18:20:50Z"
+            },
+            {
+              "name": "Rift backgrounds, character unlocks, visible attacks and navigation dot",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:20:50Z",
+              "completed_at": "2026-11-04T18:22:05Z"
+            },
+            {
+              "name": "Mobile foreground work and background suspension",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:22:05Z",
+              "completed_at": "2026-11-04T18:23:32Z"
+            },
+            {
+              "name": "Preserve original source, process receipts, geometry and screenshots",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:23:32Z",
+              "completed_at": "2026-11-04T18:23:38Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-04T18:23:38Z",
+              "completed_at": "2026-11-04T18:23:39Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-04T18:23:39Z",
+              "completed_at": "2026-11-04T18:23:39Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-04T18:23:39Z",
+              "completed_at": "2026-11-04T18:23:39Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "event": "pull_request",
+      "id": 41885193425,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193425",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767658114,
+          "name": "tree",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:46Z",
+              "completed_at": "2026-11-04T18:14:47Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:47Z",
+              "completed_at": "2026-11-04T18:15:34Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:34Z",
+              "completed_at": "2026-11-04T18:15:40Z"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:40Z",
+              "completed_at": "2026-11-04T18:15:41Z"
+            },
+            {
+              "name": "Tree prices real effects purchases saves and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:41Z",
+              "completed_at": "2026-11-04T18:15:43Z"
+            },
+            {
+              "name": "Tree offline chronology and Auto-Ascend preservation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:43Z",
+              "completed_at": "2026-11-04T18:18:06Z"
+            },
+            {
+              "name": "Tree independent investment and earned-benefit economy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:18:06Z",
+              "completed_at": "2026-11-04T18:18:09Z"
+            },
+            {
+              "name": "Swift actual purchase ROI and independent Prism matrix",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:18:09Z",
+              "completed_at": "2026-11-04T18:18:11Z"
+            },
+            {
+              "name": "Actual browser Prism payouts persistence and causal failures",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:18:11Z",
+              "completed_at": "2026-11-04T18:18:41Z"
+            },
+            {
+              "name": "Actual Tree mobile input focus prices and all tracks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:18:41Z",
+              "completed_at": "2026-11-04T18:20:36Z"
+            },
+            {
+              "name": "Prism mobile payout and Auto-Ascend UI acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:20:36Z",
+              "completed_at": "2026-11-04T18:20:54Z"
+            },
+            {
+              "name": "Complete Tree and Prism execution on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-04T18:20:54Z",
+              "completed_at": "2026-11-04T18:21:19Z"
+            },
+            {
+              "name": "Preserve exact candidate evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:21:19Z",
+              "completed_at": "2026-11-04T18:21:21Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-04T18:21:21Z",
+              "completed_at": "2026-11-04T18:21:21Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-04T18:21:21Z",
+              "completed_at": "2026-11-04T18:21:21Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-04T18:21:21Z",
+              "completed_at": "2026-11-04T18:21:21Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "event": "pull_request",
+      "id": 41885193462,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193462",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767658443,
+          "name": "focused",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:14:46Z",
+              "completed_at": "2026-11-04T18:14:47Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:14:47Z",
+              "completed_at": "2026-11-04T18:15:15Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:15Z",
+              "completed_at": "2026-11-04T18:15:23Z"
+            },
+            {
+              "name": "Source and task",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:23Z",
+              "completed_at": "2026-11-04T18:15:23Z"
+            },
+            {
+              "name": "Purchases refunds Farm and chronology",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:23Z",
+              "completed_at": "2026-11-04T18:15:30Z"
+            },
+            {
+              "name": "Native browser input across 18 profiles",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:30Z",
+              "completed_at": "2026-11-04T18:16:13Z"
+            },
+            {
+              "name": "Preserve mobile evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:16:13Z",
+              "completed_at": "2026-11-04T18:16:15Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:16:15Z",
+              "completed_at": "2026-11-04T18:16:15Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-04T18:16:15Z",
+              "completed_at": "2026-11-04T18:16:15Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-04T18:16:15Z",
+              "completed_at": "2026-11-04T18:16:15Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "pre-merge-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885265852,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885265852",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767913902,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:12Z",
+              "completed_at": "2026-11-04T18:15:13Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:13Z",
+              "completed_at": "2026-11-04T18:15:37Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:37Z",
+              "completed_at": "2026-11-04T18:15:42Z"
+            },
+            {
+              "name": "Stage exact product and assets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:42Z",
+              "completed_at": "2026-11-04T18:15:42Z"
+            },
+            {
+              "name": "Original offline regression with unchanged assertions and deadline",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:42Z",
+              "completed_at": "2026-11-04T18:20:22Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:20:22Z",
+              "completed_at": "2026-11-04T18:20:23Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:20:23Z",
+              "completed_at": "2026-11-04T18:20:24Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-04T18:20:24Z",
+              "completed_at": "2026-11-04T18:20:24Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:20:24Z",
+              "completed_at": "2026-11-04T18:20:24Z"
+            }
+          ]
+        },
+        {
+          "id": 126767914121,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:15Z",
+              "completed_at": "2026-11-04T18:15:15Z"
+            },
+            {
+              "name": "Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:15Z",
+              "completed_at": "2026-11-04T18:15:40Z"
+            },
+            {
+              "name": "Set up Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:40Z",
+              "completed_at": "2026-11-04T18:15:48Z"
+            },
+            {
+              "name": "Stationary purchases and rejected transaction rollback",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:48Z",
+              "completed_at": "2026-11-04T18:17:04Z"
+            },
+            {
+              "name": "Paid boosts, clock replay and capped automation regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:17:04Z",
+              "completed_at": "2026-11-04T18:17:12Z"
+            },
+            {
+              "name": "In-app signed update policy and controller",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:17:12Z",
+              "completed_at": "2026-11-04T18:17:18Z"
+            },
+            {
+              "name": "Complete game audit and stationary Auto-Empower targets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:17:18Z",
+              "completed_at": "2026-11-04T18:17:38Z"
+            },
+            {
+              "name": "Native Lab Begin focus boundaries",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:17:38Z",
+              "completed_at": "2026-11-04T18:18:28Z"
+            },
+            {
+              "name": "Slot-first Lab, concise cards and expanded Deeds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:18:28Z",
+              "completed_at": "2026-11-04T18:19:17Z"
+            },
+            {
+              "name": "Lab queue continuity and Speed Up modal",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:19:17Z",
+              "completed_at": "2026-11-04T18:20:11Z"
+            },
+            {
+              "name": "Editable next boost and independent Speed Up queue",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:20:11Z",
+              "completed_at": "2026-11-04T18:21:49Z"
+            },
+            {
+              "name": "APK identity verifier self-test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-04T18:21:49Z",
+              "completed_at": "2026-11-04T18:21:49Z"
+            },
+            {
+              "name": "Readable offline recap and expanded Lab results",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:21:49Z",
+              "completed_at": "2026-11-04T18:21:54Z"
+            },
+            {
+              "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-04T18:21:54Z",
+              "completed_at": "2026-11-04T18:22:14Z"
+            },
+            {
+              "name": "Progression pacing and explicit Farm intent",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-04T18:22:14Z",
+              "completed_at": "2026-11-04T18:22:22Z"
+            },
+            {
+              "name": "Forge workshop long-term progression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-04T18:22:22Z",
+              "completed_at": "2026-11-04T18:22:23Z"
+            },
+            {
+              "name": "Long Lab pacing and basic Wisp research",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-04T18:22:23Z",
+              "completed_at": "2026-11-04T18:22:41Z"
+            },
+            {
+              "name": "Repository migration version and historical-baseline controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-04T18:22:41Z",
+              "completed_at": "2026-11-04T18:22:41Z"
+            },
+            {
+              "name": "Node tooling regression checks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-04T18:22:41Z",
+              "completed_at": "2026-11-04T18:22:43Z"
+            },
+            {
+              "name": "Validate game source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-04T18:22:43Z",
+              "completed_at": "2026-11-04T18:22:43Z"
+            },
+            {
+              "name": "Verify existing independent offline reference binding",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-04T18:22:43Z",
+              "completed_at": "2026-11-04T18:22:43Z"
+            },
+            {
+              "name": "Stage web assets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-04T18:22:43Z",
+              "completed_at": "2026-11-04T18:22:43Z"
+            },
+            {
+              "name": "Phone feedback startup and input acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-04T18:22:43Z",
+              "completed_at": "2026-11-04T18:23:05Z"
+            },
+            {
+              "name": "Existing settled-screen UI acceptance after actual startup",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-04T18:23:05Z",
+              "completed_at": "2026-11-04T18:27:01Z"
+            },
+            {
+              "name": "Midgame Farm guidance existing acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-04T18:27:01Z",
+              "completed_at": "2026-11-04T18:27:40Z"
+            },
+            {
+              "name": "Legacy Rift layout with complete Farm dialog content",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-04T18:27:40Z",
+              "completed_at": "2026-11-04T18:28:03Z"
+            },
+            {
+              "name": "Endless progression amounts, gates, persistence and chronology",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-04T18:28:03Z",
+              "completed_at": "2026-11-04T18:28:58Z"
+            },
+            {
+              "name": "Endless automation clock and repeated Ascend regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-11-04T18:28:58Z",
+              "completed_at": "2026-11-04T18:30:36Z"
+            },
+            {
+              "name": "Guidance baseline readability and exact old-width inverse",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-11-04T18:30:36Z",
+              "completed_at": "2026-11-04T18:30:47Z"
+            },
+            {
+              "name": "Preserve early Guidance readability evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30,
+              "started_at": "2026-11-04T18:30:47Z",
+              "completed_at": "2026-11-04T18:30:49Z"
+            },
+            {
+              "name": "Rift cosmetics selection, persistence and mobile acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31,
+              "started_at": "2026-11-04T18:30:49Z",
+              "completed_at": "2026-11-04T18:30:57Z"
+            },
+            {
+              "name": "Exact Prism earning numerical and causal regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 32,
+              "started_at": "2026-11-04T18:30:57Z",
+              "completed_at": "2026-11-04T18:30:59Z"
+            },
+            {
+              "name": "Tree caps original-value refunds and current collection",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33,
+              "started_at": "2026-11-04T18:30:59Z",
+              "completed_at": "2026-11-04T18:31:52Z"
+            },
+            {
+              "name": "Swift cap, original Shard value and reachable Forge Deeds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 34,
+              "started_at": "2026-11-04T18:31:52Z",
+              "completed_at": "2026-11-04T18:32:05Z"
+            },
+            {
+              "name": "Wisp contribution readability and unchanged gameplay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 35,
+              "started_at": "2026-11-04T18:32:05Z",
+              "completed_at": "2026-11-04T18:32:39Z"
+            },
+            {
+              "name": "Compact Wisp cards, live next action and original purchase preservation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 36,
+              "started_at": "2026-11-04T18:32:39Z",
+              "completed_at": "2026-11-04T18:33:14Z"
+            },
+            {
+              "name": "Development currency UI and retained-value acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 37,
+              "started_at": "2026-11-04T18:33:14Z",
+              "completed_at": "2026-11-04T18:35:47Z"
+            },
+            {
+              "name": "Read Ascend alerts and stationary daily quest claims",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 38,
+              "started_at": "2026-11-04T18:35:47Z",
+              "completed_at": "2026-11-04T18:36:33Z"
+            },
+            {
+              "name": "Cheaper Recruitment cap and refund regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 39,
+              "started_at": "2026-11-04T18:36:33Z",
+              "completed_at": "2026-11-04T18:36:48Z"
+            },
+            {
+              "name": "Independent exact Prism funding oracle",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 40,
+              "started_at": "2026-11-04T18:36:48Z",
+              "completed_at": "2026-11-04T18:36:49Z"
+            },
+            {
+              "name": "Cheaper Recruitment defect controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 41,
+              "started_at": "2026-11-04T18:36:49Z",
+              "completed_at": "2026-11-04T18:37:14Z"
+            },
+            {
+              "name": "Behavioral harness negative self-test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 42,
+              "started_at": "2026-11-04T18:37:14Z",
+              "completed_at": "2026-11-04T18:37:46Z"
+            },
+            {
+              "name": "Stateful behavioral regression suite",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 43,
+              "started_at": "2026-11-04T18:37:46Z",
+              "completed_at": "2026-11-04T19:05:56Z"
+            },
+            {
+              "name": "Install runtime error guard in staged copy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-04T19:05:56Z",
+              "completed_at": "2026-11-04T19:05:56Z"
+            },
+            {
+              "name": "Browser runtime smoke test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-04T19:05:56Z",
+              "completed_at": "2026-11-04T19:05:57Z"
+            },
+            {
+              "name": "Preserve full regression evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 46,
+              "started_at": "2026-11-04T19:05:57Z",
+              "completed_at": "2026-11-04T19:06:08Z"
+            },
+            {
+              "name": "Post Set up Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 91,
+              "started_at": "2026-11-04T19:06:08Z",
+              "completed_at": "2026-11-04T19:06:08Z"
+            },
+            {
+              "name": "Post Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 92,
+              "started_at": "2026-11-04T19:06:08Z",
+              "completed_at": "2026-11-04T19:06:09Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 93,
+              "started_at": "2026-11-04T19:06:09Z",
+              "completed_at": "2026-11-04T19:06:09Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885272294,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885272294",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767932354,
+          "name": "comet",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:13Z",
+              "completed_at": "2026-11-04T18:15:14Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:14Z",
+              "completed_at": "2026-11-04T18:15:40Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:40Z",
+              "completed_at": "2026-11-04T18:15:44Z"
+            },
+            {
+              "name": "Exact source identity and Comet task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:44Z",
+              "completed_at": "2026-11-04T18:15:45Z"
+            },
+            {
+              "name": "Actual purchases commands save recovery and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:45Z",
+              "completed_at": "2026-11-04T18:15:54Z"
+            },
+            {
+              "name": "Independent exact Meteor and bounded credit arithmetic",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:54Z",
+              "completed_at": "2026-11-04T18:15:56Z"
+            },
+            {
+              "name": "Actual defeat recharge offline chronology and Auto-Ascend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:15:56Z",
+              "completed_at": "2026-11-04T18:16:00Z"
+            },
+            {
+              "name": "Twelve browser profiles with real input and causal failures",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:16:00Z",
+              "completed_at": "2026-11-04T18:18:52Z"
+            },
+            {
+              "name": "Exact protected-save warning reversion after the complete positive browser lane",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:18:52Z",
+              "completed_at": "2026-11-04T18:19:03Z"
+            },
+            {
+              "name": "Complete actual Comet execution on V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:19:03Z",
+              "completed_at": "2026-11-04T18:19:06Z"
+            },
+            {
+              "name": "Preserve complete source-bound Comet evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:19:06Z",
+              "completed_at": "2026-11-04T18:19:10Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-04T18:19:10Z",
+              "completed_at": "2026-11-04T18:19:10Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-04T18:19:10Z",
+              "completed_at": "2026-11-04T18:19:10Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-04T18:19:10Z",
+              "completed_at": "2026-11-04T18:19:10Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885277255,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885277255",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767954313,
+          "name": "forge",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:15Z",
+              "completed_at": "2026-11-04T18:15:16Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:16Z",
+              "completed_at": "2026-11-04T18:15:37Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:37Z",
+              "completed_at": "2026-11-04T18:15:42Z"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:42Z",
+              "completed_at": "2026-11-04T18:15:42Z"
+            },
+            {
+              "name": "Exact prices real effects transactions Ascends and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:42Z",
+              "completed_at": "2026-11-04T18:15:44Z"
+            },
+            {
+              "name": "Long-term workshop investments and three-day farming budgets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:44Z",
+              "completed_at": "2026-11-04T18:15:46Z"
+            },
+            {
+              "name": "Authoritative charge calibration and conservative boss bounds",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:15:46Z",
+              "completed_at": "2026-11-04T18:18:26Z"
+            },
+            {
+              "name": "Eight-hour Auto-Ascend capped windows and frozen offline oracle",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:18:26Z",
+              "completed_at": "2026-11-04T18:27:06Z"
+            },
+            {
+              "name": "Actual mobile prices input focus and twenty-card acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:27:06Z",
+              "completed_at": "2026-11-04T18:29:09Z"
+            },
+            {
+              "name": "Complete product on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:29:09Z",
+              "completed_at": "2026-11-04T18:29:12Z"
+            },
+            {
+              "name": "Preserve complete source-bound evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:29:12Z",
+              "completed_at": "2026-11-04T18:29:14Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-04T18:29:14Z",
+              "completed_at": "2026-11-04T18:29:14Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-04T18:29:14Z",
+              "completed_at": "2026-11-04T18:29:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-04T18:29:14Z",
+              "completed_at": "2026-11-04T18:29:14Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885283686,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885283686",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767976230,
+          "name": "timed-slot-speed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:17Z",
+              "completed_at": "2026-11-04T18:15:18Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:18Z",
+              "completed_at": "2026-11-04T18:15:40Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:40Z",
+              "completed_at": "2026-11-04T18:15:44Z"
+            },
+            {
+              "name": "Actual browser slot speed and focus regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:44Z",
+              "completed_at": "2026-11-04T18:16:53Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:16:53Z",
+              "completed_at": "2026-11-04T18:16:53Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:16:53Z",
+              "completed_at": "2026-11-04T18:16:53Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:16:53Z",
+              "completed_at": "2026-11-04T18:16:53Z"
+            }
+          ]
+        },
+        {
+          "id": 126767976432,
+          "name": "lab",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:17Z",
+              "completed_at": "2026-11-04T18:15:18Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:18Z",
+              "completed_at": "2026-11-04T18:15:39Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:39Z",
+              "completed_at": "2026-11-04T18:15:47Z"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:47Z",
+              "completed_at": "2026-11-04T18:15:47Z"
+            },
+            {
+              "name": "Complete-game Lab effects purchases save and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:47Z",
+              "completed_at": "2026-11-04T18:15:54Z"
+            },
+            {
+              "name": "Actual mobile touch keyboard seven-slot persistence and currency colors",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:54Z",
+              "completed_at": "2026-11-04T18:17:49Z"
+            },
+            {
+              "name": "Execute full product on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:17:49Z",
+              "completed_at": "2026-11-04T18:17:51Z"
+            },
+            {
+              "name": "Preserve full source-bound evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:17:51Z",
+              "completed_at": "2026-11-04T18:17:53Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-04T18:17:53Z",
+              "completed_at": "2026-11-04T18:17:53Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-04T18:17:53Z",
+              "completed_at": "2026-11-04T18:17:53Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-04T18:17:53Z",
+              "completed_at": "2026-11-04T18:17:53Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885289623,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885289623",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767993952,
+          "name": "shared-ui",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:19Z",
+              "completed_at": "2026-11-04T18:15:20Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:20Z",
+              "completed_at": "2026-11-04T18:15:40Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:40Z",
+              "completed_at": "2026-11-04T18:15:47Z"
+            },
+            {
+              "name": "Exact source, task context and original standalone gate receipts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:47Z",
+              "completed_at": "2026-11-04T18:17:14Z"
+            },
+            {
+              "name": "Twelve native browser profiles and three causal CSS controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:17:14Z",
+              "completed_at": "2026-11-04T18:19:51Z"
+            },
+            {
+              "name": "Visual review, enlarged text and Lab heading regression",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:19:51Z",
+              "completed_at": "2026-11-04T18:21:11Z"
+            },
+            {
+              "name": "Rift backgrounds, character unlocks, visible attacks and navigation dot",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:21:11Z",
+              "completed_at": "2026-11-04T18:22:27Z"
+            },
+            {
+              "name": "Mobile foreground work and background suspension",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:22:27Z",
+              "completed_at": "2026-11-04T18:23:54Z"
+            },
+            {
+              "name": "Preserve original source, process receipts, geometry and screenshots",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:23:54Z",
+              "completed_at": "2026-11-04T18:24:02Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-04T18:24:02Z",
+              "completed_at": "2026-11-04T18:24:02Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-04T18:24:02Z",
+              "completed_at": "2026-11-04T18:24:02Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-04T18:24:02Z",
+              "completed_at": "2026-11-04T18:24:02Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "event": "workflow_dispatch",
+      "id": 41885294645,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885294645",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126768012034,
+          "name": "tree",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-04T18:15:21Z",
+              "completed_at": "2026-11-04T18:15:22Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-04T18:15:22Z",
+              "completed_at": "2026-11-04T18:15:41Z"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-04T18:15:41Z",
+              "completed_at": "2026-11-04T18:15:46Z"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-04T18:15:46Z",
+              "completed_at": "2026-11-04T18:15:46Z"
+            },
+            {
+              "name": "Tree prices real effects purchases saves and causal controls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-04T18:15:46Z",
+              "completed_at": "2026-11-04T18:15:49Z"
+            },
+            {
+              "name": "Tree offline chronology and Auto-Ascend preservation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-04T18:15:49Z",
+              "completed_at": "2026-11-04T18:19:22Z"
+            },
+            {
+              "name": "Tree independent investment and earned-benefit economy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-04T18:19:22Z",
+              "completed_at": "2026-11-04T18:19:26Z"
+            },
+            {
+              "name": "Swift actual purchase ROI and independent Prism matrix",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-04T18:19:26Z",
+              "completed_at": "2026-11-04T18:19:29Z"
+            },
+            {
+              "name": "Actual browser Prism payouts persistence and causal failures",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-04T18:19:29Z",
+              "completed_at": "2026-11-04T18:20:04Z"
+            },
+            {
+              "name": "Actual Tree mobile input focus prices and all tracks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-04T18:20:04Z",
+              "completed_at": "2026-11-04T18:22:30Z"
+            },
+            {
+              "name": "Prism mobile payout and Auto-Ascend UI acceptance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-04T18:22:30Z",
+              "completed_at": "2026-11-04T18:22:52Z"
+            },
+            {
+              "name": "Complete Tree and Prism execution on actual V8 6.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-04T18:22:52Z",
+              "completed_at": "2026-11-04T18:23:29Z"
+            },
+            {
+              "name": "Preserve exact candidate evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-04T18:23:29Z",
+              "completed_at": "2026-11-04T18:23:31Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-04T18:23:31Z",
+              "completed_at": "2026-11-04T18:23:31Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-04T18:23:31Z",
+              "completed_at": "2026-11-04T18:23:31Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-04T18:23:31Z",
+              "completed_at": "2026-11-04T18:23:31Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

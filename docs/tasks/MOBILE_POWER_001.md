@@ -7,10 +7,14 @@ Owner: this chat. Goal: reduce avoidable foreground CPU/GPU work and stop
 background wakeups while preserving gameplay, appearance choices and saves.
 Baseline: main `67a9b58035e2bce721bb026b76f44457f1046588` (Android 0.2.82
 product source `278bb669`). Branch/worktree: `feature/mobile-power-001` /
-`mobile-power-001`. Status: in progress. No new binding rules.
+`mobile-power-001`. Status: PR37 merged through PR38 and released in Android0.2.91,
+source237fa928. Seven PR/six release gates,190+1 scenarios and signed native
+upgrade/updater/public-feed checks PASS. [Delivery](ALL_UPDATES_RELEASE_20261104.md).
+Physical-phone battery/thermal and human acceptance remain unverified.
+No new binding rules.
 
-Concurrent PR36 owns Rift layout/navigation, based on the same released product;
-its worktree is untouched. Integrate with current main after checking overlap.
+Concurrent PR36 owned Rift layout/navigation, based on the same released product;
+its worktree was untouched. The combined delivery above records final integration.
 
 Scope: rendering and scheduling in `index.html`, focused regression/performance
 coverage, relevant CI, documentation and Android delivery. Preserve monotonic

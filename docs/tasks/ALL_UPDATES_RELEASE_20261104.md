@@ -22,15 +22,28 @@ publish latest stable APK with its checksum and clear release notes, and verify
 anonymous download bytes and updater discovery. Physical phone, battery/thermal,
 exact WebView60, TalkBack and human review remain separate unverified checks.
 
-Status: in progress. PR37 seven gates and native41862842909 now PASS. PR36 six
-focused gates PASS; pre-merge41844392956 failed in historical Guidance baseline
-acceptance (expected fragmentation cause, received null), requiring diagnosis.
-Combine changes locally and retain original historical assertions. Only merge
-conflict is the independent offline oracle source hash; original expected
-state/reward values must remain unchanged and combined binding must be verified.
+Status: published [Android0.2.91](https://github.com/xariib/Lumenfall/releases/tag/android-1000091).
+Main was fast-forwarded to tested237fa928; PR36/37/38 are merged. Seven PR/six
+release workflows PASS, including both full190-scenario suites and both isolated
+offline jobs. Signed native41885250652 PASS. Exact-source raw logs are in ci/.
+The corrected local Guidance driver also passes16 profiles/160 samples, identical
+compared states, all geometry/input/save assertions and negative controls.
+Anonymous exact/latest APK downloads match the signed artifact. Published tag,
+checksum and production native updater policy accept0.2.91 for previous0.2.82.
+[Final receipt](../qa/all-updates-release-20261104/release.json).
 
-Next: repair historical harness compatibility, validate combined source, push
-reviewable release branch and run CI/native acceptance before publication.
+Automated release delivery is complete. Phone battery/thermal, exact WebView60,
+TalkBack and human review remain unverified. Earlier candidate/checkpoint history
+follows; pending/failed statuses below describe those earlier checkpoints.
+
+Final cleanup: exact task-owned mobile/www and validation-evidence/all-updates-release-20261104
+were verified disposable, with no links/worktrees/deliverables or active helpers.
+Both native PowerShell cleanup attempts were rejected with only "blocked by policy".
+No supported escalation exists under approval policy never; no alternate deletion
+route was used. Both folders remain. Exact paths and checks are in
+[staging cleanup](../qa/all-updates-release-20261104/cleanup.json) and
+[temporary cleanup](../qa/all-updates-release-20261104/temporary-cleanup.json).
+Final APK/build evidence and this checkout are retained as deliverables.
 
 Temporary ownership: ignored validation-evidence/all-updates-release-20261104
 and mobile/www in this isolated checkout hold disposable scripts/staging/tests.
@@ -118,3 +131,16 @@ PR full41875209044 independently failed the same Farm HP comparison (second
 profile,20 samples); no other positive regression failed in either full run.
 Local corrected driver has passed the smallest normal/200%-text comparisons;
 remaining profiles continue while the exact-head remote validation restarts.
+
+Final native candidate0.2.91 PASS: package/signing, exact game assets, both
+save slots/UID/origin/paid work, real navigation/appearance, native updater
+cancellation/refusal/restart/tamper/installer cancellation/approved install.
+The updater probe uses candidate code and downloads official0.2.82; it is not
+an actual old82→91 or physical-phone test. APK7102612bytes, SHA256
+de20f5c40eafb2ebd17a98022a3563a18f82d732b5a1c0913dfb831a7e45512d.
+Downloaded artifact13350534292 ZIP digest46ea7dcaea0eb8073bc308f190a9dcd6c3521a8777b95d81f321974c19e359d8
+verified before extraction. Native receipts/screenshots/compressed raw logs:
+../qa/all-updates-release-20261104/native-1000091/.
+Verified APK: ../builds/all-updates-release-20261104/verified-1000091/Lumenfall.apk
+(workspace-relative path outside this checkout). Public release remains held
+until both complete suites and the remaining focused workflows succeed.

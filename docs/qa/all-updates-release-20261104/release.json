@@ -1,0 +1,273 @@
+{
+  "status": "published; anonymous downloads and in-game update discovery PASS",
+  "sourceCommit": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+  "sourceHtmlSha256": "1173423bdb0d899616bd3a77b4f3931d8bcde5f5b67d90209f27a1b01f2e65e4",
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000091",
+  "tag": "android-1000091",
+  "versionName": "0.2.91",
+  "versionCode": 1000091,
+  "package": "com.lumenfall.app",
+  "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+  "apkSha256": "de20f5c40eafb2ebd17a98022a3563a18f82d732b5a1c0913dfb831a7e45512d",
+  "bytes": 7102612,
+  "apk": "https://github.com/xariib/Lumenfall/releases/download/android-1000091/Lumenfall.apk",
+  "stableDownload": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+  "nativeRun": "https://github.com/xariib/Lumenfall/actions/runs/41885250652",
+  "nativeUpgrade": "PASS",
+  "nativeUpdater": "PASS",
+  "ci": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "event": "pull_request",
+      "id": 41885193558,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193558",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767658758,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success"
+        },
+        {
+          "id": 126767659111,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41885193411,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193411",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657911,
+          "name": "comet",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41885193372,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193372",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657076,
+          "name": "forge",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41885193429,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193429",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657329,
+          "name": "timed-slot-speed",
+          "conclusion": "success"
+        },
+        {
+          "id": 126767657931,
+          "name": "lab",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "event": "pull_request",
+      "id": 41885193419,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193419",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767657570,
+          "name": "shared-ui",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "event": "pull_request",
+      "id": 41885193425,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193425",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767658114,
+          "name": "tree",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "event": "pull_request",
+      "id": 41885193462,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885193462",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767658443,
+          "name": "focused",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "pre-merge-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885265852,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885265852",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767913902,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success"
+        },
+        {
+          "id": 126767914121,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885272294,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885272294",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767932354,
+          "name": "comet",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885277255,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885277255",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767954313,
+          "name": "forge",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885283686,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885283686",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767976230,
+          "name": "timed-slot-speed",
+          "conclusion": "success"
+        },
+        {
+          "id": 126767976432,
+          "name": "lab",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41885289623,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885289623",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126767993952,
+          "name": "shared-ui",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "event": "workflow_dispatch",
+      "id": 41885294645,
+      "head": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41885294645",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126768012034,
+          "name": "tree",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "publication": "Exact signed/installed CI artifact, promoted from a complete draft after integrated release gates; no rebuild",
+  "openAcceptance": [
+    "Physical phone battery/thermal",
+    "Exact WebView60 DOM",
+    "TalkBack",
+    "Human visual/performance review"
+  ],
+  "tagTarget": "237fa92876b23c495fb1a4958c83105fdf6c5f15",
+  "publicDownloads": [
+    {
+      "name": "exact",
+      "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000091/Lumenfall.apk",
+      "status": "PASS",
+      "bytes": 7102612,
+      "sha256": "de20f5c40eafb2ebd17a98022a3563a18f82d732b5a1c0913dfb831a7e45512d",
+      "authenticated": false,
+      "verifiedAt": "2026-11-04T19:25:09.117Z"
+    },
+    {
+      "name": "latest",
+      "url": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+      "status": "PASS",
+      "bytes": 7102612,
+      "sha256": "de20f5c40eafb2ebd17a98022a3563a18f82d732b5a1c0913dfb831a7e45512d",
+      "authenticated": false,
+      "verifiedAt": "2026-11-04T19:25:10.339Z"
+    }
+  ],
+  "updateDiscovery": {
+    "status": "PASS",
+    "authenticated": false,
+    "releaseApi": "https://api.github.com/repos/xariib/Lumenfall/releases/latest",
+    "previousVersionCode": 1000082,
+    "availableVersionCode": 1000091,
+    "productionJavaPolicy": "PASS",
+    "apkAndChecksumPresent": true,
+    "checksumMatchesVerifiedApk": true
+  }
+}
