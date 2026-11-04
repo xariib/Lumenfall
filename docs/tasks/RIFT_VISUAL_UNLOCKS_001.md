@@ -62,7 +62,7 @@ the parent; only the new default riftLook preference is added. Existing referenc
 kill/Ascend/Prism counts are unchanged; source/complete-state hashes rebound.
 
 Files: index.html; new rift-visual-unlocks.cjs and rift-visual-parity.cjs; intentional
-Rift ordering assertion; Shared UI CI step; task; offline source binding pending.
+Rift ordering/migration assertions; Shared UI CI step; task; offline source binding.
 Durable [local evidence](../qa/rift-visual-unlocks-001/local.json),
 [four-window parity](../qa/rift-visual-unlocks-001/parity.json), compressed raw
 receipts and screenshots in the same directory. Feature commit3c97817 pushed.
@@ -71,7 +71,7 @@ GitHub connector cannot dispatch workflows; scoped GitHub API requests using the
 same existing Git authentication work. Nonpublishing Android run41820149302 on
 3c97817 is building; no claim of final integrated acceptance yet.
 
-PR35 opened; tested head762c0667. Required CI found one historical Forge migration
+PR35 opened; migration fix pushed at b7ea8a98. Required CI found one historical Forge migration
 assertion expected no new fields. It now adds the exact default riftLook to the
 expected old save, still comparing every original field and paid project; the
 full Forge pacing suite with negative controls passes locally. No product change.
@@ -80,6 +80,6 @@ old APK's cold restart, before candidate installation. Identity/assets/startup
 passed. Raw failure archive retained; retry of the same job requested. No claim
 that device acceptance passed, and no acceptance gate removed.
 
-Next: push migration assertion/evidence fix, pass all required CI, integrate
+Next: pass all required CI, integrate
 and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.

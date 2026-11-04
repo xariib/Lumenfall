@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+4 November: [Rift visual unlocks/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md): seven full
+backgrounds with Live/Still control, three Wisp design sets, six enemy appearances,
+clearer attacks, regen below the party and a gold active Rift dot. Local mobile,
+persistence, layout and four-window gameplay parity checks PASS. Required CI,
+main integration and signed Android delivery pending. [Evidence](qa/rift-visual-unlocks-001/local.json).
+No gameplay/reward changes; physical phone/WebView60/TalkBack review remains open.
+
 2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
 [Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
 source e13c7669. Automatic checks, verified downloads and Android approval. Seven
