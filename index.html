@@ -14454,20 +14454,21 @@ function init(){
     beginReturn(dailyRolled);
   }
   initAppUpdater();
-  var liveTickTimer=null,autosaveTimer=null;
+  var liveTickTimer=null,autosaveTimer=null,autosaveDue=false;
   function syncForegroundTimers(){
     if(document.hidden){
       if(liveTickTimer!==null)clearInterval(liveTickTimer);
       if(autosaveTimer!==null)clearInterval(autosaveTimer);
-      liveTickTimer=autosaveTimer=null;
+      liveTickTimer=autosaveTimer=null;autosaveDue=false;
       if(dailyRenderTimer){clearTimeout(dailyRenderTimer);dailyRenderTimer=null;}
       return;
     }
-    if(liveTickTimer===null)liveTickTimer=setInterval(function(){tick();},TICK_MS);
-    // Save still settles the monotonic clock, without an extra complete UI tick.
-    if(autosaveTimer===null)autosaveTimer=setInterval(function(){
-      if(!document.hidden && !offlineCatchup && !offlinePending && !resumeFlowBusy && !resetInProgress && !reloadInProgress && flushLiveProgress())saveState();
-    },5000);
+    if(liveTickTimer===null)liveTickTimer=setInterval(function(){
+      if(tick()===true && autosaveDue){autosaveDue=false;saveState();}
+    },TICK_MS);
+    // The next ordinary tick settles time AND presents its committed events
+    // before saving. A separate silent simulation could swallow Study/Deed UI.
+    if(autosaveTimer===null)autosaveTimer=setInterval(function(){autosaveDue=true;},5000);
   }
   syncForegroundTimers();
   document.addEventListener('visibilitychange',syncForegroundTimers);

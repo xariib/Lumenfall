@@ -1,8 +1,10 @@
 {
   "status": "pass",
   "baseline": false,
-  "checks": 45,
-  "sourceSha256": "2e28d6e6277cfa3b3361d203aef8ee798416874fe6d26152ec5201b7b0a1e13d",
+  "mutant": false,
+  "autosaveMutant": false,
+  "checks": 46,
+  "sourceSha256": "006aca8b9e2ba11370beab88357324b8da694f94e7fb849690b966947398c5b1",
   "browser": {
     "protocolVersion": "1.3",
     "product": "Chrome/156.0.8078.80",
@@ -19,19 +21,19 @@
         "checkAffordability": 50,
         "renderDaily": 10
       },
-      "mutations": 952,
+      "mutations": 953,
       "starDraws": 0,
       "timerWakes": 51,
       "overlay": null,
       "depth": 21,
       "kills": 10,
-      "remaining": 994.6145,
+      "remaining": 994.661599999994,
       "errors": [],
-      "taskMs": 427.597,
-      "scriptMs": 128.548,
+      "taskMs": 399.57799999999986,
+      "scriptMs": 119.59499999999998,
       "layoutCount": 46,
-      "layoutMs": 17.905000000000005,
-      "measuredMs": 5001.183999993373
+      "layoutMs": 17.047000000000008,
+      "measuredMs": 5002.551999990828
     },
     {
       "tab": "spirits",
@@ -41,19 +43,19 @@
         "renderDaily": 10,
         "checkAffordability": 50
       },
-      "mutations": 2458,
+      "mutations": 2431,
       "starDraws": 0,
       "timerWakes": 51,
       "overlay": null,
       "depth": 21,
       "kills": 10,
-      "remaining": 994.5472999999821,
+      "remaining": 994.5776999999881,
       "errors": [],
-      "taskMs": 470.63199999999995,
-      "scriptMs": 196.60799999999995,
-      "layoutCount": 24,
-      "layoutMs": 99.08099999999997,
-      "measuredMs": 5006.282000016654
+      "taskMs": 415.702,
+      "scriptMs": 182.34100000000004,
+      "layoutCount": 20,
+      "layoutMs": 85.119,
+      "measuredMs": 5000.57299999753
     },
     {
       "tab": "research",
@@ -68,45 +70,45 @@
       "overlay": null,
       "depth": 21,
       "kills": 10,
-      "remaining": 994.5380999999941,
+      "remaining": 994.5782000000179,
       "errors": [],
-      "taskMs": 194.8289999999997,
-      "scriptMs": 106.56600000000005,
-      "layoutCount": 31,
-      "layoutMs": 5.027000000000004,
-      "measuredMs": 5001.613000000361
+      "taskMs": 168.25600000000017,
+      "scriptMs": 86.42399999999995,
+      "layoutCount": 32,
+      "layoutMs": 4.896999999999984,
+      "measuredMs": 5002.504000003682
     },
     {
       "tab": "deeds",
       "calls": {
-        "tick": 50,
-        "renderDaily": 10,
-        "checkAffordability": 50
+        "tick": 51,
+        "renderDaily": 11,
+        "checkAffordability": 51
       },
-      "mutations": 246,
+      "mutations": 273,
       "starDraws": 0,
-      "timerWakes": 51,
+      "timerWakes": 52,
       "overlay": null,
       "depth": 21,
-      "kills": 10,
-      "remaining": 994.555900000006,
+      "kills": 11,
+      "remaining": 994.4957000000179,
       "errors": [],
-      "taskMs": 109.47500000000021,
-      "scriptMs": 64.58500000000001,
-      "layoutCount": 18,
-      "layoutMs": 5.954999999999988,
-      "measuredMs": 5001.4179999998305
+      "taskMs": 116.85599999999985,
+      "scriptMs": 65.68000000000008,
+      "layoutCount": 21,
+      "layoutMs": 7.899000000000045,
+      "measuredMs": 5006.706999993185
     }
   ],
   "hidden": {
     "calls": {},
-    "mutations": 393,
+    "mutations": 381,
     "starDraws": 0,
     "timerWakes": 0,
     "overlay": null,
     "depth": 21,
     "kills": 0,
-    "remaining": 999.9997000000179,
+    "remaining": 999.9995999999941,
     "errors": []
   },
   "resumed": {
@@ -116,13 +118,13 @@
       "checkAffordability": 11,
       "renderDaily": 2
     },
-    "mutations": 189,
+    "mutations": 191,
     "starDraws": 0,
     "timerWakes": 11,
     "overlay": null,
     "depth": 21,
     "kills": 5,
-    "remaining": 997.2346000000239,
+    "remaining": 997.2321000000238,
     "errors": []
   }
 }

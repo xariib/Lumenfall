@@ -5,9 +5,10 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http');
 const {spawn,spawnSync}=require('node:child_process'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'validation-evidence/mobile-power');
-const baseline=process.argv.includes('--baseline'),mutant=process.argv.includes('--mutate-hidden-loop');
+const baseline=process.argv.includes('--baseline'),mutant=process.argv.includes('--mutate-hidden-loop'),autosaveMutant=process.argv.includes('--mutate-autosave-simulation');
 let source=fs.readFileSync(file,'utf8');
 if(mutant){const stop='if(liveTickTimer!==null)clearInterval(liveTickTimer);';assert.equal(source.split(stop).length,2);source=source.replace(stop,'/* injected missing suspension */');}
+if(autosaveMutant){const save='function(){autosaveDue=true;}';assert.equal(source.split(save).length,2);source=source.replace(save,'function(){if(flushLiveProgress()===true)saveState();}');}
 const bridge=String.raw`
 window.powerQa={
  evaluate:function(code){return eval(code);},
@@ -35,7 +36,9 @@ window.powerQa={
 };`;
 const prelude=String.raw`<script>
 window.powerErrors=[];window.powerStarDraws=0;
-window.powerTimerWakes=0;var nativeInterval=window.setInterval;window.setInterval=function(callback,ms){return nativeInterval(function(){powerTimerWakes++;callback();},ms);};
+window.powerTimerWakes=0;window.powerIntervals=[];var nativeInterval=window.setInterval,nativeClearInterval=window.clearInterval;
+window.setInterval=function(callback,ms){var record={callback:callback,ms:ms,active:true};record.id=nativeInterval(function(){powerTimerWakes++;callback();},ms);powerIntervals.push(record);return record.id;};
+window.clearInterval=function(id){powerIntervals.forEach(function(r){if(r.id===id)r.active=false;});nativeClearInterval(id);};
 addEventListener('error',function(e){powerErrors.push(e.message);});addEventListener('unhandledrejection',function(e){powerErrors.push(String(e.reason));});
 var oldClear=CanvasRenderingContext2D.prototype.clearRect;CanvasRenderingContext2D.prototype.clearRect=function(){if(this.canvas.id==='stars')powerStarDraws++;return oldClear.apply(this,arguments);};
 localStorage.setItem('lumenfall_startup_intro_last',String(Date.now()));
@@ -62,8 +65,8 @@ async function main(){
   await send('Page.enable');await send('Performance.enable');await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:2,mobile:true});
   await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/'});
   const deadline=Date.now()+20000;while(!(await ev('!!window.powerQa && powerQa.evaluate("!!els.toast && !startupIntroPlaying && !resumeFlowBusy")'))){assert(Date.now()<deadline,'startup timeout');await pause(100);}
-  await ev('powerQa.watch()');
-  for(const tabName of ['battle','spirits','research','deeds']){
+  await ev('powerQa.seed("battle");powerQa.watch()');
+  for(const tabName of (process.argv.includes('--quick')?[]:['battle','spirits','research','deeds'])){
    await ev('powerQa.seed('+JSON.stringify(tabName)+')');await pause(500);await ev('powerQa.reset()');const before=await metrics();
    await pause(5000);const after=await metrics(),sample=await ev('powerQa.sample()');
    ok(sample.errors.length===0,'no runtime errors '+tabName);ok(sample.remaining<995,'real timed study advances '+tabName);ok(!sample.overlay,'benchmark is unobstructed gameplay '+tabName);
@@ -75,14 +78,21 @@ async function main(){
   for(const tabName of ['battle','spirits','forge','research','ascend','deeds']){
    await ev('powerQa.evaluate("activateTab(\\"'+tabName+'\\")")');
    ok(await ev('document.querySelector("#tab-'+tabName+'").classList.contains("active")'),'navigation '+tabName);
-   if(!baseline)ok(await ev('powerQa.evaluate('+JSON.stringify(`(function(){var panel=document.getElementById('tab-${tabName}');function prices(){return Array.from(panel.querySelectorAll('button,[data-price-currency]')).map(function(el){return [el.getAttribute('data-price-currency'),el.getAttribute('data-price-amount'),el.style.color,el.disabled,el.getAttribute('data-state'),el.getAttribute('aria-disabled'),el.className];});}var before=JSON.stringify(prices());renderAll();return before===JSON.stringify(prices());})()`)+')'),'navigation has current prices and purchase states '+tabName);
+   if(!baseline){
+    const prices=await ev('powerQa.evaluate('+JSON.stringify(`(function(){activateTab('${tabName}');var panel=document.getElementById('tab-${tabName}');function prices(){return Array.from(panel.querySelectorAll('button,[data-price-currency]')).map(function(el){return [el.getAttribute('data-price-currency'),el.getAttribute('data-price-amount'),el.style.color,el.disabled,el.getAttribute('data-state'),el.getAttribute('aria-disabled'),el.className];});}var before=prices();renderAll();var after=prices();return {same:JSON.stringify(before)===JSON.stringify(after),differences:before.map(function(row,i){return JSON.stringify(row)===JSON.stringify(after[i])?null:{before:row,after:after[i]};}).filter(Boolean)};})()`)+')');
+    ok(prices.same,'navigation has current prices and purchase states '+tabName+' '+JSON.stringify(prices.differences));
+   }
   }
   if(!baseline){
+   await ev('powerQa.seed("research")');
+   ok(await ev('powerQa.evaluate('+JSON.stringify(`(function(){state.activeStudies[0].remainingSec=.01;resetLiveClock();liveClockMemo.monoMs-=30;var save=powerIntervals.filter(function(r){return r.active&&r.ms===5000;}).pop(),loop=powerIntervals.filter(function(r){return r.active&&r.ms===TICK_MS;}).pop();save.callback();loop.callback();return !state.activeStudies.length&&state.longStudyLevels.guardmastery===1&&!document.querySelector('[data-running-study="guardmastery"]')&&JSON.parse(localStorage.getItem(SAVE_KEY)).longStudyLevels.guardmastery===1&&els.toast.textContent.indexOf('Study complete:')===0;})()`)+')'),'autosave boundary preserves Study completion presentation and committed save');
+   await ev('powerQa.seed("battle")');
    await ev('powerQa.evaluate("activateTab(\\"battle\\");openSettings();");powerQa.reset()');await pause(500);
    ok(!(await ev('powerQa.sample()')).calls.updateBattleFast,'covered Rift has no recurring renders');
    ok(await ev('getComputedStyle(document.querySelector(".creature-art")).animationPlayState')==='paused','covered battle animation paused');
    await ev('powerQa.evaluate("closeSettings();")');
    await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+   await ev('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
    ok(await ev('powerQa.evaluate('+JSON.stringify(`(function(){renderAll();var hp=document.getElementById('hp-fill'),hpRatio=Amount.ratio(state.enemyHp,state.enemyMaxHp),bar=hp.parentElement;return Math.abs(hp.getBoundingClientRect().width/bar.clientWidth-hpRatio)<.01 && getComputedStyle(hp).transitionProperty.indexOf('width')===-1;})()`)+')'),'HP visual fraction matches authoritative HP without layout animation');
   }
   await ev('powerQa.seed("battle");powerQa.hidden(true);powerQa.reset()');const hiddenBefore=await ev('powerQa.sample()');await pause(1300);const hiddenAfter=await ev('powerQa.sample()');
@@ -96,8 +106,8 @@ async function main(){
   if(!baseline)ok(resumed.timerWakes>=8&&resumed.timerWakes<=14,'one tick loop after repeated resumes');
   ok(resumed.errors.length===0,'lifecycle has no runtime errors');
   const screenshot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,'rift.png'),Buffer.from(screenshot.data,'base64'));
-  report={status:'pass',baseline,mutant,checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),browser:await send('Browser.getVersion',{},null),records,hidden:hiddenAfter,resumed};
- }catch(error){report={status:'fail',baseline,mutant,checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),error:error.stack,records};process.exitCode=1;}
+  report={status:'pass',baseline,mutant,autosaveMutant,checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),browser:await send('Browser.getVersion',{},null),records,hidden:hiddenAfter,resumed};
+ }catch(error){report={status:'fail',baseline,mutant,autosaveMutant,checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),error:error.stack,records};process.exitCode=1;}
  finally{
   if(browser&&!closed){try{await send('Browser.close',{},null);}catch{}await Promise.race([completion,pause(15000)]);}
   await new Promise(resolve=>server.close(resolve));

@@ -38,23 +38,24 @@ Implementation: hidden-panel work is deferred to navigation; affordable controls
 refresh immediately on entry and at 500 ms while visible. Battle HP/charge remain
 at the original 100 ms cadence; other encounter details refresh at 500 ms or an
 enemy change. Wisp rebuilds coalesce at 500 ms. Autosave settles the existing
-monotonic clock without another full UI tick. Both intervals are cancelled while
+ordinary tick before saving, preserving completion presentation without a second
+simulation. Both intervals are cancelled while
 hidden and restarted once. Covered arenas pause animation/VFX/rendering while
 visible hint contents and Lab editors stay live. Ambient stars and notification
 dots are static; combat, all selected Live scenes and Still/reduced motion remain.
 HP/charge/Lab fills use transforms; their accessible values are unchanged. This
 follows [browser animation guidance](https://web.dev/articles/animations-guide).
 
-Product SHA256: `2e28d6e6277cfa3b3361d203aef8ee798416874fe6d26152ec5201b7b0a1e13d`.
+Product SHA256: `006aca8b9e2ba11370beab88357324b8da694f94e7fb849690b966947398c5b1`.
 Browser: Brave/Chromium 156, Windows, Node24.20; independent gameplay replay uses
 CI's Node24.19. Full task/checkpoint context and source syntax PASS.
 
 Measured 5-second unobstructed Farm21 windows with real timers, 390x844/DPR2,
 same fixture, baseline before candidate (no concurrent benchmark workloads):
-Rift main-thread 1086→428 ms, Wisps715→471, Lab561→195, Deeds538→109.
-DOM mutations: 8994→952,8568→2458,8497→813,7219→246. Ten kills in each final
+Rift main-thread 1086→400 ms, Wisps715→416, Lab561→168, Deeds538→117.
+DOM mutations: 8994→953,8568→2431,8497→813,7219→273. Ten kills in each final
 candidate window; hidden intervals/canvas paints zero; one tick loop after three
-resumes. 45 browser assertions PASS, including current prices on navigation,
+resumes. 46 browser assertions PASS, including current prices on navigation,
 paid timer continuity, pause/resume, covered combat and actual bar geometry.
 These are workload reductions, not measured phone energy/temperature claims.
 Earlier exploratory receipts with a covered battle are not performance evidence.
@@ -80,8 +81,21 @@ all gameplay fields/rewards and all four accepted state hashes are unchanged.
 Only the golden's source binding changed; expected outcomes were not regenerated
 from bulk execution. [Replay receipt](../qa/mobile-power-001/parity.json).
 
-Implementation pushed as `f0a8117`; non-publishing signed Android workflow
-[41851037992](https://github.com/xariib/Lumenfall/actions/runs/41851037992) running.
-Next: finish causal background control and required CI; integrate only after
-gates, then verify/publish the signed Android update. Physical phone thermal,
-battery, exact WebView60 and TalkBack review remain open.
+[PR37](https://github.com/xariib/Lumenfall/pull/37) is open. Self-review found a
+Study completion presentation edge in the silent autosave; saving now follows
+the ordinary tick. Positive and injected-old-autosave browser checks confirm it.
+Price navigation checks run atomically so live wallet changes cannot race their
+comparison. Node24.19 full parity rerun is in progress for the final source;
+expected state/reward hashes remain unchanged, only source binding changes.
+
+Non-publishing Android [41851037992](https://github.com/xariib/Lumenfall/actions/runs/41851037992)
+passed signing/assets/runtime and save upgrade, then failed the first native
+Rift navigation assertion (stored25, expected24). No navigation evidence existed;
+the harness now waits for the panel's actual entrance animation and records
+centered trusted input plus resulting save before every assertion. No retry or
+acceptance waiver. Shared UI failed a racy price assertion on e3f8bd9; corrected
+atomic navigation check passes locally. Required CI/Android must rerun.
+
+Next: finish full parity, push corrections, inspect required CI/native evidence;
+integrate after gates, then verify/publish the signed Android update. Physical
+phone thermal, battery, exact WebView60 and TalkBack review remain open.
