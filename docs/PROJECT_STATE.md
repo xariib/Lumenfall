@@ -1,11 +1,8 @@
 # Lumenfall — current delivery status
 
-4 November: [Rift visual unlocks/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md): seven full
-backgrounds with Live/Still control, three Wisp design sets, six enemy appearances,
-clearer attacks, regen below the party and a gold active Rift dot. Local mobile,
-persistence, layout and four-window gameplay parity checks PASS. Required CI,
-main integration and signed Android delivery pending. [Evidence](qa/rift-visual-unlocks-001/local.json).
-No gameplay/reward changes; physical phone/WebView60/TalkBack review remains open.
+4 November: [Rift visuals/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md): full backgrounds,
+Wisp/enemy appearances, clearer attacks and gold nav dot. Local checks/parity PASS;
+CI, integration and Android delivery pending. Device limits remain open.
 
 2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
 [Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
@@ -117,24 +114,17 @@ The task retains exact versions/checksums/artifacts and earlier run24 failures.
 Phone/WebView60/TalkBack/human acceptance remains open; its 200%-text hint
 readability finding was addressed separately in RIFT_HINT_READABILITY_002 above.
 
-21 October: [Wisp action hierarchy](tasks/WISP_ACTION_HIERARCHY_001.md)
-integrated via PR3/PR4. Six gates/full validation and installed Android0.2.21
-upgrade passed: both saves, UID/origin, paid progression, legacy purchases,
-320px cards and native Ability touch/focus retained. No publication.
-[Exact build/evidence](https://github.com/xariib/Lumenfall/actions/runs/39559404175).
-Physical phone/WebView60/TalkBack/human acceptance remain open; detailed hashes
-and requirements remain in the linked task and historical Git revisions.
+21 October: [Wisp hierarchy/PR3–4](tasks/WISP_ACTION_HIERARCHY_001.md): six gates,
+signed0.2.21 upgrade, save/paid-work preservation and native Ability input PASS.
+[Build/evidence](https://github.com/xariib/Lumenfall/actions/runs/39559404175).
+No publication; device/human acceptance open.
 
-16 October 2026: combined endless-progression game released in xariib/Lumenfall as
-[Android 0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014), versionCode1000014.
+16 October: [Endless Android0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014),
+`de1338cd`/1000014: six gates, signed API31/WebView91 upgrade and public bytes PASS.
+Both histories, saves, paid work, legacy purchases and identity retained.
 [Download latest APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk); existing players install as an update without
 uninstalling. [Completed migration](tasks/REPOSITORY_MIGRATION_001.md) and
 [final identity/save/download evidence](qa/repository-migration-001/release/).
-
-Released source `de1338cd` preserves both selected and destination histories.
-Six exact-main workflows/both full jobs, installed Android12/API31/WebView91
-upgrade and anonymous exact-byte download passed. Package/certificate/origin,
-both saves, paid work and legacy purchases retained.
 [Product preservation proof](qa/repository-migration-001/product-preservation.json).
 
 Original requirements and earlier evidence remain in [Endless task](tasks/ENDLESS_PROGRESSION_001.md),
