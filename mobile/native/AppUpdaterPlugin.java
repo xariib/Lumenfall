@@ -67,15 +67,26 @@ public class AppUpdaterPlugin extends Plugin {
         }
         return result;
     }
-    private interface Work { void run() throws Exception; }
+    private interface Work { Runnable run() throws Exception; }
     private void run(PluginCall call, Work work) {
         if (!busy.compareAndSet(false, true)) { call.reject("An update operation is already running."); return; }
         cancelled = false;
         worker.execute(() -> {
-            try { work.run(); }
-            catch (Exception e) { call.reject(cancelled ? "Download cancelled." : message(e)); }
+            Runnable completion;
+            try { completion = work.run(); }
+            catch (Exception e) {
+                String error = cancelled ? "Download cancelled." : message(e);
+                completion = () -> call.reject(error);
+            }
             finally { busy.set(false); }
+            // Release the operation only after cleanup, before JS can request
+            // installation/retry from the resolved or rejected promise.
+            completion.run();
         });
+    }
+    private Runnable resolveState(PluginCall call) throws Exception {
+        JSObject result = state();
+        return () -> call.resolve(result);
     }
     private String message(Exception e) {
         return e instanceof IllegalArgumentException || e instanceof IOException ? e.getMessage() :
@@ -125,13 +136,13 @@ public class AppUpdaterPlugin extends Plugin {
         } finally { c.disconnect(); connection = null; }
     }
 
-    @PluginMethod public void getState(PluginCall call) { run(call, () -> call.resolve(state())); }
+    @PluginMethod public void getState(PluginCall call) { run(call, () -> resolveState(call)); }
 
     @PluginMethod public void check(PluginCall call) {
         run(call, () -> {
             long now = System.currentTimeMillis(), checked = prefs().getLong("checked", 0), installedCode = version(installed());
             if (UpdatePolicy.useCachedCheck(call.getBoolean("force", false), now, checked, installedCode, prefs().getLong("checkedVersion", 0))) {
-                call.resolve(state()); return;
+                return resolveState(call);
             }
             JSONObject release = new JSONObject(text(UpdatePolicy.RELEASES, true, 1024 * 1024));
             if (release.getBoolean("draft") || release.getBoolean("prerelease")) throw new IOException("No stable update is available.");
@@ -139,7 +150,7 @@ public class AppUpdaterPlugin extends Plugin {
             long code = UpdatePolicy.releaseCode(tag);
             if (code <= version(installed())) {
                 prefs().edit().remove("release").remove("ready").putLong("checked", now).putLong("checkedVersion", installedCode).apply();
-                apk().delete(); call.resolve(state()); return;
+                apk().delete(); return resolveState(call);
             }
             JSONObject binary = null, checksum = null;
             JSONArray assets = release.getJSONArray("assets");
@@ -162,7 +173,7 @@ public class AppUpdaterPlugin extends Plugin {
                 prefs().edit().remove("ready").apply(); apk().delete();
             }
             prefs().edit().putString("release", data.toString()).putLong("checked", now).putLong("checkedVersion", installedCode).apply();
-            call.resolve(state());
+            return resolveState(call);
         });
     }
 
@@ -229,7 +240,7 @@ public class AppUpdaterPlugin extends Plugin {
                 if (cancelled) throw new IOException("Download cancelled.");
                 if (!partial.renameTo(apk())) throw new IOException("Cannot save the verified update.");
                 prefs().edit().putString("ready", release.toString()).commit();
-                call.resolve(state());
+                return resolveState(call);
             } finally {
                 if (c != null) c.disconnect(); connection = null; partial.delete();
             }
@@ -247,7 +258,7 @@ public class AppUpdaterPlugin extends Plugin {
             if (release == null || !prefs().getString("ready", "").equals(release.toString())) throw new IOException("Download the update first.");
             try { verify(apk(), release); }
             catch (Exception e) { prefs().edit().remove("ready").apply(); apk().delete(); throw e; }
-            getActivity().runOnUiThread(() -> {
+            return () -> getActivity().runOnUiThread(() -> {
                 try {
                     if (Build.VERSION.SDK_INT >= 26 && !getContext().getPackageManager().canRequestPackageInstalls()) {
                         if (!allowSettings) { call.reject("Installation was not allowed. You can retry from Settings."); return; }

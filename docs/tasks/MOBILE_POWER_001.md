@@ -153,3 +153,11 @@ transition before the atomic visual/state comparison, retaining the original
 fraction and no-width-animation assertions. Product source is unchanged.
 Integrate the helper and geometry fix in PR37, require all gates, then run
 the six exact-main release gates before publication.
+
+QA Android41860940147 (9fb689b) passes upgrade/navigation/cancel, then exposes
+a native race: download resolves before its finally/operation lock releases;
+immediate install is rejected as already running (captured native log).
+AppUpdaterPlugin now returns a completion callback from worker actions, releases
+the lock after cleanup, then notifies JS/opens Android UI. Success/error/cancel
+ordering and concurrent rejection are exercised from the production Java gate,
+including an injected late-release causal failure. Native acceptance must rerun.
