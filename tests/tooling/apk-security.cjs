@@ -12,7 +12,7 @@ const xml=`N: android=http://schemas.android.com/apk/res/android
         A: android:name(0x01010003)="com.lumenfall.app.MainActivity"
         A: android:exported(0x01010010)=(type 0x12)0xffffffff
 `;
-const config={appId:'com.lumenfall.app'},names=['classes.dex','assets/capacitor.config.json'];
+const config={appId:'com.lumenfall.app',android:{webContentsDebuggingEnabled:false}},names=['classes.dex','assets/capacitor.config.json'];
 assert.equal(inspect(parseManifest(xml),config,names).status,'PASS');
 const bad=(text=xml,c=config,n=names)=>assert.equal(inspect(parseManifest(text),c,n).status,'FAIL');
 bad(xml.replace('0x0\n','0xffffffff\n'));
@@ -26,6 +26,7 @@ bad(xml+'    E: instrumentation (line=20)\n');
 bad(xml,{...config,server:{url:'https://example.com'}});
 bad(xml,{...config,server:{allowNavigation:['*']}});
 bad(xml,{...config,android:{webContentsDebuggingEnabled:true}});
+bad(xml,{appId:'com.lumenfall.app'});
 bad(xml,{...config,android:{allowMixedContent:true}});
 bad(xml,config,[...names,'assets/key.keystore']);
 bad(xml,config,[...names,'assets/other.apk']);
@@ -36,5 +37,7 @@ const workflow=fs.readFileSync('.github/workflows/build-android.yml','utf8');
 assert(workflow.includes('./gradlew assembleRelease assembleReleaseAndroidTest'));
 assert(workflow.includes('outputs/apk/release/app-release.apk Lumenfall.apk'));
 assert(workflow.includes('verify_apk_security.cjs Lumenfall.apk'));
+assert(workflow.includes('target: google_apis_playstore'),'Normal launch must be checked on a retail OS image');
+assert.equal(JSON.parse(fs.readFileSync('mobile/capacitor.config.json')).android.webContentsDebuggingEnabled,false);
 assert(!/path:\s*\|[^]*?release-probe\.apk/.test(workflow),'CI-only instrumentation must not be uploaded');
 console.log('PASS: production config, negative permission/debug/export/origin cases, patched dependency and release wiring');

@@ -60,6 +60,16 @@ Other emulator instances are excluded. No successful local installation claimed.
 Next: native build/existing CI gates, inspect production APK and normal launch,
 actual local installation comparison when available, exact-hash appeal package.
 
+First native attempts:41905663980 failed CLI tar default-import compatibility;
+fixed in0e8532bb. Run41905985978 built signed production0.2.93 and passed static
+artifact/security checks, exact-APK old-save upgrade and actual updater tests
+(including tamper/cancel/system approval). Final no-debug-socket check failed on
+the userdebug Android image. Chromium documents that userdebug/eng images force
+WebView debugging. The check is preserved and moved to a second retail
+google_apis_playstore user image, which must report ro.debuggable=0. Explicitly
+disable WebView debugging in the app config; never ship test instrumentation.
+See [audit](../qa/play-protect-001/README.md). This remains pending validation.
+
 References: [updater requirements](IN_APP_UPDATES_001.md),
 [release receipt](../qa/all-updates-release-20261104/release.json),
 [Google guidance](https://developers.google.com/android/play-protect/warning-dev-guidance),

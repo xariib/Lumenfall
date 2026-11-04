@@ -332,10 +332,24 @@ jobs:
           script: |
             node scripts/ci/android-upgrade.cjs archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk Lumenfall.apk
             node scripts/ci/android-updater.cjs
-            node scripts/ci/verify_android_release_runtime.cjs
 
       - name: Require completed upgrade receipt for this exact APK
         run: node scripts/ci/verify_upgrade_receipt.cjs
+
+      - name: Verify normal production launch on a retail Android image
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          target: google_apis_playstore
+          arch: x86_64
+          avd-name: production-user
+          ram-size: 2048M
+          heap-size: 256M
+          disk-size: 2G
+          cores: 2
+          emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim
+          disable-animations: true
+          script: node scripts/ci/verify_android_release_runtime.cjs
 
       - name: Preserve failed native upgrade diagnostics
         if: failure()

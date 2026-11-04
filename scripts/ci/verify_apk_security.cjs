@@ -37,7 +37,7 @@ function inspect(nodes,config,entryNames) {
   check(!config.server?.url,'Remote WebView origin configured');
   check(!config.server?.cleartext,'Cleartext WebView enabled');
   check(!config.server?.allowNavigation?.length,'Remote navigation allowlist configured');
-  check(!config.android?.webContentsDebuggingEnabled,'WebView debugging enabled');
+  check(config.android?.webContentsDebuggingEnabled===false,'WebView debugging must be explicitly disabled');
   check(!config.android?.allowMixedContent,'Mixed content enabled');
   check(!entryNames.some(n=>/\.(?:apk|keystore|jks)$/i.test(n)),'Nested APK or signing key packaged');
   check(!entryNames.some(n=>/ReleaseProbe|(?:^|\/)androidTest\//.test(n)),'Native QA source packaged');

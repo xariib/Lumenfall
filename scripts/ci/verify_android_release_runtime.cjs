@@ -4,8 +4,11 @@ const pkg='com.lumenfall.app';
 const adb=(...args)=>cp.execFileSync('adb',args,{encoding:'utf8',timeout:30000});
 async function main(){
   assert.match(adb('get-serialno').trim(),/^emulator-/,'Disposable CI emulator only');
+  assert.equal(adb('shell','getprop','ro.build.type').trim(),'user','Retail system image required: userdebug WebView forces debugging on');
+  assert.equal(adb('shell','getprop','ro.debuggable').trim(),'0','Retail OS debugging must be disabled');
   adb('shell','am','force-stop',pkg);
-  assert.match(adb('uninstall',pkg+'.test'),/Success/,'Remove CI instrumentation before normal production launch');
+  if(adb('shell','pm','list','packages',pkg+'.test').includes('package:'+pkg+'.test'))
+    assert.match(adb('uninstall',pkg+'.test'),/Success/,'Remove CI instrumentation before normal production launch');
   assert.match(adb('install','-r','Lumenfall.apk'),/Success/);
   const flags=adb('shell','dumpsys','package',pkg);
   assert(!/\bDEBUGGABLE\b/.test(flags),'Installed production app is not debuggable');
@@ -21,7 +24,7 @@ async function main(){
   const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
   assert.equal(hash(bytes),hash(fs.readFileSync('Lumenfall.apk')),'Installed base APK equals final production artifact');
   fs.writeFileSync('release-evidence/production-normal-launch.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{maxBuffer:16*1024*1024,timeout:30000}));
-  fs.writeFileSync('release-evidence/production-runtime.json',JSON.stringify({status:'PASS',apkSha256:hash(bytes),debuggable:false,webViewDebuggerExposed:false,runAsRejected:true,testInstrumentationRemoved:true,normalLaunch:true,googlePlayProtect:'NOT_TESTED',physicalDevice:false},null,2)+'\n');
+  fs.writeFileSync('release-evidence/production-runtime.json',JSON.stringify({status:'PASS',apkSha256:hash(bytes),device:adb('shell','getprop','ro.build.fingerprint').trim(),systemBuildType:'user',debuggable:false,webViewDebuggerExposed:false,runAsRejected:true,testInstrumentationAbsent:true,normalLaunch:true,googlePlayProtect:'NOT_TESTED',physicalDevice:false},null,2)+'\n');
   console.log('PASS exact production APK normal launch, no debugger socket, private storage protected, no CI instrumentation');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
