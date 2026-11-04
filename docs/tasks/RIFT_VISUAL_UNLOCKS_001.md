@@ -71,6 +71,15 @@ GitHub connector cannot dispatch workflows; scoped GitHub API requests using the
 same existing Git authentication work. Nonpublishing Android run41820149302 on
 3c97817 is building; no claim of final integrated acceptance yet.
 
-Next: publish reference/evidence update and PR, pass all required CI, integrate
+PR35 opened; tested head762c0667. Required CI found one historical Forge migration
+assertion expected no new fields. It now adds the exact default riftLook to the
+expected old save, still comparing every original field and paid project; the
+full Forge pacing suite with negative controls passes locally. No product change.
+First Android run41820149302 failed when the emulator disappeared during the
+old APK's cold restart, before candidate installation. Identity/assets/startup
+passed. Raw failure archive retained; retry of the same job requested. No claim
+that device acceptance passed, and no acceptance gate removed.
+
+Next: push migration assertion/evidence fix, pass all required CI, integrate
 and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.
