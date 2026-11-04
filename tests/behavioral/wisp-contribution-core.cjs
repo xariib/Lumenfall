@@ -134,6 +134,7 @@ function preservation(html,baseline){
    });
   });
   if(Object.prototype.hasOwnProperty.call(s,'offlineClockHighWaterMs')){eq(s.offlineClockHighWaterMs,s.lastSeen,'new clock metadata retains exact historical endpoint');delete s.offlineClockHighWaterMs;}
+  if(Object.prototype.hasOwnProperty.call(s,'riftLook')){eq(s.riftLook,{backdrop:'default',wisp:'default',enemy:'default',motion:true},'exact new appearance defaults before historical comparison');delete s.riftLook;}
   delete s.farmAutoResume;delete s.schemaVersion;delete s.astralUpgrades;delete s.commandRefund;delete s.wispMastery;delete s.canonicalAutomationClock;delete s.recruitmentEntitlements;delete s.research.masterwork;delete s.researchQueue.masterwork;delete s.studyBoosts;delete s.studyBoostHours;delete s.pausedStudies;delete s.studySlotProjects;delete s.moteNextAtMs;return s;
  }
  var noMastery={};ids.forEach(function(id){noMastery[id]=0;});

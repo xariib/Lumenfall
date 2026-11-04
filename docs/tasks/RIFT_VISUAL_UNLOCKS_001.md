@@ -110,6 +110,19 @@ fixture failed: logcat records package-replacement cleanup removing its activity
 am start -W; every updater acceptance remains required. Raw third failure archive
 includes the successful upgrade receipt. Final native/CI reruns remain pending.
 
+Run41823308515 additionally passed real native Collection selection, full-field
+art, Crystal Wisp/Ancient enemy rendering, Still preference, both saved slots and
+gold dot geometry/color. Inspected installed-rift-looks.png. Updater then passed
+cancel/refusal/restart/tamper/system approval but read storage before replacement
+document commit. Its connection now requires the real game DOM/origin and storage
+readiness; final assertions remain unchanged. Fourth raw archive retained.
+
+Broader CI found two more historical state comparisons predating riftLook.
+Offline catch-up now expects its exact defaults; Auto Ascend and Wisp contribution
+verify those defaults before their frozen historical full-state comparisons.
+No original state fields/hashes/rewards removed. Auto Ascend372 checks/controls
+PASS locally; offline and Wisp preservation reruns in progress at checkpoint.
+
 Next: pass all required CI, integrate
 and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.

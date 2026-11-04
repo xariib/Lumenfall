@@ -163,6 +163,8 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Additive Lab fields are independently required to be zero/OFF on this old save.
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
+ expected=copy(expected);
+ expected.riftLook={backdrop:'default',wisp:'default',enemy:'default',motion:true};
  assert.equal(actual.offlineClockHighWaterMs,Math.max(seed.offlineClockHighWaterMs||0,actual.lastSeen),label+' exact backwards-compatible credited clock frontier');
  delete actual.offlineClockHighWaterMs;
  assert.equal(actual.farmAutoResume,expected.riftMode==='farm',label+' only a historical automatic boss retreat owns retry intent');delete actual.farmAutoResume;

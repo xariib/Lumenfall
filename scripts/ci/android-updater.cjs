@@ -8,7 +8,7 @@ let socket,nativeLogcat,stage='startup',seq=0;const pending=new Map();
 function mark(label){stage=label;console.log('Native updater QA: '+label);}
 async function until(fn,label,seconds=90){for(let i=0;i<seconds*2;i++){try{const value=await fn();if(value)return value;}catch{}await pause(500);}throw Error('Timed out: '+label);}
 async function connect(){
-  return until(async()=>{
+  await until(async()=>{
     const pid=adb('shell','pidof',pkg).trim();adb('forward','tcp:9223','localabstract:webview_devtools_remote_'+pid);
     const pages=await (await fetch('http://127.0.0.1:9223/json')).json(),page=pages.find(p=>p.type==='page'&&p.url.startsWith('https://localhost'));
     if(!page)return false;
@@ -17,6 +17,9 @@ async function connect(){
     socket.addEventListener('message',event=>{const m=JSON.parse(event.data),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}});
     return true;
   },'native WebView connection');
+  // A published DevTools URL may precede document commit after APK replacement.
+  // Require the actual game origin/DOM and accessible storage before assertions.
+  await until(()=>evaluate("document.readyState==='complete'&&location.origin==='https://localhost'&&!!document.getElementById('settings-btn')&&typeof localStorage.getItem==='function'"),'installed WebView document');
 }
 async function evaluate(expression){
   const id=++seq;

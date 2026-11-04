@@ -116,6 +116,8 @@ function endpointCases(input){
     const summary=q.advance(10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
     const endpoint=F.clone(q.get());
     const historicalEndpoint=F.clone(endpoint);
+    eq(historicalEndpoint.riftLook,{backdrop:'default',wisp:'default',enemy:'default',motion:true},'exact new appearance defaults before comparing frozen PR15 state');
+    delete historicalEndpoint.riftLook;
     for(const id of ['battletempering','arcanetempering','harvesttempering']){
       eq(historicalEndpoint.research[id],0,'new Forge enhancement stays unpurchased in PR15 oracle '+id);
       eq(historicalEndpoint.researchQueue[id],false,'new Forge enhancement queue stays OFF in PR15 oracle '+id);
