@@ -45,6 +45,15 @@ route was used. Both folders remain. Exact paths and checks are in
 [temporary cleanup](../qa/all-updates-release-20261104/temporary-cleanup.json).
 Final APK/build evidence and this checkout are retained as deliverables.
 
+Follow-up: user said "Do what's needed". Both targets were revalidated (15/130
+files, no links/worktrees/unique deliverables/running helpers), then the same
+native PowerShell commands were retried. Both were again rejected before launch
+with only "blocked by policy". No supported override or alternate route was used.
+No Android/ADB/portable-device connection was detected, and ADB was absent from
+PATH, the standard SDK location and this workspace. Physical testing therefore
+needs an accessible Android test phone. The official0.2.91 APK/checksum remain
+latest and match the release receipt. [Follow-up record](../qa/all-updates-release-20261104/cleanup-followup.json).
+
 Temporary ownership: ignored validation-evidence/all-updates-release-20261104
 and mobile/www in this isolated checkout hold disposable scripts/staging/tests.
 Durable evidence belongs in docs/qa/all-updates-release-20261104. Preserve this

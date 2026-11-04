@@ -1,0 +1,40 @@
+{
+  "activeHelpers": 0,
+  "supportedEscalation": "none: approval policy never",
+  "uniqueDeliverables": false,
+  "verifiedAt": "2026-11-04T19:48:59.9622912Z",
+  "requestedAction": "Do what's needed",
+  "physicalTesting": {
+    "deviceIdentifiersRecorded": false,
+    "adbFound": false,
+    "status": "unavailable",
+    "androidAdbOrPortableDeviceDetected": false
+  },
+  "method": "Same native PowerShell Remove-Item -LiteralPath commands under renewed user instruction",
+  "cleanup": [
+    {
+      "sourceIdentical": true,
+      "remaining": true,
+      "rejection": "blocked by policy",
+      "files": 15,
+      "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\mobile\\www"
+    },
+    {
+      "remaining": true,
+      "provenance": "OWNERSHIP.txt",
+      "rejection": "blocked by policy",
+      "files": 130,
+      "path": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\release-all-updates-20261104\\validation-evidence\\all-updates-release-20261104"
+    }
+  ],
+  "alternateDeletionRouteUsed": false,
+  "task": "ALL_UPDATES_RELEASE_20261104",
+  "links": false,
+  "release": {
+    "apkDigestMatchesVerifiedArtifact": true,
+    "apkAndChecksumPresent": true,
+    "officialLatestConfirmed": true,
+    "version": "0.2.91"
+  },
+  "worktrees": false
+}
