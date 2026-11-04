@@ -39,7 +39,7 @@ Checks: source validation/context/diff PASS. Focused browser 1,458 assertions,
 12 profiles (320/390/430, 100/200% text, normal/reduced motion) PASS on product
 SHA256 `813aa52d156d75a8310900cdf220d846e7a7c31ec8c85ac17bca47d142ae7f1c`.
 Node24.20/Brave156. A causal missing-dot mutation fails the intended assertion.
-Added actual page reload coverage afterward; focused rerun running. Visually
+Added actual page reload coverage afterward; focused121 checks PASS. Visually
 inspected Cinder/Aurora scenes, Collection, Crystal Stag, all 32 Wisp portraits
 and projectile screenshot. Automated/self review only.
 
@@ -48,7 +48,8 @@ Candidate:170 samples including controls, then browser-close timeout. No content
 assertion failed; full Linux CI remains required. Original Rift stacking test
 expected regen between HP and party; its ordering assertion now enforces the
 user-requested below-party placement, retaining all other spacing/overflow gates.
-Rerun pending. New harness allows 30s for Windows browser shutdown.
+Rerun PASS, including compact/safe-inset profiles, native navigation and clean
+shutdown. New harness allows 30s for Windows browser shutdown.
 
 The old generate-offline-swift-golden helper still hardcodes pre-tap-balance
 outcomes (86,404 first-window kills); baseline's checked-in reference is 88,592.
@@ -56,14 +57,20 @@ Its attempt failed without changing the reference. New rift-visual-parity test
 compares the actual parent and candidate over four independent one-second eight-
 hour windows, including every state field except the new appearance preference,
 and requires unchanged published kill/Ascend/Prism outcomes before rebinding.
-Running on pinned Node24.19; first window matches completely.
+All four windows PASS on pinned Node24.19. Every gameplay field and reward matches
+the parent; only the new default riftLook preference is added. Existing reference
+kill/Ascend/Prism counts are unchanged; source/complete-state hashes rebound.
 
 Files: index.html; new rift-visual-unlocks.cjs and rift-visual-parity.cjs; intentional
 Rift ordering assertion; Shared UI CI step; task; offline source binding pending.
-Evidence currently in validation-evidence/rift-visual-* and sibling workspace logs.
-Git push dry-run succeeds. Browser inventory reports local browser use disabled;
-do not change those settings. GitHub connector cannot dispatch workflows.
+Durable [local evidence](../qa/rift-visual-unlocks-001/local.json),
+[four-window parity](../qa/rift-visual-unlocks-001/parity.json), compressed raw
+receipts and screenshots in the same directory. Feature commit3c97817 pushed.
+Browser inventory reports local browser use disabled; settings unchanged.
+GitHub connector cannot dispatch workflows; scoped GitHub API requests using the
+same existing Git authentication work. Nonpublishing Android run41820149302 on
+3c97817 is building; no claim of final integrated acceptance yet.
 
-Next: finish parity/reference and scoped regressions; publish branch/PR, pass all
-required CI, integrate and run Android checks under the existing
+Next: publish reference/evidence update and PR, pass all required CI, integrate
+and run exact-main validation/Android delivery under the existing
 [workflow](../project/FEATURE_WORKFLOW.md). Keep device limits explicit.

@@ -47,5 +47,31 @@
     "samples": 170,
     "sourceSha256": "813aa52d156d75a8310900cdf220d846e7a7c31ec8c85ac17bca47d142ae7f1c",
     "failure": "browser did not exit cleanly"
+  },
+  "stacking": {
+    "status": "pass",
+    "scenario": "rift-status-stacking-mobile",
+    "profiles": 3,
+    "teardown": {
+      "pendingBeforeClose": 0,
+      "events": [
+        {
+          "event": "browser-close",
+          "code": 0,
+          "signal": null,
+          "pending": 0
+        },
+        {
+          "event": "profile-removed",
+          "browserClosed": true
+        }
+      ],
+      "browser": {
+        "code": 0,
+        "signal": null
+      },
+      "pendingAfterClose": 0,
+      "profileRemoved": true
+    }
   }
 }
