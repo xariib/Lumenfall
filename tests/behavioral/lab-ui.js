@@ -38,7 +38,7 @@ window.runLabUiQa = function(b,ctx,assert){
     ok(bar&&bar.contains(text),'time and speed are inside progressbar');
     var expected=percent<100?Math.min(99,Math.round(percent)):100;
     ok(bar.getAttribute('aria-valuemin')==='0'&&bar.getAttribute('aria-valuemax')==='100'&&Number(bar.getAttribute('aria-valuenow'))===expected,'progress ARIA range/value never announces incomplete work as 100%');
-    ok(bar.getAttribute('aria-label').includes("Guardian's Mastery")&&bar.getAttribute('aria-valuetext').includes(text.textContent)&&text.textContent.includes('8x'),'named progress with time and speed');
+    ok(bar.getAttribute('aria-label').includes("Guardian's Mastery")&&bar.getAttribute('aria-valuetext')===expected+'% · '+b.studyPresentation.remaining(b.getState().activeStudies[0])&&text.textContent.includes('8x'),'named progress with full accessible time and visible speed');
     var tr=text.getBoundingClientRect(),br=bar.getBoundingClientRect(),style=getComputedStyle(text);
     ok(tr.left>=br.left&&tr.right<=br.right&&tr.top>=br.top&&tr.bottom<=br.bottom,'progress text fits its bar');
     var contrast=(Math.max(luminance(style.color),luminance(style.backgroundColor))+.05)/(Math.min(luminance(style.color),luminance(style.backgroundColor))+.05);

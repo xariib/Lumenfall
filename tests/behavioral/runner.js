@@ -1977,7 +1977,7 @@
             assert(running.length===count,'every active Study remains visible');
             if(count){
               assert(running[0].dataset.runningStudy==='wispascend','running studies retain stable slot order');
-              assert(document.querySelector('[data-running-study=shardstudy] [data-study-text]').textContent==='5m 50s remaining · 2x','remaining display preserves seconds from authoritative work divided by speed');
+              assert(document.querySelector('[data-running-study=shardstudy] [data-study-text]').textContent==='05:50 · 2x','remaining display preserves seconds from authoritative work divided by speed');
               window.checkLabSpeedControls(bridge,assert,'shardstudy');
               var speedMenu=document.querySelector('.study-speed-editor:not([hidden])');
               assert(speedMenu&&speedMenu.querySelector('[data-study-speed-close]'),'speed inspection opens the modal');

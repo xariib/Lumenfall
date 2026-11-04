@@ -159,7 +159,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   var prior=b.getState();b.labMotes.input(function(){q('[data-speed-study="guardmastery"][data-speed="8"]').click();});var accelerated=b.getState();
   ok(t.speedCost(8)===27500&&accelerated.motes===prior.motes-27500&&accelerated.studyBoosts.slot0.mult===8&&active('guardmastery').speedMult===1,'8x timed package exact debit/paid floor preserved');
   ok(active('guardmastery').remainingSec===120&&active('guardmastery').totalDurationSec===120,'speed preserves discounted snapshot');
-  ok(q('[data-study-text="guardmastery"]').textContent==='15s remaining · 8x','capdiscount plus8x actual countdown');
+  ok(q('[data-study-text="guardmastery"]').textContent==='00:15 · 8x','capdiscount plus8x actual countdown');
   q('[data-study-speed-open]').focus();b.renderLayout();ok(document.activeElement.dataset.studySpeedSummary==='guardmastery','timer focus preserved on rerender');
   t.tail(15,b.clockNow());ok(active('guardmastery').speedMult===1&&active('guardmastery').totalDurationSec===192&&b.labMotes.effective(active('guardmastery'))===8,'next queued start keeps timer and base floor1');
   var saved=active('guardmastery');var changed=b.getState();changed.longStudyLevels.measuredinquiry=13;install(changed);same(active('guardmastery'),saved,'render/overcap cannot retroactively change paid work');

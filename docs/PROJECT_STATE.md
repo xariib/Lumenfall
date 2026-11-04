@@ -1,5 +1,8 @@
 # Lumenfall — current delivery status
 
+4 November: [Lab timers](tasks/LAB_TIMER_LAYOUT_001.md): local/Android PASS;
+CI/integration pending.
+
 2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
 [Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
 source e13c7669. Automatic checks, verified downloads and Android approval. Seven
@@ -100,35 +103,27 @@ entitlements and native Wisp/hint-to-Lab input retained. No release; environment
 interruption resolved. The [earlier VFX finding](tasks/RIFT_VFX_OVERFLOW_001.md)
 remains open despite its unchanged gate passing. Phone acceptance remains open.
 
-22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
-integrated via [PR #6](https://github.com/xariib/Lumenfall/pull/6) at `83b1a8e`.
-Six workflows, both full jobs and 18 browser profiles PASS.
-[Installed Android run #25](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
-PASS: 0.2.25 over 0.1.158 on API31/WebView91, both saves, UID/origin, paid work,
-legacy entitlements and native hint-to-Lab touch retained. No APK publication.
-The task retains exact versions/checksums/artifacts and earlier run24 failures.
-Phone/WebView60/TalkBack/human acceptance remains open; its 200%-text hint
-readability finding was addressed separately in RIFT_HINT_READABILITY_002 above.
+22 October: [Midgame Farm](tasks/MIDGAME_FARM_ACCEPT_001.md),
+[PR6](https://github.com/xariib/Lumenfall/pull/6),83b1a8e: six gates/both full jobs,
+18 profiles and [Android0.2.25 upgrade](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
+PASS; saves/UID/origin/paid work/legacy entitlements and hint-to-Lab touch retained.
+No publication; phone acceptance open. Task retains run24 failures and exact
+evidence. Enlarged-text hint finding fixed by RIFT_HINT_READABILITY_002 above.
 
 21 October: [Wisp action hierarchy](tasks/WISP_ACTION_HIERARCHY_001.md)
-integrated via PR3/PR4. Six gates/full validation and installed Android0.2.21
-upgrade passed: both saves, UID/origin, paid progression, legacy purchases,
-320px cards and native Ability touch/focus retained. No publication.
-[Exact build/evidence](https://github.com/xariib/Lumenfall/actions/runs/39559404175).
-Physical phone/WebView60/TalkBack/human acceptance remain open; detailed hashes
-and requirements remain in the linked task and historical Git revisions.
+via PR3/PR4: six gates/full validation and
+[Android0.2.21 upgrade](https://github.com/xariib/Lumenfall/actions/runs/39559404175)
+PASS; saves/UID/origin/paid work/legacy purchases,320px cards and native Ability
+touch/focus retained. No publication; phone acceptance open. Exact evidence and
+requirements remain in the task and Git history.
 
-16 October 2026: combined endless-progression game released in xariib/Lumenfall as
-[Android 0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014), versionCode1000014.
-[Download latest APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk); existing players install as an update without
-uninstalling. [Completed migration](tasks/REPOSITORY_MIGRATION_001.md) and
-[final identity/save/download evidence](qa/repository-migration-001/release/).
-
-Released source `de1338cd` preserves both selected and destination histories.
-Six exact-main workflows/both full jobs, installed Android12/API31/WebView91
-upgrade and anonymous exact-byte download passed. Package/certificate/origin,
-both saves, paid work and legacy purchases retained.
-[Product preservation proof](qa/repository-migration-001/product-preservation.json).
+16 October: [Endless Android0.2.14](https://github.com/xariib/Lumenfall/releases/tag/android-1000014),
+code1000014/source de1338cd. [Latest APK](https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk)
+installs as an update without uninstalling. [Migration](tasks/REPOSITORY_MIGRATION_001.md),
+[identity/save/download](qa/repository-migration-001/release/) and
+[preservation](qa/repository-migration-001/product-preservation.json): six exact-main
+workflows/both full jobs, API31/WebView91 upgrade and public bytes PASS. Both
+histories/saves, paid work/legacy purchases and package/certificate/origin retained.
 
 Original requirements and earlier evidence remain in [Endless task](tasks/ENDLESS_PROGRESSION_001.md),
 [requirements](qa/endless-progression-001/REQUIREMENTS.md),

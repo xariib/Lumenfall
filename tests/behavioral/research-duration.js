@@ -10,8 +10,8 @@ window.runResearchDurationQa = function(b,ctx,assert){
   b.setState(seed);b.renderLayout();
   document.querySelector('[data-tab="research"]').click();
   var label=document.querySelector('[data-study-text="guardmastery"]');
-  // This first assertion fails on the unchanged baseline's real rendered card.
-  ok(label.textContent==='12m 09s remaining · 1x','rendered countdown retains seconds: '+label.textContent);
+  ok(label.textContent==='12:09 · 1x','rendered compact countdown retains seconds: '+label.textContent);
+  ok(label.parentElement.getAttribute('aria-valuetext').includes('12m 09s remaining · 1x'),'accessible countdown retains explicit time units');
 
   var cases=[
     [0,'0s'],[0.001,'1s'],[45,'45s'],[59,'59s'],[59.01,'1m 00s'],
@@ -53,7 +53,7 @@ window.runResearchDurationQa = function(b,ctx,assert){
   ok(observer.takeRecords().length===0,'subsecond tick retains the same ceiling text');
   same(b.getState(),committed,'rendering does not alter committed fractional state');
   b.simulate(1,'live',1,Date.now());committed=b.getState();t.update();
-  ok(label.textContent==='12m 08s remaining · 1x' && observer.takeRecords().length>0,'visible countdown changes at next displayed second');
+  ok(label.textContent==='12:08 · 1x' && observer.takeRecords().length>0,'visible countdown changes at next displayed second');
   ok(document.querySelector('[data-study-text="guardmastery"]')===label && label.closest('.study-card')===card,'countdown does not rebuild catalogue/cards');
   same(b.getState(),committed,'countdown update is observer-only');observer.disconnect();
 
@@ -63,7 +63,7 @@ window.runResearchDurationQa = function(b,ctx,assert){
   var accelerated=b.getState();
   ok(accelerated.studyBoosts.slot0.mult===1.5&&accelerated.activeStudies[0].speedMult===1,'real timed speed action preserves legacy floor');
   ok(accelerated.activeStudies[0].remainingSec===committed.activeStudies[0].remainingSec,'speed purchase does not rewrite remaining work');
-  ok(document.querySelector('[data-study-text="guardmastery"]').textContent==='8m 06s remaining · 1.5x','speed change updates actual card immediately');
+  ok(document.querySelector('[data-study-text="guardmastery"]').textContent==='08:06 · 1.5x','speed change updates actual card immediately');
 
   // Long catalogue previews use the same duration grammar.
   var preview=b.getState();preview.activeStudies=[];preview.longStudyLevels.guardmastery=25;
