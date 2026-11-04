@@ -1,0 +1,357 @@
+{
+  "status": "published; anonymous exact-tag and latest bytes PASS",
+  "sourceCommit": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+  "sourceHtmlSha256": "513f88510ad2838b4369513c678ff1927b28576605d255acfade14bce4dc9eee",
+  "pr": "https://github.com/xariib/Lumenfall/pull/35",
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000082",
+  "tag": "android-1000082",
+  "versionName": "0.2.82",
+  "versionCode": 1000082,
+  "package": "com.lumenfall.app",
+  "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+  "apkSha256": "247dc741865d5e510d2be5d1a5aa01f877cc4911617e36e0840eb2763550673d",
+  "bytes": 7100109,
+  "apk": "https://github.com/xariib/Lumenfall/releases/download/android-1000082/Lumenfall.apk",
+  "stableDownload": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+  "nativeRun": "https://github.com/xariib/Lumenfall/actions/runs/41835311201",
+  "nativeUpgrade": "PASS",
+  "nativeAppearances": "PASS",
+  "nativeUpdater": "PASS",
+  "publication": "Atomic draft promotion of exact signed/installed CI artifact after exact-source PR and release gates; no rebuild",
+  "ci": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41835279474,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835279474",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126593096074,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success"
+        },
+        {
+          "id": 126593096623,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41835284774,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835284774",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592477526,
+          "name": "comet",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41835289349,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835289349",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126593800771,
+          "name": "forge",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41835295234,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835295234",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592514567,
+          "name": "lab",
+          "conclusion": "success"
+        },
+        {
+          "id": 126592515272,
+          "name": "timed-slot-speed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "event": "workflow_dispatch",
+      "id": 41835299982,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835299982",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592531744,
+          "name": "shared-ui",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "event": "workflow_dispatch",
+      "id": 41835305019,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835305019",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592547662,
+          "name": "tree",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "pre-merge-validation.yml",
+      "event": "pull_request",
+      "id": 41835243954,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835243954",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592902134,
+          "name": "Lumenfall isolated offline catch-up",
+          "conclusion": "success"
+        },
+        {
+          "id": 126592902845,
+          "name": "Lumenfall pre-merge validation",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41835243780,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835243780",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592328516,
+          "name": "comet",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41835243984,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835243984",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126594336916,
+          "name": "forge",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "event": "pull_request",
+      "id": 41835243904,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835243904",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592328524,
+          "name": "lab",
+          "conclusion": "success"
+        },
+        {
+          "id": 126592329465,
+          "name": "timed-slot-speed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "event": "pull_request",
+      "id": 41835243937,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835243937",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592329090,
+          "name": "shared-ui",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "event": "pull_request",
+      "id": 41835243916,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835243916",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592328348,
+          "name": "tree",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "event": "pull_request",
+      "id": 41835244263,
+      "head": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41835244263",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 126592330830,
+          "name": "focused",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "openAcceptance": [
+    "Physical phone",
+    "Exact WebView60 DOM",
+    "TalkBack",
+    "Human visual/performance review"
+  ],
+  "publicDownloads": [
+    {
+      "name": "exact",
+      "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000082/Lumenfall.apk",
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 7100109,
+      "sha256": "247dc741865d5e510d2be5d1a5aa01f877cc4911617e36e0840eb2763550673d",
+      "verifiedAt": "2026-11-04T14:17:07.338Z",
+      "authenticated": false
+    },
+    {
+      "name": "latest",
+      "url": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 7100109,
+      "sha256": "247dc741865d5e510d2be5d1a5aa01f877cc4911617e36e0840eb2763550673d",
+      "verifiedAt": "2026-11-04T14:17:07.494Z",
+      "authenticated": false
+    }
+  ],
+  "integrationCommit": "278bb66920a67a26d984ea13181480ca2f9baa5b",
+  "testedTree": "48b20730b639d99c60ba66c1fc824a5164ba3f9d",
+  "artifact": {
+    "id": 13324504325,
+    "bytes": 8769196,
+    "sha256": "610d47de38bdf742f140935d4d6c0984857b7d487c7164b3e95e99dbe28047af"
+  },
+  "regressions": {
+    "mainScenarios": 190,
+    "visualChecks": 1471,
+    "visualProfiles": 12,
+    "fullEightHourParityWindows": 4,
+    "review": "Self and automated; no independent human review"
+  },
+  "cleanup": {
+    "task": "RIFT_VISUAL_UNLOCKS_001",
+    "owner": "Rift visual feature chat",
+    "purpose": "Disposable copied web root for the original Rift contract test",
+    "target": "C:\\Users\\CustomCodings\\Documents\\ChatGPT\\Lumenfall\\rift-visual-combined-web",
+    "provenance": "Created by this task using New-Item and copying only index.html, fonts and branding",
+    "checkedAt": "2026-11-04T13:57:02.7090117Z",
+    "noLinks": true,
+    "notWorktree": true,
+    "identicalSourceCopies": true,
+    "files": [
+      {
+        "path": "index.html",
+        "sha256": "513f88510ad2838b4369513c678ff1927b28576605d255acfade14bce4dc9eee"
+      },
+      {
+        "path": "branding\\lumenfall-mark.svg",
+        "sha256": "976398b0e662181ae6dbb3430ce74d606a9db3a3f6c451818d5fda9e0f9395e4"
+      },
+      {
+        "path": "branding\\README.md",
+        "sha256": "2ec43b9b11efdf98f802942dfb09740ebdbb08bb3a1364be2bb29f1a7bc19050"
+      },
+      {
+        "path": "fonts\\cinzel-500.woff2",
+        "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+      },
+      {
+        "path": "fonts\\cinzel-600.woff2",
+        "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+      },
+      {
+        "path": "fonts\\cinzel-700.woff2",
+        "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+      },
+      {
+        "path": "fonts\\fonts.css",
+        "sha256": "befd8e42d48b477c567ba3ce469ff475c12a1f8724c98258469dea11b15065d7"
+      },
+      {
+        "path": "fonts\\ibm-plex-mono-400.woff2",
+        "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+      },
+      {
+        "path": "fonts\\ibm-plex-mono-500.woff2",
+        "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+      },
+      {
+        "path": "fonts\\ibm-plex-mono-600.woff2",
+        "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+      },
+      {
+        "path": "fonts\\manrope-400.woff2",
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "path": "fonts\\manrope-500.woff2",
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "path": "fonts\\manrope-600.woff2",
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "path": "fonts\\manrope-700.woff2",
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      },
+      {
+        "path": "fonts\\manrope-800.woff2",
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+      }
+    ],
+    "status": "blocked; target remains",
+    "rejectionReason": "exec_command rejected the native PowerShell Remove-Item command: blocked by policy",
+    "availableControl": "Session approval policy is never; no supported override is available. No alternate deletion route attempted.",
+    "existsAfterRejection": true
+  }
+}

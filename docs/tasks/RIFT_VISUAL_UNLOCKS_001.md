@@ -5,147 +5,158 @@ new enemy types and Wisp designs, clearer attacks, boss regeneration below the
 Wisps, and an aligned active Rift navigation dot matching its gold logo.
 
 Owner: this chat. Goal: expand cosmetic choice and combat readability.
-Baseline main `2ca3d3be6efaec29a82d3b86a14fbe7162c10632`; isolated branch
-`feature/rift-visual-unlocks-001`. Other worktrees/unrelated PR2 remain untouched.
-No new binding rules. Existing SVG/CSS asset system retained.
+Original baseline: `2ca3d3be6efaec29a82d3b86a14fbe7162c10632`. Isolated branch:
+`feature/rift-visual-unlocks-001`. The concurrently integrated [Lab timer fix](LAB_TIMER_LAYOUT_001.md)
+from main `29dbb1e9` was merged without changing its product behavior or tests.
+Other worktrees and unrelated PR2 remain untouched. No new binding rules.
 
-Status: implementation/native acceptance PASS on the prior candidate; combined
-main validation, integration and release pending. Prior tested head
-`ff9285c45e415a217b7103359230926c9f6d6b58`;
-[PR35](https://github.com/xariib/Lumenfall/pull/35) open. Product SHA256
-`b028d76d0edef5ac0cccb6adc457d82f05a72d81148d2a0110a234737e8942bf`.
+Status: integrated and released as Android 0.2.82; physical/human acceptance remains
+open. [PR35](https://github.com/xariib/Lumenfall/pull/35) merged at the tested source
+`278bb66920a67a26d984ea13181480ca2f9baa5b`. Product SHA256:
+`513f88510ad2838b4369513c678ff1927b28576605d255acfade14bce4dc9eee`.
+PR merge preview has the identical tree `48b20730b639d99c60ba66c1fc824a5164ba3f9d`.
+Main fast-forwarded from `29dbb1e98bf17d67d07690ebb30f2e1a66d16c8d` to this exact
+tested commit. [Release and public-byte receipt](../qa/rift-visual-unlocks-001/release.json).
 
-## Scope and implementation
+## Implementation and acceptance
 
-Seven full backgrounds retain the regional default: Moonlit Crossing (depth10,
-still), Firefly Grove (25, live), Cinder Caldera (50, live), Crystal Expanse (100,
-still), Aurora Sea (Ascend5, live), Sunken Sanctuary (250, live), Eclipse Citadel
-(Ascend10, live). Live/Still and reduced motion apply; previews are still.
+Seven full SVG backgrounds retain the regional default: Moonlit Crossing
+(depth 10, still), Firefly Grove (25, live), Cinder Caldera (50, live),
+Crystal Expanse (100, still), Aurora Sea (Ascend 5, live), Sunken Sanctuary
+(250, live), Eclipse Citadel (Ascend 10, live). Live/Still and reduced motion
+apply; previews are still.
 
-Three sets across all eight Wisps: Crystal Kin (depth50), Wild Spirits (Ascend5),
-Astral Guides (Mythic). Original art/colors/emblems retained. Ancient Sentinels
-(depth100) adds Rune Golem, Crystal Stag, Temple Moth; Abyss Dwellers (250) adds
-Lantern Ray, Abyss Medusa, Reef Dragon. Enemy families are appearances only;
-damage, rewards, encounter traits, prices, progression and automation unchanged.
+Three sets across all eight Wisps: Crystal Kin (depth 50), Wild Spirits
+(Ascend 5), Astral Guides (Mythic). Original art, colors and emblems retained.
+Ancient Sentinels (depth 100): Rune Golem, Crystal Stag, Temple Moth.
+Abyss Dwellers (250): Lantern Ray, Abyss Medusa, Reef Dragon.
+Enemy families are appearances only; damage, rewards, encounter traits, prices,
+progression and automation remain unchanged.
 
-Deeds → Collection shows previews/locked requirements and refreshes immediately
-on unlock. Existing aura/legacy cosmetics remain. Optional `riftLook` defaults
-safely for old/invalid saves and survives both slots, reload, recovery and Ascend.
-Boss regeneration follows the Wisp row. Brighter/larger shots originate at actual
-portraits above combat, bounded at12 inert projectiles with separately clipped
-impacts. Gold dot `#f0c567` matches other dots'4×4px/center/7px-bottom geometry.
+Deeds → Collection shows previews and locked requirements and refreshes immediately
+on unlock. Existing aura and legacy cosmetics remain. Optional `riftLook`
+defaults safely for old/invalid saves and survives both slots, reload, recovery
+and Ascend. Boss regeneration follows the Wisp row. Brighter/larger shots start
+at actual portraits above combat, bounded at 12 inert effects with separately
+clipped impacts. Gold dot `#f0c567` matches other dots' 4×4px size, horizontal
+centering and 7px bottom offset.
 
-Acceptance: locked/unlocked choices, cosmetic-only changes and persistence,
-distinct art, motion modes,320/390/430px/200% text, panel order, bounded VFX,
-inert decoration, dot geometry, original layouts/saves/accessibility and required
-CI/Android delivery. [Prior VFX finding](RIFT_VFX_OVERFLOW_001.md) retained;
-original overflow checks remain. Phone/WebView60/TalkBack require separate proof.
+Acceptance: locked/unlocked choices; cosmetic-only state and persistence; distinct
+art; motion modes; 320/390/430px and 200% text; panel order; bounded VFX;
+inert decoration; dot geometry; original layouts, saves and accessibility;
+required CI, Android build/upgrade and public-byte verification.
+The [prior VFX finding](RIFT_VFX_OVERFLOW_001.md) remains recorded; original
+overflow checks are retained. Modern browser/emulator tests cannot establish
+physical-phone, exact WebView60 or TalkBack acceptance.
 
-## Changes and checks
+Changed product: `index.html`. Added focused/parity tests and Shared UI CI step.
+Original Rift assertions now cover the requested panel position, portrait origin,
+12-effect bound and expanded art, retaining original geometry/paint/economy checks.
+Comet's empty DOM fixture supplies an empty querySelector. Historical Forge,
+offline, Auto Ascend and Wisp oracles verify exact new preference defaults before
+unchanged gameplay comparisons. The golden retains its independently verified
+state/reward outputs; source binding follows verified full replay.
+Native scripts add trusted-input diagnostics, real appearance selections and
+installed-document readiness. No acceptance gate removed. Shared status summaries
+were compacted with evidence links retained; all 32 workflow task budgets pass.
 
-Product: `index.html`. New focused/parity tests and Shared UI CI step. Original
-Rift ordering test now enforces requested panel position, retaining all bounds.
-Forge/offline/Auto Ascend/Wisp historical comparisons require exact new defaults
-before unchanged gameplay comparisons. Golden rewards remain; source/full-state
-hashes rebound from verified parity. Native scripts add trusted-input diagnostics,
-appearance selection and installed-document readiness; no acceptance removed.
-Status compaction retains evidence links and all32 workflow task context budgets.
+## Verification
 
-- Final focused:1,471 assertions/12 profiles PASS, Node24.20/Brave156 locally and
-  Linux CI, including actual reload and live unlock refresh. Missing-dot causal
-  control fails exactly `active dot visible battle`.
-- Four baseline/candidate eight-hour windows replayed second by second, Node24.19:
-  every gameplay field/reward matches after verifying exact new defaults.
-  Kill/Ascend/Prism triples88592/4218/97014,88584/4218/97014,
-  88659/4222/97106,88854/4231/97313 unchanged.
-- Original Rift/mobile/navigation, Forge migration/controls PASS. Auto Ascend372
-  checks/controls PASS. Wisp8,099 checks/7 controls plus26,456 preservation checks,
-  448 formula cases and40 chronological cases PASS.
-- Exact-source Linux offline18 cases PASS within original deadline; original
-  cosmetics PASS in Linux premerge. Source/context/diff PASS.
-- Visually reviewed Collection, all32 Wisp portraits, attacks and scene captures.
-  Final native screenshot shows Temple Moth/Crystal Ember/Cinder and gold dot.
-  Self/automated review only.
+- Final source: 1,471 visual assertions across 12 mobile/text/motion profiles PASS
+  locally (Node 24.20/Brave 156) and in Linux Shared UI CI. Actual reload and
+  immediate unlock refresh included. Missing-dot causal control fails the
+  intended assertion. [Full local receipt](../qa/rift-visual-unlocks-001/rift-visual-combined.json.gz).
+- Four complete eight-hour windows replayed second by second on Node 24.19:
+  every gameplay field and reward matches the original baseline after exact new
+  preference verification. Kill/Ascend/Prism triples remain 88592/4218/97014,
+  88584/4218/97014, 88659/4222/97106, 88854/4231/97313.
+  [Combined parity](../qa/rift-visual-unlocks-001/combined-parity.json).
+- Original Rift contract PASS through existing CDP pipe, including all 40
+  original/new vector symbols and all 23 default enemy species. Comet core
+  12 sections PASS. Original mobile stacking/navigation PASS.
+- Forge migration/controls, Auto Ascend 372 checks/controls, Wisp 8,099 checks/
+  7 controls and 26,456 preservation checks/448 formula cases/40 chronological
+  cases passed. Exact-source Linux offline 18 cases PASS within original deadline.
+- Source, diff and all 32 task-context checks PASS. Visually reviewed all seven
+  backgrounds, Collection, 32 Wisp portrait variants and attacks. Final native
+  capture shows Rune Golem, Crystal Ember, Cinder and the gold Rift dot.
+- Self/automated review only. Automated PR review's original stale golden finding
+  was fixed through full replay and its thread resolved; no open review findings.
 
-Evidence: [historical local summary](../qa/rift-visual-unlocks-001/local.json),
-[full parity](../qa/rift-visual-unlocks-001/parity.json), final focused compressed
-receipt/screenshots in the same directory, [native receipts](../qa/rift-visual-unlocks-001/native/)
-and [CI logs](../qa/rift-visual-unlocks-001/ci/).
+All seven PR and six release workflows PASS on the exact integrated source,
+including both full premerge jobs, 190 main scenarios, runtime smoke and both
+isolated offline jobs. Final successes verified at 14:15 UTC.
+Release workflows: premerge 41835279474, Comet 41835284774, Forge 41835289349,
+Lab 41835295234, Shared 41835299982, Tree 41835305019.
+PR premerge: 41835243954. No skipped/failing required gate accepted as a pass.
 
-## Native build and delivery
+Raw receipts, screenshots and [CI logs](../qa/rift-visual-unlocks-001/ci/) are in
+[QA evidence](../qa/rift-visual-unlocks-001/). Initial local summary and ff9285c4
+receipts are historical; combined receipts identify the final production source.
 
-[Android41825228083](https://github.com/xariib/Lumenfall/actions/runs/41825228083)
-PASS on exact ff9285c4:0.2.80/1000080, package `com.lumenfall.app`.
+## Signed Android release
+
+[Build 41835311201](https://github.com/xariib/Lumenfall/actions/runs/41835311201)
+PASS on exact 278bb669. Version **0.2.82 / 1000082**; package `com.lumenfall.app`.
 Established certificate SHA256:
 `A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21`.
-APK7,099,984 bytes; SHA256
-`6659e01477f078cdb8f4fbe9a6b142584f3535f9ba38a7584309533d81c19b7d`.
-Artifact13318687417 ZIP digest, packaged production assets, origin and exact
-upgrade receipt verified locally.
+APK 7,100,109 bytes; SHA256:
+`247dc741865d5e510d2be5d1a5aa01f877cc4911617e36e0840eb2763550673d`.
+Artifact 13324504325 ZIP SHA256:
+`610d47de38bdf742f140935d4d6c0984857b7d487c7164b3e95e99dbe28047af`.
+ZIP digest, exact packaged production HTML/fonts/branding, origin and upgrade
+receipt verified locally. APK is in sibling `rift-visual-signed-combined`.
 
 API31/WebView91.0.4472.114: signed158 → candidate in-place upgrade retains both
 saves, identity, paid work and legacy entitlements. Native Wisp/Farm/Lab/directional
-input PASS. Real touches select Cinder/Crystal/Ancient/Still; saved preferences,
-full field, art/dot PASS. Actual updater download cancel, permission refusal,
-restart, tamper rejection, system installer cancel/approved install and final
-storage/origin/both saves PASS.
+input PASS. Actual touches select Cinder/Crystal/Ancient/Still; both saved slots,
+full background bounds, art and gold dot PASS. Actual updater download cancel,
+permission refusal, restart, tamper rejection, system installer cancel/approval
+and final origin/storage/both saves PASS.
+[Final native receipts](../qa/rift-visual-unlocks-001/native-combined/).
 
-Exact-head release runs: premerge41825388671, Comet41825395541, Forge41825402338,
-Lab41825409669, Shared41825417011, Tree41825424296. Focused release/PR gates and
-both isolated offline jobs PASS. Two broad main jobs still run190 scenarios.
-Previous broad success took65min. Publication waits for both complete successes.
+[Android 0.2.82](https://github.com/xariib/Lumenfall/releases/tag/android-1000082)
+published by guarded draft promotion of the exact signed/installed artifact;
+no rebuild. Anonymous exact-tag and latest downloads both returned HTTP200,
+7,100,109 bytes and the expected APK SHA256 at 14:17 UTC. Install over the
+existing app. The release includes the previously integrated Lab timer fix.
 
-Prior test-merge tree equaled ff9285c4. At12:55UTC main advanced to29dbb1e9 with
-the integrated [Lab timer fix](LAB_TIMER_LAYOUT_001.md) from PR34. Its product
-and tests merged cleanly. Both status entries are retained; offline reference is
-being rebound through the full paired replay. The0.2.80 candidate is now historical
-and MUST NOT be published as the combined release. Original signed/native receipts
-remain valid for ff9285c4 only. Combined focused/parity runs are in progress.
-Combined product SHA256:
-`513f88510ad2838b4369513c678ff1927b28576605d255acfade14bce4dc9eee`.
-All1,471 focused checks/12 profiles and32 workflow task contexts PASS. Source
-validation PASS; diff from ff9285c4 is exactly PR34's presentation changes.
-Golden source binding now points at this combined source; all independently
-verified state/reward outputs remain unchanged. Full paired replay continues
-alongside CI and must pass before delivery; its output must equal this reference.
-Next: finish combined checks, commit/push, rerun all exact-source PR/release gates
-and build a new signed APK. Recheck main, integrate exact tested source, publish
-only the newly validated artifact, verify public bytes and persist final evidence.
-Sibling publisher/verifier currently pin ff9285c4/0.2.80 and must be updated from
-the new immutable build receipts before invocation; neither has run.
+## Failure disposition and continuation
 
-Combined replay now PASS: all four full eight-hour windows match every original
-gameplay field and reward, and the output exactly equals the committed reference.
-[Receipt](../qa/rift-visual-unlocks-001/combined-parity.json). Merge649aaac4 retains
-Lab PR34; main remained29dbb1e9. Older full run41825388671 completed with two
-failing scenarios: Comet's empty DOM fixture lacked querySelector, and the Rift
-contract retained old projectile origin/count/art-catalog assumptions. Its full
-raw log is preserved in ci/126558708208.log.gz. The fixture now supplies its empty
-selector; the contract checks portrait origin, full-battle bounds, inert layer,
-twelve-effect cap, all40 original/new vector symbols and all23 default encounter
-species. Original geometry/paint/economy checks retained. Both scenarios PASS
-locally (Comet12 sections, Rift original contract via existing CDP pipe). Windows
-dump-DOM transport timed out; the existing pipe transport completed successfully.
-Only tests/evidence changed after649aaac4; production hash remains513f8851.
-Final exact-head CI/native reruns required before delivery.
+Four earlier Android failure ZIPs retained: emulator disappeared before candidate
+installation; undiagnosed native Lab focus failure; updater activity removed
+120ms after package replacement; storage read before replacement document commit.
+Native input now remeasures centered trusted touches and waits up to 5s for the
+same required focus/destination. Updater waits 1s for package broadcasts, uses
+am start -W, and requires real DOM/origin/storage readiness. Final runs pass all
+assertions. Superseded successful 0.2.80/ff9285c4 is not the combined release.
 
-## Failure disposition and open acceptance
+Earlier full run 41825388671 finished with two failing scenarios: Comet's missing
+mock selector and Rift's old origin/count/catalog assumptions. Both are fixed and
+pass locally; the full raw failure log is retained as ci/126558708208.log.gz.
+Windows dump-DOM transport timed out; existing CDP pipe completed the same contract.
+Original Windows cosmetics had cleanup/close failures after content assertions;
+full Linux acceptance passes. Redundant slow Windows offline replay stopped after
+Linux passed; no local deadline claim. The old golden generator hardcodes pre-tap
+outcomes and failed unchanged; paired full replay provides the verified binding.
+Browser control remains disabled/settings unchanged; connector lacks dispatch,
+so scoped GitHub API uses the normal existing Git identity.
 
-Four raw Android failure ZIPs retained: emulator disappeared before candidate
-install; undiagnosed native Lab focus failure; updater activity removed120ms after
-package replacement; storage read before replacement document commit. Native test
-now remeasures centered trusted input and waits5s for the same focus/destination.
-Updater waits1s for package broadcasts, uses am start -W, and requires actual game
-DOM/origin/storage readiness. Final run passes all required assertions.
+Delivery checks are complete. Final documentation/evidence are saved after
+publication, with no further product changes. Next: physical-phone/WebView60/
+TalkBack and human visual/performance acceptance when available. Shared product
+work for this feature has stopped; other active worktrees remain untouched.
 
-Windows original cosmetics ended with profile cleanup/close failures after content
-checks; full Linux suite passes. Redundant slow Windows offline replay stopped
-after Linux pass; no local deadline claim. Old golden generator hardcodes pre-tap
-results and failed unchanged; full paired replay supplies verified reference.
-Automated PR review's initial stale golden finding fixed; thread resolved. No
-independent human review. Browser control disabled/settings unchanged; connector
-lacks dispatch, so scoped GitHub API uses normal existing Git identity.
+Physical phone, exact WebView60 DOM, TalkBack and human visual/performance review
+remain open under the [feature workflow](../project/FEATURE_WORKFLOW.md).
+Keep this task/chat open for that acceptance; do not archive or claim completion.
 
-Next: complete CI/integration/publication/evidence. Physical phone, exact WebView60
-DOM, TalkBack and human visual/performance acceptance remain open under the
-[feature workflow](../project/FEATURE_WORKFLOW.md). Keep task/chat open; do not archive.
+User supplied standing cleanup preferences during delivery: disposable task
+staging may be cleaned without repeated permission, after exact path/provenance/
+contents/link/worktree checks; rejected cleanup must not be disguised or rerouted.
+Verified 15 unchanged source copies, no links, no worktree or active task process
+in C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\rift-visual-combined-web.
+Native PowerShell Remove-Item was rejected by exec_command with only
+`blocked by policy`; no supported approval override exists in this session.
+Folder remains; no alternate deletion route attempted. This is not attributed
+to automatic approval review. [Ownership/check/rejection receipt](../qa/rift-visual-unlocks-001/cleanup.json).

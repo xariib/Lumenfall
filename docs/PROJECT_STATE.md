@@ -1,11 +1,12 @@
 # Lumenfall — current delivery status
 
-4 November: [Rift visuals/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md): full backgrounds,
-Wisp/enemy appearances, clearer attacks and gold nav dot. Local checks/parity PASS;
-CI, integration and Android delivery pending. Device limits remain open.
+4 November: [Rift visuals/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md) released as
+Android0.2.82, source278bb669: backgrounds, Wisp/enemy looks, clearer attacks and
+gold dot. Seven gates, full regression, signed upgrade/public bytes PASS.
+[Receipt](qa/rift-visual-unlocks-001/release.json); phone/human review open.
 
 4 November: [Lab timers/PR34](tasks/LAB_TIMER_LAYOUT_001.md): merged57fd7ab3;
-seven gates/190+1 and signed0.2.76 PASS. Phone review open; no release.
+seven gates/190+1 and signed0.2.76 PASS. Included in0.2.82 above; phone review open.
 
 2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
 [Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
