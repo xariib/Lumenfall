@@ -175,7 +175,7 @@
   .enemy-stage.hit .enemy-glyph{transform:scale(.9) rotate(-2deg);}
   .hp-wrap{width:100%;}
   .hp-bar-track{height:9px;border-radius:999px;background:var(--bg-elev-2);border:1px solid var(--line);overflow:hidden;}
-  .hp-bar-fill{height:100%;background:linear-gradient(90deg, var(--danger), color-mix(in srgb, var(--danger) 70%, #ffb56b));width:100%;transition:width .12s linear;}
+  .hp-bar-fill{height:100%;background:linear-gradient(90deg, var(--danger), color-mix(in srgb, var(--danger) 70%, #ffb56b));width:100%;transform-origin:left;transition:transform .12s linear;}
   .hp-text{font-size:.68rem;color:var(--ink-dim);margin-top:4px;text-align:center;}
   .boss-regen-tag{font-size:.66rem;color:var(--good);font-weight:700;text-align:center;margin-top:4px;}
   .boss-regen-tag.insufficient{color:var(--danger);}
@@ -303,7 +303,7 @@
   .study-card .desc{font-size:.74rem;color:var(--ink-dim);margin-top:4px;line-height:1.4;}
   .study-card .study-meta{font-size:.7rem;color:var(--ink-dim);margin-top:8px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
   .study-bar-track{height:10px;border-radius:999px;background:var(--bg-elev);border:1px solid var(--line);overflow:hidden;margin-top:10px;}
-  .study-bar-fill{height:100%;width:0%;background:linear-gradient(90deg, var(--mote), color-mix(in srgb, var(--mote) 70%, var(--comet)));transition:width .3s linear;}
+  .study-bar-fill{height:100%;width:100%;transform-origin:left;background:linear-gradient(90deg, var(--mote), color-mix(in srgb, var(--mote) 70%, var(--comet)));transition:transform .3s linear;}
   .study-time{font-size:.7rem;color:var(--ink-dim);margin-top:5px;}
   .speed-row{display:flex;flex-wrap:wrap;gap:6px;}
   .study-motes-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px;}
@@ -1523,10 +1523,9 @@
   nav.tabbar button.has-attention::before{
     content:'';position:absolute;top:6px;right:calc(50% - 18px);width:6px;height:6px;border-radius:50%;
     background:var(--mote);box-shadow:0 0 9px var(--mote);
-    animation:navAttention 1.8s ease-in-out infinite;
+    opacity:1;
   }
   nav.tabbar button[data-tab="ascend"].has-attention::before{background:var(--prism);box-shadow:0 0 9px var(--prism);}
-  @keyframes navAttention{0%,100%{transform:scale(.8);opacity:.65;}50%{transform:scale(1.15);opacity:1;}}
 
 
   .rift-objective.actionable{cursor:pointer;transition:transform .15s ease,border-color .15s ease,filter .15s ease;}
@@ -1870,7 +1869,7 @@
   .rift-wisp-state{position:absolute;top:2px;right:2px;padding:0 2px;border-radius:3px;background:#0b132ade;font:10px/12px 'IBM Plex Mono',monospace;color:#c4cfe4;text-align:center;}
   .rift-wisp-state:empty{display:none;}
   .rift-charge{grid-column:1;grid-row:2;height:3px;border-radius:3px;background:#030818;overflow:hidden;width:100%;}
-  .rift-charge>span{display:block;height:100%;background:var(--wisp-color);box-shadow:0 0 8px var(--wisp-color);transition:width .1s linear;}
+  .rift-charge>span{display:block;height:100%;width:100%;transform-origin:left;background:var(--wisp-color);box-shadow:0 0 8px var(--wisp-color);transition:transform .1s linear;}
   .rift-wisp.unpowered{border-style:dashed;}.rift-wisp.unpowered .rift-wisp-state{color:#c4cfe4;}
   .rift-wisp.is-casting{border-color:#fff;box-shadow:0 0 14px color-mix(in srgb,var(--wisp-color) 65%,transparent);}
   .rift-wisp.is-casting .rift-wisp-state{color:#fff;}
@@ -2219,6 +2218,7 @@
   #welcome-claim{margin-top:16px;}
   .startup-skip{border:0;background:none;width:100%;min-height:44px;color:var(--ink);font:600 12px 'Manrope',sans-serif;cursor:pointer;}
   body.app-paused *,body.app-paused *::before,body.app-paused *::after{animation-play-state:paused!important;}
+  body.battle-covered #tab-battle *,body.battle-covered #tab-battle *::before,body.battle-covered #tab-battle *::after{animation-play-state:paused!important;}
 
 .formation-rebuild-note{font-size:.75rem;line-height:1.5;color:var(--ink);margin:8px 0;overflow-wrap:anywhere;}
 
@@ -7390,7 +7390,7 @@ function gainLumen(n){ state.lumen=creditAmount(state.lumen,n); }
 
 function emitCombatVfx(type,color,wispId){
   var stageEl = els && els['enemy-stage'];
-  if(!stageEl || document.hidden || !document.getElementById('tab-battle').classList.contains('active')) return;
+  if(!stageEl || document.hidden || overlayFocus || !document.getElementById('tab-battle').classList.contains('active')) return;
   if(wispId){
     var card=document.querySelector('[data-rift-wisp="'+wispId+'"]');
     if(card && type!=='shot') card.setAttribute('data-cast-until',String(Date.now()+650));
@@ -7426,7 +7426,7 @@ function emitCombatVfx(type,color,wispId){
 // Sample the continuous passive-damage stream; this creates no damage event.
 var passiveFxAt=-Infinity,passiveFxIndex=0;
 function presentPassiveWispAttack(){
-  if(document.hidden || !els['enemy-stage'] || !document.getElementById('tab-battle').classList.contains('active') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(document.hidden || overlayFocus || !els['enemy-stage'] || !document.getElementById('tab-battle').classList.contains('active') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var now=Date.now();if(now-passiveFxAt<350)return;
   var ids=poweredActiveIds();if(!ids.length)return;
   var id=ids[passiveFxIndex%ids.length],sp=SPIRITS.find(function(x){return x.id===id;});
@@ -8426,8 +8426,8 @@ function renderLabCapacityBadge(){
   var label='Lab — '+free+' Study slot'+(free===1?'':'s')+' available';
   if(btn.getAttribute('aria-label')!==label) btn.setAttribute('aria-label',label);
   var secondary=document.getElementById('workshop-lab-badge');
-  secondary.textContent=text; secondary.hidden=badge.hidden;
-  document.querySelector('.tab-btn[data-tab="workshop"]').setAttribute('aria-label','Workshop — Forge and '+label);
+  setLiveText(secondary,text);if(secondary.hidden!==badge.hidden)secondary.hidden=badge.hidden;
+  setLiveAttribute(document.querySelector('.tab-btn[data-tab="workshop"]'),'aria-label','Workshop — Forge and '+label);
 }
 function findActiveStudy(id){
   return state.activeStudies.find(function(a){ return a.id===id; });
@@ -9183,6 +9183,7 @@ function overlayControls(modal){
 }
 var studyMenuInert=[];
 function setOverlayInert(active){
+  document.body.classList.toggle('battle-covered',!!active);
   document.documentElement.classList.toggle('study-menu-open',!!active && active.classList.contains('study-speed-editor'));
   studyMenuInert.forEach(function(item){item.el.inert=item.inert;});studyMenuInert=[];
   if(active && active.classList.contains('study-speed-editor')){
@@ -9260,13 +9261,24 @@ function formatRiftNumber(value){
   var text = formatNum(value);
   return value>=1e30 || text.length>10 ? Number(value).toExponential(2) : text;
 }
+function setLiveText(el,text){
+  if(el.textContent!==text) el.textContent=text;
+}
+function setLiveAttribute(el,name,value){
+  value=String(value);
+  if(el.getAttribute(name)!==value) el.setAttribute(name,value);
+}
+function liveTabVisible(name){
+  var panel=document.getElementById('tab-'+name);
+  return !!panel && panel.classList.contains('active');
+}
 function renderHud(){
-  els['hud-lumen'].textContent = formatRiftNumber(state.lumen);
-  els['hud-shard'].textContent = formatRiftNumber(shardsAvailable());
-  els['hud-mote'].textContent = formatRiftNumber(state.motes);
-  els['hud-prism'].textContent = formatRiftNumber(state.prisms);
-  els['hud-comet'].textContent = formatRiftNumber(state.comets);
-  els['hud-sigil'].textContent = formatRiftNumber(state.sigils);
+  setLiveText(els['hud-lumen'],formatRiftNumber(state.lumen));
+  setLiveText(els['hud-shard'],formatRiftNumber(shardsAvailable()));
+  setLiveText(els['hud-mote'],formatRiftNumber(state.motes));
+  setLiveText(els['hud-prism'],formatRiftNumber(state.prisms));
+  setLiveText(els['hud-comet'],formatRiftNumber(state.comets));
+  setLiveText(els['hud-sigil'],formatRiftNumber(state.sigils));
 }
 
 function renderRiftMode(){
@@ -9543,7 +9555,18 @@ function renderRiftObjective(){
   else { el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-label'); }
 }
 
-function updateBattleFast(){
+var lastBattleDetailsAt=-Infinity;
+function updateBattleFast(live){
+  // HP and charge keep the combat cadence. Advice and static encounter details
+  // need at most two refreshes a second; explicit actions refresh immediately.
+  renderRiftParty();
+  var hpPercent=Amount.gt(state.enemyMaxHp,0)?Math.max(0,100*Amount.ratio(state.enemyHp,state.enemyMaxHp)):0;
+  els['hp-fill'].style.transform='scaleX('+(hpPercent/100)+')';
+  setLiveText(els['hp-text'],formatRiftNumber(Amount.max(0,state.enemyHp))+' / '+formatRiftNumber(state.enemyMaxHp));
+  renderHud();
+  var detailsKey=state.depth+'|'+!!state.enemyIsLuminous;
+  if(live && Date.now()-lastBattleDetailsAt<500 && updateBattleFast.detailsKey===detailsKey) return;
+  lastBattleDetailsAt=Date.now();updateBattleFast.detailsKey=detailsKey;
   var commandViewport=captureControlViewport(els['comet-commands']);
   var trialStatus=document.getElementById('comet-trial-status');
   if(trialStatus){trialStatus.textContent=cometTrialStatus();trialStatus.hidden=!state.cometTrial;}
@@ -9553,22 +9576,19 @@ function updateBattleFast(){
   renderRiftObjective();
   renderLatePowerAdvice();
   renderBondSummary();
-  renderRiftParty();
   renderLabCapacityBadge();
-  var hpPercent=Amount.gt(state.enemyMaxHp,0)?Math.max(0,100*Amount.ratio(state.enemyHp,state.enemyMaxHp)):0;
-  els['hp-fill'].style.width=hpPercent+'%';
-  els['hp-text'].textContent = (formatRiftNumber(Amount.max(0,state.enemyHp)) + ' / ' + formatRiftNumber(state.enemyMaxHp));
   var zone = riftZoneFor(state.depth);
   applyRiftZoneVisual(state.depth);
-  els['depth-label'].innerHTML = ('<span class="rift-number"><span class="rift-prefix">Rift </span>' + formatRiftNumber(state.depth) + '</span>' + (isBoss(state.depth) ? ' <span class="boss-tag">&mdash; BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
-  els['depth-label'].setAttribute('aria-label','Rift '+state.depth+(isBoss(state.depth)?' Boss':'')+' · '+zone.name);
+  var depthMarkup=('<span class="rift-number"><span class="rift-prefix">Rift </span>' + formatRiftNumber(state.depth) + '</span>' + (isBoss(state.depth) ? ' <span class="boss-tag">&mdash; BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
+  if(els['depth-label']._liveMarkup!==depthMarkup){els['depth-label'].innerHTML=depthMarkup;els['depth-label']._liveMarkup=depthMarkup;}
+  setLiveAttribute(els['depth-label'],'aria-label','Rift '+state.depth+(isBoss(state.depth)?' Boss':'')+' · '+zone.name);
   var enemyLook=activeRiftLook('enemy'),enemyTitle=enemyNameFor(state.depth);
   var creatureKind = ENEMY_NOUN[Amount.mod(Amount.mul(state.depth,7),ENEMY_NOUN.length)].toLowerCase();
   if(enemyLook.forms){
     var variant=Amount.mod(state.depth,enemyLook.forms.length);
     creatureKind=enemyLook.forms[variant];enemyTitle=(isBoss(state.depth)?'Boss · ':'')+enemyLook.names[variant];
   }
-  els['enemy-name'].textContent = Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyTitle);
+  setLiveText(els['enemy-name'],Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyTitle));
   var creatureEl = els['enemy-glyph'];
   if(creatureEl.getAttribute('data-creature')!==creatureKind){
     creatureEl.setAttribute('data-creature',creatureKind);
@@ -9604,8 +9624,8 @@ function updateBattleFast(){
     if(battleStage) battleStage.classList.add(enough ? 'boss-ready' : 'boss-wall');
   }
 
-  els['stat-tap'].textContent = formatRiftNumber(tapDamage());
-  els['stat-idle'].textContent = formatRiftNumber(sustainedWispDps(state.depth));
+  setLiveText(els['stat-tap'],formatRiftNumber(tapDamage()));
+  setLiveText(els['stat-idle'],formatRiftNumber(sustainedWispDps(state.depth)));
   var buffNow = Date.now();
   var buffFactor = simulationBuffMult(buffNow);
   var buffText = 'Boost · passive Wisps + Tap · <strong>Inactive</strong>';
@@ -9618,7 +9638,6 @@ function updateBattleFast(){
   if(els['buff-indicator'].innerHTML!==buffText) els['buff-indicator'].innerHTML=buffText;
   els['buff-indicator'].classList.toggle('is-active',Amount.gt(buffFactor,1));
   renderCometCommands();
-  renderHud();
   restoreControlViewport(commandViewport);
 }
 
@@ -9743,12 +9762,12 @@ function renderRiftParty(){
     var status=card.querySelector('.rift-wisp-state');if(status.textContent!==label)status.textContent=label;
     var power=card.querySelector('.rift-wisp-power'),powerText=formatRiftNumber(chipEffectivePower(id));
     if(power.textContent!==powerText)power.textContent=powerText;
-    power.setAttribute('aria-label','Passive Wisp power: '+powerText);
-    bar.querySelector('span').style.width=charge+'%';
-    bar.setAttribute('aria-valuenow',String(Math.round(charge)));
+    setLiveAttribute(power,'aria-label','Passive Wisp power: '+powerText);
+    bar.querySelector('span').style.transform='scaleX('+(charge/100)+')';
+    setLiveAttribute(bar,'aria-valuenow',String(Math.round(charge)));
     var abilityStatus=!powered ? 'Unpowered — Empower this Wisp' :
       (casting ? 'Casting; ' : recast>0 && charge>=100 ? 'Waiting for Support recast; ' : charge>=100 ? 'Ready; ' : '')+Math.round(charge)+'% charged; '+Math.ceil(seconds)+(recast>0 ? ' seconds until Support can cast again; extra charge does not bypass the interval' : forgeHasChargeGrants()?' seconds by natural charge; grants can ready it earlier':' seconds to next ability');
-    bar.setAttribute('aria-valuetext',abilityStatus);
+    setLiveAttribute(bar,'aria-valuetext',abilityStatus);
   });
 }
 function renderFormationPresets(){
@@ -9979,7 +9998,9 @@ function highlightWispActions(){
   // Finalize cue names before render/refresh callers restore native focus.
   presentControlStates(els['spirit-list']);
 }
+var liveSpiritsDirty=false,lastLiveSpiritsAt=-Infinity;
 function renderSpirits(keepScroll){
+  liveSpiritsDirty=false;lastLiveSpiritsAt=Date.now();
   var actionView=captureWispActionView();
   // Manual purchases retain the original scroll; passive refreshes compensate
   // for content-height changes above the visible action.
@@ -10344,7 +10365,7 @@ function runningStudyMarkup(node,active,maxed,pct,progressValue){
     (regular?'<button class="study-select" data-study-slot="'+active.slot+'" aria-label="Select research for Lab '+(active.slot+1)+'"><span class="study-slot-number">Lab '+(active.slot+1)+'</span><strong>'+node.name+'</strong><span class="study-level">Lv. '+longStudyLevel(active.id)+(node.levelCap!==undefined?' / '+node.levelCap:'')+'</span><span aria-hidden="true">›</span></button>':'<h3>Legacy paid study · '+(node?node.name:'Research')+'</h3>')+
     (node?projectEarnedMarkup(active.id):'')+
     (node&&!node.retiredTo?'<button class="node-queue-toggle study-repeat '+(queueOn?'active':'')+'" data-study-queue="'+active.id+'" aria-pressed="'+queueOn+'" aria-label="'+node.name+' — Queue '+(queueOn?'ON':'OFF')+'. Finish current level'+(queueOn?' and repeat.':'.')+'" title="Repeat research after this level"><span aria-hidden="true">↻</span><span class="study-queue-state">'+(queueOn?'ON':'OFF')+'</span></button>':'')+
-    '<div class="study-bar-track" role="progressbar" aria-label="'+(node?node.name:'Study')+' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+progressValue+'" aria-valuetext="'+progressValue+'% · '+studyRemainingText(active)+'"><div class="study-bar-fill" aria-hidden="true" data-study-bar="'+active.id+'" style="width:'+pct+'%;"></div><span class="study-time" data-study-text="'+active.id+'">'+studyRemainingText(active,true)+'</span></div>'+
+    '<div class="study-bar-track" role="progressbar" aria-label="'+(node?node.name:'Study')+' progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+progressValue+'" aria-valuetext="'+progressValue+'% · '+studyRemainingText(active)+'"><div class="study-bar-fill" aria-hidden="true" data-study-bar="'+active.id+'" style="transform:scaleX('+(pct/100)+');"></div><span class="study-time" data-study-text="'+active.id+'">'+studyRemainingText(active,true)+'</span></div>'+
     (node?studySpeedMarkup(node,active,maxed):'')+
     (node&&node.retiredTo?'<div class="effect-note">Paid work and completion bonus kept. Future upgrades: '+node.retiredTo+'.</div>':maxed?'<div class="effect-note">Finishing saved paid work without another level or bonus.</div>':'')+'</div>';
 }
@@ -10570,6 +10591,12 @@ function prismCalculationText(breakdown){
     (treeLevel('frontier')?'<p>Frontier Record adds its separate award for newly crossed 25-Rift milestones. Your rewarded benchmark prevents repeated claims.</p>':'');
 }
 var ascendAttentionAcknowledged = false;
+function renderAscendAttention(){
+  var eligible=ascendEligible(),ascendTab=document.querySelector('.tab-btn[data-tab="ascend"]');
+  if(!eligible) ascendAttentionAcknowledged=false;
+  if(eligible && ascendTab && ascendTab.classList.contains('active')) ascendAttentionAcknowledged=true;
+  if(ascendTab) ascendTab.classList.toggle('has-attention',eligible && !ascendAttentionAcknowledged);
+}
 function renderAscendSummary(){
   var autoRoot=els['auto-ascend-controls'];
   var editingAuto=autoRoot && autoRoot.contains(document.activeElement);
@@ -10585,10 +10612,7 @@ function renderAscendSummary(){
   els['ascend-btn'].disabled = !eligible;
   els['ascend-btn'].setAttribute('data-state',eligible?'available':'locked');
   els['ascend-btn'].setAttribute('aria-describedby','ascend-note prism-calculation');
-  var ascendTab = document.querySelector('.tab-btn[data-tab="ascend"]');
-  if(!eligible) ascendAttentionAcknowledged=false;
-  if(eligible && ascendTab && ascendTab.classList.contains('active')) ascendAttentionAcknowledged=true;
-  if(ascendTab) ascendTab.classList.toggle('has-attention',eligible && !ascendAttentionAcknowledged);
+  renderAscendAttention();
   if(!eligible){
     els['ascend-note'].textContent = ('Clear Rift 15 to unlock your first Ascend. (' + Amount.max(0,Amount.sub(15,cleared)) + ' to go)');
   } else if(Amount.le(breakdown.benchmark,0)){
@@ -10990,13 +11014,23 @@ var lastDailyRenderAt = 0;
 var dailyRenderTimer = null;
 function renderDaily(force){
   if(!els['daily-quest-list']) return;
+  if(document.hidden) return;
+  if(!force && !liveTabVisible('deeds')){
+    var ready=(state.questIds||[]).some(function(id){
+      var q=QUEST_POOL.find(function(item){return item.id===id;});
+      return q && !(state.questClaimed && state.questClaimed[id]) && ((state.dailyStats && state.dailyStats[q.metric])||0)>=q.goal;
+    });
+    var tab=document.querySelector('.tab-btn[data-tab="deeds"]');
+    if(tab)tab.classList.toggle('has-attention',ready);
+    return;
+  }
   var now = Date.now();
   var elapsed = now-lastDailyRenderAt;
   if(!force && elapsed<DAILY_RENDER_INTERVAL_MS){
     if(!dailyRenderTimer){
       dailyRenderTimer = setTimeout(function(){
         dailyRenderTimer = null;
-        renderDaily(true);
+        renderDaily();
       }, DAILY_RENDER_INTERVAL_MS-elapsed);
     }
     return;
@@ -11281,11 +11315,13 @@ function activateTab(tabName){
     workshopSection=tabName;
     document.querySelectorAll('.workshop-btn').forEach(function(b){var chosen=b.dataset.tab===tabName;b.setAttribute('aria-selected',String(chosen));b.tabIndex=chosen ? 0 : -1;});
   }
-  if(tabName==='spirits'){renderFormationBonds();renderRosterJourney();}
+  if(tabName==='battle') updateBattleFast();
+  if(tabName==='spirits') renderSpirits();
   if(tabName==='forge') renderResearch();
   if(tabName==='research') renderLongStudies();
-  if(tabName==='ascend') renderAscendSummary();
-  if(tabName==='deeds') renderAchievements();
+  if(tabName==='ascend'){renderAscendSummary();renderNodes();}
+  if(tabName==='deeds'){renderAchievements();renderCosmetics();renderDaily(true);}
+  checkAffordability(true,true);
   var main=document.querySelector('main'); if(main) main.scrollTop=0;
   syncMainScrollMode(tabName);
 }
@@ -13697,8 +13733,7 @@ function tick(){
   if(sim.ascends>0){
     saveState();
     presentLiveAscendResult(sim);
-    renderShop();
-    renderCosmetics();
+    if(liveTabVisible('deeds')){renderShop();renderCosmetics();}
   }
   if(sim.completedStudies.length || sim.closedStudies.length){
     saveState();
@@ -13710,17 +13745,28 @@ function tick(){
     renderCosmetics();
     renderNodes();
   }
-  if(sim.empowers>0 || sim.completedStudies.length>0) renderSpirits();
-  if(sim.researchBought>0) renderResearch();
-  if(sim.completedStudies.length || sim.closedStudies.length || sim.studiesStarted>0 || sim.studySpeedPurchases>0) renderLongStudies();
-  else updateStudyProgress();
+  // Hidden panels refresh on navigation. Keep persistence and all simulation
+  // events above/below independent of which panel the player is viewing.
+  if(sim.empowers>0 || sim.completedStudies.length>0 || sim.kills>0 || sim.ascends>0)liveSpiritsDirty=true;
+  if(liveTabVisible('spirits') && liveSpiritsDirty && Date.now()-lastLiveSpiritsAt>=500) renderSpirits();
+  if(sim.researchBought>0 && liveTabVisible('forge')) renderResearch();
+  if(liveTabVisible('research')){
+    if(sim.completedStudies.length || sim.closedStudies.length || sim.studiesStarted>0 || sim.studySpeedPurchases>0) renderLongStudies();
+    else updateStudyProgress();
+  }
 
   if(sim.kills>0 || sim.ascends>0){
-    renderDynamic();
+    renderAscendAttention();
+    if(liveTabVisible('ascend')) renderAscendSummary();
     renderSideStats();
   }
-  updateBattleFast();
-  checkAffordability();
+  if(liveTabVisible('battle') && !overlayFocus) updateBattleFast(true);
+  else {
+    renderHud();
+    // A visible hint remains live while the covered arena is asleep.
+    if(overlayFocus && overlayFocus.el.id==='rift-hint-overlay')renderRiftObjective();
+  }
+  checkAffordability(true);
   if(document.getElementById('tab-spirits').classList.contains('active') && Date.now()-wispRoleLastRenderMs>=1000) renderWispRoles();
   presentLiveRiftResult(feedbackBefore,sim);
   presentForegroundDailyReward();
@@ -13773,22 +13819,24 @@ function updateStudyProgress(){
     if(!fillEl || !textEl) return;
     var pct = Math.max(0, Math.min(100, 100 - (active.remainingSec/active.totalDurationSec*100)));
     var progressValue=active.remainingSec>0?Math.min(99,Math.round(pct)):100;
-    fillEl.style.width = pct+'%';
+    fillEl.style.transform = 'scaleX('+(pct/100)+')';
     var text = studyRemainingText(active,true);
     if(textEl.textContent!==text) textEl.textContent = text;
     var track=fillEl.parentElement;
-    track.setAttribute('aria-valuenow',String(progressValue));
-    track.setAttribute('aria-valuetext',progressValue+'% · '+studyRemainingText(active));
+    setLiveAttribute(track,'aria-valuenow',String(progressValue));
+    setLiveAttribute(track,'aria-valuetext',progressValue+'% · '+studyRemainingText(active));
   });
 }
 
 var AFFORDABILITY_REFRESH_MS = 500;
 var lastAffordabilityAt = 0;
-function checkAffordability(){
+function checkAffordability(visibleOnly,force){
   var now = Date.now();
-  if(Amount.lt(Amount.sub(now,lastAffordabilityAt),AFFORDABILITY_REFRESH_MS)) return;
+  if(!force && Amount.lt(Amount.sub(now,lastAffordabilityAt),AFFORDABILITY_REFRESH_MS)) return;
   lastAffordabilityAt = now;
+  function refresh(tab){return !visibleOnly || liveTabVisible(tab);}
   renderLabCapacityBadge();
+  if(refresh('spirits')){
   var actionView=captureWispActionView();
   // Live labels can wrap as wallets change; a wallet refresh is not navigation.
   if(actionView)actionView.anchorTop=null;
@@ -13832,12 +13880,16 @@ function checkAffordability(){
   });
   highlightWispActions();
   restoreWispActionView(actionView);
+  }
+  if(refresh('forge')){
   els['research-list'].querySelectorAll('[data-research]').forEach(function(btn){
     var node = RESEARCH.find(function(n){ return n.id===btn.getAttribute('data-research'); });
     if(!node) return;
     updateResearchCard(node,btn.closest('[data-forge-card]'));
   });
+  }
   if(els['hud-mote'])els['hud-mote'].title=state.moteNextAtMs>Date.now()?'Luminous Motes ready in '+fmtStudyDuration((state.moteNextAtMs-Date.now())/1000):'Luminous Mote payout ready';
+  if(refresh('research')){
   var openStudySlots = studySlotCount() - state.activeStudies.length;
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
     var lnode = LONG_STUDIES.find(function(n){ return n.id===btn.getAttribute('data-study'); });
@@ -13848,20 +13900,29 @@ function checkAffordability(){
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(btn){
     btn.disabled=!getStudyBoostPlan(btn.getAttribute('data-speed-study'),Number(btn.getAttribute('data-speed')),Number(btn.getAttribute('data-hours'))).affordable;
   });
+  }
+  if(refresh('ascend')){
   els['node-list'].querySelectorAll('[data-node]').forEach(function(btn){
     var node=NODES.find(function(n){return n.id===btn.getAttribute('data-node');});
     if(node) btn.disabled=!getNodeBuyPlan(node).affordable;
   });
+  renderAutoAscendControls();
+  }
+  if(refresh('deeds')){
+  var trialStatus=document.querySelector('[data-trial-live-status]');
+  if(trialStatus)setLiveText(trialStatus,cometTrialStatus());
   SHOP.forEach(function(item){updateCometShopCard(item,els['shop-list'].querySelector(('[data-comet-card="' + item.id + '"]')));});
   els['daily-quest-list'].querySelectorAll('[data-quest-refresh]').forEach(function(btn){
     btn.disabled=!getDailyQuestRefreshPlan(btn.getAttribute('data-quest-refresh')).available;
   });
   renderCometCommands();
-  ['spirit-list','research-list','study-list','node-list','shop-list','daily-quest-list'].forEach(function(id){
+  }
+  var purchaseTabs={'spirit-list':'spirits','research-list':'forge','study-list':'research','node-list':'ascend','shop-list':'deeds','daily-quest-list':'deeds'};
+  Object.keys(purchaseTabs).forEach(function(id){
+    if(!refresh(purchaseTabs[id])) return;
     updatePurchasePriceColors(els[id]);
     presentControlStates(els[id]);
   });
-  renderAutoAscendControls();
 }
 
 // ---------------------------------------------------------------
@@ -13870,22 +13931,27 @@ function checkAffordability(){
 function setupStars(){
   var canvas = document.getElementById('stars');
   var ctx = canvas.getContext('2d');
+  if(!ctx) return;
   var stars = [];
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var paintedTheme=null;
+  // Ambient stars are a static texture. Combat and the selected Live scene
+  // supply movement without repainting a full-screen canvas all session long.
   function resize(){
+    if(document.hidden) return;
+    if(canvas.width===window.innerWidth && canvas.height===window.innerHeight && stars.length){draw();return;}
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    var count = Math.floor((canvas.width*canvas.height)/9000);
+    var count = Math.min(160,Math.floor((canvas.width*canvas.height)/9000));
     stars = [];
     for(var i=0;i<count;i++){
       stars.push({
         x: Math.random()*canvas.width,
         y: Math.random()*canvas.height,
         r: Math.random()*1.4+0.3,
-        phase: Math.random()*Math.PI*2,
-        speed: 0.4+Math.random()*0.8
+        opacity: 0.4+Math.random()*0.6
       });
     }
+    paintedTheme=null;draw();
   }
   function isDark(){
     var t = document.documentElement.getAttribute('data-theme');
@@ -13893,29 +13959,27 @@ function setupStars(){
     if(t==='light') return false;
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
-  var lastStarDraw = 0;
-  var STAR_FRAME_MS = 50;
-  function draw(t){
-    if(!reduceMotion && t-lastStarDraw<STAR_FRAME_MS){
-      requestAnimationFrame(draw);
-      return;
-    }
-    lastStarDraw = t;
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+  function draw(){
+    if(document.hidden) return;
     var dark = isDark();
+    if(paintedTheme===dark) return;
+    paintedTheme=dark;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     var base = dark ? [230,228,245] : [90,80,140];
     stars.forEach(function(s){
-      var tw = reduceMotion ? 0.7 : (0.5 + 0.5*Math.sin(t*0.001*s.speed + s.phase));
+      var tw = s.opacity;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
       ctx.fillStyle = 'rgba('+base[0]+','+base[1]+','+base[2]+','+(dark ? 0.15+tw*0.5 : 0.10+tw*0.25)+')';
       ctx.fill();
     });
-    if(!reduceMotion) requestAnimationFrame(draw);
   }
   window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)resize();});
+  if(window.MutationObserver)new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  var themeQuery=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  if(themeQuery && themeQuery.addListener)themeQuery.addListener(draw);
   resize();
-  requestAnimationFrame(draw);
 }
 
 // ---------------------------------------------------------------
@@ -14390,8 +14454,23 @@ function init(){
     beginReturn(dailyRolled);
   }
   initAppUpdater();
-  setInterval(tick,TICK_MS);
-  setInterval(function(){ if(!document.hidden && tick()!==false) saveState(); },5000);
+  var liveTickTimer=null,autosaveTimer=null;
+  function syncForegroundTimers(){
+    if(document.hidden){
+      if(liveTickTimer!==null)clearInterval(liveTickTimer);
+      if(autosaveTimer!==null)clearInterval(autosaveTimer);
+      liveTickTimer=autosaveTimer=null;
+      if(dailyRenderTimer){clearTimeout(dailyRenderTimer);dailyRenderTimer=null;}
+      return;
+    }
+    if(liveTickTimer===null)liveTickTimer=setInterval(function(){tick();},TICK_MS);
+    // Save still settles the monotonic clock, without an extra complete UI tick.
+    if(autosaveTimer===null)autosaveTimer=setInterval(function(){
+      if(!document.hidden && !offlineCatchup && !offlinePending && !resumeFlowBusy && !resetInProgress && !reloadInProgress && flushLiveProgress())saveState();
+    },5000);
+  }
+  syncForegroundTimers();
+  document.addEventListener('visibilitychange',syncForegroundTimers);
   window.addEventListener('beforeunload', function(){
     if(!flushLiveProgress())return;
     if(!resetInProgress && !reloadInProgress) saveState();

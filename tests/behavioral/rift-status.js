@@ -165,7 +165,9 @@ window.runRiftStatusQa=async function(b,ctx,assert){
       cards.forEach(card=>{
         var id=card.dataset.riftWisp,powered=state.spirits[id]>0,value=powered?state.heroResource[id]:0,bar=card.querySelector('[role="progressbar"]'),power=card.querySelector('.rift-wisp-power'),status=card.querySelector('.rift-wisp-state');
         ok(Number(bar.getAttribute('aria-valuenow'))===Math.round(value),'bar reads real ability resource');
-        ok(Math.abs(parseFloat(bar.firstElementChild.style.width)-value)<=0.00001,'visible bar matches charge within CSS serialization precision');
+        var chargeScale=/^scaleX\(([^)]+)\)$/.exec(bar.firstElementChild.style.transform);
+        ok(chargeScale&&Math.abs(Number(chargeScale[1])*100-value)<=0.00001,'compositor bar matches charge within CSS serialization precision');
+        ok(getComputedStyle(bar.firstElementChild).transitionProperty==='transform'||getComputedStyle(bar.firstElementChild).transitionDuration==='0s','charge animation does not animate layout width');
         ok(bar.getAttribute('aria-valuemin')==='0'&&bar.getAttribute('aria-valuemax')==='100','ability charge retains its accessible percentage range');
         var recast=Math.max(0,((state.supportRecastUntil||{})[id]||0)-b.clockNow())/1000;
         var chargeSeconds=(1-value/100)*b.riftStatus.visualMetrics().cycle;

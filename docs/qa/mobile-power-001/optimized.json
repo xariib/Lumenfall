@@ -1,0 +1,128 @@
+{
+  "status": "pass",
+  "baseline": false,
+  "checks": 45,
+  "sourceSha256": "2e28d6e6277cfa3b3361d203aef8ee798416874fe6d26152ec5201b7b0a1e13d",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/156.0.8078.80",
+    "revision": "@cc92146ef17860a4511f7de658b078128dbaad5",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "jsVersion": "15.6.75.27"
+  },
+  "records": [
+    {
+      "tab": "battle",
+      "calls": {
+        "tick": 50,
+        "updateBattleFast": 50,
+        "checkAffordability": 50,
+        "renderDaily": 10
+      },
+      "mutations": 952,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 10,
+      "remaining": 994.6145,
+      "errors": [],
+      "taskMs": 427.597,
+      "scriptMs": 128.548,
+      "layoutCount": 46,
+      "layoutMs": 17.905000000000005,
+      "measuredMs": 5001.183999993373
+    },
+    {
+      "tab": "spirits",
+      "calls": {
+        "tick": 50,
+        "renderSpirits": 10,
+        "renderDaily": 10,
+        "checkAffordability": 50
+      },
+      "mutations": 2458,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 10,
+      "remaining": 994.5472999999821,
+      "errors": [],
+      "taskMs": 470.63199999999995,
+      "scriptMs": 196.60799999999995,
+      "layoutCount": 24,
+      "layoutMs": 99.08099999999997,
+      "measuredMs": 5006.282000016654
+    },
+    {
+      "tab": "research",
+      "calls": {
+        "tick": 50,
+        "renderDaily": 10,
+        "checkAffordability": 50
+      },
+      "mutations": 813,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 10,
+      "remaining": 994.5380999999941,
+      "errors": [],
+      "taskMs": 194.8289999999997,
+      "scriptMs": 106.56600000000005,
+      "layoutCount": 31,
+      "layoutMs": 5.027000000000004,
+      "measuredMs": 5001.613000000361
+    },
+    {
+      "tab": "deeds",
+      "calls": {
+        "tick": 50,
+        "renderDaily": 10,
+        "checkAffordability": 50
+      },
+      "mutations": 246,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 10,
+      "remaining": 994.555900000006,
+      "errors": [],
+      "taskMs": 109.47500000000021,
+      "scriptMs": 64.58500000000001,
+      "layoutCount": 18,
+      "layoutMs": 5.954999999999988,
+      "measuredMs": 5001.4179999998305
+    }
+  ],
+  "hidden": {
+    "calls": {},
+    "mutations": 393,
+    "starDraws": 0,
+    "timerWakes": 0,
+    "overlay": null,
+    "depth": 21,
+    "kills": 0,
+    "remaining": 999.9997000000179,
+    "errors": []
+  },
+  "resumed": {
+    "calls": {
+      "tick": 11,
+      "updateBattleFast": 11,
+      "checkAffordability": 11,
+      "renderDaily": 2
+    },
+    "mutations": 189,
+    "starDraws": 0,
+    "timerWakes": 11,
+    "overlay": null,
+    "depth": 21,
+    "kills": 5,
+    "remaining": 997.2346000000239,
+    "errors": []
+  }
+}
