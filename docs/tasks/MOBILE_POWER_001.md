@@ -85,8 +85,8 @@ from bulk execution. [Replay receipt](../qa/mobile-power-001/parity.json).
 Study completion presentation edge in the silent autosave; saving now follows
 the ordinary tick. Positive and injected-old-autosave browser checks confirm it.
 Price navigation checks run atomically so live wallet changes cannot race their
-comparison. Node24.19 full parity rerun is in progress for the final source;
-expected state/reward hashes remain unchanged, only source binding changes.
+comparison. Final-source Node24.19 full parity passes; expected state/reward
+hashes remain unchanged, only source binding changes.
 
 Non-publishing Android [41851037992](https://github.com/xariib/Lumenfall/actions/runs/41851037992)
 passed signing/assets/runtime and save upgrade, then failed the first native
@@ -114,9 +114,14 @@ specific reason. Separate read-only verification confirms the exact resolved
 path, documented task ownership, 15 copied HTML/font/branding files and no links
 or .git entries. No supported escalation is available; it remains in place.
 Do not mislabel this generic tool rejection as automatic approval review.
+The separately owned profiling folder
+`C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\mobile-power-001\validation-evidence\mobile-power\contract-diagnostic`
+also remains: exact resolved path/owner/disposable marker/no links or .git/no
+running browser verified, then the direct native LiteralPath cleanup received
+the same generic “blocked by policy” rejection. No alternate deletion route used.
 
-Next: finish full parity, push corrections, inspect required CI/native evidence;
-integrate after gates, then verify/publish the signed Android update. Physical
+Next: finish required CI/native evidence, integrate after gates, then
+verify/publish the signed Android update. Physical
 phone thermal, battery, exact WebView60 and TalkBack review remain open.
 
 Android0.2.86 [41854346263](https://github.com/xariib/Lumenfall/actions/runs/41854346263)
@@ -132,3 +137,19 @@ Intl.NumberFormat preserves numeric formatting and non-number Amount strings,
 with a fallback for missing Intl. The original6651-assertion contract now passes
 its unchanged deadline. The exploratory test-helper change was reverted; no
 assertions, cases or deadline changed. Final-source replay/browser/CI rerun next.
+
+Final2b5878 source: all47 browser checks and four8h Node24.19 replays PASS;
+original6651 Prism contract now passes CI. a58ac0b is the current PR37 head.
+Android41859046342 passed the full upgrade/navigation/looks on this source, but
+updater cancellation's second DevTools command arrived after installer handoff.
+The harness now sends download+cancel in one turn, verifies the offered cancel
+and absence of Android installer; controller and timeout/assertions unchanged.
+Helper-only9fb689b is on isolated qa/mobile-power-android-001 for an Android
+test while PR CI continues. Lab's Browser.getVersion timeout occurred before0
+checks; its failed-job rerun passes. Tree, Forge, Comet and progression pass.
+Shared UI exposed an HP geometry sampling race: renderAll starts a new .001ms
+reduced-motion transition after the test's earlier wait. Finish that actual
+transition before the atomic visual/state comparison, retaining the original
+fraction and no-width-animation assertions. Product source is unchanged.
+Integrate the helper and geometry fix in PR37, require all gates, then run
+the six exact-main release gates before publication.

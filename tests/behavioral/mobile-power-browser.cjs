@@ -94,7 +94,11 @@ async function main(){
    await ev('powerQa.evaluate("closeSettings();")');
    await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
    await ev('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
-   ok(await ev('powerQa.evaluate('+JSON.stringify(`(function(){renderAll();var hp=document.getElementById('hp-fill'),hpRatio=Amount.ratio(state.enemyHp,state.enemyMaxHp),bar=hp.parentElement;return Math.abs(hp.getBoundingClientRect().width/bar.clientWidth-hpRatio)<.01 && getComputedStyle(hp).transitionProperty.indexOf('width')===-1;})()`)+')'),'HP visual fraction matches authoritative HP without layout animation');
+   // renderAll can start a new .001ms reduced-motion transition. Finish that
+   // actual transition before the atomic geometry/state comparison; waiting
+   // before renderAll sampled its starting frame intermittently on CI.
+   const hpGeometry=await ev('powerQa.evaluate('+JSON.stringify(`(function(){renderAll();var hp=document.getElementById('hp-fill'),hpRatio=Amount.ratio(state.enemyHp,state.enemyMaxHp),bar=hp.parentElement,style=getComputedStyle(hp),before=hp.getBoundingClientRect().width/bar.clientWidth;hp.getAnimations().forEach(function(animation){animation.finish();});return {before:before,visual:hp.getBoundingClientRect().width/bar.clientWidth,expected:hpRatio,transition:style.transitionProperty,duration:style.transitionDuration};})()`)+')');
+   ok(Math.abs(hpGeometry.visual-hpGeometry.expected)<.01 && hpGeometry.transition.indexOf('width')===-1,'HP visual fraction matches authoritative HP without layout animation '+JSON.stringify(hpGeometry));
   }
   await ev('powerQa.seed("battle");powerQa.hidden(true);powerQa.reset()');const hiddenBefore=await ev('powerQa.sample()');await pause(1300);const hiddenAfter=await ev('powerQa.sample()');
   ok(hiddenAfter.remaining===hiddenBefore.remaining,'hidden time is reserved for offline catch-up');
