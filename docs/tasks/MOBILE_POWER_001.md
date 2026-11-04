@@ -119,6 +119,10 @@ The separately owned profiling folder
 also remains: exact resolved path/owner/disposable marker/no links or .git/no
 running browser verified, then the direct native LiteralPath cleanup received
 the same generic “blocked by policy” rejection. No alternate deletion route used.
+Temporary Java17.0.21 compiler at
+`C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\mobile-power-001\validation-evidence\mobile-power\owned-jdk`
+also remains after the same native LiteralPath rejection; exact path, ownership,
+no links/.git and no running compiler were verified first.
 
 Next: finish required CI/native evidence, integrate after gates, then
 verify/publish the signed Android update. Physical
@@ -161,3 +165,10 @@ AppUpdaterPlugin now returns a completion callback from worker actions, releases
 the lock after cleanup, then notifies JS/opens Android UI. Success/error/cancel
 ordering and concurrent rejection are exercised from the production Java gate,
 including an injected late-release causal failure. Native acceptance must rerun.
+
+Latest code: c67c4c2d; all local focused checks PASS. Required PR runs and
+Android41862842909 are queued without a runner as of4Nov17:09 Copenhagen.
+Older finished jobs still appear in progress; normal cancellation returns409
+“Cannot cancel a workflow run that is not in progress.” No duplicate/force run.
+[Pending run IDs and next steps](../qa/mobile-power-001/pending-ci.json).
+Main remains67a9b58; no merge or new release claimed. Keep the feature open.

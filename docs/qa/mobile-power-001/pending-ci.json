@@ -1,0 +1,92 @@
+{
+  "observedAt": "2026-11-04T16:09:00.874Z",
+  "head": "c67c4c2d171cec17f36d02d111de896f1d3b95ce",
+  "htmlSha256": "2b587871f5f080a301feb4a5c5c4f03fc3b0bb6feb89ca04593873a014b3d937",
+  "status": "awaiting required CI and native build; not integrated or published",
+  "runs": [
+    {
+      "id": 41862849327,
+      "name": "Comet shop and Deeds validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849327"
+    },
+    {
+      "id": 41862849424,
+      "name": "Shared UI layout validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849424"
+    },
+    {
+      "id": 41862849517,
+      "name": "Research Lab expansion validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849517"
+    },
+    {
+      "id": 41862849381,
+      "name": "Permanent progression and direct cards validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849381"
+    },
+    {
+      "id": 41862849441,
+      "name": "Rift Forge expansion validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849441"
+    },
+    {
+      "id": 41862849487,
+      "name": "Ascension Tree focused validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849487"
+    },
+    {
+      "id": 41862849549,
+      "name": "Pre-merge validation",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849549"
+    },
+    {
+      "id": 41862849413,
+      "name": "Prism mobile engine and economy acceptance",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849413"
+    },
+    {
+      "id": 41862849307,
+      "name": "Prism feature validation",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/41862849307"
+    }
+  ],
+  "android": {
+    "id": 41862842909,
+    "status": "queued",
+    "url": "https://github.com/xariib/Lumenfall/actions/runs/41862842909"
+  },
+  "obsoleteCancellation": {
+    "runs": [
+      41860940147,
+      41859057097
+    ],
+    "response": 409,
+    "message": "Cannot cancel a workflow run that is not in progress.",
+    "observation": "Their job steps are finished but read APIs still show in_progress; no force-cancel or duplicate run attempted."
+  },
+  "next": [
+    "Inspect required PR and Android results; fix any genuine failures without waiving gates.",
+    "Recheck main/PR36 and reviews; integrate only after required PR gates pass.",
+    "Run six manual release gates on exact integrated main; preserve both pre-merge jobs.",
+    "Publish signed APK after native/save/updater acceptance and verify anonymous bytes.",
+    "Save final evidence/project status; physical phone thermal/battery, WebView60 and TalkBack remain open."
+  ]
+}
