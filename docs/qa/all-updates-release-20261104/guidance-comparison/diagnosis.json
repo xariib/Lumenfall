@@ -1,0 +1,31 @@
+{
+  "source": "388030c6f9994a0c84aa83c153510d94b9ca0081",
+  "run": 41875873731,
+  "job": 126735001523,
+  "conclusion": "failure",
+  "error": {
+    "code": null,
+    "message": "long versus normal hint #hp-text x: 228.390625 -> 215.1875",
+    "details": null
+  },
+  "comparisons": [
+    {
+      "profile": "320x640-safe0-text1-no-preference",
+      "kind": "farm",
+      "normal": {
+        "x": 228.390625,
+        "y": 229,
+        "width": 59.40625,
+        "height": 16
+      },
+      "long": {
+        "x": 215.1875,
+        "y": 229,
+        "width": 72.609375,
+        "height": 16
+      }
+    }
+  ],
+  "artifactSha256": "a03d559fc55d528828729c6414c80cf3086b9ada71a980e0350acfe0d9103d7e",
+  "diagnosis": "Separate real-time combat windows before hint/text-scale comparisons can change the natural-width HP text. Reuse the first post-live state for each viewport/motion/fixture; explicitly require identical HP text and complete game-state hashes before unchanged geometry checks. No product change."
+}
