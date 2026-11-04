@@ -31,6 +31,9 @@ and320px/200% screenshots visually inspected. Source validation and diff check P
 [Mobile receipt](../qa/lab-timer-layout-001/mobile.json),
 [baseline failure](../qa/lab-timer-layout-001/baseline.json),
 [preview](../qa/lab-timer-layout-001/timers-390-100.png).
+Additional longest-duration check PASS at320px/200% text:100-day,15-day and
+99-day/1.5x timers retain44px height and fit without clipping (maximum252px label
+inside272px track). [Receipt](../qa/lab-timer-layout-001/max-duration.json).
 
 Initial Windows dump-DOM duration run timed out without a QA result. Using the
 existing CDP transport/native driver for deterministic local acceptance; not a
@@ -69,7 +72,7 @@ Prior CI head da76c317ad81249f60e32942bba7859ceb37ffa8 has the same product byte
 and tree ac394460506184cee5ef3598b55a501973b39803 as reviewed local commit e27e729.
 Git push/ref operations encountered GitHub server errors; Git Data blobs/tree/
 commit plus a non-force REST ref update saved the exact tree. Local branch was
-aligned only after verifying identical trees. Final runs: pre-merge41820146342,
+aligned only after verifying identical trees. Prior runs: pre-merge41820146342,
 Lab41820146328, Forge41820146304, Tree41820146270, Comet41820146267,
 shared UI41820146337, permanent41820146284. Pre-merge stopped at the startup
 context gate for RIFT_HINT_READABILITY_002, after the preceding product checks
@@ -79,18 +82,25 @@ summaries while preserving links/requirements/evidence; all32 CI task contexts
 now PASS, largest32585 bytes. No test/checker/budget change.
 [Failure](../qa/lab-timer-layout-001/ci-context-failure.txt),
 [all task contexts](../qa/lab-timer-layout-001/context-gates.json).
-The next CI run checks this documentation repair with unchanged product/tests.
+Final CI head8577aa8767ce6d73fcfcc9794df826512afdc596 PASS: all seven workflows,
+nine jobs,190 main +1 isolated behavioral scenarios and mobile runtime smoke.
+Node24.19.0. [CI receipt](../qa/lab-timer-layout-001/ci-final.json),
+[behavioral console](../qa/lab-timer-layout-001/ci-behavioral.txt),
+[isolated log](../qa/lab-timer-layout-001/ci-isolated.log.gz).
+PR34 merged57fd7ab365364c74b0e8061bd0b886577880cf59. Integrated tree
+80fd7e4e7210c1a3d0f2871a511d91518e356022 exactly matches tested head; product
+hash remains identical to the verified signed APK. Follow-up contains only
+documentation/evidence, with all32 task contexts checked again.
 Self-review/automation only.
 
 An interrupted whole-repository test staging copy remains at the local temporary
 folder lumenfall-behavioral-4QuuI1. Automatic approval review rejected its verified
 scoped cleanup with only "blocked by policy". Product work is unaffected.
 
-Status: implemented; local and signed Android acceptance PASS; CI/integration pending.
-Next: wait for all seven final workflows (both pre-merge jobs), collect receipts,
-integrate tested head into main without overwriting concurrent work, then save
-the documentation/Android evidence and deliver the preview/test APK.
-Phone/WebView60/TalkBack/human acceptance remains unverified. No archive.
+Status: integrated; local, CI and signed emulator upgrade/updater acceptance PASS.
+Preview/test APK delivered; no public release. Next: physical phone, exact
+WebView60 and TalkBack/human review when available. Those remain unverified;
+the chat stays open and is not archived.
 
 References: [Lab controls](LAB_SLOTS_QUEUE_SPEEDUP_001.md),
 [Speed Up design](LAB_SPEED_DESIGN_001.md),

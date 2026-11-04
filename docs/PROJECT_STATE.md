@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
-4 November: [Lab timers](tasks/LAB_TIMER_LAYOUT_001.md): local/Android PASS;
-CI/integration pending.
+4 November: [Lab timers/PR34](tasks/LAB_TIMER_LAYOUT_001.md): merged57fd7ab3;
+seven gates/190+1 and signed0.2.76 PASS. Phone review open; no release.
 
 2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
 [Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
