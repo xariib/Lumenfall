@@ -114,6 +114,21 @@ only the newly validated artifact, verify public bytes and persist final evidenc
 Sibling publisher/verifier currently pin ff9285c4/0.2.80 and must be updated from
 the new immutable build receipts before invocation; neither has run.
 
+Combined replay now PASS: all four full eight-hour windows match every original
+gameplay field and reward, and the output exactly equals the committed reference.
+[Receipt](../qa/rift-visual-unlocks-001/combined-parity.json). Merge649aaac4 retains
+Lab PR34; main remained29dbb1e9. Older full run41825388671 completed with two
+failing scenarios: Comet's empty DOM fixture lacked querySelector, and the Rift
+contract retained old projectile origin/count/art-catalog assumptions. Its full
+raw log is preserved in ci/126558708208.log.gz. The fixture now supplies its empty
+selector; the contract checks portrait origin, full-battle bounds, inert layer,
+twelve-effect cap, all40 original/new vector symbols and all23 default encounter
+species. Original geometry/paint/economy checks retained. Both scenarios PASS
+locally (Comet12 sections, Rift original contract via existing CDP pipe). Windows
+dump-DOM transport timed out; the existing pipe transport completed successfully.
+Only tests/evidence changed after649aaac4; production hash remains513f8851.
+Final exact-head CI/native reruns required before delivery.
+
 ## Failure disposition and open acceptance
 
 Four raw Android failure ZIPs retained: emulator disappeared before candidate

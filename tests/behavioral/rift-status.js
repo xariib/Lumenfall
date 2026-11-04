@@ -238,7 +238,13 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     var hp=b.getState().enemyHp;b.advanceTime(400);b.feedbackTick(false);b.riftStatus.update();
     ok(b.getState().enemyHp<hp,'passive projectile accompanies authoritative continuous damage');
     ok(motion?!q('.vfx-shot'):!!q('.vfx-shot.shot-ember'),'passive projectile uses its contributing Wisp identity');
-    var shot=q('.vfx-shot');if(shot)ok(parseFloat(shot.style.getPropertyValue('--from-y'))>=24&&parseFloat(shot.style.getPropertyValue('--from-y'))<=q('#enemy-stage').clientHeight-12,'passive shot origin stays inside the arena with standalone cards');
+    var shot=q('.vfx-shot');if(shot){
+      var layer=q('.rift-projectile-layer'),area=layer.getBoundingClientRect(),portrait=q('[data-rift-wisp="ember"] .wisp-portrait').getBoundingClientRect();
+      var fromX=parseFloat(shot.style.getPropertyValue('--from-x')),fromY=parseFloat(shot.style.getPropertyValue('--from-y'));
+      ok(shot.parentElement===layer&&fromX>=0&&fromX<area.width&&fromY>=0&&fromY<area.height,'passive shot stays inside the full battle layer');
+      ok(area.left+fromX>=portrait.left&&area.left+fromX<=portrait.right&&area.top+fromY>=portrait.top&&area.top+fromY<=portrait.bottom,'passive shot visibly starts at its contributing Wisp portrait');
+      ok(getComputedStyle(layer).pointerEvents==='none','projectile layer leaves combat controls usable');
+    }
     ok(!q('.rift-wisp.is-casting'),'passive attack does not invent an ability cast');
     b.resetFeedback();q('[data-tab="spirits"]').click();b.advanceTime(400);b.feedbackTick(false);ok(!q('.combat-vfx'),'no passive effects accumulate off Rift');
     s=seed();s.activeParty=['ember'];s.spirits.ember=1;s.heroResource.ember=99.9;install(s);q('[data-tab="battle"]').click();
@@ -249,7 +255,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     var castId=b.getState().activeParty[0];for(var n=0;n<20;n++)b.riftStatus.emit(castId);b.riftStatus.update();
     partyCheck();
     ok(q('[data-rift-wisp="'+castId+'"] .rift-charge').getAttribute('aria-valuetext').startsWith('Casting; '),'actual cast event exposes status on the correct Wisp bar');
-    ok(document.querySelectorAll('.combat-vfx').length===(matchMedia('(prefers-reduced-motion: reduce)').matches?0:8),'effects are bounded and absent in reduced motion');
+    ok(document.querySelectorAll('.combat-vfx').length===(matchMedia('(prefers-reduced-motion: reduce)').matches?0:12),'effects retain the twelve-effect bound and are absent in reduced motion');
     b.advanceTime(700);b.riftStatus.update();ok(!q('.rift-wisp.is-casting'),'cast marker expires');
     b.resetFeedback();q('[data-tab="spirits"]').click();b.riftStatus.emit(castId);ok(!q('.combat-vfx'),'no effects accumulate off Rift');q('[data-tab="battle"]').click();
     s=seed();s.buffUntil=b.clockNow()+2000;s.buffMult=1.25;install(s);
@@ -259,14 +265,16 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     // Exercise the production selector: catalog art must be reachable in both
     // ordinary encounters and Bosses, with matching names and no state writes.
     var catalog=[...document.querySelectorAll('symbol[id^="creature-"]')].map(x=>x.id.slice(9));
-    ok(catalog.length===23&&new Set(catalog).size===23,'23 unique enemy species are authored');
+    ok(catalog.length===29&&new Set(catalog).size===29,'23 original and six unlockable enemy appearances have unique symbols');
     // The stylized artwork is self-contained vector geometry in the original canvases.
     // Inspect every portrait, including species not selected by this encounter.
     var enemyArtIds=['wisp','serpent','stalker','husk','warden','shade','leech','prowler','effigy','wraith','arachnid','scorpion','mantis','wyvern','gargoyle','behemoth','revenant','hydra','watcher','carapace','basilisk','crawler','harrier'];
     var wispArtIds=['ember','tide','stone','gale','thorn','void','aurora','titan'];
-    var vectorSpecs=enemyArtIds.map(id=>({id:'creature-'+id,canvas:160})).concat(wispArtIds.map(id=>({id:'wisp-'+id,canvas:64})));
+    var unlockedEnemyIds=['runegolem','crystalstag','templemoth','lanternray','abyssmedusa','reefdragon'];
+    var wispDesignIds=['design-crystal','design-wild','design-astral'];
+    var vectorSpecs=enemyArtIds.concat(unlockedEnemyIds).map(id=>({id:'creature-'+id,canvas:160})).concat(wispArtIds.concat(wispDesignIds).map(id=>({id:'wisp-'+id,canvas:64})));
     var vectorSymbols=[...document.querySelectorAll('symbol[id^="creature-"],symbol[id^="wisp-"]')],vectorArt=[];
-    ok(vectorSymbols.length===31&&vectorSpecs.every(spec=>vectorSymbols.some(symbol=>symbol.id===spec.id)),'exact 23 enemy and eight Wisp vector identities');
+    ok(vectorSymbols.length===40&&vectorSpecs.every(spec=>vectorSymbols.some(symbol=>symbol.id===spec.id)),'all original and unlocked enemy/Wisp vector identities remain present');
     var probe=document.createElementNS('http://www.w3.org/2000/svg','svg');
     probe.setAttribute('aria-hidden','true');probe.setAttribute('focusable','false');
     probe.style.cssText='position:fixed;left:0;top:0;opacity:0;pointer-events:none;--creature-color:#504c80;--creature-rim:#b4a5dc;--creature-eye:#d5edff';
@@ -348,13 +356,13 @@ window.runRiftStatusQa=async function(b,ctx,assert){
           }
         }
       }
-      ok(seen.size===23&&catalog.every(id=>seen.has(id)),mode+' encounters reach all 23 authored enemy species');
+      ok(seen.size===23&&enemyArtIds.every(id=>seen.has(id)),mode+' default encounters still reach all 23 original enemy species');
       artCoverage[mode]=[...seen];
     });
     ok(speciesColors.size===23,'ordinary species retain distinct material palettes');
     ok(traitRims.size===3,'all three Boss traits visibly color the artwork silhouette rim');
     var portraits=[...document.querySelectorAll('symbol[id^="wisp-"]')];
-    ok(portraits.length===8&&portraits.every(x=>document.querySelectorAll('[id="'+x.id+'"]').length===1),'all eight Wisp portraits have unique production symbols');
+    ok(portraits.length===11&&wispArtIds.every(id=>document.getElementById('wisp-'+id))&&portraits.every(x=>document.querySelectorAll('[id="'+x.id+'"]').length===1),'all eight original Wisp portraits and three design templates have unique production symbols');
     return {checks,guidanceLines,worstNames:worst.text,worstMembers:worst.ids,observerOnly:true,queue:true,resume:true,artCoverage,vectorArt,traitRims:[...traitRims]};
   }finally{if(undo)undo();}
 };

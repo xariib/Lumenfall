@@ -10,7 +10,7 @@ function exactInteger(value){if(typeof value==='number')return BigInt(value);con
 function app(seed){
   let now=2000000000000,sequence=0,failPrimary=false;
   const queue=[],storage=new Map(),writes=[];
-  const document={readyState:'loading',hidden:false,addEventListener(){},getElementById:()=>null};
+  const document={readyState:'loading',hidden:false,addEventListener(){},getElementById:()=>null,querySelector:()=>null};
   const window={addEventListener(){},matchMedia:()=>({matches:true})};
   const localStorage={getItem:key=>storage.get(key)||null,removeItem:key=>storage.delete(key),setItem(key,value){
     if(failPrimary&&key==='lumenfall_save_v2') throw Error('injected primary failure');
