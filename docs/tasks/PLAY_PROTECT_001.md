@@ -32,7 +32,8 @@ Scope/acceptance:
 - Validate, integrate and retain durable evidence; publish only with honest
   status. Do not claim the warning fixed without device/classification evidence.
 
-Status: integrated; Google/device acceptance pending. PR39 merged at12551152;
+Status: integrated; positive phone scan confirmed, stable promotion in progress.
+PR39 merged at12551152;
 tested source4982932a has the identical tree. User reports last clean install
 was probably before updater and requests actual installation testing. Local browser automation reports "Local browser use
 is disabled in Work settings", so VirusTotal/appeal UI cannot currently be used.
@@ -58,16 +59,18 @@ existing Windows Firewall prompt for adb.exe; package commands return error:
 closed. User cannot access the computer now to dismiss it; no security setting was changed.
 Other emulator instances are excluded. No successful local installation claimed.
 
-Next: confirm the APK identity in the user's positive phone scan. Screenshot
+Phone result: the user confirms "Yes from zip" for the supplied0.2.95 APK.
+Screenshot
 19583.jpg shows Google Play Protect saying "This app looks safe" and offering
 Install, but no APK version/hash. A background file row shows7.10MB; it may be
 another file, whereas the verified0.2.95 APK is5,161,721 bytes. User was asked
-whether the scanned APK came from the supplied0.2.95 ZIP or an earlier download.
-Do not infer a wrong file or candidate-specific clearance from that row alone.
-See [phone evidence](../qa/play-protect-001/phone-scan-2026-11-04.json). If still
-flagged, the prepared review requires VirusTotal upload of the same APK and the
-developer's email/submission authorization. Preserve the exact scanned bytes for
-any later promotion; do not describe a rebuilt file as already scanned.
+whether the scanned APK came from the supplied0.2.95 ZIP and confirmed that it did.
+The background row does not override that confirmation. Phone-side APK hash was
+not independently measured; completed installation is not shown. See
+[phone evidence](../qa/play-protect-001/phone-scan-2026-11-04.json).
+Next: run the existing six integrated-main release gates, then promote the exact
+scanned0.2.95 APK without rebuilding. Verify anonymous public bytes and update
+feed afterward. No Google appeal is needed for this positive scan result.
 
 First native attempts:41905663980 failed CLI tar default-import compatibility;
 fixed in0e8532bb. Run41905985978 built signed production0.2.93 and passed static
@@ -112,8 +115,8 @@ Durable [candidate receipts](../qa/play-protect-001/candidate-1000095/ci.json)
 and [Google review draft](../qa/play-protect-001/candidate-1000095/google-review.txt)
 are saved. No VirusTotal upload, Google appeal or stable APK promotion is claimed.
 The positive phone screenshot is recorded separately from CI's NOT_TESTED result;
-candidate-specific Google clearance awaits identity confirmation. Completed phone
-installation is not shown. Task stays open; no archive action.
+the user has confirmed candidate attribution. Completed phone installation is not
+shown. Task stays open during stable promotion; no archive action.
 
 References: [updater requirements](IN_APP_UPDATES_001.md),
 [release receipt](../qa/all-updates-release-20261104/release.json),

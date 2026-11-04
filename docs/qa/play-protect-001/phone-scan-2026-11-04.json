@@ -12,13 +12,15 @@
   "installationCompletionObserved": false,
   "apkVersionVisible": false,
   "apkHashVisible": false,
-  "candidateAttribution": "AWAITING_USER_CONFIRMATION",
+  "candidateAttribution": "CONFIRMED_BY_USER",
+  "userConfirmation": "Yes from zip",
+  "googlePlayProtectForCandidate": "USER_CONFIRMED_POSITIVE_PHONE_SCAN",
   "candidateVersion": "0.2.95",
   "candidateBytes": 5161721,
   "candidateSha256": "3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e",
   "sizeObservation": "A background APK row shows 7.10 MB. The screenshot does not establish that this is the selected APK. The candidate ZIP contains only one APK, the 5,161,721-byte root Lumenfall.apk.",
-  "scope": "Positive Google verdict observed for the scanned Lumenfall APK on this phone; exact candidate identity and completed installation are not established.",
-  "questionPending": "Was the scanned APK extracted from the supplied 0.2.95 ZIP or an earlier download?",
+  "scope": "Positive Google verdict observed on the user's phone. The user confirms the APK came from the supplied 0.2.95 ZIP; phone-side hash was not independently measured. Completed installation is not shown, and future classifications are not guaranteed.",
+  "questionPending": null,
   "stableReleasePromoted": false,
   "googleAppealSubmitted": false
 }

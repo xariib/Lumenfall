@@ -5,9 +5,10 @@ at12551152 (tested source4982932a; identical trees). Patched Capacitor6.2.2 and
 production APK/debugger protections. Signed0.2.95, seven CI gates,190+1 cases,
 save upgrade, updater and retail Android visible-launch checks PASS.
 [Evidence and review draft](qa/play-protect-001/README.md). A user phone screenshot
-now shows Google's "This app looks safe" result; its APK version/hash is not
-visible, so candidate identity confirmation is pending. No stable promotion or
-appeal submitted; the regular update feed remains0.2.91 pending acceptance.
+now shows Google's "This app looks safe" result; the user confirms it came from
+the0.2.95 ZIP. Exact-file stable promotion is in progress, awaiting the required
+integrated-main release gates. No appeal needed for this positive result; the
+regular update feed remains0.2.91 until promotion completes.
 
 4 November: [All pending updates/PR38](tasks/ALL_UPDATES_RELEASE_20261104.md)
 released as [Android0.2.91](https://github.com/xariib/Lumenfall/releases/tag/android-1000091),

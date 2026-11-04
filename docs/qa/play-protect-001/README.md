@@ -93,11 +93,13 @@ installation or a guarantee for future builds/devices.
 
 No version or hash is visible. A background APK row shows7.10MB; the verified
 candidate is5,161,721 bytes. That row may refer to another file, so do not infer
-that the wrong APK was scanned. User confirmation of which download was opened
-is pending. [Observation record](phone-scan-2026-11-04.json). The original image
+that the wrong APK was scanned. The user subsequently confirmed "Yes from zip",
+attributing the scan to the supplied0.2.95 candidate. This is user-confirmed
+attribution, not an independently measured phone-side APK hash.
+[Observation record](phone-scan-2026-11-04.json). The original image
 remains in the user's attachments; only the relevant text/hash is recorded here.
 Historical CI receipts remain NOT_TESTED because those jobs did not perform a
-Google scan. Stable promotion still awaits candidate attribution.
+Google scan. Stable promotion of those exact bytes is now in progress.
 
 ## Remaining external work
 
@@ -107,11 +109,11 @@ user cannot access the computer to dismiss the prompt. No successful local insta
 no unrelated emulator was touched. Local browser automation is disabled in Work
 settings; inventory confirms no alternate browser connection. The web tool could
 not access the public hash report either. No VirusTotal upload or Google appeal
-has been submitted. The user's positive phone scan is recorded above; its APK
-identity is awaiting confirmation. Hosted-emulator acceptance is separate.
+has been submitted. The user's positive phone scan and candidate confirmation
+are recorded above. Hosted-emulator acceptance is separate.
 
-Confirm whether the positive phone scan is for the corrected candidate's exact
-file. If a confirmed candidate is still flagged, use the official
+No appeal is needed for the current positive result. If a future confirmed
+candidate is flagged again, use the official
 [appeal form](https://support.google.com/googleplay/android-developer/contact/protectappeals)
 with the VirusTotal-uploaded candidate hash, package com.lumenfall.app and a
 factual remediation explanation. Do not represent the old vulnerable0.2.91 as
@@ -119,4 +121,5 @@ safe solely because it has the expected signature. Google's classification is
 external and cannot be guaranteed never to change. The factual
 [review draft](candidate-1000095/google-review.txt) is prepared but not submitted.
 Preserve the exact candidate for review/promotion; identify any rebuilt APK by
-its own hash. The stable update feed remains0.2.91 until external acceptance.
+its own hash. The stable update feed remains0.2.91 until the required integrated
+release gates and exact-artifact promotion finish.
