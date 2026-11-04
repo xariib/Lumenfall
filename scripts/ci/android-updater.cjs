@@ -5,6 +5,7 @@ const pkg='com.lumenfall.app',adb=(...args)=>cp.execFileSync('adb',args,{encodin
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const foreground=()=>adb('shell','dumpsys','activity','activities').split('\n').filter(line=>/mResumedActivity|topResumedActivity/.test(line)).join('\n');
 let socket,nativeLogcat,stage='startup',seq=0;const pending=new Map();
+const releaseProbe=require('../lib/android-release-probe.cjs');
 function mark(label){stage=label;console.log('Native updater QA: '+label);}
 async function until(fn,label,seconds=90){for(let i=0;i<seconds*2;i++){try{const value=await fn();if(value)return value;}catch{}await pause(500);}throw Error('Timed out: '+label);}
 async function connect(){
@@ -39,7 +40,7 @@ async function main(){
   // Package replacement can deliver its final force-stop after adb install
   // reports success. Let that broadcast settle before launching the fixture.
   await pause(1000);
-  adb('shell','am','start','-W','-n',pkg+'/.MainActivity');await connect();
+  releaseProbe.launchForInspection();await connect();
   await until(()=>evaluate("document.getElementById('app-update-action')&&document.getElementById('app-update-action').textContent==='Download & install'&&!document.getElementById('app-update-action').disabled"),'automatic official release discovery');
   mark('cancel download, including queued successful completion');
   await evaluate("localStorage.setItem('native-updater-sentinel','retain-both-saves')");
@@ -59,7 +60,7 @@ async function main(){
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('not allowed')"),'Permission refusal is explained');
   mark('cold restart with verified download');
-  socket.close();adb('shell','am','force-stop',pkg);adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();await ready();
+  socket.close();adb('shell','am','force-stop',pkg);releaseProbe.launchForInspection();await connect();await ready();
   mark('reject tampered cached APK');
   // Corrupt an already verified private download: installation must reverify it.
   const tampered=cp.execFileSync('adb',['exec-out','run-as',pkg,'cat','cache/updates/update.apk'],{maxBuffer:256*1024*1024});
@@ -91,7 +92,7 @@ async function main(){
   adb('shell','input','tap',String(Math.round((+bounds[1]+ +bounds[3])/2)),String(Math.round((+bounds[2]+ +bounds[4])/2)));
   await until(()=>new RegExp('versionCode='+expected+'\\b').test(adb('shell','dumpsys','package',pkg)),'official APK installed');
   mark('verify actual installed version, both save slots and origin');
-  socket.close();adb('shell','am','start','-n',pkg+'/.MainActivity');await connect();
+  socket.close();releaseProbe.launchForInspection();await connect();
   const retained=await evaluate("({sentinel:localStorage.getItem('native-updater-sentinel'),primary:!!localStorage.getItem('lumenfall_save_v2'),recovery:!!localStorage.getItem('lumenfall_save_recovery_v1'),origin:location.origin})");
   assert.equal(retained.sentinel,'retain-both-saves');assert(retained.primary&&retained.recovery);assert.equal(retained.origin,'https://localhost');
   socket.close();assert.match(adb('install','-r','Lumenfall.apk'),/Success/,'Restore final candidate on emulator');
@@ -108,4 +109,4 @@ async function diagnostics(error){
   try{fs.writeFileSync('release-evidence/updater-failure-screen.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{timeout:15000,maxBuffer:16*1024*1024}));}catch{}
 }
 const deadline=setTimeout(async()=>{await diagnostics(Error('Native updater deadline'));if(nativeLogcat)nativeLogcat.kill();if(socket)socket.close();process.exit(1);},300000);
-main().catch(async error=>{process.exitCode=1;await diagnostics(error);}).finally(()=>{clearTimeout(deadline);if(nativeLogcat)nativeLogcat.kill();if(socket)socket.close();});
+main().catch(async error=>{process.exitCode=1;await diagnostics(error);}).finally(()=>{clearTimeout(deadline);releaseProbe.close();if(nativeLogcat)nativeLogcat.kill();if(socket)socket.close();});

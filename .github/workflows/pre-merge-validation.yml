@@ -33,6 +33,12 @@ jobs:
           node tests/behavioral/purchase-rollback.cjs index.html --negative > validation-evidence/debug-scroll/rollback.json
           node tests/behavioral/stationary-purchases.cjs index.html validation-evidence/debug-scroll/mobile --negative
 
+      - name: Production Android security regression checks
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/PLAY_PROTECT_001.md
+          node tests/tooling/apk-security.cjs
+          npm audit --prefix mobile --package-lock-only --audit-level=high
+
       - name: Paid boosts, clock replay and capped automation regressions
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_FIXES_0252_001.md
