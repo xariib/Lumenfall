@@ -47,18 +47,60 @@ must still be patched. Google has not identified this CVE as its detection reaso
   NOT_TESTED. They cannot substitute for Google's verdict on a Play-certified
   device. Do not call the warning fixed based on those checks alone.
 
+## Verified candidate and integration
+
+[PR39](https://github.com/xariib/Lumenfall/pull/39) merged at12551152. Source
+4982932a, tested PR merge90f4ef3b and integration share the exact tree
+0a013eeb71cf6127ce9e031764b20bcd0a656a7e. Seven required PR workflows PASS, including
+190 main behavioral cases, the separate offline case, and browser runtime smoke.
+The shared history snapshot fixes the pre-existing startup-size failure while
+preserving the32KiB limit and all26 required task contexts.
+
+Signed Android0.2.95 /1000095 has SHA256
+3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e.
+[Build ZIP](https://github.com/xariib/Lumenfall/actions/runs/41910258484/artifacts/13363262337)
+contains Lumenfall.apk. It is a review candidate, not the stable update feed.
+The established signing certificate, package, origin and source assets verify.
+
+- [CI receipt](candidate-1000095/ci.json) and
+  [complete premerge job results](candidate-1000095/premerge-jobs.json).
+- [Exact-APK save upgrade](candidate-1000095/emulator-upgrade.json): UID, both
+  save slots, progression, paid work and legacy entitlements retained.
+- [Updater receipt](candidate-1000095/in-app-updater.json): a lower-version
+  fixture built from the same updater source downloaded/installed public0.2.91.
+  Permission refusal, cancellation, restart and tamper rejection passed. The
+  final candidate was restored; this does not prove its browser-install scan.
+- [Retail Android acceptance](candidate-1000095/production-runtime.json) and
+  [visible normal-launch screenshot](candidate-1000095/production-normal-launch.png):
+  exact installed bytes, game controls visible, no test runner, no debugger socket,
+  run-as rejected. ADB installation is not a Google Play Protect verdict.
+- [Local re-verification](candidate-1000095/local-verification.json),
+  [static security checks](candidate-1000095/security.json), and
+  [dependency audit](candidate-1000095/dependency-audit.json).
+
+Native attempt1 missed the offline recap dialog despite crediting the simulated
+absence. The unchanged check passed on attempt2; its cause remains unestablished.
+Failure diagnostics are retained locally and in run41910258484's failed artifact.
+No assertion was removed or relaxed. Self-review/automated validation only.
+
 ## Remaining external work
 
 The dedicated local BlueStacks test phone is obscured by an existing Windows
 Firewall prompt for adb.exe; package queries also return "error: closed". The
-user was asked to dismiss the prompt. No successful local install is claimed and
+user cannot access the computer to dismiss the prompt. No successful local install is claimed and
 no unrelated emulator was touched. Local browser automation is disabled in Work
-settings. No VirusTotal upload or Google appeal has been submitted.
+settings; inventory confirms no alternate browser connection. The web tool could
+not access the public hash report either. No VirusTotal upload or Google appeal
+has been submitted. The user received the0.2.95 ZIP link for a phone scan; no
+result has been reported. Hosted-emulator acceptance above is verified separately.
 
-After verifying the corrected candidate, obtain a fresh Google scan on its exact
+Obtain a fresh Google scan on the corrected candidate's exact
 hash. If still flagged, use the official
 [appeal form](https://support.google.com/googleplay/android-developer/contact/protectappeals)
 with the VirusTotal-uploaded candidate hash, package com.lumenfall.app and a
 factual remediation explanation. Do not represent the old vulnerable0.2.91 as
 safe solely because it has the expected signature. Google's classification is
-external and cannot be guaranteed never to change.
+external and cannot be guaranteed never to change. The factual
+[review draft](candidate-1000095/google-review.txt) is prepared but not submitted.
+Preserve the exact candidate for review/promotion; identify any rebuilt APK by
+its own hash. The stable update feed remains0.2.91 until external acceptance.

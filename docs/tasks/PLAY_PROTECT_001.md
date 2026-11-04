@@ -32,7 +32,8 @@ Scope/acceptance:
 - Validate, integrate and retain durable evidence; publish only with honest
   status. Do not claim the warning fixed without device/classification evidence.
 
-Status: investigation/implementation in progress. User reports last clean install
+Status: integrated; Google/device acceptance pending. PR39 merged at12551152;
+tested source4982932a has the identical tree. User reports last clean install
 was probably before updater and requests actual installation testing. Local browser automation reports "Local browser use
 is disabled in Work settings", so VirusTotal/appeal UI cannot currently be used.
 Google's appeal form requires contact email, package, VirusTotal-uploaded APK
@@ -57,8 +58,11 @@ existing Windows Firewall prompt for adb.exe; package commands return error:
 closed. User cannot access the computer now to dismiss it; no security setting was changed.
 Other emulator instances are excluded. No successful local installation claimed.
 
-Next: native build/existing CI gates, inspect production APK and normal launch,
-actual local installation comparison when available, exact-hash appeal package.
+Next: obtain a fresh Google scan of the exact0.2.95 candidate. The user received
+the build ZIP link for a phone test; no verdict has been reported. If still
+flagged, the prepared review requires VirusTotal upload of the same APK and the
+developer's email/submission authorization. Preserve the exact scanned bytes for
+any later promotion; do not describe a rebuilt file as already scanned.
 
 First native attempts:41905663980 failed CLI tar default-import compatibility;
 fixed in0e8532bb. Run41905985978 built signed production0.2.93 and passed static
@@ -80,8 +84,29 @@ Premerge41907607852 stopped at an existing RIFT_HINT_READABILITY_002 startup
 document size violation; shared state history is preserved in a linked snapshot
 and shortened to retain the32KiB limit unchanged. Locally that task now passes
 at25125 bytes. No gameplay or acceptance assertions were removed. Required CI
-and the strengthened Android launch check will rerun on the revised commit.
+and the strengthened Android launch check were rerun on the revised commit.
 See [audit](../qa/play-protect-001/README.md).
+
+Final candidate0.2.95 /1000095 from4982932a:
+SHA256:3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e.
+Native run41910258484 attempt2 PASS: exact-APK in-place save upgrade, separately
+built updater fixture (download/install public0.2.91), and visible game controls
+on a retail Android user image with debugging/private-storage protections.
+The candidate was restored after updater tests. Attempt1's offline recap dialog
+did not appear after credited absence; the unchanged check passed on retry. Its
+cause is not established and the failure remains recorded, not waived.
+
+All seven PR workflows PASS, including premerge41910264639 with190 main cases,
+the independent offline case and runtime smoke. Source4982932a, PR merge90f4ef3b,
+and integration12551152 share tree0a013eeb71cf6127ce9e031764b20bcd0a656a7e.
+Fresh local APK signature/identity/assets/hash checks PASS; retail screenshot
+visibly shows the game. All26 premerge task-context checks PASS after preserving
+the prior shared history. Self-review and automated checks only.
+
+Durable [candidate receipts](../qa/play-protect-001/candidate-1000095/ci.json)
+and [Google review draft](../qa/play-protect-001/candidate-1000095/google-review.txt)
+are saved. No VirusTotal upload, Google appeal, stable APK promotion or physical
+Google clearance is claimed. Task stays open; no archive action.
 
 References: [updater requirements](IN_APP_UPDATES_001.md),
 [release receipt](../qa/all-updates-release-20261104/release.json),

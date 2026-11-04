@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+4 November: [Play Protect investigation/PR39](tasks/PLAY_PROTECT_001.md) integrated
+at12551152 (tested source4982932a; identical trees). Patched Capacitor6.2.2 and
+production APK/debugger protections. Signed0.2.95, seven CI gates,190+1 cases,
+save upgrade, updater and retail Android visible-launch checks PASS.
+[Evidence and review draft](qa/play-protect-001/README.md). Google classification
+and physical-phone scan remain unverified; no stable release promotion or appeal
+submitted. The regular update feed remains0.2.91 pending that acceptance.
+
 4 November: [All pending updates/PR38](tasks/ALL_UPDATES_RELEASE_20261104.md)
 released as [Android0.2.91](https://github.com/xariib/Lumenfall/releases/tag/android-1000091),
 source237fa928. Includes PR36 Rift health/navigation/layout and PR37 reduced

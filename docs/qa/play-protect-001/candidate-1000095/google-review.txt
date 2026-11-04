@@ -1,0 +1,20 @@
+GOOGLE PLAY PROTECT REVIEW PREPARATION — NOT SUBMITTED
+
+Candidate: Lumenfall 0.2.95
+Package: com.lumenfall.app
+APK SHA256: 3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e
+Source: https://github.com/xariib/Lumenfall/commit/4982932a1f4903215eb935ca44b682162b9b7603
+Changes: https://github.com/xariib/Lumenfall/pull/39
+Form: https://support.google.com/googleplay/android-developer/contact/protectappeals
+
+Before submission: obtain a fresh Google scan of this exact APK. If it is still flagged, upload these same bytes to VirusTotal and confirm this SHA256. The form requires the developer's contact email and explicit authorization to submit the statement below. No VirusTotal upload or Google appeal has been submitted. No Google result is inferred from CI or dependency audits.
+
+DRAFT STATEMENT — USE ONLY IF THIS EXACT CANDIDATE IS STILL FLAGGED
+
+Please review the Play Protect classification of Lumenfall 0.2.95, package com.lumenfall.app, SHA256 3f95ee3e46d28ae160a04f9328f905abeaf86606e2caf617bbfba1c5cb6d587e. Lumenfall is an Android idle game distributed from xariib/Lumenfall on GitHub.
+
+The reported warning was associated with version 0.2.91 on the GitHub download page; the original phone file was not extracted. During investigation we corrected verified weaknesses: upgraded Capacitor Android/core/CLI from 6.2.1 to the vendor-patched 6.2.2 for CVE-2026-103922, switched to a non-debuggable release APK, and explicitly disabled WebView debugging. We do not know whether either weakness caused the original classification.
+
+The APK retains the established package and signing certificate. Its permissions are INTERNET, REQUEST_INSTALL_PACKAGES for its own updater, and a signature-protected AndroidX receiver permission. The updater restricts downloads to official HTTPS GitHub release assets, checks size, SHA256, package, version and the established signer, and uses Android's user-approved installer. It does not request SMS, contacts, location, notification-reader or accessibility-service access.
+
+The exact candidate passed signing/packaged-source checks, an ADB in-place upgrade preserving both save slots and paid progress, and retail Android launch/debugger/private-storage checks. Separately, a lower-version fixture built from the same updater source passed permission-refusal, cancellation, tamper rejection and user-approved installation of the public 0.2.91 APK; the final candidate was then restored. This does not establish a Play Protect result for a browser-downloaded candidate. The runtime npm audit has no reported findings; eight moderate development-tool dependency findings remain. These tests are not represented as a Google clearance or an exhaustive malware scan.
