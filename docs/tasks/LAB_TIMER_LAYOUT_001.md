@@ -53,15 +53,43 @@ ebcbbda4c64e7fdb356ff1fa67c36ebb38128352f2f62135a7eb079eb69b07cf.
 
 [PR34](https://github.com/xariib/Lumenfall/pull/34), implementation e795dce59059.
 [Non-publishing signed Android test build](https://github.com/xariib/Lumenfall/actions/runs/41819353920)
-started on those product bytes. CI pending; later changes only bind the unchanged
-oracle and save local acceptance evidence.
+PASS on those product bytes: Android0.2.76/code1000076, established certificate,
+package com.lumenfall.app, origin https://localhost. Installed Android12/API31/
+WebView91 upgrade retains UID, both saves, paid work and legacy entitlements;
+native updater download/cancel/restart/tamper/system-install checks PASS.
+Downloaded artifact digest matches GitHub; APK digest, all15 packaged assets and
+source-bound native receipts independently checked locally.
+[APK verification](../qa/lab-timer-layout-001/android.json),
+[upgrade](../qa/lab-timer-layout-001/android-upgrade.json),
+[updater](../qa/lab-timer-layout-001/android-updater.json).
+APK: ../builds/lab-timer-layout-001/verified/Lumenfall.apk outside the repository.
+No public release. Physical phone, exact WebView60 and TalkBack are not claimed.
+
+Prior CI head da76c317ad81249f60e32942bba7859ceb37ffa8 has the same product bytes
+and tree ac394460506184cee5ef3598b55a501973b39803 as reviewed local commit e27e729.
+Git push/ref operations encountered GitHub server errors; Git Data blobs/tree/
+commit plus a non-force REST ref update saved the exact tree. Local branch was
+aligned only after verifying identical trees. Final runs: pre-merge41820146342,
+Lab41820146328, Forge41820146304, Tree41820146270, Comet41820146267,
+shared UI41820146337, permanent41820146284. Pre-merge stopped at the startup
+context gate for RIFT_HINT_READABILITY_002, after the preceding product checks
+passed. Baseline main2ca3d3be was already33049 bytes against the unchanged32768
+limit; the new status entry added to it. Condensed historical PROJECT_STATE
+summaries while preserving links/requirements/evidence; all32 CI task contexts
+now PASS, largest32585 bytes. No test/checker/budget change.
+[Failure](../qa/lab-timer-layout-001/ci-context-failure.txt),
+[all task contexts](../qa/lab-timer-layout-001/context-gates.json).
+The next CI run checks this documentation repair with unchanged product/tests.
+Self-review/automation only.
 
 An interrupted whole-repository test staging copy remains at the local temporary
 folder lumenfall-behavioral-4QuuI1. Automatic approval review rejected its verified
 scoped cleanup with only "blocked by policy". Product work is unaffected.
 
-Status: implemented, local acceptance PASS; CI/integration and Android pending.
-Next: verify final CI/integration and app delivery.
+Status: implemented; local and signed Android acceptance PASS; CI/integration pending.
+Next: wait for all seven final workflows (both pre-merge jobs), collect receipts,
+integrate tested head into main without overwriting concurrent work, then save
+the documentation/Android evidence and deliver the preview/test APK.
 Phone/WebView60/TalkBack/human acceptance remains unverified. No archive.
 
 References: [Lab controls](LAB_SLOTS_QUEUE_SPEEDUP_001.md),
