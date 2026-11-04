@@ -87,12 +87,9 @@ work and centered Continue/Wisp/Farm touches PASS.
 published; public checksum verified. Phone/WebView60/TalkBack/pacing remain open;
 historical failures and VFX limitation are retained in the tasks.
 
-24 October 2026: [ANDROID_TEST_RELEASE_001](tasks/ANDROID_TEST_RELEASE_001.md)
-prepares the integrated Wisp/Farm/hint improvements for physical-phone testing.
-The user explicitly authorized a new signed APK publication and a minimal README.
-At preparation, the public APK was 0.2.14. Live release outcome, exact versions
-and check evidence: [delivery PR #8](https://github.com/xariib/Lumenfall/pull/8).
-No product code changes in this delivery task.
+24 October: [Android delivery](tasks/ANDROID_TEST_RELEASE_001.md): authorized
+Wisp/Farm/hint test release and README; no product edits. Exact release/checks:
+[PR8](https://github.com/xariib/Lumenfall/pull/8).
 
 24 October: [Hint readability/PR7](tasks/RIFT_HINT_READABILITY_002.md) integrated
 88d9bdd3; the short Farm hint opens complete advice without changing combat or
@@ -104,15 +101,11 @@ entitlements and native Wisp/hint-to-Lab input retained. No release; environment
 interruption resolved. The [earlier VFX finding](tasks/RIFT_VFX_OVERFLOW_001.md)
 remains open despite its unchanged gate passing. Phone acceptance remains open.
 
-22 October 2026: [MIDGAME_FARM_ACCEPT_001](tasks/MIDGAME_FARM_ACCEPT_001.md)
-integrated via [PR #6](https://github.com/xariib/Lumenfall/pull/6) at `83b1a8e`.
-Six workflows, both full jobs and 18 browser profiles PASS.
-[Installed Android run #25](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
-PASS: 0.2.25 over 0.1.158 on API31/WebView91, both saves, UID/origin, paid work,
-legacy entitlements and native hint-to-Lab touch retained. No APK publication.
-The task retains exact versions/checksums/artifacts and earlier run24 failures.
-Phone/WebView60/TalkBack/human acceptance remains open; its 200%-text hint
-readability finding was addressed separately in RIFT_HINT_READABILITY_002 above.
+22 October: [Farm acceptance/PR6](tasks/MIDGAME_FARM_ACCEPT_001.md), `83b1a8e`:
+six gates/18 browser profiles and [signed0.2.25 upgrade](https://github.com/xariib/Lumenfall/actions/runs/39870276892)
+PASS on API31/WebView91, retaining both saves/paid work/identity and hint-to-Lab
+input. No publication; device/human review open. Task retains earlier failures;
+200%-text readability addressed in RIFT_HINT_READABILITY_002 above.
 
 21 October: [Wisp hierarchy/PR3–4](tasks/WISP_ACTION_HIERARCHY_001.md): six gates,
 signed0.2.21 upgrade, save/paid-work preservation and native Ability input PASS.
