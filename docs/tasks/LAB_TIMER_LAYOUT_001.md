@@ -34,10 +34,34 @@ and320px/200% screenshots visually inspected. Source validation and diff check P
 
 Initial Windows dump-DOM duration run timed out without a QA result. Using the
 existing CDP transport/native driver for deterministic local acceptance; not a
-game failure or permission blocker. Full regression and CI remain pending.
+game failure or permission blocker. A standalone CDP run completed all92 duration
+assertions but hit its existing browser-close deadline; likewise the320px standalone
+Lab run hit browser-close while390/430 passed. No harness deadline was changed.
+The existing native regression driver subsequently passed all22 scenarios, including
+both duration modes,22 boundaries, two causal controls, queues, paid boosts,
+reload/recovery and navigation, with clean process teardown. Native Lab input also
+passed1212 UI checks across6 profiles with clean teardown.
+[Regression receipt](../qa/lab-timer-layout-001/regression.json),
+[native receipt](../qa/lab-timer-layout-001/native.json.gz).
 
-Status: implemented, acceptance/integration pending. Next: finish existing Lab
-regressions, publish the reviewed change, verify CI/integration and app delivery.
+Pinned Node24.19.0 paired offline replay PASS: all four complete states and reward
+triples match accepted main2ca3d3be after115200 independent one-second calls per
+source. Only the oracle source binding changed; accepted canonical vectors and
+the pre-existing platform/full-hash qualification are retained unchanged.
+[Replay receipt](../qa/lab-timer-layout-001/replay.json). Product SHA256:
+ebcbbda4c64e7fdb356ff1fa67c36ebb38128352f2f62135a7eb079eb69b07cf.
+
+[PR34](https://github.com/xariib/Lumenfall/pull/34), implementation e795dce59059.
+[Non-publishing signed Android test build](https://github.com/xariib/Lumenfall/actions/runs/41819353920)
+started on those product bytes. CI pending; later changes only bind the unchanged
+oracle and save local acceptance evidence.
+
+An interrupted whole-repository test staging copy remains at the local temporary
+folder lumenfall-behavioral-4QuuI1. Automatic approval review rejected its verified
+scoped cleanup with only "blocked by policy". Product work is unaffected.
+
+Status: implemented, local acceptance PASS; CI/integration and Android pending.
+Next: verify final CI/integration and app delivery.
 Phone/WebView60/TalkBack/human acceptance remains unverified. No archive.
 
 References: [Lab controls](LAB_SLOTS_QUEUE_SPEEDUP_001.md),
