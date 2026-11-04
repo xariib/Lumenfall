@@ -22,13 +22,14 @@ publish latest stable APK with its checksum and clear release notes, and verify
 anonymous download bytes and updater discovery. Physical phone, battery/thermal,
 exact WebView60, TalkBack and human review remain separate unverified checks.
 
-Status18:32UTC: final candidate237fa928 is pushed in PR38. All11 focused
+Status19:10UTC: final candidate237fa928 is pushed in PR38. All11 focused
 PR/release workflows and signed build41885250652/Android0.2.91 PASS.
 The complete corrected local Guidance driver PASS:16 profiles/160 samples,
 identical compared states, unchanged geometry assertions/causal controls,
 zero runtime errors and clean browser exit. Both remote isolated offline jobs
-pass. Full PR41885193558 and release41885265852 remain in progress; main and
-public latest remain67a9b580/0.2.82. Final focused raw logs/metadata are in ci/.
+pass. Full release41885265852 PASS, including190 scenarios, corrected Guidance
+and runtime smoke; raw job126767914121 confirms it. Only full PR41885193558
+remains running. Main/public latest remain67a9b580/0.2.82. Raw logs are in ci/.
 
 Next: finish exact-head full CI/native acceptance, fast-forward integration,
 publish the verified signed artifact, verify public bytes and updater discovery.
