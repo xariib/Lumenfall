@@ -5,9 +5,12 @@ Chromium 157.0.8103.39 (Brave). Receipts report the bytes actually read locally;
 Git canonical LF and Windows checkout line endings can have different hashes.
 
 - `baseline-forge.json` and `baseline-lab.json`: unchanged integrated source.
-- `core.json`: new requirements, real transactions and 5/8-hour farm budgets.
+- `core.json`: new requirements, real transactions, 5/8-hour farm budgets and
+  repeated spending with the same budget plus the remaining balance.
 - `mobile-access.json`: eight Lab gates, 12 mobile/text/motion profiles and
   trusted touch after the prerequisites are earned.
+- `independent-replay.json`: original and candidate match every saved field and
+  all canonical hashes across four eight-hour windows of one-second calls.
 
 Reproduce from the repository root:
 

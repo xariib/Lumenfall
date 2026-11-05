@@ -74,10 +74,11 @@ and a previously enabled queue cannot bypass an unearned first-start gate.
 Prerequisite completion can start an eligible queue at the same event boundary
 online and offline. No schema change or new currency.
 
-New core: 501 assertions, four causal controls. Generous actual offline farms
+New core: 528 assertions, four causal controls. Generous actual offline farms
 at Rifts 32/101/501 spend eight-hour wallets on 47–61 / 122–136 / 209–223
 enhancement ranks respectively; each quote gets the entire budget separately.
 The model grants mature economic effects and level 300 enhancements up front.
+A second equal eight-hour budget buys another 7–8 ranks in these fixtures.
 Five-hour budgets and the existing three-day pacing forecasts also pass. Human
 playthrough pacing is unverified. New Lab UI: 890 assertions across 12 viewport,
 text and motion profiles. Existing long Lab UI passes its gameplay/layout checks.
@@ -98,7 +99,17 @@ oracles. The updated fixtures exercise bulk purchases on both sides of the old
 enhancement cap and preserve every bounded and frozen-history assertion. Local
 permanent progression (4,333), workshop clarity (417), early Wisp (2,802 with
 controls) and Comet core (12,884 with controls) pass. Product bytes did not
-change in that follow-up.
+change in that follow-up. The isolated long-tail browser retry passed all 326
+checks and teardown.
+
+The source binding gate required new replay evidence. The paired run actually
+executed 115,200 independent one-second calls for each of baseline and candidate.
+All four full saved states and the original canonical hashes match exactly.
+Only the source binding in the frozen oracle changes.
+[Replay receipt](../qa/endless-forge-lab-pacing-002/independent-replay.json).
+A [non-publishing signed Android run](https://github.com/xariib/Lumenfall/actions/runs/42089012106)
+tests commit `7e7b90cd` with the same product SHA-256
+`b30a0222d837bf6192aa1ea1568c709b9f693ee81ab542e9f6cae10d15b82648`.
 
 Next: check all required CI on the exact PR head, then integrate and verify
 Android within authorized scope. Physical-device/human pacing acceptance

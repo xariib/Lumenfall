@@ -75,7 +75,13 @@ function verify(html,farming){
    const spend=F.seed(c);spend.maxDepthEver=1001;spend.lumen=wallet.lumen;spend.shards=wallet.shards;c.set(spend);
    const plan=c.plan(id,'max');ok(plan.buyCount>0,'farm funds permanent progress');ok(plan.buyCount<300,'generous 5/8h farm cannot buy first300 ranks');eq(c.buy(id,'max'),true,'farm budget buys real permanent levels');
    eq(c.plan(id,1).maxed,false,'farm never goldboxes continuing track');ok(c.preview(id,1).next!==null,'farm leaves next upgrade visible');
-   row.purchases.push({hours,id,bought:plan.buyCount,nextPrice:c.cost(id,plan.buyCount,1)});
+   const nextPrice=c.cost(id,plan.buyCount,1);let repeatBought=null;
+   if(hours===8){
+    c.get().lumen=A.exactAdd(c.get().lumen,wallet.lumen);c.get().shards=A.exactAdd(c.get().shards,wallet.shards);
+    repeatBought=c.plan(id,'max').buyCount;ok(repeatBought>0&&repeatBought<plan.buyCount,'a second equal farm budget buys fewer ranks, but still makes progress');
+    eq(c.buy(id,'max'),true,'repeat budget makes a real purchase');eq(c.get().research[id],plan.buyCount+repeatBought,'repeat budget retains all earlier progress');
+   }
+   row.purchases.push({hours,id,bought:plan.buyCount,nextPrice,repeatBought});
   }
   farms.push(row);
  }
@@ -89,5 +95,5 @@ try{
   ['lab-ignores-rift','target:depth,met:Amount.ge(state.maxDepthEver,depth)','target:depth,met:true'],
   ['lab-loses-paid-access','unlocked:paid?true:','unlocked:false?true:']
  ]){assert.equal(source.split(from).length,2,'unique defect anchor '+name);let caught;try{verify(source.replace(from,to),false);}catch(e){caught=e.message;}assert(caught,'defect rejected '+name);negative.push({name,caught});}
- console.log(JSON.stringify({status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),...result,negative,assumptions:'Generous fixed-depth farm grants all300 enhancement ranks and mature economic research before earning; each purchase quote receives the entire budget independently. Actual player pacing remains to be reviewed.'},null,2));
+ console.log(JSON.stringify({status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),...result,negative,assumptions:'Generous fixed-depth farm grants all300 enhancement ranks and mature economic research before earning; each track receives the entire budget independently. Repeat spending adds the same eight-hour budget to the first purchase leftovers. Actual player pacing remains to be reviewed.'},null,2));
 }catch(e){console.error(JSON.stringify({status:'fail',error:e.stack,actual:e.actual,expected:e.expected}));process.exitCode=1;}
