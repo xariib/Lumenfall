@@ -1,0 +1,67 @@
+name: Wisp scroll validation
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumenfall-wisp-scroll-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  wisp-scroll:
+    name: Wisp scroll (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+      - name: Browser and task context
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then
+            echo 'LUMENFALL_QA_CDP_CHROME=C:/Program Files/Google/Chrome/Application/chrome.exe' >> "$GITHUB_ENV"
+          fi
+          node scripts/codex/check_context.cjs --task docs/tasks/WINDOWS_WISP_SCROLL_001.md
+      - name: Replay entrance-animation race and removed-wait control
+        run: node tests/behavioral/wisp-scroll-setup.cjs index.html validation-evidence/wisp-scroll/replay --negative
+      - name: Original scroll and focus causal controls
+        run: |
+          for mutation in anchor focus periodic; do
+            if node tests/behavioral/wisp-rarity-scroll.cjs index.html --role-only --mutate-$mutation > validation-evidence/wisp-scroll/$mutation.json; then
+              echo "::error::Wisp $mutation defect unexpectedly passed"
+              exit 1
+            fi
+          done
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const expected={anchor:'periodic reflow keeps focused action screen position',focus:'periodic reflow keeps Stone focus',periodic:'periodic role update keeps same card focus'};
+          for(const [mutation,message] of Object.entries(expected)){
+            const data=JSON.parse(fs.readFileSync('validation-evidence/wisp-scroll/'+mutation+'.json'));
+            assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);
+            assert(data.error.includes(message),data.error);assert(!data.teardown,'browser and staging cleanup');
+          }
+          JS
+      - name: Complete Wisp scenario with original 90-second deadline
+        run: |
+          mkdir -p mobile/www
+          cp index.html mobile/www/index.html
+          cp -r fonts branding mobile/www/
+          node tests/behavioral/run.cjs --web-root mobile/www --scenario wisp-rarity-scroll --raw-artifacts validation-evidence/wisp-scroll/full > validation-evidence/wisp-scroll/full.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wisp-scroll-${{ matrix.os }}-${{ github.run_id }}
+          path: validation-evidence/wisp-scroll/
