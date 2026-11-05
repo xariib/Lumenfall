@@ -58,7 +58,7 @@ this test-only change.
 
 ## Temporary files
 
-Native PowerShell scratch cleanup was rejected before execution with the exact
+Native PowerShell scratch and staging cleanup was rejected before execution with the exact
 reason "blocked by policy"; no more specific reason was provided. No alternative
 deletion route was attempted. Read-only audit verifies task provenance, no user
 deliverables, no links/worktrees and no active browsers. Disposable roots remain:
@@ -68,6 +68,6 @@ C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\windows-wisp-scroll-001\valid
 C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\windows-wisp-scroll-001\validation-evidence\windows-wisp-scroll-001\web
 ```
 
-The rejected action targeted scratch; web is the separately owned staged app
-copy. Raw diagnostics and the cleanup audit remain outside those roots under
+Separate removals of scratch and the owned web staging copy were both rejected.
+Raw diagnostics and the cleanup audit remain outside those roots under
 validation-evidence/windows-wisp-scroll-001/. No cleanup success is claimed.
