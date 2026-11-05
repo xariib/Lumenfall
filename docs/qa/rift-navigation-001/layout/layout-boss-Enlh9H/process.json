@@ -1,0 +1,41 @@
+{
+  "command": [
+    "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-gpu",
+    "--disable-dev-shm-usage",
+    "--disable-background-networking",
+    "--disable-background-timer-throttling",
+    "--no-first-run",
+    "--window-size=390,844",
+    "--virtual-time-budget=1500",
+    "--user-data-dir=C:\\Users\\CUSTOM~1\\AppData\\Local\\Temp\\lumenfall-qa-layout-boss-V6eoJD",
+    "--dump-dom",
+    "http://127.0.0.1:59225/layout.html?qaScenario=layout-boss&qaFixture=layout-dense-boss&width=412&height=915&safeTop=0&safeBottom=0"
+  ],
+  "fixture": "layout-dense-boss",
+  "viewport": [
+    412,
+    915,
+    0,
+    0
+  ],
+  "process": {
+    "exitcode": null,
+    "timed_out": true,
+    "elapsed_sec": 28.29422480000001,
+    "timeout_sec": 25
+  },
+  "qa": {
+    "qa_count": 0,
+    "qa_status": null,
+    "qa_scenario": null,
+    "json_status": null,
+    "json_scenario": null,
+    "runtime_markers": [],
+    "runtime_error_count": null,
+    "json_error": "Expected exactly one completed QA result",
+    "valid": false
+  }
+}
