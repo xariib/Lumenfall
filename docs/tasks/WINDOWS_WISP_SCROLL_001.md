@@ -19,7 +19,8 @@ the existing deadline; causal anchor/focus/periodic mutations still fail for
 their intended assertions; relevant CI passes and changes integrate into main.
 Preserve original one-pixel tolerances, input/save/payment checks and game bytes.
 
-Status: fix implemented; final CI pending. Node 24.19.0 and installed Brave on Windows; raw evidence
+Status: integrated; bug acceptance passed. Temporary cleanup remains rejected.
+Node 24.19.0 and installed Brave on Windows; raw evidence
 under validation-evidence/windows-wisp-scroll-001/. Disposable scratch roots
 stay beneath its owned scratch directory and are cleaned after browser exit.
 Modern browser checks do not establish physical Android/WebView60/TalkBack.
@@ -44,17 +45,20 @@ repaired focus and periodic controls fail the intended checks 4, 5, 7. Complete
 isolated Windows run passes 3,277 checks in 77.743s under the original 90s deadline.
 Dedicated Windows/Linux CI passes full scenario and all five controls at
 ff790151. [Evidence](../qa/windows-wisp-scroll-001/README.md),
-[PR41](https://github.com/xariib/Lumenfall/pull/41). Seven of eight workflows pass;
-only pre-merge run 41994218460/job 127133377007 remains in progress. The isolated
-offline job passes. Tree's first attempt produced no QA result within its
-unchanged 25s browser deadline; the identical-source failed-job retry passes.
-Automated PR review completed with no findings. Evidence checkpoint branch:
-docs/windows-wisp-scroll-evidence; code remains ff790151, test merge eb9698e6,
-tree 1c428da02165dd95d4972597082dc9f3d7ae1dc1. Main remains 6891b9cb.
+[PR41](https://github.com/xariib/Lumenfall/pull/41), merged at
+87e5854522211643c0d4bd1d704c43d9e91f050f. All eight workflows pass, including
+190 main cases, the isolated offline case, negative controls and runtime smoke.
+Tree's first attempt produced no QA result within its unchanged 25s browser
+deadline; the identical-source failed-job retry passes. Automated PR review
+completed with no findings. [Final CI receipt](../qa/windows-wisp-scroll-001/ci-validation.json).
+Code remains ff790151, test merge eb9698e6. The tested and integrated trees are
+identical: 1c428da02165dd95d4972597082dc9f3d7ae1dc1. Evidence/status updates
+are documentation only and preserve every tested code and workflow byte.
 
 Temporary scratch cleanup was rejected before execution: "blocked by policy",
 without a more specific reason. No alternate deletion route attempted. Exact
 remaining scratch and web-staging paths and provenance are in the evidence.
 
-Next: finish broader CI, integrate PR41, verify integrated tree and save final
-status. No APK or gameplay change. Review [workflow](../project/FEATURE_WORKFLOW.md).
+No further bug-fix or release work remains. Remove the two owned temporary
+roots when supported cleanup becomes available; keep this chat open for that
+cleanup limitation. No APK or gameplay change. Review [workflow](../project/FEATURE_WORKFLOW.md).

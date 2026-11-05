@@ -7,6 +7,11 @@ Request: fix the intermittent Windows assertion left open by the
 Tested head: ff79015171f4f79a6ab1032def5aa7786b35755a.
 Baseline main: 6891b9cb4d61f6644a612a98d9d8153c465da57c.
 
+Merged at 87e5854522211643c0d4bd1d704c43d9e91f050f. Its tree exactly matches
+the tested PR merge eb9698e6: 1c428da02165dd95d4972597082dc9f3d7ae1dc1.
+[Source-bound CI receipt](ci-validation.json). Later evidence/status changes
+are documentation only; all tested product, harness and workflow bytes remain.
+
 The controlled reflow captured its baseline during the tab's 220 ms panelIn
 animation. Finishing that real animation between the before/after reads
 reproduces the original check-4 failure: 433.8865px to 425.6719px. Stone focus
@@ -39,7 +44,9 @@ asset changed. Product SHA-256 remains
 - [Windows and Linux CI](https://github.com/xariib/Lumenfall/actions/runs/41994218226)
   both pass the replay, both setup controls, all three production controls and
   complete scenario with the original 90-second deadline.
-- Context, syntax and diff checks pass. Broader PR validation is pending.
+- All eight workflows pass, including all 190 main cases, the isolated offline
+  case, negative controls and runtime smoke. [Full pre-merge run](https://github.com/xariib/Lumenfall/actions/runs/41994218460).
+  Context, syntax and diff checks pass. Automated PR review has no findings.
 
 The first Tree job failed its unchanged Prism browser step: the positive
 ascend-prisms-contract process exceeded 25s and produced no completed QA result.

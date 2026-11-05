@@ -1,0 +1,668 @@
+{
+  "task": "WINDOWS_WISP_SCROLL_001",
+  "repository": "xariib/Lumenfall",
+  "pr": 41,
+  "testedHead": "ff79015171f4f79a6ab1032def5aa7786b35755a",
+  "testMerge": "eb9698e6ff88f02105ead4b4f663a0d85c951fa0",
+  "integratedCommit": "87e5854522211643c0d4bd1d704c43d9e91f050f",
+  "testedAndIntegratedTree": "1c428da02165dd95d4972597082dc9f3d7ae1dc1",
+  "sourceSha256": "1173423bdb0d899616bd3a77b4f3931d8bcde5f5b67d90209f27a1b01f2e65e4",
+  "workflows": [
+    {
+      "id": 41994218162,
+      "name": "Shared UI layout validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 253,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218162/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218162/logs",
+      "workflow_id": 386570585
+    },
+    {
+      "id": 41994218134,
+      "name": "Prism feature validation",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_number": 224,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218134/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218134/logs",
+      "workflow_id": 386570580
+    },
+    {
+      "id": 41994218324,
+      "name": "Prism mobile engine and economy acceptance",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_number": 224,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218324/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218324/logs",
+      "workflow_id": 386570583
+    },
+    {
+      "id": 41994218070,
+      "name": "Permanent progression and direct cards validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 156,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218070/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218070/logs",
+      "workflow_id": 397865720
+    },
+    {
+      "id": 41994218226,
+      "name": "Wisp scroll validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 1,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218226/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218226/logs",
+      "workflow_id": 407880063
+    },
+    {
+      "id": 41994218018,
+      "name": "Comet shop and Deeds validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 253,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218018/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218018/logs",
+      "workflow_id": 386570582
+    },
+    {
+      "id": 41994218184,
+      "name": "Research Lab expansion validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 253,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218184/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218184/logs",
+      "workflow_id": 386570581
+    },
+    {
+      "id": 41994218345,
+      "name": "Ascension Tree focused validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 253,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218345/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218345/logs",
+      "workflow_id": 386570579
+    },
+    {
+      "id": 41994218078,
+      "name": "Rift Forge expansion validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 253,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218078/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218078/logs",
+      "workflow_id": 386570586
+    },
+    {
+      "id": 41994218460,
+      "name": "Pre-merge validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 254,
+      "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218460/jobs",
+      "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/41994218460/logs",
+      "workflow_id": 386570584
+    }
+  ],
+  "mainJobs": [
+    {
+      "id": 127133377007,
+      "name": "Lumenfall pre-merge validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41994218460,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Stationary purchases and rejected transaction rollback",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Production Android security regression checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Paid boosts, clock replay and capped automation regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "In-app signed update policy and controller",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Complete game audit and stationary Auto-Empower targets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Native Lab Begin focus boundaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Slot-first Lab, concise cards and expanded Deeds",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Lab queue continuity and Speed Up modal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Editable next boost and independent Speed Up queue",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "APK identity verifier self-test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Readable offline recap and expanded Lab results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Progression pacing and explicit Farm intent",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Forge workshop long-term progression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Long Lab pacing and basic Wisp research",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Repository migration version and historical-baseline controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Node tooling regression checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Validate game source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Verify existing independent offline reference binding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Stage web assets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Phone feedback startup and input acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Existing settled-screen UI acceptance after actual startup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Midgame Farm guidance existing acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Legacy Rift layout with complete Farm dialog content",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Endless progression amounts, gates, persistence and chronology",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Endless automation clock and repeated Ascend regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Guidance baseline readability and exact old-width inverse",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Preserve early Guidance readability evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Rift cosmetics selection, persistence and mobile acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32
+        },
+        {
+          "name": "Exact Prism earning numerical and causal regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33
+        },
+        {
+          "name": "Tree caps original-value refunds and current collection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34
+        },
+        {
+          "name": "Swift cap, original Shard value and reachable Forge Deeds",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Wisp contribution readability and unchanged gameplay",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Compact Wisp cards, live next action and original purchase preservation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        },
+        {
+          "name": "Development currency UI and retained-value acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38
+        },
+        {
+          "name": "Read Ascend alerts and stationary daily quest claims",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39
+        },
+        {
+          "name": "Cheaper Recruitment cap and refund regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40
+        },
+        {
+          "name": "Independent exact Prism funding oracle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41
+        },
+        {
+          "name": "Cheaper Recruitment defect controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42
+        },
+        {
+          "name": "Behavioral harness negative self-test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43
+        },
+        {
+          "name": "Stateful behavioral regression suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44
+        },
+        {
+          "name": "Install runtime error guard in staged copy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45
+        },
+        {
+          "name": "Browser runtime smoke test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46
+        },
+        {
+          "name": "Preserve full regression evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47
+        },
+        {
+          "name": "Post Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 93
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 94
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 95
+        }
+      ]
+    },
+    {
+      "id": 127133377116,
+      "name": "Lumenfall isolated offline catch-up",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41994218460,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Stage exact product and assets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Original offline regression with unchanged assertions and deadline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    }
+  ],
+  "targetedJobs": [
+    {
+      "id": 127133376370,
+      "name": "Wisp scroll (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41994218226,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Browser and task context",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Replay entrance-animation race and removed-wait control",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Original scroll and focus causal controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Complete Wisp scenario with original 90-second deadline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 127133376685,
+      "name": "Wisp scroll (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41994218226,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Browser and task context",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Replay entrance-animation race and removed-wait control",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Original scroll and focus causal controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Complete Wisp scenario with original 90-second deadline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    }
+  ],
+  "cases": {
+    "main": 190,
+    "isolatedOffline": 1,
+    "wispChecks": 3277,
+    "wispDisplayProfiles": 12,
+    "wispInputRecords": 312,
+    "causalControls": 5
+  },
+  "review": {
+    "commit": "ff79015171f4f79a6ab1032def5aa7786b35755a",
+    "status": "completed",
+    "findings": false,
+    "kind": "automated PR review",
+    "url": "https://github.com/xariib/Lumenfall/pull/41#issuecomment-6653295748"
+  },
+  "firstTreeAttempt": {
+    "job": 127133376371,
+    "scenario": "ascend-prisms-contract",
+    "timeoutSeconds": 25,
+    "qaResults": 0,
+    "retainedReceipt": "tree-attempt1-process.json",
+    "unchangedRetryJob": 127136998839,
+    "retryResult": "success"
+  },
+  "documentation": "Subsequent documentation-only commits preserve all tested product, harness, script and workflow bytes; context and diff checks apply.",
+  "cleanup": "Separate native PowerShell removals of task-owned scratch and web staging were rejected before execution: blocked by policy. No alternate deletion route attempted."
+}

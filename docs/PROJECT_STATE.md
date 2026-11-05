@@ -1,9 +1,12 @@
 # Lumenfall — current delivery status
 
-5 November: [Current-game debug](tasks/PERFECT_DEBUG_20261105.md) on main
-ab7aa2dd: seven Linux workflows,190+1 cases, negative controls and smoke PASS.
-Product/tests unchanged. Intermittent Windows Wisp layout assertion and rejected
-temporary cleanup remain open. [Report](qa/perfect-debug-20261105/README.md).
+5 November: [Windows Wisp assertion/PR41](tasks/WINDOWS_WISP_SCROLL_001.md)
+fixed and merged at 87e58545; tested source ff790151 and identical merge tree.
+The test now waits for the tab entrance animation. Windows/Linux Wisp 3,277 checks,
+five controls and all eight workflows, 190+1 cases and smoke PASS. Gameplay,
+saves, assets and APK unchanged. [Evidence](qa/windows-wisp-scroll-001/README.md).
+The [original debug report](qa/perfect-debug-20261105/README.md) remains historical;
+temporary cleanup still returned "blocked by policy", with exact paths recorded.
 
 5 November: [Play Protect investigation/PR39](tasks/PLAY_PROTECT_001.md) complete,
 released as [Android0.2.95](https://github.com/xariib/Lumenfall/releases/tag/android-1000095). Integrated

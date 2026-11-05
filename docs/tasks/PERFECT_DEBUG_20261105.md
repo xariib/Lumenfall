@@ -46,7 +46,14 @@ Cleanup: native PowerShell deletion was rejected with the exact reason
 attempted. Seven task-owned temporary roots remain; exact paths and provenance
 are in validation-evidence/perfect-debug-20261105/cleanup-blocked.txt.
 
-Next for the remaining limitations: reproduce the intermittent Windows layout
-assertion with geometry captured at failure; remove the seven owned scratch
-roots when supported cleanup is available. No APK rebuild/publication or
-physical acceptance claimed. Automated checks and self-review only.
+Follow-up, 5 November: the intermittent Windows assertion is resolved by
+[WINDOWS_WISP_SCROLL_001](WINDOWS_WISP_SCROLL_001.md), PR41/main 87e58545.
+The controlled reflow raced the tab entrance animation. A bounded setup wait
+and frame barriers fix the test; Windows/Linux pass 3,277 original Wisp checks,
+five controls and all eight workflows. Gameplay bytes and thresholds unchanged.
+[Follow-up evidence](../qa/windows-wisp-scroll-001/README.md).
+
+Next for this original diagnostic's remaining cleanup: remove its seven owned
+scratch roots when supported cleanup is available. The follow-up's two roots
+are recorded separately. No APK rebuild/publication or physical acceptance
+claimed. Automated checks and self-review only.

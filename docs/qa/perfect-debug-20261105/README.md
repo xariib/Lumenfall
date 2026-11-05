@@ -5,6 +5,12 @@ Test head 2c2e0f3, GitHub test merge 68e649a; product SHA-256
 1173423bdb0d899616bd3a77b4f3931d8bcde5f5b67d90209f27a1b01f2e65e4.
 Product, tests, gameplay, paid work and saves were not changed.
 
+Follow-up: [Windows Wisp assertion fix](../windows-wisp-scroll-001/README.md),
+PR41/main 87e58545, resolves the intermittent assertion described below. It was
+a test race with the tab entrance animation. Original thresholds, all 3,277 Wisp
+checks and Windows/Linux causal controls pass; gameplay remains unchanged.
+The original run and cleanup limitations below are retained as historical evidence.
+
 Six Linux workflows pass: [Lab](https://github.com/xariib/Lumenfall/actions/runs/41979874689),
 [Forge](https://github.com/xariib/Lumenfall/actions/runs/41979874588),
 [Tree](https://github.com/xariib/Lumenfall/actions/runs/41979874672),
