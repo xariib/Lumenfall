@@ -89,6 +89,17 @@ audit and original bounded Forge/slot checks remain in force. A concurrent
 local browser run reported a browser close deadline after a passing Inquiry
 contract result; rerun on isolated staging before interpreting it as a pass.
 
-Next: publish the reviewed source and test evidence, check all required CI on
-the exact candidate, then integrate and verify Android within authorized scope.
-Physical-device/human pacing acceptance remains open; no APK is published.
+[PR42](https://github.com/xariib/Lumenfall/pull/42) is open. Browser Forge
+32,040 assertions and Lab 6,588 assertions passed across 12 profiles each;
+the Forge native purchase at level300 continues to301 with next prices and
+queue controls. The isolated Inquiry contract and R3 navigation reruns passed.
+CI found capped-only expectations in the original bulk purchase and early Wisp
+oracles. The updated fixtures exercise bulk purchases on both sides of the old
+enhancement cap and preserve every bounded and frozen-history assertion. Local
+permanent progression (4,333), workshop clarity (417), early Wisp (2,802 with
+controls) and Comet core (12,884 with controls) pass. Product bytes did not
+change in that follow-up.
+
+Next: check all required CI on the exact PR head, then integrate and verify
+Android within authorized scope. Physical-device/human pacing acceptance
+remains open; no APK is published. [Cleanup receipt](../qa/endless-forge-lab-pacing-002/README.md).

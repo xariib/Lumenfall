@@ -5,9 +5,10 @@ function verify(source){let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqua
 function ready(q){const s=C.seed(q);s.maxDepthEver=5000;s.comets=1e9;return s;}
 {
  const q=F.app(source).q;
- for(const node of q.defs().filter(n=>!n.retiredTo))for(const level of [0,Math.max(0,node.levelCap-3)])for(const count of [1,5,10,25,50,100]){
+ const continuing=['battletempering','arcanetempering','harvesttempering'];
+ for(const node of q.defs().filter(n=>!n.retiredTo))for(const level of continuing.includes(node.id)?[0,299,300]:[0,Math.max(0,node.levelCap-3)])for(const count of [1,5,10,25,50,100]){
   const s=q.fresh();s.maxDepthEver=10000;s.questDay=q.day();s.research[node.id]=level;s.lumen=s.shards=1e100;q.set(s);
-  const full=q.cost(node.id,level,count),fits=level+count<=node.levelCap,p=q.plan(node.id,count);
+  const full=q.cost(node.id,level,count),fits=continuing.includes(node.id)||level+count<=node.levelCap,p=q.plan(node.id,count);
   eq(p.buyCount,fits?count:0,'fixed batch never truncates at cap '+node.id+'/'+level+'/'+count);if(!fits){eq(p.affordable,false,'oversized fixed batch disabled');continue;}eq(p.cost,full,'exact fixed batch quote');
   const three=q.cost(node.id,level,Math.min(count-1,3));s.lumen=count===1?Math.floor(full.lumen/2):three.lumen;s.shards=count===1?Math.floor(full.shard/2):three.shard;q.set(s);
   const poor=q.plan(node.id,count);eq(poor.buyCount,0,'insufficient batch never partially buys '+node.id+'/'+level+'/'+count);eq(poor.needed,full,'insufficient batch shows full requested price');const before=clone(q.get());eq(q.buy(node.id,count),false,'unaffordable batch rejected');eq(q.get(),before,'rejected batch changes no state');if(count>1)ok(q.plan(node.id,'max').buyCount<count,'Max alone can quote partial quantity');
