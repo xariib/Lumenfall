@@ -1,0 +1,37 @@
+{
+  "candidate": "429a89a57fb1bdfd5728eb0c3386a5dec5d4d653",
+  "sourceSha256": "d1551e684bc481c30e59149be2653b38401abb5f147215b3602e13098f02f6c7",
+  "pr": 36,
+  "cosmetics": {
+    "status": "pass",
+    "samples": 170,
+    "sourceSHA256": "a72fd94a36cdec210f497a54c240d4e8b3c1703439f893fbde8d77b57fecde30",
+    "runtimeErrors": [],
+    "browser": "Chrome/156.0.8078.80",
+    "node": "v24.20.0"
+  },
+  "visualQuick": {
+    "status": "pass",
+    "sourceSha256": "a72fd94a36cdec210f497a54c240d4e8b3c1703439f893fbde8d77b57fecde30",
+    "checks": 122,
+    "profiles": 1
+  },
+  "note": "Exact final source passes reduced-motion mobile layouts and accessibility description checks. CI and signed Android candidate build 41844517303 remain pending.",
+  "finalReducedMotion": {
+    "status": "pass",
+    "profiles": 3,
+    "fixtures": 12,
+    "sourceSha256": "d1551e684bc481c30e59149be2653b38401abb5f147215b3602e13098f02f6c7"
+  },
+  "cleanup": {
+    "status": "rejected",
+    "reason": "blocked by policy",
+    "root": "C:/Users/CustomCodings/Documents/ChatGPT/Lumenfall/rift-combat-layout-evidence",
+    "remaining": [
+      "www/",
+      "paired-replay.cjs",
+      "replay.json",
+      "replay.log"
+    ]
+  }
+}
