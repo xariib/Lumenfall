@@ -1,0 +1,56 @@
+{
+  "baseline": "6891b9cb4d61f6644a612a98d9d8153c465da57c",
+  "sourceSha256": "1173423bdb0d899616bd3a77b4f3931d8bcde5f5b67d90209f27a1b01f2e65e4",
+  "node": "v24.19.0",
+  "testedHead": "ff79015171f4f79a6ab1032def5aa7786b35755a",
+  "platform": "win32",
+  "full": {
+    "timedOut": false,
+    "checks": 3277,
+    "exitcode": 0,
+    "elapsedMs": 77742.7267,
+    "deadlineMs": 90000,
+    "status": "pass",
+    "reflows": 12,
+    "profiles": 312
+  },
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/156.0.8078.80",
+    "revision": "@cc92146ef17860a4511f7de658b078128dbaad5",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "jsVersion": "15.6.75.27"
+  },
+  "task": "WINDOWS_WISP_SCROLL_001",
+  "controls": [
+    {
+      "assertion": "AssertionError [ERR_ASSERTION]: periodic reflow keeps focused action screen position {\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":433.671875,\"layoutTop\":1599.671875},\"after\":{\"top\":343.671875,\"layoutTop\":1509.671875,\"card\":\"stone\"}}",
+      "sourceSha256": "90db4e28a00681bacd69e6dc0874d5e941ef0556bd29ddc79528848730bdb5d9",
+      "status": "fail",
+      "mutation": "anchor",
+      "checks": 4,
+      "teardown": null
+    },
+    {
+      "assertion": "AssertionError [ERR_ASSERTION]: periodic reflow keeps Stone focus",
+      "sourceSha256": "3aa695501e3ac109b7e8ca26b8bd571a041656ca1236b65b39f16c39d7fcacd6",
+      "status": "fail",
+      "mutation": "focus",
+      "checks": 5,
+      "teardown": null
+    },
+    {
+      "assertion": "AssertionError [ERR_ASSERTION]: periodic role update keeps same card focus",
+      "sourceSha256": "e39fef3ffb65bc341fdd10b1fef219a145e9248db1a5c518f4ae2ad09f065dd9",
+      "status": "fail",
+      "mutation": "periodic",
+      "checks": 7,
+      "teardown": null
+    }
+  ],
+  "limitations": [
+    "Modern browsers do not establish physical Android, exact WebView60 or TalkBack acceptance.",
+    "Earlier concurrent full Windows attempts exceeded 90 seconds; the isolated final run passes without changing the deadline."
+  ],
+  "productDiff": null
+}

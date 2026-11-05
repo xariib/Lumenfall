@@ -38,12 +38,17 @@ replays the real CSS animation, with removed-wait and removed-animation-check
 controls. A Windows/Linux workflow retains the complete original scenario and
 all three production scroll/focus controls. No product file changes.
 
-Checks so far: source/context/syntax/diff checks pass. Race replay passes all
-twelve profiles; removing the setup wait fails the original assertion. Anchor,
-repaired focus and periodic controls fail their intended position/focus checks.
-The pre-optimization diagnostic completes 3277 checks in 116s; this exceeds the
-unchanged runner deadline and is not accepted as a full scenario pass.
+Checks: source/context/syntax/diff pass. Race replay passes all twelve profiles;
+removing the wait or animation check fails the original assertion. Anchor,
+repaired focus and periodic controls fail the intended checks4,5,7. Complete
+isolated Windows run passes3277 checks in77.743s under the original90s deadline.
+Dedicated Windows/Linux CI passes full scenario and all five controls at
+ff790151. [Evidence](../qa/windows-wisp-scroll-001/README.md),
+[PR41](https://github.com/xariib/Lumenfall/pull/41). Other CI remains pending.
 
-Next: finish the complete Windows scenario with paint barriers, verify both
-setup controls, save receipts, review/integrate through CI. Review
-[workflow](../project/FEATURE_WORKFLOW.md).
+Temporary scratch cleanup was rejected before execution: "blocked by policy",
+without a more specific reason. No alternate deletion route attempted. Exact
+remaining scratch and web-staging paths and provenance are in the evidence.
+
+Next: finish broader CI, integrate PR41, verify integrated tree and save final
+status. No APK or gameplay change. Review [workflow](../project/FEATURE_WORKFLOW.md).
