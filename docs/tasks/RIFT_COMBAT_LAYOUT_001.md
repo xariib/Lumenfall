@@ -58,3 +58,20 @@ Changed: index.html, affected navigation/layout/cosmetic/browser/native acceptan
 expectations, oracle binding, this task and QA evidence. No CI gate removed.
 Next: publish isolated PR, pass exact-source CI, integrate after PR35, build and
 verify signed Android. Physical phone/WebView60/TalkBack remain open.
+
+Published [PR36](https://github.com/xariib/Lumenfall/pull/36), candidate
+`429a89a57fb1bdfd5728eb0c3386a5dec5d4d653`; final HTML SHA256
+`d1551e684bc481c30e59149be2653b38401abb5f147215b3602e13098f02f6c7`.
+Exact final source also passes reduced-motion mobile profiles and current
+name/HP accessibility-description assertions. Seven PR workflows are running.
+[Signed test build](https://github.com/xariib/Lumenfall/actions/runs/41844517303)
+dispatched with publish=false. Main remains29dbb1e9 and PR35 remains open.
+Keep the tested head immutable while CI runs; final receipts are local pending
+integration. Next: inspect CI/build results, resolve introduced failures, then
+integrate after PR35 and verify the signed artifact. No release/merge claimed.
+
+Cleanup command was rejected with exactly "blocked by policy"; no specific
+reason or supported override was provided. It was not rerouted. Remaining under
+`C:/Users/CustomCodings/Documents/ChatGPT/Lumenfall/rift-combat-layout-evidence`:
+`www/`, `paired-replay.cjs`, `replay.json`, `replay.log`. No worktree or user
+deliverable was targeted. Staging ownership is recorded in OWNERSHIP.txt.
