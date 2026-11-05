@@ -41,6 +41,13 @@ asset changed. Product SHA-256 remains
   complete scenario with the original 90-second deadline.
 - Context, syntax and diff checks pass. Broader PR validation is pending.
 
+The first Tree job failed its unchanged Prism browser step: the positive
+ascend-prisms-contract process exceeded25s and produced no completed QA result.
+[Raw process receipt](tree-attempt1-process.json),
+[original artifact](https://github.com/xariib/Lumenfall/actions/runs/41994218345/artifacts/13400385358).
+Only that failed job was retried on the identical commit; acceptance is pending.
+No Tree/Prism source or deadline changed.
+
 Earlier concurrent Windows runs exceeded the unchanged 90-second deadline.
 A diagnostic run before replacing sleeps completed all3277 checks in116s;
 it is not accepted as a passing bounded scenario. The isolated final run above
