@@ -1,0 +1,28 @@
+<html><head></head><body><script>
+var p=new URLSearchParams(location.search), frame=document.createElement('iframe');
+frame.style.cssText='border:0;width:'+Number(p.get('width'))+'px;height:'+Number(p.get('height'))+'px';
+frame.src='index.html?'+p.toString();document.body.appendChild(frame);
+addEventListener('message',function(e){
+  if(e.origin!==location.origin || e.source!==frame.contentWindow || !e.data.qaLayoutResult)return;
+  var result=document.getElementById('qa-result') || document.createElement('pre');result.id='qa-result';result.dataset.status=e.data.status;
+  result.textContent=e.data.qaLayoutResult;document.body.appendChild(result);
+});
+</script><iframe src="index.html?qaScenario=layout-boss&amp;qaFixture=layout-dense-boss&amp;width=360&amp;height=640&amp;safeTop=24&amp;safeBottom=24" style="border: 0px; width: 360px; height: 640px;"></iframe><pre id="qa-result" data-status="pass">{
+  "scenario": "layout-boss",
+  "status": "pass",
+  "detail": {
+    "viewport": [
+      360,
+      640
+    ],
+    "safeInsets": [
+      "24",
+      "24"
+    ],
+    "minimumEnemyHeight": 120,
+    "hudHeight": 117,
+    "party": 5,
+    "presentationStates": 16
+  },
+  "runtimeErrors": []
+}</pre></body></html>
