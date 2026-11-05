@@ -1,0 +1,42 @@
+{
+  "baselineMain": "ad49e21366e750f10835e24fd6c43a1cd3c58c12",
+  "latestStableRelease": {
+    "tag": "android-1000095",
+    "version": "0.2.95",
+    "url": "https://github.com/xariib/Lumenfall/releases/tag/android-1000095"
+  },
+  "archivedCandidates": [
+    {
+      "localRef": "local/full-game-workshop-audit-001",
+      "sha": "14cbd4ce5d4892549a2f3aa7d8bec58bddf7330f",
+      "remoteRef": "archive/pre-sync-20261105/full-game-workshop-audit-001",
+      "disposition": "Patch-equivalent to changes already integrated into main; preserve original Git identity."
+    },
+    {
+      "localRef": "local/full-game-workshop-audit-002",
+      "sha": "0e7f5ed933ffc5f262181af6044cb49b5ac1d324",
+      "remoteRef": "archive/pre-sync-20261105/full-game-workshop-audit-002",
+      "disposition": "Patch-equivalent to changes already integrated into main; preserve original Git identity."
+    },
+    {
+      "localRef": "local/full-game-workshop-delivery-001",
+      "sha": "a6ebc41bf375a9265575580b834af1228f16ea3b",
+      "remoteRef": "archive/pre-sync-20261105/full-game-workshop-delivery-001",
+      "disposition": "Patch-equivalent to changes already integrated into main; preserve original Git identity."
+    },
+    {
+      "localRef": "release/all-pending-updates-001",
+      "sha": "905ed978a3de5a17c1c4737d705788962a149cd9",
+      "remoteRef": "archive/pre-sync-20261105/all-pending-updates-001",
+      "disposition": "Superseded combined candidate. Current app implementation and later delivery evidence are integrated; retain original history without restoring the older product."
+    }
+  ],
+  "retiredRemoteQaBranches": [
+    "qa/auto-ascend-challenges-001-apk",
+    "qa/auto-ascend-challenges-001-combined-apk",
+    "qa/full-game-workshop-release-001",
+    "qa/rift-cast-baseline-002"
+  ],
+  "retiredQaDisposition": "Historical diagnostic/build adapters are already published on GitHub. Their obsolete CI triggers are not required in current main; applicable product fixes and subsequent validations are already integrated. No new feature inferred from diagnostic scripts.",
+  "temporaryMergeRefsDisposition": "pr25-merge, pr31-combined-final, pr31-tested-merge and rift-visual-pr35-merge are saved validation merge refs, not outstanding feature work."
+}

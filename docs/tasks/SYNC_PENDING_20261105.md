@@ -27,6 +27,17 @@ No new APK is needed unless the audit finds app changes absent from 0.2.95.
 Physical-phone, exact WebView60, TalkBack and human acceptance remain as recorded
 in [current project status](../PROJECT_STATE.md).
 
-Status: in progress. Next: preserve source hashes and evidence, integrate the
-historical audit with an explicit date/version qualification, run checks and
-push the verified result. No new binding rule or gameplay decision.
+Status: integrated locally, final remote push/verification pending. Recovered
+all355 QA files and the Rift task edit; merged five evidence commits, historical
+PR2 and the documentation checkpoint branches. Four superseded/equivalent local
+Git histories are also published as archive/pre-sync-20261105 branches. Retired
+diagnostic/build branches remain historical; no unintegrated app feature found.
+
+Checks: four task context/link/startup-budget checks PASS; source validation PASS;
+git diff --check PASS; all355 SHA256 values match; app paths match0.2.95. No
+runtime, test, script or CI change relative to the initial main. See the
+[evidence and dispositions](../qa/sync-pending-20261105/README.md).
+
+Next: push the verified fast-forward result to main, refresh local canonical main
+and verify remote head, original worktree cleanliness and PR2 merged status.
+No new binding rule or gameplay decision. No additional APK is needed.

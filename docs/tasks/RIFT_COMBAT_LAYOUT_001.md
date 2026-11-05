@@ -56,8 +56,13 @@ PASS is claimed. Full CI retains the original independent offline assertions.
 
 Changed: index.html, affected navigation/layout/cosmetic/browser/native acceptance
 expectations, oracle binding, this task and QA evidence. No CI gate removed.
-Next: publish isolated PR, pass exact-source CI, integrate after PR35, build and
-verify signed Android. Physical phone/WebView60/TalkBack remain open.
+Delivery is integrated and published through PR38/Android0.2.91 as recorded
+above. Physical phone/WebView60/TalkBack remain open.
+
+## Historical local checkpoint — 4 November, before integration
+
+Recovered on 5 November. Pending CI, main refs and next actions below are the
+original observations; the delivery status above supersedes them.
 
 Published [PR36](https://github.com/xariib/Lumenfall/pull/36), candidate
 `429a89a57fb1bdfd5728eb0c3386a5dec5d4d653`; final HTML SHA256

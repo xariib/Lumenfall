@@ -170,7 +170,12 @@ the lock after cleanup, then notifies JS/opens Android UI. Success/error/cancel
 ordering and concurrent rejection are exercised from the production Java gate,
 including an injected late-release causal failure. Native acceptance must rerun.
 
-Latest code: c67c4c2d; all local focused checks PASS. Required PR runs and
+## Historical queued-run checkpoint — 4 November, superseded by PR38 delivery
+
+Recovered on 5 November. The original run state below is historical; integrated
+Android0.2.91 and subsequent0.2.95 delivery are recorded in current project status.
+
+Latest code at that checkpoint: c67c4c2d; all local focused checks PASS. Required PR runs and
 Android41862842909 are queued without a runner as of4Nov17:09 Copenhagen.
 Older finished jobs still appear in progress; normal cancellation returns409
 “Cannot cancel a workflow run that is not in progress.” No duplicate/force run.

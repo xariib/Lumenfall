@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "baselineMain": "ad49e21366e750f10835e24fd6c43a1cd3c58c12",
+  "verifiedIntegrationBeforeFinalDocumentation": "3a93daf07b912e38a8c4922e038a88c2abb2ec89",
+  "stableRelease": "android-1000095",
+  "filesVerified": 355,
+  "bytesVerified": 108206781,
+  "workingTreeAndGitPayloadHashes": "PASS",
+  "appTreeEqualsStableRelease": "PASS",
+  "appTreeListingSha256": "3322d5661668a1880563a4178ab7e7489901ed431d002fdc428122061cb812c7",
+  "nonEvidenceRuntimeTestsScriptsWorkflowsUnchanged": "PASS",
+  "checks": [
+    "Four task context/link/startup-budget checks PASS",
+    "node scripts/ci/validate_source.cjs PASS",
+    "git diff --check ad49e213 PASS"
+  ],
+  "newApkRequired": false
+}

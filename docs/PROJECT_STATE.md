@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+5 November: [Pending-work synchronization](tasks/SYNC_PENDING_20261105.md)
+recovered355 local QA files and historical task checkpoints, and integrated the
+19 October baseline-audit PR2. Historical reports retain their original source
+and pending/failure states. All app assets and native source match published
+Android0.2.95; no additional APK is required for these documentation changes.
+
 5 November: [Windows Wisp assertion/PR41](tasks/WINDOWS_WISP_SCROLL_001.md)
 fixed and merged at 87e58545; tested source ff790151 and identical merge tree.
 The test now waits for the tab entrance animation. Windows/Linux Wisp 3,277 checks,
@@ -56,8 +62,6 @@ remain unverified. The available emulator test uses archived signed158 and synth
 saves; no particular old version is required on the user's phone. Historical
 pre-import Git objects unavailable404 remain a limitation. [Known issues](project/KNOWN_ISSUES.md).
 
-19 October 2026: [PRODUCT_BASELINE_AUDIT_001](tasks/PRODUCT_BASELINE_AUDIT_001.md)
-reviews the released experience, separates verified defects from design findings
-and device-acceptance gaps, and prioritizes focused improvements. No product
-code or APK was changed for the audit. Its first proposed implementation task
-is WISP_ACTION_HIERARCHY_001; no implementation is started by this status note.
+Historical19 October2026 [product audit](tasks/PRODUCT_BASELINE_AUDIT_001.md)
+describes Android0.2.14. Its findings and recommendations require reassessment
+against current main before implementation; this sync does not start those tasks.

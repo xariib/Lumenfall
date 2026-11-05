@@ -1,5 +1,10 @@
 # PRODUCT_BASELINE_AUDIT_001 — released game experience
 
+Historical audit of Android 0.2.14 on 19 October 2026, integrated on 5 November
+2026 from PR2. Findings and proposed tasks below describe that original source;
+they are not an assessment or new requirements for Android 0.2.95. Consult
+[current project status](../PROJECT_STATE.md) before acting on a recommendation.
+
 Owner: this task chat. Scope: read-only product audit and documentation; no game code, APK, balance, save, purchase, or release change.
 
 ## Baseline and method
