@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+5 November: [Current-game debug](tasks/PERFECT_DEBUG_20261105.md) on main
+ab7aa2dd: seven Linux workflows,190+1 cases, negative controls and smoke PASS.
+Product/tests unchanged. Intermittent Windows Wisp layout assertion and rejected
+temporary cleanup remain open. [Report](qa/perfect-debug-20261105/README.md).
+
 5 November: [Play Protect investigation/PR39](tasks/PLAY_PROTECT_001.md) complete,
 released as [Android0.2.95](https://github.com/xariib/Lumenfall/releases/tag/android-1000095). Integrated
 at12551152 (tested source4982932a; identical trees). Patched Capacitor6.2.2 and
