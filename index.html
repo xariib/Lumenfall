@@ -3756,15 +3756,15 @@ RESEARCH = RESEARCH.concat(FORGE_EXPANSION);
 // Deep currency investments alongside the short, mechanically bounded tracks.
 // Existing saves initialize these IDs to zero with their queues OFF.
 var FORGE_ENHANCEMENTS = [
-  {id:'battletempering',name:'Battle Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate passive Wisp damage multiplier per level, up to ×4. Also strengthens the Wisp-powered part of tap damage. Prices rise with every level.',unlockDepth:100,levelCap:300,effectPerLevel:0.01,lumenBase:10000000,lumenGrowth:1.10,shardBase:250000,shardGrowth:1.10},
-  {id:'arcanetempering',name:'Arcane Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate damaging ability multiplier per level, up to ×4. Includes owned Resonant Edge hits; no ability currencies, Support buff or charge bonus. Prices rise with every level.',unlockDepth:150,levelCap:300,effectPerLevel:0.01,lumenBase:25000000,lumenGrowth:1.10,shardBase:625000,shardGrowth:1.10},
-  {id:'harvesttempering',name:'Harvest Tempering',forgeGroup:'Enhancements',desc:'+1 percentage point to a separate Lumen and Shard kill-reward multiplier per level, up to ×4. No ability currencies, Motes, Prisms or Sigils. Prices rise with every level.',unlockDepth:200,levelCap:300,effectPerLevel:0.01,lumenBase:40000000,lumenGrowth:1.10,shardBase:1000000,shardGrowth:1.10}
+  {id:'battletempering',name:'Battle Tempering',forgeGroup:'Enhancements',endless:true,desc:'+1 percentage point to a separate passive Wisp damage multiplier per level. Also strengthens the Wisp-powered part of tap damage. No final level; prices rise by 10% per level.',unlockDepth:100,effectPerLevel:0.01,lumenBase:10000000,lumenGrowth:1.10,shardBase:250000,shardGrowth:1.10},
+  {id:'arcanetempering',name:'Arcane Tempering',forgeGroup:'Enhancements',endless:true,desc:'+1 percentage point to a separate damaging ability multiplier per level. Includes owned Resonant Edge hits; no ability currencies, Support buff or charge bonus. No final level; prices rise by 10% per level.',unlockDepth:150,effectPerLevel:0.01,lumenBase:25000000,lumenGrowth:1.10,shardBase:625000,shardGrowth:1.10},
+  {id:'harvesttempering',name:'Harvest Tempering',forgeGroup:'Enhancements',endless:true,desc:'+1 percentage point to a separate Lumen and Shard kill-reward multiplier per level. No ability currencies, Motes, Prisms or Sigils. No final level; prices rise by 10% per level.',unlockDepth:200,effectPerLevel:0.01,lumenBase:40000000,lumenGrowth:1.10,shardBase:1000000,shardGrowth:1.10}
 ];
 RESEARCH = RESEARCH.concat(FORGE_ENHANCEMENTS);
 // Finite long-tail paths retain their existing prices and earned levels.
 // Existing saves beyond a newly introduced cap keep their paid effects.
 RESEARCH.forEach(function(node){
-  if(node.levelCap===undefined){node.levelCap=node.id==='masterwork'?500:250;node.grandfatheredCap=true;}
+  if(node.levelCap===undefined && !node.endless){node.levelCap=node.id==='masterwork'?500:250;node.grandfatheredCap=true;}
 });
 var FORGE_BY_ID = {};
 FORGE_EXPANSION.forEach(function(node){FORGE_BY_ID[node.id]=node;});
@@ -4201,6 +4201,33 @@ var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
 LONG_STUDIES.forEach(function(node){if(node.levelCap===undefined){node.levelCap=500;node.grandfatheredCap=true;}});
+// First access to powerful research is earned through exploration and research.
+// Existing paid levels/work are evidence of access; no save fields are reset.
+var LAB_ACCESS = {
+  wispdamage:{depth:25,studies:{wispascend:5}},
+  wispcritchance:{depth:75,studies:{wispdamage:10}},
+  wispcritdamage:{depth:150,studies:{wispcritchance:10}},
+  measuredinquiry:{depth:150,studies:{wispascend:25}},
+  procurement:{depth:100,studies:{lumenstudy:10}},
+  catalysis:{depth:200,studies:{motestudy:10}},
+  focusprotocol:{depth:125,studies:{guardmastery:15}},
+  curriculum:{depth:250,studies:{measuredinquiry:3}}
+};
+function studyAccess(node){
+  var rule=LAB_ACCESS[node.id];
+  if(!rule)return {unlocked:Amount.ge(state.maxDepthEver,node.unlockDepth||1),requirements:[]};
+  var paid=Amount.gt(longStudyLevel(node.id),0)||!!findActiveStudy(node.id)||!!findPausedStudy(node.id),depth=rule.depth;
+  var requirements=[{label:'Rift',current:state.maxDepthEver,target:depth,met:Amount.ge(state.maxDepthEver,depth)}];
+  Object.keys(rule.studies).forEach(function(id){
+    var project=LONG_STUDIES.find(function(n){return n.id===id;});
+    requirements.push({label:project.name+' Lv.',current:longStudyLevel(id),target:rule.studies[id],met:Amount.ge(longStudyLevel(id),rule.studies[id])});
+  });
+  return {unlocked:paid?true:requirements.every(function(r){return r.met;}),requirements:requirements};
+}
+function studyAccessText(node){
+  if(!LAB_ACCESS[node.id])return 'Unlocks at Rift '+(node.unlockDepth||1);
+  return 'Requires '+studyAccess(node).requirements.map(function(r){return r.label+' '+r.current+' / '+r.target;}).join(' · ');
+}
 // Full-track minimum days with continuous 8x and all earned work reductions.
 // Early levels and paid records keep their work; only future starts use this tail.
 var LAB_LONGTAIL_DAYS = {measuredinquiry:90,procurement:90,catalysis:120,focusprotocol:14,fieldnotes:60,curriculum:7,bossledger:180,luminousdistill:240,sigilcartography:30,rarityappraisal:60,modulefabrication:90,ultimateanalysis:120,resonantefficiency:14,adaptivegrowth:14,wispdamage:365,wispcritchance:365,wispcritdamage:365};
@@ -8455,7 +8482,7 @@ function getStudyStartPlan(node,preferredSlot){
   node=node && LONG_STUDIES.find(function(n){return n.id===node.id;});
   if(!node) return {node:null,eligible:false,affordable:false,reason:'unknown'};
   var level=longStudyLevel(node.id),paused=findPausedStudy(node.id),cost=paused?{lumen:0,shard:0}:studyCost(node,level),duration=paused?paused.remainingSec:studyDuration(node,level);
-  var unlocked=Amount.ge(state.maxDepthEver,node.unlockDepth||1);
+  var access=studyAccess(node),unlocked=access.unlocked;
   var challenge=node.id==='labcapacity'?labCapacityChallenge(level):null;
   var maxed=node.levelCap!==undefined && Amount.ge(level,node.levelCap);
   var valid=Amount.valid(cost.lumen) && Amount.ge(cost.lumen,0) && Amount.valid(cost.shard) && Amount.ge(cost.shard,0) && Amount.valid(duration) && Amount.gt(duration,0);
@@ -8466,7 +8493,7 @@ function getStudyStartPlan(node,preferredSlot){
   var eligible=!reason;
   if(eligible && (Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard))) reason='unaffordable';
   else if(eligible && (!labCanPay(state.lumen,cost.lumen) || !(state.swiftRecoveryRefund ? canSpendShards(cost.shard) : labCanPay(state.shards,cost.shard)))){reason='unavailable';eligible=false;}
-  return {node:node,level:level,cost:cost,duration:duration,paused:paused,unlocked:unlocked,maxed:maxed,eligible:eligible,affordable:!reason,reason:reason,challenge:challenge};
+  return {node:node,level:level,cost:cost,duration:duration,paused:paused,unlocked:unlocked,maxed:maxed,eligible:eligible,affordable:!reason,reason:reason,challenge:challenge,access:access};
 }
 function commitStudyStart(node,preferredSlot){
   var plan=getStudyStartPlan(node,preferredSlot);
@@ -9072,7 +9099,7 @@ function presentControlStates(root){
         var node=LONG_STUDIES.find(function(n){return n.id===btn.getAttribute('data-study');});subject=node.name;
         var plan=getStudyStartPlan(node,selectedStudySlot>=0?selectedStudySlot:undefined);
         if(plan.maxed){kind='maxed';reason='Maxed';}
-        else if(!plan.unlocked){kind='locked';reason='Reach Rift '+node.unlockDepth;}
+        else if(!plan.unlocked){kind='locked';reason=studyAccessText(node);}
         else if(plan.reason==='slots'){kind='unavailable';reason='No open slots';}
         else if(plan.reason==='unavailable'){kind='unavailable';reason='Price or time unavailable';}
         else cost=plan.cost;
@@ -10206,7 +10233,7 @@ function renderResearch(){
   // Build the authoritative previews and control states off-DOM. Restoring
   // focus on empty cards would clamp the scroll area before they reach full size.
   var prepared=document.createElement('div');
-  prepared.innerHTML=('<div class="section-sub">Forge: shape boss fights, tap rhythm, Support casts, resources and Resonate.</div>' + multHtml + html);
+  prepared.innerHTML=('<div class="section-sub">Forge: shape boss fights, tap rhythm, Support casts, resources and Resonate. Enhancements keep growing, with no final level.</div>' + multHtml + html);
   RESEARCH.filter(function(node){return !node.retiredTo;}).forEach(function(node){updateResearchCard(node,prepared.querySelector(('[data-forge-card="' + node.id + '"]')));});
   presentControlStates(prepared);
   replaceControlMarkup(root,null,false,false,prepared);
@@ -10451,7 +10478,7 @@ function renderLongStudies(){
     if(group!==lastStudyGroup){html=(html + '<h4 class="study-choices-title" data-study-group="' + group + '">' + group + '</h4>');lastStudyGroup=group;}
     var plan=getStudyStartPlan(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);
     if(!plan.unlocked){
-      html=(html + '<div class="card study-card locked-node" data-state="locked" aria-disabled="true" style="margin-bottom:10px;">' + '<div class="name">' + (lnode.labGroup?lnode.name:'???') + '</div>' + '<div class="desc lock-note">Unlocks at Rift ' + lnode.unlockDepth + '</div>' + '</div>');
+      html=(html + '<div class="card study-card locked-node"'+(LAB_ACCESS[lnode.id]?' data-study-card="'+lnode.id+'"':'')+' data-state="locked" aria-disabled="true" style="margin-bottom:10px;">' + '<div class="name">' + (lnode.labGroup||LAB_ACCESS[lnode.id]?lnode.name:'???') + '</div>' + '<div class="desc lock-note">'+studyAccessText(lnode)+'</div>' + '</div>');
       return;
     }
     var level=plan.level,cost=plan.cost,dur=plan.duration;

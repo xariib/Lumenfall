@@ -38,7 +38,9 @@ const canonical=q.accept(legacy);eq(canonical.studyBoosts.slot0.mult,3,'old proj
 const seven=seed(q);seven.longStudyLevels.labcapacity=2;seven.activeStudies=['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','procurement','catalysis'].map(id=>({id,remainingSec:100,totalDurationSec:200,speedMult:1}));
 q.set(seven);eq(q.slots(),5,'new starts have five slots');eq(q.get().activeStudies.length,7,'seven older paid records are retained');eq(q.start('bossledger'),false,'overcapacity cannot start new paid work');ok(q.save(),'grandfathered work saves');eq(app(source,x.storage).q.get().activeStudies.length,7,'grandfathered work reloads');
 ok(q.projects().every(n=>Number.isSafeInteger(n.levelCap)&&n.levelCap>0),'every Lab project has a finite cap');
-ok(q.forgeDefs().every(n=>Number.isSafeInteger(n.levelCap)&&n.levelCap>0),'every Forge upgrade has a finite cap');
+const continuing=['battletempering','arcanetempering','harvesttempering'];
+eq(q.forgeDefs().filter(n=>n.endless).map(n=>n.id),continuing,'only the three continuing investments have no final level');
+ok(q.forgeDefs().every(n=>continuing.includes(n.id)?n.levelCap===undefined:Number.isSafeInteger(n.levelCap)&&n.levelCap>0),'all bounded Forge mechanics retain finite caps');
 ok(q.treeDefs().every(n=>Number.isSafeInteger(n.levelCap)&&n.levelCap>0),'every Tree path has a finite cap');
 const capped=seed(q);capped.longStudyLevels.wispascend=500;capped.research.masterwork=500;capped.nodes.swift=250;capped.spirits.ember=10000;capped.heroRarity.ember=5;capped.wispModules.ember=20;capped.wispUltimate.ember=true;capped.wispMastery.ember=2000;
 q.set(capped);eq(q.plan('wispascend').reason,'maxed','foundation Study stops at 500');eq(q.forgePlan('masterwork').reason,'maxed','long-tail Forge stops at 500');eq(q.treePlan('swift').reason,'cap','long-tail Tree stops at 250');eq(q.spiritPlan('ember').reason,'maxed','Empower stops at 10000');eq(q.masteryPlan('ember').reason,'maxed','Mastery stops at 2000');
