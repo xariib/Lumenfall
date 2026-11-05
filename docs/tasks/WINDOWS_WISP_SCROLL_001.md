@@ -19,7 +19,7 @@ the existing deadline; causal anchor/focus/periodic mutations still fail for
 their intended assertions; relevant CI passes and changes integrate into main.
 Preserve original one-pixel tolerances, input/save/payment checks and game bytes.
 
-Status: fix implemented; validation in progress. Node 24.19.0 and installed Brave on Windows; raw evidence
+Status: fix implemented; final CI pending. Node 24.19.0 and installed Brave on Windows; raw evidence
 under validation-evidence/windows-wisp-scroll-001/. Disposable scratch roots
 stay beneath its owned scratch directory and are cleaned after browser exit.
 Modern browser checks do not establish physical Android/WebView60/TalkBack.
@@ -40,11 +40,17 @@ all three production scroll/focus controls. No product file changes.
 
 Checks: source/context/syntax/diff pass. Race replay passes all twelve profiles;
 removing the wait or animation check fails the original assertion. Anchor,
-repaired focus and periodic controls fail the intended checks4,5,7. Complete
-isolated Windows run passes3277 checks in77.743s under the original90s deadline.
+repaired focus and periodic controls fail the intended checks 4, 5, 7. Complete
+isolated Windows run passes 3,277 checks in 77.743s under the original 90s deadline.
 Dedicated Windows/Linux CI passes full scenario and all five controls at
 ff790151. [Evidence](../qa/windows-wisp-scroll-001/README.md),
-[PR41](https://github.com/xariib/Lumenfall/pull/41). Other CI remains pending.
+[PR41](https://github.com/xariib/Lumenfall/pull/41). Seven of eight workflows pass;
+only pre-merge run 41994218460/job 127133377007 remains in progress. The isolated
+offline job passes. Tree's first attempt produced no QA result within its
+unchanged 25s browser deadline; the identical-source failed-job retry passes.
+Automated PR review completed with no findings. Evidence checkpoint branch:
+docs/windows-wisp-scroll-evidence; code remains ff790151, test merge eb9698e6,
+tree 1c428da02165dd95d4972597082dc9f3d7ae1dc1. Main remains 6891b9cb.
 
 Temporary scratch cleanup was rejected before execution: "blocked by policy",
 without a more specific reason. No alternate deletion route attempted. Exact
