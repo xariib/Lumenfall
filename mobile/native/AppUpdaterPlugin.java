@@ -286,9 +286,12 @@ public class AppUpdaterPlugin extends Plugin {
         run(call, () -> {
             // The completion screen does not promise a success result code.
             JSONObject release = pending();
-            boolean updated = release != null && version(installed()) >= release.getLong("code");
+            PackageInfo current = installed();
+            if (release == null || version(current) < release.getLong("code")) {
+                return () -> call.reject("Update incomplete. You are still on version " + current.versionName + ".");
+            }
             JSObject data = new JSObject();
-            data.put("status", updated ? "installed" : "cancelled");
+            data.put("status", "installed");
             return () -> call.resolve(data);
         });
     }

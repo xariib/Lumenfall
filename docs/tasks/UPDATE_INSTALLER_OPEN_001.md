@@ -35,3 +35,18 @@ all checks. Anonymous versioned and latest downloads matched the in-game feed,
 checksum and signed test receipts. The APK is 5,161,857 bytes and its SHA-256 is
 `b35b20f347f89b3947586a11faef15aa5c1994bf4c7c6f3007efbe5d3efef4a2`.
 Physical-phone acceptance remains open.
+
+## Incomplete installation follow-up
+
+The player confirmed 0.2.98 was installed after reporting a Danish Play Protect
+warning during an in-app update. The screenshot shows a harmful-app warning.
+It does not identify the exact APK or the reason for the classification.
+
+The native updater now reports the installed version if Android returns before
+the update completes. Preserve the verified APK for retry and leave the Android
+completion screen in control of **Open**. The signed build must still pass the
+save upgrade, installer cancellation/retry and **Open** tests.
+
+Google handles the Play Protect classification separately. The public 0.2.98 APK
+matches its tested hash. A signed build and static checks establish artifact
+identity and configuration. A fresh Google verdict is still needed.

@@ -89,7 +89,8 @@ async function main(){
   await click();
   await until(()=>/PackageInstallerActivity/.test(foreground()),'Android installation confirmation');
   adb('shell','input','keyevent','KEYCODE_BACK');await ready();
-  assert(await evaluate("document.getElementById('app-update-status').textContent.includes('cancelled')"),'Installer cancellation keeps verified retry');
+  assert.equal(await evaluate("document.getElementById('app-update-status').textContent"),
+    'Update incomplete. You are still on version 0.2.1.', 'Incomplete installation reports the version and keeps the verified retry');
   mark('open Android installer again and approve system Update button');
   await click();
   await tapInstallerButton(/PackageInstallerActivity/,/text="(?:Update|Install)"/i);
