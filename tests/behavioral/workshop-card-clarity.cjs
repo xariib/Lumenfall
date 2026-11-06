@@ -29,8 +29,9 @@ q.set(waiting);ok(q.clearSlot(0),'Queue OFF clears a waiting slot');eq(q.get().s
 ok(q.save(),'cleared waiting slot saves');loaded=app(source,x.storage).q;eq(loaded.get().studySlotProjects[0],null,'waiting clear survives reload');eq(loaded.get().studyQueue.guardmastery,false,'waiting queue stays off after reload');
 const deeds=q.deeds(),extra=deeds.filter(a=>a.counter);eq(extra.length,49,'49 additional fixed milestones');eq(new Set(deeds.map(a=>a.id)).size,deeds.length,'all Deed identities unique');
 for(const [track,defs]of [['lab',q.projects()],['forge',q.forgeDefs()]]){
- const maximum=defs.filter(n=>!n.retiredTo&&!n.retired).reduce((sum,n)=>sum+n.levelCap,0);
- for(const deed of extra.filter(a=>a.track===track))ok(deed.target<=maximum,track+' objective remains reachable using only currently purchasable levels: '+deed.target+' / '+maximum);
+ // Count only the first 300 continuing ranks in this conservative proof.
+ const purchasable=defs.filter(n=>!n.retiredTo&&!n.retired).reduce((sum,n)=>sum+(n.endless?300:n.levelCap),0);
+ for(const deed of extra.filter(a=>a.track===track))ok(deed.target<=purchasable,track+' objective remains reachable using only currently purchasable levels: '+deed.target+' / '+purchasable);
 }
 for(const a of extra){const p=q.deedProgress(a,q.get());ok(p&&p.target===a.target,'authoritative progress for '+a.id);}
 s=seed(q);s.maxDepthEver=1000;q.set(s);const rewards=extra.filter(a=>a.check(q.get())).reduce((n,a)=>n+a.reward,0);const beforeComets=q.get().comets;q.achievements();const after=q.get().comets;ok(after>=beforeComets+rewards,'new milestones pay fixed rewards');q.achievements();eq(q.get().comets,after,'one-time rewards cannot repeat');ok(q.save(),'milestones save');loaded=app(source,x.storage).q;loaded.achievements();eq(loaded.get().comets,after,'reward receipts survive reload');

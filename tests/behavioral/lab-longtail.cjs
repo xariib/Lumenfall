@@ -12,7 +12,7 @@ function verify(html){
  // unlimited funding and a continuously renewed real8x paid slot boost.
  for(const [id,minimumDays]of Object.entries(days)){
   const d=defs.find(n=>n.id===id);ok(d&&!d.retiredTo,'available pacing track '+id);
-  const s=rich();s.longStudyLevels[id]=0;s.studyQueue[id]=true;q.set(s);x.clock(T);
+  const s=rich();s.longStudyLevels[id]=0;require('./lab-access-reference.cjs').ready(s,id);s.studyQueue[id]=true;q.set(s);x.clock(T);
   const durations=Array.from({length:d.levelCap},(_,l)=>q.duration(id,l));
   ok(durations.every((v,i)=>Number.isSafeInteger(v)&&v>0&&(!i||v>=durations[i-1])),'finite monotonic work '+id);
   const fastest=durations.reduce((a,b)=>a+b,0)/8;
@@ -61,7 +61,7 @@ function verify(html){
   eq(after.own,before.own,'damage research leaves own Power unchanged');eq(after.support,before.support,'damage research leaves Support unchanged');
   after.burst.forEach((v,i)=>near(v,before.burst[i]*factor,'damage ability factor '+i));eq(after.rewards,before.rewards,'critical research never multiplies currency payouts');
  }
- q.set(combat);const unpaid=q.power();ok(q.start('wispdamage'),'actual damage research payment');eq(q.power(),unpaid,'no damage before completion');q.finish(240);near(q.power(),unpaid*1.02,'completed damage applies immediately');
+ require('./lab-access-reference.cjs').ready(combat,'wispdamage');q.set(combat);const unpaid=q.power();ok(q.start('wispdamage'),'actual damage research payment');eq(q.power(),unpaid,'no damage before completion');q.finish(240);near(q.power(),unpaid*1.02,'completed damage applies immediately');
  const earned=clone(q.get());q.save();x.storage.set(P,'broken');q.load();eq(q.get(),earned,'recovery retains earned damage');
  // Full authoritative simulator agrees on new damage over identical time windows.
  const parity=clone(combat);parity.depth=parity.enemyDepth=parity.farmDepth=39;parity.riftMode='farm';parity.farmReturnDepth=40;parity.longStudyLevels.wispdamage=10;parity.longStudyLevels.wispcritchance=20;parity.longStudyLevels.wispcritdamage=10;

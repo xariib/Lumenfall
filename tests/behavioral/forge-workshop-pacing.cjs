@@ -17,17 +17,17 @@ function verify(source){
  eq(q.defs().map(n=>n.id),b.defs().map(n=>n.id).concat(ids),'three additive long-tail identities');
  eq(q.defs().filter(n=>!ids.includes(n.id)),b.defs(),'every old definition, cap, price and effect retained');
  for(const [id,unlock,lumen,shard]of specs){
-  const node=q.node(id);eq([node.unlockDepth,node.levelCap,node.effectPerLevel,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.forgeGroup],[unlock,300,.01,lumen,shard,1.1,1.1,'Enhancements'],'independent enhancement definition');
+  const node=q.node(id);eq([node.unlockDepth,node.levelCap,node.endless,node.effectPerLevel,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.forgeGroup],[unlock,undefined,true,.01,lumen,shard,1.1,1.1,'Enhancements'],'independent continuing enhancement definition');
   // Rational 11/10, independent of geometricSum and the amount runtime.
   function rational(base,start,count){let numerator=0n;const denominator=10n**BigInt(start+count-1);for(let k=start;k<start+count;k++)numerator+=BigInt(base)*11n**BigInt(k)*10n**BigInt(start+count-1-k);return Number((numerator+denominator-1n)/denominator);}
   for(const start of [0,1,25,100,200,299])for(const count of [1,Math.min(25,300-start),300-start]){
    const cost=q.cost(id,start,count);ok(Math.abs(Number(cost.lumen)-rational(lumen,start,count))<=Math.max(1,rational(lumen,start,count)*2e-12),'independent rational Lumen quote within one rounding unit');ok(Math.abs(Number(cost.shard)-rational(shard,start,count))<=Math.max(1,rational(shard,start,count)*2e-12),'independent rational Shard quote within one rounding unit');
   }
-  for(const depth of [unlock-1,unlock]){const s=seed(q);s.depth=s.enemyDepth=1;s.maxDepthEver=depth;q.set(s);eq(q.plan(id,1).reason,depth<unlock?'locked':'','exact Rift unlock');eq(q.plan(id,'max').buyCount,depth<unlock?0:300,'wallet cannot bypass unlock or finite cap');}
+  for(const depth of [unlock-1,unlock]){const s=seed(q);s.depth=s.enemyDepth=1;s.maxDepthEver=depth;q.set(s);eq(q.plan(id,1).reason,depth<unlock?'locked':'','exact Rift unlock');if(depth<unlock)eq(q.plan(id,'max').buyCount,0,'wallet cannot bypass unlock');else ok(q.plan(id,'max').buyCount>300,'continuing investment has no former cap');}
   for(const level of [0,1,99,299,300,301]){
-   const s=seed(q);s.research[id]=level;q.set(s);near(q.effect(id,level).factor,1+.01*Math.min(level,300),'linear bounded effect, including historical overcap');
-   eq(q.preview(id,1).next===null,level>=300,'next preview absent only at cap');ok(q.previewText(id,1).includes('×'+Number((1+.01*Math.min(level,300)).toFixed(2))),'current earned multiplier visible');
-   eq(q.plan(id,'max').buyCount,Math.max(0,300-level),'bulk buys exact remaining finite levels');
+   const s=seed(q);s.research[id]=level;q.set(s);near(q.effect(id,level).factor,1+.01*level,'linear continuing effect');
+   eq(q.preview(id,1).next===null,false,'next preview continues past former cap');ok(q.previewText(id,1).includes('×'+Number((1+.01*level).toFixed(2))),'current earned multiplier visible');
+   ok(q.plan(id,'max').buyCount>300,'funded bulk investment continues past former cap');
   }
   for(const request of [1,5,25,'max']){
    const x=game(),c=x.q,s=seed(c);s.research[id]=275;c.set(s);const plan=c.plan(id,request),before=F.clone(c.get());
@@ -37,7 +37,7 @@ function verify(source){
    const paid=F.clone(c.get());eq(F.app(source,x.storage).q.get(),paid,'both-slot cold reload');eq(c.accept(c.decode(c.export())),paid,'backup roundtrip');
    const corrupt=new Map(x.storage);corrupt.set(F.P,'bad');eq(F.app(source,corrupt).q.get(),paid,'actual recovery load');
   }
-  const x=game(),c=x.q,s=seed(c);s.research[id]=299;s.researchQueue[id]=true;c.set(s);eq(c.queue(),true,'queue purchases final rank');eq(c.get().research[id],300,'queue earns cap exactly');eq(c.queue(),false,'queue cannot spend past cap');
+  const x=game(),c=x.q,s=seed(c);s.research[id]=299;s.researchQueue[id]=true;const boundary=c.cost(id,299,1);s.lumen=boundary.lumen;s.shards=boundary.shard;c.set(s);eq(c.queue(),true,'queue purchases rank at former boundary');eq(c.get().research[id],300,'queue earns level300 exactly');eq(c.queue(),false,'unfunded continuing queue does not spend');const continuation=c.cost(id,300,1);c.get().lumen=continuation.lumen;c.get().shards=continuation.shard;eq(c.queue(),true,'funded queue continues past former cap');eq(c.get().research[id],301,'queue earns level301');
   // Each deficient currency blocks the real transaction, including Lumen-only
   // and Shards-only shortages; the shared native UI checks the matching red cost.
   for(const missing of ['lumen','shards']){const s=seed(q),price=q.cost(id,0,1);s.lumen=price.lumen;s.shards=price.shard;s[missing]--;q.set(s);const before=F.clone(q.get());eq(q.plan(id,1).reason,'unaffordable','single-resource shortage');eq(q.buy(id,1),false,'shortage blocks debit');eq(q.get(),before,'failed affordability leaves state intact');}
@@ -82,7 +82,7 @@ function verify(source){
   const x=game(),c=x.q,t=seed(c);t.depth=t.enemyDepth=t.farmDepth=depth;t.farmReturnDepth=depth+9;t.maxDepthEver=depth+9;t.riftMode='farm';t.nodes.echo=6;t.activeParty=['ember','gale','thorn'];for(const id of t.activeParty)t.spirits[id]=10000;
   t.research.masterwork=500;t.research.formation=250;t.research.focus=t.research.sense=250;t.research.conduction=20;t.research.dualchannel=5;t.research.overflowconduit=5;t.longStudyLevels.wispascend=500;t.longStudyLevels.lumenstudy=t.longStudyLevels.shardstudy=500;ids.forEach(id=>t.research[id]=300);
   c.set(t);c.restoreEnemy();const summary=c.advance(60,{kind:'live',clockStartMs:F.CLOCK});const day={lumen:A.mul(summary.lumenGained,1440),shards:A.mul(summary.shardGained,1440)};const record={depth,seconds:60,kills:summary.kills,per24h:day,tracks:[]};
-  for(const [id]of specs){const price=c.cost(id,0,300),days=Math.max(Number(A.div(price.lumen,day.lumen)),Number(A.div(price.shard,day.shards)));ok(days>3,'three generous farming days cannot complete '+id+' at Rift '+depth);const spend=seed(c);spend.lumen=A.mul(day.lumen,3);spend.shards=A.mul(day.shards,3);c.set(spend);ok(c.plan(id,'max').buyCount<300,'real three-day budget cannot buy cap');record.tracks.push({id,fullCost:price,fixedDepthDays:days,threeDayLevels:c.plan(id,'max').buyCount});}
+  for(const [id]of specs){const price=c.cost(id,0,300),days=Math.max(Number(A.div(price.lumen,day.lumen)),Number(A.div(price.shard,day.shards)));ok(days>3,'three generous farming days cannot buy300 ranks '+id+' at Rift '+depth);const spend=seed(c);spend.lumen=A.mul(day.lumen,3);spend.shards=A.mul(day.shards,3);c.set(spend);ok(c.plan(id,'max').buyCount<300,'real three-day budget cannot buy300 ranks');record.tracks.push({id,priceFor300:price,fixedDepthDays:days,threeDayLevels:c.plan(id,'max').buyCount});}
   farms.push(record);
  }
  const horizon=farms.find(r=>r.depth===1001).tracks.reduce((days,t)=>days+t.fixedDepthDays,0);ok(horizon>=180&&horizon<=365,'all three tracks span six to twelve months even at optimistic fixed Rift1001 income');

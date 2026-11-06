@@ -11,12 +11,13 @@ module.exports=async function({send,ev,pause,check,records,args}){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
   const s=JSON.parse(JSON.stringify(fresh));Object.assign(s,{maxDepthEver:250,questDay:new Date().toISOString().slice(0,10),lumen:0,shards:0,motes:100000});await install(s);
   for(const id of ids){
+   const available=JSON.parse(JSON.stringify(s));require('./lab-access-reference.cjs').ready(available,id);await install(available);
    const result=await ev('(()=>{var c=document.querySelector("[data-study-card='+id+']"),b=c.querySelector("[data-study]"),p=c.querySelector(".study-meta");return {text:c.textContent,disabled:b.disabled,red:Array.from(p.querySelectorAll("[data-price-currency]")).filter(e=>e.style.color==="var(--danger)").length,overflow:c.scrollWidth>c.clientWidth+1,rect:b.getBoundingClientRect().height}})()');
    check(result.text.includes('/ 100'),'100-level basic research '+id);check(result.disabled,'unfunded basic research disabled '+id);check(!result.overflow,'card fits viewport '+id);check(result.rect>=44,'touch target44px '+id);
    check(result.red===2,'both missing currencies red '+id);
   }
   check(await ev('document.querySelector("[data-study-card=wispcritchance]").textContent.includes("averaged")&&document.querySelector("[data-study-card=wispcritdamage]").textContent.includes("needs Critical Chance")'),'critical scope and prerequisite visible');
-  await ev('uiRegression.wallet(1000000,1000000)');check(await ev('!document.querySelector("[data-study=wispdamage]").disabled'),'live funding enables damage research');
+  await install(require('./lab-access-reference.cjs').ready(JSON.parse(JSON.stringify(s)),'wispdamage'));await ev('uiRegression.wallet(1000000,1000000)');check(await ev('!document.querySelector("[data-study=wispdamage]").disabled'),'live funding enables damage research');
   const before=await ev('uiRegression.get()');await touch('[data-study=wispdamage]');const after=await ev('uiRegression.get()');
   check(after.activeStudies.some(a=>a.id==='wispdamage'&&a.totalDurationSec===240),'native touch starts first damage level with short work');check(after.lumen===before.lumen-1000&&after.shards===before.shards-80,'single exact purchase');check(after.longStudyLevels.wispdamage===0,'purchase does not give early damage');
   s.lumen=s.shards='1e400';s.longStudyLevels.wispdamage=99;await install(s);
