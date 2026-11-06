@@ -271,7 +271,7 @@ public class AppUpdaterPlugin extends Plugin {
                     intent.setDataAndType(uri, "application/vnd.android.package-archive");
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     intent.setClipData(android.content.ClipData.newRawUri("Lumenfall update", uri));
-                    intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+                    // Let Android show its completion screen with the Open button.
                     startActivityForResult(call, intent, "installerResult");
                 } catch (Exception e) { call.reject("Cannot open the Android installer. You can retry from Settings."); }
             });
@@ -282,11 +282,15 @@ public class AppUpdaterPlugin extends Plugin {
         if (call != null) installVerified(call, false);
     }
     @ActivityCallback private void installerResult(PluginCall call, ActivityResult result) {
-        if (call != null) {
+        if (call == null) return;
+        run(call, () -> {
+            // The completion screen does not promise a success result code.
+            JSONObject release = pending();
+            boolean updated = release != null && version(installed()) >= release.getLong("code");
             JSObject data = new JSObject();
-            data.put("status", result.getResultCode() == android.app.Activity.RESULT_OK ? "installed" : "cancelled");
-            call.resolve(data);
-        }
+            data.put("status", updated ? "installed" : "cancelled");
+            return () -> call.resolve(data);
+        });
     }
     @Override protected void handleOnDestroy() {
         cancelled = true;

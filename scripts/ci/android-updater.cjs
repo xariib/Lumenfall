@@ -29,6 +29,16 @@ async function evaluate(expression){
 }
 async function click(){await evaluate("document.getElementById('app-update-action').click()");}
 async function ready(){return until(()=>evaluate("document.getElementById('app-update-action').textContent==='Install update'&&!document.getElementById('app-update-action').disabled"),'verified install retry');}
+async function tapInstallerButton(activity,label){
+  const button=await until(()=>{
+    if(!activity.test(foreground()))return false;
+    adb('shell','uiautomator','dump','/sdcard/lumenfall-update.xml');
+    const xml=adb('shell','cat','/sdcard/lumenfall-update.xml');
+    return [...xml.matchAll(/<node\b[^>]*>/g)].map(m=>m[0]).find(node=>label.test(node)&&/enabled="true"/.test(node)&&/clickable="true"/.test(node));
+  },'Android installer button '+label);
+  const bounds=/bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/.exec(button);assert(bounds);
+  adb('shell','input','tap',String(Math.round((+bounds[1]+ +bounds[3])/2)),String(Math.round((+bounds[2]+ +bounds[4])/2)));
+}
 async function main(){
   assert.match(adb('get-serialno').trim(),/^emulator-/,'Never operate on a player device');
   const log=fs.openSync('release-evidence/updater-native-logcat.txt','w');nativeLogcat=cp.spawn('adb',['logcat','-v','threadtime'],{stdio:['ignore',log,log]});fs.closeSync(log);
@@ -82,22 +92,18 @@ async function main(){
   assert(await evaluate("document.getElementById('app-update-status').textContent.includes('cancelled')"),'Installer cancellation keeps verified retry');
   mark('open Android installer again and approve system Update button');
   await click();
-  await until(()=>/PackageInstallerActivity/.test(foreground()),'Android installation confirmation retry');
-  const button=await until(()=>{
-    adb('shell','uiautomator','dump','/sdcard/lumenfall-update.xml');
-    const xml=adb('shell','cat','/sdcard/lumenfall-update.xml');
-    return [...xml.matchAll(/<node\b[^>]*>/g)].map(m=>m[0]).find(node=>/text="(?:Update|Install)"/i.test(node)&&/enabled="true"/.test(node)&&/clickable="true"/.test(node));
-  },'system Update confirmation');
-  const bounds=/bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/.exec(button);assert(bounds);
-  adb('shell','input','tap',String(Math.round((+bounds[1]+ +bounds[3])/2)),String(Math.round((+bounds[2]+ +bounds[4])/2)));
+  await tapInstallerButton(/PackageInstallerActivity/,/text="(?:Update|Install)"/i);
   await until(()=>new RegExp('versionCode='+expected+'\\b').test(adb('shell','dumpsys','package',pkg)),'official APK installed');
-  mark('verify actual installed version, both save slots and origin');
+  mark('open the updated game from Android’s installation success screen');
+  await tapInstallerButton(/InstallSuccess/,/text="Open"/i);
+  await until(()=>foreground().includes(pkg+'/.MainActivity'),'installed game in the foreground after tapping Open');
+  mark('verify both save slots and origin with the inspection probe');
   socket.close();releaseProbe.launchForInspection();await connect();
   const retained=await evaluate("({sentinel:localStorage.getItem('native-updater-sentinel'),primary:!!localStorage.getItem('lumenfall_save_v2'),recovery:!!localStorage.getItem('lumenfall_save_recovery_v1'),origin:location.origin})");
   assert.equal(retained.sentinel,'retain-both-saves');assert(retained.primary&&retained.recovery);assert.equal(retained.origin,'https://localhost');
   socket.close();assert.match(adb('install','-r','Lumenfall.apk'),/Success/,'Restore final candidate on emulator');
-  fs.writeFileSync('release-evidence/in-app-updater.json',JSON.stringify({status:'PASS',commit:process.env.GITHUB_SHA,candidateApkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync('Lumenfall.apk')).digest('hex'),officialVersionCode:expected,downloadCancellation:{requestAcknowledged:true,automaticInstallPrevented:true,verifiedDownloadRetained:cancelRetainedDownload},permissionRefusal:true,verifiedDownloadSurvivesRestart:true,tamperedDownloadRejected:true,installerCancellation:true,systemApprovedInstall:true,retained,physicalDevice:false},null,2)+'\n');
-  console.log('PASS actual in-app official download, permission refusal, restart, installer cancellation and approved installation; both saves/origin retained');
+  fs.writeFileSync('release-evidence/in-app-updater.json',JSON.stringify({status:'PASS',commit:process.env.GITHUB_SHA,candidateApkSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync('Lumenfall.apk')).digest('hex'),officialVersionCode:expected,downloadCancellation:{requestAcknowledged:true,automaticInstallPrevented:true,verifiedDownloadRetained:cancelRetainedDownload},permissionRefusal:true,verifiedDownloadSurvivesRestart:true,tamperedDownloadRejected:true,installerCancellation:true,systemApprovedInstall:true,installerOpenLaunch:true,retained,physicalDevice:false},null,2)+'\n');
+  console.log('PASS actual in-app download, permission refusal, restart, installer cancellation, approved install and launch from Open. Both saves and origin retained.');
 }
 async function diagnostics(error){
   console.error(stage+': '+(error.stack||error));
