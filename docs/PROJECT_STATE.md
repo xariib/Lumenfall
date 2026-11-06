@@ -1,10 +1,16 @@
 # Lumenfall — current delivery status
 
+6 November: [Installer Open button/PR #43](tasks/UPDATE_INSTALLER_OPEN_001.md)
+released as [Android 0.2.98](https://github.com/xariib/Lumenfall/releases/tag/android-1000098).
+Tested source `f50415e3` passed CI, in-app update and save retention, retail
+launch, and verification of the public APK and update feed. Android can offer
+**Open** after updates started from this release.
+
 5 November: [Pending-work synchronization](tasks/SYNC_PENDING_20261105.md)
 recovered355 local QA files and historical task checkpoints, and integrated the
 19 October baseline-audit PR2. Historical reports retain their original source
-and pending/failure states. All app assets and native source match published
-Android0.2.95; no additional APK is required for these documentation changes.
+and pending/failure states. The app assets and native source matched
+Android0.2.95 at that checkpoint.
 
 5 November: [Windows Wisp assertion/PR41](tasks/WINDOWS_WISP_SCROLL_001.md)
 fixed and merged at 87e58545; tested source ff790151 and identical merge tree.
