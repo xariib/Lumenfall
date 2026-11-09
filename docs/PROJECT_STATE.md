@@ -1,5 +1,9 @@
 # Lumenfall — current delivery status
 
+9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
+the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
+feature checkpoint for continuing from GitHub on another computer.
+
 On 9 November, Android 0.2.104 shipped the full debug and exponential Rift
 progression update. [PR #45 task record](tasks/FULL_DEBUG_EXPONENTIAL_001.md) ·
 [Android 0.2.104 release](https://github.com/xariib/Lumenfall/releases/tag/android-1000104).

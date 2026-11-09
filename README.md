@@ -12,4 +12,4 @@ you play. Tap **Download & install**, then approve the Android installation.
 If Android asks, allow Lumenfall to install the update. Your saves stay in place.
 When the installer shows **Open**, tap it to launch the updated game.
 
-[Project status](docs/PROJECT_STATE.md) · [Development](AGENTS.md)
+[Project status](docs/PROJECT_STATE.md) · [Development](AGENTS.md) · [Repository handoff](docs/tasks/LOCAL_HANDOFF_20261109.md)
