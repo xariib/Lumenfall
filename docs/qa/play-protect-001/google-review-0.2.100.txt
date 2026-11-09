@@ -1,0 +1,46 @@
+Google Play Protect appeal draft for Lumenfall 0.2.100
+
+The player reported opening the signed 0.2.100 test APK from Downloads on
+6 November 2026. The first screenshot shows Play Protect's Danish harmful-app
+warning. The second shows Lumenfall-0.2.100.apk in Downloads and the Android
+message "Appen blev ikke installeret" (the app was not installed). The APK
+hash below was verified on the signed test deliverable. The phone file was
+identified by the user's report and filename, with no phone-side hash read.
+
+Package: com.lumenfall.app
+Version: 0.2.100 (1000100)
+APK SHA-256: ca473e6f0c306d0c3f316e7bb4f8b28bd6e9272b54cb9526fa2e7163a531d274
+Size: 5,162,252 bytes
+Form: https://support.google.com/googleplay/android-developer/contact/protectappeals
+
+Draft statement
+
+Please review the Play Protect classification of Lumenfall 0.2.100, package
+com.lumenfall.app, SHA-256 listed above. Lumenfall is an Android idle game.
+A player attempting to install the signed 0.2.100 test APK from their Downloads
+app saw the Danish warning "En skadelig app er blokeret". Android then reported
+that the app was not installed. A separate in-app update had previously shown a
+similar warning.
+
+Version 0.2.100 is a non-debuggable production APK signed with the project's
+established certificate. It declares INTERNET, REQUEST_INSTALL_PACKAGES for
+the app updater, and a signature-protected AndroidX receiver permission. The
+updater uses the official GitHub release feed and verifies size, SHA-256,
+package, version and signer before handing the update to Android for approval.
+
+The exact test APK passed package, signing, static configuration, emulator
+upgrade and retail Android launch checks. The updater's emulator test also
+passed retry, launch from Android's Open button, and preservation of both save
+slots. These checks document the build and its behavior. Google determines the
+Play Protect classification.
+
+Source: https://github.com/xariib/Lumenfall/commit/32fb31be350003565351f8ead63ee0e53baf2d32
+Signed Android test run: https://github.com/xariib/Lumenfall/actions/runs/42183146609
+
+Submission status: pending. The user approved the Google appeal and provided
+a contact address. They supplied the VirusTotal report link below. Its SHA-256
+matches the signed APK verified locally. The report contents were unavailable
+to the verification tool. Work settings have disabled local browser access,
+so the prepared appeal has not been submitted.
+
+VirusTotal: https://www.virustotal.com/gui/file/ca473e6f0c306d0c3f316e7bb4f8b28bd6e9272b54cb9526fa2e7163a531d274/details

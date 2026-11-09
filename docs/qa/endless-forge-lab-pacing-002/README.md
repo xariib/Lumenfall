@@ -11,6 +11,9 @@ Git canonical LF and Windows checkout line endings can have different hashes.
   trusted touch after the prerequisites are earned.
 - `independent-replay.json`: original and candidate match every saved field and
   all canonical hashes across four eight-hour windows of one-second calls.
+- `current-main-replay.json`: local continuation against `721ccbbc`. The combined
+  candidate preserves all four full states and canonical hashes. The earlier
+  replay receipt is retained for the original PR head.
 
 Reproduce from the repository root:
 
@@ -19,6 +22,7 @@ node tests/behavioral/endless-forge-lab-pacing.cjs index.html --negative
 node tests/behavioral/lab-speed-controls.cjs index.html --access
 node tests/behavioral/forge-workshop-pacing.cjs index.html --negative
 node tests/behavioral/lab-longtail.cjs index.html --negative
+node docs/qa/endless-forge-lab-pacing-002/independent-replay.cjs --base 721ccbbcdf3dac6d12710b721c6870f32ed9e2d4 --receipt validation-evidence/forge-lab-replay.json
 ```
 
 Synthetic farming estimates and browser tests do not establish calendar pacing,

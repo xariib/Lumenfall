@@ -4,8 +4,9 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {execFileSync}=require('node:child_process'),{Worker,isMainThread,workerData,parentPort}=require('node:worker_threads');
 const root=path.resolve(__dirname,'../../..');
 const {app,clone}=require(path.join(root,'tests/behavioral/comet-expansion-harness.cjs'));
+const {parseArgs}=require(path.join(root,'scripts/lib/cli.cjs'));
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
-const base='a75763d360894a69b2a12cd37a379f1e4f940e33',golden='tests/behavioral/offline-swift-current-golden.json';
+const originalBase='a75763d360894a69b2a12cd37a379f1e4f940e33',golden='tests/behavioral/offline-swift-current-golden.json';
 const read=(ref,file)=>execFileSync('git',['show',ref+':'+file],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
 function replay({source,seed,label}){
  const x=app(source),q=x.q,s=clone(seed),states=[],phases=[];let end=Date.UTC(2035,0,15,12);
@@ -23,8 +24,19 @@ function replay({source,seed,label}){
 }
 if(!isMainThread){parentPort.postMessage(replay(workerData));}
 else(async()=>{
- const accepted=JSON.parse(read(base,golden)),baseline=read(base,'index.html'),candidate=read('HEAD','index.html');
+ const args=parseArgs(process.argv.slice(2),['--base','--receipt'],['--write']);
+ assert.equal(args.positional.length,0,'Use --base <commit> and --receipt <path> for a new integration replay');
+ const base=execFileSync('git',['rev-parse','--verify',(args.base||originalBase)+'^{commit}'],{cwd:root,encoding:'utf8'}).trim();
+ const receiptPath=args.receipt?path.resolve(root,args.receipt):path.join(__dirname,'independent-replay.json');
+ assert(!args.base||args.receipt,'Provide a separate receipt path when replaying against a new baseline');
+ const accepted=JSON.parse(read(base,golden)),baseline=read(base,'index.html');
+ const candidate=args.base?fs.readFileSync(path.join(root,'index.html'),'utf8'):read('HEAD','index.html');
  assert.equal(hash(baseline),accepted.sourceSha256,'released baseline binding');
+ const goldenPath=path.join(root,golden);
+ if(args.write){
+  const current=JSON.parse(fs.readFileSync(goldenPath,'utf8'));
+  assert.deepEqual({...current,sourceSha256:accepted.sourceSha256},accepted,'only the source binding may change');
+ }
  const seed=JSON.parse(read(base,'docs/qa/offline-autoascend-2026-10-07/device_backup.json'));
  const run=(source,label)=>new Promise((resolve,reject)=>{
   const worker=new Worker(__filename,{workerData:{source,seed,label}});worker.once('message',resolve);worker.once('error',reject);
@@ -34,9 +46,9 @@ else(async()=>{
  assert.deepEqual(c.states,b.states,'every field of all four endpoints is unchanged');
  for(const [i,p]of accepted.phases.entries())assert.deepEqual([c.phases[i].kills,c.phases[i].ascends,c.phases[i].prisms],[p.kills,p.ascends,p.prisms],'original reward triple '+i);
  const receipt={status:'pass',base,baselineSourceSha256:hash(baseline),candidateSourceSha256:hash(candidate),node:process.version,platform:process.platform,oneSecondCallsPerSource:115200,baseline:b.phases,candidate:c.phases,allEndpointStatesEqual:true,canonicalHashesMatch:b.phases.every((p,i)=>p.stateSha256===accepted.phases[i].stateSha256)};
- fs.writeFileSync(path.join(__dirname,'independent-replay.json'),JSON.stringify(receipt,null,2)+'\n');
+ fs.writeFileSync(receiptPath,JSON.stringify(receipt,null,2)+'\n');
  // The paired replay preserves canonical historical hashes on all hosts;
  // on Windows the complete paired states can match while cross-host hashes differ.
- if(process.argv.includes('--write'))fs.writeFileSync(path.join(root,golden),JSON.stringify({...accepted,sourceSha256:hash(candidate)},null,2)+'\n');
+ if(args.write)fs.writeFileSync(goldenPath,JSON.stringify({...accepted,sourceSha256:hash(candidate)},null,2)+'\n');
  console.log(JSON.stringify(receipt));
 })().catch(error=>{console.error(error);process.exitCode=1;});

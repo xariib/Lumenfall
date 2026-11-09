@@ -1,0 +1,53 @@
+Browser identity: { "selected_path": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "e8ad45143e75f8bca56959dc65a9a909603958be8627b12a6fe489f12e341057", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "b30a0222d837bf6192aa1ea1568c709b9f693ee81ab542e9f6cae10d15b82648", "instrumented_sha256": "a8ab178e9b9861e50422f4ad6c191169562c6064979c743fcafa3dfbd3ea3fe4" }
+FAIL r3-destinations
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 5.292518200000003, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "r3-destinations", "json_status": "fail", "json_scenario": "r3-destinations", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "Cannot read properties of null (reading 'click')", "stack": "TypeError: Cannot read properties of null (reading 'click')\n    at http://127.0.0.1:52873/index.html?qaScenario=r3-destinations&qaFixture=fresh:17306:66\n    at Array.forEach (<anonymous>)\n    at window.runR3DestinationsQa (http://127.0.0.1:52873/index.html?qaScenario=r3-destinations&qaFixture=fresh:17305:89)\n    at HTMLDocument.run (http://127.0.0.1:52873/index.html?qaScenario=r3-destinations&qaFixture=fresh:20277:32)" }
+  raw artifacts: C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\endless-forge-lab-pacing-002\docs\qa\endless-forge-lab-pacing-002\behavioral\r3-destinations-n8U7fa
+  stdout tail:
+endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="r3-destinations">{
+  "scenario": "r3-destinations",
+  "status": "fail",
+  "detail": {
+    "message": "Cannot read properties of null (reading 'click')",
+    "stack": "TypeError: Cannot read properties of null (reading 'click')\n    at http://127.0.0.1:52873/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:17306:66\n    at Array.forEach (&lt;anonymous&gt;)\n    at window.runR3DestinationsQa (http://127.0.0.1:52873/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:17305:89)\n    at HTMLDocument.run (http://127.0.0.1:52873/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:20277:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: r3-destinations null

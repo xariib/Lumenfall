@@ -1,6 +1,6 @@
 'use strict';
-// Real mature Forge input switches to the exact clock during its eighth
-// one-second window. A rounded elapsed sum used to consume its last fraction.
+// With the original Rift curve, the mature Forge input switches to the exact
+// clock during its eighth one-second window. A rounded sum consumed its last fraction.
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {app,CLOCK}=require('./forge-expansion-harness.cjs'),fixtures=require('./fixtures.json');
 const source=fs.readFileSync(process.argv[2]||'index.html','utf8');
@@ -22,6 +22,10 @@ for(const name of ['parity-early-simple','mid-game','mature-high-power']){
 }
 const current='    binaryClock.advanceLattice(previousDuration);remaining=binaryClock.remaining();';
 assert.equal(source.split(current).length,2,'unique causal mutation');
-const broken=source.replace(current,'    binaryClock.advance(previous);');
+// Hold the recorded combat inputs fixed for the stall control. The current
+// curve still runs through every positive endpoint and parity check above.
+const historical=require('./legacy-rift-curve-reference.cjs')(source);
+run(historical,'mature-high-power','offline');
+const broken=historical.replace(current,'    binaryClock.advance(previous);');
 assert.throws(()=>run(broken,'mature-high-power','offline'),/Authoritative simulation stalled without elapsed-time or state progress/,'rounded activation reproduces the captured stall');checks++;
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),negativeControl:'rounded activation reproduces the mature eighth-window stall',limits:'Finite Forge inputs and strict parity; extended campaigns and device acceptance remain separate.'}));

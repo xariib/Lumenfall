@@ -1,0 +1,73 @@
+Browser identity: { "selected_path": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "e8ad45143e75f8bca56959dc65a9a909603958be8627b12a6fe489f12e341057", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "b30a0222d837bf6192aa1ea1568c709b9f693ee81ab542e9f6cae10d15b82648", "instrumented_sha256": "cd2930f733d053f81fdbb17fba97b6eb7fff9c885bf1618f68fdae80b7bbed75" }
+FAIL inquiry-contracts
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 10.160073800000006, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "pass", "qa_scenario": "inquiry-contracts", "json_status": "pass", "json_scenario": "inquiry-contracts", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "checks": 236, "catalogue": 9, "originals": 8, "cap": 10, "finiteGuards": true, "negativeControls": 1 }
+  raw artifacts: C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\endless-forge-lab-pacing-002\docs\qa\endless-forge-lab-pacing-002\behavioral\inquiry-contracts-0o1MZ2
+  Chromium stderr tail:
+Error: browser close deadline
+    at Timeout.<anonymous> (C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\endless-forge-lab-pacing-002\tests\behavioral\browser-dom.cjs:40:201)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+
+  stdout tail:
+st-wisp-pacing-regression': {
+          var compressed = bridge.wispPacingContract('ember');
+          assert(
+            compressed.rarity[4].shard<100000,
+            'intentional Wisp pacing regression: Mythic cost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="pass" data-scenario="inquiry-contracts">{
+  "scenario": "inquiry-contracts",
+  "status": "pass",
+  "detail": {
+    "checks": 236,
+    "catalogue": 9,
+    "originals": 8,
+    "cap": 10,
+    "finiteGuards": true,
+    "negativeControls": 1
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+Behavioral QA failed: inquiry-contracts null

@@ -1,8 +1,8 @@
 # Endless Forge and earned Lab access
 
-Status: in progress. Owner: this feature chat. Baseline: `a75763d3` on
-`origin/main`, published Android 0.2.95. Isolated branch/worktree:
-`feature/endless-forge-lab-pacing-002`, `../endless-forge-lab-pacing-002`.
+Status: local integration validated. Original baseline `a75763d3` was
+published as Android 0.2.95. See the local continuation below for the current
+branch and baseline.
 
 ## Original requirement, 5 November 2026
 
@@ -111,6 +111,41 @@ A [non-publishing signed Android run](https://github.com/xariib/Lumenfall/action
 tests commit `7e7b90cd` with the same product SHA-256
 `b30a0222d837bf6192aa1ea1568c709b9f693ee81ab542e9f6cae10d15b82648`.
 
-Next: check all required CI on the exact PR head, then integrate and verify
-Android within authorized scope. Physical-device/human pacing acceptance
-remains open; no APK is published. [Cleanup receipt](../qa/endless-forge-lab-pacing-002/README.md).
+The eight applicable PR workflows passed on `819c681d`, including
+[full pre-merge validation](https://github.com/xariib/Lumenfall/actions/runs/42090472807).
+Those results apply to the original PR head. [Historical evidence](../qa/endless-forge-lab-pacing-002/README.md).
+
+## Local continuation, 9 November 2026
+
+Local branch `codex/endless-forge-lab-pacing-002-local` combines PR #42 at
+`819c681d` with current `main` at `721ccbbc`, verified against GitHub. Current
+main includes Android 0.2.104's exponential Rift bands, monotonic gameplay
+clock and offline recap fix. The product changes merged cleanly. The only
+conflict was the source binding in the offline replay oracle.
+
+Current main passed the Forge pacing and Lab long-tail baselines. The combined
+`index.html` SHA-256 is
+`19c47b8a47fb2e408ac941477faf4cec085595432de9b3ff473e00488d5639c5`.
+On Windows with Node 24.22.1, both sources independently advanced 115,200
+one-second steps. All four complete saved states, reward totals and canonical
+hashes matched, so only the source binding was refreshed.
+[Current-main replay](../qa/endless-forge-lab-pacing-002/current-main-replay.json).
+
+The combined source passed 528 focused assertions and all four defect controls,
+the Forge and Lab core regressions, the Rift curve and clock exploit checks,
+and the purchase rollback checks. Lab slots, queue continuity, timed boosts,
+boost queues, and Farm recap parity also passed. The 8-hour farm and repeat-
+purchase rank ranges above still hold. Chromium 157 passed 32,040 Forge,
+890 Lab access and 6,588 Lab expansion assertions over 12 mobile profiles
+each, including trusted input past Forge level 300 and into newly earned
+Lab work. The offline catch-up core suite passed all 18 records in 299 seconds
+locally, near its 300-second CI limit. On V8 6.0.286.52, the 580-check Lab
+probe and eight-hour offline catch-up both passed. The browser harness also
+passed Forge contracts, chronology and recovery, Inquiry contracts, and R3
+navigation.
+
+Next: validate the exact combined branch in CI and verify a non-publishing
+signed Android build and upgrade. The earlier Android candidate passed identity,
+assets and save upgrade, with a retail accessibility timeout also reproduced
+on its unchanged baseline. Physical-device and human pacing acceptance remain
+open.

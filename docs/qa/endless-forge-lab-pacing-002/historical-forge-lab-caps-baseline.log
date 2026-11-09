@@ -1,0 +1,70 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: no Lab ID removed or replaced
++ actual - expected
+... Skipped lines
+
+  [
+    'wispascend',
+    'guardmastery',
+    'riftattune',
+    'shardstudy',
+...
+    'measuredinquiry',
++   'wispdamage',
++   'wispcritchance',
++   'wispcritdamage',
+    'labcapacity',
+    'procurement',
+    'catalysis',
+    'focusprotocol',
+    'fieldnotes',
+
+    at eq (C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\endless-forge-lab-pacing-002\tests\behavioral\forge-lab-caps.cjs:19:51)
+    at verify (C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\endless-forge-lab-pacing-002\tests\behavioral\forge-lab-caps.cjs:27:3)
+    at Object.<anonymous> (C:\Users\CustomCodings\Documents\ChatGPT\Lumenfall\endless-forge-lab-pacing-002\tests\behavioral\forge-lab-caps.cjs:144:14)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'wispascend',         'guardmastery',
+    'riftattune',         'shardstudy',
+    'lumenstudy',         'formationstudy',
+    'motestudy',          'prismstudy',
+    'measuredinquiry',    'wispdamage',
+    'wispcritchance',     'wispcritdamage',
+    'labcapacity',        'procurement',
+    'catalysis',          'focusprotocol',
+    'fieldnotes',         'curriculum',
+    'bossledger',         'luminousdistill',
+    'sigilcartography',   'rarityappraisal',
+    'modulefabrication',  'ultimateanalysis',
+    'resonantefficiency', 'adaptivegrowth'
+  ],
+  expected: [
+    'wispascend',       'guardmastery',
+    'riftattune',       'shardstudy',
+    'lumenstudy',       'formationstudy',
+    'motestudy',        'prismstudy',
+    'measuredinquiry',  'labcapacity',
+    'procurement',      'catalysis',
+    'focusprotocol',    'fieldnotes',
+    'curriculum',       'bossledger',
+    'luminousdistill',  'sigilcartography',
+    'rarityappraisal',  'modulefabrication',
+    'ultimateanalysis', 'resonantefficiency',
+    'adaptivegrowth'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.20.0

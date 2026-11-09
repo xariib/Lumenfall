@@ -16,7 +16,7 @@ const plugin={
   addListener:async(event,fn)=>{listeners[event]=fn;},
   cancel:async()=>{calls.push(['cancel']);},
   download:async()=>{calls.push(['download']);if(downloadWait)await downloadWait;if(downloadError)throw Error(downloadError);info.ready=true;return {...info};},
-  install:async()=>{calls.push(['install']);return installResult;}
+  install:async()=>{calls.push(['install']);if(installResult instanceof Error)throw installResult;return installResult;}
 };
 const document={hidden:false,getElementById:element,addEventListener(type,fn){listeners[type]=fn;}};
 const context=vm.createContext({document,window:{},Promise,Error,Math,showToast:message=>calls.push(['toast',message]),resetInProgress:false,reloadInProgress:false,flushLiveProgress:()=>{calls.push(['flush']);return true;},saveState:()=>{calls.push(['save']);return saveResult;}});
@@ -48,7 +48,10 @@ async function main(){
   finish();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs,'Cancel prevents installer even if native download completes successfully');
   assert(element('app-update-status').textContent.includes('cancelled'),'Late cancellation is acknowledged');
   assert.equal(element('app-update-action').textContent,'Install update','Already verified download remains available for a deliberate retry');
+  installResult=Error('Update incomplete. You are still on version 0.2.69.');
   context.startAppUpdate();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs+1,'Explicit Install retry clears the prior cancel intent');
+  assert.equal(element('app-update-status').textContent,installResult.message,'Explain an incomplete Android install without inferring the cause');
+  assert.equal(element('app-update-action').textContent,'Install update','Incomplete Android install retains the verified retry');
   info.ready=false;context.appUpdate.info={...info};
   downloadWait=new Promise(resolve=>{finish=resolve;});context.startAppUpdate();await settle();
   document.hidden=true;finish();await settle();assert.equal(calls.filter(c=>c[0]==='install').length,installs+1,'Background completion does not launch installer');
