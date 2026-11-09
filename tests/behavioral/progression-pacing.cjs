@@ -85,7 +85,7 @@ ok(income[1].lumen>income[0].lumen,'deeper overpowered farming gives more Lumen'
 // Resource input caps depend on current Rift, not lifetime depth or Power.
 for(const id of ['gale','thorn'])for(const depth of [1,32,51,101]){
   const {q}=game(),s=q.fresh();s.depth=depth;s.maxDepthEver=10000;s.spirits[id]=10000;s.heroRarity[id]=5;s.research.masterwork=500;q.set(s);
-  const curve=depth<=100?depth:100+40*Math.log1p((depth-100)/40);
+  const curve=depth<=100?depth:100+(depth-100)*0.648744172973063;
   const expected=id==='gale'?2*Math.pow(1.09,curve):10*Math.pow(1.11,curve),key=id==='gale'?'shards':'lumen';
   near(q.abilityRawReward(id)[key],expected,'independent current-Rift resource ceiling');
   q.get().wispModules[id]=20;q.get().wispUltimate[id]=true;q.get().research.conduction=20;

@@ -174,7 +174,7 @@ function verify(html){
  // Encounter-specific effects and exact actual kill payouts.
  for(const depth of [10,19,20,39,60,119,120])for(const luminous of [false,true])for(const level of [0,1,5,10,19,20,21,1000000]){
   const s=seed(q);s.depth=depth;s.enemyDepth=depth;s.enemyIsLuminous=luminous;s.longStudyLevels.bossledger=level;s.longStudyLevels.luminousdistill=level;s.longStudyLevels.sigilcartography=level;q.set(s);
-  const curve=depth<=100?depth:100+40*Math.log1p((depth-100)/40);
+  const curve=depth<=100?depth:100+(depth-100)*0.648744172973063;
   const baseL=Math.round(5*Math.pow(1.11,curve)*(depth%10===0?8:1)),baseS=Math.round(Math.pow(1.09,curve)*(depth%10===0?5:1)),p=depth%10===0?Math.min(20,level)*5:luminous?Math.min(20,level)*10:0;
   const bonus=v=>Number((BigInt(v)*BigInt(p)+50n)/100n);const L=baseL+bonus(baseL),S=baseS+bonus(baseS);
   eq(q.lumen(depth,luminous),L,'conditional Lumen oracle');eq(q.shards(depth,luminous),S,'conditional Shard oracle');

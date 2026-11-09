@@ -3648,7 +3648,12 @@ var ENDLESS_PROGRESSION = {
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,15,40,91],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
   ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:92,forge:10,ascends:50},
   mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:92,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
-  masterworkPowerPerLevel:.05,masterworkLevelsPerBand:5,masterworkRiftsPerBand:50,farmPassiveKillsPerSecond:2,tailStart:1000,tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,curveStart:100,curveWidth:40,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
+  masterworkPowerPerLevel:.05,masterworkLevelsPerBand:5,masterworkRiftsPerBand:50,farmPassiveKillsPerSecond:2,
+  riftCurveAnchors:[
+    [100,100],[150,132.43720864865315],[200,150.11051873981472],[250,162.325784721862],
+    [375,182.54772738846788],[500,195.91581091193484],[750,213.91248573909476],[1000,226.28001684600451]
+  ],
+  tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
 };
 var SPIRITS = [
   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
@@ -4278,12 +4283,12 @@ function studyBoostCost(mult,hours){
   return labDiscountCost(packageCost,2*labExpansionLevel('catalysis'));
 }
 function studyBoostAt(id,nowMs,clock){
-  var active=findActiveStudy(id),now=nowMs===undefined?Date.now():nowMs;
+  var active=findActiveStudy(id),now=nowMs===undefined?gameplayNowMs():nowMs;
   var b=active?studySlotBoost(active,now):state.studyBoosts && state.studyBoosts[id];
   return b && (clock&&clock.binary?clock.binary.compareMs(b.startedAtMs)<=0&&clock.binary.compareMs(b.expiresAtMs)>0:now>=b.startedAtMs && now<b.expiresAtMs) ? b : null;
 }
 function studySlotBoost(active,atMs){
-  var now=atMs===undefined?Date.now():atMs,a=state.studyBoosts['slot'+active.slot],b=state.studyBoosts[active.id];
+  var now=atMs===undefined?gameplayNowMs():atMs,a=state.studyBoosts['slot'+active.slot],b=state.studyBoosts[active.id];
   if(!a)return b||null;if(!b)return a;
   if(a.startedAtMs<=now && now<a.expiresAtMs && b.startedAtMs<=now && now<b.expiresAtMs)return a.mult>=b.mult?a:b;
   if(a.startedAtMs<=now && now<a.expiresAtMs)return a;
@@ -4296,7 +4301,7 @@ function freeStudySlot(){
   return -1;
 }
 function studyWorkBetween(active,elapsedSec,nowMs){
-  var now=nowMs===undefined?Date.now():nowMs,b=studySlotBoost(active,now);
+  var now=nowMs===undefined?gameplayNowMs():nowMs,b=studySlotBoost(active,now);
   var boosted=b?Math.max(0,Math.min(now+elapsedSec*1000,b.expiresAtMs)-Math.max(now,b.startedAtMs))/1000:0;
   return elapsedSec*active.speedMult+boosted*Math.max(0,(b?b.mult:1)-active.speedMult);
 }
@@ -4305,7 +4310,7 @@ function studyEffectiveSpeed(active,nowMs,clock){
   return Math.max(active.speedMult,boost?boost.mult:active.speedMult);
 }
 function studyCompletionSeconds(active,nowMs){
-  var now=nowMs===undefined?Date.now():nowMs,b=studySlotBoost(active,now),work=active.remainingSec,base=active.speedMult,time=0;
+  var now=nowMs===undefined?gameplayNowMs():nowMs,b=studySlotBoost(active,now),work=active.remainingSec,base=active.speedMult,time=0;
   if(!b || b.expiresAtMs<=now || b.mult<=base)return work/base;
   var before=Math.max(0,(b.startedAtMs-now)/1000);
   if(work<=before*base)return work/base;
@@ -4346,7 +4351,7 @@ function stopStudyBoostQueue(slot){
   renderLongStudies();return saved;
 }
 function getStudyBoostPlan(id,mult,hours,nowMs,clock){
-  var node=LONG_STUDIES.find(function(n){return n.id===id;}),active=findActiveStudy(id),now=nowMs===undefined?Date.now():nowMs;
+  var node=LONG_STUDIES.find(function(n){return n.id===id;}),active=findActiveStudy(id),now=nowMs===undefined?gameplayNowMs():nowMs;
   var boost=active && studySlotBoost(active,now);
   var held=boost && (clock&&clock.binary?clock.binary.compareMs(boost.expiresAtMs)>0:boost.expiresAtMs>now);
   var cost=studyBoostCost(mult,hours);
@@ -4356,7 +4361,7 @@ function getStudyBoostPlan(id,mult,hours,nowMs,clock){
 }
 function activateStudyBoost(id,mult,hours){
   if(!flushLiveProgress())return false;
-  var plan=getStudyBoostPlan(id,mult,hours),now=Date.now();
+  var now=gameplayNowMs(),plan=getStudyBoostPlan(id,mult,hours,now),started=Math.ceil(now);
   if(!plan.affordable || offlineCatchup || offlinePending || reloadInProgress || resetInProgress)return false;
   if(!forgeCommitPaidMutation(function(){
     state.motes=debitAmount(state.motes,plan.cost);
@@ -4364,7 +4369,7 @@ function activateStudyBoost(id,mult,hours){
     if(state.studyBoostQueue && state.studyBoostQueue['slot'+plan.active.slot]){
       var preference=state.studyBoostQueue['slot'+plan.active.slot];preference.mult=mult;preference.hours=hours;
     }
-    state.studyBoosts['slot'+plan.active.slot]={mult:mult,startedAtMs:now,expiresAtMs:now+hours*3600000};
+    state.studyBoosts['slot'+plan.active.slot]={mult:mult,startedAtMs:started,expiresAtMs:started+hours*3600000};
   }))return false;
   renderLongStudies();renderHud();return true;
 }
@@ -6320,7 +6325,8 @@ function saveState(clockMs){
     var candidate = clonePersistedValue(state);
     candidate.schemaVersion = SAVE_SCHEMA_VERSION;
     candidate.lastSeen = Number.isFinite(clockMs) ? clockMs : Date.now();
-    candidate.offlineClockHighWaterMs=Math.max(candidate.offlineClockHighWaterMs||0,candidate.lastSeen);
+    var settledLiveMs=liveClockMemo.state===state ? liveClockMemo.epochMs : 0;
+    candidate.offlineClockHighWaterMs=Math.max(candidate.offlineClockHighWaterMs||0,candidate.lastSeen,settledLiveMs);
     var canonical = acceptPersistedState(candidate,'runtime');
     var serialized = JSON.stringify(canonical);
 
@@ -7011,7 +7017,7 @@ function chipEffectivePower(id){
   var sp = SPIRITS.find(function(s){ return s.id===id; });
   if(!sp) return 0;
   var shareMult = Amount.mul(passiveGlobalPowerMult(),formationGeneralDamageMult());
-  return Amount.mul(Amount.mul(wispPower(sp,state.spirits[id]||0),shareMult),simulationBuffMult(Date.now()));
+  return Amount.mul(Amount.mul(wispPower(sp,state.spirits[id]||0),shareMult),simulationBuffMult(gameplayNowMs()));
 }
 function guardianTapBaseDamage(){
   // Strong opening hits; the unchanged party share keeps later damage Wisp-led.
@@ -7024,14 +7030,14 @@ function guardianTapDamageAt(depth,partyBuffMult,ordinal){
   return damage;
 }
 function tapDamage(){
-  return guardianTapDamageAt(state.depth, simulationBuffMult(Date.now()));
+  return guardianTapDamageAt(state.depth, simulationBuffMult(gameplayNowMs()));
 }
 function passiveWispDpsAt(depth){
   var contextual = Amount.div(formationContextDamageMult(depth),formationGeneralDamageMult());
   return Amount.mul(effectivePartyPower(),contextual);
 }
 function idleDps(){
-  return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(Date.now()));
+  return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(gameplayNowMs()));
 }
 function supportAbilityProfile(sp){
   var ultimate = !!(sp && ultimateUnlocked(sp.id));
@@ -7341,9 +7347,19 @@ function wispRoleComparison(depth,nowMs){
   return {steady:steady,current:wispRoleSnapshot(depth,nowMs)};
 }
 function endlessCurveDepth(depth){
- var g=ENDLESS_PROGRESSION;if(depth>1e9)return endlessCurveDepth(1e9)+g.curveWidth*Math.log(depth/1e9);
- if(depth>g.tailStart)return endlessCurveDepth(g.tailStart)+(depth-g.tailStart)*g.tailSlope;
- return depth<=g.curveStart?depth:g.curveStart+g.curveWidth*Math.log1p((depth-g.curveStart)/g.curveWidth);
+  var g=ENDLESS_PROGRESSION,anchors=g.riftCurveAnchors,lower=anchors[0];
+  if(depth<=lower[0])return depth;
+  // Linear exponents give each band a fixed per-Rift multiplier. Keep the
+  // calibrated values at the boundaries and the established endless tail.
+  for(var i=1;i<anchors.length;i++){
+    var upper=anchors[i];
+    if(depth===upper[0])return upper[1];
+    if(depth<upper[0])return lower[1]+(depth-lower[0])*(upper[1]-lower[1])/(upper[0]-lower[0]);
+    lower=upper;
+  }
+  // Preserve the numeric fallback for legacy saves with extreme depths.
+  if(depth>1e9)return endlessCurveDepth(1e9)+40*Math.log(depth/1e9);
+  return lower[1]+(depth-lower[0])*g.tailSlope;
 }
 function enemyHpFor(depth){
   return Amount.round(Amount.mul(Amount.mul(ENDLESS_PROGRESSION.hpBase,Amount.pow(1.145,endlessCurveDepth(depth))),isBoss(depth)?6:1),'round');
@@ -7530,7 +7546,7 @@ function defeatEnemy(){
 
   var sigilGain = 0;
   if(wasLuminous){
-    var moteGain = luminousMotePayout(Date.now());
+    var moteGain = luminousMotePayout(gameplayNowMs());
     if(moteGain>0){spawnFloatNum('+'+formatNum(moteGain)+' Motes',els['enemy-stage'],'mote');showToast('Luminous '+defeatedName+' defeated — +'+moteGain+' Motes');}
     trackDaily('luminousKills');
   }
@@ -8949,13 +8965,14 @@ function performReset(){
 }
 
 function triggerAbility(sp,level){
-  if(Amount.gt(supportRecastSeconds(sp,Date.now()),SIM_EPS)) return false;
+  var now=gameplayNowMs();
+  if(Amount.gt(supportRecastSeconds(sp,now),SIM_EPS)) return false;
   var depth=state.depth,run=ascendRunToken;
   var hit=Amount.mul(Amount.mul(abilityRawBurst(sp,level),formationContextDamageMult(depth)),bossAbilityDamageMult(depth));
   var rewards=forgeAbilityRewards(sp,level,hit,state.enemyHp);
   if(Amount.gt(rewards.shards,0)) state.shards=creditAmount(state.shards,rewards.shards);
   if(Amount.gt(rewards.lumen,0)) gainLumen(rewards.lumen);
-  if(sp.abilityType==='support') applySupportCast(sp,Date.now());
+  if(sp.abilityType==='support') applySupportCast(sp,now);
   emitCombatVfx(sp.abilityType==='support' ? 'support' : 'ability',sp.color,sp.id);
   flashBattleStage(sp.abilityType==='support' ? 'support' : 'ability');
   var killed=Amount.gt(hit,0) && dealDamage(hit);
@@ -9644,7 +9661,7 @@ function updateBattleFast(live){
 
   setLiveText(els['stat-tap'],formatRiftNumber(tapDamage()));
   setLiveText(els['stat-idle'],formatRiftNumber(sustainedWispDps(state.depth)));
-  var buffNow = Date.now();
+  var buffNow = gameplayNowMs();
   var buffFactor = simulationBuffMult(buffNow);
   var buffText = 'Boost · passive Wisps + Tap · <strong>Inactive</strong>';
   if(Amount.gt(buffFactor,1)){
@@ -9771,7 +9788,7 @@ function renderRiftParty(){
     var card=root.querySelector('[data-rift-wisp="'+id+'"]'),bar=card.querySelector('.rift-charge');
     var sp=SPIRITS.find(function(wisp){return wisp.id===id;});
     var powered=(state.spirits[id]||0)>0,charge=powered ? Math.max(0,Math.min(100,state.heroResource[id]||0)) : 0;
-    var recast=supportRecastSeconds(sp,Date.now());
+    var recast=supportRecastSeconds(sp,gameplayNowMs());
     var seconds=Math.max(recast,(1-charge/100)*abilityCycleSeconds());
     var casting=powered && Date.now()<Number(card.getAttribute('data-cast-until')||0);
     var label=!powered ? 'Lv 0' : '';
@@ -9909,7 +9926,7 @@ function renderWispRoles(){
   if(!els['spirit-list']) return;
   var roleView=captureWispActionView();
   wispRoleLastRenderMs=Date.now();
-  var report=wispRoleComparison(state.depth,wispRoleLastRenderMs),steady=report.steady;
+  var report=wispRoleComparison(state.depth,gameplayNowMs()),steady=report.steady;
   steady.rows.forEach(function(row,i){
     var el=els['spirit-list'].querySelector('[data-wisp-role="'+row.id+'"]');if(!el) return;
     if(!row.active){
@@ -10251,7 +10268,7 @@ function renderResearch(){
 }
 
 function studySpeedMarkup(node,active,maxed){
-  var boost=active && studySlotBoost(active),held=boost && boost.expiresAtMs>Date.now();
+  var boost=active && studySlotBoost(active),held=boost && boost.expiresAtMs>gameplayNowMs();
   var preference=getStudyBoostPreference(active),target=preference.mult,index=LAB_SPEED_TIERS.indexOf(target);
   var hours=preference.hours;
   var plan=getStudyBoostPlan(node.id,target,hours);
@@ -10270,7 +10287,7 @@ function studySpeedMarkup(node,active,maxed){
     '<button class="study-boost-queue mini-btn '+(preference.enabled?'active':'')+'" role="checkbox" aria-checked="'+preference.enabled+'" data-study-boost-queue="'+node.id+'" data-study-boost-slot="'+active.slot+'"><span aria-hidden="true">'+(preference.enabled?'✓':'×')+'</span><span>Queue Speed Up</span><strong>'+(preference.enabled?'ON':'OFF')+'</strong></button>'+
     '<p class="study-boost-queue-note">'+(preference.enabled?'Auto-start and repeat the selected boost when research and Motes are available. Pay once at each start.':'Queue OFF. The current paid boost finishes; no automatic boost follows.')+'</p>'+
     '<div class="study-speed-actions"><button class="ghost-btn" data-study-speed-cancel="'+active.slot+'">Cancel</button><div class="study-boost-action">'+(held?
-      '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">Active: '+boost.mult+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-Date.now())/1000))+' left</div>':
+      '<div class="study-boost-active" data-study-boost-status="'+node.id+'" data-study-boost-time="'+boost.expiresAtMs+'" tabindex="-1" role="timer" aria-live="off">Active: '+boost.mult+'x · '+fmtStudyDuration(Math.max(0,(boost.expiresAtMs-gameplayNowMs())/1000))+' left</div>':
       active?'<button class="study-boost-start" data-speed="'+target+'" data-hours="'+hours+'" data-speed-study="'+node.id+'" '+(plan.affordable?'':'disabled')+' aria-describedby="study-speed-help">Speed Up · <span data-study-speed-price="'+node.id+'">'+purchasePriceMarkup('mote',plan.cost)+'</span></button>':'')+'</div></div></div></div></div>';
 }
 // Native controls stay attached while their project and other cards refresh.
@@ -10417,13 +10434,13 @@ function renderLongStudies(){
   for(var si=0;si<5;si++){
     var work=state.activeStudies.find(function(a){return a.slot===si;});
     if(work)continue;
-    var locked=si>=slots,boost=state.studyBoosts['slot'+si],held=boost && boost.expiresAtMs>Date.now();
+    var locked=si>=slots,boost=state.studyBoosts['slot'+si],held=boost && boost.expiresAtMs>gameplayNowMs();
     var queued=LONG_STUDIES.find(function(n){return n.id===state.studySlotProjects[si] && state.studyQueue[n.id] && !n.retiredTo && !getStudyStartPlan(n).maxed;});
     html+='<div class="card study-slot '+(locked?'locked-node':'')+'" style="order:'+si+'" data-lab-slot="'+si+'">'+
       (locked?'<h3>Lab '+(si+1)+'</h3><p class="lock-note">'+studySlotUnlockText(si)+'</p>':
       '<button class="study-select" data-study-slot="'+si+'" aria-label="Select research for Lab '+(si+1)+'"><span class="study-slot-number">Lab '+(si+1)+'</span><strong>'+(queued?queued.name:'Select research')+'</strong><span aria-hidden="true">›</span></button>'+
       (queued?'<p>Queued for next level</p><button class="node-queue-toggle active" data-study-queue="'+queued.id+'">Queue ON</button>':'')+
-      (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-Date.now())/1000)+' left</p>':'')+
+      (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-gameplayNowMs())/1000)+' left</p>':'')+
       (state.studyBoostQueue && state.studyBoostQueue['slot'+si] && state.studyBoostQueue['slot'+si].enabled?'<button class="mini-btn" data-study-boost-stop-slot="'+si+'">Queue Speed Up ON · Turn OFF</button>':''))+'</div>';
   }
 
@@ -13697,12 +13714,23 @@ function presentLiveRiftResult(before,sim){
     showRiftMilestone('BOSS DEFEATED',sim.bossKills===1 ? 'Rift '+defeatedDepth+' conquered' : sim.bossKills+' Bosses defeated','+'+formatNum(sim.sigilsGained)+' Sigils','#ff8552');
   }
 }
-var liveClockMemo={state:null,monoMs:null};
+var liveClockMemo={state:null,monoMs:null,epochMs:0};
 function liveMonotonicNow(){
   var now=typeof performance!=='undefined' && performance.now ? performance.now() : null;
   return Number.isFinite(now) && now>=0 ? now : null;
 }
-function resetLiveClock(){liveClockMemo={state:state,monoMs:liveMonotonicNow()};}
+function resetLiveClock(){
+  liveClockMemo={state:state,monoMs:liveMonotonicNow(),epochMs:Math.max(Date.now(),state.offlineClockHighWaterMs||0)};
+}
+function liveClockElapsedMs(mono){
+  if(liveClockMemo.state!==state || mono===null || liveClockMemo.monoMs===null ||
+      (mono===0 && liveClockMemo.monoMs===0))return null;
+  return Math.max(0,mono-liveClockMemo.monoMs);
+}
+function gameplayNowMs(){
+  var elapsedMs=liveClockElapsedMs(liveMonotonicNow());
+  return elapsedMs===null ? Date.now() : liveClockMemo.epochMs+elapsedMs;
+}
 function flushLiveProgress(allowHidden,present){
   // Hidden time belongs to capped offline catch-up. Only the hide transition
   // itself may settle its final foreground interval before saving.
@@ -13715,9 +13743,11 @@ function flushLiveProgress(allowHidden,present){
   return present ? tick()!==false : advanceLiveTick(false)!==null;
 }
 function advanceLiveTick(visual){
-  var mono=liveMonotonicNow(),owned=liveClockMemo.state===state;
-  var elapsedMs=owned && mono!==null && liveClockMemo.monoMs!==null && (mono>0 || liveClockMemo.monoMs>0)
-    ? Math.max(0,mono-liveClockMemo.monoMs) : TICK_MS;
+  var mono=liveMonotonicNow(),previousClock=liveClockMemo,owned=previousClock.state===state;
+  var elapsedMs=liveClockElapsedMs(mono),clockStartMs=previousClock.epochMs;
+  // Timed gameplay follows elapsed foreground time. Wall-clock changes
+  // cannot replay a paid window or skip a cooldown within that session.
+  if(elapsedMs===null){elapsedMs=TICK_MS;clockStartMs=Date.now()-elapsedMs;}
   var today=todayStr(),dailyDue=!state.questDay || today>state.questDay;
   var base=state,oldRun=ascendRunToken,oldPending=pendingDailyReward,oldQueue=pendingDailyRewardQueue.slice();
   var transaction=dailyDue || state.studyBoostQueue && Object.keys(state.studyBoostQueue).some(function(slot){return state.studyBoostQueue[slot].enabled;});
@@ -13727,16 +13757,17 @@ function advanceLiveTick(visual){
     if(studyClockMemo && studyClockMemo.state===base)studyClockMemo.state=state;
   }
   var dailyRolled=dailyDue && ensureDaily();
-  var sim=advanceAuthoritativeTime(elapsedMs/1000,{kind:'live',visual:visual!==false,clockStartMs:Date.now()-elapsedMs,continuousStudyClock:true});
+  var sim=advanceAuthoritativeTime(elapsedMs/1000,{kind:'live',visual:visual!==false,clockStartMs:clockStartMs,continuousStudyClock:true});
+  liveClockMemo={state:state,monoMs:mono,epochMs:clockStartMs+elapsedMs};
   if(sim.studySpeedPurchases>0 || dailyRolled){
     var working=state,saved=saveState();
     if(!saved && state===working){
       state=base;ascendRunToken=oldRun;pendingDailyReward=oldPending;pendingDailyRewardQueue=oldQueue;
+      liveClockMemo=previousClock;
       if(owned)liveClockMemo.state=base;
       studyClockMemo={state:null,endMs:null,anchors:{}};return null;
     }
   }
-  liveClockMemo={state:state,monoMs:mono};
   if(dailyRolled)sim.dailyRolled=true;
   return sim;
 }
@@ -13817,13 +13848,13 @@ function studyRemainingText(active,compact){
 function updateStudyProgress(){
   var expired=false;
   els['study-list'].querySelectorAll('[data-slot-boost-time]').forEach(function(el){
-    var seconds=(Number(el.getAttribute('data-slot-boost-time'))-Date.now())/1000;
+    var seconds=(Number(el.getAttribute('data-slot-boost-time'))-gameplayNowMs())/1000;
     if(seconds<=0){expired=true;return;}
     var boost=state.studyBoosts['slot'+el.getAttribute('data-slot-boost')];
     if(boost)el.textContent='Slot '+(Number(el.getAttribute('data-slot-boost'))+1)+' · '+boost.mult+'x · '+fmtStudyDuration(seconds)+' left';
   });
   els['study-list'].querySelectorAll('[data-study-boost-time]').forEach(function(el){
-    var seconds=(Number(el.getAttribute('data-study-boost-time'))-Date.now())/1000;
+    var seconds=(Number(el.getAttribute('data-study-boost-time'))-gameplayNowMs())/1000;
     if(seconds<=0){expired=true;return;}
     var running=findActiveStudy(el.getAttribute('data-study-boost-status'));
     var boost=running && studySlotBoost(running);
@@ -13906,7 +13937,7 @@ function checkAffordability(visibleOnly,force){
     updateResearchCard(node,btn.closest('[data-forge-card]'));
   });
   }
-  if(els['hud-mote'])els['hud-mote'].title=state.moteNextAtMs>Date.now()?'Luminous Motes ready in '+fmtStudyDuration((state.moteNextAtMs-Date.now())/1000):'Luminous Mote payout ready';
+  if(els['hud-mote'])els['hud-mote'].title=state.moteNextAtMs>gameplayNowMs()?'Luminous Motes ready in '+fmtStudyDuration((state.moteNextAtMs-gameplayNowMs())/1000):'Luminous Mote payout ready';
   if(refresh('research')){
   var openStudySlots = studySlotCount() - state.activeStudies.length;
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
@@ -14303,7 +14334,8 @@ function init(){
   var MAX_TAPS_PER_SEC = 20;
   function guardianInput(e){
     if(!e.isTrusted) return;
-    var now = Date.now();
+    var now = liveMonotonicNow();
+    if(now===null)now=Date.now();
     recentTapTimes.push(now);
     while(recentTapTimes.length && now - recentTapTimes[0] > 1000) recentTapTimes.shift();
     if(recentTapTimes.length > MAX_TAPS_PER_SEC) return;
@@ -14377,7 +14409,21 @@ function init(){
   var welcomeOverlay = document.getElementById('welcome-overlay');
 
   var appHiddenAt = 0;
-  function finishReturn(offline,dailyWasRolled,error,generation){
+  if(document.hidden)appHiddenAt=Date.now();
+  var pendingOfflineRecap=null;
+  function retainOfflineRecap(offline){
+    if(!pendingOfflineRecap){pendingOfflineRecap=offline;return;}
+    var recap=pendingOfflineRecap;
+    ['elapsedSec','earned','shardEarned','sigilsEarned','motesEarned','ascends'].forEach(function(key){
+      recap[key]=Amount.add(recap[key],offline[key]);
+    });
+    recap.completedStudies=recap.completedStudies.concat(offline.completedStudies);
+    recap.closedStudies=recap.closedStudies.concat(offline.closedStudies);
+    if(offline.retreated){
+      recap.retreated=true;recap.endDepth=offline.endDepth;recap.pushDepth=offline.pushDepth;
+    }
+  }
+  function finishReturn(dailyWasRolled,error,generation){
     if(generation!==returnFlowGeneration) return;
     document.documentElement.classList.remove('startup-pending');
     resumeFlowBusy = false;
@@ -14394,14 +14440,16 @@ function init(){
     renderAll();
     var settingsOverlay = document.getElementById('settings-overlay');
     if(settingsOverlay && settingsOverlay.style.display!=='none') closeSettings();
-    showReturnFlow(offline,dailyWasRolled);
+    var recap=pendingOfflineRecap;
+    pendingOfflineRecap=null;
+    showReturnFlow(recap,dailyWasRolled);
   }
   function beginReturn(dailyWasRolled){
     var generation = ++returnFlowGeneration;
     resumeFlowBusy = true;
-    var introDone=false,offlineDone=false,result=null,failure=null;
+    var introDone=false,offlineDone=false,failure=null;
     function presentWhenReady(){
-      if(introDone && offlineDone) finishReturn(result,dailyWasRolled,failure,generation);
+      if(introDone && offlineDone) finishReturn(dailyWasRolled,failure,generation);
     }
     // Begin the intro before the first cooperative simulation batch. The boot
     // cover stays until both paths finish, so an inert Rift is never exposed.
@@ -14409,7 +14457,10 @@ function init(){
     try{
       applyOfflineProgress(function(offline,error){
         if(!error && !offline) saveState();
-        result=offline;failure=error;offlineDone=true;presentWhenReady();
+        // Catch-up can commit before an intro or visibility change settles.
+        // Keep the recap separate from the return generation that owns input.
+        if(!error && offline)retainOfflineRecap(offline);
+        failure=error;offlineDone=true;presentWhenReady();
       });
     }catch(error){
       offlinePending = true;
@@ -14434,7 +14485,7 @@ function init(){
     appHiddenAt = 0;
     // A short interruption also invalidates the intro's generation. Restart
     // while the boot cover is present, even if offline work already committed.
-    if(awayMs < 1000 && !offlinePending && !document.documentElement.classList.contains('startup-pending')){resetLiveClock();return;}
+    if(awayMs < 1000 && !offlinePending && !pendingOfflineRecap && !document.documentElement.classList.contains('startup-pending')){resetLiveClock();return;}
     beginReturn(ensureDaily());
   });
   // Cooperative simulation releases the event loop with a detached working
