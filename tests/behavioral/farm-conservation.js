@@ -45,7 +45,7 @@ window.runFarmConservationQa=function(b,ctx,assert){
     var o=ledger(f,seconds),scale=kind==='offline'?.7:1;
     ok(r.summary.kills===o.kills,'one reward per actually defeated enemy');ok(r.summary.luminousKills===o.luminous,'spawn-by-spawn luminous kills');
     near(r.state.enemyHp/r.state.enemyMaxHp,o.hp,'remaining HP fraction');near(r.state.luminousAccum,o.accum,'spawn accumulator');
-    var depth=f.s.depth<=100?f.s.depth:100+40*Math.log1p((f.s.depth-100)/40);
+    var depth=f.s.depth<=100?f.s.depth:100+(f.s.depth-100)*0.648744172973063;
     near(r.summary.lumenGained,Math.round(5*Math.pow(1.11,depth))*o.kills*scale,'Lumen ledger');
     near(r.summary.shardGained,Math.round(Math.pow(1.09,depth))*o.kills*scale,'Shard ledger');
     ok(r.summary.studySpeedPurchases===0&&r.summary.studyMotesSpent===0,'no automatic spending');

@@ -112,10 +112,10 @@ function preservation(html,baseline){
  // all remaining historical power/resource/controller formulas stay original.
  approvedRule('return sp.basePower * level * (1 + 0.01*(level-1));',
   "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
- // Apply only the approved current-Rift currency input ceiling to the frozen
- // reward oracle. Its rounding, resource multipliers and chronology stay intact.
+ // Use the current Rift currency input ceiling for the depths exercised by
+ // this oracle. The frozen rounding, multipliers and chronology stay intact.
  approvedRule('function abilityRewardRaw(sp,level,conductionLevel){',
-  "function abilityRewardRaw(sp,level,conductionLevel){\n  var rift=state.depth<=100?state.depth:100+40*Math.log1p((state.depth-100)/40);\n  var originalPower=wispPower;wispPower=function(w,l){var p=originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
+  "function abilityRewardRaw(sp,level,conductionLevel){\n  var d=state.depth,rift=d<=100?d:d<=150?100+(d-100)*0.648744172973063:132.43720864865315+(d-150)*0.35346620182323135;\n  var originalPower=wispPower;wispPower=function(w,l){var p=originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
  var before=world(baseline),after=world(html),ids=clone(after.spirits()).map(function(s){return s.id;}),checks=0,cases=[];
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
  function oldFields(s){

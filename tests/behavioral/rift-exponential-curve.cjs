@@ -14,7 +14,9 @@ const close = (actual, expected, message) => assert.ok(
 const priorExponent = depth => depth <= 100 ? depth : 100 + 40 * Math.log1p((depth - 100) / 40);
 q.set(q.fresh());
 
-for (const [start, end] of [[1, 100], [100, 150], [150, 250], [250, 500], [500, 1000], [1000, 2000]]) {
+const boundaries = [1, 100, 150, 200, 250, 375, 500, 750, 1000, 2000];
+for (const [index, end] of boundaries.slice(1).entries()) {
+  const start = boundaries[index];
   const startValue = priorExponent(start);
   const endValue = end <= 1000 ? priorExponent(end) : priorExponent(1000) + 30;
   const step = (endValue - startValue) / (end - start);

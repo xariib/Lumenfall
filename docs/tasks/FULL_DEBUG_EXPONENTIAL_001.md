@@ -12,7 +12,8 @@ Prism awards retain their separately approved rules.
 ## Findings and changes
 
 - The old Rift exponent was logarithmic between Rift 100 and 1,000. Use
-  fixed growth within bands ending at 100, 150, 250, 500, and 1,000.
+  fixed growth within bands ending at 100, 150, 200, 250, 375, 500, 750,
+  and 1,000.
   Match the previous curve at these boundaries and preserve the existing
   post-1,000 rate. This keeps the existing early game and late tail, and
   lowers the targets and rewards between the anchors. The legacy numeric
@@ -29,4 +30,12 @@ Prism awards retain their separately approved rules.
 Verify the growth rates, boss and reward rules, old enemy HP migration,
 timed effect boundaries, negative controls, existing regression groups and
 required CI. Measure pacing separately from Android and human acceptance.
-Product candidate and focused tests in progress.
+
+[PR #45](https://github.com/xariib/Lumenfall/pull/45) is in validation.
+The first candidate passed the signed Android upgrade, save-retention and
+retail launch workflow. Its wider bands also exposed an eight-hour
+Auto-Ascend-OFF replay mismatch in the final Wisp charge. Narrower bands
+preserve more of the previous deep-Rift economy and pass the original
+focused whole-window versus one-second comparison, including its strict HP
+and charge assertions. Keep the full regression and the emulator check
+required for the revised candidate.
