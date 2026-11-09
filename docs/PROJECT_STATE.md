@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+On 9 November, Android 0.2.104 shipped the full debug and exponential Rift
+progression update. [PR #45 task record](tasks/FULL_DEBUG_EXPONENTIAL_001.md) ·
+[Android 0.2.104 release](https://github.com/xariib/Lumenfall/releases/tag/android-1000104).
+Integrated source `ada037de` passed all six release checks, 190 regression
+scenarios and isolated offline catch-up. The signed upgrade kept both save
+slots. The public in-game feed and APK checksum were verified. The release
+includes exponential Rift growth, foreground clock exploit fixes and the
+offline recap fix. An Android emulator installed 0.2.104 through the in-game
+updater, reopened the game and retained both saves.
+[Updater test](https://github.com/xariib/Lumenfall/actions/runs/42644201970).
+
 6 November: [Installer Open button/PR #43](tasks/UPDATE_INSTALLER_OPEN_001.md)
 released as [Android 0.2.98](https://github.com/xariib/Lumenfall/releases/tag/android-1000098).
 Tested source `f50415e3` passed CI, in-app update and save retention, retail
