@@ -44,3 +44,12 @@ focused whole-window versus one-second comparison, including its strict HP
 and charge assertions. Keep the full regression and the emulator check
 required for the revised candidate. The isolated offline workflow passed
 the revised bands at their existing assertion thresholds.
+
+Node 24.19.0 replayed four independent eight-hour windows at one-second
+intervals on both the baseline and final product bytes. Every reward total
+and all four endpoint hashes match on this Windows runtime. The Windows
+hashes differ from the archived canonical hashes for both versions, so the
+canonical vectors were retained and only their source binding changed.
+The historical PR15 Auto Ascend check retains its exact frozen endpoints
+under the original curve. The current curve also passes the live versus
+offline endpoint comparison at the full reward rate.
