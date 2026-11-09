@@ -153,8 +153,10 @@ jobs:
           node tests/behavioral/auto-ascend-feedback.cjs index.html --negative > validation-evidence/auto-ascend-feedback/core.json
           node tests/behavioral/auto-ascend-feedback-mobile.cjs validation-evidence/auto-ascend-feedback/mobile
 
-      - name: Progression pacing and explicit Farm intent
+      - name: Exponential Rift progression and explicit Farm intent
         run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/FULL_DEBUG_EXPONENTIAL_001.md
+          node tests/behavioral/rift-exponential-curve.cjs index.html
           node scripts/codex/check_context.cjs --task docs/tasks/PROGRESSION_PACING_001.md
           node tests/behavioral/progression-pacing.cjs index.html --negative
           node tests/behavioral/farm-recap-parity.cjs index.html --negative

@@ -468,7 +468,7 @@ function combinedCases(html,a) {
   }
   for(const who of ['gale','thorn']){
     const x=app(html),q=x.q,s=battle(q,[who]);s.spirits[who]=100;s.research.overflowconduit=5;q.set(s);
-    const curve=100+40*Math.log1p((s.depth-100)/40),resourcePower=Math.min(q.power(who),(who==='gale'?40*Math.pow(1.09,curve):100*Math.pow(1.11,curve)));
+    const curve=100+(s.depth-100)*0.648744172973063,resourcePower=Math.min(q.power(who),(who==='gale'?40*Math.pow(1.09,curve):100*Math.pow(1.11,curve)));
     const native=Math.round(resourcePower*(who==='gale'?.05:.10)),hit=q.abilityDamage(who),hp=hit*31/32;q.get().enemyHp=hp;
     const expectedExtra=Math.floor(native/32),before=clone(q.get()),key=who==='gale'?'shards':'lumen',kill=who==='gale'?q.shards(s.depth,false):q.lumen(s.depth,false);cast(q,who);
     a.ok(expectedExtra>0,'partial overkill fixture has nonzero grant');a.near(q.get()[key]-before[key],native+expectedExtra+kill,'Overflow uses actual fraction below purchased cap '+who);
