@@ -61,3 +61,11 @@ clock the app uses. Its original 1,182 assertions passed across all 12
 profiles. Android 0.2.103 passed the native upgrade, recap, and retail
 launch checks with the exact game assets in this PR.
 [Signed Android test build](https://github.com/xariib/Lumenfall/actions/runs/42607998638).
+
+The full Linux run passed 187 of 190 scenarios. The two remaining Forge
+Queue checks now verify the exact settled timestamp in addition to the
+unchanged economy and single save. The mature manual-purchase fixture now
+clears Rift 130 before Ascending, so it can make the original 60-second
+purchase before its first reset. The queue fixture still covers the
+earlier Auto Ascend. All three corrected scenarios passed locally with
+the same product bytes.

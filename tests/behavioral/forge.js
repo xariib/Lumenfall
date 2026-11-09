@@ -193,6 +193,9 @@ window.runForgeExtended = function(b,ctx,assert,parity,summaryParity,near){
       // too weak to earn this price in60s. Retarget combat development only;
       // the wallet and the complete earned-income/debit oracle stay unchanged.
       if(name==='mid-game')s.spirits.ember=75;
+      // The mature run reaches the Rift 130 boss before the timed manual
+      // purchase. Ascend after clearing it so the purchase precedes the reset.
+      if(name==='mature-high-power'&&mode==='manual')s.autoAscendTargetDepth=131;
       b.setState(s);s=allOff(b.getState());b.setState(s);
       var start=b.getState();
       if(mode==='queue'){var q=b.getState();ids.forEach(function(id){q.researchQueue[id]=true;});b.setState(q);}
@@ -219,7 +222,7 @@ window.runForgeExtended = function(b,ctx,assert,parity,summaryParity,near){
       var spent=economy.ledger,manualCosts=run.manualCosts,manualBuys=run.manualBuys;
       near(runStart.lumen+run.summary.lumenGained-spent.lumen-spent.resetLumen-manualCosts.lumen,run.state.lumen,'balance Lumen including reset ledger');near(runStart.shards+run.summary.shardGained-spent.shards-manualCosts.shards,run.state.shards,'balance Shard ledger');
       ok(spent.researchLevels===run.summary.researchBought,'actual paid queue levels match summary');
-      if(mode==='manual')ok(manualBuys.arcanecal>0,'real mid/mature manual purchase with earned resources');
+      if(mode==='manual')ok(manualBuys.arcanecal>0,'real mid/mature manual purchase with earned resources '+name+' '+kind);
       records.push({fixture:name,mode:mode,kind:kind,seconds:600,manualPurchaseSec:mode==='manual'?60:null,start:{depth:start.depth,lumen:start.lumen,shards:start.shards},manualBuys:manualBuys,manualCosts:manualCosts,research:run.state.research,spent:spent,kills:run.summary.kills,depth:run.state.depth,motes:run.summary.motesGained,remaining:{lumen:run.state.lumen,shards:run.state.shards},formation:run.state.formationRebuild,active:run.state.activeParty,causalAudit:audit.counts});
     });});});
     return {checks:checks,records:records,realPaidSimulation:true};

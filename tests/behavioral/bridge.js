@@ -548,6 +548,7 @@ window.__lumenfallQaBridge = {
   renderLayout: function(){ renderAll(); updateBattleFast(); },
   toast: function(message){ showToast(message); },
   getState: function(){ return JSON.parse(JSON.stringify(state)); },
+  settledLiveMs: function(){ return liveClockMemo.state===state ? liveClockMemo.epochMs : 0; },
   getFlags: function(){ return {resetInProgress:resetInProgress, resetBootPending:resetBootPending, reloadInProgress:reloadInProgress, offlineBusy:!!offlineCatchup, offlinePending:offlinePending, resumeFlowBusy:resumeFlowBusy}; },
   rawSave: function(){ return localStorage.getItem(SAVE_KEY); },
   rawRecovery: function(){ return localStorage.getItem(RECOVERY_SAVE_KEY); },
