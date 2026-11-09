@@ -53,3 +53,9 @@ canonical vectors were retained and only their source binding changed.
 The historical PR15 Auto Ascend check retains its exact frozen endpoints
 under the original curve. The current curve also passes the live versus
 offline endpoint comparison at the full reward rate.
+
+The timed Lab UI fixture now expires test boosts on the same gameplay
+clock the app uses. Its original 1,182 assertions passed across all 12
+profiles. Android 0.2.103 passed the native upgrade, recap, and retail
+launch checks with the exact game assets in this PR.
+[Signed Android test build](https://github.com/xariib/Lumenfall/actions/runs/42607998638).
