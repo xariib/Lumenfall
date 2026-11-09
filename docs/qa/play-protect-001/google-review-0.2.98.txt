@@ -1,0 +1,38 @@
+Google Play Protect appeal draft for Lumenfall 0.2.98
+
+The screenshot identifies Lumenfall and the harmful-app warning. The player
+subsequently confirmed that the installed version is 0.2.98. That is consistent
+with this update being flagged, though the warning screen does not identify the
+APK version or show how the warning was dismissed. Google's form requires the
+developer's contact email and the SHA-256 of the exact APK after it is uploaded
+to VirusTotal. This draft has not been submitted.
+
+Package: com.lumenfall.app
+Version: 0.2.98 (1000098)
+APK SHA-256: b35b20f347f89b3947586a11faef15aa5c1994bf4c7c6f3007efbe5d3efef4a2
+APK: https://github.com/xariib/Lumenfall/releases/download/android-1000098/Lumenfall.apk
+Form: https://support.google.com/googleplay/android-developer/contact/protectappeals
+
+Draft statement
+
+Please review the Play Protect classification of Lumenfall 0.2.98, package
+com.lumenfall.app. Lumenfall is an Android idle game distributed on GitHub.
+A player reported seeing the Danish "En skadelig app er blokeret" warning
+during an in-app update and confirmed that 0.2.98 was installed afterward.
+The release APK hash is listed above.
+
+The release uses the established signer and a non-debuggable production build.
+The app declares INTERNET, REQUEST_INSTALL_PACKAGES for in-app updates, and
+a signature-protected AndroidX receiver permission. The updater downloads the
+APK and checksum from the official GitHub release, checks the APK's size,
+SHA-256, package, version and signer, and hands installation to Android for
+user approval. Android may show its standard Open button after installation.
+
+The exact APK passed package, signature, configuration, emulator update and
+save preservation checks. Public downloads match the tested SHA-256. These
+checks provide provenance and configuration evidence. Google determines the
+Play Protect classification.
+
+Source: https://github.com/xariib/Lumenfall/commit/f50415e387d822e600d3bda496f49664309e589d
+Static APK checks: https://github.com/xariib/Lumenfall/releases/download/android-1000098/security.json
+Signed Android test run: https://github.com/xariib/Lumenfall/actions/runs/42134735443
