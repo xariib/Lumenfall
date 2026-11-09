@@ -4383,7 +4383,7 @@ function luminousMotePayout(nowMs,clock){
 }
 // Locate qualifying Luminous defeats analytically, without iterating every kill.
 function batchLuminousMotes(count,first,accum,chance,policy){
-  var stream=policy.moteFarmClock,point=Number.isFinite(policy.nowMs)?policy.nowMs:gameplayNowMs();
+  var stream=policy.moteFarmClock,point=Number.isFinite(policy.nowMs)?policy.nowMs:Date.now();
   var firstMs=stream?stream.startMs+stream.firstSec*1000:point,gapMs=stream?stream.gapSec*1000:0;
   var minIndex=1,paid=0;
   function ceilingRatio(a,b){
@@ -11603,7 +11603,7 @@ function simulationNextAbilitySeconds(nowMs,clock){
     if((state.spirits[id]||0)<=0) return;
     var cur = Math.max(0,Math.min(100,state.heroResource[id]||0));
     var sp=SPIRITS.find(function(s){return s.id===id;});
-    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,supportRecastSeconds(sp,nowMs===undefined?gameplayNowMs():nowMs,clock)));
+    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,supportRecastSeconds(sp,nowMs===undefined?Date.now():nowMs,clock)));
   });
   return next;
 }
@@ -11670,7 +11670,7 @@ function simulationAdvanceAutomationTimers(elapsedSec){
   if(state.achieved.labmaster) state._autoEmpowerAccum = (state._autoEmpowerAccum||0) + (Amount.wide(elapsedSec)?Amount.mul(elapsedSec,1000):elapsedSec*1000);
 }
 function simulationNextStudySeconds(nowMs,clock){
-  nowMs=nowMs===undefined?gameplayNowMs():nowMs;
+  nowMs=nowMs===undefined?Date.now():nowMs;
   var next = nextStudyBoostExpiry(nowMs,clock);
   if(state.studyBoostQueue && queuedStudyBoostPlans(nowMs,clock).some(function(p){return !labCanPay(state.motes,p.plan.cost);})){
     var moteWait=clock&&clock.binary?clock.binary.until(state.moteNextAtMs):(state.moteNextAtMs-nowMs)/1000;
@@ -11759,7 +11759,7 @@ function queuedStudyBoostPlans(nowMs,clock){
   }).filter(function(p){return !!p;});
 }
 function simulationBuyStudySpeeds(summary,elapsedSec,nowMs,clock){
-  var now=nowMs===undefined?gameplayNowMs():nowMs,purchases=0;
+  var now=nowMs===undefined?Date.now():nowMs,purchases=0;
   // Paid receipts use whole epoch milliseconds, never backdate an earned boost.
   var started=Math.ceil(now);
   if(!Number.isSafeInteger(started) || started<0)return 0;
@@ -11774,7 +11774,7 @@ function simulationBuyStudySpeeds(summary,elapsedSec,nowMs,clock){
   return purchases;
 }
 function simulationKillsUntilStudyMotes(nowMs,clock){
-  var now=nowMs===undefined?gameplayNowMs():nowMs;
+  var now=nowMs===undefined?Date.now():nowMs;
   var pending=queuedStudyBoostPlans(now,clock);
   if(!pending.length)return Infinity;
   if(pending.some(function(p){return labCanPay(state.motes,p.plan.cost);}))return 0;
@@ -11885,7 +11885,7 @@ function simulationDefeatEnemy(policy,summary){
   simulationCreditFarmSummary(summary,'shardGained',shardGain);
 
   if(wasLuminous){
-    var moteGain = luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:gameplayNowMs(),policy.clock);
+    var moteGain = luminousMotePayout(Number.isFinite(policy.nowMs)?policy.nowMs:Date.now(),policy.clock);
     summary.motesGained=creditAmount(summary.motesGained,moteGain);
     summary.luminousKills=creditAmount(summary.luminousKills,1);
     trackDaily('luminousKills');
@@ -14409,7 +14409,21 @@ function init(){
   var welcomeOverlay = document.getElementById('welcome-overlay');
 
   var appHiddenAt = 0;
-  function finishReturn(offline,dailyWasRolled,error,generation){
+  if(document.hidden)appHiddenAt=Date.now();
+  var pendingOfflineRecap=null;
+  function retainOfflineRecap(offline){
+    if(!pendingOfflineRecap){pendingOfflineRecap=offline;return;}
+    var recap=pendingOfflineRecap;
+    ['elapsedSec','earned','shardEarned','sigilsEarned','motesEarned','ascends'].forEach(function(key){
+      recap[key]=Amount.add(recap[key],offline[key]);
+    });
+    recap.completedStudies=recap.completedStudies.concat(offline.completedStudies);
+    recap.closedStudies=recap.closedStudies.concat(offline.closedStudies);
+    if(offline.retreated){
+      recap.retreated=true;recap.endDepth=offline.endDepth;recap.pushDepth=offline.pushDepth;
+    }
+  }
+  function finishReturn(dailyWasRolled,error,generation){
     if(generation!==returnFlowGeneration) return;
     document.documentElement.classList.remove('startup-pending');
     resumeFlowBusy = false;
@@ -14426,14 +14440,16 @@ function init(){
     renderAll();
     var settingsOverlay = document.getElementById('settings-overlay');
     if(settingsOverlay && settingsOverlay.style.display!=='none') closeSettings();
-    showReturnFlow(offline,dailyWasRolled);
+    var recap=pendingOfflineRecap;
+    pendingOfflineRecap=null;
+    showReturnFlow(recap,dailyWasRolled);
   }
   function beginReturn(dailyWasRolled){
     var generation = ++returnFlowGeneration;
     resumeFlowBusy = true;
-    var introDone=false,offlineDone=false,result=null,failure=null;
+    var introDone=false,offlineDone=false,failure=null;
     function presentWhenReady(){
-      if(introDone && offlineDone) finishReturn(result,dailyWasRolled,failure,generation);
+      if(introDone && offlineDone) finishReturn(dailyWasRolled,failure,generation);
     }
     // Begin the intro before the first cooperative simulation batch. The boot
     // cover stays until both paths finish, so an inert Rift is never exposed.
@@ -14441,7 +14457,10 @@ function init(){
     try{
       applyOfflineProgress(function(offline,error){
         if(!error && !offline) saveState();
-        result=offline;failure=error;offlineDone=true;presentWhenReady();
+        // Catch-up can commit before an intro or visibility change settles.
+        // Keep the recap separate from the return generation that owns input.
+        if(!error && offline)retainOfflineRecap(offline);
+        failure=error;offlineDone=true;presentWhenReady();
       });
     }catch(error){
       offlinePending = true;
@@ -14466,7 +14485,7 @@ function init(){
     appHiddenAt = 0;
     // A short interruption also invalidates the intro's generation. Restart
     // while the boot cover is present, even if offline work already committed.
-    if(awayMs < 1000 && !offlinePending && !document.documentElement.classList.contains('startup-pending')){resetLiveClock();return;}
+    if(awayMs < 1000 && !offlinePending && !pendingOfflineRecap && !document.documentElement.classList.contains('startup-pending')){resetLiveClock();return;}
     beginReturn(ensureDaily());
   });
   // Cooperative simulation releases the event loop with a detached working

@@ -122,7 +122,7 @@ jobs:
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/LAB_BOOST_QUEUE_001.md
           mkdir -p validation-evidence/lab-boost-queue
-          node tests/behavioral/lab-boost-queue.cjs index.html --negative > validation-evidence/lab-boost-queue/core.json
+          node tests/behavioral/lab-boost-queue.cjs index.html --negative > validation-evidence/lab-boost-queue/core.json || { cat validation-evidence/lab-boost-queue/core.json; exit 1; }
           node tests/behavioral/lab-speed-controls.cjs index.html --boost-queue --evidence validation-evidence/lab-boost-queue/mobile > validation-evidence/lab-boost-queue/ui.json || { cat validation-evidence/lab-boost-queue/ui.json; exit 1; }
           if node tests/behavioral/lab-speed-controls.cjs index.html --boost-queue --mutate-next-lock > validation-evidence/lab-boost-queue/next-lock-control.json; then
             echo "::error::Locked next boost defect unexpectedly passed."

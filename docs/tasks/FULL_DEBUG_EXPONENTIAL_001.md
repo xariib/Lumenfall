@@ -24,6 +24,10 @@ Prism awards retain their separately approved rules.
   Foreground gameplay now advances timed effects with the monotonic clock,
   and saves retain the settled endpoint to prevent replay after a cold load.
   Daily dates and time away from the game still use the device calendar.
+- Android credited the offline test window and preserved both saves, but
+  the recap stayed hidden. A committed recap could be discarded when an
+  intro was interrupted or finished in the background. Retain committed
+  results across visibility changes and present them once on return.
 
 ## Acceptance and checkpoint
 
@@ -38,4 +42,5 @@ Auto-Ascend-OFF replay mismatch in the final Wisp charge. Narrower bands
 preserve more of the previous deep-Rift economy and pass the original
 focused whole-window versus one-second comparison, including its strict HP
 and charge assertions. Keep the full regression and the emulator check
-required for the revised candidate.
+required for the revised candidate. The isolated offline workflow passed
+the revised bands at their existing assertion thresholds.

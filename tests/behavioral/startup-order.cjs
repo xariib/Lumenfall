@@ -5,10 +5,11 @@ const source=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const start=source.indexOf('  var appHiddenAt = 0;'),end=source.indexOf('  // Cooperative simulation releases',start);
 assert(start>0&&end>start);const code=source.slice(start,end);let checks=0;
 function eq(a,b,message){checks++;assert.deepEqual(a,b,message);}
-function app(throwOffline){
+function app(throwOffline,hidden=false){
  const events=[],classes=new Set(['startup-pending']),ctx={events,classes,returnFlowGeneration:0,resumeFlowBusy:false,offlinePending:false,persistenceBlocked:false};
- ctx.document={hidden:false,documentElement:{classList:{remove:n=>classes.delete(n),contains:n=>classes.has(n)}},body:{classList:{toggle(){}}},getElementById:()=>null,querySelectorAll:()=>[],querySelector:()=>({classList:{remove(){}}}),addEventListener:(type,fn)=>{ctx.visibility=fn;}};
+ ctx.document={hidden,documentElement:{classList:{remove:n=>classes.delete(n),contains:n=>classes.has(n)}},body:{classList:{toggle(){}}},getElementById:()=>null,querySelectorAll:()=>[],querySelector:()=>({classList:{remove(){}}}),addEventListener:(type,fn)=>{ctx.visibility=fn;}};
  ctx.clock=10000;ctx.Date={now:()=>ctx.clock};ctx.isNewGame=false;ctx.cancelOfflineCatchup=()=>{};ctx.ensureDaily=()=>false;
+ ctx.Amount={add:(a,b)=>a+b};
  ctx.feedbackClears=0;ctx.clearAscendFeedback=()=>ctx.feedbackClears++;
  ctx.resetLiveClock=()=>events.push('clock-reset');ctx.flushLiveProgress=allowHidden=>{ctx.allowHidden=allowHidden;events.push('live-flush');return true;};
  Object.assign(ctx,{playStartupIntro:done=>{events.push('intro');ctx.introDone=done;},applyOfflineProgress:done=>{events.push('offline');ctx.offlineDone=done;if(throwOffline)throw Error('offline failed');},saveState:()=>events.push('save'),renderAll:()=>events.push('render'),showReturnFlow:(result,daily)=>events.push(['return',result,daily]),announcePersistenceStatus:()=>events.push('persistence'),showToast:()=>events.push('error')});
@@ -40,6 +41,18 @@ for(const thrown of [false,true]){
  eq(a.events.filter(e=>e==='intro').length,2,'500ms interruption restarts invalidated startup');
  oldIntro();eq(a.classes.has('startup-pending'),true,'stale intro cannot uncover replacement flow');
  a.introDone();a.offlineDone(null,null);eq(a.classes.has('startup-pending'),false,'short resume cannot leave loading cover stuck');
+ eq(a.events.filter(Array.isArray),[['return',{earned:42},false]],'committed recap survives the interrupted intro');
+ a.beginReturn(false);a.introDone();a.offlineDone(null,null);
+ eq(a.events.filter(Array.isArray),[['return',{earned:42},false],['return',null,false]],'shown recap does not repeat');
+}
+{
+ const a=app(false,true);
+ const result={elapsedSec:60,earned:42,shardEarned:3,sigilsEarned:0,motesEarned:2,ascends:0,completedStudies:['A'],closedStudies:[]};
+ a.beginReturn(false);a.offlineDone(result,null);a.introDone();
+ eq(a.events.filter(Array.isArray),[],'hidden startup retains the committed recap without presenting it');
+ a.clock+=10000;a.document.hidden=false;a.visibility();
+ a.offlineDone({...result,earned:8,completedStudies:['B'],retreated:true,endDepth:19,pushDepth:20},null);a.introDone();
+ eq(a.events.filter(Array.isArray),[['return',{elapsedSec:120,earned:50,shardEarned:6,sigilsEarned:0,motesEarned:4,ascends:0,completedStudies:['A','B'],closedStudies:[],retreated:true,endDepth:19,pushDepth:20},false]],'return shows both committed windows once');
 }
 {
  const a=app();a.classes.delete('startup-pending');a.document.hidden=true;a.visibility();a.clock+=500;a.document.hidden=false;a.visibility();
