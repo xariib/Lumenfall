@@ -52,7 +52,9 @@ hashes differ from the archived canonical hashes for both versions, so the
 canonical vectors were retained and only their source binding changed.
 The historical PR15 Auto Ascend check retains its exact frozen endpoints
 under the original curve. The current curve also passes the live versus
-offline endpoint comparison at the full reward rate.
+offline endpoint comparison at the full reward rate. The mature clock-stall
+control retains its original curve inputs, while the current curve runs
+every positive endpoint and strict remaining-HP assertion.
 
 The timed Lab UI fixture now expires test boosts on the same gameplay
 clock the app uses. Its original 1,182 assertions passed across all 12

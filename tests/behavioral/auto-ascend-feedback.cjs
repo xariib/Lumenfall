@@ -157,13 +157,7 @@ if(process.argv.includes('--record-baseline')){
   }
   // Keep every PR15 endpoint under its historical Deed and Rift inputs.
   // Actual endpoints above exercise the current curve and receipt paths.
-  const curve=/^function endlessCurveDepth\(depth\)\{\n[\s\S]*?^\}/gm;
-  assert.equal([...source.matchAll(curve)].length,1,'unique Rift curve for the historical reference');
-  const historicalSource=source.replace(curve,`function endlessCurveDepth(depth){
-    if(depth>1e9)return endlessCurveDepth(1e9)+40*Math.log(depth/1e9);
-    if(depth>1000)return endlessCurveDepth(1000)+(depth-1000)*.03;
-    return depth<=100?depth:100+40*Math.log1p((depth-100)/40);
-  }`);
+  const historicalSource=require('./legacy-rift-curve-reference.cjs')(source);
   const historicalEndpoints=endpointCases(require('./legacy-automation-deeds-reference.cjs')(historicalSource));
   eq(historicalEndpoints,JSON.parse(fs.readFileSync(receiptPath)).endpoints,'all endpoints under historical inputs exactly match PR15');
 }
