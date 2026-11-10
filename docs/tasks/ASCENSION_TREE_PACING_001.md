@@ -224,6 +224,16 @@ Node 24.22.1 passed 67 repeat-pacing checks, 375 Auto-Ascend feedback
 checks, and source validation. The independent four-window reference ran
 115,200 one-second calls. Each eight-hour window recorded 480 Ascensions.
 
+[Draft PR #46](https://github.com/xariib/Lumenfall/pull/46) contains the
+isolated candidate. The full serial offline regression passed all 18
+cases locally in 577 seconds, including the 12-hour combat cap, backup,
+recovery and clock jumps. The CI runner uses five parallel groups and its
+existing 300-second limit. Run that gate and the mobile workflows before
+integration. The first Permanent Progression CI run exposed an old
+exact-save-key assertion. The follow-up verifies the sole optional
+deadline key and keeps the run-identity exclusion. Its full Forge suite
+passed 9,350 assertions locally with negative controls.
+
 ## Baseline checks
 
 Node 24.22.1, source SHA-256

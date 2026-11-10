@@ -317,6 +317,9 @@ if(process.argv.includes('--generate-swift-golden')){
   oracle:'Independent one-second advance calls, fixed whole-window start',phases},null,2));process.exit(0);
 }
 
+const historicalPacingSource=legacyAutoAscendPacing(source);
+const oldRewardSource=legacyPrismPolicy(historicalPacingSource,baseline);
+
 // Fails on the unchanged product through the reported production entry.
 const on=runAsync(original,28800);
 const onReference=oneSecondReference(original,28800,true);
@@ -329,10 +332,8 @@ assert.equal(on.committed.longStudyLevels.prismstudy,original.longStudyLevels.pr
 assert.equal(on.committed.prisms-original.prisms,onReference.expectedPrisms+2810+echoFixtureRefund,'independent reward for each actual clear plus original F26/Echo refunds');
 // Retain the original exact reward assertion on an explicitly labelled old-
 // reward counterfactual. Every other state field must match the real new game.
-const historicalPacingSource=legacyAutoAscendPacing(source);
 const historicalPacing=app(original,historicalPacingSource,28800),historicalResult=historicalPacing.b.apply();
 assert.equal(historicalPacing.b.get().prisms-original.prisms,perAscend*historicalResult.ascends+2810+echoFixtureRefund,'original fixed-target repeat rewards remain exact under historical cadence');
-const oldRewardSource=legacyPrismPolicy(historicalPacingSource,baseline);
 const oldRewardRun=app(original,oldRewardSource,28800);oldRewardRun.b.apply();
 assert.equal(oldRewardRun.b.get().prisms-original.prisms,6*historicalResult.ascends+2810+echoFixtureRefund,'historical policy control and original refunds remain exact');
 assert.deepEqual({...oldRewardRun.b.get(),prisms:historicalPacing.b.get().prisms},historicalPacing.b.get(),'only Prism balance differs under old reward policy at the original cadence');

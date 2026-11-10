@@ -21,7 +21,7 @@ function plan(text){
  const prefix=text.slice(0,positions[0]),suffix=text.slice(positions[5]);
  const groups=ids.map((id,i)=>({id,body:text.slice(positions[i],positions[i+1]),records:counts[i]}));
  assert.equal(prefix+groups.map(g=>g.body).join('')+suffix,text,'all original source retained exactly');
- for(const line of ['const clear20=copy(original);clear20.autoAscendTargetDepth=21;','const off=copy(original);off.autoAscendEnabled=false;','const oldRewardSource=legacyPrismPolicy(source,baseline);','const on=runAsync(original,28800);'])assert.equal(text.split(line).length,2,'original setup remains explicit');
+ for(const line of ['const clear20=copy(original);clear20.autoAscendTargetDepth=21;','const off=copy(original);off.autoAscendEnabled=false;','const oldRewardSource=legacyPrismPolicy(historicalPacingSource,baseline);','const on=runAsync(original,28800);'])assert.equal(text.split(line).length,2,'original setup remains explicit');
  return {prefix,suffix,groups,originalTestSha256:hash(text)};
 }
 function combine(p,rows,sourceSha256,wallMs){
@@ -45,7 +45,7 @@ function combine(p,rows,sourceSha256,wallMs){
 function work(){
  const p=plan(fs.readFileSync(originalFile,'utf8')),group=p.groups.find(g=>g.id===workerData.id);assert(group);
  let setup='';
- if(group.id==='short-boundaries')setup='const clear20=copy(original);clear20.autoAscendTargetDepth=21;\nconst off=copy(original);off.autoAscendEnabled=false;\nconst oldRewardSource=legacyPrismPolicy(source,baseline);\n';
+ if(group.id==='short-boundaries')setup='const clear20=copy(original);clear20.autoAscendTargetDepth=21;\nconst off=copy(original);off.autoAscendEnabled=false;\n';
  if(group.id==='rollback-recovery')setup='const on=runAsync(original,28800);\nconst extraSetupRecords=records.splice(0);\n';
  const logs=[],prior=console.log;console.log=(...args)=>logs.push(args.join(' '));
  const m=new Module(originalFile,module);m.filename=originalFile;m.paths=Module._nodeModulePaths(__dirname);
