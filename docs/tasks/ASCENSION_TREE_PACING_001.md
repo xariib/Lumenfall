@@ -62,6 +62,37 @@ Masterwork Tempering is 20, Wisp Ascendancy 100, and Ember has Mythic rarity,
 ability module 20, Ultimate and Mastery 34. This is a synthetic throughput
 check. The user's roster, ranks and wallet have not been replayed.
 
+## Requested fix and balance choice
+
+The player asked to fix the reproduced rapid Rift 29 loop. The earlier
+[unrestricted Ascend decision](../qa/endless-progression-001/REQUIREMENTS.md)
+kept resets available with no minimum run time. The
+[protected repeat payout](../qa/prism-earning-001/DESIGN.md) pays the full
+purchased bonus on every qualifying repeat. The reproduced run follows both
+policies, so addressing it requires choosing how the rules should change.
+
+- **Pace repeat Prism payouts.** First and new-record Ascensions pay
+  immediately. An Ascension at or below the previously rewarded Rift pays
+  its normal Prisms only if 60 seconds of game time have passed since the
+  last Prism payout. Manual and Auto-Ascend share this window in live and
+  offline play. Resets can still happen between payouts. Ascension Dust
+  follows the Prisms actually credited.
+- **Pace repeat resets.** First and new-record Ascensions remain available
+  immediately. An Ascension at or below the previously rewarded Rift
+  requires at least 60 seconds of game time since the last Ascension.
+  The same rule applies to manual and automatic resets in live and offline
+  play. Each allowed reset pays its existing rewards.
+
+Either 60-second rule gives 60 paid Rift 29 repeats in a steady-state hour.
+At the synthetic fixture's 62 Prisms per payout, that is 3,720 Prisms,
+compared with the measured 448,880. The time window is a proposal. The
+late Tree design remains a separate choice within this task.
+
+Next, settle the rule and verify the exact boundary, first and new-record
+payouts, old-save defaults, backup and rollback, manual and automatic
+interleaving, and split and batched offline windows. Reuse the authoritative
+game clock and make availability visible before the player Ascends.
+
 ## Acceptance and open decision
 
 - Define a meaningful Tree purchase as one with a distinct benefit to
@@ -77,10 +108,10 @@ check. The user's roster, ranks and wallet have not been replayed.
   purchases, migration and recovery, Prism affordability, and manual and
   automatic Ascend behavior across live and offline play.
 
-Status is baseline verified, awaiting the late Tree pacing decision. Decide
-whether the Tree should have a longer finite progression or continue with
-meaningful purchases indefinitely. Then calibrate and test the chosen pacing
-against the reported farm or a labeled representative save.
+Status is baseline verified and the rapid repeat fix is requested. Choose the
+repeat rule above before implementation. The longer-term Tree decision is
+whether it should have a longer finite progression or continue with meaningful
+purchases indefinitely.
 
 This checkpoint is isolated on `feature/ascension-tree-pacing-001`. The
 local Forge and Lab continuation modifies separate gameplay paths. No balance
