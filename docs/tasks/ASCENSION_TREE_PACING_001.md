@@ -62,6 +62,79 @@ Masterwork Tempering is 20, Wisp Ascendancy 100, and Ember has Mythic rarity,
 ability module 20, Ultimate and Mastery 34. This is a synthetic throughput
 check. The user's roster, ranks and wallet have not been replayed.
 
+## Whole-game balance baseline
+
+The player then said the whole game should be more balanced. Evaluate the
+Ascend loop alongside Rift progression, Forge, Lab and Wisp development
+before selecting a balance rule. Use the earlier
+[progression targets](../qa/endless-progression-001/REQUIREMENTS.md) as the
+baseline for the intended early and long-term experience.
+
+### Repeat targets and linked rewards
+
+Reused the one-hour synthetic offline fixture above with Ascension Dust
+level 5. The only differences between rows are the Auto-Ascend target and
+the initial encounter, set one Rift beyond that target to start ready.
+
+| Clear target | Ascensions | Prisms | Boss Sigils | Total Motes |
+| --- | ---: | ---: | ---: | ---: |
+| 15 | 54,244 | 2,386,736 | 54,244 | 542,584 |
+| 29 | 7,240 | 448,880 | 21,720 | 108,830 |
+| 50 | 301 | 24,381 | 4,500 | 6,325 |
+| 75 | 12 | 1,188 | 329 | 467 |
+
+The engine credited more Prisms, Sigils and Motes at target 15 than at
+deeper repeat targets. Dust accounted for 542,440 Motes at target 15 and
+108,600 at target 29, based on exact payout and rank. The remaining Motes
+came from combat. The Luminous cooldown applies to Luminous kills. Dust is
+a separate Ascend reward. At targets 100 and 150, the fixture made the
+initial seeded Ascension and did not reach a second within the hour despite
+a saved record Rift of 250. Evaluate deeper targets the build can sustain
+after rebuilding and measure new-record pushes separately. The fixture's
+starting progression was granted for diagnostics.
+
+### Early progression, Workshop and Lab
+
+- The exact main regular campaign, with three 10-minute active sessions per
+  day and earned resources, reached record Rift 40, 50 and 56 on days
+  one, two and three. It achieved its first Ascension, first rarity and
+  Ember, Tide and Stone on day one. Day three had nine Ascensions, 38 total
+  Forge ranks, Wisp Ascendancy 13 and Swift 3. The campaign did not have
+  Auto-Ascend enabled. It did not run long enough to assess the first
+  Ultimate, Mastery, or the late wall targets.
+- The released Forge forecast uses generous fixed-depth income. At Rift
+  101, spending each full three-day budget separately bought 145–159
+  ranks of a 300-level enhancement. At Rift 1001, it bought 259–273 ranks.
+  Full tracks at fixed Rift 1001 took about 37, 93 and 149 days of
+  extrapolated round-the-clock income. The separate local Forge and Lab
+  candidate at `8df19cc6` passed 528 focused checks. Its eight-hour
+  Rift 32 budget bought 47–61 ranks starting at 300, and a second equal
+  budget bought another 7–8. These figures describe distinct starting
+  states and sources.
+- The released Lab test's always-funded 8× model takes about 90 days for
+  Research Procurement, 180 for Boss Ledger, 271 for Wisp Ascendancy and
+  365 for Wisp Damage. Treat Lab access, boost funding and completed
+  research work as separate measures. Fast Dust earnings can affect the
+  boost budget even when the research work requirement is long.
+
+Node 24.22.1 on exact main source and test scripts passed the Rift curve
+checks, 2,802 early Wisp checks, 304 progression checks, 468 Forge checks,
+353 Lab long-tail checks and 5,924 Tree checks. Campaign policy SHA-256
+`a0234118ef67b9b50aa73a097a1dbb0733097917c5574dbbc50326580f04ea61`.
+The early Wisp and Forge scripts in the local feature branch expect its
+continuing Forge and therefore require their matching source. Exact-main
+versions were rerun with their baseline fixture.
+
+### Candidate evaluation
+
+Use Prisms, boss Sigils, Ascension Dust, Deed progress and repeat speed
+together when evaluating the short-reset loop. Measure useful purchases per
+hour, meaningful upgrades remaining, and time to the next milestone. Keep
+the day-one checks and extend the campaigns to rarity, Ultimate and Mastery
+before making claims about late pacing. Evaluate the separate Forge and
+Lab candidate alongside this work when its integration baseline is ready.
+Physical phone and human balance acceptance are still open.
+
 ## Requested fix and balance choice
 
 The player asked to fix the reproduced rapid Rift 29 loop. The earlier
@@ -108,10 +181,10 @@ game clock and make availability visible before the player Ascends.
   purchases, migration and recovery, Prism affordability, and manual and
   automatic Ascend behavior across live and offline play.
 
-Status is baseline verified and the rapid repeat fix is requested. Choose the
-repeat rule above before implementation. The longer-term Tree decision is
-whether it should have a longer finite progression or continue with meaningful
-purchases indefinitely.
+Status is baseline measured across the early campaign and mature short loops.
+The rapid repeat fix is requested. The rules above are candidates, with
+further calibration needed across linked rewards before selecting a gameplay
+change. The longer-term Tree progression design remains open.
 
 This checkpoint is isolated on `feature/ascension-tree-pacing-001`. The
 local Forge and Lab continuation modifies separate gameplay paths. No balance
