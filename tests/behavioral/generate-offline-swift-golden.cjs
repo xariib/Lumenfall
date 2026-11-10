@@ -1,6 +1,6 @@
 'use strict';
 // Independent one-second caller windows. Never derive expected outcomes from a
-// single bulk/offline transaction. Preserve the released four-window outcomes.
+// single bulk/offline transaction. The paced policy has a separate replay.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {app,clone}=require('./comet-expansion-harness.cjs');
 const root=path.resolve(__dirname,'../..'),sourcePath=path.resolve(process.argv[2]||'index.html'),source=fs.readFileSync(sourcePath,'utf8'),e=app(source),q=e.q;
@@ -14,7 +14,12 @@ for(let phase=0;phase<4;phase++){
  process.stderr.write('one-second phase '+phase+' '+JSON.stringify(phases.at(-1))+'\n');
 }
 const expected=[[86404,4114,94622],[86401,4114,94622],[86396,4114,94622],[86405,4115,94645]];
-assert.deepEqual(phases.map(p=>[p.kills,p.ascends,p.prisms]),expected,'released independent four-window outcomes remain unchanged');
+if(process.argv.includes('--repeat-pacing')){
+ assert(source.includes('var AUTO_ASCEND_REPEAT_MS = 60000;'),'the reference uses the paced product');
+ assert(phases.every(p=>p.ascends>0&&p.ascends<=481&&p.kills>0&&p.prisms>0),'the recorded mature fixture respects the one-minute cadence');
+}else{
+ assert.deepEqual(phases.map(p=>[p.kills,p.ascends,p.prisms]),expected,'released independent four-window outcomes remain unchanged');
+}
 const result={sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),oracle:'Independent one-second advance calls, fixed whole-window start',phases};
 if(process.argv.includes('--write'))fs.writeFileSync(path.join(root,'tests/behavioral/offline-swift-current-golden.json'),JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(result));

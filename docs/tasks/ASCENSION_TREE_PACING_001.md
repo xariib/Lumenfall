@@ -181,14 +181,48 @@ game clock and make availability visible before the player Ascends.
   purchases, migration and recovery, Prism affordability, and manual and
   automatic Ascend behavior across live and offline play.
 
-Status is baseline measured across the early campaign and mature short loops.
-The rapid repeat fix is requested. The rules above are candidates, with
-further calibration needed across linked rewards before selecting a gameplay
-change. The longer-term Tree progression design remains open.
+## First balance pass
 
-This checkpoint is isolated on `feature/ascension-tree-pacing-001`. The
-local Forge and Lab continuation modifies separate gameplay paths. No balance
-change has been selected.
+The player asked to proceed with balancing the game. This pass addresses
+the measured rapid Auto-Ascend loop and its linked rewards. In the chosen
+rule, an automatic repeat at or below the rewarded Rift waits at least 60
+seconds from the last Ascension. The chosen Rift is a minimum. Push
+continues during the wait, and ready actions at the same timestamp finish
+in the ending run. Manual Ascensions and automatic first or new-record
+Ascensions are immediately available when otherwise eligible. A manual
+Ascension starts the automatic repeat wait for owners of the Ritual.
+
+Payout amounts use the existing formulas at the actual reset Rift.
+Stored progress and purchases remain valid. The optional repeat deadline
+uses the authoritative gameplay clock and persists atomically with the
+reset. Existing saves without a deadline can make their first eligible
+automatic reset immediately. The UI explains the minimum target and wait.
+
+On the original synthetic one-hour Rift 29 fixture, the candidate credits
+61 Ascensions, 5,522 Prisms, 1,260 Sigils and 1,582 Motes. The first reset
+was seeded ready at time zero. The equivalent 35-second live and offline
+tests both credit one reset and 62 Prisms. This model does not establish
+the exact rates on the player's save or human late-game pacing.
+
+The new focused suite verifies the time boundary, ready Tap and Empower
+ordering, first/new-record exceptions, manual reset, primary rollback,
+cold reload, actual rewards, live/offline and one-second splits. Frozen
+unrestricted stress and feedback fixtures retain their original inputs
+and assertions through the historical test adapter. The independent
+offline golden is regenerated from one-second calls for the paced policy.
+The three-day fresh campaign reached the same day-one milestones and
+Rifts 40, 50 and 56 as released main.
+
+The work is isolated on `feature/ascension-tree-pacing-001`. The separate
+Forge and Lab continuation stays independent. The first balance pass
+requires exact-source CI and Android acceptance before integration and
+delivery. Longer-term Tree and Wisp progression calibration remains open.
+
+Candidate source SHA-256
+`1d9c82235ef069b955293194a0aae7315a30a1eabcd7417063b4878ee5fa3da5`.
+Node 24.22.1 passed 67 repeat-pacing checks, 375 Auto-Ascend feedback
+checks, and source validation. The independent four-window reference ran
+115,200 one-second calls. Each eight-hour window recorded 480 Ascensions.
 
 ## Baseline checks
 

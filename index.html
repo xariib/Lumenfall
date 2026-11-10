@@ -5728,6 +5728,9 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
     });
   }
   out.ascendCount = persistedAmountInteger(source.ascendCount,fresh.ascendCount);
+  if(out.owned.autoascend && Number.isSafeInteger(source.autoAscendRepeatAtMs) && source.autoAscendRepeatAtMs>0){
+    out.autoAscendRepeatAtMs=source.autoAscendRepeatAtMs;
+  }
   out.sigilResonanceUses = boundedInt(source.sigilResonanceUses,fresh.sigilResonanceUses,0,sigilResonanceLimit(out));
   // Schema v1 remains compatible: older saves simply have no reward benchmark
   // and receive one final full first reward before future repeats diminish.
@@ -7586,6 +7589,7 @@ function defeatEnemy(){
 }
 
 var MIN_AUTO_ASCEND_RIFT = 16;
+var AUTO_ASCEND_REPEAT_MS = 60000;
 // schema-v1 stores the legacy encounter threshold N, meaning clear N-1.
 function autoAscendTarget(){
   return Math.max(MIN_AUTO_ASCEND_RIFT, Math.floor(state.autoAscendTargetDepth||MIN_AUTO_ASCEND_RIFT));
@@ -7593,8 +7597,18 @@ function autoAscendTarget(){
 function autoAscendClearedTarget(){
   return Math.max(15,autoAscendTarget()-1);
 }
-function autoAscendReady(){
+function autoAscendTargetReached(){
   return !!(state.riftMode!=='farm' && state.owned.autoascend && state.autoAscendEnabled && ascendEligible() && clearedProgressionRift()>=autoAscendClearedTarget());
+}
+function autoAscendIsRepeat(){
+  return state.ascendRewardedDepth>0 && Amount.le(clearedProgressionRift(),state.ascendRewardedDepth);
+}
+function autoAscendWaitSeconds(nowMs,clock){
+  if(!state.autoAscendRepeatAtMs || !autoAscendIsRepeat())return 0;
+  return Math.max(0,supportDeadlineSecondsRemaining(state.autoAscendRepeatAtMs,nowMs,clock));
+}
+function autoAscendReady(nowMs,clock){
+  return autoAscendTargetReached() && autoAscendWaitSeconds(nowMs===undefined?gameplayNowMs():nowMs,clock)===0;
 }
 // This ceiling is the existing safe-integer input boundary, never a save clamp.
 function autoAscendHighestClearedTarget(){
@@ -7653,7 +7667,7 @@ function renderAutoAscendControls(){
     root.innerHTML='<div class="card auto-ascend-card" data-autoascend-card><div class="name">Auto-Ascend Ritual</div>'+
       '<div class="auto-ascend-row"><label class="auto-ascend-target-label">Auto-Ascend after clearing<span data-autoascend-picker></span></label>'+
       '<button type="button" data-autoascend-toggle class="auto-ascend-toggle"></button></div>'+
-      '<div class="desc" id="auto-ascend-target-help">ON: Ascend after defeating the chosen Rift. OFF: keep pushing. Your target stays saved across Ascensions.</div>'+
+      '<div class="desc" id="auto-ascend-target-help">ON: Clear at least the chosen Rift. After an Ascension, Auto-Ascend keeps pushing for up to 60 seconds before repeating. First and new-record Ascensions are immediate. The target stays saved. OFF: keep pushing.</div>'+
       '<div class="auto-ascend-error" id="auto-ascend-target-error" aria-live="polite"></div></div>';
     root.querySelector('[data-autoascend-toggle]').onclick=toggleAutoAscend;
   }
@@ -8791,7 +8805,7 @@ function ascendPrismBreakdown(depth){
 function ascendPrismGain(depth){
   return ascendPrismBreakdown(depth).gain;
 }
-function applyAscendMutation(){
+function applyAscendMutation(nowMs){
   ascendRunToken = {};
   // Capture before reset/temporary party mutation; repeated Ascension keeps intent.
   state.formationRebuild = normalizeFormationRebuild(state.formationRebuild || {
@@ -8809,6 +8823,9 @@ function applyAscendMutation(){
   state.prisms=creditAmount(state.prisms,gain);
   state.motes=creditAmount(state.motes,dust);
   state.ascendRewardedDepth = Amount.max(state.ascendRewardedDepth||0,cleared);
+  if(state.owned.autoascend){
+    state.autoAscendRepeatAtMs=Math.ceil(nowMs===undefined?gameplayNowMs():nowMs)+AUTO_ASCEND_REPEAT_MS;
+  }
   state.ascendCount=creditAmount(state.ascendCount,1);
   trackDaily('ascends');
   state.depth = Amount.add(1,treeLevel('riftstep'));
@@ -10970,7 +10987,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Ascension Tree', meta:'Permanent Prism upgrades', desc:'Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply.'},
   {name:'Preserved Upgrades', meta:'Earlier purchases', desc:'Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired.'},
   {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends, Rift 250 and 10,000 manual Guardian taps. The Forge Never Sleeps unlocks Auto-Empower after 200 paid Forge levels, Rift 350, 100 completed Lab levels and 10 researched subjects. Guardian taps are manual until Auto-Tap unlocks. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
-  {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline.'},
+  {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, choose a minimum Rift to clear, and toggle it ON. First and new-record Ascensions can happen immediately. After an Ascension, a repeat waits for 60 seconds of game time while Push continues. Auto-Ascend waits in Farm. The target and toggle persist, and the same rules apply online and offline.'},
   {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. Eligible Mote payouts are fixed for those bonuses. They require a Luminous kill and share a 60-second cooldown across Rifts; no Motes accrue just by waiting.'},
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},
   {name:'Astral Upgrades',meta:'Permanent Comet investments',desc:'Astral Core multiplies Wisp Power. Astral Echo multiplies automatic ability damage and resource rewards. Astral Convergence strengthens unlocked Ultimates. Each has ten permanent levels and a Rift gate; costs rise by 20% per level. No charges, consumables or manual activation. Former command purchases are refunded once in Comets; earned history remains.'},
@@ -11854,10 +11871,12 @@ function simulationFarmEconomyBoundarySeconds(dps,rewardScale,nowMs,clock){
   if(Amount.le(killsNeeded,0)) return 0;
   return Amount.ratio(Amount.add(state.enemyHp,Amount.mul(Amount.max(0,Amount.sub(killsNeeded,1)),state.enemyMaxHp)),dps);
 }
-function simulationApplyAutoAscend(summary){
-  if(!autoAscendReady()) return false;
+function simulationApplyAutoAscend(summary,policy,deferAtDeadline){
+  var nowMs=policy && policy.nowMs,clock=policy && policy.clock;
+  if(!autoAscendReady(nowMs,clock)) return false;
+  if(deferAtDeadline && nowMs===state.autoAscendRepeatAtMs && autoAscendIsRepeat())return false;
   var motesBeforeAscend=state.motes;
-  var gain = applyAscendMutation();
+  var gain = applyAscendMutation(nowMs);
   cycleRecordAscends(summary,gain,1);
   summary.motesGained=creditAmount(summary.motesGained,Amount.sub(state.motes,motesBeforeAscend));
   // Normalize gameplay as a live save while retaining untouched canonical
@@ -11914,7 +11933,7 @@ function simulationDefeatEnemy(policy,summary){
   }
 
   simulationRecordAchievements(summary);
-  simulationApplyAutoAscend(summary);
+  simulationApplyAutoAscend(summary,policy,true);
 }
 function simulationBatchFarmKills(count,policy,summary){
   count = Amount.max(0,Amount.round(count,'floor'));
@@ -12184,6 +12203,7 @@ function simulationMaybeRetryBoss(policy,summary){
 }
 function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
   policy.nowMs=nowMs;
+  policy.clock=clock;
   var actions = 0;
   var ascendsBefore;
 
@@ -12269,6 +12289,12 @@ function simulationResolveTimestamp(nowMs,elapsedSec,policy,summary,clock){
 
   actions += simulationBuyStudySpeeds(summary,elapsedSec,nowMs,clock);
   actions += simulationRecordAchievements(summary);
+
+  // Ready actions at the repeat deadline belong to the ending run.
+  if(simulationApplyAutoAscend(summary,policy)){
+    simulationTimelinePush(summary,elapsedSec,'autoAscend',{count:1});
+    actions++;
+  }
 
   if(simulationMaybeRetryBoss(policy,summary)){
     simulationTimelinePush(summary,elapsedSec,'bossRetry',{depth:state.depth});
@@ -13387,6 +13413,8 @@ function advanceAuthoritativeTime(elapsedSec,options){
     if(researchLevel('charge')>=10 && !(state.owned.autoascend&&state.autoAscendEnabled) || firstKill>0&&(farmGridRemainingSec-firstKill===farmGridRemainingSec||fastRepeatedPush(firstKill)))activateBinaryClock();
   }
   var initialNowMs = simulationNowMs();
+  policy.nowMs=initialNowMs;
+  policy.clock=simulationClockPosition();
   var initialAscends = summary.ascends;
   if(Amount.le(state.enemyHp,SIM_EPS)){
     var initialKills = summary.kills;
@@ -13397,7 +13425,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
       initialAscends = summary.ascends;
     }
   }
-  if(simulationApplyAutoAscend(summary) && Amount.gt(summary.ascends,initialAscends)){
+  if(simulationApplyAutoAscend(summary,policy) && Amount.gt(summary.ascends,initialAscends)){
     simulationTimelinePush(summary,0,'autoAscend',{count:Amount.sub(summary.ascends,initialAscends)});
   }
   simulationResolveTimestamp(initialNowMs,0,policy,summary,simulationClockPosition());
@@ -13429,7 +13457,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
       continue;
     }
     var explicitAscendsBefore = summary.ascends;
-    if(simulationApplyAutoAscend(summary)){
+    if(simulationApplyAutoAscend(summary,policy)){
       simulationTimelinePush(summary,currentElapsedSec(),'autoAscend',{count:Amount.sub(summary.ascends,explicitAscendsBefore)});
       simulationResolveTimestamp(nowMs,currentElapsedSec(),policy,summary,simulationClockPosition());
       continue;
@@ -13442,7 +13470,8 @@ function advanceAuthoritativeTime(elapsedSec,options){
     }
     policy.clock=simulationClockPosition();
     if(binaryClock)captureStudyProgressAnchors();
-    var bulk=yield* summary._cycle.prepare(binaryClock);
+    // A learned rapid cycle has no representation for a timed repeat wait.
+    var bulk=state.autoAscendRepeatAtMs?null:yield* summary._cycle.prepare(binaryClock);
     if(bulk){
       captureStudyProgressAnchors();advanceCycleClock(bulk.duration);bulk.apply();advanceStudyProgressToClock();
       elapsedInRun=currentElapsedSec();remaining=simulationRemainingSec();policy.clock=simulationClockPosition();policy.nowMs=simulationNowMs();
@@ -13456,6 +13485,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     var studyStep = simulationNextStudySeconds(nowMs,simulationClockPosition());
     var buffStep = simulationNextBuffSeconds(nowMs,simulationClockPosition());
     var bossRetreatStep = simulationNextBossRetreatSeconds(nowMs,policy);
+    var autoAscendStep = autoAscendTargetReached() ? autoAscendWaitSeconds(nowMs,policy.clock) : Infinity;
 
     next = Amount.min(next,abilityStep);
     next = Amount.min(next,autoTapStep);
@@ -13463,6 +13493,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     next = Amount.min(next,studyStep);
     next = Amount.min(next,buffStep);
     next = Amount.min(next,bossRetreatStep);
+    next = Amount.min(next,autoAscendStep);
 
     var farmGridStep = Infinity;
     var economyStep = Infinity;
@@ -13476,7 +13507,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     }
 
     if(!Amount.valid(next)) next = remaining;
-    next=binaryClock?binaryClock.minimumRemaining([abilityStep,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,farmGridStep,economyStep,state.riftMode==='push'?simulationPassiveKillSeconds(dps):Infinity]):Amount.max(0,Amount.min(remaining,next));
+    next=binaryClock?binaryClock.minimumRemaining([abilityStep,autoTapStep,autoEmpowerStep,studyStep,buffStep,bossRetreatStep,autoAscendStep,farmGridStep,economyStep,state.riftMode==='push'?simulationPassiveKillSeconds(dps):Infinity]):Amount.max(0,Amount.min(remaining,next));
     var hitsFarmGrid = state.riftMode==='farm' && next===farmGridStep;
     var hitsWindowEnd = next===remaining;
     var diagnosticEventKinds = [];
@@ -13486,6 +13517,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
     if(next===studyStep) diagnosticEventKinds.push('study');
     if(next===buffStep) diagnosticEventKinds.push('buff');
     if(next===bossRetreatStep) diagnosticEventKinds.push('bossRetreatGrace');
+    if(next===autoAscendStep) diagnosticEventKinds.push('autoAscendWait');
     if(next===farmGridStep) diagnosticEventKinds.push('farmGrid');
     if(next===economyStep) diagnosticEventKinds.push('economy');
     if(next===remaining) diagnosticEventKinds.push('windowEnd');
@@ -13495,6 +13527,7 @@ function advanceAuthoritativeTime(elapsedSec,options){
       autoEmpower:autoEmpowerStep,
       study:studyStep,
       bossRetreatGrace:bossRetreatStep,
+      autoAscendWait:autoAscendStep,
       farmGrid:farmGridStep,
       economy:economyStep
     };

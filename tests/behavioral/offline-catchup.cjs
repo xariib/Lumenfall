@@ -7,6 +7,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{performance}=require('node:perf_hooks');
 const root=path.resolve(__dirname,'../..');
 const {reward:prismRewardOracle}=require('./prism-earning-reference.cjs');
+const legacyAutoAscendPacing=require('./legacy-auto-ascend-pacing.cjs');
 const sourceArg=process.argv.indexOf('--source');
 const source=fs.readFileSync(sourceArg<0?path.join(root,'index.html'):process.argv[sourceArg+1],'utf8');
 const baseline=fs.readFileSync(path.join(root,'docs/recovery/2026-10-07/lead_context/FEEDBACK/EVIDENCE/main-index.html'),'utf8');
@@ -115,7 +116,14 @@ function app(seed,html=source,seconds=0){
   storage.set(k,v);writes.push({key:k,state:JSON.parse(v)});
  },removeItem:k=>storage.delete(k)};
  const bridge=`window.qa={set:s=>state=acceptPersistedState(s),get:()=>state,apply:applyOfflineProgress,advance:advanceAuthoritativeTime,study:advanceStudyOnlyTime,summary:simulationSummary,load:loadState,backup:currentSaveBackup,decode:decodeSaveBackup,save:saveState,cancel:typeof cancelOfflineCatchup==='function'?cancelOfflineCatchup:()=>{},flags:()=>({busy:typeof offlineCatchup!=='undefined'&&!!offlineCatchup,pending:typeof offlinePending!=='undefined'&&offlinePending,resume:typeof resumeFlowBusy!=='undefined'&&resumeFlowBusy}),batch:n=>{if(typeof SIM_BATCH_EVENTS!=='undefined')SIM_BATCH_EVENTS=n;},fault:()=>{simulationResolveTimestamp=function(){throw Error('injected simulation failure');};}};`;
- const script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+"if(document.readyState==='loading'){");
+ const observeAscend=`window.qa.observeAscend=function(observer){
+   var original=applyAscendMutation;
+   applyAscendMutation=function(nowMs){
+     observer(clearedProgressionRift(),state.ascendRewardedDepth,nodeLevel('swift'),longStudyLevel('prismstudy'),treeLevel('frontier'));
+     return original(nowMs);
+   };
+ };`;
+ const script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace("if(document.readyState==='loading'){",bridge+observeAscend+"if(document.readyState==='loading'){");
  new Function('window','document','localStorage','Date','setTimeout','clearTimeout','performance',script)(window,document,localStorage,date,(fn)=>{queue.push({id:++seq,fn});return seq;},id=>{const i=queue.findIndex(x=>x.id===id);if(i>=0)queue.splice(i,1);},{now:()=>monotonic});
  const b=window.qa;b.set(copy(seed));
  return {b,storage,writes,queue,clock:v=>now=v,monotonic:v=>monotonic=v,failPrimary:v=>primaryFail=v,failRecovery:v=>recoveryFail=v,
@@ -136,6 +144,7 @@ function compare(a,b,label='state',wholeA=a,wholeB=b){
   }return;
  }
  if(typeof a==='number'&&typeof b==='number'){
+  if(label.endsWith('.autoAscendRepeatAtMs')){assert.equal(a,b,label+' exact repeat deadline');return;}
   if(label.endsWith('.enemyHp'))assert(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a),Math.abs(b)),label+' strict remaining-HP parity');else approx(a,b,label);return;
  }
  if(Array.isArray(a)||a&&typeof a==='object'){
@@ -284,11 +293,17 @@ function runAsync(seed,seconds,batch=256){
 const start=performance.now();
 // Swift60 intentionally changes rewards; compare independent one-second calls
 // with full-window batching. Historical uncapped goldens stay source-labelled.
-function oneSecondReference(seed,seconds){
+function oneSecondReference(seed,seconds,observeRewards=false){
  const x=app(seed,source,seconds),before=copy(x.b.get());
+ let ascends=0,expectedPrisms=0;
+ if(observeRewards)x.b.observeAscend((cleared,benchmark,swift,clarity,frontier)=>{
+  assert.equal(frontier,0,'no Frontier award in the preserved save');
+  ascends++;expectedPrisms+=prismRewardOracle(cleared,benchmark,swift,clarity);
+ });
  for(let i=0;i<seconds;i++)x.b.advance(1,{kind:'offline',visual:false,clockStartMs:seed.lastSeen+i*1000,offlineWindowStartMs:seed.lastSeen});
  x.b.get().totalOfflineSeconds+=seconds;x.b.get().lastSeen=seed.lastSeen+seconds*1000;x.b.save();
- return {state:copy(x.b.get()),kills:x.b.get().totalKills-before.totalKills,ascends:x.b.get().ascendCount-before.ascendCount,prisms:x.b.get().prisms-before.prisms};
+ if(observeRewards)assert.equal(ascends,x.b.get().ascendCount-before.ascendCount,'independently inspected every actual reset');
+ return {state:copy(x.b.get()),kills:x.b.get().totalKills-before.totalKills,ascends:x.b.get().ascendCount-before.ascendCount,prisms:x.b.get().prisms-before.prisms,expectedPrisms};
 }
 if(process.argv.includes('--generate-swift-golden')){
  let seed=copy(original);const phases=[];
@@ -304,26 +319,31 @@ if(process.argv.includes('--generate-swift-golden')){
 
 // Fails on the unchanged product through the reported production entry.
 const on=runAsync(original,28800);
-const onReference=oneSecondReference(original,28800);
+const onReference=oneSecondReference(original,28800,true);
 assert.equal(on.result.kills,onReference.kills);assert.equal(on.result.ascends,onReference.ascends);
 compare(on.committed,onReference.state,'capped Swift full8h one-second oracle');
 assert.equal(on.committed.prisms-original.prisms,onReference.prisms+2810+echoFixtureRefund,'independent one-second rewards plus original migration');
 const perAscend=prismRewardOracle(original.autoAscendTargetDepth-1,original.ascendRewardedDepth,original.nodes.swift,original.longStudyLevels.prismstudy);
 assert.equal(on.committed.nodes.swift,original.nodes.swift,'fixed Tree investment in long reward fixture');
 assert.equal(on.committed.longStudyLevels.prismstudy,original.longStudyLevels.prismstudy,'fixed completed Clarity in long reward fixture');
-assert.equal(on.committed.prisms-original.prisms,perAscend*on.result.ascends+2810+echoFixtureRefund,'independent new-policy reward plus original F26/Echo refunds');
+assert.equal(on.committed.prisms-original.prisms,onReference.expectedPrisms+2810+echoFixtureRefund,'independent reward for each actual clear plus original F26/Echo refunds');
 // Retain the original exact reward assertion on an explicitly labelled old-
 // reward counterfactual. Every other state field must match the real new game.
-const oldRewardSource=legacyPrismPolicy(source,baseline);
+const historicalPacingSource=legacyAutoAscendPacing(source);
+const historicalPacing=app(original,historicalPacingSource,28800),historicalResult=historicalPacing.b.apply();
+assert.equal(historicalPacing.b.get().prisms-original.prisms,perAscend*historicalResult.ascends+2810+echoFixtureRefund,'original fixed-target repeat rewards remain exact under historical cadence');
+const oldRewardSource=legacyPrismPolicy(historicalPacingSource,baseline);
 const oldRewardRun=app(original,oldRewardSource,28800);oldRewardRun.b.apply();
-assert.equal(oldRewardRun.b.get().prisms-original.prisms,6*on.result.ascends+2810+echoFixtureRefund,'historical policy control and original refunds remain exact');
-assert.deepEqual({...oldRewardRun.b.get(),prisms:on.committed.prisms},on.committed,'only Prism balance differs under old reward policy');
+assert.equal(oldRewardRun.b.get().prisms-original.prisms,6*historicalResult.ascends+2810+echoFixtureRefund,'historical policy control and original refunds remain exact');
+assert.deepEqual({...oldRewardRun.b.get(),prisms:historicalPacing.b.get().prisms},historicalPacing.b.get(),'only Prism balance differs under old reward policy at the original cadence');
 records.push({case:'Prism policy isolation',perAscend,newPrisms:on.committed.prisms-original.prisms,legacyPrisms:oldRewardRun.b.get().prisms-original.prisms});
 assert.equal(on.committed.lumen,onReference.state.lumen,'partial final run matches independent one-second balance');
 assert(on.result.earned>on.committed.lumen,'Ascend resets run Lumen, not reported earned total');
-assert.deepEqual(on.committed.formationRebuild,original.formationRebuild,'unaffordable Boss reconstruction intent persists');
+assert.deepEqual(on.committed.formationRebuild,original.formationRebuild,'formation reconstruction intent persists');
 assert.deepEqual(on.committed.empowerQueue,original.empowerQueue,'purchase intent preserved');
-assert.deepEqual(on.committed.activeParty,['ember']);
+assert.deepEqual(historicalPacing.b.get().activeParty,['ember'],'the old short run could only rebuild Ember');
+assert.deepEqual(on.committed.activeParty,['titan','ember'],'pushing during the wait rebuilds the intended powered formation');
+assert(on.committed.spirits.titan>0,'the additional member is recruited through real purchases');
 const sync=app(original,source,28800);const syncResult=sync.b.apply();
 assert.deepEqual(syncResult,on.result,'same full summary across yielding/synchronous facade');
 assert.deepEqual(sync.b.get(),on.committed,'exact scheduler state across yielding/synchronous facade');

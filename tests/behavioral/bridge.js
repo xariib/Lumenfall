@@ -324,7 +324,7 @@ window.__lumenfallQaBridge = {
           var n=LONG_STUDIES.find(function(n){return n.id===a.id;}),c=studyCost(n,before.longStudyLevels[a.id]);cost.lumen+=c.lumen;cost.shards+=c.shard;ledger.studyStarts++;
         }});record(before,cost,'Study');return result;
       };
-      applyAscendMutation=function(){var before=state.lumen,result=original.ascend();ledger.resetLumen+=before-state.lumen;return result;};
+      applyAscendMutation=function(nowMs){var before=state.lumen,result=original.ascend(nowMs);ledger.resetLumen+=before-state.lumen;return result;};
       return {ledger:ledger,restore:function(){autoLabQueueTick=original.research;autoEmpowerTick=original.empower;simulationStartQueuedStudies=original.study;applyAscendMutation=original.ascend;}};
     },
     mutate: function(kind){
@@ -372,20 +372,25 @@ window.__lumenfallQaBridge = {
         }
         return result;
       };
-      applyAscendMutation=function(){
+      var ascendPolicy;
+      applyAscendMutation=function(nowMs){
         var before=copy(state),intended=before.formationRebuild?before.formationRebuild.members:before.activeParty;
-        assert(autoAscendReady() && ascendEligible() && clearedProgressionRift()>=autoAscendClearedTarget(),'audit premature Ascension');
-        var gain=originals.ascend();
-        if(mutation==='duplicate') originals.ascend();
+        assert(autoAscendReady(nowMs,ascendPolicy&&ascendPolicy.clock) && ascendEligible() && clearedProgressionRift()>=autoAscendClearedTarget(),'audit premature Ascension');
+        var gain=originals.ascend(nowMs);
+        if(mutation==='duplicate') originals.ascend(nowMs);
         assert(state.ascendCount===before.ascendCount+1,'audit duplicate Ascension');
         assert(state.depth===1 && state.riftMode==='push','audit Ascension resets progression');
         assert((state.formationRebuild?state.formationRebuild.members:state.activeParty).join(',')===intended.join(','),'audit Ascension preserves intent');
         SPIRITS.forEach(function(sp){assert(state.spirits[sp.id]===(sp.id==='ember'?1:0),'audit normal reset levels');});
         counts.ascends++;party();return gain;
       };
-      simulationApplyAutoAscend=function(summary){
-        if(mutation==='premature' && !autoAscendReady()) applyAscendMutation();
-        return originals.auto(summary);
+      simulationApplyAutoAscend=function(summary,policy,deferAtDeadline){
+        ascendPolicy=policy;
+        var nowMs=policy&&policy.nowMs,clock=policy&&policy.clock;
+        try{
+          if(mutation==='premature' && !autoAscendReady(nowMs,clock)) applyAscendMutation(nowMs);
+          return originals.auto(summary,policy,deferAtDeadline);
+        }finally{ascendPolicy=null;}
       };
       autoEmpowerTick=function(){
         var before=copy(state),costs={},candidates=autoEmpowerCandidateIds();

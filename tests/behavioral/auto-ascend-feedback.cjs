@@ -104,7 +104,7 @@ for(const flag of ['hidden','intro','offline','reset','reload']){
 // fields and wallets. This is independent of the UI assertions above.
 }
 const receiptPath=path.resolve(__dirname,'../../docs/qa/auto-ascend-feedback-001/baseline.json');
-function endpointCases(input){
+function endpointCases(input,currentPacing=false){
   const results=[];
   for(const mode of ['push','auto','farm'])for(const kind of ['live','offline']){
     const x=F.app(input,undefined,{clockDate:true}),q=x.q,s=q.fresh();
@@ -112,8 +112,9 @@ function endpointCases(input){
     s.owned.autoascend=true;s.activeParty=['ember','tide','stone'];for(const id of s.activeParty)s.spirits[id]=300;
     s.research.masterwork=20;s.nodes.echo=6;s.activeStudies=[{id:'guardmastery',remainingSec:120,totalDurationSec:120,speedMult:1}];
     if(mode==='auto'){s.research.masterwork=500;s.research.formation=250;s.longStudyLevels.wispascend=500;s.wispMastery.ember=250;s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;}
+    if(mode==='auto' && currentPacing)s.ascendRewardedDepth=999;
     q.set(s);q.restoreEnemy();const before=F.clone(q.get());
-    const summary=q.advance(10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
+    const summary=q.advance(mode==='auto'&&currentPacing?125:10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
     const endpoint=F.clone(q.get());
     const historicalEndpoint=F.clone(endpoint);
     eq(historicalEndpoint.riftLook,{backdrop:'default',wisp:'default',enemy:'default',motion:true},'exact new appearance defaults before comparing frozen PR15 state');
@@ -147,7 +148,7 @@ function endpointCases(input){
   const before=F.clone(x.q.get());x.fail(true,false);eq(x.q.ascend(),false,'failed Ascend rejects');eq(x.q.get(),before,'failed Ascend retains every field');
   return results;
 }
-const endpoints=endpointCases(source);
+const endpoints=endpointCases(source,!process.argv.includes('--record-baseline'));
 if(process.argv.includes('--record-baseline')){
   assert.equal(hash(original),'ce4223a749cc307760895f84b8983e4cc2348e57df251c3dff357a07d021d8ba','record only the verified PR15 baseline source');
   fs.mkdirSync(path.dirname(receiptPath),{recursive:true});fs.writeFileSync(receiptPath,JSON.stringify({commit:'cc03df4972808666436eb0386515d20e88d04255',sourceSha256:hash(original),endpoints},null,2)+'\n');
@@ -157,7 +158,7 @@ if(process.argv.includes('--record-baseline')){
   }
   // Keep every PR15 endpoint under its historical Deed and Rift inputs.
   // Actual endpoints above exercise the current curve and receipt paths.
-  const historicalSource=require('./legacy-rift-curve-reference.cjs')(source);
+  const historicalSource=require('./legacy-rift-curve-reference.cjs')(require('./legacy-auto-ascend-pacing.cjs')(source));
   const historicalEndpoints=endpointCases(require('./legacy-automation-deeds-reference.cjs')(historicalSource));
   eq(historicalEndpoints,JSON.parse(fs.readFileSync(receiptPath)).endpoints,'all endpoints under historical inputs exactly match PR15');
 }

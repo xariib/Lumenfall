@@ -11,7 +11,7 @@ module.exports=function(source){
   assert(source.includes('function persistCanonicalAutomation(clock)'),'saved canonical timer basis');
   assert(source.includes('binaryClock.advanceLattice(previousDuration);remaining=binaryClock.remaining();'),'exact Native-grid clock activation');
   for(const [name,file]of [['createLuminousOrbit','luminous-orbit'],['cycleAggregate','ascend-cycle-aggregate'],['cycleTailLumen','ascend-cycle-lumen'],['cycleLatticeClock','ascend-cycle-lattice-clock'],['cycleNativePhase','ascend-native-phase'],['cycleEconomyBound','ascend-cycle-economy-bound'],['cycleNativeCredit','native-credit-prefix'],['cycleResources','checked-resource-cycles']])assert(source.includes('var '+name+'='+require('../../scripts/lib/'+file+'.cjs').toString()+';'),'current embedded '+name);
-  return source;
+  return require('./legacy-auto-ascend-pacing.cjs')(source);
  }
  source=binary(source);
  function edit(a,b,n=1){assert.equal(source.split(a).length,n+1,a);source=source.split(a).join(b);}
