@@ -556,7 +556,10 @@ function unsafeRunCase(html,a,route) {
   a.eq(integerAmount(after.ascendCount),BigInt(before.ascendCount)+1n,'unsafe historical Ascend counter advances exactly once');a.eq([after.enemyHp,after.enemyMaxHp],[69,69],'unsafe run blocks old Spillway damage '+route);
   Object.keys(after.heroResource).forEach(id=>a.eq(after.heroResource[id],0,'unsafe run blocks old charge/time credit '+route+'/'+id));
   a.eq(after.supportBuffs,null,'unsafe run clears old Support cast');a.eq(after.sigilResonanceUses,0,'unsafe run resets shared uses');a.eq(after.research,before.research,'unsafe run preserves all paid Forge levels');
-  a.eq(Object.keys(q.accept(after)).sort(),Object.keys(q.accept(before)).sort(),'runtime run identity adds no persisted field');
+  a.ok(Number.isSafeInteger(after.autoAscendRepeatAtMs) && after.autoAscendRepeatAtMs>=CLOCK+60000 && after.autoAscendRepeatAtMs<=CLOCK+60126,
+    'the optional automatic repeat deadline uses the settled reset time');
+  a.eq(Object.keys(q.accept(after)).sort(),[...Object.keys(q.accept(before)),'autoAscendRepeatAtMs'].sort(),
+    'only the repeat deadline is added, with no persisted runtime run identity');
   q.save();a.eq(app(html,x.storage).q.get(),q.get(),'unsafe run accepted cold reload');
 }
 function unsafeRunCases(html,a) {
