@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+11 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
+is in progress on an isolated branch. Tested candidates fix action chronology
+and paid Lab work, and implement the approved combat-based Auto-Tap requirement.
+Full CI, integration, idle pacing and Android delivery remain open; no new APK
+has been released for this task.
+
 9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
 the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
 feature checkpoint for continuing from GitHub on another computer.

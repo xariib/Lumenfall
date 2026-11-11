@@ -26,6 +26,14 @@ jobs:
         with:
           node-version: 24.19.0
 
+      - name: Paid Lab work and player action chronology
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_BALANCE_HUNT_001.md
+          mkdir -p validation-evidence/exploit-balance-hunt
+          node tests/behavioral/exploit-balance-hunt.cjs index.html --negative > validation-evidence/exploit-balance-hunt/core.json
+          node tests/behavioral/idle-automation.cjs index.html > validation-evidence/exploit-balance-hunt/idle-automation.json
+          node tests/behavioral/exploit-action-ui.cjs index.html validation-evidence/exploit-balance-hunt/browser --negative
+
       - name: Stationary purchases and rejected transaction rollback
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/DEBUG_SCROLL_EXPLOITS_001.md

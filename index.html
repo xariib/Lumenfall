@@ -4437,7 +4437,7 @@ function automationDeedRequirements(id,s){
   if(id==='autotap')return [
     {key:'ascends',label:'Ascends',current:s.ascendCount,target:100},
     {key:'rift',label:'Highest Rift',current:s.maxDepthEver,target:250},
-    {key:'taps',label:'Manual Guardian taps',current:s.totalTaps,target:10000}
+    {key:'kills',label:'Enemies defeated',current:s.totalKills,target:10000}
   ];
   if(id==='labmaster'){
     var projects=LONG_STUDIES.filter(function(node){return !node.retiredTo;});
@@ -7626,6 +7626,7 @@ function renderAutoAscendTarget(control){
   if(!typed) control.value=String(target);
 }
 function setAutoAscendClearedTarget(value){
+  if(!flushLiveProgress())return false;
   var cleared=Number(value);
   if(!state.owned.autoascend || typeof value!=='string' || String(cleared)!==value ||
     !Number.isSafeInteger(cleared) || cleared<15 ||
@@ -7800,6 +7801,7 @@ function selectCometCosmetic(slot,enabled){
   return true;
 }
 function doTap(stageEl){
+  if(!flushLiveProgress())return false;
   var dmg = tapDamage();
   recordCometManualAttack();
   state.totalTaps=Amount.add(state.totalTaps,1);
@@ -7891,6 +7893,7 @@ function buyRarity(sp){
 }
 
 function toggleActive(id){
+  if(!flushLiveProgress())return false;
   if(!SPIRITS.some(function(sp){return sp.id===id;})) return false;
   var members = chosenFormationMembers();
   var idx = members.indexOf(id);
@@ -7948,6 +7951,7 @@ function fieldBestNowFormation(){
   return true;
 }
 function applyFormationPreset(name){
+  if(!flushLiveProgress())return false;
   if(FORMATION_PRESET_IDS.indexOf(name)===-1) return false;
   var members = formationPresetMembers(name);
   // Select the destination before projecting its members. Switching never
@@ -7970,6 +7974,7 @@ function autoEmpowerAllState(){
   return {ids:ids,enabled:enabled,value:enabled===0?'off':(enabled===ids.length?'on':'mixed')};
 }
 function setAutoEmpowerAll(enabled){
+  if(!flushLiveProgress())return false;
   var summary=autoEmpowerAllState();
   summary.ids.forEach(function(id){state.empowerQueue[id]=!!enabled;});
   saveState();
@@ -8539,7 +8544,10 @@ function clearStudySlot(slot){
   var active=state.activeStudies.find(function(a){return a.slot===slot;});
   if(active && LONG_STUDIES.some(function(n){return n.id===active.id && n.retiredTo;}))return false;
   if(!forgeCommitPaidMutation(function(){
-    if(active)storeStudyWork(active);
+    // The transaction owns a cloned state. Resolve its paid record here;
+    // the pre-transaction object is not a member of this activeStudies array.
+    var current=state.activeStudies.find(function(a){return a.slot===slot;});
+    if(current)storeStudyWork(current);
     var id=state.studySlotProjects[slot];if(id)state.studyQueue[id]=false;
     state.studySlotProjects[slot]=null;
   }))return false;
@@ -8622,6 +8630,7 @@ function buyShopItem(item){
 }
 
 function toggleAutoAscend(){
+  if(!flushLiveProgress())return false;
   if(!state.owned.autoascend) return;
   state.autoAscendEnabled = !state.autoAscendEnabled;
   renderShop();
@@ -10186,6 +10195,7 @@ function renderSpirits(keepScroll){
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       var id = btn.getAttribute('data-empower-queue');
+      if(!flushLiveProgress())return;
       state.empowerQueue[id] = state.empowerQueue[id]===false ? true : false;
       saveState();
       renderSpirits();
@@ -10260,6 +10270,7 @@ function renderResearch(){
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       var id = btn.getAttribute('data-queue');
+      if(!flushLiveProgress())return;
       state.researchQueue[id] = !state.researchQueue[id];
       saveState();
       renderResearch();
@@ -10969,7 +10980,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Lab Speed', meta:'Mote purchases', desc:'Choose one of the 1.5x–8x speeds and 8, 12 or 24 hours. Choices do not spend Motes. Activate once for the displayed total: the timer applies to this slot across projects and levels and counts down while idle and offline. Longer packages discount the proportional price by 5% or 10%, rounded up; Mote Catalysis also applies. There is no automatic renewal. Lab Queue separately pays Lumen and Shards to start new levels. Speed already paid for an old active level remains protected after expiry.'},
   {name:'Ascension Tree', meta:'Permanent Prism upgrades', desc:'Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply.'},
   {name:'Preserved Upgrades', meta:'Earlier purchases', desc:'Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired.'},
-  {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends, Rift 250 and 10,000 manual Guardian taps. The Forge Never Sleeps unlocks Auto-Empower after 200 paid Forge levels, Rift 350, 100 completed Lab levels and 10 researched subjects. Guardian taps are manual until Auto-Tap unlocks. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
+  {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends, Rift 250 and 10,000 enemies defeated. Online and offline defeats count. The Forge Never Sleeps unlocks Auto-Empower after 200 paid Forge levels, Rift 350, 100 completed Lab levels and 10 researched subjects. Guardian taps are manual until Auto-Tap unlocks. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
   {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline.'},
   {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. Eligible Mote payouts are fixed for those bonuses. They require a Luminous kill and share a 60-second cooldown across Rifts; no Motes accrue just by waiting.'},
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},

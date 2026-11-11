@@ -1,5 +1,10 @@
 # LAB_OFFLINE_DEED_PACING_001 — continuous Lab and tougher automation Deeds
 
+11 November follow-up: the user approved replacing only Auto-Tap's manual-tap
+condition with combat progress. [Decision](../decisions/2026-11-11-idle-autotap-combat.md)
+and [implementation/release status](EXPLOIT_BALANCE_HUNT_001.md). The original
+October requirements below are retained as historical decision evidence.
+
 Status: integrated into main; CI/signed test APK PASS. Physical acceptance open.
 Owner: current feature chat; no delegation. PR: https://github.com/xariib/Lumenfall/pull/28
 Baseline: main88fd60b, Android0.2.58. Branch fix/lab-offline-deed-pacing-001,

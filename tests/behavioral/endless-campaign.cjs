@@ -53,6 +53,10 @@ window.endlessQa={
 `;
 const instrumented=source.replace(marker,bridge+marker);
 const policies={regular_two:{sessions:2,activeSec:600,decisionSec:10,speed:8,budget:.5},casual:{sessions:2,activeSec:300,decisionSec:10,speed:8,budget:.5},regular:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},frequent:{sessions:6,activeSec:600,decisionSec:10,speed:8,budget:.5},regular_fast:{sessions:3,activeSec:600,decisionSec:10,speed:8,budget:.5},efficient:{sessions:6,activeSec:900,decisionSec:5,speed:8,budget:.9}};
+// Mostly idle, several daily check-ins: six active minutes/day, no sustained
+// tapping requirement. Existing campaign policies retain their original input.
+policies.idle_checkins={sessions:3,activeSec:120,decisionSec:10,speed:8,budget:.5,manualTapsPerVisit:10};
+policies.idle_push_checkins={...policies.idle_checkins,idlePush:true};
 const days=Number(process.argv[3]||7),name=process.argv[4]||'regular';
 assert(policies[name]&&Number.isInteger(days)&&days>0&&days<=730);
 const runBudgetMs=Number(process.env.LUMENFALL_CAMPAIGN_RUN_MS||0),runStarted=performance.now();assert(Number.isFinite(runBudgetMs)&&runBudgetMs>=0);
@@ -195,7 +199,7 @@ function campaign(){
       decisions();
       for(let t=0;t<policy.activeSec;t+=policy.decisionSec){
         if(q.get().achieved.autotap)advance(policy.decisionSec,'live');
-        else for(let second=0;second<policy.decisionSec;second++){q.manualTap();advance(1,'live');}
+        else for(let second=0;second<policy.decisionSec;second++){if(policy.manualTapsPerVisit===undefined||t+second<policy.manualTapsPerVisit)q.manualTap();advance(1,'live');}
         decisions();
       }
       // Each absence is below the established 12h productive cap.
@@ -203,6 +207,7 @@ function campaign(){
       const repeat=!lastSaving&&(q.get().longStudyLevels.wispascend||0)>=15&&(q.get().spirits.ember||0)>=80;
       b.auto(repeat);
       if(repeat&&q.get().autoAscendEnabled){b.best('push');b.push();}
+      else if(policy.idlePush){b.best('push');b.push();}
       else{b.best('farm');b.farm();}
       advance(Math.min(gap,43200),'offline');
       // Nonproductive remainder would still advance wall-clock time.
