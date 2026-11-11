@@ -60,7 +60,7 @@ async function run(){
   records[records.length-1].contrast=observation.contrast;
   records[records.length-1].backgroundUpperBound=observation.backgroundUpperBound;
   const conditions=[];
-  for(const [id,target]of [['autotap-rift',250],['autotap-taps',10000],['labmaster-rift',350],['labmaster-lab',100],['labmaster-subjects',10]]){
+  for(const [id,target]of [['autotap-rift',250],['autotap-kills',10000],['labmaster-rift',350],['labmaster-lab',100],['labmaster-subjects',10]]){
     const row=await evaluate(`(()=>{const el=document.querySelector('[data-deed-condition="${id}"]');el.scrollIntoView({block:'center'});const r=el.getBoundingClientRect();return {id:${JSON.stringify(id)},text:el.textContent,target:Number(el.dataset.target),left:r.left,right:r.right,overflow:el.scrollWidth-el.clientWidth,visible:!!el.getClientRects().length};})()`);
     assert.equal(row.target,target);assert(row.visible&&row.left>=0&&row.right<=width+1&&row.overflow<=1,'challenge counter wraps within phone width');conditions.push(row);
   }

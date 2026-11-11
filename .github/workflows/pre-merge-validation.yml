@@ -32,6 +32,7 @@ jobs:
           mkdir -p validation-evidence/exploit-balance-hunt
           node tests/behavioral/exploit-balance-hunt.cjs index.html --negative > validation-evidence/exploit-balance-hunt/core.json
           node tests/behavioral/idle-automation.cjs index.html > validation-evidence/exploit-balance-hunt/idle-automation.json
+          node tests/behavioral/modest-recruitment.cjs index.html > validation-evidence/exploit-balance-hunt/recruitment.json
           node tests/behavioral/exploit-action-ui.cjs index.html validation-evidence/exploit-balance-hunt/browser --negative
 
       - name: Stationary purchases and rejected transaction rollback
