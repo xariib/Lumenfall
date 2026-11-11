@@ -57,6 +57,9 @@ const policies={regular_two:{sessions:2,activeSec:600,decisionSec:10,speed:8,bud
 // tapping requirement. Existing campaign policies retain their original input.
 policies.idle_checkins={sessions:3,activeSec:120,decisionSec:10,speed:8,budget:.5,manualTapsPerVisit:10};
 policies.idle_push_checkins={...policies.idle_checkins,idlePush:true};
+// Compare a player who keeps a growing run for a day instead of resetting at
+// every short visit before Auto-Empower has been earned.
+policies.idle_patient_checkins={...policies.idle_push_checkins,ascendInterval:86400};
 const days=Number(process.argv[3]||7),name=process.argv[4]||'regular';
 assert(policies[name]&&Number.isInteger(days)&&days>0&&days<=730);
 const runBudgetMs=Number(process.env.LUMENFALL_CAMPAIGN_RUN_MS||0),runStarted=performance.now();assert(Number.isFinite(runBudgetMs)&&runBudgetMs>=0);
@@ -190,7 +193,7 @@ function campaign(){
     }
     b.claim();note();
     const state=q.get();
-    if(!state.owned.autoascend&&!saving&&b.eligible()&&(state.ascendCount===0||elapsed-lastRecordAt>3600)&&elapsed-lastAscendAt>=3600){
+    if(!state.owned.autoascend&&!saving&&b.eligible()&&(state.ascendCount===0||elapsed-lastRecordAt>3600)&&elapsed-lastAscendAt>=(policy.ascendInterval||3600)){
       q.ascend();lastAscendAt=elapsed;note();
     }
   }
