@@ -414,7 +414,7 @@ function runCore(source,options={}){
   group('protected original Deed thresholds count all paid Forge levels',()=>{
     const e=app(source),q=e.q;
     for(const [id,below,at]of [['autotap',99,100],['labmaster',199,200],['labqueue',59,60]]){
-      const s=fixture(q);s.maxDepthEver=Math.max(s.maxDepthEver||0,350);s.totalTaps=10000;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(function(id){s.longStudyLevels[id]=10;});s.achieved[id]=false;
+      const s=fixture(q);s.maxDepthEver=Math.max(s.maxDepthEver||0,350);s.totalKills=10000;s.totalTaps=0;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry','wispdamage','wispcritchance','wispcritdamage','bossledger'].forEach(function(id){s.longStudyLevels[id]=10;});s.achieved[id]=false;
       if(id==='autotap')s.ascendCount=below;else{Object.keys(s.research).forEach(key=>{s.research[key]=0;});s.research.focus=below-15;s.research.arcanecal=10;s.research.spillway=5;}
       s.owned.meteor=true;s.owned.starcall=true;s.cometUpgrades={cometreservoir:2,cometcycle:3,meteorcore:4};if(q.schema()>=6)s.schemaVersion=5;
       q.set(s);eq(q.achievementDefs().find(row=>row.id===id).check(q.get()),false,'all paid levels remain below '+id+' threshold');
