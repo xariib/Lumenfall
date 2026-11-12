@@ -3,7 +3,9 @@
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) is in progress
 on an isolated branch. It removes the separate background/Wisp/enemy packs,
 adds one Rift scene and strengthens six main themes with contained enemy art.
-Quick visual and full saved-state replay checks pass; full CI and Android pending.
+Mobile visuals, full saved-state replay and signed Android0.2.109 candidate checks
+pass. Main CI is restarting after updating the retired regional-background
+expectation; integration and public release remain pending.
 
 12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
 keeps PR42's Forge/Lab proposal open and closes PR46 without merging. The

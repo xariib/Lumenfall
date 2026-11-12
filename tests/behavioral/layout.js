@@ -152,8 +152,10 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
   q('[data-tab="battle"]').click();check('push');
   // P2-06A: exercise real render paths for all regions, three boss traits and
   // deeper echoes at each supported viewport, including fresh and dense saves.
-  var landmarks=['verge','canopy','glass','observatory','basilica','crown'];
-  var regionBackgrounds=new Set(), bossColors=new Set();
+  // RIFT_THEME_REDESIGN_001 intentionally replaces region scenery with one scene.
+  // Regional progression and boss identity still have their own visible labels.
+  var sceneMarkup=q('.rift-backdrop').innerHTML;
+  var regionLabels=new Set(), bossColors=new Set();
   var presentationDepths=[1,26,51,76,101,126,151,326,1229,10,20,30,60,80,110,130];
   presentationDepths.forEach(function(depth){
     var sample=JSON.parse(JSON.stringify(initial));
@@ -165,11 +167,12 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     bridge.renderLayout();
     assert(JSON.stringify(bridge.getState())===before,'presentation render must not mutate gameplay at Rift '+depth);
     check('push');
-    var theme=Math.floor((depth-1)/25)%6;
-    var shown=Array.from(document.querySelectorAll('.region-landmark')).filter(function(el){return getComputedStyle(el).display!=='none';});
-    assert(shown.length===1 && shown[0].classList.contains('region-'+landmarks[theme]),'exactly the current region landmark is displayed');
+    assert(document.querySelectorAll('.rift-backdrop').length===1 && q('.rift-backdrop').dataset.scene==='rift','one redesigned Rift scene is present');
+    assert(q('.rift-backdrop').innerHTML===sceneMarkup,'the same Rift landscape is retained across regions and bosses');
+    var backdrop=rect('.rift-backdrop'),stage=rect('#tab-battle .stage');
+    assert(backdrop.width>0 && backdrop.height>0 && Math.abs(backdrop.width-stage.width)<=2 && Math.abs(backdrop.height-stage.height)<=2 && getComputedStyle(q('.rift-backdrop')).visibility!=='hidden','single scene visibly covers the Rift');
     assert(q('.rift-landscape').getAttribute('aria-hidden')==='true' && getComputedStyle(q('.rift-landscape')).pointerEvents==='none','scenery stays decorative and cannot intercept input');
-    if(depth<=126 && depth%10!==0) regionBackgrounds.add(getComputedStyle(q('#tab-battle .stage')).backgroundImage);
+    if(depth<=126 && depth%10!==0) regionLabels.add(q('.region-label').textContent);
     var boss=depth%10===0;
     assert((getComputedStyle(q('.boss-regalia')).display!=='none')===boss,'boss regalia appears only during a boss encounter');
     if(boss){
@@ -180,7 +183,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
       assert(q('.boss-regalia').getAttribute('aria-hidden')==='true','boss artwork remains decorative');
     }
   });
-  assert(regionBackgrounds.size===6,'six region backgrounds must remain visually distinct');
+  assert(regionLabels.size===6,'six regions retain distinct visible progression labels');
   assert(bossColors.size===3,'boss traits retain distinct palettes');
   bridge.setState(initial);bridge.renderLayout();
   return {viewport:[innerWidth,innerHeight],safeInsets:[params.get('safeTop'),params.get('safeBottom')],minimumEnemyHeight:minimum,hudHeight:hudHeight,party:initial.activeParty.length,presentationStates:presentationDepths.length};

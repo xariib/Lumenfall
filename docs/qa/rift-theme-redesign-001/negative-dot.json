@@ -1,0 +1,41 @@
+{
+  "status": "fail",
+  "sourceSha256": "be1e39921e51fa71ac8a41a20ddf36fd4374580106b41f7f5fbaec2353872641",
+  "node": "v24.22.1",
+  "browser": "C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: active dot visible battle\n    at ok (C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-theme\\tests\\behavioral\\.rift-visual-unlocks-11416.cjs:39:27)\n    at run (C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-theme\\tests\\behavioral\\.rift-visual-unlocks-11416.cjs:98:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-theme\\tests\\behavioral\\.rift-visual-unlocks-11416.cjs:136:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<path d=\"M12 2c0 6-8 9-7 14a7 7 0 0 0 14 0c1-4-3-7-4-9l-3 6M9 16l3 4 3-4\"></path>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<svg class=\"nav-art\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 7h18l-3 5H7L3 9V7ZM8 12v4l-3 4h14l-3-4v-4M9 4h8v3\"></path></svg>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<svg class=\"nav-art\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M18.8 9.4a7.5 7.5 0 1 1-13.6 0M7.8 8.2 12 4l4.2 4.2M7.8 12.7l4.2-4.2 4.2 4.2\"></path></svg>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<path d=\"M8 3h8v8a4 4 0 0 1-8 0ZM8 5H3v3a5 5 0 0 0 5 5M16 5h5v3a5 5 0 0 1-5 5M12 15v5M7 22h10M9 20h6\"></path>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"nav-icon\"><svg class=\"nav-art\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 20V11a6 8 0 0 1 12 0v9M3 21h18M9 20v-8a3 4 0 0 1 6 0v8M12 3V1\"></path></svg></span>",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 50,
+  "stderr": ""
+}

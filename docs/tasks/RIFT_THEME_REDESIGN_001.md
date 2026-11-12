@@ -83,14 +83,16 @@ Node24.22.1 / locally installed Brave Chromium:
 - Full twelve-profile visual suite PASS: 1,375 assertions and 16,560 encounter/
   theme/profile samples. Existing cosmetics PASS: 170 samples, caption contrast,
   legacy decorations, keyboard/touch, reload, backup/recovery and negative controls.
-  Original native Rift check and negative controls are running. Remote CI and
-  Android acceptance pending. Browser reports Chrome157.0.8103.50.
+  Original native Rift check PASS, including short/safe-area profiles. Missing-dot
+  and oversized-enemy controls both reject their intended defect and exit cleanly.
+  Remote CI and Android acceptance pending. Browser reports Chrome157.0.8103.50.
 
 Git push found a stale credential-helper path; a command-local override uses the
 installed GitHub CLI without altering user configuration. The credential lacks
 workflow scope. The new negative control therefore runs in the already-required
 visual test entrypoint, with no workflow edits or permission changes. The initial
-unpublished commit will be amended; no published history is being rewritten.
+unpublished commit was amended before the first successful push; published
+history was not rewritten.
 
 Self-review only. Physical phone, exact WebView60 and TalkBack are unverified.
 No gameplay, progression, balance, prices or paid-value changes. Historical art
@@ -98,7 +100,39 @@ definitions remain inert; keeping them avoids unrelated asset/catalog churn.
 
 ## Continuation
 
-Next: finish local suites and save receipts, publish the isolated branch/PR, fix
-any required CI findings, recheck main/PR42 overlap before integration, then
-complete integrated validation and the signed Android delivery. Keep this task
-open until required acceptance is verified. [Evidence](../qa/rift-theme-redesign-001/README.md).
+Published [PR48](https://github.com/xariib/Lumenfall/pull/48), head
+`0501ecdb87ed62c90d010ca7a91fe0521df6e663`. All local suites passed. Full raw local
+suite is under ignored `validation-evidence/rift-redesign`; added final receipts
+are staged for the delivery documentation checkpoint, not yet committed.
+PR workflows started (premerge43218861215, Shared43218860869, Forge43218860620,
+Lab43218860849, Tree43218861133, Comet43218861183, progression43218860846,
+Wisp43218860587). Progression passes; other applicable runs are pending/running.
+Prism-only conditional workflows are skipped by their existing triggers.
+Signed candidate [build43218948236](https://github.com/xariib/Lumenfall/actions/runs/43218948236)
+PASS on the exact PR head with publish=false: stable signing/assets, in-place
+upgrade and both saves, installed Rift appearance/touch assertions, in-app updater
+and retail-image normal production launch. No release or merge yet.
+
+First CI: Shared UI, Forge, Lab, Comet, progression, Wisp and isolated offline
+PASS. Tree's first attempt failed two browser transport deadlines (25s, no DOM
+output/QA result; even Chrome --version timed out). All seven later Prism cases
+passed. Original failure evidence is retained; same-source job rerun requested.
+The Tree retry PASS on the same0501ecdb source with unchanged test deadlines.
+Main validation reached the old layout contract and failed its requirement for
+six regional landmarks. That expectation contradicts the requested single-scene
+design; `layout.js` now verifies one visible consistent full-Rift background,
+preserving all region-label, boss-trait, touch, geometry, state and Farm checks.
+Product bytes remain unchanged. Adjusted fresh/dense/boss layouts PASS on all15
+viewports via the existing Windows CDP transport; the collapse control is still
+rejected. Final local receipts, initial failure evidence and signed Android
+candidate evidence are saved with this test correction. Android candidate is
+0.2.109 /1000109; its exact packaged assets also pass local byte verification.
+All initial applicable PR workflows passed except main validation's obsolete
+regional-background assertion. Restart all required CI on the new test/doc commit.
+
+Next: monitor these runs/review threads, fix any required findings, recheck main
+and PR42 overlap, merge only after acceptance, dispatch six integrated-main gates,
+then deliver a verified signed APK/public update. Existing GitHub connector cannot
+dispatch workflows; CLI at root `validation-evidence/github-cli/bin/gh.exe` does.
+Keep this task open until required acceptance is verified.
+[Evidence](../qa/rift-theme-redesign-001/README.md).
