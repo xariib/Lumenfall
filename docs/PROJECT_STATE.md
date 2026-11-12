@@ -3,22 +3,26 @@
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) is in progress
 on an isolated branch. It removes the separate background/Wisp/enemy packs,
 adds one Rift scene and strengthens six main themes with contained enemy art.
-Mobile visuals, full saved-state replay and signed Android0.2.109 candidate checks
-pass on the pre-integration candidate. Main's newly integrated Forge/Lab changes
-are being preserved and the combined source revalidated; public release is pending.
+Combined mobile visuals, saved-state replay and Forge/Lab regressions pass.
+Earlier signed Android0.2.109 candidate checks passed; final combined-source
+CI and Android delivery are pending. The0.2.110 gameplay and receipt are retained.
 
-12 November: [PR42 release continuation](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
-combines endless Forge enhancements and earned Lab access with current main.
-Signed candidate0.2.108 passed save upgrade, in-app update, exact assets/signing
-and retail Android launch. Full PR and prepared-commit release checks must pass
-before that exact commit advances main and publishes. PR46 remains closed and
-excluded. Public Android0.2.107 remains current until verified publication.
+12 November: [PR42 Forge/Lab update](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
+released as [Android0.2.110](https://github.com/xariib/Lumenfall/releases/tag/android-1000110).
+Battle, Arcane and Harvest Tempering continue past300; eight powerful Lab studies
+require earned first access, while paid work/levels retain access. Exact source
+`dc78daad` passed all eight release workflows,220 stateful scenarios and isolated
+offline catch-up before advancing main. Signed upgrade/updater retained both
+saves and paid work; retail launch and anonymous public APK/assets/feed checks
+passed. [Delivery evidence](qa/endless-forge-lab-pacing-002/release-20261112/public-release.json).
+PR46 remains closed and excluded. Physical-phone, exact WebView60 DOM, TalkBack
+and human pacing remain unverified.
 
 12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
-keeps PR42's Forge/Lab proposal open and closes PR46 without merging. The
+initially kept PR42's Forge/Lab proposal open and closed PR46 without merging. The
 automatic-only reset delay strongly favors repetitive manual reward farming
 in the controlled comparison, contrary to the mostly-idle direction. The
-underlying rapid-repeat economy issue remains open; released gameplay is unchanged.
+underlying rapid-repeat economy issue remains open; that review changed no gameplay.
 
 12 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
 released as [Android 0.2.107](https://github.com/xariib/Lumenfall/releases/tag/android-1000107) through PR47.
@@ -29,8 +33,8 @@ Signed save-preserving upgrade, in-app update, retail-image normal launch and
 anonymous public APK/assets/feed verification passed. Thirty-day idle results
 and [delivery evidence](qa/exploit-balance-hunt-001/README.md) are saved.
 Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
-local saves remain a trust boundary. PR42 remains separate work; PR46's
-subsequent closure is recorded above.
+local saves remain a trust boundary. PR42 was separate at that release; its later
+delivery and PR46's subsequent closure are recorded above.
 
 9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
 the local QA evidence, Play Protect drafts and the in-progress Forge and Lab

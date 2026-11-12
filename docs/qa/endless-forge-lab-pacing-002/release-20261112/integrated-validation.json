@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "commit": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+  "sourceSha256": "af207697b854e536f32143c4343a7b9a1545b4c230922e47b293c6e7a2fd5977",
+  "validatedBeforeMainPromotion": true,
+  "validatedRef": "codex/release-pr42-20261112",
+  "statefulScenarios": 220,
+  "scenarioSetMatchesPr": true,
+  "isolatedOfflineCatchup": true,
+  "ciNode": "24.19.0",
+  "runs": [
+    {
+      "id": 43216788943,
+      "name": "Wisp scroll validation",
+      "path": ".github/workflows/wisp-scroll-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216788943"
+    },
+    {
+      "id": 43216781012,
+      "name": "Permanent progression and direct cards validation",
+      "path": ".github/workflows/permanent-progression-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216781012"
+    },
+    {
+      "id": 43216772978,
+      "name": "Ascension Tree focused validation",
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216772978"
+    },
+    {
+      "id": 43216764531,
+      "name": "Shared UI layout validation",
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216764531"
+    },
+    {
+      "id": 43216756888,
+      "name": "Research Lab expansion validation",
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216756888"
+    },
+    {
+      "id": 43216748499,
+      "name": "Rift Forge expansion validation",
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216748499"
+    },
+    {
+      "id": 43216739931,
+      "name": "Comet shop and Deeds validation",
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216739931"
+    },
+    {
+      "id": 43216731833,
+      "name": "Pre-merge validation",
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "event": "workflow_dispatch",
+      "sha": "dc78daad51a59748d3faa55d57c4920d7c141d61",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43216731833"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 131177765636,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success"
+    },
+    {
+      "id": 131177766160,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "success"
+    }
+  ],
+  "checkedAt": "2026-11-12T13:21:13.513Z"
+}
