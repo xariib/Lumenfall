@@ -1,0 +1,14 @@
+Browser identity: { "selected_path": "/usr/bin/google-chrome", "resolved_path": "/opt/google/chrome/google-chrome", "sha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec", "version_error": "Browser version timed out" }
+Staged source: { "source_sha256": "f1c3c56ade415e25239f53442706014cae4d4cb35defe05f97be17549d7bf83d", "instrumented_sha256": "bc01f2a6602d5a622b0dcd57cc04a6aa1f30db3555703d966022c432dee2ebf3" }
+FAIL ascend-prisms-contract
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 25.027230728000003, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: /home/runner/work/Lumenfall/Lumenfall/tree-validation/prism/browser/ascend-prisms-contract-2ooSFL/raw/ascend-prisms-contract-PVxrqz
+  Chromium stderr tail:
+[2665:2693:1112/130448.597560:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2665:2693:1112/130448.673430:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2665:2693:1112/130448.673460:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2665:2693:1112/130449.988566:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2665:2693:1112/130451.853367:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+

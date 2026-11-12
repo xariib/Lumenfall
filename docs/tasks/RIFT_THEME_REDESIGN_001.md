@@ -130,6 +130,16 @@ candidate evidence are saved with this test correction. Android candidate is
 All initial applicable PR workflows passed except main validation's obsolete
 regional-background assertion. Restart all required CI on the new test/doc commit.
 
+Final PR head `be4ccf992fadcc72f57c0604bb953b2af97986e6`. Shared UI, Forge, Lab,
+Comet, progression, Windows/Linux Wisp and isolated offline pass. Premerge
+43222940163 is running. Tree43222940095 first attempt again timed out during
+browser startup: even `--version` timed out, contract emitted no DOM/QA result,
+and all eight remaining Prism cases plus Tree/mobile/V8 checks passed. Raw
+diagnostics are retained in `tree-second-failure/` under the evidence directory;
+artifact13947541350 SHA256c01a014a2c514304f63988023aa37664af28d01b2a83f9a67f66f1697fbb6cda.
+Same-source job retry131209982472 is running with unchanged deadlines. No review
+threads; main remains6b990b70 and PR48 is mergeable. No public release yet.
+
 Next: monitor these runs/review threads, fix any required findings, recheck main
 and PR42 overlap, merge only after acceptance, dispatch six integrated-main gates,
 then deliver a verified signed APK/public update. Existing GitHub connector cannot
