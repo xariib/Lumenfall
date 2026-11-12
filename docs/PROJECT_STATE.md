@@ -1,10 +1,14 @@
 # Lumenfall — current delivery status
 
-11 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
-is in progress on an isolated branch. Tested candidates fix action chronology
-and paid Lab work, and implement the approved combat-based Auto-Tap requirement.
-Full CI, integration, idle pacing and Android delivery remain open; no new APK
-has been released for this task.
+12 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
+is integrated through PR47 (`aee2953d`); public delivery remains pending. It closes
+untrusted-action chronology bypasses and a paid Lab work helper defect, uses
+combat progress for Auto-Tap, and modestly eases later recruitment by one Lab
+level. Thirty-day idle simulations and signed Android0.2.106 candidate upgrade,
+updater and normal-launch checks passed. This candidate is unpublished; final
+integrated validation and public release remain open. All eight applicable PR
+validation workflows passed. Physical-phone and human
+pacing acceptance are unverified. PR42/46 remain separate work.
 
 9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
 the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
