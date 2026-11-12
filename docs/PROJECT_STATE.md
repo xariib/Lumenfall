@@ -4,8 +4,15 @@
 on an isolated branch. It removes the separate background/Wisp/enemy packs,
 adds one Rift scene and strengthens six main themes with contained enemy art.
 Mobile visuals, full saved-state replay and signed Android0.2.109 candidate checks
-pass. Main CI is restarting after updating the retired regional-background
-expectation; integration and public release remain pending.
+pass on the pre-integration candidate. Main's newly integrated Forge/Lab changes
+are being preserved and the combined source revalidated; public release is pending.
+
+12 November: [PR42 release continuation](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
+combines endless Forge enhancements and earned Lab access with current main.
+Signed candidate0.2.108 passed save upgrade, in-app update, exact assets/signing
+and retail Android launch. Full PR and prepared-commit release checks must pass
+before that exact commit advances main and publishes. PR46 remains closed and
+excluded. Public Android0.2.107 remains current until verified publication.
 
 12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
 keeps PR42's Forge/Lab proposal open and closes PR46 without merging. The

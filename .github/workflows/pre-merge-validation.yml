@@ -42,6 +42,13 @@ jobs:
           node tests/behavioral/purchase-rollback.cjs index.html --negative > validation-evidence/debug-scroll/rollback.json
           node tests/behavioral/stationary-purchases.cjs index.html validation-evidence/debug-scroll/mobile --negative
 
+      - name: Continuing Forge investments and earned Lab access
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/ENDLESS_FORGE_LAB_PACING_002.md
+          mkdir -p validation-evidence/endless-forge-lab
+          node tests/behavioral/endless-forge-lab-pacing.cjs index.html --negative > validation-evidence/endless-forge-lab/core.json
+          node tests/behavioral/lab-speed-controls.cjs index.html --access --evidence validation-evidence/endless-forge-lab/mobile > validation-evidence/endless-forge-lab/mobile.json
+
       - name: Production Android security regression checks
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/PLAY_PROTECT_001.md

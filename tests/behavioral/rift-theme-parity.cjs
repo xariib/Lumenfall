@@ -2,7 +2,7 @@
 // A visual redesign must preserve complete saved states and every reward.
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process');
 const {app,clone}=require('./comet-expansion-harness.cjs');
-const baseline='6b990b70ccfdd62049ca10172b0c770ae808a6bc';
+const baseline='dc78daad51a59748d3faa55d57c4920d7c141d61';
 const original=execFileSync('git',['show',baseline+':index.html'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const source=fs.readFileSync('index.html','utf8'),states=[original,source].map(s=>app(s));
 const golden=JSON.parse(execFileSync('git',['show',baseline+':tests/behavioral/offline-swift-current-golden.json'],{encoding:'utf8'}));

@@ -101,6 +101,10 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   });
   go('research');
   ['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id){
+    if(id==='measuredinquiry'){
+      var ready=b.getState();ready.maxDepthEver=Math.max(150,ready.maxDepthEver);ready.longStudyLevels.wispascend=25;
+      b.setState(ready);b.renderLayout();
+    }
     q('[data-study-slot="0"]').click();q('[data-study="'+id+'"]').click();var beforeToggle=b.getState(),paid=beforeToggle.activeStudies.find(function(a){return a.id===id;});
     ok(b.getState().studyQueue[id]===true&&paid,'selecting research enables its individual queue');
     q('[data-study-queue="'+id+'"]').click();var toggled=b.getState();

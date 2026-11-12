@@ -67,8 +67,10 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
         var now=b.getState();ok(now.lumen===s.lumen-Math.round(n.lumenBase*Math.pow(1.6,5)) && now.shards===s.shards-Math.round(n.shardBase*Math.pow(1.6,5)),'actual debit '+id);
       });
     });
-    function blocked(change,id,label){var s=seed();change(s);install(s);var before=b.getState();ok(t.start(id)===false,'blocked '+label);same(b.getState(),before,'no blocked mutation '+label);}
-    blocked(function(s){s.maxDepthEver=59;},'measuredinquiry','depth59');
+    function readyInquiry(){var s=seed();s.maxDepthEver=150;s.longStudyLevels.wispascend=25;return s;}
+    function blocked(change,id,label){var s=id==='measuredinquiry'?readyInquiry():seed();change(s);install(s);var before=b.getState();ok(t.start(id)===false,'blocked '+label);same(b.getState(),before,'no blocked mutation '+label);}
+    blocked(function(s){s.maxDepthEver=149;},'measuredinquiry','Rift149');
+    blocked(function(s){s.longStudyLevels.wispascend=24;},'measuredinquiry','Wisp Ascendancy24');
     blocked(function(s){s.lumen=29999;},'measuredinquiry','missing Lumen');
     blocked(function(s){s.shards=1199;},'measuredinquiry','missing Shards');
     blocked(function(s){s.activeStudies=[{id:'measuredinquiry',remainingSec:10,totalDurationSec:600,speedMult:1}];},'measuredinquiry','duplicate');
@@ -77,7 +79,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     [10,13].forEach(function(k){blocked(function(s){s.longStudyLevels.measuredinquiry=k;},'measuredinquiry','cap raw'+k);});
     blocked(function(s){s.longStudyLevels.guardmastery=2000;},'guardmastery','unaffordable wide legacy start');
     ok(b.getState().longStudyLevels.guardmastery===2000,'wide affordability does not clamp ownership');
-    var unlocked=seed();unlocked.maxDepthEver=60;install(unlocked);ok(t.start('measuredinquiry'),'depth60 start');
+    var unlocked=readyInquiry();install(unlocked);ok(t.start('measuredinquiry'),'Rift150 and Wisp Ascendancy25 start');
     [1,14,15,39,40,59,60,89,90].forEach(function(depth){var s=seed();s.maxDepthEver=depth;install(s);ok(b.riftStatus.slots()===(depth<15?1:depth<60?2:3),'unchanged slot matrix '+depth);});
     var deeds=seed();Object.keys(deeds.achieved).forEach(function(id){deeds.achieved[id]=false;});deeds.longStudyLevels.measuredinquiry=13;install(deeds);
     ['study1','study25','allstudies'].forEach(function(id){var d=b.forge.deeds().items.find(function(x){return x.id===id;});ok(!d.eligible && d.progress.current===0,'Inquiry excluded from '+id);ok(q('[data-deed-requirement="'+id+'"]').closest('.ach-card').querySelector('.card-details>div').textContent.includes('Measured Inquiry does not count.'),'visible Deed exception '+id);});
@@ -139,6 +141,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   // Actual current Lab controls and observer purity, including small viewports.
   [0,5,10,13].forEach(function(k){
     var s=seed();s.longStudyLevels.measuredinquiry=k;s.studyQueue.measuredinquiry=k>=10;install(s);
+    if(k===0){s.maxDepthEver=150;s.longStudyLevels.wispascend=25;install(s);}
     q('[data-tab="research"]').click();var card=q('[data-study-card="measuredinquiry"]'),button=q('[data-study="measuredinquiry"]'),earned=q('[data-project-effect="measuredinquiry"]');
     ok(earned.textContent.includes((Math.min(k,10)*2)+'% less work'),'earned work percentage '+k);
     ok(!card.textContent.includes('20% faster')&&!card.textContent.includes('80x'),'accurate throughput wording');
@@ -148,7 +151,7 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
     var before=b.getState(),raw=b.rawSave();b.renderLayout();b.refreshAffordability();same(b.getState(),before,'render/affordability pure');ok(b.rawSave()===raw,'render cannot save/complete');
     ok(q('#tab-research').scrollWidth<=q('#tab-research').clientWidth,'Lab no horizontal overflow '+k);
   });
-  var locked=seed();locked.maxDepthEver=59;install(locked);q('[data-tab="research"]').click();ok(!q('[data-study="measuredinquiry"]')&&q('#study-list').textContent.includes('Unlocks at Rift 60'),'locked60 visible without purchase');
+  var locked=seed();locked.maxDepthEver=149;locked.longStudyLevels.wispascend=24;install(locked);q('[data-tab="research"]').click();var lock=q('[data-study-card="measuredinquiry"]');ok(!q('[data-study="measuredinquiry"]')&&lock.textContent.includes('Rift 149 / 150')&&lock.textContent.includes('Wisp Ascendancy Lv. 24 / 25'),'both new requirements visible without purchase');
   var running=seed();running.longStudyLevels.measuredinquiry=5;running.activeStudies=[{id:'measuredinquiry',remainingSec:0,totalDurationSec:6291,speedMult:1}];install(running);
   var before=b.getState();ok(q('[data-study-text="measuredinquiry"]').textContent==='Finishing… · 1x','due UI remains pending');b.renderLayout();same(b.getState(),before,'Finishing render cannot earn');
   ok(q('[data-running-study="measuredinquiry"]').textContent.includes('10% less work')&&!q('[data-running-study="measuredinquiry"]').textContent.includes('Next:'),'earned/pending distinction');

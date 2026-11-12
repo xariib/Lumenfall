@@ -140,9 +140,23 @@ artifact13947541350 SHA256c01a014a2c514304f63988023aa37664af28d01b2a83f9a67f66f1
 Same-source job retry131209982472 is running with unchanged deadlines. No review
 threads; main remains6b990b70 and PR48 is mergeable. No public release yet.
 
-Next: monitor these runs/review threads, fix any required findings, recheck main
-and PR42 overlap, merge only after acceptance, dispatch six integrated-main gates,
-then deliver a verified signed APK/public update. Existing GitHub connector cannot
-dispatch workflows; CLI at root `validation-evidence/github-cli/bin/gh.exe` does.
+Main advanced to `dc78daad51a59748d3faa55d57c4920d7c141d61` while PR CI ran:
+PR42 is now integrated. Merged that exact main into this feature; product code
+merged cleanly. Resolved status by retaining both feature records. Independently
+replayed the combined product against new main before resolving the source-hash
+conflict: all four complete saved states/reward triples/canonical endpoints still
+match (`integrated-replay.json`). Combined source SHA256
+`fe7614f268b02f8b4b5050ce653b997b3e32f1343c5685e8733cdfd562682cc1`.
+New-main Forge/Lab528 checks and source/lifecycle validation pass. No historical
+files are removed; Windows merge needed the existing long-path handling.
+
+Next: finish combined visual acceptance and publish the merge checkpoint, then
+run all PR gates and six required workflow-dispatch gates on that exact commit.
+After they pass, recheck main and any active Android publication, then advance
+main by a normal fast-forward to the tested descendant (no source/test changes).
+This preserves the exact validated commit as the integrated version. If main
+moves, reassess before promotion. Verify PR48 merged; publish signed Android on
+main through its existing integrated-CI gate, then verify public APK/feed/assets.
+Existing GitHub connector cannot dispatch workflows; the installed CLI does.
 Keep this task open until required acceptance is verified.
 [Evidence](../qa/rift-theme-redesign-001/README.md).

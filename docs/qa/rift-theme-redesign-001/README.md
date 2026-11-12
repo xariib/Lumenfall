@@ -40,3 +40,16 @@ failed the obsolete six-region-landmark expectation; the explicitly requested
 single-background contract now replaces that assertion while retaining all
 other layout checks. Required CI restarts after this test-only correction.
 This is self/automated verification, not independent or physical-phone acceptance.
+
+The second Tree attempt on be4ccf99 also timed out at browser startup, including
+`--version`; the contract emitted no DOM/QA result. Its other eight Prism cases
+and mobile/V8 checks passed. `tree-second-failure/` retains raw diagnostics.
+The unchanged-source retry passed the affected Prism step; final job pending.
+
+Main subsequently integrated PR42 at dc78daad. `integrated-replay.json` compares
+the combined Rift product to that exact new main: every complete saved state,
+reward and original canonical endpoint still matches across four eight-hour
+one-second replays. Combined product SHA256 is
+`fe7614f268b02f8b4b5050ce653b997b3e32f1343c5685e8733cdfd562682cc1`.
+The prior Android candidate remains historical evidence for the earlier source;
+final combined-source CI and signed Android acceptance are required.
