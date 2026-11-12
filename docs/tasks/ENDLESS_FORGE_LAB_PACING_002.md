@@ -180,5 +180,27 @@ including528 new-feature checks/four controls, paid boosts/queues, rollback,
 the latest exploit fixes, combat-based Auto-Tap and modest recruitment easing.
 Native Lab access passed890 checks across12 mobile/text/motion profiles with
 normal browser teardown. [Release evidence](../qa/endless-forge-lab-pacing-002/release-20261112/).
+Native Forge acceptance also passed32,040 checks across12 profiles, including
+trusted purchases300→301, red insufficient-resource prices, queue/scroll/reload
+retention and normal exit0. Full receipt is compressed without changes in
+`release-20261112/forge-mobile.json.gz`; two representative screenshots remain.
 The complete diff against current main contains only PR42's product changes
 and their tests/evidence; no PR46 cooldown or unrelated balance change is present.
+
+Published candidate head `6bd4b293fafd930886537486f78357f0ac120cca` combines
+the feature and main6b990b70. Non-publishing signed Android run43210953283
+passed as0.2.108: exact product/assets, established certificate/package,
+both save slots and paid work retained, actual updater and retail Android12
+normal launch. The downloaded APK independently matches its receipts;
+`android-candidate/verification.json` records hash1b3ee595. Eight applicable
+PR workflows are finishing. No independent human review has been claimed.
+
+Prepare a descendant of tested PR head6bd4b293 containing only these durable
+evidence/status additions. It already includes main6b990b70; its game and test
+bytes are identical to the PR candidate. Run all eight workflow-dispatch gates
+on that exact prepared commit while the PR gate finishes. After both sets pass,
+verify main has not moved and fast-forward main to the tested commit, preserving
+all PR ancestry. Verify GitHub recognizes PR42 as merged. This makes the tested
+commit the integrated version without changing bytes after validation; no gate
+is skipped. Then dispatch publishing Android on main, verify public bytes/feed
+and save final evidence. If main moves, stop promotion and reassess integration.

@@ -4,7 +4,9 @@
 current main6b990b70/Android0.2.107. Candidate source `af207697` preserves all
 complete paired replay states and canonical hashes. `focused.json` records
 15 passing suites; `lab-access-summary.json` records the fresh890-check native
-mobile pass. These supersede the older source-specific receipts for this release.
+mobile pass. `forge-mobile-summary.json` and the losslessly compressed full
+receipt record32,040 Forge checks across12 profiles with normal browser exit.
+These supersede the older source-specific receipts for this release.
 PR46 remains closed and excluded. Android/CI delivery continues in the task.
 
 Baseline `a75763d3`, Android 0.2.95. Windows PowerShell, Node 24.20.0,
