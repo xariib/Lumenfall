@@ -150,13 +150,28 @@ match (`integrated-replay.json`). Combined source SHA256
 New-main Forge/Lab528 checks and source/lifecycle validation pass. No historical
 files are removed; Windows merge needed the existing long-path handling.
 
-Next: finish combined visual acceptance and publish the merge checkpoint, then
-run all PR gates and six required workflow-dispatch gates on that exact commit.
-After they pass, recheck main and any active Android publication, then advance
+Combined head `c771cffe11bb7bb63c5641b6e220b3762104d0ca` is published. Full local
+visual1375 assertions/16560 encounter samples and native Rift status pass on
+that combined source (`combined-visual.json`, `combined-local-summary.json`).
+All six workflow-dispatch runs started on this exact commit: premerge43228207047,
+Comet43228215443, Forge43228223908, Lab43228231591, Shared43228239977,
+Tree43228248375. PR checks run separately on the same head; isolated offline,
+Comet, Lab, Tree, progression and Windows/Linux Wisp already pass. Old Tree retry
+43222940095 also passed with unchanged deadlines. Main's Android publication
+43226530073 completed successfully; main remained dc78daad at the last check.
+
+Next: finish all PR and six workflow-dispatch gates. After they pass, recheck
+main and any active Android publication, then advance
 main by a normal fast-forward to the tested descendant (no source/test changes).
 This preserves the exact validated commit as the integrated version. If main
 moves, reassess before promotion. Verify PR48 merged; publish signed Android on
 main through its existing integrated-CI gate, then verify public APK/feed/assets.
 Existing GitHub connector cannot dispatch workflows; the installed CLI does.
 Keep this task open until required acceptance is verified.
+
+Main then advanced to5656cf854b06f7034313dd02ef700c911a2aa701 with the verified
+PR42 Android0.2.110 delivery receipt only. Preserve that documentation in the
+final descendant; product/tests remain unchanged from c771cffe. Supersede the
+running c771cffe gates with new exact-commit PR/release runs after this merge.
+Combined local replay/visual/Forge/Lab evidence remains valid for identical bytes.
 [Evidence](../qa/rift-theme-redesign-001/README.md).
