@@ -1,63 +1,94 @@
 # Rift theme redesign evidence
 
 Feature: [RIFT_THEME_REDESIGN_001](../../tasks/RIFT_THEME_REDESIGN_001.md).
-Product candidate `f1c3c56ade415e25239f53442706014cae4d4cb35defe05f97be17549d7bf83d`.
+[PR48](https://github.com/xariib/Lumenfall/pull/48) is merged at exact tested commit
+`63c63b1a02a68545a1e95cd10d7828e3187f0672`.
+Product SHA256: `ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8`.
 
-- `quick.json`: six main themes, 230 encounters each, appearance retirement,
-  save/backup/reload/Ascend, touch, layout and preserved attack/navigation checks.
-- `independent-replay.json`: baseline main `6b990b70`; exact complete-state and
-  reward parity across four eight-hour windows, each replayed second by second
-  on both sources. The original endpoint hashes are unchanged.
-- `existing-parity.json`: existing chronological online/offline checks.
-- `theme-*.png`: visually inspected 390px previews, original boss/Wisp artwork.
-- `collection.png`: main theme previews and selection UI.
+## Final-source acceptance
 
-Local browser execution required outside-sandbox access after Chromium startup
-was blocked. Node24.22.1; browser path/version is retained in the raw receipts.
-Baseline 122-check visual test ran on root PR42 `6bd4b293`, which has the same
-Rift visuals as main. Gameplay parity instead uses exact main source from Git.
-Full mobile/text/motion suite passes (`visual.json`, 1,375 checks, 12 profiles).
-Existing cosmetics pass (`cosmetics.json`, 170 samples); `320-large-text.png`
-shows the retained legacy Comet decorations, theme label and contained enemy.
-Both causal controls reject their intended defect (`negative-fit.json`,
-`negative-dot.json`); `local-summary.json` records all five successful outcomes.
-Native Rift contract also passes; raw driver results remain under local
-`validation-evidence/rift-redesign/status` until final evidence collection.
-`layout-summary.json` records the corrected single-scene contract across15
-fresh/dense/boss viewport fixtures and the rejected collapse control. Those
-cases use the existing CDP transport on Windows; CI retains its original driver.
+- `release-readiness.json`: all eight applicable PR workflows and six release
+  workflows pass on the exact source. Existing conditional Prism triggers were
+  inapplicable. Includes run URLs, commits and job/step outcomes.
+- `final-pr-scenarios.txt`, `final-release-scenarios.txt`: each broad run passed
+  220 browser executions across 190 deterministic scenarios, zero failures;
+  each separate isolated offline job also passed.
+- `final-visual.json`: 1,399 passing assertions across 12 profiles and 16,560
+  encounter/theme/profile combinations. `final-fit-control.json` and
+  `final-dot-control.json` reject their intended defect, with clean browser exit.
+  `final-shared-log-excerpt.txt` records the exact Shared CI result.
+- `final-quick.json`: 117 assertions, including the rendered Collection guide,
+  removed controls, six main themes, original art and legacy-save preservation.
+- `final-replay.json`: four eight-hour second-by-second comparisons with main
+  `dc78daad` (same game as `5656cf85`); 115,200 calls per source. All complete
+  saved states, rewards and original canonical endpoints match exactly.
 
-Android candidate build43218948236 passes on0501ecdb: version0.2.109/1000109,
-established signing, upgrade/save retention, installed theme touch/appearance,
-in-app updater and retail-image launch. `android-candidate/` retains identity,
-hash, local exact-asset verification, receipts and the inspected installed image.
-This candidate is unpublished; integrated-source delivery remains pending.
+Final Shared artifact 13953381841 from run 43235782089 reports ZIP SHA256
+`22f7b7e0d26efbd08368b48121c295798696af204fb583d7917f8d547e7e8514`.
+Selected raw receipts were downloaded before expiry. Node/browser versions are
+in the receipts; local Node 24.22.1, full visual matrix Chrome 157.0.8103.50.
 
-First Tree CI attempt timed out before both Prism contract/save-reload tests
-produced any DOM/QA result. `tree-first-failure/` retains raw diagnostics. The
-same-source rerun passed with original deadlines unchanged. Main premerge then
-failed the obsolete six-region-landmark expectation; the explicitly requested
-single-background contract now replaces that assertion while retaining all
-other layout checks. Required CI restarts after this test-only correction.
-This is self/automated verification, not independent or physical-phone acceptance.
+## Android delivery
 
-The second Tree attempt on be4ccf99 also timed out at browser startup, including
-`--version`; the contract emitted no DOM/QA result. Its other eight Prism cases
-and mobile/V8 checks passed. `tree-second-failure/` retains raw diagnostics.
-The unchanged-source retry passed the affected Prism step; final job pending.
+Build [43247033269](https://github.com/xariib/Lumenfall/actions/runs/43247033269)
+published integrated `63c63b1a`. `android-publication-dispatch.json` records the
+request. First job 131282364141 failed native touch calibration with an input ANR
+and DevTools 1006 after signing/exact-assets passed. System-app GPU stalls over
+80 seconds and responsiveness warnings were also observed; cause is unproven.
+`android-first-failure/` preserves raw logcat/state bytes (gzip), their hashes,
+instrumentation failure and identity. Its source artifact 13958681266 reports
+ZIP SHA256 `f1358ed10328dd81ab0466cae0bec2ed55aabf758dca7fa2d7b4c6625369f746`.
+Unchanged-source retry 131289364039 passed native save upgrade, updater, retail
+launch and publication. No check or deadline was relaxed; the retry does not
+prove the first failure's cause.
 
-Main subsequently integrated PR42 at dc78daad. `integrated-replay.json` compares
-the combined Rift product to that exact new main: every complete saved state,
-reward and original canonical endpoint still matches across four eight-hour
-one-second replays. Combined product SHA256 is
-`fe7614f268b02f8b4b5050ce653b997b3e32f1343c5685e8733cdfd562682cc1`.
-The prior Android candidate remains historical evidence for the earlier source;
-final combined-source CI and signed Android acceptance are required.
+[Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
+is version code 1000111, package `com.lumenfall.app`, with the established certificate
+recorded in `android-release/identity.txt`. APK SHA256:
+`6bcef5120e943da897c246ceb0608a3e87bb296cd0a28379de56dff71405afac`.
 
-Final self-review corrected one stale Collection & Journal encyclopedia
-paragraph advertising the retired controls. The visual test now checks the
-rendered guide as well. final-quick.json passes117 assertions on product
-ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8.
-This changes help text only. final-replay.json again passes every complete state,
-reward and canonical endpoint before source rebinding. Fresh exact-commit CI
-and the final signed APK remain required.
+- `android-workflow.json`: final successful job/steps and both artifacts. Signed
+  artifact 13958074717 reports ZIP SHA256
+  `75793f10a083467f49f3b2637b67e9e296b361f8169f671787deac9e0b43677f`.
+- `android-release/`: exact downloaded identity, hash, assets, source commit,
+  upgrade/updater/retail/security receipts and selected touch evidence. Both
+  save slots, paid study/progress, UID, origin and Comet entitlements survived.
+  `files.json` gives raw hashes; gzip files preserve native log bytes.
+- `android-release/local-assets.json`: independently verified packaged game,
+  fonts, branding and origin against the integrated checkout.
+- `android-release/public-verification.json`: anonymous versioned/latest APKs
+  match the tested APK byte for byte; checksum, commit and latest update feed
+  match. Verified 12 November at 15:47 UTC.
+- `android-release/installed-rift-looks.png` and `production-normal-launch.png`
+  were visually inspected: one scene, contained original enemy, Ember/Starlight
+  rings, readable controls. Retail launch has no WebView debugger or test runner.
+
+## Earlier evidence and findings
+
+These files are retained as historical evidence and do not replace the final
+source receipts above:
+
+- `quick.json`, `visual.json`, `independent-replay.json`, `integrated-replay.json`,
+  `combined-visual.json`, `combined-local-summary.json`, `combined-forge-lab.json`:
+  earlier candidates and main integration. Canonical replay endpoints unchanged.
+- `cosmetics.json`: 170 samples, contrast, keyboard/touch, reduced motion,
+  save/recovery, Comet decorations. `existing-parity.json` preserves the existing
+  chronological check. `layout-summary.json` covers 15 fresh/dense/boss fixtures
+  and the intended collapse failure. Final CI reran applicable checks.
+- `theme-*.png`, `collection.png`, `320-large-text.png`: visually reviewed local
+  theme/Collection previews; source provenance is in associated receipts.
+- `android-candidate/`: unpublished signed 0.2.109 candidate 43218948236 on `0501ecdb`,
+  predating the Forge/Lab integration. It passed native upgrade, updater and
+  retail launch; it is not the final combined release.
+- `tree-first-failure/`, `tree-second-failure/`: early browser startup timeouts,
+  including Chrome `--version`, with no DOM/QA result. Both unchanged-source
+  retries passed; final-source Tree checks passed. The initial premerge failure
+  was an obsolete six-region-landmark assertion, corrected for the explicitly
+  requested one-scene design while retaining other layout/region/boss checks.
+
+Local Chromium startup required outside-sandbox execution. Baseline quick 122
+ran on root PR42 `6bd4b293`, whose Rift visuals matched original main; exact main
+sources were used for gameplay parity. This is self/automated verification.
+Physical-phone, exact WebView60 DOM, TalkBack, Google Play Protect, independent
+review and human design acceptance remain unverified. The task stays open and
+is not archived.

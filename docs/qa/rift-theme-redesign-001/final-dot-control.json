@@ -1,0 +1,41 @@
+{
+  "status": "fail",
+  "sourceSha256": "03c38dbdeee3e64c52502c91a143120508922738a71dcacc6e3a3b21ea2ac8b6",
+  "node": "v20.20.2",
+  "browser": "google-chrome",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: active dot visible battle\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.rift-visual-unlocks-8633.cjs:39:27)\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.rift-visual-unlocks-8633.cjs:101:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.rift-visual-unlocks-8633.cjs:139:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<path d=\"M12 2c0 6-8 9-7 14a7 7 0 0 0 14 0c1-4-3-7-4-9l-3 6M9 16l3 4 3-4\"></path>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<svg class=\"nav-art\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 7h18l-3 5H7L3 9V7ZM8 12v4l-3 4h14l-3-4v-4M9 4h8v3\"></path></svg>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<svg class=\"nav-art\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M18.8 9.4a7.5 7.5 0 1 1-13.6 0M7.8 8.2 12 4l4.2 4.2M7.8 12.7l4.2-4.2 4.2 4.2\"></path></svg>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<path d=\"M8 3h8v8a4 4 0 0 1-8 0ZM8 5H3v3a5 5 0 0 0 5 5M16 5h5v3a5 5 0 0 1-5 5M12 15v5M7 22h10M9 20h6\"></path>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<span class=\"nav-icon\"><svg class=\"nav-art\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 20V11a6 8 0 0 1 12 0v9M3 21h18M9 20v-8a3 4 0 0 1 6 0v8M12 3V1\"></path></svg></span>",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 52,
+  "stderr": "[8648:8671:1112/142636.115818:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8671:1112/142636.116459:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8671:1112/142636.116500:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8671:1112/142636.120220:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8671:1112/142636.154755:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8648:1112/142636.220786:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8648:1112/142636.220880:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8648:1112/142636.220971:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8648:1112/142636.222281:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8671:1112/142636.223043:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8671:1112/142636.223216:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8671:1112/142636.223225:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8648:1112/142636.265134:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8648:1112/142636.267198:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8648:1112/142636.267248:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8671:1112/142636.267557:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8648:1112/142636.345830:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files\n[8648:8648:1112/142636.348816:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8671:1112/142636.349175:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8648:1112/142636.373315:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[8648:8671:1112/142636.373895:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[8648:8648:1112/142636.424078:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}
