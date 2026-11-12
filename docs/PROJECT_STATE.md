@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
+keeps PR42's Forge/Lab proposal open and closes PR46 without merging. The
+automatic-only reset delay strongly favors repetitive manual reward farming
+in the controlled comparison, contrary to the mostly-idle direction. The
+underlying rapid-repeat economy issue remains open; released gameplay is unchanged.
+
 12 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
 released as [Android 0.2.107](https://github.com/xariib/Lumenfall/releases/tag/android-1000107) through PR47.
 It closes untrusted-action timing bypasses and a paid Lab work helper defect,
@@ -9,7 +15,8 @@ Signed save-preserving upgrade, in-app update, retail-image normal launch and
 anonymous public APK/assets/feed verification passed. Thirty-day idle results
 and [delivery evidence](qa/exploit-balance-hunt-001/README.md) are saved.
 Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
-local saves remain a trust boundary. PR42/46 remain separate work.
+local saves remain a trust boundary. PR42 remains separate work; PR46's
+subsequent closure is recorded above.
 
 9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
 the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
