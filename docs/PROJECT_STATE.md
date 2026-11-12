@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) is in progress
+on an isolated branch. It removes the separate background/Wisp/enemy packs,
+adds one Rift scene and strengthens six main themes with contained enemy art.
+Quick visual and full saved-state replay checks pass; full CI and Android pending.
+
 12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
 keeps PR42's Forge/Lab proposal open and closes PR46 without merging. The
 automatic-only reset delay strongly favors repetitive manual reward farming

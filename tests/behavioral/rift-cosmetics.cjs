@@ -114,7 +114,9 @@ const setup = `window.cosmeticQa = {
     a(document.querySelector('#tab-battle .stage').dataset.riftTheme===id,'selected effect applied to landscape');
     var names={default:'Starlight',ember:'Ember Veil',void:'Void Bloom',aurora:'Aurora Pulse',solar:'Solar Crown',radiant:'Radiant'};
     a(caption.textContent===${JSON.stringify(labelBefore ? '' : 'Theme: ')}+names[id],'visible cosmetic theme label');
-    a(getComputedStyle(caption).color==='rgb(241, 237, 255)' && getComputedStyle(caption).backgroundColor==='rgb(16, 24, 43)','opaque readable caption');
+    var color=getComputedStyle(caption).color.match(/[\\d.]+/g).slice(0,3).map(Number);
+    function luminance(rgb){return rgb.map(function(v){v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4);}).reduce(function(sum,v,i){return sum+v*[.2126,.7152,.0722][i];},0);}
+    a(getComputedStyle(caption).backgroundColor==='rgb(16, 24, 43)' && (luminance(color)+.05)/(luminance([16,24,43])+.05)>=4.5,'opaque readable caption with theme color contrast');
     a(halo.getAttribute('aria-hidden')==='true' && getComputedStyle(halo).pointerEvents==='none','decorations cannot capture taps or screen reader focus');
     ['trail','crest'].forEach(function(slot){
       var decoration=stage.querySelector('.comet-'+slot),style=getComputedStyle(decoration);
@@ -123,7 +125,7 @@ const setup = `window.cosmeticQa = {
       if(reduced) a(style.animationName==='none','Comet '+slot+' reduced motion remains static');
     });
     var visible=Array.from(halo.querySelectorAll('.cosmetic-pattern')).filter(function(g){return getComputedStyle(g).display!=='none';});
-    a(visible.length===(id==='default'?0:1),'one visible pattern for selected theme');
+    a(visible.length===1,'one visible pattern for selected theme');
     if(visible.length){
       a(visible[0].classList.contains('cosmetic-'+id),'correct pattern');
       a(visible[0].getBoundingClientRect().width>60,'aura has rendered geometry');

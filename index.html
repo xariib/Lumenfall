@@ -2328,11 +2328,11 @@
   /* RIFT_COSMETICS_001: SVG/rgba fallbacks also render on WebView 60. */
   .rift-cosmetic-aura{position:absolute;top:0;right:0;bottom:0;left:0;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
   .rift-cosmetic-aura .cosmetic-pattern{display:none;}
-  [data-rift-theme="ember"] .cosmetic-ember,[data-rift-theme="void"] .cosmetic-void,
+  [data-rift-theme="default"] .cosmetic-default,[data-rift-theme="ember"] .cosmetic-ember,[data-rift-theme="void"] .cosmetic-void,
   [data-rift-theme="aurora"] .cosmetic-aurora,[data-rift-theme="solar"] .cosmetic-solar,
   [data-rift-theme="radiant"] .cosmetic-radiant{display:inline;}
-  #tab-battle .enemy-stage[data-rift-theme]:not([data-rift-theme="default"])::before,
-  #tab-battle .enemy-stage[data-rift-theme]:not([data-rift-theme="default"])::after{display:none;}
+  #tab-battle .enemy-stage[data-rift-theme]::before,
+  #tab-battle .enemy-stage[data-rift-theme]::after{display:none;}
   #tab-battle .enemy-stage .enemy-glyph{position:relative;z-index:2;}
   .rift-cosmetic-name{align-self:center;max-width:100%;padding:1px 7px;border:1px solid #61718d;border-radius:6px;background:#10182b;color:#f1edff;font:600 10px/14px 'Manrope',sans-serif;white-space:nowrap;pointer-events:none;}
   .cosmetic-aurora{animation:riftCosmeticPulse 5s ease-in-out infinite;}
@@ -2344,34 +2344,11 @@
   .theme-info .name,.theme-info .desc,.theme-active-tag{word-wrap:break-word;overflow-wrap:break-word;}
   .theme-active-tag{flex:none;max-width:100%;white-space:normal;line-height:1.4;}
   @media(prefers-reduced-motion:reduce){.cosmetic-aurora,.cosmetic-radiant{animation:none;opacity:1;}}
-  /* Full-field artwork stays behind every combat control. */
-  #tab-battle .stage{isolation:isolate;}
-  #tab-battle .rift-backdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;overflow:hidden;border-radius:inherit;pointer-events:none;background:#0b1528;}
-  .rift-backdrop svg{display:block;width:100%;height:100%;}
-  .rift-backdrop::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,rgba(6,12,27,.52),transparent 35%,rgba(6,12,27,.15) 65%,rgba(6,12,27,.8));}
-  #tab-battle .stage[data-backdrop]:not([data-backdrop="default"]) .rift-landscape{visibility:hidden;}
-  .scene-weather{animation:sceneDrift 9s ease-in-out infinite alternate;}
-  .scene-ribbons{animation:sceneSway 12s ease-in-out infinite alternate;transform-origin:200px 120px;}
-  @keyframes sceneDrift{from{transform:translateY(12px);opacity:.45;}to{transform:translateY(-18px);opacity:.9;}}
-  @keyframes sceneSway{from{transform:translateX(-12px) scaleY(.85);opacity:.4;}to{transform:translateX(12px) scaleY(1.1);opacity:.8;}}
-  [data-scene-motion="still"] .scene-weather,[data-scene-motion="still"] .scene-ribbons{animation:none;}
-  #tab-battle .stage[data-scene-motion="still"] .rift-dust i{animation:none;opacity:.35;}
-  .look-section{margin:18px 0 10px;font-size:.9rem;color:#e4e9f5;}
-  .look-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
-  .look-card{min-width:0;min-height:44px;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:0;overflow:hidden;border:1px solid #3b4b66;border-radius:13px;background:#131f33;color:#e4e9f5;}
-  .look-card[aria-pressed="true"]{border-color:#efd28c;box-shadow:inset 0 0 0 1px #efd28c;}
-  .look-preview{display:block;width:100%;height:100px;background:#111b30;pointer-events:none;color:#a9dce9;--creature-color:#446779;--creature-rim:#b1e6e3;--creature-eye:#ffdf9b;}
-  .look-preview svg{width:100%;height:100%;display:block;}
-  .look-preview .wisp-portrait{width:100%;height:100%;padding:14px;filter:none;}
-  .look-card.locked-look .look-preview{opacity:.55;}
-  .look-copy{display:block;padding:10px;line-height:1.5;font-size:.75rem;overflow-wrap:break-word;}
-  .look-copy strong,.look-copy small{display:block;}
-  .look-copy strong{font-size:.8125rem;color:#f3ead2;}
-  .look-copy small{font-size:.6875rem;color:#bbc7db;margin-top:5px;}
-  .look-state{display:block;margin-top:8px;color:#f3d697;font-weight:700;}
-  .look-motion{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px;border:1px solid #3b4b66;border-radius:12px;background:#131f33;font-size:.8125rem;line-height:1.5;}
-  .look-motion button{min-height:44px;min-width:72px;padding:8px 12px;flex:none;border:1px solid #7f92b3;border-radius:9px;background:#25344f;color:#f4e2af;font:600 .8125rem/1.4 'Manrope',sans-serif;}
-  .look-motion small{display:block;color:#bbc7db;}
+  /* One static Rift landscape; theme lighting is independent of regional progression. */
+  #tab-battle .stage{isolation:isolate;--rift-light:#9ebfff;--rift-shade:#6e87d4;}
+  #tab-battle .stage .rift-landscape{position:absolute;top:0;right:0;bottom:0;left:0;inset:0;z-index:-1;overflow:hidden;border-radius:inherit;pointer-events:none;}
+  .rift-backdrop svg{display:block;width:100%;height:100%;opacity:1;}
+  .rift-backdrop::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,rgba(6,12,27,.45),transparent 35%,transparent 70%,rgba(6,12,27,.7));}
   .stage .combat-vfx{z-index:5;}
   .stage .combat-vfx.vfx-shot{width:13px;height:13px;box-shadow:0 0 5px #fff5d5,0 0 13px var(--vfx-color);animation-duration:.7s;}
   .stage .vfx-shot.shot-ember{width:15px;height:20px;}
@@ -2383,7 +2360,6 @@
   /* Clip decorative impact phases, including Void, without clipping any copy. */
   .combat-impact-layer{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;overflow:hidden;pointer-events:none;border-radius:inherit;}
   .rift-projectile-layer{position:absolute;top:0;right:0;bottom:0;left:0;z-index:5;overflow:hidden;pointer-events:none;}
-  @media(max-width:350px){.look-grid{gap:8px;}.look-copy{padding:8px;}}
   @media(prefers-reduced-motion:reduce){.scene-weather,.scene-ribbons{animation:none!important;}}
   /* Comet controls live in Deeds; Rift retains its fixed viewport. */
   #comet-commands{position:relative;z-index:2;flex:none;min-width:0;margin:10px 0;padding:12px;border:1px solid #78699a;border-radius:12px;background:#151b30;color:#f0effb;}
@@ -2515,6 +2491,21 @@
   .study-speed-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px;margin-top:14px;align-items:stretch;}
   #study-list .study-speed-actions>button{min-height:44px;width:100%;margin:0;padding:8px;border:1px solid #73698e;border-radius:9px;font-size:.8rem;}
   #study-list .study-speed-actions .study-boost-start,#study-list .study-speed-actions .study-boost-active{height:100%;margin:0;padding:8px;font-size:.8rem;}
+
+  /* Both SVGs use the same centered square, even on WebView 60 without aspect-ratio. */
+  #tab-battle .stage .enemy-glyph,#tab-battle .stage .enemy-glyph.boss{width:62%;height:62%;max-width:none;max-height:none;aspect-ratio:auto;margin:0;animation:none;}
+  .enemy-glyph .creature-art{overflow:visible;}
+  .enemy-glyph .creature-art>use{animation:riftCreatureFloat 4s ease-in-out infinite;}
+  @keyframes riftCreatureFloat{0%,100%{transform:translateY(1px);}50%{transform:translateY(-2px);}}
+  #tab-battle .rift-cosmetic-name{border-color:var(--rift-light);color:var(--rift-light);background:#10182b;padding:3px 10px;border-radius:12px;}
+  .theme-card .theme-preview{display:block;flex:0 0 68px;width:68px;height:68px;pointer-events:none;}
+  .theme-preview svg{display:block;width:100%;height:100%;}
+  .theme-card.locked-node .theme-preview{opacity:.55;}
+  #theme-list .theme-card{gap:12px;}
+  #theme-list .theme-card .theme-info{flex:1 1 120px;}
+  #theme-list .theme-card .name{font-size:.875rem;}
+  #theme-list .theme-card .desc{line-height:1.5;}
+  @media(prefers-reduced-motion:reduce){.enemy-glyph .creature-art>use{animation:none;}}
 </style>
 </head>
 <body>
@@ -3045,6 +3036,32 @@
 </div></div>
     <section class="tab-panel active" id="tab-battle">
       <div class="card stage">
+        <div class="rift-landscape rift-backdrop" data-scene="rift" aria-hidden="true">
+          <svg viewBox="0 0 400 660" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <defs>
+              <linearGradient id="rift-night" x2="0" y2="1"><stop stop-color="#0c1428"/><stop offset=".5" stop-color="#18273f"/><stop offset="1" stop-color="#080f20"/></linearGradient>
+              <radialGradient id="rift-horizon"><stop stop-color="var(--rift-shade)" stop-opacity=".28"/><stop offset="1" stop-color="var(--rift-shade)" stop-opacity="0"/></radialGradient>
+              <linearGradient id="rift-path" x2="0" y2="1"><stop stop-color="var(--rift-light)" stop-opacity=".28"/><stop offset="1" stop-color="var(--rift-light)" stop-opacity="0"/></linearGradient>
+            </defs>
+            <path fill="url(#rift-night)" d="M0 0H400V660H0Z"/>
+            <ellipse cx="200" cy="340" rx="210" ry="255" fill="url(#rift-horizon)"/>
+            <g fill="var(--rift-light)" opacity=".55"><circle cx="58" cy="131" r="1.3"/><circle cx="328" cy="169" r="1.6"/><circle cx="104" cy="198" r="1"/><circle cx="281" cy="95" r="1"/><circle cx="355" cy="276" r="1.2"/><circle cx="42" cy="324" r="1.2"/><circle cx="298" cy="247" r=".8"/><circle cx="125" cy="107" r=".8"/></g>
+            <g fill="none" stroke="var(--rift-light)" opacity=".13"><path d="m58 131 46 67 21-91m203 62-30 78 57 29"/><path d="M200 188v-18m-9 9h18"/></g>
+            <path d="m0 379 43-53 28 48 38-19 36 39 55-14 44 24 57-50 24 11 40-48 35 47V660H0Z" fill="#1c2b42"/>
+            <path d="m0 455 52-39 40 24 49-16 59 34 48-25 47 9 46-31 59 34V660H0Z" fill="#111e33"/>
+            <g fill="#142139" stroke="#3d4d65" stroke-width="1.2">
+              <path d="M0 231 27 206 48 220 43 406 64 487 0 514Z"/><path d="m18 224 10-18 20 14-5 186-17 20Z" fill="#23334b"/>
+              <path d="M400 251 373 217 351 229 357 399 334 481 400 514Z"/><path d="m373 217-22 12 6 170 18 26 7-178Z" fill="#23334b"/>
+              <path d="m41 191 10-39 18 20-8 32Z M351 193l-9-29-16 17 8 24Z"/>
+            </g>
+            <g fill="none" stroke="var(--rift-light)" opacity=".48"><path d="m27 240-2 93 9 18-5 48M372 249l2 65-8 23 7 54"/><path d="m23 278 5-7 5 7-5 7Z m346 10 5-7 5 7-5 7Z"/></g>
+            <g fill="#25364d" stroke="#53617a" stroke-width=".7"><path d="m84 383 24-7 18 9-25 7Z m17 9 8 27 17-34"/><path d="m278 405 24-9 25 8-22 10Z m27 9-8 24-19-33"/></g>
+            <path d="M184 477v-31q0-22 16-28 16 6 16 28v31h-7v-30q0-13-9-18-9 5-9 18v30Z" fill="#38475e" stroke="var(--rift-light)" opacity=".7"/>
+            <path d="M189 476h22l90 184H99Z" fill="url(#rift-path)"/>
+            <path d="M0 551 56 504 115 520 150 494 185 481 160 516 141 529 99 660H0Z M400 553l-64-47-49 18-38-28-34-15 23 36 22 17 41 126h99Z" fill="#0b1426" stroke="#2a3a51"/>
+            <g fill="none" stroke="var(--rift-light)" opacity=".2"><path d="m183 487-56 173m90-173 56 173M176 505h48m-56 24h64m-75 34h86m-101 47h116"/></g>
+          </svg>
+        </div>
         <div class="rift-heading"><div class="rift-navigation" role="group" aria-label="Rift navigation">
           <button type="button" class="rift-step" id="rift-back-one" aria-label="Previous farming Rift" title="Previous farming Rift; boss Rifts are skipped"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg></button>
           <div class="depth-label" id="depth-label">Rift 1</div>
@@ -3056,76 +3073,7 @@
         </div>
         <span class="rift-cosmetic-name" id="rift-cosmetic-name" aria-hidden="true">Theme: Starlight</span></div>
 
-        <div class="battle-row"><div class="rift-landscape" aria-hidden="true">
- <svg viewBox="0 0 400 440" preserveAspectRatio="xMidYMid slice">
- <defs><linearGradient id="rift-mist" x2="0" y2="1"><stop stop-color="var(--land-light)" stop-opacity=".04"/><stop offset=".6" stop-color="var(--land-light)" stop-opacity=".18"/><stop offset="1" stop-color="#080d19" stop-opacity="0"/></linearGradient></defs>
- <circle cx="200" cy="132" r="96" fill="var(--land-light)" opacity=".025"/>
- <circle cx="200" cy="132" r="78" fill="none" stroke="var(--land-light)" opacity=".12"/>
- <path d="M0 221 42 163 76 208 121 127 173 204 219 156 269 198 326 118 400 214V440H0Z" fill="var(--land-far)"/>
- <g class="rift-architecture" fill="var(--land-stone)" stroke="var(--land-edge)" stroke-width="1">
- <path d="M41 349 49 133 62 120 78 129 85 343Z M46 144H80 M47 161H80 M52 178H76"/>
- <path d="M316 348 321 142 334 132 352 146 361 354Z M320 163H353 M321 180H354 M328 194H349"/>
- <path d="M84 331 90 97 116 70 136 70 128 98 111 115 107 331Z M267 335 271 116 252 95 255 70 281 80 302 106 309 337Z"/>
- <path d="M101 112 Q199 -8 288 113 L277 117 Q198 20 113 121Z"/>
- <path d="M113 115 Q199 20 276 115L298 350H90Z" fill="url(#rift-mist)"/>
- <path d="M111 115 Q199 18 278 115" fill="none" stroke="var(--land-light)" stroke-width="2" opacity=".6"/>
- <g fill="var(--land-light)" opacity=".7"><path d="M63 172 67 180 63 188 59 180Z M337 185 341 193 337 201 333 193Z M194 55 199 47 204 55 199 63Z"/></g>
- </g>
- <g class="region-landmark region-verge" fill="var(--land-stone)" stroke="var(--land-edge)" stroke-width="1">
- <path d="M41 349 49 133 62 120 78 129 85 343Z M46 144H80 M47 161H80 M52 178H76"/>
- <path d="M316 348 321 142 334 132 352 146 361 354Z M320 163H353 M321 180H354 M328 194H349"/>
- <path d="M84 331 90 97 116 70 136 70 128 98 111 115 107 331Z M267 335 271 116 252 95 255 70 281 80 302 106 309 337Z"/>
- <path d="M101 112 Q199 -8 288 113 L277 117 Q198 20 113 121Z"/>
- <path d="M113 115 Q199 20 276 115L298 350H90Z" fill="url(#rift-mist)"/>
- <path d="M111 115 Q199 18 278 115" fill="none" stroke="var(--land-light)" stroke-width="2" opacity=".6"/>
- <g fill="var(--land-light)" opacity=".7"><path d="M63 172 67 180 63 188 59 180Z M337 185 341 193 337 201 333 193Z M194 55 199 47 204 55 199 63Z"/></g>
- </g>
- <g class="region-landmark region-canopy" fill="var(--land-stone)" stroke="var(--land-edge)" stroke-width="2">
- <path d="M0 360 32 251 39 137 13 82 0 75V24L57 75 76 130 65 256 90 353Z M400 361 368 266 355 154 378 92 400 66V17L344 66 319 147 338 276 307 363Z"/>
- <path d="M48 174 100 121 148 111 182 69 166 121 113 142 57 222Z M346 177 286 128 254 117 221 57 239 132 288 155 341 221Z"/>
- <path d="M60 100 112 56 170 42 M338 93 297 44 245 26 M24 300 65 282 96 304 M372 307 337 291 308 320" fill="none" stroke="var(--land-light)" opacity=".45"/>
- <path d="M84 73 104 39 119 64 103 94Z M279 62 296 22 311 51 298 77Z" fill="var(--land-light)" stroke="none" opacity=".35"/>
- </g>
- <g class="region-landmark region-glass" fill="var(--land-stone)" stroke="var(--land-light)" stroke-opacity=".55">
- <path d="M9 337 24 126 72 55 93 192 71 349Z M71 349 97 220 126 163 143 284 127 358Z M265 353 279 194 321 62 348 175 363 354Z M348 354 367 220 393 157 400 352Z"/>
- <path d="M72 55 60 254 71 349 24 126Z M321 62 309 246 265 353 279 194Z" fill="var(--land-light)" opacity=".13"/>
- <path d="M125 59 160 31 181 76 157 114Z M214 90 247 55 267 106 239 134Z" fill="var(--land-far)"/>
- <path d="M157 114 160 31 M239 134 247 55 M9 337 60 254 M309 246 363 354" fill="none"/>
- </g>
- <g class="region-landmark region-observatory" fill="none" stroke="var(--land-light)">
- <circle cx="200" cy="157" r="120" stroke-width="3" opacity=".4"/>
- <circle cx="200" cy="157" r="110" stroke-dasharray="2 13" opacity=".6"/>
- <ellipse cx="200" cy="157" rx="126" ry="44" transform="rotate(-35 200 157)" opacity=".45"/>
- <path d="M200 25V48 M200 267V291 M65 157H89 M311 157H335" stroke-width="3" opacity=".6"/>
- <path d="M16 350V210L39 181 64 211V344 M335 346V211L359 180 386 210V353" fill="var(--land-stone)" stroke="var(--land-edge)"/>
- <path d="M0 312Q100 288 200 312T400 312 M0 333Q100 309 200 333T400 333" opacity=".25"/>
- </g>
- <g class="region-landmark region-basilica" fill="var(--land-stone)" stroke="var(--land-edge)" stroke-width="2">
- <path d="M17 355V130L51 31 86 130V350 M315 352V130L349 31 383 130V356 M91 351V140Q114 57 144 39L139 79Q116 111 116 151V351 M284 351V151Q284 111 261 79L256 39Q286 57 309 140V351"/>
- <path d="M32 328V143L51 86 70 143V328 M331 328V143L349 86 369 143V328" fill="#090d20"/>
- <path d="M112 150Q142 57 200 19Q258 57 288 150 M137 144Q157 78 200 47Q243 78 263 144" fill="none" stroke="var(--land-light)" opacity=".45"/>
- <path d="M200 63 214 87 200 112 186 87Z" fill="var(--land-light)" opacity=".5"/>
- </g>
- <g class="region-landmark region-crown" stroke="var(--land-light)">
- <circle cx="200" cy="106" r="69" fill="#100e20" stroke-width="3" opacity=".8"/>
- <path d="M124 107A76 76 0 0 1 276 107 M200 17V2 M137 39 127 24 M263 39 273 24" fill="none" opacity=".6"/>
- <path d="M0 245 34 212 92 230 67 252 43 294Z M307 240 355 211 400 247 369 286 343 262Z M65 135 96 112 123 129 104 150 87 185Z M284 150 311 127 340 144 318 185Z" fill="var(--land-stone)" stroke="var(--land-edge)"/>
- <path d="M17 241 43 235 64 244 M329 237 355 228 379 246 M91 139 104 132 M303 153 318 148" fill="none" opacity=".6"/>
- </g>
- <g class="zone-prop zone-stars" fill="var(--land-light)" opacity=".6"><path d="M24 93 27 103 37 106 27 109 24 119 21 109 11 106 21 103Z M366 71 368 78 375 80 368 82 366 89 364 82 357 80 364 78Z"/><circle cx="148" cy="34" r="1.3"/><circle cx="238" cy="22" r="1"/></g>
- <g class="zone-prop zone-roots" fill="none" stroke="var(--land-edge)" stroke-width="3" opacity=".65"><path d="M20 359 37 281 25 223 29 182 M36 279 61 255 64 211 M26 224 9 206 M379 359 367 293 377 244 369 202 M368 293 343 265 336 230"/></g>
- <g class="zone-prop zone-crystals" fill="var(--land-far)" stroke="var(--land-light)" stroke-opacity=".6"><path d="M16 342 9 280 29 244 40 300 31 347Z M37 350 40 305 58 279 60 333 48 354Z M337 345 343 288 361 257 372 318 356 353Z M370 357 372 324 390 300 391 347Z"/><path d="M29 244 27 335 M361 257 355 342"/></g>
- <g class="zone-prop zone-orbits" fill="none" stroke="var(--land-light)" opacity=".25"><ellipse cx="200" cy="140" rx="104" ry="36" transform="rotate(-32 200 140)"/><ellipse cx="200" cy="140" rx="104" ry="36" transform="rotate(32 200 140)"/><circle cx="200" cy="140" r="104" stroke-dasharray="2 9"/></g>
- <g class="zone-prop zone-spires" fill="var(--land-stone)" stroke="var(--land-edge)"><path d="M8 344 13 179 26 146 40 180 43 342Z M356 347 360 184 375 149 389 184 398 350Z"/><path d="M21 325V202L27 190 33 203V325 M370 326V208L377 196 384 208V329" fill="#070e20"/></g>
- <g class="zone-prop zone-crown" fill="var(--land-far)" stroke="var(--land-light)" stroke-opacity=".5"><path d="M133 52 120 22 160 40 200 5 240 40 280 22 267 52 232 66 168 66Z"/><path d="M200 16 207 30 200 44 193 30Z" fill="var(--land-light)"/></g>
- <path d="M0 359 72 327 115 350 185 333 235 347 318 321 400 357V440H0Z" fill="#080f1e"/>
- <path d="M0 385 86 353 143 367 199 349 276 371 322 347 400 382" fill="none" stroke="var(--land-edge)" opacity=".5"/>
- <ellipse cx="200" cy="348" rx="100" ry="23" fill="#080c19" stroke="var(--land-edge)"/>
- <ellipse cx="200" cy="345" rx="84" ry="17" fill="none" stroke="var(--land-light)" opacity=".35"/>
- <path d="M115 344 143 344 M258 344 286 344 M199 327V334 M199 357V364" stroke="var(--land-light)" opacity=".7"/>
- </svg><div class="rift-dust"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-</div>
-
+        <div class="battle-row">
           <div class="enemy-stage-wrap">
             <button type="button" class="enemy-stage" id="enemy-stage" aria-label="Tap enemy to attack" aria-describedby="enemy-name hp-text"><span class="guardian-label">Tap enemy to attack</span>
             <span class="enemy-readout">
@@ -3137,42 +3085,18 @@
             </span>
               <span class="enemy-visuals"><span class="comet-trail" aria-hidden="true"></span><span class="comet-crest" aria-hidden="true">✦</span>
               <svg class="rift-cosmetic-aura" viewBox="0 0 320 320" aria-hidden="true" focusable="false">
-                <defs>
-                  <radialGradient id="cosmetic-ember-glow"><stop stop-color="#ff9d53" stop-opacity=".32"/><stop offset="1" stop-color="#ff9d53" stop-opacity="0"/></radialGradient>
-                  <radialGradient id="cosmetic-void-glow"><stop stop-color="#ad79f2" stop-opacity=".32"/><stop offset="1" stop-color="#ad79f2" stop-opacity="0"/></radialGradient>
-                  <radialGradient id="cosmetic-solar-glow"><stop stop-color="#ffe195" stop-opacity=".28"/><stop offset="1" stop-color="#ffe195" stop-opacity="0"/></radialGradient>
-                </defs>
-                <g class="cosmetic-pattern cosmetic-ember" fill="none" stroke="#ffb878">
-                  <circle cx="160" cy="160" r="148" fill="url(#cosmetic-ember-glow)" stroke="none"/>
-                  <circle cx="160" cy="160" r="119" stroke-width="3" stroke-dasharray="26 10 4 10"/>
-                  <circle cx="160" cy="160" r="129" stroke-width="1" opacity=".5"/>
-                </g>
-                <g class="cosmetic-pattern cosmetic-void" fill="none" stroke="#c49bff">
-                  <circle cx="160" cy="160" r="150" fill="url(#cosmetic-void-glow)" stroke="none"/>
-                  <path d="M160 24 278 92 278 228 160 296 42 228 42 92Z" stroke-width="2"/>
-                  <path d="M160 41 263 101 263 219 160 279 57 219 57 101Z" stroke-width="1" opacity=".5"/>
-                  <path d="M160 14 166 24 160 34 154 24ZM160 286 166 296 160 306 154 296Z" fill="#c49bff"/>
-                </g>
-                <g class="cosmetic-pattern cosmetic-aurora" fill="none" stroke-width="4">
-                  <path d="M35 181C0 74 97 14 184 39S318 143 282 225" stroke="#8cf0dc"/>
-                  <path d="M285 139C320 246 223 306 136 281S2 177 38 95" stroke="#f1a1d2"/>
-                  <circle cx="160" cy="160" r="113" stroke="#b8dbe8" stroke-width="1" opacity=".55"/>
-                </g>
-                <g class="cosmetic-pattern cosmetic-solar" fill="none" stroke="#ffe39a">
-                  <circle cx="160" cy="160" r="150" fill="url(#cosmetic-solar-glow)" stroke="none"/>
-                  <circle cx="160" cy="160" r="115" stroke-width="3"/>
-                  <circle cx="160" cy="160" r="133" stroke-width="14" stroke-dasharray="2 33"/>
-                  <path d="M132 35 138 16 160 31 182 16 188 35" stroke-width="3"/>
-                </g>
-                <g class="cosmetic-pattern cosmetic-radiant" fill="none" stroke-width="5">
-                  <path d="M160 35A125 125 0 0 1 268 97" stroke="#f0d77b"/>
-                  <path d="M273 108A125 125 0 0 1 273 212" stroke="#c9b8f0"/>
-                  <path d="M268 223A125 125 0 0 1 166 285" stroke="#eaa9dc"/>
-                  <path d="M154 285A125 125 0 0 1 52 223" stroke="#8cbce8"/>
-                  <path d="M47 212A125 125 0 0 1 47 108" stroke="#5ee6d0"/>
-                  <path d="M52 97A125 125 0 0 1 148 35" stroke="#ffa17b"/>
-                  <circle cx="160" cy="160" r="138" stroke="#ded7fb" stroke-width="1" opacity=".55"/>
-                </g>
+                <defs><symbol id="rift-ring-default" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-default"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#718fe9" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#b9d2ff"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-default)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><circle cx="160" cy="160" r="145" stroke="#718fe9" stroke-width="1" stroke-dasharray="3 9"/><g transform="rotate(0 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(45 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(90 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(135 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(180 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(225 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(270 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(315 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><path d="M46 93 66 57 106 32M274 227l-20 36-40 25" stroke="#b9d2ff"/></g></symbol>
+<symbol id="rift-ring-ember" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-ember"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#ff7848" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#ffcb8b"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-ember)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><circle cx="160" cy="160" r="143" stroke="#ff7848" stroke-width="6" stroke-dasharray="32 9 5 9"/><g transform="rotate(0 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(30 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(60 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(90 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(120 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(150 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(180 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(210 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(240 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(270 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(300 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(330 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g></g></symbol>
+<symbol id="rift-ring-void" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-void"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#9c64ed" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#dfc1ff"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-void)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><path d="M160 5 294 82 294 238 160 315 26 238 26 82Z" stroke="#9c64ed" stroke-width="1.5" opacity=".7"/><g transform="rotate(0 160 160)"><path d="m160 4 9 17-9 19-9-19Z" fill="#392253" stroke="#dfc1ff" stroke-width="1.5"/><path d="m160 5 1 30 7-14Z" fill="#9c64ed" stroke="none"/></g><g transform="rotate(60 160 160)"><path d="m160 4 9 17-9 19-9-19Z" fill="#392253" stroke="#dfc1ff" stroke-width="1.5"/><path d="m160 5 1 30 7-14Z" fill="#9c64ed" stroke="none"/></g><g transform="rotate(120 160 160)"><path d="m160 4 9 17-9 19-9-19Z" fill="#392253" stroke="#dfc1ff" stroke-width="1.5"/><path d="m160 5 1 30 7-14Z" fill="#9c64ed" stroke="none"/></g><g transform="rotate(180 160 160)"><path d="m160 4 9 17-9 19-9-19Z" fill="#392253" stroke="#dfc1ff" stroke-width="1.5"/><path d="m160 5 1 30 7-14Z" fill="#9c64ed" stroke="none"/></g><g transform="rotate(240 160 160)"><path d="m160 4 9 17-9 19-9-19Z" fill="#392253" stroke="#dfc1ff" stroke-width="1.5"/><path d="m160 5 1 30 7-14Z" fill="#9c64ed" stroke="none"/></g><g transform="rotate(300 160 160)"><path d="m160 4 9 17-9 19-9-19Z" fill="#392253" stroke="#dfc1ff" stroke-width="1.5"/><path d="m160 5 1 30 7-14Z" fill="#9c64ed" stroke="none"/></g></g></symbol>
+<symbol id="rift-ring-aurora" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-aurora"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#eea5d7" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#abffeb"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-aurora)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><path d="M30 207C-10 98 81 0 183 19S327 127 293 217" stroke="#8cefd8" stroke-width="5"/><path d="M290 113C330 222 239 320 137 301S-7 193 27 103" stroke="#f3a9d9" stroke-width="5"/><circle cx="160" cy="160" r="145" stroke="#a8e7ef" stroke-dasharray="2 15" stroke-width="2"/></g></symbol>
+<symbol id="rift-ring-solar" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-solar"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#edb64f" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#fff1ba"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-solar)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><g transform="rotate(0 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(22.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(45 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(67.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(90 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(112.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(135 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(157.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(180 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(202.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(225 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(247.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(270 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(292.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(315 160 160)"><path d="M160 6v16" stroke="#edb64f" stroke-width="3"/></g><g transform="rotate(337.5 160 160)"><path d="M160 6v9" stroke="#edb64f" stroke-width="3"/></g><circle cx="160" cy="160" r="144" stroke="#edb64f" stroke-width="1.5"/><path d="m139 29-5-18 16 10 10-16 10 16 16-10-5 18Z" fill="#604523" stroke="#fff1ba" stroke-width="2"/></g></symbol>
+<symbol id="rift-ring-radiant" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-radiant"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#b79cea" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#f2e8ff"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-radiant)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><g transform="rotate(0 160 160)"><path d="M171 18A143 143 0 0 1 278 79" stroke="#f0d77b" stroke-width="6"/><path d="m160 5 5 8-5 8-5-8Z" fill="#f0d77b" stroke="none"/></g><g transform="rotate(60 160 160)"><path d="M171 18A143 143 0 0 1 278 79" stroke="#c9b8f0" stroke-width="6"/><path d="m160 5 5 8-5 8-5-8Z" fill="#c9b8f0" stroke="none"/></g><g transform="rotate(120 160 160)"><path d="M171 18A143 143 0 0 1 278 79" stroke="#eaa9dc" stroke-width="6"/><path d="m160 5 5 8-5 8-5-8Z" fill="#eaa9dc" stroke="none"/></g><g transform="rotate(180 160 160)"><path d="M171 18A143 143 0 0 1 278 79" stroke="#8cbce8" stroke-width="6"/><path d="m160 5 5 8-5 8-5-8Z" fill="#8cbce8" stroke="none"/></g><g transform="rotate(240 160 160)"><path d="M171 18A143 143 0 0 1 278 79" stroke="#5ee6d0" stroke-width="6"/><path d="m160 5 5 8-5 8-5-8Z" fill="#5ee6d0" stroke="none"/></g><g transform="rotate(300 160 160)"><path d="M171 18A143 143 0 0 1 278 79" stroke="#ffa17b" stroke-width="6"/><path d="m160 5 5 8-5 8-5-8Z" fill="#ffa17b" stroke="none"/></g></g></symbol></defs>
+                <g class="cosmetic-pattern cosmetic-default"><use href="#rift-ring-default"/></g>
+                <g class="cosmetic-pattern cosmetic-ember"><use href="#rift-ring-ember"/></g>
+                <g class="cosmetic-pattern cosmetic-void"><use href="#rift-ring-void"/></g>
+                <g class="cosmetic-pattern cosmetic-aurora"><use href="#rift-ring-aurora"/></g>
+                <g class="cosmetic-pattern cosmetic-solar"><use href="#rift-ring-solar"/></g>
+                <g class="cosmetic-pattern cosmetic-radiant"><use href="#rift-ring-radiant"/></g>
               </svg>
               <div class="enemy-glyph" id="enemy-glyph"><svg class="creature-art" viewBox="0 0 160 160" aria-hidden="true"><use href="#creature-prowler"/></svg><svg class="boss-regalia" viewBox="0 0 160 160" aria-hidden="true" fill="var(--creature-color)" stroke="var(--creature-rim)" stroke-width="1.5">
                 <g class="boss-crest boss-crest-regrowth"><path d="M18 116Q3 90 11 61 M142 116Q157 90 149 61"/><path d="M10 78Q1 70 8 60Q17 69 10 78Z M11 99Q4 90 17 84Q20 94 11 99Z M150 78Q159 70 152 60Q143 69 150 78Z M149 99Q156 90 143 84Q140 94 149 99Z" fill="var(--creature-rim)" stroke="var(--creature-eye)"/></g>
@@ -3264,7 +3188,7 @@
       <div class="section-label" id="comet-journal-heading" hidden>Comet Journal</div>
       <section id="comet-journal" aria-labelledby="comet-journal-heading" hidden><div id="legacy-comet-trials"></div><div id="comet-claim-history"></div></section>
       <div class="section-label">Collection</div>
-      <div class="section-sub">Deeds unlock full Rift backgrounds, Wisp designs, enemy families and auras. Choose each look separately. Appearances never change combat or rewards.</div>
+      <div class="section-sub">Choose the light of your Rift. Deeds unlock six distinct themes. Themes change appearance only.</div>
       <div id="theme-list"></div>
     </section>
 
@@ -4634,15 +4558,15 @@ function projectEarnedMarkup(id,bonusOnly){
 }
 
 var RIFT_THEMES = [
-  {id:'default', name:'Starlight',    desc:'The Rift as it always looked.', unlockAchievement:null,     accent:null},
-  {id:'ember',   name:'Ember Veil',   desc:'An ember ring and warm light across the Rift.', unlockAchievement:'d50',    accent:'#e08a2e'},
-  {id:'void',    name:'Void Bloom',   desc:'Violet facets and a deep violet Rift glow.', unlockAchievement:'asc5',   accent:'#8a5fd6'},
-  {id:'aurora',  name:'Aurora Pulse', desc:'Rose-teal waves that gently pulse. Still with reduced motion.', unlockAchievement:'mythic', accent:'#d16fa8'},
-  {id:'solar',   name:'Solar Crown',  desc:'A golden crown of rays around the Rift.', unlockAchievement:'d250',   accent:'#d1a72e'},
-  {id:'radiant', name:'Radiant',      desc:'An orbit of every currency color. Still with reduced motion.', unlockAchievement:'modulemax', accent:null}
+  {id:'default', name:'Starlight',    desc:'Silver constellations around a sapphire portal.', unlockAchievement:null,     accent:null},
+  {id:'ember',   name:'Ember Veil',   desc:'A molten seal crowned with tongues of flame.', unlockAchievement:'d50',    accent:'#e08a2e'},
+  {id:'void',    name:'Void Bloom',   desc:'An obsidian portal held by six amethyst shards.', unlockAchievement:'asc5',   accent:'#8a5fd6'},
+  {id:'aurora',  name:'Aurora Pulse', desc:'Rose and jade ribbons around a luminous pearl ring.', unlockAchievement:'mythic', accent:'#d16fa8'},
+  {id:'solar',   name:'Solar Crown',  desc:'A gilded sunwheel with a radiant crown.', unlockAchievement:'d250',   accent:'#d1a72e'},
+  {id:'radiant', name:'Radiant',      desc:'Six jewel colors orbit a brilliant prismatic seal.', unlockAchievement:'modulemax', accent:null}
 ];
 
-// Appearance unlocks share earned Deeds, never currencies or combat modifiers.
+// Retired appearance preferences: save compatibility only; never equipped or offered.
 var RIFT_LOOKS = {
   backdrop:[
     {id:'default',name:'Regional landscape',desc:'Journey through the six original Rift regions.',unlockAchievement:null},
@@ -8022,54 +7946,6 @@ function buyUltimate(sp){
 }
 
 function themeUnlocked(theme){ return !theme.unlockAchievement || !!state.achieved[theme.unlockAchievement]; }
-function activeRiftLook(slot){
-  var choice=state.riftLook && state.riftLook[slot];
-  var item=RIFT_LOOKS[slot].find(function(entry){return entry.id===choice;});
-  return item && themeUnlocked(item) ? item : RIFT_LOOKS[slot][0];
-}
-function riftSceneMarkup(id){
-  var scene=id;
-  var weather='';
-  if(['grove','cinder','abyss','eclipse'].indexOf(scene)!==-1){
-    var color={grove:'#b7ed9f',cinder:'#ffc17e',abyss:'#99e7ef',eclipse:'#f3d99c'}[scene];
-    weather='<g class="scene-weather" fill="'+(scene==='abyss'?'none':color)+'" stroke="'+color+'" opacity=".65">'+
-      [[34,227],[351,291],[67,400],[322,182],[28,464],[374,435],[114,187],[280,388],[164,345],[237,264]].map(function(p,i){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(scene==='abyss'?3+i%3:1.3+i%2)+'"/>';}).join('')+'</g>';
-  }
-  if(scene==='aurora') weather='<g class="scene-ribbons" fill="none" stroke-linecap="round" opacity=".6"><path d="M-40 185Q65 30 179 158T440 110" stroke="#64d4bd" stroke-width="37" opacity=".3"/><path d="M-40 179Q65 24 179 152T440 104" stroke="#98efcd" stroke-width="3"/><path d="M-30 132Q91 29 209 108T445 57" stroke="#bd93e0" stroke-width="23" opacity=".45"/><path d="M-30 121Q91 18 209 97T445 46" stroke="#d4b1ea" stroke-width="2"/></g>';
-  return '<svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#scene-'+scene+'"/>'+weather+'</svg>';
-}
-function applyRiftLook(){
-  var stage=document.querySelector('#tab-battle .stage');if(!stage)return;
-  var scene=activeRiftLook('backdrop');
-  stage.setAttribute('data-backdrop',scene.id);
-  stage.setAttribute('data-scene-motion',state.riftLook && state.riftLook.motion===false || scene.motion==='Still' ? 'still':'live');
-  var background=stage.querySelector('.rift-backdrop');
-  if(!background){background=document.createElement('div');background.className='rift-backdrop';background.setAttribute('aria-hidden','true');stage.insertBefore(background,stage.firstChild);}
-  background.hidden=scene.id==='default';
-  if(background.getAttribute('data-scene')!==scene.id){background.setAttribute('data-scene',scene.id);background.innerHTML=scene.id==='default'?'':riftSceneMarkup(scene.id);}
-}
-function selectRiftLook(slot,id){
-  if(!Object.prototype.hasOwnProperty.call(RIFT_LOOKS,slot))return;
-  var item=RIFT_LOOKS[slot].find(function(entry){return entry.id===id;});
-  if(!item || !themeUnlocked(item))return;
-  if(!state.riftLook)state.riftLook={backdrop:'default',wisp:'default',enemy:'default',motion:true};
-  state.riftLook[slot]=id;saveState();renderCosmetics();renderSpirits();updateBattleFast();
-}
-function riftLooksCollectionMarkup(){
-  var html='<h3 class="look-section">Rift backgrounds</h3><div class="look-motion"><span>Background motion<small>Live scenes become still when reduced motion is enabled.</small></span><button type="button" data-look-motion aria-pressed="'+(state.riftLook.motion!==false)+'">'+(state.riftLook.motion!==false?'Live':'Still')+'</button></div>';
-  ['backdrop','wisp','enemy'].forEach(function(slot){
-    if(slot!=='backdrop')html+='<h3 class="look-section">'+(slot==='wisp'?'Wisp designs':'Enemy families')+'</h3>';
-    html+='<div class="look-grid" role="group" aria-label="'+(slot==='backdrop'?'Rift backgrounds':slot==='wisp'?'Wisp designs':'Enemy families')+'">';
-    RIFT_LOOKS[slot].forEach(function(item){
-      var unlocked=themeUnlocked(item),selected=activeRiftLook(slot).id===item.id;
-      var deed=ACHIEVEMENTS.find(function(a){return a.id===item.unlockAchievement;});
-      var preview=slot==='backdrop'?riftSceneMarkup(item.id):slot==='wisp'?wispPortrait(SPIRITS[0],item.id):'<svg viewBox="0 0 160 160" aria-hidden="true" focusable="false"><use href="#creature-'+(item.forms?item.forms[0]:'prowler')+'"/></svg>';
-      html+='<button type="button" class="look-card'+(unlocked?'':' locked-look')+'" data-look-slot="'+slot+'" data-look-id="'+item.id+'" aria-pressed="'+selected+'" '+(unlocked?'':'disabled')+'><span class="look-preview" data-scene-motion="still">'+preview+'</span><span class="look-copy"><strong>'+item.name+'</strong>'+item.desc+'<small>'+(slot==='backdrop'?(item.motion||'Regional')+' background':slot==='wisp'?'Applies to all eight Wisps':'Appearance only · same encounter traits')+'</small><span class="look-state">'+(selected?'✓ Selected':unlocked?'Unlocked · Select':'Deed: '+(deed?deed.name:''))+'</span></span></button>';
-    });
-    html+='</div>';
-  });
-  return html+'<h3 class="look-section">Rift auras</h3>';
-}
 function activeRiftTheme(){
   var theme = RIFT_THEMES.find(function(t){ return t.id===state.riftTheme; });
   // A stale/locked preference never grants an unlock. Keep its saved value intact.
@@ -8084,13 +7960,17 @@ function selectRiftTheme(themeId){
   renderCosmetics();
 }
 function applyRiftTheme(){
-  applyRiftLook();
   var stageEl = document.getElementById('enemy-stage');
   if(!stageEl) return;
   var theme = activeRiftTheme();
   stageEl.setAttribute('data-rift-theme',theme.id);
   var battleStage = document.querySelector('#tab-battle .stage');
-  if(battleStage) battleStage.setAttribute('data-rift-theme',theme.id);
+  if(battleStage){
+    battleStage.setAttribute('data-rift-theme',theme.id);
+    var lights={default:['#9ebfff','#6e87d4'],ember:['#ffad63','#e46046'],void:['#bd96ff','#774dc0'],aurora:['#87efdb','#e89acb'],solar:['#ffe29a','#d49a45'],radiant:['#e0d3ff','#82dbd9']}[theme.id];
+    battleStage.style.setProperty('--rift-light',lights[0]);
+    battleStage.style.setProperty('--rift-shade',lights[1]);
+  }
   var caption = document.getElementById('rift-cosmetic-name');
   if(caption) caption.textContent = 'Theme: '+theme.name;
   stageEl.classList.toggle('theme-radiant', theme.id==='radiant');
@@ -9626,12 +9506,8 @@ function updateBattleFast(live){
   var depthMarkup=('<span class="rift-number"><span class="rift-prefix">Rift </span>' + formatRiftNumber(state.depth) + '</span>' + (isBoss(state.depth) ? ' <span class="boss-tag">&mdash; BOSS</span>' : '') + '<span class="region-label" style="color:' + zone.accent + '">' + zone.name + '</span>');
   if(els['depth-label']._liveMarkup!==depthMarkup){els['depth-label'].innerHTML=depthMarkup;els['depth-label']._liveMarkup=depthMarkup;}
   setLiveAttribute(els['depth-label'],'aria-label','Rift '+state.depth+(isBoss(state.depth)?' Boss':'')+' · '+zone.name);
-  var enemyLook=activeRiftLook('enemy'),enemyTitle=enemyNameFor(state.depth);
+  var enemyTitle=enemyNameFor(state.depth);
   var creatureKind = ENEMY_NOUN[Amount.mod(Amount.mul(state.depth,7),ENEMY_NOUN.length)].toLowerCase();
-  if(enemyLook.forms){
-    var variant=Amount.mod(state.depth,enemyLook.forms.length);
-    creatureKind=enemyLook.forms[variant];enemyTitle=(isBoss(state.depth)?'Boss · ':'')+enemyLook.names[variant];
-  }
   setLiveText(els['enemy-name'],Amount.add(state.enemyIsLuminous ? 'Luminous ' : '',enemyTitle));
   var creatureEl = els['enemy-glyph'];
   if(creatureEl.getAttribute('data-creature')!==creatureKind){
@@ -9780,7 +9656,7 @@ function renderRiftParty(){
     if(bond.ids.every(function(id){return !byId[id];})) bond.ids.forEach(function(id){byId[id]=bond;ordered.push(id);});
   });
   state.activeParty.forEach(function(id){if(!byId[id])ordered.push(id);});
-  var key=state.activeParty.join(',')+'|'+bonds.map(function(b){return b.id;}).join(',')+'|'+activeRiftLook('wisp').id;
+  var key=state.activeParty.join(',')+'|'+bonds.map(function(b){return b.id;}).join(',');
   if(root.getAttribute('data-party')!==key){
     root.setAttribute('data-party',key);
     root.innerHTML=ordered.map(function(id,index){
@@ -9891,11 +9767,8 @@ function renderFormationBonds(){
   renderBondSummary();
 }
 
-function wispPortrait(sp,design){
-  var look=design || activeRiftLook('wisp').id;
-  var symbol=look==='default'?'wisp-'+sp.id:'wisp-design-'+look;
-  var emblem=look==='default'?'':'<use href="#wisp-'+sp.id+'" x="21" y="35" width="22" height="22"/>';
-  return '<svg class="wisp-portrait" data-wisp-design="'+look+'" viewBox="0 0 64 64" style="--wisp-color:'+sp.color+'" aria-hidden="true"><use href="#'+symbol+'"/>'+emblem+'</svg>';
+function wispPortrait(sp){
+  return '<svg class="wisp-portrait" data-wisp-design="default" viewBox="0 0 64 64" style="--wisp-color:'+sp.color+'" aria-hidden="true"><use href="#wisp-'+sp.id+'"/></svg>';
 }
 
 
@@ -10895,7 +10768,7 @@ function renderShop(){ renderAchievements(); }
 
 function renderCosmetics(){
   applyRiftTheme();
-  var html = riftLooksCollectionMarkup();
+  var html = '';
   var selected = activeRiftTheme();
   RIFT_THEMES.forEach(function(theme){
     var unlocked = themeUnlocked(theme);
@@ -10903,14 +10776,13 @@ function renderCosmetics(){
     if(!unlocked){
       var reqAch = ACHIEVEMENTS.find(function(a){ return a.id===theme.unlockAchievement; });
       html += '<div class="card theme-card locked-node" data-state="locked" aria-disabled="true">' +
-        '<div class="theme-swatch" style="background:var(--ink-dim);"></div>' +
-        '<div class="theme-info"><div class="name">???</div><div class="desc lock-note">Unlocks with the Deed &ldquo;'+(reqAch?reqAch.name:'')+'&rdquo;</div></div>' +
+        '<span class="theme-preview" aria-hidden="true"><svg viewBox="0 0 320 320"><use href="#rift-ring-'+theme.id+'"/></svg></span>' +
+        '<div class="theme-info"><div class="name">'+theme.name+'</div><div class="desc lock-note">Unlocks with the Deed &ldquo;'+(reqAch?reqAch.name:'')+'&rdquo;</div></div>' +
       '</div>';
       return;
     }
-    var swatch = theme.accent ? theme.accent : theme.id==='radiant' ? 'linear-gradient(120deg,#f0d77b,#c9b8f0,#eaa9dc,#5ee6d0,#ffa17b)' : '#9ca7ee';
     html += '<button type="button" class="card theme-card '+(active?'active':'')+'" aria-pressed="'+active+'" data-theme-select="'+theme.id+'">' +
-      '<div class="theme-swatch" style="background:'+swatch+';"></div>' +
+      '<span class="theme-preview" aria-hidden="true"><svg viewBox="0 0 320 320"><use href="#rift-ring-'+theme.id+'"/></svg></span>' +
       '<div class="theme-info"><div class="name">'+theme.name+'</div><div class="desc">'+theme.desc+'</div></div>' +
       '<span class="theme-active-tag">'+(active?'✓ Selected':'Unlocked · Select')+'</span>' +
     '</button>';
@@ -10926,10 +10798,6 @@ function renderCosmetics(){
     if(state.cometTrialMarks[def.id]) html+='<div class="card comet-mark"><span aria-hidden="true">✦</span> '+def.mark+' · Earned</div>';
   });
   replaceControlMarkup(els['theme-list'],html);
-  els['theme-list'].querySelectorAll('[data-look-slot]').forEach(function(button){
-    button.onclick=function(){selectRiftLook(button.getAttribute('data-look-slot'),button.getAttribute('data-look-id'));};
-  });
-  els['theme-list'].querySelector('[data-look-motion]').onclick=function(){state.riftLook.motion=state.riftLook.motion===false;saveState();renderCosmetics();};
   els['theme-list'].querySelectorAll('[data-theme-select]').forEach(function(card){
     card.addEventListener('click', function(){ selectRiftTheme(card.getAttribute('data-theme-select')); });
   });

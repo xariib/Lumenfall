@@ -357,7 +357,7 @@ async function verifyInstalledRiftNavigation(page,report){
 }
 async function verifyInstalledRiftLooks(page,report){
  // Reuse the disposable upgraded save's earned Deeds; no production test hooks.
- await page.evaluate(`window.riftLookEvents=[];['pointerdown','click'].forEach(type=>document.addEventListener(type,e=>riftLookEvents.push({type,trusted:e.isTrusted,target:e.target.closest('button')?.getAttribute('data-look-id')||e.target.id,x:e.clientX,y:e.clientY}),true));`);
+ await page.evaluate(`window.riftLookEvents=[];['pointerdown','click'].forEach(type=>document.addEventListener(type,e=>riftLookEvents.push({type,trusted:e.isTrusted,target:e.target.closest('button')?.getAttribute('data-theme-select')||e.target.id,x:e.clientX,y:e.clientY}),true));`);
  async function tap(selector){
    await page.evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center'})`);await pause(350);
    const point=await page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,disabled:e.disabled,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
@@ -365,27 +365,28 @@ async function verifyInstalledRiftLooks(page,report){
    const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));await pause(350);
  }
  await tap('nav.tabbar [data-tab="deeds"]');
- for(const [slot,id]of [['backdrop','cinder'],['wisp','crystal'],['enemy','ancient']]){
-   await tap('[data-look-slot="'+slot+'"][data-look-id="'+id+'"]');
-   const saved=await page.evaluate(`[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)).riftLook)`);
-   assert(saved.every(s=>s[slot]===id),'Native selection persists in both save slots: '+slot);
+ assert.equal(await page.evaluate('document.querySelectorAll("[data-look-slot],[data-look-motion]").length'),0,'Retired appearance packs and motion picker are absent');
+ for(const id of ['default','ember']){
+   await tap('[data-theme-select="'+id+'"]');
+   const saved=await page.evaluate(`[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)).riftTheme)`);
+   assert(saved.every(theme=>theme===id),'Native theme selection persists in both save slots: '+id);
  }
- await tap('[data-look-motion]');
- assert.equal(await page.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(primary)})).riftLook.motion`),false,'Installed Still toggle persists');
  await tap('nav.tabbar [data-tab="battle"]');
  const scene=await page.evaluate(`(()=>{const q=s=>document.querySelector(s),box=s=>q(s).getBoundingClientRect().toJSON(),dot=getComputedStyle(q('nav.tabbar [data-tab="battle"]'),'::after');return {
    stage:box('#tab-battle .stage'),background:box('.rift-backdrop'),party:box('#rift-party'),boss:box('#boss-combat'),bossHidden:q('#boss-combat').hidden,
-   scene:q('#tab-battle .stage').dataset.backdrop,weather:getComputedStyle(q('.rift-backdrop .scene-weather')).animationName,
+   scene:q('.rift-backdrop').dataset.scene,theme:q('#enemy-stage').dataset.riftTheme,
    inert:getComputedStyle(q('.rift-backdrop')).pointerEvents,wisps:Array.from(document.querySelectorAll('#rift-party .wisp-portrait')).map(e=>e.dataset.wispDesign),
    enemy:q('#enemy-glyph').dataset.creature,dot:{width:dot.width,height:dot.height,bottom:dot.bottom,color:dot.backgroundColor,display:dot.display},
    overflow:document.documentElement.scrollWidth>innerWidth+1,events:window.riftLookEvents};})()`);
- assert.equal(scene.scene,'cinder');assert.equal(scene.weather,'none');assert.equal(scene.inert,'none');
+ assert.equal(scene.scene,'rift');assert.equal(scene.theme,'ember');assert.equal(scene.inert,'none');
  assert(Math.abs(scene.stage.width-scene.background.width)<=2&&Math.abs(scene.stage.height-scene.background.height)<=2,'Installed background covers full combat field');
- assert(scene.wisps.length&&scene.wisps.every(s=>s==='crystal'),'Installed party uses selected Wisp design');
- assert(['runegolem','crystalstag','templemoth'].includes(scene.enemy),'Installed enemy uses selected family');
+ assert(scene.wisps.length&&scene.wisps.every(s=>s==='default'),'Installed party retains original Wisp artwork');
+ assert(!['runegolem','crystalstag','templemoth','lanternray','abyssmedusa','reefdragon'].includes(scene.enemy),'Installed enemy retains original species');
+ const fit=await page.evaluate(`(()=>{const a=document.querySelector('.rift-cosmetic-aura').getBoundingClientRect(),e=document.querySelector('.creature-art use'),b=e.getBBox(),m=e.getScreenCTM(),cx=a.left+a.width/2,cy=a.top+a.height/2,r=Math.min(a.width,a.height)*132/320;return [[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]].every(p=>Math.hypot(m.a*p[0]+m.c*p[1]+m.e-cx,m.b*p[0]+m.d*p[1]+m.f-cy)<r);})()`);
+ assert(fit,'Installed enemy fits the selected theme circle');
  assert(scene.bossHidden||scene.boss.top>=scene.party.bottom-1,'Installed regen follows the Wisp row');
  assert.equal(scene.dot.width,'4px');assert.equal(scene.dot.height,'4px');assert.equal(scene.dot.bottom,'7px');assert.equal(scene.dot.color,'rgb(240, 197, 103)');assert.notEqual(scene.dot.display,'none');assert.equal(scene.overflow,false);
- for(const id of ['cinder','crystal','ancient'])assert(scene.events.some(e=>e.type==='click'&&e.trusted&&e.target===id),'Trusted appearance click: '+id);
+ for(const id of ['default','ember'])assert(scene.events.some(e=>e.type==='click'&&e.trusted&&e.target===id),'Trusted appearance click: '+id);
  const shot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-rift-looks.png',Buffer.from(shot.data,'base64'));
  report.installedRiftLooks={status:'PASS',scene,screenshot:'release-evidence/installed-rift-looks.png',syntheticFixture:true};
  console.log('Android installed Rift appearances acceptance: '+JSON.stringify(report.installedRiftLooks));
