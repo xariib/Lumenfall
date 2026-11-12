@@ -1,13 +1,20 @@
 # Endless Forge and earned Lab access evidence
 
-12 November release continuation: `release-20261112/` records checks against
-current main6b990b70/Android0.2.107. Candidate source `af207697` preserves all
+12 November: [Android0.2.110](https://github.com/xariib/Lumenfall/releases/tag/android-1000110)
+releases PR42 from integrated commitdc78daad. `release-20261112/` records checks
+against baseline main6b990b70/Android0.2.107. Source `af207697` preserves all
 complete paired replay states and canonical hashes. `focused.json` records
 15 passing suites; `lab-access-summary.json` records the fresh890-check native
 mobile pass. `forge-mobile-summary.json` and the losslessly compressed full
 receipt record32,040 Forge checks across12 profiles with normal browser exit.
 These supersede the older source-specific receipts for this release.
-PR46 remains closed and excluded. Android/CI delivery continues in the task.
+All eight PR and eight exact-release-commit workflows passed, including220
+stateful scenarios plus isolated offline catch-up in each full run. The
+`android-release/` receipts verify signing, assets, saves/paid work, actual
+updater and retail launch. [Public verification](release-20261112/public-release.json)
+confirms anonymous versioned/latest APK bytes and update metadata. PR46 remains
+closed and excluded. Physical-device/accessibility/human pacing limitations
+remain explicit in the task; no independent human review is claimed.
 
 Baseline `a75763d3`, Android 0.2.95. Windows PowerShell, Node 24.20.0,
 Chromium 157.0.8103.39 (Brave). Receipts report the bytes actually read locally;

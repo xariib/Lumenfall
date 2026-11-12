@@ -1,8 +1,8 @@
 # Endless Forge and earned Lab access
 
-Status: release continuation in progress. Original baseline `a75763d3` was
-published as Android 0.2.95. See the local continuation below for the current
-branch and baseline.
+Status: released as Android0.2.110; automated delivery is complete. Physical-phone,
+exact WebView60 DOM, TalkBack and human pacing acceptance remain open. Original
+baseline `a75763d3` was Android0.2.95; see the final delivery checkpoint below.
 
 ## Original requirement, 5 November 2026
 
@@ -166,12 +166,6 @@ Node24.22.1. The product merges cleanly; only the offline replay source binding
 conflicts. Restore the current main oracle unchanged, then independently replay
 both sources before rebinding it. No recorded endpoint or assertion is relaxed.
 
-Next: verify combined focused checks/replay, publish the exact combined PR42
-head, pass required PR and signed-candidate checks, integrate, pass integrated
-release gates, publish and verify APK/feed/assets/save upgrade. Keep original
-physical-phone, WebView60 DOM, TalkBack and human pacing limitations explicit.
-No subagents, chat messages or new gameplay rules are used.
-
 Combined product SHA256 `af207697b854e536f32143c4343a7b9a1545b4c230922e47b293c6e7a2fd5977`.
 The fresh paired replay executed115,200 independent one-second calls per source:
 every saved field, reward triple and all four canonical hashes match released
@@ -192,15 +186,37 @@ the feature and main6b990b70. Non-publishing signed Android run43210953283
 passed as0.2.108: exact product/assets, established certificate/package,
 both save slots and paid work retained, actual updater and retail Android12
 normal launch. The downloaded APK independently matches its receipts;
-`android-candidate/verification.json` records hash1b3ee595. Eight applicable
-PR workflows are finishing. No independent human review has been claimed.
+`android-candidate/verification.json` records hash1b3ee595. Final delivery is
+summarized below; no independent human review is claimed.
 
-Prepare a descendant of tested PR head6bd4b293 containing only these durable
-evidence/status additions. It already includes main6b990b70; its game and test
-bytes are identical to the PR candidate. Run all eight workflow-dispatch gates
-on that exact prepared commit while the PR gate finishes. After both sets pass,
-verify main has not moved and fast-forward main to the tested commit, preserving
-all PR ancestry. Verify GitHub recognizes PR42 as merged. This makes the tested
-commit the integrated version without changing bytes after validation; no gate
-is skipped. Then dispatch publishing Android on main, verify public bytes/feed
-and save final evidence. If main moves, stop promotion and reassess integration.
+## Final delivery, 12 November 2026
+
+PR42 is merged and [Android0.2.110 is public](https://github.com/xariib/Lumenfall/releases/tag/android-1000110).
+Integrated/released commit `dc78daad51a59748d3faa55d57c4920d7c141d61` is a
+documentation/evidence-only descendant of PR head6bd4b293; game, native, test
+and workflow bytes are identical. All eight PR workflows and all eight dispatch
+workflows passed. Both full runs passed 220 identical stateful scenarios plus
+isolated offline catch-up under Node 24.19.0. The dispatch checks ran on the prepared
+commit, then unchanged main6b990b70 fast-forwarded to those exact bytes.
+GitHub confirms PR42 merged at13:21:16 UTC; all ancestry remains. No gate was
+skipped and no product code changed after the validated PR head.
+
+Publishing run43226530073 accepted the integrated release gate and passed signed
+identity, exact assets, upgrade from0.1.158, actual updater from0.2.107, both save
+slots/paid work retention, and normal retail Android12 launch (WebView91).
+Anonymous versioned/latest APK downloads match SHA256
+`c4e75a9dbec4bd8312e6ba3f1cac27406b5c02cf006615af1efc25f36606241d`.
+Public commit, identity, manifest, checksum and updater metadata all match the
+downloaded APK and released source. Package `com.lumenfall.app` and the established
+signing certificate are unchanged (`android-release/identity.txt`).
+
+`release-20261112/` retains PR/integrated validation JSON,220-case log summaries,
+integration confirmation, candidate/release native receipts/screenshots and
+`public-release.json`. Delivery also updates PROJECT_STATE and the earlier
+proposal review. PR46 remains closed with `merged=false`; its source/history
+remain available and its cooldown is excluded. No replacement balance work.
+
+No release work remains. Existing physical-phone, exact WebView60 DOM, TalkBack
+and human pacing acceptance remain unverified; review was self-review plus
+automated checks. Keep the owner chat open while those acceptance items remain
+open. User attachments, other worktrees and concurrent features are untouched.
