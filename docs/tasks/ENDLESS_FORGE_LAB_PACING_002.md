@@ -1,6 +1,6 @@
 # Endless Forge and earned Lab access
 
-Status: local integration validated. Original baseline `a75763d3` was
+Status: release continuation in progress. Original baseline `a75763d3` was
 published as Android 0.2.95. See the local continuation below for the current
 branch and baseline.
 
@@ -149,3 +149,36 @@ signed Android build and upgrade. The earlier Android candidate passed identity,
 assets and save upgrade, with a retail accessibility timeout also reproduced
 on its unchanged baseline. Physical-device and human pacing acceptance remain
 open.
+
+## Release continuation, 12 November 2026
+
+User: "Pr42 release and finish and pr46 delete". This chat now owns completion
+and Android delivery of PR42. PR46 is already closed without merging; its
+automatic-reset wait and any replacement balance change are excluded.
+The [proposal review](PR42_PR46_REVIEW_20261112.md) retains its rationale.
+
+Continue the existing clean feature checkout at `8df19cc6`, preserving the
+untracked user attachments and other worktrees. Current released main is
+`6b990b70`, product Android0.2.107, source SHA256
+`65d908d18a5ae2515f371b12d29cb7a1292004fd8931f2e992cdc73655af6291`.
+Fresh baseline Forge468/four controls and Lab353/four controls passed under
+Node24.22.1. The product merges cleanly; only the offline replay source binding
+conflicts. Restore the current main oracle unchanged, then independently replay
+both sources before rebinding it. No recorded endpoint or assertion is relaxed.
+
+Next: verify combined focused checks/replay, publish the exact combined PR42
+head, pass required PR and signed-candidate checks, integrate, pass integrated
+release gates, publish and verify APK/feed/assets/save upgrade. Keep original
+physical-phone, WebView60 DOM, TalkBack and human pacing limitations explicit.
+No subagents, chat messages or new gameplay rules are used.
+
+Combined product SHA256 `af207697b854e536f32143c4343a7b9a1545b4c230922e47b293c6e7a2fd5977`.
+The fresh paired replay executed115,200 independent one-second calls per source:
+every saved field, reward triple and all four canonical hashes match released
+main. Only the oracle source binding changed. Fifteen focused suites passed,
+including528 new-feature checks/four controls, paid boosts/queues, rollback,
+the latest exploit fixes, combat-based Auto-Tap and modest recruitment easing.
+Native Lab access passed890 checks across12 mobile/text/motion profiles with
+normal browser teardown. [Release evidence](../qa/endless-forge-lab-pacing-002/release-20261112/).
+The complete diff against current main contains only PR42's product changes
+and their tests/evidence; no PR46 cooldown or unrelated balance change is present.

@@ -10,7 +10,7 @@ const expected=calibrated?{forgeDepth:70,forgeLumen:1000000,forgeShards:25000,re
 if(dailyCalibration){expected.recruitLab=43;expected.lab=84;expected.mythicLab=78;}
 const focusCalibration=process.argv.includes('--focus-f');
 assert(!focusCalibration||dailyCalibration,'F retains daily-calibrated investment tables');
-if(focusCalibration){expected.recruitLab=48;expected.lab=92;expected.mythicLab=91;}
+if(focusCalibration){expected.recruitLab=47;expected.lab=92;expected.mythicLab=91;}
 const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={
   unlocked:wispRecruitmentUnlocked,rarityPlan:getWispRarityPlan,rarity:buyRarity,
   ultimatePlan:getWispUltimatePlan,masteryPlan:getWispMasteryPlan,mastery:buyWispMastery,module:buyModule,
@@ -30,7 +30,7 @@ function game(){const x=app(source);return {x,q:x.q,b:x.q.endless};}
  const forge=q.defs().find(node=>node.id==='masterwork');eq({depth:forge.unlockDepth,lumen:forge.lumenBase,shard:forge.shardBase,lumenGrowth:forge.lumenGrowth,shardGrowth:forge.shardGrowth,cap:forge.levelCap}, {depth:expected.forgeDepth,lumen:expected.forgeLumen,shard:expected.forgeShards,lumenGrowth:1.35,shardGrowth:1.35,cap:500},'finite long-tail Forge catalog contract');
  for(const id of ['ember','tide','stone'])ok(b.unlocked(q.sp(id)),'early team available '+id);
  for(const id of ['gale','thorn','void','aurora','titan'])eq(b.unlocked(q.sp(id)),false,'Rift32 is not whole roster '+id);
- const gates=dailyCalibration?[['gale',15,18],['thorn',35,24],['void',55,30],['aurora',75,35],['titan',100,expected.recruitLab]]:[['gale',15,15],['thorn',35,18],['void',55,20],['aurora',75,21],['titan',100,expected.recruitLab]];
+ const gates=focusCalibration?[['gale',15,17],['thorn',35,23],['void',55,29],['aurora',75,34],['titan',100,47]]:dailyCalibration?[['gale',15,18],['thorn',35,24],['void',55,30],['aurora',75,35],['titan',100,expected.recruitLab]]:[['gale',15,15],['thorn',35,18],['void',55,20],['aurora',75,21],['titan',100,expected.recruitLab]];
  for(const [id,depth,lab]of gates){const a=q.fresh();a.maxDepthEver=depth;a.longStudyLevels.wispascend=lab-1;q.set(a);eq(b.unlocked(q.sp(id)),false,'research boundary '+id);a.longStudyLevels.wispascend=lab;a.maxDepthEver=depth-1;q.set(a);eq(b.unlocked(q.sp(id)),false,'depth boundary '+id);a.maxDepthEver=depth;q.set(a);ok(b.unlocked(q.sp(id)),'both gates '+id);q.set(q.get());ok(q.get().recruitmentEntitlements[id],'unlock saves permanently '+id);}
  const old=q.fresh();old.schemaVersion=4;old.maxDepthEver=32;old.depth=20;old.lumen=1e8;q.set(old);
  for(const id of Object.keys(q.get().spirits))ok(b.unlocked(q.sp(id)),'old unlocked roster preserved '+id);

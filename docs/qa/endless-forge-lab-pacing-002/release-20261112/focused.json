@@ -1,0 +1,209 @@
+{
+  "status": "PASS",
+  "node": "v24.22.1",
+  "sourceSha256": "af207697b854e536f32143c4343a7b9a1545b4c230922e47b293c6e7a2fd5977",
+  "results": [
+    {
+      "name": "endless-forge-lab-pacing",
+      "command": [
+        "node",
+        "tests/behavioral/endless-forge-lab-pacing.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 9037,
+      "checks": 528,
+      "error": null
+    },
+    {
+      "name": "forge-workshop-pacing",
+      "command": [
+        "node",
+        "tests/behavioral/forge-workshop-pacing.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 2544,
+      "checks": 474,
+      "error": null
+    },
+    {
+      "name": "lab-longtail",
+      "command": [
+        "node",
+        "tests/behavioral/lab-longtail.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 1716,
+      "checks": 353,
+      "error": null
+    },
+    {
+      "name": "lab-slot-contract",
+      "command": [
+        "node",
+        "tests/behavioral/lab-slot-contract.cjs",
+        "index.html"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 265,
+      "checks": 55,
+      "error": null
+    },
+    {
+      "name": "lab-timed-boosts",
+      "command": [
+        "node",
+        "tests/behavioral/lab-timed-boosts.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 18255,
+      "checks": 1480,
+      "error": null
+    },
+    {
+      "name": "lab-boost-queue",
+      "command": [
+        "node",
+        "tests/behavioral/lab-boost-queue.cjs",
+        "index.html"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 78363,
+      "checks": 379,
+      "error": null
+    },
+    {
+      "name": "lab-queue-continuity",
+      "command": [
+        "node",
+        "tests/behavioral/lab-queue-continuity.cjs",
+        "index.html"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 472,
+      "checks": 64,
+      "error": null
+    },
+    {
+      "name": "exploit-balance-hunt",
+      "command": [
+        "node",
+        "tests/behavioral/exploit-balance-hunt.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 7356,
+      "checks": 113,
+      "error": null
+    },
+    {
+      "name": "idle-automation",
+      "command": [
+        "node",
+        "tests/behavioral/idle-automation.cjs",
+        "index.html"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 468,
+      "checks": 66,
+      "error": null
+    },
+    {
+      "name": "modest-recruitment",
+      "command": [
+        "node",
+        "tests/behavioral/modest-recruitment.cjs",
+        "index.html"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 487,
+      "checks": 83,
+      "error": null
+    },
+    {
+      "name": "purchase-rollback",
+      "command": [
+        "node",
+        "tests/behavioral/purchase-rollback.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 1086,
+      "checks": 14,
+      "error": null
+    },
+    {
+      "name": "rift-exponential-curve",
+      "command": [
+        "node",
+        "tests/behavioral/rift-exponential-curve.cjs",
+        "index.html"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 232,
+      "error": null
+    },
+    {
+      "name": "early-wisp-curve-current",
+      "command": [
+        "node",
+        "tests/behavioral/early-wisp-curve-current.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 8755,
+      "checks": 2802,
+      "error": null
+    },
+    {
+      "name": "forge-expansion",
+      "command": [
+        "node",
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 4145,
+      "error": null
+    },
+    {
+      "name": "lab-expansion",
+      "command": [
+        "node",
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 8349,
+      "checks": 2676,
+      "error": null
+    }
+  ]
+}

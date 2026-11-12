@@ -1,5 +1,12 @@
 # Endless Forge and earned Lab access evidence
 
+12 November release continuation: `release-20261112/` records checks against
+current main6b990b70/Android0.2.107. Candidate source `af207697` preserves all
+complete paired replay states and canonical hashes. `focused.json` records
+15 passing suites; `lab-access-summary.json` records the fresh890-check native
+mobile pass. These supersede the older source-specific receipts for this release.
+PR46 remains closed and excluded. Android/CI delivery continues in the task.
+
 Baseline `a75763d3`, Android 0.2.95. Windows PowerShell, Node 24.20.0,
 Chromium 157.0.8103.39 (Brave). Receipts report the bytes actually read locally;
 Git canonical LF and Windows checkout line endings can have different hashes.

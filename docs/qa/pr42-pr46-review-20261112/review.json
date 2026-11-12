@@ -1,0 +1,490 @@
+{
+  "node": "v24.22.1",
+  "platform": "win32",
+  "snapshots": {
+    "main": {
+      "ref": "34c7fafe045d539d2a3a41c093b072cf8b03d629",
+      "folder": "validation-evidence/pr-review-probes/main",
+      "identities": [
+        {
+          "file": "index.html",
+          "sha256": "65d908d18a5ae2515f371b12d29cb7a1292004fd8931f2e992cdc73655af6291"
+        },
+        {
+          "file": "tests/behavioral/forge-expansion-harness.cjs",
+          "sha256": "4695273bb0a2e9040785a860bf95933e2100daaaed7b6e6599cc384db9748805"
+        },
+        {
+          "file": "tests/behavioral/lab-expansion-harness.cjs",
+          "sha256": "ab63df33b726d37f0a20b71dd7db38512919ce95466bc2687b017826a65a2fc0"
+        },
+        {
+          "file": "scripts/lib/game-amount.cjs",
+          "sha256": "6d2d8cfde076786c759ca651834673a5ed9e761b16b146c62cfc5d153c853d5c"
+        }
+      ]
+    },
+    "pr42": {
+      "ref": "819c681dd4895552813d459d85649013b608a0ab",
+      "folder": "validation-evidence/pr-review-probes/pr42",
+      "identities": [
+        {
+          "file": "index.html",
+          "sha256": "b30a0222d837bf6192aa1ea1568c709b9f693ee81ab542e9f6cae10d15b82648"
+        },
+        {
+          "file": "tests/behavioral/forge-expansion-harness.cjs",
+          "sha256": "4695273bb0a2e9040785a860bf95933e2100daaaed7b6e6599cc384db9748805"
+        },
+        {
+          "file": "tests/behavioral/lab-expansion-harness.cjs",
+          "sha256": "ab63df33b726d37f0a20b71dd7db38512919ce95466bc2687b017826a65a2fc0"
+        },
+        {
+          "file": "scripts/lib/game-amount.cjs",
+          "sha256": "6d2d8cfde076786c759ca651834673a5ed9e761b16b146c62cfc5d153c853d5c"
+        },
+        {
+          "file": "tests/behavioral/endless-forge-lab-pacing.cjs",
+          "sha256": "1d1a8393ca311755a8aed23e107d77511a785f1bd3cc7f4d109faab736beda3b"
+        },
+        {
+          "file": "tests/behavioral/lab-access-reference.cjs",
+          "sha256": "e48e7894d99e7cadec39faad82fc63b8af2334b06b7fdca43459bf050dc33f33"
+        }
+      ]
+    },
+    "pr46": {
+      "ref": "8ec33df776a5dff17762e7440b3ce323d740ca72",
+      "folder": "validation-evidence/pr-review-probes/pr46",
+      "identities": [
+        {
+          "file": "index.html",
+          "sha256": "1d9c82235ef069b955293194a0aae7315a30a1eabcd7417063b4878ee5fa3da5"
+        },
+        {
+          "file": "tests/behavioral/forge-expansion-harness.cjs",
+          "sha256": "4695273bb0a2e9040785a860bf95933e2100daaaed7b6e6599cc384db9748805"
+        },
+        {
+          "file": "tests/behavioral/lab-expansion-harness.cjs",
+          "sha256": "ab63df33b726d37f0a20b71dd7db38512919ce95466bc2687b017826a65a2fc0"
+        },
+        {
+          "file": "scripts/lib/game-amount.cjs",
+          "sha256": "6d2d8cfde076786c759ca651834673a5ed9e761b16b146c62cfc5d153c853d5c"
+        },
+        {
+          "file": "tests/behavioral/repeat-auto-ascend-pacing.cjs",
+          "sha256": "ff62226e28ff6631ca300b66d3fe40e407bc14daea91b54f8dcda43ad9f3bab7"
+        }
+      ]
+    }
+  },
+  "focused": [
+    {
+      "name": "pr42",
+      "args": [
+        "tests/behavioral/endless-forge-lab-pacing.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 6059,
+      "error": null,
+      "result": {
+        "status": "pass",
+        "sourceSha256": "b30a0222d837bf6192aa1ea1568c709b9f693ee81ab542e9f6cae10d15b82648",
+        "checks": 528,
+        "farms": [
+          {
+            "rift": 32,
+            "grantedEnhancementLevels": 300,
+            "firstFiveHours": {
+              "kills": 45000,
+              "lumen": 21858345000,
+              "shards": 2443341000
+            },
+            "lastThreeHours": {
+              "kills": 27000
+            },
+            "purchases": [
+              {
+                "hours": 5,
+                "id": "battletempering",
+                "bought": 56,
+                "nextPrice": {
+                  "lumen": 2079650568,
+                  "shard": 51991265
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 5,
+                "id": "arcanetempering",
+                "bought": 47,
+                "nextPrice": {
+                  "lumen": 2204937132,
+                  "shard": 55123429
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 5,
+                "id": "harvesttempering",
+                "bought": 42,
+                "nextPrice": {
+                  "lumen": 2190547970,
+                  "shard": 54763700
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 8,
+                "id": "battletempering",
+                "bought": 61,
+                "nextPrice": {
+                  "lumen": 3349298035,
+                  "shard": 83732451
+                },
+                "repeatBought": 7
+              },
+              {
+                "hours": 8,
+                "id": "arcanetempering",
+                "bought": 51,
+                "nextPrice": {
+                  "lumen": 3228248455,
+                  "shard": 80706212
+                },
+                "repeatBought": 8
+              },
+              {
+                "hours": 8,
+                "id": "harvesttempering",
+                "bought": 47,
+                "nextPrice": {
+                  "lumen": 3527899411,
+                  "shard": 88197486
+                },
+                "repeatBought": 7
+              }
+            ]
+          },
+          {
+            "rift": 101,
+            "grantedEnhancementLevels": 300,
+            "firstFiveHours": {
+              "kills": 45000,
+              "lumen": 29264661432000,
+              "shards": 933297201000
+            },
+            "lastThreeHours": {
+              "kills": 27000
+            },
+            "purchases": [
+              {
+                "hours": 5,
+                "id": "battletempering",
+                "bought": 132,
+                "nextPrice": {
+                  "lumen": 2909607723573,
+                  "shard": 72740193090
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 5,
+                "id": "arcanetempering",
+                "bought": 122,
+                "nextPrice": {
+                  "lumen": 2804449331740,
+                  "shard": 70111233294
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 5,
+                "id": "harvesttempering",
+                "bought": 117,
+                "nextPrice": {
+                  "lumen": 2786147823226,
+                  "shard": 69653695581
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 8,
+                "id": "battletempering",
+                "bought": 136,
+                "nextPrice": {
+                  "lumen": 4259956668083,
+                  "shard": 106498916703
+                },
+                "repeatBought": 8
+              },
+              {
+                "hours": 8,
+                "id": "arcanetempering",
+                "bought": 127,
+                "nextPrice": {
+                  "lumen": 4516593693260,
+                  "shard": 112914842332
+                },
+                "repeatBought": 7
+              },
+              {
+                "hours": 8,
+                "id": "harvesttempering",
+                "bought": 122,
+                "nextPrice": {
+                  "lumen": 4487118930784,
+                  "shard": 112177973270
+                },
+                "repeatBought": 7
+              }
+            ]
+          },
+          {
+            "rift": 501,
+            "grantedEnhancementLevels": 300,
+            "firstFiveHours": {
+              "kills": 39000,
+              "lumen": "513700325725584e3",
+              "shards": 2911707501453000
+            },
+            "lastThreeHours": {
+              "kills": 23400
+            },
+            "purchases": [
+              {
+                "hours": 5,
+                "id": "battletempering",
+                "bought": 219,
+                "nextPrice": {
+                  "lumen": 11614433979676760,
+                  "shard": 290360849491919
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 5,
+                "id": "arcanetempering",
+                "bought": 209,
+                "nextPrice": {
+                  "lumen": 11194667703466754,
+                  "shard": 279866692586669
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 5,
+                "id": "harvesttempering",
+                "bought": 204,
+                "nextPrice": {
+                  "lumen": 11121612610630670,
+                  "shard": 278040315265767
+                },
+                "repeatBought": null
+              },
+              {
+                "hours": 8,
+                "id": "battletempering",
+                "bought": 223,
+                "nextPrice": {
+                  "lumen": 17004692789644750,
+                  "shard": 425117319741119
+                },
+                "repeatBought": 8
+              },
+              {
+                "hours": 8,
+                "id": "arcanetempering",
+                "bought": 214,
+                "nextPrice": {
+                  "lumen": 18029124283110250,
+                  "shard": 450728107077757
+                },
+                "repeatBought": 7
+              },
+              {
+                "hours": 8,
+                "id": "harvesttempering",
+                "bought": 209,
+                "nextPrice": {
+                  "lumen": 17911468325546806,
+                  "shard": 447786708138671
+                },
+                "repeatBought": 7
+              }
+            ]
+          }
+        ],
+        "negative": [
+          {
+            "name": "forge-final-level",
+            "caught": "no final Forge level battletempering/300\n\ntrue !== false\n"
+          },
+          {
+            "name": "lab-ignores-prerequisite",
+            "caught": "one missing requirement locks wispdamage\n\n'' !== 'locked'\n"
+          },
+          {
+            "name": "lab-ignores-rift",
+            "caught": "one missing requirement locks wispdamage\n\n'' !== 'locked'\n"
+          },
+          {
+            "name": "lab-loses-paid-access",
+            "caught": "retained earned access wispdamage\n\nfalse !== true\n"
+          }
+        ],
+        "assumptions": "Generous fixed-depth farm grants all300 enhancement ranks and mature economic research before earning; each track receives the entire budget independently. Repeat spending adds the same eight-hour budget to the first purchase leftovers. Actual player pacing remains to be reviewed."
+      }
+    },
+    {
+      "name": "pr46",
+      "args": [
+        "tests/behavioral/repeat-auto-ascend-pacing.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 1411,
+      "error": null,
+      "result": {
+        "status": "PASS",
+        "checks": 67,
+        "reported": {
+          "target": 29,
+          "seconds": 35,
+          "ascends": 1,
+          "prisms": 62,
+          "sigils": 15,
+          "motes": 19
+        },
+        "hourly": [
+          {
+            "target": 15,
+            "seconds": 3600,
+            "ascends": 61,
+            "prisms": 5504,
+            "sigils": 1260,
+            "motes": 1587
+          },
+          {
+            "target": 29,
+            "seconds": 3600,
+            "ascends": 61,
+            "prisms": 5522,
+            "sigils": 1260,
+            "motes": 1582
+          },
+          {
+            "target": 50,
+            "seconds": 3600,
+            "ascends": 61,
+            "prisms": 5541,
+            "sigils": 1260,
+            "motes": 1586
+          }
+        ],
+        "sourceSha256": "1d9c82235ef069b955293194a0aae7315a30a1eabcd7417063b4878ee5fa3da5"
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "source": "main",
+      "mode": "offline",
+      "target": 29,
+      "seconds": 120,
+      "attempts": 0,
+      "manualResets": 0,
+      "automaticResets": 242,
+      "ascends": 242,
+      "prisms": 15004,
+      "motes": 3638,
+      "sigils": 724,
+      "finalDepth": 20,
+      "repeatDeadline": null
+    },
+    {
+      "source": "main",
+      "mode": "live",
+      "target": 29,
+      "seconds": 120,
+      "attempts": 0,
+      "manualResets": 0,
+      "automaticResets": 242,
+      "ascends": 242,
+      "prisms": 15004,
+      "motes": 3638,
+      "sigils": 724,
+      "finalDepth": 20,
+      "repeatDeadline": null
+    },
+    {
+      "source": "main",
+      "mode": "manual",
+      "target": 29,
+      "seconds": 120,
+      "attempts": 121,
+      "manualResets": 121,
+      "automaticResets": 0,
+      "ascends": 121,
+      "prisms": 7742,
+      "motes": 1824,
+      "sigils": 720,
+      "finalDepth": 6,
+      "repeatDeadline": null
+    },
+    {
+      "source": "pr46",
+      "mode": "offline",
+      "target": 29,
+      "seconds": 120,
+      "attempts": 0,
+      "manualResets": 0,
+      "automaticResets": 3,
+      "ascends": 3,
+      "prisms": 244,
+      "motes": 64,
+      "sigils": 42,
+      "finalDepth": 6,
+      "repeatDeadline": 2000000180000
+    },
+    {
+      "source": "pr46",
+      "mode": "live",
+      "target": 29,
+      "seconds": 120,
+      "attempts": 0,
+      "manualResets": 0,
+      "automaticResets": 3,
+      "ascends": 3,
+      "prisms": 244,
+      "motes": 64,
+      "sigils": 42,
+      "finalDepth": 6,
+      "repeatDeadline": 2000000180000
+    },
+    {
+      "source": "pr46",
+      "mode": "manual",
+      "target": 29,
+      "seconds": 120,
+      "attempts": 121,
+      "manualResets": 121,
+      "automaticResets": 0,
+      "ascends": 121,
+      "prisms": 7742,
+      "motes": 1824,
+      "sigils": 720,
+      "finalDepth": 6,
+      "repeatDeadline": 2000000180000
+    }
+  ],
+  "assumptions": "Synthetic mature Rift29 save copied from PR46 focused suite. Two minutes; manual policy attempts at most one real Ascend per second after reaching target, plus the seeded ready reset at time zero. No reinvestment, player save, UI gesture, or human retention test. Production combat and reset code is unchanged."
+}
