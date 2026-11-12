@@ -100,78 +100,62 @@ definitions remain inert; keeping them avoids unrelated asset/catalog churn.
 
 ## Continuation
 
-Published [PR48](https://github.com/xariib/Lumenfall/pull/48), head
-`0501ecdb87ed62c90d010ca7a91fe0521df6e663`. All local suites passed. Full raw local
-suite is under ignored `validation-evidence/rift-redesign`; added final receipts
-are staged for the delivery documentation checkpoint, not yet committed.
-PR workflows started (premerge43218861215, Shared43218860869, Forge43218860620,
-Lab43218860849, Tree43218861133, Comet43218861183, progression43218860846,
-Wisp43218860587). Progression passes; other applicable runs are pending/running.
-Prism-only conditional workflows are skipped by their existing triggers.
-Signed candidate [build43218948236](https://github.com/xariib/Lumenfall/actions/runs/43218948236)
-PASS on the exact PR head with publish=false: stable signing/assets, in-place
-upgrade and both saves, installed Rift appearance/touch assertions, in-app updater
-and retail-image normal production launch. No release or merge yet.
+Published [PR48](https://github.com/xariib/Lumenfall/pull/48). Prior prepared head
+1b0b61a7186e62b9515384e06ab95cefc34b9da9 includes main
+5656cf854b06f7034313dd02ef700c911a2aa701. PR42 integrated and published Android
+0.2.110 during this task; both its gameplay and delivery receipt are preserved.
+Only status documentation and the replay source binding conflicted. Product
+code merged cleanly; no historical files were removed. Game/test/native/workflow
+bytes are identical to previously checked combined head c771cffe.
 
-First CI: Shared UI, Forge, Lab, Comet, progression, Wisp and isolated offline
-PASS. Tree's first attempt failed two browser transport deadlines (25s, no DOM
-output/QA result; even Chrome --version timed out). All seven later Prism cases
-passed. Original failure evidence is retained; same-source job rerun requested.
-The Tree retry PASS on the same0501ecdb source with unchanged test deadlines.
-Main validation reached the old layout contract and failed its requirement for
-six regional landmarks. That expectation contradicts the requested single-scene
-design; `layout.js` now verifies one visible consistent full-Rift background,
-preserving all region-label, boss-trait, touch, geometry, state and Farm checks.
-Product bytes remain unchanged. Adjusted fresh/dense/boss layouts PASS on all15
-viewports via the existing Windows CDP transport; the collapse control is still
-rejected. Final local receipts, initial failure evidence and signed Android
-candidate evidence are saved with this test correction. Android candidate is
-0.2.109 /1000109; its exact packaged assets also pass local byte verification.
-All initial applicable PR workflows passed except main validation's obsolete
-regional-background assertion. Restart all required CI on the new test/doc commit.
+Combined product SHA256:
+fe7614f268b02f8b4b5050ce653b997b3e32f1343c5685e8733cdfd562682cc1.
+Independent replay against dc78daad (same game as5656cf85) matches every saved
+field/reward/canonical endpoint across four eight-hour one-second replays.
+Combined visual1375 assertions/16560 encounter samples, native Rift status,
+Forge/Lab528 checks and source/lifecycle/context validation pass. Receipts:
+integrated-replay.json, combined-visual.json, combined-local-summary.json and
+combined-forge-lab.json in the [evidence directory](../qa/rift-theme-redesign-001/README.md).
 
-Final PR head `be4ccf992fadcc72f57c0604bb953b2af97986e6`. Shared UI, Forge, Lab,
-Comet, progression, Windows/Linux Wisp and isolated offline pass. Premerge
-43222940163 is running. Tree43222940095 first attempt again timed out during
-browser startup: even `--version` timed out, contract emitted no DOM/QA result,
-and all eight remaining Prism cases plus Tree/mobile/V8 checks passed. Raw
-diagnostics are retained in `tree-second-failure/` under the evidence directory;
-artifact13947541350 SHA256c01a014a2c514304f63988023aa37664af28d01b2a83f9a67f66f1697fbb6cda.
-Same-source job retry131209982472 is running with unchanged deadlines. No review
-threads; main remains6b990b70 and PR48 is mergeable. No public release yet.
+Historical CI findings: initial premerge failed the retired six-region-landmark
+expectation. The test now checks the requested single full-stage scene while
+retaining all other layout/region/boss checks. Fresh/dense/boss15 viewports and
+the collapse control pass. Two initial Tree runs timed out before any DOM/QA
+result; even Chrome --version timed out. Raw diagnostics are retained under
+tree-first-failure/ and tree-second-failure/. Both same-source reruns passed with
+unchanged deadlines. Later combined-source Tree PR/release checks also passed.
+Earlier runs were superseded when main's game and then delivery receipt moved;
+no assertion/deadline was weakened.
 
-Main advanced to `dc78daad51a59748d3faa55d57c4920d7c141d61` while PR CI ran:
-PR42 is now integrated. Merged that exact main into this feature; product code
-merged cleanly. Resolved status by retaining both feature records. Independently
-replayed the combined product against new main before resolving the source-hash
-conflict: all four complete saved states/reward triples/canonical endpoints still
-match (`integrated-replay.json`). Combined source SHA256
-`fe7614f268b02f8b4b5050ce653b997b3e32f1343c5685e8733cdfd562682cc1`.
-New-main Forge/Lab528 checks and source/lifecycle validation pass. No historical
-files are removed; Windows merge needed the existing long-path handling.
+Signed historical candidate build43218948236 on0501ecdb passed as0.2.109:
+established signing, exact assets, both save slots/paid work, installed Rift
+themes, updater and retail Android launch. It is unpublished and predates the
+Forge/Lab integration; final combined-source signed Android acceptance is needed.
 
-Combined head `c771cffe11bb7bb63c5641b6e220b3762104d0ca` is published. Full local
-visual1375 assertions/16560 encounter samples and native Rift status pass on
-that combined source (`combined-visual.json`, `combined-local-summary.json`).
-All six workflow-dispatch runs started on this exact commit: premerge43228207047,
-Comet43228215443, Forge43228223908, Lab43228231591, Shared43228239977,
-Tree43228248375. PR checks run separately on the same head; isolated offline,
-Comet, Lab, Tree, progression and Windows/Linux Wisp already pass. Old Tree retry
-43222940095 also passed with unchanged deadlines. Main's Android publication
-43226530073 completed successfully; main remained dc78daad at the last check.
+Prior exact-head PR checks and six workflow-dispatch gates are running.
+Release runs: premerge43230026842, Comet43230034911, Forge43230043430,
+Lab43230051257, Shared43230058747, Tree43230066808.
+PR premerge43229959537, Shared43229960087, Tree43229959554; the other PR runs
+are discoverable by the final head. Main's prior Android publication43226530073
+completed successfully. No independent review or physical-device claim.
 
-Next: finish all PR and six workflow-dispatch gates. After they pass, recheck
-main and any active Android publication, then advance
-main by a normal fast-forward to the tested descendant (no source/test changes).
-This preserves the exact validated commit as the integrated version. If main
-moves, reassess before promotion. Verify PR48 merged; publish signed Android on
-main through its existing integrated-CI gate, then verify public APK/feed/assets.
-Existing GitHub connector cannot dispatch workflows; the installed CLI does.
-Keep this task open until required acceptance is verified.
+Final self-review found the Collection & Journal encyclopedia paragraph still
+advertised the retired pack selectors and Live/Still control. Corrected that
+single paragraph and extended the visual test to inspect its rendered card.
+Quick117 assertions pass on final product SHA256
+ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8
+(final-quick.json); geometry, game functions and save schema are unchanged.
+The independent replay again matched all four complete saved states, rewards
+and original canonical endpoints before rebinding (final-replay.json). Restart
+the required checks on this corrected commit. The earlier visual matrices
+remain layout evidence, not a claim that final-source CI has already passed.
 
-Main then advanced to5656cf854b06f7034313dd02ef700c911a2aa701 with the verified
-PR42 Android0.2.110 delivery receipt only. Preserve that documentation in the
-final descendant; product/tests remain unchanged from c771cffe. Supersede the
-running c771cffe gates with new exact-commit PR/release runs after this merge.
-Combined local replay/visual/Forge/Lab evidence remains valid for identical bytes.
-[Evidence](../qa/rift-theme-redesign-001/README.md).
+Next: publish the guide correction and finish all PR and six workflow-dispatch
+gates on that exact head. Recheck main and active
+Android publication, then advance main by normal fast-forward to the tested
+descendant with no source/test changes. Verify PR48 merged. Publish Android
+through the existing integrated-CI gate and verify public APK/feed/assets.
+If main moves, reassess before promotion. Connector lacks workflow dispatch;
+the installed GitHub CLI provides it. Save final evidence and status in GitHub.
+Keep this task open for unverified physical-phone/WebView60 DOM/TalkBack and
+human design acceptance. Do not archive or claim complete while these remain.

@@ -24,6 +24,9 @@ driver=driver.slice(0,start)+String.raw`
   ok(await run("(function(){var old=freshState();delete old.riftLook;return JSON.stringify(acceptPersistedState(old).riftLook)===JSON.stringify(freshState().riftLook);})()"),'old saves default to original looks');
   ok(await run("(function(){var old=freshState();old.riftLook={backdrop:'unknown',wisp:42,enemy:'bad',motion:false};return JSON.stringify(acceptPersistedState(old).riftLook)===JSON.stringify({backdrop:'default',wisp:'default',enemy:'default',motion:false});})()"),'invalid preferences normalize safely');
   ok(await ev('document.querySelectorAll("[data-look-slot],[data-look-motion]").length')===0,'retired pack and Live/Still controls are absent');
+  const guide=await run("(function(){renderEncyclopedia();return Array.from(document.querySelectorAll('#encyclopedia-content .ency-card')).find(function(e){return e.querySelector('.ency-name').textContent==='Collection & Journal';}).textContent;})()");
+  ok(guide.includes('Choose a Rift theme in Collection')&&guide.includes('shared Rift landscape'),'rendered guide explains the main theme selector and shared scene');
+  ok(!/Live backgrounds|set to Still|Wisp designs|enemy families|Select each separately/.test(guide),'rendered guide does not advertise retired appearance controls');
   ok(await run("(function(){var before=JSON.stringify(state);selectRiftTheme('ember');selectRiftTheme('unknown');return before===JSON.stringify(state)&&activeRiftTheme().id==='default';})()"),'locked and invalid themes cannot be equipped');
   ok(await run("(function(){state.maxDepthEver=50;tick();return state.achieved.d50&&!!document.querySelector('[data-theme-select=ember]')&&activeRiftTheme().id==='default';})()"),'earned Deed immediately unlocks main theme without equipping it');
   await ev('prismQa.fixture(true)');

@@ -53,3 +53,11 @@ one-second replays. Combined product SHA256 is
 `fe7614f268b02f8b4b5050ce653b997b3e32f1343c5685e8733cdfd562682cc1`.
 The prior Android candidate remains historical evidence for the earlier source;
 final combined-source CI and signed Android acceptance are required.
+
+Final self-review corrected one stale Collection & Journal encyclopedia
+paragraph advertising the retired controls. The visual test now checks the
+rendered guide as well. final-quick.json passes117 assertions on product
+ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8.
+This changes help text only. final-replay.json again passes every complete state,
+reward and canonical endpoint before source rebinding. Fresh exact-commit CI
+and the final signed APK remain required.
