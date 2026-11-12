@@ -1,14 +1,15 @@
 # Lumenfall — current delivery status
 
 12 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
-is integrated through PR47 (`aee2953d`); public delivery remains pending. It closes
-untrusted-action chronology bypasses and a paid Lab work helper defect, uses
-combat progress for Auto-Tap, and modestly eases later recruitment by one Lab
-level. Thirty-day idle simulations and signed Android0.2.106 candidate upgrade,
-updater and normal-launch checks passed. This candidate is unpublished; final
-integrated validation and public release remain open. All eight applicable PR
-validation workflows passed. Physical-phone and human
-pacing acceptance are unverified. PR42/46 remain separate work.
+released as [Android 0.2.107](https://github.com/xariib/Lumenfall/releases/tag/android-1000107) through PR47.
+It closes untrusted-action timing bypasses and a paid Lab work helper defect,
+uses 10,000 combat defeats for Auto-Tap, and eases later recruitment by one Lab
+level. All eight integrated workflows passed at `18e7072c`.
+Signed save-preserving upgrade, in-app update, retail-image normal launch and
+anonymous public APK/assets/feed verification passed. Thirty-day idle results
+and [delivery evidence](qa/exploit-balance-hunt-001/README.md) are saved.
+Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
+local saves remain a trust boundary. PR42/46 remain separate work.
 
 9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
 the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
