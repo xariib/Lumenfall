@@ -1,5 +1,7 @@
 # All improvements in one Android APK
 
+Status: integrated and APK published; physical-device and human acceptance open.
+
 User request, 14 November 2026: "Is every new update in the game? If it's not then make a new apk with every new improvement".
 
 Goal: compare the current public APK with accepted current work and publish a
@@ -36,7 +38,9 @@ References: [workflow](../project/FEATURE_WORKFLOW.md),
 [Lab release](LAB_SIMPLE_001.md), [Bond requirement](RIFT_BOND_DISPLAY_001.md),
 [current state](../PROJECT_STATE.md).
 
-Status: combined candidate prepared; validation in progress. The published PR50
+## Preparation checkpoint (historical)
+
+Combined candidate prepared; validation was in progress. The published PR50
 head merged cleanly into the latest game. Resolved shared-status text by retaining
 both updates, and rebound only the replay source after a fresh independent paired
 replay. Product SHA256 `c921c7bb3d062de17e23ad1e9fc3cc9050aa0425d661d13bc9a6987f3fef5543`.
@@ -107,3 +111,34 @@ in GitHub. Required source/native gates remain unchanged. Recheck exact main
 and build state before any necessary release mutation.
 GitHub connector lacks workflow dispatch; existing authenticated CLI supplies it.
 No changes to credentials or signing. Task stays open for device/human acceptance.
+
+## Final combined delivery
+
+[Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119) is public from exact integrated commit `a3d125a57fa2b5e54419e2a8774c63f356204518` through PR53.
+PR50 is also merged through the preserved ancestry. This includes the simpler
+Lab, consistent currency header, progressive Deeds and final Details/focus fix,
+Rift themes, Bond display cleanup and all previously released improvements.
+PR46 remains closed without merging; no rejected cooldown or unrelated diagnostic
+was imported. Root attachments and other feature worktrees were not modified.
+
+All eight PR and eight manual workflows passed on these exact bytes. Both full
+runs and their isolated offline jobs passed; [CI summary](../qa/all-updates-release-20261114/ci-log-summary.json)
+retains actual scenario totals and compressed logs. Node24.19.0 full regression;
+Node24.22.1 local checks. Initial Linux Wisp setup failures in the dedicated workflow and PR full suite
+are retained with their unchanged passing retries; transient causes unproven. No test, timing
+limit or CI gate was weakened. Review was self-review and automated checks.
+
+[Signed Android run](https://github.com/xariib/Lumenfall/actions/runs/43646924641) passed package/certificate, all packaged assets,
+installed Bond and Deeds acceptance, in-place upgrade retaining both save slots
+and paid work, actual in-app updater and non-debug retail Android12 launch.
+Public anonymous versioned/latest APKs, commit/checksum/identity and updater feed
+match the verified artifact. APK SHA256: `c4e8ab61c5176e8c9cbdb6e759a1787d1de1afc09fd886888467f3091d2efabf`.
+[Public receipt](../qa/all-updates-release-20261114/android-release/public-verification.json).
+
+Documentation/evidence were saved after publication; game, native, tests and
+workflows remain identical to the validated/released source. Final installed
+Rift/Bond and retail-launch screenshots were visually inspected (self-review).
+No further automated release action remains. Physical-phone, exact WebView60 DOM, TalkBack, human
+design/pacing and independent human review remain unverified. Keep the task/chat
+open for those checks; no archive attempted. Next: install this APK over the
+existing app and review the combined changes on the physical phone.

@@ -1,23 +1,22 @@
 # Lumenfall — current delivery status
 
-14 November: [All-improvements APK](tasks/ALL_UPDATES_RELEASE_20261114.md)
-combines released0.2.117 with PR50's pending Bond display improvement. Combined
-validation and Android delivery in progress; prior feature worktrees untouched.
+14 November: [All improvements/PR53](tasks/ALL_UPDATES_RELEASE_20261114.md)
+released as [Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119),
+source `a3d125a5`. Includes PR50 Bond display
+cleanup plus the already accepted [simpler Lab](tasks/LAB_SIMPLE_001.md),
+[currency header](tasks/CURRENCY_HUD_001.md), [progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md),
+Rift themes and earlier progression/fixes. All 16 exact-source workflows, both full
+regressions and isolated offline jobs passed. Signed upgrade/updater retain both
+save slots and paid work; installed Bond/Deeds checks, retail Android 12 launch
+and anonymous public APK/assets/feed verification passed.
+[Evidence](qa/all-updates-release-20261114/README.md). Initial browser/retail
+inspection failures and unchanged passing retries are retained; causes unproven. Phone, exact
+WebView60 DOM, TalkBack and human acceptance remain open. Self-review only.
 
-14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) released as Android 0.2.117.
-CI, upgrade/updater and public APK PASS; device/TalkBack acceptance open.
-
-14 November: [Rift bond display](tasks/RIFT_BOND_DISPLAY_001.md): boosts stay in
-the Wisp menu; combined-source validation and Android delivery pending.
-
-14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
-PR52: one advancing card per series. Its eight candidate suites/190 scenarios pass;
-the final Details/focus fix passes local checks. Prior signed upgrade/updater and
-Deeds touch pass. Final-source CI and Android delivery remain pending; retail
-accessibility inspection is unresolved.
-
-14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
-at7f149b89; Android delivery pending.
+14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) first shipped in
+Android 0.2.117 and is retained above. PR49 currency and PR52 Deeds are included
+in both 0.2.117 and the combined release. [PR50](tasks/RIFT_BOND_DISPLAY_001.md)
+is now merged: names stay on Rift; boosts remain in the Wisp menu.
 
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)

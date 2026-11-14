@@ -1,7 +1,7 @@
 # RIFT_BOND_DISPLAY_001 — Rift bond names without boost rows
 
 14 November 2026. Owner thread `01a1d77b-4453-7a21-9961-55d70c6cd963`.
-Status: in progress; final combined validation and Android delivery pending.
+Status: integrated and released as Android 0.2.119; device/human acceptance open.
 [PR50](https://github.com/xariib/Lumenfall/pull/50).
 
 ## Requirement and acceptance
@@ -35,7 +35,7 @@ native fixture correction `5f0d976210eb62fa37917129bd7e8bc453806d8e` without con
 Only shared status and the replay binding conflicted in earlier merges; retained
 current-main status and all peer code/tests, then reran the paired reference.
 
-Current production SHA256 (unchanged by the native fixture merge):
+Earlier combined production SHA256 (before the latest Lab integration):
 `7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d`.
 Complete product diff against main5f0 is only the requested boost-list removal.
 
@@ -98,7 +98,7 @@ This chat coordinates one combined integration/build/publication, then shares
 exact SHA/run/tag/receipts for each owner to verify their own feature. It does not
 claim or archive their tasks. Other feature work is preserved and not edited.
 
-## Current next action
+## Previous next action (superseded by shared delivery below)
 
 The worktree has merged5f0 into a local documentation checkpoint; production
 source remains SHA7222c3. All latest local checks and the native fixture causal
@@ -120,3 +120,15 @@ build with the two owners. Do not push main evidence during publication: the
 existing workflow verifies exact main before publishing. Verify the actual
 combined APK, save durable receipts/status, notify both owners, and leave
 physical-phone/WebView60/TalkBack/human acceptance open until observed.
+
+## Shared combined APK delivery, 14 November 2026
+
+The all-improvements release integrated PR50/PR53 at `a3d125a57fa2b5e54419e2a8774c63f356204518` and published
+[Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119). This feature and all accepted current-main changes are retained.
+Sixteen exact-source workflows passed, along with signed save upgrade/updater,
+installed Bond/Deeds checks, retail Android launch and anonymous public bytes/feed.
+[Combined task](ALL_UPDATES_RELEASE_20261114.md) and
+[receipts](../qa/all-updates-release-20261114/README.md) supersede earlier pending
+delivery statements. Earlier source-bound receipts remain historical.
+Physical-phone, WebView60 DOM, TalkBack and human acceptance remain open; this
+release does not claim another owner's human acceptance or archive their chat.

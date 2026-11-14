@@ -1,8 +1,8 @@
 # DEEDS_PROGRESSIVE_001 — one advancing card per Deed series
 
-Status: integrated; final-source main validation and Android delivery pending.
+Status: integrated and delivered in Android 0.2.119; device/human acceptance open.
 Owner: current feature chat; no delegation, new chats or messages.
-Current product SHA256: `552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28`.
+Earlier feature product SHA256: `552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28`.
 
 ## Original request — 14 November 2026
 
@@ -137,3 +137,15 @@ task/project status. Keep physical acceptance open and do not archive prematurel
 [Byte-preserved earlier checkpoint](../qa/deeds-progressive-001/task-before-final-detail.txt)
 retains full earlier milestones/versions/diagnostics. This compaction keeps startup
 under32KiB without changing rules or discarding historical evidence.
+
+## Shared combined APK delivery, 14 November 2026
+
+The all-improvements release integrated PR50/PR53 at `a3d125a57fa2b5e54419e2a8774c63f356204518` and published
+[Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119). This feature and all accepted current-main changes are retained.
+Sixteen exact-source workflows passed, along with signed save upgrade/updater,
+installed Bond/Deeds checks, retail Android launch and anonymous public bytes/feed.
+[Combined task](ALL_UPDATES_RELEASE_20261114.md) and
+[receipts](../qa/all-updates-release-20261114/README.md) supersede earlier pending
+delivery statements. Earlier source-bound receipts remain historical.
+Physical-phone, WebView60 DOM, TalkBack and human acceptance remain open; this
+release does not claim another owner's human acceptance or archive their chat.
