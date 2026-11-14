@@ -111,3 +111,32 @@ avoids a second build while preserving every publication gate. No workflow chang
 Next: inspect the unchanged retry, publish only after all required guards pass,
 verify anonymous versioned/latest bytes and update this record. Physical-phone,
 exact WebView60/TalkBack/human acceptance remain open; do not archive.
+
+## Repeated retail failure and isolated diagnostic
+
+The unchanged retry of43578599508 also failed retail normal-launch acceptance
+(job132401816226). Again the screenshot shows the game, while the XML omits its
+controls. [Second raw evidence](../qa/currency-hud-001/android-second-failure/files.json)
+is retained separately. This remains a failed required check; no APK is published.
+
+Feature-only diagnostic commit `c737fd3eb051717ecee0f7b8695111f824d0b2c6`
+adds a failure-only released-baseline comparison to
+`scripts/ci/verify_android_release_runtime.cjs`; it is not integrated into main.
+Candidate assertions/deadlines stay unchanged and candidate failure still exits1.
+Only the disposable retail emulator is used. The comparison downloads pinned
+Android0.2.111 with SHA256 `6bcef5120e943da897c246ceb0608a3e87bb296cd0a28379de56dff71405afac`,
+clears only that synthetic emulator installation and executes the same original
+launch assertions. Product HTML/JavaScript remain byte-identical to integrated7f149b89.
+
+Diagnostic build43581066569 first stopped before retail acceptance: upgrade
+passed but `android-updater.cjs` received release metadata without `tag_name`.
+HTTP/body were not recorded, so rate limiting or another cause is unproven.
+Its artifact and raw output are retained locally; the unchanged diagnostic job
+was retried to reach the comparison. Current feature branch also contains the
+delivery/diagnostic documentation descendants8eadb005 and68f3690d. Main remains
+the tested product7f149b89; keep it stable for exact-source delivery.
+
+Next: inspect the completed pinned-baseline comparison before choosing a fix.
+Investigate stock UIAutomator's idle-based dump/observer startup if the released
+baseline also fails. Do not remove visibility, package, debugger/security,
+save/updater, deadline or publication checks; do not publish a failed candidate.

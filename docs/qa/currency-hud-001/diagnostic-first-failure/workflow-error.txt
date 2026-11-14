@@ -1,0 +1,14 @@
+Run43581066569, job132405696903; original log excerpt; the retail comparison did not run.
+6871Z [command]/usr/bin/sh -c node scripts/ci/android-updater.cjs
+2026-11-14T09:39:46.6510663Z Native updater QA: fetch official release and install older-version fixture
+2026-11-14T09:39:46.7990867Z fetch official release and install older-version fixture: AssertionError [ERR_ASSERTION]: The "string" argument must be of type string. Received type undefined (undefined)
+2026-11-14T09:39:46.8019143Z     at main (/home/runner/work/Lumenfall/Lumenfall/scripts/ci/android-updater.cjs:47:10)
+2026-11-14T09:39:46.8021172Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2026-11-14T09:39:47.3936541Z DEBUG   | ColorBuffer 198, 320x640, VK_FORMAT_R8G8B8A8_UNORM, Memory [size: 819200, type: 0, props: 15 / 1]
+2026-11-14T09:39:47.4882189Z VERBOSE | Created RenderThread. Active RenderThreads: 24
+2026-11-14T09:39:47.4885160Z DEBUG   | Exited a RenderThread @0x5cf5118dae00
+2026-11-14T09:39:47.4887771Z VERBOSE | Destroyed RenderThread. Active RenderThreads: 23
+2026-11-14T09:39:47.4889441Z DEBUG   | Exited a RenderThread @0x5cf517ce6000
+2026-11-14T09:39:47.4890785Z VERBOSE | Destroyed RenderThread. Active RenderThreads: 22
+2026-11-14T09:39:47.4892044Z DEBUG   | Exited a RenderThread @0x5cf51ba72000
+2026-11-14T09:39:47.4893324Z VERBOSE | Destroyed RenderThread. Activ
