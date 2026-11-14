@@ -1,5 +1,29 @@
 # Progressive Deeds evidence
 
+## Human correction: one live bar, increasing stage rewards
+
+The human rejected the prior design and chose existing milestone numbers plus
+increasing rewards. Current source0e613bf5d983345738cc26d56909b925b8b8f3f9156ea443361c79405b1d95fa
+replaces checkbox markers with one live bar per series, retains cumulative totals
+when advancing and removes the milestones-completed counter. Original milestones,
+receipts and original/event rewards survive. Four later tracks now increase by5
+Comets instead of falling at their original/long-tail boundary; all stage rewards
+rise. Already settled stages are not paid again; pending stages receive the current
+higher reward once. The approved full pool is3373, including original683/event50.
+
+[Core](bar-correction/core.json):415 focused payout/save checks,417 original checks
+and99 native-fixture controls PASS. [Mobile](bar-correction/mobile.json):1264 checks,
+36 profiles PASS. [Stale-bar control](bar-correction/stale-bar-control.json) correctly
+fails when the ordinary live tick's bar update is removed.
+[Rift10→25 screenshot](bar-correction/rift10-next25.png) and
+[200% text screenshot](bar-correction/deeds-320-200.png) were visually inspected.
+[Paired replay](bar-correction/replay.json) recomputes four eight-hour windows for
+both released main6fd9e44f and current source. Every complete state matches after
+adding only the independently enumerated new Comet rewards (+450 in this fixture).
+Original kills/Ascends/Prisms and all other fields are exact. The bound reference
+uses the actual corrected full-state hashes. Required CI and signed native/public
+APK checks remain pending; earlier receipts below are not correction acceptance.
+
 Baseline main858d713f, source ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8.
 Candidate product 8505c177d642b372d69f8b56f568f581ea44709ab9d3f14c3d4aaa6505bd11ff.
 Task: [DEEDS_PROGRESSIVE_001](../../tasks/DEEDS_PROGRESSIVE_001.md).

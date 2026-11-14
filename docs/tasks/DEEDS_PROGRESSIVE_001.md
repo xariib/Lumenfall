@@ -1,10 +1,47 @@
 # DEEDS_PROGRESSIVE_001 — one advancing card per Deed series
 
-Status: integrated; final-source main validation and Android delivery pending.
+Status: reopened by human correction; implementation/checks in progress.
 Owner: current feature chat. Existing-chat release coordination authorized by the
 human in Rift thread01a1d77b-4453-7a21-9961-55d70c6cd963; verified its explicit
 “Yes, coordinate those two chats” reply. No delegation or new chats.
-Current product SHA256: `552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28`.
+Current product SHA256: `0e613bf5d983345738cc26d56909b925b8b8f3f9156ea443361c79405b1d95fa`.
+
+## Human correction — 14 November 2026
+
+“What you did is wrong ... only ... one box which is exponential ... a box with
+a bar ... 0/10 strikes ... when10/10 ... next ...10/x for next reward.” Follow-up
+choices: **Use the existing milestone numbers**; **Increase rewards at each stage**.
+The earlier fixed-pool/presentation-only acceptance below is superseded for this
+correction. Keep existing targets/identities and cumulative counts. Each series
+gets one visible progress bar replacing the checkbox marker; reaching a stage
+advances that card to the next target/reward. Update the bar between completions.
+Remove the competing milestones-completed counter. Existing finite/single goals
+retain their existing endpoints; the human selected existing targets, not doubling.
+
+Later rewards increase using the existing5-Comet step after original tracks:
+Rift500..1m =105..140; Ascend25..100k =55..90; Forge100..600 =45..70;
+rest24..8760h =20..45. All other schedules already rise. Total3373 (active3323),
+including unchanged original683 and retired event50. No retroactive duplicate
+of settled rewards; existing pending boolean claims receive the current increased
+reward once. No save schema/flag/counter changes. Cover existing saves/claims,
+online/offline parity and the intentional Comet-only reference change.
+
+Correction baseline: current main6fd9e44f/Android0.2.117 (simpler Lab retained).
+Merged it into the isolated Deeds branch; root/other worktrees untouched. Existing
+Rift coordination was notified of rejected human acceptance; no main/build push.
+Next: finish focused bars/rollover/monotonic reward/save tests, source-bound replay,
+mobile visual review, then serialize corrected integration/required CI/Android.
+
+Correction checks:415 focused core/actual payouts and migration checks,417 original
+clarity and99 native-fixture checks PASS.1,264 UI checks/36 profiles PASS on current
+bytes. Missing live-update hook causal control correctly fails. Exact paired
+115,200-second replay per version retains all original combat rewards and every
+other saved field; only independently specified higher Deed Comets differ (+450
+in this seed). Bound reference updated to actual new full-state hashes. Screens
+visually reviewed at normal/200% text. [Evidence](../qa/deeds-progressive-001/README.md).
+Earlier ec9f9db9 also passes12,884 Comet checks/controls. Final source uses existing
+setLiveText/setLiveAttribute to avoid unchanged writes. Required CI/native build
+are pending; no corrected APK is published and human acceptance is not claimed.
 
 ## Original request — 14 November 2026
 
@@ -13,7 +50,7 @@ it should have one box, where the next milestone always increasing with
 what you reach. This goes for every deed on the list.” Repeated after an
 interrupted startup; no product changes preceded that interruption.
 
-## Implementation, scope and acceptance
+## Prior implementation, scope and acceptance (superseded where noted above)
 
 One card per existing series. Its title, authoritative progress, reward and
 unlock describe the next unearned milestone; advance after earned receipts,
@@ -125,7 +162,7 @@ exact-commit main gates/native build after integrating this test-only correction
   Its unchanged failed-job retry passed Linux/Windows and all controls. These
   prior-source checks do not substitute for final-source main validation.
 
-## Next concrete action
+## Prior release checkpoint (superseded by correction)
 
 Main5f0d976210eb62fa37917129bd7e8bc453806d8e includes the fixture correction.
 Its signed nonpublishing Android0.2.116/run43591494545 PASS: actual Deeds touch,
