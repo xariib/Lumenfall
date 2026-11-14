@@ -1,7 +1,7 @@
 # CURRENCY_HUD_001 — consistent top currency display
 
-14 November 2026. Owner: this feature chat. Status: local validation passed;
-GitHub integration and Android delivery pending.
+14 November 2026. Owner: this feature chat. Status: visible-name correction
+in progress; previous icon-only implementation integrated. Do not archive.
 
 ## Request and scope
 
@@ -10,9 +10,47 @@ the others menu aswell. So it's showing the icon and then how much currency
 right of icon. They should have same size and style like the rift screen everywhere.”
 
 Use the Rift currency chip dimensions and appearance in every menu, with the
-icon followed by its amount. Retain currency names for assistive technology.
+icon followed by its name and amount. Show full currency names visibly and
+retain them for assistive technology.
 Preserve six wallets, number formatting, live refresh, purchases, saves, game
 mechanics, settings and navigation. No save migration or new binding rules.
+
+## Current human correction — visible currency names
+
+User: “The currency menu is only showing icons, no text of what the currency is.”
+This supersedes the earlier visually clipped-name presentation and its
+label-free acceptance. All six menus must show icon, full currency name and
+live amount with the same shared styling. Preserve 24px/20px chips, 11px icons
+and 10px amounts. Names are 9px; at widths up to380px use two columns so full
+scientific balances fit without hiding or truncating names or amounts.
+
+Correction baseline is current main `6fd9e44f` (includes released Lab0.2.117),
+isolated branch `fix/currency-visible-names-001` in the same currency worktree.
+Previous long diagnostic/coordination history remains on
+[the earlier feature branch](https://github.com/xariib/Lumenfall/blob/feature/currency-hud-001/docs/tasks/CURRENCY_HUD_001.md).
+Rift coordinator was notified through the human-approved existing-chat channel
+to hold publication of obsolete icon-only candidate918d5739. No other worktree,
+shared main, release build or native helper is changed here.
+
+Initial390px check passed111 assertions. The first320px check correctly found
+the largest scientific amount clipped beside a name; the two-column responsive
+correction addresses this. Final visual matrix PASS1,776 assertions/16 profiles;
+hidden-name causal control fails the intended assertion, and four paired
+eight-hour one-second replays preserve all original endpoints/save fields/rewards.
+Product scripts are byte-identical to6fd9e44f; only CSS changes. Source validation,
+task context and whitespace pass. Node24.22.1/Brave157.1.99.57; screenshot review
+is self-review. [Exact-source correction evidence](../qa/currency-hud-001/visible-names/summary.json).
+The unchanged Shared UI workflow runs the strengthened positive name checks.
+The hidden-name causal command/evidence are retained locally/in this repository;
+GitHub rejected the proposed workflow extension because its OAuth credentials
+lack workflow scope. No existing workflow/check is removed or weakened.
+Rift layout/control checks also PASS1,399 assertions/12 profiles, including the
+existing oversized-enemy causal control. Next: push the correction/PR, provide
+its exact commit to the coordinator and verify integrated CI/final APK.
+Device/human acceptance stays open.
+
+The baseline/PR49 sections below retain historical acceptance; they do not
+establish acceptance of this current correction.
 
 ## Baseline and acceptance
 
