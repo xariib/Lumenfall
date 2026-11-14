@@ -100,20 +100,48 @@ Main then advanced to final Deeds details/focus fix
 `5040ea14053e9decd7935a72c31af801e87d7860`. This worktree merged that exact main
 at936ece57; its product/native/tests/workflows match5040ea14 exactly. Changes
 relative to that main are currency delivery documentation/evidence only.
-The Deeds owner is already running the current exact-main release pipeline.
-Follow that existing delivery and avoid competing builds/publication. Earlier
-e67c984f acceptance does not substitute for later-source required gates.
+The Deeds owner ran that exact-main pipeline. Earlier e67c984f acceptance does
+not substitute for later-source required gates.
 The5040ea14 Shared UI43587205273 also passed1,776 assertions/16 profiles at
 source552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28;
 [current combined proof](../qa/currency-hud-001/current-combined-currency-acceptance.json).
-Its full premerge43587193383 remains in progress; no duplicate Android build
-was dispatched by this currency chat.
+Its full premerge43587193383 was still in progress at the last check. No duplicate
+Android build was dispatched by this currency chat.
 
-Next concrete action: inspect current main's existing workflows/native build
-and combined publication; independently verify the published versioned/latest
-APK, source, signing/assets/feed and retained currency layout, then save final
-currency delivery docs on current main AFTER publication. Do not rewind main,
-publish an obsolete APK, overwrite another feature or weaken any guard.
+## User-approved release coordination
+
+On14 November the human user explicitly answered “Yes, coordinate those two
+chats (Recommended)” in the Rift task to its question naming Deeds and currency
+and serializing their main updates/APK builds. This chat verified the actual
+human reply before replying; it did not infer permission merely from an agent
+message. Scope is coordination among these existing feature chats for this
+combined release, not new chats, subagents or blanket messaging authorization.
+
+The Rift owner now coordinates one final combined source, including Deeds and
+currency, after the Deeds owner commits its narrowly scoped Farm1 native recap
+fixture correction. Keep main/publication stable; only checkpoint/evidence
+commits on this feature branch. Do not edit their in-progress shared helpers.
+The temporary currency retail diagnostic is already restored; no helper fix is
+required from this feature. These facts and the passing native receipts were
+sent through the verified authorized channel.
+
+Currency-specific verification of proposed Rift candidate
+`0c3a71219946e0e0c485a0132d14b86b68595d1c` PASS: SHA256
+`7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d`;
+all HUD CSS/markup, `renderHud` wallet binding and the entire currency regression
+script are byte-identical to accepted7f149b89.
+[Source proof](../qa/currency-hud-001/coordinated-currency-source.json).
+Rift reports its combined1,776 layout checks/16 profiles passed; final-source
+CI/native publication still must be verified. This is currency-scope acceptance,
+not global release approval or independent review of our own feature.
+
+Next concrete action: receive the agreed final SHA/run/tag and receipts from the
+Rift coordinator (it was asked to message this currency chat), then verify the
+published versioned/latest APK, exact source, signing/assets/feed and retained
+currency layout. Save final delivery docs on current main AFTER publication.
+Do not rewind main, publish an obsolete APK, compete with coordinated builds,
+overwrite another feature or weaken any guard. The task remains open while
+waiting for that coordinated delivery; implementation and signed preview are ready.
 
 Physical-phone, exact WebView60 DOM, TalkBack, human design acceptance and
 independent review remain unverified. Self/automated review only. Keep task open
