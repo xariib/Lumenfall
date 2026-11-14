@@ -134,6 +134,6 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
   ok(b.forge.deeds().total===683,'original23 reward catalogue unchanged');
   same(b.forge.deeds().items.filter(function(a){return a.id.indexOf('comet_')===0;}).map(function(a){return [a.id,a.reward];}),[['comet_first_command',5],['comet_first_recharge',10],['comet_boss_strike',15],['comet_called_kill',20]],'four separate event Deeds retain their own 50C policy');
   var longtail=b.forge.deeds().items.filter(function(a){return ids.indexOf(a.id)===-1&&a.id.indexOf('comet_')!==0;});
-  same([longtail.length,longtail.reduce(function(n,a){return n+a.reward;},0),b.forge.deeds().allTotal],[49,1250,1983],'49 added long-term Deeds have their own fixed rewards beside intact originals');
+  same([longtail.length,longtail.reduce(function(n,a){return n+a.reward;},0),b.forge.deeds().allTotal],[49,2640,3373],'49 long-term goals use approved increasing rewards beside intact original and event payouts');
   return {checks:checks,nodeLevels:9,projectLevels:4,deeds:ids.length,exactObserverPurity:true};
 };

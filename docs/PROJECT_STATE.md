@@ -3,10 +3,11 @@
 14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) released as Android 0.2.117.
 CI, upgrade/updater and public APK PASS; device/TalkBack acceptance open.
 14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
-PR52: one advancing card per series. Its eight candidate suites/190 scenarios pass;
-the final Details/focus fix passes local checks. Prior signed upgrade/updater and
-Deeds touch pass. Final-source CI and Android delivery remain pending; retail
-accessibility inspection is unresolved.
+PR52; reopened by human correction: each series needs a live progress bar,
+retained cumulative total, existing next targets and increasing stage rewards.
+Corrected local core/mobile and paired offline checks pass; corrected CI/Android
+delivery and human acceptance remain pending. Prior receipts do not verify this
+correction.
 
 14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
 at7f149b89; Android delivery pending.
