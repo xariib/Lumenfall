@@ -47,3 +47,8 @@ against released source and canonical complete-state hashes. Only the current
 reference's source SHA changed; no outcomes were rewritten.
 
 Next: required CI, integration and Android delivery. Feature remains open.
+
+[PR50](https://github.com/xariib/Lumenfall/pull/50) opened. The existing installed
+Android upgrade check now records absence of Rift boosts, retained active names
+and all eight full Wisp boost descriptions. Its synthetic fixture must exercise
+at least one active Bond. This runs within the existing signed build acceptance.
