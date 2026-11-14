@@ -371,9 +371,11 @@ async function verifyInstalledRiftLooks(page,report){
  }
  await tap('nav.tabbar [data-tab="deeds"]');
  const deedKeys=['rift','strikes','fullparty','ascend','all','mythic','rest','autotap','labmaster','projects','allstudies','forge','firstultimate','modulemax','kills','lab','mastery'].sort();
- const installedDeeds=await page.evaluate(`(()=>{const cards=Array.from(document.querySelectorAll('#ach-list [data-deed-series]'));return {keys:cards.map(c=>c.dataset.deedSeries).sort(),primaryCounters:document.querySelectorAll('#ach-list .info > [data-deed-progress]').length,rift:document.querySelector('[data-deed-series="rift"]').dataset.deed,history:!!document.querySelector('[data-card-details-summary="deed-history-rift"]')};})()`);
+ const installedDeeds=await page.evaluate(`(()=>{const cards=Array.from(document.querySelectorAll('#ach-list [data-deed-series]')),bar=document.querySelector('[data-deed-bar="rift"]');return {keys:cards.map(c=>c.dataset.deedSeries).sort(),primaryCounters:document.querySelectorAll('#ach-list .info > [data-deed-progress]').length,bars:document.querySelectorAll('#ach-list [role="progressbar"]').length,riftBar:bar?{current:Number(bar.getAttribute('aria-valuenow')),target:Number(bar.getAttribute('aria-valuemax')),width:bar.firstElementChild.style.width}:null,checkboxes:document.querySelectorAll('#ach-list .dot').length,rift:document.querySelector('[data-deed-series="rift"]').dataset.deed,history:!!document.querySelector('[data-card-details-summary="deed-history-rift"]')};})()`);
  assert.deepEqual(installedDeeds.keys,deedKeys,'Installed APK has exactly one card for every Deed series');
  assert.equal(installedDeeds.primaryCounters,17,'Installed cards each expose one next-target counter');
+ assert.equal(installedDeeds.bars,17,'Installed cards each expose one progress bar');assert.equal(installedDeeds.checkboxes,0,'Deed progress replaces checkbox markers');
+ assert.deepEqual(installedDeeds.riftBar,{current:1000,target:2500,width:'40%'},'Installed bar retains Rift1000 toward the next2500 reward');
  assert.equal(installedDeeds.rift,'endless_rift_2500','Upgraded Rift1000 milestones advance to the next target in the same card');
  assert(installedDeeds.history,'Upgraded earned Rift milestones retain their history');
  await page.evaluate(`window.installedDeedHistoryClicks=[];document.addEventListener('click',e=>{const s=e.target.closest('[data-card-details-summary="deed-history-rift"]');if(s)installedDeedHistoryClicks.push({trusted:e.isTrusted});},true);`);

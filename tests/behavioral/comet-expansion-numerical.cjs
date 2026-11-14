@@ -26,7 +26,7 @@ const ENDLESS_DEEDS = Object.entries({
   lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],
   mastery:[10,25,50,100,250,500,1000,5000,10000],
   rest:[24,72,168,720,2160,8760]
-}).flatMap(([track,targets])=>targets.map((target,i)=>['endless_'+track+'_'+target,10+5*i]));
+}).flatMap(([track,targets])=>targets.map((target,i)=>['endless_'+track+'_'+target,({rift:105,ascend:55,forge:45,rest:20}[track]||10)+5*i]));
 const RETIRED = [['comettrials',140], ['rifttrail',50], ['starfallcrest',160]];
 const CATALOG = [
   {id:'autoascend',cap:1,prices:[100],deeds:[]},

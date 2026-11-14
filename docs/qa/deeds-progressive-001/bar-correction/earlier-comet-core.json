@@ -1,0 +1,398 @@
+{
+  "status": "PASS",
+  "checks": 12884,
+  "groups": [
+    {
+      "name": "fresh schema, fixed catalog and historical reward policy",
+      "checks": 44,
+      "status": "PASS"
+    },
+    {
+      "name": "old0/1/2 paid migrations and one-pass retirement compensation",
+      "checks": 8222,
+      "status": "PASS"
+    },
+    {
+      "name": "strict current4 paid data, recovery preservation and explicit restore",
+      "checks": 227,
+      "status": "PASS"
+    },
+    {
+      "name": "separate original F26 receipts settle before the bounded Comet family",
+      "checks": 47,
+      "status": "PASS"
+    },
+    {
+      "name": "protected original Deed thresholds count all paid Forge levels",
+      "checks": 11,
+      "status": "PASS"
+    },
+    {
+      "name": "Exact batches, permanent investments and retirement migration",
+      "checks": 4333,
+      "status": "PASS"
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "old-loader",
+      "rawSha256": "14a1864660e0d8234d0dc32174003e243d086740a6b1f4c4b1019cb5a2c6bfc1",
+      "finalComets": 450,
+      "claims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "settled",
+          "rifttrail": "settled",
+          "starfallcrest": "settled"
+        },
+        "deeds": {}
+      }
+    },
+    {
+      "id": "strict-schema",
+      "invalidCases": [
+        {
+          "id": "missing-cometUpgrades",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometCharges",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometWork",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometMeteorUsed",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometCalled",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometEvents",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-cometClaims",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "missing-owned-meteor",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-owned-meteor",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "missing-owned-starcall",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-owned-starcall",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-comettrials",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-rifttrail",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-starfallcrest",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-cometreservoir",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-cometcycle",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "redundant-owned-meteorcore",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "unknown-level",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "array-levels",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-NaN",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-level-null",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "unknown-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-boss",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-called-kill",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "earned-without-event",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-4",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-charges-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work--1",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-0.5",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-4000",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "invalid-work-Infinity",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "full-bank-work",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "orphan-charge",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-used",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "nonboolean-called",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "marker-no-owner",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "called-not-luminous",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "called-boss",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "marker-wrong-encounter",
+          "code": "invalid-comet-state"
+        },
+        {
+          "id": "wrong-policy",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "extra-claims-field",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "missing-retirement",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "unknown-retirement",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "unknown-deed",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "false-pending-deed",
+          "code": "invalid-comet-claims"
+        },
+        {
+          "id": "orphan-pending-deed",
+          "code": "invalid-comet-claims"
+        }
+      ],
+      "overcaps": {
+        "cometreservoir": 1e+30,
+        "cometcycle": 9,
+        "meteorcore": 7
+      }
+    }
+  ],
+  "negativeControls": [
+    {
+      "id": "fixed-quantity-not-partial",
+      "function": "getResearchBuyPlan",
+      "sourceSha256": "e76ed786c3f9296efa7b5b3da29e7f710bbc25c421325ccd4dde2088b6814fb1",
+      "detected": true,
+      "message": "fixed batch never truncates at cap charge/0/5\n\n1 !== 5\n"
+    },
+    {
+      "id": "original-command-refund-price",
+      "function": "retiredCommandCost",
+      "sourceSha256": "c56cc5e3fb1622889f19ab4feb50afcd029fccda6c9f89ae93e61d651a23a290",
+      "detected": true,
+      "message": "independent original prices refunded\n\n400 !== 260\n"
+    },
+    {
+      "id": "settled-refund-never-replays",
+      "function": "settleCommandRefund",
+      "sourceSha256": "52271f935233d53e73c062200dee865fc131faefd7471ce1d89536bae41af2d7",
+      "detected": true,
+      "message": "no normalization double grant\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n    achieved: {},\n    activeFormationPreset: 'push',\n...\n    cometWork: 0,\n+   comets: 400,\n-   comets: 260,\n    commandRefund: {\n      paid: true,\n      policy: 'commands-retired-v1',\n      total: 140\n    },\n"
+    },
+    {
+      "id": "independent-permanent-prices",
+      "function": "astralCost",
+      "sourceSha256": "36048a314765b2a1d3e940c30b65f13cbeb6c9975894da1cd320b2c3416cdc8b",
+      "detected": true,
+      "message": "independent price astralcore/0\n\n751 !== 750\n"
+    },
+    {
+      "id": "purchased-power-invalidates-cache",
+      "function": "wispPower",
+      "sourceSha256": "24e7b33cd58f1ce7c1abb445b0ab443bccdf75a6d2f381455b51a4df47eebc08",
+      "detected": true,
+      "message": "immediate Power cache invalidation\n\n74.5 !== 93.125\n"
+    },
+    {
+      "id": "commands-stay-unavailable",
+      "function": "getCometCommandPlan",
+      "sourceSha256": "1a44e6d93ef1de1b23d0b3fa8cb441afefe4b1a76dde95986183757f827a3d3f",
+      "detected": true,
+      "message": "retired command unavailable\n\ntrue !== false\n"
+    },
+    {
+      "id": "command-owner-is-inert",
+      "function": "activateCometCommand",
+      "sourceSha256": "ff425d03546396a82800a3e2941febc4c9099f9c018d955a866d993b196c86cf",
+      "detected": true,
+      "message": "retired command inert\n\ntrue !== false\n"
+    },
+    {
+      "id": "defeats-do-not-recharge",
+      "function": "cometRecordDefeats",
+      "sourceSha256": "0a431320c7f0f460bf6861a432786161a8b83a3353f56e42af0e4c341f0cef73",
+      "detected": true,
+      "message": "no retired recharge\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n    achieved: {},\n    activeFormationPreset: 'push',\n...\n    },\n+   cometWork: 1,\n-   cometWork: 0,\n    comets: 120,\n    commandRefund: {\n      paid: true,\n      policy: 'commands-retired-v1',\n      total: 0\n"
+    },
+    {
+      "id": "farm-cannot-target-uncleared-frontier",
+      "function": "selectFarmDepth",
+      "sourceSha256": "680ec34183c8365ff2410cc48e0386f8323e69e85381f302731a49b9cdbfa447",
+      "detected": true,
+      "message": "invalid farm 101\n\ntrue !== false\n"
+    },
+    {
+      "id": "hidden-page-cannot-invest",
+      "function": "cometMutationOpen",
+      "sourceSha256": "cce6df9054497d2b9008cad595847e528ad058e79c5f1744ce4a451013b82d91",
+      "detected": true,
+      "message": "lifecycle guard hidden\n\ntrue !== false\n"
+    },
+    {
+      "id": "malformed-paid-ranks-preserve-primary",
+      "function": "preserveCometPrimary",
+      "sourceSha256": "41a2455ee3fdc1f7a5b0b4025d7fb410ea9ceea5bf5f2fd17f703d69d5149143",
+      "detected": true,
+      "message": "malformed permanent history protects persistence\n\nfalse !== true\n"
+    },
+    {
+      "id": "malformed-refund-preserves-primary",
+      "function": "preserveCometPrimary",
+      "sourceSha256": "3e74a819c42f021d14386630fc781c3fff8e259a200fc9951bf64470271998d5",
+      "detected": true,
+      "message": "malformed permanent history protects persistence\n\nfalse !== true\n"
+    },
+    {
+      "id": "primary-failure-rolls-back",
+      "function": "cometCommitMutation",
+      "sourceSha256": "db1582a4f8272d61afe7abf813ca05ba7b525782d8fe9d9f194e72e83f740061",
+      "detected": true,
+      "message": "failed purchase restores every field\n+ actual - expected\n... Skipped lines\n\n  {\n    _autoEmpowerAccum: 0,\n    _autoTapAccum: 0,\n    achieved: {},\n    activeFormationPreset: 'push',\n...\n      astralconvergence: 0,\n+     astralcore: 1,\n-     astralcore: 0,\n      astralecho: 0\n    },\n    autoAscendEnabled: false,\n    autoAscendTargetDepth: 16,\n    buffMult: 1,\n...\n    cometWork: 0,\n+   comets: '999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999925e1',\n-   comets: '1e400',\n    commandRefund: {\n      paid: true,\n      policy: 'commands-retired-v1',\n      total: 0\n    },\n"
+    }
+  ],
+  "limits": "Superseded command activation/recharge and consumable Refresh behavior is tested as unavailable in the current suite; original history/recovery/claim-price coverage is retained.",
+  "input": {
+    "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\deeds\\index.html",
+    "bytes": 1176578,
+    "sha256": "ec9f9db94780b0020b4faee173e2b71cb8581867266339ecbdbb358d9f12b021"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\deeds\\tests\\behavioral\\comet-expansion-core.cjs",
+      "bytes": 61543,
+      "sha256": "368c951c848677f3c991ba71e87e5c248d13aa58eb721080584319e048371481"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\deeds\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 16372,
+      "sha256": "f694f4bebcff0b18e67dd9dfe926f065bab454dd5881c57f541ddbafbc6d7d53"
+    },
+    {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\deeds\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 22997,
+      "sha256": "0c8dd5c05f3004f0d9f12ed4b72f68e2fb3e19f9864bc6a88223e247a2f4b699"
+    }
+  ],
+  "runtime": {
+    "node": "v24.22.1",
+    "v8": "13.6.233.17-node.58"
+  }
+}

@@ -1,5 +1,43 @@
 # Progressive Deeds evidence
 
+## Human correction: one live bar, increasing stage rewards
+
+The human rejected the prior design and chose existing milestone numbers plus
+increasing rewards. Current source0e613bf5d983345738cc26d56909b925b8b8f3f9156ea443361c79405b1d95fa
+replaces checkbox markers with one live bar per series, retains cumulative totals
+when advancing and removes the milestones-completed counter. Original milestones,
+receipts and original/event rewards survive. Four later tracks now increase by5
+Comets instead of falling at their original/long-tail boundary; all stage rewards
+rise. Already settled stages are not paid again; pending stages receive the current
+higher reward once. The approved full pool is3373, including original683/event50.
+
+[Core](bar-correction/core.json):415 focused payout/save checks,417 original checks
+and99 native-fixture controls PASS. [Mobile](bar-correction/mobile.json):1264 checks,
+36 profiles PASS. [Stale-bar control](bar-correction/stale-bar-control.json) correctly
+fails when the ordinary live tick's bar update is removed.
+[Rift10→25 screenshot](bar-correction/rift10-next25.png) and
+[200% text screenshot](bar-correction/deeds-320-200.png) were visually inspected.
+[Paired replay](bar-correction/replay.json) recomputes four eight-hour windows for
+both released main6fd9e44f and current source. Every complete state matches after
+adding only the independently enumerated new Comet rewards (+450 in this fixture).
+Original kills/Ascends/Prisms and all other fields are exact. The bound reference
+uses the actual corrected full-state hashes. Required CI and signed native/public
+APK checks remain pending; earlier receipts below are not correction acceptance.
+
+PR55/e01f443c exposed independent references still using the former stage rewards.
+[Preserved failures](bar-correction/e01-reference-failures.json) and
+[CI metadata](e01f443c192e5700973127d0ab6fe3f2bd6e2b0d-ci.json) retain that attempt.
+Follow-up updates only exact expected stage amounts and restores old rewards in
+the explicitly historical PR15 adapter. Original frozen hashes and complete-state
+assertions remain unchanged. [Numerical](bar-correction/numerical.json) passes
+1,097,372 checks/controls; [full offline](bar-correction/offline.json) passes18 cases;
+[Auto-Ascend](bar-correction/ascend-reference.json) passes375 checks/controls;
+[Wisp](bar-correction/wisp-reference.json) passes8,099. The initial Linux
+[Wisp failure](bar-correction/e01-wisp-failure.log) was its300ms setup settlement
+deadline at1 check; Windows passed. Raw artifact14129149287 SHA256
+7eed23513759a022e51dea50df143bf835965641b5099de79390d72a06def0d5 was verified.
+No deadline or assertion is reduced. Corrected-source CI/native delivery is open.
+
 Baseline main858d713f, source ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8.
 Candidate product 8505c177d642b372d69f8b56f568f581ea44709ab9d3f14c3d4aaa6505bd11ff.
 Task: [DEEDS_PROGRESSIVE_001](../../tasks/DEEDS_PROGRESSIVE_001.md).
@@ -82,3 +120,22 @@ full-minute credit and preservation of every unrelated saved field. Removing
 the new setup reproduces the empty-reward failure. Existing10 clock/replay checks
 and their control pass too. Product bytes stay552b28dc; no popup is forced, native
 deadlines are unchanged, and no visibility/security/save assertion is removed.
+
+## Exact-main native acceptance and coordinated delivery
+
+Commit5f0d976210eb62fa37917129bd7e8bc453806d8e passed signed Android0.2.116
+[run43591494545](https://github.com/xariib/Lumenfall/actions/runs/43591494545).
+[Native receipt](android-5f-acceptance/emulator-upgrade.json) records all17 series,
+next Rift2500 after earned1000, completed history opened by actual Android touch,
+save/paid-work retention and updater acceptance. [Screenshot](android-5f-acceptance/installed-deeds-progressive.png)
+was visually inspected. [Retail runtime](android-5f-acceptance/production-runtime.json)
+passes original normal launch, visible controls and security checks. APK SHA256
+2ef5c469256f02968622f4a0761a0d06ee0beefbbaf58c7af593b4e5377091b4.
+
+[Exact-main CI](5f0d976210eb62fa37917129bd7e8bc453806d8e-ci.json) records seven focused
+successes and one failed premerge. [Failure](5f-premerge-failure.json) preserves
+the raw CDP Input.dispatchTouchEvent deadline after37 checks in the Lab next-boost
+UI test. All Deeds checks passed before that failure. Required acceptance remains
+open; no timeout/assertion is changed. The explicitly authorized Rift/currency
+coordination now serializes one combined source and signed publication. Hold
+main/build mutations here until its exact-source/public package verification.

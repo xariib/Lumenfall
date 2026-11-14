@@ -169,7 +169,9 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  delete actual.offlineClockHighWaterMs;
  assert.equal(actual.farmAutoResume,expected.riftMode==='farm',label+' only a historical automatic boss retreat owns retry intent');delete actual.farmAutoResume;
  const targets={rift:[500,1000,2500,5000,10000,25000,100000,1000000],ascend:[25,50,100,250,500,1000,10000,100000],kills:[10000,100000,1000000,10000000,100000000,1000000000],lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],mastery:[10,25,50,100,250,500,1000,5000,10000],rest:[24,72,168,720,2160,8760]};
- const rewardById=new Map(Object.entries(targets).flatMap(([track,values])=>values.map((target,index)=>['endless_'+track+'_'+target,10+5*index])));
+ // Human-approved rising rewards; retain the complete frozen state oracle,
+ // adding exactly these independent amounts for newly earned current Deeds.
+ const rewardById=new Map(Object.entries(targets).flatMap(([track,values])=>values.map((target,index)=>['endless_'+track+'_'+target,({rift:105,ascend:55,forge:45,rest:20}[track]||10)+5*index])));
  let deedRewards=0;
  for(const id of currentSummary.achievements.filter(id=>id.startsWith('endless_'))){
   assert(rewardById.has(id),label+' known long-term Deed '+id);
