@@ -16,6 +16,10 @@ combine in an isolated worktree and preserve all latest accepted code.
 Branch `release/all-updates-20261114`, worktree
 `validation-evidence/all-updates-20261114`. Existing root attachments and all
 feature worktrees, including uncommitted Rift owner evidence, remain untouched.
+Documentation/failure evidence checkpoint branch:
+`release/all-updates-20261114-evidence`. The validation/release ref remains
+`release/all-updates-20261114` at exact candidate a3d125a5; do not advance it or
+main while these runs/builds are active. The checkpoint changes only docs/QA.
 PR46 was deliberately closed without merging and is excluded. Historical
 proposals and unrelated diagnostics are not new accepted improvements.
 
@@ -46,6 +50,40 @@ all four full saved states, rewards and original canonical hashes. Source, Bond
 mechanics/causal controls, Deeds core, Lab344/18 profiles and Deeds550/18 profiles
 PASS. Formation12 profiles and both Rift suites also PASS with normal teardown.
 [Current receipts](../qa/all-updates-release-20261114/).
-Next: publish the combined release PR, pass exact
-source PR/manual CI and integrate/build. GitHub connector lacks workflow dispatch;
-existing authenticated CLI supplies it. No changes to credentials or signing.
+Candidate [PR53](https://github.com/xariib/Lumenfall/pull/53) is published at
+`a3d125a57fa2b5e54419e2a8774c63f356204518`, containing PR50 and latest main.
+Fifteen of sixteen PR/manual workflows passed; manual full run43633981198 and
+both isolated offline jobs passed. The manual
+Linux Wisp causal control first failed its original300ms setup settle check;
+its unchanged failed-job retry passed. Windows and the separate PR run passed.
+Original run/jobs/full logs are retained as first-failure43634001144 receipts.
+PR full run43633863368 then failed only wisp-rarity-scroll: check1, no completed
+profiles, the same original300ms setup settlement timeout. Other main scenarios
+continued and passed. Its complete original run/jobs/logs are retained too.
+Only the failed PR job is rerunning unchanged (attempt2). Underlying transient
+causes remain unproven; no deadline/assertion changed. Nonpublishing signed
+Android candidate run43639919453/version0.2.118 is running in parallel on exact
+candidate a3d125a5, to check native/save/updater behavior before integration.
+
+PR attempt2 passed16 Lab profiles/289 checks before a15s CDP touch-command
+deadline in boost-queue UI; no game assertion mismatch was reported. Its full
+run/jobs/logs are retained separately as attempt2. This check passed on the
+initial PR attempt and complete manual run. Attempt3 is now active, unchanged.
+
+Native candidate attempt1 passed signing/assets, installed Bond/Deeds, both save
+slots/paid work, and the real updater. Retail inspection failed its original
+visible-controls assertion after UIAutomator repeatedly returned no root/idle
+state. The final screenshot visibly shows the running game; saved XML contains
+an earlier startup/toast tree. This does not replace the required retail gate.
+All36 original diagnostic files are hash-manifested/retained in
+`../qa/all-updates-release-20261114/native-first-failure-43639919453/`.
+Underlying accessibility/idle cause remains unproven. Native attempt2 is running
+unchanged; no product, test assertion, deadline or workflow edits were made.
+
+Next: wait for both full runs, use the local delivery helper's ready/save-ci
+checks, fast-forward unchanged main to exact tested candidate and dispatch the
+publishing Android workflow. Recheck main/build concurrency at each mutation.
+No main evidence push during publication. Verify/download the resulting signed
+APK and anonymous public feed, then save all receipts/status in GitHub.
+GitHub connector lacks workflow dispatch; existing authenticated CLI supplies it.
+No changes to credentials or signing. Task stays open for device/human acceptance.
