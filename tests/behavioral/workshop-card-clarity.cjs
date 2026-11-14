@@ -55,4 +55,5 @@ for(const depth of [1,14,15,25,39,40,59,60,90])for(const apparatus of [0,1,2]){
   ok(q.slots()>slot,'fulfilling the displayed requirements really unlocks the slot: '+hint);
  }
 }
-console.log(JSON.stringify({status:'pass',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
+const progressiveDeeds=require('./deeds-progressive.cjs').run(source);
+console.log(JSON.stringify({status:'pass',checks,progressiveDeeds,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
