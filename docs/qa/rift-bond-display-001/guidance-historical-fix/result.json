@@ -1,0 +1,220 @@
+{
+  "status": "pass",
+  "scope": "GUIDANCE_READABILITY_001",
+  "baselineCommit": "684bfc52bb2ca523124fe63981188b9a8004d747",
+  "fullDefaultGateExecutedHere": false,
+  "inputs": {
+    "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\inputs.json",
+    "bytes": 6463,
+    "sha256": "ce358334b3d82a5303ea50077549f40231012f7112c761a71508a46e8f649f12"
+  },
+  "runtime": {
+    "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\runtime.json",
+    "bytes": 1354,
+    "sha256": "a1659ef86b25e8cb3cd7e2f9186be142e92f78da12e5a18c40710db32373f83e"
+  },
+  "baselineAssets": {
+    "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\baseline-assets.json",
+    "bytes": 3247,
+    "sha256": "45d75259345695d4bb1239c2e480f87db41d015cd81499f94cfb52d5e805245c"
+  },
+  "baselineAssetsUnit": {
+    "process": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\baseline-assets-unit-process.json",
+      "bytes": 1106,
+      "sha256": "36dbf8795d042c712bb61ad4e356462cf9f975226f3bc9f0746430ec00e0b693"
+    },
+    "report": {
+      "status": "pass",
+      "scope": "Isolated Git asset unit test; no game or browser",
+      "baselineCommit": "4ae3933899c4aaaefc87afa4ebfa2c6bd0e9c8a9",
+      "changedCandidateFontIgnored": true,
+      "changedCandidateBrandingIgnored": true,
+      "candidateOnlyAssetExcluded": true,
+      "candidateUnchanged": true,
+      "corruptBlobRejected": true,
+      "assets": [
+        {
+          "path": "branding/mark.svg",
+          "gitBlob": "2bbcc6e69f4536aaaf04ff076d911471ab2af9fd",
+          "bytes": 19,
+          "sha256": "e997e538df9b512b020e13838852fc861bec311abaef3a4fb3a37bc18ce5090d"
+        },
+        {
+          "path": "fonts/font.woff2",
+          "gitBlob": "577524cbb8865fd5d402a7c147e55099134e8207",
+          "bytes": 8,
+          "sha256": "7a2c00a19bf3d5333bcc16c3311127c02ca95f0ce65d34f9e5ccdee994db5fdd"
+        }
+      ]
+    }
+  },
+  "inverseUnit": {
+    "process": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\inverse-unit-process.json",
+      "bytes": 1375,
+      "sha256": "f5b3c3be77a25e458570ea87d85b528589028763866ac9e7cca1ee84db457efe"
+    },
+    "report": {
+      "status": "pass",
+      "scope": "Pure inverse regression; no game/browser executed",
+      "sourceSha256": "95a077ce05faf9e79f16f9851767eb6b2b99372a31191474da2fcfd80b9c48be",
+      "baselineSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+      "unrelatedFutureProbes": 2,
+      "invalidTitleCases": 3,
+      "completeBaselineCss": true,
+      "roundtripsExact": true,
+      "historicalMatch": false,
+      "oldTitleSourceSha256": "3cb576b536306fd83c572a011dacf6396d191cd28ccdc7d307cc98018a204213",
+      "oldLayoutSourceSha256": "fa26fb01a9ca5c6087fcdd547775a36e55a9a1beff63b15d579452b143dc5dbd"
+    }
+  },
+  "baseline": {
+    "sourceSha256": "38eebcb93e4cdc2fbb1f9f67800f8cfb433005904389c0815641d26bbae00b6f",
+    "process": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\baseline-process.json",
+      "bytes": 1494,
+      "sha256": "3d0f81d5e695ff24882894bfa70ca8b9a782d601724678d9e89e4fc2a2844350"
+    },
+    "receipt": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\baseline\\results.json",
+      "bytes": 85089,
+      "sha256": "40fcd8f7c41c376b6d0c956d158e85abd8878884864ef8cd11410e49fc6b8274"
+    },
+    "failure": {
+      "code": "guidance-leading-word-fragmented",
+      "message": "guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Awaken\",\"lineCount\":2,\"lines\":[{\"top\":95,\"bottom\":133},{\"top\":128.59375,\"bottom\":166.59375}],\"typographicTolerancePx\":0.5}",
+      "details": {
+        "word": "Awaken",
+        "lineCount": 2,
+        "lines": [
+          {
+            "top": 95,
+            "bottom": 133
+          },
+          {
+            "top": 128.59375,
+            "bottom": 166.59375
+          }
+        ],
+        "typographicTolerancePx": 0.5
+      }
+    },
+    "fontSizes": [
+      32,
+      28,
+      24,
+      28
+    ]
+  },
+  "candidate": {
+    "sourceSha256": "95a077ce05faf9e79f16f9851767eb6b2b99372a31191474da2fcfd80b9c48be",
+    "profiles": 1,
+    "samples": 5,
+    "supplementalSamples": 1,
+    "oldWidthInverse": {
+      "code": "guidance-leading-word-fragmented",
+      "message": "guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Awaken\",\"lineCount\":2,\"lines\":[{\"top\":95,\"bottom\":133},{\"top\":128.59375,\"bottom\":166.59375}],\"typographicTolerancePx\":0.5}",
+      "details": {
+        "word": "Awaken",
+        "lineCount": 2,
+        "lines": [
+          {
+            "top": 95,
+            "bottom": 133
+          },
+          {
+            "top": 128.59375,
+            "bottom": 166.59375
+          }
+        ],
+        "typographicTolerancePx": 0.5
+      }
+    },
+    "process": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\candidate-process.json",
+      "bytes": 1449,
+      "sha256": "740eeb898e40cb2e7fca584729767fb1359c144cd78ebc8e0bb5effa5d48bfb5"
+    },
+    "receipt": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\candidate\\results.json",
+      "bytes": 1006498,
+      "sha256": "aed776c4b098e208a53fe996236bf1ace9190f1289f39c06218510efe988d991"
+    }
+  },
+  "oldCopyInverse": {
+    "publishedSourceCommit": null,
+    "historicalMatch": false,
+    "sourceSha256": "3cb576b536306fd83c572a011dacf6396d191cd28ccdc7d307cc98018a204213",
+    "mutation": "Only the Ascend-ready production title literal is reversed",
+    "failure": {
+      "code": "guidance-leading-word-fragmented",
+      "message": "guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Permanent\",\"lineCount\":2,\"lines\":[{\"top\":95,\"bottom\":133},{\"top\":128.59375,\"bottom\":166.59375}],\"typographicTolerancePx\":0.5}",
+      "details": {
+        "word": "Permanent",
+        "lineCount": 2,
+        "lines": [
+          {
+            "top": 95,
+            "bottom": 133
+          },
+          {
+            "top": 128.59375,
+            "bottom": 166.59375
+          }
+        ],
+        "typographicTolerancePx": 0.5
+      }
+    },
+    "process": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\old-copy-process.json",
+      "bytes": 1525,
+      "sha256": "2739376696e33aa039edf774d6c8d1261721f2c50e43920ee613019b264e5596"
+    },
+    "receipt": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\old-copy\\results.json",
+      "bytes": 755760,
+      "sha256": "a2fdada7dbad633652aaeeb387d113cd972a43edc7db4c4ad14c8dc7b38d3f5c"
+    }
+  },
+  "oldLayoutInverse": {
+    "baselineCommit": "684bfc52bb2ca523124fe63981188b9a8004d747",
+    "sourceSha256": "fa26fb01a9ca5c6087fcdd547775a36e55a9a1beff63b15d579452b143dc5dbd",
+    "mutation": "Only the complete Guidance CSS block is restored from the immutable baseline",
+    "ledger": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\old-layout-edit-ledger.json",
+      "bytes": 5286,
+      "sha256": "bb1b4b8b56c91a059eb3d93454663329e97d280eb0926f49eb97b6ab0a807ea0"
+    },
+    "failure": {
+      "code": "guidance-leading-word-fragmented",
+      "message": "guidance-leading-word-fragmented: the complete leading word must remain on one line {\"word\":\"Awaken\",\"lineCount\":2,\"lines\":[{\"top\":95,\"bottom\":133},{\"top\":128.59375,\"bottom\":166.59375}],\"typographicTolerancePx\":0.5}",
+      "details": {
+        "word": "Awaken",
+        "lineCount": 2,
+        "lines": [
+          {
+            "top": 95,
+            "bottom": 133
+          },
+          {
+            "top": 128.59375,
+            "bottom": 166.59375
+          }
+        ],
+        "typographicTolerancePx": 0.5
+      }
+    },
+    "process": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\old-layout-process.json",
+      "bytes": 1502,
+      "sha256": "b8075191b8c7e38b1e0f50f8f99688324855d7f323b9ea47dcf38a78610c8a11"
+    },
+    "receipt": {
+      "path": "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\rift-bond-display\\validation-evidence\\guidance-historical-fix\\old-layout\\results.json",
+      "bytes": 86136,
+      "sha256": "1d7bddaf6e0c3d5b81cad5a84b9ea26c8f95025aed14514feb67835212a9c820"
+    }
+  },
+  "completedUtc": "2026-11-14T09:02:32.449Z"
+}

@@ -227,7 +227,7 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  const fixture=JSON.parse(JSON.stringify(retainedSave));
  Object.assign(fixture,{ascendCount:1,maxDepthEver:30,depth:26,enemyDepth:26,
    riftMode:'farm',farmDepth:20,farmReturnDepth:26,lumen:800,shards:80,
-   activeStudies:[],autoAscendEnabled:false,lastSeen:Date.now()});
+   activeStudies:[],autoAscendEnabled:false,activeParty:['ember','stone'],formationRebuild:null,lastSeen:Date.now()});
  fixture.longStudyLevels.wispascend=0;
  const marker='midgame-farm-installed-accept-001';
  const seedScript=`(()=>{const s=${JSON.stringify(JSON.stringify(fixture))};
@@ -404,6 +404,19 @@ async function verifyInstalledRiftLooks(page,report){
  assert(fit,'Installed enemy fits the selected theme circle');
  assert(scene.bossHidden||scene.boss.top>=scene.party.bottom-1,'Installed regen follows the Wisp row');
  assert.equal(scene.dot.width,'4px');assert.equal(scene.dot.height,'4px');assert.equal(scene.dot.bottom,'7px');assert.equal(scene.dot.color,'rgb(240, 197, 103)');assert.notEqual(scene.dot.display,'none');assert.equal(scene.overflow,false);
+ const bonds=await page.evaluate(`(()=>{const q=s=>document.querySelector(s);return {
+   summary:q('#bond-summary').textContent,label:q('#bond-summary').getAttribute('aria-label'),
+   boostList:!!q('#rift-bond-effects')||!!q('#tab-battle [data-bond-effect]'),
+   rows:Array.from(document.querySelectorAll('#bond-card .bond-row')).map(row=>({
+     name:row.querySelector('.bond-name').textContent.split(' · ')[0],
+     effect:row.querySelector('.bond-effect').textContent,active:row.classList.contains('active')}))};})()`);
+ assert.equal(bonds.boostList,false,'Installed Rift omits Bond boosts');
+ assert.equal(bonds.rows.length,8,'Installed Wisp menu retains all eight Bond effects');
+ assert(bonds.rows.every(row=>row.effect.length>0),'Installed Wisp menu retains full boost descriptions');
+ const activeBonds=bonds.rows.filter(row=>row.active);
+ assert(activeBonds.length>0,'Disposable installed fixture exercises active Bonds');
+ assert(activeBonds.every(row=>bonds.summary.includes(row.name.replace(' Bond',''))&&bonds.label.includes(row.name)),'Installed Rift retains visible and accessible active Bond names');
+ report.installedRiftBonds={status:'PASS',...bonds,syntheticFixture:true};
  for(const id of ['default','ember'])assert(scene.events.some(e=>e.type==='click'&&e.trusted&&e.target===id),'Trusted appearance click: '+id);
  const shot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-rift-looks.png',Buffer.from(shot.data,'base64'));
  report.installedRiftLooks={status:'PASS',scene,screenshot:'release-evidence/installed-rift-looks.png',syntheticFixture:true};
