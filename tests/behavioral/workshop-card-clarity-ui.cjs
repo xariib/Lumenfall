@@ -38,7 +38,7 @@ module.exports=async function({send,ev,pause,check,records}){
   const comet=require('./auto-ascend-challenges.cjs').qualify(seed());comet.schemaVersion=5;comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
   await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&document.getElementById("comet-commands").hidden&&!document.querySelector("[data-comet-command]")'),'retired commands have no player UI');
-  check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed]").length===72'),'all76 historical identities remain;72 active Deeds render');
+  check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed-series]").length===17'),'all76 historical identities remain in17 advancing Deed cards');
   for(const [tab,id] of [['research','lab-help'],['ascend','tree-bonds'],['forge','forge-arcanecal'],['deeds','comet-autoascend']]){
    await ev('document.querySelector('+JSON.stringify('[data-tab="'+tab+'"]')+').click()');
    await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+tab)+').getAnimations().map(a=>a.finished)).then(()=>true)');

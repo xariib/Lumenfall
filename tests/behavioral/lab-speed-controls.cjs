@@ -34,7 +34,8 @@ async function run(){
  const o=await ev("({hidden:document.querySelector('[data-study-inspection=guardmastery]').hidden,queueVisible:!!document.querySelector('[data-study-use-motes=guardmastery]').getClientRects().length})");
  check(o.hidden&&!o.queueVisible,'baseline hides direct speed and queue choice behind disclosure');records.push(o);
  }else{
- await require(args.includes('--access')?'./lab-access-ui.cjs':args.includes('--slot-challenges')?'./lab-slot-challenges-ui.cjs':args.includes('--longtail')?'./lab-longtail-ui.cjs':args.includes('--presets')?'./lab-speed-presets-ui.cjs':args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
+ await require(args.includes('--deeds')?'./deeds-progressive-ui.cjs':args.includes('--access')?'./lab-access-ui.cjs':args.includes('--slot-challenges')?'./lab-slot-challenges-ui.cjs':args.includes('--longtail')?'./lab-longtail-ui.cjs':args.includes('--presets')?'./lab-speed-presets-ui.cjs':args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
+ if(args.includes('--clarity'))await require('./deeds-progressive-ui.cjs')({send,ev,pause,check,records,args});
  if(args.includes('--boost-queue'))await require('./lab-speed-presets-ui.cjs')({send,ev,pause,check,records:presetProfiles,args});
 }
  check((await ev('uiRegressionErrors')).length===0,'no actual browser runtime errors');

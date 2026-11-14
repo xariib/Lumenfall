@@ -2151,6 +2151,7 @@
 
           var deeds=cloneJson(qol);
           deeds.totalTaps=4286;
+          deeds.achieved.tap100=true;deeds.achieved.tap1000=true;
           deeds.achieved.tap10000=false;
           deeds.maxDepthEver=55;
           deeds.achieved.d50=true;
@@ -2163,7 +2164,7 @@
           var completedProgress=document.querySelector('[data-deed-progress="d50"]');
           assert(completedProgress.dataset.current==='50' && completedProgress.dataset.target==='50','completed Deed progress must remain at its reached target');
           assert(/Completed/.test(completedProgress.closest('.ach-card').textContent),'completed Deed must remain explicitly completed');
-          assert(document.querySelectorAll('[data-deed-progress]').length===document.querySelectorAll('#ach-list .ach-card').length,'every current Deed must expose deterministic progress');
+          assert(document.querySelectorAll('#ach-list .info > [data-deed-progress]').length===document.querySelectorAll('#ach-list .ach-card').length,'every advancing card exposes one current progress counter; completed counters stay in its history');
 
           document.querySelector('[data-tab="battle"]').click();
           document.getElementById('tab-battle').getAnimations().forEach(function(animation){animation.finish();});

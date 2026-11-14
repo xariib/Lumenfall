@@ -14,7 +14,7 @@ function app(source,saved){
  renderAll=renderHud=renderAchievements=renderShop=renderSpirits=renderSideStats=renderDaily=updateBattleFast=renderCosmetics=renderNodes=renderAscendSummary=renderResearch=renderLongStudies=showAscendFlash=function(){};
  showToast=spawnFloatNum=emitCombatVfx=flashBattleStage=pulseWispCard=renderDynamic=function(){};
  window.qa={fresh:freshState,get:function(){return state;},set:function(s){state=acceptPersistedState(s);},accept:acceptPersistedState,load:function(){state=loadState();},
- projects:function(){return LONG_STUDIES;},expansion:function(){return LAB_EXPANSION;},level:labExpansionLevel,day:todayStr,
+ projects:function(){return LONG_STUDIES;},expansion:function(){return LAB_EXPANSION;},level:labExpansionLevel,day:todayStr,deedSeries:typeof deedSeries==='function'?deedSeries:null,
  forgeDefs:function(){return RESEARCH;},forgePlan:function(id){return getResearchBuyPlan(RESEARCH.find(function(n){return n.id===id;}),1);},forgeBonus:researchBonus,
  treeDefs:function(){return NODES;},treePlan:function(id){return getNodeBuyPlan(NODES.find(function(n){return n.id===id;}));},
  spiritPlan:function(id){return getSpiritBuyPlan(SPIRITS.find(function(n){return n.id===id;}));},masteryPlan:function(id){return getWispMasteryPlan(SPIRITS.find(function(n){return n.id===id;}));},

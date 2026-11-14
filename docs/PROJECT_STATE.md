@@ -1,7 +1,13 @@
 # Lumenfall — current delivery status
 
+14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
+PR52: one advancing card per series. Its eight candidate suites/190 scenarios pass;
+the final Details/focus fix passes local checks. Prior signed upgrade/updater and
+Deeds touch pass. Final-source CI and Android delivery remain pending; retail
+accessibility inspection is unresolved.
+
 14 November: [Currency header](tasks/CURRENCY_HUD_001.md) is integrated;
-Android acceptance/publication pending.
+signed preview passes; combined public APK pending.
 
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
