@@ -40,3 +40,8 @@ retains the passing full Guidance gate and its baseline/candidate/causal receipt
 `tree-first-failure/` preserves the original 25s timeout with no QA result;
 `wisp-first-failure.txt` records the Linux setup timeout and unchanged passing retry.
 Earlier-source successes are historical; final-source CI/Android remain pending.
+
+`candidate-b062-workflow-status.json` records all fourteen passing applicable
+workflows before main advanced with currency/Deeds work. The version guard
+stopped integration/publication. Combined-source validation is now required;
+these earlier passes do not establish acceptance for the combined version.

@@ -95,3 +95,30 @@ source/archives are unchanged. The complete Guidance gate now passes locally:
 historical word-fragmentation failure, current five hints and Ascend-ready hint,
 width/title/full-CSS negative controls, original fonts/assets and clean browser
 exit. The product SHA and gameplay remain unchanged. Final-source CI must rerun.
+
+Latest corrected candidate: `b062bff0e3cbffe031407e64bed6a96998429331`.
+At 09:23 UTC, twelve of fourteen applicable workflows pass. Premerge PR
+`43578985181` and dispatch `43578990935` remain active, with both isolated offline
+jobs passing. Final-source Linux Wisp setup again missed its unchanged 300ms
+deadline; the unchanged failed-job retry passed (Windows also passed). Raw
+receipt is retained under `wisp-final-first-failure`. CI watcher session `33052`
+runs `validation-evidence/wait-rift-ci.cjs` and exits on failure or all 14 passes.
+Do not commit this delivery checkpoint while the exact-source gates/build are
+running; save final status/evidence after publication. Next: `ready`, `promote`,
+`publish` using this exact SHA, then verify the signed build/public bytes.
+
+## Main advancement and combined validation
+
+All fourteen applicable workflows passed on `b062bff0` (watch completed
+10:13 UTC); no open review threads/reviews were returned. The protected main
+comparison stopped integration before any main/publication mutation: actual
+main advanced to `e67c984f7faf120818f5285175751586a1cf43cd` with currency and
+progressive Deeds work. Preserve both features and their native Deeds assertions.
+Their task records report candidate native upgrade/updater success, but final
+retail/integrated acceptance remains pending. The currency owner has been
+diagnosing the shared retail inspection helper; do not overwrite that work.
+
+Next: merge current main into this isolated branch, resolve only shared status
+and reference bindings, verify combined UI/mechanics/replay, and rerun required
+exact-source CI. The prior fourteen passes are historical candidate evidence,
+not acceptance for the combined source. No chat/message coordination authorized.
