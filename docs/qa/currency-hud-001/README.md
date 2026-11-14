@@ -22,6 +22,19 @@ Those early failures were test assumptions, with unchanged product source.
 Browser startup requires execution outside this Windows sandbox. An obsolete
 browser path first failed ENOENT; the installed Brave executable is used in receipts.
 
-Self-review and automated browser checks only. Physical-phone, exact WebView60
-DOM, TalkBack and human acceptance are unverified. Integrated CI and signed
-Android delivery remain pending; this record is not feature completion.
+PR49 integrated at exact tested `7f149b895c9f90656bbb81766249665ed1f426fc`.
+`candidate-readiness.json` and `release-readiness.json` retain fourteen successful
+PR/release workflow receipts. Both broad runs passed220 browser executions over
+190 scenarios, plus isolated offline jobs; `*-scenarios.txt` retains their output.
+
+Signed candidate43578599508 passed upgrade/save/updater checks. Its first retail
+launch check failed: retained XML contains only background/toast, although its
+screenshot shows a running game. Null-root/idle errors are in the workflow log.
+`android-first-failure/` preserves complete diagnostics (large logs losslessly
+compressed, original hashes in `files.json`); workflow/artifact metadata is in
+`android-first-failure.json` and `android-first-workflow.json`. Cause is unproven.
+An unchanged-source/check retry is pending. The existing publication guards and
+native acceptance must pass before any artifact is published.
+
+Self-review only. Physical-phone, exact WebView60 DOM, TalkBack and human
+acceptance remain unverified. Android delivery is pending; do not archive.

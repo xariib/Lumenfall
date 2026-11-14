@@ -1,0 +1,30 @@
+Run 43578599508, job 132398256257; excerpt of the original workflow log.
+emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device still authorizing'
+2026-11-14T09:09:12.5624304Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-14T09:09:12.6074546Z 1
+2026-11-14T09:09:12.6101494Z Emulator booted.
+2026-11-14T09:09:12.6157916Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2026-11-14T09:09:13.1318511Z Disabling animations.
+2026-11-14T09:09:13.1329472Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+2026-11-14T09:09:13.3906285Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+2026-11-14T09:09:13.4650837Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+2026-11-14T09:09:13.5406070Z ##[endgroup]
+2026-11-14T09:09:13.5458621Z [command]/usr/bin/sh -c node scripts/ci/verify_android_release_runtime.cjs
+2026-11-14T09:09:36.0575902Z ERROR: null root node returned by UiTestAutomationBridge.
+2026-11-14T09:09:49.9465101Z ERROR: could not get idle state.
+2026-11-14T09:10:18.3032400Z ERROR: could not get idle state.
+2026-11-14T09:10:31.7940718Z ERROR: could not get idle state.
+2026-11-14T09:10:58.2896207Z ERROR: could not get idle state.
+2026-11-14T09:11:11.5509600Z ERROR: could not get idle state.
+2026-11-14T09:11:24.9503619Z ERROR: could not get idle state.
+2026-11-14T09:11:25.2170890Z AssertionError [ERR_ASSERTION]: Normal launch must reach visible game controls beyond the loading cover/intro
+2026-11-14T09:11:25.2174265Z     at main (/home/runner/work/Lumenfall/Lumenfall/scripts/ci/verify_android_release_runtime.cjs:33:3) {
+2026-11-14T09:11:25.2175692Z   generatedMessage: false,
+2026-11-14T09:11:25.2176139Z   code: 'ERR_ASSERTION',
+2026-11-14T09:11:25.2176521Z   actual: false,
+2026-11-14T09:11:25.2176890Z   expected: true,
+2026-11-14T09:11:25.2177253Z   operator: '==',
+2026-11-14T09:11:25.2177613Z   diff: 'simple'
+2026-11-14T09:11:25.2177966Z }
+2026-11-14T09:11:25.2382490Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+2026-11-14T09:11:25.2389935Z ##[group]Ter

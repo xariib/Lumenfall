@@ -1,106 +1,176 @@
 {
-  "sha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced",
-  "utc": "2026-11-14T07:50:30.977Z",
+  "sha": "7f149b895c9f90656bbb81766249665ed1f426fc",
+  "utc": "2026-11-14T09:21:50.714Z",
   "rows": [
     {
-      "id": 43572017291,
+      "id": 43578599508,
+      "name": "Build Android APK",
+      "path": ".github/workflows/build-android.yml",
+      "event": "workflow_dispatch",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43578599508",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573811359,
+      "name": "Ascension Tree focused validation",
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573811359",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573809123,
+      "name": "Shared UI layout validation",
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573809123",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573806774,
+      "name": "Research Lab expansion validation",
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573806774",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573804468,
+      "name": "Rift Forge expansion validation",
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573804468",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573801834,
+      "name": "Comet shop and Deeds validation",
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573801834",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573799309,
+      "name": "Pre-merge validation",
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573799309",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485558,
       "name": "Permanent progression and direct cards validation",
       "path": ".github/workflows/permanent-progression-validation.yml",
       "event": "pull_request",
       "status": "completed",
       "conclusion": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017291",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485558",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
     },
     {
-      "id": 43572017233,
-      "name": "Rift Forge expansion validation",
-      "path": ".github/workflows/forge-expansion-validation.yml",
-      "event": "pull_request",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017233",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
-    },
-    {
-      "id": 43572017216,
-      "name": "Prism mobile engine and economy acceptance",
-      "path": ".github/workflows/prism-closeout.yml",
-      "event": "pull_request",
-      "status": "completed",
-      "conclusion": "skipped",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017216",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
-    },
-    {
-      "id": 43572017213,
-      "name": "Comet shop and Deeds validation",
-      "path": ".github/workflows/comet-expansion-validation.yml",
-      "event": "pull_request",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017213",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
-    },
-    {
-      "id": 43572017181,
-      "name": "Pre-merge validation",
-      "path": ".github/workflows/pre-merge-validation.yml",
-      "event": "pull_request",
-      "status": "completed",
-      "conclusion": "failure",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017181",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
-    },
-    {
-      "id": 43572017161,
-      "name": "Research Lab expansion validation",
-      "path": ".github/workflows/lab-expansion-validation.yml",
-      "event": "pull_request",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017161",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
-    },
-    {
-      "id": 43572017160,
-      "name": "Ascension Tree focused validation",
-      "path": ".github/workflows/tree-focused-qa.yml",
-      "event": "pull_request",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017160",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
-    },
-    {
-      "id": 43572017156,
+      "id": 43573485525,
       "name": "Shared UI layout validation",
       "path": ".github/workflows/shared-ui-validation.yml",
       "event": "pull_request",
       "status": "completed",
       "conclusion": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017156",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485525",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
     },
     {
-      "id": 43572017153,
+      "id": 43573485501,
+      "name": "Ascension Tree focused validation",
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485501",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485483,
+      "name": "Research Lab expansion validation",
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485483",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485481,
+      "name": "Comet shop and Deeds validation",
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485481",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485463,
       "name": "Wisp scroll validation",
       "path": ".github/workflows/wisp-scroll-validation.yml",
       "event": "pull_request",
       "status": "completed",
-      "conclusion": "failure",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017153",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485463",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
     },
     {
-      "id": 43572017149,
+      "id": 43573485457,
+      "name": "Rift Forge expansion validation",
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485457",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485442,
+      "name": "Pre-merge validation",
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485442",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485428,
+      "name": "Prism mobile engine and economy acceptance",
+      "path": ".github/workflows/prism-closeout.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "skipped",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485428",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
+    },
+    {
+      "id": 43573485426,
       "name": "Prism feature validation",
       "path": ".github/workflows/prism-earning-validation.yml",
       "event": "pull_request",
       "status": "completed",
       "conclusion": "skipped",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/43572017149",
-      "headSha": "e9c9dc079a7d75ad4ba5f1a4d247ef6373617ced"
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/43573485426",
+      "headSha": "7f149b895c9f90656bbb81766249665ed1f426fc"
     }
   ]
 }

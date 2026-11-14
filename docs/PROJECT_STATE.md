@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
-14 November: [Currency header](tasks/CURRENCY_HUD_001.md) is in validation;
-integration and Android pending.
+14 November: [Currency header](tasks/CURRENCY_HUD_001.md) is integrated;
+Android acceptance/publication pending.
 
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)

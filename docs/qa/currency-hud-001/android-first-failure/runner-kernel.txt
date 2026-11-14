@@ -1,0 +1,120 @@
+[    2.563772] systemd[1]: Listening on systemd-mute-console.socket - Console Output Muting Service Socket.
+[    2.567546] systemd[1]: Listening on systemd-networkd-varlink.socket - Network Management Varlink Socket.
+[    2.569633] systemd[1]: Listening on systemd-networkd.socket - Network Management Netlink Socket.
+[    2.571127] systemd[1]: systemd-pcrextend.socket - TPM PCR Measurements skipped, unmet condition check ConditionSecurity=measured-uki
+[    2.571483] systemd[1]: systemd-pcrlock.socket - Make TPM PCR Policy skipped, unmet condition check ConditionSecurity=measured-uki
+[    2.572072] systemd[1]: Listening on systemd-resolved-monitor.socket - Resolve Monitor Varlink Socket.
+[    2.573816] systemd[1]: Listening on systemd-resolved-varlink.socket - Resolve Service Varlink Socket.
+[    2.575197] systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+[    2.577437] systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+[    2.579429] systemd[1]: Listening on systemd-udevd-varlink.socket - udev Varlink Socket.
+[    2.582521] systemd[1]: Mounting dev-hugepages.mount - Huge Pages File System...
+[    2.584837] systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+[    2.593030] systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+[    2.597974] systemd[1]: Mounting sys-kernel-tracing.mount - Kernel Trace File System...
+[    2.601432] systemd[1]: Starting systemd-journald.service - Journal Service...
+[    2.604308] systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+[    2.606751] systemd[1]: Starting kmod-static-nodes.service - Create List of Static Device Nodes...
+[    2.610001] systemd[1]: Starting lvm2-monitor.service - Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+[    2.613403] systemd[1]: modprobe@configfs.service - Load Kernel Module configfs skipped, unmet condition check ConditionKernelModuleLoaded=!configfs
+[    2.615226] systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System...
+[    2.619657] systemd-journald[166]: Collecting audit messages is disabled.
+[    2.624258] systemd[1]: Starting modprobe@dm_multipath.service - Load Kernel Module dm_multipath...
+[    2.626072] systemd[1]: modprobe@drm.service - Load Kernel Module drm skipped, unmet condition check ConditionKernelModuleLoaded=!drm
+[    2.630041] systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+[    2.632405] systemd[1]: modprobe@fuse.service - Load Kernel Module fuse skipped, unmet condition check ConditionKernelModuleLoaded=!fuse
+[    2.635481] systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+[    2.639853] pstore: Using crash dump compression: deflate
+[    2.642000] systemd[1]: Starting modprobe@nvme_fabrics.service - Load Kernel Module nvme_fabrics...
+[    2.644159] pstore: Registered efi_pstore as persistent store backend
+[    2.645657] systemd[1]: netplan-ovs-cleanup.service - OpenVSwitch configuration for cleanup skipped, unmet condition check ConditionFileIsExecutable=/usr/bin/ovs-vsctl
+[    2.647644] systemd[1]: Starting systemd-fsck-root.service - File System Check on Root Device...
+[    2.649447] systemd[1]: systemd-hibernate-clear.service - Clear Stale Hibernate Storage Info skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67
+[    2.654823] systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+[    2.655938] systemd[1]: systemd-pcrmachine.service - TPM PCR Machine ID Measurement skipped, unmet condition check ConditionSecurity=measured-uki
+[    2.657526] systemd[1]: systemd-tpm2-setup-early.service - Early TPM SRK Setup skipped, unmet condition check ConditionSecurity=measured-uki
+[    2.658098] systemd[1]: systemd-pcrnvdone.service - TPM PCR NvPCR Initialization Separator skipped, unmet condition check ConditionPathExists=/etc/initrd-release
+[    2.658713] systemd[1]: systemd-pcrproduct.service - TPM NvPCR Product ID Measurement skipped, unmet condition check ConditionSecurity=measured-uki
+[    2.662305] systemd[1]: Starting systemd-udev-load-credentials.service - Load udev Rules from Credentials...
+[    2.665300] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+[    2.668625] systemd[1]: Started systemd-journald.service - Journal Service.
+[    2.675664] i2c_dev: i2c /dev entries driver
+[    2.750949] EXT4-fs (nvme0n1p1): re-mounted 284ae903-37b8-4ac0-b5d6-794bd8f5110b r/w.
+[    2.774152] systemd-journald[166]: Received client request to flush runtime journal.
+[    3.030767] mana 7870:00:00.0 ens1: renamed from eth1
+[    3.070262] nvme nvme0: using unchecked data buffer
+[    3.173261] hid: raw HID events driver (C) Jiri Kosina
+[    3.186181] hv_vmbus: registering driver hid_hyperv
+[    3.186203] hv_vmbus: registering driver hyperv_drm
+[    3.188213] hyperv_drm 5620e0c7-8062-4dce-aeb7-520c7ef76171: [drm] Synthvid Version major 3, minor 5
+[    3.193538] input: Microsoft Vmbus HID-compliant Mouse as /devices/0006:045E:0621.0001/input/input0
+[    3.196203] hid-hyperv 0006:045E:0621.0001: input: VIRTUAL HID v0.01 Mouse [Microsoft Vmbus HID-compliant Mouse] on 
+[    3.196240] hv_vmbus: registering driver hyperv_keyboard
+[    3.200582] input: AT Translated Set 2 keyboard as /devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/d34b2567-b9b6-42b9-8778-0a4ec0b955bf/serio0/input/input1
+[    3.215471] Console: switching to colour dummy device 80x25
+[    3.239215] hyperv_drm 5620e0c7-8062-4dce-aeb7-520c7ef76171: [drm] Registered 1 planes with drm panic
+[    3.243136] [drm] Initialized hyperv_drm 1.0.0 for 5620e0c7-8062-4dce-aeb7-520c7ef76171 on minor 1
+[    3.262554] Console: switching to colour frame buffer device 128x48
+[    3.278663] hyperv_drm 5620e0c7-8062-4dce-aeb7-520c7ef76171: [drm] fb0: hyperv_drmdrmfb frame buffer device
+[    3.354355] kvm_amd: TSC scaling supported
+[    3.354365] kvm_amd: Nested Virtualization enabled
+[    3.354367] kvm_amd: Nested Paging enabled
+[    3.354373] kvm_amd: kvm_amd: Hyper-V enlightened NPT TLB flush enabled
+[    3.354374] kvm_amd: kvm_amd: Hyper-V Direct TLB Flush enabled
+[    3.354375] kvm_amd: Virtual VMLOAD VMSAVE supported
+[    3.354376] kvm_amd: PMU virtualization is disabled
+[    3.520680] hv_utils: KVP IC version 4.0
+[    3.679119] EXT4-fs (nvme0n1p13): Supports (experimental) DIO atomic writes awu_min: 4096, awu_max: 4096
+[    3.691807] EXT4-fs (nvme0n1p13): mounted filesystem c328c821-908f-4fda-8b0f-0248ed9f3d0b r/w with ordered data mode. Quota mode: none.
+[    3.772921] audit: type=1400 audit(1794646858.795:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name=4D6F6E676F444220436F6D70617373 pid=387 comm="apparmor_parser"
+[    3.774607] audit: type=1400 audit(1794646858.797:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="QtWebEngineProcess" pid=389 comm="apparmor_parser"
+[    3.774707] audit: type=1400 audit(1794646858.797:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="1password" pid=384 comm="apparmor_parser"
+[    3.774918] audit: type=1400 audit(1794646858.797:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Discord" pid=386 comm="apparmor_parser"
+[    3.785487] audit: type=1400 audit(1794646858.808:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="alsamixer" pid=394 comm="apparmor_parser"
+[    3.786164] audit: type=1400 audit(1794646858.808:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="balena-etcher" pid=397 comm="apparmor_parser"
+[    3.789985] audit: type=1400 audit(1794646858.812:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="bfdd" pid=399 comm="apparmor_parser"
+[    3.793885] audit: type=1400 audit(1794646858.816:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="babeld" pid=396 comm="apparmor_parser"
+[    3.794136] audit: type=1400 audit(1794646858.816:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="brave" pid=403 comm="apparmor_parser"
+[    3.924952] /dev/sr0: Can't lookup blockdev
+[    3.970926] mana 7870:00:00.0 ens1: Configured vPort 0 PD 18 DB 16
+[    3.976520] mana 7870:00:00.0 ens1: Configured steering vPort 0 entries 64
+[    3.977164] hv_netvsc f8615163-0000-1000-2000-7ced8dc17ad1 eth0: Data path switched to VF: ens1
+[    3.977546] mana 7870:00:00.0 mana_0: Port: 1 Link ACTIVE
+[    3.993335] 8021q: 802.1Q VLAN Support v1.8
+[    4.026958] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    4.027627] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    4.027761] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    4.027832] faux_driver regulatory: Direct firmware load for regulatory.db failed with error -2
+[    4.027838] cfg80211: failed to load regulatory.db
+[    5.509589] hv_netvsc f8615163-0000-1000-2000-7ced8dc17ad1 eth0: Data path switched from VF: ens1
+[    5.509784] mana 7870:00:00.0 ens1: Configured steering vPort 0 entries 64
+[    5.541952] mana 7870:00:00.0 mana_0: Port: 1 Link DOWN
+[    5.983230] mana 7870:00:00.0 ens1: Configured vPort 0 PD 18 DB 16
+[    5.988754] mana 7870:00:00.0 ens1: Configured steering vPort 0 entries 64
+[    5.989336] hv_netvsc f8615163-0000-1000-2000-7ced8dc17ad1 eth0: Data path switched to VF: ens1
+[    5.989539] mana 7870:00:00.0 mana_0: Port: 1 Link ACTIVE
+[    6.576290] EXT4-fs (nvme0n1p1): resizing filesystem from 19370235 to 39031035 blocks
+[    7.532248] EXT4-fs (nvme0n1p1): resized filesystem to 39031035
+[    7.581921] ephemeral0: Can't lookup blockdev
+[    7.633537] systemd-fstab-generator[851]: 'ephemeral0' is not a device path, ignoring x-systemd.device-timeout= option.
+[    8.193328] ephemeral0: Can't lookup blockdev
+[    8.232363] kauditd_printk_skb: 175 callbacks suppressed
+[    8.232369] audit: type=1400 audit(1794646863.254:186): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="rsyslogd" pid=1000 comm="apparmor_parser"
+[    8.364486] audit: type=1400 audit(1794646863.385:187): apparmor="DENIED" operation="sendmsg" class="file" profile="systemd-detect-virt" name="/att/systemd-detect-virt/run/systemd/journal/socket" pid=1109 comm="systemd-detect-" requested_mask="w" denied_mask="w" fsuid=0 ouid=0
+[    8.364496] audit: type=1400 audit(1794646863.386:188): apparmor="DENIED" operation="capable" class="cap" profile="systemd-detect-virt" pid=1109 comm="systemd-detect-" capability=38  capname="perfmon"
+[    8.364499] audit: type=1400 audit(1794646863.386:189): apparmor="DENIED" operation="sendmsg" class="file" profile="systemd-detect-virt" name="/att/systemd-detect-virt/run/systemd/notify" pid=1109 comm="systemd-detect-" requested_mask="w" denied_mask="w" fsuid=0 ouid=0
+[    8.498911] block nvme0n1: No UUID available providing old NGUID
+[    8.584128] NET: Registered PF_QIPCRTR protocol family
+[    8.605509] loop0: detected capacity change from 0 to 8
+[    8.750956] audit: type=1400 audit(1794646863.773:190): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=1291 comm="apparmor_parser"
+[    9.052583] Adding 3145724k swap on /swapfile.  Priority:-1 extents:8 across:57606140k SS
+[    9.093748] audit: type=1400 audit(1794646864.116:191): apparmor="STATUS" operation="profile_load" profile="unconfined" name="docker-default" pid=1426 comm="apparmor_parser"
+[    9.271944] Initializing XFRM netlink socket
+[    9.284761] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[    9.385074] systemd-fstab-generator[1682]: 'ephemeral0' is not a device path, ignoring x-systemd.device-timeout= option.
+[   10.176694] systemd-fstab-generator[1871]: 'ephemeral0' is not a device path, ignoring x-systemd.device-timeout= option.
+[   10.400233] systemd-fstab-generator[1938]: 'ephemeral0' is not a device path, ignoring x-systemd.device-timeout= option.
+[   49.262868] hv_balloon: Max. dynamic memory size: 16384 MB
+[  133.869584] /proc/cgroups lists only v1 controllers, use cgroup.controllers of root cgroup for v2 info
+[  235.580376] kvm: kvm [4206]: vcpu0, guest rIP: 0xffffffffad0c0474 Unhandled WRMSR(0xc0010007) = 0xffff
+[  469.191498] kvm: kvm [5398]: vcpu0, guest rIP: 0xffffffff992bf7a4 Unhandled WRMSR(0xc0010007) = 0xffff

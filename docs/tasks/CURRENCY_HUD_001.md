@@ -1,7 +1,7 @@
 # CURRENCY_HUD_001 — consistent top currency display
 
-14 November 2026. Owner: this feature chat. Status: local validation passed;
-GitHub integration and Android delivery pending.
+14 November 2026. Owner: this feature chat. Status: integrated; Android
+normal-launch acceptance and publication pending.
 
 ## Request and scope
 
@@ -82,3 +82,32 @@ Local Wisp anchor-negative settled within its original300ms ceiling and failed
 the intended screen-position assertion; no deadline, test or product JS changed.
 Next: rerun exact-source CI after these documentation/reference corrections;
 investigate any repeated required failure before integration.
+
+## Integrated acceptance and Android checkpoint
+
+PR49 merged by fast-forward to exact tested source `7f149b895c9f90656bbb81766249665ed1f426fc`.
+All eight applicable PR workflows and six manual release workflows passed.
+Both full jobs passed220 browser executions/190 deterministic scenarios plus
+separate isolated offline jobs. [Candidate readiness](../qa/currency-hud-001/candidate-readiness.json)
+and [integrated gates](../qa/currency-hud-001/release-readiness.json) retain job/step receipts;
+scenario summaries retain the original output. No test/deadline was weakened.
+Local Brave157.1.99.57/Node24.22.1; broad CI Node24.19.0/Chrome157.0.8103.50.
+
+Unpublished signed candidate [43578599508](https://github.com/xariib/Lumenfall/actions/runs/43578599508)
+builds the same exact commit. Build, identity/assets/security, signed upgrade,
+save retention and in-app updater passed. Its first retail-image normal-launch
+check failed: UIAutomator reported null-root/idle errors, and its dump exposed
+only background/toast although the retained screenshot shows a visibly running
+game with the new currency HUD. Cause is unproven; this is not a passing check.
+Complete raw [first-failure evidence](../qa/currency-hud-001/android-first-failure/files.json)
+and workflow/artifact receipts are retained. Same-source failed-job retry was
+requested with unchanged checks and deadlines; it must pass before publication.
+
+The candidate build runs in parallel without publication. If it passes, reuse
+its immutable signed artifact after rechecking exact integrated main and running
+the existing `release-ci-gate.cjs` and `android-release-version.cjs --check-published`
+guards, native upgrade/updater/retail receipts and exact packaged bytes. This
+avoids a second build while preserving every publication gate. No workflow changed.
+Next: inspect the unchanged retry, publish only after all required guards pass,
+verify anonymous versioned/latest bytes and update this record. Physical-phone,
+exact WebView60/TalkBack/human acceptance remain open; do not archive.
