@@ -49,29 +49,50 @@ scenario and transport option; pre-merge workflow; this task/QA receipts and
 source binding after verified replay. Existing acceptance checks retained.
 No new binding rules. Self-review and automated checks only. Status: open.
 
-Publication checkpoint: [PR51](https://github.com/xariib/Lumenfall/pull/51),
-head4fb7732e026097d6a41e7a6a0d8067f79767301b; main858d713f.
-Product SHA48f96606f3a69c3929701551e4c5492f98811fe769ffa3bb5fbaa0090ec0c30c.
-All nine local Lab browser modes PASS (5037 positive assertions plus the
-deliberate missing-confirmation failure). Final simple344/slot488 receipts
-bind exact product48f96606; the others precede only equivalent CSS longhands.
-Original22-scenario regression PASS after adding explicit confirmation checks
-to r3-destinations; all original payment/queue/persistence assertions retained.
-Replay full states/rewards/canonical vectors match; final CSS longhands preserve
-identical complete script bytes. Source/context/whitespace and slot55 PASS.
+Combined-source continuation — 14 November 2026:
 
-First PR CI found permanent-progression-ui's immediate-switch expectation and
-an oversized shared startup context. The native test now verifies the prompt
-before confirming and preserves all original paid-boost/queue assertions;
-local permanent488 PASS. Condensed PROJECT_STATE delivery summaries with
-their evidence links/limitations retained. All39 workflow task contexts PASS,
-largest checked hunt context32665/32768 bytes. Product bytes unchanged.
+[PR51](https://github.com/xariib/Lumenfall/pull/51), branch feature/lab-simple-001,
+worktree validation-evidence/lab-simple. Initial published source07f9807f
+passed all focused PR/release workflows; its two full stateful suites were
+still running when main advanced. Those results are historical evidence,
+not final acceptance of the combined page. Earlier launch IDs are retained in
+prior-source-release-launch.json. No APK for the Lab has been published.
 
-GitHub CLI's old credential helper path was unavailable; an invocation-scoped
-working helper published code/tests. Its OAuth token lacks workflow scope;
-the connected GitHub app published the reviewed test step. Local tree matches
-remote4fb7732e. Required eight PR workflows are running; no merge/build/release.
-Next: inspect PR51 exact-head CI; fix any failures without weakening gates;
-integrate serially against current main, dispatch integrated checks, then build
-and verify/publish the signed APK. Physical-phone/WebView60/TalkBack remain
-unverified. Chat stays open; no archive attempted.
+Accepted main7f149b895c9f90656bbb81766249665ed1f426fc (currency header/PR49)
+merged into this feature. Product merged cleanly; resolved only shared status
+and the full-page oracle source binding. Combined HTML SHA256:
+af371f2e9d149826266309f1d3f587f8e2f2cf4014c5fc0c32989c12232c87c6.
+Every script byte equals the verified Lab candidate48f96606, and the incoming
+currency scripts equal original baselinece51bc14. Complete progression inputs
+and canonical vectors are unchanged; combined-source.json records this proof.
+Only the full-page source binding changed. No gameplay/balance/schema change.
+
+Combined native-browser selection344/18 profiles, slots488/18 and currency
+layout1776/16 PASS; all39 task contexts and syntax/IDs/lifecycle/whitespace PASS.
+Current simple/slots receipts and previews bind the combined page. Other local
+receipts and saved CI logs retain their actual earlier source/version. Actual
+V8 6.0 checks580 passed on the identical script bytes. No gate/deadline weakened.
+
+Prior CI findings: permanent-progression UI needed the new confirmation step;
+its original paid-work/boost assertions remain. Shared startup was condensed
+with all evidence links retained. Wisp PR Linux attempts timed out before
+Browser.getVersion and at its unchanged300ms negative-control setup ceiling;
+raw receipts are saved. The third unchanged PR attempt and manual Wisp passed
+both platforms. Do not infer a root cause from passing retries.
+
+Next: commit/publish the combined merge, run required PR and manual release
+workflows on that exact head, and collect final source-bound results. Before
+promotion recheck main and active builds; use a normal expected-SHA fast-forward
+only if its accepted baseline is still current. If main moves, preserve and
+integrate its accepted changes. Other active UI PRs50/52 remain separate.
+No subagents or chat messages used; do not overwrite other worktrees.
+
+The currency owner has a separate queued Android diagnostic run43581066569
+(0.2.114, branch c737fd3e). Its native acceptance helper is unmerged; do not
+import an unverified candidate or claim its acceptance for this Lab source.
+Build/publish our signed APK only after required exact-source CI and the shared
+release path pass. Local helper validation-evidence/release-lab-simple.cjs
+supports check/build/collect; update its candidate guard to the accepted main
+baseline before dispatch. Do not launch duplicate workflows. Save all final
+status/evidence in GitHub. Physical-phone/WebView60/TalkBack/human review remain
+unverified; keep this task/chat open and do not archive or claim complete.

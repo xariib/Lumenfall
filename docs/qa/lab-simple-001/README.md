@@ -33,3 +33,12 @@ Condensed shared status summaries without dropping evidence links; all39
 workflow task contexts now PASS (`contexts.json`). No gate/budget changes.
 CI, integration and Android delivery remain pending until receipts are saved.
 Physical-phone, exact WebView60 DOM and TalkBack acceptance are unverified.
+
+Combined main integration: currency header/PR49 advanced main to7f149b89.
+The combined page is af371f2e; every script byte equals the verified Lab
+candidate, while the currency change is CSS-only. combined-source.json proves
+script identity and unchanged canonical vectors. Current simple344 and slots488
+pass on af371f2e; combined-currency.json.gz preserves1776 layout assertions
+across16 profiles. Previews now show both accepted changes. All39 task contexts
+pass. Earlier receipts/logs retain their actual source48f96606 and are not
+claims that combined-source CI or Android acceptance has completed.

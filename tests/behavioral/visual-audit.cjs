@@ -7,6 +7,7 @@ function one(a,b){assert.equal(driver.split(a).length,2);driver=driver.replace(a
 if(process.argv.includes('--mutate-lab-heading'))one("source=fs.readFileSync(sourcePath,'utf8');","source=fs.readFileSync(sourcePath,'utf8').replace('height:auto;padding:12px;margin-bottom:8px;','height:64px;padding:12px;margin-bottom:8px;');");
 one('breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}',String.raw`
  visualSeed:function(){var s=freshState();s.maxDepthEver=350;s.depth=81;s.lumen=1e12;s.shards=1e10;s.motes=5000;s.prisms=10000;s.comets=20;s.ascendCount=80;s.tutorialDone=true;s.questDay=todayStr();s.lastSeen=Date.now();SPIRITS.forEach(function(sp){s.spirits[sp.id]=50;s.empowerQueue[sp.id]=false;});s.activeParty=SPIRITS.slice(0,3).map(function(sp){return sp.id;});return s;},
+ visualCurrencies:function(amount){state.lumen=state.shards=state.motes=state.prisms=state.comets=state.sigils=amount;renderHud();return [state.lumen,shardsAvailable(),state.motes,state.prisms,state.comets,state.sigils].map(formatRiftNumber);},
  visualSet:function(s,tab){state=acceptPersistedState(s);selectedStudySlot=-1;expandedStudySpeedSlot=-1;state.questDay='';ensureDaily();spawnEnemy(false);renderAll();activateTab(tab);document.querySelectorAll('.rift-milestone').forEach(function(e){e.remove();});},
  visualDaily:function(){showDailyOverlay({streak:7,reward:{comets:25,prisms:5}});},
  visualScenes:function(){return RIFT_ZONES.map(function(z,i){return {name:'zone-'+i,depth:i*RIFT_ZONE_SPAN+1,theme:'default'};}).concat(RIFT_THEMES.map(function(t){return {name:'theme-'+t.id,depth:81,theme:t.id};}),[10,20,30].map(function(d){return {name:'boss-'+d,depth:d,theme:'default'};}),[{name:'luminous',depth:81,theme:'default',luminous:true}]);},
@@ -17,6 +18,44 @@ const start=driver.indexOf('  const samples=[];'),end=driver.indexOf("  await se
 assert(start>0&&end>start);
 driver=driver.slice(0,start)+String.raw`
   const samples=[];
+  // Shared currency chrome must retain Rift geometry on every destination,
+  // including short screens where the original Rift uses 20px chips.
+  for(const height of [844,600]){
+   await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});
+   let rift;
+   for(const screen of ['battle','spirits','forge','research','ascend','deeds']){
+    await ev('prismQa.visualSet(prismQa.visualSeed(),'+JSON.stringify(screen)+');prismQa.ready();prismQa.tab('+JSON.stringify(screen)+')');
+    const hud=await ev('('+function(){
+     return Array.from(document.querySelectorAll('.hud .chip')).map(e=>{
+      const icon=e.querySelector('.glyph-icon'),label=e.querySelector('.lbl'),value=e.querySelector('.val');
+      const c=getComputedStyle(e),l=getComputedStyle(label),v=getComputedStyle(value);
+      const r=e.getBoundingClientRect(),i=icon.getBoundingClientRect(),n=value.getBoundingClientRect();
+      return {name:label.textContent,text:value.textContent,display:c.display,height:r.height,width:r.width,
+       background:c.background,border:c.border,borderRadius:c.borderRadius,shadow:c.boxShadow,padding:c.padding,
+       fontSize:v.fontSize,fontFamily:v.fontFamily,fontWeight:v.fontWeight,lineHeight:v.lineHeight,iconWidth:i.width,iconHeight:i.height,
+       inline:i.right<=n.left&&Math.abs((i.top+i.bottom-n.top-n.bottom)/2)<=1,
+       fits:n.right<=r.right&&value.scrollWidth<=value.clientWidth+1,
+       accessible:l.display!=='none'&&l.visibility!=='hidden'&&label.getAttribute('aria-hidden')!=='true',
+       nameHidden:l.position==='absolute'&&(l.clip!=='auto'||l.clipPath!=='none')};
+     });
+    }.toString()+')()');
+    ok(hud.length===6,'all six currency wallets '+screen);
+    ok(hud.every(c=>c.height===(height<=680?20:24)&&c.iconWidth===11&&c.iconHeight===11&&c.fontSize==='10px'),'original Rift currency dimensions '+screen);
+    ok(hud.every(c=>c.inline&&c.fits&&c.accessible&&c.nameHidden),'inline icon/amount, unclipped values and accessible names '+JSON.stringify({width,scale,height,screen,hud}));
+    const style=hud.map(({text,name,inline,fits,accessible,nameHidden,...c})=>c);
+    if(screen==='battle')rift=style;
+    ok(JSON.stringify(style)===JSON.stringify(rift),'same Rift currency size/style '+screen);
+    for(const amount of [0,987654321,1e300]){
+     const expected=await ev('prismQa.visualCurrencies('+amount+')');
+     ok(await ev('Array.from(document.querySelectorAll(".hud .val")).every((e,i)=>e.textContent==='+JSON.stringify(expected)+'[i]&&e.scrollWidth<=e.clientWidth+1)'),'live currency refresh fits '+screen+' '+amount);
+    }
+    await send('Accessibility.enable');await pause(100);
+    const ax=await send('Accessibility.getFullAXTree');
+    ok(hud.every(c=>ax.nodes.some(n=>!n.ignored&&n.name&&n.name.value.trim().toLowerCase()===c.name.toLowerCase())),'currency names exposed to accessibility tree '+screen);
+    samples.push({screen:'currency-'+screen,height,hud,bad:[]});
+   }
+  }
+  await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
   for(const screen of ['battle','spirits','forge','research','ascend','deeds']){
    await ev('prismQa.visualSet(prismQa.visualSeed(),'+JSON.stringify(screen)+');document.querySelector("main").scrollTop=0');await pause(300);
    const measured=await ev('('+function(screen){
