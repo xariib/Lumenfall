@@ -2429,19 +2429,22 @@
   #study-list .study-running>.study-select,#study-list .study-running>.study-bar-track,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
   #study-list .study-running>.study-speed-controls{margin:8px 0 0;}#study-list .study-running>.node-queue-toggle{align-self:start;margin-top:8px;}#study-list .study-speed-expanded>.study-speed-controls{grid-column:1/-1;}
 
-  /* LAB_SIMPLE_001: countdown and actions share one quiet progress panel. */
-  #study-list .study-running{grid-template-columns:auto minmax(0,1fr);align-items:center;position:relative;}
+  /* Compact controls flank the countdown instead of enlarging its track. */
+  #study-list .study-running{grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;position:relative;column-gap:4px;}
   #study-list .study-running>.study-select,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
   #study-list .study-running>.study-select,#study-list .study-running>h3{grid-column:1/-1;grid-row:1;}
   #study-list .study-running>.earned-effect{grid-row:2;}
-  #study-list .study-running>.effect-note{grid-row:5;}
-  #study-list .study-running>.study-repeat{grid-column:1;grid-row:4;z-index:1;align-self:center;justify-content:center;margin:0 0 8px 8px;min-width:44px;min-height:44px;padding:5px 10px;display:flex;align-items:center;gap:6px;border:0;background:transparent;}
-  .study-repeat>span:first-child{font-size:1.1rem;line-height:1;}.study-queue-state{font-size:.7rem;}
+  #study-list .study-running>.effect-note{grid-row:4;}
+  #study-list .study-running>.study-repeat{grid-column:1;grid-row:3;z-index:1;align-self:center;justify-content:center;margin:4px 0;min-width:44px;min-height:44px;padding:3px;display:flex;flex-direction:column;align-items:center;gap:2px;border:0;background:transparent;}
+  .study-repeat>span:first-child{font-size:22px;line-height:1;}.study-queue-state{font-size:9px;line-height:1;}
   #study-list .study-running>.study-bar-track .study-bar-fill{opacity:.22;}
-  #study-list .study-running>.study-bar-track{grid-column:1/-1;grid-row:3/5;align-self:stretch;margin:8px 0 0;min-width:0;min-height:96px;height:auto;box-sizing:border-box;padding:4px 4px 56px;}
-  #study-list .study-running{grid-template-rows:auto auto 52px 52px;}
-  #study-list .study-running>.study-speed-controls{grid-column:2;grid-row:4;z-index:1;justify-self:end;align-self:center;margin:0 8px 8px 0;padding:0;border:0;min-width:0;}
-  #study-list .study-speed-open{width:auto;min-width:44px;max-width:none;padding:7px 10px;font-size:.7rem;white-space:normal;border:0;background:transparent;}
+  #study-list .study-running>.study-bar-track{grid-column:2;grid-row:3;align-self:center;margin:4px 0;min-width:0;min-height:36px;height:auto;box-sizing:border-box;padding:4px 2px;}
+  #study-list .study-running>.study-bar-track .study-time{min-width:0;max-width:100%;box-sizing:border-box;padding:2px;font-size:.6875rem;white-space:normal;overflow-wrap:break-word;}
+  #study-list .study-running{grid-template-rows:auto auto auto;}
+  #study-list .study-running>.study-speed-controls{grid-column:3;grid-row:3;z-index:1;justify-self:end;align-self:center;margin:4px 0;padding:0;border:0;min-width:0;}
+  #study-list .study-speed-open{width:44px;min-width:44px;min-height:44px;max-width:none;padding:4px;font-size:1.25rem;line-height:1;border:0;background:transparent;}
+  #study-list .study-speed-open svg{width:22px;height:22px;vertical-align:middle;}
+  #tab-battle .rift-cosmetic-name,#tab-battle .bond-summary{display:none;}
   #study-list .study-catalogue .study-card{position:relative;}
   #study-list .study-choice-hit{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;min-height:44px;margin:0;padding:0;border:0;border-radius:inherit;background:transparent;cursor:pointer;}
   #study-list .study-choice-hit:disabled{cursor:default;}
@@ -3076,7 +3079,7 @@
           <button class="rift-mode-btn active" id="rift-push-btn">Push</button>
           <button class="rift-mode-btn" id="rift-farm-btn">Farm</button>
         </div>
-        <span class="rift-cosmetic-name" id="rift-cosmetic-name" aria-hidden="true">Theme: Starlight</span></div>
+        <span class="rift-cosmetic-name" id="rift-cosmetic-name" hidden aria-hidden="true">Theme: Starlight</span></div>
 
         <div class="battle-row">
           <div class="enemy-stage-wrap">
@@ -3116,7 +3119,7 @@
 
         <div class="buff-indicator" id="buff-indicator">Boost · passive Wisps + Tap · <strong>Inactive</strong></div>
         <div id="comet-trial-status" class="comet-trial-status" hidden></div>
-        <div class="bond-summary" id="bond-summary" role="group" aria-label="No Formation Bond active.">No Formation Bond active.</div>
+        <div class="bond-summary" id="bond-summary" hidden aria-hidden="true"></div>
         <div class="stat-row">
           <div class="stat-box"><div class="k">Tap damage</div><div class="v mono" id="stat-tap">1</div></div>
           <div class="stat-box"><div class="k" title="Estimated Wisp damage per second, including abilities">Wisp damage/sec</div><div class="v mono" id="stat-idle">0</div></div>
@@ -10243,7 +10246,7 @@ function studySpeedMarkup(node,active,maxed){
   var hours=preference.hours;
   var plan=getStudyBoostPlan(node.id,target,hours);
   return '<div class="study-speed-controls" data-study-inspection="'+node.id+'">'+
-    '<button class="study-speed-open mini-btn" data-study-speed-open="'+active.slot+'" data-study-speed-summary="'+node.id+'" aria-expanded="'+(expandedStudySpeedSlot===active.slot)+'" aria-haspopup="dialog" aria-controls="study-speed-editor-'+node.id+'">Speed Up</button>'+
+    '<button class="study-speed-open mini-btn" data-study-speed-open="'+active.slot+'" data-study-speed-summary="'+node.id+'" aria-label="Lab '+(active.slot+1)+' — Speed Up" title="Speed Up" aria-expanded="'+(expandedStudySpeedSlot===active.slot)+'" aria-haspopup="dialog" aria-controls="study-speed-editor-'+node.id+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7z"/></svg></button>'+
     '<div class="study-speed-editor overlay" id="study-speed-editor-'+node.id+'" '+(expandedStudySpeedSlot===active.slot?'':'hidden')+'><div class="modal study-speed-menu" role="dialog" aria-modal="true" aria-labelledby="study-speed-title-'+node.id+'" aria-describedby="study-speed-note-'+node.id+'" tabindex="-1">'+
     '<div class="study-menu-heading"><h2 id="study-speed-title-'+node.id+'">Speed Up · Lab '+(active.slot+1)+'</h2><button class="mini-btn" data-study-speed-close="'+active.slot+'" aria-label="Close Speed Up">×</button></div><p class="study-speed-project">'+node.name+'</p><p class="study-speed-note" id="study-speed-note-'+node.id+'">Use Motes to speed up research. The boost stays with this Lab when research changes.</p>'+
     '<p class="study-boost-plan-title">'+(held?'Next boost':'Boost settings')+'</p>'+
@@ -10300,7 +10303,7 @@ function replaceStudyMarkup(html){
   }
   controls.querySelector('[data-study-speed-value]').textContent=nextControls.querySelector('[data-study-speed-value]').textContent;
   controls.querySelector('.study-speed-editor').hidden=nextControls.querySelector('.study-speed-editor').hidden;
-  var open=controls.querySelector('[data-study-speed-open]'),nextOpen=nextControls.querySelector('[data-study-speed-open]');open.textContent=nextOpen.textContent;open.setAttribute('aria-expanded',nextOpen.getAttribute('aria-expanded'));
+  var open=controls.querySelector('[data-study-speed-open]'),nextOpen=nextControls.querySelector('[data-study-speed-open]');open.setAttribute('aria-expanded',nextOpen.getAttribute('aria-expanded'));
   range.disabled=nextRange.disabled;range.value=nextRange.value;
   range.setAttribute('aria-valuetext',LAB_SPEED_TIERS[Number(range.value)]+'x');range.style.backgroundSize=(Number(range.value)/7*100)+'% 8px';
   select.disabled=nextSelect.disabled;select.value=nextSelect.value;
@@ -10835,13 +10838,6 @@ function renderAchievements(){
     var current=progress ? (done ? progress.target : Math.min(progress.current,progress.target)) : 0;
     var pending=done && state.cometClaims.deeds[a.id]===true;
     var pendingReward=series.earned.reduce(function(sum,m){return sum+(state.cometClaims.deeds[m.id]===true?m.reward:0);},0);
-    var history=series.earned.filter(function(m){return m.id!==a.id;}).map(function(m){
-      var p=deedProgress(m,state);
-      return '<div data-deed-history="'+m.id+'"><strong>'+m.name+' · Completed</strong>'+
-        '<div class="ach-progress mono" data-deed-progress="'+m.id+'" data-current="'+p.target+'" data-target="'+p.target+'">'+deedProgressText(m,true)+'</div>'+
-        '<div>+'+m.reward+' Comets'+(state.cometClaims.deeds[m.id]===true?' · Reward pending':'')+'</div>'+
-        (m.unlocks?'<div class="ach-unlock">Unlocks: '+m.unlocks+'</div>':'')+'</div>';
-    }).join('');
     html+='<div class="card ach-card '+(done?'done':'')+'" data-deed="'+a.id+'" data-deed-series="'+series.key+'" data-state="'+(done?'completed':'available')+'">'+
       '<div class="info"><div class="name">'+a.name+(done?' · Completed':'')+'</div>'+
       (presentation.requirement.replace(/\.$/,'')===a.name?'':'<div class="deed-requirement" data-deed-requirement="'+a.id+'">'+presentation.requirement+'</div>')+
@@ -10851,7 +10847,6 @@ function renderAchievements(){
       (scope?cardDetails('deed-'+series.milestones[0].id,scope):'')+
       (a.unlocks?'<div class="ach-unlock">Unlocks: '+a.unlocks+'</div>':'')+
       (pendingReward?'<div class="deed-credit-state" data-deed-credit-state="due">Reward pending · '+pendingReward+' Comets preserved</div>':'')+
-      (history?cardDetails('deed-history-'+series.key,history,'Completed milestones ('+(series.earned.length-(done?1:0))+')'):'')+
       '</div><span class="reward mono" aria-label="Reward: '+a.reward+' Comets'+(pending?', pending':'')+'">+'+a.reward+' '+costIcon('comet')+'</span></div>';
   });
   replaceControlMarkup(els['ach-list'],html);
@@ -11352,14 +11347,20 @@ function syncMainScrollMode(tabName){
   if(battleActive && main.scrollTop!==0) main.scrollTop = 0;
 }
 var workshopSection='forge';
+var menuScrollPositions={};
 function activateTab(tabName){
   if(tabName==='workshop') tabName=workshopSection;
-  if(tabName!=='research' && expandedStudySpeedSlot>=0)closeStudySpeedMenu();
   var inWorkshop=tabName==='forge' || tabName==='research';
   var destination=inWorkshop ? 'workshop' : tabName;
   var btn=document.querySelector('.tab-btn[data-tab="'+destination+'"]');
   var panel=document.getElementById('tab-'+tabName);
   if(!btn || !panel) return;
+  var main=document.querySelector('main'),previous=document.querySelector('.tab-panel.active');
+  if(main && previous){
+    var max=Math.max(0,main.scrollHeight-main.clientHeight);
+    menuScrollPositions[previous.id]={top:main.scrollTop,bottom:max>0&&main.scrollTop>0&&max-main.scrollTop<=2};
+  }
+  if(tabName!=='research' && expandedStudySpeedSlot>=0)closeStudySpeedMenu();
   document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-current','false');});
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
   btn.classList.add('active'); btn.setAttribute('aria-current','page'); panel.classList.add('active');
@@ -11375,8 +11376,11 @@ function activateTab(tabName){
   if(tabName==='ascend'){renderAscendSummary();renderNodes();}
   if(tabName==='deeds'){renderAchievements();renderCosmetics();renderDaily(true);}
   checkAffordability(true,true);
-  var main=document.querySelector('main'); if(main) main.scrollTop=0;
   syncMainScrollMode(tabName);
+  if(main && tabName!=='battle'){
+    var position=menuScrollPositions[panel.id];
+    main.scrollTop=position ? (position.bottom ? main.scrollHeight : position.top) : 0;
+  }
 }
 function setupTabs(){
   function playNavFeedback(btn){

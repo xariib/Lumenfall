@@ -29,7 +29,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     assert(q('main').scrollHeight<=q('main').clientHeight+1,'no clipped/overflowing Rift content');
     assert(Math.abs(rect('.hud').height-hudHeight)<1,'stable HUD height');
     var chips=Array.from(document.querySelectorAll('.hud .chip'));
-    assert(new Set(chips.map(function(el){return Math.round(el.getBoundingClientRect().top);})).size===2,'exactly two currency rows');
+    assert(new Set(chips.map(function(el){return Math.round(el.getBoundingClientRect().top);})).size===(innerWidth<=380?3:2),'currency rows follow visible-name phone layout');
     assert(q('#hp-text').scrollWidth<=q('#hp-text').clientWidth,'HP text fits without clipping');
     var enemy=visible('#enemy-stage');
     assert(document.elementFromPoint(enemy.x+enemy.width/2,enemy.y+enemy.height/2).closest('#enemy-stage'),'Guardian Tap is not covered');
@@ -64,7 +64,7 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     });
     assert(!q('#rift-details-btn') && !q('#rift-details'),'Rift Details removed');
     assert(!q('#rift-study-status'),'obsolete Rift Study control removed');
-    ['#buff-indicator','#bond-summary'].forEach(function(s){var r=visible(s);assert(r.bottom<=rect('nav.tabbar').top && q(s).scrollWidth<=q(s).clientWidth,s+' status readable on Rift');});
+    ['#buff-indicator'].forEach(function(s){var r=visible(s);assert(r.bottom<=rect('nav.tabbar').top && q(s).scrollWidth<=q(s).clientWidth,s+' status readable on Rift');});
     var tabs=Array.from(document.querySelectorAll('nav.tabbar button'));
     assert(tabs.length===5,'five visible main destinations');
     tabs.forEach(function(el,index){
@@ -94,7 +94,8 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     assert(initial.activeParty.length===5,'full Active party fixture');
     assert(initial.buffUntil>Date.now(),'active buff fixture');
     var activeBonds=bridge.riftStatus.active();
-    assert(activeBonds.length>0 && q('#bond-summary').textContent===activeBonds.map(function(bond){return bond.name.replace(' Bond','');}).join(' · ') && q('#bond-summary').getAttribute('aria-label')==='Active Bonds: '+activeBonds.map(function(bond){return bond.name;}).join(', '),'complete visible and accessible active Formation Bonds');
+    assert(activeBonds.length>0 && q('#bond-summary').textContent===activeBonds.map(function(bond){return bond.name.replace(' Bond','');}).join(' · ') && q('#bond-summary').getAttribute('aria-label')==='Active Bonds: '+activeBonds.map(function(bond){return bond.name;}).join(', '),'preserved active Formation Bond metadata');
+    assert(!q('#bond-summary').getClientRects().length&&q('#bond-summary').getAttribute('aria-hidden')==='true','Formation names remain absent from Rift and accessibility tree');
     if(ctx.scenario==='layout-boss') assert(q('#enemy-glyph').classList.contains('boss'),'boss fixture');
     // Freeze ambient ticks while allowing actual input/save transactions, as
     // the existing paid Lab input fixtures do.

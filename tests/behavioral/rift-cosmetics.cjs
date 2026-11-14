@@ -113,10 +113,7 @@ const setup = `window.cosmeticQa = {
     a(stage.dataset.riftTheme===id,'selected effect applied to tap area');
     a(document.querySelector('#tab-battle .stage').dataset.riftTheme===id,'selected effect applied to landscape');
     var names={default:'Starlight',ember:'Ember Veil',void:'Void Bloom',aurora:'Aurora Pulse',solar:'Solar Crown',radiant:'Radiant'};
-    a(caption.textContent===${JSON.stringify(labelBefore ? '' : 'Theme: ')}+names[id],'visible cosmetic theme label');
-    var color=getComputedStyle(caption).color.match(/[\\d.]+/g).slice(0,3).map(Number);
-    function luminance(rgb){return rgb.map(function(v){v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4);}).reduce(function(sum,v,i){return sum+v*[.2126,.7152,.0722][i];},0);}
-    a(getComputedStyle(caption).backgroundColor==='rgb(16, 24, 43)' && (luminance(color)+.05)/(luminance([16,24,43])+.05)>=4.5,'opaque readable caption with theme color contrast');
+    a(caption.hidden&&caption.getAttribute('aria-hidden')==='true'&&!caption.getClientRects().length,'theme caption absent from Rift');
     a(halo.getAttribute('aria-hidden')==='true' && getComputedStyle(halo).pointerEvents==='none','decorations cannot capture taps or screen reader focus');
     ['trail','crest'].forEach(function(slot){
       var decoration=stage.querySelector('.comet-'+slot),style=getComputedStyle(decoration);
@@ -133,13 +130,7 @@ const setup = `window.cosmeticQa = {
     }
     var r=stage.getBoundingClientRect(), hp=document.getElementById('hp-text').getBoundingClientRect(), c=caption.getBoundingClientRect();
     a(r.width>=44 && r.height>=44,'tap target at least 44px');
-    a(c.bottom<=r.top && hp.bottom<=document.getElementById('enemy-glyph').getBoundingClientRect().top,'cosmetic above attack surface and HP above enemy artwork');
-    a(document.querySelector('.rift-heading').contains(caption) && c.right<=r.right && c.left>=r.left,'caption stays in the Rift header');
-    a(caption.scrollWidth<=caption.clientWidth && caption.scrollHeight<=caption.clientHeight,'complete theme label fits without clipping');
-    var range=document.createRange();range.selectNodeContents(caption);
-    Array.from(range.getClientRects()).forEach(function(line){
-      a(line.left>=c.left && line.right<=c.right && line.top>=c.top && line.bottom<=c.bottom,'complete theme label fits without clipping');
-    });
+    a(hp.bottom<=document.getElementById('enemy-glyph').getBoundingClientRect().top,'HP stays above enemy artwork');
     a(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2).closest('#enemy-stage')===stage,'center remains tappable');
     return {id,caption:caption.textContent,captionBox:[c.x,c.y,c.width,c.height],geometry:this.geometry(),visiblePatterns:visible.map(function(g){return g.getAttribute('class');}),animation:visible.map(function(g){return getComputedStyle(g).animationName;}),landLight:getComputedStyle(document.querySelector('#tab-battle .stage')).getPropertyValue('--land-light')};
   }
@@ -282,14 +273,10 @@ async function run() {
         const reason = await evaluate(`(function(){cosmeticQa.fixture('normal',true);selectRiftTheme('radiant');document.querySelector('.cosmetic-radiant').style.display='none';try{cosmeticQa.measure('radiant',true);return null;}catch(error){return error.message;}})()`);
         assert(reason === 'one visible pattern for selected theme','negative catches missing visible aura');
         records.push({contract:'negative-hidden-aura',caught:reason});
-        for(const mutation of ['meaning','clipping']){
-          const caught=await evaluate(`(function(){cosmeticQa.fixture('normal',true);selectRiftTheme('aurora');var c=document.getElementById('rift-cosmetic-name');
-            ${mutation==='meaning'?"c.textContent='Aurora Pulse';":"c.style.width='18px';c.style.whiteSpace='nowrap';c.style.overflow='hidden';"}
-            try{cosmeticQa.measure('aurora',true);return null;}catch(error){return error.message;}})()`);
-          assert(caught===(mutation==='meaning'?'visible cosmetic theme label':'complete theme label fits without clipping'),'negative catches theme label '+mutation);
-          records.push({contract:'negative-label-'+mutation,caught});
-          await evaluate(`var c=document.getElementById('rift-cosmetic-name');c.removeAttribute('style');applyRiftTheme();cosmeticQa.measure('aurora',true)`);
-        }
+        const captionRegression=await evaluate(`(function(){cosmeticQa.fixture('normal',true);selectRiftTheme('aurora');var c=document.getElementById('rift-cosmetic-name');c.hidden=false;c.style.display='block';try{cosmeticQa.measure('aurora',true);return null;}catch(error){return error.message;}})()`);
+        assert(captionRegression==='theme caption absent from Rift','negative catches reintroduced theme caption');
+        records.push({contract:'negative-visible-caption',caught:captionRegression});
+        await evaluate("var c=document.getElementById('rift-cosmetic-name');c.hidden=true;c.removeAttribute('style');applyRiftTheme();cosmeticQa.measure('aurora',true)");
       }
     }
     assert(runtimeErrors.length === 0, 'no browser runtime errors');

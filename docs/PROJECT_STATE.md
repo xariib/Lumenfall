@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+15 November: [Mobile menu corrections](tasks/MOBILE_MENU_CORRECTIONS_001.md)
+combine pending PR54 currency names and PR55 advancing Deeds with removal of
+Rift captions/Bond names and Deed milestone history, compact Lab icon controls,
+and separate remembered menu scroll positions. Local checks pass; exact-source
+CI/integration/signed Android/public delivery are pending. This supersedes older
+presentation acceptance. [Evidence](qa/mobile-menu-corrections-001/README.md).
+
 14 November: [All improvements/PR53](tasks/ALL_UPDATES_RELEASE_20261114.md)
 released as [Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119),
 source `a3d125a5`. Includes PR50 Bond display
@@ -13,13 +20,10 @@ and anonymous public APK/assets/feed verification passed.
 inspection failures and unchanged passing retries are retained; causes unproven. Phone, exact
 WebView60 DOM, TalkBack and human acceptance remain open. Self-review only.
 
-14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) first shipped in
-Android 0.2.117 and is retained above. PR49 currency and PR52 Deeds are included
-in both 0.2.117 and the combined release. [PR50](tasks/RIFT_BOND_DISPLAY_001.md)
-is now merged: names stay on Rift; boosts remain in the Wisp menu.
+14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) first shipped0.2.117;
+PR49/52 and PR50 are included in0.2.119. That APK retained Rift Bond names;
+the new correction above removes them.
 
-14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) released as Android 0.2.117.
-CI, upgrade/updater and public APK PASS; device/TalkBack acceptance open.
 14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
 PR52; reopened by human correction: each series needs a live progress bar,
 retained cumulative total, existing next targets and increasing stage rewards.
@@ -65,75 +69,10 @@ Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
 local saves remain a trust boundary. PR42 was separate at that release; its later
 delivery and PR46's subsequent closure are recorded above.
 
-9 November: The [repository handoff](tasks/LOCAL_HANDOFF_20261109.md) records
-the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
-feature checkpoint for continuing from GitHub on another computer.
-
-9 November: [PR45 full debug/exponential Rift update](tasks/FULL_DEBUG_EXPONENTIAL_001.md)
-released as [Android0.2.104](https://github.com/xariib/Lumenfall/releases/tag/android-1000104),
-source `ada037de`. Six release gates,190+1 scenarios, signed upgrade/updater,
-both saves and public APK/feed PASS. Includes clock and offline-recap fixes.
-[Updater test](https://github.com/xariib/Lumenfall/actions/runs/42644201970).
-
-6 November: [Installer Open/PR43](tasks/UPDATE_INSTALLER_OPEN_001.md),
-[Android0.2.98](https://github.com/xariib/Lumenfall/releases/tag/android-1000098),
-source `f50415e3`: CI, updater/save retention, retail launch and public APK/feed
-PASS. Android can offer **Open** after updates started from this release.
-
-5 November: [Pending-work synchronization](tasks/SYNC_PENDING_20261105.md)
-recovered355 QA files/checkpoints and integrated baseline-audit PR2. Historical
-source/pending/failure states remain; app/native matched Android0.2.95.
-
-5 November: [Windows Wisp assertion/PR41](tasks/WINDOWS_WISP_SCROLL_001.md)
-fixed and merged at 87e58545; tested source ff790151 and identical merge tree.
-The test now waits for the tab entrance animation. Windows/Linux Wisp 3,277 checks,
-five controls and all eight workflows, 190+1 cases and smoke PASS. Gameplay,
-saves, assets and APK unchanged. [Evidence](qa/windows-wisp-scroll-001/README.md).
-The [original debug report](qa/perfect-debug-20261105/README.md) remains historical;
-temporary cleanup still returned "blocked by policy", with exact paths recorded.
-
-5 November: [Play Protect investigation/PR39](tasks/PLAY_PROTECT_001.md) complete,
-released as [Android0.2.95](https://github.com/xariib/Lumenfall/releases/tag/android-1000095). Integrated
-at12551152 (tested source4982932a; identical trees). Patched Capacitor6.2.2 and
-production APK/debugger protections. Signed0.2.95, seven CI gates,190+1 cases,
-save upgrade, updater and retail Android visible-launch checks PASS.
-[Evidence and review draft](qa/play-protect-001/README.md). A user phone screenshot
-now shows Google's "This app looks safe" result; the user confirms it came from
-the0.2.95 ZIP. That exact APK is now stable: all six integrated-main release gates
-at4f9c9637 and anonymous versioned/latest downloads, checksum and updater metadata
-PASS. [Public receipt](qa/play-protect-001/release-1000095/public-release-verification.json).
-No appeal needed for this positive result; future Google verdicts are external.
-
-4 November: [All pending updates/PR38](tasks/ALL_UPDATES_RELEASE_20261104.md)
-released as [Android0.2.91](https://github.com/xariib/Lumenfall/releases/tag/android-1000091),
-source237fa928. Includes PR36 Rift health/navigation/layout and PR37 reduced
-rendering/background work plus the native updater race fix. Seven PR/six release
-gates,190+1 scenarios, signed upgrade/updater and public bytes/feed PASS.
-[Receipt](qa/all-updates-release-20261104/release.json). Phone battery/thermal,
-exact WebView60, TalkBack and human review remain open.
-
-4 November: [Rift visuals/PR35](tasks/RIFT_VISUAL_UNLOCKS_001.md) released as
-Android0.2.82, source278bb669: backgrounds, Wisp/enemy looks, clearer attacks and
-gold dot. Seven gates, full regression, signed upgrade/public bytes PASS.
-[Receipt](qa/rift-visual-unlocks-001/release.json); phone/human review open.
-
-4 November: [Lab timers/PR34](tasks/LAB_TIMER_LAYOUT_001.md): merged57fd7ab3;
-seven gates/190+1 and signed0.2.76 PASS. Included in0.2.82 above; phone review open.
-
-2 November: [In-app updates/PR 33](tasks/IN_APP_UPDATES_001.md) released as
-[Android 0.2.75](https://github.com/xariib/Lumenfall/releases/tag/android-1000075),
-source e13c7669. Automatic checks, verified downloads and Android approval. Seven
-exact-source gates/190+1, signed upgrade, actual updater/tamper/cancel tests and
-anonymous exact-byte downloads PASS. [Receipt](qa/in-app-updates-001/release.json).
-Both saves/paid work retained; phone/WebView 60/TalkBack/human review remain open.
-
-31 October: [All updates](tasks/ALL_UPDATES_RELEASE_20261031.md) published as
-[Android0.2.69](https://github.com/xariib/Lumenfall/releases/tag/android-1000069).
-Seven gates/190+1, signed upgrade and public bytes PASS.
-[Receipt](qa/all-updates-release-20261031/release.json); device/human review open.
-
-[Earlier delivery records and evidence](PROJECT_STATE_2026-11-04_HISTORY.md)
-retain the complete 16–31 October history, original requirements and limitations.
+[Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
+preserve all prior release versions, hashes, receipts, first failures and known
+limitations, including Android0.2.104/0.2.98/0.2.95 and preceding deliveries.
+[October history](PROJECT_STATE_2026-11-04_HISTORY.md) retains earlier records.
 
 Physical-phone, exact WebView60 DOM, TalkBack and human pacing/performance acceptance
 remain unverified. The available emulator test uses archived signed158 and synthetic

@@ -1,0 +1,46 @@
+# Mobile menu corrections evidence
+
+Product SHA256: `a7d991eba2842882bfbaf41f2cb710471e9b29fae62afd28da2dd21600859739`.
+Node24.22.1, Brave Chromium157.0.8103.79 on Windows. Self-review/automated checks.
+
+Run `node scripts/qa/check-mobile-menu-corrections.cjs <mode>`; modes include
+menus, simple, slots, deeds-ui, core, rift, navigation and scroll-control.
+The existing premerge --simple entrypoint also runs the new menu checks, keeping
+its18 original selection profiles separate from12 additional menu profiles.
+Workflows, acceptance assertions and time limits have not been weakened.
+
+Current receipts: *.stdout.txt/*.stderr.txt, visual/receipt.json,
+cosmetics/results.json and raw/ native-harness output. Screenshots include normal
+and200% Lab timers, visual currency/navigation and all Rift theme appearances.
+The paired four8h replay makes115,200 independent1s calls per source. Every saved
+field matches released main6fd9e44f except exactly the independently enumerated
+approved PR55 Comet increases; original canonical endpoints also pass. The golden
+reference changes only its bound source hash from the corrected Deeds baseline.
+
+Baseline native-browser check (combined existing PR54/55 code, before this task)
+failed at “Rift omits theme text and Formation Bond names”. The restricted Windows
+sandbox first closed the browser before any checks; outside-sandbox execution
+reproduced the intended assertion. A scroll-reset source mutation fails at
+“return restores independent offset for spirits”, as intended.
+
+Initial current-source failures were retained or described with exact diagnostics:
+- Enlarged Queue icon52.2px vs44px Speed Up; fixed by keeping icon22px while timer
+  text enlarges/reflows. Product hash before fix c7a7e05f.
+- Rift native input: “touch target visible before action” after Workshop returned
+  at bottom. The fixture now reveals only its subsection header before native
+  touch; reaching final menu controls still uses real swipes without assistance.
+- Deeds focus: open Details remained true but active element was daily-claim.
+  The live-tick test had presented a genuine daily reward. The fixture completes
+  that modal using its existing Continue action before independent focus checks.
+  No production daily or focus code changed. Deeds688 checks/18 profiles now pass.
+- Original Rift layout expected two currency rows at every width. PR54's visible
+  names deliberately use two columns/three rows up to380px; the assertion now
+  checks that exact responsive rule. Original failing raw files are retained.
+- Windows dump-DOM Rift contract hit25s without a result. Existing pipe transport
+  passes the same assertions/deadline; no test timing or production fix follows.
+
+earlier-runs/ preserves overwritten rerun receipts from the point retention was
+added. The first two failed focus outputs preceded this retention; their exact
+assertion/active-element diagnostic is recorded above rather than claiming raw
+files exist. The task remains open for CI, integrated/native/public delivery and
+physical-phone/WebView60/TalkBack/human acceptance.

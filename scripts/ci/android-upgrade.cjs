@@ -377,14 +377,9 @@ async function verifyInstalledRiftLooks(page,report){
  assert.equal(installedDeeds.bars,17,'Installed cards each expose one progress bar');assert.equal(installedDeeds.checkboxes,0,'Deed progress replaces checkbox markers');
  assert.deepEqual(installedDeeds.riftBar,{current:1000,target:2500,width:'40%'},'Installed bar retains Rift1000 toward the next2500 reward');
  assert.equal(installedDeeds.rift,'endless_rift_2500','Upgraded Rift1000 milestones advance to the next target in the same card');
- assert(installedDeeds.history,'Upgraded earned Rift milestones retain their history');
- await page.evaluate(`window.installedDeedHistoryClicks=[];document.addEventListener('click',e=>{const s=e.target.closest('[data-card-details-summary="deed-history-rift"]');if(s)installedDeedHistoryClicks.push({trusted:e.isTrusted});},true);`);
- await tap('[data-card-details-summary="deed-history-rift"]');await pause(1600);
- const deedHistory=await page.evaluate(`(()=>{const h=document.querySelector('[data-card-details="deed-history-rift"]'),c=h.closest('.ach-card'),r=c.getBoundingClientRect();return {open:h.open,clicks:installedDeedHistoryClicks,earned:Array.from(h.querySelectorAll('[data-deed-history]')).map(e=>e.dataset.deedHistory),fit:r.left>=-1&&r.right<=innerWidth+1&&c.scrollWidth<=c.clientWidth+1};})()`);
- assert(deedHistory.open&&deedHistory.clicks.some(e=>e.trusted),'Native touch opens history and periodic rendering keeps it open');
- assert(deedHistory.earned.includes('d10')&&deedHistory.earned.includes('d250')&&deedHistory.earned.includes('endless_rift_1000'),'Installed history preserves old and long-tail earned milestones');assert(deedHistory.fit,'Installed history fits the WebView');
+ assert.equal(installedDeeds.history,false,'Installed Deeds omit completed milestone dropdown');
  const deedShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-deeds-progressive.png',Buffer.from(deedShot.data,'base64'));
- report.installedProgressiveDeeds={status:'PASS',...installedDeeds,history:deedHistory,screenshot:'release-evidence/installed-deeds-progressive.png',syntheticFixture:true};
+ report.installedProgressiveDeeds={status:'PASS',...installedDeeds,screenshot:'release-evidence/installed-deeds-progressive.png',syntheticFixture:true};
  assert.equal(await page.evaluate('document.querySelectorAll("[data-look-slot],[data-look-motion]").length'),0,'Retired appearance packs and motion picker are absent');
  for(const id of ['default','ember']){
    await tap('[data-theme-select="'+id+'"]');
@@ -407,7 +402,7 @@ async function verifyInstalledRiftLooks(page,report){
  assert(scene.bossHidden||scene.boss.top>=scene.party.bottom-1,'Installed regen follows the Wisp row');
  assert.equal(scene.dot.width,'4px');assert.equal(scene.dot.height,'4px');assert.equal(scene.dot.bottom,'7px');assert.equal(scene.dot.color,'rgb(240, 197, 103)');assert.notEqual(scene.dot.display,'none');assert.equal(scene.overflow,false);
  const bonds=await page.evaluate(`(()=>{const q=s=>document.querySelector(s);return {
-   summary:q('#bond-summary').textContent,label:q('#bond-summary').getAttribute('aria-label'),
+   namesHidden:!q('#bond-summary').getClientRects().length&&q('#bond-summary').getAttribute('aria-hidden')==='true',themeHidden:!q('#rift-cosmetic-name').getClientRects().length,
    boostList:!!q('#rift-bond-effects')||!!q('#tab-battle [data-bond-effect]'),
    rows:Array.from(document.querySelectorAll('#bond-card .bond-row')).map(row=>({
      name:row.querySelector('.bond-name').textContent.split(' · ')[0],
@@ -417,12 +412,26 @@ async function verifyInstalledRiftLooks(page,report){
  assert(bonds.rows.every(row=>row.effect.length>0),'Installed Wisp menu retains full boost descriptions');
  const activeBonds=bonds.rows.filter(row=>row.active);
  assert(activeBonds.length>0,'Disposable installed fixture exercises active Bonds');
- assert(activeBonds.every(row=>bonds.summary.includes(row.name.replace(' Bond',''))&&bonds.label.includes(row.name)),'Installed Rift retains visible and accessible active Bond names');
+ assert(bonds.namesHidden&&bonds.themeHidden,'Installed Rift omits Formation names and theme caption');
  report.installedRiftBonds={status:'PASS',...bonds,syntheticFixture:true};
  for(const id of ['default','ember'])assert(scene.events.some(e=>e.type==='click'&&e.trusted&&e.target===id),'Trusted appearance click: '+id);
  const shot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-rift-looks.png',Buffer.from(shot.data,'base64'));
  report.installedRiftLooks={status:'PASS',scene,screenshot:'release-evidence/installed-rift-looks.png',syntheticFixture:true};
  console.log('Android installed Rift appearances acceptance: '+JSON.stringify(report.installedRiftLooks));
+ const rememberedMenus=[];
+ async function visitMenu(name){
+   if(name==='forge'||name==='research'){await tap('nav.tabbar [data-tab="workshop"]');await tap('#workshop-head [data-tab="'+name+'"]');}
+   else await tap('nav.tabbar [data-tab="'+name+'"]');
+ }
+ for(const name of ['spirits','forge','research','ascend','deeds']){
+   await visitMenu(name);
+   const before=await page.evaluate(`(()=>{const m=document.querySelector('main');m.scrollTop=m.scrollHeight;return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
+   await tap('nav.tabbar [data-tab="battle"]');await visitMenu(name);
+   const after=await page.evaluate(`(()=>{const m=document.querySelector('main');return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
+   assert(Math.abs(after.top-after.max)<=2,'Installed '+name+' returns to its remembered bottom');
+   rememberedMenus.push({name,before,after});
+ }
+ report.installedMenuScroll={status:'PASS',menus:rememberedMenus,nativeNavigation:true,syntheticFixture:true};
 }
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');

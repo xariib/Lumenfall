@@ -405,7 +405,7 @@ window.riftStatusMobile=(()=>{
   var m=q('main'),mr=rect(m),nav=rect(q('nav.tabbar')),enemy=rect(q('#enemy-stage'));
   ok(m.scrollTop===0&&m.scrollHeight<=m.clientHeight+1&&scrollY===0,'Rift remains scroll-free without clipped content');
   ok(enemy.height>=120,'Guardian Tap >=120');
-  var boxes={},guidance=q('#rift-objective-row'),visibleSelectors=['#enemy-stage','#hp-text','#buff-indicator','#bond-summary','#rift-push-btn','#rift-farm-btn'];
+  var boxes={},guidance=q('#rift-objective-row'),visibleSelectors=['#enemy-stage','#hp-text','#buff-indicator','#rift-push-btn','#rift-farm-btn'];if(legacyReadout===true)visibleSelectors.push('#bond-summary');
   var slot=rect(q('#rift-guidance-slot')),hud=rect(q('.hud'));
   ok(slot.top>=hud.bottom&&slot.bottom<=mr.top,'guidance occupies its reserved slot directly under currencies');
   ['#rift-guidance-slot','#rift-hints-toggle'].forEach(selector=>{
@@ -422,7 +422,7 @@ window.riftStatusMobile=(()=>{
   var stats=rect(q('.stat-row')),buff=rect(q('#buff-indicator')),bonds=rect(q('#bond-summary')),hp=rect(q('.hp-wrap'));
   ok(!q('#rift-details') && !q('#rift-details-btn'),'obsolete Details absent');
   ok(q('.stat-row').children.length===2 && !q('.stat-row').contains(q('#buff-indicator')),'numbers row contains only Guardian Tap and Wisp DPS');
-  ['#buff-indicator','#bond-summary'].forEach(selector=>{
+  (legacyReadout===true?['#buff-indicator','#bond-summary']:['#buff-indicator']).forEach(selector=>{
    var el=q(selector),range=document.createRange();range.selectNodeContents(el);
    var text=range.getBoundingClientRect(),lineHeight=parseFloat(getComputedStyle(el).lineHeight);
    ok(Number.isFinite(lineHeight)&&text.width>0&&text.height>0&&text.height<=lineHeight+1,selector+' text occupies one independent line');
@@ -439,10 +439,11 @@ window.riftStatusMobile=(()=>{
   if(!guidance.hidden){
    ok(rect(guidance).left>=rect(q('#rift-hints-toggle')).right&&rect(guidance).bottom<=slot.bottom,'hint scroll area stays beside its toggle within the slot');
   }else ok(!guidance.getClientRects().length&&!q('#rift-objective').getClientRects().length,'hidden hints expose no rendered controls');
-  ok(hp.bottom<=buff.top&&buff.bottom<=bonds.top&&bonds.bottom<=stats.top&&stats.bottom<=nav.top,'HP, status, bottom numeric row and nav do not overlap');
+  ok(hp.bottom<=buff.top&&(legacyReadout===true?buff.bottom<=bonds.top&&bonds.bottom<=stats.top:buff.bottom<=stats.top)&&stats.bottom<=nav.top,'HP, status, bottom numeric row and nav do not overlap');
   var tabs=[...document.querySelectorAll('nav.tabbar button')];ok(tabs.length===5,'five main tabs');tabs.forEach((el,i)=>{var r=rect(el);ok(r.width>=44&&r.height>=44,'tab touch minimum');ok(el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)),'tab hit-test');if(i)ok(rect(tabs[i-1]).right<=r.left,'one non-overlapping nav row');});
-  var active=b.riftStatus.active();ok(active.every(x=>q('#bond-summary').textContent.includes(x.name.replace(' Bond',''))),'all powered Bond names directly visible');
-  ok(q('#bond-summary').getAttribute('aria-label')===(active.length?'Active Bonds: '+active.map(x=>x.name).join(', '):'No Formation Bond active.'),'full Bond summary remains accessible');
+  var active=b.riftStatus.active();ok(active.every(x=>q('#bond-summary').textContent.includes(x.name.replace(' Bond',''))),'active Bond metadata matches authoritative Formation');
+  ok(q('#bond-summary').getAttribute('aria-label')===(active.length?'Active Bonds: '+active.map(x=>x.name).join(', '):'No Formation Bond active.'),'full Bond metadata remains consistent');
+  if(legacyReadout!==true)ok(!q('#bond-summary').getClientRects().length&&q('#bond-summary').getAttribute('aria-hidden')==='true','Rift names removed visually and from accessibility');
   if(kind!=='fresh' && !ctx.scenario.startsWith('rift-status-stacking'))ok(active.length===window.riftStatusWorst(b,ctx).bonds.length&&q('#buff-indicator').textContent.includes('+50%'),'worst current Bonds and buff fixture survives live ticks');
   if(kind!=='fresh' && ctx.scenario.startsWith('rift-status-stacking'))ok(active.length===window.riftStatusWorst(b,ctx).bonds.length && q('#buff-indicator').textContent.includes('+100%') && q('#buff-indicator').textContent.includes('next expiry'),'additive worst boost survives live ticks');
   (legacyReadout===true?['#rift-party','#rift-bond-effects','#boss-combat']:['#rift-party','#boss-combat']).forEach(selector=>{
@@ -466,7 +467,7 @@ window.riftStatusMobile=(()=>{
   var name=rect(q('#enemy-name')),track=rect(q('.hp-bar-track')),healthText=rect(q('#hp-text'));
   ok(q('#enemy-stage').getAttribute('aria-describedby')==='enemy-name hp-text','attack target exposes current name and HP to assistive technology');
   ok(name.bottom<=hp.top&&hp.bottom<=rect(q('#enemy-glyph')).top,'health directly below enemy name and above enemy artwork');
-  ok(rect(q('#rift-cosmetic-name')).bottom<=enemy.top&&q('.rift-heading').contains(q('#rift-cosmetic-name')),'theme label stays in header clear of attacks');
+  ok(legacyReadout===true?rect(q('#rift-cosmetic-name')).bottom<=enemy.top&&!q('#rift-cosmetic-name').hidden:!q('#rift-cosmetic-name').getClientRects().length,'theme text absent on current Rift; historical header stays clear of attacks');
   ok(track.right<=healthText.left&&Math.abs((track.top+track.bottom-healthText.top-healthText.bottom)/2)<=1,'health bar and numbers share one line');
   ok(!q('#enemy-stage').contains(q('#rift-party'))&&enemy.bottom<=party.top&&party.bottom<=buff.top,'formation follows the attack surface and HP, before boost '+JSON.stringify({enemy:enemy.bottom,hp:[hp.top,hp.bottom],party:[party.top,party.bottom],buff:buff.top}));
   }
