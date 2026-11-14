@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
-14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md): implementation and
-local checks PASS; preserving accepted main updates; CI/Android pending.
+14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) released as Android 0.2.117.
+CI, upgrade/updater and public APK PASS; device/TalkBack acceptance open.
 14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
 PR52: one advancing card per series. Its eight candidate suites/190 scenarios pass;
 the final Details/focus fix passes local checks. Prior signed upgrade/updater and

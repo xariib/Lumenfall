@@ -5,109 +5,79 @@ Speed Up menu entry and Queue button; remove the separate Select research
 button. Clicking a research card starts it immediately in an empty slot.
 When replacing ongoing research, ask whether to start the selected research.
 
-Owner: this chat, no agents. Scope: Lab presentation and selection only.
-Baseline: origin/main 858d713f (Android 0.2.111); no open PRs returned by
-the connected GitHub query. Isolated branch feature/lab-simple-001 at
-validation-evidence/lab-simple. Other feature worktrees remain untouched.
-
-Preserve all five slots/unlocks, prices and affordability colors, paid work,
-slot boosts and both queues, research effects, chronological simulation,
-offline behavior, saves/recovery and Android identity. No balance/schema change.
-
-Acceptance: timer/Queue/Speed Up share one compact panel; research cards
-are keyboard and touch operable without a separate Select research button;
-empty-slot choices start directly; occupied-slot choices ask for confirmation;
-Cancel/Escape never spend or replace work; confirmed switches preserve paid
-work and slot boosts. Revalidate affordability when confirming. Verify narrow
-mobile widths and enlarged text, focus return, menu behavior and existing Lab
-regressions. Required CI and Android delivery remain open until verified.
+Owner: this chat; no agents or independent reviewer. Scope: Lab presentation
+and selection, necessary regression fixes, checks, documentation and delivery.
+Status: integrated and APK published; required device/human acceptance open.
+No archive. No new binding rules, balance, caps or save/schema changes.
 
 References: [previous timer](LAB_TIMER_LAYOUT_001.md),
 [slot contracts](LAB_SLOTS_QUEUE_SPEEDUP_001.md),
 [speed controls](LAB_SPEED_CONTROLS_001.md),
-[feature workflow](../project/FEATURE_WORKFLOW.md).
+[feature workflow](../project/FEATURE_WORKFLOW.md),
+[QA evidence](../qa/lab-simple-001/README.md).
 
-Implementation: one progress panel contains countdown and Queue/Speed Up;
-native full-card buttons replace separate catalogue actions. Empty slots start
+Baseline: main 858d713f, product ce51bc14, Android 0.2.111. Baseline context,
+slot/menu 488, queue 64 and slot 55 checks passed. Isolated branch
+feature/lab-simple-001, worktree validation-evidence/lab-simple; root checkout
+and other feature worktrees untouched. Subsequent accepted main 5f0d9762 was
+merged before final validation, preserving currency header, Progressive Deeds,
+milestone Details/focus behavior and native recap fixture correction. PR50's
+separate bond display candidate was not imported.
+
+Result: countdown, Queue and Speed Up share one compact progress panel.
+Native full-card buttons replace separate catalogue actions. Empty slots start
 directly; occupied slots open a focus-trapped confirmation with live prices,
-Cancel/Escape and a checked start transaction. Saved paid work resumes free.
-No simulation, price, unlock, boost or save schema changes.
+Cancel/Escape and focus return. Confirmation checks the actual slot/funding.
+Cancel/Escape leave work and wallet unchanged.
+Paid work resumes without repurchase. All five slots/unlocks, prices and red
+shortfalls, disabled unaffordable actions, boosts and both queues, research
+effects, chronological/offline simulation and both save slots are preserved.
 
-Baseline: context PASS; queue continuity 64, slot contracts 55 and original
-mobile slot/menu matrix 488 PASS before edits. Restricted Chromium startup
-failed; normal Chromium access outside the sandbox passes. Node24.22.1,
-Chromium157.0.8103.79. Candidate receipts are in
-[QA evidence](../qa/lab-simple-001/simple.json): direct selection344,
-slot/menu488, card clarity524, expansion290 and access890 PASS. Original
-queue64, boosts1480 and slot/card417 core checks also PASS. Full-source replay,
-remaining Lab regressions, CI and Android acceptance still in progress.
-Actual390px normal/enlarged screenshots inspected; layout remains within
-320/390/430px at100/150/200% text and both motion settings.
+Changed product: index.html. Focused regression: lab-simple-ui.cjs and driver;
+affected existing slot/menu, capacity, clarity, permanent-progression and
+r3-destinations expectations now explicitly confirm switches. Pre-merge adds
+positive/negative selection coverage. Golden source binding follows verified
+replay; expected states/rewards are unchanged. Source syntax/IDs/lifecycle and
+complete diff reviewed; no unrelated game removals or refactors.
 
-Changed files: index.html; affected Lab browser expectations/new selection
-scenario and transport option; pre-merge workflow; this task/QA receipts and
-source binding after verified replay. Existing acceptance checks retained.
-No new binding rules. Self-review and automated checks only. Status: open.
+Integration: [PR51](https://github.com/xariib/Lumenfall/pull/51), fast-forwarded
+main from 5f0d9762 to tested commit 9af688888cba5fe1c2a3426b7087a5e2d14bb6f5.
+Product SHA256: 81c503892ab7c9ec7af0ad5b7dcb923d1efc222c3d5820bcb29ce44e42623db9.
+Eight PR and eight manual workflows all PASS on this candidate; exact runs,
+jobs and steps are in pr-ci.json and integrated-ci.json. Each full pre-merge
+suite passed 190 deterministic scenarios plus isolated offline catch-up.
+Node 24.19.0 full regression CI, Node 20.20.2 focused CI, Node 24.22.1 local,
+Chromium 157 local. Actual V8 6.0 product checks PASS; this does not verify the
+WebView60 DOM. Selection 344/18 mobile profiles, slot/menu 488 and final
+clarity/Deeds 1072 local checks PASS. Earlier source-bound focused receipts remain.
+320/390/430px, 100/150/200% text, keyboard/touch and both motion settings tested;
+normal/enlarged timer and confirmation screenshots inspected.
 
-Current continuation — accepted-main integration, 14 November2026:
+replay-details.json: four 8h windows per source against main 5040ea14, 115200
+independent one-second calls each. All full saved states, rewards and canonical
+endpoints match. Accepted main 5f0d9762 has identical product bytes to 5040ea14;
+combined-source.json records proof. No numerical oracle acceptance weakened.
 
-LATEST: accepted main5f0d976210eb62fa37917129bd7e8bc453806d8e; HTML81c503892ab7c9ec7af0ad5b7dcb923d1efc222c3d5820bcb29ce44e42623db9.
-This supersedes earlier snapshots below. The Deeds details/focus follow-up
-and stronger native recap fixture are preserved. replay-details.json matches
-all full states/rewards/canonical endpoints; main5f0d9762 has identical product
-bytes to replay baseline5040ea14. Local clarity/Deeds1072 and selection344 PASS
-on these final bytes. Publish this merge and run exact-head CI next.
+Final-source CI first failures retained: PR Lab 132436893022 timed out at
+Browser.getVersion before any check; manual Tree 132439539206 timed out at
+Page.captureScreenshot after 8998 checks/three profiles. Unchanged retries PASS;
+full first logs retained. Earlier-source timeouts/failures remain qualified in
+QA receipts. No deadlines, assertions or CI gates were weakened. Startup 32KiB
+budget was fixed by condensing shared historical summaries with evidence links.
 
+Android 0.2.117/code 1000117 published from the integrated
+commit: [release](https://github.com/xariib/Lumenfall/releases/tag/android-1000117),
+[signed build](https://github.com/xariib/Lumenfall/actions/runs/43601072898).
+Package com.lumenfall.app and established signing certificate retained.
+All 15 packaged product assets match exact Git source.
+Native in-place upgrade and in-game updater retain both saves and paid work;
+retail non-debug normal launch PASS. Public anonymous versioned/latest APK
+bytes and feed identity/checksum PASS. APK SHA256: 41333a20680c8467b1a241ec2831387da7149198426acbb6d0b3bd6e71ab268f.
+Exact receipts: android-release/verification.json and public-release.json.
+Historical android-candidate/0.2.115 predates accepted Deeds and is not final.
 
-PR51, branch feature/lab-simple-001, worktree validation-evidence/lab-simple.
-Main advanced first to currency7f149b89, then to Progressive Deeds/PR52 at
-e67c984f7faf120818f5285175751586a1cf43cd. Both accepted changes are preserved.
-Product merged cleanly. Resolved shared status, source-binding JSON and the
-browser driver's option line, preserving both --simple and --deeds plus the
-accepted Deeds checks automatically run after --clarity. No test gate weakened.
-
-Current HTML SHA256:
-a77593c4195844edbcf45403636d816ab6ded76fb4379145aa04e207af930c6e.
-Fresh paired replay against exacte67c984f passed four8h windows per source,
-115200 independent one-second calls per source. Full saved states, rewards and
-all original canonical endpoint hashes match; only source binding changed.
-replay-deeds.json and combined-source.json hold exact provenance. The wrapper
-replay-with-evidence.cjs runs the existing replay unchanged except its receipt
-destination, preserving prior QA. No balance, mechanics or save/schema changes.
-
-Current-source local checks PASS: selection344/18 profiles; slots488/18;
-clarity plus inherited progressive-Deeds checks1070; Deeds core313/17 series,
-72 identities/1983 fixed Comets; all39 workflow task contexts; source syntax,
-IDs/lifecycle and whitespace. Current previews/receipts bind a77593c4.
-
-Earlier source b6860e30/af371f2e has a verified signed non-publishing Android
-candidate: run43583498617, version0.2.115/code1000115. Original package/certificate,
-all15 packaged assets, upgrade/both saves/paid work, updater and retail normal
-launch PASS; native screenshot inspected. android-candidate/ retains exact
-receipts; APK under local validation-evidence/android-lab-43583498617. It predates
-the accepted Deeds merge and is historical Lab evidence, not final app delivery.
-
-Earlier-source CI evidence stays qualified: initial48f96606 PR stateful suite
-passed220 executions/190 scenarios. Its manual run had one Wisp300ms setup
-timeout; all other cases passed. af371f2e Tree PR/manual first attempts timed
-out before Chrome --version/contract produced DOM or any QA result; unchanged
-retries passed. Its first boost-queue PR job timed out on native touch after
-16 profiles; unchanged retry passed that stage. Raw reports are saved. Never
-infer cause from retries or widen original deadlines to claim acceptance.
-
-Next: finish/publish this accepted-main merge and run required PR and manual
-release checks on the exact new head. Existing older-head runs are historical,
-not final acceptance; launch IDs are retained. Before promotion verify main
-is still e67c984f and no conflicting Android publication is active. Use normal
-expected-SHA fast-forward only after required checks PASS. If main moves,
-preserve and integrate its accepted changes. PR50 bond display remains separate.
-Do not relaunch duplicates. Local release-lab-simple.cjs reads the baseline
-from combined-source.json; supports exact-head dispatch/check/build/collect.
-Collector verifies packaged bytes against the requested Git commit, allowing
-historical candidate inspection while the worktree advances.
-
-Final signed/main publication and public APK/feed verification remain open.
-Physical-phone/exact WebView60 DOM/TalkBack/human design acceptance remain
-unverified. Self-review/automation only; no independent reviewer or subagents.
-Save final status and receipts in GitHub. Keep the task/chat open; do not archive
-or claim complete while required acceptance remains missing.
+Next: user reviews this APK on the physical phone, including Lab layout,
+empty-slot/direct start, occupied-slot confirmation, Queue/Speed Up, focus and
+enlarged text. Exact WebView60 DOM, TalkBack and human design acceptance remain
+unverified. Keep feature/chat open until required device acceptance is recorded;
+automated checks and self-review do not substitute for it.

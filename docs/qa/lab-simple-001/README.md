@@ -1,16 +1,36 @@
 # Simpler Lab — evidence
 
-Current page: 81c50389, preserving accepted main5f0d9762 (currency header and
-progressive Deeds). replay-details.json verifies four paired8h windows: all full
-saved states, rewards and original canonical endpoints match. Current local
-selection344, slots488, clarity plus Deeds1072, Deeds core313 and39 task contexts
-PASS. Final exact-source CI, integrated Android publication and public download
-verification remain open. Physical-phone/WebView60/TalkBack/human review is open.
+Integrated [PR51](https://github.com/xariib/Lumenfall/pull/51), commit
+9af688888cba5fe1c2a3426b7087a5e2d14bb6f5, product SHA256
+81c503892ab7c9ec7af0ad5b7dcb923d1efc222c3d5820bcb29ce44e42623db9,
+preserving accepted main 5f0d9762.
+[Android 0.2.117](https://github.com/xariib/Lumenfall/releases/tag/android-1000117) is published. Signed APK SHA256:
+41333a20680c8467b1a241ec2831387da7149198426acbb6d0b3bd6e71ab268f.
 
-android-candidate/ is signed0.2.115, run43583498617, sourceaf371f2e atb6860e30.
-Package/certificate, all15 packaged assets, both saves/paid work, updater and
-retail launch passed and were independently checked locally. The source predates
-the accepted Deeds merge; this is qualified Lab evidence, not final delivery.
+pr-ci.json and integrated-ci.json record all eight PR/manual workflows PASS,
+including 190 deterministic scenarios and isolated offline catch-up per full run.
+Full logs: ci-job-132436893075.log.gz (PR), ci-job-132439490021.log.gz (manual),
+ci-job-132439518544.log.gz (Lab core/mobile and actual V8 6.0). Final-source
+first-attempt logs 132436893022/132439539206 retain browser connection/screenshot
+timeouts; unchanged retries PASS, without changing limits or assertions.
+
+android-release/ holds native receipts; verification.json binds exact source,
+package/certificate, all 15 assets, both saves/paid work, updater and retail launch.
+public-release.json verifies anonymous versioned/latest bytes, checksum and feed.
+Native screenshot inspected. Physical-phone, exact WebView60 DOM, TalkBack and
+human design acceptance remain unverified; task/chat stays open. Self-review and
+automated checks only.
+
+replay-details.json verifies four paired 8h windows: complete saved states,
+rewards and all original canonical endpoints match. Baseline 5040ea14 has the
+same product bytes as accepted main 5f0d9762. combined-source.json records proof.
+Final local selection 344/18 profiles and clarity/Deeds 1072 PASS. Source-qualified
+slot/menu 488, Deeds core 313 and other focused receipts remain below. All 39 task
+contexts PASS. Previews show the same Lab markup/CSS as the published source.
+
+android-candidate/ is historical 0.2.115, run 43583498617, source af371f2e at b6860e30.
+It predates accepted Deeds; it is not final delivery. Older evidence retains its
+actual source, status and limitations.
 
 ## Earlier candidates and findings
 
