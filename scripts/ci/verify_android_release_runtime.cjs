@@ -43,4 +43,27 @@ async function main(){
   fs.writeFileSync('release-evidence/production-runtime.json',JSON.stringify({status:'PASS',apkSha256:hash(bytes),device:adb('shell','getprop','ro.build.fingerprint').trim(),systemBuildType:'user',debuggable:false,webViewDebuggerExposed:false,runAsRejected:true,testInstrumentationAbsent:true,normalLaunch:true,visibleGameControls:true,googlePlayProtect:'NOT_TESTED',physicalDevice:false},null,2)+'\n');
   console.log('PASS exact production APK normal launch, no debugger socket, private storage protected, no CI instrumentation');
 }
-main().catch(error=>{console.error(error);process.exitCode=1;});
+// Diagnostic only: a failed candidate still fails this gate. Compare a pinned
+// released APK on this same disposable retail image before changing acceptance.
+async function compareReleasedBaseline(candidateError){
+  assert.match(adb('get-serialno').trim(),/^emulator-/,'Disposable CI emulator only');
+  const dir='release-evidence/retail-comparison';fs.mkdirSync(dir,{recursive:true});
+  const original=fs.readFileSync('Lumenfall.apk'),names=['production-normal-launch.png','production-normal-launch.xml','production-runtime.json'];
+  for(const name of names)if(fs.existsSync('release-evidence/'+name))fs.copyFileSync('release-evidence/'+name,dir+'/candidate-'+name);
+  try{fs.writeFileSync(dir+'/candidate-logcat.txt.gz',require('node:zlib').gzipSync(adb('logcat','-d')));}catch(error){fs.writeFileSync(dir+'/logcat-error.txt',error.message);}
+  const result={candidate:{status:'FAIL',error:candidateError.stack,apkSha256:crypto.createHash('sha256').update(original).digest('hex')},baseline:{tag:'android-1000111',sha256:'6bcef5120e943da897c246ceb0608a3e87bb296cd0a28379de56dff71405afac'}};
+  try{
+    const response=await fetch('https://github.com/xariib/Lumenfall/releases/download/android-1000111/Lumenfall.apk',{signal:AbortSignal.timeout(120000)});assert.equal(response.status,200);
+    const baseline=Buffer.from(await response.arrayBuffer());assert.equal(crypto.createHash('sha256').update(baseline).digest('hex'),result.baseline.sha256);
+    adb('shell','am','force-stop',pkg);assert.match(adb('uninstall',pkg),/Success/,'Only disposable emulator fixture is removed');
+    fs.writeFileSync('Lumenfall.apk',baseline);console.log('Diagnostic: running unchanged retail launch assertions against pinned Android 0.2.111');
+    await main();result.baseline.status='PASS';
+  }catch(error){result.baseline.status='FAIL';result.baseline.error=error.stack;}
+  finally{
+    for(const name of names)if(fs.existsSync('release-evidence/'+name))fs.copyFileSync('release-evidence/'+name,dir+'/baseline-'+name);
+    fs.writeFileSync('Lumenfall.apk',original);
+    fs.writeFileSync(dir+'/result.json',JSON.stringify(result,null,2)+'\n');
+  }
+  console.log('Retail comparison: '+JSON.stringify(result));
+}
+main().catch(async error=>{console.error(error);try{await compareReleasedBaseline(error);}catch(diagnosticError){console.error('Baseline diagnostic failed: '+diagnosticError.stack);}process.exitCode=1;});
