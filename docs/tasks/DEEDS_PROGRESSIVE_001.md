@@ -1,6 +1,7 @@
 # DEEDS_PROGRESSIVE_001 — one advancing card per Deed series
 
-Status: in progress. Owner: current feature chat; no delegation.
+Status: integrated; exact-main validation and Android delivery pending.
+Owner: current feature chat; no delegation.
 Baseline: main `858d713f` (Android 0.2.111). Isolated branch
 `feature/deeds-progressive-001-work`, worktree `validation-evidence/deeds`.
 
@@ -114,3 +115,66 @@ Combined product SHA256:
 PASS on these combined bytes. [Combined mobile receipt](../qa/deeds-progressive-001/integrated-mobile.json).
 Next: finish exact offline replay, commit the merge, run required CI on the
 combined candidate, integrate accepted source and complete Android delivery.
+
+## Live delivery checkpoint
+
+PR52 combined head `b94566220f79026314e19c16e3e6ea2cab8311b0`, main parent
+`7f149b895c9f90656bbb81766249665ed1f426fc`. Seven applicable workflows and
+isolated offline catch-up PASS; full190-scenario run43579634291 is still running.
+Source hash remains d58a8edc above. All local changes since this head are delivery
+evidence only; keep source CI stable and publish the final evidence afterward.
+
+Nonpublishing signed Android43580030101 first attempt132404033321 passed
+package/certificate/assets, security, both saves and paid-work upgrade retention,
+then failed the existing offline-recap assertion BEFORE new Deeds checks.
+Diagnostics show a credited60.373s, ready=true, empty recap/display:none, normal
+Rift screenshot. No JS exception or cause is established. The prior-main build
+passed this stage (it failed later retail launch). Preserve raw state/screenshots
+and compressed logcat in [first failure](../qa/deeds-progressive-001/android-first-failure/receipt.json);
+artifact14108282284 SHA25660b7e07625fe02b0025d697a355b757f47e7073e320ff2d708064e51028ab1c8.
+One unchanged-source retry requested; current job132407371362 is in native upgrade.
+No deadline, assertion or product behavior was relaxed.
+
+Next: inspect the original full-scenario result and this native retry. If native
+fails again, diagnose/instrument the reproduced condition before further retries.
+If accepted, refresh/check actual main via Git (connector PR base metadata can lag),
+integrate the accepted tree, dispatch required exact-main gates using the ignored
+validation-evidence/deeds-delivery.cjs helper, then signed publication, anonymous
+public APK/assets/feed verification and final durable status. Leave physical
+phone/WebView60/TalkBack/human acceptance open; do not archive prematurely.
+
+Native retry job132407371362: upgrade, both saves/paid work, updater and ALL new
+Deeds assertions PASS on signed test0.2.113, APK SHA256
+1e832871b696a55521a834c7254f662f510dd7e2a67f5e14863a01cbcdfba998.
+Retail launch then failed: stock UIAutomator repeatedly reports no idle state;
+the screenshot shows a running Rift while XML omits game controls. This is
+still a failed required gate, not a production-launch pass. Preserve artifact
+14108544750 (SHA256ab9e794fa10c0a6a45b4b6e17ef06e6f6b6626ffe9aa0bf709b79cd16f002d93)
+and [actual Deeds/save/updater receipts](../qa/deeds-progressive-001/android-second-attempt/emulator-upgrade.json).
+
+Actual overlap: the currency worktree is already diagnosing this identical
+retail failure in scripts/ci/verify_android_release_runtime.cjs. Its isolated
+c737fd3e diagnostic compares pinned released0.2.111 under the original assertions
+and still fails any rejected candidate; no acceptance is relaxed. Run43581066569
+is at that comparison after a retry (earlier updater metadata failure is recorded
+by its owner). Read its task/checkpoint before editing the same shared helper.
+No chat/subagent/message coordination is authorized. Main remains7f149b89;
+our source/required gates remain unchanged. Next: inspect the shared baseline
+comparison and full-scenario run; resolve the shared retail gate before publishing.
+
+## Integration
+
+All eight applicable PR workflows PASS on b9456622, including190 deterministic
+scenarios, full runtime smoke and isolated offline catch-up. Two conditional
+Prism workflows correctly skipped. [Exact CI jobs/steps/artifact identities](../qa/deeds-progressive-001/b94566220f79026314e19c16e3e6ea2cab8311b0-ci.json).
+PR52 merged at `7448cc0b96b175fcd9989570840c12ba47486afa`; its complete tree matches
+the accepted candidate. Product remains d58a8edc above. The shared c737fd3e
+diagnostic's unchanged normal retail path passed on retry (43581066569,
+job132409549536); its failure-only baseline comparison was not invoked. This
+does not establish the cause of prior inspection failures and is not a retail
+pass for our APK. Own first/second attempts remain preserved and failed overall.
+
+Next: save this integrated checkpoint to main, run all required exact-main
+validation workflows, then publish a signed build only after its full native
+upgrade/updater/Deeds/retail acceptance and release guards pass. Verify public
+bytes/assets/feed and save final status. No checks/assertions/deadlines weakened.

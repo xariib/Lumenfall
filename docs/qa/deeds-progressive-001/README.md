@@ -34,3 +34,26 @@ d58a8edc12f0ed340b8fbb1126bb3eb139bfbe328119743201deb3e7bdc3c7fc passes313
 focused/417 original core checks and548 Deeds mobile checks across18 profiles.
 [Combined receipt](integrated-mobile.json), [combined enlarged image](deeds-320-200-integrated.png).
 The only merge conflict was the golden source hash; endpoint values remain exact.
+
+## Accepted candidate and native attempts
+
+All eight applicable PR lanes pass on b9456622; full190 deterministic scenarios,
+isolated offline and runtime smoke pass. [Complete CI metadata](b94566220f79026314e19c16e3e6ea2cab8311b0-ci.json).
+PR52 integrated at7448cc0b96b175fcd9989570840c12ba47486afa, identical complete tree.
+
+Signed test0.2.113 first failed existing recap presentation after crediting the
+absent minute; [preserved failure](android-first-failure/receipt.json). Its unchanged
+retry passed package/signing/assets, both saves/paid work, updater and the17-card
+Deeds/next-target/native-history assertions. [Actual upgrade receipt](android-second-attempt/emulator-upgrade.json),
+[Deeds image](android-second-attempt/installed-deeds-progressive.png). It then failed
+retail launch inspection: the [screen shows the game](android-second-attempt/production-normal-launch.png)
+but the [stock accessibility dump](android-second-attempt/production-normal-launch.xml)
+omits its controls. Keep this required check failed. Artifact14108544750 ZIP
+SHA256ab9e794fa10c0a6a45b4b6e17ef06e6f6b6626ffe9aa0bf709b79cd16f002d93.
+No cause is proven; no deadline/assertion changed. The currency diagnostic later
+passed the unchanged normal-launch path on its own source; that is separate evidence.
+
+Android31's [stock dump implementation](https://android.googlesource.com/platform/prebuilts/fullsdk/sources/android-31/+/refs/heads/androidx-savedstate-release/com/android/commands/uiautomator/DumpCommand.java)
+waits for idle before reading the tree and exits on timeout. This supports an
+inspection-failure hypothesis, not a verified root cause or substitute for a pass.
+Exact-main CI and final public Android delivery remain pending.

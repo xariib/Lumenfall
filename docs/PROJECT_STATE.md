@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
+PR52: one advancing card per series. Eight candidate suites/190 scenarios pass;
+Android upgrade/updater and Deeds touch pass. Integrated CI and final Android
+delivery remain pending; retail accessibility inspection is unresolved.
+
 14 November: [Currency header](tasks/CURRENCY_HUD_001.md) is in validation;
 integration and Android pending.
 
