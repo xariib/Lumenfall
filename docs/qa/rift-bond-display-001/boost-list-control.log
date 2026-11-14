@@ -1,10 +1,10 @@
 Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
 Staged source: { "source_sha256": "ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8", "instrumented_sha256": "b9247ab377642c6fb45a5fe1ad03d231576aa80e13978ef79c11a4acb35e31e5" }
 FAIL rift-status-contract
-  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 3.2134283, "timeout_sec": 25 }
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 5.594086, "timeout_sec": 25 }
   observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "rift-status-contract", "json_status": "fail", "json_scenario": "rift-status-contract", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
   failure: "Rift has no visible or accessible Bond boost list"
-  raw artifacts: C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\rift-bond-display\validation-evidence\boost-list-control\rift-status-contract-i8XHIX
+  raw artifacts: C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\rift-bond-display\validation-evidence\boost-list-control\rift-status-contract-a6aleq
   stdout tail:
 rt(
             compressed.rarity[4].shard<100000,

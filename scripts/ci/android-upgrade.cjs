@@ -178,6 +178,11 @@ async function prepareOfflineRecap(page,retainedSave){
  // offline return only in this disposable emulator, without product test hooks.
  const fixture=JSON.parse(JSON.stringify(retainedSave));
  fixture.tutorialDone=true;
+ // A minute against a high-HP Boss can earn nothing and correctly has no recap.
+ // Save/paid-work retention already passed; use a reachable farming encounter
+ // in this disposable fixture so the original popup assertion has real rewards.
+ Object.assign(fixture,{riftMode:'farm',farmDepth:1,farmReturnDepth:Math.max(1,fixture.depth||1),
+   depth:1,enemyDepth:0,enemyHp:0,enemyMaxHp:0});
  const marker='native-offline-recap-'+Date.now();
  // This synthetic absence is created only after both untouched upgrade saves
  // passed preservation checks. Seed both endpoints of the uncredited minute;

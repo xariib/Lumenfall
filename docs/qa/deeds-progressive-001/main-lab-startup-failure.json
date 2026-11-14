@@ -1,0 +1,17 @@
+{
+  "run": 43587202410,
+  "job": 132424149096,
+  "artifact": 14111085668,
+  "artifactSha256": "f25a4e93e39051019377cea3e0d82e48ab417674387b1dfe2ec85e6748033a3f",
+  "commit": "5040ea14053e9decd7935a72c31af801e87d7860",
+  "raw": {
+    "status": "fail",
+    "sourceSha256": "552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28",
+    "mutation": null,
+    "checks": 0,
+    "profiles": [],
+    "error": "Error: CDP deadline Browser.getVersion\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:20:146)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)",
+    "stderr": "[2246:2274:1114/105156.334325:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2274:1114/105156.527447:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2274:1114/105156.779375:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2277:1114/105157.169071:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2277:1114/105157.169103:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2277:1114/105157.169111:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2274:1114/105159.039173:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2246:2274:1114/105159.929097:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n"
+  },
+  "action": "Retry only failed job unchanged, retaining original deadlines and assertions"
+}

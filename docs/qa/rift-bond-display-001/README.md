@@ -60,3 +60,13 @@ Main's follow-up `5040ea14` preserves Deeds Details/focus and is also retained.
 windows, 313 core checks, 550 UI checks/18 profiles). Rift/header/Bond/native
 assertion bytes are unchanged from the earlier combined source; its focused
 receipts remain source-labeled evidence. Final-source CI/Android are pending.
+
+The coordinated native fixture patch from main5f0d9762 is preserved. Its original
+popup/deadline/retail gates stay intact; production SHA is unchanged. Current
+Rift mobile logs now bind directly to SHA7222c3. `final-recap-precondition.json`
+contains99 checks and the causal empty-reward control; `final-workshop-core.json`
+and `final-recap-clock.json` retain the relevant existing checks. Required final
+CI/installed/public acceptance remains pending. `candidate-0c3-failures.json`
+preserves the superseded CI failures. `tree-0c3-first-failure/` confirms the
+original25.0555s timeout before any QA result, plus a timed-out Chrome version
+query, with complete ZIP/payload hashes. Underlying causes remain unproven.
