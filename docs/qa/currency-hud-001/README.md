@@ -33,8 +33,16 @@ screenshot shows a running game. Null-root/idle errors are in the workflow log.
 `android-first-failure/` preserves complete diagnostics (large logs losslessly
 compressed, original hashes in `files.json`); workflow/artifact metadata is in
 `android-first-failure.json` and `android-first-workflow.json`. Cause is unproven.
-An unchanged-source/check retry is pending. The existing publication guards and
-native acceptance must pass before any artifact is published.
+The unchanged-source/check retry repeated the failure (`android-second-failure/`).
+An isolated failure-only baseline diagnostic then first stopped on incomplete
+updater release metadata (`diagnostic-first-failure/`); its retry passed every
+original assertion, including retail launch. Since that candidate passed, its
+released-baseline comparison did not execute. `diagnostic-success-summary.json`,
+`diagnostic-success-workflow.json` and `native-diagnostic-pass/` retain that
+unpublished0.2.113 acceptance. The native XML includes all six currency names.
+The temporary host diagnostic is restored to its original bytes; the exact
+integrated0.2.112 candidate is running a final unchanged native attempt.
+All existing publication guards must pass before publication.
 
 Self-review only. Physical-phone, exact WebView60 DOM, TalkBack and human
 acceptance remain unverified. Android delivery is pending; do not archive.

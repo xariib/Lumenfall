@@ -136,7 +136,20 @@ was retried to reach the comparison. Current feature branch also contains the
 delivery/diagnostic documentation descendants8eadb005 and68f3690d. Main remains
 the tested product7f149b89; keep it stable for exact-source delivery.
 
-Next: inspect the completed pinned-baseline comparison before choosing a fix.
-Investigate stock UIAutomator's idle-based dump/observer startup if the released
-baseline also fails. Do not remove visibility, package, debugger/security,
-save/updater, deadline or publication checks; do not publish a failed candidate.
+The diagnostic retry (job132409549536) passed every original native assertion,
+including retail launch. Its failure-only released-baseline comparison therefore
+did not execute: there is no comparison result against0.2.111. The successful
+unpublished0.2.113 artifact has the same product HTML SHA256029b8199… and game/native
+implementation; its only code difference is failure-only host diagnostics.
+[Native proof](../qa/currency-hud-001/diagnostic-success-summary.json) and
+`native-diagnostic-pass/` retain the real screenshot, XML, identity and receipts.
+All six currency names are present in the Android accessibility dump. Root cause
+of earlier failures is still unproven; no test/deadline was weakened.
+
+Temporary `verify_android_release_runtime.cjs` diagnostics were restored to
+byte-identical7f149b89 after the experiment. Its pass-path assertions never changed.
+The exact integrated candidate43578599508 was retried again (job132411866541)
+to obtain matching APK/source/acceptance receipts before publication. Main stays
+7f149b89. Next: inspect this final native result, publish only after all guards
+pass, verify public bytes/feed and save final delivery status. Keep phone,
+WebView60/TalkBack/human acceptance open and do not archive.
