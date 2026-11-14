@@ -78,6 +78,21 @@ Earlier source also passed237 Inquiry checks/one control,6,281 Forge checks/four
 controls, navigation and the stuck-first-target control. [Full evidence](../qa/deeds-progressive-001/README.md).
 Repeat every required integrated gate/native acceptance on the final source.
 
+Native fixture follow-up: replaying the exact first failed snapshot produces no
+kill/reward/study completion in60 or60.373s, so the game's meaningful-progress
+predicate correctly returns false. [Reproduction](../qa/deeds-progressive-001/recap-precondition.json).
+The native test had not guaranteed its recap precondition. Only AFTER original
+save/paid-work retention passes, its disposable recap fixture now farms Rift1
+with an enemy reset through normal startup. Product HTML/JavaScript remain
+byte-identical552b28dc.99 focused checks prove actual offline earnings, unchanged
+paid/wallet/progression fields, full-minute credit and a negative control that
+reproduces the empty-reward failure when setup is removed. The existing10-check
+clock/replay fixture suite and its negative control also pass. Original popup,
+visibility, input, retention and deadline assertions remain unchanged.
+[Fixture acceptance](../qa/deeds-progressive-001/native-recap-precondition.json).
+These checks run from the existing required clarity core entrypoint. Repeat the
+exact-commit main gates/native build after integrating this test-only correction.
+
 ## Preserved failures and overlap
 
 - Initial CI reproduced the old hunt task's33,030-byte startup over32,768.
@@ -90,7 +105,8 @@ Repeat every required integrated gate/native acceptance on the final source.
   asserts that exact reference before rebinding; no oracle was weakened.
   Restricted-sandbox Chrome readiness failed; unchanged outside-sandbox runs pass.
 - Signed test0.2.113/run43580030101 used prior d58a8edc source. First attempt
-  132404033321 failed recap presentation after crediting the minute; cause unknown.
+  132404033321 failed recap presentation after crediting the minute; the missing
+  meaningful-reward fixture precondition is now reproduced above.
   [Preserved failure](../qa/deeds-progressive-001/android-first-failure/receipt.json).
   Unchanged retry132407371362 passed package/key/assets, both saves/paid work,
   updater and every17-card/next-target/native-history check, then failed retail

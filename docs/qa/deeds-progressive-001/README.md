@@ -69,3 +69,16 @@ focused/417 original core checks,1,072 UI checks/36 profiles and the original
 retained every released full-state endpoint. The e67c984f checks are prior-source
 evidence; repeat required integrated gates on these final bytes.
 [Full preceding checkpoint](task-before-final-detail.txt) preserves earlier status.
+
+## Native recap fixture correction
+
+[Exact saved-window replay](recap-precondition.json) shows the first failed
+fixture earns0 rewards/kills/completions during60 and60.373s. The game correctly
+does not show a recap for that window. The corrected disposable fixture farms
+Rift1 only after original save-retention assertions pass; it must earn actual
+rewards through the production scheduler before the unchanged popup assertion.
+[99 checks/causal control](native-recap-precondition.json) prove positive earnings,
+full-minute credit and preservation of every unrelated saved field. Removing
+the new setup reproduces the empty-reward failure. Existing10 clock/replay checks
+and their control pass too. Product bytes stay552b28dc; no popup is forced, native
+deadlines are unchanged, and no visibility/security/save assertion is removed.
