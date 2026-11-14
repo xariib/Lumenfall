@@ -48,5 +48,30 @@ Changed files: index.html; affected Lab browser expectations/new selection
 scenario and transport option; pre-merge workflow; this task/QA receipts and
 source binding after verified replay. Existing acceptance checks retained.
 No new binding rules. Self-review and automated checks only. Status: open.
-Next: finish local regressions/replay, publish branch/PR, pass required CI,
-integrate serially against current main and verify signed Android delivery.
+
+Publication checkpoint: [PR51](https://github.com/xariib/Lumenfall/pull/51),
+head4fb7732e026097d6a41e7a6a0d8067f79767301b; main858d713f.
+Product SHA48f96606f3a69c3929701551e4c5492f98811fe769ffa3bb5fbaa0090ec0c30c.
+All nine local Lab browser modes PASS (5037 positive assertions plus the
+deliberate missing-confirmation failure). Final simple344/slot488 receipts
+bind exact product48f96606; the others precede only equivalent CSS longhands.
+Original22-scenario regression PASS after adding explicit confirmation checks
+to r3-destinations; all original payment/queue/persistence assertions retained.
+Replay full states/rewards/canonical vectors match; final CSS longhands preserve
+identical complete script bytes. Source/context/whitespace and slot55 PASS.
+
+First PR CI found permanent-progression-ui's immediate-switch expectation and
+an oversized shared startup context. The native test now verifies the prompt
+before confirming and preserves all original paid-boost/queue assertions;
+local permanent488 PASS. Condensed PROJECT_STATE delivery summaries with
+their evidence links/limitations retained. All39 workflow task contexts PASS,
+largest checked hunt context32665/32768 bytes. Product bytes unchanged.
+
+GitHub CLI's old credential helper path was unavailable; an invocation-scoped
+working helper published code/tests. Its OAuth token lacks workflow scope;
+the connected GitHub app published the reviewed test step. Local tree matches
+remote4fb7732e. Required eight PR workflows are running; no merge/build/release.
+Next: inspect PR51 exact-head CI; fix any failures without weakening gates;
+integrate serially against current main, dispatch integrated checks, then build
+and verify/publish the signed APK. Physical-phone/WebView60/TalkBack remain
+unverified. Chat stays open; no archive attempted.

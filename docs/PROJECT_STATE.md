@@ -1,10 +1,7 @@
 # Lumenfall — current delivery status
 
-14 November: [Simpler Lab](tasks/LAB_SIMPLE_001.md) is in progress on
-feature/lab-simple-001. Timer, Queue and Speed Up share a panel; research
-cards start directly in empty slots and ask before replacing paid work.
-Local mobile/regression checks and offline replay are recorded in the task;
-GitHub CI, integration and Android delivery remain pending.
+14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md): implementation and
+local checks PASS; CI/integration/Android pending. Details in the task.
 
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
@@ -52,28 +49,20 @@ delivery and PR46's subsequent closure are recorded above.
 the local QA evidence, Play Protect drafts and the in-progress Forge and Lab
 feature checkpoint for continuing from GitHub on another computer.
 
-On 9 November, Android 0.2.104 shipped the full debug and exponential Rift
-progression update. [PR #45 task record](tasks/FULL_DEBUG_EXPONENTIAL_001.md) ·
-[Android 0.2.104 release](https://github.com/xariib/Lumenfall/releases/tag/android-1000104).
-Integrated source `ada037de` passed all six release checks, 190 regression
-scenarios and isolated offline catch-up. The signed upgrade kept both save
-slots. The public in-game feed and APK checksum were verified. The release
-includes exponential Rift growth, foreground clock exploit fixes and the
-offline recap fix. An Android emulator installed 0.2.104 through the in-game
-updater, reopened the game and retained both saves.
+9 November: [PR45 full debug/exponential Rift update](tasks/FULL_DEBUG_EXPONENTIAL_001.md)
+released as [Android0.2.104](https://github.com/xariib/Lumenfall/releases/tag/android-1000104),
+source `ada037de`. Six release gates,190+1 scenarios, signed upgrade/updater,
+both saves and public APK/feed PASS. Includes clock and offline-recap fixes.
 [Updater test](https://github.com/xariib/Lumenfall/actions/runs/42644201970).
 
-6 November: [Installer Open button/PR #43](tasks/UPDATE_INSTALLER_OPEN_001.md)
-released as [Android 0.2.98](https://github.com/xariib/Lumenfall/releases/tag/android-1000098).
-Tested source `f50415e3` passed CI, in-app update and save retention, retail
-launch, and verification of the public APK and update feed. Android can offer
-**Open** after updates started from this release.
+6 November: [Installer Open/PR43](tasks/UPDATE_INSTALLER_OPEN_001.md),
+[Android0.2.98](https://github.com/xariib/Lumenfall/releases/tag/android-1000098),
+source `f50415e3`: CI, updater/save retention, retail launch and public APK/feed
+PASS. Android can offer **Open** after updates started from this release.
 
 5 November: [Pending-work synchronization](tasks/SYNC_PENDING_20261105.md)
-recovered355 local QA files and historical task checkpoints, and integrated the
-19 October baseline-audit PR2. Historical reports retain their original source
-and pending/failure states. The app assets and native source matched
-Android0.2.95 at that checkpoint.
+recovered355 QA files/checkpoints and integrated baseline-audit PR2. Historical
+source/pending/failure states remain; app/native matched Android0.2.95.
 
 5 November: [Windows Wisp assertion/PR41](tasks/WINDOWS_WISP_SCROLL_001.md)
 fixed and merged at 87e58545; tested source ff790151 and identical merge tree.

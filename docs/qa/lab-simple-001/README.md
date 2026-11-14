@@ -25,5 +25,11 @@ unchanged state before confirming; all original queue/payment assertions remain.
 
 Visuals: inspected normal/enlarged mobile timer and confirmation screenshots.
 Self-review and automated checks only; no independent review claimed.
+First CI head4fb7732e: Lab and Wisp workflows passed; permanent progression
+failed its old immediate-switch expectation (run43573977692/job132384093031).
+Its UI now checks the prompt before confirming; local488 assertions PASS.
+Pre-merge43573977650/job132384093519 stopped at the32KiB startup gate.
+Condensed shared status summaries without dropping evidence links; all39
+workflow task contexts now PASS (`contexts.json`). No gate/budget changes.
 CI, integration and Android delivery remain pending until receipts are saved.
 Physical-phone, exact WebView60 DOM and TalkBack acceptance are unverified.
