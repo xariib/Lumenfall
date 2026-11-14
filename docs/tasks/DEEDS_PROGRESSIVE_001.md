@@ -97,3 +97,20 @@ the upgraded Rift1000→2500 target, preserved old/long-tail milestones and nati
 touch opening history through periodic refresh, with a screenshot in the normal
 signed-upgrade receipt. This extends the existing Android gate without changing
 production hooks, signing, fixtures' original assertions or workflow triggers.
+
+## Current-main integration checkpoint
+
+Main advanced to7f149b89 with the currency-header update while4374ff62's final
+broad scenario run was still running; its other seven workflows and isolated
+offline job had passed. Merge current main into this isolated branch. The only
+content conflict was the product SHA binding in the offline reference; retain
+its identical full-state endpoints and rerun the independent verifier before
+rebinding. Preserve the currency work and its status/evidence without claiming
+ownership. Git merge also required Windows long-path support for archived names.
+
+Combined product SHA256:
+`d58a8edc12f0ed340b8fbb1126bb3eb139bfbe328119743201deb3e7bdc3c7fc`.
+313 focused/417 existing core checks and548 Deeds checks across18 mobile profiles
+PASS on these combined bytes. [Combined mobile receipt](../qa/deeds-progressive-001/integrated-mobile.json).
+Next: finish exact offline replay, commit the merge, run required CI on the
+combined candidate, integrate accepted source and complete Android delivery.

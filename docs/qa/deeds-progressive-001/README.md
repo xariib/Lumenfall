@@ -28,3 +28,9 @@ Local Node24.22.1, Windows, Chrome157.0.8103.78/V8 15.7.112.43. The restricted
 browser attempt failed readiness; the final driver passed outside that sandbox.
 Self-review only. GitHub CI/integration/APK evidence pending. Physical-phone,
 exact WebView60 DOM, TalkBack and human visual acceptance remain unverified.
+
+Main7f149b89 currency-header integration: combined product
+d58a8edc12f0ed340b8fbb1126bb3eb139bfbe328119743201deb3e7bdc3c7fc passes313
+focused/417 original core checks and548 Deeds mobile checks across18 profiles.
+[Combined receipt](integrated-mobile.json), [combined enlarged image](deeds-320-200-integrated.png).
+The only merge conflict was the golden source hash; endpoint values remain exact.

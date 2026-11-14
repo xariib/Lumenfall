@@ -1,28 +1,23 @@
 # Lumenfall — current delivery status
 
+14 November: [Currency header](tasks/CURRENCY_HUD_001.md) is in validation;
+integration and Android pending.
+
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
-through PR48 at `63c63b1a`. Separate background/Wisp/enemy packs and Live/Still
-are removed; one new Rift scene and six stronger main themes keep original
-enemies inside their rings. All 14 applicable PR/release workflows passed;
-final visuals (1,399 assertions/16,560 samples) and exact saved-state replay passed.
-Signed upgrade/updater preserved both saves and paid work; retail launch and
-anonymous public APK/assets/feed verification passed. The first native attempt
-had an input ANR; the unchanged retry passed and both outcomes are retained in
-[delivery evidence](qa/rift-theme-redesign-001/README.md). No cause is proven.
-The 0.2.110 gameplay and receipt are retained. Physical-phone, exact WebView60 DOM,
-TalkBack and human design acceptance remain open; no independent review claimed.
+through PR48 at `63c63b1a`: one scene and six stronger themes replace packs;
+original enemies fit their rings. All14 workflows,1,399 visual assertions and
+exact saved-state replay passed. Signed upgrade/updater retained both saves
+and paid work; retail launch/public bytes passed. [Full evidence](qa/rift-theme-redesign-001/README.md)
+retains the first native ANR and passing unchanged retry; cause is unproven.
+Physical-phone/WebView60/TalkBack/human acceptance and independent review are open.
 
-12 November: [PR42 Forge/Lab update](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
+12 November: [PR42 Forge/Lab update and full evidence](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
 released as [Android0.2.110](https://github.com/xariib/Lumenfall/releases/tag/android-1000110).
-Battle, Arcane and Harvest Tempering continue past300; eight powerful Lab studies
-require earned first access, while paid work/levels retain access. Exact source
-`dc78daad` passed all eight release workflows,220 stateful scenarios and isolated
-offline catch-up before advancing main. Signed upgrade/updater retained both
-saves and paid work; retail launch and anonymous public APK/assets/feed checks
-passed. [Delivery evidence](qa/endless-forge-lab-pacing-002/release-20261112/public-release.json).
-PR46 remains closed and excluded. Physical-phone, exact WebView60 DOM, TalkBack
-and human pacing remain unverified.
+Tempering continues past300; eight Lab studies require earned first access,
+retaining paid work. Eight workflows,220 scenarios, offline catch-up, signed
+upgrade/updater, retail launch and public bytes/feed passed at `dc78daad`.
+PR46 is excluded; physical-phone/WebView60/TalkBack/human acceptance is open.
 
 12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
 initially kept PR42's Forge/Lab proposal open and closed PR46 without merging. The
