@@ -144,6 +144,13 @@ record required CI and retained failures, then update task/project status throug
 the serialized integration. Verify anonymous versioned/latest APK bytes, packaged
 assets, identity and feed. Physical acceptance remains open; do not archive early.
 
+Agreed combined candidate918d57393d756cc4bb35c66f45784f8e4d101898/PR50 is based
+on5f. Independently extracted its immutable product bytes (SHA7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d)
+and reran313 focused core checks plus550 Deeds UI checks/18 profiles: PASS.
+[Core](../qa/deeds-progressive-001/combined-918d-deeds-core.json),
+[UI](../qa/deeds-progressive-001/combined-918d-deeds-ui.json). This is owner
+self-verification, not independent review. Main/publication hold continues.
+
 [Byte-preserved earlier checkpoint](../qa/deeds-progressive-001/task-before-final-detail.txt)
 retains full earlier milestones/versions/diagnostics. This compaction keeps startup
 under32KiB without changing rules or discarding historical evidence.
