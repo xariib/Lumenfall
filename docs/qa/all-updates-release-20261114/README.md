@@ -18,7 +18,11 @@ installed Bond/Deeds, save upgrade and real updater. Its first retail launch
 inspection failed: screenshot shows the game, but UIAutomator could not obtain
 idle/root state and retained only earlier startup XML. This is not a retail
 gate pass. All36 original diagnostic files and a hash manifest are retained in
-native-first-failure-43639919453/. Unchanged attempt2 is running.
+native-first-failure-43639919453/. Unchanged attempt2 passed. The downloaded
+signed artifact matches exact source/assets, identity, all native/save/updater
+receipts and the installed Bond catalogue. [Verification](android-candidate/verification.json).
+Rift/Bond, Deeds and retail screenshots were visually inspected (self-review).
+The candidate remains nonpublic; PR attempt3 is the only active validation.
 
 No source, assertion, deadline or workflow change, and no source failure is
 waived. Causes remain unproven. Physical-phone, exact WebView60 DOM, TalkBack,

@@ -80,7 +80,16 @@ All36 original diagnostic files are hash-manifested/retained in
 Underlying accessibility/idle cause remains unproven. Native attempt2 is running
 unchanged; no product, test assertion, deadline or workflow edits were made.
 
-Next: wait for both full runs, use the local delivery helper's ready/save-ci
+Native attempt2 has now PASSed. Downloaded0.2.118 artifact independently matches
+exact source/assets, package/certificate, all native receipts and installed Bond
+catalogue. SHA256 `0520c9504d2e639736b17620bd9d0c05fe161a3eeffc3a6079adbcc4dc4e86b1`.
+[Candidate verification](../qa/all-updates-release-20261114/android-candidate/verification.json).
+Installed Rift/Bond and Deeds screenshots plus retail normal-launch screenshot
+were visually inspected (self-review). Candidate is not public or integrated.
+Only PR attempt3 remains active; manual full/source gates and native candidate
+are passed. Keep validated ref a3d125a5 fixed until readiness/integration.
+
+Next: wait for PR attempt3 only; use the local delivery helper's ready/save-ci
 checks, fast-forward unchanged main to exact tested candidate and dispatch the
 publishing Android workflow. Recheck main/build concurrency at each mutation.
 No main evidence push during publication. Verify/download the resulting signed
