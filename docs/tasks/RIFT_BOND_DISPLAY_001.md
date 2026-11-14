@@ -58,3 +58,40 @@ Baseline shared startup plus EXPLOIT_BALANCE_HUNT_001 already totals 33,030 byte
 (limit 32,768); adding this task's status increased that. Shortened the completed
 Rift theme summary in PROJECT_STATE, retaining its evidence/limitations links.
 No CI limit or acceptance assertion changed. Rerun required on the new commit.
+
+## Superseded 75d24f52 checkpoint
+
+Final candidate: `75d24f5273a5fc8b2ee8bef8f42b015884b813ba`; PR50.
+Product SHA unchanged at `95a077ce05faf9e79f16f9851767eb6b2b99372a31191474da2fcfd80b9c48be`.
+Both native Rift suites passed (six profiles/24 samples total), including the
+old-boost-list negative control. Selected screenshots self-reviewed; no
+independent review. Baseline/changed mechanics and 12 Formation profiles pass.
+
+Eleven of fourteen applicable exact-source PR/dispatch workflows have passed;
+both broad premerge runs are still active. Wisp Linux first failed its existing
+300ms setup deadline, then passed an unchanged failed-job retry. Windows passed.
+Tree dispatch `43574706416` first timed out (25s) before any QA result; even its
+Chrome version query timed out. Original raw failure payloads and artifact ZIP
+SHA256 are retained under `docs/qa/rift-bond-display-001/tree-first-failure`.
+Its same-source retry is requested; no cause is established. Two Prism workflows
+are inapplicable under their existing branch-only conditions. No gate weakened.
+
+Next: monitor final-source CI with `validation-evidence/rift-bond-delivery.cjs`
+(`status`, then `ready`); it verifies source, baseline, every applicable job and
+PR before `promote` fast-forwards exact tested source and `publish` dispatches
+the signed main build. `validation-evidence/verify-rift-bond-release.cjs` verifies
+the successful build/native Bond receipt, exact anonymous APKs and public feed.
+Save final receipts/status on GitHub after delivery. Main integration and Android
+acceptance remain pending. Root/other feature worktrees remain untouched.
+
+## Historical baseline compatibility correction
+
+The broad PR/dispatch runs above failed the immutable Guidance baseline because
+the new mobile absence assertion was also applied to that frozen old game.
+Raw first failure is preserved under `guidance-first-failure`. Restored the old
+Bond layout checks only when the existing exact-hash `legacyReadout` flag is
+true; the current game and its mutations still require no boost rows. Historical
+source/archives are unchanged. The complete Guidance gate now passes locally:
+historical word-fragmentation failure, current five hints and Ascend-ready hint,
+width/title/full-CSS negative controls, original fonts/assets and clean browser
+exit. The product SHA and gameplay remain unchanged. Final-source CI must rerun.

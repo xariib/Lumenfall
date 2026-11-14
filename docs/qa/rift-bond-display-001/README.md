@@ -30,3 +30,13 @@ for every task referenced by the workflows. CI/integration/Android pending.
 
 Modern browser and synthetic emulator evidence do not establish physical-phone,
 exact WebView60, TalkBack or human acceptance. Self-review only.
+
+The later broad runs exposed an introduced test incompatibility: current-game
+Bond absence was applied to the immutable historical Guidance baseline.
+`guidance-first-failure/` retains that original failure. The old Bond layout
+checks now apply only to the driver's existing exact historical source hash;
+the current-game absence requirement remains strict. `guidance-historical-fix/`
+retains the passing full Guidance gate and its baseline/candidate/causal receipts.
+`tree-first-failure/` preserves the original 25s timeout with no QA result;
+`wisp-first-failure.txt` records the Linux setup timeout and unchanged passing retry.
+Earlier-source successes are historical; final-source CI/Android remain pending.
