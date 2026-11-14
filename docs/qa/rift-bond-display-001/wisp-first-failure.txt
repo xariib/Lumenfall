@@ -1,0 +1,13 @@
+Run: https://github.com/xariib/Lumenfall/actions/runs/43574641597
+Source: 75d24f5273a5fc8b2ee8bef8f42b015884b813ba
+Failed job: Wisp scroll (ubuntu-latest), 132386120061.
+Windows job passed. Linux failed before the intended causal assertion because
+the existing setup did not settle within its unchanged 300ms deadline.
+No cause established. The unchanged failed-job rerun passed, with no test,
+deadline or product changes. The first failure remains part of the evidence.
+2026-11-14T08:13:12.3183380Z AssertionError [ERR_ASSERTION]: Error: Error: Wisp setup layout did not settle within 300ms
+2026-11-14T08:13:12.3199462Z   actual: false,
+2026-11-14T08:13:12.3199857Z   expected: true,
+2026-11-14T08:13:12.3217722Z ##[error]Process completed with exit code 1.
+2026-11-14T08:13:13.8987700Z Artifact wisp-scroll-ubuntu-latest-43574641597.zip successfully finalized. Artifact ID 14106160961
+2026-11-14T08:13:13.8990033Z Artifact wisp-scroll-ubuntu-latest-43574641597 has been successfully uploaded! Final size is 5293 bytes. Artifact ID is 14106160961

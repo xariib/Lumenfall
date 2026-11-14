@@ -1,5 +1,8 @@
 # Lumenfall — current delivery status
 
+14 November: [Rift bond display](tasks/RIFT_BOND_DISPLAY_001.md): boosts stay in
+the Wisp menu; combined-source validation and Android delivery pending.
+
 14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
 PR52: one advancing card per series. Its eight candidate suites/190 scenarios pass;
 the final Details/focus fix passes local checks. Prior signed upgrade/updater and
