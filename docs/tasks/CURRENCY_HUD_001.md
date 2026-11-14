@@ -63,3 +63,22 @@ auth appear invalid; outside-sandbox auth succeeds without credential changes.
 Next: publish this focused branch/PR, pass all required CI, serialize main
 integration against other features, run integrated release gates and deliver
 the signed APK. Keep open while required device/human acceptance is unverified.
+
+## PR49 checkpoint
+
+[PR49](https://github.com/xariib/Lumenfall/pull/49) opened at `e9c9dc07`.
+Six applicable workflows passed; premerge failed its startup-size check, isolated
+offline timed out before JSON at300s, and both Wisp causal jobs timed out during
+their unchanged300ms setup. [First failures](../qa/currency-hud-001/first-ci-failures.json)
+retain raw excerpts. The largest task already exceeded32KiB on baseline;
+compact the two recent release summaries in PROJECT_STATE while retaining their
+full linked task/evidence records. Exploit startup now32551 bytes; no limit changed.
+
+The existing paired replay passed all four eight-hour one-second phases against
+`dc78daad`, preserving every save field, reward and original endpoint. Rebound
+only its source SHA256 in `offline-swift-current-golden.json`; canonical outcomes
+are unchanged. [Replay receipt](../qa/currency-hud-001/replay.json).
+Local Wisp anchor-negative settled within its original300ms ceiling and failed
+the intended screen-position assertion; no deadline, test or product JS changed.
+Next: rerun exact-source CI after these documentation/reference corrections;
+investigate any repeated required failure before integration.

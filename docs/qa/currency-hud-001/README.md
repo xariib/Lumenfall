@@ -10,6 +10,10 @@ Source: `029b81994baeff862fc3b4038638c210b04ff8ab3bd330d9c64b40bdc3ec678d`
 - `local-summary.json`: exact source binding and byte-identical inline product
   scripts against main. No game calculation, wallet, purchase or save code changed.
 - Three PNGs: inspected normal Rift/Wisps and narrow enlarged-text Lab layouts.
+- `replay.json`: four paired eight-hour one-second simulations retain all saved
+  fields, rewards and published endpoints; only the golden source hash changed.
+- `first-ci-failures.json`, `wisp-negative.json`: initial CI startup-size and
+  untouched browser timeout evidence, plus the passing local causal diagnosis.
 
 The final expanded run passed 1,776 checks. Test development corrected two test
 assumptions: exact Shard credits can format differently from the native wallet,
