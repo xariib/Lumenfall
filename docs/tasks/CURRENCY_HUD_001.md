@@ -45,9 +45,23 @@ The hidden-name causal command/evidence are retained locally/in this repository;
 GitHub rejected the proposed workflow extension because its OAuth credentials
 lack workflow scope. No existing workflow/check is removed or weakened.
 Rift layout/control checks also PASS1,399 assertions/12 profiles, including the
-existing oversized-enemy causal control. Next: push the correction/PR, provide
-its exact commit to the coordinator and verify integrated CI/final APK.
-Device/human acceptance stays open.
+existing oversized-enemy causal control. Correction opened as
+[PR54](https://github.com/xariib/Lumenfall/pull/54), code commit
+`024029247a42c11ab91218381de5e95e7150bd1b`, product SHA256
+`06d51af3f2179a18a7973a1049c137056ffc3f08020b14474579469bd2b0bad6`.
+The exact commit/checks were sent to the already-authorized Rift coordinator.
+Initial CI has Wisp, Lab, Deeds and permanent progression PASS; four other
+applicable suites are still running. Skipped Prism workflows are inapplicable.
+This continuation checkpoint changes docs/evidence only; required exact-head
+CI must finish before integration, and local acceptance is not an APK release.
+
+Read-only inspection found a different active all-updates release chat now
+preparing the combined APK. Existing human messaging permission covers only
+Rift/Deeds. A concise approval question to notify the additional release chat
+about concrete PR54 is pending; do not infer approval or message it without the
+human answer. Next: finish CI, send PR54 to that chat if authorized, serialize
+integration and verify the corrected final APK. No main/APK actions from here
+while coordination is unresolved. Device/human acceptance stays open.
 
 The baseline/PR49 sections below retain historical acceptance; they do not
 establish acceptance of this current correction.
