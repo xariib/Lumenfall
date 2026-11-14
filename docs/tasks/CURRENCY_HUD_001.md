@@ -142,6 +142,15 @@ and original retail helper unchanged. [Fixture source proof](../qa/currency-hud-
 Final combined SHA/build/public receipts are still awaited; no main update or
 publication build was started here.
 
+Final combined candidate is now `918d57393d756cc4bb35c66f45784f8e4d101898`
+on PR50. Local verification confirms its full product is byte-identical to
+0c3a7121 (SHA2567222c3ad), accepted currency sources/regression are retained,
+and the original retail helper and full tested5f0d9762 recap function remain
+unchanged. Rift adds its own active-Bond fixture/assertions elsewhere in the
+upgrade helper. [Final candidate source proof](../qa/currency-hud-001/final-candidate-currency-source.json).
+The coordinator reports exact-source PR/release CI running; final signed build,
+tag and anonymous public verification remain pending. Hold main/publication.
+
 Next concrete action: receive the agreed final SHA/run/tag and receipts from the
 Rift coordinator (it was asked to message this currency chat), then verify the
 published versioned/latest APK, exact source, signing/assets/feed and retained
