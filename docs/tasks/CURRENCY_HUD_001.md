@@ -139,7 +139,7 @@ the tested product7f149b89; keep it stable for exact-source delivery.
 The diagnostic retry (job132409549536) passed every original native assertion,
 including retail launch. Its failure-only released-baseline comparison therefore
 did not execute: there is no comparison result against0.2.111. The successful
-unpublished0.2.113 artifact has the same product HTML SHA256029b8199… and game/native
+unpublished0.2.114 artifact has the same product HTML SHA256029b8199… and game/native
 implementation; its only code difference is failure-only host diagnostics.
 [Native proof](../qa/currency-hud-001/diagnostic-success-summary.json) and
 `native-diagnostic-pass/` retain the real screenshot, XML, identity and receipts.
@@ -150,6 +150,34 @@ Temporary `verify_android_release_runtime.cjs` diagnostics were restored to
 byte-identical7f149b89 after the experiment. Its pass-path assertions never changed.
 The exact integrated candidate43578599508 was retried again (job132411866541)
 to obtain matching APK/source/acceptance receipts before publication. Main stays
-7f149b89. Next: inspect this final native result, publish only after all guards
-pass, verify public bytes/feed and save final delivery status. Keep phone,
-WebView60/TalkBack/human acceptance open and do not archive.
+7f149b89 at that checkpoint. Keep phone, WebView60/TalkBack/human acceptance open.
+
+## Current combined release dependency
+
+The exact original candidate43578599508 finally passed ALL original Android
+checks on attempt3/job132411866541, including signed upgrade, both saves/paid work,
+updater and normal retail launch. [Verified signed preview](../qa/currency-hud-001/initial-preview-verification.json)
+is Android0.2.112, source7f149b89; it is unpublished. Original failures remain
+preserved and their cause is unproven. Diagnostic native acceptance is actually
+0.2.114 (read from identity/version receipts), not the initially assumed0.2.113.
+
+Main meanwhile advanced through the separately owned [progressive Deeds](https://github.com/xariib/Lumenfall/blob/e67c984f7faf120818f5285175751586a1cf43cd/docs/tasks/DEEDS_PROGRESSIVE_001.md)
+PR52 to `e67c984f7faf120818f5285175751586a1cf43cd` (accepted candidateb9456622,
+merge7448cc0b; product/native/test/workflow bytes match that candidate). Preserve
+that work. Do not publish obsolete7f149b89 or rewind main. Its integrated release
+pipeline is already running under the Deeds owner; do not duplicate its builds.
+
+The combined source SHA256 is
+`d58a8edc12f0ed340b8fbb1126bb3eb139bfbe328119743201deb3e7bdc3c7fc`.
+Every currency CSS rule and the full regression script are byte-identical to
+our accepted source. Its existing Shared UI run43583796446/job132413902212 passed
+all1,776 visual assertions/16 profiles, including six wallets on six screens at
+normal/short heights. [Combined proof](../qa/currency-hud-001/combined-currency-acceptance.json)
+and [source comparison](../qa/currency-hud-001/combined-currency-source.json).
+Seven of eight exact-main suites passed; full premerge43583785544 is still running.
+
+Next: follow the existing combined pipeline through exact-main native acceptance
+and publication, independently verify its public APK/feed/assets retain the
+currency update, then save final currency delivery documentation on current main.
+The signed0.2.112 preview is available meanwhile; publication and phone/human
+acceptance remain open. Do not archive or claim complete.

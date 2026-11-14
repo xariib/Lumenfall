@@ -39,7 +39,7 @@ updater release metadata (`diagnostic-first-failure/`); its retry passed every
 original assertion, including retail launch. Since that candidate passed, its
 released-baseline comparison did not execute. `diagnostic-success-summary.json`,
 `diagnostic-success-workflow.json` and `native-diagnostic-pass/` retain that
-unpublished0.2.113 acceptance. The native XML includes all six currency names.
+unpublished0.2.114 acceptance. The native XML includes all six currency names.
 The temporary host diagnostic is restored to its original bytes; the exact
 integrated0.2.112 candidate is running a final unchanged native attempt.
 All existing publication guards must pass before publication.
