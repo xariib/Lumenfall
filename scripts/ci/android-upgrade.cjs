@@ -222,7 +222,7 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  const fixture=JSON.parse(JSON.stringify(retainedSave));
  Object.assign(fixture,{ascendCount:1,maxDepthEver:30,depth:26,enemyDepth:26,
    riftMode:'farm',farmDepth:20,farmReturnDepth:26,lumen:800,shards:80,
-   activeStudies:[],autoAscendEnabled:false,lastSeen:Date.now()});
+   activeStudies:[],autoAscendEnabled:false,activeParty:['ember','stone'],formationRebuild:null,lastSeen:Date.now()});
  fixture.longStudyLevels.wispascend=0;
  const marker='midgame-farm-installed-accept-001';
  const seedScript=`(()=>{const s=${JSON.stringify(JSON.stringify(fixture))};
