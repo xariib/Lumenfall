@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+14 November: [Rift bond display](tasks/RIFT_BOND_DISPLAY_001.md) is in progress.
+The candidate keeps active names and partner marks on Rift, with boost details
+in the Wisp menu. Local mechanics, descriptions, 12 mobile profiles and complete
+offline replay pass; CI, integration and Android delivery remain pending.
+
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
 through PR48 at `63c63b1a`. Separate background/Wisp/enemy packs and Live/Still
