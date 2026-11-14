@@ -9,7 +9,8 @@ Deeds touch pass. Final-source CI and Android delivery remain pending; retail
 accessibility inspection is unresolved.
 
 14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
-at7f149b89; Android delivery pending.
+at7f149b89. Human correction requires visible currency names; focused correction
+passes1,776 layout checks. Integration/Android delivery pending.
 
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
