@@ -126,7 +126,7 @@ checks. Evidence is in `docs/qa/currency-hud-001/visible-names` on that commit.
 PR CI and actual combined APK acceptance remain pending. Preserve this correction
 in the final combined source; the older icon-only requirement is superseded.
 
-Deeds supplied `e01f443c192e5700973127d0ab6fe3f2bd6e2b0d` on
+Deeds supplied final head `f1921bbfec63bcfd6f6d3c18c45d8af8eb3af27d` on
 `feature/deeds-progressive-001-work`, based on main6fd9e44f. Its owner reports
 the human chose existing milestone targets and increasing rewards. The correction
 uses17 cumulative progress bars (Rift10 advances to10/25), removes checkbox and
@@ -139,9 +139,13 @@ This chat inspected the commit summary; these are peer-reported checks and
 requirements, not an independent review or this Rift task's gameplay decision.
 Retain original target/reward decisions and evidence in that commit's Deeds task.
 Correction [PR55](https://github.com/xariib/Lumenfall/pull/55) is open. Its first
-CI found older reward expectations; the owner is preparing focused test/evidence
-updates with product bytes unchanged. Await its final head and passing CI rather
-than treating e01f443c's initial checks as release approval. No failure waived.
+CI found older reward expectations; final headf1921bbf supersedes e01f443c with
+exact independent reward schedules and the historical PR15 counterfactual updated.
+This chat verified no `index.html` diff between those two heads. Owner additionally
+reports1,097,372 numerical checks/controls,18 complete offline cases,375 frozen
+AutoAscend checks/controls and8,099 Wisp contribution checks PASS. Original
+failures remain saved; deadlines/assertions are unchanged. CI reruns on f192 and
+native/public acceptance remain pending. No failure waived.
 
 Combined [PR53](https://github.com/xariib/Lumenfall/pull/53) is currentlya3d125a5;
 its recorded next step is integration/build after remaining premerge runs.
