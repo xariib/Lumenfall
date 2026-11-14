@@ -364,7 +364,7 @@
 
   /* ---------- Achievements ---------- */
   .ach-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;}
-  .ach-card{display:flex;align-items:flex-start;gap:10px;}
+  .ach-card{display:grid;grid-template-columns:16px minmax(0,1fr);align-items:start;gap:10px;}
   .ach-card .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--line);margin-top:3px;}
   .ach-card.done .dot{background:var(--good);}
   .ach-card .info{flex:1;min-width:0;overflow-wrap:break-word;}
@@ -379,9 +379,7 @@
   .study-card .earned-effect strong{color:var(--mote);}
   .effect-note,.deed-requirement,.deed-scope{font-size:.7rem;line-height:1.5;color:var(--ink-dim);margin-top:4px;}
   .deed-scope{margin-top:6px;}
-  .ach-card .reward{white-space:nowrap;}
-  .ach-card[data-deed="autotap"],.ach-card[data-deed="labmaster"]{display:grid;grid-template-columns:16px minmax(0,1fr);}
-  .ach-card[data-deed="autotap"] .reward,.ach-card[data-deed="labmaster"] .reward{grid-column:2;justify-self:start;}
+  .ach-card .reward{white-space:nowrap;grid-column:2;justify-self:start;}
   .shop-card{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
   .shop-card .info{flex:1;}
   .shop-card .name{font-weight:700;font-size:.86rem;}
@@ -4447,6 +4445,27 @@ addDeedTrack('lab','Complete Lab levels','Lab levels',[50,100,250,500,1000,2000]
 addDeedTrack('forge','Buy Forge levels','Forge levels',[100,200,300,400,500,600],legacyResearchLevels);
 addDeedTrack('mastery','Earn Mastery ranks','Mastery ranks',[10,25,50,100,250,500,1000,5000,10000],function(s){return SPIRITS.reduce(function(sum,sp){return sum+((s.wispMastery||{})[sp.id]||0);},0);});
 addDeedTrack('rest','Rest offline for hours','offline hours',[24,72,168,720,2160,8760],function(s){return s.totalOfflineSeconds/3600;});
+
+// Group presentation only. Eligibility, receipts and payouts still use every
+// original milestone identity, including goals passed during offline catch-up.
+function deedSeries(snapshot){
+  var originalTracks={d10:'rift',d25:'rift',d50:'rift',d100:'rift',d250:'rift',
+    tap100:'strikes',tap1000:'strikes',tap10000:'strikes',
+    asc1:'ascend',asc5:'ascend',asc10:'ascend',idle8:'rest',
+    study1:'projects',study25:'projects',labqueue:'forge'};
+  var rows=[],byKey={};
+  ACHIEVEMENTS.forEach(function(a){
+    if(COMET_EVENT_DEEDS[a.id])return;
+    var key=originalTracks[a.id]||a.track||a.id;
+    if(!byKey[key]){byKey[key]={key:key,milestones:[]};rows.push(byKey[key]);}
+    byKey[key].milestones.push(a);
+  });
+  rows.forEach(function(row){
+    row.earned=row.milestones.filter(function(a){return !!snapshot.achieved[a.id];});
+    row.next=row.milestones.find(function(a){return !snapshot.achieved[a.id];})||row.milestones[row.milestones.length-1];
+  });
+  return rows;
+}
 
 // Every current Deed has an authoritative counter. Completed one-time Deeds
 // display their reached target even if a later Ascend resets the underlying run.
@@ -10723,22 +10742,32 @@ function renderAchievements(){
   var active=document.activeElement;
   var purchase=active && els['shop-list'].contains(active) ? active.getAttribute('data-shop') : null;
   var html='';
-  ACHIEVEMENTS.forEach(function(a){
-    if(COMET_EVENT_DEEDS[a.id])return;
+  deedSeries(state).forEach(function(series){
+    var a=series.next;
     var done=!!state.achieved[a.id],presentation=deedPresentation(a),progress=deedProgress(a,state);
     var current=progress ? (done ? progress.target : Math.min(progress.current,progress.target)) : 0;
     var pending=done && state.cometClaims.deeds[a.id]===true;
-    html+='<div class="card ach-card '+(done?'done':'')+'" data-deed="'+a.id+'" data-state="'+(done?'completed':'available')+'">'+
+    var pendingReward=series.earned.reduce(function(sum,m){return sum+(state.cometClaims.deeds[m.id]===true?m.reward:0);},0);
+    var history=series.earned.filter(function(m){return m.id!==a.id;}).map(function(m){
+      var p=deedProgress(m,state);
+      return '<div data-deed-history="'+m.id+'"><strong>'+m.name+' · Completed</strong>'+
+        '<div class="ach-progress mono" data-deed-progress="'+m.id+'" data-current="'+p.target+'" data-target="'+p.target+'">'+deedProgressText(m,true)+'</div>'+
+        '<div>+'+m.reward+' Comets'+(state.cometClaims.deeds[m.id]===true?' · Reward pending':'')+'</div>'+
+        (m.unlocks?'<div class="ach-unlock">Unlocks: '+m.unlocks+'</div>':'')+'</div>';
+    }).join('');
+    html+='<div class="card ach-card '+(done?'done':'')+'" data-deed="'+a.id+'" data-deed-series="'+series.key+'" data-state="'+(done?'completed':'available')+'">'+
       '<span class="dot"></span><div class="info"><div class="name">'+a.name+(done?' · Completed':'')+'</div>'+
       (presentation.requirement.replace(/\.$/,'')===a.name?'':'<div class="deed-requirement" data-deed-requirement="'+a.id+'">'+presentation.requirement+'</div>')+
       '<div class="ach-progress mono" data-deed-progress="'+a.id+'" data-current="'+current+'" data-target="'+(progress?progress.target:0)+'">'+deedProgressText(a,done)+'</div>'+
       deedChallengeProgress(a,done)+
+      (series.milestones.length>1?'<div class="desc">'+series.earned.length+' / '+series.milestones.length+' milestones completed</div>':'')+
       (presentation.scope?cardDetails('deed-'+a.id,presentation.scope):'')+
       (a.unlocks?'<div class="ach-unlock">Unlocks: '+a.unlocks+'</div>':'')+
-      (pending?'<div class="deed-credit-state" data-deed-credit-state="due">Reward pending · '+COMET_DEED_REWARDS[a.id]+' Comets preserved</div>':'')+
+      (pendingReward?'<div class="deed-credit-state" data-deed-credit-state="due">Reward pending · '+pendingReward+' Comets preserved</div>':'')+
+      (history?cardDetails('deed-history-'+series.key,history,'Completed milestones ('+(series.earned.length-(done?1:0))+')'):'')+
       '</div><span class="reward mono" aria-label="Reward: '+a.reward+' Comets'+(pending?', pending':'')+'">+'+a.reward+' '+costIcon('comet')+'</span></div>';
   });
-  els['ach-list'].innerHTML=html;
+  replaceControlMarkup(els['ach-list'],html);
   var shopHtml='<div class="card shop-card" data-offline-policy><div class="info">'+
     '<div class="name">12 hours of offline progress</div>'+
     '<div class="desc">Combat rewards and combat automation have a 12-hour limit. Lab research continues for the full time away while resources last. Offline earning rate is separate.</div>';

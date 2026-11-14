@@ -96,6 +96,8 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
       else if(id==='mythic')s.heroRarity.ember=at?5:4;
       else if(id==='allstudies')['wispascend','guardmastery','shardstudy','lumenstudy','motestudy'].forEach(function(k,i,arr){s.longStudyLevels[k]=at||i<arr.length-1?1:0;});
       else if(id==='firstultimate'){s.heroRarity.ember=5;s.wispUltimate.ember=at;}
+      // A series exposes this boundary after its preceding rewards are earned.
+      b.upgradeClarity.series(s).forEach(function(row){var i=row.ids.indexOf(id);if(i>0)row.ids.slice(0,i).forEach(function(prior){s.achieved[prior]=true;});});
       pureRender(s);var item=b.forge.deeds().items.find(function(a){return a.id===id;});
       ok(item.eligible===at,id+' unchanged eligibility before/at threshold');
       var p=q('[data-deed-progress="'+id+'"]');
