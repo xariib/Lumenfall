@@ -105,7 +105,14 @@ window.runR3DestinationsQa = function(b,ctx,assert){
       var ready=b.getState();ready.maxDepthEver=Math.max(150,ready.maxDepthEver);ready.longStudyLevels.wispascend=25;
       b.setState(ready);b.renderLayout();
     }
-    q('[data-study-slot="0"]').click();q('[data-study="'+id+'"]').click();var beforeToggle=b.getState(),paid=beforeToggle.activeStudies.find(function(a){return a.id===id;});
+    var occupied=b.getState().activeStudies.some(function(a){return a.slot===0;}),beforeChoice=b.getState();
+    q('[data-study-slot="0"]').click();q('[data-study="'+id+'"]').click();
+    if(occupied){
+      ok(q('[data-study-confirm-start]'),'occupied Lab asks before replacing research');
+      same(b.getState(),beforeChoice,'replacement prompt retains paid work and wallets');
+      q('[data-study-confirm-start]').click();
+    }else ok(!q('[data-study-confirm-start]'),'empty Lab starts without a prompt');
+    var beforeToggle=b.getState(),paid=beforeToggle.activeStudies.find(function(a){return a.id===id;});
     ok(b.getState().studyQueue[id]===true&&paid,'selecting research enables its individual queue');
     q('[data-study-queue="'+id+'"]').click();var toggled=b.getState();
     ok(toggled.studyQueue[id]===false,'individual Lab Queue OFF disables only future repeats');

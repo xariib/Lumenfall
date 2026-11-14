@@ -38,7 +38,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   check(await ev('uiRegression.slots()===5&&document.querySelector("[data-study-card=labcapacity]").dataset.state==="maxed"&&!document.querySelector("[data-study=labcapacity]")'),'older earned slots remain despite unmet new goals');
   const busy=capacityReady(seed(),0);busy.activeStudies=['wispascend','guardmastery','lumenstudy'].map((id,slot)=>({id,slot,remainingSec:100,totalDurationSec:200,speedMult:1}));await install(busy);
   await ev('uiRegression.wallet(1000000,1000000)');check(await ev('!document.querySelector("[data-study=labcapacity]").disabled'),'live refresh permits selected-slot replacement when all three Labs are busy');
-  await touch('[data-study=labcapacity]');check(await ev('uiRegression.get().activeStudies.length===3&&uiRegression.get().activeStudies.some(a=>a.id==="labcapacity"&&a.slot===0)&&uiRegression.get().pausedStudies.some(a=>a.id==="wispascend"&&a.remainingSec===100&&a.totalDurationSec===200)'),'starting expansion in a busy Lab preserves the replaced paid work');
+  await touch('[data-study=labcapacity]');await touch('[data-study-confirm-start]');check(await ev('uiRegression.get().activeStudies.length===3&&uiRegression.get().activeStudies.some(a=>a.id==="labcapacity"&&a.slot===0)&&uiRegression.get().pausedStudies.some(a=>a.id==="wispascend"&&a.remainingSec===100&&a.totalDurationSec===200)'),'starting expansion in a busy Lab preserves the replaced paid work');
   await fit();const ax=await send('Accessibility.getFullAXTree');check(ax.nodes.some(n=>!n.ignored&&n.name&&/Expanded Apparatus/.test(n.name.value)),'expansion remains in accessibility tree');records.push({width,scale,motion,status:'pass'});
  }
 };
