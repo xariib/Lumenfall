@@ -135,6 +135,13 @@ Rift reports its combined1,776 layout checks/16 profiles passed; final-source
 CI/native publication still must be verified. This is currency-scope acceptance,
 not global release approval or independent review of our own feature.
 
+The coordinator then reported merging Deeds fixture correction `5f0d9762` into
+the combined candidate. Local Git verification confirms that correction leaves
+its parent product bytes, accepted currency CSS/markup/wallet binding/regression
+and original retail helper unchanged. [Fixture source proof](../qa/currency-hud-001/coordinated-fixture-source.json).
+Final combined SHA/build/public receipts are still awaited; no main update or
+publication build was started here.
+
 Next concrete action: receive the agreed final SHA/run/tag and receipts from the
 Rift coordinator (it was asked to message this currency chat), then verify the
 published versioned/latest APK, exact source, signing/assets/feed and retained
