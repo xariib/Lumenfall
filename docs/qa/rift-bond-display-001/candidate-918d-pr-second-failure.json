@@ -1,0 +1,10 @@
+{
+  "runId": 43595576399,
+  "attempt": 2,
+  "jobId": 132465917992,
+  "sourceCommit": "918d57393d756cc4bb35c66f45784f8e4d101898",
+  "conclusion": "failure",
+  "failureExcerpt": "FAIL wisp-rarity-scroll\n2026-11-14T14:15:34.8601482Z   process: { \"exitcode\": 1, \"timed_out\": false, \"stderr\": \"\" }\n2026-11-14T14:15:34.8605462Z   detail: { \"status\": \"fail\", \"sourceSha256\": \"7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d\", \"mutation\": null, \"checks\": 1, \"profiles\": [], \"reflows\": [], \"layoutSettlements\": [], \"error\": \"Error: Error: Wisp setup layout did not settle within 300ms\\n    at <anonymous>:3:55\\n    at ev (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/wisp-rarity-scroll.cjs:20:148)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async settledSetup (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/wisp-rarity-scroll.cjs:29:69)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/wisp-rarity-scroll.cjs:56:48)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/wisp-rarity-scroll.cjs:123:34\" }\n2026-11-14T14:15:57.8931388Z PASS wisp-card-simplicity\n2026-11-14T14:15:59.9929653Z PASS lab-affordable-alert\n2026-11-14T14:16:30.1522534Z PASS resonate-clarity\n2026-11-14T14:16:31.7591872Z PASS upgrade-identity-contracts\n2026-11-14T14:16:33.0693623Z PASS upgrade-identity-chronology\n2026-11-14T14:16:34.6350940Z PASS upgrade-identity-farm-clock\n2026-11-14T14:16:35.9114543Z PASS upgrade-identity-save-reload\n2026-11-14T14:16:37",
+  "failedScenario": "wisp-rarity-scroll",
+  "nextAction": "Investigate setup timing; retain 300ms ceiling and original assertions."
+}

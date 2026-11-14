@@ -1,0 +1,29 @@
+{
+  "sha": "918d57393d756cc4bb35c66f45784f8e4d101898",
+  "runId": 43600605287,
+  "jobId": 132466847565,
+  "attempt": 2,
+  "observation": "CDP touch-command deadline at37 checks/two profiles. Unchanged local driver then passed993 checks/36 profiles; no cause established. Same-source original CI retry requested; deadlines/assertions unchanged.",
+  "report": {
+    "status": "fail",
+    "sourceSha256": "7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d",
+    "mutation": null,
+    "checks": 37,
+    "profiles": [
+      {
+        "width": 320,
+        "scale": 100,
+        "motion": "reduce",
+        "status": "pass"
+      },
+      {
+        "width": 320,
+        "scale": 100,
+        "motion": "no-preference",
+        "status": "pass"
+      }
+    ],
+    "error": "Error: CDP deadline Input.dispatchTouchEvent\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:20:146)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)",
+    "stderr": "[9683:9706:1114/135401.705177:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9706:1114/135401.705950:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9706:1114/135401.708207:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9711:1114/135401.710290:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9711:1114/135401.710312:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9711:1114/135401.710321:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9706:1114/135401.719104:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9706:1114/135401.750243:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9683:1114/135401.838333:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9683:1114/135401.838509:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9683:1114/135401.838664:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9706:1114/135401.839277:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9706:1114/135401.839436:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9683:1114/135401.840019:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9706:1114/135401.840066:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9683:1114/135401.871568:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9683:1114/135401.874125:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9706:1114/135401.874230:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9683:1114/135401.874546:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9683:1114/135401.903034:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files\n[9683:9683:1114/135401.912061:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9706:1114/135401.912156:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9683:1114/135401.947305:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9683:9706:1114/135401.947370:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9683:9683:1114/135401.952869:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \nCreated TensorFlow Lite XNNPACK delegate for CPU.\n"
+  }
+}

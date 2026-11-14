@@ -1,7 +1,7 @@
 # RIFT_BOND_DISPLAY_001 — Rift bond names without boost rows
 
 14 November 2026. Owner thread `01a1d77b-4453-7a21-9961-55d70c6cd963`.
-Status: in progress; final combined validation and Android delivery pending.
+Status: implemented; combined-release integration and acceptance pending.
 [PR50](https://github.com/xariib/Lumenfall/pull/50).
 
 ## Requirement and acceptance
@@ -100,12 +100,61 @@ claim or archive their tasks. Other feature work is preserved and not edited.
 
 ## Current next action
 
-The worktree has merged5f0 into a local documentation checkpoint; production
-source remains SHA7222c3. All latest local checks and the native fixture causal
-control pass. Finish the coherent merge/evidence commit, push PR50, and run the
-final applicable gates. Prior0c3 workflows are superseded. Both peer owners have
-confirmed stable main/no competing publication; Deeds reports no active own
-runs remain, including its successful nonpublishing native run43591494545.
+Continuation after interrupted work: the separate user-requested
+[all-updates release](https://github.com/xariib/Lumenfall/blob/77ff91b7/docs/tasks/ALL_UPDATES_RELEASE_20261114.md) now owns combined APK
+delivery. Its candidate77ff91b7 combines this PR50 source918d with the released
+simpler Lab/main6fd9e44f, retaining the requested Rift absence and Wisp details.
+Do not use this chat's old5f0-based promote/publish helpers or compete with that
+release. Physical-phone/WebView60/TalkBack/human acceptance stays unverified.
+
+Both authorized peer chats now report new direct human corrections: currency
+names must be visible beside icons; Deeds must advance exponentially in one box,
+with the user's example0/10 then10/x. Their owners are preparing focused commits;
+this chat does not interpret or implement their gameplay requirements. Previous
+finite Deeds/icon-only currency acceptance is superseded for the combined APK.
+Publication of918d is held. Await concrete peer commits and combined-release
+status; messaging that third chat requires separate human authorization, asked
+14 November. No new chats/subagents or messages to other tasks are authorized.
+
+Required CI on the old918d candidate remains failed, not waived. PR premerge
+43595576399 attempt2 again failed Wisp's original300ms setup at check1; its
+other scenarios passed. Dispatch premerge43600605287 failed three unchanged
+attempts at15s touch-command deadlines after844/18,37/2 and145/8 completed
+checks/profiles. Original JSON receipts are retained under this QA directory.
+Local unchanged check passes993 checks/36 profiles. Auxiliary diagnostic run
+43610396886 at isolated branchc0110483 ran two traced originals successfully;
+the Runtime/DOM variant failed before initialization at Browser.getVersion with
+zero checks. This does not prove a test or product cause and is not release
+acceptance. No harness fix, deadline change or production change follows.
+
+Next: save this checkpoint/evidence on a separate evidence branch without moving
+the frozen source branch or main. Verify the eventual combined APK contains the
+Rift change and report only observed automated/device acceptance. Do not archive.
+
+## Superseded standalone delivery attempt
+
+Final combined candidate is `918d57393d756cc4bb35c66f45784f8e4d101898`, including
+main5f0; production source remains SHA7222c3. All latest local checks and the
+native fixture causal control pass. Final-source CI remains incomplete.
+First PR premerge43595576399 failed only Wisp setup in its broad scenarios;
+dedicated Wisp43595576381 Linux failed the same unchanged300ms setup ceiling,
+while Windows passed. Both failed jobs were requested as same-source unchanged
+retries. QA `candidate-918d-first-failures.json` retains the evidence. The dedicated
+Wisp retry passed. Dispatch premerge43600605287 failed three unchanged attempts
+at the original15s touch-command deadline, after844/18,37/2 and145/8 completed
+checks/profiles. Original reports are in `candidate-918d-release-*-failure.json`.
+The unchanged local boost/preset check passes993 checks/36 profiles
+(`final-boost-repro.json`). Cause remains unproven; no failure is waived.
+An isolated auxiliary branch `diagnostic/rift-lab-touch-001` investigates Linux
+protocol commands/events and optional Runtime/DOM initialization. It changes no
+production bytes or release gate and is not release acceptance. Next: inspect
+that diagnostic plus the PR retry, fix only a demonstrated cause if necessary,
+then rerun required exact-source gates. Release candidate918d remains unchanged.
+Prior0c3 workflows are superseded. Both peer owners have confirmed stable main/no
+competing publication; Deeds reports no active own runs remain, including its
+successful nonpublishing native run43591494545. Do not promote/publish until all
+required final-source checks pass. After publication share source/run/tag and
+receipts with both owners for their own feature verification.
 
 The ignored local `validation-evidence/rift-bond-delivery.cjs` supports
 `dispatch/status/ready/promote/publish` with exact branch/main/ancestry/build guards;

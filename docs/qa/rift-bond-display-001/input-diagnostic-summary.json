@@ -1,0 +1,58 @@
+{
+  "runId": 43610396886,
+  "branch": "diagnostic/rift-lab-touch-001",
+  "commit": "c0110483",
+  "role": "Auxiliary investigation; not release acceptance",
+  "sourceCommit": "918d57393d756cc4bb35c66f45784f8e4d101898",
+  "originalAssertionsAndDeadlines": "unchanged",
+  "traceResults": [
+    {
+      "jobId": 132494010172,
+      "reports": [
+        {
+          "status": "pass",
+          "checks": 993,
+          "profiles": 18,
+          "presetProfiles": 18,
+          "sourceSha256": "7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d",
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Chrome/157.0.8103.50",
+            "revision": "@049750111b1e5c11565c792b2aeed5541f332bad",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+            "jsVersion": "15.7.112.23"
+          }
+        }
+      ]
+    },
+    {
+      "jobId": 132494010208,
+      "reports": [
+        {
+          "status": "pass",
+          "checks": 993,
+          "profiles": 18,
+          "presetProfiles": 18,
+          "sourceSha256": "7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d",
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Chrome/157.0.8103.50",
+            "revision": "@049750111b1e5c11565c792b2aeed5541f332bad",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+            "jsVersion": "15.7.112.23"
+          }
+        }
+      ]
+    }
+  ],
+  "agents": {
+    "jobId": 132494009906,
+    "status": "failure",
+    "checks": 0,
+    "profiles": 0,
+    "error": "CDP deadline Browser.getVersion",
+    "stage": "Before any Runtime/DOM initialization or application assertion"
+  },
+  "conclusion": "No touch timeout reproduced by traced originals. Runtime/DOM hypothesis not tested because browser startup failed. Underlying cause remains unproven; no harness/product fix or deadline change.",
+  "supersededDelivery": "User-requested all-updates candidate 77ff91b7 now combines Rift with released simpler Lab; do not promote or publish standalone 918d."
+}
