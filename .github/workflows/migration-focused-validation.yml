@@ -1,35 +1,42 @@
-name: Rift Lab touch diagnostic (not release acceptance)
+name: Migration focused regressions
+
 on:
   workflow_dispatch: {}
+
 permissions:
   contents: read
+
 jobs:
-  investigate:
+  focused:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     strategy:
       fail-fast: false
       matrix:
-        mode: [trace, agents]
-        repeat: [1, 2]
+        scenario: [wisp-card-simplicity, offline-catchup-core, rift-status-stacking-mobile]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24.19.0
-      - name: Record source and environment
+      - name: Stage exact product and assets
+        shell: bash
         run: |
-          mkdir -p validation-evidence/input-diagnostic
-          git rev-parse HEAD > validation-evidence/input-diagnostic/commit.txt
-          sha256sum index.html tests/behavioral/lab-speed-controls.cjs tests/behavioral/lab-boost-queue-ui.cjs tests/behavioral/lab-speed-presets-ui.cjs > validation-evidence/input-diagnostic/hashes.txt
-          google-chrome --version
-          node --version
-      - name: Retain original assertions and deadlines with diagnostic tracing
+          mkdir -p mobile/www/fonts mobile/www/branding validation-evidence/migration-focused
+          cp index.html mobile/www/index.html
+          cp -r fonts/. mobile/www/fonts/
+          cp -r branding/. mobile/www/branding/
+          git rev-parse HEAD > validation-evidence/migration-focused/commit.txt
+          sha256sum index.html > validation-evidence/migration-focused/source.txt
+      - name: Run unchanged scenario deadline and assertions
+        shell: bash
         env:
-          DIAGNOSTIC_MODE: ${{ matrix.mode }}
-        run: node tests/behavioral/rift-input-diagnostic.cjs "$DIAGNOSTIC_MODE" validation-evidence/input-diagnostic
+          SCENARIO: ${{ matrix.scenario }}
+        run: |
+          set -euo pipefail
+          node tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/migration-focused/raw 2>&1 | tee validation-evidence/migration-focused/result.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: input-diagnostic-${{ matrix.mode }}-${{ matrix.repeat }}-${{ github.run_id }}
-          path: validation-evidence/input-diagnostic/
+          name: migration-focused-${{ matrix.scenario }}-${{ github.run_id }}
+          path: validation-evidence/migration-focused/
