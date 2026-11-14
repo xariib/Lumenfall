@@ -117,6 +117,24 @@ jobs:
           node tests/behavioral/lab-speed-controls.cjs index.html --clarity
           node tests/behavioral/forge-lab-caps-mobile.cjs index.html validation-evidence/clarity-caps
 
+      - name: Simple Lab timer and direct research selection
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/LAB_SIMPLE_001.md
+          mkdir -p validation-evidence/lab-simple
+          node tests/behavioral/lab-speed-controls.cjs index.html --simple --evidence validation-evidence/lab-simple/mobile > validation-evidence/lab-simple/ui.json || { cat validation-evidence/lab-simple/ui.json; exit 1; }
+          if node tests/behavioral/lab-speed-controls.cjs index.html --simple --mutate-confirmation > validation-evidence/lab-simple/confirmation-control.json; then
+            echo "::error::Missing replacement confirmation unexpectedly passed."
+            exit 1
+          fi
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const good=JSON.parse(fs.readFileSync('validation-evidence/lab-simple/ui.json'));
+          const bad=JSON.parse(fs.readFileSync('validation-evidence/lab-simple/confirmation-control.json'));
+          assert.equal(good.status,'pass');assert.equal(good.profiles.length,18);
+          assert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));
+          assert.notEqual(good.sourceSha256,bad.sourceSha256);assert(!bad.teardown);
+          JS
+
       - name: Lab queue continuity and Speed Up modal
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/LAB_SLOTS_QUEUE_SPEEDUP_001.md
@@ -549,3 +567,4 @@ jobs:
         with:
           name: isolated-offline-evidence-${{ github.run_id }}
           path: validation-evidence/isolated-offline/
+
