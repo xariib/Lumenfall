@@ -1,22 +1,14 @@
 # Lumenfall — current delivery status
 
-14 November: [Rift bond display](tasks/RIFT_BOND_DISPLAY_001.md) is in progress.
-The candidate keeps active names and partner marks on Rift, with boost details
-in the Wisp menu. Local mechanics, descriptions, 12 mobile profiles and complete
-offline replay pass; CI, integration and Android delivery remain pending.
+14 November: [Rift bond display](tasks/RIFT_BOND_DISPLAY_001.md): local PASS;
+CI, integration and Android delivery pending.
 
-12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
-[Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
-through PR48 at `63c63b1a`. Separate background/Wisp/enemy packs and Live/Still
-are removed; one new Rift scene and six stronger main themes keep original
-enemies inside their rings. All 14 applicable PR/release workflows passed;
-final visuals (1,399 assertions/16,560 samples) and exact saved-state replay passed.
-Signed upgrade/updater preserved both saves and paid work; retail launch and
-anonymous public APK/assets/feed verification passed. The first native attempt
-had an input ANR; the unchanged retry passed and both outcomes are retained in
-[delivery evidence](qa/rift-theme-redesign-001/README.md). No cause is proven.
-The 0.2.110 gameplay and receipt are retained. Physical-phone, exact WebView60 DOM,
-TalkBack and human design acceptance remain open; no independent review claimed.
+12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md): Android 0.2.111,
+PR48 `63c63b1a`: one scene/six themes, enemies inside rings; packs/Live/Still
+removed, gameplay retained. Fourteen workflows, visuals/replay, signed upgrade,
+updater, retail/public checks passed. [Evidence](qa/rift-theme-redesign-001/README.md)
+keeps first native ANR and unchanged passing retry; cause unknown. Phone,
+WebView60, TalkBack and human review open; self-review only.
 
 12 November: [PR42 Forge/Lab update](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
 released as [Android0.2.110](https://github.com/xariib/Lumenfall/releases/tag/android-1000110).

@@ -52,3 +52,9 @@ Next: required CI, integration and Android delivery. Feature remains open.
 Android upgrade check now records absence of Rift boosts, retained active names
 and all eight full Wisp boost descriptions. Its synthetic fixture must exercise
 at least one active Bond. This runs within the existing signed build acceptance.
+
+First PR premerge (`43573388783`) failed its startup budget before product tests.
+Baseline shared startup plus EXPLOIT_BALANCE_HUNT_001 already totals 33,030 bytes
+(limit 32,768); adding this task's status increased that. Shortened the completed
+Rift theme summary in PROJECT_STATE, retaining its evidence/limitations links.
+No CI limit or acceptance assertion changed. Rerun required on the new commit.

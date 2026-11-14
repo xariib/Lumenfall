@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "node": "v24.22.1",
+  "sourceSha256": "95a077ce05faf9e79f16f9851767eb6b2b99372a31191474da2fcfd80b9c48be",
+  "results": [
+    {
+      "scenario": "rift-status-mobile",
+      "status": "PASS"
+    },
+    {
+      "scenario": "rift-status-reduced-motion",
+      "status": "PASS"
+    },
+    {
+      "scenario": "original-boost-list-negative-control",
+      "status": "PASS",
+      "expectedFailure": true
+    }
+  ]
+}
