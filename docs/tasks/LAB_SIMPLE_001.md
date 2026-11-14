@@ -51,6 +51,14 @@ No new binding rules. Self-review and automated checks only. Status: open.
 
 Current continuation — accepted-main integration, 14 November2026:
 
+LATEST: accepted main5f0d976210eb62fa37917129bd7e8bc453806d8e; HTML81c503892ab7c9ec7af0ad5b7dcb923d1efc222c3d5820bcb29ce44e42623db9.
+This supersedes earlier snapshots below. The Deeds details/focus follow-up
+and stronger native recap fixture are preserved. replay-details.json matches
+all full states/rewards/canonical endpoints; main5f0d9762 has identical product
+bytes to replay baseline5040ea14. Local clarity/Deeds1072 and selection344 PASS
+on these final bytes. Publish this merge and run exact-head CI next.
+
+
 PR51, branch feature/lab-simple-001, worktree validation-evidence/lab-simple.
 Main advanced first to currency7f149b89, then to Progressive Deeds/PR52 at
 e67c984f7faf120818f5285175751586a1cf43cd. Both accepted changes are preserved.

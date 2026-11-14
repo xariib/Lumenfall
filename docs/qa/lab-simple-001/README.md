@@ -1,9 +1,9 @@
 # Simpler Lab — evidence
 
-Current page: a77593c4, preserving accepted main e67c984f (currency header and
-progressive Deeds). replay-deeds.json verifies four paired8h windows: all full
+Current page: 81c50389, preserving accepted main5f0d9762 (currency header and
+progressive Deeds). replay-details.json verifies four paired8h windows: all full
 saved states, rewards and original canonical endpoints match. Current local
-selection344, slots488, clarity plus Deeds1070, Deeds core313 and39 task contexts
+selection344, slots488, clarity plus Deeds1072, Deeds core313 and39 task contexts
 PASS. Final exact-source CI, integrated Android publication and public download
 verification remain open. Physical-phone/WebView60/TalkBack/human review is open.
 

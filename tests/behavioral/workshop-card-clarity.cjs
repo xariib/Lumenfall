@@ -56,4 +56,5 @@ for(const depth of [1,14,15,25,39,40,59,60,90])for(const apparatus of [0,1,2]){
  }
 }
 const progressiveDeeds=require('./deeds-progressive.cjs').run(source);
-console.log(JSON.stringify({status:'pass',checks,progressiveDeeds,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
+const nativeRecapPrecondition=require('./native-recap-precondition.cjs').verify(source);
+console.log(JSON.stringify({status:'pass',checks,progressiveDeeds,nativeRecapPrecondition,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
