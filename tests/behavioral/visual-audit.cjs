@@ -5,6 +5,7 @@ const source=path.resolve(process.argv[2]||'index.html'),out=path.resolve(proces
 let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 function one(a,b){assert.equal(driver.split(a).length,2);driver=driver.replace(a,()=>b);}
 if(process.argv.includes('--mutate-lab-heading'))one("source=fs.readFileSync(sourcePath,'utf8');","source=fs.readFileSync(sourcePath,'utf8').replace('height:auto;padding:12px;margin-bottom:8px;','height:64px;padding:12px;margin-bottom:8px;');");
+if(process.argv.includes('--mutate-currency-labels'))one("source=fs.readFileSync(sourcePath,'utf8');","source=fs.readFileSync(sourcePath,'utf8').replace('.hud .chip .lbl{','.hud .chip .lbl{visibility:hidden;');");
 one('breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}',String.raw`
  visualSeed:function(){var s=freshState();s.maxDepthEver=350;s.depth=81;s.lumen=1e12;s.shards=1e10;s.motes=5000;s.prisms=10000;s.comets=20;s.ascendCount=80;s.tutorialDone=true;s.questDay=todayStr();s.lastSeen=Date.now();SPIRITS.forEach(function(sp){s.spirits[sp.id]=50;s.empowerQueue[sp.id]=false;});s.activeParty=SPIRITS.slice(0,3).map(function(sp){return sp.id;});return s;},
  visualCurrencies:function(amount){state.lumen=state.shards=state.motes=state.prisms=state.comets=state.sigils=amount;renderHud();return [state.lumen,shardsAvailable(),state.motes,state.prisms,state.comets,state.sigils].map(formatRiftNumber);},
@@ -29,20 +30,22 @@ driver=driver.slice(0,start)+String.raw`
      return Array.from(document.querySelectorAll('.hud .chip')).map(e=>{
       const icon=e.querySelector('.glyph-icon'),label=e.querySelector('.lbl'),value=e.querySelector('.val');
       const c=getComputedStyle(e),l=getComputedStyle(label),v=getComputedStyle(value);
-      const r=e.getBoundingClientRect(),i=icon.getBoundingClientRect(),n=value.getBoundingClientRect();
+      const r=e.getBoundingClientRect(),i=icon.getBoundingClientRect(),n=value.getBoundingClientRect(),t=label.getBoundingClientRect();
       return {name:label.textContent,text:value.textContent,display:c.display,height:r.height,width:r.width,
        background:c.background,border:c.border,borderRadius:c.borderRadius,shadow:c.boxShadow,padding:c.padding,
        fontSize:v.fontSize,fontFamily:v.fontFamily,fontWeight:v.fontWeight,lineHeight:v.lineHeight,iconWidth:i.width,iconHeight:i.height,
        inline:i.right<=n.left&&Math.abs((i.top+i.bottom-n.top-n.bottom)/2)<=1,
        fits:n.right<=r.right&&value.scrollWidth<=value.clientWidth+1,
        accessible:l.display!=='none'&&l.visibility!=='hidden'&&label.getAttribute('aria-hidden')!=='true',
-       nameHidden:l.position==='absolute'&&(l.clip!=='auto'||l.clipPath!=='none')};
+       nameVisible:t.width>1&&t.height>1&&l.position!=='absolute'&&l.clip==='auto'&&l.clipPath==='none'&&Number(l.opacity)>0,
+       nameFits:i.right<=t.left&&t.right<=n.left&&t.top>=r.top&&t.bottom<=r.bottom&&label.scrollWidth<=label.clientWidth+1,
+       nameFont:l.fontSize};
      });
     }.toString()+')()');
     ok(hud.length===6,'all six currency wallets '+screen);
     ok(hud.every(c=>c.height===(height<=680?20:24)&&c.iconWidth===11&&c.iconHeight===11&&c.fontSize==='10px'),'original Rift currency dimensions '+screen);
-    ok(hud.every(c=>c.inline&&c.fits&&c.accessible&&c.nameHidden),'inline icon/amount, unclipped values and accessible names '+JSON.stringify({width,scale,height,screen,hud}));
-    const style=hud.map(({text,name,inline,fits,accessible,nameHidden,...c})=>c);
+    ok(hud.every(c=>c.inline&&c.fits&&c.accessible&&c.nameVisible&&c.nameFits&&c.nameFont==='9px'),'visible currency names between icons and unclipped amounts '+JSON.stringify({width,scale,height,screen,hud}));
+    const style=hud.map(({text,name,inline,fits,accessible,nameVisible,nameFits,...c})=>c);
     if(screen==='battle')rift=style;
     ok(JSON.stringify(style)===JSON.stringify(rift),'same Rift currency size/style '+screen);
     for(const amount of [0,987654321,1e300]){

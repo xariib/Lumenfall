@@ -18,6 +18,10 @@ Android 0.2.117 and is retained above. PR49 currency and PR52 Deeds are included
 in both 0.2.117 and the combined release. [PR50](tasks/RIFT_BOND_DISPLAY_001.md)
 is now merged: names stay on Rift; boosts remain in the Wisp menu.
 
+14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
+at7f149b89. Human correction requires visible currency names; focused correction
+passes1,776 layout checks. Integration/Android delivery pending.
+
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
 through PR48 at `63c63b1a`: one scene and six stronger themes replace packs;
