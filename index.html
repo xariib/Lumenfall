@@ -2436,17 +2436,29 @@
   #study-list .study-running>.study-select,#study-list .study-running>.study-bar-track,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
   #study-list .study-running>.study-speed-controls{margin:8px 0 0;}#study-list .study-running>.node-queue-toggle{align-self:start;margin-top:8px;}#study-list .study-speed-expanded>.study-speed-controls{grid-column:1/-1;}
 
-  /* LAB_TIMER_LAYOUT_001: one fixed-height countdown above the control row. */
+  /* LAB_SIMPLE_001: countdown and actions share one quiet progress panel. */
   #study-list .study-running{grid-template-columns:auto minmax(0,1fr);align-items:center;position:relative;}
   #study-list .study-running>.study-select,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
   #study-list .study-running>.study-select,#study-list .study-running>h3{grid-column:1/-1;grid-row:1;}
   #study-list .study-running>.earned-effect{grid-row:2;}
   #study-list .study-running>.effect-note{grid-row:5;}
-  #study-list .study-running>.study-repeat{grid-column:1;grid-row:4;align-self:stretch;justify-content:center;margin:8px 0 0;min-width:44px;min-height:44px;padding:5px;display:flex;flex-direction:column;align-items:center;gap:2px;}
-  .study-repeat>span:first-child{font-size:1.1rem;line-height:1;}.study-queue-state{font-size:.55rem;}
-  #study-list .study-running>.study-bar-track{grid-column:1/-1;grid-row:3;margin:8px 0 0;min-width:0;height:44px;min-height:44px;box-sizing:border-box;padding:4px;}
-  #study-list .study-running>.study-speed-controls{grid-column:2;grid-row:4;justify-self:end;margin:8px 0 0;padding:0;border:0;min-width:0;}
-  #study-list .study-speed-open{width:auto;min-width:44px;max-width:6em;padding:7px;font-size:.7rem;white-space:normal;}
+  #study-list .study-running>.study-repeat{grid-column:1;grid-row:4;z-index:1;align-self:center;justify-content:center;margin:0 0 8px 8px;min-width:44px;min-height:44px;padding:5px 10px;display:flex;align-items:center;gap:6px;border:0;background:transparent;}
+  .study-repeat>span:first-child{font-size:1.1rem;line-height:1;}.study-queue-state{font-size:.7rem;}
+  #study-list .study-running>.study-bar-track .study-bar-fill{opacity:.22;}
+  #study-list .study-running>.study-bar-track{grid-column:1/-1;grid-row:3/5;align-self:stretch;margin:8px 0 0;min-width:0;min-height:96px;height:auto;box-sizing:border-box;padding:4px 4px 56px;}
+  #study-list .study-running{grid-template-rows:auto auto 52px 52px;}
+  #study-list .study-running>.study-speed-controls{grid-column:2;grid-row:4;z-index:1;justify-self:end;align-self:center;margin:0 8px 8px 0;padding:0;border:0;min-width:0;}
+  #study-list .study-speed-open{width:auto;min-width:44px;max-width:none;padding:7px 10px;font-size:.7rem;white-space:normal;border:0;background:transparent;}
+  #study-list .study-catalogue .study-card{position:relative;}
+  #study-list .study-choice-hit{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;min-height:44px;margin:0;padding:0;border:0;border-radius:inherit;background:transparent;cursor:pointer;}
+  #study-list .study-choice-hit:disabled{cursor:default;}
+  #study-list .study-choice-hit:focus-visible{outline:2px solid var(--lumen);outline-offset:2px;}
+  .study-confirm-overlay{padding:12px;box-sizing:border-box;background:rgba(4,9,20,.88);z-index:40;}
+  .study-confirm-overlay .modal{width:100%;max-width:420px;min-width:0;max-height:calc(100vh - 24px);overflow:auto;overflow-wrap:break-word;text-align:left;box-sizing:border-box;padding:16px;}
+  .study-confirm-overlay h2{font-size:1rem;}
+  .study-confirm-overlay p{font-size:.75rem;line-height:1.5;}
+  .study-confirm-overlay .study-confirm-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .study-confirm-actions button{flex:1;min-width:100px;min-height:44px;white-space:normal;}
   #study-list .study-speed-expanded{z-index:30;}
   html.study-menu-open .shell{backdrop-filter:none;}
   html.study-menu-open #tab-research{contain:none;animation:none;}
@@ -10286,7 +10298,49 @@ function replaceStudyMarkup(html){
   if(document.activeElement!==focus)focus.focus({preventScroll:true});
   input.studyRendering=false;range.studyRendering=false;
 }
-var selectedStudySlot=-1,expandedStudySpeedSlot=-1;
+var selectedStudySlot=-1,expandedStudySpeedSlot=-1,pendingStudyStart=null;
+function studyChoiceAction(node,plan){
+  return '<button type="button" class="study-choice-hit" data-study="'+node.id+'" aria-label="'+(plan.paused?'Resume ':'Start ')+node.name+'" aria-describedby="study-price-'+node.id+'" '+(plan.affordable?'':'disabled')+'></button>';
+}
+function closeStudyStartConfirmation(){
+  var pending=pendingStudyStart,el=document.querySelector('#study-start-confirmation');
+  pendingStudyStart=null;
+  if(el){closeOverlay(el);el.remove();}
+  var target=pending && els['study-list'].querySelector('[data-study="'+pending.id+'"]');
+  if(!target || !target.getClientRects().length)target=pending && els['study-list'].querySelector('[data-study-slot="'+pending.slot+'"]');
+  if(target && !target.disabled)target.focus({preventScroll:true});
+}
+function refreshStudyStartConfirmation(){
+  if(!pendingStudyStart)return;
+  var node=LONG_STUDIES.find(function(n){return n.id===pendingStudyStart.id;}),el=document.querySelector('#study-start-confirmation');
+  if(!el || !node)return;
+  var plan=getStudyStartPlan(node,pendingStudyStart.slot);
+  el.querySelector('[data-study-confirm-start]').disabled=!plan.affordable;
+  el.querySelector('[data-study-confirm-price]').innerHTML=plan.paused?'Resume saved paid work · no additional cost':purchasePriceMarkup('lumen',plan.cost.lumen)+' '+purchasePriceMarkup('shard',plan.cost.shard);
+}
+function chooseStudy(node){
+  if(!node || !flushLiveProgress())return;
+  var slot=selectedStudySlot>=0?selectedStudySlot:freeStudySlot();
+  if(!getStudyStartPlan(node,slot).affordable)return;
+  var active=state.activeStudies.find(function(a){return a.slot===slot;});
+  if(!active){startStudy(node,slot);return;}
+  if(pendingStudyStart)return;
+  pendingStudyStart={id:node.id,slot:slot,previous:active.id};
+  var el=document.createElement('div');el.id='study-start-confirmation';el.className='overlay study-confirm-overlay';
+  el.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="study-confirm-title" aria-describedby="study-confirm-note" tabindex="-1"><h2 id="study-confirm-title">Start '+node.name+'?</h2><p id="study-confirm-note">Do you want to start this research in Lab '+(slot+1)+'? The current research’s paid work will be saved so you can resume it later.</p><p data-study-confirm-price></p><div class="study-confirm-actions"><button class="ghost-btn" data-study-confirm-cancel>Cancel</button><button class="buy-btn" data-study-confirm-start>Start research</button></div></div>';
+  document.body.appendChild(el);
+  el.querySelector('[data-study-confirm-cancel]').onclick=closeStudyStartConfirmation;
+  el.onclick=function(e){if(e.target===el)closeStudyStartConfirmation();};
+  el.querySelector('[data-study-confirm-start]').onclick=function(){
+    if(!flushLiveProgress())return;
+    var pending=pendingStudyStart,current=state.activeStudies.find(function(a){return a.slot===pending.slot;});
+    // If automation changed the slot while the dialog was open, ask again.
+    if(current && current.id!==pending.previous){closeStudyStartConfirmation();return;}
+    if(!getStudyStartPlan(node,pending.slot).affordable){refreshStudyStartConfirmation();return;}
+    closeStudyStartConfirmation();startStudy(node,pending.slot);
+  };
+  refreshStudyStartConfirmation();openOverlay(el,closeStudyStartConfirmation);
+}
 function closeStudySpeedMenu(){
   var slot=expandedStudySpeedSlot,el=els['study-list'].querySelector('.study-speed-editor:not([hidden])');
   expandedStudySpeedSlot=-1;
@@ -10349,7 +10403,7 @@ function renderLongStudies(){
     var queued=LONG_STUDIES.find(function(n){return n.id===state.studySlotProjects[si] && state.studyQueue[n.id] && !n.retiredTo && !getStudyStartPlan(n).maxed;});
     html+='<div class="card study-slot '+(locked?'locked-node':'')+'" style="order:'+si+'" data-lab-slot="'+si+'">'+
       (locked?'<h3>Lab '+(si+1)+'</h3><p class="lock-note">'+studySlotUnlockText(si)+'</p>':
-      '<button class="study-select" data-study-slot="'+si+'" aria-label="Select research for Lab '+(si+1)+'"><span class="study-slot-number">Lab '+(si+1)+'</span><strong>'+(queued?queued.name:'Select research')+'</strong><span aria-hidden="true">›</span></button>'+
+      '<button class="study-select" data-study-slot="'+si+'" aria-label="Select research for Lab '+(si+1)+'"><span class="study-slot-number">Lab '+(si+1)+'</span><strong>'+(queued?queued.name:'Choose research')+'</strong><span aria-hidden="true">›</span></button>'+
       (queued?'<p>Queued for next level</p><button class="node-queue-toggle active" data-study-queue="'+queued.id+'">Queue ON</button>':'')+
       (held?'<p data-slot-boost-time="'+boost.expiresAtMs+'" data-slot-boost="'+si+'">'+boost.mult+'x · '+fmtStudyDuration((boost.expiresAtMs-gameplayNowMs())/1000)+' left</p>':'')+
       (state.studyBoostQueue && state.studyBoostQueue['slot'+si] && state.studyBoostQueue['slot'+si].enabled?'<button class="mini-btn" data-study-boost-stop-slot="'+si+'">Queue Speed Up ON · Turn OFF</button>':''))+'</div>';
@@ -10385,7 +10439,7 @@ function renderLongStudies(){
     var level=plan.level,cost=plan.cost,dur=plan.duration;
     var queueOn = !!state.studyQueue[lnode.id];
     if(plan.paused){
-      html += '<div class="card study-card" data-study-card="'+lnode.id+'"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' · Saved work</span></div>'+'<p class="desc">'+lnode.desc+'</p>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note">'+fmtStudyDuration(dur)+' of paid work remains.</div><button class="mini-btn" data-study="'+lnode.id+'" '+(plan.affordable?'':'disabled')+'>Select research</button></div>';
+      html += '<div class="card study-card" data-study-card="'+lnode.id+'"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' · Saved work</span></div>'+'<p class="desc">'+lnode.desc+'</p>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note" id="study-price-'+lnode.id+'">'+fmtStudyDuration(dur)+' of paid work remains. No additional cost.</div>'+studyChoiceAction(lnode,plan)+'</div>';
       return;
     }
     if(plan.maxed){
@@ -10393,7 +10447,7 @@ function renderLongStudies(){
       return;
     }
     html=(html + '<div class="card study-card" data-study-card="' + lnode.id + '" data-state="' + (plan.maxed?'maxed':plan.affordable?'affordable':'unavailable') + '" style="margin-bottom:10px;">' + '<div class="name"><span class="study-identity"><span class="study-title">' + lnode.name + '</span><span class="study-level" aria-label="Current level ' + level + '">Lv. ' + level + (lnode.levelCap!==undefined?' / '+lnode.levelCap:'') + (plan.maxed?' · Maxed':'') + '</span></span>' + '</div>' + '<p class="desc">'+lnode.desc+'</p>' + projectEarnedMarkup(lnode.id) + labCapacityChallengesMarkup(lnode,plan) + '<div class="effect-note">' + (plan.maxed?Amount.add(Amount.add('Effect cap reached. Queue ',queueOn?'ON':'OFF'),' retained; no new starts.'):
-        Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + '<button class="mini-btn" data-study="' + lnode.id + '" ' + (plan.maxed?'':Amount.add(Amount.add('aria-describedby="study-price-',lnode.id),'" ')) + (plan.affordable?'':'disabled') + ' style="margin-top:10px;width:100%;">' + (plan.maxed?'Maxed':plan.reason==='unavailable'?'Unavailable':selectedStudySlot>=0?'Select research':'Choose a slot') + '</button>' + '</div>');
+        Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + studyChoiceAction(lnode,plan) + '</div>');
   });
 
   html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 23 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Research continues for the full time away, beyond the 12-hour combat limit. Queued levels continue while Lumen and Shards are available; already-paid work finishes even if funds run out. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
@@ -10440,7 +10494,7 @@ function renderLongStudies(){
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var lnode = LONG_STUDIES.find(function(n){ return n.id===btn.getAttribute('data-study'); });
-      startStudy(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);
+      chooseStudy(lnode);
     });
   });
   els['study-list'].querySelectorAll('[data-study-slot]').forEach(function(btn){
@@ -13851,6 +13905,7 @@ function checkAffordability(visibleOnly,force){
     if(!lnode) return;
     btn.disabled = !getStudyStartPlan(lnode,selectedStudySlot>=0?selectedStudySlot:undefined).affordable;
   });
+  refreshStudyStartConfirmation();
   refreshLabCapacityChallenges();
   els['study-list'].querySelectorAll('[data-speed-study]').forEach(function(btn){
     btn.disabled=!getStudyBoostPlan(btn.getAttribute('data-speed-study'),Number(btn.getAttribute('data-speed')),Number(btn.getAttribute('data-hours'))).affordable;

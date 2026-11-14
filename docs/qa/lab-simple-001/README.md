@@ -1,0 +1,29 @@
+# Simpler Lab — evidence
+
+Baseline main858d713f, product ce51bc14. Node24.22.1/Windows and
+Chromium157.0.8103.79. Baseline slot/menu488, queue64 and slot55 PASS.
+
+Browser receipts: simple344/18 profiles; slots488/18; clarity524/18;
+slot-challenges290/12; access890/12; boost-queue993/18; longtail326/12;
+timed1182/12. `negative.json` deliberately removes confirmation and fails
+at the required replacement-dialog assertion with clean browser teardown.
+Each receipt records its exact source SHA and browser version. Initial results
+use1f32cd8b; final source48f96606 only expands CSS inset into equivalent
+top/right/bottom/left properties for WebView60. Final simple/slot reruns and
+GitHub checks are recorded separately as available.
+
+`replay.json`: four8h windows per source,115200 independent one-second calls
+on both main and candidate. Full endpoint states, rewards and accepted
+canonical hashes all match. No expected state or reward vector changed;
+only the oracle's product source binding changed. The final CSS-only delta
+is recorded, with identical complete script bytes verified.
+
+Original core checks: queue64, timed boosts1480, workshop/slot417 PASS.
+The original22-scenario browser regression exposed its old immediate-switch
+assumption in r3-destinations. The test now explicitly checks the prompt and
+unchanged state before confirming; all original queue/payment assertions remain.
+
+Visuals: inspected normal/enlarged mobile timer and confirmation screenshots.
+Self-review and automated checks only; no independent review claimed.
+CI, integration and Android delivery remain pending until receipts are saved.
+Physical-phone, exact WebView60 DOM and TalkBack acceptance are unverified.

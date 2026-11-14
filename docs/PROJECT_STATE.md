@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+14 November: [Simpler Lab](tasks/LAB_SIMPLE_001.md) is in progress on
+feature/lab-simple-001. Timer, Queue and Speed Up share a panel; research
+cards start directly in empty slots and ask before replacing paid work.
+Local mobile/regression checks and offline replay are recorded in the task;
+GitHub CI, integration and Android delivery remain pending.
+
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
 through PR48 at `63c63b1a`. Separate background/Wisp/enemy packs and Live/Still

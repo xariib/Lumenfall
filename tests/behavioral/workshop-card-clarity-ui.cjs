@@ -20,7 +20,7 @@ module.exports=async function({send,ev,pause,check,records}){
   await ev('document.querySelector(".study-slider-controls").open=true;document.querySelector("[data-study-speed-target=guardmastery]").value=1;document.querySelector("[data-study-speed-target=guardmastery]").dispatchEvent(new Event("change",{bubbles:true}));window.rangeBefore=document.querySelector("[data-study-speed-target=guardmastery]");rangeBefore.focus();uiRegression.render();');
   check(await ev('rangeBefore===document.querySelector("[data-study-speed-target=guardmastery]")&&document.activeElement===rangeBefore'),'active slider stays attached and focused');
   await touch('[data-speed-study=guardmastery]');await ev('window.boostBefore=JSON.stringify(uiRegression.get().studyBoosts.slot1)');
-  await touch('[data-study-slot="1"]');await touch('[data-study="wispascend"]');
+  await touch('[data-study-slot="1"]');await touch('[data-study="wispascend"]');await touch('[data-study-confirm-start]');
   check(await ev('uiRegression.get().activeStudies[0].id==="wispascend"&&uiRegression.get().activeStudies[0].slot===1&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===boostBefore'),'native replacement retains slot speed');
   await touch('[data-study-queue=wispascend]');
   check(await ev('uiRegression.get().activeStudies.length===1&&!uiRegression.get().studyQueue.wispascend&&document.querySelector("[data-lab-slot=\\"1\\"] [data-study-slot]")&&JSON.stringify(uiRegression.get().studyBoosts.slot1)===boostBefore'),'Queue OFF keeps the active research and slot boost');
@@ -34,7 +34,7 @@ module.exports=async function({send,ev,pause,check,records}){
   const waitingSlot='document.querySelector('+JSON.stringify('[data-lab-slot="1"]')+')';
   check(await ev(waitingSlot+'.textContent.includes("Queued for next level")&&document.querySelector("[data-study-queue=guardmastery]")'),'waiting research stays visible with Queue OFF available');
   await touch('[data-study-queue=guardmastery]');
-  check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().studySlotProjects[1]===null&&'+waitingSlot+'.textContent.includes("Select research")&&uiRegression.get().lumen===0&&uiRegression.get().shards===0'),'native Queue OFF clears waiting intent without spending');
+  check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().studySlotProjects[1]===null&&'+waitingSlot+'.textContent.includes("Choose research")&&uiRegression.get().lumen===0&&uiRegression.get().shards===0'),'native Queue OFF clears waiting intent without spending');
   const comet=require('./auto-ascend-challenges.cjs').qualify(seed());comet.schemaVersion=5;comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
   await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&document.getElementById("comet-commands").hidden&&!document.querySelector("[data-comet-command]")'),'retired commands have no player UI');
