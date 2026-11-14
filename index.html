@@ -10745,6 +10745,7 @@ function renderAchievements(){
   deedSeries(state).forEach(function(series){
     var a=series.next;
     var done=!!state.achieved[a.id],presentation=deedPresentation(a),progress=deedProgress(a,state);
+    var scope=presentation.scope||deedPresentation(series.milestones[0]).scope;
     var current=progress ? (done ? progress.target : Math.min(progress.current,progress.target)) : 0;
     var pending=done && state.cometClaims.deeds[a.id]===true;
     var pendingReward=series.earned.reduce(function(sum,m){return sum+(state.cometClaims.deeds[m.id]===true?m.reward:0);},0);
@@ -10761,7 +10762,7 @@ function renderAchievements(){
       '<div class="ach-progress mono" data-deed-progress="'+a.id+'" data-current="'+current+'" data-target="'+(progress?progress.target:0)+'">'+deedProgressText(a,done)+'</div>'+
       deedChallengeProgress(a,done)+
       (series.milestones.length>1?'<div class="desc">'+series.earned.length+' / '+series.milestones.length+' milestones completed</div>':'')+
-      (presentation.scope?cardDetails('deed-'+a.id,presentation.scope):'')+
+      (scope?cardDetails('deed-'+series.milestones[0].id,scope):'')+
       (a.unlocks?'<div class="ach-unlock">Unlocks: '+a.unlocks+'</div>':'')+
       (pendingReward?'<div class="deed-credit-state" data-deed-credit-state="due">Reward pending · '+pendingReward+' Comets preserved</div>':'')+
       (history?cardDetails('deed-history-'+series.key,history,'Completed milestones ('+(series.earned.length-(done?1:0))+')'):'')+

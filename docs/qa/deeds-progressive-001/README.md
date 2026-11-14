@@ -57,3 +57,15 @@ Android31's [stock dump implementation](https://android.googlesource.com/platfor
 waits for idle before reading the tree and exits on timeout. This supports an
 inspection-failure hypothesis, not a verified root cause or substitute for a pass.
 Exact-main CI and final public Android delivery remain pending.
+
+## Final Details preservation
+
+Final review preserved paid-Forge explanations after60→100 and the same native
+Details focus/open identity. Current source
+552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28 passes313
+focused/417 original core checks,1,072 UI checks/36 profiles and the original
+1,071-check Deed contract. [Current mobile](final-mobile.json), [image](final-320-200.png).
+[Actual current replay](final-replay.json) recomputed115,200 one-second calls and
+retained every released full-state endpoint. The e67c984f checks are prior-source
+evidence; repeat required integrated gates on these final bytes.
+[Full preceding checkpoint](task-before-final-detail.txt) preserves earlier status.
