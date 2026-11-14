@@ -179,9 +179,13 @@ window.runRiftStatusQa=async function(b,ctx,assert){
         ok(status&&status.textContent===(!powered?'Lv 0':''),'powered Rift cards do not repeat ability status as visible text');
         ok(!card.querySelector('.rift-wisp-time')&&!/\b\d+(?:\.\d+)?\s*(?:s|sec|seconds)\b/i.test(card.textContent),'Rift card has no visible ability countdown');
       });
-      var active=b.riftStatus.active();same([...document.querySelectorAll('[data-bond-effect]')].map(x=>x.querySelector('.rift-bond-copy').textContent),active.map(x=>x.riftEffect||x.effect),'Rift shows exact compact active Bond effects');
-      active.forEach(x=>ok(q('[data-bond-effect="'+x.id+'"]').getAttribute('aria-label')===x.name+': '+x.effect,'full effect remains accessible'));
-      ok(q('#rift-bond-effects').hidden===!active.length,'no stale effects when no Bond is active');
+      var active=b.riftStatus.active();
+      ok(!q('#rift-bond-effects')&&!q('#tab-battle [data-bond-effect]')&&!q('#tab-battle .rift-bond-copy'),'Rift has no visible or accessible Bond boost list');
+      active.forEach(x=>{
+        ok(q('#bond-summary').textContent.includes(x.name.replace(' Bond','')),'active Bond name remains on Rift');
+        var row=[...document.querySelectorAll('#bond-card .bond-row')].find(row=>row.querySelector('.bond-name').textContent.includes(x.name));
+        ok(row&&row.classList.contains('active')&&row.querySelector('.bond-effect').textContent===x.effect,'full active Bond boost remains in the Wisp menu');
+      });
     }
     // Deliberately interleave both pairs with the fifth Wisp in the middle.
     s.activeParty=['ember','tide','stone','void','aurora'];install(s);partyCheck();
@@ -191,11 +195,13 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     function bondPresentation(){
       var cards=[...document.querySelectorAll('[data-rift-wisp]')],active=b.riftStatus.active(),colors=[],marks=[];
       active.forEach(bond=>{
-        var pair=cards.filter(x=>bond.ids.includes(x.dataset.riftWisp)),effect=q('[data-bond-effect="'+bond.id+'"]');
+        var pair=cards.filter(x=>bond.ids.includes(x.dataset.riftWisp));
         ok(pair.length===2,'each overlapping Bond has exactly two distinct partner cards');
         if(pair.every(card=>card.dataset.bond===bond.id))ok(Math.abs(cards.indexOf(pair[0])-cards.indexOf(pair[1]))===1,'primary Bond partners remain adjacent');
-        var color=effect.style.getPropertyValue('--bond-color'),mark=effect.querySelector('.rift-bond-mark').textContent;
-        pair.forEach(card=>{var own=card.querySelector('[data-wisp-bond="'+bond.id+'"]');ok(own&&own.style.getPropertyValue('--bond-color')===color&&own.textContent===mark&&card.getAttribute('aria-label').includes(bond.name),'all overlapping partners match bonus color, shape and accessible name');});
+        var first=pair[0].querySelector('[data-wisp-bond="'+bond.id+'"]');
+        ok(!!first,'Bond partner marking remains without the boost list');
+        var color=first.style.getPropertyValue('--bond-color'),mark=first.textContent;
+        pair.forEach(card=>{var own=card.querySelector('[data-wisp-bond="'+bond.id+'"]');ok(own&&own.style.getPropertyValue('--bond-color')===color&&own.textContent===mark&&card.getAttribute('aria-label').includes(bond.name),'all overlapping partners match Bond color, shape and accessible name');});
         colors.push(color);marks.push(mark);seenVisuals[bond.id]={color,mark};
       });
       ok(new Set(colors).size===active.length&&new Set(marks).size===active.length,'simultaneous Bonds have distinct colors and shapes');
@@ -439,7 +445,7 @@ window.riftStatusMobile=(()=>{
   ok(q('#bond-summary').getAttribute('aria-label')===(active.length?'Active Bonds: '+active.map(x=>x.name).join(', '):'No Formation Bond active.'),'full Bond summary remains accessible');
   if(kind!=='fresh' && !ctx.scenario.startsWith('rift-status-stacking'))ok(active.length===window.riftStatusWorst(b,ctx).bonds.length&&q('#buff-indicator').textContent.includes('+50%'),'worst current Bonds and buff fixture survives live ticks');
   if(kind!=='fresh' && ctx.scenario.startsWith('rift-status-stacking'))ok(active.length===window.riftStatusWorst(b,ctx).bonds.length && q('#buff-indicator').textContent.includes('+100%') && q('#buff-indicator').textContent.includes('next expiry'),'additive worst boost survives live ticks');
-  ['#rift-party','#rift-bond-effects','#boss-combat'].forEach(selector=>{
+  (legacyReadout===true?['#rift-party','#rift-bond-effects','#boss-combat']:['#rift-party','#boss-combat']).forEach(selector=>{
    var el=q(selector);if(el.hidden)return;var r=rect(el);ok(r.top>=mr.top&&r.bottom<=nav.top&&r.width>0,selector+' visible above navigation');
    [el,...el.querySelectorAll('.rift-wisp-name,.rift-wisp-power,.rift-wisp-state,.rift-bond-effect,strong,.boss-net')].forEach(x=>ok(x.scrollWidth<=x.clientWidth+1&&x.scrollHeight<=x.clientHeight+1,selector+' full contents fit: '+x.className+' scroll='+x.scrollWidth+'x'+x.scrollHeight+' client='+x.clientWidth+'x'+x.clientHeight+' text='+x.textContent));
    boxes[selector]={x:r.x,y:r.y,width:r.width,height:r.height};
@@ -466,7 +472,10 @@ window.riftStatusMobile=(()=>{
   }
   ok(q('.battle-row').contains(q('#enemy-stage'))&&q('.battle-row').contains(q('.hp-wrap'))&&q('.battle-row').contains(q('#boss-combat'))&&q('.battle-row').contains(q('#rift-party')),'attack surface, HP, Boss regen and formation share the integrated scenic region');
   ok(q('#boss-combat').hidden||hp.bottom<=party.top&&party.bottom<=rect(q('#boss-combat')).top,'boss regen sits below HP and the standalone formation, leaving attacks unobscured');
-  ok(q('#rift-bond-effects').hidden||bonds.bottom<=rect(q('#rift-bond-effects')).top&&rect(q('#rift-bond-effects')).bottom<=stats.top,'full Bond effects separate from names and precede the numeric row');
+  // Only the exact immutable readability baseline receives the old contract;
+  // its hash is pinned by rift-guidance.cjs. Current games retain strict absence.
+  if(legacyReadout===true)ok(q('#rift-bond-effects').hidden||bonds.bottom<=rect(q('#rift-bond-effects')).top&&rect(q('#rift-bond-effects')).bottom<=stats.top,'historical Bond effects separate from names and precede the numeric row');
+  else ok(!q('#rift-bond-effects')&&!q('#tab-battle [data-bond-effect]'),'mobile Rift retains names without Bond boost rows');
   cards.forEach(card=>ok(!!card.querySelector('.rift-wisp-power')&&!!card.querySelector('.rift-wisp-state')&&!card.querySelector('.rift-wisp-time')&&!/\b\d+(?:\.\d+)?\s*(?:s|sec|seconds)\b/i.test(card.textContent),'mobile cards show power and state without an ability countdown'));
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){ok(!q('.combat-vfx')&&getComputedStyle(q('#enemy-stage'),'::after').animationName==='none','reduced motion has no combat effects or rotating aura');}
   ok(!document.documentElement.hasAttribute('data-qa-runtime-error'),'no runtime errors');
