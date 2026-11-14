@@ -82,3 +82,22 @@ full-minute credit and preservation of every unrelated saved field. Removing
 the new setup reproduces the empty-reward failure. Existing10 clock/replay checks
 and their control pass too. Product bytes stay552b28dc; no popup is forced, native
 deadlines are unchanged, and no visibility/security/save assertion is removed.
+
+## Exact-main native acceptance and coordinated delivery
+
+Commit5f0d976210eb62fa37917129bd7e8bc453806d8e passed signed Android0.2.116
+[run43591494545](https://github.com/xariib/Lumenfall/actions/runs/43591494545).
+[Native receipt](android-5f-acceptance/emulator-upgrade.json) records all17 series,
+next Rift2500 after earned1000, completed history opened by actual Android touch,
+save/paid-work retention and updater acceptance. [Screenshot](android-5f-acceptance/installed-deeds-progressive.png)
+was visually inspected. [Retail runtime](android-5f-acceptance/production-runtime.json)
+passes original normal launch, visible controls and security checks. APK SHA256
+2ef5c469256f02968622f4a0761a0d06ee0beefbbaf58c7af593b4e5377091b4.
+
+[Exact-main CI](5f0d976210eb62fa37917129bd7e8bc453806d8e-ci.json) records seven focused
+successes and one failed premerge. [Failure](5f-premerge-failure.json) preserves
+the raw CDP Input.dispatchTouchEvent deadline after37 checks in the Lab next-boost
+UI test. All Deeds checks passed before that failure. Required acceptance remains
+open; no timeout/assertion is changed. The explicitly authorized Rift/currency
+coordination now serializes one combined source and signed publication. Hold
+main/build mutations here until its exact-source/public package verification.

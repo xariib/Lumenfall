@@ -1,7 +1,9 @@
 # DEEDS_PROGRESSIVE_001 — one advancing card per Deed series
 
 Status: integrated; final-source main validation and Android delivery pending.
-Owner: current feature chat; no delegation, new chats or messages.
+Owner: current feature chat. Existing-chat release coordination authorized by the
+human in Rift thread01a1d77b-4453-7a21-9961-55d70c6cd963; verified its explicit
+“Yes, coordinate those two chats” reply. No delegation or new chats.
 Current product SHA256: `552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28`.
 
 ## Original request — 14 November 2026
@@ -125,14 +127,22 @@ exact-commit main gates/native build after integrating this test-only correction
 
 ## Next concrete action
 
-Run all eight exact-main workflow_dispatch gates on this final source, checking
-overlap if main moves, using
-the ignored validation-evidence/deeds-delivery.cjs helper. Save SHA/jobs/artifacts;
-Git main is authoritative because connector PR base metadata can lag. Publish
-only after those gates AND signed upgrade/updater/Deeds/retail acceptance pass.
-Reuse an existing exact-main public build if one exists. Verify anonymous
-versioned/latest APK bytes, packaged assets, identity and feed, then publish final
-task/project status. Keep physical acceptance open and do not archive prematurely.
+Main5f0d976210eb62fa37917129bd7e8bc453806d8e includes the fixture correction.
+Its signed nonpublishing Android0.2.116/run43591494545 PASS: actual Deeds touch,
+save/paid-work upgrade, updater and unchanged retail normal-launch/security checks.
+APK SHA2562ef5c469256f02968622f4a0761a0d06ee0beefbbaf58c7af593b4e5377091b4.
+Seven focused main gates PASS. Premerge43591454422 passed all Deeds checks but
+stopped during another Lab touch test after37 checks with CDP deadline
+Input.dispatchTouchEvent. This is a failed gate, not complete acceptance.
+
+The human authorized serialized delivery with existing Rift/currency chats.
+Rift owner incorporated5f and will own one combined source, integration and signed
+publication. Hold further main pushes/builds; evidence stays on this branch.
+All our own runs already completed, so no cancellation needed. Verify Deeds
+acceptance on the exact combined commit and native/public APK when supplied;
+record required CI and retained failures, then update task/project status through
+the serialized integration. Verify anonymous versioned/latest APK bytes, packaged
+assets, identity and feed. Physical acceptance remains open; do not archive early.
 
 [Byte-preserved earlier checkpoint](../qa/deeds-progressive-001/task-before-final-detail.txt)
 retains full earlier milestones/versions/diagnostics. This compaction keeps startup
