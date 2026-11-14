@@ -116,6 +116,16 @@ Publication of918d is held. Await concrete peer commits and combined-release
 status; messaging that third chat requires separate human authorization, asked
 14 November. No new chats/subagents or messages to other tasks are authorized.
 
+Currency supplied [PR54](https://github.com/xariib/Lumenfall/pull/54), exact commit
+`024029247a42c11ab91218381de5e95e7150bd1b`, based on main6fd9e44f. Its product
+diff is CSS only: visible9px names and two columns at380px or narrower; product
+JavaScript is unchanged. Owner reports1,776 currency checks/16 profiles,1,399
+Rift checks/12 profiles, hidden-name causal control and paired four8h replay
+phases PASS; this chat has inspected the diff, not independently rerun those
+checks. Evidence is in `docs/qa/currency-hud-001/visible-names` on that commit.
+PR CI and actual combined APK acceptance remain pending. Preserve this correction
+in the final combined source; the older icon-only requirement is superseded.
+
 Required CI on the old918d candidate remains failed, not waived. PR premerge
 43595576399 attempt2 again failed Wisp's original300ms setup at check1; its
 other scenarios passed. Dispatch premerge43600605287 failed three unchanged
@@ -127,8 +137,10 @@ the Runtime/DOM variant failed before initialization at Browser.getVersion with
 zero checks. This does not prove a test or product cause and is not release
 acceptance. No harness fix, deadline change or production change follows.
 
-Next: save this checkpoint/evidence on a separate evidence branch without moving
-the frozen source branch or main. Verify the eventual combined APK contains the
+Checkpoint/evidence is saved on `evidence/rift-bond-checkpoint-001`, initially
+9bdf4535, without moving the source branch or main. The combined-release branch
+has advanced to documentation/check-receipt commita3d125a5; no competing main or
+APK action is authorized by this update. Verify the eventual combined APK contains the
 Rift change and report only observed automated/device acceptance. Do not archive.
 
 ## Superseded standalone delivery attempt
