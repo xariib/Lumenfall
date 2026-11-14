@@ -40,9 +40,16 @@ original assertion, including retail launch. Since that candidate passed, its
 released-baseline comparison did not execute. `diagnostic-success-summary.json`,
 `diagnostic-success-workflow.json` and `native-diagnostic-pass/` retain that
 unpublished0.2.114 acceptance. The native XML includes all six currency names.
-The temporary host diagnostic is restored to its original bytes; the exact
-integrated0.2.112 candidate is running a final unchanged native attempt.
-All existing publication guards must pass before publication.
+The temporary host diagnostic is restored to its original bytes. The exact
+integrated0.2.112 candidate passed all original checks on attempt3; its signed
+preview is in `initial-native-pass/` with exact-source/hash verification.
+
+Main now includes separately owned Deeds changes, so0.2.112 is an unpublished
+preview. The existing current-main combined release must retain that work.
+`current-combined-currency-acceptance.json` records5040ea14 Shared UI43587205273
+passing all1,776 assertions/16 profiles at source552b28dc…; currency rules and
+coverage are retained. Its full release pipeline is still running under the
+Deeds owner. All existing publication guards must pass before publication.
 
 Self-review only. Physical-phone, exact WebView60 DOM, TalkBack and human
 acceptance remain unverified. Android delivery is pending; do not archive.

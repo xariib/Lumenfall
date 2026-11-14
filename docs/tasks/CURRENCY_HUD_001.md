@@ -103,6 +103,11 @@ relative to that main are currency delivery documentation/evidence only.
 The Deeds owner is already running the current exact-main release pipeline.
 Follow that existing delivery and avoid competing builds/publication. Earlier
 e67c984f acceptance does not substitute for later-source required gates.
+The5040ea14 Shared UI43587205273 also passed1,776 assertions/16 profiles at
+source552b28dc1c5a0c161c97eb70acc8c7589add4136caa8414e650b6956d3037b28;
+[current combined proof](../qa/currency-hud-001/current-combined-currency-acceptance.json).
+Its full premerge43587193383 remains in progress; no duplicate Android build
+was dispatched by this currency chat.
 
 Next concrete action: inspect current main's existing workflows/native build
 and combined publication; independently verify the published versioned/latest
