@@ -145,3 +145,19 @@ remain unchanged from the preceding combined candidate. Final CI must bind to
 this new combined commit. A user question requests authorization to message the
 two existing owner chats for integration/build coordination; no messages are
 authorized until the user actually answers. No new chats or subagents requested.
+
+The user subsequently answered: "Yes, coordinate those two chats (Recommended)".
+That explicitly authorizes messages only to the existing Deeds and currency
+feature chats for this integration/build coordination. Sent requests from this
+owner thread `01a1d77b-4453-7a21-9961-55d70c6cd963` to Deeds
+`01a1d77a-79eb-7092-b15b-9036aa5cf959` and currency
+`01a1d779-6137-7220-99d1-681743c57aef`; both tool responses confirmed delivery.
+No new chats/subagents or other chats are authorized. Requested stable main,
+serialized publication, and the Deeds owner's exact tested Farm1 native recap
+fixture correction (their replay found the old minute earned no recap rewards).
+Original recap assertion/deadline and retail acceptance must remain intact.
+
+Latest combined head `0c3a71219946e0e0c485a0132d14b86b68595d1c` includes main
+`5040ea14`; all applicable PR and six dispatch workflows were started. Await the
+native fixture handoff before declaring this final. Preserve source SHA7222c3
+and existing shared helper work; review/import only the necessary tested patch.
