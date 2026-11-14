@@ -1,0 +1,65 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8", "instrumented_sha256": "4a34fcaaf5c3a49db77003ef9146f68e09266ac74fc49691b4fdc202e9c9b72f" }
+FAIL rift-status-contract
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 8.3565894, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "rift-status-contract", "json_status": "fail", "json_scenario": "rift-status-contract", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: "Rift has no visible or accessible Bond boost list"
+  raw artifacts: C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\rift-bond-display\validation-evidence\boost-list-control\rift-status-contract-YZArI9
+  Chromium stderr tail:
+Error: browser close deadline
+    at Timeout.<anonymous> (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\rift-bond-display\tests\behavioral\browser-dom.cjs:40:201)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+
+  stdout tail:
+rt(
+            compressed.rarity[4].shard<100000,
+            'intentional Wisp pacing regression: Mythic cost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash" role="status" aria-live="polite" aria-atomic="true"><span>ASCENDED</span><strong>+20 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="rift-status-contract">{
+  "scenario": "rift-status-contract",
+  "status": "fail",
+  "detail": "Rift has no visible or accessible Bond boost list",
+  "runtimeErrors": []
+}</pre></body></html>
+
+Behavioral QA failed: rift-status-contract null
