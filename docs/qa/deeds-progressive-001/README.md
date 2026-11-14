@@ -24,6 +24,20 @@ Original kills/Ascends/Prisms and all other fields are exact. The bound referenc
 uses the actual corrected full-state hashes. Required CI and signed native/public
 APK checks remain pending; earlier receipts below are not correction acceptance.
 
+PR55/e01f443c exposed independent references still using the former stage rewards.
+[Preserved failures](bar-correction/e01-reference-failures.json) and
+[CI metadata](e01f443c192e5700973127d0ab6fe3f2bd6e2b0d-ci.json) retain that attempt.
+Follow-up updates only exact expected stage amounts and restores old rewards in
+the explicitly historical PR15 adapter. Original frozen hashes and complete-state
+assertions remain unchanged. [Numerical](bar-correction/numerical.json) passes
+1,097,372 checks/controls; [full offline](bar-correction/offline.json) passes18 cases;
+[Auto-Ascend](bar-correction/ascend-reference.json) passes375 checks/controls;
+[Wisp](bar-correction/wisp-reference.json) passes8,099. The initial Linux
+[Wisp failure](bar-correction/e01-wisp-failure.log) was its300ms setup settlement
+deadline at1 check; Windows passed. Raw artifact14129149287 SHA256
+7eed23513759a022e51dea50df143bf835965641b5099de79390d72a06def0d5 was verified.
+No deadline or assertion is reduced. Corrected-source CI/native delivery is open.
+
 Baseline main858d713f, source ce51bc14e82c41929483c6483684add0390690d92d181c8aa35a91336aad0ac8.
 Candidate product 8505c177d642b372d69f8b56f568f581ea44709ab9d3f14c3d4aaa6505bd11ff.
 Task: [DEEDS_PROGRESSIVE_001](../../tasks/DEEDS_PROGRESSIVE_001.md).

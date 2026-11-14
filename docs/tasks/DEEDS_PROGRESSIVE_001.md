@@ -43,6 +43,15 @@ Earlier ec9f9db9 also passes12,884 Comet checks/controls. Final source uses exis
 setLiveText/setLiveAttribute to avoid unchanged writes. Required CI/native build
 are pending; no corrected APK is published and human acceptance is not claimed.
 
+PR55/e01f443c initially failed exact old reward tables/historical-wallet hashes.
+Follow-up changes only independent expected stage amounts and explicitly restores
+old rewards for the frozen PR15 counterfactual. No oracle/assertion was removed.
+Current source passes1,097,372 numerical checks/controls,18 full offline cases,
+375 Auto-Ascend/frozen-hash checks/controls and8,099 Wisp checks. Linux Wisp's
+300ms setup failure is retained; Windows passed. Current shared all-updates
+candidate predates this correction. Next: publish test-reference follow-up,
+repeat PR55 gates and serialize corrected combined CI/native/public delivery.
+
 ## Original request — 14 November 2026
 
 “The deeds list should not be like reach right 10 20 30 and have a box,
