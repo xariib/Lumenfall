@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "command": "node scripts/qa/verify-deeds-offline.cjs --write",
+  "node": "v24.22.1",
+  "baselineSha256": "029b81994baeff862fc3b4038638c210b04ff8ab3bd330d9c64b40bdc3ec678d",
+  "sourceSha256": "d58a8edc12f0ed340b8fbb1126bb3eb139bfbe328119743201deb3e7bdc3c7fc",
+  "oracle": "Independent one-second advance calls, fixed whole-window start",
+  "phases": [
+    {
+      "kills": 88592,
+      "ascends": 4218,
+      "prisms": 97014,
+      "stateSha256": "f86c3103a813fe00337dd5cafcacfa853f04d9b9894b6422ec07f2526a4d8f5f"
+    },
+    {
+      "kills": 88584,
+      "ascends": 4218,
+      "prisms": 97014,
+      "stateSha256": "21e615e1dfcb7521c187ae998651b6ab65725e48f160c6e105b537d91d87fbd0"
+    },
+    {
+      "kills": 88659,
+      "ascends": 4222,
+      "prisms": 97106,
+      "stateSha256": "cb60d4973bf92022b16c5daf4a75f149a3c619ad16f7d338a72160f344a52b0b"
+    },
+    {
+      "kills": 88854,
+      "ascends": 4231,
+      "prisms": 97313,
+      "stateSha256": "51ee4c68f63e84882699b608d5cb72c9a6f32fe71b520c5bd0402d6395355d8c"
+    }
+  ]
+}

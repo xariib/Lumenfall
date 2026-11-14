@@ -1,7 +1,7 @@
 # Rift bond display evidence
 
 Task: [RIFT_BOND_DISPLAY_001](../../tasks/RIFT_BOND_DISPLAY_001.md).
-Product SHA256: `95a077ce05faf9e79f16f9851767eb6b2b99372a31191474da2fcfd80b9c48be`.
+Combined product SHA256: `edaf07822398ec953c0bde94cef87c834cf7c582be0508b542b7e38740743fc8`.
 
 - `bond-core.json`: eight passing mechanics/save/parity cases and six correctly
   rejected gameplay defect controls.
@@ -45,3 +45,11 @@ Earlier-source successes are historical; final-source CI/Android remain pending.
 workflows before main advanced with currency/Deeds work. The version guard
 stopped integration/publication. Combined-source validation is now required;
 these earlier passes do not establish acceptance for the combined version.
+
+Combined-source local evidence: `combined-bond-core.json`,
+`combined-deeds-core.json` (313 checks/17 series), `combined-replay.json` (every
+field/reward in four eight-hour one-second windows) and `combined-currency.json`
+(1,776 checks/16 profiles). The current mobile logs and absence control also
+pass on this combined SHA. The earlier core/replay and Guidance receipts retain
+their original source identities. Currency, Deeds and native assertions are
+preserved; shared retail inspection remains unchanged.

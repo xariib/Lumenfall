@@ -365,6 +365,19 @@ async function verifyInstalledRiftLooks(page,report){
    const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));await pause(350);
  }
  await tap('nav.tabbar [data-tab="deeds"]');
+ const deedKeys=['rift','strikes','fullparty','ascend','all','mythic','rest','autotap','labmaster','projects','allstudies','forge','firstultimate','modulemax','kills','lab','mastery'].sort();
+ const installedDeeds=await page.evaluate(`(()=>{const cards=Array.from(document.querySelectorAll('#ach-list [data-deed-series]'));return {keys:cards.map(c=>c.dataset.deedSeries).sort(),primaryCounters:document.querySelectorAll('#ach-list .info > [data-deed-progress]').length,rift:document.querySelector('[data-deed-series="rift"]').dataset.deed,history:!!document.querySelector('[data-card-details-summary="deed-history-rift"]')};})()`);
+ assert.deepEqual(installedDeeds.keys,deedKeys,'Installed APK has exactly one card for every Deed series');
+ assert.equal(installedDeeds.primaryCounters,17,'Installed cards each expose one next-target counter');
+ assert.equal(installedDeeds.rift,'endless_rift_2500','Upgraded Rift1000 milestones advance to the next target in the same card');
+ assert(installedDeeds.history,'Upgraded earned Rift milestones retain their history');
+ await page.evaluate(`window.installedDeedHistoryClicks=[];document.addEventListener('click',e=>{const s=e.target.closest('[data-card-details-summary="deed-history-rift"]');if(s)installedDeedHistoryClicks.push({trusted:e.isTrusted});},true);`);
+ await tap('[data-card-details-summary="deed-history-rift"]');await pause(1600);
+ const deedHistory=await page.evaluate(`(()=>{const h=document.querySelector('[data-card-details="deed-history-rift"]'),c=h.closest('.ach-card'),r=c.getBoundingClientRect();return {open:h.open,clicks:installedDeedHistoryClicks,earned:Array.from(h.querySelectorAll('[data-deed-history]')).map(e=>e.dataset.deedHistory),fit:r.left>=-1&&r.right<=innerWidth+1&&c.scrollWidth<=c.clientWidth+1};})()`);
+ assert(deedHistory.open&&deedHistory.clicks.some(e=>e.trusted),'Native touch opens history and periodic rendering keeps it open');
+ assert(deedHistory.earned.includes('d10')&&deedHistory.earned.includes('d250')&&deedHistory.earned.includes('endless_rift_1000'),'Installed history preserves old and long-tail earned milestones');assert(deedHistory.fit,'Installed history fits the WebView');
+ const deedShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-deeds-progressive.png',Buffer.from(deedShot.data,'base64'));
+ report.installedProgressiveDeeds={status:'PASS',...installedDeeds,history:deedHistory,screenshot:'release-evidence/installed-deeds-progressive.png',syntheticFixture:true};
  assert.equal(await page.evaluate('document.querySelectorAll("[data-look-slot],[data-look-motion]").length'),0,'Retired appearance packs and motion picker are absent');
  for(const id of ['default','ember']){
    await tap('[data-theme-select="'+id+'"]');

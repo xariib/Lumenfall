@@ -122,3 +122,14 @@ Next: merge current main into this isolated branch, resolve only shared status
 and reference bindings, verify combined UI/mechanics/replay, and rerun required
 exact-source CI. The prior fourteen passes are historical candidate evidence,
 not acceptance for the combined source. No chat/message coordination authorized.
+
+The merge preserved all peer product/test/native changes. Only shared status
+and the replay source binding conflicted; resolved status from current main with
+this task's entry, then regenerated the binding after four passing paired replay
+windows. Combined product SHA256:
+`edaf07822398ec953c0bde94cef87c834cf7c582be0508b542b7e38740743fc8`.
+Bond mechanics, 313 Deeds checks, six Rift mobile profiles/24 samples, original
+boost-list causal control and 1,776 currency checks across16 profiles PASS.
+Complete product diff against current main remains the requested boost-list
+removal; native assertions retain both Deeds and Bond checks. Shared retail
+inspection helper is unchanged. Current main was re-fetched and still e67c984f.
