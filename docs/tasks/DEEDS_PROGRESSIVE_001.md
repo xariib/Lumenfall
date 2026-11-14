@@ -91,3 +91,9 @@ full original bytes in qa/exploit-balance-hunt-001/task-before-deeds-20261114.tx
 and compact superseded provisional checkpoint prose; retain requirements,
 decisions, final delivery evidence and the unchanged gate. This prerequisite
 documentation fix changes no game code. Rerun required CI on the new head.
+
+Android acceptance now also checks the actual installed APK's17 advancing cards,
+the upgraded Rift1000→2500 target, preserved old/long-tail milestones and native
+touch opening history through periodic refresh, with a screenshot in the normal
+signed-upgrade receipt. This extends the existing Android gate without changing
+production hooks, signing, fixtures' original assertions or workflow triggers.
