@@ -82,3 +82,12 @@ Navigation `r3-destinations` also PASS on the same product source.
 
 Next: publish candidate/PR, run required CI,
 review/integrate exact accepted tree, then signed Android delivery and evidence.
+
+PR: [52](https://github.com/xariib/Lumenfall/pull/52), initial candidate e655d3b4.
+Initial pre-merge43574433155 stopped at the existing hunt task's startup budget:
+shared19,248 + task13,782 =33,030 bytes, above32,768. Reproduced locally on the
+unchanged baseline task. Only that workflow task exceeded the gate. Preserve its
+full original bytes in qa/exploit-balance-hunt-001/task-before-deeds-20261114.txt
+and compact superseded provisional checkpoint prose; retain requirements,
+decisions, final delivery evidence and the unchanged gate. This prerequisite
+documentation fix changes no game code. Rerun required CI on the new head.
