@@ -89,10 +89,21 @@ were visually inspected (self-review). Candidate is not public or integrated.
 Only PR attempt3 remains active; manual full/source gates and native candidate
 are passed. Keep validated ref a3d125a5 fixed until readiness/integration.
 
-Next: wait for PR attempt3 only; use the local delivery helper's ready/save-ci
-checks, fast-forward unchanged main to exact tested candidate and dispatch the
-publishing Android workflow. Recheck main/build concurrency at each mutation.
-No main evidence push during publication. Verify/download the resulting signed
-APK and anonymous public feed, then save all receipts/status in GitHub.
+All sixteen validation workflows now PASS. Both full main logs report190 named
+deterministic scenarios plus their viewport runs; both isolated offline logs
+report1. Fresh per-job REST logs are preserved with hashes/scenario totals.
+The CLI's first run-level log archive was incomplete (cause unproven); those initial
+captures are diagnostic only, not the canonical full-run receipts.
+
+Main fast-forwarded6fd9e44f→a3d125a5 at22:12:44UTC; PR50 and PR53 are confirmed
+merged. GitHub's PR closure briefly lagged the successful push; an idempotent
+read/record retry confirmed both merges without another source mutation.
+Public signed Android run43646924641 is now building exact main a3d125a5.
+
+Next: monitor public Android run43646924641. Do not push main evidence during
+publication. After success, verify/download the actual public signed APK and
+anonymous feed/metadata; update release notes; finalize/save receipts/status
+in GitHub. Required source/native gates remain unchanged. Recheck exact main
+and build state before any necessary release mutation.
 GitHub connector lacks workflow dispatch; existing authenticated CLI supplies it.
 No changes to credentials or signing. Task stays open for device/human acceptance.
