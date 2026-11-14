@@ -44,7 +44,8 @@ from exact HEAD bytes; no historical evidence changes are included.
 Node24.22.1: paired replay executed115,200 one-second calls per source, matching
 all four full saved states, rewards and original canonical hashes. Source, Bond
 mechanics/causal controls, Deeds core, Lab344/18 profiles and Deeds550/18 profiles
-PASS. [Current receipts](../qa/all-updates-release-20261114/).
-Next: finish focused mobile checks, publish the combined release PR, pass exact
+PASS. Formation12 profiles and both Rift suites also PASS with normal teardown.
+[Current receipts](../qa/all-updates-release-20261114/).
+Next: publish the combined release PR, pass exact
 source PR/manual CI and integrate/build. GitHub connector lacks workflow dispatch;
 existing authenticated CLI supplies it. No changes to credentials or signing.
