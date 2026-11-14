@@ -1,0 +1,18 @@
+{
+  "run": 43583804720,
+  "job": 132413926229,
+  "artifact": 14109602280,
+  "artifactSha256": "75889f204cd606974e1e27904b328650c1c8ccbed079bdfd0b1276e4b9c4fe21",
+  "commit": "e67c984f7faf120818f5285175751586a1cf43cd",
+  "raw": {
+    "status": "fail",
+    "sourceSha256": "d58a8edc12f0ed340b8fbb1126bb3eb139bfbe328119743201deb3e7bdc3c7fc",
+    "mutation": null,
+    "checks": 0,
+    "profiles": [],
+    "reflows": [],
+    "layoutSettlements": [],
+    "error": "Error: CDP deadline Browser.getVersion\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/wisp-rarity-scroll.cjs:19:146)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)"
+  },
+  "action": "retry only the failed job unchanged; preserve original deadlines and all causal controls"
+}

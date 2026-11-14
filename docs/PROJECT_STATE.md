@@ -3,9 +3,10 @@
 14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md): implementation and
 local checks PASS; preserving accepted main updates; CI/Android pending.
 14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
-PR52: one advancing card per series. Eight candidate suites/190 scenarios pass;
-Android upgrade/updater and Deeds touch pass. Integrated CI and final Android
-delivery remain pending; retail accessibility inspection is unresolved.
+PR52: one advancing card per series. Its eight candidate suites/190 scenarios pass;
+the final Details/focus fix passes local checks. Prior signed upgrade/updater and
+Deeds touch pass. Final-source CI and Android delivery remain pending; retail
+accessibility inspection is unresolved.
 
 14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
 at7f149b89; Android delivery pending.
