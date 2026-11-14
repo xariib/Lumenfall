@@ -109,7 +109,7 @@ release. Physical-phone/WebView60/TalkBack/human acceptance stays unverified.
 
 Both authorized peer chats now report new direct human corrections: currency
 names must be visible beside icons; Deeds must advance exponentially in one box,
-with the user's example0/10 then10/x. Their owners are preparing focused commits;
+with the user's example0/10 then10/x. Their owners supplied focused commits;
 this chat does not interpret or implement their gameplay requirements. Previous
 finite Deeds/icon-only currency acceptance is superseded for the combined APK.
 Publication of918d is held. Await concrete peer commits and combined-release
@@ -125,6 +125,28 @@ phases PASS; this chat has inspected the diff, not independently rerun those
 checks. Evidence is in `docs/qa/currency-hud-001/visible-names` on that commit.
 PR CI and actual combined APK acceptance remain pending. Preserve this correction
 in the final combined source; the older icon-only requirement is superseded.
+
+Deeds supplied `e01f443c192e5700973127d0ab6fe3f2bd6e2b0d` on
+`feature/deeds-progressive-001-work`, based on main6fd9e44f. Its owner reports
+the human chose existing milestone targets and increasing rewards. The correction
+uses17 cumulative progress bars (Rift10 advances to10/25), removes checkbox and
+completed-count presentation, preserves settled payouts/pending claim semantics,
+and intentionally raises later Comet rewards. Owner reports415 focused+417
+original+99 fixture checks,1,264 UI checks/36 profiles and1,071 rendered-contract
+checks PASS. Four paired8h replay phases permit only the independently specified
+450-Comet increase. Native17-bar/Rift1000/2500 checks are added but not yet run.
+This chat inspected the commit summary; these are peer-reported checks and
+requirements, not an independent review or this Rift task's gameplay decision.
+Retain original target/reward decisions and evidence in that commit's Deeds task.
+Correction [PR55](https://github.com/xariib/Lumenfall/pull/55) is open. Its first
+CI found older reward expectations; the owner is preparing focused test/evidence
+updates with product bytes unchanged. Await its final head and passing CI rather
+than treating e01f443c's initial checks as release approval. No failure waived.
+
+Combined [PR53](https://github.com/xariib/Lumenfall/pull/53) is currentlya3d125a5;
+its recorded next step is integration/build after remaining premerge runs.
+That version predates both corrections. This chat will not integrate/build its
+own older candidate or label the peer corrections accepted in the actual APK.
 
 Required CI on the old918d candidate remains failed, not waived. PR premerge
 43595576399 attempt2 again failed Wisp's original300ms setup at check1; its
@@ -145,39 +167,10 @@ Rift change and report only observed automated/device acceptance. Do not archive
 
 ## Superseded standalone delivery attempt
 
-Final combined candidate is `918d57393d756cc4bb35c66f45784f8e4d101898`, including
-main5f0; production source remains SHA7222c3. All latest local checks and the
-native fixture causal control pass. Final-source CI remains incomplete.
-First PR premerge43595576399 failed only Wisp setup in its broad scenarios;
-dedicated Wisp43595576381 Linux failed the same unchanged300ms setup ceiling,
-while Windows passed. Both failed jobs were requested as same-source unchanged
-retries. QA `candidate-918d-first-failures.json` retains the evidence. The dedicated
-Wisp retry passed. Dispatch premerge43600605287 failed three unchanged attempts
-at the original15s touch-command deadline, after844/18,37/2 and145/8 completed
-checks/profiles. Original reports are in `candidate-918d-release-*-failure.json`.
-The unchanged local boost/preset check passes993 checks/36 profiles
-(`final-boost-repro.json`). Cause remains unproven; no failure is waived.
-An isolated auxiliary branch `diagnostic/rift-lab-touch-001` investigates Linux
-protocol commands/events and optional Runtime/DOM initialization. It changes no
-production bytes or release gate and is not release acceptance. Next: inspect
-that diagnostic plus the PR retry, fix only a demonstrated cause if necessary,
-then rerun required exact-source gates. Release candidate918d remains unchanged.
-Prior0c3 workflows are superseded. Both peer owners have confirmed stable main/no
-competing publication; Deeds reports no active own runs remain, including its
-successful nonpublishing native run43591494545. Do not promote/publish until all
-required final-source checks pass. After publication share source/run/tag and
-receipts with both owners for their own feature verification.
-
-The ignored local `validation-evidence/rift-bond-delivery.cjs` supports
-`dispatch/status/ready/promote/publish` with exact branch/main/ancestry/build guards;
-its baseline is5f0. `wait-rift-ci.cjs` monitors without mutating GitHub.
-`verify-rift-bond-release.cjs` verifies the successful native artifact, package/
-certificate, exact public versioned/latest APK bytes, assets/checksum and feed.
-Equivalent GitHub workflow definitions and requirements are durable in the repo;
-these local orchestration helpers are not an extra approval or acceptance stage.
-
-After all required gates pass, serialize main integration and the signed main
-build with the two owners. Do not push main evidence during publication: the
-existing workflow verifies exact main before publishing. Verify the actual
-combined APK, save durable receipts/status, notify both owners, and leave
-physical-phone/WebView60/TalkBack/human acceptance open until observed.
+Source918d5739 included main5f0 and production SHA7222c3. The local delivery
+helper is guarded against main5f0 and must not promote/publish now. The full
+[earlier continuation](https://github.com/xariib/Lumenfall/blob/9bdf4535/docs/tasks/RIFT_BOND_DISPLAY_001.md)
+retains that attempt, helper details and original findings; current failure
+receipts remain under the QA directory. Combined release delivery now belongs
+to the separate user-requested all-updates task. This task stays open until the
+actual combined source/APK and required acceptance are verified.
