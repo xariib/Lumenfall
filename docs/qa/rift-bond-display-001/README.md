@@ -1,7 +1,7 @@
 # Rift bond display evidence
 
 Task: [RIFT_BOND_DISPLAY_001](../../tasks/RIFT_BOND_DISPLAY_001.md).
-Combined product SHA256: `edaf07822398ec953c0bde94cef87c834cf7c582be0508b542b7e38740743fc8`.
+Final combined product SHA256: `7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d`.
 
 - `bond-core.json`: eight passing mechanics/save/parity cases and six correctly
   rejected gameplay defect controls.
@@ -53,3 +53,10 @@ field/reward in four eight-hour one-second windows) and `combined-currency.json`
 pass on this combined SHA. The earlier core/replay and Guidance receipts retain
 their original source identities. Currency, Deeds and native assertions are
 preserved; shared retail inspection remains unchanged.
+
+Main's follow-up `5040ea14` preserves Deeds Details/focus and is also retained.
+`combined-final-replay.json`, `combined-final-deeds-core.json` and
+`combined-final-deeds-ui.json` bind to the final SHA above (four complete replay
+windows, 313 core checks, 550 UI checks/18 profiles). Rift/header/Bond/native
+assertion bytes are unchanged from the earlier combined source; its focused
+receipts remain source-labeled evidence. Final-source CI/Android are pending.

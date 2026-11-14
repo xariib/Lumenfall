@@ -133,3 +133,15 @@ boost-list causal control and 1,776 currency checks across16 profiles PASS.
 Complete product diff against current main remains the requested boost-list
 removal; native assertions retain both Deeds and Bond checks. Shared retail
 inspection helper is unchanged. Current main was re-fetched and still e67c984f.
+
+Before dispatch, main advanced again to `5040ea14` with a three-line Deeds
+Details/focus preservation fix and its evidence. The dispatch guard caught it
+before starting workflows. Merged that follow-up too; only the replay binding
+conflicted. Final combined product SHA:
+`7222c3adc5886327f109ee7cf23bb0fc9beb5928d1579e71af0dcabcb3533f8d`.
+Four paired replay windows and 313 Deeds checks pass again; new Deeds UI/details/
+focus coverage passes550 checks in18 profiles. Rift/header/native Bond bytes
+remain unchanged from the preceding combined candidate. Final CI must bind to
+this new combined commit. A user question requests authorization to message the
+two existing owner chats for integration/build coordination; no messages are
+authorized until the user actually answers. No new chats or subagents requested.

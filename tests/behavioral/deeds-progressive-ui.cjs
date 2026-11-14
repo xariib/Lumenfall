@@ -16,6 +16,13 @@ module.exports=async function({send,ev,pause,check,records,args}){
   check(result.history.join(',')===ids.slice(0,n).filter(id=>id!==next).join(','),'earned milestones share the same card history '+key+'/'+n);
   const reward=await ev('clarityQA.deeds().find(a=>a.id==='+JSON.stringify(next)+').reward');check(result.reward.trim().startsWith('+'+reward),'reward follows active milestone '+key+'/'+n);
  }
+ // The shared paid-level counter keeps its explanation and native disclosure
+ // identity when the next Forge goal replaces the original60-level milestone.
+ const forge=seed();await install(forge);
+ await ev('document.querySelector("[data-card-details=deed-labqueue]").open=true;document.querySelector("[data-card-details-summary=deed-labqueue]").focus({preventScroll:true})');
+ forge.achieved.labqueue=true;await install(forge);
+ check(await ev('document.querySelector("[data-deed-series=forge]").dataset.deed==="endless_forge_100"&&document.querySelector("[data-card-details=deed-labqueue]").textContent.includes("all current and historical Forge upgrades")'),'next Forge milestone retains paid-level counting scope');
+ check(await ev('document.activeElement===document.querySelector("[data-card-details-summary=deed-labqueue]")&&document.activeElement.parentElement.open'),'advancing Forge goal preserves open Details and keyboard focus');
  for(const width of [320,390,430])for(const scale of [100,150,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
   const s=seed();s.maxDepthEver=55;['d10','d25','d50'].forEach(id=>s.achieved[id]=true);s.totalTaps=4286;s.achieved.tap100=s.achieved.tap1000=true;await install(s);await exactCards();
