@@ -49,50 +49,57 @@ scenario and transport option; pre-merge workflow; this task/QA receipts and
 source binding after verified replay. Existing acceptance checks retained.
 No new binding rules. Self-review and automated checks only. Status: open.
 
-Combined-source continuation — 14 November 2026:
+Current continuation — accepted-main integration, 14 November2026:
 
-[PR51](https://github.com/xariib/Lumenfall/pull/51), branch feature/lab-simple-001,
-worktree validation-evidence/lab-simple. Initial published source07f9807f
-passed all focused PR/release workflows; its two full stateful suites were
-still running when main advanced. Those results are historical evidence,
-not final acceptance of the combined page. Earlier launch IDs are retained in
-prior-source-release-launch.json. No APK for the Lab has been published.
+PR51, branch feature/lab-simple-001, worktree validation-evidence/lab-simple.
+Main advanced first to currency7f149b89, then to Progressive Deeds/PR52 at
+e67c984f7faf120818f5285175751586a1cf43cd. Both accepted changes are preserved.
+Product merged cleanly. Resolved shared status, source-binding JSON and the
+browser driver's option line, preserving both --simple and --deeds plus the
+accepted Deeds checks automatically run after --clarity. No test gate weakened.
 
-Accepted main7f149b895c9f90656bbb81766249665ed1f426fc (currency header/PR49)
-merged into this feature. Product merged cleanly; resolved only shared status
-and the full-page oracle source binding. Combined HTML SHA256:
-af371f2e9d149826266309f1d3f587f8e2f2cf4014c5fc0c32989c12232c87c6.
-Every script byte equals the verified Lab candidate48f96606, and the incoming
-currency scripts equal original baselinece51bc14. Complete progression inputs
-and canonical vectors are unchanged; combined-source.json records this proof.
-Only the full-page source binding changed. No gameplay/balance/schema change.
+Current HTML SHA256:
+a77593c4195844edbcf45403636d816ab6ded76fb4379145aa04e207af930c6e.
+Fresh paired replay against exacte67c984f passed four8h windows per source,
+115200 independent one-second calls per source. Full saved states, rewards and
+all original canonical endpoint hashes match; only source binding changed.
+replay-deeds.json and combined-source.json hold exact provenance. The wrapper
+replay-with-evidence.cjs runs the existing replay unchanged except its receipt
+destination, preserving prior QA. No balance, mechanics or save/schema changes.
 
-Combined native-browser selection344/18 profiles, slots488/18 and currency
-layout1776/16 PASS; all39 task contexts and syntax/IDs/lifecycle/whitespace PASS.
-Current simple/slots receipts and previews bind the combined page. Other local
-receipts and saved CI logs retain their actual earlier source/version. Actual
-V8 6.0 checks580 passed on the identical script bytes. No gate/deadline weakened.
+Current-source local checks PASS: selection344/18 profiles; slots488/18;
+clarity plus inherited progressive-Deeds checks1070; Deeds core313/17 series,
+72 identities/1983 fixed Comets; all39 workflow task contexts; source syntax,
+IDs/lifecycle and whitespace. Current previews/receipts bind a77593c4.
 
-Prior CI findings: permanent-progression UI needed the new confirmation step;
-its original paid-work/boost assertions remain. Shared startup was condensed
-with all evidence links retained. Wisp PR Linux attempts timed out before
-Browser.getVersion and at its unchanged300ms negative-control setup ceiling;
-raw receipts are saved. The third unchanged PR attempt and manual Wisp passed
-both platforms. Do not infer a root cause from passing retries.
+Earlier source b6860e30/af371f2e has a verified signed non-publishing Android
+candidate: run43583498617, version0.2.115/code1000115. Original package/certificate,
+all15 packaged assets, upgrade/both saves/paid work, updater and retail normal
+launch PASS; native screenshot inspected. android-candidate/ retains exact
+receipts; APK under local validation-evidence/android-lab-43583498617. It predates
+the accepted Deeds merge and is historical Lab evidence, not final app delivery.
 
-Next: commit/publish the combined merge, run required PR and manual release
-workflows on that exact head, and collect final source-bound results. Before
-promotion recheck main and active builds; use a normal expected-SHA fast-forward
-only if its accepted baseline is still current. If main moves, preserve and
-integrate its accepted changes. Other active UI PRs50/52 remain separate.
-No subagents or chat messages used; do not overwrite other worktrees.
+Earlier-source CI evidence stays qualified: initial48f96606 PR stateful suite
+passed220 executions/190 scenarios. Its manual run had one Wisp300ms setup
+timeout; all other cases passed. af371f2e Tree PR/manual first attempts timed
+out before Chrome --version/contract produced DOM or any QA result; unchanged
+retries passed. Its first boost-queue PR job timed out on native touch after
+16 profiles; unchanged retry passed that stage. Raw reports are saved. Never
+infer cause from retries or widen original deadlines to claim acceptance.
 
-The currency owner has a separate queued Android diagnostic run43581066569
-(0.2.114, branch c737fd3e). Its native acceptance helper is unmerged; do not
-import an unverified candidate or claim its acceptance for this Lab source.
-Build/publish our signed APK only after required exact-source CI and the shared
-release path pass. Local helper validation-evidence/release-lab-simple.cjs
-supports check/build/collect; update its candidate guard to the accepted main
-baseline before dispatch. Do not launch duplicate workflows. Save all final
-status/evidence in GitHub. Physical-phone/WebView60/TalkBack/human review remain
-unverified; keep this task/chat open and do not archive or claim complete.
+Next: finish/publish this accepted-main merge and run required PR and manual
+release checks on the exact new head. Existing older-head runs are historical,
+not final acceptance; launch IDs are retained. Before promotion verify main
+is still e67c984f and no conflicting Android publication is active. Use normal
+expected-SHA fast-forward only after required checks PASS. If main moves,
+preserve and integrate its accepted changes. PR50 bond display remains separate.
+Do not relaunch duplicates. Local release-lab-simple.cjs reads the baseline
+from combined-source.json; supports exact-head dispatch/check/build/collect.
+Collector verifies packaged bytes against the requested Git commit, allowing
+historical candidate inspection while the worktree advances.
+
+Final signed/main publication and public APK/feed verification remain open.
+Physical-phone/exact WebView60 DOM/TalkBack/human design acceptance remain
+unverified. Self-review/automation only; no independent reviewer or subagents.
+Save final status and receipts in GitHub. Keep the task/chat open; do not archive
+or claim complete while required acceptance remains missing.

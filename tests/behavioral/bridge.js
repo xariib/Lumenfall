@@ -234,6 +234,7 @@ window.__lumenfallQaBridge = {
     roundtrip: function(s){return acceptPersistedState(decodeSaveBackup(encodeSaveBackup(s)),'tree-backup-qa');}
   },
   upgradeClarity: {
+    series: function(s){return deedSeries(s).map(function(row){return {key:row.key,ids:row.milestones.map(function(a){return a.id;})};});},
     render: function(){renderNodes();renderLongStudies();renderAchievements();},
     metrics: function(){return {lumen:lumenMult(),tap:tapMult(),momentum:momentumMult(),offline:offlineRate(),costReduction:costReduction(),offlineCap:offlineCapHours(),prisms:prismMult()};},
     effects: function(){return {nodes:NODES.map(function(n){return {id:n.id,text:nodeEarnedEffect(n.id)};}),projects:LONG_STUDIES.map(function(n){return {id:n.id,text:projectEarnedEffect(n.id)};})};}

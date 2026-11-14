@@ -1,0 +1,106 @@
+{
+  "status": "fail",
+  "sourceSha256": "af371f2e9d149826266309f1d3f587f8e2f2cf4014c5fc0c32989c12232c87c6",
+  "mutation": null,
+  "checks": 289,
+  "profiles": [
+    {
+      "width": 320,
+      "scale": 100,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 100,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 150,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 150,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 200,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 200,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "scale": 100,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "scale": 100,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "scale": 150,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "scale": 150,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "scale": 200,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "scale": 200,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 430,
+      "scale": 100,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 430,
+      "scale": 100,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 430,
+      "scale": 150,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 430,
+      "scale": 150,
+      "motion": "no-preference",
+      "status": "pass"
+    }
+  ],
+  "error": "Error: CDP deadline Input.dispatchTouchEvent\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:21:146)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)",
+  "stderr": "[9896:9922:1114/095156.337396:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9922:1114/095156.337442:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9922:1114/095156.337451:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9919:1114/095156.338800:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9919:1114/095156.341352:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9919:1114/095156.341384:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9919:1114/095156.347292:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9919:1114/095156.379521:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9896:1114/095156.478385:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9896:1114/095156.478506:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9896:1114/095156.478600:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9919:1114/095156.479547:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9919:1114/095156.479598:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9896:1114/095156.479617:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9919:1114/095156.479688:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9896:1114/095156.510406:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9896:1114/095156.512712:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9896:1114/095156.512761:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9919:1114/095156.513004:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9896:1114/095156.531307:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files\n[9896:9896:1114/095156.541260:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9919:1114/095156.541355:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9896:1114/095156.564659:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[9896:9919:1114/095156.568433:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[9896:9896:1114/095156.584216:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \nCreated TensorFlow Lite XNNPACK delegate for CPU.\n"
+}

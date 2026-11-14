@@ -1,7 +1,12 @@
 # Lumenfall — current delivery status
 
 14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md): implementation and
-local checks PASS; combining accepted main; CI/Android pending.
+local checks PASS; preserving accepted main updates; CI/Android pending.
+14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
+PR52: one advancing card per series. Eight candidate suites/190 scenarios pass;
+Android upgrade/updater and Deeds touch pass. Integrated CI and final Android
+delivery remain pending; retail accessibility inspection is unresolved.
+
 14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
 at7f149b89; Android delivery pending.
 

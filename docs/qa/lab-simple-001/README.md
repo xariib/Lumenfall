@@ -1,5 +1,19 @@
 # Simpler Lab — evidence
 
+Current page: a77593c4, preserving accepted main e67c984f (currency header and
+progressive Deeds). replay-deeds.json verifies four paired8h windows: all full
+saved states, rewards and original canonical endpoints match. Current local
+selection344, slots488, clarity plus Deeds1070, Deeds core313 and39 task contexts
+PASS. Final exact-source CI, integrated Android publication and public download
+verification remain open. Physical-phone/WebView60/TalkBack/human review is open.
+
+android-candidate/ is signed0.2.115, run43583498617, sourceaf371f2e atb6860e30.
+Package/certificate, all15 packaged assets, both saves/paid work, updater and
+retail launch passed and were independently checked locally. The source predates
+the accepted Deeds merge; this is qualified Lab evidence, not final delivery.
+
+## Earlier candidates and findings
+
 Baseline main858d713f, product ce51bc14. Node24.22.1/Windows and
 Chromium157.0.8103.79. Baseline slot/menu488, queue64 and slot55 PASS.
 

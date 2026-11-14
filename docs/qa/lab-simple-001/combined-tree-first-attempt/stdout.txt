@@ -1,0 +1,17 @@
+Browser identity: { "selected_path": "/usr/bin/google-chrome", "resolved_path": "/opt/google/chrome/google-chrome", "sha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec", "version_error": "Browser version timed out" }
+Staged source: { "source_sha256": "af371f2e9d149826266309f1d3f587f8e2f2cf4014c5fc0c32989c12232c87c6", "instrumented_sha256": "040446a8011c59467b855be7b933a49d4360b5bba4a6a4cc8be7a88d0c8de7a6" }
+FAIL ascend-prisms-contract
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 25.031371261, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: /home/runner/work/Lumenfall/Lumenfall/tree-validation/prism/browser/ascend-prisms-contract-lfNaJi/raw/ascend-prisms-contract-NPAeDN
+  Chromium stderr tail:
+[2392:2417:1114/094728.909842:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2417:1114/094729.218325:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2417:1114/094729.817002:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2423:1114/094730.652002:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2423:1114/094730.652049:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2423:1114/094730.652058:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2417:1114/094731.929500:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[2392:2417:1114/094733.590748:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+
