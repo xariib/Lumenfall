@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 'use strict';
+// Isolated diagnostic branch only; never release acceptance or production code.
+if(process.env.GITHUB_REF==='refs/heads/diagnostic/rift-lab-touch-001'){
+  console.log('AUXILIARY INPUT DIAGNOSTIC: NOT RELEASE ACCEPTANCE');
+  const scenario=process.argv[process.argv.indexOf('--scenario')+1];
+  const mode=scenario==='offline-catchup-core'?'agents':'trace';
+  const result=require('node:child_process').spawnSync(process.execPath,[require('node:path').join(__dirname,'rift-input-diagnostic.cjs'),mode,'validation-evidence/migration-focused/input-diagnostic'],{stdio:'inherit'});
+  process.exit(result.status===null?1:result.status);
+}
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
