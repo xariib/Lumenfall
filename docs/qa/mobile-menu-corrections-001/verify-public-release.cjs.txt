@@ -1,0 +1,47 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),zlib=require('node:zlib'),{execFileSync}=require('node:child_process');
+const {verify}=require('../scripts/ci/verify_apk_assets.cjs');
+const [runId,commit]=process.argv.slice(2);assert.match(runId,/^\d+$/);assert.match(commit,/^[a-f0-9]{40}$/);
+const gh='C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/github-cli/bin/gh.exe',repo='xariib/Lumenfall';
+const cli=args=>execFileSync(gh,args,{encoding:'utf8',timeout:120000,maxBuffer:16*1024*1024});
+const api=route=>JSON.parse(cli(['api','repos/'+repo+'/'+route]));
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const run=api('actions/runs/'+runId);assert.equal(run.head_sha,commit);assert.equal(run.conclusion,'success');assert.equal(run.head_branch,'main');
+const code=1000000+run.run_number,version='0.2.'+run.run_number,tag='android-'+code;
+const artifact=api('actions/runs/'+runId+'/artifacts').artifacts.find(a=>a.name==='signed-apk-'+runId);assert(artifact&&!artifact.expired);
+const local='validation-evidence/android-release-'+runId;if(!fs.existsSync(local+'/Lumenfall.apk'))cli(['run','download',runId,'--repo',repo,'--name',artifact.name,'--dir',local]);
+const src=local+'/release-evidence',out='docs/qa/mobile-menu-corrections-001/android-release';fs.mkdirSync(out,{recursive:true});
+const read=n=>fs.readFileSync(path.join(src,n),'utf8'),json=n=>JSON.parse(read(n));
+const apk=local+'/Lumenfall.apk',expected=fs.readFileSync(apk),sha=hash(expected);
+assert.equal(read('commit.txt').trim(),commit);assert.equal(read('apk-sha256.txt').trim(),sha+'  Lumenfall.apk');assert.equal(read('version-code.txt').trim(),String(code));
+for(const s of ['packageId: com.lumenfall.app','versionCode: '+code+' (expected '+code+')','versionName: '+version+' (expected '+version+')','A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21'])assert(read('identity.txt').includes(s),s);
+const upgrade=json('emulator-upgrade.json'),updater=json('in-app-updater.json'),runtime=json('production-runtime.json');for(const r of [upgrade,updater,runtime])assert.equal(r.status,'PASS');
+for(const r of [upgrade,updater])assert.equal(r.commit,commit);for(const r of [upgrade,runtime])assert.equal(r.apkSha256,sha);assert.equal(updater.candidateApkSha256,sha);
+for(const key of ['baselineColdRestartVerified','uidRetained','bothSaveSlotsRetained','progressAndPaidStudyRetained','legacyCometEntitlementsRetained','offlineRecapDismissed'])assert.equal(upgrade[key],true,key);
+assert.equal(upgrade.candidateVersionCode,code);assert.equal(upgrade.physicalDevice,false);
+assert.equal(upgrade.installedRiftBonds.status,'PASS');assert.equal(upgrade.installedRiftBonds.boostList,false);
+assert.equal(upgrade.installedProgressiveDeeds.status,'PASS');assert.equal(upgrade.installedProgressiveDeeds.history,false);assert.equal(upgrade.installedRiftBonds.namesHidden,true);assert.equal(upgrade.installedRiftBonds.themeHidden,true);assert.equal(upgrade.installedMenuScroll.status,'PASS');assert.equal(upgrade.installedMenuScroll.menus.length,5);for(const m of upgrade.installedMenuScroll.menus){assert(m.before.max>0&&m.before.top>0,'Real installed scroll range: '+m.name);assert(Math.abs(m.after.top-m.after.max)<=2,'Restored installed bottom: '+m.name);}assert.equal(upgrade.installedMenuScroll.currencyNames.length,6);assert(upgrade.installedMenuScroll.currencyNames.every(n=>n.visible&&n.fits));
+const catalog=require('../tests/behavioral/formation-bonds.cjs').app().b.bondCatalog;
+assert.equal(upgrade.installedRiftBonds.rows.length,catalog.length);for(const b of catalog)assert(upgrade.installedRiftBonds.rows.some(r=>r.name===b.name&&r.effect===b.effect),'Exact installed Wisp Bond description: '+b.id);
+assert.equal(updater.systemApprovedInstall,true);assert.equal(updater.installerOpenLaunch,true);assert.equal(runtime.normalLaunch,true);assert.equal(runtime.visibleGameControls,true);assert.equal(runtime.debuggable,false);assert.equal(runtime.systemBuildType,'user');
+const assets=verify(apk);assert.equal(assets.status,'PASS');assert.equal(assets.assets.find(a=>a.path==='index.html').sha256,hash(fs.readFileSync('index.html')));
+async function bytes(url){const r=await fetch(url,{headers:{'User-Agent':'Lumenfall-Rift-Bond-QA'},signal:AbortSignal.timeout(120000)});assert.equal(r.status,200,url);return Buffer.from(await r.arrayBuffer());}
+async function main(){
+ const feed='https://api.github.com/repos/'+repo+'/releases';const releases=await Promise.all(['/tags/'+tag,'/latest'].map(async p=>JSON.parse(await bytes(feed+p))));
+ for(const r of releases){assert.equal(r.tag_name,tag);assert.equal(r.target_commitish,commit);assert.equal(r.draft,false);assert.equal(r.prerelease,false);}
+ const urls=['https://github.com/'+repo+'/releases/download/'+tag+'/Lumenfall.apk','https://github.com/'+repo+'/releases/latest/download/Lumenfall.apk'],downloads=[];
+ for(const url of urls){const b=await bytes(url);assert.equal(hash(b),sha);assert.equal(b.length,expected.length);downloads.push({url,sha256:hash(b),bytes:b.length});}
+ const latest=releases[1];const asset=name=>{const matches=latest.assets.filter(a=>a.name===name);assert.equal(matches.length,1);return matches[0];};assert.equal(asset('Lumenfall.apk').size,expected.length);
+ assert.equal((await bytes(asset('commit.txt').browser_download_url)).toString().trim(),commit);assert.equal((await bytes(asset('apk-sha256.txt').browser_download_url)).toString().trim(),sha+'  Lumenfall.apk');
+ const publicMetadata=[];
+ for(const name of ['assets.json','identity.txt','emulator-upgrade.json','in-app-updater.json','security.json','dependency-audit.json']){
+  const b=await bytes(asset(name).browser_download_url);assert(b.equals(fs.readFileSync(path.join(src,name))),'Exact public metadata: '+name);publicMetadata.push({name,bytes:b.length,sha256:hash(b)});
+ }
+ const selected=['identity.txt','apk-sha256.txt','assets.json','commit.txt','version-code.txt','emulator-upgrade.json','in-app-updater.json','production-runtime.json','security.json','dependency-audit.json','installed-rift-looks.png','installed-deeds-progressive.png','production-normal-launch.png','native-touch-calibration.json','installed-rift-navigation-input.json'];const files=[];
+ for(const name of selected){const data=fs.readFileSync(path.join(src,name));fs.writeFileSync(path.join(out,name),data);files.push({name,bytes:data.length,sha256:hash(data)});}
+ for(const name of ['native-logcat.txt','updater-native-logcat.txt']){const data=fs.readFileSync(path.join(src,name));fs.writeFileSync(path.join(out,name+'.gz'),zlib.gzipSync(data));files.push({name:name+'.gz',rawBytes:data.length,rawSha256:hash(data)});}
+ fs.writeFileSync(out+'/files.json',JSON.stringify(files,null,2)+'\n');
+ const result={status:'PASS',utc:new Date().toISOString(),commit,version,versionCode:code,tag,runId:Number(runId),runUrl:run.html_url,artifact:{id:artifact.id,digest:artifact.digest},apkSha256:sha,bytes:expected.length,anonymous:true,feed:feed+'/latest',downloads,publicMetadata,release:latest.html_url,package:'com.lumenfall.app',upgrade:upgrade.status,updater:updater.status,retailLaunch:runtime.status,assets:assets.status,installedRiftBonds:upgrade.installedRiftBonds};
+ fs.writeFileSync(out+'/public-verification.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+}
+main().catch(e=>{console.error(e);process.exitCode=1;});

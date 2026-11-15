@@ -79,3 +79,11 @@ settle-control, reset-control and fallback-control catch their intended defects.
 Paired replay passes currentf7008f0e. The next native script saves partial numeric
 scroll/focus/input evidence before assertions. This remains pending native/CI
 acceptance and is not a public release.
+
+313bdd47 native attempt1 finally verifies positive restored bottoms in all5menus
+and all6 currency names; native-scroll-proof-313bdd47.json summarizes exact ranges.
+Its final retail UIAutomator idle/visible-controls gate failed despite a visually
+running game. Original37 files are retained under native-first-failure-43695984950.
+An unchanged retry is required; self-review does not replace that gate. The Linux
+Wisp manual run's touch timeout (101 checks/16 profiles) is retained with its full
+artifact; unchanged failed-job retry passed. Source remains fixed for final CI.

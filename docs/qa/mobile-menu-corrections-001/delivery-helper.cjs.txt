@@ -1,0 +1,110 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),cp=require('node:child_process');
+const gh='C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/github-cli/bin/gh.exe';
+const repo='xariib/Lumenfall',ref='fix/mobile-menu-corrections-001',baseline='8747ee6043bac911420649ae7088398b38a8989a';
+const [mode,sha]=process.argv.slice(2);if(sha)assert.match(sha,/^[a-f0-9]{40}$/);
+const dir='docs/qa/mobile-menu-corrections-001';fs.mkdirSync(dir,{recursive:true});
+const cli=args=>cp.execFileSync(gh,args,{encoding:'utf8',timeout:60000,maxBuffer:16*1024*1024});
+const api=p=>JSON.parse(cli(['api','repos/'+repo+'/'+p]));
+const write=(name,data)=>fs.writeFileSync(dir+'/'+name,JSON.stringify(data,null,2)+'\n');
+const main=()=>api('git/ref/heads/main').object.sha;
+const branch=()=>api('git/ref/heads/'+ref).object.sha;
+const files=['pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml','lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml','permanent-progression-validation.yml','wisp-scroll-validation.yml'];
+if(mode==='dispatch'){
+ assert.equal(branch(),sha);assert.equal(main(),baseline);
+ const records=[];for(const f of files){records.push({file:f,result:cli(['workflow','run',f,'--repo',repo,'--ref',ref]).trim()});console.log(f+' dispatched');}write('dispatch.json',{sha,baseline,ref,records,utc:new Date().toISOString()});
+}else if(mode==='status'||mode==='ready'){
+ const all=api('actions/runs?head_sha='+sha+'&per_page=100').workflow_runs.filter(r=>r.head_sha===sha),latest=new Map();
+ for(const r of all.sort((a,b)=>b.id-a.id)){const key=r.path+':'+r.event;if(!latest.has(key))latest.set(key,r);}
+ const records=[...latest.values()].map(r=>({id:r.id,name:r.name,path:r.path,event:r.event,status:r.status,conclusion:r.conclusion,url:r.html_url,attempt:r.run_attempt}));
+ const validation=records.filter(r=>files.some(f=>r.path.endsWith('/'+f))),native=records.filter(r=>r.name==='Build Android APK');
+ write('workflow-status.json',{sha,utc:new Date().toISOString(),records});
+ console.log(JSON.stringify({passed:validation.filter(r=>r.conclusion==='success').length,active:validation.filter(r=>r.status!=='completed').map(r=>({id:r.id,name:r.name,event:r.event,status:r.status})),failures:validation.filter(r=>r.status==='completed'&&!['success','skipped'].includes(r.conclusion)),native}));
+ if(mode==='ready'){
+  assert.equal(branch(),sha);assert.equal(main(),baseline);
+  for(const f of files)for(const e of ['pull_request','workflow_dispatch'])assert(records.some(r=>r.path.endsWith('/'+f)&&r.event===e&&r.conclusion==='success'),f+' '+e+' must pass');
+  for(const r of validation){assert.equal(r.conclusion,'success');const jobs=api('actions/runs/'+r.id+'/jobs?filter=latest&per_page=100').jobs;assert(jobs.length&&jobs.every(j=>j.conclusion==='success'),r.name+' jobs');r.jobs=jobs.map(j=>({id:j.id,name:j.name,conclusion:j.conclusion,steps:j.steps}));}
+  for(const r of native)assert.equal(r.conclusion,'success','Signed native candidate must pass');
+  const proof=JSON.parse(fs.readFileSync(dir+'/android-candidate/verification.json'));
+  assert.equal(proof.status,'PASS');assert.equal(proof.commit,sha);
+  assert(native.some(r=>r.id===proof.runId&&r.conclusion==='success'),'Independently verified native run required');
+  const installed=JSON.parse(fs.readFileSync(dir+'/android-candidate/emulator-upgrade.json')).installedMenuScroll;
+  assert.equal(installed.status,'PASS');assert.equal(installed.menus.length,5);
+  for(const menu of installed.menus){assert(menu.before.max>0&&menu.before.top>0,'Positive installed scroll range: '+menu.name);assert(Math.abs(menu.after.max-menu.after.top)<=2,'Installed remembered bottom: '+menu.name);}
+  cp.execFileSync('git',['merge-base','--is-ancestor',baseline,sha]);
+  const pr=api('pulls/'+JSON.parse(fs.readFileSync('validation-evidence/menu-release-config.json')).pr);assert.equal(pr.head.sha,sha);assert.equal(pr.base.ref,'main');assert.equal(pr.state,'open');assert(pr.mergeable!==false,'Release PR must merge cleanly');
+  assert(api('actions/workflows/build-android.yml/runs?per_page=10').workflow_runs.every(r=>r.status==='completed'),'Android build still active');
+  write('release-readiness.json',{status:'PASS',sha,baseline,ref,records:validation,native,utc:new Date().toISOString()});console.log('All exact-source checks and jobs PASS');
+ }
+}else if(mode==='save-ci'){
+ const r=JSON.parse(fs.readFileSync(dir+'/release-readiness.json'));assert.equal(r.status,'PASS');assert.equal(r.sha,sha);
+ const logs=[];for(const x of r.records.filter(x=>x.path.endsWith('/pre-merge-validation.yml')))for(const j of x.jobs){
+  const log=cli(['api','repos/'+repo+'/actions/jobs/'+j.id+'/logs','--allow-escape-sequences']);
+  const name='premerge-'+x.event+'-'+j.id+'.log.gz';fs.writeFileSync(dir+'/'+name,require('node:zlib').gzipSync(log));
+  logs.push({id:x.id,jobId:j.id,jobName:j.name,event:x.event,url:x.url,name,bytes:Buffer.byteLength(log),sha256:require('node:crypto').createHash('sha256').update(log).digest('hex'),scenarioTotals:[...log.matchAll(/Behavioral QA passed: (\d+) deterministic scenario\(s\)/g)].map(m=>Number(m[1]))});
+ }
+ for(const event of ['pull_request','workflow_dispatch'])assert(logs.some(x=>x.event===event&&x.jobName==='Lumenfall pre-merge validation'&&x.scenarioTotals.some(n=>n>1)),'Complete full main log required: '+event);
+ write('ci-log-summary.json',{sha,status:'PASS',logs});console.log(JSON.stringify(logs));
+}else if(mode==='save-failure-jobs'){
+ const rows=[];for(const name of fs.readdirSync(dir).filter(n=>/^first-failure-\d+-attempt\d+\.json$/.test(n))){
+  const d=JSON.parse(fs.readFileSync(dir+'/'+name));assert.equal(d.run.head_sha,sha);
+  for(const j of d.jobs.jobs.filter(j=>j.conclusion==='failure')){
+   const log=cli(['api','repos/'+repo+'/actions/jobs/'+j.id+'/logs','--allow-escape-sequences']);assert(log.length>1000);
+   const stored='failure-job-'+j.id+'.log.gz';fs.writeFileSync(dir+'/'+stored,require('node:zlib').gzipSync(log));
+   rows.push({runId:d.run.id,attempt:d.run.run_attempt,jobId:j.id,jobName:j.name,sourceMetadata:name,stored,bytes:Buffer.byteLength(log),sha256:require('node:crypto').createHash('sha256').update(log).digest('hex'),failedSteps:j.steps.filter(s=>s.conclusion==='failure')});
+  }
+ }write('failure-log-summary.json',{sha,rows});console.log(JSON.stringify(rows.map(r=>({runId:r.runId,attempt:r.attempt,jobId:r.jobId,bytes:r.bytes}))));
+}else if(mode==='release-notes'){
+ const release=api('releases/latest');assert.equal(release.target_commitish,sha);assert(!release.draft&&!release.prerelease);
+ console.log(cli(['release','edit',release.tag_name,'--repo',repo,'--notes-file','validation-evidence/release-notes.txt']));
+}else if(mode==='promote'){
+ const r=JSON.parse(fs.readFileSync(dir+'/release-readiness.json'));assert.equal(r.status,'PASS');assert.equal(r.sha,sha);const current=main();assert([baseline,sha].includes(current),'Main advanced outside this release');assert.equal(branch(),sha);cp.execFileSync('git',['merge-base','--is-ancestor',baseline,sha]);
+ if(current===baseline)cp.execFileSync('git',['-c','credential.helper=','-c','credential.helper=!'+gh+' auth git-credential','push','origin',sha+':refs/heads/main'],{stdio:'inherit'});assert.equal(main(),sha);
+ for(const n of [54,55,JSON.parse(fs.readFileSync('validation-evidence/menu-release-config.json')).pr]){const pr=api('pulls/'+n);assert.equal(pr.merged,true,'PR'+n+' must be integrated');}
+ write('integration.json',{sha,baseline,utc:new Date().toISOString(),openPRs:api('pulls?state=open&per_page=30').map(p=>({number:p.number,title:p.title,sha:p.head.sha}))});console.log('Integrated exact validated source');
+}else if(mode==='candidate'){
+ assert.equal(main(),baseline);assert.equal(branch(),sha);assert(api('actions/workflows/build-android.yml/runs?per_page=10').workflow_runs.every(r=>r.status==='completed'));
+ const result=cli(['workflow','run','build-android.yml','--repo',repo,'--ref',ref,'-f','publish=false']);write('android-candidate-dispatch.json',{sha,utc:new Date().toISOString(),result});console.log(result);
+}else if(mode==='publish'){
+ assert.equal(main(),sha);const r=JSON.parse(fs.readFileSync(dir+'/release-readiness.json'));assert.equal(r.sha,sha);assert.equal(r.status,'PASS');assert(api('actions/workflows/build-android.yml/runs?per_page=10').workflow_runs.every(r=>r.status==='completed'));
+ const result=cli(['workflow','run','build-android.yml','--repo',repo,'--ref','main','-f','publish=true']);write('android-dispatch.json',{sha,utc:new Date().toISOString(),result});console.log(result);
+}else if(mode==='retry'||mode==='failure'){
+ const id=process.argv[4];assert.match(id,/^\d+$/);const run=api('actions/runs/'+id);assert.equal(run.head_sha,sha);assert.equal(run.conclusion,'failure');
+ const jobs=api('actions/runs/'+id+'/jobs?filter=latest&per_page=100');
+ write('first-failure-'+id+'-attempt'+run.run_attempt+'.json',{run,jobs});
+ fs.writeFileSync(dir+'/first-failure-'+id+'-attempt'+run.run_attempt+'.log.gz',require('node:zlib').gzipSync(cli(['run','view',id,'--repo',repo,'--log'])));
+ if(mode==='retry'){console.log(cli(['run','rerun',id,'--repo',repo,'--failed']));console.log('Saved original evidence and retried only failed jobs on unchanged '+sha);}
+ else{console.log(JSON.stringify(jobs.jobs.filter(j=>j.conclusion==='failure').map(j=>({id:j.id,name:j.name,failed:j.steps.filter(s=>s.conclusion==='failure')}))));console.log(cli(['run','view',id,'--repo',repo,'--log-failed']).slice(-16000));}
+}else if(mode==='final-evidence-push'){
+ const r=JSON.parse(fs.readFileSync(dir+'/android-release/public-verification.json'));assert.equal(r.status,'PASS');assert.equal(r.commit,sha);assert.equal(main(),sha);assert.equal(api('releases/latest').tag_name,r.tag);
+ const head=cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+ const names=cp.execFileSync('git',['diff','--name-only',sha,head],{encoding:'utf8'}).trim().split('\n').filter(Boolean);assert(names.length&&names.every(n=>n.startsWith('docs/')),'Only documentation/evidence may follow the released source');
+ assert.equal(cp.execFileSync('git',['-c','core.longpaths=true','status','--porcelain','--untracked-files=no'],{encoding:'utf8'}).trim(),'','Final documentation must be committed cleanly');
+ cp.execFileSync('git',['-c','credential.helper=','-c','credential.helper=!'+gh+' auth git-credential','push','--atomic','origin',head+':refs/heads/main',head+':refs/heads/'+ref+'-evidence'],{stdio:'inherit'});assert.equal(main(),head);console.log('Saved verified final delivery on main '+head);
+}else if(mode==='live-log'){
+ const id=process.argv[4];assert.match(id,/^\d+$/);
+ try{const log=cli(['api','repos/'+repo+'/actions/jobs/'+id+'/logs']);fs.writeFileSync('validation-evidence/live-job-'+id+'.txt',log);const lines=log.split('\n').filter(l=>/PASS |FAIL |Behavioral QA/.test(l));console.log(JSON.stringify({available:true,lines:lines.slice(-8),wispPassed:log.includes('PASS wisp-rarity-scroll'),wispFailed:log.includes('FAIL wisp-rarity-scroll')}));}catch{console.log('Live job logs are not available until completion');}
+}else if(mode==='failure-artifact'){
+ const id=process.argv[4],name=process.argv[5];assert.match(id,/^\d+$/);const run=api('actions/runs/'+id);assert.equal(run.head_sha,sha);
+ const artifact=api('actions/runs/'+id+'/artifacts').artifacts.find(a=>a.name===name);assert(artifact&&!artifact.expired);
+ const target=dir+'/failure-artifact-'+id+'-attempt'+run.run_attempt;fs.mkdirSync(target,{recursive:true});
+ cli(['run','download',id,'--repo',repo,'--name',name,'--dir',target]);
+ const zlib=require('node:zlib'),path=require('node:path'),hash=b=>require('node:crypto').createHash('sha256').update(b).digest('hex'),manifest=[];
+ function walk(base){for(const n of fs.readdirSync(base)){const p=path.join(base,n);if(fs.statSync(p).isDirectory()){walk(p);continue;}const b=fs.readFileSync(p);if(n.endsWith('.log'))fs.writeFileSync(p+'.gz',zlib.gzipSync(b));manifest.push({path:path.relative(target,p),bytes:b.length,sha256:hash(b)});}}
+ walk(target);fs.writeFileSync(target+'/artifact.json',JSON.stringify({sha,runId:id,attempt:run.run_attempt,artifact,manifest},null,2)+'\n');console.log(target);
+}else if(mode==='native-failure-artifact'){
+ const id=process.argv[4];assert.match(id,/^\d+$/);const run=api('actions/runs/'+id);assert.equal(run.head_sha,sha);
+ const artifact=api('actions/runs/'+id+'/artifacts').artifacts.find(a=>a.name==='failed-native-upgrade-'+id);assert(artifact&&!artifact.expired);
+ const local='validation-evidence/native-failure-'+id+'-attempt'+run.run_attempt;
+ cli(['run','download',id,'--repo',repo,'--name',artifact.name,'--dir',local]);write('native-failure-'+id+'-artifact.json',{runId:id,attempt:run.run_attempt,artifact,local});console.log(local);
+}else if(mode==='archive-native-failure'){
+ const id=process.argv[4],meta=JSON.parse(fs.readFileSync(dir+'/native-failure-'+id+'-artifact.json')),target=dir+'/native-first-failure-'+id;fs.mkdirSync(target,{recursive:true});const manifest=[];
+ for(const name of fs.readdirSync(meta.local)){const p=meta.local+'/'+name;if(!fs.statSync(p).isFile())continue;const b=fs.readFileSync(p),compress=/\.(txt|json|xml|log)$/.test(name),stored=name+(compress?'.gz':'');fs.writeFileSync(target+'/'+stored,compress?require('node:zlib').gzipSync(b):b);manifest.push({name,stored,bytes:b.length,sha256:require('node:crypto').createHash('sha256').update(b).digest('hex')});}
+ fs.writeFileSync(target+'/files.json',JSON.stringify({runId:id,attempt:meta.attempt,artifact:meta.artifact,manifest},null,2)+'\n');console.log('Preserved '+manifest.length+' native failure files byte-for-byte/gzip');
+}else if(mode==='verify-public'){
+ const id=process.argv[4];assert.match(id,/^\d+$/);cp.execFileSync(process.execPath,['validation-evidence/verify-all-updates-release.cjs',id,sha],{stdio:'inherit',timeout:240000});
+}else if(mode==='verify-candidate'){
+ const id=process.argv[4];assert.match(id,/^\d+$/);cp.execFileSync(process.execPath,['validation-evidence/verify-android-candidate.cjs',id,sha],{stdio:'inherit',timeout:180000});
+}else if(mode==='build-status'){
+ const runs=api('actions/workflows/build-android.yml/runs?head_sha='+sha+'&per_page=10').workflow_runs;console.log(JSON.stringify(runs.map(r=>({id:r.id,status:r.status,conclusion:r.conclusion,runNumber:r.run_number,branch:r.head_branch,url:r.html_url,sha:r.head_sha}))));
+}else throw Error('Unknown mode');

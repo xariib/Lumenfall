@@ -1,7 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: local restoration follow-upf7008f0e passes; source3130e62d native failed.
-Main remains8747ee60. New exact-source CI/Android acceptance is required.
+Status: validating source313bdd47 / productf7008f0e; main remains8747ee60.
+14/16 workflows passed; native scroll PASS, retail retry43695984950 pending.
 Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
@@ -187,3 +187,17 @@ finished promise before measuring; no original command deadline changed.
 Native acceptance of this follow-up is still required; do not claim it fixed
 the installed failure until positive real ranges/bottom restoration pass.
 Next: publish scoped follow-up, run complete exact-source CI and signed candidate.
+
+Native313bdd47/43695984950 attempt1 now passes all5 actual remembered bottoms
+with nonzero ranges: Wisps5601→5601, Forge5989→5989, Lab3340→3324 (new bottom),
+Ascend4780→4780, Deeds5958→5958. Six visible names, save/paid retention and actual
+updater also PASS. [Numeric proof](../qa/mobile-menu-corrections-001/native-scroll-proof-313bdd47.json).
+Retail gate failed its visible-controls assertion after UIAutomator could not
+obtain idle state; screenshot visibly shows normal gameplay (self-review only).
+All37 original files/logs preserved; exact cause unproven. Unchanged Android
+attempt2 is active. Linux Wisp first failed15s touch dispatch after101 checks/
+16 completed profiles; raw artifact preserved and failed-job retry passed.
+No test/assertion/deadline or game bytes changed. Only the two full premerge
+runs and unchanged native retry remain. Source313bdd47/f7008f0e stays fixed.
+Next: verify successful candidate's exact bytes/positive-range receipts, require
+all16 workflows, save logs, fast-forward exact source to main, publish/verify APK.
