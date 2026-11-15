@@ -1,6 +1,6 @@
 # Mobile menu corrections evidence
 
-Final product SHA256: `ff13eee2a0891a02e0bb8dc2681ac0d3be88ac14c9ec5abb1c73d0e83b919da7`.
+Current product SHA256: `f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
 Earlier source `a7d991eb` receipts remain labeled with their exact bytes below.
 Node24.22.1, Brave Chromium157.0.8103.79 on Windows. Self-review/automated checks.
 
@@ -68,3 +68,14 @@ legacy viewport matrix. Native acceptance now requires the intended active panel
 a positive actual range and nonzero bottom before testing restoration. External
 candidate/public verification independently enforces those receipt preconditions.
 Original0.2.122 artifacts remain preserved as historical data, not a final APK.
+
+3130e62d's next native run43688663000 has real ranges but fails restored Wisps
+bottom. Its original32 artifact files/log are retained; precise native ordering
+cause is unproven. Current local touch+legacy matrix passes398 checks/12profiles
+and reproduces a missing post-entry restoration using layout growth during entry.
+Game restoration now repeats on that panel's animationend and cancels on new
+user input/navigation. simple.stdout.txt passes740 modern checks plus398 legacy;
+settle-control, reset-control and fallback-control catch their intended defects.
+Paired replay passes currentf7008f0e. The next native script saves partial numeric
+scroll/focus/input evidence before assertions. This remains pending native/CI
+acceptance and is not a public release.

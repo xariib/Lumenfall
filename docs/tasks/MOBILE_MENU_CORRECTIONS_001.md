@@ -1,7 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: validating source3130e62d / productff13eee2. Main remains8747ee60.
-Final native candidate43688663000 and all8 PR+8 manual workflows are running.
+Status: local restoration follow-upf7008f0e passes; source3130e62d native failed.
+Main remains8747ee60. New exact-source CI/Android acceptance is required.
 Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
@@ -159,3 +159,31 @@ Native active-panel/range/bottom assertions and independent artifact verificatio
 now reject the old0/0 receipt. No simulation/save/price/reward changes in this fix.
 Next: publish this corrected source; run complete exact-source workflows and
 candidate Android; require positive native ranges before readiness/integration.
+
+## Entrance-layout restoration follow-up
+
+Android43688663000 on3130e62d passed real positive scroll-range/active-panel
+preconditions, then failed “Installed spirits returns to its remembered bottom”.
+The original log/32 diagnostic files are retained; original assertion lacked
+numeric after-values. Exact native timing cause remains unproven. PR full
+43688612979 separately failed its boost-queue browser step; full original logs
+are retained. The manual full suite and other14 workflows passed on3130e62d.
+
+Added actual CDP touch menu coverage and a causal entry-layout case: append
+content immediately after entering a remembered-bottom menu.3130 behavior fails
+“return restores bottom after entry layout settles”. Restoration now happens
+immediately and again on the panel's own animationend. New main input or keyboard
+input cancels that deferred adjustment; a new navigation removes the old handler.
+Only direct navigation uses it, so intentional hint/shortcut target scrolling
+remains unchanged. No timer/polling loop is added to the game. Native follow-up
+also saves partial before/after/focus/input diagnostics before any assertion.
+
+Product SHA256 `f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
+Local actual-touch legacy matrix398/12 PASS; full modern selection/menu740
+and legacy398/12 PASS. Entry-settling, original reset and missing-fallback
+controls fail at their intended assertions. Core/clarity and paired four8h
+full-state replay PASS again. Test helper waits for animationend after its
+finished promise before measuring; no original command deadline changed.
+Native acceptance of this follow-up is still required; do not claim it fixed
+the installed failure until positive real ranges/bottom restoration pass.
+Next: publish scoped follow-up, run complete exact-source CI and signed candidate.
