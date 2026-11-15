@@ -117,3 +117,14 @@ as superseded by this final CSS fix; no other tasks/runs/main were touched.
 The final source needs its own complete CI/native/public acceptance. Next:
 publish this final reviewed source and run all required validation/candidate
 Android again; keep source/main fixed through acceptance and integration.
+
+Final validation ref is fix/mobile-menu-corrections-001 at
+`c07d9bc680d9400826ccf26697809dd5e83f3bf4`. PR56 and all8 manual workflows run
+on these bytes. Native nonpublishing candidate43685898534 is in progress.
+Main remains8747ee60; no public update has been published. Do not move the
+validation ref/main until final acceptance/readiness. Evidence-only checkpoints
+use evidence/mobile-menu-corrections-001, with identical product/native/test bytes.
+Local delivery/verification helpers are in validation-evidence/ inside this
+isolated worktree; required run URLs are saved in dispatch.json and candidate
+dispatch. If helpers are unavailable, use the original workflows and exact run
+metadata; no credential/signing change is needed.
