@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {parseManifest,inspect}=require('../../scripts/ci/verify_apk_security.cjs');
+const {hasVisibleGameControls}=require('../../scripts/lib/android-live-ui.cjs');
 const xml=`N: android=http://schemas.android.com/apk/res/android
   E: manifest (line=2)
     A: package="com.lumenfall.app" (Raw: "com.lumenfall.app")
@@ -40,4 +41,21 @@ assert(workflow.includes('verify_apk_security.cjs Lumenfall.apk'));
 assert(workflow.includes('target: google_apis_playstore'),'Normal launch must be checked on a retail OS image');
 assert.equal(JSON.parse(fs.readFileSync('mobile/capacitor.config.json')).android.webContentsDebuggingEnabled,false);
 assert(!/path:\s*\|[^]*?release-probe\.apk/.test(workflow),'CI-only instrumentation must not be uploaded');
+// A stale/loading tree, another app, or merely named/noninteractive text cannot
+// prove that the normal production launch has reached usable game controls.
+const node=label=>'<node package="com.lumenfall.app" text="'+label+'" clickable="true" enabled="true" bounds="[0,580][60,640]" />';
+const live='<hierarchy>'+node('Wisps')+node('Rift')+'</hierarchy>';
+assert(hasVisibleGameControls(live,320,640));
+assert(hasVisibleGameControls(live.replaceAll('text=','content-desc='),320,640));
+for(const invalid of [
+  '<hierarchy><node package="com.lumenfall.app" text="Welcome gift — +5 Comets" /></hierarchy>',
+  live.replace(node('Rift'),''),live.replace(node('Wisps'),''),
+  live.replaceAll('com.lumenfall.app','com.example.other'),
+  live.replaceAll('clickable="true"','clickable="false"'),
+  live.replaceAll('enabled="true"','enabled="false"'),
+  live.replaceAll('[0,580][60,640]','[0,640][60,700]'),
+  live.replaceAll('[0,580][60,640]','[0,580][0,640]'),
+  live.replace('</hierarchy>','<node text="Preparing your Rift…" /></hierarchy>'),
+  live.replace('</hierarchy>','<node text="Skip intro" /></hierarchy>')
+])assert(!hasVisibleGameControls(invalid,320,640),'Normal launch rejects incomplete/hidden/loading accessibility evidence');
 console.log('PASS: production config, negative permission/debug/export/origin cases, patched dependency and release wiring');

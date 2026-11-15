@@ -1,0 +1,248 @@
+{
+  "runId": "43695984950",
+  "attempt": 2,
+  "artifact": {
+    "id": 14154927552,
+    "node_id": "MDg6QXJ0aWZhY3QxNDE1NDkyNzU1Mg==",
+    "name": "failed-native-upgrade-43695984950",
+    "size_in_bytes": 3000614,
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/artifacts/14154927552",
+    "archive_download_url": "https://api.github.com/repos/xariib/Lumenfall/actions/artifacts/14154927552/zip",
+    "expired": false,
+    "digest": "sha256:9cd36cea4c769c9540ceb1bdd729e8f534c1cfb6028845ec8ef7090e04fb8580",
+    "created_at": "2026-11-15T09:11:13Z",
+    "updated_at": "2026-11-15T09:11:13Z",
+    "expires_at": "2027-02-13T08:59:38Z",
+    "workflow_run": {
+      "id": 43695984950,
+      "repository_id": 1418619144,
+      "head_repository_id": 1418619144,
+      "head_branch": "fix/mobile-menu-corrections-001",
+      "head_sha": "313bdd47106911a016e2ab31b6a32053b77fd7c9"
+    }
+  },
+  "manifest": [
+    {
+      "name": "apk-sha256.txt",
+      "stored": "apk-sha256.txt.gz",
+      "bytes": 80,
+      "sha256": "fa921041c733e3bb922a8f51adfd82a715ed450fe8844c984c6bb29991b90e6f"
+    },
+    {
+      "name": "assets.json",
+      "stored": "assets.json.gz",
+      "bytes": 2597,
+      "sha256": "9d429c1cbbf68c9c9b495d64559f634a462625c0b4b4010ba1212c26c28ee553"
+    },
+    {
+      "name": "commit.txt",
+      "stored": "commit.txt.gz",
+      "bytes": 41,
+      "sha256": "0297f44d9a27d7551b3da4fd0b5d0dff3f97df8858b76253da2071f473aa3894"
+    },
+    {
+      "name": "dependency-audit.json",
+      "stored": "dependency-audit.json.gz",
+      "bytes": 5183,
+      "sha256": "39f70ee57473a6f80d9a2c4614eb378c2835ecf74f0ab678f1a67114eb3a63fa"
+    },
+    {
+      "name": "emulator-upgrade.json",
+      "stored": "emulator-upgrade.json.gz",
+      "bytes": 18612,
+      "sha256": "3511f741b60f337c0d880924ea48e57648a2695df601c19a2ce87306fdb38b24"
+    },
+    {
+      "name": "identity.txt",
+      "stored": "identity.txt.gz",
+      "bytes": 263,
+      "sha256": "ffa026c0b7cf6f700cf18dd52eb565f035e583eba943ef1d5b74e31e19212b24"
+    },
+    {
+      "name": "in-app-updater.json",
+      "stored": "in-app-updater.json.gz",
+      "bytes": 715,
+      "sha256": "e7d5b87fbab2cd467c37a16344deb149dcf3bb414925523541e2d56e42af1709"
+    },
+    {
+      "name": "installed-deeds-progressive.png",
+      "stored": "installed-deeds-progressive.png",
+      "bytes": 81933,
+      "sha256": "add882bd384ccba54db2108389fc1f7b2407eb27f4f8b0b9e9b183369de447e5"
+    },
+    {
+      "name": "installed-menu-scroll.json",
+      "stored": "installed-menu-scroll.json.gz",
+      "bytes": 3002,
+      "sha256": "6b874bf1332dc6e81ec72523213d607e499313b0ddb35052fdd4d7221a3b78c5"
+    },
+    {
+      "name": "installed-midgame-farm-after.png",
+      "stored": "installed-midgame-farm-after.png",
+      "bytes": 70278,
+      "sha256": "6c1d4d80536e3e08403ad9fd0cd74621c54b09cbe1255f18e699a34117d9260a"
+    },
+    {
+      "name": "installed-midgame-farm-diagnostic.json",
+      "stored": "installed-midgame-farm-diagnostic.json.gz",
+      "bytes": 430,
+      "sha256": "65e56ef98a19fd34a58cf3aee04df5fe04b0f5d69049fc82850baf62a7b43d9b"
+    },
+    {
+      "name": "installed-midgame-farm-input.json",
+      "stored": "installed-midgame-farm-input.json.gz",
+      "bytes": 1266,
+      "sha256": "5a148da13fcfd01b0abde179a015aaa63e3c2c48e718ba5d1c06257c6f3c39de"
+    },
+    {
+      "name": "installed-midgame-farm.png",
+      "stored": "installed-midgame-farm.png",
+      "bytes": 130195,
+      "sha256": "214e92451fe496a8fef8ad7f586b4667878cc1f353599a93c0fabc89a8a00f40"
+    },
+    {
+      "name": "installed-rift-looks.png",
+      "stored": "installed-rift-looks.png",
+      "bytes": 153047,
+      "sha256": "731312f06c87fc57c27a644a6d0f2ba55ac227025187ace86b592f2ddb8bded5"
+    },
+    {
+      "name": "installed-rift-navigation-input.json",
+      "stored": "installed-rift-navigation-input.json.gz",
+      "bytes": 329598,
+      "sha256": "e95800ae788d5ca72f24fa61999b175d33c852509ecbd77a17f3e013e1ed3bba"
+    },
+    {
+      "name": "installed-rift-navigation.png",
+      "stored": "installed-rift-navigation.png",
+      "bytes": 142349,
+      "sha256": "3feb34d84f489c2e899847ea35859b359864e7a73f6390b401194758d05b50cd"
+    },
+    {
+      "name": "installed-wisp-card.png",
+      "stored": "installed-wisp-card.png",
+      "bytes": 67962,
+      "sha256": "084578ca4d27b0bdca8fad64e32fbf99b92619c3c06f66e16dc5e4d896c8a191"
+    },
+    {
+      "name": "installed-wisp-diagnostic.json",
+      "stored": "installed-wisp-diagnostic.json.gz",
+      "bytes": 5197,
+      "sha256": "66b62b922e4fda00bc066d6d4659374c4ea8f15a7084d5b893d320b46efca8eb"
+    },
+    {
+      "name": "native-logcat.txt",
+      "stored": "native-logcat.txt.gz",
+      "bytes": 7033236,
+      "sha256": "3ff0e224da4105ff116c13041615422cb213aacdaa75a6475a70f3bbd75a6def"
+    },
+    {
+      "name": "native-touch-calibration.json",
+      "stored": "native-touch-calibration.json.gz",
+      "bytes": 692,
+      "sha256": "c6c685f9c0c8fb081ed5b29ec0a93e0c5a29defe82a9315e6e9ed432085b5a33"
+    },
+    {
+      "name": "new-upgrade-state.json",
+      "stored": "new-upgrade-state.json.gz",
+      "bytes": 22870,
+      "sha256": "c516c16f3505e0ff3946311d06b5e1420769ae4ae2063803577b4d141004e058"
+    },
+    {
+      "name": "offline-recap-after.png",
+      "stored": "offline-recap-after.png",
+      "bytes": 139184,
+      "sha256": "f0239ce6977f55c146f0b9d1ce875679ed2ebdfcdd7afbaff0f1c5cce506b9c2"
+    },
+    {
+      "name": "offline-recap-before.png",
+      "stored": "offline-recap-before.png",
+      "bytes": 134667,
+      "sha256": "59163af1a124252b2df9294abc75a404143e61db4ae2befe22614b6351c6c5a2"
+    },
+    {
+      "name": "offline-recap-input.json",
+      "stored": "offline-recap-input.json.gz",
+      "bytes": 1192,
+      "sha256": "ac75195ab840dfcebc7ca3369505a9dc2fa01386be35c4f07bc389c836e1d440"
+    },
+    {
+      "name": "offline-recap-startup.json",
+      "stored": "offline-recap-startup.json.gz",
+      "bytes": 11667,
+      "sha256": "f897e19aa06fe9835d51e3df100a847749793beb35a84346829841b8604b9033"
+    },
+    {
+      "name": "offline-recap-startup.png",
+      "stored": "offline-recap-startup.png",
+      "bytes": 134804,
+      "sha256": "caee87a2476cb1d6c45599d7fcae134ebe07708305d695a12e23b50ce7c1e8b7"
+    },
+    {
+      "name": "offline-recap-window.txt",
+      "stored": "offline-recap-window.txt.gz",
+      "bytes": 24415,
+      "sha256": "168a5f2c8b1e7813faa98e1fa3182131441f10d38c862187896c256daea35770"
+    },
+    {
+      "name": "old-fixture-live.json",
+      "stored": "old-fixture-live.json.gz",
+      "bytes": 10830,
+      "sha256": "4863853158f89c367f6aeed8af7b8cf2e1abaa923d65fa29b8bc81d3751adae8"
+    },
+    {
+      "name": "production-normal-launch.png",
+      "stored": "production-normal-launch.png",
+      "bytes": 146111,
+      "sha256": "90e3aebd8ed87b80dd1b48b9cd5eaf5cb536996a50f113888c629423ac2a292d"
+    },
+    {
+      "name": "production-normal-launch.xml",
+      "stored": "production-normal-launch.xml.gz",
+      "bytes": 4078,
+      "sha256": "bbc6d73f0074aad71b25fc2a475bf9b562bc14833d9d616fe2088ae9e82e2057"
+    },
+    {
+      "name": "release-probe.log",
+      "stored": "release-probe.log.gz",
+      "bytes": 74,
+      "sha256": "cc376fcd260b55a01f82c04af5e0a9ead88516f600131a38bdea1a3e05b10a8d"
+    },
+    {
+      "name": "runner-kernel.txt",
+      "stored": "runner-kernel.txt.gz",
+      "bytes": 12710,
+      "sha256": "9df8517bca5a6d6107397a68c1845b79c56b95ba50351559c08530c75cf70965"
+    },
+    {
+      "name": "runner-memory.txt",
+      "stored": "runner-memory.txt.gz",
+      "bytes": 207,
+      "sha256": "7711e53de820c7e97fab1d8dfb8e25e346a70f0f5c2abe092934df4609f4b646"
+    },
+    {
+      "name": "security.json",
+      "stored": "security.json.gz",
+      "bytes": 438,
+      "sha256": "1b1f2ffa5d8046b33f46ca9368d14a8cb63263e18e650145a043061e10f7bcf0"
+    },
+    {
+      "name": "test-runner-signature.txt",
+      "stored": "test-runner-signature.txt.gz",
+      "bytes": 317,
+      "sha256": "36fb9677a80153a7ddeefb69c75ff1269d23494ace1e5c4fc38f5541f41146bb"
+    },
+    {
+      "name": "updater-native-logcat.txt",
+      "stored": "updater-native-logcat.txt.gz",
+      "bytes": 7378530,
+      "sha256": "33ff9e86dd74056cb6731f26bdbe7fab71a3c6b39e0e25cc20c386c2e4eb4df3"
+    },
+    {
+      "name": "version-code.txt",
+      "stored": "version-code.txt.gz",
+      "bytes": 8,
+      "sha256": "15f61eb95ef67b95dfa29f196a0384642421fc750c140abea35a552960aabe8b"
+    }
+  ]
+}

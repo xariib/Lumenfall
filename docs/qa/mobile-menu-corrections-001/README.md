@@ -87,3 +87,17 @@ running game. Original37 files are retained under native-first-failure-436959849
 An unchanged retry is required; self-review does not replace that gate. The Linux
 Wisp manual run's touch timeout (101 checks/16 profiles) is retained with its full
 artifact; unchanged failed-job retry passed. Source remains fixed for final CI.
+
+Retail attempt2 failed the same global-idle capture, while its native five-menu
+scroll/save/updater checks passed. Original37 files are separately preserved in
+native-failure-attempt2-43695984950/ and first-failure-*-attempt2.*. No third blind
+retry. The test-only LiveUiSnapshot observer uses the same Android31 shell bridge
+and XML dumper without waiting for the animated game to become globally idle.
+The launch deadline stays120s; both enabled/clickable/on-screen Wisps and Rift
+buttons are now required. Negative loading, stale, wrong-package, disabled,
+noninteractive and clipped trees are rejected by tests/tooling/apk-security.cjs.
+All retail identity/debugger/private-storage/exact-byte gates remain. Nothing
+changes in index.html or the production APK. Actual observer compilation/retail
+capture is pending a new exact-source candidate; old failures remain historical.
+AOSP references: [DumpCommand](https://android.googlesource.com/platform/prebuilts/fullsdk/sources/android-29/+/refs/heads/main/com/android/commands/uiautomator/DumpCommand.java),
+[the same shell bridge](https://android.googlesource.com/platform/prebuilts/fullsdk/sources/android-30/+/refs/heads/androidx-room-release/com/android/uiautomator/core/UiAutomationShellWrapper.java).

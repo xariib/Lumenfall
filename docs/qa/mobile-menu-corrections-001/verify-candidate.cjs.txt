@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),zlib=require('node:zlib'),{execFileSync}=require('node:child_process');
 const {verify}=require('../scripts/ci/verify_apk_assets.cjs');
+const {hasVisibleGameControls}=require('../scripts/lib/android-live-ui.cjs');
 const [runId,commit]=process.argv.slice(2);assert.match(runId,/^\d+$/);assert.match(commit,/^[a-f0-9]{40}$/);
 const gh='C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/github-cli/bin/gh.exe',repo='xariib/Lumenfall';
 const cli=args=>execFileSync(gh,args,{encoding:'utf8',timeout:120000,maxBuffer:16*1024*1024});
@@ -24,9 +25,10 @@ assert.equal(upgrade.installedProgressiveDeeds.status,'PASS');assert.equal(upgra
 const catalog=require('../tests/behavioral/formation-bonds.cjs').app().b.bondCatalog;
 assert.equal(upgrade.installedRiftBonds.rows.length,catalog.length);for(const b of catalog)assert(upgrade.installedRiftBonds.rows.some(r=>r.name===b.name&&r.effect===b.effect),'Exact installed Wisp Bond description: '+b.id);
 assert.equal(updater.systemApprovedInstall,true);assert.equal(updater.installerOpenLaunch,true);assert.equal(runtime.normalLaunch,true);assert.equal(runtime.visibleGameControls,true);assert.equal(runtime.debuggable,false);assert.equal(runtime.systemBuildType,'user');
+assert.equal(runtime.accessibilityCapture,'live-shell');assert.equal(runtime.webViewDebuggerExposed,false);assert.equal(runtime.runAsRejected,true);assert.equal(runtime.testInstrumentationAbsent,true);assert(hasVisibleGameControls(read('production-normal-launch.xml'),runtime.display.width,runtime.display.height),'Actual retail XML must show enabled on-screen Wisps and Rift controls');
 const assets=verify(apk);assert.equal(assets.status,'PASS');assert.equal(assets.assets.find(a=>a.path==='index.html').sha256,hash(fs.readFileSync('index.html')));
 
-const selected=['identity.txt','apk-sha256.txt','assets.json','commit.txt','version-code.txt','emulator-upgrade.json','in-app-updater.json','production-runtime.json','security.json','dependency-audit.json','installed-rift-looks.png','installed-deeds-progressive.png','production-normal-launch.png'];
+const selected=['identity.txt','apk-sha256.txt','assets.json','commit.txt','version-code.txt','emulator-upgrade.json','in-app-updater.json','production-runtime.json','security.json','dependency-audit.json','installed-rift-looks.png','installed-deeds-progressive.png','production-normal-launch.png','production-normal-launch.xml'];
 for(const name of selected)fs.copyFileSync(path.join(src,name),path.join(out,name));
 const result={status:'PASS',published:false,commit,version,versionCode:code,runId:Number(runId),runUrl:run.html_url,apkSha256:sha,assets:assets.status,upgrade:upgrade.status,updater:updater.status,retailLaunch:runtime.status,installedBonds:upgrade.installedRiftBonds.status,installedDeeds:upgrade.installedProgressiveDeeds.status,physicalDevice:false};
 fs.writeFileSync(out+'/verification.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

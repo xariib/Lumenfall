@@ -1,7 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: validating source313bdd47 / productf7008f0e; main remains8747ee60.
-14/16 workflows passed; native scroll PASS, retail retry43695984950 pending.
+Status: productf7008f0e fixed; retail accessibility observer follow-up pending.
+313bdd47 has14/16 workflows passed and native scroll PASS; retail failed twice.
 Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
@@ -201,3 +201,25 @@ No test/assertion/deadline or game bytes changed. Only the two full premerge
 runs and unchanged native retry remain. Source313bdd47/f7008f0e stays fixed.
 Next: verify successful candidate's exact bytes/positive-range receipts, require
 all16 workflows, save logs, fast-forward exact source to main, publish/verify APK.
+
+## Live retail accessibility capture
+
+43695984950 attempt2 again passes actual five-menu scroll/save/updater acceptance
+but fails stock UIAutomator's idle capture. All37 original attempt2 files and
+full logs are retained separately; both screenshots show normal active combat.
+AOSP DumpCommand waits for a globally idle accessibility stream before reading
+the tree. This does not establish a game defect or identify the precise event
+source. No further unchanged retry is justified by these two matching failures.
+
+The necessary test-only follow-up builds a shell-only Java accessibility observer
+outside the APK. It uses Android31's same UiAutomation bridge/hierarchy dumper,
+reads the live root, deletes stale XML before each capture, and retains the120s
+launch deadline. The assertion is stronger: both enabled/clickable Wisps and Rift
+controls must appear in the app's tree with positive on-screen bounds, beyond
+loading/intro. Loading/stale/other-package/disabled/clipped fixtures are rejected
+locally. Retail OS, non-debuggable APK, no WebView socket/instrumentation, private
+storage rejection and exact installed bytes checks remain. No product/workflow
+or packaged asset changes; f7008f0e replay proof remains applicable. Shell observer
+compilation and actual retail capture still require CI; do not claim them passed.
+Next: commit this scoped native-test fix, repeat exact-source validation/candidate,
+then integrate/publish only after every required gate passes. Main stays8747ee60.

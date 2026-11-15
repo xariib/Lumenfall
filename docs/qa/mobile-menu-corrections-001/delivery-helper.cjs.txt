@@ -98,7 +98,7 @@ if(mode==='dispatch'){
  const local='validation-evidence/native-failure-'+id+'-attempt'+run.run_attempt;
  cli(['run','download',id,'--repo',repo,'--name',artifact.name,'--dir',local]);write('native-failure-'+id+'-artifact.json',{runId:id,attempt:run.run_attempt,artifact,local});console.log(local);
 }else if(mode==='archive-native-failure'){
- const id=process.argv[4],meta=JSON.parse(fs.readFileSync(dir+'/native-failure-'+id+'-artifact.json')),target=dir+'/native-first-failure-'+id;fs.mkdirSync(target,{recursive:true});const manifest=[];
+ const id=process.argv[4],meta=JSON.parse(fs.readFileSync(dir+'/native-failure-'+id+'-artifact.json')),target=dir+(meta.attempt===1?'/native-first-failure-':'/native-failure-attempt'+meta.attempt+'-')+id;fs.mkdirSync(target,{recursive:true});const manifest=[];
  for(const name of fs.readdirSync(meta.local)){const p=meta.local+'/'+name;if(!fs.statSync(p).isFile())continue;const b=fs.readFileSync(p),compress=/\.(txt|json|xml|log)$/.test(name),stored=name+(compress?'.gz':'');fs.writeFileSync(target+'/'+stored,compress?require('node:zlib').gzipSync(b):b);manifest.push({name,stored,bytes:b.length,sha256:require('node:crypto').createHash('sha256').update(b).digest('hex')});}
  fs.writeFileSync(target+'/files.json',JSON.stringify({runId:id,attempt:meta.attempt,artifact:meta.artifact,manifest},null,2)+'\n');console.log('Preserved '+manifest.length+' native failure files byte-for-byte/gzip');
 }else if(mode==='verify-public'){
