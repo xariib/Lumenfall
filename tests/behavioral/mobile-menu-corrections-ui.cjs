@@ -3,7 +3,15 @@ module.exports=async function({send,ev,pause,check,records,args}){
  const fs=require('node:fs'),path=require('node:path');
  const seed=await ev('uiRegression.fresh()');seed.maxDepthEver=1000000;seed.lumen=seed.shards=1e12;seed.motes=100000;seed.prisms=10000;seed.questDay=new Date().toISOString().slice(0,10);seed.longStudyLevels.labcapacity=2;
  seed.activeStudies=['wispascend','wispdamage','lumenstudy','guardmastery','critstudy'].map((id,slot)=>({id,slot,remainingSec:120000,totalDurationSec:240000,speedMult:1.5}));
- async function tab(name){await ev('document.querySelector('+JSON.stringify('[data-tab="'+name+'"]')+').click()');await ev('Promise.all(document.querySelector(".tab-panel.active").getAnimations().map(a=>a.finished)).then(()=>true)');}
+ async function tab(name){
+  const selector=JSON.stringify('[data-tab="'+name+'"]');
+  if(args.includes('--native-menu-navigation')&&!['forge','research'].includes(name)){
+   const point=await ev('(()=>{var r=document.querySelector('+selector+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()');
+   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(50);
+  }else await ev('document.querySelector('+selector+').click()');
+  await ev('Promise.all(document.querySelector(".tab-panel.active").getAnimations().map(a=>a.finished)).then(()=>true)');
+  await pause(30); // Let the entrance animationend event run after its promise.
+ }
  async function shot(name){if(args.includes('--evidence')){const out=path.resolve(args[args.indexOf('--evidence')+1]);fs.mkdirSync(out,{recursive:true});const r=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(r.data,'base64'));}}
  for(const width of [320,390,430])for(const scale of [100,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%";uiRegression.set('+JSON.stringify(seed)+')');
@@ -25,6 +33,13 @@ module.exports=async function({send,ev,pause,check,records,args}){
    check(await ev('(()=>{var m=document.querySelector("main");return Math.abs(m.scrollHeight-m.clientHeight-m.scrollTop)<=2})()'),'return restores bottom for '+name);
   }
   // Forge and Lab keep separate positions through the shared Workshop button.
+  await tab('forge');await ev('document.querySelector("main").scrollTop=document.querySelector("main").scrollHeight');await tab('battle');
+  await ev('document.querySelector("[data-tab=forge]").click();var e=document.createElement("div");e.id="menu-entry-growth";e.style.height="180px";document.getElementById("tab-forge").appendChild(e)');
+  await ev('Promise.all(document.getElementById("tab-forge").getAnimations().map(a=>a.finished)).then(()=>true)');await pause(30);
+  check(await ev('(()=>{var m=document.querySelector("main");return Math.abs(m.scrollHeight-m.clientHeight-m.scrollTop)<=2})()'),'return restores bottom after entry layout settles');await ev('document.getElementById("menu-entry-growth").remove()');
+  await tab('battle');await ev('document.querySelector("[data-tab=forge]").click();var m=document.querySelector("main");m.dispatchEvent(new Event("touchstart"));m.scrollTop=33');
+  await ev('Promise.all(document.getElementById("tab-forge").getAnimations().map(a=>a.finished)).then(()=>true)');await pause(30);
+  check(await ev('document.querySelector("main").scrollTop===33'),'user scroll during menu entry cancels deferred restoration');
   await tab('forge');await ev('document.querySelector("main").scrollTop=document.querySelector("main").scrollHeight');await tab('battle');
   await ev('var e=document.createElement("div");e.id="menu-growth-fixture";e.style.height="180px";document.getElementById("tab-forge").appendChild(e)');await tab('forge');
   check(await ev('(()=>{var m=document.querySelector("main");return Math.abs(m.scrollHeight-m.clientHeight-m.scrollTop)<=2})()'),'remembered bottom follows content growth while away');await ev('document.getElementById("menu-growth-fixture").remove()');

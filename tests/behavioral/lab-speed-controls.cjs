@@ -11,6 +11,7 @@ if(mutation==='next-locked'){const a='var hours=preference.hours;';assert.equal(
 if(args.includes('--mutate-presets')){const a='setStudyBoostPreference(id,mult!==null?Number(mult):preference.mult,hours!==null?Number(hours):preference.hours);';assert.equal(source.split(a).length,2);source=source.replace(a,'/* preset selection disconnected */');}
 if(args.includes('--mutate-confirmation')){const a='      chooseStudy(lnode);';assert.equal(source.split(a).length,2);source=source.replace(a,'      startStudy(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);');}
 if(args.includes('--mutate-menu-scroll')){const a='main.scrollTop=position ? (position.bottom ? main.scrollHeight : position.top) : 0;';assert.equal(source.split(a).length,2);source=source.replace(a,'main.scrollTop=0;');}
+if(args.includes('--mutate-menu-settle')){const a='    if(settleScroll)settleMenuScrollPosition(main,panel,position);';assert.equal(source.split(a).length,2);source=source.replace(a,'');}
 if(args.includes('--legacy-viewport'))source=source.replace(/(?:min-)?height:100dvh;/g,'');
 if(args.includes('--mutate-viewport-fallback')){const a='    height:100vh;\n    min-height:100vh;\n';assert.equal(source.split(a).length,2);source=source.replace(a,'');}
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');

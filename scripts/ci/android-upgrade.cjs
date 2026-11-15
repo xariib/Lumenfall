@@ -435,8 +435,10 @@ async function verifyInstalledRiftLooks(page,report){
    assert(before.max>0&&before.top>0,'Installed '+name+' fixture has a real scroll range and reaches its bottom');
    await tap('nav.tabbar [data-tab="battle"]');await visitMenu(name);
    const after=await page.evaluate(`(()=>{const m=document.querySelector('main');return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
-   assert(Math.abs(after.top-after.max)<=2,'Installed '+name+' returns to its remembered bottom');
    rememberedMenus.push({name,before,after});
+   const diagnostic=await page.evaluate(`(()=>{const m=document.querySelector('main');return {active:document.querySelector('.tab-panel.active').id,focused:document.activeElement?.outerHTML.slice(0,300),main:m.getBoundingClientRect().toJSON(),overflow:getComputedStyle(m).overflowY,events:riftLookEvents.slice(-12)};})()`);
+   fs.writeFileSync('release-evidence/installed-menu-scroll.json',JSON.stringify({menus:rememberedMenus,diagnostic},null,2)+'\n');
+   assert(Math.abs(after.top-after.max)<=2,'Installed '+name+' returns to its remembered bottom '+JSON.stringify({before,after,diagnostic}));
  }
  const currencyNames=await page.evaluate(`Array.from(document.querySelectorAll('.hud .lbl')).map(e=>({name:e.textContent,visible:e.getBoundingClientRect().width>1&&getComputedStyle(e).position!=='absolute',fits:e.scrollWidth<=e.clientWidth+1}))`);
  assert(currencyNames.length===6&&currencyNames.every(e=>e.visible&&e.fits),'Installed header shows all six unclipped currency names');

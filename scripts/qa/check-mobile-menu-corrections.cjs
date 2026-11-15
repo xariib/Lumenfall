@@ -6,6 +6,8 @@ const cases={
  menus:[['menus',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--evidence',out]]],
  'scroll-control':[['scroll-control',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--mutate-menu-scroll']]],
  legacy:[['legacy-viewport',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--evidence',out+'/legacy-viewport']]],
+ 'native-menus':[['native-menus',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--native-menu-navigation']]],
+ 'settle-control':[['settle-control',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--native-menu-navigation','--mutate-menu-settle']]],
  'viewport-control':[['viewport-control',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--mutate-viewport-fallback']]],
  lab:[['simple',['tests/behavioral/lab-speed-controls.cjs','index.html','--simple','--evidence',out+'/lab']],['slots',['tests/behavioral/lab-speed-controls.cjs','index.html','--slots']],['deeds-ui',['tests/behavioral/lab-speed-controls.cjs','index.html','--deeds']]],
  rift:[['visual',['tests/behavioral/visual-audit.cjs','index.html',out+'/visual']],['cosmetics',['tests/behavioral/rift-cosmetics.cjs','--source','index.html','--negative','--out',out+'/cosmetics']]],
@@ -24,5 +26,6 @@ for(const [name,args]of cases[mode]){
  console.log(JSON.stringify({name,status:r.status,seconds:(Date.now()-start)/1000,error:r.error?.message}));
  if(name==='scroll-control'){const receipt=JSON.parse(r.stdout);if(r.status!==1||receipt.status!=='fail'||!receipt.error.includes('return restores independent offset for spirits'))throw Error('Scroll reset control did not fail at the intended assertion');continue;}
  if(name==='viewport-control'){const receipt=JSON.parse(r.stdout);if(r.status!==1||receipt.status!=='fail'||!receipt.error.includes('scrollable fixture for spirits'))throw Error('Viewport fallback control did not fail at the intended assertion');continue;}
+ if(name==='settle-control'){const receipt=JSON.parse(r.stdout);if(r.status!==1||receipt.status!=='fail'||!receipt.error.includes('return restores bottom after entry layout settles'))throw Error('Menu settling control did not fail at the intended assertion');continue;}
  if(r.status!==0){console.log((r.stdout||'').slice(-6000));console.log((r.stderr||'').slice(-2000));process.exitCode=1;break;}
 }

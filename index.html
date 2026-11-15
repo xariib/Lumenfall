@@ -11350,13 +11350,36 @@ function syncMainScrollMode(tabName){
 }
 var workshopSection='forge';
 var menuScrollPositions={};
-function activateTab(tabName){
+var pendingMenuScrollRestore=null;
+function restoreMenuScrollPosition(main,position){
+  main.scrollTop=position ? (position.bottom ? main.scrollHeight : position.top) : 0;
+}
+function settleMenuScrollPosition(main,panel,position){
+  if(!position) return;
+  function cancel(){
+    panel.removeEventListener('animationend',finished);
+    ['wheel','touchstart','pointerdown'].forEach(function(type){main.removeEventListener(type,cancel);});
+    document.removeEventListener('keydown',cancel,true);
+    if(pendingMenuScrollRestore===cancel)pendingMenuScrollRestore=null;
+  }
+  function finished(event){
+    if(event.target!==panel)return;
+    if(panel.classList.contains('active'))restoreMenuScrollPosition(main,position);
+    cancel();
+  }
+  pendingMenuScrollRestore=cancel;
+  panel.addEventListener('animationend',finished);
+  ['wheel','touchstart','pointerdown'].forEach(function(type){main.addEventListener(type,cancel,{passive:true});});
+  document.addEventListener('keydown',cancel,true);
+}
+function activateTab(tabName,settleScroll){
   if(tabName==='workshop') tabName=workshopSection;
   var inWorkshop=tabName==='forge' || tabName==='research';
   var destination=inWorkshop ? 'workshop' : tabName;
   var btn=document.querySelector('.tab-btn[data-tab="'+destination+'"]');
   var panel=document.getElementById('tab-'+tabName);
   if(!btn || !panel) return;
+  if(pendingMenuScrollRestore)pendingMenuScrollRestore();
   var main=document.querySelector('main'),previous=document.querySelector('.tab-panel.active');
   if(main && previous){
     var max=Math.max(0,main.scrollHeight-main.clientHeight);
@@ -11381,7 +11404,8 @@ function activateTab(tabName){
   syncMainScrollMode(tabName);
   if(main && tabName!=='battle'){
     var position=menuScrollPositions[panel.id];
-    main.scrollTop=position ? (position.bottom ? main.scrollHeight : position.top) : 0;
+    restoreMenuScrollPosition(main,position);
+    if(settleScroll)settleMenuScrollPosition(main,panel,position);
   }
 }
 function setupTabs(){
@@ -11404,7 +11428,7 @@ function setupTabs(){
         var panel=document.getElementById('tab-'+name);
         panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',btn.id);
       }
-      btn.addEventListener('click',function(){activateTab(name);if(!workshop) playNavFeedback(btn);});
+      btn.addEventListener('click',function(){activateTab(name,true);if(!workshop) playNavFeedback(btn);});
       if(!workshop){
         var finishFeedback=function(e){if(e.animationName==='navHalo') btn.classList.remove('nav-feedback');};
         btn.addEventListener('animationend',finishFeedback);
@@ -11416,7 +11440,7 @@ function setupTabs(){
         else if(e.key==='Home') next=0;
         else if(e.key==='End') next=group.length-1;
         else return;
-        e.preventDefault();activateTab(group[next].dataset.tab);group[next].focus({preventScroll:true});if(!workshop) playNavFeedback(group[next]);
+        e.preventDefault();activateTab(group[next].dataset.tab,true);group[next].focus({preventScroll:true});if(!workshop) playNavFeedback(group[next]);
       });
     });
   }
