@@ -1,7 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: productf7008f0e fixed; retail accessibility observer follow-up pending.
-313bdd47 has14/16 workflows passed and native scroll PASS; retail failed twice.
+Status: validating source62126af7 / productf7008f0e; main remains8747ee60.
+Required CI and native candidate43698948404 active; no public update yet.
 Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
@@ -44,182 +44,74 @@ References: [workflow](../project/FEATURE_WORKFLOW.md),
 [currency](CURRENCY_HUD_001.md), [Deeds](DEEDS_PROGRESSIVE_001.md),
 [Lab](LAB_SIMPLE_001.md), [Bonds](RIFT_BOND_DISPLAY_001.md).
 
-Checkpoint15 November: implementation complete locally. Product SHA256
-`a7d991eba2842882bfbaf41f2cb710471e9b29fae62afd28da2dd21600859739`.
-Changed index.html, focused menu module/runner and superseded Lab/Deeds/Rift
-presentation tests; native upgrade checks now assert absent captions/history and
-native-navigation bottom restoration. Gameplay code unchanged beyond approved
-imported PR55. Source/golden bound by paired four8h replay: all full-state fields
-match except independently specified approved450 extra Comets per endpoint.
+## Current continuation — 15 November 2026
 
-Node24.22.1/Chromium157.0.8103.79: simple selection+menus704 checks (18+12
-profiles), slots488/18, Deeds688/18, core415, original clarity417+native99,
-currency/visual16 profiles, cosmetics/all6 themes and causal controls, both Rift
-native suites (3 profiles/12states each) PASS. Source/context/whitespace PASS.
-Scroll-reset mutation fails its exact intended assertion; initial combined
-baseline fails the requested-caption absence assertion. Screenshots self-reviewed.
-[Evidence and retained failures](../qa/mobile-menu-corrections-001/README.md).
+Source `62126af7044136dcc6dbc89f37996933a8d58a1e` is published on
+fix/mobile-menu-corrections-001, [PR56](https://github.com/xariib/Lumenfall/pull/56).
+Local evidence/mobile-menu-corrections-001 may advance with docs only while this
+validated ref stays fixed. Main remains8747ee6043bac911420649ae7088398b38a8989a.
+Existing PR54 e14f7508 and PR55 f1921bbf remain unchanged/included ancestors.
+Android candidate [43698948404](https://github.com/xariib/Lumenfall/actions/runs/43698948404)
+and all8 manual +8 PR workflows are running on62126af7. No public APK yet.
 
-The merged startup exceeded32KiB for old Deeds/hunt tasks. Preserved exact prior
-shared status in PROJECT_STATE_2026-11-14_HISTORY.md and replaced older summaries
-with its link; all actual task budgets now pass without changing the guard.
-Windows dump-DOM Rift contract timed out without a QA result; rerun using the
-existing pipe transport, without changing assertions/deadline. Final navigation
-checks, CI/integration/signed APK/public delivery remain required. No archive.
+Product SHA256 remains
+`f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
+Index changes: named responsive HUD; hidden Rift captions/Bond summary; remove
+Deed history; compact accessible Lab icons/timer; per-panel offset/bottom memory.
+Includes100vh fallback before100dvh for older WebViews; immediate restoration
+repeats on panel animationend and cancels on new input/navigation. Only direct
+navigation requests deferred restoration; intentional shortcut/hint targets remain.
+Session scroll memory does not change saved game state. Full diff self-reviewed.
 
-Final local navigation: both Rift native suites, Rift DOM contract, all5 viewport
-profiles each for dense/boss layout, Workshop contract and12 Formation profiles
-PASS. Narrow-layout assertion now explicitly matches PR54's two-column/three-row
-header up to380px. All earlier failures remain described/retained in QA. Full
-product diff from integrated baseline reviewed: pending PR54/55 plus this task's
-targeted display/navigation changes; no unrelated removals or workflow edits.
+Node24.22.1/Chromium157.0.8103.79 local PASS: modern selection/menu740 checks
+(18+12profiles), unsupported-dvh398/12 and actual CDP touch398/12; core415;
+original clarity417+native99; original Lab slots488/18 and Deeds688/18; currency
+visual16profiles; six themes/controls, two Rift native suites, dense/boss five
+viewport profiles, Workshop/navigation and Formation12profiles. Final enlarged
+Lab screenshot has no title/badge overlap. Reset/fallback/entry-layout causal
+controls fail their intended assertions. Context/source/whitespace pass.
+Four paired8h replay endpoints (115,200 separate1s calls/source) match complete
+state/rewards against released6fd9e44f except independently enumerated approved
+PR55 +450 Comets per endpoint; golden hash rebound only after comparison.
 
-Next: commit/push scoped candidate, open PR and dispatch exact-source
-validation/candidate Android. Keep main/source fixed during checks, then
-serialize integration/publication after readiness. Connector lacks workflow
-dispatch, so the configured authenticated GitHub CLI supplies it.
+All historical failures/receipts remain under
+[QA](../qa/mobile-menu-corrections-001/README.md); the full prior task text is
+[retained byte-for-byte](../qa/mobile-menu-corrections-001/task-history-before-live-observer.txt).
+Key findings, not waivers:
+- Earlier test expectations read removed Deed history and ignored the native
+  Farm fixture's maxDepthEver30 despite retained earned1000 flags. Expectations
+  now verify original earned receipts/pending credit and next30/2500 bar exactly.
+- Candidate0.2.122 reported scroll0/0 everywhere; rejected as vacuous. Native
+  checks/verifiers now require positive range/offset and correct active panel.
+- Source3130e62d's real native Wisps bottom failed. Entry-layout reproduction
+  catches it; f700 restoration passes all5 actual native bottoms on313bdd47:
+  Wisps5601, Forge5989, Lab3340→3324/new bottom, Ascend4780, Deeds5958.
+  Six currency names, both save slots/paid work, actual updater also PASS.
+- Native43695984950 attempts1/2 failed final stock UIAutomator idle capture;
+  original logs and both37-file artifacts are retained separately. Screenshots
+  show combat, but self-review does not replace retail acceptance. Linux Wisp
+  touch timeout101checks/16profiles passed an unchanged failed-job retry; cause
+  remains unproven. Source313bdd47 had14/16 workflows passed when superseded.
 
-## PR56 first CI/native checkpoint
+62126af7 changes only tests/docs after the verified product. LiveUiSnapshot.java
+builds a shell-only observer outside the APK and uses Android31's same UiAutomation
+bridge/XML dumper without demanding globally idle combat. It deletes stale XML,
+keeps120s launch deadline and requires both enabled/clickable/on-screen Wisps and
+Rift controls. Negative stale/loading/other-package/disabled/clipped fixtures pass.
+Retail OS, non-debuggable APK, absent WebView socket/app instrumentation, private
+storage rejection and exact installed bytes gates remain. Original game/workflow
+bytes unchanged. Actual observer compilation/retail acceptance still pending CI.
 
-[PR56](https://github.com/xariib/Lumenfall/pull/56) initial head9f6c786f preserved
-all source/native failures. Manual full43653805377 passed isolated offline and
-all earlier focused/negative gates, then two190-scenario tests still read removed
-completed Deed rows. Their expectations now assert retained earned receipts and
-the exact next card/counter without history; original threshold/reward/purity
-coverage remains. Both original scenarios now pass locally. QoL's disposable
-fixture explicitly marks next Rift100 unearned, avoiding inherited achieved flags.
+The earlier oversized shared state was preserved exactly in
+PROJECT_STATE_2026-11-14_HISTORY.md before compacting current status; all task
+startup budgets pass without weakening the guard. No new binding rules.
 
-Lab43653813055 timed out at Browser.getVersion with zero assertions; no cause
-proven. Android43653827271 passed package/assets, save/paid retention and native
-Wisp/Farm/navigation checks; failed its newly imported Rift1000 bar assertion.
-The earlier disposable Farm fixture sets maxDepthEver30 while retaining all
-earned1000 receipts, so the exact expected bar is30/2500 (1.2%), not1000/2500.
-Corrected that independent fixture expectation; no game/retention logic changes.
-Native scroll tests now avoid revealing/reselecting an already active subtab,
-which would legitimately scroll it to its header, and check all6 visible names.
-Raw original CI logs and30 native diagnostic files are retained in QA.
-
-Product SHA256 remains unchanged. These follow-ups are tests/docs only. Next:
-publish follow-up, rerun all required exact-head workflows/candidate Android,
-then serialize integration/release. No failed gate is waived; no main/APK push.
-
-## Final Lab heading review
-
-Before delivery,200% screenshots showed the inherited fixed120px research-title
-minimum could overlap the level badge. Scoped Lab title flex wrapping now uses
-the actual minimum text width; the badge moves to its next row when necessary.
-Final product SHA256 `b6fa21652a96e8a9213736b5764e7111f9def68480847a584d3dffd7bc5f192f`.
-Current simple+menu716 checks (18+12profiles), core415, clarity417+99 fixture
-and paired four8h save replay PASS. Final lab/compact-lab-200.png was inspected;
-no title/badge overlap. Golden source hash rebound after exact state comparison.
-Earlier a7d991eb receipts remain historical with their hashes.
-
-Source55a36c16's in-progress PR/manual/native runs were recorded and cancelled
-as superseded by this final CSS fix; no other tasks/runs/main were touched.
-The final source needs its own complete CI/native/public acceptance. Next:
-publish this final reviewed source and run all required validation/candidate
-Android again; keep source/main fixed through acceptance and integration.
-
-Final validation ref is fix/mobile-menu-corrections-001 at
-`c07d9bc680d9400826ccf26697809dd5e83f3bf4`. PR56 and all8 manual workflows run
-on these bytes. Native nonpublishing candidate43685898534 is in progress.
-Main remains8747ee60; no public update has been published. Do not move the
-validation ref/main until final acceptance/readiness. Evidence-only checkpoints
-use evidence/mobile-menu-corrections-001, with identical product/native/test bytes.
-Local delivery/verification helpers are in validation-evidence/ inside this
-isolated worktree; required run URLs are saved in dispatch.json and candidate
-dispatch. If helpers are unavailable, use the original workflows and exact run
-metadata; no credential/signing change is needed.
-
-## Android receipt audit — open viewport fix
-
-Candidate43685898534/Android0.2.122 passed existing build/upgrade/updater/retail
-gates and exact bytes/identity. However detailed installedMenuScroll records
-all reported max0/top0. That is vacuous for scroll acceptance and is NOT proof
-of the requested feature. The new native test omitted a positive-range and
-active-panel precondition; correct those assertions before delivery.
-
-Installed WebView is91.0.4472.114. Current .shell has height100dvh with no
-height100vh fallback; that unit is unsupported there, allowing main to grow
-instead of becoming a scroll container. Add the scoped viewport fallback and
-test menus with unsupported dvh declarations removed, including a causal
-missing-fallback control. Preserve original UI/save/upgrade assertions. This
-needed scroll fix stays in the current feature; do not claim phone/WebView60
-acceptance. Current14/16 final-source workflows pass; full suites still run.
-Source must be revalidated after this CSS change. No public APK is published.
-
-Fallback implemented:100vh height/min-height precede existing100dvh. Modern
-computed layout is unchanged. Legacy unsupported-unit baseline reproduces the
-zero-range defect; new positive legacy374 checks/12profiles and modern716
-checks (18selection+12menu profiles) PASS. Removing the fallback deliberately
-fails the positive-range assertion. Current core415/clarity417+99 and paired
-four8h complete-state replay PASS. Product SHA256
-`ff13eee2a0891a02e0bb8dc2681ac0d3be88ac14c9ec5abb1c73d0e83b919da7`.
-Native active-panel/range/bottom assertions and independent artifact verification
-now reject the old0/0 receipt. No simulation/save/price/reward changes in this fix.
-Next: publish this corrected source; run complete exact-source workflows and
-candidate Android; require positive native ranges before readiness/integration.
-
-## Entrance-layout restoration follow-up
-
-Android43688663000 on3130e62d passed real positive scroll-range/active-panel
-preconditions, then failed “Installed spirits returns to its remembered bottom”.
-The original log/32 diagnostic files are retained; original assertion lacked
-numeric after-values. Exact native timing cause remains unproven. PR full
-43688612979 separately failed its boost-queue browser step; full original logs
-are retained. The manual full suite and other14 workflows passed on3130e62d.
-
-Added actual CDP touch menu coverage and a causal entry-layout case: append
-content immediately after entering a remembered-bottom menu.3130 behavior fails
-“return restores bottom after entry layout settles”. Restoration now happens
-immediately and again on the panel's own animationend. New main input or keyboard
-input cancels that deferred adjustment; a new navigation removes the old handler.
-Only direct navigation uses it, so intentional hint/shortcut target scrolling
-remains unchanged. No timer/polling loop is added to the game. Native follow-up
-also saves partial before/after/focus/input diagnostics before any assertion.
-
-Product SHA256 `f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
-Local actual-touch legacy matrix398/12 PASS; full modern selection/menu740
-and legacy398/12 PASS. Entry-settling, original reset and missing-fallback
-controls fail at their intended assertions. Core/clarity and paired four8h
-full-state replay PASS again. Test helper waits for animationend after its
-finished promise before measuring; no original command deadline changed.
-Native acceptance of this follow-up is still required; do not claim it fixed
-the installed failure until positive real ranges/bottom restoration pass.
-Next: publish scoped follow-up, run complete exact-source CI and signed candidate.
-
-Native313bdd47/43695984950 attempt1 now passes all5 actual remembered bottoms
-with nonzero ranges: Wisps5601→5601, Forge5989→5989, Lab3340→3324 (new bottom),
-Ascend4780→4780, Deeds5958→5958. Six visible names, save/paid retention and actual
-updater also PASS. [Numeric proof](../qa/mobile-menu-corrections-001/native-scroll-proof-313bdd47.json).
-Retail gate failed its visible-controls assertion after UIAutomator could not
-obtain idle state; screenshot visibly shows normal gameplay (self-review only).
-All37 original files/logs preserved; exact cause unproven. Unchanged Android
-attempt2 is active. Linux Wisp first failed15s touch dispatch after101 checks/
-16 completed profiles; raw artifact preserved and failed-job retry passed.
-No test/assertion/deadline or game bytes changed. Only the two full premerge
-runs and unchanged native retry remain. Source313bdd47/f7008f0e stays fixed.
-Next: verify successful candidate's exact bytes/positive-range receipts, require
-all16 workflows, save logs, fast-forward exact source to main, publish/verify APK.
-
-## Live retail accessibility capture
-
-43695984950 attempt2 again passes actual five-menu scroll/save/updater acceptance
-but fails stock UIAutomator's idle capture. All37 original attempt2 files and
-full logs are retained separately; both screenshots show normal active combat.
-AOSP DumpCommand waits for a globally idle accessibility stream before reading
-the tree. This does not establish a game defect or identify the precise event
-source. No further unchanged retry is justified by these two matching failures.
-
-The necessary test-only follow-up builds a shell-only Java accessibility observer
-outside the APK. It uses Android31's same UiAutomation bridge/hierarchy dumper,
-reads the live root, deletes stale XML before each capture, and retains the120s
-launch deadline. The assertion is stronger: both enabled/clickable Wisps and Rift
-controls must appear in the app's tree with positive on-screen bounds, beyond
-loading/intro. Loading/stale/other-package/disabled/clipped fixtures are rejected
-locally. Retail OS, non-debuggable APK, no WebView socket/instrumentation, private
-storage rejection and exact installed bytes checks remain. No product/workflow
-or packaged asset changes; f7008f0e replay proof remains applicable. Shell observer
-compilation and actual retail capture still require CI; do not claim them passed.
-Next: commit this scoped native-test fix, repeat exact-source validation/candidate,
-then integrate/publish only after every required gate passes. Main stays8747ee60.
+Next: verify62126af7 signed candidate including live retail XML and actual
+nonzero scroll ranges; require all16 workflows/jobs and both full190+isolated1
+scenario receipts. Preserve first failures before diagnosis/retry. Helpers under
+validation-evidence/ are frozen in QA as delivery-helper/verify-candidate/
+verify-public-release.cjs.txt. Then readiness, recheck main/PR54/55 overlap,
+fast-forward exact source to main, publish signed APK, verify anonymous exact
+version/latest bytes/feed, save final evidence/docs on main. No ref advancement
+during builds. Physical-phone/WebView60/TalkBack/human acceptance stays open;
+no archive until verified. Do not call a local candidate/open PR completion.
