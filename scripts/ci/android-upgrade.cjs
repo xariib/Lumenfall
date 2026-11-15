@@ -427,10 +427,12 @@ async function verifyInstalledRiftLooks(page,report){
      if(!await page.evaluate(`document.getElementById('tab-'+${JSON.stringify(name)}).classList.contains('active')`))await tap('#workshop-head [data-tab="'+name+'"]');
    }
    else await tap('nav.tabbar [data-tab="'+name+'"]');
+   assert(await page.evaluate(`document.getElementById('tab-'+${JSON.stringify(name)}).classList.contains('active')`),'Installed native navigation activates '+name);
  }
  for(const name of ['spirits','forge','research','ascend','deeds']){
    await visitMenu(name);
    const before=await page.evaluate(`(()=>{const m=document.querySelector('main');m.scrollTop=m.scrollHeight;return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
+   assert(before.max>0&&before.top>0,'Installed '+name+' fixture has a real scroll range and reaches its bottom');
    await tap('nav.tabbar [data-tab="battle"]');await visitMenu(name);
    const after=await page.evaluate(`(()=>{const m=document.querySelector('main');return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
    assert(Math.abs(after.top-after.max)<=2,'Installed '+name+' returns to its remembered bottom');

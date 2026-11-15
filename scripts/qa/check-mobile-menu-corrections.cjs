@@ -5,6 +5,8 @@ const mode=process.argv[2]||'menus';
 const cases={
  menus:[['menus',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--evidence',out]]],
  'scroll-control':[['scroll-control',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--mutate-menu-scroll']]],
+ legacy:[['legacy-viewport',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--evidence',out+'/legacy-viewport']]],
+ 'viewport-control':[['viewport-control',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--mutate-viewport-fallback']]],
  lab:[['simple',['tests/behavioral/lab-speed-controls.cjs','index.html','--simple','--evidence',out+'/lab']],['slots',['tests/behavioral/lab-speed-controls.cjs','index.html','--slots']],['deeds-ui',['tests/behavioral/lab-speed-controls.cjs','index.html','--deeds']]],
  rift:[['visual',['tests/behavioral/visual-audit.cjs','index.html',out+'/visual']],['cosmetics',['tests/behavioral/rift-cosmetics.cjs','--source','index.html','--negative','--out',out+'/cosmetics']]],
  navigation:['rift-status-mobile','rift-status-reduced-motion','rift-status-contract','layout-dense','layout-boss','nav-workshop-contract','formation-bonds-mobile','upgrade-effects-and-deeds','p2-02a-core-qol'].map(name=>[name,['tests/behavioral/run.cjs','--web-root','mobile/www','--scenario',name,'--raw-artifacts',out+'/raw']]),
@@ -21,5 +23,6 @@ for(const [name,args]of cases[mode]){
  fs.writeFileSync(path.join(out,name+'.stdout.txt'),r.stdout||'');fs.writeFileSync(path.join(out,name+'.stderr.txt'),r.stderr||'');
  console.log(JSON.stringify({name,status:r.status,seconds:(Date.now()-start)/1000,error:r.error?.message}));
  if(name==='scroll-control'){const receipt=JSON.parse(r.stdout);if(r.status!==1||receipt.status!=='fail'||!receipt.error.includes('return restores independent offset for spirits'))throw Error('Scroll reset control did not fail at the intended assertion');continue;}
+ if(name==='viewport-control'){const receipt=JSON.parse(r.stdout);if(r.status!==1||receipt.status!=='fail'||!receipt.error.includes('scrollable fixture for spirits'))throw Error('Viewport fallback control did not fail at the intended assertion');continue;}
  if(r.status!==0){console.log((r.stdout||'').slice(-6000));console.log((r.stderr||'').slice(-2000));process.exitCode=1;break;}
 }

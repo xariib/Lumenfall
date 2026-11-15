@@ -145,3 +145,15 @@ missing-fallback control. Preserve original UI/save/upgrade assertions. This
 needed scroll fix stays in the current feature; do not claim phone/WebView60
 acceptance. Current14/16 final-source workflows pass; full suites still run.
 Source must be revalidated after this CSS change. No public APK is published.
+
+Fallback implemented:100vh height/min-height precede existing100dvh. Modern
+computed layout is unchanged. Legacy unsupported-unit baseline reproduces the
+zero-range defect; new positive legacy374 checks/12profiles and modern716
+checks (18selection+12menu profiles) PASS. Removing the fallback deliberately
+fails the positive-range assertion. Current core415/clarity417+99 and paired
+four8h complete-state replay PASS. Product SHA256
+`ff13eee2a0891a02e0bb8dc2681ac0d3be88ac14c9ec5abb1c73d0e83b919da7`.
+Native active-panel/range/bottom assertions and independent artifact verification
+now reject the old0/0 receipt. No simulation/save/price/reward changes in this fix.
+Next: publish this corrected source; run complete exact-source workflows and
+candidate Android; require positive native ranges before readiness/integration.

@@ -1,6 +1,6 @@
 # Mobile menu corrections evidence
 
-Final product SHA256: `b6fa21652a96e8a9213736b5764e7111f9def68480847a584d3dffd7bc5f192f`.
+Final product SHA256: `ff13eee2a0891a02e0bb8dc2681ac0d3be88ac14c9ec5abb1c73d0e83b919da7`.
 Earlier source `a7d991eb` receipts remain labeled with their exact bytes below.
 Node24.22.1, Brave Chromium157.0.8103.79 on Windows. Self-review/automated checks.
 
@@ -55,3 +55,16 @@ paired replay pass on b6fa2165; final screenshots are lab/compact-lab-*.png.
 Root compact-lab images and other a7d991eb receipts are historical.
 The55a36c16 validation/native runs were recorded and stopped as superseded,
 without publication; they do not establish final-source acceptance.
+
+Detailed0.2.122 native audit found all five scroll ranges were zero, so that
+candidate's installedMenuScroll PASS is vacuous and is not feature acceptance.
+The WebView91 container lacked a100vh height fallback for unsupported100dvh.
+Removing dvh declarations reproduces “scrollable fixture for spirits”. The final
+two-line CSS fallback fixes that. simple.stdout.txt now retains716 modern checks
+plus374 legacy checks/12profiles; viewport-control deliberately removes the
+fallback and fails the same positive-range assertion. Core/clarity and the full
+paired replay pass again on ff13eee2. Existing --simple CI also requires the
+legacy viewport matrix. Native acceptance now requires the intended active panel,
+a positive actual range and nonzero bottom before testing restoration. External
+candidate/public verification independently enforces those receipt preconditions.
+Original0.2.122 artifacts remain preserved as historical data, not a final APK.

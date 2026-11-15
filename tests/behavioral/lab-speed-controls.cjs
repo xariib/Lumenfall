@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto');
-const {spawn}=require('node:child_process');
+const {spawn,spawnSync}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),args=process.argv.slice(2),sourcePath=path.resolve(args[0]||'index.html');
@@ -11,6 +11,8 @@ if(mutation==='next-locked'){const a='var hours=preference.hours;';assert.equal(
 if(args.includes('--mutate-presets')){const a='setStudyBoostPreference(id,mult!==null?Number(mult):preference.mult,hours!==null?Number(hours):preference.hours);';assert.equal(source.split(a).length,2);source=source.replace(a,'/* preset selection disconnected */');}
 if(args.includes('--mutate-confirmation')){const a='      chooseStudy(lnode);';assert.equal(source.split(a).length,2);source=source.replace(a,'      startStudy(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);');}
 if(args.includes('--mutate-menu-scroll')){const a='main.scrollTop=position ? (position.bottom ? main.scrollHeight : position.top) : 0;';assert.equal(source.split(a).length,2);source=source.replace(a,'main.scrollTop=0;');}
+if(args.includes('--legacy-viewport'))source=source.replace(/(?:min-)?height:100dvh;/g,'');
+if(args.includes('--mutate-viewport-fallback')){const a='    height:100vh;\n    min-height:100vh;\n';assert.equal(source.split(a).length,2);source=source.replace(a,'');}
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 let html=source.replace('<head>','<head><script>window.uiRegressionErrors=[];addEventListener("error",e=>uiRegressionErrors.push(e.message));addEventListener("unhandledrejection",e=>uiRegressionErrors.push(String(e.reason)));window.uiRegressionPaused=true;const normalInterval=window.setInterval;window.setInterval=(fn,ms)=>normalInterval(()=>{if(!window.uiRegressionPaused)fn();},ms);</script>');
 const marker="if(document.readyState==='loading'){";assert.equal(html.split(marker).length,2,'unique production bridge anchor');
@@ -42,8 +44,15 @@ async function run(){
  if(args.includes('--boost-queue'))await require('./lab-speed-presets-ui.cjs')({send,ev,pause,check,records:presetProfiles,args});
 }
  check((await ev('uiRegressionErrors')).length===0,'no actual browser runtime errors');
- return {status:'pass',sourceSha256,mutation,checks,profiles:records,presetProfiles,menuProfiles,version};
+ return {status:'pass',sourceSha256,mutation,legacyViewportMode:args.includes('--legacy-viewport'),checks,profiles:records,presetProfiles,menuProfiles,version};
 }
 (async()=>{let result;try{result=await run();}catch(e){result={status:'fail',sourceSha256,mutation,checks,profiles:records,error:e.stack,stderr};process.exitCode=1;}finally{
  try{if(browser&&!closed){const completion=new Promise(r=>browser.once('exit',(code,signal)=>r({code,signal})));await send('Browser.close',{},null).catch(()=>{});let timer;const exit=await Promise.race([completion,new Promise(r=>{timer=setTimeout(()=>r(null),5000);})]).finally(()=>clearTimeout(timer));if(!exit){browser.kill();throw Error('Browser close deadline');}assert.equal(exit.code,0);}if(server){server.closeAllConnections();await new Promise(r=>server.close(r));}for(const dir of [profile,stage])if(dir)await fs.promises.rm(dir,{recursive:true,force:true,maxRetries:3,retryDelay:100});}catch(e){result.status='fail';result.teardown=e.stack;process.exitCode=1;}}
+ if(result.status==='pass'&&args.includes('--simple')){
+  const command=[__filename,sourcePath,'--menus','--legacy-viewport'];
+  if(args.includes('--evidence'))command.push('--evidence',path.join(args[args.indexOf('--evidence')+1],'legacy-viewport'));
+  const legacy=spawnSync(process.execPath,command,{env:process.env,encoding:'utf8',maxBuffer:16e6});
+  try{result.legacyViewport=JSON.parse(legacy.stdout);if(legacy.status!==0||result.legacyViewport.status!=='pass')throw Error('Legacy viewport menu acceptance failed: '+legacy.stdout+legacy.stderr);}
+  catch(e){result.status='fail';result.error=e.stack;process.exitCode=1;}
+ }
  console.log(JSON.stringify(result));})();
