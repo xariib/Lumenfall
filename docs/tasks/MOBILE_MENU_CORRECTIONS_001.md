@@ -1,6 +1,8 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: in progress. Owner: current feature chat; no delegation/messages.
+Status: validating source3130e62d / productff13eee2. Main remains8747ee60.
+Final native candidate43688663000 and all8 PR+8 manual workflows are running.
+Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
 and Formation Bond names from Rift; remove Deeds' milestone dropdown; show
