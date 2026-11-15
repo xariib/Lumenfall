@@ -1,7 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: validating source62126af7 / productf7008f0e; main remains8747ee60.
-Required CI and native candidate43698948404 active; no public update yet.
+Status: validating source37ca26df / productf7008f0e; main remains8747ee60.
+Required CI and native candidate43706308245 active; no public update yet.
 Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
@@ -46,13 +46,13 @@ References: [workflow](../project/FEATURE_WORKFLOW.md),
 
 ## Current continuation — 15 November 2026
 
-Source `62126af7044136dcc6dbc89f37996933a8d58a1e` is published on
+Source `37ca26dfaf4668b1950e789ed1d191649ee4b9a2` is published on
 fix/mobile-menu-corrections-001, [PR56](https://github.com/xariib/Lumenfall/pull/56).
 Local evidence/mobile-menu-corrections-001 may advance with docs only while this
 validated ref stays fixed. Main remains8747ee6043bac911420649ae7088398b38a8989a.
 Existing PR54 e14f7508 and PR55 f1921bbf remain unchanged/included ancestors.
-Android candidate [43698948404](https://github.com/xariib/Lumenfall/actions/runs/43698948404)
-and all8 manual +8 PR workflows are running on62126af7. No public APK yet.
+Android candidate [43706308245](https://github.com/xariib/Lumenfall/actions/runs/43706308245)
+and all8 manual +8 PR workflows are running on37ca26df. No public APK yet.
 
 Product SHA256 remains
 `f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.

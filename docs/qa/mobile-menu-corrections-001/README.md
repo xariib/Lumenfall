@@ -132,3 +132,8 @@ first Rift frame, assertions and300s/15s deadlines remain unchanged.
 Final fixture follow-up: all4 native variants PASS, each3profiles/12states.
 normal104.519s, reduced101.145s, stacked normal104.087s, stacked reduced102.317s.
 No game bytes or command/scenario deadline changes. New-source full CI pending.
+
+Final validated ref is37ca26dfaf4668b1950e789ed1d191649ee4b9a2; manual full
+43706287783 and native43706308245 run alongside all required PR/manual workflows.
+Source fixed; main8747ee60; no public APK yet. All4 local native variants are
+independently summarized with hashes in rift-fixture-followup-verification.json.
