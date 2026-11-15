@@ -100,3 +100,20 @@ Raw original CI logs and30 native diagnostic files are retained in QA.
 Product SHA256 remains unchanged. These follow-ups are tests/docs only. Next:
 publish follow-up, rerun all required exact-head workflows/candidate Android,
 then serialize integration/release. No failed gate is waived; no main/APK push.
+
+## Final Lab heading review
+
+Before delivery,200% screenshots showed the inherited fixed120px research-title
+minimum could overlap the level badge. Scoped Lab title flex wrapping now uses
+the actual minimum text width; the badge moves to its next row when necessary.
+Final product SHA256 `b6fa21652a96e8a9213736b5764e7111f9def68480847a584d3dffd7bc5f192f`.
+Current simple+menu716 checks (18+12profiles), core415, clarity417+99 fixture
+and paired four8h save replay PASS. Final lab/compact-lab-200.png was inspected;
+no title/badge overlap. Golden source hash rebound after exact state comparison.
+Earlier a7d991eb receipts remain historical with their hashes.
+
+Source55a36c16's in-progress PR/manual/native runs were recorded and cancelled
+as superseded by this final CSS fix; no other tasks/runs/main were touched.
+The final source needs its own complete CI/native/public acceptance. Next:
+publish this final reviewed source and run all required validation/candidate
+Android again; keep source/main fixed through acceptance and integration.

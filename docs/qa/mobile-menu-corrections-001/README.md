@@ -1,6 +1,7 @@
 # Mobile menu corrections evidence
 
-Product SHA256: `a7d991eba2842882bfbaf41f2cb710471e9b29fae62afd28da2dd21600859739`.
+Final product SHA256: `b6fa21652a96e8a9213736b5764e7111f9def68480847a584d3dffd7bc5f192f`.
+Earlier source `a7d991eb` receipts remain labeled with their exact bytes below.
 Node24.22.1, Brave Chromium157.0.8103.79 on Windows. Self-review/automated checks.
 
 Run `node scripts/qa/check-mobile-menu-corrections.cjs <mode>`; modes include
@@ -44,3 +45,13 @@ added. The first two failed focus outputs preceded this retention; their exact
 assertion/active-element diagnostic is recorded above rather than claiming raw
 files exist. The task remains open for CI, integrated/native/public delivery and
 physical-phone/WebView60/TalkBack/human acceptance.
+
+Final screenshot review found the existing120px research-title minimum allowed
+long words to overlap the level badge at200% text. The title now uses its real
+minimum text width and wraps the badge onto the next row when needed. Current
+simple.stdout.txt passes716 checks:18 original selection profiles plus12 menu
+profiles, including explicit unclipped Lab headings. Current core/clarity and
+paired replay pass on b6fa2165; final screenshots are lab/compact-lab-*.png.
+Root compact-lab images and other a7d991eb receipts are historical.
+The55a36c16 validation/native runs were recorded and stopped as superseded,
+without publication; they do not establish final-source acceptance.
