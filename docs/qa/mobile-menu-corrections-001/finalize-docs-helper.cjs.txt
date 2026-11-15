@@ -1,0 +1,118 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict'),crypto=require('node:crypto'),zlib=require('node:zlib');
+const dir='docs/qa/mobile-menu-corrections-001',task='docs/tasks/MOBILE_MENU_CORRECTIONS_001.md';
+const sha='37ca26dfaf4668b1950e789ed1d191649ee4b9a2',product='f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51';
+const json=name=>JSON.parse(fs.readFileSync(dir+'/'+name,'utf8')),read=name=>fs.readFileSync(name,'utf8').replaceAll('\r\n','\n');
+const p=json('android-release/public-verification.json'),ready=json('release-readiness.json'),ci=json('ci-log-summary.json'),upgrade=json('android-release/emulator-upgrade.json');
+assert.equal(p.status,'PASS');assert.equal(p.commit,sha);assert(p.anonymous);assert.equal(ready.status,'PASS');assert.equal(ready.sha,sha);assert.equal(ready.records.length,16);assert.equal(ci.status,'PASS');assert.equal(ci.sha,sha);
+assert.equal(crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex'),product);
+assert(fs.existsSync(dir+'/release-notes-final.txt'),'Verified release notes must be saved');
+for(const event of ['pull_request','workflow_dispatch'])for(const [job,total]of [['Lumenfall pre-merge validation',190],['Lumenfall isolated offline catch-up',1]])assert(ci.logs.some(l=>l.event===event&&l.jobName===job&&l.scenarioTotals.includes(total)));
+const archive=dir+'/task-history-before-public-delivery.md.gz';
+if(!fs.existsSync(archive)){const bytes=fs.readFileSync(task);fs.writeFileSync(archive,zlib.gzipSync(bytes));fs.writeFileSync(dir+'/task-history-before-public-delivery.json',JSON.stringify({source:task,utc:new Date().toISOString(),bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')},null,2)+'\n');}
+const original=zlib.gunzipSync(fs.readFileSync(archive)).toString('utf8').replaceAll('\r\n','\n');
+const start=original.indexOf('User request ('),end=original.indexOf('## Current continuation');assert(start>0&&end>start);
+let requirements=original.slice(start,end).replace('Open overlapping PR54','Then-open PR54').replace('Their historical status does not prove this combined version passes.','The combined version has its own verified acceptance below.');
+const files=cp.execFileSync('git',['diff','--name-only','8747ee6043bac911420649ae7088398b38a8989a',sha,'--','index.html','mobile','tests','scripts','.github'],{encoding:'utf8'}).trim().split('\n');
+const labels={spirits:'Wisps',forge:'Forge',research:'Lab',ascend:'Ascend',deeds:'Deeds'};
+const bottoms=upgrade.installedMenuScroll.menus.map(m=>labels[m.name]+' '+m.before.top+'→'+m.after.top+'/'+m.after.max).join('; ');
+const delivery=`## Verified delivery — 15 November 2026
+
+[Android ${p.version}](${p.release}) / code${p.versionCode}, source
+[37ca26df](https://github.com/xariib/Lumenfall/commit/${sha}), delivered through merged PR54/55/56.
+[Download APK](${p.downloads[0].url}). Main was fast-forwarded from8747ee60 to
+this exact validated source; final documentation/evidence adds no product changes.
+Public build [${p.runId}](${p.runUrl}) passed every gate. Package com.lumenfall.app
+and established signing identity retained; both save slots, paid Lab work, legacy
+credits and actual system-approved updater verified. Retail Android12 user image
+has normal enabled controls, no app instrumentation/debugger socket and rejected
+private run-as. Screenshots self-reviewed; no independent review claimed.
+
+Product SHA256: ${product}.
+APK SHA256: ${p.apkSha256} (${p.bytes} bytes).
+Anonymous versioned/latest APK bytes and public metadata/feed verified at${p.utc}.
+[Public receipt](../qa/mobile-menu-corrections-001/android-release/public-verification.json).
+
+All16 exact-source PR/manual workflows and every job PASS. Both full suites
+(PR43706290303/manual43706287783) prove190 main scenarios plus1 isolated offline
+scenario each. Four complete job logs are retained with hashes in
+[CI summary](../qa/mobile-menu-corrections-001/ci-log-summary.json).
+Signed candidate0.2.126/43706308245 also passed; it is not the public release.
+Actual installed positive-range remembered bottoms: ${bottoms}.
+All6 currency names visible and fit; no Rift captions/Deed history. Native fixtures
+are synthetic; real Android navigation and actual offsets, not a physical phone.
+
+Focused product checks:740 modern selection/menu,398 legacy viewport/12profiles,
+398 actual-touch/12profiles; core415; original clarity417+native99; Lab slots488/18
+and Deeds688/18. All4 original native Rift variants pass3profiles/12states each.
+Currency visual16profiles, all6 cosmetics, dense/boss layouts, Workshop/navigation
+and Formation checks pass. Reset/fallback/entry-settling causal controls catch
+their intended defects. Node24.22.1/Chromium157.0.8103.79 locally; CI Node24.19.0.
+Four paired8h replay endpoints (115,200 separate1s calls/source) preserve every
+full-state field except independently specified approved PR55 +450 Comets/endpoint.
+The golden source hash was rebound only after that complete comparison.
+
+## Changed files and retained findings
+
+${files.map(n=>'- '+n).join('\n')}
+
+Full diff self-reviewed for removals/scope; no workflow or native app configuration
+change. Original requirements and all historical failures remain in
+[QA](../qa/mobile-menu-corrections-001/README.md) and the
+[previous checkpoint](../qa/mobile-menu-corrections-001/task-history-before-public-delivery.md.gz).
+Old0.2.122 scroll0/0 receipts were explicitly rejected. Positive ranges required
+the100vh fallback; remembered bottoms required post-entry restoration canceled
+on new input. Stock retail global-idle capture was replaced by the same shell
+accessibility bridge reading live controls, with stronger control assertions and
+all production-security checks/deadlines preserved. Reduced-motion fixture header
+reveal waits for entry before its artificial scroll; native gestures/first Rift
+frame/300s and15s deadlines remain. First failures, false diagnostic and unchanged
+passing Wisp retries are retained. Initial post-push PR closure assertion saw
+GitHub asynchronous lag; all3 actual merges confirmed before public dispatch.
+No acceptance gate was waived. Shared status history remains preserved exactly.
+
+## Next action and open acceptance
+
+Software delivery and automated acceptance are verified. Install the public APK
+as an update and obtain physical-phone review of all6 requested corrections.
+Exact WebView60 DOM, TalkBack and human acceptance remain unverified. Keep this
+feature/chat open; do not archive until those required checks are recorded.
+No new binding rules. Delivery helpers and original logs/receipts are frozen in QA.
+`;
+fs.writeFileSync(task,'# Mobile menu corrections and remembered scroll positions\n\nStatus: delivered Android '+p.version+'; physical-phone/WebView60/TalkBack/human acceptance pending.\nOwner: current feature chat; no delegation/messages. Keep open; no archive.\n\n'+requirements+delivery);
+let state=read('docs/PROJECT_STATE.md');const a=state.indexOf('15 November: [Mobile menu corrections]'),b=state.indexOf('14 November: [All improvements/PR53]');assert(a>0&&b>a);
+state=state.slice(0,a)+`15 November: [Mobile menu corrections](tasks/MOBILE_MENU_CORRECTIONS_001.md)
+shipped as [Android ${p.version}](${p.release}), source37ca26df through PR54/55/56.
+Removes Rift theme/Bond captions and Deed milestone history; shows six currency
+names; compacts Lab Queue/progress/Speed Up controls; remembers each menu's
+offset/bottom, including separate Forge/Lab. All16 exact-source workflows pass;
+both full suites prove190 main +1 isolated offline scenarios each. Signed upgrade,
+actual updater and retail launch retain both saves/paid work; real positive menu
+scroll ranges and anonymous public APK/assets/feed verification pass.
+[Evidence](qa/mobile-menu-corrections-001/README.md). First failures and passing
+retries retained. Self-review only; physical-phone/exact WebView60/TalkBack/human
+acceptance remain open. This supersedes earlier presentation acceptance.
+
+`+state.slice(b);
+assert(state.includes('Corrected local core/mobile and paired offline checks pass; corrected CI/Android'));
+state=state.replace('Corrected local core/mobile and paired offline checks pass; corrected CI/Android\ndelivery and human acceptance remain pending. Prior receipts do not verify this\ncorrection.','The correction is included through PR55/56 in Android '+p.version+'. Combined\nCI/native/public evidence is linked above; physical/human acceptance remains open.');
+assert(state.includes('passes1,776 layout checks. Integration/Android delivery pending.'));
+state=state.replace('passes1,776 layout checks. Integration/Android delivery pending.','passes1,776 layout checks. Visible names are included through PR54/56 in\nAndroid '+p.version+'; combined acceptance evidence is linked above. Phone review open.');
+fs.writeFileSync('docs/PROJECT_STATE.md',state);
+const currency='docs/tasks/CURRENCY_HUD_001.md';let c=read(currency);const old='14 November 2026. Owner: this feature chat. Status: visible-name correction\nin progress; previous icon-only implementation integrated. Do not archive.';assert(c.includes(old));c=c.replace(old,'15 November 2026. Owner: this feature chat. Status: visible-name correction\nintegrated through PR54/56 and delivered as [Android '+p.version+']('+p.release+').\n[Combined delivery](MOBILE_MENU_CORRECTIONS_001.md) records all16 workflows and\nAndroid/public verification. Physical-phone/WebView60/TalkBack/human acceptance\nremain open. Do not archive.');fs.writeFileSync(currency,c);
+const deeds='docs/tasks/DEEDS_PROGRESSIVE_001.md';let d=read(deeds);assert(d.includes('Status: reopened by human correction; implementation/checks in progress.'));d=d.replace('Status: reopened by human correction; implementation/checks in progress.','Status: human correction integrated through PR55/56 and delivered as\n[Android '+p.version+']('+p.release+'). [Combined delivery](MOBILE_MENU_CORRECTIONS_001.md)\nrecords all16 workflows and Android/public checks. Physical-phone/WebView60/\nTalkBack/human acceptance remains open; do not archive.');d=d.replace('Current product SHA256:','Historical PR55 correction-candidate SHA256:');d=d.replace('## Human correction — 14 November 2026','Current combined product SHA256: '+product+' (source37ca26df).\n\n## Human correction — 14 November 2026');fs.writeFileSync(deeds,d);
+const overview=`15 November delivery: [Android ${p.version}](${p.release}) from source37ca26df.
+[Public APK](${p.downloads[0].url}); anonymous exact/latest bytes and metadata
+verified. All16 workflows/jobs PASS; both full suites prove190 main +1 isolated
+offline scenarios each. Signed save-upgrade/updater/retail gates PASS; all5 real
+positive remembered bottoms and6 names verified. APK SHA256 ${p.apkSha256}.
+Current receipts: android-release/public-verification.json, release-readiness.json,
+ci-log-summary.json and four complete gzip job logs. Images self-reviewed.
+Physical-phone/exact WebView60/TalkBack/human acceptance remains open; no archive.
+Previous checkpoint is preserved losslessly in task-history-before-public-delivery.md.gz
+with raw byte count/hash in its JSON manifest. The dated entries below retain
+validation history, including rejected candidates and all first failures.
+
+`;
+let qa=read(dir+'/README.md');if(!qa.startsWith('15 November delivery:'))fs.writeFileSync(dir+'/README.md',overview+qa);
+console.log('Updated verified delivery docs for '+p.version+'; physical acceptance remains open');

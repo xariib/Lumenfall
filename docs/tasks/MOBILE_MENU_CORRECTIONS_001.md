@@ -1,8 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
-Status: validating source37ca26df / productf7008f0e; main remains8747ee60.
-14/16 workflows and signed0.2.126 candidate passed; full suites active.
-Owner: current feature chat; no delegation/messages. No public update yet.
+Status: delivered Android 0.2.127; physical-phone/WebView60/TalkBack/human acceptance pending.
+Owner: current feature chat; no delegation/messages. Keep open; no archive.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
 and Formation Bond names from Rift; remove Deeds' milestone dropdown; show
@@ -12,10 +11,10 @@ scroll position when leaving and returning, including the bottom.
 
 Baseline: main8747ee60 / Android0.2.119, isolated branch
 fix/mobile-menu-corrections-001 in validation-evidence/menu. Root attachments
-and all other feature worktrees untouched. Open overlapping PR54 (currency
+and all other feature worktrees untouched. Then-open PR54 (currency
 names) and PR55 (advancing Deeds bars, approved existing targets/increasing
 rewards) incorporated with ancestry; retained their original evidence/requirements.
-Their historical status does not prove this combined version passes.
+The combined version has its own verified acceptance below.
 
 Scope: requested presentation/navigation and necessary tests/delivery. Preserve
 theme selection/art, Wisp Bond information and mechanics/partner marks, existing
@@ -44,125 +43,95 @@ References: [workflow](../project/FEATURE_WORKFLOW.md),
 [currency](CURRENCY_HUD_001.md), [Deeds](DEEDS_PROGRESSIVE_001.md),
 [Lab](LAB_SIMPLE_001.md), [Bonds](RIFT_BOND_DISPLAY_001.md).
 
-## Current continuation — 15 November 2026
+## Verified delivery — 15 November 2026
 
-Source `37ca26dfaf4668b1950e789ed1d191649ee4b9a2` is published on
-fix/mobile-menu-corrections-001, [PR56](https://github.com/xariib/Lumenfall/pull/56).
-Local evidence/mobile-menu-corrections-001 may advance with docs only while this
-validated ref stays fixed. Main remains8747ee6043bac911420649ae7088398b38a8989a.
-Existing PR54 e14f7508 and PR55 f1921bbf remain unchanged/included ancestors.
-Android candidate [43706308245](https://github.com/xariib/Lumenfall/actions/runs/43706308245)
-and all8 manual +8 PR workflows use37ca26df; only full suites remain active.
-No public APK yet.
+[Android 0.2.127](https://github.com/xariib/Lumenfall/releases/tag/android-1000127) / code1000127, source
+[37ca26df](https://github.com/xariib/Lumenfall/commit/37ca26dfaf4668b1950e789ed1d191649ee4b9a2), delivered through merged PR54/55/56.
+[Download APK](https://github.com/xariib/Lumenfall/releases/download/android-1000127/Lumenfall.apk). Main was fast-forwarded from8747ee60 to
+this exact validated source; final documentation/evidence adds no product changes.
+Public build [43714270831](https://github.com/xariib/Lumenfall/actions/runs/43714270831) passed every gate. Package com.lumenfall.app
+and established signing identity retained; both save slots, paid Lab work, legacy
+credits and actual system-approved updater verified. Retail Android12 user image
+has normal enabled controls, no app instrumentation/debugger socket and rejected
+private run-as. Screenshots self-reviewed; no independent review claimed.
 
-Product SHA256 remains
-`f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
-Index changes: named responsive HUD; hidden Rift captions/Bond summary; remove
-Deed history; compact accessible Lab icons/timer; per-panel offset/bottom memory.
-Includes100vh fallback before100dvh for older WebViews; immediate restoration
-repeats on panel animationend and cancels on new input/navigation. Only direct
-navigation requests deferred restoration; intentional shortcut/hint targets remain.
-Session scroll memory does not change saved game state. Full diff self-reviewed.
+Product SHA256: f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51.
+APK SHA256: d334cfd038d2e9062fc249aa75bddd4de30e06d20de2ea618d1aa791dfb78f23 (5163360 bytes).
+Anonymous versioned/latest APK bytes and public metadata/feed verified at2026-11-15T12:42:08.796Z.
+[Public receipt](../qa/mobile-menu-corrections-001/android-release/public-verification.json).
 
-Node24.22.1/Chromium157.0.8103.79 local PASS: modern selection/menu740 checks
-(18+12profiles), unsupported-dvh398/12 and actual CDP touch398/12; core415;
-original clarity417+native99; original Lab slots488/18 and Deeds688/18; currency
-visual16profiles; six themes/controls, two Rift native suites, dense/boss five
-viewport profiles, Workshop/navigation and Formation12profiles. Final enlarged
-Lab screenshot has no title/badge overlap. Reset/fallback/entry-layout causal
-controls fail their intended assertions. Context/source/whitespace pass.
-Four paired8h replay endpoints (115,200 separate1s calls/source) match complete
-state/rewards against released6fd9e44f except independently enumerated approved
-PR55 +450 Comets per endpoint; golden hash rebound only after comparison.
+All16 exact-source PR/manual workflows and every job PASS. Both full suites
+(PR43706290303/manual43706287783) prove190 main scenarios plus1 isolated offline
+scenario each. Four complete job logs are retained with hashes in
+[CI summary](../qa/mobile-menu-corrections-001/ci-log-summary.json).
+Signed candidate0.2.126/43706308245 also passed; it is not the public release.
+Actual installed positive-range remembered bottoms: Wisps 5601→5601/5601; Forge 5989→5989/5989; Lab 3340→3340/3340; Ascend 4780→4780/4780; Deeds 5958→5958/5958.
+All6 currency names visible and fit; no Rift captions/Deed history. Native fixtures
+are synthetic; real Android navigation and actual offsets, not a physical phone.
 
-All historical failures/receipts remain under
-[QA](../qa/mobile-menu-corrections-001/README.md); the full prior task text is
-[retained byte-for-byte](../qa/mobile-menu-corrections-001/task-history-before-live-observer.txt).
-Key findings, not waivers:
-- Earlier test expectations read removed Deed history and ignored the native
-  Farm fixture's maxDepthEver30 despite retained earned1000 flags. Expectations
-  now verify original earned receipts/pending credit and next30/2500 bar exactly.
-- Candidate0.2.122 reported scroll0/0 everywhere; rejected as vacuous. Native
-  checks/verifiers now require positive range/offset and correct active panel.
-- Source3130e62d's real native Wisps bottom failed. Entry-layout reproduction
-  catches it; f700 restoration passes all5 actual native bottoms on313bdd47:
-  Wisps5601, Forge5989, Lab3340→3324/new bottom, Ascend4780, Deeds5958.
-  Six currency names, both save slots/paid work, actual updater also PASS.
-- Native43695984950 attempts1/2 failed final stock UIAutomator idle capture;
-  original logs and both37-file artifacts are retained separately. Screenshots
-  show combat, but self-review does not replace retail acceptance. Linux Wisp
-  touch timeout101checks/16profiles passed an unchanged failed-job retry; cause
-  remains unproven. Source313bdd47 had14/16 workflows passed when superseded.
+Focused product checks:740 modern selection/menu,398 legacy viewport/12profiles,
+398 actual-touch/12profiles; core415; original clarity417+native99; Lab slots488/18
+and Deeds688/18. All4 original native Rift variants pass3profiles/12states each.
+Currency visual16profiles, all6 cosmetics, dense/boss layouts, Workshop/navigation
+and Formation checks pass. Reset/fallback/entry-settling causal controls catch
+their intended defects. Node24.22.1/Chromium157.0.8103.79 locally; CI Node24.19.0.
+Four paired8h replay endpoints (115,200 separate1s calls/source) preserve every
+full-state field except independently specified approved PR55 +450 Comets/endpoint.
+The golden source hash was rebound only after that complete comparison.
 
-62126af7 changes only tests/docs after the verified product. LiveUiSnapshot.java
-builds a shell-only observer outside the APK and uses Android31's same UiAutomation
-bridge/XML dumper without demanding globally idle combat. It deletes stale XML,
-keeps120s launch deadline and requires both enabled/clickable/on-screen Wisps and
-Rift controls. Negative stale/loading/other-package/disabled/clipped fixtures pass.
-Retail OS, non-debuggable APK, absent WebView socket/app instrumentation, private
-storage rejection and exact installed bytes gates remain. Original game/workflow
-bytes unchanged. Actual observer compilation/retail acceptance still pending CI.
+## Changed files and retained findings
 
-The earlier oversized shared state was preserved exactly in
-PROJECT_STATE_2026-11-14_HISTORY.md before compacting current status; all task
-startup budgets pass without weakening the guard. No new binding rules.
+- index.html
+- scripts/ci/android-upgrade.cjs
+- scripts/ci/verify_android_release_runtime.cjs
+- scripts/lib/android-live-ui.cjs
+- scripts/qa/check-mobile-menu-corrections.cjs
+- scripts/qa/verify-deeds-reward-replay.cjs
+- tests/android/LiveUiSnapshot.java
+- tests/behavioral/comet-expansion-numerical.cjs
+- tests/behavioral/comet-expansion-v8.cjs
+- tests/behavioral/deeds-progressive-ui.cjs
+- tests/behavioral/deeds-progressive.cjs
+- tests/behavioral/formation-bonds-ui.cjs
+- tests/behavioral/lab-simple-ui.cjs
+- tests/behavioral/lab-slots-speed-menu-ui.cjs
+- tests/behavioral/lab-speed-controls.cjs
+- tests/behavioral/layout.js
+- tests/behavioral/legacy-automation-deeds-reference.cjs
+- tests/behavioral/mobile-menu-corrections-ui.cjs
+- tests/behavioral/offline-catchup.cjs
+- tests/behavioral/offline-swift-current-golden.json
+- tests/behavioral/rift-cosmetics.cjs
+- tests/behavioral/rift-status.cjs
+- tests/behavioral/rift-status.js
+- tests/behavioral/runner.js
+- tests/behavioral/upgrade-clarity.js
+- tests/behavioral/visual-audit.cjs
+- tests/tooling/apk-security.cjs
 
-Next: verify62126af7 signed candidate including live retail XML and actual
-nonzero scroll ranges; require all16 workflows/jobs and both full190+isolated1
-scenario receipts. Preserve first failures before diagnosis/retry. Helpers under
-validation-evidence/ are frozen in QA as delivery-helper/verify-candidate/
-verify-public-release.cjs.txt. Then readiness, recheck main/PR54/55 overlap,
-fast-forward exact source to main, publish signed APK, verify anonymous exact
-version/latest bytes/feed, save final evidence/docs on main. No ref advancement
-during builds. Physical-phone/WebView60/TalkBack/human acceptance stays open;
-no archive until verified. Do not call a local candidate/open PR completion.
+Full diff self-reviewed for removals/scope; no workflow or native app configuration
+change. Original requirements and all historical failures remain in
+[QA](../qa/mobile-menu-corrections-001/README.md) and the
+[previous checkpoint](../qa/mobile-menu-corrections-001/task-history-before-public-delivery.md.gz).
+Old0.2.122 scroll0/0 receipts were explicitly rejected. Positive ranges required
+the100vh fallback; remembered bottoms required post-entry restoration canceled
+on new input. Stock retail global-idle capture was replaced by the same shell
+accessibility bridge reading live controls, with stronger control assertions and
+all production-security checks/deadlines preserved. Reduced-motion fixture header
+reveal waits for entry before its artificial scroll; native gestures/first Rift
+frame/300s and15s deadlines remain. First failures, false diagnostic and unchanged
+passing Wisp retries are retained. Initial post-push PR closure assertion saw
+GitHub asynchronous lag; all3 actual merges confirmed before public dispatch.
+No acceptance gate was waived. Shared status history remains preserved exactly.
 
-62126af7 candidate43698948404 /0.2.125 now passes signing/assets, real upgrade,
-both saves/paid work, actual updater and retail launch. Independent downloaded
-artifact verification PASS (APKsha d9b1f483f34cdc145e2d1dfe1484a8e45002377e00db30f8233b6217f35d255d).
-Live retail XML confirms actual enabled/on-screen Wisps and Rift controls on a
-non-debuggable Android12 user image; no app instrumentation/debugger socket.
-All5 actual positive menu ranges restore bottom; all6 names fit. Only final full
-PR/manual suites and Wisp failed-job retry remain. Original Wisp focus mutation
-failed after1 check at setup's300ms layout deadline, before intended assertion;
-PR and Windows copies pass, original artifact/log retained, unchanged retry active.
-No product/test deadline changes. Next: all16 readiness and full logs, then delivery.
+## Next action and open acceptance
 
-Wisp43698927035 unchanged failed-job retry PASS;14/16 workflows passed.
-Only the two full premerge runs remain before readiness/integration/public build.
+Software delivery and automated acceptance are verified. Install the public APK
+as an update and obtain physical-phone review of all6 requested corrections.
+Exact WebView60 DOM, TalkBack and human acceptance remain unverified. Keep this
+feature/chat open; do not archive until those required checks are recorded.
+No new binding rules. Delivery helpers and original logs/receipts are frozen in QA.
 
-## Reduced-motion native fixture follow-up
-
-62126af7 full PR43698889007/manual43698909497 both finish with exactly two
-failures: rift-status-reduced-motion and rift-status-stacking-reduced-motion.
-All other scenarios and isolated offline jobs pass. Full original logs saved.
-Unchanged local trace reproduces after15.163s, dense state's Forge navigation:
-fixture scrollIntoView reveals the subsection header while entry restoration can
-still run, then its native touch misses and locate sees no rendered Forge controls.
-Physical user scrolling cancels that restoration on touchstart; this artificial
-header reveal does not. Precise inter-event timing is not separately instrumented.
-
-Scoped test-only correction waits for the entered panel's animation/next frames
-BEFORE that existing programmatic header reveal. It adds an explicit selected-
-subtab/active-panel check; a missing control now reports active menu/offset rather
-than a TypeError. First Rift entry-frame measurement, native last-control swipes,
-all original assertions and300s scenario/15s command deadlines remain. An initial
-new diagnostic wrongly checked a CSS class instead of aria-selected; corrected,
-with its failed local receipt retained. Corrected reduced-motion local run passes
-all3profiles/12states in101.145s. Three remaining variants are running. Product
-f7008f0e unchanged; candidate0.2.125 remains proof of product, not new source CI.
-Next: finish these focused variants, commit/push fixture-only correction, repeat
-required exact-source workflows/candidate, then integrate/public delivery. No gate
-is waived and no public APK yet; original full failures stay historical.
-
-All4 native variants now PASS, each3profiles/12states: normal104.519s, reduced101.145s,
-stacked normal104.087s, stacked reduced102.317s. Product remainsf7008f0e. Full diff
-self-reviewed; final fixture-only source is ready to publish for exact-source CI.
-
-37ca26df candidate43706308245 /0.2.126 PASS, independently downloaded/verified:
-APKsha ec9d65b53224375bb4e90465bf8c374f680e5bdd8f6b2e353e39fb169dfc953f.
-All exact assets/identity, both saves/paid work, real updater,5 positive remembered
-menu bottoms,6 names and live retail XML/security gates PASS again.14/16 workflows
-PASS; both isolated offline jobs PASS. Only PR43706290303/manual43706287783 full
-suites remain. Save/verify exact190 main +1 isolated scenario logs for both events
-before readiness/integration/publication; no tests, assertions or deadlines waived.
+Final documentation checks: affected task links/startup budgets and all39 workflow
+task contexts PASS; [saved results](../qa/mobile-menu-corrections-001/final-workflow-context-checks.json).
+Complete diff reviewed; documentation/evidence only follows the released source.

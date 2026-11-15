@@ -1,0 +1,19 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict');
+const sha='37ca26dfaf4668b1950e789ed1d191649ee4b9a2',baseline='8747ee6043bac911420649ae7088398b38a8989a';
+const gh='C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/github-cli/bin/gh.exe';
+const api=route=>JSON.parse(cp.execFileSync(gh,['api','repos/xariib/Lumenfall/'+route],{encoding:'utf8',timeout:60000}));
+const run=mode=>cp.execFileSync(process.execPath,['validation-evidence/menu-delivery.cjs',mode,sha],{stdio:'inherit',timeout:180000});
+const main=api('git/ref/heads/main').object.sha;
+assert([baseline,sha].includes(main),'Main must still be the agreed baseline or exact validated source');
+if(main===baseline){run('ready');run('save-ci');}
+else for(const name of ['release-readiness.json','ci-log-summary.json']){
+ const receipt=JSON.parse(fs.readFileSync('docs/qa/mobile-menu-corrections-001/'+name));
+ assert.equal(receipt.status,'PASS');assert.equal(receipt.sha,sha);
+}
+// promote is idempotent if GitHub has not yet reflected ancestor-PR closure.
+// An error stops here; a deliberate retry rechecks the saved readiness/logs.
+run('promote');
+const builds=api('actions/workflows/build-android.yml/runs?head_sha='+sha+'&per_page=30').workflow_runs;
+assert(!builds.some(r=>r.head_sha===sha&&r.head_branch==='main'),'A main build already exists; inspect/resume it instead of dispatching a duplicate');
+run('publish');

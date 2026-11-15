@@ -1,11 +1,16 @@
 # Lumenfall — current delivery status
 
 15 November: [Mobile menu corrections](tasks/MOBILE_MENU_CORRECTIONS_001.md)
-combine pending PR54 currency names and PR55 advancing Deeds with removal of
-Rift captions/Bond names and Deed milestone history, compact Lab icon controls,
-and separate remembered menu scroll positions. Local checks pass; exact-source
-CI/integration/signed Android/public delivery are pending. This supersedes older
-presentation acceptance. [Evidence](qa/mobile-menu-corrections-001/README.md).
+shipped as [Android 0.2.127](https://github.com/xariib/Lumenfall/releases/tag/android-1000127), source37ca26df through PR54/55/56.
+Removes Rift theme/Bond captions and Deed milestone history; shows six currency
+names; compacts Lab Queue/progress/Speed Up controls; remembers each menu's
+offset/bottom, including separate Forge/Lab. All16 exact-source workflows pass;
+both full suites prove190 main +1 isolated offline scenarios each. Signed upgrade,
+actual updater and retail launch retain both saves/paid work; real positive menu
+scroll ranges and anonymous public APK/assets/feed verification pass.
+[Evidence](qa/mobile-menu-corrections-001/README.md). First failures and passing
+retries retained. Self-review only; physical-phone/exact WebView60/TalkBack/human
+acceptance remain open. This supersedes earlier presentation acceptance.
 
 14 November: [All improvements/PR53](tasks/ALL_UPDATES_RELEASE_20261114.md)
 released as [Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119),
@@ -27,13 +32,13 @@ the new correction above removes them.
 14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
 PR52; reopened by human correction: each series needs a live progress bar,
 retained cumulative total, existing next targets and increasing stage rewards.
-Corrected local core/mobile and paired offline checks pass; corrected CI/Android
-delivery and human acceptance remain pending. Prior receipts do not verify this
-correction.
+The correction is included through PR55/56 in Android 0.2.127. Combined
+CI/native/public evidence is linked above; physical/human acceptance remains open.
 
 14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
 at7f149b89. Human correction requires visible currency names; focused correction
-passes1,776 layout checks. Integration/Android delivery pending.
+passes1,776 layout checks. Visible names are included through PR54/56 in
+Android 0.2.127; combined acceptance evidence is linked above. Phone review open.
 
 12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
 [Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)

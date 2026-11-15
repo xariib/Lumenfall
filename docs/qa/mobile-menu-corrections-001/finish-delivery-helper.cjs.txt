@@ -1,0 +1,21 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict'),crypto=require('node:crypto'),zlib=require('node:zlib');
+const sha='37ca26dfaf4668b1950e789ed1d191649ee4b9a2',dir='docs/qa/mobile-menu-corrections-001';
+const git=args=>cp.execFileSync('git',args,{encoding:'utf8',timeout:60000});
+const proof=JSON.parse(fs.readFileSync(dir+'/android-release/public-verification.json'));assert.equal(proof.status,'PASS');assert.equal(proof.commit,sha);
+assert.equal(git(['branch','--show-current']).trim(),'evidence/mobile-menu-corrections-001');
+assert.equal(crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex'),'f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51');
+const archive=zlib.gunzipSync(fs.readFileSync(dir+'/task-history-before-public-delivery.md.gz')),manifest=JSON.parse(fs.readFileSync(dir+'/task-history-before-public-delivery.json'));
+assert.equal(archive.length,manifest.bytes);assert.equal(crypto.createHash('sha256').update(archive).digest('hex'),manifest.sha256);
+const contexts=JSON.parse(fs.readFileSync(dir+'/final-workflow-context-checks.json'));assert.equal(contexts.status,'PASS');assert.equal(contexts.rows.length,39);
+const taskFiles=['docs/PROJECT_STATE.md','docs/tasks/MOBILE_MENU_CORRECTIONS_001.md','docs/tasks/CURRENCY_HUD_001.md','docs/tasks/DEEDS_PROGRESSIVE_001.md'];
+cp.execFileSync(process.execPath,['validation-evidence/menu-delivery.cjs','status',sha],{stdio:'inherit',timeout:90000});
+const dirty=git(['-c','core.longpaths=true','status','--porcelain']).trimEnd().split('\n').filter(Boolean);
+for(const row of dirty){
+ const name=row.slice(3).replaceAll('"','');assert(name.startsWith(dir+'/')||taskFiles.includes(name),'Unexpected edit: '+row);
+}
+git(['diff','--check']);
+if(dirty.length){git(['add',dir,...taskFiles]);console.log(git(['-c','core.longpaths=true','commit','-m','Record verified Android 0.2.127 menu corrections delivery']));}
+cp.execFileSync(process.execPath,['validation-evidence/menu-delivery.cjs','final-evidence-push',sha],{stdio:'inherit',timeout:180000});
+assert.equal(git(['status','--porcelain']).trim(),'','Final feature worktree must be clean');
+console.log('Verified app delivery and documentation saved; physical acceptance remains open.');

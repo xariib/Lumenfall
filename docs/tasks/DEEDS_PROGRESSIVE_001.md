@@ -1,10 +1,15 @@
 # DEEDS_PROGRESSIVE_001 — one advancing card per Deed series
 
-Status: reopened by human correction; implementation/checks in progress.
+Status: human correction integrated through PR55/56 and delivered as
+[Android 0.2.127](https://github.com/xariib/Lumenfall/releases/tag/android-1000127). [Combined delivery](MOBILE_MENU_CORRECTIONS_001.md)
+records all16 workflows and Android/public checks. Physical-phone/WebView60/
+TalkBack/human acceptance remains open; do not archive.
 Owner: current feature chat. Existing-chat release coordination authorized by the
 human in Rift thread01a1d77b-4453-7a21-9961-55d70c6cd963; verified its explicit
 “Yes, coordinate those two chats” reply. No delegation or new chats.
-Current product SHA256: `0e613bf5d983345738cc26d56909b925b8b8f3f9156ea443361c79405b1d95fa`.
+Historical PR55 correction-candidate SHA256: `0e613bf5d983345738cc26d56909b925b8b8f3f9156ea443361c79405b1d95fa`.
+
+Current combined product SHA256: f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51 (source37ca26df).
 
 ## Human correction — 14 November 2026
 

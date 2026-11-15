@@ -1,3 +1,15 @@
+15 November delivery: [Android 0.2.127](https://github.com/xariib/Lumenfall/releases/tag/android-1000127) from source37ca26df.
+[Public APK](https://github.com/xariib/Lumenfall/releases/download/android-1000127/Lumenfall.apk); anonymous exact/latest bytes and metadata
+verified. All16 workflows/jobs PASS; both full suites prove190 main +1 isolated
+offline scenarios each. Signed save-upgrade/updater/retail gates PASS; all5 real
+positive remembered bottoms and6 names verified. APK SHA256 d334cfd038d2e9062fc249aa75bddd4de30e06d20de2ea618d1aa791dfb78f23.
+Current receipts: android-release/public-verification.json, release-readiness.json,
+ci-log-summary.json and four complete gzip job logs. Images self-reviewed.
+Physical-phone/exact WebView60/TalkBack/human acceptance remains open; no archive.
+Previous checkpoint is preserved losslessly in task-history-before-public-delivery.md.gz
+with raw byte count/hash in its JSON manifest. The dated entries below retain
+validation history, including rejected candidates and all first failures.
+
 # Mobile menu corrections evidence
 
 Current product SHA256: `f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
@@ -144,3 +156,13 @@ paid work, actual updater, all5 positive remembered bottoms,6 names and live ret
 XML/security acceptance.14/16 workflows and both offline jobs pass; full suites
 PR43706290303/manual43706287783 remain. Final delivery checks require exact190+1
 scenario totals per event, saved with full job logs. No public APK yet.
+
+All16 final-source workflows PASS; ci-log-summary.json and four gzip job logs
+prove190 main +1 isolated scenarios for each event. Main fast-forward37ca26df
+completed12:29UTC; first immediate PR54-merged assertion saw asynchronous closure
+lag. All54/55/56 confirmed merged at12:30UTC (mergedAt12:29:33Z). Retry is idempotent;
+source checks unchanged. Public build/anonymous verification remain next.
+
+Final documentation links/startup checks pass for affected tasks and all39 workflow
+task contexts. Full product/source diff is unchanged after37ca26df; final evidence
+integration advances only documentation. Physical acceptance remains open.

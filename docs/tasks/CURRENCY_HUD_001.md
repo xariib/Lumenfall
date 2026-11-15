@@ -1,7 +1,10 @@
 # CURRENCY_HUD_001 — consistent top currency display
 
-14 November 2026. Owner: this feature chat. Status: visible-name correction
-in progress; previous icon-only implementation integrated. Do not archive.
+15 November 2026. Owner: this feature chat. Status: visible-name correction
+integrated through PR54/56 and delivered as [Android 0.2.127](https://github.com/xariib/Lumenfall/releases/tag/android-1000127).
+[Combined delivery](MOBILE_MENU_CORRECTIONS_001.md) records all16 workflows and
+Android/public verification. Physical-phone/WebView60/TalkBack/human acceptance
+remain open. Do not archive.
 
 ## Request and scope
 

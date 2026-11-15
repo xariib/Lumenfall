@@ -80,10 +80,11 @@ if(mode==='dispatch'){
  else{console.log(JSON.stringify(jobs.jobs.filter(j=>j.conclusion==='failure').map(j=>({id:j.id,name:j.name,failed:j.steps.filter(s=>s.conclusion==='failure')}))));console.log(cli(['run','view',id,'--repo',repo,'--log-failed']).slice(-16000));}
 }else if(mode==='final-evidence-push'){
  const r=JSON.parse(fs.readFileSync(dir+'/android-release/public-verification.json'));assert.equal(r.status,'PASS');assert.equal(r.commit,sha);assert.equal(main(),sha);assert.equal(api('releases/latest').tag_name,r.tag);
+ assert(api('actions/workflows/build-android.yml/runs?per_page=10').workflow_runs.every(run=>run.status==='completed'),'Keep main fixed while any Android build is active');
  const head=cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
  const names=cp.execFileSync('git',['diff','--name-only',sha,head],{encoding:'utf8'}).trim().split('\n').filter(Boolean);assert(names.length&&names.every(n=>n.startsWith('docs/')),'Only documentation/evidence may follow the released source');
  assert.equal(cp.execFileSync('git',['-c','core.longpaths=true','status','--porcelain','--untracked-files=no'],{encoding:'utf8'}).trim(),'','Final documentation must be committed cleanly');
- cp.execFileSync('git',['-c','credential.helper=','-c','credential.helper=!'+gh+' auth git-credential','push','--atomic','origin',head+':refs/heads/main',head+':refs/heads/'+ref+'-evidence'],{stdio:'inherit'});assert.equal(main(),head);console.log('Saved verified final delivery on main '+head);
+ cp.execFileSync('git',['-c','credential.helper=','-c','credential.helper=!'+gh+' auth git-credential','push','--atomic','origin',head+':refs/heads/main',head+':refs/heads/evidence/mobile-menu-corrections-001'],{stdio:'inherit'});assert.equal(main(),head);console.log('Saved verified final delivery on main '+head);
 }else if(mode==='live-log'){
  const id=process.argv[4];assert.match(id,/^\d+$/);
  try{const log=cli(['api','repos/'+repo+'/actions/jobs/'+id+'/logs']);fs.writeFileSync('validation-evidence/live-job-'+id+'.txt',log);const lines=log.split('\n').filter(l=>/PASS |FAIL |Behavioral QA/.test(l));console.log(JSON.stringify({available:true,lines:lines.slice(-8),wispPassed:log.includes('PASS wisp-rarity-scroll'),wispFailed:log.includes('FAIL wisp-rarity-scroll')}));}catch{console.log('Live job logs are not available until completion');}

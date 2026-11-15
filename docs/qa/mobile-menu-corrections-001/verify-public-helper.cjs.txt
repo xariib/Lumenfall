@@ -1,0 +1,31 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict');
+const sha='37ca26dfaf4668b1950e789ed1d191649ee4b9a2',id='43714270831';
+const gh='C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/github-cli/bin/gh.exe';
+const api=route=>JSON.parse(cp.execFileSync(gh,['api','repos/xariib/Lumenfall/'+route],{encoding:'utf8',timeout:60000}));
+async function main(){
+ const deadline=Date.now()+20*60*1000;
+ while(true){
+  const run=api('actions/runs/'+id);assert.equal(run.head_sha,sha);assert.equal(run.head_branch,'main');
+  if(run.status==='completed'){
+   if(run.conclusion!=='success'){
+    cp.execFileSync(process.execPath,['validation-evidence/menu-delivery.cjs','failure',sha,id],{stdio:'inherit',timeout:180000});
+    throw Error('Public Android run failed; original logs saved. Diagnose before any retry.');
+   }
+   break;
+  }
+  assert(Date.now()<deadline,'Public build still active; continue watching the same run');
+  console.log('Waiting for public Android '+id+' ('+run.status+')');
+  await new Promise(resolve=>setTimeout(resolve,15000));
+ }
+ cp.execFileSync(process.execPath,['validation-evidence/verify-all-updates-release.cjs',id,sha],{stdio:'inherit',timeout:240000});
+ const proof=JSON.parse(fs.readFileSync('docs/qa/mobile-menu-corrections-001/android-release/public-verification.json'));
+ assert.equal(proof.status,'PASS');assert.equal(proof.commit,sha);
+ const notes=fs.readFileSync('docs/qa/mobile-menu-corrections-001/release-notes-draft.txt','utf8').trim()+
+  '\n\nVerified Android '+proof.version+' from '+sha+'. All16 exact-source workflows passed; both full suites prove190 main scenarios plus1 isolated offline scenario each. Public APK bytes, signing/assets, save upgrade, updater and retail launch checks passed. Self-review only.\n';
+ fs.writeFileSync('validation-evidence/release-notes.txt',notes);
+ cp.execFileSync(process.execPath,['validation-evidence/menu-delivery.cjs','release-notes',sha],{stdio:'inherit',timeout:90000});
+ fs.copyFileSync('validation-evidence/release-notes.txt','docs/qa/mobile-menu-corrections-001/release-notes-final.txt');
+ console.log('Verified public APK and saved release notes: '+proof.version);
+}
+main().catch(error=>{console.error(error);process.exitCode=1;});
