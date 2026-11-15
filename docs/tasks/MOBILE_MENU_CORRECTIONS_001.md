@@ -128,3 +128,20 @@ Local delivery/verification helpers are in validation-evidence/ inside this
 isolated worktree; required run URLs are saved in dispatch.json and candidate
 dispatch. If helpers are unavailable, use the original workflows and exact run
 metadata; no credential/signing change is needed.
+
+## Android receipt audit — open viewport fix
+
+Candidate43685898534/Android0.2.122 passed existing build/upgrade/updater/retail
+gates and exact bytes/identity. However detailed installedMenuScroll records
+all reported max0/top0. That is vacuous for scroll acceptance and is NOT proof
+of the requested feature. The new native test omitted a positive-range and
+active-panel precondition; correct those assertions before delivery.
+
+Installed WebView is91.0.4472.114. Current .shell has height100dvh with no
+height100vh fallback; that unit is unsupported there, allowing main to grow
+instead of becoming a scroll container. Add the scoped viewport fallback and
+test menus with unsupported dvh declarations removed, including a causal
+missing-fallback control. Preserve original UI/save/upgrade assertions. This
+needed scroll fix stays in the current feature; do not claim phone/WebView60
+acceptance. Current14/16 final-source workflows pass; full suites still run.
+Source must be revalidated after this CSS change. No public APK is published.
