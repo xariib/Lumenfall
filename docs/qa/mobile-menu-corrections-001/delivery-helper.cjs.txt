@@ -9,6 +9,7 @@ const api=p=>JSON.parse(cli(['api','repos/'+repo+'/'+p]));
 const write=(name,data)=>fs.writeFileSync(dir+'/'+name,JSON.stringify(data,null,2)+'\n');
 const main=()=>api('git/ref/heads/main').object.sha;
 const branch=()=>api('git/ref/heads/'+ref).object.sha;
+const inheritedPRs=()=>[54,55].map(number=>{const pr=api('pulls/'+number);cp.execFileSync('git',['merge-base','--is-ancestor',pr.head.sha,sha]);return {number,sha:pr.head.sha,state:pr.state,merged:pr.merged};});
 const files=['pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml','lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml','permanent-progression-validation.yml','wisp-scroll-validation.yml'];
 if(mode==='dispatch'){
  assert.equal(branch(),sha);assert.equal(main(),baseline);
@@ -34,7 +35,7 @@ if(mode==='dispatch'){
   cp.execFileSync('git',['merge-base','--is-ancestor',baseline,sha]);
   const pr=api('pulls/'+JSON.parse(fs.readFileSync('validation-evidence/menu-release-config.json')).pr);assert.equal(pr.head.sha,sha);assert.equal(pr.base.ref,'main');assert.equal(pr.state,'open');assert(pr.mergeable!==false,'Release PR must merge cleanly');
   assert(api('actions/workflows/build-android.yml/runs?per_page=10').workflow_runs.every(r=>r.status==='completed'),'Android build still active');
-  write('release-readiness.json',{status:'PASS',sha,baseline,ref,records:validation,native,utc:new Date().toISOString()});console.log('All exact-source checks and jobs PASS');
+  write('release-readiness.json',{status:'PASS',sha,baseline,ref,records:validation,native,inheritedPRs:inheritedPRs(),utc:new Date().toISOString()});console.log('All exact-source checks and jobs PASS');
  }
 }else if(mode==='save-ci'){
  const r=JSON.parse(fs.readFileSync(dir+'/release-readiness.json'));assert.equal(r.status,'PASS');assert.equal(r.sha,sha);
@@ -58,7 +59,7 @@ if(mode==='dispatch'){
  const release=api('releases/latest');assert.equal(release.target_commitish,sha);assert(!release.draft&&!release.prerelease);
  console.log(cli(['release','edit',release.tag_name,'--repo',repo,'--notes-file','validation-evidence/release-notes.txt']));
 }else if(mode==='promote'){
- const r=JSON.parse(fs.readFileSync(dir+'/release-readiness.json'));assert.equal(r.status,'PASS');assert.equal(r.sha,sha);const current=main();assert([baseline,sha].includes(current),'Main advanced outside this release');assert.equal(branch(),sha);cp.execFileSync('git',['merge-base','--is-ancestor',baseline,sha]);
+ const r=JSON.parse(fs.readFileSync(dir+'/release-readiness.json'));assert.equal(r.status,'PASS');assert.equal(r.sha,sha);const current=main();assert([baseline,sha].includes(current),'Main advanced outside this release');assert.equal(branch(),sha);cp.execFileSync('git',['merge-base','--is-ancestor',baseline,sha]);inheritedPRs();
  if(current===baseline)cp.execFileSync('git',['-c','credential.helper=','-c','credential.helper=!'+gh+' auth git-credential','push','origin',sha+':refs/heads/main'],{stdio:'inherit'});assert.equal(main(),sha);
  for(const n of [54,55,JSON.parse(fs.readFileSync('validation-evidence/menu-release-config.json')).pr]){const pr=api('pulls/'+n);assert.equal(pr.merged,true,'PR'+n+' must be integrated');}
  write('integration.json',{sha,baseline,utc:new Date().toISOString(),openPRs:api('pulls?state=open&per_page=30').map(p=>({number:p.number,title:p.title,sha:p.head.sha}))});console.log('Integrated exact validated source');

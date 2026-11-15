@@ -101,3 +101,19 @@ changes in index.html or the production APK. Actual observer compilation/retail
 capture is pending a new exact-source candidate; old failures remain historical.
 AOSP references: [DumpCommand](https://android.googlesource.com/platform/prebuilts/fullsdk/sources/android-29/+/refs/heads/main/com/android/commands/uiautomator/DumpCommand.java),
 [the same shell bridge](https://android.googlesource.com/platform/prebuilts/fullsdk/sources/android-30/+/refs/heads/androidx-room-release/com/android/uiautomator/core/UiAutomationShellWrapper.java).
+
+62126af7 signed nonpublishing0.2.125 candidate43698948404 now passes EVERY build,
+upgrade/updater and retail gate. android-candidate/verification.json is current;
+old0.2.122 receipts remain historical in Git. All five native scroll ranges are
+positive and restore their actual bottoms; six currency names fit. The shell-only
+live accessibility capture compiled and ran successfully; actual retail XML is
+retained and independently checked for enabled/clickable/on-screen Wisps and Rift.
+Production image/package/debugger/private-storage/byte gates also pass. Screenshots
+self-reviewed; physical phone/WebView60/TalkBack/human acceptance remain open.
+Manual Wisp43698927035 failed focus-mutation setup after1 check (300ms layout
+settlement), before its intended failure. PR and Windows copies pass. Original
+JSON/logs are retained in failure-artifact-43698927035-attempt1/. Failed-job-only
+unchanged retry active; no assertion/deadline relaxed. Full PR/manual suites active.
+
+Wisp43698927035 unchanged failed-job retry passed;14/16 workflows complete.
+Final two full suites remain; no public APK yet.

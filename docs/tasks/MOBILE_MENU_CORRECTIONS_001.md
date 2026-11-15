@@ -115,3 +115,17 @@ fast-forward exact source to main, publish signed APK, verify anonymous exact
 version/latest bytes/feed, save final evidence/docs on main. No ref advancement
 during builds. Physical-phone/WebView60/TalkBack/human acceptance stays open;
 no archive until verified. Do not call a local candidate/open PR completion.
+
+62126af7 candidate43698948404 /0.2.125 now passes signing/assets, real upgrade,
+both saves/paid work, actual updater and retail launch. Independent downloaded
+artifact verification PASS (APKsha d9b1f483f34cdc145e2d1dfe1484a8e45002377e00db30f8233b6217f35d255d).
+Live retail XML confirms actual enabled/on-screen Wisps and Rift controls on a
+non-debuggable Android12 user image; no app instrumentation/debugger socket.
+All5 actual positive menu ranges restore bottom; all6 names fit. Only final full
+PR/manual suites and Wisp failed-job retry remain. Original Wisp focus mutation
+failed after1 check at setup's300ms layout deadline, before intended assertion;
+PR and Windows copies pass, original artifact/log retained, unchanged retry active.
+No product/test deadline changes. Next: all16 readiness and full logs, then delivery.
+
+Wisp43698927035 unchanged failed-job retry PASS;14/16 workflows passed.
+Only the two full premerge runs remain before readiness/integration/public build.
