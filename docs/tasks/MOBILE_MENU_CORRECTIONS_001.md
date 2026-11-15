@@ -76,3 +76,27 @@ Next: commit/push scoped candidate, open PR and dispatch exact-source
 validation/candidate Android. Keep main/source fixed during checks, then
 serialize integration/publication after readiness. Connector lacks workflow
 dispatch, so the configured authenticated GitHub CLI supplies it.
+
+## PR56 first CI/native checkpoint
+
+[PR56](https://github.com/xariib/Lumenfall/pull/56) initial head9f6c786f preserved
+all source/native failures. Manual full43653805377 passed isolated offline and
+all earlier focused/negative gates, then two190-scenario tests still read removed
+completed Deed rows. Their expectations now assert retained earned receipts and
+the exact next card/counter without history; original threshold/reward/purity
+coverage remains. Both original scenarios now pass locally. QoL's disposable
+fixture explicitly marks next Rift100 unearned, avoiding inherited achieved flags.
+
+Lab43653813055 timed out at Browser.getVersion with zero assertions; no cause
+proven. Android43653827271 passed package/assets, save/paid retention and native
+Wisp/Farm/navigation checks; failed its newly imported Rift1000 bar assertion.
+The earlier disposable Farm fixture sets maxDepthEver30 while retaining all
+earned1000 receipts, so the exact expected bar is30/2500 (1.2%), not1000/2500.
+Corrected that independent fixture expectation; no game/retention logic changes.
+Native scroll tests now avoid revealing/reselecting an already active subtab,
+which would legitimately scroll it to its header, and check all6 visible names.
+Raw original CI logs and30 native diagnostic files are retained in QA.
+
+Product SHA256 remains unchanged. These follow-ups are tests/docs only. Next:
+publish follow-up, rerun all required exact-head workflows/candidate Android,
+then serialize integration/release. No failed gate is waived; no main/APK push.

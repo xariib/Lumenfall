@@ -1,0 +1,807 @@
+{
+  "run": {
+    "id": 43653553089,
+    "name": "Pre-merge validation",
+    "node_id": "WFR_kwLOVI5pCM8AAAAKKfRbwQ",
+    "head_branch": "fix/mobile-menu-corrections-001",
+    "head_sha": "9f6c786f86f964d7193003ee9e449fbdd5eefe43",
+    "path": ".github/workflows/pre-merge-validation.yml",
+    "display_title": "Correct mobile menu labels, compact Lab controls and remember scroll",
+    "run_number": 325,
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 386570584,
+    "check_suite_id": 118193942297,
+    "check_suite_node_id": "CS_kwDOVI5pCM8AAAAbhOhvGQ",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/43653553089",
+    "pull_requests": [
+      {
+        "url": "https://api.github.com/repos/xariib/Lumenfall/pulls/56",
+        "id": 5317392611,
+        "number": 56,
+        "head": {
+          "ref": "fix/mobile-menu-corrections-001",
+          "sha": "9f6c786f86f964d7193003ee9e449fbdd5eefe43",
+          "repo": {
+            "id": 1418619144,
+            "url": "https://api.github.com/repos/xariib/Lumenfall",
+            "name": "Lumenfall"
+          }
+        },
+        "base": {
+          "ref": "main",
+          "sha": "8747ee6043bac911420649ae7088398b38a8989a",
+          "repo": {
+            "id": 1418619144,
+            "url": "https://api.github.com/repos/xariib/Lumenfall",
+            "name": "Lumenfall"
+          }
+        }
+      }
+    ],
+    "created_at": "2026-11-14T23:30:15Z",
+    "updated_at": "2026-11-15T00:26:58Z",
+    "actor": {
+      "login": "xariib",
+      "id": 342403818,
+      "node_id": "U_kgDOFGiq6g",
+      "avatar_url": "https://avatars.githubusercontent.com/u/342403818?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/xariib",
+      "html_url": "https://github.com/xariib",
+      "followers_url": "https://api.github.com/users/xariib/followers",
+      "following_url": "https://api.github.com/users/xariib/following{/other_user}",
+      "gists_url": "https://api.github.com/users/xariib/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/xariib/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/xariib/subscriptions",
+      "organizations_url": "https://api.github.com/users/xariib/orgs",
+      "repos_url": "https://api.github.com/users/xariib/repos",
+      "events_url": "https://api.github.com/users/xariib/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/xariib/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T23:30:15Z",
+    "triggering_actor": {
+      "login": "xariib",
+      "id": 342403818,
+      "node_id": "U_kgDOFGiq6g",
+      "avatar_url": "https://avatars.githubusercontent.com/u/342403818?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/xariib",
+      "html_url": "https://github.com/xariib",
+      "followers_url": "https://api.github.com/users/xariib/followers",
+      "following_url": "https://api.github.com/users/xariib/following{/other_user}",
+      "gists_url": "https://api.github.com/users/xariib/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/xariib/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/xariib/subscriptions",
+      "organizations_url": "https://api.github.com/users/xariib/orgs",
+      "repos_url": "https://api.github.com/users/xariib/repos",
+      "events_url": "https://api.github.com/users/xariib/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/xariib/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089/jobs",
+    "logs_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089/logs",
+    "check_suite_url": "https://api.github.com/repos/xariib/Lumenfall/check-suites/118193942297",
+    "artifacts_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089/artifacts",
+    "cancel_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089/cancel",
+    "rerun_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/xariib/Lumenfall/actions/workflows/386570584",
+    "head_commit": {
+      "id": "9f6c786f86f964d7193003ee9e449fbdd5eefe43",
+      "tree_id": "b6fd1f00cadb88a328f5741bd916ca4d2c23c177",
+      "message": "Correct mobile menu labels, compact Lab controls and remember scroll positions",
+      "timestamp": "2026-11-14T23:29:05Z",
+      "author": {
+        "name": "xarib",
+        "email": "krhnmstfa@gmail.com"
+      },
+      "committer": {
+        "name": "xarib",
+        "email": "krhnmstfa@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1418619144,
+      "node_id": "R_kgDOVI5pCA",
+      "name": "Lumenfall",
+      "full_name": "xariib/Lumenfall",
+      "private": false,
+      "owner": {
+        "login": "xariib",
+        "id": 342403818,
+        "node_id": "U_kgDOFGiq6g",
+        "avatar_url": "https://avatars.githubusercontent.com/u/342403818?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/xariib",
+        "html_url": "https://github.com/xariib",
+        "followers_url": "https://api.github.com/users/xariib/followers",
+        "following_url": "https://api.github.com/users/xariib/following{/other_user}",
+        "gists_url": "https://api.github.com/users/xariib/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/xariib/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/xariib/subscriptions",
+        "organizations_url": "https://api.github.com/users/xariib/orgs",
+        "repos_url": "https://api.github.com/users/xariib/repos",
+        "events_url": "https://api.github.com/users/xariib/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/xariib/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/xariib/Lumenfall",
+      "description": "Lumenfall idle ",
+      "fork": false,
+      "url": "https://api.github.com/repos/xariib/Lumenfall",
+      "forks_url": "https://api.github.com/repos/xariib/Lumenfall/forks",
+      "keys_url": "https://api.github.com/repos/xariib/Lumenfall/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/xariib/Lumenfall/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/xariib/Lumenfall/teams",
+      "hooks_url": "https://api.github.com/repos/xariib/Lumenfall/hooks",
+      "issue_events_url": "https://api.github.com/repos/xariib/Lumenfall/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/xariib/Lumenfall/events",
+      "assignees_url": "https://api.github.com/repos/xariib/Lumenfall/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/xariib/Lumenfall/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/xariib/Lumenfall/tags",
+      "blobs_url": "https://api.github.com/repos/xariib/Lumenfall/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/xariib/Lumenfall/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/xariib/Lumenfall/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/xariib/Lumenfall/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/xariib/Lumenfall/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/xariib/Lumenfall/languages",
+      "stargazers_url": "https://api.github.com/repos/xariib/Lumenfall/stargazers",
+      "contributors_url": "https://api.github.com/repos/xariib/Lumenfall/contributors",
+      "subscribers_url": "https://api.github.com/repos/xariib/Lumenfall/subscribers",
+      "subscription_url": "https://api.github.com/repos/xariib/Lumenfall/subscription",
+      "commits_url": "https://api.github.com/repos/xariib/Lumenfall/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/xariib/Lumenfall/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/xariib/Lumenfall/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/xariib/Lumenfall/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/xariib/Lumenfall/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/xariib/Lumenfall/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/xariib/Lumenfall/merges",
+      "archive_url": "https://api.github.com/repos/xariib/Lumenfall/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/xariib/Lumenfall/downloads",
+      "issues_url": "https://api.github.com/repos/xariib/Lumenfall/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/xariib/Lumenfall/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/xariib/Lumenfall/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/xariib/Lumenfall/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/xariib/Lumenfall/labels{/name}",
+      "releases_url": "https://api.github.com/repos/xariib/Lumenfall/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/xariib/Lumenfall/deployments"
+    },
+    "head_repository": {
+      "id": 1418619144,
+      "node_id": "R_kgDOVI5pCA",
+      "name": "Lumenfall",
+      "full_name": "xariib/Lumenfall",
+      "private": false,
+      "owner": {
+        "login": "xariib",
+        "id": 342403818,
+        "node_id": "U_kgDOFGiq6g",
+        "avatar_url": "https://avatars.githubusercontent.com/u/342403818?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/xariib",
+        "html_url": "https://github.com/xariib",
+        "followers_url": "https://api.github.com/users/xariib/followers",
+        "following_url": "https://api.github.com/users/xariib/following{/other_user}",
+        "gists_url": "https://api.github.com/users/xariib/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/xariib/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/xariib/subscriptions",
+        "organizations_url": "https://api.github.com/users/xariib/orgs",
+        "repos_url": "https://api.github.com/users/xariib/repos",
+        "events_url": "https://api.github.com/users/xariib/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/xariib/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/xariib/Lumenfall",
+      "description": "Lumenfall idle ",
+      "fork": false,
+      "url": "https://api.github.com/repos/xariib/Lumenfall",
+      "forks_url": "https://api.github.com/repos/xariib/Lumenfall/forks",
+      "keys_url": "https://api.github.com/repos/xariib/Lumenfall/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/xariib/Lumenfall/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/xariib/Lumenfall/teams",
+      "hooks_url": "https://api.github.com/repos/xariib/Lumenfall/hooks",
+      "issue_events_url": "https://api.github.com/repos/xariib/Lumenfall/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/xariib/Lumenfall/events",
+      "assignees_url": "https://api.github.com/repos/xariib/Lumenfall/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/xariib/Lumenfall/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/xariib/Lumenfall/tags",
+      "blobs_url": "https://api.github.com/repos/xariib/Lumenfall/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/xariib/Lumenfall/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/xariib/Lumenfall/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/xariib/Lumenfall/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/xariib/Lumenfall/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/xariib/Lumenfall/languages",
+      "stargazers_url": "https://api.github.com/repos/xariib/Lumenfall/stargazers",
+      "contributors_url": "https://api.github.com/repos/xariib/Lumenfall/contributors",
+      "subscribers_url": "https://api.github.com/repos/xariib/Lumenfall/subscribers",
+      "subscription_url": "https://api.github.com/repos/xariib/Lumenfall/subscription",
+      "commits_url": "https://api.github.com/repos/xariib/Lumenfall/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/xariib/Lumenfall/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/xariib/Lumenfall/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/xariib/Lumenfall/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/xariib/Lumenfall/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/xariib/Lumenfall/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/xariib/Lumenfall/merges",
+      "archive_url": "https://api.github.com/repos/xariib/Lumenfall/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/xariib/Lumenfall/downloads",
+      "issues_url": "https://api.github.com/repos/xariib/Lumenfall/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/xariib/Lumenfall/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/xariib/Lumenfall/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/xariib/Lumenfall/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/xariib/Lumenfall/labels{/name}",
+      "releases_url": "https://api.github.com/repos/xariib/Lumenfall/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/xariib/Lumenfall/deployments"
+    }
+  },
+  "jobs": {
+    "total_count": 2,
+    "jobs": [
+      {
+        "id": 132627064076,
+        "run_id": 43653553089,
+        "workflow_name": "Pre-merge validation",
+        "head_branch": "fix/mobile-menu-corrections-001",
+        "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOVI5pCM8AAAAe4TBlDA",
+        "head_sha": "9f6c786f86f964d7193003ee9e449fbdd5eefe43",
+        "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/132627064076",
+        "html_url": "https://github.com/xariib/Lumenfall/actions/runs/43653553089/job/132627064076",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-14T23:30:15Z",
+        "started_at": "2026-11-14T23:30:18Z",
+        "completed_at": "2026-11-14T23:33:56Z",
+        "name": "Lumenfall isolated offline catch-up",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T23:30:19Z",
+            "completed_at": "2026-11-14T23:30:19Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T23:30:19Z",
+            "completed_at": "2026-11-14T23:30:53Z"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T23:30:53Z",
+            "completed_at": "2026-11-14T23:31:01Z"
+          },
+          {
+            "name": "Stage exact product and assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T23:31:01Z",
+            "completed_at": "2026-11-14T23:31:01Z"
+          },
+          {
+            "name": "Original offline regression with unchanged assertions and deadline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T23:31:01Z",
+            "completed_at": "2026-11-14T23:33:53Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T23:33:53Z",
+            "completed_at": "2026-11-14T23:33:54Z"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-14T23:33:54Z",
+            "completed_at": "2026-11-14T23:33:54Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-11-14T23:33:54Z",
+            "completed_at": "2026-11-14T23:33:54Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-11-14T23:33:54Z",
+            "completed_at": "2026-11-14T23:33:54Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/132627064076",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000003095,
+        "runner_name": "GitHub Actions 1000003095",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 132627064318,
+        "run_id": 43653553089,
+        "workflow_name": "Pre-merge validation",
+        "head_branch": "fix/mobile-menu-corrections-001",
+        "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/43653553089",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOVI5pCM8AAAAe4TBl_g",
+        "head_sha": "9f6c786f86f964d7193003ee9e449fbdd5eefe43",
+        "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/132627064318",
+        "html_url": "https://github.com/xariib/Lumenfall/actions/runs/43653553089/job/132627064318",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-14T23:30:15Z",
+        "started_at": "2026-11-14T23:30:18Z",
+        "completed_at": "2026-11-15T00:26:58Z",
+        "name": "Lumenfall pre-merge validation",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T23:30:19Z",
+            "completed_at": "2026-11-14T23:30:20Z"
+          },
+          {
+            "name": "Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T23:30:20Z",
+            "completed_at": "2026-11-14T23:30:53Z"
+          },
+          {
+            "name": "Set up Node.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T23:30:53Z",
+            "completed_at": "2026-11-14T23:31:07Z"
+          },
+          {
+            "name": "Paid Lab work and player action chronology",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T23:31:07Z",
+            "completed_at": "2026-11-14T23:31:27Z"
+          },
+          {
+            "name": "Stationary purchases and rejected transaction rollback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T23:31:27Z",
+            "completed_at": "2026-11-14T23:32:42Z"
+          },
+          {
+            "name": "Continuing Forge investments and earned Lab access",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T23:32:42Z",
+            "completed_at": "2026-11-14T23:32:56Z"
+          },
+          {
+            "name": "Production Android security regression checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-14T23:32:56Z",
+            "completed_at": "2026-11-14T23:32:57Z"
+          },
+          {
+            "name": "Paid boosts, clock replay and capped automation regressions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-14T23:32:57Z",
+            "completed_at": "2026-11-14T23:33:06Z"
+          },
+          {
+            "name": "In-app signed update policy and controller",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-14T23:33:06Z",
+            "completed_at": "2026-11-14T23:33:13Z"
+          },
+          {
+            "name": "Complete game audit and stationary Auto-Empower targets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-14T23:33:13Z",
+            "completed_at": "2026-11-14T23:33:34Z"
+          },
+          {
+            "name": "Native Lab Begin focus boundaries",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-14T23:33:34Z",
+            "completed_at": "2026-11-14T23:34:24Z"
+          },
+          {
+            "name": "Slot-first Lab, concise cards and expanded Deeds",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-11-14T23:34:24Z",
+            "completed_at": "2026-11-14T23:35:23Z"
+          },
+          {
+            "name": "Simple Lab timer and direct research selection",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-11-14T23:35:23Z",
+            "completed_at": "2026-11-14T23:36:42Z"
+          },
+          {
+            "name": "Lab queue continuity and Speed Up modal",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-14T23:36:42Z",
+            "completed_at": "2026-11-14T23:37:41Z"
+          },
+          {
+            "name": "Editable next boost and independent Speed Up queue",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-14T23:37:41Z",
+            "completed_at": "2026-11-14T23:39:33Z"
+          },
+          {
+            "name": "APK identity verifier self-test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-11-14T23:39:33Z",
+            "completed_at": "2026-11-14T23:39:33Z"
+          },
+          {
+            "name": "Readable offline recap and expanded Lab results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-11-14T23:39:33Z",
+            "completed_at": "2026-11-14T23:39:38Z"
+          },
+          {
+            "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-14T23:39:38Z",
+            "completed_at": "2026-11-14T23:39:58Z"
+          },
+          {
+            "name": "Exponential Rift progression and explicit Farm intent",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-14T23:39:58Z",
+            "completed_at": "2026-11-14T23:40:09Z"
+          },
+          {
+            "name": "Forge workshop long-term progression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-14T23:40:09Z",
+            "completed_at": "2026-11-14T23:40:10Z"
+          },
+          {
+            "name": "Long Lab pacing and basic Wisp research",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-11-14T23:40:10Z",
+            "completed_at": "2026-11-14T23:40:32Z"
+          },
+          {
+            "name": "Repository migration version and historical-baseline controls",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22,
+            "started_at": "2026-11-14T23:40:32Z",
+            "completed_at": "2026-11-14T23:40:32Z"
+          },
+          {
+            "name": "Node tooling regression checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-11-14T23:40:32Z",
+            "completed_at": "2026-11-14T23:40:34Z"
+          },
+          {
+            "name": "Validate game source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24,
+            "started_at": "2026-11-14T23:40:34Z",
+            "completed_at": "2026-11-14T23:40:34Z"
+          },
+          {
+            "name": "Verify existing independent offline reference binding",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25,
+            "started_at": "2026-11-14T23:40:34Z",
+            "completed_at": "2026-11-14T23:40:34Z"
+          },
+          {
+            "name": "Stage web assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26,
+            "started_at": "2026-11-14T23:40:34Z",
+            "completed_at": "2026-11-14T23:40:34Z"
+          },
+          {
+            "name": "Phone feedback startup and input acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27,
+            "started_at": "2026-11-14T23:40:34Z",
+            "completed_at": "2026-11-14T23:40:58Z"
+          },
+          {
+            "name": "Existing settled-screen UI acceptance after actual startup",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28,
+            "started_at": "2026-11-14T23:40:58Z",
+            "completed_at": "2026-11-14T23:45:29Z"
+          },
+          {
+            "name": "Midgame Farm guidance existing acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29,
+            "started_at": "2026-11-14T23:45:29Z",
+            "completed_at": "2026-11-14T23:46:12Z"
+          },
+          {
+            "name": "Legacy Rift layout with complete Farm dialog content",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30,
+            "started_at": "2026-11-14T23:46:12Z",
+            "completed_at": "2026-11-14T23:46:37Z"
+          },
+          {
+            "name": "Endless progression amounts, gates, persistence and chronology",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31,
+            "started_at": "2026-11-14T23:46:37Z",
+            "completed_at": "2026-11-14T23:47:36Z"
+          },
+          {
+            "name": "Endless automation clock and repeated Ascend regressions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32,
+            "started_at": "2026-11-14T23:47:36Z",
+            "completed_at": "2026-11-14T23:49:35Z"
+          },
+          {
+            "name": "Guidance baseline readability and exact old-width inverse",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33,
+            "started_at": "2026-11-14T23:49:35Z",
+            "completed_at": "2026-11-14T23:49:46Z"
+          },
+          {
+            "name": "Preserve early Guidance readability evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34,
+            "started_at": "2026-11-14T23:49:46Z",
+            "completed_at": "2026-11-14T23:49:48Z"
+          },
+          {
+            "name": "Rift cosmetics selection, persistence and mobile acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35,
+            "started_at": "2026-11-14T23:49:48Z",
+            "completed_at": "2026-11-14T23:49:56Z"
+          },
+          {
+            "name": "Exact Prism earning numerical and causal regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 36,
+            "started_at": "2026-11-14T23:49:56Z",
+            "completed_at": "2026-11-14T23:49:59Z"
+          },
+          {
+            "name": "Tree caps original-value refunds and current collection",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 37,
+            "started_at": "2026-11-14T23:49:59Z",
+            "completed_at": "2026-11-14T23:50:58Z"
+          },
+          {
+            "name": "Swift cap, original Shard value and reachable Forge Deeds",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 38,
+            "started_at": "2026-11-14T23:50:58Z",
+            "completed_at": "2026-11-14T23:51:14Z"
+          },
+          {
+            "name": "Wisp contribution readability and unchanged gameplay",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 39,
+            "started_at": "2026-11-14T23:51:14Z",
+            "completed_at": "2026-11-14T23:51:51Z"
+          },
+          {
+            "name": "Compact Wisp cards, live next action and original purchase preservation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 40,
+            "started_at": "2026-11-14T23:51:51Z",
+            "completed_at": "2026-11-14T23:52:30Z"
+          },
+          {
+            "name": "Development currency UI and retained-value acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 41,
+            "started_at": "2026-11-14T23:52:30Z",
+            "completed_at": "2026-11-14T23:55:21Z"
+          },
+          {
+            "name": "Read Ascend alerts and stationary daily quest claims",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 42,
+            "started_at": "2026-11-14T23:55:21Z",
+            "completed_at": "2026-11-14T23:56:08Z"
+          },
+          {
+            "name": "Cheaper Recruitment cap and refund regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 43,
+            "started_at": "2026-11-14T23:56:08Z",
+            "completed_at": "2026-11-14T23:56:25Z"
+          },
+          {
+            "name": "Independent exact Prism funding oracle",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 44,
+            "started_at": "2026-11-14T23:56:25Z",
+            "completed_at": "2026-11-14T23:56:26Z"
+          },
+          {
+            "name": "Cheaper Recruitment defect controls",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 45,
+            "started_at": "2026-11-14T23:56:26Z",
+            "completed_at": "2026-11-14T23:56:56Z"
+          },
+          {
+            "name": "Behavioral harness negative self-test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 46,
+            "started_at": "2026-11-14T23:56:56Z",
+            "completed_at": "2026-11-14T23:57:29Z"
+          },
+          {
+            "name": "Stateful behavioral regression suite",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 47,
+            "started_at": "2026-11-14T23:57:29Z",
+            "completed_at": "2026-11-15T00:26:42Z"
+          },
+          {
+            "name": "Install runtime error guard in staged copy",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 48,
+            "started_at": "2026-11-15T00:26:42Z",
+            "completed_at": "2026-11-15T00:26:42Z"
+          },
+          {
+            "name": "Browser runtime smoke test",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 49,
+            "started_at": "2026-11-15T00:26:42Z",
+            "completed_at": "2026-11-15T00:26:42Z"
+          },
+          {
+            "name": "Preserve full regression evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 50,
+            "started_at": "2026-11-15T00:26:42Z",
+            "completed_at": "2026-11-15T00:26:55Z"
+          },
+          {
+            "name": "Post Set up Node.js",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 99,
+            "started_at": "2026-11-15T00:26:55Z",
+            "completed_at": "2026-11-15T00:26:55Z"
+          },
+          {
+            "name": "Post Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 100,
+            "started_at": "2026-11-15T00:26:55Z",
+            "completed_at": "2026-11-15T00:26:56Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 101,
+            "started_at": "2026-11-15T00:26:56Z",
+            "completed_at": "2026-11-15T00:26:56Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/132627064318",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000003096,
+        "runner_name": "GitHub Actions 1000003096",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+}

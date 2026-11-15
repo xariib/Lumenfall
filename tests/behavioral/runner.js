@@ -2154,17 +2154,18 @@
           deeds.achieved.tap100=true;deeds.achieved.tap1000=true;
           deeds.achieved.tap10000=false;
           deeds.maxDepthEver=55;
-          deeds.achieved.d50=true;
+          deeds.achieved.d10=deeds.achieved.d25=deeds.achieved.d50=true;
+          deeds.achieved.d100=false;
           bridge.setState(deeds);
           bridge.renderLayout();
           document.querySelector('[data-tab="deeds"]').click();
           var tapsProgress=document.querySelector('[data-deed-progress="tap10000"]');
           assert(tapsProgress.dataset.current==='4286' && tapsProgress.dataset.target==='10000','incomplete Deed progress must use authoritative current and target counters');
           assert(/\//.test(tapsProgress.textContent),'incomplete Deed progress must expose current / target text');
-          var completedProgress=document.querySelector('[data-deed-progress="d50"]');
-          assert(completedProgress.dataset.current==='50' && completedProgress.dataset.target==='50','completed Deed progress must remain at its reached target');
-          assert(/Completed/.test(completedProgress.closest('.ach-card').textContent),'completed Deed must remain explicitly completed');
-          assert(document.querySelectorAll('#ach-list .info > [data-deed-progress]').length===document.querySelectorAll('#ach-list .ach-card').length,'every advancing card exposes one current progress counter; completed counters stay in its history');
+          var nextRiftProgress=document.querySelector('[data-deed-progress="d100"]');
+          assert(nextRiftProgress.dataset.current==='55' && nextRiftProgress.dataset.target==='100','earned Rift50 advances the same card to authoritative55/100');
+          assert(bridge.getState().achieved.d50&&!document.querySelector('[data-deed-progress="d50"],[data-deed-history]'),'completed receipt remains saved without a historical milestone row');
+          assert(document.querySelectorAll('#ach-list .info > [data-deed-progress]').length===document.querySelectorAll('#ach-list .ach-card').length,'every advancing card exposes exactly one current progress counter');
 
           document.querySelector('[data-tab="battle"]').click();
           document.getElementById('tab-battle').getAnimations().forEach(function(animation){animation.finish();});

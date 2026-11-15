@@ -375,7 +375,9 @@ async function verifyInstalledRiftLooks(page,report){
  assert.deepEqual(installedDeeds.keys,deedKeys,'Installed APK has exactly one card for every Deed series');
  assert.equal(installedDeeds.primaryCounters,17,'Installed cards each expose one next-target counter');
  assert.equal(installedDeeds.bars,17,'Installed cards each expose one progress bar');assert.equal(installedDeeds.checkboxes,0,'Deed progress replaces checkbox markers');
- assert.deepEqual(installedDeeds.riftBar,{current:1000,target:2500,width:'40%'},'Installed bar retains Rift1000 toward the next2500 reward');
+ // The preceding disposable Farm fixture sets maxDepthEver30 and deliberately
+ // retains the upgraded save's earned Rift1000 receipts. Observe that exact state.
+ assert.deepEqual(installedDeeds.riftBar,{current:30,target:2500,width:'1.2%'},'Installed bar uses actual Rift30 while retained earned receipts select next2500');
  assert.equal(installedDeeds.rift,'endless_rift_2500','Upgraded Rift1000 milestones advance to the next target in the same card');
  assert.equal(installedDeeds.history,false,'Installed Deeds omit completed milestone dropdown');
  const deedShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-deeds-progressive.png',Buffer.from(deedShot.data,'base64'));
@@ -420,7 +422,10 @@ async function verifyInstalledRiftLooks(page,report){
  console.log('Android installed Rift appearances acceptance: '+JSON.stringify(report.installedRiftLooks));
  const rememberedMenus=[];
  async function visitMenu(name){
-   if(name==='forge'||name==='research'){await tap('nav.tabbar [data-tab="workshop"]');await tap('#workshop-head [data-tab="'+name+'"]');}
+   if(name==='forge'||name==='research'){
+     await tap('nav.tabbar [data-tab="workshop"]');
+     if(!await page.evaluate(`document.getElementById('tab-'+${JSON.stringify(name)}).classList.contains('active')`))await tap('#workshop-head [data-tab="'+name+'"]');
+   }
    else await tap('nav.tabbar [data-tab="'+name+'"]');
  }
  for(const name of ['spirits','forge','research','ascend','deeds']){
@@ -431,7 +436,9 @@ async function verifyInstalledRiftLooks(page,report){
    assert(Math.abs(after.top-after.max)<=2,'Installed '+name+' returns to its remembered bottom');
    rememberedMenus.push({name,before,after});
  }
- report.installedMenuScroll={status:'PASS',menus:rememberedMenus,nativeNavigation:true,syntheticFixture:true};
+ const currencyNames=await page.evaluate(`Array.from(document.querySelectorAll('.hud .lbl')).map(e=>({name:e.textContent,visible:e.getBoundingClientRect().width>1&&getComputedStyle(e).position!=='absolute',fits:e.scrollWidth<=e.clientWidth+1}))`);
+ assert(currencyNames.length===6&&currencyNames.every(e=>e.visible&&e.fits),'Installed header shows all six unclipped currency names');
+ report.installedMenuScroll={status:'PASS',menus:rememberedMenus,currencyNames,nativeNavigation:true,syntheticFixture:true};
 }
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');

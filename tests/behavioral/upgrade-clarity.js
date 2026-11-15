@@ -120,7 +120,12 @@ window.runUpgradeClarityQa=function(b,ctx,assert){
         b.forge.achievements();var earned=b.getState();ok(earned.achieved[id],id+' unchanged grant operation');
         b.forge.achievements();same(b.getState(),earned,id+' one-time rewards remain idempotent');
         var reset=b.freshStateSnapshot();reset.achieved=earned.achieved;reset.comets=earned.comets;pureRender(reset);
-        ok(q('[data-deed-progress="'+id+'"]').dataset.current===String(item.progress.target),id+' earned progress persists after run reset');
+        var series=b.upgradeClarity.series(reset).find(function(row){return row.ids.indexOf(id)>=0;});
+        var next=series.ids.find(function(key){return !reset.achieved[key];})||series.ids[series.ids.length-1];
+        var card=q('[data-deed-series="'+series.key+'"]');
+        ok(b.getState().achieved[id]&&card.dataset.deed===next,id+' earned receipt persists after reset and series shows its next target');
+        if(next===id)ok(q('[data-deed-progress="'+id+'"]').dataset.current===String(item.progress.target),id+' exhausted series retains its reached target');
+        else ok(!q('[data-deed-progress="'+id+'"]')&&!card.querySelector('[data-deed-history]'),id+' completed milestone is absent from the advancing card');
       }
     });
   });

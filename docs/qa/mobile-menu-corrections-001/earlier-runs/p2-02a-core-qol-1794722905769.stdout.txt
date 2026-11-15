@@ -1,0 +1,59 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "a7d991eba2842882bfbaf41f2cb710471e9b29fae62afd28da2dd21600859739", "instrumented_sha256": "70b267f8dc08bc8ddbfc2f1b8c34922247c709f9ffd3dfbdc39e6aa49ff0d669" }
+FAIL p2-02a-core-qol
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.6176979, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "p2-02a-core-qol", "json_status": "fail", "json_scenario": "p2-02a-core-qol", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "Cannot read properties of null (reading 'dataset')", "stack": "TypeError: Cannot read properties of null (reading 'dataset')\n    at HTMLDocument.run (http://127.0.0.1:50290/index.html?qaScenario=p2-02a-core-qol&qaFixture=accessibility-mixed-states:21887:35)" }
+  raw artifacts: C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\menu\docs\qa\mobile-menu-corrections-001\raw\p2-02a-core-qol-BZWtnI
+  stdout tail:
+00,
+            'intentional Wisp pacing regression: Mythic cost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="p2-02a-core-qol">{
+  "scenario": "p2-02a-core-qol",
+  "status": "fail",
+  "detail": {
+    "message": "Cannot read properties of null (reading 'dataset')",
+    "stack": "TypeError: Cannot read properties of null (reading 'dataset')\n    at HTMLDocument.run (http://127.0.0.1:50290/index.html?qaScenario=p2-02a-core-qol&amp;qaFixture=accessibility-mixed-states:21887:35)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>
