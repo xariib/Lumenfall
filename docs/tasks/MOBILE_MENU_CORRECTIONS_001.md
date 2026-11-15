@@ -1,7 +1,7 @@
 # Mobile menu corrections and remembered scroll positions
 
 Status: validating source37ca26df / productf7008f0e; main remains8747ee60.
-Required CI and native candidate43706308245 active; no public update yet.
+14/16 workflows and signed0.2.126 candidate passed; full suites active.
 Owner: current feature chat; no delegation/messages. No public update yet.
 
 User request (14 November 2026, two phone screenshots): remove the theme text
@@ -52,7 +52,8 @@ Local evidence/mobile-menu-corrections-001 may advance with docs only while this
 validated ref stays fixed. Main remains8747ee6043bac911420649ae7088398b38a8989a.
 Existing PR54 e14f7508 and PR55 f1921bbf remain unchanged/included ancestors.
 Android candidate [43706308245](https://github.com/xariib/Lumenfall/actions/runs/43706308245)
-and all8 manual +8 PR workflows are running on37ca26df. No public APK yet.
+and all8 manual +8 PR workflows use37ca26df; only full suites remain active.
+No public APK yet.
 
 Product SHA256 remains
 `f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51`.
@@ -157,3 +158,11 @@ is waived and no public APK yet; original full failures stay historical.
 All4 native variants now PASS, each3profiles/12states: normal104.519s, reduced101.145s,
 stacked normal104.087s, stacked reduced102.317s. Product remainsf7008f0e. Full diff
 self-reviewed; final fixture-only source is ready to publish for exact-source CI.
+
+37ca26df candidate43706308245 /0.2.126 PASS, independently downloaded/verified:
+APKsha ec9d65b53224375bb4e90465bf8c374f680e5bdd8f6b2e353e39fb169dfc953f.
+All exact assets/identity, both saves/paid work, real updater,5 positive remembered
+menu bottoms,6 names and live retail XML/security gates PASS again.14/16 workflows
+PASS; both isolated offline jobs PASS. Only PR43706290303/manual43706287783 full
+suites remain. Save/verify exact190 main +1 isolated scenario logs for both events
+before readiness/integration/publication; no tests, assertions or deadlines waived.

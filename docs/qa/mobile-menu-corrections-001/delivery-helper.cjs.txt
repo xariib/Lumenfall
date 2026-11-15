@@ -44,7 +44,9 @@ if(mode==='dispatch'){
   const name='premerge-'+x.event+'-'+j.id+'.log.gz';fs.writeFileSync(dir+'/'+name,require('node:zlib').gzipSync(log));
   logs.push({id:x.id,jobId:j.id,jobName:j.name,event:x.event,url:x.url,name,bytes:Buffer.byteLength(log),sha256:require('node:crypto').createHash('sha256').update(log).digest('hex'),scenarioTotals:[...log.matchAll(/Behavioral QA passed: (\d+) deterministic scenario\(s\)/g)].map(m=>Number(m[1]))});
  }
- for(const event of ['pull_request','workflow_dispatch'])assert(logs.some(x=>x.event===event&&x.jobName==='Lumenfall pre-merge validation'&&x.scenarioTotals.some(n=>n>1)),'Complete full main log required: '+event);
+ for(const event of ['pull_request','workflow_dispatch'])for(const [jobName,total]of [['Lumenfall pre-merge validation',190],['Lumenfall isolated offline catch-up',1]]){
+  const matching=logs.filter(x=>x.event===event&&x.jobName===jobName);assert.equal(matching.length,1,'Exactly one complete job log: '+event+' '+jobName);assert(matching[0].scenarioTotals.includes(total),'Complete '+total+'-scenario log required: '+event+' '+jobName);
+ }
  write('ci-log-summary.json',{sha,status:'PASS',logs});console.log(JSON.stringify(logs));
 }else if(mode==='save-failure-jobs'){
  const rows=[];for(const name of fs.readdirSync(dir).filter(n=>/^first-failure-\d+-attempt\d+\.json$/.test(n))){

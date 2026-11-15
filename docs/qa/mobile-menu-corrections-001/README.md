@@ -137,3 +137,10 @@ Final validated ref is37ca26dfaf4668b1950e789ed1d191649ee4b9a2; manual full
 43706287783 and native43706308245 run alongside all required PR/manual workflows.
 Source fixed; main8747ee60; no public APK yet. All4 local native variants are
 independently summarized with hashes in rift-fixture-followup-verification.json.
+
+Final source37ca26df candidate0.2.126 /43706308245 independently PASS; current
+android-candidate/ receipts show exact installed assets/identity, both save slots,
+paid work, actual updater, all5 positive remembered bottoms,6 names and live retail
+XML/security acceptance.14/16 workflows and both offline jobs pass; full suites
+PR43706290303/manual43706287783 remain. Final delivery checks require exact190+1
+scenario totals per event, saved with full job logs. No public APK yet.
