@@ -11,9 +11,10 @@ const cases={
  'viewport-control':[['viewport-control',['tests/behavioral/lab-speed-controls.cjs','index.html','--menus','--legacy-viewport','--mutate-viewport-fallback']]],
  lab:[['simple',['tests/behavioral/lab-speed-controls.cjs','index.html','--simple','--evidence',out+'/lab']],['slots',['tests/behavioral/lab-speed-controls.cjs','index.html','--slots']],['deeds-ui',['tests/behavioral/lab-speed-controls.cjs','index.html','--deeds']]],
  rift:[['visual',['tests/behavioral/visual-audit.cjs','index.html',out+'/visual']],['cosmetics',['tests/behavioral/rift-cosmetics.cjs','--source','index.html','--negative','--out',out+'/cosmetics']]],
- navigation:['rift-status-mobile','rift-status-reduced-motion','rift-status-contract','layout-dense','layout-boss','nav-workshop-contract','formation-bonds-mobile','upgrade-effects-and-deeds','p2-02a-core-qol'].map(name=>[name,['tests/behavioral/run.cjs','--web-root','mobile/www','--scenario',name,'--raw-artifacts',out+'/raw']]),
+ navigation:['rift-status-mobile','rift-status-reduced-motion','rift-status-stacking-mobile','rift-status-stacking-reduced-motion','rift-status-contract','layout-dense','layout-boss','nav-workshop-contract','formation-bonds-mobile','upgrade-effects-and-deeds','p2-02a-core-qol'].map(name=>[name,['tests/behavioral/run.cjs','--web-root','mobile/www','--scenario',name,'--raw-artifacts',out+'/raw']]),
  core:[['deeds-core',['tests/behavioral/deeds-progressive.cjs','index.html']],['clarity',['tests/behavioral/workshop-card-clarity.cjs','index.html']],['replay',['scripts/qa/verify-deeds-reward-replay.cjs','--write']]]
 };
+cases['rift-fixture-followup']=cases.navigation.filter(([name])=>['rift-status-mobile','rift-status-stacking-mobile','rift-status-stacking-reduced-motion'].includes(name));
 if(!cases[mode]){const single=Object.values(cases).flat().find(([name])=>name===mode);if(!single)throw Error('Unknown mode '+mode);cases[mode]=[single];}
 if(cases[mode].some(([,args])=>args.includes('--web-root'))){fs.mkdirSync('mobile/www',{recursive:true});fs.copyFileSync('index.html','mobile/www/index.html');for(const dir of ['fonts','branding'])fs.cpSync(dir,'mobile/www/'+dir,{recursive:true});}
 const env={...process.env};if(process.platform==='win32'&&!env.LUMENFALL_QA_CDP_CHROME)env.LUMENFALL_QA_CDP_CHROME='C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe';

@@ -129,3 +129,31 @@ No product/test deadline changes. Next: all16 readiness and full logs, then deli
 
 Wisp43698927035 unchanged failed-job retry PASS;14/16 workflows passed.
 Only the two full premerge runs remain before readiness/integration/public build.
+
+## Reduced-motion native fixture follow-up
+
+62126af7 full PR43698889007/manual43698909497 both finish with exactly two
+failures: rift-status-reduced-motion and rift-status-stacking-reduced-motion.
+All other scenarios and isolated offline jobs pass. Full original logs saved.
+Unchanged local trace reproduces after15.163s, dense state's Forge navigation:
+fixture scrollIntoView reveals the subsection header while entry restoration can
+still run, then its native touch misses and locate sees no rendered Forge controls.
+Physical user scrolling cancels that restoration on touchstart; this artificial
+header reveal does not. Precise inter-event timing is not separately instrumented.
+
+Scoped test-only correction waits for the entered panel's animation/next frames
+BEFORE that existing programmatic header reveal. It adds an explicit selected-
+subtab/active-panel check; a missing control now reports active menu/offset rather
+than a TypeError. First Rift entry-frame measurement, native last-control swipes,
+all original assertions and300s scenario/15s command deadlines remain. An initial
+new diagnostic wrongly checked a CSS class instead of aria-selected; corrected,
+with its failed local receipt retained. Corrected reduced-motion local run passes
+all3profiles/12states in101.145s. Three remaining variants are running. Product
+f7008f0e unchanged; candidate0.2.125 remains proof of product, not new source CI.
+Next: finish these focused variants, commit/push fixture-only correction, repeat
+required exact-source workflows/candidate, then integrate/public delivery. No gate
+is waived and no public APK yet; original full failures stay historical.
+
+All4 native variants now PASS, each3profiles/12states: normal104.519s, reduced101.145s,
+stacked normal104.087s, stacked reduced102.317s. Product remainsf7008f0e. Full diff
+self-reviewed; final fixture-only source is ready to publish for exact-source CI.

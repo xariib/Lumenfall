@@ -45,10 +45,17 @@ async function advance(ms=350){await evaluate('window.__lumenfallQaBridge.uiMeas
 
 async function key(key,shift=false){const spec=key==='Space'?{key:' ',code:'Space',windowsVirtualKeyCode:32}:key==='Enter'?{key:'Enter',code:'Enter',windowsVirtualKeyCode:13}:key==='Escape'?{key:'Escape',code:'Escape',windowsVirtualKeyCode:27}:{key,code:key,windowsVirtualKeyCode:{ArrowRight:39,ArrowLeft:37,Home:36,End:35,Tab:9}[key]};await send('Input.dispatchKeyEvent',{type:'rawKeyDown',...spec,modifiers:shift?8:0});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec,modifiers:shift?8:0});}
 async function touch(selector){
- // Returning to Workshop now preserves its scroll. Reveal its subsection header
- // before choosing a different section; last-control reach still uses only swipes.
- if(selector==='[data-tab="forge"]'||selector==='[data-tab="research"]')await evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'nearest'})`);
- const r=await evaluate(`riftStatusMobile.control(${JSON.stringify(selector)})`);assert(r.visible&&r.hit,'touch target visible before action '+selector);await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x,y:r.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ // Only the fixture reveals Workshop's subsection header programmatically.
+ // Let the just-entered panel finish its own scroll restoration before doing
+ // that artificial reveal. Real user scrolling cancels deferred restoration at
+ // touchstart; scrollIntoView does not. This also applies to reduced motion.
+ // The last-control reach below still uses only native swipes, and Rift's first
+ // entry-frame measurement remains immediate after native navigation.
+ const subsection=selector==='[data-tab="forge"]'||selector==='[data-tab="research"]';
+ if(subsection)await evaluate(`(async()=>{const panel=document.querySelector('.tab-panel.active');await Promise.all(panel.getAnimations().filter(a=>a.effect.target===panel).map(a=>a.finished));await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'nearest'});})()`);
+ const r=await evaluate(`riftStatusMobile.control(${JSON.stringify(selector)})`);assert(r.visible&&r.hit,'touch target visible before action '+selector);await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x,y:r.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ if(subsection){const selected=await evaluate(`(()=>{const button=document.querySelector(${JSON.stringify(selector)});return {selected:button.getAttribute('aria-selected'),active:document.querySelector('.tab-panel.active').id,scroll:document.querySelector('main').scrollTop};})()`);assert(selected.selected==='true'&&selected.active==='tab-'+(selector.includes('forge')?'forge':'research'),'native subsection touch activates its intended menu '+selector+' '+JSON.stringify(selected));}
+}
 async function shot(name){if(!process.env.LUMENFALL_QA_EVIDENCE_DIR)return;const r=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,name+'.png'),Buffer.from(r.data,'base64'));}
 async function swipe(loc,width){
  swipeCount++;

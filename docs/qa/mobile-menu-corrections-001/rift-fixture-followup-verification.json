@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-15T10:53:54.824Z",
+  "productSha256": "f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51",
+  "results": [
+    {
+      "name": "rift-status-mobile",
+      "profiles": 3,
+      "states": 12,
+      "sha256": "fbb2645377ab7bcf9739c6e858639c0e371f2f2684f8bf8e2acbf0f3ffd7f495"
+    },
+    {
+      "name": "rift-status-reduced-motion",
+      "profiles": 3,
+      "states": 12,
+      "sha256": "7f9bc133df181abf3ee219ff9b0db12176e3bbbf48e8912c2c60fc16b05e24eb"
+    },
+    {
+      "name": "rift-status-stacking-mobile",
+      "profiles": 3,
+      "states": 12,
+      "sha256": "39d9f2b1fcd4dbf8f18a8ba5a1c476fc11af30e83370ed38e6de75a66fce974e"
+    },
+    {
+      "name": "rift-status-stacking-reduced-motion",
+      "profiles": 3,
+      "states": 12,
+      "sha256": "6c96a71c7a796ed299ca0fdda22fca001539a707b802a70e687ad9d282cfaa0f"
+    }
+  ],
+  "files": [
+    {
+      "name": "tests/behavioral/rift-status.cjs",
+      "sha256": "d3626d538500b1de19ea6cc041b1b6f42cccebf404ed0e1cab1ba21c7c93ee2b"
+    },
+    {
+      "name": "tests/behavioral/rift-status.js",
+      "sha256": "1af7db3e52c648fc52eb056e9d92bccf7e7dd9f8ef7bf33bdb572549c6fc8d6a"
+    },
+    {
+      "name": "scripts/qa/check-mobile-menu-corrections.cjs",
+      "sha256": "796ace2e5e81633413bd37ccc6721c3c50b15c7531a02763a6c0337c79e8db47"
+    }
+  ],
+  "review": "Self-review; native gestures and original deadlines preserved"
+}

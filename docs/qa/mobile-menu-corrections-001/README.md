@@ -117,3 +117,18 @@ unchanged retry active; no assertion/deadline relaxed. Full PR/manual suites act
 
 Wisp43698927035 unchanged failed-job retry passed;14/16 workflows complete.
 Final two full suites remain; no public APK yet.
+
+Full62126af7 suites both finish with only the two reduced-motion Rift native
+fixtures failing; original PR/manual logs are retained. Local unchanged traced
+fixture reproduces at dense Forge after15.163s (earlier-runs/ retains stdout).
+Waiting for entry animation/frames before its artificial subsection-header reveal
+fixes that reproduced path; no game code changes. Explicit active-panel/selected
+subtab diagnostics replace the former undefined-control TypeError. A first added
+diagnostic checked the wrong CSS attribute and failed; fixed to actual aria-selected,
+with its raw failed output retained. Correct reduced-motion3profiles/12states PASS
+in101.145s. Remaining variants/complete new-source CI remain pending. Native swipes,
+first Rift frame, assertions and300s/15s deadlines remain unchanged.
+
+Final fixture follow-up: all4 native variants PASS, each3profiles/12states.
+normal104.519s, reduced101.145s, stacked normal104.087s, stacked reduced102.317s.
+No game bytes or command/scenario deadline changes. New-source full CI pending.

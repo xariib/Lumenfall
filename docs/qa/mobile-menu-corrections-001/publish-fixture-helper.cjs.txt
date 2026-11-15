@@ -1,0 +1,32 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const dir='docs/qa/mobile-menu-corrections-001',sha256=b=>crypto.createHash('sha256').update(b).digest('hex');
+const gh='C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/github-cli/bin/gh.exe';
+const git=args=>cp.execFileSync('git',args,{encoding:'utf8',timeout:60000});
+const api=route=>JSON.parse(cp.execFileSync(gh,['api','repos/xariib/Lumenfall/'+route],{encoding:'utf8',timeout:60000}));
+const product='f7008f0e1b7d09af02552e0325446a53d5fd40a91639e4ddc64d9410eb973c51';
+assert.equal(sha256(fs.readFileSync('index.html')),product);
+assert.equal(api('git/ref/heads/main').object.sha,'8747ee6043bac911420649ae7088398b38a8989a');
+assert.equal(api('git/ref/heads/fix/mobile-menu-corrections-001').object.sha,'62126af7044136dcc6dbc89f37996933a8d58a1e');
+const cases=['rift-status-mobile','rift-status-reduced-motion','rift-status-stacking-mobile','rift-status-stacking-reduced-motion'];
+const results=cases.map(name=>{
+ const text=fs.readFileSync(dir+'/'+name+'.stdout.txt','utf8');
+ assert(text.includes('PASS '+name)&&text.includes('Behavioral QA passed: 1 deterministic scenario(s).'),name+' must pass completely');
+ assert(text.includes(product),name+' exact product');
+ const detail=JSON.parse(text.split('\n').find(line=>line.startsWith('  detail: ')).slice(10));
+ assert.equal(detail.status,'pass');assert.equal(detail.scenario,name);assert.equal(detail.records.length,3);
+ for(const r of detail.records){assert.deepEqual(r.samples.map(s=>s.kind),['fresh','dense','boss','boss-conditional']);for(const s of r.samples.slice(0,3))assert.equal(s.scroll.length,3);assert(r.guidance.reloadPersisted&&r.guidance.nativeInputs);}
+ assert(detail.teardown.profileRemoved);assert.equal(detail.teardown.pendingAfterClose,0);assert(!detail.teardown.forced);
+ return {name,profiles:3,states:12,sha256:sha256(Buffer.from(text))};
+});
+const code=['tests/behavioral/rift-status.cjs','tests/behavioral/rift-status.js','scripts/qa/check-mobile-menu-corrections.cjs'];
+const status=git(['-c','core.longpaths=true','status','--porcelain']).trimEnd().split('\n').filter(Boolean);
+for(const row of status){const file=row.slice(3).replaceAll('"','');assert(file.startsWith(dir+'/')||file==='docs/tasks/MOBILE_MENU_CORRECTIONS_001.md'||code.includes(file),'Unexpected edit: '+row);}
+fs.writeFileSync(dir+'/rift-fixture-followup-verification.json',JSON.stringify({status:'PASS',utc:new Date().toISOString(),productSha256:product,results,files:code.map(name=>({name,sha256:sha256(fs.readFileSync(name))})),review:'Self-review; native gestures and original deadlines preserved'},null,2)+'\n');
+git(['diff','--check']);git(['add',dir,'docs/tasks/MOBILE_MENU_CORRECTIONS_001.md',...code]);
+console.log(git(['-c','core.longpaths=true','commit','-m','Settle fixture entry before revealing native Workshop subsection targets']));
+const sha=git(['rev-parse','HEAD']).trim();
+console.log(git(['-c','credential.helper=','-c','credential.helper=!'+gh+' auth git-credential','push','--atomic','origin',sha+':refs/heads/fix/mobile-menu-corrections-001',sha+':refs/heads/evidence/mobile-menu-corrections-001']));
+fs.writeFileSync('validation-evidence/current-menu-source.json',JSON.stringify({sha,productSha256:product},null,2)+'\n');
+console.log('Validated fixture source '+sha);
+for(const mode of ['dispatch','candidate'])cp.execFileSync(process.execPath,['validation-evidence/menu-delivery.cjs',mode,sha],{stdio:'inherit',timeout:180000});

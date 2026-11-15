@@ -1,6 +1,6 @@
 {
   "sha": "62126af7044136dcc6dbc89f37996933a8d58a1e",
-  "utc": "2026-11-15T09:48:14.152Z",
+  "utc": "2026-11-15T10:42:22.249Z",
   "records": [
     {
       "id": 43698948404,
@@ -18,9 +18,9 @@
       "path": ".github/workflows/wisp-scroll-validation.yml",
       "event": "workflow_dispatch",
       "status": "completed",
-      "conclusion": "failure",
+      "conclusion": "success",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/43698927035",
-      "attempt": 1
+      "attempt": 2
     },
     {
       "id": 43698924830,
@@ -87,8 +87,8 @@
       "name": "Pre-merge validation",
       "path": ".github/workflows/pre-merge-validation.yml",
       "event": "workflow_dispatch",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "failure",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/43698909497",
       "attempt": 1
     },
@@ -117,8 +117,8 @@
       "name": "Pre-merge validation",
       "path": ".github/workflows/pre-merge-validation.yml",
       "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "failure",
       "url": "https://github.com/xariib/Lumenfall/actions/runs/43698889007",
       "attempt": 1
     },
