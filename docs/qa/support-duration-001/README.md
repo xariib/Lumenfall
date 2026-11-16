@@ -7,7 +7,9 @@ initially; current source
 `fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c`.
 Each result embeds its exact source hash; early receipts remain historical.
 
-**In progress, not released.** Node24.22.1 / Chrome157.0.8103.78 on Windows.
+**Released as Android0.2.128; physical/human acceptance open.**
+Node24.22.1 / Chrome157.0.8103.78 on Windows; Node24.19.0 / Chrome157.0.8103.50
+in required CI, plus actual V8 6.0 in established legacy lanes.
 Core/purchase tests execute the full production IIFE with only presentation,
 timers and storage-fault injection controlled. Mobile tests use real Chromium
 native touch, price refresh, save/reload and production DOM.
@@ -35,7 +37,7 @@ First failures and disposition:
   retained, passing. Old stderr retained in `local/`.
 - Offline historical comparison caught `supportduration:false` as an additional
   legacy OFF-intent key. Explicit new0/OFF/default assertions added before its
-  historical full-field comparison. Rerun pending at this checkpoint.
+  historical full-field comparison. Current PR offline rerun passes.
 - Local `lab-expansion-legacy` invocation used Node24 and correctly rejected
   that runtime. Actual V8 6.0 remains required in existing CI; no assertion removed.
 - Initial new test fixtures used an invalid1.75 saved source strength, assumed
@@ -43,19 +45,19 @@ First failures and disposition:
   collection bonus and multiplied fractional epoch steps rather than reading
   actual recast deadlines. Fixtures corrected; production math unchanged.
 
-Full regression, required CI, integration and Android build/upgrade/publication
-remain pending. Self-review only. Physical phone, exact WebView60 DOM and
+Full PR/integrated regression, required CI and Android/public delivery pass.
+Self-review only. Physical phone, exact WebView60 DOM and
 TalkBack are unverified. Alternating two buffs can cover time earlier at reduced
 strength; the90-day target covers each source and the full simultaneous bonus.
 
 PR57's first CI failures and subsequent fixes are in the
-[continuation task](../../tasks/SUPPORT_DURATION_001.md#pr57-continuation-checkpoint)
+[continuation task](../../tasks/SUPPORT_DURATION_001.md)
 and [failure excerpts](first-ci-failures.json). Current-source Support/Lab checks
 and28,408 historical preservation assertions pass. The independent golden was
 [regenerated from four complete one-second caller windows](independent-one-second.json),
 with exact increased rewards pinned for the accepted longer buffs. Previous
 released outcomes remain in Git history. Initial full Windows browser attempt
-has failures/timeouts and an EPERM cleanup exit; final Linux CI is still required.
+has failures/timeouts and an EPERM cleanup exit; final PR Linux CI passes.
 
 Corrected-source checks: [all Lab mobile purchases](lab-expanded-mobile.json)
 7,044 PASS, [combined required access/Support UI](access-required-combined.json)
@@ -79,3 +81,28 @@ The captured frame-clock probe now explicitly checks its
 3s live/offline/cold-frame checks remain unchanged. No bounds or expected failure
 messages relaxed. Source product remainsfc407785…5539c. Tree's first input timeout
 is retained in `third-ci-tree-input-detail.json.gz`; unchanged retry passes.
+
+All eight active PR workflows pass onbc6329af. The two branch-specific Prism
+workflows skip intentionally. [Complete pre-merge receipt](remote/passed-43868722738.json)
+includes raw compressed logs:190 main deterministic scenarios plus1 original
+isolated offline scenario PASS. Integrated atf16ffd9b4319ff64fe3ecfb28ddc07a881620ec8;
+merge tree exactly matches the passing head. All nine exact-main validations
+PASS ([status](remote/status-f16ffd9b.json)), including
+[pre-merge43878436458](remote/passed-43878436458.json):190 main +1 isolated
+offline scenarios. The integrated Lab job's first zero-check Browser.getVersion
+timeout is [preserved](remote/failed-43878448789.json); its
+[unchanged failed-job retry passes](remote/passed-43878448789.json).
+
+Signed [Android0.2.128](https://github.com/xariib/Lumenfall/releases/tag/android-1000128),
+versionCode1000128, built/published by43888872736 fromf16ffd9b.
+[Public verification](android-release/public-verification.json) PASS: both
+anonymous APK URLs, latest feed, exact public metadata, package/signing identity
+and all product assets. APK SHA256
+`3789ccc679687c9786a4705a9eabb33a0de8566cc4ee5ba73944de0dc9e37d06`.
+[Save-preserving signed upgrade](android-release/emulator-upgrade.json),
+[actual updater](android-release/in-app-updater.json) and
+[retail production launch](android-release/production-runtime.json) PASS.
+[Screenshot](android-release/production-normal-launch.png) visually inspected.
+Compressed native logs, receipts, source identity and complete build log are
+preserved. Physical-phone/WebView60/TalkBack/human pacing remain unverified;
+the owner chat remains open for those checks. No independent review claimed.

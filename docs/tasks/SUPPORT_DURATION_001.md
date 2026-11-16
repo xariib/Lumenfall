@@ -1,8 +1,10 @@
 # SUPPORT_DURATION_001 - earned Support uptime
 
-Status: implementation and local acceptance pass; final PR CI, integration and
-Android delivery pending. [PR57](https://github.com/xariib/Lumenfall/pull/57) is ready,
-not merged. Owner: this feature chat; no other chats, agents or messages used.
+Status: released as [Android0.2.128](https://github.com/xariib/Lumenfall/releases/tag/android-1000128).
+PR/local/integrated/native/public acceptance PASS; physical-phone, exact WebView60
+DOM, TalkBack and human pacing acceptance remain open. [PR57](https://github.com/xariib/Lumenfall/pull/57)
+merged at `f16ffd9b4319ff64fe3ecfb28ddc07a881620ec8`. Owner: this chat; no other
+chats, agents or message tools used. Keep this chat open for outstanding human acceptance.
 
 ## Original requirements and decisions
 
@@ -53,8 +55,8 @@ at the latest overlap check; its base remained1a83b5ba. No independent review.
 
 Product HTML SHA256:
 `fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c`.
-Latest pushed head before this checkpoint: `4d09b7491370e916d97825c93923d2c440bc4a87`.
-Final corrections in this checkpoint are test-only historical clock adapters and evidence.
+Latest pushed head: `bc6329af397f4b4e6870ffae3fda9a8ea0d5fcaa`.
+Its final corrections are test-only historical clock adapters and evidence.
 Product changes are confined to root `index.html`: duration, additive Lab row,
 access/effect and descriptions. Tests/oracles and task/QA docs accompany them.
 Mobile/native source, fonts, branding, workflows and save schema remain unchanged.
@@ -96,26 +98,42 @@ actual V8 6.0 in its existing legacy lanes. [Evidence and exact hashes](../qa/su
   remain byte-identical; new cases run through existing required Support and
   Lab access entrypoints. No extra account permission requested.
 
-Previous PR head4d09b749 has seven other active workflows PASS; pre-merge43857851726
-reached the captured clock fixture and failed its old negative witness. The new
-local adapters fix that witness and all14 causal controls. Migration focused
-43854621487 passed all three jobs on47849a74 (same product bytes). No APK yet.
+Latest headbc6329af: Comet43868722292, Lab43868722572, Tree43868722800,
+Permanent43868722251, Wisp43868722814, Shared UI43868722291 and
+Forge43868722325 PASS. Pre-merge43868722738 PASS:190 main plus1 isolated offline;
+full logs and receipts saved under QA/remote. Merge tree exactly matchesbc6329af.
+Eight integrated workflows PASS: Comet43878440827, Forge43878445177,
+Lab43878448789, Shared UI43878453760, Tree43878458295, Permanent43878461994,
+Wisp43878466061 and Migration43878469794 (all three jobs). Lab initially timed
+out on Browser.getVersion with zero checks; its unchanged failed-job retry passes.
+Both failure and pass raw logs/receipts are saved. Pre-merge43878436458 PASS:
+all preceding checks,190 main scenarios,1 isolated offline. Full logs/receipts
+saved. All nine integrated workflows pass. Guarded signed build43888872736 PASS,
+published0.2.128/versionCode1000128 fromf16ffd9b. Main stayed fixed through publication.
+Migration focused43854621487 passed
+all three jobs on47849a74 (same product bytes). Earlier failed receipts remain.
 [Full earlier checkpoint](../qa/support-duration-001/task-history-before-clock-ci.md)
 preserves all milestones, initial candidates, failed runs and dispositions.
 
-## Next concrete action and delivery gates
+## Android delivery and remaining acceptance
 
-1. Pass all required exact-head PR CI on this checkpoint, including the
-   complete190-case suite plus isolated offline.
-2. Recheck current main/overlap, self-review complete diff and integrate PR57.
-   Record tested source/merge identity; preserve any actual concurrent changes.
-3. Dispatch the nine current validation workflows on exact integrated main;
-   require the six established release gates and all relevant extra jobs PASS.
-4. Run the established signed Android build/publish with save upgrade, actual
-   updater and retail launch. Verify exact public APK/assets/checksums/feed.
-5. Save supported status/evidence in GitHub and PROJECT_STATE. Feature remains
-   open until required acceptance/delivery passes. Physical phone, exact
-   WebView60 DOM and TalkBack are unverified; modern/V8 tests do not prove them.
+[Public verification](../qa/support-duration-001/android-release/public-verification.json)
+PASS at2026-11-16T15:05:46Z: versioned and latest anonymous downloads, release
+feed, metadata, exact source/assets, packagecom.lumenfall.app and established
+signing certificate all match. APK SHA256:
+`3789ccc679687c9786a4705a9eabb33a0de8566cc4ee5ba73944de0dc9e37d06`,5,163,947 bytes.
+Signed emulator upgrade retains UID, both save slots, progress, paid study and
+legacy entitlements. Actual system-approved updater/install/open and normal
+retail Android12 launch PASS. Production is non-debuggable, without QA hooks;
+native menu scroll, currency labels, Bonds and Deeds remain preserved. Retail
+launch screenshot inspected. All raw receipts/logs are under task QA.
+
+Implementation, integration, automated acceptance and public delivery are done.
+Final documentation-only closeout records these receipts and PROJECT_STATE;
+it does not change the released product or require another APK. No independent
+review claimed. Remaining next action: physical-phone, exact WebView60 DOM,
+TalkBack and human pacing review when available. Keep unknown human acceptance
+open; no owner or unrelated chat archived.
 
 Task-only controllers are in local `validation-evidence/`; inert copies are in
 QA. `support-delivery.cjs status <sha>` saves all runs; `jobs <run>` saves jobs;

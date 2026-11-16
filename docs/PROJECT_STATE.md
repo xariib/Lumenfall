@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+16 November: [Support duration/PR57](tasks/SUPPORT_DURATION_001.md) shipped as
+[Android0.2.128](https://github.com/xariib/Lumenfall/releases/tag/android-1000128),
+source`f16ffd9b`. Tide/Aurora start at3s; earned Support Endurance grows to6s.
+Each source can sustain its buff after at least90 dedicated research days at
+continuous8x/all work reductions, with sufficient Charge Rate. Nine integrated
+workflows PASS; PR and integrated full suites each prove190 main +1 isolated
+offline scenarios. Signed save upgrade, actual updater, retail Android12 launch
+and anonymous public APK/assets/feed PASS. [Evidence](qa/support-duration-001/README.md)
+retains initial failures and unchanged retries. Self-review only; physical-phone,
+exact WebView60 DOM, TalkBack and human pacing acceptance remain open.
+
 15 November: [Mobile menu corrections](tasks/MOBILE_MENU_CORRECTIONS_001.md)
 shipped as [Android 0.2.127](https://github.com/xariib/Lumenfall/releases/tag/android-1000127), source37ca26df through PR54/55/56.
 Removes Rift theme/Bond captions and Deed milestone history; shows six currency

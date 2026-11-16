@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-16T15:05:46.000Z",
+  "commit": "f16ffd9b4319ff64fe3ecfb28ddc07a881620ec8",
+  "version": "0.2.128",
+  "versionCode": 1000128,
+  "tag": "android-1000128",
+  "runId": 43888872736,
+  "runUrl": "https://github.com/xariib/Lumenfall/actions/runs/43888872736",
+  "artifact": {
+    "id": 14236207438,
+    "digest": "sha256:b75da3827a47e36da41cc942ded8e16381b8b199363fbc6b7f665afe93e70ad4"
+  },
+  "apkSha256": "3789ccc679687c9786a4705a9eabb33a0de8566cc4ee5ba73944de0dc9e37d06",
+  "bytes": 5163947,
+  "anonymous": true,
+  "feed": "https://api.github.com/repos/xariib/Lumenfall/releases/latest",
+  "downloads": [
+    {
+      "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000128/Lumenfall.apk",
+      "sha256": "3789ccc679687c9786a4705a9eabb33a0de8566cc4ee5ba73944de0dc9e37d06",
+      "bytes": 5163947
+    },
+    {
+      "url": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+      "sha256": "3789ccc679687c9786a4705a9eabb33a0de8566cc4ee5ba73944de0dc9e37d06",
+      "bytes": 5163947
+    }
+  ],
+  "publicMetadata": [
+    {
+      "name": "assets.json",
+      "bytes": 2597,
+      "sha256": "d840d2eacf3083c67e6eff4477af2fdd24076c1541aa86f58475c61807cdeb7e"
+    },
+    {
+      "name": "identity.txt",
+      "bytes": 263,
+      "sha256": "05a3aa626536e0433daf6d67bb1aaacf1cf3bc12bc6e65f25d4e6e6acb0e41a2"
+    },
+    {
+      "name": "emulator-upgrade.json",
+      "bytes": 18616,
+      "sha256": "3ea03e9bb93653b7c6c14da99788d20570b53482e9c5a106641ce8312b89ebde"
+    },
+    {
+      "name": "in-app-updater.json",
+      "bytes": 715,
+      "sha256": "53ad4302895ec76dd76ea11105f40029db21c6dbde36ee1298d053d17312d584"
+    },
+    {
+      "name": "security.json",
+      "bytes": 438,
+      "sha256": "a012fdb409c97b02492f1a70e0d9e6eb026242de4196986aa9ed7519670c1f82"
+    },
+    {
+      "name": "dependency-audit.json",
+      "bytes": 4437,
+      "sha256": "808c9425b97aaa8deb7a01a303e7f3245227401bc46246e0dbb0da815a966549"
+    }
+  ],
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000128",
+  "package": "com.lumenfall.app",
+  "upgrade": "PASS",
+  "updater": "PASS",
+  "retailLaunch": "PASS",
+  "assets": "PASS",
+  "installedRiftBonds": {
+    "status": "PASS",
+    "namesHidden": true,
+    "themeHidden": true,
+    "boostList": false,
+    "rows": [
+      {
+        "name": "Starcaller Bond",
+        "effect": "+18% passive & ability damage",
+        "active": false
+      },
+      {
+        "name": "Dawnpriest Bond",
+        "effect": "+25% Lumen, Shards & Motes",
+        "active": false
+      },
+      {
+        "name": "Duskguard Bond",
+        "effect": "+35% passive & ability damage vs Bosses",
+        "active": false
+      },
+      {
+        "name": "Pathfinder Bond",
+        "effect": "+20% passive & ability damage vs non-Bosses",
+        "active": false
+      },
+      {
+        "name": "Kindling Bond",
+        "effect": "+25% Guardian Tap damage",
+        "active": false
+      },
+      {
+        "name": "Vanguard Bond",
+        "effect": "20% less Boss regeneration",
+        "active": true
+      },
+      {
+        "name": "Quarry Bond",
+        "effect": "+20% Shards from Gale abilities",
+        "active": false
+      },
+      {
+        "name": "Harvest Bond",
+        "effect": "+20% Lumen from Thorn abilities",
+        "active": false
+      }
+    ],
+    "syntheticFixture": true
+  }
+}

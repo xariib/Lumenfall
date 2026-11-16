@@ -1,0 +1,38 @@
+{
+  "id": 43868722738,
+  "sha": "bc6329af397f4b4e6870ffae3fda9a8ea0d5fcaa",
+  "event": "pull_request",
+  "conclusion": "success",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43868722738",
+  "jobs": [
+    {
+      "id": 133303903492,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-16T12:40:33Z",
+      "completed": "2026-11-16T12:43:35Z",
+      "log": "job-133303903492.log.gz",
+      "rawSha256": "7ee02ebac56c57a15112f747fc8f459b225de67b202b2486f6bd03aa628238d0",
+      "summary": [
+        "2026-11-16T12:41:16.6626957Z Behavioral QA coverage: offline 1/191 cases; both groups are required."
+      ]
+    },
+    {
+      "id": 133303903989,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "success",
+      "started": "2026-11-16T12:40:33Z",
+      "completed": "2026-11-16T13:41:01Z",
+      "log": "job-133303903989.log.gz",
+      "rawSha256": "3567c4d9d1f31a9e6b85b4dba0d00e7fcf804146375c09854b18fb66a771092e",
+      "summary": [
+        "2026-11-16T12:43:26.7329516Z \u001b[36;1m  echo \"::error::Late-cancel installer handoff defect unexpectedly passed.\"\u001b[0m",
+        "2026-11-16T12:52:38.8019007Z {\"status\":\"PASS\",\"negativeControls\":11,\"bothFullWorkflowJobsMandatory\":true,\"exactManualCommitMandatory\":true}",
+        "2026-11-16T12:55:23.5661965Z   detail: { \"status\": \"pass\", \"scenario\": \"formation-bonds-mobile\", \"version\": { \"protocolVersion\": \"1.3\", \"product\": \"Chrome/157.0.8103.50\", \"revision\": \"@049750111b1e5c11565c792b2aeed5541f332bad\", \"userAgent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36\", \"jsVersion\": \"15.7.112.23\" }, \"records\": [ { \"width\": 320, \"textScale\": 1, \"motion\": \"no-preference\", \"rows\": [ { \"name\": \"Starcaller Bond · Push ",
+        "2026-11-16T13:02:19.1188783Z {\"status\":\"pass\",\"scope\":\"GUIDANCE_READABILITY_001\",\"baselineCommit\":\"684bfc52bb2ca523124fe63981188b9a8004d747\",\"fullDefaultGateExecutedHere\":false,\"inputs\":{\"path\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/inputs.json\",\"bytes\":5615,\"sha256\":\"226652d7c1633ceadaf7bb2a2d2f8dc564d835105cd3bc04c37f4f92891b1dfb\"},\"runtime\":{\"path\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/runtime.json\",\"bytes\":113",
+        "2026-11-16T13:10:31.2009755Z Behavioral QA coverage: main 190/191 cases; both groups are required.",
+        "2026-11-16T13:23:01.4081905Z PASS inquiry-ui-reduced-motion"
+      ]
+    }
+  ]
+}
