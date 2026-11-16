@@ -2,7 +2,10 @@
 
 Implementation and accepted requirements: [task](../../tasks/SUPPORT_DURATION_001.md).
 Baseline main `1a83b5ba`; candidate HTML SHA256
-`0c6861fec8a7fa7f0d9281cceeaf0c5a31f3eb933b5b31ac2075e360b3bea65f`.
+`0c6861fec8a7fa7f0d9281cceeaf0c5a31f3eb933b5b31ac2075e360b3bea65f`
+initially; current source
+`fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c`.
+Each result embeds its exact source hash; early receipts remain historical.
 
 **In progress, not released.** Node24.22.1 / Chrome157.0.8103.78 on Windows.
 Core/purchase tests execute the full production IIFE with only presentation,
@@ -44,3 +47,18 @@ Full regression, required CI, integration and Android build/upgrade/publication
 remain pending. Self-review only. Physical phone, exact WebView60 DOM and
 TalkBack are unverified. Alternating two buffs can cover time earlier at reduced
 strength; the90-day target covers each source and the full simultaneous bonus.
+
+PR57's first CI failures and subsequent fixes are in the
+[continuation task](../../tasks/SUPPORT_DURATION_001.md#pr57-continuation-checkpoint)
+and [failure excerpts](first-ci-failures.json). Current-source Support/Lab checks
+and28,408 historical preservation assertions pass. The independent golden was
+[regenerated from four complete one-second caller windows](independent-one-second.json),
+with exact increased rewards pinned for the accepted longer buffs. Previous
+released outcomes remain in Git history. Initial full Windows browser attempt
+has failures/timeouts and an EPERM cleanup exit; final Linux CI is still required.
+
+Corrected-source checks: [all Lab mobile purchases](lab-expanded-mobile.json)
+7,044 PASS, [combined required access/Support UI](access-required-combined.json)
+1,286 PASS, [six focused browser cases](focused-browser.json) PASS. Visually
+inspected [new Lab card](browser-access/support-endurance-390.png); current and
+next durations, long work, both red missing prices and five-group ordering fit.

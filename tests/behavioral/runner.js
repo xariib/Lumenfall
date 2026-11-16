@@ -1615,7 +1615,7 @@
           assert(tideSupport.supportProfile.strength===1.25 && tideSupport.supportProfile.durationMs===3000,'Support strength/duration must ignore Wisp Power, Rarity and Module');
           var supportTrigger = bridge.triggerAbilityFor('tide','live',PARITY_CLOCK_MS);
           assert(bridge.getState().supportBuffs.sources.tide.mult===1.25 && supportTrigger.after.buffMult===1,'Support ability must apply +25% passive/Tap buff');
-          assert(bridge.getState().supportBuffs.sources.tide.until===PARITY_CLOCK_MS+1000 && supportTrigger.after.buffUntil===0,'Support ability must last 1 second without Ultimate');
+          assert(bridge.getState().supportBuffs.sources.tide.until===PARITY_CLOCK_MS+3000 && supportTrigger.after.buffUntil===0,'Support ability must start at 3 seconds without duration research');
 
           var supportUltState = cloneJson(supportBaseState);
           supportUltState.wispUltimate.tide = true;
@@ -1623,7 +1623,7 @@
           var tideUltimate = bridge.wispFormulaSnapshot('tide',100,1);
           assert(tideUltimate.supportProfile.strength===1.5 && tideUltimate.supportProfile.durationMs===3000,'Support Ultimate must become +50% for the researched Support duration');
           var supportUltTrigger = bridge.triggerAbilityFor('tide','live',PARITY_CLOCK_MS);
-          assert(bridge.getState().supportBuffs.sources.tide.mult===1.5 && bridge.getState().supportBuffs.sources.tide.until===PARITY_CLOCK_MS+1500 && supportUltTrigger.after.buffUntil===0 && supportUltTrigger.after.buffMult===1,'Support Ultimate runtime effect');
+          assert(bridge.getState().supportBuffs.sources.tide.mult===1.5 && bridge.getState().supportBuffs.sources.tide.until===PARITY_CLOCK_MS+3000 && supportUltTrigger.after.buffUntil===0 && supportUltTrigger.after.buffMult===1,'Support Ultimate runtime effect');
 
           var rewardState = cleanFormulaState(['gale','thorn','tide','aurora']);
           rewardState.wispModules.gale = 10;

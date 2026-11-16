@@ -1,6 +1,6 @@
 # SUPPORT_DURATION_001 — Support uptime and damage display explanation
 
-Status: local implementation and focused checks passing; broader validation in progress.
+Status: PR57 draft; first CI failures corrected, final validation pending.
 
 ## Original request and scope
 
@@ -113,3 +113,48 @@ remain unverified at baseline.
 - Next action: finish browser/precision/offline/full regression; fix any introduced
   issues, review complete diff, save evidence, open PR and pass required gates,
   integrate and complete signed Android acceptance. No completion/archive claim.
+
+## PR57 continuation checkpoint
+
+[PR57](https://github.com/xariib/Lumenfall/pull/57), remote initial implementation
+`bb93c69fd6fc8fb6e4dbd74c1bb31e894b843956`; current local product SHA256
+`fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c`.
+Branch/worktree unchanged. No unrelated checkout or chat modified.
+
+- First CI: Comet, Wisp scroll and Shared UI pass; other required lanes found
+  old duration/catalog assertions, an insufficiently funded new Lab legacy
+  fixture, and the additive zero/OFF identity in the old preservation projection.
+  [Failure excerpts](../qa/support-duration-001/first-ci-failures.json) retain
+  exact job IDs/messages; unchanged required gates retained.
+- Corrected all old 1/1.5-second runtime expectations, explicit27-ID/24-active
+  catalogs and15 expansion identities. Preservation checks explicitly prove
+  the new0/OFF defaults before removing only the new field from the comparison.
+  Legacy purchase fixtures fund the exact catalog price, retaining actual debits.
+- Full Lab mobile check caught a real introduced duplicate group heading.
+  Inserted Support Endurance immediately after the three existing Wisp studies;
+  the original five groups and all old relative ordering are preserved.
+- Support initial ability text retains the static base explanation and now
+  explicitly shows both normal/Ultimate3s. Earned duration/Forge variants remain
+  dynamic. No damage/strength formula or old save entitlement is removed.
+- Independent one-second golden regenerated over four8-hour caller windows.
+  Longer approved buffs legitimately improve this fixture: outcomes now
+  `[88592,4218,97014]`, `[88584,4218,97014]`, `[88659,4222,97106]`,
+  `[88854,4231,97313]` (kills/Ascends/Prisms). Generator pins these exact values;
+  bulk offline UI remains checked against the independent one-second outcomes.
+  Current-source binding and raw independent output are saved; no hash-only edit.
+- Current source: Support recast1,994 + new duration3,331/four controls and
+  Lab2,781/ten controls PASS; Wisp contribution8,099 + preservation28,408 PASS.
+  Focused actual browser stacking252, buff timing, Wisp-role runtime, navigation,
+  Inquiry and Bond text PASS. Initial combined required access+duration UI1,286
+  PASS (earlier source); final full Lab mobile suite PASS7,044 on current source.
+- Standalone original offline test PASS (initial product source,697.7s on this
+  Windows runtime); first CI isolated offline case PASS at same source. Local
+ 190-case attempt timed out offline12h at unchanged300s and later hit an EPERM
+  temporary browser-directory cleanup failure; never labelled as a full PASS.
+  Final required Linux full suite must pass; no deadline/assertion relaxed.
+- Next: finish full mobile check, save corrected-source evidence and push the
+  coherent fixes; pass all required exact-head CI, review complete diff, integrate,
+  run integrated workflows and signed Android upgrade/updater/retail/publication.
+  Existing GitHub CLI helper works; OAuth cannot edit workflows. Keep workflows
+  byte-identical and new tests in existing required entrypoints. Physical phone,
+  exact WebView60 DOM and TalkBack remain unverified; self-review only.

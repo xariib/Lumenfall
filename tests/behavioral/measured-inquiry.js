@@ -28,8 +28,8 @@ window.runInquiryQa=function(b,ctx,assert,assertProtectedParity,assertSummaryPar
   if(ctx.scenario==='inquiry-contracts'){
     var nodes=t.nodes(),ids=nodes.map(function(n){return n.id;});
     same(nodes.filter(function(n){return !n.labGroup;}).map(function(n){return n.id;}),window.inquiryOriginals.concat('measuredinquiry'),'original nine-study catalogue remains intact');
-    ok(ids.length===26&&nodes.filter(function(n){return n.labGroup&&n.labGroup!=='Wisp fundamentals';}).length===14,'fourteen additive expansion projects, no original removed');
-    same(nodes.filter(function(n){return n.labGroup==='Wisp fundamentals';}).map(function(n){return n.id;}),['wispdamage','wispcritchance','wispcritdamage'],'three explicit Wisp fundamentals');
+    ok(ids.length===27&&nodes.filter(function(n){return n.labGroup&&n.labGroup!=='Wisp fundamentals';}).length===14&&nodes.filter(function(n){return n.labGroup==='Wisp fundamentals';}).length===4,'fourteen utility projects and four Wisp fundamentals, no original removed');
+    same(nodes.filter(function(n){return n.labGroup==='Wisp fundamentals';}).map(function(n){return n.id;}),['wispdamage','wispcritchance','wispcritdamage','supportduration'],'four explicit Wisp fundamentals');
     same(t.originals(),window.inquiryOriginals,'frozen original target IDs');
     var fresh=b.freshStateSnapshot();ok(fresh.longStudyLevels.measuredinquiry===0&&!fresh.studyQueue.measuredinquiry,'fresh0/OFF');
     var current=seed();delete current.longStudyLevels.measuredinquiry;delete current.studyQueue.measuredinquiry;

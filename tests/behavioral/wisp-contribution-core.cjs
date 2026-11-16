@@ -128,7 +128,7 @@ function preservation(html,baseline){
   });
   // Verify additive unpurchased Wisp research before comparing every historical
   // field. The frozen oracle predates these identities; no old value is omitted.
-  ['wispdamage','wispcritchance','wispcritdamage'].forEach(function(id){
+  ['wispdamage','wispcritchance','wispcritdamage','supportduration'].forEach(function(id){
    [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5]].forEach(function(row){
     if(Object.prototype.hasOwnProperty.call(s[row[0]],id)){eq(s[row[0]][id],row[1],'new Wisp research retains exact unpurchased default '+row[0]+'.'+id);delete s[row[0]][id];}
    });

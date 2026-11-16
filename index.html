@@ -3604,7 +3604,7 @@ var ABILITY_DESC = {
   dps: 'Focused burst ability damage. Ultimate doubles it.',
   ranged: 'Ability damage + Shards. Ultimate doubles both.',
   druid: 'Ability damage + Lumen. Ultimate doubles both.',
-  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50%. Support Endurance research extends future casts up to 6s. Each Support has a minimum interval between casts, even with extra charge.'
+  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50% for 3s. Support Endurance research extends future casts up to 6s. Each Support has a minimum interval between casts, even with extra charge.'
 };
 
 var FORMATION_BONDS = [
@@ -4138,7 +4138,7 @@ var LAB_EXPANSION = [
 // At maximum future-work reductions (0.56) and continuous 8x, each level
 // takes at least 45 days. Level 1 remains below the fastest recast interval;
 // level 2 is the first sustainable per-Support buff: at least 90 days earned.
-LAB_EXPANSION.push({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. Ultimates keep their stronger buff. At maximum Charge Rate, level 2 permits continuous uptime for each Support. Each level takes at least 45 days even at continuous 8x with all work reductions. Existing casts retain their strength and expiry.'});
+LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. Ultimates keep their stronger buff. At maximum Charge Rate, level 2 permits continuous uptime for each Support. Each level takes at least 45 days even at continuous 8x with all work reductions. Existing casts retain their strength and expiry.'});
 var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
@@ -8240,7 +8240,7 @@ function forgeDescription(node){
   return node.desc;
 }
 function forgeAbilityDescription(sp){
-  if(sp.abilityType!=='support') return ABILITY_DESC[sp.abilityType];
+  if(sp.abilityType!=='support' || !forgeLevel('amplifiertrim') && !forgeLevel('resonantedge') && !forgeLevel('relay') && !labExpansionLevel('supportduration')) return ABILITY_DESC[sp.abilityType];
   var trim=forgeLevel('amplifiertrim');
   var duration=supportAbilityProfile(sp).durationMs/1000;
   var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for '+duration+'s. Ultimate: +'+Number(((50+trim)*astralFactor('astralconvergence')).toFixed(2))+'% for '+duration+'s. Support Endurance extends future buffs up to 6s. Minimum '+abilityCycleSeconds().toFixed(2)+'s between this Wisp’s casts, including extra charge.';

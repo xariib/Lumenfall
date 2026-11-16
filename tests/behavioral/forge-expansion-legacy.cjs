@@ -118,7 +118,7 @@ function effect(id,raw,cap){
  }else if(id==='victorycharge'){
   s=battle(q,['ember','tide'],20);s.research[id]=raw;s.enemyHp=1;s.heroResource.tide=20;q.set(s);var out=cast(q,'ember');eq(out.summary.bossKills,1,'actual boss death');eq([q.get().heroResource.ember,q.get().heroResource.tide],[4*l,20+4*l],'victory fills all powered Active');
  }else if(id==='amplifiertrim'){
-  s=battle(q,['tide']);s.research[id]=raw;q.set(s);cast(q,'tide');eq(q.get().supportBuffs.sources.tide.mult,1.25+.01*l,'new paid Support strength');eq(q.get().supportBuffs.sources.tide.until,CLOCK+1000,'approved F18 duration');q.save();eq(app(x.storage).q.get().supportBuffs,q.get().supportBuffs,'expanded Support snapshot survives actual load');
+  s=battle(q,['tide']);s.research[id]=raw;q.set(s);cast(q,'tide');eq(q.get().supportBuffs.sources.tide.mult,1.25+.01*l,'new paid Support strength');eq(q.get().supportBuffs.sources.tide.until,CLOCK+3000,'base duration without Support Endurance');q.save();eq(app(x.storage).q.get().supportBuffs,q.get().supportBuffs,'expanded Support snapshot survives actual load');
  }else if(id==='dualchannel'){
   ['gale','thorn'].forEach(function(who){['live','offline'].forEach(function(kind){s=battle(q,[who]);s.spirits[who]=10;q.set(s);var native=q.abilityReward(who),scale=kind==='offline'?.7:1;s.research[id]=raw;q.set(s);before=clone(q.get());cast(q,who,kind);near(q.get().lumen-before.lumen,(native.lumen+(who==='gale'?Math.floor(native.shards*.20*l):0))*scale,'actual converted Lumen '+who+'/'+kind);near(q.get().shards-before.shards,(native.shards+(who==='thorn'?Math.floor(native.lumen*.02*l):0))*scale,'actual converted Shards '+who+'/'+kind);});});
  }else if(id==='overflowconduit'){
