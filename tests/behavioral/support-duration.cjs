@@ -60,7 +60,7 @@ function verify(html){
  for(const rank of [0,1,2,7,10])for(const charge of [0,5,10])for(const kind of ['live','offline']){
   const w=combat(html),b=w.q;s=funded();s.depth=s.enemyDepth=99;s.enemyHp=s.enemyMaxHp=1e100;s.research.charge=charge;s.longStudyLevels.supportduration=rank;
   s.heroResource.tide=s.heroResource.aurora=100;b.set(s);
-  const cycle=6/(1+.08*charge),duration=3+.3*rank,castStarts={tide:[],aurora:[]};
+  const cycle=Math.max(6/(1+.08*charge),6-1.2*Math.min(2,rank)),duration=3+.3*rank,castStarts={tide:[],aurora:[]};
   let at=CLOCK;
   for(let i=0;i<20;i++){
    w.clock(at);b.abilities(kind,at);

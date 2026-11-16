@@ -257,6 +257,17 @@
   .wisp-role-line strong{max-width:100%;overflow-wrap:break-word;}
   .wisp-role-note{margin:6px 0;font-size:.8125rem;line-height:1.5;color:var(--ink);}
   .wisp-role-readout,.wisp-role-line,.wisp-role-note{animation:none!important;transition:none!important;}
+  .wisp-damage-summary{margin:4px 0 10px;color:var(--ink-dim);font-size:.78rem;line-height:1.5;overflow-wrap:anywhere;}
+  .wisp-damage-summary>p{margin:0;}
+  .wisp-damage-details{margin-top:4px;}
+  .wisp-damage-details>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:var(--ink);}
+  .wisp-damage-details>summary::after{content:'⌄';margin-left:auto;}
+  .wisp-damage-details[open]>summary::after{content:'⌃';}
+  .hero-stats [data-wisp-current-dps]{font-size:1rem;font-weight:700;color:var(--ink);}
+  .wisp-damage-details>summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .wisp-damage-details dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 10px;margin:0 0 8px;}
+  .wisp-damage-details dt,.wisp-damage-details dd{margin:0;overflow-wrap:anywhere;}
+  .wisp-damage-details dd{text-align:right;font-family:'IBM Plex Mono',monospace;}
   .hero-stats{font-size:.72rem;color:var(--ink-dim);margin:8px 0 6px;}
   .hero-ability{font-size:.7rem;color:var(--ink-dim);margin-bottom:8px;line-height:1.4;}
   .bond-card{margin-bottom:12px;padding:12px;}
@@ -3166,7 +3177,7 @@
     <section class="tab-panel" id="tab-ascend">
       <div class="card ascend-summary">
         <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">A stronger beginning</span><h2>Ascend the Rift</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-ascend"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
-        <div style="font-size:.8rem;color:var(--ink-dim);width:100%;text-align:left;">Each Ascend earns Prisms. Repeat runs keep 20% of the base reward plus the full earned upgrade bonus. Clearing beyond your best rewarded Rift adds a new-depth bonus. The current run resets; permanent progression stays.</div>
+        <div style="font-size:.8rem;color:var(--ink-dim);width:100%;text-align:left;">Ascend manually after clearing Rift 15. Each later Ascend requires a higher clear than your best rewarded Rift. Check the Prism reward, then choose when to reset. Permanent progression stays.</div>
         <div class="ascend-breakdown">
           <div class="ab-col ab-reset"><div class="ab-head">Resets</div><ul><li>Rift depth</li><li>Wisp levels</li><li>Current Lumen</li></ul></div>
           <div class="ab-col ab-keep"><div class="ab-head">Keeps</div><ul><li>Wisp Rarity, Modules, Ultimates &amp; Mastery</li><li>Recruitment entitlements</li><li>Rift Forge upgrades</li><li>Research Lab progress</li><li>Prisms &amp; this tree</li><li>Comets, Motes, Sigils &amp; Deeds</li></ul></div>
@@ -3604,7 +3615,7 @@ var ABILITY_DESC = {
   dps: 'Focused burst ability damage. Ultimate doubles it.',
   ranged: 'Ability damage + Shards. Ultimate doubles both.',
   druid: 'Ability damage + Lumen. Ultimate doubles both.',
-  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50% for 3s. Support Endurance research extends future casts up to 6s. Each Support has a minimum interval between casts, even with extra charge.'
+  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50% for 3s. Support Endurance research extends future casts up to 6s. Without Support Endurance, each Support waits at least 6s between casts, even with extra charge.'
 };
 
 var FORMATION_BONDS = [
@@ -4138,7 +4149,7 @@ var LAB_EXPANSION = [
 // At maximum future-work reductions (0.56) and continuous 8x, each level
 // takes at least 45 days. Level 1 remains below the fastest recast interval;
 // level 2 is the first sustainable per-Support buff: at least 90 days earned.
-LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. Ultimates keep their stronger buff. At maximum Charge Rate, level 2 permits continuous uptime for each Support. Each level takes at least 45 days even at continuous 8x with all work reductions. Existing casts retain their strength and expiry.'});
+LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. The first two levels also lower the minimum recast interval: 6s → 4.8s → 3.6s. Natural charge can take longer. Ultimates keep their stronger buff. At maximum Charge Rate, level 2 permits continuous uptime for each Support. Each level takes at least 45 days even at continuous 8x with all work reductions. Existing casts retain their strength and expiry.'});
 var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
@@ -4213,7 +4224,7 @@ function labFutureWorkFactor(node){
 }
 function labExpansionEffect(id,raw){
   var level=Math.min(LAB_EXPANSION_CAPS[id],Math.max(0,Math.floor(raw||0)));
-  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s for future Tide and Aurora buffs; '+(level<2?'level 2 permits continuous uptime at maximum Charge Rate':'continuous uptime at maximum Charge Rate');
+  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s buffs; '+Number((6-1.2*Math.min(2,level)).toFixed(1))+'s minimum recast; '+(level<2?'level 2 permits continuous uptime at maximum Charge Rate':'continuous uptime at maximum Charge Rate');
   if(id==='labcapacity') return '+'+level+' concurrent Study slots (up to 2 extra)';
   if(id==='procurement') return (2*level)+'% lower future Lab Lumen and Shard costs; excludes itself';
   if(id==='catalysis') return (2*level)+'% lower Mote prices for future Lab speed purchases';
@@ -4700,7 +4711,7 @@ var ASTRAL_UPGRADES=[
 {id:'astralecho',name:'Astral Echo',desc:'Permanently multiplies automatic ability damage and ability Lumen/Shard rewards. Support hits also benefit.',unlockDepth:500,cap:10,baseCost:1250,growth:1.2,factor:1.3},
 {id:'astralconvergence',name:'Astral Convergence',desc:'Permanently multiplies unlocked Ultimate damage and ability rewards. Support Ultimates gain the same factor on their buff strength.',unlockDepth:1000,cap:10,baseCost:2000,growth:1.2,factor:1.25}
 ];
-var SHOP=[{id:'autoascend',name:'Auto-Ascend Ritual',desc:'Automatic Ascension at your chosen cleared Rift. Kept permanently.',cost:100}].concat(ASTRAL_UPGRADES);
+var SHOP=ASTRAL_UPGRADES.slice();
 var RETIRED_COMMAND_SHOP = [
   {id:'autoascend', name:'Auto-Ascend Ritual', desc:'Choose which Rift to defeat before automatic Ascension. Toggle it on or off anytime. Your chosen target persists across Ascensions.', cost:100},
   {id:'meteor', name:'Meteor Strike', desc:'A reusable manual strike, limited by enemy max HP and your passive Wisp power. Costs one shared charge; once per encounter.', cost:100, deed:'d25'},
@@ -4807,6 +4818,8 @@ function cometCreditExactly(snapshot,amount){
 }
 function settleCometClaims(snapshot){
   settleCommandRefund(snapshot);
+  var retired=snapshot.autoAscendRefund;
+  if(retired && !retired.paid && cometCreditExactly(snapshot,retired.total)) retired.paid=true;
   var claims=snapshot.cometClaims;
   COMET_RETIRED_IDS.forEach(function(id){
     if(claims.retired[id]==='due' && cometCreditExactly(snapshot,COMET_RETIRED_REWARDS[id])) claims.retired[id]='settled';
@@ -5441,6 +5454,14 @@ function normalizeAstralState(source,out){
   if(!cometClosedKeys(receipt,['policy','total','paid'])||receipt.policy!=='commands-retired-v1'||receipt.total!==total||typeof receipt.paid!=='boolean')throw persistenceError('invalid-command-refund','Retired purchase receipt needs recovery.');
   out.commandRefund=clonePersistedValue(receipt);
 }
+function normalizeAutoAscendRefund(source,out){
+  var total=out.owned.autoascend ? 100 : 0,receipt=source.autoAscendRefund;
+  if(receipt===undefined) receipt={policy:'autoascend-retired-v1',total:total,paid:total===0};
+  if(!cometClosedKeys(receipt,['policy','total','paid']) || receipt.policy!=='autoascend-retired-v1' ||
+     receipt.total!==total || typeof receipt.paid!=='boolean')
+    throw persistenceError('invalid-autoascend-refund','Retired Ascension purchase receipt needs recovery.');
+  out.autoAscendRefund=clonePersistedValue(receipt);
+}
 function settleCommandRefund(snapshot){var receipt=snapshot.commandRefund;if(receipt&&!receipt.paid&&cometCreditExactly(snapshot,receipt.total))receipt.paid=true;}
 function astralLevel(id,snapshot){var levels=(snapshot||state).astralUpgrades;return levels&&levels[id]||0;}
 function astralFactor(id){var item=ASTRAL_UPGRADES.find(function(n){return n.id===id;});return Math.pow(item.factor,astralLevel(id));}
@@ -5728,6 +5749,7 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
   ['autoascend','meteor','starcall'].forEach(function(id){ if(owned[id]===true) out.owned[id] = true; });
   normalizeCometState(source,out);
   normalizeAstralState(source,out);
+  normalizeAutoAscendRefund(source,out);
   var legacy = isPlainObject(source.legacyCometPurchases) ? source.legacyCometPurchases : {};
   ['rememberbulk','offline24','offline48'].forEach(function(id){
     if(legacy[id]===true || owned[id]===true) out.legacyCometPurchases[id]=true;
@@ -5785,7 +5807,7 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
   var allowedMultipliers = [1,5,10,25,50,100,'max'];
   out.savedLabMultiplier = allowedMultipliers.indexOf(source.savedLabMultiplier)!==-1 ? source.savedLabMultiplier : fresh.savedLabMultiplier;
 
-  out.autoAscendEnabled = strictBool(source.autoAscendEnabled,fresh.autoAscendEnabled);
+  out.autoAscendEnabled = false;
   out.autoAscendTargetDepth = Math.max(16,nonNegativeInt(source.autoAscendTargetDepth,fresh.autoAscendTargetDepth));
   if(!out.owned.autoascend) out.autoAscendEnabled = false;
 
@@ -6573,7 +6595,10 @@ function clearedProgressionRift(){
   return Math.max(0,progressionDepth()-1);
 }
 function ascendEligible(){
-  return clearedProgressionRift()>=15;
+  return clearedProgressionRift()>=nextAscendClearedRift();
+}
+function nextAscendClearedRift(){
+  return Math.max(15,(state.ascendRewardedDepth||0)+1);
 }
 function canFarmCurrentProgress(){
   return progressionDepth()>1;
@@ -6933,8 +6958,14 @@ function bestNowFormationPlan(){
  */
 function spiritPower(sp, level){
   if(Amount.le(level,0)) return 0;
-  var earlyBonus=(sp.id==='ember' || sp.id==='stone') ? Amount.mul(352,Amount.pow(Amount.max(0,Amount.sub(level,70)),2)) : 0;
-  return Amount.add(Amount.mul(Amount.mul(sp.basePower,level),Amount.add(1,Amount.mul(0.01,Amount.sub(level,1)))),earlyBonus);
+  // One level curve for the entire roster. Later recruits gain roles and a
+  // modest strength advantage, rather than an 88,000x base-Power advantage.
+  var growth=Amount.mul(Amount.mul(Math.min(26,sp.basePower),level),Amount.add(1,Amount.mul(0.01,Amount.sub(level,1))));
+  var developed=Amount.mul(352,Amount.pow(Amount.max(0,Amount.sub(level,70)),2));
+  return Amount.add(growth,Amount.mul(developed,wispLevelStrength(sp)));
+}
+function wispLevelStrength(sp){
+  return {ember:1,tide:0.8,stone:1.1,gale:0.9,thorn:0.9,void:1.15,aurora:0.9,titan:1.25}[sp.id] || 1;
 }
 var wispPowerCache={};
 function wispPower(sp,level){
@@ -7045,8 +7076,13 @@ function effectivePartyPower(){
 function chipEffectivePower(id){
   var sp = SPIRITS.find(function(s){ return s.id===id; });
   if(!sp) return 0;
-  var shareMult = Amount.mul(passiveGlobalPowerMult(),formationGeneralDamageMult());
+  if(state.activeParty.indexOf(id)===-1) return 0;
+  var shareMult = Amount.mul(passiveGlobalPowerMult(),formationContextDamageMult(state.depth));
   return Amount.mul(Amount.mul(wispPower(sp,state.spirits[id]||0),shareMult),simulationBuffMult(gameplayNowMs()));
+}
+function wispBaseDps(sp){
+  if(!sp || state.activeParty.indexOf(sp.id)===-1) return 0;
+  return Amount.mul(Amount.mul(wispPower(sp,state.spirits[sp.id]||0),passiveGlobalPowerMult()),formationContextDamageMult(state.depth));
 }
 function guardianTapBaseDamage(){
   // Strong opening hits; the unchanged party share keeps later damage Wisp-led.
@@ -7075,6 +7111,12 @@ function supportAbilityProfile(sp){
     durationMs:3000+300*labExpansionLevel('supportduration')
   };
 }
+function supportCycleSeconds(){
+  // Charge and Resonate cannot turn an early Support into a permanent buff.
+  // Two earned Endurance levels open sustained uptime after the existing
+  // 90-day fastest research commitment, with sufficient natural Charge Rate.
+  return Math.max(abilityCycleSeconds(),6-1.2*Math.min(2,labExpansionLevel('supportduration')));
+}
 function supportRecastSeconds(sp,nowMs,clock){
   if(!sp || sp.abilityType!=='support') return 0;
   var until=state.supportRecastUntil && state.supportRecastUntil[sp.id];
@@ -7093,39 +7135,43 @@ function forgeChargeProfile(depth,ids){
   var members=ids.map(function(id){
     var sp=SPIRITS.find(function(x){return x.id===id;}),support=sp.abilityType==='support';
     var profile=support ? supportAbilityProfile(sp) : {strength:1,durationMs:0};
-    return {id:id,support:support,strength:profile.strength,duration:profile.durationMs/1000/cycle};
+    return {id:id,support:support,strength:profile.strength,duration:profile.durationMs/1000,recastCycle:support ? supportCycleSeconds() : 0};
   });
-  var key=[cycle,auto,tap,relay,refund].join('|')+'|'+members.map(function(m){return [m.id,m.support,m.strength,m.duration].join(':');}).join('|');
+  var key=[cycle,auto,tap,relay,refund].join('|')+'|'+members.map(function(m){return [m.id,m.support,m.strength,m.duration,m.recastCycle].join(':');}).join('|');
   if(forgeProfileCache.key===key) return forgeProfileCache.value;
-  var charge=ids.map(function(){return 0;}),until=ids.map(function(){return 0;}),recast=ids.map(function(){return 0;}),counts=ids.map(function(){return 0;}),uptime=ids.map(function(){return 0;});
-  var u=0,warm=64,measure=256,end=warm+measure,nextTap=auto ? 1/cycle : Infinity,taps=0,events=0,integral=0;
+  // Saved epoch deadlines can precede a coincident natural-fill boundary by a
+  // clock quantum, changing which charge grant clips. Model that stored
+  // precision here too; otherwise the first Wisp's estimated rate is too high.
+  var referenceEpoch=Math.floor(gameplayNowMs());var charge=ids.map(function(){return 0;}),until=ids.map(function(){return 0;}),recast=ids.map(function(){return 0;}),counts=ids.map(function(){return 0;}),uptime=ids.map(function(){return 0;});
+  var precise=members.some(function(m){return m.support && Math.abs(m.recastCycle-cycle)>1e-9;});
+  var u=0,warm=(precise ? 1024 : 64)*cycle,measure=(precise ? 4096 : 256)*cycle,end=warm+measure,nextTap=auto ? 1 : Infinity,taps=0,events=0,integral=0;
   function castPass(){
     var fired=false,pending=0;
     members.forEach(function(m,i){
       if(charge[i]<100-1e-7 || (m.support && u<recast[i]-1e-9)) return;
       fired=true;charge[i]=0;
       if(u>warm+1e-9) counts[i]++;
-      if(m.support){until[i]=u+m.duration;recast[i]=u+1;pending+=relay;} else charge[i]=refund;
+      if(m.support){until[i]=u+m.duration;recast[i]=(referenceEpoch+u*1000+m.recastCycle*1000-referenceEpoch)/1000;pending+=relay;} else charge[i]=refund;
     });
     if(pending) members.forEach(function(m,i){if(!m.support) charge[i]=Math.min(100,charge[i]+pending);});
     return fired;
   }
   while(u<end-1e-9){
-    if(++events>12000){forgeProfileCache={key:key,value:null};return null;}
+    if(++events>(precise ? 180000 : 12000)){forgeProfileCache={key:key,value:null};return null;}
     var dt=end-u;
     if(u<warm-1e-9) dt=Math.min(dt,warm-u);
     dt=Math.min(dt,Math.max(0,nextTap-u));
-    charge.forEach(function(value,i){dt=Math.min(dt,Math.max(0,(100-value)/100,members[i].support ? recast[i]-u : 0));});
+    charge.forEach(function(value,i){dt=Math.min(dt,Math.max(0,(100-value)/(100/cycle),members[i].support ? recast[i]-u : 0));});
     until.forEach(function(value){if(value>u+1e-9) dt=Math.min(dt,value-u);});
     var buff=1;
     members.forEach(function(m,i){if(m.support && until[i]>u+1e-9) buff+=m.strength-1;});
     integral+=buff*Math.max(0,u+dt-Math.max(u,warm));
     members.forEach(function(m,i){if(m.support && until[i]>u+1e-9) uptime[i]+=Math.max(0,u+dt-Math.max(u,warm));});
     u+=dt;
-    charge=charge.map(function(value){return Math.min(100,value+100*dt);});
+    charge=charge.map(function(value){return Math.min(100,value+100/cycle*dt);});
     castPass();
     if(auto && u>=nextTap-1e-8){
-      taps++;nextTap=(taps+1)/cycle;
+      taps++;nextTap=taps+1;
       if(tap) charge[0]=Math.min(100,charge[0]+tap);
     }
     // Mirrors the next existing zero-time ability pass, after Auto-Tap. No
@@ -7135,8 +7181,15 @@ function forgeChargeProfile(depth,ids){
       if(++zeroPasses>5){forgeProfileCache={key:key,value:null};return null;}
     }
   }
-  var rates={},supportUptime={};members.forEach(function(m,i){rates[m.id]=counts[i]/(measure*cycle);supportUptime[m.id]=uptime[i]/measure;});
-  var result=Object.freeze({rates:Object.freeze(rates),supportUptime:Object.freeze(supportUptime),supportMult:integral/measure,eventCount:events,cycleSeconds:cycle,warmCycles:warm,measuredCycles:measure});
+  // Support always fills naturally before its independent recast floor. Its
+  // steady rate/uptime are exact; a finite sampling window could otherwise
+  // overstate them by one cast when the two cycles are not integer multiples.
+  var rates={},supportUptime={},supportMult=1;members.forEach(function(m,i){
+    rates[m.id]=m.support ? 1/m.recastCycle : counts[i]/measure;
+    supportUptime[m.id]=m.support ? Math.min(1,m.duration/m.recastCycle) : 0;
+    if(m.support)supportMult+=(m.strength-1)*supportUptime[m.id];
+  });
+  var result=Object.freeze({rates:Object.freeze(rates),supportUptime:Object.freeze(supportUptime),supportMult:supportMult,eventCount:events,cycleSeconds:cycle,warmCycles:warm/cycle,measuredCycles:measure/cycle});
   forgeProfileCache={key:key,value:result};
   return result;
 }
@@ -7203,7 +7256,7 @@ function averageSupportBuffMult(depth){
     var sp = SPIRITS.find(function(s){ return s.id===id; });
     if(!sp || sp.abilityType!=='support' || (state.spirits[id]||0)<=0) return;
     var profile = supportAbilityProfile(sp);
-    var uptime = Math.min(1, (profile.durationMs/1000) / cycle);
+    var uptime = Math.min(1, (profile.durationMs/1000) / supportCycleSeconds());
     total += (profile.strength-1)*uptime;
   });
   return total;
@@ -7353,7 +7406,7 @@ function wispRoleSnapshot(depth,nowMs,ids,sustained){
     var sp=SPIRITS[i],extra=0;
     if(sustained && row.active && sp.abilityType==='support'){
       var profile=supportAbilityProfile(sp);
-      row.supportUptime=estimate ? (estimate.supportUptime[row.id]||0) : Amount.min(1,Amount.div(Amount.div(profile.durationMs,1000),cycle));
+      row.supportUptime=estimate ? (estimate.supportUptime[row.id]||0) : Amount.min(1,Amount.div(Amount.div(profile.durationMs,1000),supportCycleSeconds()));
       extra=Amount.mul(Amount.sub(profile.strength,1),row.supportUptime);
     }else if(!sustained){
       var entry=state.supportBuffs && state.supportBuffs.sources[row.id];
@@ -7623,7 +7676,7 @@ function autoAscendClearedTarget(){
   return Math.max(15,autoAscendTarget()-1);
 }
 function autoAscendReady(){
-  return !!(state.riftMode!=='farm' && state.owned.autoascend && state.autoAscendEnabled && ascendEligible() && clearedProgressionRift()>=autoAscendClearedTarget());
+  return false; // Automatic Ascension is retired, including imported ON states.
 }
 // This ceiling is the existing safe-integer input boundary, never a save clamp.
 function autoAscendHighestClearedTarget(){
@@ -7654,69 +7707,11 @@ function renderAutoAscendTarget(control){
   }
   if(!typed) control.value=String(target);
 }
-function setAutoAscendClearedTarget(value){
-  if(!flushLiveProgress())return false;
-  var cleared=Number(value);
-  if(!state.owned.autoascend || typeof value!=='string' || String(cleared)!==value ||
-    !Number.isSafeInteger(cleared) || cleared<15 ||
-    (cleared>autoAscendHighestClearedTarget() && cleared!==autoAscendClearedTarget()) ||
-    cleared+1===state.autoAscendTargetDepth) return false;
-  state.autoAscendTargetDepth=cleared+1;
-  saveState();
-  return true;
-}
+function setAutoAscendClearedTarget(value){return false;}
 function renderAutoAscendControls(){
   var root=els['auto-ascend-controls'];
-  if(!root) return;
-  if(!state.owned.autoascend){
-    if(root.dataset.owned!=='false'){
-      var oldControl=root.querySelector('[data-autoascend-target]');
-      if(oldControl) oldControl.onblur=null;
-      root.dataset.owned='false';
-      root.innerHTML='<div class="card auto-ascend-card"><div class="name">Auto-Ascend · Locked</div><div class="desc">Complete the Auto-Ascend Ritual challenges in Deeds, then unlock for 100 Comets.</div><button class="auto-ascend-toggle" type="button" data-autoascend-unlock>Open Deeds</button></div>';
-      root.querySelector('[data-autoascend-unlock]').onclick=function(){activateTab('deeds');var buy=els['shop-list'].querySelector('[data-shop="autoascend"]');if(buy){var target=buy.disabled?buy.closest('[data-comet-card]'):buy;target.scrollIntoView({block:'center'});target.focus({preventScroll:true});}};
-    }
-    return;
-  }
-  if(root.dataset.owned!=='true'){
-    root.dataset.owned='true';
-    root.innerHTML='<div class="card auto-ascend-card" data-autoascend-card><div class="name">Auto-Ascend Ritual</div>'+
-      '<div class="auto-ascend-row"><label class="auto-ascend-target-label">Auto-Ascend after clearing<span data-autoascend-picker></span></label>'+
-      '<button type="button" data-autoascend-toggle class="auto-ascend-toggle"></button></div>'+
-      '<div class="desc" id="auto-ascend-target-help">ON: Ascend after defeating the chosen Rift. OFF: keep pushing. Your target stays saved across Ascensions.</div>'+
-      '<div class="auto-ascend-error" id="auto-ascend-target-error" aria-live="polite"></div></div>';
-    root.querySelector('[data-autoascend-toggle]').onclick=toggleAutoAscend;
-  }
-  var picker=root.querySelector('[data-autoascend-picker]'),control=picker.querySelector('[data-autoascend-target]');
-  var native=autoAscendHighestClearedTarget()-14<=AUTO_ASCEND_NATIVE_OPTIONS;
-  // Defer changing the native picker type while the player is using it.
-  if(!control || ((control.tagName==='SELECT')!==native && document.activeElement!==control)){
-    if(control) control.onblur=null;
-    picker.innerHTML=native ? '<select class="auto-ascend-target" data-autoascend-target aria-describedby="auto-ascend-target-help auto-ascend-target-error"></select>' :
-      '<input class="auto-ascend-target" data-autoascend-target type="text" inputmode="numeric" list="auto-ascend-rifts" aria-describedby="auto-ascend-target-help auto-ascend-target-error" autocomplete="off"><datalist id="auto-ascend-rifts"></datalist>';
-    control=picker.querySelector('[data-autoascend-target]');
-    control.onchange=function(){
-      var value=control.value;
-      var valid=String(Number(value))===value && Number.isSafeInteger(Number(value)) && Number(value)>=15 &&
-        (Number(value)<=autoAscendHighestClearedTarget() || Number(value)===autoAscendClearedTarget());
-      control.setAttribute('aria-invalid',String(!valid));
-      root.querySelector('.auto-ascend-error').textContent=valid ? '' : 'Choose a whole Rift from 15 to '+autoAscendHighestClearedTarget()+'.';
-      if(valid && setAutoAscendClearedTarget(value)) renderShop();
-    };
-    control.oninput=function(){if(control.tagName==='INPUT') renderAutoAscendTarget(control);};
-    control.onkeydown=function(event){if(control.tagName==='INPUT' && event.key==='Enter'){event.preventDefault();control.onchange();}};
-    control.onblur=function(){
-      control.value=String(autoAscendClearedTarget());control.setAttribute('aria-invalid','false');
-      root.querySelector('.auto-ascend-error').textContent='';renderAutoAscendControls();
-    };
-  }
-  // Avoid growing an open native picker without bound after a frontier jump.
-  if(control.tagName!=='SELECT' || autoAscendHighestClearedTarget()-14<=AUTO_ASCEND_NATIVE_OPTIONS) renderAutoAscendTarget(control);
-  var toggle=root.querySelector('[data-autoascend-toggle]');
-  toggle.textContent=state.autoAscendEnabled ? 'ON' : 'OFF';
-  presentControlStates(root);
+  if(root){root.hidden=true;if(root.firstChild)root.innerHTML='';}
 }
-
 function checkAutoAscend(){
   if(!autoAscendReady()) return false;
   return doAscend(true);
@@ -8243,7 +8238,7 @@ function forgeAbilityDescription(sp){
   if(sp.abilityType!=='support' || !forgeLevel('amplifiertrim') && !forgeLevel('resonantedge') && !forgeLevel('relay') && !labExpansionLevel('supportduration')) return ABILITY_DESC[sp.abilityType];
   var trim=forgeLevel('amplifiertrim');
   var duration=supportAbilityProfile(sp).durationMs/1000;
-  var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for '+duration+'s. Ultimate: +'+Number(((50+trim)*astralFactor('astralconvergence')).toFixed(2))+'% for '+duration+'s. Support Endurance extends future buffs up to 6s. Minimum '+abilityCycleSeconds().toFixed(2)+'s between this Wisp’s casts, including extra charge.';
+  var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for '+duration+'s. Ultimate: +'+Number(((50+trim)*astralFactor('astralconvergence')).toFixed(2))+'% for '+duration+'s. Support Endurance extends future buffs up to 6s. Minimum '+supportCycleSeconds().toFixed(2)+'s between this Wisp’s casts, including extra charge.';
   if(forgeLevel('resonantedge')) text+=' Also hits for '+Number((0.10*forgeLevel('resonantedge')).toFixed(2))+' × Wisp Power before ability factors; Ultimate doubles the hit.';
   if(forgeLevel('relay')) text+=' Casts relay '+(2*forgeLevel('relay'))+' charge to powered non-Support Active Wisps.';
   return text;
@@ -8606,23 +8601,12 @@ function buyShopItem(item){
     if(ASTRAL_UPGRADES.indexOf(plan.item)!==-1) state.astralUpgrades[plan.id]=Amount.add(plan.level,1);
     else state.owned[plan.id]=true;
     if((plan.id==='meteor' || plan.id==='starcall') && firstCommand) state.cometCharges=1;
-    if(plan.id==='autoascend'){
-      state.autoAscendTargetDepth=Amount.max(MIN_AUTO_ASCEND_RIFT,state.maxDepthEver||1,state.depth||1);
-      state.autoAscendEnabled=true;
-    }
   })) return false;
   renderShop();renderCosmetics();renderHud();updateBattleFast();
   return true;
 }
 
-function toggleAutoAscend(){
-  if(!flushLiveProgress())return false;
-  if(!state.owned.autoascend) return;
-  state.autoAscendEnabled = !state.autoAscendEnabled;
-  renderShop();
-  saveState();
-  if(state.autoAscendEnabled) checkAutoAscend();
-}
+function toggleAutoAscend(){return false;}
 
 // PRISM_EARNING_001: exact integer threshold checks on the WebView 60 runtime.
 // Base-32768 limbs keep every multiply/carry below 2^31. No runtime BigInt.
@@ -8765,8 +8749,8 @@ function ascendPrismBreakdown(depth){
   var cleared = Math.max(0,(depth===undefined ? progressionDepth() : depth)-1);
   var full = ascendFullPrismGainForCleared(cleared);
   var benchmark = Math.max(0,Math.floor(state.ascendRewardedDepth||0));
-  if(full<=0){
-    return {gain:0,full:0,reserve:0,progressBonus:0,cleared:cleared,benchmark:benchmark};
+  if(full<=0 || cleared<=benchmark){
+    return {gain:0,full:full,reserve:0,progressBonus:0,cleared:cleared,benchmark:benchmark};
   }
   if(benchmark<=0){
     return treeAppendFrontier({gain:full,full:full,reserve:0,progressBonus:full,cleared:cleared,benchmark:0});
@@ -8915,6 +8899,7 @@ function presentLiveAscendResult(sim){
   showAscendFlash(gain,true,sim.ascends);
 }
 function doAscend(auto){
+  if(auto) return false;
   if(!auto && !flushLiveProgress())return false;
   var cleared = clearedProgressionRift();
   if(!ascendEligible()) return false;
@@ -9348,7 +9333,7 @@ function latePowerAdvice(){
   else if(empower)result=advice('REBUILD','Rebuild your team’s Power','Affordable run levels remain. Enable Auto-Empower for your team while saving for permanent upgrades.','spirits','[data-empower-queue="'+empower.id+'"]',empower.id);
   else if(next.plan.ready&&next.plan.requirements.every(function(r){return r.met||r.key==='depth';})&&forgePlan.buyCount===1&&Amount.le(forgePlan.cost.lumen,Amount.mul(state.lumen,.75)))result=advice('FORGE POWER','Temper Masterwork to level '+(researchLevel('masterwork')+1),'Own Wisp Power ×'+masterworkPowerFactor(researchLevel('masterwork')+1).toFixed(2)+' permanently. Keep some Lumen for run levels.','forge','[data-research="masterwork"]','masterwork');
   else if(eligible){
-    if(!prismPurchasePlan(eligible.plan.cost.prism,true))result=advice('FARM PRISMS','Farm Prisms for '+eligible.sp.shortName,'Repeat cleared Rift '+(MIN_AUTO_ASCEND_RIFT-1)+' toward '+formatRiftNumber(eligible.plan.cost.prism)+' Prisms. Use Auto-Ascend if owned. When funded, stop, rebuild and Push.','ascend','#auto-ascend-controls',eligible.sp.id);
+    if(!prismPurchasePlan(eligible.plan.cost.prism,true))result=advice('EARN PRISMS','Earn Prisms for '+eligible.sp.shortName,'Clear Rift '+nextAscendClearedRift()+' or higher, then Ascend manually. Check the reward before resetting; this upgrade costs '+formatRiftNumber(eligible.plan.cost.prism)+' Prisms.','ascend','#ascend-btn',eligible.sp.id);
     else result=advice('FARM SIGILS','Farm Sigils for '+eligible.sp.shortName,'Need '+formatRiftNumber(eligible.plan.cost.sigil)+' Sigils. Clear bosses; keep your run and Empower queues growing.','battle','#rift-farm-btn',eligible.sp.id);
   }else{
     var missing=next.plan.requirements.find(function(r){return !r.met&&r.key!=='depth';});
@@ -9367,7 +9352,6 @@ function latePowerAdvice(){
   }
   // Farming settings can otherwise reset a rebuilt run indefinitely even when
   // the Prism goal is already funded. Stopping is always the player's choice.
-  if(state.autoAscendEnabled&&result.kind!=='FARM PRISMS')result=advice('RETURN TO PUSH','Finish Prism farming','Turn off Auto-Ascend, rebuild your team and return to Push. Permanent upgrades are retained.','ascend','#auto-ascend-controls');
   else if(state.riftMode==='farm'&&result.kind!=='FARM SIGILS'&&result.kind!=='FARM PRISMS')result=advice('RETURN TO PUSH','Resume your Push','Keep your run Power and permanent upgrades growing. Return to Push to challenge your record.','battle','#rift-push-btn');
   result.labNote=labNote;
   result.labTarget=neededLab;
@@ -9690,7 +9674,7 @@ var TUTORIAL_STEPS = [
   {title:'Choose your Formation', body:'Only recruited Active Wisps fight. Choose pairs to activate Formation Bonds, and save separate Push, Farm and Boss lineups. If a boss stops you, switch Rift to Farm for resources; Push returns you to your saved Rift.'},
   {title:'Upgrade your Wisps', body:'Rarity Up costs Lumen and Shards and requires the shown Wisp level. Upgrade Ability increases burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes increase those currency rewards. These permanent upgrades are called Modules. At Mythic Rarity, Sigils buy that Wisp’s Ultimate. These upgrades stay after Ascend.'},
   {title:'Use Forge & Lab', body:'Workshop contains Rift Forge for immediate upgrades and Research Lab for timed projects. Lab bonuses apply when a level completes. Queue ON permits automatic spending when affordable. Choose Lab speed and 8, 12 or 24 hours, then activate the boost for its shown Mote price. One payment covers that Lab slot across projects and levels until the timer expires, including while offline.'},
-  {title:'Ascend & automate', body:'Clear Rift 15 to unlock Ascend. Check the Prism reward before restarting your Rift run, Wisp levels and Lumen; Tree upgrades can improve that restart. Permanent upgrades, other currencies and paid Lab work stay. Spend Prisms in the Tree. Comets buy Auto-Ascend; Deeds unlock Auto-Tap and Auto-Empower.'},
+  {title:'Ascend & grow', body:'Clear Rift 15 to unlock your first manual Ascend. Later Ascends require a higher clear than your best rewarded Rift. Check the Prism reward before restarting your Rift run, Wisp levels and Lumen. Permanent upgrades, other currencies and paid Lab work stay. Spend Prisms in the Tree. Deeds unlock Auto-Tap and Auto-Empower.'},
   {title:'Return & keep a backup', body:'Offline combat and its automation run for up to 12 hours per absence. Lab research uses the full time away; queued levels continue while Lumen and Shards are available. Offline Lumen and Shard rewards start at 70%; Echoing Rest improves that rate. In Settings, Save Backup lets you copy progress before reinstalling or changing device. Restoring replaces the current save. You can replay this guide without resetting progress.'}
 ];
 
@@ -9764,7 +9748,7 @@ function renderRiftParty(){
       var all=memberships[id]||[];
       var marker=all.length ? '<span class="rift-wisp-bonds">'+all.map(function(item){var v=BOND_VISUALS[item.id];return '<span class="rift-bond-mark" data-wisp-bond="'+item.id+'" style="--bond-color:'+v.color+'" aria-hidden="true">'+v.mark+'</span>';}).join('')+'</span>' : '';
       return '<div class="rift-wisp'+position+'" data-rift-wisp="'+id+'"'+(bond?' data-bond="'+bond.id+'"':'')+' role="group" aria-label="'+sp.name+(all.length?' — '+all.map(function(item){return item.name;}).join(', '):'')+'" style="--wisp-color:'+sp.color+(visual?';--bond-color:'+visual.color:'')+'">'+wispPortrait(sp)+marker+
-        '<span class="rift-wisp-name">'+sp.shortName+'</span><span class="rift-wisp-state"></span><span class="rift-wisp-power" title="Passive Wisp power"></span>'+
+        '<span class="rift-wisp-name">'+sp.shortName+'</span><span class="rift-wisp-state"></span><span class="rift-wisp-power" title="Current passive damage per second"></span>'+
         '<div class="rift-charge" role="progressbar" aria-label="'+sp.name+' — '+sp.abilityName+'" aria-valuemin="0" aria-valuemax="100"><span></span></div></div>';
     }).join('');
   }
@@ -9779,9 +9763,9 @@ function renderRiftParty(){
     card.classList.toggle('unpowered',!powered);card.classList.toggle('is-casting',casting);
     card.classList.toggle('is-attacking',powered && Date.now()<Number(card.getAttribute('data-shot-until')||0));
     var status=card.querySelector('.rift-wisp-state');if(status.textContent!==label)status.textContent=label;
-    var power=card.querySelector('.rift-wisp-power'),powerText=formatRiftNumber(chipEffectivePower(id));
+    var power=card.querySelector('.rift-wisp-power'),powerText=formatRiftNumber(chipEffectivePower(id))+'/s';
     if(power.textContent!==powerText)power.textContent=powerText;
-    setLiveAttribute(power,'aria-label','Passive Wisp power: '+powerText);
+    setLiveAttribute(power,'aria-label','Current passive damage per second: '+powerText);
     bar.querySelector('span').style.transform='scaleX('+(charge/100)+')';
     setLiveAttribute(bar,'aria-valuenow',String(Math.round(charge)));
     var abilityStatus=!powered ? 'Unpowered — Empower this Wisp' :
@@ -9902,11 +9886,39 @@ function pulseWispCard(id,tone){
 function roleValueLine(label,value){
   return '<div class="wisp-role-line"><span>'+label+'</span><strong class="mono">'+value+'</strong></div>';
 }
+function wispDamageMarkup(sp){
+  return '<div class="wisp-damage-summary" data-wisp-damage="'+sp.id+'">'+
+    '<p data-damage-base></p><details class="wisp-damage-details"><summary>Damage details</summary><dl>'+
+    '<dt>Wisp Power</dt><dd data-damage-power></dd><dt>Passive upgrades</dt><dd data-damage-passive></dd>'+
+    '<dt>Rift damage Bonds</dt><dd data-damage-bonds></dd><dt>Current Support</dt><dd data-damage-support></dd>'+
+    '<dt>Ability per cast</dt><dd data-damage-ability></dd><dt>Next Empower</dt><dd data-damage-next></dd></dl>'+
+    '<p>Passive DPS = Wisp Power × passive upgrades × Rift damage Bonds × current Support. Ability damage is a separate hit. All Wisps gain development power after level 70; later recruits have a modest strength advantage.</p>'+
+    '</details></div>';
+}
+function renderWispDamage(){
+  if(!els['spirit-list']) return;
+  SPIRITS.forEach(function(sp){
+    var root=els['spirit-list'].querySelector('[data-wisp-damage="'+sp.id+'"]');if(!root) return;
+    function value(selector,text){var node=root.querySelector(selector);if(node && node.textContent!==text)node.textContent=text;}
+    var current=els['spirit-list'].querySelector('[data-wisp-current-dps="'+sp.id+'"]');
+    var active=state.activeParty.indexOf(sp.id)!==-1,level=state.spirits[sp.id]||0,power=wispPower(sp,level);
+    var text=formatRiftNumber(chipEffectivePower(sp.id))+' DPS';
+    if(current && current.textContent!==text)current.textContent=text;
+    value('[data-damage-base]',active ? 'Base '+formatRiftNumber(wispBaseDps(sp))+' DPS · Support ×'+Number(simulationBuffMult(gameplayNowMs()).toFixed(3)) : 'Benched · no team damage');
+    value('[data-damage-power]',formatRiftNumber(power));
+    value('[data-damage-passive]','×'+Number(passiveGlobalPowerMult().toFixed(3)));
+    value('[data-damage-bonds]',active ? '×'+Number(formationContextDamageMult(state.depth).toFixed(3)) : 'Inactive');
+    value('[data-damage-support]',active ? '×'+Number(simulationBuffMult(gameplayNowMs()).toFixed(3)) : 'Inactive');
+    value('[data-damage-ability]',active && level>0 ? formatRiftNumber(abilityBurstDamage(sp,state.depth))+' damage' : 'Inactive');
+    value('[data-damage-next]',level>0 && level<10000 ? '+'+Number((100*(Amount.ratio(wispPower(sp,level+1),power)-1)).toFixed(2))+'% Power' : level>=10000 ? 'Level maxed' : 'Recruit first');
+  });
+}
 var wispRoleLastRenderMs=0;
 function renderWispRoles(){
   if(!els['spirit-list']) return;
   var roleView=captureWispActionView();
   wispRoleLastRenderMs=Date.now();
+  renderWispDamage();
   var report=wispRoleComparison(state.depth,gameplayNowMs()),steady=report.steady;
   steady.rows.forEach(function(row,i){
     var el=els['spirit-list'].querySelector('[data-wisp-role="'+row.id+'"]');if(!el) return;
@@ -10091,7 +10103,7 @@ function renderSpirits(keepScroll){
     var chosen = chosenMembers.indexOf(sp.id)!==-1;
     var empowerHtml = ((recruited || pendingRebuild) && state.achieved.labmaster) ?
       (' <button class="node-queue-toggle ' + (empowerOn?'active':'') + '" data-empower-queue="' + sp.id + '">Auto-Empower ' + (empowerOn?'ON':'OFF') + '</button>') : '';
-    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + (upgradesMaxed&&level>=10000&&wispMasteryLevel(sp.id)>=2000?' wisp-fully-maxed':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono">' + formatRiftNumber(power) + ' Wisp Power</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + '</div>' + empowerHtml + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='maxed'?'Maxed':empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + (empowerPlan.reason==='maxed'?'':purchasePriceMarkup('lumen',cost,'mono')) + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + '<div class="wisp-progression" data-wisp-progression="'+sp.id+'">' + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info">' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),(rarityRift?'Rift '+rarityRift.target:wispRequirementText(rarityPlan.requirements))),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-heading="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div>' + '<p class="ability-desc">'+forgeAbilityDescription(sp)+'</p>' + '</div>' + moduleHtml + ultimateHtml + '</section>' + wispMasteryMarkup(sp) + '</div>' + '</div>');
+    html=(html + '<div class="card hero-card rarity-' + tier + (pendingRebuild?' pending-rebuild':'') + (active?' active-wisp':'') + (ultimateUnlocked(sp.id)?' has-ultimate':'') + (upgradesMaxed&&level>=10000&&wispMasteryLevel(sp.id)>=2000?' wisp-fully-maxed':'') + '" data-wisp-card="' + sp.id + '" style="--wisp-color:' + sp.color + ';--rarity-color:' + RARITY_COLORS[tier] + ';">' + '<div class="hero-top">' + wispPortrait(sp) + '<div class="hero-id">' + '<div class="name">' + sp.name + '</div>' + '<div class="class-tag" style="color:' + sp.color + '">' + sp.heroClass + ' &middot; ' + sp.role + '</div>' + '</div>' + (recruited || pendingRebuild ? Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<button class="active-toggle ',chosen?'is-active':''),'" data-toggle="'),sp.id),'" aria-pressed="'),chosen?'true':'false'),'">'),chosen?'Bench':'Field'),'</button>') : '') + '</div>' + (pendingRebuild ? '<div class="formation-rebuild-note">Chosen Formation · Pending · No power or Bonds</div>' : '') + '<div class="hero-stats">' + '<span class="hero-stat-pill wisp-level">Lv. ' + level + '</span>' + '<span class="hero-stat-pill mono" data-wisp-current-dps="'+sp.id+'">' + formatRiftNumber(chipEffectivePower(sp.id)) + ' DPS</span>' + '<span class="rarity-badge" style="--badge-color:' + RARITY_COLORS[tier] + ';">' + RARITY_NAMES[tier] + '</span>' + '</div>' + wispDamageMarkup(sp) + empowerHtml + '<button class="mini-btn wisp-empower-action" data-empower="' + sp.id + '" ' + (empowerPlan.affordable?'':'disabled') + '><strong>' + (empowerPlan.reason==='maxed'?'Maxed':empowerPlan.reason==='unavailable'?'Unavailable':recruited?'Empower':'Recruit') + '</strong>' + (empowerPlan.reason==='maxed'?'':purchasePriceMarkup('lumen',cost,'mono')) + '</button>' + '<div class="wisp-role-readout" data-wisp-role="' + sp.id + '"></div>' + '<div class="wisp-progression" data-wisp-progression="'+sp.id+'">' + '<section class="wisp-rarity-section" aria-label="' + sp.name + ' rarity"><div class="wisp-rarity-info">' + '<p>' + RARITY_NAMES[tier] + (Amount.ge(tier,5)?' · Maxed':Amount.add(' → ',RARITY_NAMES[Amount.add(tier,1)])) + '</p>' + wispRarityEffectsMarkup(tier) + (Amount.ge(tier,5)?'':Amount.add(Amount.add(Amount.add(Amount.add('<p class="rarity-level-requirement" id="wisp-rarity-requirement-',sp.id),'">Requires '),(rarityRift?'Rift '+rarityRift.target:wispRequirementText(rarityPlan.requirements))),'</p>')) + '</div><div class="hero-actions"><button class="mini-btn rarity-btn" data-rarity="' + sp.id + '" ' + (Amount.ge(tier,5)?'':Amount.add(Amount.add('aria-describedby="wisp-rarity-requirement-',sp.id),'" ')) + (canRarity?'':'disabled') + '>' + rarityLabel + '</button></div></section>' + '<section class="wisp-ability-section" aria-label="' + sp.name + ' ability"><div class="hero-ability"><div class="wisp-ability-head"><div class="wisp-ability-title"><span class="ability-level" aria-label="Ability upgrade level ' + modLvl + ' of ' + MODULE_MAX_LEVEL + '">Lv. ' + modLvl + '/' + MODULE_MAX_LEVEL + '</span>' + (upgradesMaxed ? Amount.add(Amount.add('<strong>',sp.abilityName),'</strong>') : Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<h3 class="wisp-progression-title" id="wisp-progression-',sp.id),'" data-wisp-heading="'),sp.id),'" aria-label="'),sp.name),' ability and upgrades" tabindex="-1">'),sp.abilityName),'</h3>')) + '</div></div>' + '<p class="ability-desc">'+forgeAbilityDescription(sp)+'</p>' + '</div>' + moduleHtml + ultimateHtml + '</section>' + wispMasteryMarkup(sp) + '</div>' + '</div>');
   });
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   els['spirit-list'].querySelectorAll('[data-wisp-card]').forEach(function(card){
@@ -10638,7 +10650,7 @@ function prismCalculationText(breakdown){
     rows.push(['Full depth reward',String(breakdown.full)+' Prisms']);
     if(breakdown.benchmark>0){
       rows.push(['Best rewarded clear','Rift '+breakdown.benchmark]);
-      rows.push(['Repeat reward (base + earned bonus)',String(breakdown.reserve)+' Prisms']);
+      rows.push(['Protected base + earned upgrade bonus',String(breakdown.reserve)+' Prisms']);
       if(breakdown.cleared>breakdown.benchmark) rows.push(['New-depth bonus',String(breakdown.progressBonus)+' Prisms']);
     }
   }
@@ -10646,7 +10658,7 @@ function prismCalculationText(breakdown){
   rows.push(['You receive now',String(breakdown.gain)+' Prisms']);
   if(treeLevel('stardust')) rows.push(['Ascension Dust',String(treeAscendMotesForWallet(breakdown.gain,state.prisms))+' Motes']);
   return '<dl>'+rows.map(function(row){return '<dt>'+row[0]+'</dt><dd>'+row[1]+'</dd>';}).join('')+'</dl>'+
-    '<p>Tree and completed Lab bonuses multiply together. Repeats keep 20% of the unupgraded base plus the full earned upgrade bonus, rounded down once. Exact integer comparisons prevent floating-point errors at whole-Prism boundaries. Small upgrades can still share a whole-Prism value. Paid Lab work adds its bonus only when completed.</p>'+
+    '<p>Tree and completed Lab bonuses multiply together. After your first Ascend, a higher rewarded clear is required. Eligible new records keep 20% of the unupgraded base plus the full earned upgrade bonus, rounded down once, and add the new-depth bonus. Same or lower clears award nothing. Exact integer comparisons prevent floating-point errors at whole-Prism boundaries. Small upgrades can still share a whole-Prism value. Paid Lab work adds its bonus only when completed.</p>'+
     (breakdown.cleared>breakdown.benchmark && breakdown.benchmark>0 ? '<p>The new-depth bonus uses the difference between the depth curves before rounding, with your current Tree and Lab bonuses. That difference is rounded up once; '+(treeLevel('frontier')?'the reward before Frontier Record':'the total')+' cannot exceed the full depth reward.</p>' : '')+
     (treeLevel('frontier')?'<p>Frontier Record adds its separate award for newly crossed 25-Rift milestones. Your rewarded benchmark prevents repeated claims.</p>':'');
 }
@@ -10674,13 +10686,13 @@ function renderAscendSummary(){
   els['ascend-btn'].setAttribute('aria-describedby','ascend-note prism-calculation');
   renderAscendAttention();
   if(!eligible){
-    els['ascend-note'].textContent = ('Clear Rift 15 to unlock your first Ascend. (' + Amount.max(0,Amount.sub(15,cleared)) + ' to go)');
+    els['ascend-note'].textContent = ('Clear Rift '+nextAscendClearedRift()+' to '+(breakdown.benchmark>0?'Ascend again':'unlock your first Ascend')+'. (' + Amount.max(0,Amount.sub(nextAscendClearedRift(),cleared)) + ' to go)');
   } else if(Amount.le(breakdown.benchmark,0)){
     els['ascend-note'].textContent = 'First reward benchmark — this Ascend receives the full depth reward.';
   } else if(Amount.gt(cleared,breakdown.benchmark)){
-    els['ascend-note'].textContent = ('New progress: ' + formatNum(breakdown.reserve) + ' repeat reward + ' + formatNum(breakdown.progressBonus) + ' new-depth bonus, up to ' + formatNum(breakdown.full) + ' Prisms. Best rewarded clear becomes Rift ' + cleared + '.');
+    els['ascend-note'].textContent = ('New progress: ' + formatNum(breakdown.reserve) + ' protected reward + ' + formatNum(breakdown.progressBonus) + ' new-depth bonus, up to ' + formatNum(breakdown.full) + ' Prisms. Best rewarded clear becomes Rift ' + cleared + '.');
   } else {
-    els['ascend-note'].textContent = ('Repeat reward: 20% of base plus the full earned upgrade bonus, rounded down once (at least 1 Prism). Clear beyond Rift ' + breakdown.benchmark + ' to add a new-depth bonus.');
+    els['ascend-note'].textContent = ('Clear Rift '+nextAscendClearedRift()+' before your next manual Ascend. Previously rewarded Rifts cannot grant another Ascend.');
   }
   if(breakdown.frontier) els['ascend-note'].textContent=(els['ascend-note'].textContent + ' Frontier Record adds ' + formatNum(breakdown.frontier) + ' Prisms.');
   var dust=eligible ? treeAscendMotesForWallet(gain,state.prisms) : 0;
@@ -10955,7 +10967,7 @@ var CURRENCIES = [
   {name:'Shards', shape:'shape-hex', color:'var(--shard)', desc:'Earned from enemy defeats and Gale abilities. Pays for the Shard part of Rarity and Module purchases, Rift Forge upgrades and Research Lab starts. Dual Channel can also add Shards to Thorn abilities and Lumen to Gale abilities.'},
   {name:'Motes', shape:'shape-pentagon', color:'var(--mote)', desc:'A Luminous kill can pay Motes once every 60 seconds across all Rifts. Eligible payouts use the current fixed depth reward and purchased bonuses; other Luminous kills still give Lumen and Shards. Field Notes and Ascension Dust also grant their existing rewards. Spend Motes on timed boosts for individual Lab projects.'},
   {name:'Prisms', shape:'shape-diamond', color:'var(--prism)', desc:'Mainly earned by Ascending; the Ascend screen shows the exact reward for your cleared Rifts, previous reward benchmark and upgrades. The seventh login-streak reward also gives Prisms. Spend them on permanent Ascension Tree upgrades.'},
-  {name:'Comets', shape:'shape-star', color:'var(--comet)', desc:'Earned from Deeds, Daily Quests and login streaks. Permanently unlock Auto-Ascend Ritual and invest in Astral Core, Astral Echo and Astral Convergence. Costs rise with each level; upgrades work automatically and survive Ascend.'},
+  {name:'Comets', shape:'shape-star', color:'var(--comet)', desc:'Earned from Deeds, Daily Quests and login streaks. Invest in Astral Core, Astral Echo and Astral Convergence. Costs rise with each level; upgrades work automatically and survive Ascend.'},
   {name:'Sigils', shape:'shape-octagon', color:'var(--sigil)', desc:'Earned from boss defeats. Buy Ultimates for Mythic Wisps; once all eight are owned, Resonate fills a recruited Active Wisp’s charge bar. Its current Sigil price and shared per-run allowance include your Lab and Forge upgrades.'}
 ];
 
@@ -10974,9 +10986,9 @@ function renderManifesto(){
 var ENCYCLOPEDIA_MECHANICS = [
   {name:'Push', meta:'Rift mode', desc:'Climb toward new Rifts and bosses. Your saved Push point is preserved if you switch to Farm.'},
   {name:'Rift Regions', meta:'World progression', desc:'The Rift changes region every 25 levels, moving through the Starlit Verge, Ashen Canopy, Glass Wastes, Drowned Observatory, Void Basilica and Crown of Night before deeper echoes begin.'},
-  {name:'Farm', meta:'Rift mode', desc:'Repeat the highest non-boss Rift cleared in your current run for resources. Push returns to your saved progression Rift with a fresh enemy; it does not preserve that enemy’s partially depleted HP. Auto-Ascend waits while you Farm.'},
+  {name:'Farm', meta:'Rift mode', desc:'Repeat the highest non-boss Rift cleared in your current run for resources. Push returns to your saved progression Rift with a fresh enemy; it does not preserve that enemy’s partially depleted HP.'},
   {name:'Formation & Presets', meta:'Wisp selection', desc:'Choose up to five Active Wisps; Sixth Companion in the Tree raises this to six. Only recruited Active Wisps fight and activate Bonds. Push, Farm and Boss presets save your chosen lineups, but do not switch automatically when Rift mode changes. After Ascend, remembered members return as they are recruited again.'},
-  {name:'Wisp Power', meta:'Combat stat', desc:'Level, Rarity and permanent Mastery set each Wisp’s Power. It feeds passive damage and damaging or resource abilities. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
+  {name:'Wisp Power', meta:'Combat stat', desc:'All Wisps gain the same development curve after level 70, with modest Wisp-specific strength. Early base strength is bounded at 26. Level, Rarity and permanent Mastery set each Wisp’s Power. It feeds passive damage and damaging or resource abilities. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
   {name:'Passive Wisp Damage', meta:'Combat rule', desc:'Active Wisp Power is multiplied by passive-only permanent upgrades, applicable damage Bonds and active Support buffs. Modules and Ultimates do not increase passive damage.'},
   {name:'Ability Charge', meta:'Automatic combat', desc:'Recruited Active Wisps fill their resource bars automatically. At 100 charge, an eligible ability fires without a manual ability button. Charge Rate speeds the natural fill up to its cap; some Forge upgrades grant extra charge. Support still has a minimum interval between its own casts, even with extra charge.'},
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
@@ -10984,7 +10996,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown Wisp level, Rift record, Ascends, completed Wisp Ascendancy and Arcane Calibration, plus Lumen and Shards. The first tier is an early goal; later tiers require repeated permanent development. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
   {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
   {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, uncapped Masterwork Tempering and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
-  {name:'Endgame Currency Utility',meta:'Sigils and permanent Comet investments',desc:'Sigils fund Ultimates and Resonate. Comets fund permanent Auto-Ascend and Astral upgrades. These investments remain through Ascend.'},
+  {name:'Endgame Currency Utility',meta:'Sigils and permanent Comet investments',desc:'Sigils fund Ultimates and Resonate. Comets fund permanent Astral upgrades. These investments remain through Ascend.'},
   {name:'Wisp Roles', meta:'Build label', desc:'Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles.'},
   {name:'Ascend', meta:'Permanent progression', desc:'Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Earned recruitment access, Rarity, Modules, Ultimates, Mastery, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once. New cleared depth beyond your rewarded benchmark adds a bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending.'},
   {name:'Rift Forge', meta:'Workshop · immediate upgrades', desc:'Pay the shown Lumen and Shards for an immediate permanent upgrade. Current and purchase effects are shown beside the price. Queue ON authorizes automatic affordable purchases, including offline; it does not make upgrades free. Unlock requirements and level caps still apply.'},
@@ -10993,14 +11005,14 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Ascension Tree', meta:'Permanent Prism upgrades', desc:'Spend Prisms on the listed effect after its Rift, Deed or other prerequisites are met. The Tree includes recruitment, restart bonuses, automation and Prism rewards. Tree purchases are manual; their levels and bonuses remain through Ascend. Each upgrade’s own cap and price still apply.'},
   {name:'Preserved Upgrades', meta:'Earlier purchases', desc:'Some older upgrades were combined into current upgrade paths. Their purchased bonuses remain, and paid Lab work can finish. The Preserved upgrades section shows which current path accepts future purchases; an old bonus is not removed just because its former purchase row is retired.'},
   {name:'Auto-Tap & Auto-Empower', meta:'Deed unlocks', desc:'Tireless Vigil unlocks Auto-Tap after 100 Ascends, Rift 250 and 10,000 enemies defeated. Online and offline defeats count. The Forge Never Sleeps unlocks Auto-Empower after 200 paid Forge levels, Rift 350, 100 completed Lab levels and 10 researched subjects. Guardian taps are manual until Auto-Tap unlocks. Previously earned Deeds remain unlocked. Auto-Empower spends Lumen on eligible Active or remembered Formation members whose toggles are ON; remembered recruits rebuild the lineup after Ascend. Steady Instruction can increase purchases per second. Benched Wisps outside that lineup are not automatically upgraded.'},
-  {name:'Auto-Ascend', meta:'Comet unlock', desc:'Buy Auto-Ascend Ritual with Comets, then choose the Rift to clear and toggle it ON. It Ascends once that target is cleared in Push, at or beyond Rift 15; it waits in Farm. The target and toggle persist, and the same Prism and reset rules apply online and offline.'},
+  {name:'Manual Ascension', meta:'Progression', desc:'First clear Rift 15. Each later Ascend requires a higher clear than your best rewarded Rift. Review the Prism reward and reset manually. Auto-Ascend is retired; previous owners receive a one-time 100-Comet refund. Existing Prisms, upgrades and Ascend history stay.'},
   {name:'Luminous Enemies', meta:'Mote encounters', desc:'Only non-boss enemies can be Luminous. Natural appearance chance rises with depth and Luminous Tracking; Motes per kill depend on Rift depth, Luminous Sense, Dawnpriest and Active Amplifier Modules. Eligible Mote payouts are fixed for those bonuses. They require a Luminous kill and share a 60-second cooldown across Rifts; no Motes accrue just by waiting.'},
   {name:'Boss Traits', meta:'Boss mechanic', desc:'A boss appears every tenth Rift. Base traits rotate: Regrowth regenerates 0.9% max HP/s; Fractured Core regenerates 0.5%/s and takes +75% ability damage; Guardian’s Mark regenerates 0.6%/s and multiplies taps by 3. Those hit bonuses do not multiply passive Wisp damage. Vanguard reduces regeneration; Forge upgrades can reduce it further or strengthen the trait’s ability/tap multiplier.'},
   {name:'Astral Upgrades',meta:'Permanent Comet investments',desc:'Astral Core multiplies Wisp Power. Astral Echo multiplies automatic ability damage and resource rewards. Astral Convergence strengthens unlocked Ultimates. Each has ten permanent levels and a Rift gate; costs rise by 20% per level. No charges, consumables or manual activation. Former command purchases are refunded once in Comets; earned history remains.'},
-  {name:'Deeds & Daily Quests',meta:'Comet rewards',desc:'Deeds are one-time milestones and unlocks. Daily Quests pay the displayed Comets when you press Claim. Login rewards cycle through seven days, with Prisms on the seventh reward. Comets buy permanent Auto-Ascend and Astral upgrades.'},
+  {name:'Deeds & Daily Quests',meta:'Comet rewards',desc:'Deeds are one-time milestones and unlocks. Daily Quests pay the displayed Comets when you press Claim. Login rewards cycle through seven days, with Prisms on the seventh reward. Comets buy permanent Astral upgrades.'},
   {name:'Collection & Journal', meta:'Appearance and earlier unlocks', desc:'Choose a Rift theme in Collection. Deeds unlock additional themes; each colors the shared Rift landscape and frames the original enemies with its own circular design. Wisp and enemy identities stay the same. Themes never change damage, rewards or boss traits. Earlier Comet Trials, Rift Trail and Starfall Crest purchases remain available in Journal or Collection. Trials must be queued for a later Ascend and never restart automatically; starts and retries are free and marks are cosmetic.'},
-  {name:'Wisp Power & effects', meta:'Wisp cards', desc:'Wisp Power comes from a Wisp’s level and rarity. Combat also depends on abilities, Forge and Lab bonuses, Support and Bonds. Active Wisp cards show their Support or resource effects and enabled Bonds where relevant. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
-  {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, Forge queues and Auto-Ascend run for up to 12 hours per absence. Lab research continues for the full absence, including queued levels while Lumen and Shards last and queued speed boosts while Motes last. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
+  {name:'Wisp Power & effects', meta:'Wisp cards', desc:'Rift and Wisp cards show the same current passive DPS, including the current Rift’s damage Bonds and Support. Base DPS excludes temporary Support. Damage details show own Power, modifiers and separate ability damage per cast. Active Wisp cards show their Support or resource effects and enabled Bonds where relevant. Open Formation Bonds & guidance for the Bond pairs and their effects.'},
+  {name:'Offline Progress', meta:'Idle system', desc:'Combat, abilities, unlocked Auto-Tap/Auto-Empower, and Forge queues run for up to 12 hours per absence. Ascension requires your manual choice and never runs offline. Lab research continues for the full absence, including queued levels while Lumen and Shards last and queued speed boosts while Motes last. Lumen/Shard reward rate starts at 70%; Echoing Rest can reach 100%, with preserved Rift Attunement bonuses added separately. The rate never extends the time cap. Offline combat can retreat from an unwinnable boss and retry when automated upgrades make it beatable; a timing-sensitive fight may keep its current mode.'},
   {name:'Save Backup', meta:'Settings · save protection', desc:'Progress is stored in this device or browser’s local save. Copy Current Save exports a backup code before reinstalling or changing device. Restoring requires confirmation and replaces the current save; old backup time cannot grant extra offline earnings. Reset Save permanently deletes progress. Settings and this guide do not pause combat.'}
 ];
 
@@ -11600,7 +11612,7 @@ function applySupportCast(sp,nowMs,clock){
     mult:Math.max(old ? old.mult : 1,profile.strength)
   };
   if(!state.supportRecastUntil) state.supportRecastUntil={tide:0,aurora:0};
-  state.supportRecastUntil[sp.id]=nowMs+abilityCycleSeconds()*1000;
+  state.supportRecastUntil[sp.id]=nowMs+supportCycleSeconds()*1000;
   // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.
 }
 function simulationExpireBuff(nowMs,clock){
@@ -13873,7 +13885,7 @@ function tick(){
     if(overlayFocus && overlayFocus.el.id==='rift-hint-overlay')renderRiftObjective();
   }
   checkAffordability(true);
-  if(document.getElementById('tab-spirits').classList.contains('active') && Date.now()-wispRoleLastRenderMs>=1000) renderWispRoles();
+  if(liveTabVisible('spirits')){renderWispDamage();if(Date.now()-wispRoleLastRenderMs>=1000)renderWispRoles();}
   presentLiveRiftResult(feedbackBefore,sim);
   presentForegroundDailyReward();
   return true;

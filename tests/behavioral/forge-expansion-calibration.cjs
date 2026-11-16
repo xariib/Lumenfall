@@ -325,10 +325,12 @@ function verify(source) {
     if (config.name === 'new-zero') {
       checks.eq(profile, null, 'zero new charge effects retain the legacy estimate path');
     } else {
-      checks.eq(profile.warmCycles, 64, config.name + ': documented burn-in');
-      checks.eq(profile.measuredCycles, 256, config.name + ': documented measured cycles');
+      const independentCycle=Math.max(10/3,6/(1+.08*Math.min(config.swift||0,10)));
+      const precise=initial.activeParty.some(id=>['tide','aurora'].includes(id))&&independentCycle<6;
+      checks.eq(profile.warmCycles, precise?1024:64, config.name + ': documented burn-in');
+      checks.eq(profile.measuredCycles, precise?4096:256, config.name + ': documented measured cycles');
       checks.near(profile.cycleSeconds, Math.max(10/3,6 / (1 + .08 * Math.min(config.swift || 0,10))), 2e-15, config.name + ': independent capped natural cycle');
-      checks.ok(Number.isSafeInteger(profile.eventCount) && profile.eventCount >= 0 && profile.eventCount <= 12000,
+      checks.ok(Number.isSafeInteger(profile.eventCount) && profile.eventCount >= 0 && profile.eventCount <= (precise?180000:12000),
         config.name + ': bounded reference event count');
     }
     const cycle = Math.max(10/3,6 / (1 + .08 * Math.min(config.swift || 0,10)));

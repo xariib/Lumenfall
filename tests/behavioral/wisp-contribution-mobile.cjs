@@ -5,7 +5,10 @@ const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'i
 let source=fs.readFileSync(file,'utf8');const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 const marker="if(document.readyState==='loading'){";assert.equal(source.split(marker).length,2);
 source=source.replace('<head>',`<head><script>window.roleErrors=[];addEventListener('error',e=>roleErrors.push(e.message));addEventListener('unhandledrejection',e=>roleErrors.push(String(e.reason)));var roleInterval=setInterval;window.setInterval=function(fn,ms){return roleInterval(function(){if(window.roleRunIntervals)fn();},ms);};</script>`).replace(marker,`
-window.roleQa={fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},set:function(s){state=acceptPersistedState(s);restoreEnemyOrSpawn();},render:renderAll,readout:renderWispRoles,compare:wispRoleComparison};
+window.roleQa={fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},set:function(s){state=acceptPersistedState(s);restoreEnemyOrSpawn();},render:renderAll,readout:renderWispRoles,compare:wispRoleComparison,
+  damage:function(id){return {current:chipEffectivePower(id),base:wispBaseDps(SPIRITS.find(function(n){return n.id===id;})),ability:abilityBurstDamage(SPIRITS.find(function(n){return n.id===id;}),state.depth)};},
+  cast:function(id){state.heroResource[id]=100;return simulationProcessAbilities(gameplayNowMs(),simulationPolicy('live'),simulationSummary(0));},
+  rift:renderRiftParty,save:saveState,load:function(){state=loadState();renderAll();},evaluate:function(code){return eval(code);}};
 if(!localStorage.getItem(SAVE_KEY)){var qaSeed=freshState();qaSeed.questDay=todayStr();localStorage.setItem(SAVE_KEY,JSON.stringify(qaSeed));}
 localStorage.setItem(STARTUP_INTRO_KEY,String(Date.now()));
 `+marker);
@@ -50,7 +53,8 @@ async function run(){
   records.push({width,fontPercent,motion,contrast,elapsedMs:observed.elapsedMs,fit:true,realTouch:true,realKeyboard:true});
   if(width===390&&motion==='reduce'){await ev('document.querySelector(".formation-help").scrollIntoView({block:"start"})');const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'roles-390-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
  }
- fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'PASS',checks,sourceSha256,browser:identity,profiles:records,scope:'Modern browser DOM/CSS/native input only; not Android textZoom/exact WebView60/physical/TalkBack'},null,2));console.log(JSON.stringify({status:'PASS',checks,profiles:records.length,sourceSha256,browser:identity}));
+ const teamProgression=await require('./team-progression-ui.cjs')({send,ev,ok,pause,out});
+ fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'PASS',checks,sourceSha256,browser:identity,profiles:records,teamProgression,scope:'Modern browser DOM/CSS/native input only; not Android textZoom/exact WebView60/physical/TalkBack'},null,2));console.log(JSON.stringify({status:'PASS',checks,profiles:records.length,teamProgression,sourceSha256,browser:identity}));
 }
 function reportFailure(e){fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',checks,sourceSha256,error:String(e.stack),stderr},null,2));console.error(e);process.exitCode=1;}
 run().catch(reportFailure).finally(async()=>{

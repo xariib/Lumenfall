@@ -6,7 +6,7 @@ const mutations={
  duration:["durationMs:3000+300*labExpansionLevel('supportduration')",'durationMs:6000'],
  bypass:["return Math.max(0,supportDeadlineSecondsRemaining(until,nowMs,clock));",'return 0;'],
  save:["out.supportRecastUntil[id]=until;",'out.supportRecastUntil[id]=0;'],
- estimate:['recast[i]=u+1;','recast[i]=u;']
+ estimate:['rates[m.id]=m.support ? 1/m.recastCycle : counts[i]/measure;','rates[m.id]=1/cycle;']
 };
 if(process.env.SUPPORT_RECAST_MUTANT){const pair=mutations[process.env.SUPPORT_RECAST_MUTANT];assert(pair);assert.equal(html.split(pair[0]).length,2);html=html.replace(pair[0],pair[1]);}
 let checks=0;const records=[];
@@ -25,14 +25,14 @@ function seed(q,level,ultimate){
 for(const level of [0,5,10])for(const ultimate of [false,true]){
   const x=app(html),q=x.q;
   q.set(seed(q,level,ultimate));
-  const cycle=6/(1+.08*level),duration=3000;
+  const cycle=6,duration=3000;
   const estimate=q.profile(99);
-  for(const id of ['tide','aurora'])ok(estimate.rates[id]<=1/cycle+1e-9,'HUD Support rate respects independent capped natural interval');
+  for(const id of ['tide','aurora'])ok(estimate.rates[id]<=1/cycle+1e-9,'HUD Support rate respects independent six-second interval');
   q.abilities('offline',CLOCK);
   for(const id of ['tide','aurora']){
     eq(q.supportProfile(id).durationMs,duration,'approved cast duration');
     eq(q.get().supportBuffs.sources[id].until,CLOCK+duration,'actual expiry');
-    eq(q.get().supportRecastUntil[id],CLOCK+cycle*1000,'independent natural cycle deadline');
+    eq(q.get().supportRecastUntil[id],CLOCK+cycle*1000,'independent Support cycle deadline');
   }
   const initial=clone(q.get());
   // Ready charge and repeated direct/manual calls cannot bypass the interval.
@@ -78,9 +78,9 @@ for(const stagger of [0,5/3]){
   if(q.buff(at)>=2)fullUptime+=.1;
   for(const id of ['tide','aurora'])if(q.get().supportBuffs.sources[id]&&q.get().supportBuffs.sources[id].until>at)sourceUptime[id]+=.1;
  }
- for(const id of ['tide','aurora'])for(let i=1;i<casts[id].length;i++)ok(casts[id][i]-casts[id][i-1]>=10000/3-1e-4,'each pair cast interval respects exact independent floor');
- for(const id of ['tide','aurora'])ok(sourceUptime[id]<55,'each unresearched Support still has downtime under unlimited external charge');
- ok(fullUptime<55,'full combined Support strength still has downtime');
+ for(const id of ['tide','aurora'])for(let i=1;i<casts[id].length;i++)ok(casts[id][i]-casts[id][i-1]>=6000-1e-4,'each pair cast interval respects exact independent floor');
+ for(const id of ['tide','aurora'])ok(sourceUptime[id]<31,'each unresearched Support stays at50% uptime under unlimited external charge');
+ ok(fullUptime<31,'full combined Support strength stays at most50% uptime');
  records.push({stagger,uptime,fullUptime,sourceUptime,seconds:60,casts});
 }
 // Real scheduler must compose and give matching live/offline results; no enemy

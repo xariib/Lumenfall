@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "sourceSha256": "317c254b82080c4ca15340d73858b30ccf0cc1a16138571b4aa3e503fafd90f7",
+  "error": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "message": "legacy-and-defaults: old three-card owner receives separate fixed retirement compensation\n\n565 !== 465\n",
+    "stack": "AssertionError [ERR_ASSERTION]: legacy-and-defaults: old three-card owner receives separate fixed retirement compensation\n\n565 !== 465\n\n    at Object.eq (C:\\lf-team\\tests\\behavioral\\tree-expansion-core.cjs:46:54)\n    at legacyAndDefaults (C:\\lf-team\\tests\\behavioral\\tree-expansion-core.cjs:199:5)\n    at run (C:\\lf-team\\tests\\behavioral\\tree-expansion-core.cjs:699:56)\n    at Object.<anonymous> (C:\\lf-team\\tests\\behavioral\\tree-expansion-core.cjs:722:16)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)"
+  }
+}
