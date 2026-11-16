@@ -1,0 +1,98 @@
+[
+  {
+    "name": "endless-requirement-boundaries",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-requirement-boundaries\",\"exit\":0,\"status\":\"PASS\",\"checks\":2528,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-clock-activation",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-clock-activation\",\"exit\":0,\"status\":\"PASS\",\"checks\":443,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-persistence",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-persistence\",\"exit\":0,\"status\":\"PASS\",\"checks\":24,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-automation-persistence",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-automation-persistence\",\"exit\":0,\"status\":\"PASS\",\"checks\":29,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-automation",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-automation\",\"exit\":0,\"status\":\"PASS\",\"checks\":112,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-boundaries",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-boundaries\",\"exit\":0,\"status\":\"PASS\",\"checks\":136,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-batch",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-batch\",\"exit\":0,\"status\":\"PASS\",\"checks\":94,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-resource-replay",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-resource-replay\",\"exit\":0,\"status\":\"PASS\",\"checks\":87,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-overflow",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-overflow\",\"exit\":0,\"status\":\"PASS\",\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-split",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-split\",\"exit\":0,\"status\":\"PASS\",\"checks\":1100,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-automation-transitions",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-automation-transitions\",\"exit\":0,\"status\":\"PASS\",\"checks\":6,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "swift-current-legacy",
+    "code": 0,
+    "stdout": "{\"name\":\"swift-current-legacy\",\"exit\":0,\"status\":\"PASS\",\"checks\":173,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "ui-attention-quest",
+    "code": 1,
+    "stdout": "{\"name\":\"ui-attention-quest\",\"exit\":1,\"status\":\"FAIL\",\"checks\":0,\"error\":\"Error: Behavioral QA failed: no supported Chromium browser found; set LUMENFALL_QA_CDP_CHROME\\n    at findChrome (C:\\\\Users\\\\xarib\\\\Documents\\\\ChatGPT\\\\Lumenfall\\\\validation-evidence\\\\support-duration\\\\scripts\\\\lib\\\\browser.cjs:20:9)\\n    at run (C:\\\\Users\\\\xarib\\\\Documents\\\\ChatGPT\\\\Lumenfall\\\\validation-evidence\\\\support-duration\\\\tests\\\\behavioral\\\\ui-attention-quest.cjs:31:106)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async C:\\\\Users\\\\xarib\\\\Documents\\\\ChatGPT\\\\Lumenfall\\\\validation-evidence\\\\support-duration\\\\tests\\\\behavioral\\\\ui-attention-quest.cjs:66:34\"}",
+    "stderr": ""
+  },
+  {
+    "name": "early-wisp-curve-current",
+    "code": 0,
+    "stdout": "{\"name\":\"early-wisp-curve-current\",\"exit\":0,\"status\":\"PASS\",\"checks\":2802,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-native-wallets",
+    "code": 0,
+    "stdout": "{\"name\":\"endless-cycle-native-wallets\",\"exit\":0,\"status\":\"PASS\",\"checks\":108,\"error\":\"\"}",
+    "stderr": ""
+  },
+  {
+    "name": "endless-cycle-controls",
+    "code": 1,
+    "stdout": "{\"name\":\"endless-cycle-controls\",\"exit\":1,\"error\":\"mote: CAUGHT\\nlab: CAUGHT\\nrecast: CAUGHT\\nbuff: CAUGHT\\neconomy: CAUGHT\\nphase: CAUGHT\\nreceipt: CAUGHT\\nlumen: CAUGHT\\nautomation: CAUGHT\\nnativeCredit: CAUGHT\\nnativeParity: CAUGHT\\nresourceReplay: CAUGHT\\nframeClock: NOT CAUGHT\\nframeOwner: CAUGHT\\nnode:internal/assert/utils:77\\r\\n    throw err;\\r\\n    ^\\r\\n\\r\\nAssertionError [ERR_ASSERTION]: every intentional defect must fail its intended concrete assertion\\r\\n    at Object.<anonymous> (C:\\\\Users\\\\xarib\\\\Documents\\\\ChatGPT\\\\Lumenfall\\\\validation-evidence\\\\support-duration\\\\tests\\\\behavioral\\\\endless-cycle-controls.cjs:18:559)\\r\\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\\r\\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\\r\\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\\r\\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\\r\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\r\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\\r\\n    at node:internal/main/run_main_module:33:47 {\\r\\n  generatedMessage: false,\\r\\n  code: 'ERR_ASSERTION',\\r\\n  actual: false,\\r\\n  expected: true,\\r\\n  operator: '==',\\r\\n  diff: 'simple'\\r\\n}\\r\\n\\r\\nNode.js v24.22.1\\r\\n\"}",
+    "stderr": ""
+  }
+]

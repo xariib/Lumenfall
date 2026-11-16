@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "productSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c",
+  "note": "Existing deliberate frozen-power clock fixtures retain their separate reported source hashes; captured frame control also holds historical Support timing and verifies its unmodified positive before the mutation. Ordinary split/cold-frame tests use current Support timing.",
+  "results": [
+    {
+      "name": "endless-clock-activation",
+      "status": "PASS",
+      "checks": 443,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-requirement-boundaries",
+      "status": "PASS",
+      "checks": 2528,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-cycle-batch",
+      "status": "PASS",
+      "checks": 94,
+      "sourceSha256": "4fc1943c500796517839de586cfde9cb8212883d0aff313c4ad2a25e31354972"
+    },
+    {
+      "name": "endless-cycle-boundaries",
+      "status": "PASS",
+      "checks": 136,
+      "sourceSha256": "4fc1943c500796517839de586cfde9cb8212883d0aff313c4ad2a25e31354972"
+    },
+    {
+      "name": "endless-cycle-automation",
+      "status": "PASS",
+      "checks": 112,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-cycle-persistence",
+      "status": "PASS",
+      "checks": 24,
+      "sourceSha256": "4fc1943c500796517839de586cfde9cb8212883d0aff313c4ad2a25e31354972"
+    },
+    {
+      "name": "endless-automation-persistence",
+      "status": "PASS",
+      "checks": 29,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-automation-transitions",
+      "status": "PASS",
+      "checks": 6,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-cycle-resource-replay",
+      "status": "PASS",
+      "checks": 87
+    },
+    {
+      "name": "endless-cycle-native-wallets",
+      "status": "PASS",
+      "checks": 108,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-cycle-split",
+      "status": "PASS",
+      "checks": 1100,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-cycle-overflow",
+      "status": "PASS",
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "endless-cycle-controls",
+      "status": "PASS",
+      "controls": 14
+    },
+    {
+      "name": "early-wisp-curve-current",
+      "status": "PASS",
+      "checks": 2802,
+      "controls": [
+        "missing",
+        "boundary",
+        "titan",
+        "forge-cap",
+        "forge-price"
+      ],
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "swift-current-legacy",
+      "status": "PASS",
+      "checks": 173,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    },
+    {
+      "name": "ui-attention-quest",
+      "status": "PASS",
+      "checks": 1225,
+      "sourceSha256": "fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+    }
+  ]
+}

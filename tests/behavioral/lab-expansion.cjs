@@ -8,7 +8,7 @@ function verify(html){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);};
  const near=(a,b,m)=>ok(Math.abs(a-b)<=Math.max(1,Math.abs(b))*1e-11,m+': '+a+' vs '+b);
  const x=app(html),q=x.q,defs=q.expansion(),ids=defs.map(d=>d.id);
- eq(ids.length,14,'fourteen added tracks');eq(new Set(ids).size,14,'unique stable IDs');eq(q.projects().filter(n=>!n.retiredTo).length,23,'twenty-three purchasable Lab tracks including Wisp fundamentals');
+ eq(ids.length,15,'fifteen added tracks');eq(new Set(ids).size,15,'unique stable IDs');eq(q.projects().filter(n=>!n.retiredTo).length,24,'twenty-four purchasable Lab tracks including Support Endurance');
  eq(q.projects().filter(n=>n.retiredTo).map(n=>n.id),['riftattune','formationstudy','prismstudy'],'old paid identities stay retired, not erased');
  const record=[];
  const discount=(v,p)=>Number((BigInt(v)*BigInt(100-p)+99n)/100n);

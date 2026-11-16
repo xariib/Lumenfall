@@ -91,7 +91,7 @@ function preservation(html,baseline){
  approvedRule('buffUntil:0, buffMult:1, supportBuffs:null,','buffUntil:0, buffMult:1, supportBuffs:null, supportRecastUntil:{tide:0,aurora:0},');
  approvedRule('out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);',
   'out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);\n    if(source.supportRecastUntil)out.supportRecastUntil=clonePersistedValue(source.supportRecastUntil);');
- approvedRule('durationMs:ultimate ? 8000 : 4000','durationMs:ultimate ? 1500 : 1000');
+ approvedRule('durationMs:ultimate ? 8000 : 4000','durationMs:3000');
  approvedRule('function simulationNextAbilitySeconds(){','function simulationNextAbilitySeconds(nowMs,clock){');
  approvedRule('next = Math.min(next,Math.max(0,(100-cur)/fillPerSec));',
   'var delay=(id===\'tide\'||id===\'aurora\') ? supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock) : 0;\n    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,delay));');
@@ -128,7 +128,7 @@ function preservation(html,baseline){
   });
   // Verify additive unpurchased Wisp research before comparing every historical
   // field. The frozen oracle predates these identities; no old value is omitted.
-  ['wispdamage','wispcritchance','wispcritdamage'].forEach(function(id){
+  ['wispdamage','wispcritchance','wispcritdamage','supportduration'].forEach(function(id){
    [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5]].forEach(function(row){
     if(Object.prototype.hasOwnProperty.call(s[row[0]],id)){eq(s[row[0]][id],row[1],'new Wisp research retains exact unpurchased default '+row[0]+'.'+id);delete s[row[0]][id];}
    });

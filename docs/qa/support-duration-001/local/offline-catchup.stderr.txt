@@ -1,0 +1,58 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: unchanged baseline state 60 legacy OFF intent
++ actual - expected
+... Skipped lines
+
+  {
+    formationstudy: false,
+    guardmastery: false,
+    lumenstudy: false,
+    measuredinquiry: false,
+...
+    shardstudy: false,
++   supportduration: false,
+    wispascend: false
+  }
+
+    at baselineState (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\offline-catchup.cjs:237:9)
+    at Object.<anonymous> (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\offline-catchup.cjs:384:62)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    wispascend: false,
+    guardmastery: false,
+    riftattune: false,
+    shardstudy: false,
+    lumenstudy: false,
+    formationstudy: false,
+    motestudy: false,
+    prismstudy: false,
+    measuredinquiry: false,
+    supportduration: false
+  },
+  expected: {
+    wispascend: false,
+    guardmastery: false,
+    riftattune: false,
+    shardstudy: false,
+    lumenstudy: false,
+    formationstudy: false,
+    motestudy: false,
+    prismstudy: false,
+    measuredinquiry: false
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

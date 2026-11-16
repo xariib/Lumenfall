@@ -1,0 +1,50 @@
+{
+  "head": "bb93c69fd6fc8fb6e4dbd74c1bb31e894b843956",
+  "reports": [
+    {
+      "jobId": 133234536938,
+      "url": "https://github.com/xariib/Lumenfall/actions/jobs/133234536938",
+      "errors": [
+        "2026-11-16T10:24:38.3654715Z AssertionError [ERR_ASSERTION]: approved F18 duration unaffected by Amplifier Trim",
+        "2026-11-16T10:24:38.3741389Z ##[error]Process completed with exit code 1.",
+        "2026-11-16T10:24:38.5626655Z ##[error]No files were found with the provided path: permanent-evidence/. No artifacts will be uploaded."
+      ]
+    },
+    {
+      "jobId": 133234537013,
+      "url": "https://github.com/xariib/Lumenfall/actions/jobs/133234537013",
+      "errors": [
+        "2026-11-16T10:24:47.3993681Z AssertionError [ERR_ASSERTION]: Lab browser acceptance failed",
+        "2026-11-16T10:24:47.4021010Z ##[error]Process completed with exit code 1.",
+        "2026-11-16T10:24:48.4803821Z AssertionError [ERR_ASSERTION]: start",
+        "2026-11-16T10:24:48.4865475Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "jobId": 133234536692,
+      "url": "https://github.com/xariib/Lumenfall/actions/jobs/133234536692",
+      "errors": [
+        "2026-11-16T10:24:36.6401649Z AssertionError [ERR_ASSERTION]: approved F18 duration unaffected by Amplifier Trim",
+        "2026-11-16T10:24:36.6469531Z ##[error]Process completed with exit code 1.",
+        "2026-11-16T10:27:05.2530329Z {\"status\":\"fail\",\"sourceSha256\":\"0c6861fec8a7fa7f0d9281cceeaf0c5a31f3eb933b5b31ac2075e360b3bea65f\",\"node\":\"v8.3.0\",\"v8\":\"6.0.286.52\",\"phase\":\"effect amplifiertrim raw level 0\",\"checks\":2293,\"error\":\"AssertionError [ERR_ASSERTION]: approved F18 duration\\n    at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:9:36)\\n    at effect (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:121:149)\\n    at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:137:69\\n    at Array.forEach (<anonymous>)\\n    at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:137:45\\n    at Array.forEach (<anonymous>)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:137:7)\\n    at Module._compile (module.js:573:30)\\n    at Object.Module._extensions..js (module.js:584:10)\\n    at Module.load (module.js:507:32)\",\"actual\":2000000003000,\"expected\":2000000001000}",
+        "2026-11-16T10:27:05.2951036Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "jobId": 133234537457,
+      "url": "https://github.com/xariib/Lumenfall/actions/jobs/133234537457",
+      "errors": [
+        "2026-11-16T10:30:43.2785578Z AssertionError [ERR_ASSERTION]: every prior canonical field retained",
+        "2026-11-16T10:30:43.2900374Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "jobId": 133234536727,
+      "url": "https://github.com/xariib/Lumenfall/actions/jobs/133234536727",
+      "errors": [
+        "2026-11-16T10:33:07.0183098Z   failure: { \"message\": \"nine retained IDs, three Wisp fundamentals and fourteen timed expansion projects\", \"stack\": \"Error: nine retained IDs, three Wisp fundamentals and fourteen timed expansion projects\\n    at assert (http://127.0.0.1:40287/index.html?qaScenario=r3-destinations&qaFixture=fresh:19776:61)\\n    at ok (http://127.0.0.1:40287/index.html?qaScenario=r3-destinations&qaFixture=fresh:17311:29)\\n    at same (http://127.0.0.1:40287/index.html?qaScenario=r3-destinations&qaFixture=fresh:17312:24)\\n    at window.runR3DestinationsQa (http://127.0.0.1:40287/index.html?qaScenario=r3-destinations&qaFixture=fresh:17320:3)\\n    at HTMLDocument.run (http://127.0.0.1:40287/index.html?qaScenario=r3-destinations&qaFixture=fresh:20397:32)\" }",
+        "2026-11-16T10:33:09.2760483Z ##[error]Process completed with exit code 1."
+      ]
+    }
+  ]
+}

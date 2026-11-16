@@ -3,7 +3,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require(
 const {app,CLOCK,clone}=require('./forge-expansion-harness.cjs');
 let html=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const mutations={
- duration:['durationMs:ultimate ? 1500 : 1000','durationMs:ultimate ? 8000 : 4000'],
+ duration:["durationMs:3000+300*labExpansionLevel('supportduration')",'durationMs:6000'],
  bypass:["return Math.max(0,supportDeadlineSecondsRemaining(until,nowMs,clock));",'return 0;'],
  save:["out.supportRecastUntil[id]=until;",'out.supportRecastUntil[id]=0;'],
  estimate:['recast[i]=u+1;','recast[i]=u;']
@@ -25,7 +25,7 @@ function seed(q,level,ultimate){
 for(const level of [0,5,10])for(const ultimate of [false,true]){
   const x=app(html),q=x.q;
   q.set(seed(q,level,ultimate));
-  const cycle=6/(1+.08*level),duration=ultimate?1500:1000;
+  const cycle=6/(1+.08*level),duration=3000;
   const estimate=q.profile(99);
   for(const id of ['tide','aurora'])ok(estimate.rates[id]<=1/cycle+1e-9,'HUD Support rate respects independent capped natural interval');
   q.abilities('offline',CLOCK);
@@ -60,10 +60,11 @@ for(const level of [0,5,10])for(const ultimate of [false,true]){
 }
 // Adversarial full charge before every tenth-second step, with both Ultimates
 // staggered by half a natural cycle. Independent interval-union integration
-// proves even this fastest legal pair has downtime.
+// proves each source and the full combined buff still have downtime without
+// earned duration research. Alternating sources can cover time at lower strength.
 for(const stagger of [0,5/3]){
  const x=app(html),q=x.q;q.set(seed(q,10,true));q.get().heroResource.aurora=0;
- const casts={tide:[],aurora:[]},until={tide:0,aurora:0};let uptime=0;
+ const casts={tide:[],aurora:[]},until={tide:0,aurora:0},sourceUptime={tide:0,aurora:0};let uptime=0,fullUptime=0;
  for(let tick=0;tick<600;tick++){
   const at=CLOCK+tick*100;
   q.get().heroResource.tide=100;
@@ -74,10 +75,13 @@ for(const stagger of [0,5/3]){
    if(next!==until[id]){casts[id].push(at);until[id]=next;}
   }
   if(q.buff(at)>1)uptime+=.1;
+  if(q.buff(at)>=2)fullUptime+=.1;
+  for(const id of ['tide','aurora'])if(q.get().supportBuffs.sources[id]&&q.get().supportBuffs.sources[id].until>at)sourceUptime[id]+=.1;
  }
  for(const id of ['tide','aurora'])for(let i=1;i<casts[id].length;i++)ok(casts[id][i]-casts[id][i-1]>=10000/3-1e-4,'each pair cast interval respects exact independent floor');
- ok(uptime<55,'pair downtime exists under unlimited external charge');
- records.push({stagger,uptime,seconds:60,casts});
+ for(const id of ['tide','aurora'])ok(sourceUptime[id]<55,'each unresearched Support still has downtime under unlimited external charge');
+ ok(fullUptime<55,'full combined Support strength still has downtime');
+ records.push({stagger,uptime,fullUptime,sourceUptime,seconds:60,casts});
 }
 // Real scheduler must compose and give matching live/offline results; no enemy
 // deaths in this case, so comparisons cover every save field exactly/tightly.
@@ -119,4 +123,7 @@ if(process.argv.includes('--negative'))for(const id of Object.keys(mutations)){
  const r=require('node:child_process').spawnSync(process.execPath,[__filename,process.argv[2]||'index.html'],{encoding:'utf8',env:{...process.env,SUPPORT_RECAST_MUTANT:id}});
  assert(!r.error);assert.equal(r.status,1);assert(r.stderr.includes('AssertionError'),'actual assertion failure '+id);controls.push(id);
 }
-console.log(JSON.stringify({status:'PASS',checks,records,controls,sourceSha256:crypto.createHash('sha256').update(html).digest('hex')}));
+// This entrypoint is already mandatory in pre-merge CI. Keep the new paid
+// duration/pacing assertions and their causal controls in that required lane.
+const durationResearch=require('./support-duration.cjs').run(html,process.argv.includes('--negative'));
+console.log(JSON.stringify({status:'PASS',checks,records,controls,durationResearch,sourceSha256:crypto.createHash('sha256').update(html).digest('hex')}));

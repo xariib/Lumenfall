@@ -1,0 +1,29 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),assert=require('node:assert/strict');
+const gh=path.resolve('../../validation-evidence/github-cli/bin/gh.exe'),repo='xariib/Lumenfall';
+const required=['pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml','lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml'];
+const extra=['permanent-progression-validation.yml','wisp-scroll-validation.yml','migration-focused-validation.yml'];
+function call(args,input){return cp.execFileSync(gh,args,{encoding:'utf8',input:input===undefined?undefined:JSON.stringify(input),maxBuffer:64*1024*1024});}
+function api(route,input){return JSON.parse(call(['api',...(input?['--method','POST','--input','-']:[]),'repos/'+repo+'/'+route],input)||'null');}
+function status(sha){return api('actions/runs?head_sha='+sha+'&per_page=100').workflow_runs.filter(r=>r.head_sha===sha);}
+function latest(runs,events){const chosen=new Map();for(const r of runs.sort((a,b)=>b.id-a.id)){const key=path.basename(r.path);if((!events||events.includes(r.event))&&!chosen.has(key))chosen.set(key,r);}return chosen;}
+const [action,arg,second]=process.argv.slice(2);
+if(action==='status'){
+ const runs=status(arg),rows=runs.map(r=>({id:r.id,path:r.path,event:r.event,status:r.status,conclusion:r.conclusion,attempt:r.run_attempt,url:r.html_url,head:r.head_sha}));
+ fs.mkdirSync('docs/qa/support-duration-001/remote',{recursive:true});fs.writeFileSync('docs/qa/support-duration-001/remote/status-'+arg.slice(0,8)+'.json',JSON.stringify({sha:arg,observedAt:new Date().toISOString(),runs:rows},null,2)+'\n');
+ console.log(JSON.stringify(rows.map(r=>({id:r.id,path:path.basename(r.path),event:r.event,status:r.status,conclusion:r.conclusion}))));
+}else if(action==='dispatch'){
+ assert(['fix/support-duration-001','main'].includes(arg));const head=api('git/ref/heads/'+arg).object.sha;
+ assert.equal(head,second,'exact intended ref before dispatch');const files=process.argv[5]?[process.argv[5]]:required.concat(extra);
+ for(const file of files){assert(required.concat(extra).includes(file));api('actions/workflows/'+file+'/dispatches',{ref:arg});console.log(file+': dispatched '+head);}
+}else if(action==='build'){
+ const head=api('git/ref/heads/main').object.sha;assert.equal(head,arg,'exact integrated main');const selected=latest(status(head),['workflow_dispatch']);
+ for(const file of required)assert.equal(selected.get(file)?.conclusion,'success','integrated release gate '+file);
+ assert(['true','false'].includes(second));api('actions/workflows/build-android.yml/dispatches',{ref:'main',inputs:{publish:second}});console.log('Android build dispatched for '+head+' publish='+second);
+}else if(action==='run'){
+ const r=api('actions/runs/'+arg);console.log(JSON.stringify({id:r.id,sha:r.head_sha,branch:r.head_branch,event:r.event,status:r.status,conclusion:r.conclusion,created:r.created_at,started:r.run_started_at,attempt:r.run_attempt,url:r.html_url,path:r.path,actor:r.actor?.login}));
+}else if(action==='jobs'){
+ const jobs=api('actions/runs/'+arg+'/jobs?filter=latest&per_page=100').jobs;fs.mkdirSync('docs/qa/support-duration-001/remote',{recursive:true});fs.writeFileSync('docs/qa/support-duration-001/remote/jobs-'+arg+'.json',JSON.stringify(jobs,null,2)+'\n');console.log(JSON.stringify(jobs.map(j=>({id:j.id,name:j.name,status:j.status,conclusion:j.conclusion,failed:j.steps.filter(s=>s.conclusion==='failure').map(s=>s.name)}))));
+}else if(action==='download'){
+ assert(/^\d+$/.test(arg));const target=path.resolve('validation-evidence/android-'+arg);fs.mkdirSync(target,{recursive:true});call(['run','download',arg,'--repo',repo,'--dir',target]);console.log(target);
+}else throw Error('Unknown task delivery action');

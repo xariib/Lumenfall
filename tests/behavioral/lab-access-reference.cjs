@@ -8,7 +8,8 @@ const rules={
  procurement:{depth:100,studies:{lumenstudy:10}},
  catalysis:{depth:200,studies:{motestudy:10}},
  focusprotocol:{depth:125,studies:{guardmastery:15}},
- curriculum:{depth:250,studies:{measuredinquiry:3}}
+ curriculum:{depth:250,studies:{measuredinquiry:3}},
+ supportduration:{depth:500,studies:{wispdamage:50,ultimateanalysis:5}}
 };
 // Fixtures using this helper represent research already earned, never a
 // bypass of production gating. Tests of locked access use unmodified saves.

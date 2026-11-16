@@ -3604,7 +3604,7 @@ var ABILITY_DESC = {
   dps: 'Focused burst ability damage. Ultimate doubles it.',
   ranged: 'Ability damage + Shards. Ultimate doubles both.',
   druid: 'Ability damage + Lumen. Ultimate doubles both.',
-  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 1s. Ultimate: +50% for 1.5s. Each Support has a minimum interval between casts, even with extra charge.'
+  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50% for 3s. Support Endurance research extends future casts up to 6s. Each Support has a minimum interval between casts, even with extra charge.'
 };
 
 var FORMATION_BONDS = [
@@ -4135,6 +4135,10 @@ var LAB_EXPANSION = [
     "desc": "Each completed level reduces the Wisp level required for a future Rarity upgrade by one, up to five fewer levels. Never below level one; prices and Rarity bonuses are separate."
   }
 ];
+// At maximum future-work reductions (0.56) and continuous 8x, each level
+// takes at least 45 days. Level 1 remains below the fastest recast interval;
+// level 2 is the first sustainable per-Support buff: at least 90 days earned.
+LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. Ultimates keep their stronger buff. At maximum Charge Rate, level 2 permits continuous uptime for each Support. Each level takes at least 45 days even at continuous 8x with all work reductions. Existing casts retain their strength and expiry.'});
 var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
@@ -4149,7 +4153,8 @@ var LAB_ACCESS = {
   procurement:{depth:100,studies:{lumenstudy:10}},
   catalysis:{depth:200,studies:{motestudy:10}},
   focusprotocol:{depth:125,studies:{guardmastery:15}},
-  curriculum:{depth:250,studies:{measuredinquiry:3}}
+  curriculum:{depth:250,studies:{measuredinquiry:3}},
+  supportduration:{depth:500,studies:{wispdamage:50,ultimateanalysis:5}}
 };
 function studyAccess(node){
   var rule=LAB_ACCESS[node.id];
@@ -4208,6 +4213,7 @@ function labFutureWorkFactor(node){
 }
 function labExpansionEffect(id,raw){
   var level=Math.min(LAB_EXPANSION_CAPS[id],Math.max(0,Math.floor(raw||0)));
+  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s for future Tide and Aurora buffs; '+(level<2?'level 2 permits continuous uptime at maximum Charge Rate':'continuous uptime at maximum Charge Rate');
   if(id==='labcapacity') return '+'+level+' concurrent Study slots (up to 2 extra)';
   if(id==='procurement') return (2*level)+'% lower future Lab Lumen and Shard costs; excludes itself';
   if(id==='catalysis') return (2*level)+'% lower Mote prices for future Lab speed purchases';
@@ -6916,8 +6922,9 @@ function bestNowFormationPlan(){
  * × Ultimate × Dawnpriest reward multiplier × Quarry/Harvest when applicable. Kill-only Lumen/Shard multipliers
  * do not modify ability-generated resources.
  *
- * Support Buff = +25% for 1s, or +50% for 1.5s, with per-Wisp recast gaps
- * with its Ultimate. Wisp Power, Rarity and Modules do not change this buff.
+ * Support Buff = +25%, or +50% with its Ultimate, for 3s plus 0.3s per
+ * Support Endurance level (up to 6s). Each Wisp keeps its own recast interval.
+ * Wisp Power, Rarity and Modules do not change this buff.
  *
  * Guardian Tap = (5 + 2% of general Active-party passive power) × Tap-specific
  * upgrades × active Support buff × bossTapDamageMult() × Kindling. Auto-Tap uses the exact
@@ -7065,7 +7072,7 @@ function supportAbilityProfile(sp){
   var ultimate = !!(sp && ultimateUnlocked(sp.id));
   return {
     strength:1+((ultimate?0.5:0.25)+0.01*forgeLevel('amplifiertrim'))*(ultimate?astralFactor('astralconvergence'):1),
-    durationMs:ultimate ? 1500 : 1000
+    durationMs:3000+300*labExpansionLevel('supportduration')
   };
 }
 function supportRecastSeconds(sp,nowMs,clock){
@@ -7246,7 +7253,7 @@ function abilityRewardPerCast(sp,level,conductionLevel,ids){
 }
 function ultimateEffectText(sp){
   if(!sp) return 'Ultimate unlocked';
-  if(sp.abilityType==='support') return 'Support buff becomes +'+Number(((50+forgeLevel('amplifiertrim'))*astralFactor('astralconvergence')).toFixed(2))+'% for 1.5s'+(forgeLevel('resonantedge')?'; Resonant Edge hit ×2':'');
+  if(sp.abilityType==='support') return 'Support buff becomes +'+Number(((50+forgeLevel('amplifiertrim'))*astralFactor('astralconvergence')).toFixed(2))+'% for '+(supportAbilityProfile(sp).durationMs/1000)+'s'+(forgeLevel('resonantedge')?'; Resonant Edge hit ×2':'');
   if(sp.abilityType==='ranged') return 'Ability damage and Shards ×2';
   if(sp.abilityType==='druid') return 'Ability damage and Lumen ×2';
   return 'Ability damage ×2';
@@ -8233,9 +8240,10 @@ function forgeDescription(node){
   return node.desc;
 }
 function forgeAbilityDescription(sp){
-  if(sp.abilityType!=='support' || !forgeLevel('amplifiertrim') && !forgeLevel('resonantedge') && !forgeLevel('relay')) return ABILITY_DESC[sp.abilityType];
+  if(sp.abilityType!=='support' || !forgeLevel('amplifiertrim') && !forgeLevel('resonantedge') && !forgeLevel('relay') && !labExpansionLevel('supportduration')) return ABILITY_DESC[sp.abilityType];
   var trim=forgeLevel('amplifiertrim');
-  var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for 1s. Ultimate: +'+(50+trim)+'% for 1.5s. Minimum '+abilityCycleSeconds().toFixed(2)+'s between this Wisp’s casts, including extra charge.';
+  var duration=supportAbilityProfile(sp).durationMs/1000;
+  var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for '+duration+'s. Ultimate: +'+Number(((50+trim)*astralFactor('astralconvergence')).toFixed(2))+'% for '+duration+'s. Support Endurance extends future buffs up to 6s. Minimum '+abilityCycleSeconds().toFixed(2)+'s between this Wisp’s casts, including extra charge.';
   if(forgeLevel('resonantedge')) text+=' Also hits for '+Number((0.10*forgeLevel('resonantedge')).toFixed(2))+' × Wisp Power before ability factors; Ultimate doubles the hit.';
   if(forgeLevel('relay')) text+=' Casts relay '+(2*forgeLevel('relay'))+' charge to powered non-Support Active Wisps.';
   return text;
@@ -9970,7 +9978,7 @@ function wispRarityEffectsMarkup(tier){
     '<span class="wisp-effect-arrow" aria-hidden="true">→</span><div role="group" aria-label="Next rarity effect"><p data-rarity-next>'+(tier>=5?'Maxed':effect(tier+1))+'</p></div></div>';
 }
 function wispUltimateEffectsMarkup(sp){
-  var current=sp.abilityType==='support' ? 'Support buff +'+(25+forgeLevel('amplifiertrim'))+'% for 1s'+(forgeLevel('resonantedge')?'; Resonant Edge hit ×1':'') : sp.abilityType==='ranged' ? 'Ability damage and Shards ×1' : sp.abilityType==='druid' ? 'Ability damage and Lumen ×1' : 'Ability damage ×1';
+  var current=sp.abilityType==='support' ? 'Support buff +'+(25+forgeLevel('amplifiertrim'))+'% for '+(supportAbilityProfile(sp).durationMs/1000)+'s'+(forgeLevel('resonantedge')?'; Resonant Edge hit ×1':'') : sp.abilityType==='ranged' ? 'Ability damage and Shards ×1' : sp.abilityType==='druid' ? 'Ability damage and Lumen ×1' : 'Ability damage ×1';
   return '<div class="ability-effects ultimate-effects wisp-effect-pair"><div role="group" aria-label="Current Ultimate effect"><p data-ultimate-current>'+current+'</p></div>'+
     '<span class="wisp-effect-arrow" aria-hidden="true">→</span><div role="group" aria-label="Next Ultimate effect"><p data-ultimate-next>'+ultimateEffectText(sp)+'</p></div></div>';
 }
@@ -10502,7 +10510,7 @@ function renderLongStudies(){
         Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + studyChoiceAction(lnode,plan) + '</div>');
   });
 
-  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 23 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Research continues for the full time away, beyond the 12-hour combat limit. Queued levels continue while Lumen and Shards are available; already-paid work finishes even if funds run out. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
+  html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 24 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Research continues for the full time away, beyond the 12-hour combat limit. Queued levels continue while Lumen and Shards are available; already-paid work finishes even if funds run out. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
   var studyScroll=document.querySelector('main').scrollTop;
   replaceStudyMarkup(html);
   document.querySelector('main').scrollTop=studyScroll;

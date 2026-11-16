@@ -34,4 +34,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   }
   check(await ev('document.documentElement.scrollWidth<=window.innerWidth+1'),'page fits viewport');records.push({width,scale,motion,projects:Object.keys(rules).length,status:'pass'});
  }
+ // Existing required --access lane also covers the new duration purchase and
+ // its real Wisp text. No workflow permission or new optional gate is needed.
+ await require('./support-duration-ui.cjs')({send,ev,pause,check,records,args});
 };

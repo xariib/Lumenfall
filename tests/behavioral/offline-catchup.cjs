@@ -74,12 +74,12 @@ function clockReference(original){
  return original;
 }
 function supportRuleReference(original){
- // Apply the approved F18 rule to the frozen world, without replacing its
+ // Apply the accepted Support duration/recast rules to the frozen world, without replacing its
  // simulation clock, resource arithmetic, combat or reward implementations.
  function rule(from,to){assert.equal(original.split(from).length,2,'unique approved Support baseline rule');original=original.replace(from,to);}
  rule('buffUntil:0, buffMult:1, supportBuffs:null,','buffUntil:0, buffMult:1, supportBuffs:null, supportRecastUntil:{tide:0,aurora:0},');
  rule('out.supportBuffs = normalizeSupportBuffs(source.supportBuffs);','out.supportBuffs = normalizeSupportBuffs(source.supportBuffs);\n  if(source.supportRecastUntil)out.supportRecastUntil=clonePersistedValue(source.supportRecastUntil);');
- rule('durationMs:ultimate ? 8000 : 4000','durationMs:ultimate ? 1500 : 1000');
+ rule('durationMs:ultimate ? 8000 : 4000','durationMs:3000');
  rule('function simulationNextAbilitySeconds(){','function simulationNextAbilitySeconds(nowMs,clock){');
  rule('next = Math.min(next,Math.max(0,(100-cur)/fillPerSec));',
   'var wait=(id===\'tide\'||id===\'aurora\')?supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock):0;\n    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,wait));');
@@ -228,7 +228,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
   assert.equal(actual[field][id],value,label+' exact unpurchased Forge default '+field+'.'+id);
   delete actual[field][id];
  }
- const newIds=['labcapacity','procurement','catalysis','focusprotocol','fieldnotes','curriculum','bossledger','luminousdistill','sigilcartography','rarityappraisal','modulefabrication','ultimateanalysis','resonantefficiency','adaptivegrowth','wispdamage','wispcritchance','wispcritdamage'];
+ const newIds=['labcapacity','procurement','catalysis','focusprotocol','fieldnotes','curriculum','bossledger','luminousdistill','sigilcartography','rarityappraisal','modulefabrication','ultimateanalysis','resonantefficiency','adaptivegrowth','wispdamage','wispcritchance','wispcritdamage','supportduration'];
  for(const [field,value] of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5]])for(const id of newIds){
   assert.equal(actual[field][id],value,label+' exact unpurchased Lab default '+field+'.'+id);
   delete actual[field][id];

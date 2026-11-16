@@ -230,7 +230,7 @@ function effectCase(id, x, a) {
   } else if (id === 'amplifiertrim') {
     for(const ultimate of [false,true]){
       const s=battle(q,['tide']);s.research[id]=cap;s.wispUltimate.tide=ultimate;s.heroRarity.tide=ultimate?5:0;q.set(s);cast(q,'tide');
-      a.eq(q.get().supportBuffs.sources.tide.mult,(ultimate?1.5:1.25)+.05,'actual stronger Support snapshot');a.eq(q.get().supportBuffs.sources.tide.until,CLOCK+(ultimate?1500:1000),'approved F18 duration unaffected by Amplifier Trim');
+      a.eq(q.get().supportBuffs.sources.tide.mult,(ultimate?1.5:1.25)+.05,'actual stronger Support snapshot');a.eq(q.get().supportBuffs.sources.tide.until,CLOCK+3000,'base duration unaffected by Amplifier Trim');
       q.save();a.eq(q.accept(q.decode(q.export())).supportBuffs,q.get().supportBuffs,'paid Support snapshot accepted by backup normalization');
     }
   } else if (id === 'dualchannel') {
