@@ -70,3 +70,12 @@ with current live/offline parity and exact archived PR15 mechanics/hashes.
 [Boost-queue UI reproduction](boost-queue-ui.json):993 checks/all18 profiles PASS;
 [intended next-lock defect](boost-next-lock-control.json) remains caught. The
 remote CDP input timeout is retained without asserting an unproven root cause.
+
+Later core verification: [all16 suites PASS](later-core-summary.json), including
+the original precise clock activation witness and [all14 causal defects](clock-controls.json).
+The captured frame-clock probe now explicitly checks its
+[unmodified historical input](frame-clock-captured-positive.json) before its
+[same-input clock mutation](frame-clock-captured-negative.json); ordinary current
+3s live/offline/cold-frame checks remain unchanged. No bounds or expected failure
+messages relaxed. Source product remainsfc407785…5539c. Tree's first input timeout
+is retained in `third-ci-tree-input-detail.json.gz`; unchanged retry passes.

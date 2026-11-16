@@ -4,6 +4,13 @@
 // physical Number fields use the repository's established parity tolerance.
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),A=require('../../scripts/lib/game-amount.cjs'),build=require('./endless-cycle-source.cjs'),{app,CLOCK,clone}=require('./forge-expansion-harness.cjs');
 let source=process.argv[2]?fs.readFileSync(process.argv[2],'utf8'):build(fs.readFileSync('index.html','utf8'));
+// Only the captured causal-control pair uses its original Support input.
+// Normal live/offline and cold-frame tests still run current production timing.
+if(process.env.LUMENFALL_CYCLE_CAPTURED_SUPPORT==='1'){
+ const marker="durationMs:3000+300*labExpansionLevel('supportduration')";
+ assert.equal(source.split(marker).length,2,'one captured Support input');
+ source=source.replace(marker,'durationMs:ultimate ? 1500 : 1000');
+}
 if(process.env.LUMENFALL_CYCLE_MUTATION==='frameClock'){
  function edit(a,b){assert.equal(source.split(a).length,2,a);source=source.replace(a,b);}
  edit("if(state.achieved.autotap&&clock&&clock.binary)return canonicalAutomationNext('_autoTapAccum',clock.binary);",'/* intentional original frame-dependent next tap */');

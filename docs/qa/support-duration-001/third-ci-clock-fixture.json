@@ -1,0 +1,10 @@
+{
+  "head": "4d09b7491370e916d97825c93923d2c440bc4a87",
+  "run": 43857851726,
+  "job": 133266634404,
+  "failure": "Missing expected exception: rounded activation reproduces the captured stall",
+  "expectedException": "Authoritative simulation stalled without elapsed-time or state progress",
+  "test": "tests/behavioral/endless-clock-activation.cjs",
+  "disposition": "The captured eighth-window stall predates the new Support timing. Hold its historical Support duration at 1s/1.5s alongside its existing historical Rift curve. All unmodified current-source live/offline positive paths remain. Exact original stall exception is still mandatory.",
+  "localResult": "PASS 443 checks on product fc407785579ce6f0505f492aabe1d98ba68e53e8196f86a030c9046c39c5539c"
+}
