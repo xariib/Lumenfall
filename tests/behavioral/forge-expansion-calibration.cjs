@@ -153,13 +153,13 @@ function savedSupportBounds(source, checks) {
 function supportClockLowerBound(source, checks) {
   // A saved cast deadline is rounded at epoch precision; the scheduler retains
   // finer phase. At this legitimate partial bar every six-second cycle has a
-  // slightly shortened one-second Support cast. Assuming exact uptime made
+  // slightly shortened three-second Support cast. Assuming exact uptime made
   // the old proposed lower bound exceed actual DPS by more than its slack.
   const a = app(source), q = a.q;
   const s = fixedState(q, {party: ['aurora'], auto: false, phase: [17.0001], forge: {amplifiertrim: 5}});
-  // 1,266,500 passive × (1 + .30 × 1/6), divided by .006 regen,
+  // 1,266,500 passive × (1 + .30 × 3/6), divided by .006 regen,
   // with the original half-HP-unit offset below the ideal boundary.
-  s.enemyMaxHp = 221637499.5;
+  s.enemyMaxHp = 242745832.83333334;
   s.enemyHp = 100000000;
   q.set(s);
   const assessment = q.assessment(120);

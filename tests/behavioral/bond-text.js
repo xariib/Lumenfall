@@ -42,7 +42,7 @@ window.runBondTextQa=function(b,assert){
     ok(!/bond|formation|\+.*(?:Stone|Titan)/i.test(desc),sp.id+' ability does not repeat Bond partnerships');
     wisps.forEach(function(partner){ok(!desc.includes(partner.name),sp.id+' ability does not list partner '+partner.id);});
     if(sp.abilityType==='support'){
-      ok(/passive Wisp damage/.test(desc)&&/Guardian Tap/.test(desc)&&/\+25% for 1s/.test(desc)&&/\+50% for 1\.5s/.test(desc),sp.id+' retains buff duration and targets');
+      ok(/passive Wisp damage/.test(desc)&&/Guardian Tap/.test(desc)&&/\+25% for 3s/.test(desc)&&/\+50% for 3s/.test(desc),sp.id+' retains buff duration and targets');
     }else{
       ok(/ability damage/i.test(desc)&&/Ultimate doubles/.test(desc),sp.id+' retains ability damage and Ultimate explanation');
       if(sp.abilityType==='ranged')ok(/Shards/.test(desc)&&/doubles both/.test(desc),sp.id+' retains Shard generation');

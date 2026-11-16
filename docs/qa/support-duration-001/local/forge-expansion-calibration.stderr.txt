@@ -1,0 +1,27 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: fixed world retains its encounter
+
+121 !== 120
+
+    at C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-calibration.cjs:73:14
+    at simulationApplyPushPassive (eval at app (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-harness.cjs:143:3), <anonymous>:11351:9)
+    at run (eval at app (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-harness.cjs:143:3), <anonymous>:10227:12)
+    at run.next (<anonymous>)
+    at cursor.<computed> [as next] (eval at app (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-harness.cjs:143:3), <anonymous>:10332:187)
+    at Object.advanceAuthoritativeTime [as advance] (eval at app (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-harness.cjs:143:3), <anonymous>:10335:21)
+    at observe (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-calibration.cjs:79:17)
+    at supportClockLowerBound (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-calibration.cjs:168:18)
+    at verify (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-calibration.cjs:367:24)
+    at Object.<anonymous> (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\forge-expansion-calibration.cjs:379:18) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 121,
+  expected: 120,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

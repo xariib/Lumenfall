@@ -1,6 +1,6 @@
 # SUPPORT_DURATION_001 — Support uptime and damage display explanation
 
-Status: in progress; Lab progression choice awaiting user response. No gameplay changes.
+Status: local implementation and focused checks passing; broader validation in progress.
 
 ## Original request and scope
 
@@ -37,15 +37,36 @@ Accepted direction: start Support at 3 seconds; duration should grow toward
 - The Wisp menu displays `wispPower`, before those passive multipliers and buffs.
   `abilityBurstDamage` is a separate calculation with ability-specific factors.
 
-## Pending decision and acceptance
+## Accepted direction and acceptance
 
 Explained that existing Charge Rate already reaches 3.33 seconds, so upgrading
 duration to 5–6 seconds permits sustained uptime without an additional cooldown
-Lab. Follow-up asks whether to use a new Support-duration Lab with existing
-Charge Rate, or duration upgrades plus a separate Ultimate cooldown Lab.
-Do not silently add a redundant study or change all Wisp cooldowns. Prices,
-levels, access gates, Ultimate duration and cooldown scope are not yet agreed.
-Await the design response before implementing the coupled balance change.
+Lab. The user's subsequent correction established that the key constraint is
+earning sustained uptime over a substantial period, rather than an easy upgrade.
+User correction: earning 100% uptime must take time. User selected **about
+3 months after unlocking the late-game research, even with continuous 8x and
+maximum work reductions**. The timing requirement is accepted, not pending.
+
+## Implementation decision, announced before editing
+
+- Both Supports start at 3 seconds. Ultimate retains +50% strength (plus existing
+  purchased strength modifiers); duration comes from research for both forms.
+- New **Support Endurance**: ten levels, +0.3 seconds per level, maximum 6s.
+  Access: record Rift 500, completed Wisp Damage 50 and Ultimate Analysis 5.
+  Initial prices: 5,000,000,000 Lumen and 200,000,000 Shards, doubling each level;
+  existing Procurement discounts remain applicable.
+- Work per level: 55,542,858 seconds before earned reductions. At best 0.56
+  future-work factor and continuous 8x this is exactly 45 days per level.
+  Level 1 lasts 3.3s, below the existing 10/3-second recast floor; level 2 lasts
+  3.6s, enabling each source's sustained uptime after at least 90 dedicated days.
+  Full track: at least 450 days under those fastest-case assumptions.
+- Existing Charge Rate supplies cooldown development; no redundant cooldown Lab
+  or change to other Wisp timing. Saved buff strength/deadlines are untouched.
+- The target is each Support's own buff/full combined bonus. Alternating two
+  sources can cover time earlier at lower strength; explained to the user.
+
+These choices implement the user's duration/time requirements. No unrelated
+progression or general project instruction is changed.
 
 After duration selection: update actual casts, duration descriptions and focused
 tests; prove early gaps and late continuous uptime, retained independent recast
@@ -66,6 +87,29 @@ remain unverified at baseline.
   32 KiB. `git diff --check` PASS; checkpoint reviewed, no product changes.
 - Worktree creation initially failed on Windows path length; retried with
   command-local `core.longpaths=true`, successfully preserving the complete tree.
-- Changed files: this task checkpoint and baseline evidence only.
-- Next action: resolve the Lab progression choice, then implement and validate the
-  scoped gameplay change. No integration, new APK or completion claim yet.
+- Local candidate HTML SHA256 `0c6861fec8a7fa7f0d9281cceeaf0c5a31f3eb933b5b31ac2075e360b3bea65f`.
+  New Support test PASS 3,331 assertions/four controls; actual paid queue reaches
+  level 2 at 90 days with 90 paid renewals. Recast 1,994/four controls, Lab expansion
+  2,781/ten controls, boundary 2,346, stress, long-tail 353, contribution 8,099,
+  Swift and Forge/Lab pacing 568 PASS. Raw local results are under
+  `../qa/support-duration-001/local/` (not all checks collected yet).
+- Changed product: only Support duration/profile/text and additive Lab catalog,
+  access and effect. Tests/oracles updated to the new accepted timing/catalog;
+  new core/mobile checks called by the existing required Support and Lab access
+  entrypoints. Workflow files are unchanged: first push rejected a workflow edit
+  because installed OAuth credentials lack workflow scope. Removed the need for
+  that permission by extending the tests already run by required CI.
+- Browser: new mobile Support checks PASS 206; all nine access rules PASS 1,082
+  across 12 width/text/motion profiles outside sandbox. Sandbox run initially
+  failed application-ready; no product change was made to resolve that run.
+  Browser Chrome 157.0.8103.78. Modern browser is not exact WebView60 acceptance.
+- Forge calibration PASS 3,134 after updating its one-second near-regeneration
+  fixture to the exact three-second time average, retaining precision/HP checks.
+- Open validation: original offline comparison first caught the additive Lab ID
+  in default OFF intent; added its explicit zero/OFF default assertions before
+  comparing all original fields. Full 190-case browser and offline reruns ongoing.
+  Legacy Lab test invoked on Node24 correctly refused: requires actual V8 6.0;
+  the unchanged required CI lane supplies that runtime. No local legacy PASS claim.
+- Next action: finish browser/precision/offline/full regression; fix any introduced
+  issues, review complete diff, save evidence, open PR and pass required gates,
+  integrate and complete signed Android acceptance. No completion/archive claim.

@@ -222,7 +222,7 @@ test('whole/split live/offline charge and cast chronology match at legacy overle
   }
 });
 test('Support durations remain independent; natural-cycle ratios exclude external charge',()=>{
-  const b=app().b;b.set(seed(b,10));assert.equal(b.profile({id:'tide'}).durationMs,1000);
+  const b=app().b;b.set(seed(b,10));assert.equal(b.profile({id:'tide'}).durationMs,3000);
   for(const level of [0,5,10]){close(1/b.cycle(level),(1+0.08*level)/6,'approved normal uptime');close(1.5/b.cycle(level),1.5*(1+0.08*level)/6,'approved Ultimate uptime');assert(1.5/b.cycle(level)<=0.45);}
 });
 test('capped Farm cadence crosses tiny clock boundaries and retains whole/split parity',()=>{

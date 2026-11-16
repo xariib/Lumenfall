@@ -91,7 +91,7 @@ function preservation(html,baseline){
  approvedRule('buffUntil:0, buffMult:1, supportBuffs:null,','buffUntil:0, buffMult:1, supportBuffs:null, supportRecastUntil:{tide:0,aurora:0},');
  approvedRule('out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);',
   'out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);\n    if(source.supportRecastUntil)out.supportRecastUntil=clonePersistedValue(source.supportRecastUntil);');
- approvedRule('durationMs:ultimate ? 8000 : 4000','durationMs:ultimate ? 1500 : 1000');
+ approvedRule('durationMs:ultimate ? 8000 : 4000','durationMs:3000');
  approvedRule('function simulationNextAbilitySeconds(){','function simulationNextAbilitySeconds(nowMs,clock){');
  approvedRule('next = Math.min(next,Math.max(0,(100-cur)/fillPerSec));',
   'var delay=(id===\'tide\'||id===\'aurora\') ? supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock) : 0;\n    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,delay));');
