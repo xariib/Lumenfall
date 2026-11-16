@@ -125,7 +125,7 @@ function endpointCases(input){
     }
     // PR15 predates these additive identities. Require their exact unpurchased
     // defaults before retaining the complete frozen historical endpoint hash.
-    for(const id of ['wispdamage','wispcritchance','wispcritdamage']){
+    for(const id of ['wispdamage','wispcritchance','wispcritdamage','supportduration']){
       for(const [field,value]of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5],['studyBoostHours',8]]){
         eq(historicalEndpoint[field][id],value,'new Wisp research stays unpurchased in PR15 oracle '+field+'.'+id);
         delete historicalEndpoint[field][id];
@@ -155,9 +155,12 @@ if(process.argv.includes('--record-baseline')){
   for(let i=0;i<endpoints.length;i+=2){
     eq({...endpoints[i],kind:'offline'},endpoints[i+1],'current live and offline endpoints agree at the full reward rate');
   }
-  // Keep every PR15 endpoint under its historical Deed and Rift inputs.
+  // Keep every PR15 endpoint under its historical Deed, Rift and Support inputs.
   // Actual endpoints above exercise the current curve and receipt paths.
-  const historicalSource=require('./legacy-rift-curve-reference.cjs')(source);
+  let historicalSource=require('./legacy-rift-curve-reference.cjs')(source);
+  const supportDuration="durationMs:3000+300*labExpansionLevel('supportduration')";
+  assert.equal(historicalSource.split(supportDuration).length,2,'one historical Support policy marker');
+  historicalSource=historicalSource.replace(supportDuration,'durationMs:ultimate ? 1500 : 1000');
   const historicalEndpoints=endpointCases(require('./legacy-automation-deeds-reference.cjs')(historicalSource));
   eq(historicalEndpoints,JSON.parse(fs.readFileSync(receiptPath)).endpoints,'all endpoints under historical inputs exactly match PR15');
 }

@@ -158,3 +158,21 @@ Branch/worktree unchanged. No unrelated checkout or chat modified.
   Existing GitHub CLI helper works; OAuth cannot edit workflows. Keep workflows
   byte-identical and new tests in existing required entrypoints. Physical phone,
   exact WebView60 DOM and TalkBack remain unverified; self-review only.
+
+### Second CI correction
+
+Head47849a74: Comet, Lab (including V8 6.0), Tree, Shared UI, Wisp scroll and
+Permanent progression PASS; isolated offline PASS. Forge workshop preservation
+also needed explicit new Lab0/OFF/default assertions; corrected,479 checks/four
+controls PASS locally. Auto-Ascend feedback now similarly verifies those defaults
+and applies the historical1/1.5s Support policy only when reproducing PR15's
+archived endpoint hashes. Current unmodified3s endpoints retain full live/offline
+checks.435 assertions/four controls PASS; archived originals are unchanged.
+
+Pre-merge's boost-queue input dispatch timed out after73 checks/four passing
+profiles. Same-source local reproduction passes993 assertions/all18 profiles;
+the next-lock control still fails at its intended selection assertion. No timeout,
+test or input contract changed. [Second CI evidence](../qa/support-duration-001/second-ci-failures.json).
+Migration focused run43854621487 dispatched on exact47849a74; queued without
+jobs at last observation. Next push contains only these test adapters/evidence;
+product remains SHA256fc407785…5539c. Repeat exact-head required CI before merge.

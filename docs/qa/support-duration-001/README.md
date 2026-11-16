@@ -62,3 +62,11 @@ Corrected-source checks: [all Lab mobile purchases](lab-expanded-mobile.json)
 1,286 PASS, [six focused browser cases](focused-browser.json) PASS. Visually
 inspected [new Lab card](browser-access/support-endurance-390.png); current and
 next durations, long work, both red missing prices and five-group ordering fit.
+
+[Second CI](second-ci-failures.json): six active workflows plus isolated offline
+PASS; Forge preservation caught the remaining additive default field. Explicit
+zero/OFF assertions fix it,479 checks PASS. Auto-Ascend feedback435 checks PASS
+with current live/offline parity and exact archived PR15 mechanics/hashes.
+[Boost-queue UI reproduction](boost-queue-ui.json):993 checks/all18 profiles PASS;
+[intended next-lock defect](boost-next-lock-control.json) remains caught. The
+remote CDP input timeout is retained without asserting an unproven root cause.

@@ -44,7 +44,7 @@ function verify(source){
  }
  // Old saves gain exactly zero/OFF entries. All old fields and paid work match.
  const legacy=F.seed(b);legacy.research.arcanecal=20;legacy.research.masterwork=21;legacy.activeStudies=[{id:'guardmastery',slot:0,remainingSec:123,totalDurationSec:321,speedMult:2}];
- b.set(legacy);q.set(legacy);const migrated=F.clone(q.get());for(const id of ids){eq(migrated.research[id],0,'missing new level is zero');eq(migrated.researchQueue[id],false,'new queue is OFF');delete migrated.research[id];delete migrated.researchQueue[id];}for(const id of ['wispdamage','wispcritchance','wispcritdamage'])for(const [field,value]of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5],['studyBoostHours',8]]){eq(migrated[field][id],value,'new Lab research retains unpurchased default '+field+'.'+id);delete migrated[field][id];}
+ b.set(legacy);q.set(legacy);const migrated=F.clone(q.get());for(const id of ids){eq(migrated.research[id],0,'missing new level is zero');eq(migrated.researchQueue[id],false,'new queue is OFF');delete migrated.research[id];delete migrated.researchQueue[id];}for(const id of ['wispdamage','wispcritchance','wispcritdamage','supportduration'])for(const [field,value]of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5],['studyBoostHours',8]]){eq(migrated[field][id],value,'new Lab research retains unpurchased default '+field+'.'+id);delete migrated[field][id];}
  const preserved=F.clone(b.get());
  preserved.riftLook={backdrop:'default',wisp:'default',enemy:'default',motion:true};
  eq(migrated,preserved,'all original save fields and paid work preserved, with exact default appearance preferences');

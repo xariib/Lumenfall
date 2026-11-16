@@ -1,0 +1,165 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: all endpoints under historical inputs exactly match PR15
++ actual - expected
+
+  [
+    {
+      ascends: 0,
++     depth: 106,
++     kills: 74,
+-     depth: 105,
+-     kills: 73,
+      kind: 'live',
+      mode: 'push',
+      prisms: 0,
++     stateSha256: '807ece0aa1b9754c9c4cca0eeae07715db75ad16de192c01a985d2fe02025ed5'
+-     stateSha256: 'e14167484d1e66b3634b08f8001ca589b0c55fb66551000475c66bdc1fcf887e'
+    },
+    {
+      ascends: 0,
++     depth: 106,
++     kills: 74,
+-     depth: 105,
+-     kills: 73,
+      kind: 'offline',
+      mode: 'push',
+      prisms: 0,
++     stateSha256: '807ece0aa1b9754c9c4cca0eeae07715db75ad16de192c01a985d2fe02025ed5'
+-     stateSha256: 'e14167484d1e66b3634b08f8001ca589b0c55fb66551000475c66bdc1fcf887e'
+    },
+    {
+      ascends: 1174108462039,
+      depth: 30,
+      kills: 35223253861169,
+
+    at eq (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\auto-ascend-feedback.cjs:8:42)
+    at Object.<anonymous> (C:\Users\xarib\Documents\ChatGPT\Lumenfall\validation-evidence\support-duration\tests\behavioral\auto-ascend-feedback.cjs:162:3)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      mode: 'push',
+      kind: 'live',
+      kills: 74,
+      ascends: 0,
+      prisms: 0,
+      depth: 106,
+      stateSha256: '807ece0aa1b9754c9c4cca0eeae07715db75ad16de192c01a985d2fe02025ed5'
+    },
+    {
+      mode: 'push',
+      kind: 'offline',
+      kills: 74,
+      ascends: 0,
+      prisms: 0,
+      depth: 106,
+      stateSha256: '807ece0aa1b9754c9c4cca0eeae07715db75ad16de192c01a985d2fe02025ed5'
+    },
+    {
+      mode: 'auto',
+      kind: 'live',
+      kills: 35223253861169,
+      ascends: 1174108462039,
+      prisms: 2348216924087,
+      depth: 30,
+      stateSha256: '5ffaa475bb403940d7a9728074429fd7a9a568b47f9c6e76b6a10f8e25bf398d'
+    },
+    {
+      mode: 'auto',
+      kind: 'offline',
+      kills: 35223253861169,
+      ascends: 1174108462039,
+      prisms: 2348216924087,
+      depth: 30,
+      stateSha256: '5ffaa475bb403940d7a9728074429fd7a9a568b47f9c6e76b6a10f8e25bf398d'
+    },
+    {
+      mode: 'farm',
+      kind: 'live',
+      kills: 22,
+      ascends: 0,
+      prisms: 0,
+      depth: 32,
+      stateSha256: 'f4d4128f349e7a4203fe301283289205c7e1a85b78c63fee4608006fb8f95e70'
+    },
+    {
+      mode: 'farm',
+      kind: 'offline',
+      kills: 22,
+      ascends: 0,
+      prisms: 0,
+      depth: 32,
+      stateSha256: 'f4d4128f349e7a4203fe301283289205c7e1a85b78c63fee4608006fb8f95e70'
+    }
+  ],
+  expected: [
+    {
+      mode: 'push',
+      kind: 'live',
+      kills: 73,
+      ascends: 0,
+      prisms: 0,
+      depth: 105,
+      stateSha256: 'e14167484d1e66b3634b08f8001ca589b0c55fb66551000475c66bdc1fcf887e'
+    },
+    {
+      mode: 'push',
+      kind: 'offline',
+      kills: 73,
+      ascends: 0,
+      prisms: 0,
+      depth: 105,
+      stateSha256: 'e14167484d1e66b3634b08f8001ca589b0c55fb66551000475c66bdc1fcf887e'
+    },
+    {
+      mode: 'auto',
+      kind: 'live',
+      kills: 35223253861169,
+      ascends: 1174108462039,
+      prisms: 2348216924087,
+      depth: 30,
+      stateSha256: '5ffaa475bb403940d7a9728074429fd7a9a568b47f9c6e76b6a10f8e25bf398d'
+    },
+    {
+      mode: 'auto',
+      kind: 'offline',
+      kills: 35223253861169,
+      ascends: 1174108462039,
+      prisms: 2348216924087,
+      depth: 30,
+      stateSha256: '5ffaa475bb403940d7a9728074429fd7a9a568b47f9c6e76b6a10f8e25bf398d'
+    },
+    {
+      mode: 'farm',
+      kind: 'live',
+      kills: 22,
+      ascends: 0,
+      prisms: 0,
+      depth: 32,
+      stateSha256: 'f4d4128f349e7a4203fe301283289205c7e1a85b78c63fee4608006fb8f95e70'
+    },
+    {
+      mode: 'farm',
+      kind: 'offline',
+      kills: 22,
+      ascends: 0,
+      prisms: 0,
+      depth: 32,
+      stateSha256: 'f4d4128f349e7a4203fe301283289205c7e1a85b78c63fee4608006fb8f95e70'
+    }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
