@@ -53,6 +53,10 @@ function verify(html){
   if(allowed){eq(q.get().prisms,1000+gain,'exact quoted manual credit');eq(q.get().ascendRewardedDepth,clear,'benchmark advances to actual clear');eq(q.get().ascendCount,initial.ascendCount+1,'one manual reset');eq(q.get().activeStudies,initial.activeStudies,'manual reset preserves paid work');}
   else eq(q.get(),initial,'rejected reset preserves every field');
  }
+ for(const record of [Math.pow(2,53),1e30]){
+  const s=q.fresh();s.depth=record+1;s.maxDepthEver=record*2;s.ascendRewardedDepth=record;q.set(s);const initial=clone(q.get());
+  ok(t.next()>record,'legacy-wide record shows a strictly higher representable next Rift');eq(t.eligible(),false,'legacy-wide repeated clear cannot reset');eq(q.prismPreview().gain,0,'legacy-wide repeated clear haszero reward');eq(q.ascend(),false,'actual wide repeat is rejected');eq(q.get(),initial,'wide denial preserves all progress');
+ }
  // Hostile imported ON state, plus hostile in-memory toggle, cannot create
  // online/offline resets or Prism rewards at a once-farmable tiny target.
  for(const kind of ['live','offline']){

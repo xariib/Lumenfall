@@ -1,0 +1,24 @@
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: original boss HP rises over one thousand complete cast cycles
+    at Object.ok (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:288:42)
+    at supportClockLowerBound (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:171:10)
+    at verify (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:369:24)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:381:18)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

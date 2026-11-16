@@ -36,7 +36,7 @@ for(const c of [14,15,16,19,20,25,50,119,250])for(const benchmark of [0,15,c,500
  const before=clone(x.b.get());eq(x.b.preview().gain,want,'preview oracle');eq(x.b.get(),before,'preview purity');
  x.b.manual();eq(x.b.get().prisms,1000+want,'actual manual wallet credit');eq(x.b.get().nodes.swift,tree,'paid Tree retained');eq(x.b.get().longStudyLevels.prismstudy,lab,'completed Lab retained');eq(x.b.get().ascendRewardedDepth,c<15?benchmark:Math.max(c,benchmark),'reward benchmark');
  x.b.save();eq(x.storage.get(P),x.storage.get(R),'two saved slots identical');const restart=app(x.storage);eq(restart.b.get().prisms,1000+want,'cold load preserves payout');eq(restart.b.get().nodes.swift,tree,'cold load preserves Tree');
- for(const kind of ['live','offline']){const y=app();s.autoAscendEnabled=true;y.b.set(s);const result=y.b.advance(.001,{kind,clockStartMs:2000000000000});eq(result.ascends,c>=15?1:0,kind+' real auto count');eq(y.b.get().prisms,1000+want,kind+' actual auto payout');if(c>=15)eq(result.ascendGains[0],want,kind+' summary credit');}
+ for(const kind of ['live','offline']){const y=app();s.autoAscendEnabled=true;y.b.set(s);const result=y.b.advance(.001,{kind,clockStartMs:2000000000000});eq(y.b.get().autoAscendEnabled,false,kind+' imported automation is retired');eq(result.ascends,0,kind+' never auto Ascends');eq(y.b.get().prisms,1000,kind+' creates no automatic Prism payout');eq(result.ascendGains,[],kind+' no automatic credit receipt');}
  records.push({c,benchmark,tree,lab,want});
 }
 // Real purchase, repeat cap boundaries and no accidental refund/migration.
@@ -66,12 +66,13 @@ for(const [c,benchmark,tree,lab] of [[20,100,7,0],[25,0,10,10],[50,20,9,5],[119,
    eq(x.b.get(),before,'failed transaction preserves complete original state');
    x.fail(false,false);x.b.offline((r,e)=>{result=r;error=e;});x.drain();
   }
-  checks++;assert.ifError(error);eq(x.b.get().prisms,1000+want,'offline commits exact payout once');
-  eq(result.ascends,1,'offline transaction records actual Ascend');
+  checks++;assert.ifError(error);eq(x.b.get().prisms,1000,'offline commits without automatic Prism payout');
+  eq(result.ascends,0,'offline transaction never Ascends');
   const accepted=clone(x.b.get());eq(x.b.offline(),null,'same return window is not replayed');
   eq(x.b.get(),accepted,'repeated return is a no-op');
   x.fail(false,false);x.b.save();const restarted=app(x.storage);
-  eq(restarted.b.get().prisms,1000+want,'offline cold restart keeps exact payout');
+  eq(restarted.b.get().prisms,1000,'offline cold restart keeps wallet');
+  restarted.b.manual();eq(restarted.b.get().prisms,1000+want,'manual choice after return credits exact eligible reward');
  }
 }
 console.log(JSON.stringify({status:'pass',source_sha256:crypto.createHash('sha256').update(source).digest('hex'),checks,payoutCases:records.length,routes:['actual manual handler','live/offline authoritative auto','cold load','actual backup restore','primary corruption/recovery','failed write/retry','real Swift purchase','atomic offline failure/rollback/retry'],scope:'full game logic with DOM presentation stubbed; not browser layout or Android acceptance'}));

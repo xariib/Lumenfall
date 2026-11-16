@@ -51,7 +51,7 @@ function verify(html){
   eq(q.get().shards,s.shards+11638140,'old Shards plus literal original Swift10..27 restitution');
   eq(q.get().prisms,s.prisms+110,'old Prisms plus literal Echo6..9 restitution');
   eq(q.get().feedbackMigration.receipts['node.echo'].amounts.prisms,[16,22,30,42],'separate original Echo purchase receipt');
-  eq(q.get().comets,s.comets+350,'actual schema2 retirement compensation is separate from old wallets');
+  eq(q.get().comets,s.comets+450,'schema2 retained entitlements350 and retired Auto-Ascend100 are separate from old wallets');
   eq(q.get().owned,{autoascend:true,meteor:false,starcall:false},'old automation retained; no new command granted');
   eq(q.get().cometClaims,{policy:'comet-commands-001',retired:{comettrials:'settled',rifttrail:'settled',starfallcrest:'settled'},deeds:{}},'every old paid Comet entitlement and once-only credit retained');
   const stable=clone(q.get());q.set(stable);eq(q.get(),stable,'idempotent canonicalization');q.save();eq(app(html,x.storage).q.get(),stable,'old saved state retained with defaults');
@@ -72,7 +72,7 @@ function verify(html){
  // affect the payout. Queue/Mote intent must survive without a new free tier.
  function paidAscendState(r,automatic,cleared=20){
   const s=seed(r);s.depth=cleared+1;s.enemyDepth=s.depth;s.enemyHp=s.enemyMaxHp=100;
-  s.ascendCount=2;s.ascendRewardedDepth=40;s.sigilResonanceUses=3;
+  s.ascendCount=2;s.ascendRewardedDepth=19;s.sigilResonanceUses=3;
   s.autoAscendEnabled=automatic;s.autoAscendTargetDepth=cleared+1;
   s.schemaVersion=2;s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};
   s.nodes.echo=10;s.nodes.swift=7;s.research.charge=28;
@@ -106,7 +106,7 @@ function verify(html){
   const before=clone(r.get());eq(before.activeStudies.length,7,route+' starts with seven paid records');
   eq(r.preview(21).gain,prismReward(20,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),route+' pending Prism Study gives no early payout');
   if(route==='manual')r.ascend();else{
-   const sum=r.advance(0,{kind:route,clockStartMs:s.lastSeen});eq(sum.kills,1,route+' actual target-boss death');eq(sum.ascends,1,route+' kill triggers one Auto-Ascend');eq(sum.ascendGains,[prismReward(20,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy)],route+' Auto-Ascend summary payout');eq(sum.studiesStarted,0,route+' no extra Study start');eq(sum.studySpeedPurchases,0,route+' paid speed is not bought again');
+   const sum=r.advance(0,{kind:route,clockStartMs:s.lastSeen});eq(sum.kills,1,route+' actual target-boss death');eq(sum.ascends,0,route+' kill never auto Ascends');eq(sum.ascendGains,[],route+' no automatic payout');eq(sum.studiesStarted,0,route+' no extra Study start');eq(sum.studySpeedPurchases,0,route+' paid speed is not bought again');r.ascend();
   }
   assertActualAscend(r,before,20,route);
   eq(r.save(),true,route+' successful post-Ascend save');const accepted=clone(r.get());eq(y.storage.get(P),y.storage.get(R),route+' both post-Ascend slots agree');eq(app(html,y.storage).q.get(),accepted,route+' cold reload retains all paid value');
@@ -122,12 +122,13 @@ function verify(html){
   if(failure==='primary'){
    ok(error,'seven-slot offline primary failure reported');eq(r.get(),before,'failed offline Ascend rolls back every field');y.fail(false,false);r.offline((v,e)=>{result=v;error=e;});y.drain();
   }
-  checks++;assert.ifError(error);eq(result.ascends,1,'seven-slot offline transaction actually Ascends');eq(r.get().ascendCount,before.ascendCount+1,'seven-slot offline Ascend count');ok(r.get().depth<before.depth,'offline run resets before further progress');eq(r.get().sigilResonanceUses,0,'offline Ascend resets Resonate use count');
-  eq(r.get().prisms,before.prisms+prismReward(120,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),'seven-slot offline exact payout once');eq(r.get().ascendRewardedDepth,120,'offline rewarded benchmark');
+  checks++;assert.ifError(error);eq(result.ascends,0,'seven-slot offline transaction never Ascends');eq(r.get().ascendCount,before.ascendCount,'seven-slot offline retains run');eq(r.get().sigilResonanceUses,before.sigilResonanceUses,'offline does not reset Resonate uses');
+  eq(r.get().prisms,before.prisms,'seven-slot offline pays no Prisms');eq(r.get().ascendRewardedDepth,before.ascendRewardedDepth,'offline keeps rewarded benchmark');
   for(const field of paidFields.filter(field=>field!=='activeStudies'))eq(r.get()[field],before[field],'offline preserves paid '+field);
-  eq(r.get().autoAscendEnabled,true,'offline preserves Auto-Ascend enabled');eq(r.get().autoAscendTargetDepth,121,'offline preserves Auto-Ascend target');eq(r.get().activeStudies.length,7,'offline preserves all seven paid records');eq(r.slots(),5,'offline preserves five-slot capacity');
+  eq(r.get().autoAscendEnabled,false,'offline cannot revive retired Auto-Ascend');eq(r.get().autoAscendTargetDepth,121,'offline preserves legacy target history');eq(r.get().activeStudies.length,7,'offline preserves all seven paid records');eq(r.slots(),5,'offline preserves five-slot capacity');
   r.get().activeStudies.forEach((active,i)=>{const old=before.activeStudies[i];eq([active.id,active.totalDurationSec,active.speedMult],[old.id,old.totalDurationSec,old.speedMult],'offline keeps purchased identity/work/speed');near(active.remainingSec,old.remainingSec-60*old.speedMult,'offline advances only elapsed paid work');ok(active.remainingSec>0,'offline pending work grants no early level');});
-  const accepted=clone(r.get());eq(r.offline(),null,'seven-slot offline return window consumed');eq(r.get(),accepted,'repeat offline call adds no payout or work');y.fail(false,false);eq(r.save(),true,'offline accepted state saved to both slots');eq(app(html,y.storage).q.get(),r.get(),'offline cold reload keeps payout and all seven studies');
+  const accepted=clone(r.get());eq(r.offline(),null,'seven-slot offline return window consumed');eq(r.get(),accepted,'repeat offline call adds no payout or work');y.fail(false,false);eq(r.save(),true,'offline accepted state saved to both slots');eq(app(html,y.storage).q.get(),r.get(),'offline cold reload keeps wallet and all seven studies');
+  const clear=r.get().depth-1;r.ascend();assertActualAscend(r,accepted,clear,'manual after offline return');
  }
  // Discounts are exact for whole prices, including safe-integer boundaries.
  for(const v of [1,14,26,99,100,101,473,1200,8999,100000000001,Number.MAX_SAFE_INTEGER-1,Number.MAX_SAFE_INTEGER])for(let p=0;p<=20;p+=2)eq(q.discount(v,p),Math.max(1,discount(v,p)),'independent integer discount '+v+'/'+p);

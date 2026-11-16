@@ -108,7 +108,32 @@ new feature tests and user fixture, task/QA. No workflows, native/signing,
 branding/fonts or historical originals edited. Main remainsba879406; no PR/build
 or release has been created yet. New main integration must recheck overlap.
 
-Next: finish calibration and update affected
+Second milestone17 November: Forge9,404 assertions/25 controls, Tree5,811/28,
+Lab2,841/ten, Comet12,884, Prism state and progression pacing PASS after explicit
+manual/no-automatic expectations. Support1,958 + paid Endurance3,319 and power
+2,400/five controls plus new feature checks PASS. Cast-rate calibration3,134/
+eight controls PASS177s; saved-epoch rounding defect is causally caught while
+all original accuracy bounds remain. Current contribution8,099/seven controls
+and frozen preservation28,896 PASS with only announced policy inputs adapted.
+Mobile now467 checks, including full-render disclosure/open/focus/scroll retention.
+
+The long-window regression exposed a real dropped timer tick across automatic
+Push→Farm→Push. Keep the existing exact clock in Farm too. New full eight-hour
+whole/one-second/cold60s partitions PASS30,466 checks: each has3 retreats,
+3 retries,722 kills,28,800 taps andzero Ascends/automatic Prisms. The old Farm
+clock branch is caught by its causal control. This runs in the existing required
+Support CI entrypoint. Existing full offline cases now pass their current-world
+whole/split/yield/cap portion; remaining frozen comparisons need intentional
+manual/Support/price-input adapters, with all historical originals untouched.
+
+Rules/decision saved in [manual progression decision](../decisions/2026-11-16-manual-team-progression.md).
+Current task's root instructions reflect the explicit manual/new-record rule;
+F05 rounding and protected earned bonuses remain for eligible records. Fixed
+the repository's stale Git credential-helper path to the installed authenticated
+CLI, without changing credentials/scopes. First durable branch commit`e32656df`
+is pushed. Current main remainsba879406, no concurrent open PR observed at startup.
+
+Next: finish frozen comparisons and update affected
 current expectations explicitly, retain historical fixtures unchanged. Then
 validate PR/integrated main, build/publish signed APK and verify native/public
 assets. Physical phone, exact WebView60 DOM, TalkBack and human pacing require

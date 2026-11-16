@@ -1,0 +1,26 @@
+AssertionError [ERR_ASSERTION]: whole/seconds.canonicalAutomationClock keys
++ actual - expected
+
++ []
+- [
+-   '_autoTapAccum',
+-   '_autoEmpowerAccum'
+- ]
+
+    at eq (C:\lf-team\tests\behavioral\manual-offline-parity.cjs:7:37)
+    at compare (C:\lf-team\tests\behavioral\manual-offline-parity.cjs:11:30)
+    at compare (C:\lf-team\tests\behavioral\manual-offline-parity.cjs:11:104)
+    at verify (C:\lf-team\tests\behavioral\manual-offline-parity.cjs:24:2)
+    at run (C:\lf-team\tests\behavioral\manual-offline-parity.cjs:26:128)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\manual-offline-parity.cjs:34:57)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [],
+  expected: [Array],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

@@ -2,7 +2,7 @@
 'use strict';
 const fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto'), assert = require('node:assert/strict');
 const {app, seed, clone, P, R, CLOCK} = require('./tree-expansion-harness.cjs');
-const {reward: oldPrismReward} = require('./prism-earning-reference.cjs');
+const {reward: oldPrismReward,reserve: protectedPrismReserve} = require('./prism-earning-reference.cjs');
 
 // Independent acceptance constants, transcribed from the approved design.
 // No price, cap, unlock or expected effect is read out of the production table.
@@ -77,9 +77,9 @@ function frontier(clear,benchmark,rank) { return rank*Math.max(0,Math.floor(clea
 function dust(gain,rank) { return rank*Math.min(10,Math.floor(gain/20)); }
 function oldBreakdown(clear,benchmark,swift=10,clarity=0) {
   const full=oldPrismReward(clear,0,swift,clarity);
-  if(!full) return {gain:0,full:0,reserve:0,progressBonus:0,cleared:clear,benchmark};
+  if(!full||clear<=benchmark) return {gain:0,full,reserve:0,progressBonus:0,cleared:clear,benchmark};
   if(!benchmark) return {gain:full,full,reserve:0,progressBonus:full,cleared:clear,benchmark:0};
-  const reserve=oldPrismReward(clear,clear,swift,clarity);
+  const reserve=protectedPrismReserve(clear,swift,clarity);
   const progressBonus=clear>benchmark ? Math.ceil(2*(clear-benchmark)/(Math.sqrt(clear)+Math.sqrt(benchmark))*(25+swift)*(20+clarity)/500) : 0;
   return {gain:oldPrismReward(clear,benchmark,swift,clarity),full,reserve,progressBonus,cleared:clear,benchmark};
 }
@@ -196,7 +196,7 @@ function legacyAndDefaults(t) {
   q.set(s);const before=clone(q.get());
   for(const id of IDS)t.eq(before.nodes[id],0,'old save defaults new ownership to0 '+id);
   t.eq(before.treeTrainingProgress,0,'old save defaults training counter to0');
-  t.eq(before.comets,s.comets+350,'old three-card owner receives separate fixed retirement compensation');
+  t.eq(before.comets,s.comets+450,'old three-card owner receives350 plus100 retired Auto-Ascend compensation');
   t.eq(before.cometClaims,{policy:'comet-commands-001',retired:{comettrials:'settled',rifttrail:'settled',starfallcrest:'settled'},deeds:{}},'old Comet entitlements persist independently of new catalog');
   t.eq([before.owned.meteor,before.owned.starcall,before.cometCharges,before.cometWork],[false,false,0,0],'migration grants no command or charge');
   for(const id of OLD_IDS)t.eq(before.nodes[id],s.nodes[id],'old raw paid level retained '+id);
@@ -460,7 +460,7 @@ function frontierCases(t,mutate) {
       const expected=oldBreakdown(clear,benchmark),bonus=clear<15?0:frontier(clear,benchmark,effective('frontier',raw));
       if(bonus>0){expected.frontier=bonus;expected.gain+=bonus;}
       t.eq(q.prismPreview(),expected,'canonical independent base plus new Frontier term '+raw+'/'+clear+'/'+benchmark);
-      if(clear>=15) {
+      if(clear>=15&&clear>benchmark) {
         const before=clone(q.get());t.eq(q.ascend(),true,'Frontier actual Ascend');
         t.eq(q.get().prisms,before.prisms+expected.gain,'Frontier paid once to Prism wallet');
         t.eq(q.get().ascendRewardedDepth,Math.max(clear,benchmark),'existing benchmark advances once');
@@ -476,8 +476,10 @@ function frontierRepeat(t,mutate) {
     const first=oldPrismReward(75,0,10,0)+15;t.eq(q.get().prisms,initial+first,'first three milestone blocks earned');
     q.save();const loaded=app(source,a.storage);t.eq(loaded.q.get().prisms,initial+first,'load does not repeat milestone award');
     q.get().depth=q.get().enemyDepth=76;q.get().enemyHp=q.get().enemyMaxHp=1e15;
-    const before=q.get().prisms;t.eq(q.ascend(),true,'repeat run actually Ascends');
-    t.eq(q.get().prisms,before+oldPrismReward(75,75,10,0),'repeated record has no Frontier award');
+    const before=clone(q.get());t.eq(q.ascend(),false,'repeat run cannot Ascend');
+    t.eq(q.get(),before,'repeated record has no reset, Prism or Frontier award');
+    q.get().depth=q.get().enemyDepth=77;q.get().maxDepthEver=77;t.eq(q.ascend(),true,'next higher clear permits manual Ascend');
+    t.eq(q.get().prisms,before.prisms+oldPrismReward(76,75,10,0),'next clear earns Prisms without repeated Frontier block');
   } finally {end();}
 }
 
@@ -565,8 +567,8 @@ function paidAscends(t,mutate) {
       else {
         t.eq(q.advance(0,{kind:route,clockStartMs:CLOCK}).ascends,0,'target boss must actually be cleared');
         q.get().enemyHp=0;const summary=q.advance(0,{kind:route,clockStartMs:CLOCK});
-        t.eq([summary.kills,summary.bossKills,summary.ascends],[1,1,1],'one actual boss kill and Auto-Ascend '+route);
-        t.eq(summary.ascendGains,[ascends[0].gain],'simulation reports actual payout once');
+        t.eq([summary.kills,summary.bossKills,summary.ascends],[1,1,0],'one actual boss kill without automatic reset '+route);
+        t.eq(summary.ascendGains,[],'simulation reports no automatic payout');t.eq(q.ascend(),true,'manual choice after actual '+route+' boss clear');
       }
       t.eq(ascends.length,1,'one real mutation observed '+route);
       const event=ascends[0];assertPaidReset(t,event.before,event.after,50,route);
@@ -627,7 +629,7 @@ function manualKillAutoFailure(t,mutate) {
     t.eq(q.get().spirits.ember,10,'failed reset does not replace paid run levels');
     t.eq([q.get().totalKills,q.get().totalTaps],[8,4],'only one actual tap and enemy kill');
     t.eq([a.storage.get(P),a.storage.get(R)],[p,r],'failed primary leaves the earlier persisted endpoint intact');
-    const earned=clone(q.get());a.fail(false,false);t.eq(q.checkAuto(),true,'actual retry returns committed Ascend success');
+    const earned=clone(q.get());a.fail(false,false);t.eq(q.checkAuto(),false,'automatic reset remains retired after kill');t.eq(q.ascend(),true,'manual retry returns committed Ascend success');
     t.eq(q.get().ascendCount,4,'retry performs exactly one accepted reset');t.eq([q.get().depth,q.get().enemyDepth],[2,2],'retry reaches the purchased next-run Rift');
     t.ok(q.runToken()!==run,'successful retry advances run identity');
     t.eq(q.get().prisms,earned.prisms+oldPrismReward(49,25,10,0),'retry credits independent Prism reward exactly once');
@@ -654,7 +656,7 @@ function singleTrial(t) {
   for(const route of ['manual','live','offline']) {
     const a=app(source),q=a.q,s=paidState(q,route!=='manual');s.cometTrial={id:'single',target:50,phase:'pending'};
     if(route!=='manual')s.depth=s.enemyDepth=50;q.set(s);
-    const intent=q.chosen();if(route==='manual')q.ascend();else{q.get().enemyHp=0;q.advance(0,{kind:route,clockStartMs:CLOCK});}
+    const intent=q.chosen();if(route==='manual')q.ascend();else{q.get().enemyHp=0;t.eq(q.advance(0,{kind:route,clockStartMs:CLOCK}).ascends,0,'trial waits for manual choice after '+route+' kill');q.ascend();}
     t.eq(q.get().cometTrial.phase,'active','pending Single Star begins after actual '+route+' Ascend');
     t.eq(q.get().cometTrial.failed,false,'Recall cannot fail a newly started single-Wisp trial');
     t.eq(q.get().activeParty,['ember'],'pending Single Star pauses automatic additional Recall');

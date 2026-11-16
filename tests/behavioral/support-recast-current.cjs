@@ -126,4 +126,5 @@ if(process.argv.includes('--negative'))for(const id of Object.keys(mutations)){
 // This entrypoint is already mandatory in pre-merge CI. Keep the new paid
 // duration/pacing assertions and their causal controls in that required lane.
 const durationResearch=require('./support-duration.cjs').run(html,process.argv.includes('--negative'));
-console.log(JSON.stringify({status:'PASS',checks,records,controls,durationResearch,sourceSha256:crypto.createHash('sha256').update(html).digest('hex')}));
+const manualOffline=require('./manual-offline-parity.cjs').run(html,process.argv.includes('--negative'));
+console.log(JSON.stringify({status:'PASS',checks,records,controls,durationResearch,manualOffline,sourceSha256:crypto.createHash('sha256').update(html).digest('hex')}));

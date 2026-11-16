@@ -157,9 +157,11 @@ function supportClockLowerBound(source, checks) {
   // the old proposed lower bound exceed actual DPS by more than its slack.
   const a = app(source), q = a.q;
   const s = fixedState(q, {party: ['aurora'], auto: false, phase: [17.0001], forge: {amplifiertrim: 5}});
-  // 1,266,500 passive × (1 + .30 × 3/6), divided by .006 regen,
-  // with the original half-HP-unit offset below the ideal boundary.
-  s.enemyMaxHp = 242745832.83333334;
+  // Independent shared-growth Aurora132 Power × ideal Support average,
+  // divided by .006 regen, with the original half-HP-unit offset below it.
+  s.spirits.aurora=132;
+  const own=26*132*(1+.01*131)+352*Math.pow(132-70,2)*.9;
+  s.enemyMaxHp = own*(1+.30*3/6)/.006-.5;
   s.enemyHp = 100000000;
   q.set(s);
   const assessment = q.assessment(120);
@@ -407,11 +409,13 @@ if (require.main === module) {
     assert.equal(source.split(savedAnchor).length, 2, 'one saved-source upper bound anchor');
     rejects('omit-paid-saved-support-source', () => savedSupportBounds(source.replace(savedAnchor, 'upperSources[id]=1'), checks),
       'original gameplay stays below the promised upper bound');
-    const refundAnchor = 'if(m.support){until[i]=u+m.duration;recast[i]=u+1;pending+=relay;} else charge[i]=refund;';
+    const refundAnchor = 'if(m.support){until[i]=u+m.duration;recast[i]=(referenceEpoch+u*1000+m.recastCycle*1000-referenceEpoch)/1000;pending+=relay;} else charge[i]=refund;';
     assert.equal(source.split(refundAnchor).length, 2, 'one nonlethal refund reference anchor');
     rejects('omit-nonlethal-refund-from-hud-reference', () => verify(source.replace(refundAnchor,
-      'if(m.support){until[i]=u+m.duration;recast[i]=u+1;pending+=relay;} else charge[i]=0;')),
+      refundAnchor.replace('charge[i]=refund','charge[i]=0'))),
       'HUD cast rate');
+    const rounded='recast[i]=(referenceEpoch+u*1000+m.recastCycle*1000-referenceEpoch)/1000;';
+    rejects('omit-stored-epoch-rounding-from-hud-reference',()=>verify(replaceOne(source,rounded,'recast[i]=u+m.recastCycle;','stored epoch rounding')),'HUD cast rate');
     let exactUptime = replaceOne(source, 'supportRate=0,upperSources=', 'supportRate=0,lowerBuff=1,upperSources=', 'Support lower accumulator');
     exactUptime = replaceOne(exactUptime, 'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);',
       'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);\n      lowerBuff+=(profile.strength-1)*Math.min(1,profile.durationMs/1000*f/100);', 'exact Support uptime');

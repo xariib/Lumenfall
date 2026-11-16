@@ -88,7 +88,8 @@ function supportRuleReference(original){
  rule('if(!sp) continue;\n    state.heroResource[id] = 0;',
   'if(!sp) continue;\n    if(sp.abilityType===\'support\' && supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock)>SIM_EPS)continue;\n    state.heroResource[id] = 0;');
  rule('// buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.',
-  'state.supportRecastUntil[sp.id]=nowMs+abilityCycleSeconds()*1000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
+  'state.supportRecastUntil[sp.id]=nowMs+6000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
+ rule('var uptime = Math.min(1, (profile.durationMs/1000) / cycle);','var uptime = Math.min(1, (profile.durationMs/1000) / 6);');
  rule('return sp.basePower * level * (1 + 0.01*(level-1));',
   "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
  return original;
@@ -164,6 +165,9 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
  expected=copy(expected);
+ const retiredAuto=(seed.owned||{}).autoascend===true?100:0;
+ assert.deepEqual(actual.autoAscendRefund,{policy:'autoascend-retired-v1',total:retiredAuto,paid:true},label+' exactly once retired automation receipt');
+ actual.comets-=retiredAuto;delete actual.autoAscendRefund;
  expected.riftLook={backdrop:'default',wisp:'default',enemy:'default',motion:true};
  assert.equal(actual.offlineClockHighWaterMs,Math.max(seed.offlineClockHighWaterMs||0,actual.lastSeen),label+' exact backwards-compatible credited clock frontier');
  delete actual.offlineClockHighWaterMs;
@@ -322,10 +326,10 @@ assert.equal(oldRewardRun.b.get().prisms-original.prisms,6*on.result.ascends+281
 assert.deepEqual({...oldRewardRun.b.get(),prisms:on.committed.prisms},on.committed,'only Prism balance differs under old reward policy');
 records.push({case:'Prism policy isolation',perAscend,newPrisms:on.committed.prisms-original.prisms,legacyPrisms:oldRewardRun.b.get().prisms-original.prisms});
 assert.equal(on.committed.lumen,onReference.state.lumen,'partial final run matches independent one-second balance');
-assert(on.result.earned>on.committed.lumen,'Ascend resets run Lumen, not reported earned total');
+assert(on.result.earned>on.committed.lumen,'automatic paid Empower spends wallet Lumen without reducing reported earned total');
 assert.deepEqual(on.committed.formationRebuild,original.formationRebuild,'unaffordable Boss reconstruction intent persists');
 assert.deepEqual(on.committed.empowerQueue,original.empowerQueue,'purchase intent preserved');
-assert.deepEqual(on.committed.activeParty,['ember']);
+assert.deepEqual(on.committed.activeParty,['titan','ember'],'without repeated resets the paid Titan is recruited into remembered formation');
 const sync=app(original,source,28800);const syncResult=sync.b.apply();
 assert.deepEqual(syncResult,on.result,'same full summary across yielding/synchronous facade');
 assert.deepEqual(sync.b.get(),on.committed,'exact scheduler state across yielding/synchronous facade');
@@ -362,7 +366,13 @@ const samePaidWork=runAsync(beyond,12*3600);assert.equal(long.result.kills,sameP
 // inputs. Freeze only those inputs on this explicitly historical comparison;
 // all actual-current long/whole/split, transaction and cap checks remain above.
 // The original archived HTML is still byte-checked and never edited.
-const legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration','guardianTapBaseDamage']);
+let legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration','guardianTapBaseDamage','spiritPower']);
+// Longer manual runs can now afford the later, intentionally increased Forge
+// cap. Restore its original10 only for this frozen-price chronology oracle;
+// actual current caps and transactions remain tested above and in the Lab lane.
+const originalArcane='unlockDepth:12, levelCap:20, effectPerLevel:0.03';
+assert.equal(legacyBalanceSource.split(originalArcane).length,2,'one explicit historical Arcane cap input');
+legacyBalanceSource=legacyBalanceSource.replace(originalArcane,'unlockDepth:12, levelCap:10, effectPerLevel:0.03');
 const legacyBondAnchor=legacyBalanceSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
 assert(legacyBondAnchor,'legacy Bond control function');
 assert.equal(legacyBalanceSource.split(legacyBondAnchor[0]).length,2,'one legacy Bond control anchor');
@@ -374,7 +384,7 @@ const legacyBondSource=legacyBalanceSource.replace(legacyBondAnchor[0],
  legacyBondAnchor[0]+"\n  if(['kindling','vanguard','quarry','harvest'].indexOf(bondId)!==-1) return false;").split('activateBinaryClock();').join('void 0; /* explicitly historical Native clock */');
 assert.notEqual(legacyBondSource,legacyBalanceSource,'legacy Bond control anchor');
 for(const rawSeed of [original,clear20,off]){
- const seed=copy(rawSeed);seed.research.charge=9;seed.researchQueue.charge=false;
+ const seed=copy(rawSeed);seed.autoAscendEnabled=false;seed.research.charge=9;seed.researchQueue.charge=false;
  for(const id of ['focus','sense','formation','resolve'])seed.researchQueue[id]=false;
  for(const id of ['riftattune','formationstudy','prismstudy'])seed.studyQueue[id]=false;
  for(const seconds of [60,300,3600]){
@@ -384,7 +394,7 @@ for(const rawSeed of [original,clear20,off]){
   baselineSummary(b,a,'unchanged baseline summary '+seconds);baselineState(next.b.get(),old.b.get(),seed,'unchanged baseline state '+seconds,b,a,seconds);
  }
 }
-const all=copy(original);all.research.charge=9;all.researchQueue.charge=false;all.research.arcanecal=0;
+const all=copy(original);all.autoAscendEnabled=false;all.research.charge=9;all.researchQueue.charge=false;all.research.arcanecal=0;
 for(const id of ['focus','sense','formation','resolve'])all.researchQueue[id]=false;
 for(const id of ['riftattune','formationstudy','prismstudy'])all.studyQueue[id]=false;Object.keys(all.empowerQueue).forEach(k=>all.empowerQueue[k]=true);
 all.researchQueue.arcanecal=true;all.studyQueue.guardmastery=true;

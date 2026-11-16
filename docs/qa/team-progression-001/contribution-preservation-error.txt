@@ -1,0 +1,45 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: all default gameplay estimates bit-identical
++ actual - expected
+
+  [
++   542080545.920975,
+-   574842247.613035,
+    160465453.1856,
+    337319910.34559995,
++   4178819.0933750006
+-   4847430.148315
+  ]
+
+    at eq (C:\lf-team\tests\behavioral\wisp-contribution-core.cjs:128:37)
+    at C:\lf-team\tests\behavioral\wisp-contribution-core.cjs:157:3
+    at Array.forEach (<anonymous>)
+    at C:\lf-team\tests\behavioral\wisp-contribution-core.cjs:152:94
+    at Array.forEach (<anonymous>)
+    at C:\lf-team\tests\behavioral\wisp-contribution-core.cjs:152:57
+    at Array.forEach (<anonymous>)
+    at preservation (C:\lf-team\tests\behavioral\wisp-contribution-core.cjs:152:16)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\wisp-contribution-core.cjs:180:67)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    542080545.920975,
+    160465453.1856,
+    337319910.34559995,
+    4178819.0933750006
+  ],
+  expected: [
+    574842247.613035,
+    160465453.1856,
+    337319910.34559995,
+    4847430.148315
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

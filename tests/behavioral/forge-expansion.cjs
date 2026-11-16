@@ -399,7 +399,7 @@ function savedValues(html, a) {
 
 function paidAscendSeed(q, automatic, depth = 21) {
   const s=battle(q,['tide','aurora','ember','gale','thorn'],depth);
-  s.ascendCount=2;s.ascendRewardedDepth=40;s.autoAscendEnabled=automatic;s.autoAscendTargetDepth=depth%10===0?depth+1:depth;
+  s.ascendCount=2;s.ascendRewardedDepth=19;s.autoAscendEnabled=automatic;s.autoAscendTargetDepth=depth%10===0?depth+1:depth;
   s.schemaVersion=2;s.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};
   const originalDeeds=['d10','d25','d50','d100','d250','tap100','tap1000','tap10000','fullparty','asc1','asc5','asc10','all','mythic','idle8','autotap','labmaster','study1','study25','allstudies','labqueue','firstultimate','modulemax'];
   q.achievementDefs().filter(d=>originalDeeds.includes(d.id)).forEach(d=>{s.achieved[d.id]=true;});
@@ -434,8 +434,8 @@ function ascendCases(html,a,mutant=false) {
     if(route==='manual-tap' || route==='auto-tap'){q.get().enemyHp=q.tap()/2;if(route==='auto-tap')q.get()._autoTapAccum=1000;}
     else if(route!=='manual'){q.get().enemyHp=q.abilityDamage('tide',20)/2;q.get().heroResource.tide=100;}
     const before=clone(q.get());
-    if(route==='manual')q.ascend();else if(route==='manual-tap'){q.manualTap();a.eq(q.get().totalTaps,before.totalTaps+1,'actual manual tap triggers Auto-Ascend');}
-    else{const result=advance(q,0,route==='auto-tap'?'live':route);a.eq(result.bossKills,1,route+' actual boss kill');a.eq(result.ascends,1,route+' actual kill triggers Auto-Ascend');if(route==='auto-tap')a.eq(result.autoTaps,1,'actual Auto-Tap event triggers Ascend');}
+    if(route==='manual')q.ascend();else if(route==='manual-tap'){q.manualTap();a.eq(q.get().totalTaps,before.totalTaps+1,'actual manual tap clears target');a.eq(q.get().ascendCount,before.ascendCount,'manual tap never resets run');a.eq(q.ascend(),true,'manual choice after tap');}
+    else{const result=advance(q,0,route==='auto-tap'?'live':route);a.eq(result.bossKills,1,route+' actual boss kill');a.eq(result.ascends,0,route+' actual kill never auto Ascends');if(route==='auto-tap')a.eq(result.autoTaps,1,'actual Auto-Tap event clears target');a.eq(q.ascend(),true,route+' manual choice after clearing target');}
     assertAscend(q,before,a,route);q.save();const accepted=clone(q.get());a.eq(app(html,x.storage).q.get(),accepted,route+' post-Ascend cold reload');
     const restored=app(html);restored.area.value=q.export();restored.q.restore();restored.drain();a.eq(app(html,restored.storage).q.get(),accepted,route+' actual backup restore retains all investments');
     x.storage.set(P,'broken');a.eq(app(html,x.storage).q.get(),accepted,route+' recovery preserves paid records without another payout');
@@ -445,7 +445,8 @@ function ascendCases(html,a,mutant=false) {
     const x=app(html),q=x.q,s=paidAscendSeed(q,true,120);q.set(s);q.get().enemyHp=q.abilityDamage('tide',120)/2;q.get().heroResource.tide=100;q.save();const before=clone(q.get());
     x.clock(CLOCK+60000);x.fail(failure==='primary',failure==='recovery');let result,error;q.offline((v,e)=>{result=v;error=e;});x.drain();
     if(failure==='primary'){a.ok(error,'offline Ascend primary failure reported');a.eq(q.get(),before,'offline Ascend failure restores old boss and every investment');x.fail(false,false);q.offline((v,e)=>{result=v;error=e;});x.drain();}
-    a.ok(!error,'offline Ascend transaction accepted');a.eq(result.ascends,1,'yielded offline actually Ascends once');assertAscend(q,before,a,'yielded '+failure,60);
+    a.ok(!error,'offline transaction accepted');a.eq(result.ascends,0,'yielded offline never Ascends');a.eq(q.get().prisms,before.prisms,'offline grants no Prisms');a.eq(q.get().ascendCount,before.ascendCount,'offline preserves run count');
+    const returned=clone(q.get());x.fail(false,false);a.eq(q.ascend(),true,'manual choice after yielded return');assertAscend(q,returned,a,'yielded '+failure+' manual choice',0);
     const accepted=clone(q.get());a.eq(q.offline(),null,'offline Ascend window consumed');a.eq(q.get(),accepted,'offline Ascend repeat adds no payout');x.fail(false,false);a.eq(app(html,x.storage).q.get(),accepted,'accepted offline Ascend cold reload');
   }
 }
@@ -549,10 +550,16 @@ function unsafeRunCase(html,a,route) {
   else if(route==='support-manual')q.manualCast('tide');
   else if(route==='tap-manual')q.manualTap();
   else summary=advance(q,route.indexOf('passive')===0?.125:0,route.endsWith('offline')?'offline':'live');
+  if(route!=='manual'){
+    if(summary){a.eq(summary.ascends,0,'unsafe combat must await manual Ascend');a.eq(summary.bossKills,1,'unsafe run fixture actually kills its source boss');}
+    a.eq(q.get().ascendCount,before.ascendCount,'unsafe combat preserves lifetime run count');a.eq(q.get().prisms,before.prisms,'unsafe combat grants no automatic Prisms');
+    a.ok(q.get().totalKills>before.totalKills,'unsafe fixture has an actual combat kill');
+    const event=clone(q.get()),clear=event.depth-1;a.eq(q.ascend(),true,'unsafe run accepts manual choice after combat');
+    a.eq(q.get().prisms,event.prisms+prismReward(clear,event.ascendRewardedDepth,event.nodes.swift,event.longStudyLevels.prismstudy),'unsafe post-combat independent manual payout');
+  }
   const after=q.get();
-  if(summary){a.eq(summary.ascends,1,'unsafe counter still performs actual authoritative Ascend');a.eq(summary.bossKills,1,'unsafe run fixture actually kills its source boss');}
-  a.eq(after.depth,1,'unsafe run really resets depth '+route);a.eq(after.totalKills,before.totalKills+(route==='manual'?0:1),'unsafe run has only the intended source kill');
-  a.eq(after.prisms,before.prisms+prismReward(20,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),'unsafe run actual independent Prism payout');
+  a.eq(after.depth,1,'unsafe manual choice really resets depth '+route);
+  if(route==='manual')a.eq(after.prisms,before.prisms+prismReward(20,before.ascendRewardedDepth,before.nodes.swift,before.longStudyLevels.prismstudy),'unsafe run actual independent Prism payout');
   a.eq(integerAmount(after.ascendCount),BigInt(before.ascendCount)+1n,'unsafe historical Ascend counter advances exactly once');a.eq([after.enemyHp,after.enemyMaxHp],[69,69],'unsafe run blocks old Spillway damage '+route);
   Object.keys(after.heroResource).forEach(id=>a.eq(after.heroResource[id],0,'unsafe run blocks old charge/time credit '+route+'/'+id));
   a.eq(after.supportBuffs,null,'unsafe run clears old Support cast');a.eq(after.sigilResonanceUses,0,'unsafe run resets shared uses');a.eq(after.research,before.research,'unsafe run preserves all paid Forge levels');
@@ -562,14 +569,19 @@ function unsafeRunCase(html,a,route) {
 function unsafeRunCases(html,a) {
   for(const route of ['manual','support-manual','support-live','support-offline','tap-manual','tap-auto-live','tap-auto-offline','passive-live','passive-offline'])unsafeRunCase(html,a,route);
   const healthy=app(html);prepareUnsafeRun(healthy.q,'support-live');healthy.q.save();healthy.clock(CLOCK+60000);let reference;
-  healthy.q.offline((result,error)=>{assert.ifError(error);reference=result;});healthy.drain();const expected=clone(healthy.q.get());a.eq(reference.ascends,1,'healthy unsafe-counter offline window really Ascends');
+  healthy.q.offline((result,error)=>{assert.ifError(error);reference=result;});healthy.drain();const expected=clone(healthy.q.get());a.eq(reference.ascends,0,'healthy unsafe-counter offline window never Ascends');
   for(const failure of ['primary','recovery']){
     const x=app(html),q=x.q;prepareUnsafeRun(q,'support-live');q.save();const before=clone(q.get());x.clock(CLOCK+60000);x.fail(failure==='primary',failure==='recovery');let summary,error;
     q.offline((v,e)=>{summary=v;error=e;});x.drain();
     if(failure==='primary'){a.ok(error,'unsafe offline primary failure reported');a.eq(q.get(),before,'failed unsafe offline Ascend rolls back whole endpoint');x.fail(false,false);q.offline((v,e)=>{summary=v;error=e;});x.drain();}
-    a.ok(!error,'unsafe offline retry or committed primary accepted');a.eq(summary.ascends,1,'unsafe offline retry counts one real Ascend');a.eq(q.get(),expected,'runtime token from a failed attempt cannot leak into retry');
+    a.ok(!error,'unsafe offline retry or committed primary accepted');a.eq(summary.ascends,0,'unsafe offline retry never Ascends');a.eq(q.get(),expected,'runtime token from a failed attempt cannot leak into retry');
     x.fail(false,false);a.eq(app(html,x.storage).q.get(),expected,'unsafe offline accepted endpoint reloads once');a.eq(q.offline(),null,'unsafe offline accepted interval cannot repeat');
   }
+  unsafeRepeatCase(html,a);
+}
+function unsafeRepeatCase(html,a){
+  const {q}=app(html);prepareUnsafeRun(q,'manual');q.get().ascendRewardedDepth=20;const before=clone(q.get());
+  a.eq(q.ascend(),false,'unsafe previously rewarded clear cannot reset');a.eq(q.get(),before,'unsafe repeat denial preserves all paid state');
 }
 function oldRunGuards(source,passiveOnly) {
   const changes=passiveOnly?[
@@ -650,8 +662,8 @@ function negativeCases(html) {
   reject('paid-relay-lost-on-real-ascend',()=>ascendCases(html,assertions(),true),'manual retains research');
   reject('finite-burst-false-wall',()=>controllerCases(html,assertions(),true),'finite remaining burst prevents automatic wall retreat');
   reject('unsafe-counter-normal-cadence-average',()=>unsafeCounterCases(html,assertions(),true),'HUD recognizes stagnant cadence ordinal');
-  reject('removed-forge-run-identity-guard',()=>unsafeRunCase(oldRunGuards(html,false),assertions(),'support-live'),'unsafe run blocks old Spillway damage');
-  reject('removed-passive-run-identity-guard',()=>unsafeRunCase(oldRunGuards(html,true),assertions(),'passive-live'),'unsafe run blocks old charge/time credit');
+  reject('revived-automatic-unsafe-run',()=>unsafeRunCase(html.replace('return false; // Automatic Ascension is retired, including imported ON states.','return true;'),assertions(),'support-live'),'unsafe combat must await manual Ascend');
+  reject('unsafe-repeat-reset',()=>unsafeRepeatCase(html.replace('return clearedProgressionRift()>=nextAscendClearedRift();','return clearedProgressionRift()>=15;'),assertions()),'unsafe previously rewarded clear cannot reset');
   return killed;
 }
 

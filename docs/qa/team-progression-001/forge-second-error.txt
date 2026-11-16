@@ -1,0 +1,27 @@
+C:\lf-team\tests\behavioral\forge-expansion.cjs:677
+    const before=a.count();try{all[name]();}catch(error){error.message='['+name+'] '+error.message;throw error;}sections[name]=a.count()-before;
+                                                                                                   ^
+
+AssertionError [ERR_ASSERTION]: unsafe run really resets depth support-manual
+
+21 !== 1
+
+    at Object.eq (C:\lf-team\tests\behavioral\forge-expansion.cjs:52:41)
+    at unsafeRunCase (C:\lf-team\tests\behavioral\forge-expansion.cjs:555:5)
+    at unsafeRunCases (C:\lf-team\tests\behavioral\forge-expansion.cjs:564:164)
+    at Object.unsafeRuns (C:\lf-team\tests\behavioral\forge-expansion.cjs:671:20)
+    at verify (C:\lf-team\tests\behavioral\forge-expansion.cjs:677:41)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\forge-expansion.cjs:685:16)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 21,
+  expected: 1,
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

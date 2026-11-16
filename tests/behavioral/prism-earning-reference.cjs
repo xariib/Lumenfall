@@ -8,7 +8,7 @@ function root(n){
 }
 function reward(clear,benchmark,tree,lab){
   for(const value of [clear,benchmark,tree,lab])assert(Number.isSafeInteger(value)&&value>=0,'oracle requires nonnegative safe integers');
-  if(clear<15)return 0;
+  if(clear<15||clear<=benchmark)return 0;
   const p=(25n+BigInt(tree))*(20n+BigInt(lab));
   const curve=q=>{const value=Number(root(4n*BigInt(clear)*q*q)/500n);assert(Number.isSafeInteger(value),'oracle result must be exactly representable');return Math.max(1,value);};
   const full=curve(p);if(!benchmark)return full;
@@ -22,6 +22,11 @@ function reward(clear,benchmark,tree,lab){
   }
   return Math.min(full,curve(p-400n)+progress);
 }
+function reserve(clear,tree,lab){
+  if(clear<15)return 0;
+  const p=(25n+BigInt(tree))*(20n+BigInt(lab))-400n;
+  return Math.max(1,Number(root(4n*BigInt(clear)*p*p)/500n));
+}
 function legacyPolicy(current,frozen){
   // A counterfactual for unchanged scheduler/economy comparisons only.
   // The caller verifies the immutable historical source hash. Never use this
@@ -34,4 +39,4 @@ function legacyPolicy(current,frozen){
   const [a,z]=range(current),[b,y]=range(frozen);
   return current.slice(0,a)+frozen.slice(b,y)+current.slice(z);
 }
-module.exports={reward,legacyPolicy};
+module.exports={reward,reserve,legacyPolicy};

@@ -105,7 +105,7 @@ function app(source, saved) {
       var old=doAscend;doAscend=function(){var result=old.apply(this,arguments);if(result===false)ascendRunToken={};return result;};return function(){doAscend=old;};
     },
     ignoreAutoAscendResult:function(){
-      var old=checkAutoAscend;checkAutoAscend=function(){if(!autoAscendReady())return false;doAscend(true);return true;};return function(){checkAutoAscend=old;};
+      var old=checkAutoAscend;checkAutoAscend=function(){old();return true;};return function(){checkAutoAscend=old;};
     },
     corruptPrice:function(){
       var old=nodeCost;nodeCost=function(node){var result=old.apply(this,arguments);return node.id==='lumenmemory' && state.nodes[node.id]===0?result+1:result;};return function(){nodeCost=old;};

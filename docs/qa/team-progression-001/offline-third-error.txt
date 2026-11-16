@@ -1,0 +1,506 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: unchanged baseline state 60
++ actual - expected
+... Skipped lines
+
+  {
+    _autoEmpowerAccum: 0,
+    _autoTapAccum: 0,
+    achieved: {
+      all: true,
+...
+    autoAscendEnabled: false,
++   autoAscendRefund: {
++     paid: true,
++     policy: 'autoascend-retired-v1',
++     total: 100
++   },
+    autoAscendTargetDepth: 22,
+    buffMult: 1,
+    buffUntil: 0,
++   comets: 1855,
+-   comets: 1755,
+    dailyQuestRefreshes: 1,
+    dailyStats: {
+      ascends: 12508,
+      bossKills: 25032,
+      empowers: 43,
+
+    at baselineState (C:\lf-team\tests\behavioral\offline-catchup.cjs:262:9)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\offline-catchup.cjs:384:62)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    schemaVersion: 6,
+    lumen: 130539317669.80002,
+    shards: 72987354456.1315,
+    prisms: 70339,
+    comets: 1855,
+    motes: 2933059,
+    sigils: 52993,
+    depth: 160,
+    maxDepthEver: 220,
+    riftMode: 'push',
+    farmDepth: 0,
+    farmReturnDepth: 0,
+    enemyDepth: 160,
+    enemyHp: 63085302095.68576,
+    enemyMaxHp: 153825777378,
+    enemyIsLuminous: false,
+    spirits: {
+      ember: 1,
+      tide: 0,
+      stone: 0,
+      gale: 0,
+      thorn: 0,
+      void: 0,
+      aurora: 0,
+      titan: 42
+    },
+    heroRarity: {
+      ember: 5,
+      tide: 5,
+      stone: 5,
+      gale: 5,
+      thorn: 5,
+      void: 5,
+      aurora: 5,
+      titan: 5
+    },
+    heroResource: {
+      ember: 20.00000000000009,
+      tide: 0,
+      stone: 0,
+      gale: 0,
+      thorn: 0,
+      void: 0,
+      aurora: 0,
+      titan: 75.33333333333337
+    },
+    wispModules: {
+      ember: 20,
+      tide: 20,
+      stone: 20,
+      gale: 20,
+      thorn: 20,
+      void: 20,
+      aurora: 20,
+      titan: 20
+    },
+    wispUltimate: {
+      ember: true,
+      tide: true,
+      stone: true,
+      gale: true,
+      thorn: true,
+      void: true,
+      aurora: true,
+      titan: true
+    },
+    empowerQueue: {
+      ember: false,
+      tide: false,
+      stone: false,
+      gale: false,
+      thorn: false,
+      void: false,
+      aurora: false,
+      titan: true
+    },
+    activeParty: [ 'titan', 'ember' ],
+    formationPresets: {
+      push: [ 'titan', 'void', 'ember', 'gale', 'thorn' ],
+      farm: [ 'aurora', 'titan', 'void', 'ember', 'tide' ],
+      boss: [ 'aurora', 'titan', 'void', 'ember', 'stone' ]
+    },
+    activeFormationPreset: 'boss',
+    formationRebuild: {
+      members: [ 'aurora', 'titan', 'void', 'ember', 'stone' ],
+      preset: 'boss'
+    },
+    nodes: {
+      starlight: 25,
+      steady: 32,
+      echo: 20,
+      bonds: 19,
+      swift: 18,
+      momentum: 16,
+      reserves: 12
+    },
+    research: {
+      focus: 71,
+      sense: 65,
+      formation: 55,
+      resolve: 81,
+      charge: 9,
+      arcanecal: 10,
+      conduction: 10,
+      luminoustracking: 10
+    },
+    researchQueue: {
+      focus: false,
+      sense: false,
+      formation: false,
+      resolve: false,
+      charge: false,
+      arcanecal: false,
+      conduction: false,
+      luminoustracking: false
+    },
+    longStudyLevels: {
+      wispascend: 21,
+      guardmastery: 20,
+      riftattune: 14,
+      shardstudy: 20,
+      lumenstudy: 13,
+      formationstudy: 19,
+      motestudy: 10,
+      prismstudy: 19,
+      measuredinquiry: 0
+    },
+    activeStudies: [
+      {
+        id: 'shardstudy',
+        remainingSec: 632706.9983627533,
+        totalDurationSec: 2417852,
+        speedMult: 8
+      },
+      {
+        id: 'guardmastery',
+        remainingSec: 28246.798363079717,
+        totalDurationSec: 1813389,
+        speedMult: 8
+      },
+      {
+        id: 'formationstudy',
+        remainingSec: 632716.7983627494,
+        totalDurationSec: 2417852,
+        speedMult: 8
+      },
+      {
+        id: 'wispascend',
+        remainingSec: 3229217.9743572837,
+        totalDurationSec: 3481706,
+        speedMult: 8
+      }
+    ],
+    studyQueue: {
+      wispascend: true,
+      guardmastery: true,
+      riftattune: false,
+      shardstudy: false,
+      lumenstudy: false,
+      formationstudy: false,
+      motestudy: false,
+      prismstudy: false,
+      measuredinquiry: false
+    },
+    achieved: {
+      d10: true,
+      d25: true,
+      d50: true,
+      d100: true,
+      tap100: true,
+      tap1000: true,
+      tap10000: true,
+      fullparty: true,
+      asc1: true,
+      asc5: true,
+      asc10: true,
+      all: true,
+      mythic: true,
+      idle8: true,
+      autotap: true,
+      labmaster: true,
+      study1: true,
+      study25: true,
+      allstudies: true,
+      labqueue: true,
+      firstultimate: true,
+      modulemax: true
+    },
+    owned: { autoascend: true },
+    riftTheme: 'aurora',
+    riftLook: {
+      backdrop: 'default',
+      wisp: 'default',
+      enemy: 'default',
+      motion: true
+    },
+    buffUntil: 0,
+    buffMult: 1,
+    supportBuffs: null,
+    supportRecastUntil: { tide: 0, aurora: 0 },
+    ascendCount: 15142,
+    ascendRewardedDepth: 219,
+    sigilResonanceUses: 0,
+    totalTaps: 940842,
+    totalKills: 385305,
+    totalOfflineSeconds: 897320.3319999998,
+    luminousAccum: 0.37999899999880615,
+    savedLabMultiplier: 'max',
+    autoAscendEnabled: false,
+    autoAscendTargetDepth: 22,
+    loginStreak: 12,
+    questDay: '2026-10-07',
+    questIds: [ 'q_tap_small', 'q_ascend', 'q_boss' ],
+    questClaimed: { q_tap_small: true, q_boss: true, q_ascend: true },
+    dailyQuestRefreshes: 1,
+    dailyStats: {
+      taps: 12917,
+      kills: 250510,
+      empowers: 43,
+      research: 0,
+      bossKills: 25032,
+      luminousKills: 20311,
+      ascends: 12508
+    },
+    lastSeen: 1791361564477,
+    autoAscendRefund: { policy: 'autoascend-retired-v1', total: 100, paid: true },
+    _autoTapAccum: 0,
+    _autoEmpowerAccum: 0
+  },
+  expected: {
+    schemaVersion: 6,
+    lumen: 130539317669.80002,
+    shards: 72987354456.1315,
+    prisms: 70339,
+    comets: 1755,
+    motes: 2933059,
+    sigils: 52993,
+    depth: 160,
+    maxDepthEver: 220,
+    riftMode: 'push',
+    farmDepth: 0,
+    farmReturnDepth: 0,
+    enemyDepth: 160,
+    enemyHp: 63085302095.68576,
+    enemyMaxHp: 153825777378,
+    enemyIsLuminous: false,
+    spirits: {
+      ember: 1,
+      tide: 0,
+      stone: 0,
+      gale: 0,
+      thorn: 0,
+      void: 0,
+      aurora: 0,
+      titan: 42
+    },
+    heroRarity: {
+      ember: 5,
+      tide: 5,
+      stone: 5,
+      gale: 5,
+      thorn: 5,
+      void: 5,
+      aurora: 5,
+      titan: 5
+    },
+    heroResource: {
+      ember: 20.00000000000009,
+      tide: 0,
+      stone: 0,
+      gale: 0,
+      thorn: 0,
+      void: 0,
+      aurora: 0,
+      titan: 75.33333333333337
+    },
+    wispModules: {
+      ember: 20,
+      tide: 20,
+      stone: 20,
+      gale: 20,
+      thorn: 20,
+      void: 20,
+      aurora: 20,
+      titan: 20
+    },
+    wispUltimate: {
+      ember: true,
+      tide: true,
+      stone: true,
+      gale: true,
+      thorn: true,
+      void: true,
+      aurora: true,
+      titan: true
+    },
+    empowerQueue: {
+      ember: false,
+      tide: false,
+      stone: false,
+      gale: false,
+      thorn: false,
+      void: false,
+      aurora: false,
+      titan: true
+    },
+    activeParty: [ 'titan', 'ember' ],
+    formationPresets: {
+      push: [ 'titan', 'void', 'ember', 'gale', 'thorn' ],
+      farm: [ 'aurora', 'titan', 'void', 'ember', 'tide' ],
+      boss: [ 'aurora', 'titan', 'void', 'ember', 'stone' ]
+    },
+    activeFormationPreset: 'boss',
+    formationRebuild: {
+      members: [ 'aurora', 'titan', 'void', 'ember', 'stone' ],
+      preset: 'boss'
+    },
+    nodes: {
+      starlight: 25,
+      steady: 32,
+      echo: 20,
+      bonds: 19,
+      swift: 18,
+      momentum: 16,
+      reserves: 12
+    },
+    research: {
+      focus: 71,
+      sense: 65,
+      formation: 55,
+      resolve: 81,
+      charge: 9,
+      arcanecal: 10,
+      conduction: 10,
+      luminoustracking: 10
+    },
+    researchQueue: {
+      focus: false,
+      sense: false,
+      formation: false,
+      resolve: false,
+      charge: false,
+      arcanecal: false,
+      conduction: false,
+      luminoustracking: false
+    },
+    longStudyLevels: {
+      wispascend: 21,
+      guardmastery: 20,
+      riftattune: 14,
+      shardstudy: 20,
+      lumenstudy: 13,
+      formationstudy: 19,
+      motestudy: 10,
+      prismstudy: 19,
+      measuredinquiry: 0
+    },
+    activeStudies: [
+      {
+        id: 'shardstudy',
+        remainingSec: 632706.9983627533,
+        totalDurationSec: 2417852,
+        speedMult: 8
+      },
+      {
+        id: 'guardmastery',
+        remainingSec: 28246.798363079717,
+        totalDurationSec: 1813389,
+        speedMult: 8
+      },
+      {
+        id: 'formationstudy',
+        remainingSec: 632716.7983627494,
+        totalDurationSec: 2417852,
+        speedMult: 8
+      },
+      {
+        id: 'wispascend',
+        remainingSec: 3229217.9743572837,
+        totalDurationSec: 3481706,
+        speedMult: 8
+      }
+    ],
+    studyQueue: {
+      wispascend: true,
+      guardmastery: true,
+      riftattune: false,
+      shardstudy: false,
+      lumenstudy: false,
+      formationstudy: false,
+      motestudy: false,
+      prismstudy: false,
+      measuredinquiry: false
+    },
+    achieved: {
+      d10: true,
+      d25: true,
+      d50: true,
+      d100: true,
+      tap100: true,
+      tap1000: true,
+      tap10000: true,
+      fullparty: true,
+      asc1: true,
+      asc5: true,
+      asc10: true,
+      all: true,
+      mythic: true,
+      idle8: true,
+      autotap: true,
+      labmaster: true,
+      study1: true,
+      study25: true,
+      allstudies: true,
+      labqueue: true,
+      firstultimate: true,
+      modulemax: true
+    },
+    owned: { autoascend: true },
+    riftTheme: 'aurora',
+    buffUntil: 0,
+    buffMult: 1,
+    supportBuffs: null,
+    supportRecastUntil: { tide: 0, aurora: 0 },
+    ascendCount: 15142,
+    ascendRewardedDepth: 219,
+    sigilResonanceUses: 0,
+    totalTaps: 940842,
+    totalKills: 385305,
+    totalOfflineSeconds: 897320.3319999998,
+    luminousAccum: 0.37999899999880615,
+    savedLabMultiplier: 'max',
+    autoAscendEnabled: false,
+    autoAscendTargetDepth: 22,
+    loginStreak: 12,
+    questDay: '2026-10-07',
+    questIds: [ 'q_tap_small', 'q_ascend', 'q_boss' ],
+    questClaimed: { q_tap_small: true, q_boss: true, q_ascend: true },
+    dailyQuestRefreshes: 1,
+    dailyStats: {
+      taps: 12917,
+      kills: 250510,
+      empowers: 43,
+      research: 0,
+      bossKills: 25032,
+      luminousKills: 20311,
+      ascends: 12508
+    },
+    lastSeen: 1791361564477,
+    _autoTapAccum: 0,
+    _autoEmpowerAccum: 0,
+    riftLook: {
+      backdrop: 'default',
+      wisp: 'default',
+      enemy: 'default',
+      motion: true
+    }
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
