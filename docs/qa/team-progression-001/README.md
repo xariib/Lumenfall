@@ -2,6 +2,17 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Integrated attempt3 stopped in existing Lab catalogue touch after six320px
+profiles at the first390px case. Unchanged replay `lab-main-assert-replay.json`
+PASS1,264/36. Attempt2 Wisp check269 maps to new Team profile5
+(390px/100%/reduce), after four complete new profiles:original163 +4×25 +6.
+This corrects the earlier chat's first-new-profile description. Full unchanged
+main attempt4 runs; every original assertion/deadline remains. Root cause is
+unproven. Read-only investigation references [actionability](https://playwright.dev/docs/actionability)
+and [CDP emulation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/);
+they describe input setup, not an established diagnosis here. No new dependency
+or framework migration was introduced.
+
 Integrated main attempt2: prior boost lane passed unchanged, then the new
 damage-disclosure native touch assertion failed at check269. Original12 role
 profiles and the new matching-DPS checks had passed. `remote/main-52fa-attempt2-

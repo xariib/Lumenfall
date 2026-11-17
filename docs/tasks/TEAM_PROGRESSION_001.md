@@ -110,6 +110,13 @@ attempt2-wisp with ZIP CRC/size verification. Original unchanged local replay
 then PASS467, including all12 new Team profiles; cause remains unproven.
 Unchanged integrated main attempt3 is running. No touch/assertion/product edit.
 
+Counter correction:check269 is the fifth new Team profile (390px/100%/reduce),
+after four complete new profiles, not the first. Main attempt3 then stopped
+earlier in existing Lab catalogue touch, after six320px profiles on the first
+390px profile. Same unchanged local Lab replay PASS1,264/36; Wisp replay PASS467
+with12 Team profiles. Original failure records retained; cause unproven.
+Unchanged main attempt4 runs at52fa. No product/test edits or acceptance waiver.
+
 Implemented: six-second initial Support recast, unchanged paid90-day earliest
 sustained per-source work; shared direct-damage growth with original Gale/Thorn
 resource economy; matching current DPS and separate base/Support/ability
