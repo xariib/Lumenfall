@@ -122,5 +122,17 @@ CI5467 caught an incidental case/wording change in the free-resume confirmation.
 Restored its exact original text and normal price-only confirmation presentation;
 the original Lab test is unchanged. All18 native Lab profiles then passed locally
 before the appended menu-offset check failed (505 assertions). Baseline/current
-menu comparison is underway; this partial run is not a complete PASS. Canonical
+menu comparison passed398 checks/12 profiles on both released main and candidate;
+the earlier partial combined run remains FAIL with unproven cause. Canonical
 four-window hashes remain exactly unchanged. Full current-head CI remains next.
+
+Latest product SHA256
+`cd2f1e7927db77e6956b0b8f3245bfee2a47f8042cc55c2a86a0d7a8db621ffd`.
+CIb0 passed the complete Lab-simple sequence, then caught an introduced Empower
+horizontal-layout regression in the existing p1-05 control scenario. Restored
+the original nowrap button row, wrapping only its price text. The unchanged
+p1-05 scenario passes locally, including44px targets, focus, live states,
+contrast and affordability funding. New focused checks additionally assert
+horizontal44px Empower rows together with long-price fit. A local focused
+retry timed out before initialization (zero checks); retained as FAIL.
+Canonical endpoints remain unchanged. Required CI must rerun on this version.

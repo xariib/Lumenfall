@@ -1,6 +1,6 @@
 # Upgrade states — candidate evidence
 
-Current product SHA256: `e174cec921c5c7e0c6c51d5f5b9a505537f9a04d2db97ca90bfbe98c31cab909`.
+Current product SHA256: `cd2f1e7927db77e6956b0b8f3245bfee2a47f8042cc55c2a86a0d7a8db621ffd`.
 Baseline main: `b075cfba`. Node24.22.1, Chrome for Testing/headless shell157,
 Windows. Self-review only; no physical phone, exact WebView60 DOM or TalkBack.
 
@@ -63,3 +63,12 @@ price-only confirmation markup are restored; the original test is unchanged.
 The [Windows retry](lab-simple-windows.json) passes all18 Lab profiles, then
 fails an appended menu-offset assertion. Baseline/current comparison and
 current-head Linux acceptance remain pending. This run is retained as FAIL.
+
+The [paired menu baseline](menu-baseline.json) and [candidate](menu-current.json)
+each pass398 checks/12 profiles. The earlier combined-run cause is unproven.
+[Horizontal-row regression](ci-horizontal-layout-regression.json) preserves the
+original CI failure. The original nowrap Empower row is restored; only long
+price text can wrap. The unchanged [p1-05 scenario](horizontal-final.log) passes
+on current source; the new suite checks horizontal44px rows alongside price fit.
+An additional [Windows startup retry](wrapping-windows.json) failed before any
+assertions and is not accepted. Current-head required CI remains pending.

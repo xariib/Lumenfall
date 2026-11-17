@@ -33,7 +33,8 @@ async function install(s,tab){await ev('upgradeQa.set('+JSON.stringify(s)+','+JS
 async function observe(selector){return ev('('+function(selector){
  const e=document.querySelector(selector);if(!e)throw Error('Missing upgrade '+selector);const css=getComputedStyle(e);
  const probe=document.createElement('span');probe.style.color='var(--danger)';document.body.appendChild(probe);const red=getComputedStyle(probe).color;probe.remove();
- return {text:e.textContent,disabled:e.disabled,state:e.dataset.state,border:css.borderTopWidth+' '+css.borderTopColor,prices:Array.from(e.querySelectorAll('[data-price-currency]')).map(p=>({kind:p.dataset.priceCurrency,amount:Number(p.dataset.priceAmount),red:getComputedStyle(p).color===red})),gold:css.borderTopColor==='rgb(217, 180, 94)'&&parseFloat(css.borderTopWidth)>=2,overflow:e.scrollWidth>e.clientWidth+1};
+ const rect=e.getBoundingClientRect();
+ return {text:e.textContent,disabled:e.disabled,state:e.dataset.state,width:rect.width,height:rect.height,direction:css.flexDirection,wrap:css.flexWrap,border:css.borderTopWidth+' '+css.borderTopColor,prices:Array.from(e.querySelectorAll('[data-price-currency]')).map(p=>({kind:p.dataset.priceCurrency,amount:Number(p.dataset.priceAmount),red:getComputedStyle(p).color===red})),gold:css.borderTopColor==='rgb(217, 180, 94)'&&parseFloat(css.borderTopWidth)>=2,overflow:e.scrollWidth>e.clientWidth+1};
 }.toString()+')('+JSON.stringify(selector)+')');}
 async function unchanged(expression,label){
  // Compare within the operation's JS turn; unrelated real visibility events
@@ -50,6 +51,7 @@ async function walletCheck(selector,cost,priceSelector=selector){
   ok(r.prices.length===Object.keys(cost).length,'all exact prices visible '+selector);
   for(const p of r.prices){ok(p.amount===cost[p.kind],'exact amount '+selector);ok(p.red===(missing===p.kind&&cost[p.kind]>0),'individual missing currency red '+selector+' '+p.kind);}
   ok(button.disabled===!!missing,'native affordability '+selector);ok(!r.overflow,'price fits '+selector+' '+JSON.stringify(r));
+  if(selector.startsWith('[data-empower='))ok(button.width>=44&&button.height>=44&&button.direction==='row'&&button.wrap==='nowrap','Empower keeps its44px horizontal row while long prices fit');
   if(missing)await unchanged('document.querySelector('+JSON.stringify(selector)+').click()','disabled purchase');
  }
 }
