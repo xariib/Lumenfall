@@ -167,3 +167,28 @@ assertion. Pre-touch opening screenshots and gesture phase diagnostics are saved
 when evidence is requested. Original receipts are retained in
 `lab-boost-transport-investigation.json.gz`. Product SHA256 is unchanged.
 PR60/61 are separate active work; PR61 does not edit this Lab gesture helper.
+
+## Independent offline reference binding
+
+Head44d07b87 passed the repaired Lab native-input step and all seven separate
+required workflows. Full pre-merge then correctly rejected the old source hash
+in `offline-swift-current-golden.json`. The binding update was initially missed;
+the gate and its failure are retained (`premerge-binding-attempt.log.gz`).
+
+The presentation-only replay helper initially rejected local byte hashes, so
+the new feature helper compares the complete candidate state directly against
+the immutable released source (`b075cfba`, SHA2563f912328…). It executes all four
+eight-hour windows with independent one-second calls in both worlds, validates
+the previously accepted kill/Ascend/Prism totals, and requires every saved field
+and serialized endpoint hash to match exactly. All230,400calls PASS. The local
+released-source hashes differ from the older stored runtime's hashes as well;
+this feature does not change them. Exact platform cause was not established.
+
+Only after that proof, the helper updates `sourceSha256`; every accepted phase,
+count and endpoint hash in the existing golden file remains byte-for-byte
+unchanged. No expected result was regenerated from a bulk transaction. Pinned
+released source is stored separately as a gzip test fixture, never over product.
+Reproduce: `node scripts/qa/finite-forge-reference.cjs index.html`.
+`independent-paired-replay.json` retains exact hashes and runtime. This is a
+preservation replay for the supplied legacy fixture, not a pacing playthrough.
+The corrected binding requires a fresh exact-head CI run before integration.

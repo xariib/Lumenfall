@@ -57,7 +57,7 @@ target; this user's new years target supersedes it for this feature.
 
 Current product SHA256:
 `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
-[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `34de29ce`.
+[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `44d07b87`.
 Latest source/test corrections pass local validation and are being published.
 No integration or APK yet; self-review only. Standing authorization applies.
 
@@ -104,6 +104,17 @@ original functional assertions, viewports, mutation and deadline stay. Corrected
 standalone PASS1083/18 and original next-lock causal assertion still rejects the
 defect. Product unchanged; new Linux CI is required before integration. Cause
 remains unproven. Separate PR60/61 own other UI changes; no gesture-helper overlap.
+
+At44d07b87, the repaired Lab gesture and all seven separate workflows PASS.
+Full pre-merge reached its source-binding guard and found that the old golden
+file still named the released HTML hash. Corrected only after a paired exact
+replay: immutable b075cfba source versus candidate, all four eight-hour windows,
+230,400 independent one-second calls, every saved field and serialized endpoint
+equal. Existing accepted golden counts/hashes are untouched; only sourceSha256
+is rebound. `scripts/qa/finite-forge-reference.cjs`, its separate compressed
+baseline fixture, and `independent-paired-replay.json` preserve the proof.
+The earlier presentation-only replay rejected local byte hashes even for the
+released source; no runtime/platform cause is claimed. New exact-head CI pending.
 
 Next: finish full mobile/CI checks, resolve any findings, publish the coherent
 checkpoint, integrate serially after all required gates pass, then run exact
