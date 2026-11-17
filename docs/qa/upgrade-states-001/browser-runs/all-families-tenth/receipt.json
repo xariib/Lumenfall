@@ -1,0 +1,14 @@
+{
+  "status": "fail",
+  "sourceSha256": "2de279923282b9f5104af223175b0d76379802fef5e9bbab9e6a52e9472dc37a",
+  "node": "v24.22.1",
+  "records": [
+    {
+      "width": 320,
+      "scale": 1,
+      "checks": 2463
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: price fits [data-empower=\"void\"]\n    at ok (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:29:27)\n    at walletCheck (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:47:68)\n    at async run (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:70:94)\n    at async C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:98:144",
+  "checks": 3001
+}

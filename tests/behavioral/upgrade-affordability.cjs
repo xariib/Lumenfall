@@ -71,7 +71,7 @@ driver=driver.slice(0,start)+String.raw`
   // Prerequisites and caps remain distinct from affordability.
   await ev('prismQa.set(prismQa.upgradeSeed("ember","rarity"));prismQa.upgradeWallet({lumen:1e12,shards:1e12,sigils:1e6});var s=prismQa.get();s.spirits.ember=1;prismQa.set(s);prismQa.tab("spirits");prismQa.upgradeRefresh()');
   ok(await ev('document.querySelector("[data-rarity=ember]").disabled'),'funded rarity still requires Wisp level');
-  ok(await ev('document.querySelectorAll("[data-rarity=ember] [data-price-currency]").length===2'),'level-locked rarity still discloses both upgrade prices');
+  ok(await ev('document.querySelectorAll("[data-rarity=ember] [data-price-currency]").length===0 && document.querySelector("[data-rarity=ember]").textContent.includes("Wisp Lv.")'),'level-locked rarity hides prices and explains its unlock');
   await ev('var s=prismQa.get();s.wispModules.ember=20;s.heroRarity.ember=5;prismQa.set(s);prismQa.upgradeRefresh()');
   ok(await ev('!document.querySelector("[data-module=ember]")'),'capped ability cannot be repurchased');
   ok(await ev('!document.querySelector("[data-rarity=ember]")&&!!document.querySelector("[data-wisp-card=ember] .wisp-rarity-section[data-state=maxed]")'),'capped rarity stays gold without a repurchase control');
@@ -102,4 +102,19 @@ try{
   }
  }
  fs.writeFileSync(path.join(evidence,'results.json'),JSON.stringify({sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),results},null,2)+'\n');
+ // Existing required CI invokes --negative. Keep all original affordability
+ // assertions/controls above, then cover gold caps and prerequisite locks.
+ if(process.argv.includes('--negative')){
+  for(const [name,flag,expected] of [['current',null,null],['gold','--mutate-gold','maxed gold tree'],['lock','--mutate-lock','locked action explains unlock'],['red','--mutate-red','individual missing currency red']]){
+   const dir=path.join(evidence,'upgrade-states',name);fs.mkdirSync(dir,{recursive:true});
+   const args=[path.join(__dirname,'upgrade-states.cjs'),sourcePath,dir];if(flag)args.push(flag);
+   const run=spawnSync(process.execPath,args,{encoding:'utf8',timeout:240000,maxBuffer:16*1024*1024});
+   fs.writeFileSync(path.join(dir,'stdout.log'),run.stdout||'');fs.writeFileSync(path.join(dir,'stderr.log'),run.stderr||'');
+   const receipt=JSON.parse(fs.readFileSync(path.join(dir,'receipt.json')));
+   assert(!receipt.teardown,'upgrade-state browser teardown '+name);
+   if(expected){assert.equal(run.status,1);assert.equal(receipt.status,'fail');assert(receipt.error.includes(expected),receipt.error);}
+   else{assert.equal(run.status,0);assert.equal(receipt.status,'pass');assert.equal(receipt.records.length,6);}
+   console.log(JSON.stringify({upgradeStates:name,accepted:true,checks:receipt.checks,sourceSha256:receipt.sourceSha256}));
+  }
+ }
 }finally{fs.unlinkSync(generated);}

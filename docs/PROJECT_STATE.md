@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+17 November: [Upgrade presentation](tasks/UPGRADE_STATES_001.md) is in progress
+on isolated `feature/upgrade-states-001`: gold boxes for capped components,
+unlock instructions in place of locked prices, independent red currency
+shortages and disabled unaffordable actions across the game. Candidate checks
+and full-cap Rift guidance fix are recorded in the task. CI/integration and
+signed Android delivery remain pending; this is not a released change.
+
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
 the user instruction, "Never ask for permissions again for Lumenfall project."
 Current entrypoints explicitly prohibit permission or renewed approval requests

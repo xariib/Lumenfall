@@ -77,6 +77,11 @@ Read archives and technical guides only when needed.
 - Every upgrade UI must show each insufficient resource amount in red and
   disable the purchase button when the upgrade is unaffordable. Refresh both
   as resources change.
+- Every maxed upgrade has a gold border. Upgrades blocked by prerequisites
+  show how to unlock them instead of a price. Eligible upgrades show prices,
+  with each insufficient currency amount in red and the purchase button
+  disabled. Apply across the game, including individual Wisp upgrades; see
+  `docs/tasks/UPGRADE_STATES_001.md` (17 November 2026 user requirement).
 - Ascension is manual: first clear Rift15; each later Ascend requires a clear
   above the highest previously rewarded clear. Auto-Ascend is retired; previous
   owners receive a validated one-time100-Comet refund. Preserve prior progress.
