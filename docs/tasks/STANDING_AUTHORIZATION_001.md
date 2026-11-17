@@ -32,7 +32,11 @@ Checks: Node.js v24.22.1. Baseline context check PASS (28 entrypoints,
 Repeat context and whitespace checks after integration. Documentation-only acceptance requires no APK or gameplay tests.
 Self-review only. No CI gates or workflow triggers are changed.
 
-Status: implementation complete; validation and GitHub integration pending.
-Next action: validate the task and diff, commit, fast-forward GitHub main only
-if the baseline is still current, then verify the integrated documentation.
-Archive status: open until integration is verified.
+Status: complete. Integrated directly into GitHub main at
+2a51870a5d2e9b774e96eb4937810cbe81b5777d after verifying the unchanged baseline.
+Fetched main confirmed that exact commit. Integrated context check PASS
+(29 entrypoints, 57 local links, 21,692 startup bytes); integrated diff whitespace
+check PASS; only the six documented files changed. No product checks or APK
+release are required for this documentation change. No gates were bypassed.
+Next action: apply the standing instruction to future assigned Lumenfall work.
+Archive status: no archive action performed; this records instruction delivery.
