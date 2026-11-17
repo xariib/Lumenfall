@@ -13,6 +13,40 @@ complete b075 pre-feature snapshot is now`PROJECT_STATE_2026-11-17_RIFT_BASELINE
 All42ab/browser/Android133 evidence below is historical. Required combined-source
 CI and signed Android acceptance must pass before integration/publication.
 
+Combined branch head12122b805b4dd7ad28fef5f26dad94e8a5a8c3df is pushed.
+PR full44091395146 and prepared full44091457972 have passed the early corrected
+formula/666-check Rift matrix/five controls. Prepared Comet44091463570,
+Forge44091468619, Lab44091472947, Shared44091477819 and Tree44091482012 run
+on this exact combined commit. Signed unpublished Android candidate44091481550
+PASS: signed Android0.2.134, package/version/certificate, assets, save upgrade,
+actual updater and retail launch. APK SHA256
+f91a840e08d78585f2b71da213610c4f7f5f4616f4f5ea6449568fae4b04cab7.
+All three actual frames self-reviewed: hints removed, correct mode order,
+ring/enemy center clear and paid cosmetic retained. Source-review12122b80 verifies61 original symbols, unchanged
+native/fonts/branding and both snapshots; its JSON update is local for final
+delivery. No integration/publication yet. Keep old source42ab checks historical.
+
+Latest combined checkpoint:13 focused workflows and Android134 PASS; prepared
+full44091457972 is continuing. PR full44091395146 first attempt failed at
+team-progression-ui.cjs:19 (“real touch opens damage details”); the prepared
+same-source run passed that entire step. Cause unproven; raw log/metadata are
+retained and unchanged PR job retry134084435082 is running. Assertions and
+deadlines remain unchanged. Combined matrix receipt confirms666 checks/five
+controls and screenshots286–288 are self-reviewed. No product/test source edit
+after12122b80. A docs-only QA checkpoint branch preserves these artifacts
+without advancing the feature's CI ref; keep feature branch at12122b80 until
+all required checks pass. After public APK verification, incorporate checkpoint
+docs with final evidence/status. Recheck current main and active main Android
+publication before serial integration; do not overwrite or interrupt others.
+
+Evidence branch: `checkpoint/rift-screen-fixes-001-12122b80-qa` (docs only,
+parent12122b80). The source branch `fix/rift-screen-fixes-001` stays at12122b80
+for all CI and any code integration. Worktree may be on the evidence branch;
+use explicit12122b80 SHA for status/publication checks. After APK publication,
+fast-forward the local source branch to the evidence branch, add final docs,
+and integrate only those docs after rechecking actual main. Never publish a
+different app source merely because the current worktree HEAD is a QA commit.
+
 ## Historical pre-merge checkpoint
 
 Current follow-up: fc7068706ee42d8426bc92abbc5ad46f69372556, with unchanged

@@ -5,6 +5,16 @@ Baseline mainb075cfba; [PR60](https://github.com/xariib/Lumenfall/pull/60).
 Status: combined-source CI and signed Android rendering acceptance pending.
 Self-review and automation only; no independent review claimed.
 
+Combined12122b80 checkpoint: `combined-matrix/` passes666 checks/18 profiles/
+24,840 encounter-theme samples/five causal controls with all three reported
+enemy screenshots self-reviewed. `android-candidate-134/` passes exact assets,
+identity, save upgrade/paid entitlements, real updater, retail launch and actual
+frame review. All13 focused/native workflows pass. Prepared full44091457972
+continues; PR full44091395146 retries unchanged after one native Wisp disclosure
+touch assertion, which the same-source prepared run passed. Full logs and first
+failure are retained. No integration/public APK yet. The docs-only checkpoint
+branch preserves current evidence without changing the code CI ref12122b80.
+
 The three requested changes remove Rift hints, put Farm left/Push right, and
 prevent landscape silhouettes from showing through the enemy arena. Original
 theme/species art, combat, prices, progression and saves are retained.

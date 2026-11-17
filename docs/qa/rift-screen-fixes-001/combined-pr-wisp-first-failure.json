@@ -1,0 +1,13 @@
+{
+  "status": "FAIL; unchanged job retry required",
+  "commit": "12122b805b4dd7ad28fef5f26dad94e8a5a8c3df",
+  "sourceSha256": "0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a",
+  "run": 44091395146,
+  "job": 134067109561,
+  "step": "Wisp contribution readability and unchanged gameplay",
+  "assertion": "real touch opens damage details",
+  "location": "tests/behavioral/team-progression-ui.cjs:19",
+  "comparison": "The identical combined source passed this complete step in prepared workflow44091457972.",
+  "cause": "Unproven. The existing touch helper asserts details.open immediately after CDP touchEnd; no event-completion diagnostic was recorded.",
+  "disposition": "Retain full raw job log and retry unchanged source. Do not change product behavior, assertions or deadlines. Investigate further if the same failure repeats."
+}
