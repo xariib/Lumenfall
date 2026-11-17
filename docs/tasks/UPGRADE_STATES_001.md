@@ -105,7 +105,7 @@ and three causal controls passed separately. Linux required-entry acceptance is
 still pending. No deadline or assertion was weakened. Other openPR59 (Forge
 caps) andPR60 (Rift screen) are separate; recheck main before integration.
 
-Current product SHA256
+Paid-cap candidate SHA256
 `dad915b4352abc95c234b30184eeacbab23302367f0f30036583e9fa95bba726` also
 marks capped running/paused paid Lab cards gold, retaining all work/free resume.
 Its canonical four-window full-state hashes still match main. All15,264 focused
@@ -115,3 +115,12 @@ layout passed2,204 assertions/one profile before a Windows initialization/close
 failure. CI9f2 caught its obsolete universal plain-Module assertion; the new
 conditional strictly requires gold at cap and retains plain unfinished panels.
 These are requirement updates, not relaxed layout or timeout checks.
+
+Current product SHA256
+`e174cec921c5c7e0c6c51d5f5b9a505537f9a04d2db97ca90bfbe98c31cab909`.
+CI5467 caught an incidental case/wording change in the free-resume confirmation.
+Restored its exact original text and normal price-only confirmation presentation;
+the original Lab test is unchanged. All18 native Lab profiles then passed locally
+before the appended menu-offset check failed (505 assertions). Baseline/current
+menu comparison is underway; this partial run is not a complete PASS. Canonical
+four-window hashes remain exactly unchanged. Full current-head CI remains next.

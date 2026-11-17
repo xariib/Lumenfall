@@ -10423,7 +10423,7 @@ var selectedStudySlot=-1,expandedStudySpeedSlot=-1,pendingStudyStart=null;
 function studyChoiceAction(node,plan){
   return '<button type="button" class="study-choice-hit" data-study="'+node.id+'" aria-label="'+(plan.paused?'Resume ':'Start ')+node.name+'" aria-describedby="study-price-'+node.id+'" '+(plan.affordable?'':'disabled')+'></button>';
 }
-function studyPriceMarkup(node,plan){
+function studyPriceMarkup(node,plan,priceOnly){
   if(plan.paused)return fmtStudyDuration(plan.duration)+' of paid work remains. No additional cost.';
   if(!plan.unlocked)return studyAccessText(node);
   if(plan.reason==='requirements')return 'Requires '+plan.challenge.requirements.filter(function(r){return !r.met;}).map(function(r){return r.label+' '+r.current+' / '+r.target;}).join(' · ');
@@ -10431,7 +10431,7 @@ function studyPriceMarkup(node,plan){
   if(plan.reason==='active')return 'Research already running. Wait for completion.';
   if(plan.reason==='unavailable')return 'Price or research time unavailable at this value.';
   if(plan.maxed)return 'Maxed';
-  return 'Takes '+fmtStudyDuration(plan.duration)+' &middot; '+purchasePriceMarkup('lumen',plan.cost.lumen)+' '+purchasePriceMarkup('shard',plan.cost.shard);
+  return (priceOnly?'':'Takes '+fmtStudyDuration(plan.duration)+' &middot; ')+purchasePriceMarkup('lumen',plan.cost.lumen)+' '+purchasePriceMarkup('shard',plan.cost.shard);
 }
 function studyPriceElement(node,plan){
   return '<div class="study-meta" id="study-price-'+node.id+'">'+studyPriceMarkup(node,plan)+'</div>';
@@ -10450,7 +10450,7 @@ function refreshStudyStartConfirmation(){
   if(!el || !node)return;
   var plan=getStudyStartPlan(node,pendingStudyStart.slot);
   el.querySelector('[data-study-confirm-start]').disabled=!plan.affordable;
-  el.querySelector('[data-study-confirm-price]').innerHTML=studyPriceMarkup(node,plan);
+  el.querySelector('[data-study-confirm-price]').innerHTML=plan.paused?'Resume saved paid work · no additional cost':studyPriceMarkup(node,plan,true);
 }
 function chooseStudy(node){
   if(!node || !flushLiveProgress())return;

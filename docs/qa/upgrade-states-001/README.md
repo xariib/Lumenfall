@@ -1,6 +1,6 @@
 # Upgrade states — candidate evidence
 
-Current product SHA256: `dad915b4352abc95c234b30184eeacbab23302367f0f30036583e9fa95bba726`.
+Current product SHA256: `e174cec921c5c7e0c6c51d5f5b9a505537f9a04d2db97ca90bfbe98c31cab909`.
 Baseline main: `b075cfba`. Node24.22.1, Chrome for Testing/headless shell157,
 Windows. Self-review only; no physical phone, exact WebView60 DOM or TalkBack.
 
@@ -56,3 +56,10 @@ The updated check strictly requires gold for capped ability modules and retains
 plain surfaces for unfinished ones. Its [Windows retry](wisp-layout-windows.json)
 passes2,204 assertions/one profile, then fails initialization/close; no full PASS
 is claimed for that run. Required assertions/deadlines remain intact.
+
+[Resume-copy regression](ci-resume-copy-regression.json) was introduced when
+sharing price rendering. Exact original free-resume wording and normal
+price-only confirmation markup are restored; the original test is unchanged.
+The [Windows retry](lab-simple-windows.json) passes all18 Lab profiles, then
+fails an appended menu-offset assertion. Baseline/current comparison and
+current-head Linux acceptance remain pending. This run is retained as FAIL.
