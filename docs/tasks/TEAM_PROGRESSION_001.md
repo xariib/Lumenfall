@@ -1,7 +1,7 @@
 # TEAM_PROGRESSION_001 — meaningful Wisp investment and manual progression
 
-Status: integrated for release; all8 exact-head PR workflows PASS.
-Exact-main validation and signed/native/public Support delivery pending. Owner: this feature chat. No agents, other chats or
+Status: integrated; all8 exact-head PR and all9 exact-main workflows PASS.
+Android0.2.139 build44177600711 is running; signed/native/public delivery pending. Owner: this feature chat. No agents, other chats or
 message tools used. User explicitly requires finishing without permission prompts.
 
 ## Goal and requirements
@@ -54,7 +54,10 @@ with12 original/12 team/12 Support profiles (Support265).
 [Raw source-bound proof](../qa/team-progression-001/support-year/pr-full-suite.json).
 Current-source calibration3424/34 cases/ten controls also PASS; one epoch
 witness is explicitly immutable130, nine controls/current-positive cases use C.
-Run all9 exact integrated-main workflows, then signed/native/public release.
+All9 exact integrated-main workflows PASS,190 main+1 isolated offline and758
+mobile checks. [Integrated proof](../qa/team-progression-001/support-year/integrated-full-suite.json).
+Android0.2.139 build44177600711 is running on the unchanged integrated commit;
+next verify signed/native/public release, inspect installed frames and save final evidence.
 
 [Exact pre-upgrade checkpoint](../qa/team-progression-001/support-year/pre-upgrade-merge-task.md) retains earlier requirements/evidence; gzip preserves its bytes.
 

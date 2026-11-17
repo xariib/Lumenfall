@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-17T21:14:07.496Z",
+  "integratedCommit": "ceb2463f83d49402e2702e987af89958790b16db",
+  "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "gates": "all9PASS",
+  "proof": "integrated-full-suite.json",
+  "build": {
+    "id": 44177600711,
+    "version": "0.2.139",
+    "publication": true,
+    "status": "running"
+  },
+  "next": "Poll build; verify native/public APK and inspect installed frames; finalize docs only after PASS",
+  "limits": [
+    "physical phone",
+    "exact WebView60 DOM",
+    "TalkBack",
+    "human pacing"
+  ]
+}

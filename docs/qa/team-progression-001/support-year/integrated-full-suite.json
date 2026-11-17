@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-17T21:13:33.287Z",
+  "sha": "ceb2463f83d49402e2702e987af89958790b16db",
+  "event": "workflow_dispatch",
+  "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "gates": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "id": 44165420457,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165420457",
+      "receipt": "remote/passed-44165420457.json"
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "id": 44165425607,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165425607",
+      "receipt": "remote/passed-44165425607.json"
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "id": 44165431575,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165431575",
+      "receipt": "remote/passed-44165431575.json"
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "id": 44165436353,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165436353",
+      "receipt": "remote/passed-44165436353.json"
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "id": 44165440634,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165440634",
+      "receipt": "remote/passed-44165440634.json"
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "id": 44165445195,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165445195",
+      "receipt": "remote/passed-44165445195.json"
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "id": 44165450738,
+      "attempt": 2,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165450738",
+      "receipt": "remote/passed-44165450738.json"
+    },
+    {
+      "workflow": "wisp-scroll-validation.yml",
+      "id": 44165457116,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165457116",
+      "receipt": "remote/passed-44165457116.json"
+    },
+    {
+      "workflow": "migration-focused-validation.yml",
+      "id": 44165548176,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165548176",
+      "receipt": "remote/passed-44165548176.json"
+    }
+  ],
+  "run": 44165420457,
+  "main": 190,
+  "isolatedOffline": 1,
+  "jobs": [
+    {
+      "group": "main",
+      "count": 190,
+      "id": 134330057056,
+      "log": "remote/job-134330057056.log.gz",
+      "rawSha256": "7aa186090d5e0f99063a9d231d6795111bf5ccefe10721cd8ad9a39f6f5d7062"
+    },
+    {
+      "group": "offline",
+      "count": 1,
+      "id": 134330056665,
+      "log": "remote/job-134330056665.log.gz",
+      "rawSha256": "c9e7d23fe7c6bc34737417bcc5a815e14a49571ff2586d616fd721fcaaf879f8"
+    }
+  ],
+  "mobile": {
+    "checks": 758,
+    "originalProfiles": 12,
+    "teamProfiles": 12,
+    "support": {
+      "checks": 265,
+      "profiles": 12
+    },
+    "browser": {
+      "executable": "/opt/google/chrome/google-chrome",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/157.0.8103.50",
+        "revision": "@049750111b1e5c11565c792b2aeed5541f332bad",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "jsVersion": "15.7.112.23"
+      }
+    }
+  }
+}
