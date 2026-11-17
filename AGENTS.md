@@ -27,7 +27,10 @@ Read archives and technical guides only when needed.
 ## Scope and authorization
 - Current user instructions and standing authorization govern the assigned task.
   The 5 October 2026 approval ("Du har altid godkendelse.") covers necessary
-  actions in agreed scope; do not ask for repeated general permission.
+  actions in agreed scope. On 17 November 2026 the user explicitly instructed:
+  "Never ask for permissions again for Lumenfall project." Do not ask the user
+  for permission or renewed approval for Lumenfall work; proceed under standing
+  authorization within the assigned task. Clarify missing requirements when needed.
 - Verified code establishes implemented behavior; task requirements define
   desired behavior. Distinguish observations, reported results and unknowns.
 - Keep one concrete goal per feature chat. Necessary fixes, checks and docs stay

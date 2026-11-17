@@ -28,8 +28,10 @@ focused workflow.
    Review the complete diff for accidental deletions and scope drift. Fix newly
    introduced failures; do not remove features, skip gates or weaken tests to pass.
 5. Before new binding rules, tell the user the exact rule, reason and effect and
-   save their decision. Clarify missing gameplay choices; do not repeatedly ask
-   permission for routine work already authorized.
+   save their decision. Clarify missing gameplay choices. The user instructed
+   on 17 November 2026: "Never ask for permissions again for Lumenfall project."
+   Do not request permission or renewed approval; proceed within the assigned
+   task under standing authorization.
 
 ## Short checkpoints and continuation
 

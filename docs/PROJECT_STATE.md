@@ -1,11 +1,16 @@
 # Lumenfall — current delivery status
 
+17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
+the user instruction, "Never ask for permissions again for Lumenfall project."
+Current entrypoints explicitly prohibit permission or renewed approval requests
+within assigned Lumenfall work; missing requirements can still be clarified.
+
 17 November correction in progress: [TEAM_PROGRESSION_001](tasks/TEAM_PROGRESSION_001.md)
 reopened by user. Support downtime must exceed active duration until a very
-late earned milestone, around one year. Planned3s active/13s recast, Endurance8
+late earned milestone, around one year. Candidate3s active/13s recast, Endurance8
 plus Charge for sustained cycling after at least360 fastest dedicated research
 days. Preserve paid work/saves and the other0.2.130 changes. Public0.2.130 below
-is the baseline; this correction is not yet implemented or released.
+is the baseline; the candidate is implemented; final acceptance/release remain pending.
 
 
 17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) shipped as

@@ -18,6 +18,8 @@ Record baseline failures, cover changed behavior, review the complete diff and
 resolve introduced regressions. Keep the task checkpoint current before context
 compaction or handoff; resume from its exact version and next action.
 Standing authorization covers necessary actions in the assigned scope.
+Never ask the user for permission or renewed approval for Lumenfall work
+(user instruction, 17 November 2026); clarify missing requirements when needed.
 For concurrent features, use isolated branches/worktrees and coordinate actual
 overlap/integration. Do not overwrite others' work or replace live game code
 with a prototype/archive. Historical writer releases do not block new tasks.
