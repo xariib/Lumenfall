@@ -388,6 +388,7 @@ window.__lumenfallQaBridge = {
         assert(ascendEligible(),'audit premature Ascension');
         var gain=originals.ascend();
         if(mutation==='duplicate') originals.ascend();
+        if(state.ascendCount!==before.ascendCount+1)counts.failure='audit duplicate Ascension';
         assert(state.ascendCount===before.ascendCount+1,'audit duplicate Ascension');
         assert(state.depth===1 && state.riftMode==='push','audit Ascension resets progression');
         assert((state.formationRebuild?state.formationRebuild.members:state.activeParty).join(',')===intended.join(','),'audit Ascension preserves intent');

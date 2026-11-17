@@ -2308,7 +2308,7 @@
             e.enemyDepth=1;e.enemyHp=1;e.enemyMaxHp=1;e.enemyIsLuminous=false;
             e.sigils=1000000;e.comets=1000000;e.sigilResonanceUses=0;e.dailyQuestRefreshes=0;
             e.owned={autoascend:true,meteor:false,starcall:false,offline24:true,offline48:true,rememberbulk:true};
-            e.autoAscendEnabled=false;delete e.autoAscendRefund;
+            e.autoAscendEnabled=false;e.autoAscendRefund={policy:'autoascend-retired-v1',total:100,paid:true};
             e.activeParty=['ember','tide','stone','gale','thorn'];
             ids.forEach(function(id){
               e.spirits[id]=1;
@@ -2360,8 +2360,8 @@
           assert(fourth.state.sigils===beforeFourth.sigils && fourth.state.sigilResonanceUses===3,'run cap must prevent further Sigil spending or hidden power');
 
           var ascendReset=cloneJson(fourth.state);
-          ascendReset.depth=101;ascendReset.maxDepthEver=Math.max(ascendReset.maxDepthEver,101);
-          ascendReset.enemyDepth=101;ascendReset.enemyHp=1;ascendReset.enemyMaxHp=1;ascendReset.ascendRewardedDepth=100;
+          ascendReset.depth=102;ascendReset.maxDepthEver=Math.max(ascendReset.maxDepthEver,102);
+          ascendReset.enemyDepth=102;ascendReset.enemyHp=1;ascendReset.enemyMaxHp=1;ascendReset.ascendRewardedDepth=100;
           bridge.setState(ascendReset);
           bridge.ascendManual();
           assert(state().sigilResonanceUses===0,'manual Ascend must reset the run-bounded Resonance allowance');
@@ -2373,7 +2373,7 @@
           assert(JSON.stringify(refresh1.state)===JSON.stringify(refreshBase),'retired Quest Refresh preserves balances, paid progression, quests and claims');
           bridge.renderLayout();var permanent=document.querySelector('[data-shop="astralcore"]');assert(permanent&&!permanent.disabled,'Comets have a permanent Wisp investment at Rift250');
           bridge.labMotes.input(function(){permanent.click();});assert(state().astralUpgrades.astralcore===1&&state().comets===refreshBase.comets-750,'exact permanent investment replaces consumable spending');
-          var permanentSnapshot=cloneJson(state().astralUpgrades),paidAscend=cloneJson(state());paidAscend.depth=101;paidAscend.enemyDepth=101;paidAscend.enemyHp=paidAscend.enemyMaxHp=1;bridge.setState(paidAscend);bridge.ascendManual();assert(state().ascendCount===paidAscend.ascendCount+1&&JSON.stringify(state().astralUpgrades)===JSON.stringify(permanentSnapshot),'permanent investment survives actual Ascend');
+          var permanentSnapshot=cloneJson(state().astralUpgrades),paidAscend=cloneJson(state());paidAscend.depth=paidAscend.enemyDepth=Math.max(16,paidAscend.ascendRewardedDepth+2);paidAscend.enemyHp=paidAscend.enemyMaxHp=1;bridge.setState(paidAscend);bridge.ascendManual();assert(state().ascendCount===paidAscend.ascendCount+1&&JSON.stringify(state().astralUpgrades)===JSON.stringify(permanentSnapshot),'permanent investment survives actual Ascend');
 
           var large=endgameState();
           large.sigils=987654321;

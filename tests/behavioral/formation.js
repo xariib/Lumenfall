@@ -258,7 +258,15 @@ window.runP207FarmReview = function(b,ctx,assert,parity,summaryParity,isolated){
         // The duplicate mutation needs an eligible explicit player action.
         var record=b.getState();record.riftMode='push';record.farmDepth=0;record.farmReturnDepth=0;
         record.depth=record.enemyDepth=Math.max(16,record.ascendRewardedDepth+2);record.maxDepthEver=Math.max(record.maxDepthEver,record.depth);
-        record.enemyHp=record.enemyMaxHp=b.enemyHpFor(record.depth);b.setState(record);b.ascendManual();
+        record.enemyHp=record.enemyMaxHp=b.enemyHpFor(record.depth);b.setState(record);var beforeManual=JSON.stringify(b.getState());b.ascendManual();
+        message=broken.counts.failure||message;
+        assert(JSON.stringify(b.getState())===beforeManual,'rejected duplicate transaction rolls back entire state');
+      }
+      if(kind==='free'){
+        b.setState(window.p207Seed(b,['tide','stone'],'boss'));b.ascendManual();
+        var paidRecruit=b.getState();paidRecruit.lumen=60;
+        Object.keys(paidRecruit.empowerQueue).forEach(function(id){paidRecruit.empowerQueue[id]=id==='tide';});
+        b.setState(paidRecruit);t.tick();
       }
     }
     catch(e){message=e.message;}finally{broken.restore();}
