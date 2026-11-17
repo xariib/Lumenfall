@@ -28,12 +28,12 @@ for(const r of records.slice(1)){
   for(const key of ['totalKills','motes','sigils','depth','riftMode','farmDepth','farmReturnDepth','ascendCount','totalTaps','prisms','comets','lumen','shards'])eq(direct.state[key],r.state[key],'unchanged chronological endpoint '+key);
   for(const key of ['activeParty','spirits','research','longStudyLevels','achieved','dailyStats','studyBoosts'])eq(direct.state[key],r.state[key],'retained purchases and work '+key);
 }
-// The six-second Support recast changes native addition order by sub-ulp
-// rounding. Independent one-second actual-engine receipt is retained in
-// team-progression-001/farm-one-second.json. Prior wallets were
-// 15859808.49997822 Lumen and4026523.000008681 Shards; original receipt stays.
-eq(direct.state.lumen,15859808.499977807,'ordered native Lumen wallet with current Support timing');
-eq(direct.state.shards,4026523.0000089034,'ordered native Shard wallet with current Support timing');
+// The approved13s recast changes native addition order at rounding precision.
+// Independent one-second receipt: support-year/farm-one-second-release.json.
+// The prior6s receipt remains team-progression-001/farm-one-second.json:
+// 15859808.499977807 Lumen and4026523.0000089034 Shards.
+eq(direct.state.lumen,15859808.49997803,'ordered native Lumen wallet with current Support timing');
+eq(direct.state.shards,4026523.0000087842,'ordered native Shard wallet with current Support timing');
 eq(direct.summary.kills,50400,'original complete four-hour kill count');
 {
   const {q}=app(source,undefined,{clockDate:true,retainWrites:false}),s=q.fresh();s.riftMode='farm';s.farmDepth=s.depth=1;s.farmReturnDepth=2;q.set(s);

@@ -167,3 +167,10 @@ offline replay18 records PASS. Actual V8 replay2498 checks PASS with exact
 1024/4096 long sample and separate original64/256/12000 aligned bound.
 No product bytes, tolerance, deadline or workflow changed. New exact-head CI
 required; first failed job/run logs and dispositions retained in support-year.
+
+PR62 next-head Farm literal-wallet comparison retained6s event order. New
+independent14400 one-second reference preserves50400 kills; exact wallets
+15859808.49997803/4026523.0000087842 now bound to13s source. Farm parity14780
+checks and original negative control PASS; all four endpoint wallets match
+bit-for-bit. No tolerance/product change. Lab/Wisp Browser.getVersion startup
+failures at0 checks and unchanged passing retries retained. Rerun exact head.

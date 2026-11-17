@@ -1,0 +1,45 @@
+{
+  "id": 44075804502,
+  "sha": "93f3c2ea2de3938e1efa58c34bf85f19248e3c40",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44075804502",
+  "jobs": [
+    {
+      "id": 134013573319,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T11:39:41Z",
+      "completed": "2026-11-17T11:43:16Z",
+      "log": "job-134013573319.log.gz",
+      "rawSha256": "29d1cc6848d1b10c544ac29982d4d54bc3fe40df0cc0fe2e282d40d525f8d1f1",
+      "summary": [
+        "2026-11-17T11:40:40.6831965Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T11:43:11.3231811Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 134013573593,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T11:39:43Z",
+      "completed": "2026-11-17T11:51:11Z",
+      "log": "job-134013573593.log.gz",
+      "rawSha256": "8905189371b191fc5e0069349e59f00e5e4091da3786440d8f96a28e3d3a8e91",
+      "summary": [
+        "2026-11-17T11:41:49.8043791Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3859,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3873,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-17T11:42:13.9667768Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-17T11:42:22.2701286Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:45955/index.html:14662:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:45955/index.html:14670:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"b65ba05779f66c6b612cee91c4f461de80d1671ec6282242949fcff996e9bebf\",\"mutant\":true}",
+        "2026-11-17T11:43:13.7053339Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:43:38.3180714Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:44:36.3881288Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-17T11:48:13.6041749Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:48:26.1004172Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:48:37.6737509Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:48:37.6830416Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-17T11:50:59.4555830Z   throw new AssertionError(obj);",
+        "2026-11-17T11:50:59.4556700Z AssertionError [ERR_ASSERTION]: ordered native Lumen wallet with current Support timing"
+      ]
+    }
+  ]
+}

@@ -21,3 +21,5 @@ Stacking first encountered Windows profile cleanup EPERM, then exposed a fixture
 Final sourceb955 mobile254/12, Forge9409/25, actual V86.0.286.52 contracts8099/seven and preservation28896 PASS. All34 calibration cases/ten controls pass; the stored-epoch control is explicitly historical, the other nine run the current source. Final required CI/native/public release remains pending.
 
 PR62 first CI failures and corrections: see ci-first-failure-disposition.json. Full local offline18 records and actual V8 Forge2498 checks PASS after correcting the approved-rule historical adapter and explicitly checking both established forecast sample contracts. Product remainsb955; all exact-head CI is rerun.
+
+Farm CI literal-wallet failure: farm-ci-disposition.json retains exact values and independent14400 one-second reference. All four chunk endpoints now match bit-for-bit;14780 checks and unchanged native-only recap control PASS. Lab/Wisp startup failures had0 assertions (Browser.getVersion deadline); first logs and unchanged passing retry logs are retained. No timeout/tolerance/product changes.
