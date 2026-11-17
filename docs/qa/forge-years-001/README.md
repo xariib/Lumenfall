@@ -244,3 +244,8 @@ was independently hash/ZIP-CRC checked. Its original text evidence is retained i
 `integrated-tree-first-raw.json.gz`. Cause remains unproven. Failed job rerun
 requested unchanged; no source, timeout or acceptance change. Other workflows
 continue. The final release requires every exact integrated gate to pass.
+
+Tree attempt2 PASS unchanged, including the formerly incomplete positive browser
+case, native mobile matrix and actual V8 6.0. Eight exact integrated workflows
+PASS; the main workflow has passed every focused step and is executing the full
+190scenario suite. Its isolated offline scenario PASS. Main remains0adb60eb.

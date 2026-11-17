@@ -149,6 +149,12 @@ workflows continue. Delivery checkpoint branch is `docs/forge-years-delivery`;
 keep its documentation separate during exact-source validation/publication,
 then reconcile any concurrent integration before publishing the final receipt.
 
+Integrated Tree attempt2 PASS unchanged, including the previously incomplete
+browser case, native mobile matrix and actual V8 6.0. Eight integrated workflows
+now PASS. The remaining full run44089952825 has passed every focused step and
+is executing190stateful scenarios; its isolated offline case already PASS.
+Main was rechecked at0adb60eb. Source remainsaf692d7f; no APK/build dispatched yet.
+
 Next: complete nine exact integrated workflows, resolve any findings, build and
 publish the signed Android update, verify native/public receipts, then save the
 delivery checkpoint in GitHub. Keep this task open for missing
