@@ -29,6 +29,8 @@ jobs:
       - name: Rift hint removal, mode order and enemy visibility
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/RIFT_SCREEN_FIXES_001.md
+          node -e "const f=require('node:fs');f.mkdirSync('mobile/www',{recursive:true});f.copyFileSync('index.html','mobile/www/index.html');for(const p of ['fonts','branding'])f.cpSync(p,'mobile/www/'+p,{recursive:true});"
+          node tests/behavioral/run.cjs --web-root mobile/www --scenario wisp-formula-contract --raw-artifacts validation-evidence/rift-formula
           node tests/behavioral/rift-screen-fixes.cjs index.html validation-evidence/rift-screen --negative
 
       - name: Paid Lab work and player action chronology

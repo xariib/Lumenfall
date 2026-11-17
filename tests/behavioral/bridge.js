@@ -995,7 +995,7 @@ window.__lumenfallQaBridge = {
     return {
       wisps:els['spirit-list'] ? els['spirit-list'].textContent : '',
       encyclopedia:document.getElementById('encyclopedia-content') ? document.getElementById('encyclopedia-content').textContent : '',
-      boss:els['rift-objective'] ? els['rift-objective'].textContent : '',
+      riftHintsRemoved:!document.getElementById('rift-objective') && !document.getElementById('rift-guidance-slot'),
       buff:els['buff-indicator'] ? els['buff-indicator'].textContent : ''
     };
   },
