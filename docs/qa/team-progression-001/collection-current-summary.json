@@ -1,0 +1,50 @@
+{
+  "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+  "results": [
+    {
+      "name": "normal",
+      "accepted": true,
+      "exitcode": 0,
+      "checks": 6228,
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "profiles": 12,
+      "error": null
+    },
+    {
+      "name": "stale-refresh",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 155,
+      "sourceSha256": "7c030b2dcc8bb23aa405ede0ab1f55f0388e98ea3c1636ce5a79f29026661b41",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"research\",\"label\":\"becomes affordable without rerender\",\"kind\":\"lumen\",\"want\":\"rgb(240, 239, 251)\",\"got\":\"rgb(255, 123, 146)\"}\n    at ok (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:40:27)\n    at observe (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:100:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:108:47)\n    at async C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:137:6"
+    },
+    {
+      "name": "all-white",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 4,
+      "sourceSha256": "a2cb404101a277e5d018c3b659ea51092f190387b43ba4719c4b3d3fbad51461",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wallet color {\"tab\":\"forge\",\"label\":\"initial insufficient\",\"kind\":\"lumen\",\"want\":\"rgb(255, 123, 146)\",\"got\":\"rgb(240, 239, 251)\"}\n    at ok (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:40:27)\n    at observe (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:100:6)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:108:4)\n    at async C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:137:6"
+    },
+    {
+      "name": "retired-card-returns",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 2,
+      "sourceSha256": "b436bb7366aa1cf7fcbbbb7f67ad6cfb5607d2374319747ccf3dd9d6de0d3b55",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: legacy shop cards must remain absent\n    at ok (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:40:27)\n    at observe (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:97:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:108:4)\n    at async C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:137:6"
+    },
+    {
+      "name": "rounded-wide-debit",
+      "accepted": true,
+      "exitcode": 1,
+      "checks": 516,
+      "sourceSha256": "1fe69fa50f96eca9544ca3303354a92ca2e96932b256b32570785aeb492e485c",
+      "profiles": 0,
+      "error": "AssertionError [ERR_ASSERTION]: wide wallet exact debit retains every Prism\n    at ok (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:40:27)\n    at run (C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:128:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\lf-team\\tests\\behavioral\\.collection-price-generated-7456.cjs:137:6"
+    }
+  ]
+}
