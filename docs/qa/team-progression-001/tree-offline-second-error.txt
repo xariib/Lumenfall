@@ -1,0 +1,24 @@
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: 8h actual offline/split/resumable charge tide: actual=100 expected=99.99999755859376
+    at Object.near (C:\lf-team\tests\behavioral\tree-expansion-economy.cjs:35:7)
+    at compareEconomy (C:\lf-team\tests\behavioral\tree-expansion-economy.cjs:110:27)
+    at compareState (C:\lf-team\tests\behavioral\tree-expansion-offline.cjs:116:3)
+    at longRuns (C:\lf-team\tests\behavioral\tree-expansion-offline.cjs:192:3)
+    at verify (C:\lf-team\tests\behavioral\tree-expansion-offline.cjs:295:46)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\tree-expansion-offline.cjs:303:148)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

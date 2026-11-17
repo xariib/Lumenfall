@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 6,
+  "offline12hRefund": null,
+  "astralUpgrades": {
+    "astralcore": 2,
+    "astralecho": 0,
+    "astralconvergence": 0
+  },
+  "commandRefund": {
+    "policy": "commands-retired-v1",
+    "total": 0,
+    "paid": true
+  },
+  "swiftRecoveryRefund": null,
+  "swiftRecoveryRefundAudit": null,
+  "feedbackMigration": {
+    "version": 1,
+    "applied": true,
+    "bondsCreditAuditVersion": 1,
+    "echoCreditAuditVersion": 1,
+    "receipts": {},
+    "history": {
+      "bonds": {
+        "levels": 20
+      },
+      "echo": {
+        "levels": 6
+      }
+    }
+  },
+  "refundCredits": {
+    "prisms": []
+  },
+  "lumen": 25601052716.913086,
+  "shards": 59174562150.500595,
+  "prisms": 331512,
+  "comets": 20,
+  "motes": 109505,
+  "sigils": 29347,
+  "moteNextAtMs": 1794868215376.3345,
+  "studyBoosts": {
+    "slot0": {
+      "mult": 8,
+      "startedAtMs": 1794840425684,
+      "expiresAtMs": 1794869225684
+    },
+    "slot1": {
+      "mult": 5,
+      "startedAtMs": 1794841010348,
+      "expiresAtMs": 1794869810348
+    },
+    "slot2": {
+      "mult": 5,
+      "startedAtMs": 1794843570451,
+      "expiresAtMs": 1794872370451
+    },
+    "slot3": {
+      "mult": 5,
+      "startedAtMs": 1794846124482,
+      "expiresAtMs": 1794874924482
+    }
+  },
+  "studyBoostHours": {
+    "wispascend": 8,
+    "guardmastery": 8,
+    "riftattune": 8,
+    "shardstudy": 8,
+    "lumenstudy": 8,
+    "formationstudy": 8,
+    "motestudy": 8,
+    "prismstudy": 8,
+    "measuredinquiry": 8,
+    "wispdamage": 8,
+    "wispcritchance": 8,
+    "wispcritdamage": 8,
+    "supportduration": 8,
+    "labcapacity": 8,
+    "procurement": 8,
+    "catalysis": 8,
+    "focusprotocol": 8,
+    "fieldnotes": 8,
+    "curriculum": 8,
+    "bossledger": 8,
+    "luminousdistill": 8,
+    "sigilcartography": 8,
+    "rarityappraisal": 8,
+    "modulefabrication": 8,
+    "ultimateanalysis": 8,
+    "resonantefficiency": 8,
+    "adaptivegrowth": 8
+  },
+  "depth": 176,
+  "maxDepthEver": 280,
+  "riftMode": "farm",
+  "farmDepth": 176,
+  "farmReturnDepth": 280,
+  "farmAutoResume": false,
+  "enemyDepth": 176,
+  "enemyHp": 3997628934.0097837,
+  "enemyMaxHp": 12782485582,
+  "enemyIsLuminous": true,
+  "spirits": {
+    "ember": 290,
+    "tide": 214,
+    "stone": 245,
+    "gale": 179,
+    "thorn": 0,
+    "void": 0,
+    "aurora": 0,
+    "titan": 0
+  },
+  "heroRarity": {
+    "ember": 3,
+    "tide": 3,
+    "stone": 3,
+    "gale": 3,
+    "thorn": 0,
+    "void": 0,
+    "aurora": 0,
+    "titan": 0
+  },
+  "heroResource": {
+    "ember": 34.30694123946278,
+    "tide": 34.30694123946281,
+    "stone": 34.30692626953125,
+    "gale": 14.306941239462775,
+    "thorn": 0,
+    "void": 0,
+    "aurora": 0,
+    "titan": 0
+  },
+  "wispModules": {
+    "ember": 20,
+    "tide": 20,
+    "stone": 20,
+    "gale": 20,
+    "thorn": 0,
+    "void": 0,
+    "aurora": 0,
+    "titan": 0
+  },
+  "wispUltimate": {
+    "ember": false,
+    "tide": false,
+    "stone": false,
+    "gale": false,
+    "thorn": false,
+    "void": false,
+    "aurora": false,
+    "titan": false
+  },
+  "wispMastery": {
+    "ember": 0,
+    "tide": 0,
+    "stone": 0,
+    "gale": 0,
+    "thorn": 0,
+    "void": 0,
+    "aurora": 0,
+    "titan": 0
+  },
+  "canonicalAutomationClock": {},
+  "recruitmentEntitlements": {
+    "ember": true,
+    "tide": true,
+    "stone": true,
+    "gale": true,
+    "thorn": false,
+    "void": false,
+    "aurora": false,
+    "titan": false
+  },
+  "empowerQueue": {
+    "ember": true,
+    "tide": true,
+    "stone": true,
+    "gale": true,
+    "thorn": true,
+    "void": true,
+    "aurora": true,
+    "titan": true
+  },
+  "activeParty": [
+    "ember",
+    "gale",
+    "tide",
+    "stone"
+  ],
+  "formationPresets": {
+    "push": [
+      "ember",
+      "gale",
+      "tide",
+      "stone"
+    ],
+    "farm": [
+      "ember"
+    ],
+    "boss": [
+      "ember"
+    ]
+  },
+  "activeFormationPreset": "push",
+  "formationRebuild": null,
+  "nodes": {
+    "starlight": 0,
+    "steady": 0,
+    "echo": 6,
+    "bonds": 20,
+    "swift": 250,
+    "momentum": 0,
+    "reserves": 0,
+    "swiftcharter": 1,
+    "lumenmemory": 5,
+    "veteranrecruits": 5,
+    "rosterrecall": 4,
+    "chargememory": 5,
+    "supportmemory": 1,
+    "phasememory": 1,
+    "riftstep": 5,
+    "frontier": 5,
+    "stardust": 5,
+    "gentlegrowth": 5,
+    "formationseat": 1,
+    "benchmentor": 5,
+    "empowerbatch": 4,
+    "wallwisdom": 4,
+    "invitations": 3,
+    "recruitreserve": 5
+  },
+  "treeTrainingProgress": 4,
+  "research": {
+    "focus": 0,
+    "sense": 0,
+    "formation": 0,
+    "resolve": 0,
+    "charge": 10,
+    "arcanecal": 20,
+    "conduction": 20,
+    "luminoustracking": 10,
+    "masterwork": 25,
+    "cauterize": 10,
+    "fracturekey": 10,
+    "guardianseal": 5,
+    "spillway": 5,
+    "sustainedchannel": 5,
+    "tapconduit": 5,
+    "guardiancadence": 5,
+    "relay": 5,
+    "resonantedge": 5,
+    "victorycharge": 5,
+    "amplifiertrim": 5,
+    "dualchannel": 5,
+    "overflowconduit": 5,
+    "resonancecells": 2,
+    "resonancecascade": 5,
+    "resonancereclaim": 3,
+    "battletempering": 105,
+    "arcanetempering": 86,
+    "harvesttempering": 88
+  },
+  "researchQueue": {
+    "focus": false,
+    "sense": false,
+    "formation": false,
+    "resolve": false,
+    "charge": false,
+    "arcanecal": false,
+    "conduction": false,
+    "luminoustracking": false,
+    "masterwork": false,
+    "cauterize": false,
+    "fracturekey": false,
+    "guardianseal": false,
+    "spillway": false,
+    "sustainedchannel": false,
+    "tapconduit": false,
+    "guardiancadence": false,
+    "relay": false,
+    "resonantedge": false,
+    "victorycharge": false,
+    "amplifiertrim": false,
+    "dualchannel": false,
+    "overflowconduit": false,
+    "resonancecells": false,
+    "resonancecascade": false,
+    "resonancereclaim": false,
+    "battletempering": false,
+    "arcanetempering": false,
+    "harvesttempering": false
+  },
+  "longStudyLevels": {
+    "wispascend": 20,
+    "guardmastery": 8,
+    "riftattune": 0,
+    "shardstudy": 17,
+    "lumenstudy": 16,
+    "formationstudy": 0,
+    "motestudy": 15,
+    "prismstudy": 0,
+    "measuredinquiry": 0,
+    "wispdamage": 27,
+    "wispcritchance": 20,
+    "wispcritdamage": 0,
+    "supportduration": 0,
+    "labcapacity": 1,
+    "procurement": 0,
+    "catalysis": 0,
+    "focusprotocol": 0,
+    "fieldnotes": 0,
+    "curriculum": 0,
+    "bossledger": 0,
+    "luminousdistill": 0,
+    "sigilcartography": 0,
+    "rarityappraisal": 0,
+    "modulefabrication": 0,
+    "ultimateanalysis": 0,
+    "resonantefficiency": 0,
+    "adaptivegrowth": 0
+  },
+  "activeStudies": [
+    {
+      "id": "wispascend",
+      "slot": 0,
+      "remainingSec": 191877.9994518045,
+      "totalDurationSec": 864000,
+      "speedMult": 1
+    },
+    {
+      "id": "lumenstudy",
+      "slot": 2,
+      "remainingSec": 114194.71568356504,
+      "totalDurationSec": 479615,
+      "speedMult": 1
+    },
+    {
+      "id": "motestudy",
+      "slot": 3,
+      "remainingSec": 290061.4728999368,
+      "totalDurationSec": 438110,
+      "speedMult": 1
+    },
+    {
+      "id": "wispdamage",
+      "slot": 1,
+      "remainingSec": 232397.3855574612,
+      "totalDurationSec": 336486,
+      "speedMult": 1
+    }
+  ],
+  "studySlotProjects": [
+    "wispascend",
+    "wispdamage",
+    "lumenstudy",
+    "motestudy",
+    null
+  ],
+  "pausedStudies": [
+    {
+      "id": "wispcritchance",
+      "remainingSec": 98428.49274994957,
+      "totalDurationSec": 131313,
+      "speedMult": 1
+    },
+    {
+      "id": "shardstudy",
+      "remainingSec": 155589.6753000723,
+      "totalDurationSec": 590296,
+      "speedMult": 1
+    }
+  ],
+  "studyQueue": {
+    "wispascend": true,
+    "guardmastery": false,
+    "riftattune": false,
+    "shardstudy": false,
+    "lumenstudy": true,
+    "formationstudy": false,
+    "motestudy": true,
+    "prismstudy": false,
+    "measuredinquiry": false,
+    "wispdamage": true,
+    "wispcritchance": false,
+    "wispcritdamage": false,
+    "supportduration": false,
+    "labcapacity": false,
+    "procurement": false,
+    "catalysis": false,
+    "focusprotocol": false,
+    "fieldnotes": false,
+    "curriculum": false,
+    "bossledger": false,
+    "luminousdistill": false,
+    "sigilcartography": false,
+    "rarityappraisal": false,
+    "modulefabrication": false,
+    "ultimateanalysis": false,
+    "resonantefficiency": false,
+    "adaptivegrowth": false
+  },
+  "studyUseMotes": {
+    "wispascend": false,
+    "guardmastery": false,
+    "riftattune": false,
+    "shardstudy": false,
+    "lumenstudy": false,
+    "formationstudy": false,
+    "motestudy": false,
+    "prismstudy": false,
+    "measuredinquiry": false,
+    "wispdamage": false,
+    "wispcritchance": false,
+    "wispcritdamage": false,
+    "supportduration": false,
+    "labcapacity": false,
+    "procurement": false,
+    "catalysis": false,
+    "focusprotocol": false,
+    "fieldnotes": false,
+    "curriculum": false,
+    "bossledger": false,
+    "luminousdistill": false,
+    "sigilcartography": false,
+    "rarityappraisal": false,
+    "modulefabrication": false,
+    "ultimateanalysis": false,
+    "resonantefficiency": false,
+    "adaptivegrowth": false
+  },
+  "studySpeedTargets": {
+    "wispascend": 8,
+    "guardmastery": 1.5,
+    "riftattune": 1.5,
+    "shardstudy": 3,
+    "lumenstudy": 5,
+    "formationstudy": 1.5,
+    "motestudy": 5,
+    "prismstudy": 1.5,
+    "measuredinquiry": 1.5,
+    "wispdamage": 5,
+    "wispcritchance": 2,
+    "wispcritdamage": 1.5,
+    "supportduration": 1.5,
+    "labcapacity": 3,
+    "procurement": 1.5,
+    "catalysis": 1.5,
+    "focusprotocol": 1.5,
+    "fieldnotes": 1.5,
+    "curriculum": 1.5,
+    "bossledger": 1.5,
+    "luminousdistill": 1.5,
+    "sigilcartography": 1.5,
+    "rarityappraisal": 1.5,
+    "modulefabrication": 1.5,
+    "ultimateanalysis": 1.5,
+    "resonantefficiency": 1.5,
+    "adaptivegrowth": 1.5
+  },
+  "achieved": {
+    "d10": true,
+    "d25": true,
+    "d50": true,
+    "d100": true,
+    "d250": true,
+    "tap100": true,
+    "tap1000": true,
+    "tap10000": true,
+    "asc1": true,
+    "asc5": true,
+    "asc10": true,
+    "idle8": true,
+    "autotap": true,
+    "study1": true,
+    "study25": true,
+    "allstudies": true,
+    "labqueue": true,
+    "modulemax": true,
+    "endless_ascend_25": true,
+    "endless_ascend_50": true,
+    "endless_ascend_100": true,
+    "endless_ascend_250": true,
+    "endless_ascend_500": true,
+    "endless_ascend_1000": true,
+    "endless_kills_10000": true,
+    "endless_kills_100000": true,
+    "endless_kills_1000000": true,
+    "endless_lab_50": true,
+    "endless_lab_100": true,
+    "endless_forge_100": true,
+    "endless_forge_200": true,
+    "endless_forge_300": true,
+    "endless_forge_400": true,
+    "endless_rest_24": true,
+    "endless_rest_72": true,
+    "endless_rest_168": true
+  },
+  "owned": {
+    "meteor": false,
+    "starcall": false,
+    "autoascend": true
+  },
+  "riftTheme": "radiant",
+  "riftLook": {
+    "backdrop": "default",
+    "wisp": "default",
+    "enemy": "default",
+    "motion": false
+  },
+  "cometUpgrades": {
+    "cometreservoir": 0,
+    "cometcycle": 0,
+    "meteorcore": 0
+  },
+  "cometCharges": 0,
+  "cometWork": 0,
+  "cometMeteorUsed": false,
+  "cometCalled": false,
+  "cometEvents": {
+    "firstCommand": false,
+    "firstRecharge": false,
+    "bossStrike": false,
+    "calledKill": false
+  },
+  "cometClaims": {
+    "policy": "comet-commands-001",
+    "retired": {
+      "comettrials": "absent",
+      "rifttrail": "absent",
+      "starfallcrest": "absent"
+    },
+    "deeds": {}
+  },
+  "cometTrial": null,
+  "cometTrialMarks": {},
+  "cometTrialResult": null,
+  "cometCosmetics": {
+    "trail": false,
+    "crest": false
+  },
+  "legacyCometPurchases": {},
+  "buffUntil": 0,
+  "buffMult": 1,
+  "supportBuffs": {
+    "version": 1,
+    "sources": {
+      "tide": {
+        "until": 1794868216484.5376,
+        "mult": 1.3
+      }
+    }
+  },
+  "supportRecastUntil": {
+    "tide": 1794868216817.8708,
+    "aurora": 0
+  },
+  "ascendCount": 9045,
+  "ascendRewardedDepth": 279,
+  "sigilResonanceUses": 0,
+  "totalTaps": 459437,
+  "totalKills": 1167039,
+  "totalOfflineSeconds": 1293459.3559999992,
+  "luminousAccum": 0.004998999982823937,
+  "savedLabMultiplier": 1,
+  "autoAscendEnabled": false,
+  "autoAscendTargetDepth": 30,
+  "loginStreak": 18,
+  "questDay": "2026-11-16",
+  "questIds": [
+    "q_empower",
+    "q_tap_small",
+    "q_luminous"
+  ],
+  "questClaimed": {
+    "q_tap_small": true,
+    "q_empower": true,
+    "q_luminous": true
+  },
+  "dailyQuestRefreshes": 0,
+  "dailyStats": {
+    "taps": 89199,
+    "kills": 121610,
+    "empowers": 174,
+    "research": 19,
+    "bossKills": 3,
+    "luminousKills": 42557,
+    "ascends": 0
+  },
+  "lastSeen": 1794868214629,
+  "offlineClockHighWaterMs": 1794868214629,
+  "studyBoostQueue": {
+    "slot0": {
+      "enabled": true,
+      "mult": 8,
+      "hours": 8
+    },
+    "slot1": {
+      "enabled": true,
+      "mult": 5,
+      "hours": 8
+    },
+    "slot2": {
+      "enabled": true,
+      "mult": 5,
+      "hours": 8
+    },
+    "slot3": {
+      "enabled": true,
+      "mult": 5,
+      "hours": 8
+    }
+  },
+  "_autoTapAccum": 585.1000895210035,
+  "_autoEmpowerAccum": 0
+}

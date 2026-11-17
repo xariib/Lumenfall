@@ -1,0 +1,17 @@
+C:\lf-team\tests\behavioral\comet-unlocks-core.cjs:208
+  const corrupt=copy(savedWhole);corrupt.canonicalAutomationClock._autoTapAccum.last+=1;
+                                                                  ^
+
+TypeError: Cannot read properties of undefined (reading 'last')
+    at C:\lf-team\tests\behavioral\comet-unlocks-core.cjs:208:67
+    at test (C:\lf-team\tests\behavioral\comet-unlocks-core.cjs:40:24)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\comet-unlocks-core.cjs:183:1)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+Node.js v24.22.1

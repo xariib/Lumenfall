@@ -143,7 +143,7 @@ specs.forEach(function(d){[0,1,d[2],d[2]+3].forEach(function(level){effect(d[0],
  s.research.focus=7;s.nodes.echo=3;s.nodes.bonds=2;s.longStudyLevels.guardmastery=4;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=21;
  specs.forEach(function(d,i){s.research[d[0]]=d[2]+3;s.researchQueue[d[0]]=i%2===0;});s.sigilResonanceUses=5;
  s.activeStudies=[{id:'guardmastery',remainingSec:120,totalDurationSec:240,speedMult:2}];q.set(s);var before=clone(q.get());
- if(route==='manual')q.ascend();else{q.get().depth=q.get().enemyDepth=20;q.get().enemyHp=0;var sum=run(q,0,route);eq(sum.kills,1,'actual target boss killed '+route);eq(sum.ascends,1,'actual automatic Ascend '+route);}
+ if(route==='manual')q.ascend();else{q.get().depth=q.get().enemyDepth=20;q.get().enemyHp=0;var sum=run(q,0,route);eq(sum.kills,1,'actual target boss killed '+route);eq(sum.ascends,0,'actual target kill never auto Ascends '+route);eq(q.ascend(),true,'manual choice after actual '+route+' target clear');}
  eq(q.get().ascendCount,before.ascendCount+1,'actual Ascend count '+route);eq(q.get().depth,1,'actual run resets '+route);eq(q.get().lumen,0,'Lumen resets '+route);eq(q.get().sigilResonanceUses,0,'run Resonate counter resets');
  eq(q.get().prisms,31,'independent first Clear20 reward floor(2*sqrt(20))=8');
  ['research','researchQueue','nodes','longStudyLevels','activeStudies','owned','autoAscendEnabled','autoAscendTargetDepth'].forEach(function(field){eq(q.get()[field],before[field],'Ascend preserves '+field+' '+route);});
@@ -156,10 +156,10 @@ specs.forEach(function(d){[0,1,d[2],d[2]+3].forEach(function(level){effect(d[0],
  var x=app(),q=x.q,s=battle(q,['tide','ember'],20);s.ascendCount=1e30;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=21;
  s.research.relay=5;s.research.spillway=5;s.research.resonantedge=5;q.set(s);q.get().heroResource.tide=100;q.get().enemyHp=q.abilityDamage('tide',20)/2;
  eq(q.get().ascendCount+1,q.get().ascendCount,'accepted raw counter really has a stagnant increment');
- var before=clone(q.get()),summary=run(q,0,route);eq(summary.bossKills,1,'actual Support pulse kills target boss');eq(summary.ascends,1,'actual Auto-Ascend occurs despite stagnant counter');
+ var before=clone(q.get()),summary=run(q,0,route);eq(summary.bossKills,1,'actual Support pulse kills target boss');eq(summary.ascends,0,'unsafe counter cannot enable automatic reset');eq(q.get().ascendCount,before.ascendCount,'combat retains unsafe historical count');eq(q.ascend(),true,'unsafe counter permits explicit manual Ascend');
  eq(q.get().ascendCount,'1000000000000000019884624838657e0','exact historical counter plus one preserved');eq(q.get().depth,1,'new run starts at Rift1');eq([q.get().enemyHp,q.get().enemyMaxHp],[69,69],'old overkill cannot cross into new Rift1');
  eq(Object.keys(q.get().heroResource).map(function(id){return q.get().heroResource[id];}),Object.keys(q.get().heroResource).map(function(){return 0;}),'old Support relay cannot charge new-run Wisps');
- eq(q.get().supportBuffs,null,'old Support buff cleared by real reset');eq(q.get().research,before.research,'paid effects remain owned through reset');eq(q.get().autoAscendEnabled,true,'Auto-Ascend remains enabled');
+ eq(q.get().supportBuffs,null,'old Support buff cleared by real reset');eq(q.get().research,before.research,'paid effects remain owned through reset');eq(q.get().autoAscendEnabled,false,'Auto-Ascend remains retired');
  q.save();eq(app(x.storage).q.get().ascendCount,'1000000000000000019884624838657e0','cold save retains exact advanced counter');unsafeRunCases++;
 });
 // New Sigil spending has the same primary-commit transaction boundary.

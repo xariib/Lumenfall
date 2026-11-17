@@ -27,7 +27,9 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   q('[data-tab="forge"]').click();
   press('[data-mult="5"]',function(){return true;});
   q('[data-tab="ascend"]').click();
-  press('[data-autoascend-toggle]',function(){return !!bridge.getState().autoAscendEnabled;});
+  assert(!q('[data-autoascend-toggle]') && !bridge.getState().autoAscendEnabled,'retired automation control is absent and disabled');
+  q('[data-tab="spirits"]').click();
+  press('[data-empower-queue="tide"]',function(){return bridge.getState().empowerQueue.tide!==false;});
 
   var poor=bridge.getState();poor.lumen=0;poor.shards=0;bridge.setState(poor);bridge.renderLayout();
   var purchase=q('[data-research="arcanecal"]');

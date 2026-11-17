@@ -6,7 +6,7 @@ const args=process.argv.slice(2),at=args.indexOf('--source');
 const sourcePath=at<0?'index.html':args[at+1];assert(sourcePath,'--source requires a path');
 const source=fs.readFileSync(sourcePath,'utf8');
 const ascendEntry=source.match(/\{name:'Ascend', meta:'Permanent progression', desc:'([^']+)'\}/);
-assert(ascendEntry&&ascendEntry[1].includes('Repeat rewards keep 20% of the unupgraded base plus the full Tree/Lab Prism bonus, rounded down once.')&&ascendEntry[1].includes('New cleared depth beyond your rewarded benchmark adds a bonus;'),'Encyclopedia Ascend summary matches the protected repeat-bonus rule');
+assert(ascendEntry&&ascendEntry[1].includes('Each later manual Ascend requires a higher clear than your best rewarded Rift.')&&ascendEntry[1].includes('Eligible records keep the protected base and full Tree/Lab bonus, plus a new-depth bonus;'),'Encyclopedia Ascend summary matches manual records and protected earned bonuses');
 function single(name){const m=source.match(new RegExp('function '+name+'\\([^\\n]*\\}'));assert(m,'missing production function '+name);return m[0];}
 const start=source.indexOf('// PRISM_EARNING_001:'),end=source.indexOf('function ascendPrismGain(',start);
 assert(start>=0 && end>start,'candidate reward functions are not installed');
@@ -22,7 +22,7 @@ function sqrt(n){if(n<2n)return n;let x=1n<<BigInt(Math.ceil(n.toString(2).lengt
 function numerator(t,l){return (25n+BigInt(t))*(20n+BigInt(l));}
 function floorCurve(c,t,l,repeat){if(c<15)return 0;let p=numerator(t,l)-(repeat?400n:0n);return Math.max(1,Number(sqrt(4n*BigInt(c)*p*p)/500n));}
 function progress(c,b,t,l){if(c<=b)return 0;const p=numerator(t,l),pp=p*p,upper=4n*pp*(BigInt(c)+BigInt(b)),right=64n*pp*pp*BigInt(c)*BigInt(b);function covers(k){let r=upper-k*k*250000n;return r<=0n||r*r<=right;}let k=BigInt(Math.max(0,Math.ceil(2*(Math.sqrt(c)-Math.sqrt(b))*Number(p)/500)));while(!covers(k))k++;while(k>0n&&covers(k-1n))k--;return Number(k);}
-function expected(c,b,t,l){const full=floorCurve(c,t,l,false);if(!full)return {gain:0,full:0,reserve:0,progressBonus:0};if(!b)return {gain:full,full,reserve:0,progressBonus:full};const reserve=floorCurve(c,t,l,true),delta=progress(c,b,t,l);return {gain:Math.min(full,reserve+delta),full,reserve,progressBonus:delta};}
+function expected(c,b,t,l){const full=floorCurve(c,t,l,false);if(!full||c<=b)return {gain:0,full:full,reserve:0,progressBonus:0};if(!b)return {gain:full,full,reserve:0,progressBonus:full};const reserve=floorCurve(c,t,l,true),delta=progress(c,b,t,l);return {gain:Math.min(full,reserve+delta),full,reserve,progressBonus:delta};}
 function seed(c,b,t,l){return {depth:c+1,riftMode:'push',farmReturnDepth:0,ascendRewardedDepth:b,nodes:{swift:t},longStudyLevels:{prismstudy:l},activeStudies:[],prisms:100};}
 let assertions=0,formulaCases=0;function equal(a,b,m){assertions++;assert.equal(a,b,m);}
 const e=engine();
@@ -44,13 +44,13 @@ for(const c of [15,20,25,50,119,250])for(const b of [0,15,c,1000])for(const l of
 for(const c of [15,20,25,50,119,250])for(const b of [0,15,c,1000])for(const t of [0,1,10,20]){let previous=-1;for(let l=0;l<=100;l++){e.state=seed(c,b,t,l);let now=e.ascendPrismBreakdown().gain;assertions++;assert(now>=previous,'completed Lab levels must not reduce payout');previous=now;}}
 const negativeControls=[];
 function caught(name,transform,c,b,t,l){const changed=transform(block);assert.notEqual(changed,block,'mutant must change code');const mutant=engine(changed);mutant.state=seed(c,b,t,l);let failed=false;try{const got=mutant.ascendPrismBreakdown(),want=expected(c,b,t,l);for(const k of Object.keys(want))assert.equal(got[k],want[k]);}catch(error){if(!(error instanceof assert.AssertionError))throw error;failed=true;}assert(failed,'causal control escaped: '+name);negativeControls.push(name);}
-caught('old-repeat-penalizes-bonus',s=>s.replace('var reserve = ascendRepeatPrismGainForCleared(cleared);','var reserve = Math.max(1,Math.floor(full*ASCEND_REPEAT_REWARD_RATE));'),20,20,7,0);
+caught('old-repeat-penalizes-bonus',s=>s.replace('var reserve = ascendRepeatPrismGainForCleared(cleared);','var reserve = Math.max(1,Math.floor(full*ASCEND_REPEAT_REWARD_RATE));'),20,19,7,0);
 caught('drop-tree',s=>s.replace("var tree = nodeLevel('swift');",'var tree = 0;'),20,0,10,0);
 caught('drop-completed-lab',s=>s.replace("var lab = longStudyLevel('prismstudy');",'var lab = 0;'),25,0,0,10);
 caught('floating-full-floor',s=>s.replace('var candidate=Math.floor(approximate);','var candidate=Math.floor(approximate); return candidate;'),25,0,10,10);
 caught('floating-progress-ceil',s=>s.replace('var candidate=Math.ceil(approximate);','var candidate=Math.ceil(approximate); return candidate;'),49,16,35,5);
 caught('displayed-vs-cleared-rift',s=>s.replace('progressionDepth() : depth)-1','progressionDepth() : depth)'),24,0,0,0);
-caught('count-bonus-twice',s=>s.replace('var reserve = ascendRepeatPrismGainForCleared(cleared);','var reserve = 2*ascendRepeatPrismGainForCleared(cleared);'),20,20,7,0);
+caught('count-bonus-twice',s=>s.replace('var reserve = ascendRepeatPrismGainForCleared(cleared);','var reserve = 2*ascendRepeatPrismGainForCleared(cleared);'),20,19,7,0);
 e.state=seed(20,219,0,2);const pending=e.ascendPrismBreakdown().gain;e.state.activeStudies=[{id:'prismstudy',remainingSec:1}];equal(e.ascendPrismBreakdown().gain,pending,'paid but unfinished study grants no early bonus');
 // Numerical legacy fallback is intentionally not an exact-currency guarantee.
 e.state=seed(Number.MAX_VALUE,Number.MAX_VALUE/4,0,0);const extreme=e.ascendPrismBreakdown();assertions++;assert(Number.isFinite(extreme.full)&&Number.isFinite(extreme.gain));

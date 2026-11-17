@@ -1,0 +1,24 @@
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: capped Swift full8h one-second oracle.enemyHp strict remaining-HP parity
+    at compare (C:\lf-team\tests\behavioral\offline-catchup.cjs:139:33)
+    at C:\lf-team\tests\behavioral\offline-catchup.cjs:143:29
+    at Array.forEach (<anonymous>)
+    at compare (C:\lf-team\tests\behavioral\offline-catchup.cjs:143:18)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\offline-catchup.cjs:311:1)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

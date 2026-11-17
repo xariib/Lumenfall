@@ -147,7 +147,7 @@ async function profile(){
   receipt.loaded=await state();receipt.slots=await slots();receipt.beforeReady=await ev('__cometBeforeReady');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev('document.fonts.ready.then(function(){return true;})');await frames();return receipt;
  }
  function legacy(s,owned){const old=copy(s);old.schemaVersion=2;for(const key of ['cometUpgrades','cometCharges','cometWork','cometMeteorUsed','cometCalled','cometEvents','cometClaims'])delete old[key];delete old.owned.meteor;delete old.owned.starcall;for(const id of ['comettrials','rifttrail','starfallcrest'])old.owned[id]=owned.indexOf(id)!==-1;return old;}
- function migrationAssertions(old,after,entitlements){ok(after.schemaVersion===(isCurrent?6:5),'actual schema2 migration reaches current schema through3/4/5');ok(after.comets===old.comets+entitlements.reduce((sum,x)=>sum+({comettrials:140,rifttrail:50,starfallcrest:160}[x]),0),'exact retirement compensation while retaining benefits');
+ function migrationAssertions(old,after,entitlements){ok(after.schemaVersion===(isCurrent?6:5),'actual schema2 migration reaches current schema through3/4/5');ok(after.comets===old.comets+entitlements.reduce((sum,x)=>sum+({comettrials:140,rifttrail:50,starfallcrest:160}[x]),0)+(isCurrent&&old.owned.autoascend?100:0),'exact retirement compensation while retaining benefits');
   for(const name of ['comettrials','rifttrail','starfallcrest']){ok(!Object.prototype.hasOwnProperty.call(after.owned,name),'retired raw owned removed '+name);ok(after.cometClaims.retired[name]===(entitlements.includes(name)?'settled':'absent'),'retirement disposition '+name);}
   same(after.cometUpgrades,{cometreservoir:0,cometcycle:0,meteorcore:0},'migration grants no new paid ranks');ok(after.owned.meteor===false&&after.owned.starcall===false&&after.cometCharges===0&&after.cometWork===0,'migration grants no commands/charge/work');preserve(old,after,paidFields.concat(['shards','motes','sigils','autoAscendEnabled','autoAscendTargetDepth']),'legacy migration');
   // F21/F20 restore historical overcap Prisms alongside the independent
@@ -165,7 +165,7 @@ async function profile(){
  const migrated=await reloadWith(JSON.stringify(old),JSON.stringify(old),'legacy-three-owner');migrationAssertions(old,migrated.loaded,['comettrials','rifttrail','starfallcrest']);
  await show('deeds');ok(await ev("document.querySelectorAll('#shop-list [data-shop=\"comettrials\"],#shop-list [data-shop=\"rifttrail\"],#shop-list [data-shop=\"starfallcrest\"]').length")===0,'retired purchases absent');
  same(await ev('prismQa.cometRoundtrip()'),await state(),'actual backup codec preserves migrated paid endpoint');
- await ev('prismQa.cometSave()');const saveAfterMigration=await state();await ev('window.prismQa=null');await send('Page.reload');await ready('migration-repeat-load');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));ok((await state()).comets===357,'reload does not repeat350 compensation or683 Deeds');preserve(saveAfterMigration,await state(),paidFields,'migration repeat');
+ await ev('prismQa.cometSave()');const saveAfterMigration=await state();await ev('window.prismQa=null');await send('Page.reload');await ready('migration-repeat-load');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));ok((await state()).comets===(isCurrent?457:357),'reload does not repeat retirement compensation or683 Deeds');preserve(saveAfterMigration,await state(),paidFields,'migration repeat');
  await show('deeds');
  // Real retained-owner Journal input, native select, free queue/cancel and
  // separate cosmetic controls. Editing proof never repairs focus afterward.
@@ -216,13 +216,14 @@ async function profile(){
   const base=copy(seed);base.maxDepthEver=5000;base.comets=100000;
   base.ascendCount=25;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id,i){base.longStudyLevels[id]=i<2?9:8;});
   await install(base);
-  const currentIds=['autoascend','astralcore','astralecho','astralconvergence'];same((await ev('prismQa.cometDefs()')).map(x=>x.id),currentIds,'four current permanent shop IDs');
-  for(const [i,name]of currentIds.entries())for(let rank=0;rank<(i?10:1);rank++){
-   const cost=i?Math.ceil([750,1250,2000][i-1]*1.2**rank):100,fixture=await state();fixture.comets=cost-1;await install(fixture);
+  const currentIds=['astralcore','astralecho','astralconvergence'];same((await ev('prismQa.cometDefs()')).map(x=>x.id),currentIds,'three current permanent shop IDs');
+  ok(await ev('!document.querySelector("[data-shop=autoascend],[data-autoascend-open]")'),'Auto-Ascend shop and controls stay absent');
+  for(const [i,name]of currentIds.entries())for(let rank=0;rank<10;rank++){
+   const cost=Math.ceil([750,1250,2000][i]*1.2**rank),fixture=await state();fixture.comets=cost-1;await install(fixture);
    const short=await quote(name);ok(short.price.amount===cost&&short.disabled,'exact independent one-short permanent quote '+name+'/'+rank);
    await ev('prismQa.cometWallet('+cost+');prismQa.cometRefresh()');const funded=await quote(name);ok(!funded.disabled&&funded.price.color!==short.price.color,'live permanent affordability '+name+'/'+rank);
-   const afterSelector=i?selector('data-comet-card',name):'[data-autoascend-open]';const action=await input(selector('data-shop',name),rank%2?'Space':'touch','permanent '+name+'/'+rank,afterSelector);cometDiagnostics.purchases.push(action);
-   ok(action.stateAfter.comets===0,'native exact permanent debit '+name+'/'+rank);ok(i?action.stateAfter.astralUpgrades[name]===rank+1:action.stateAfter.owned.autoascend,'native paid permanent level '+name+'/'+rank);preserve(action.stateBefore,action.stateAfter,paidFields,'permanent purchase');
+   const afterSelector=selector('data-comet-card',name);const action=await input(selector('data-shop',name),rank%2?'Space':'touch','permanent '+name+'/'+rank,afterSelector);cometDiagnostics.purchases.push(action);
+   ok(action.stateAfter.comets===0,'native exact permanent debit '+name+'/'+rank);ok(action.stateAfter.astralUpgrades[name]===rank+1,'native paid permanent level '+name+'/'+rank);preserve(action.stateBefore,action.stateAfter,paidFields,'permanent purchase');
    ok(action.writes.filter(x=>x.key==='lumenfall_save_v2'&&x.ok).length===1,'one primary permanent commit');ok(action.writes.filter(x=>x.key==='lumenfall_save_recovery_v1'&&x.ok).length===1,'one recovery permanent commit');
    // The purchase button becomes a same-card focus destination. Comparing its
    // old top to the card's top required a scroll jump on every exhausted wallet.
@@ -269,8 +270,8 @@ async function profile(){
   await pair('wrong-astral-cost',exact,'deeds',async()=>{},async()=>input('[data-shop="astralcore"]','touch','causal exact permanent debit','[data-comet-card="astralcore"]'),async r=>{ok(r.after.comets===0&&r.after.astralUpgrades.astralcore===1,'causal native permanent exact debit');},'causal native permanent exact debit');
   const updated=copy(base);updated.comets=900;
   await pair('stale-rank',updated,'deeds',async()=>{},async()=>{await ev('var levels=prismQa.get().astralUpgrades;levels.astralcore=1;prismQa.cometPatch({astralUpgrades:levels})');return input('[data-shop="astralcore"]','Space','causal stale native permanent quote','[data-comet-card="astralcore"]');},async r=>{ok(r.after.comets===0&&r.after.astralUpgrades.astralcore===2,'causal native permanent rank recheck');},'causal native permanent rank recheck');
-  const press=copy(base);press.comets=100;
-  await pair('pressed-purchase',press,'deeds',async()=>{},async()=>input('[data-shop="autoascend"]','touch','causal neutral purchase press','[data-autoascend-open]'),async r=>{const action=r.outcome,activation=action.activationEvents[0];ok(action.activationEvents.length===1&&activation.trusted&&activation.eventPhase===1&&activation.shop==='autoascend'&&activation.active,'actual active trusted purchase capture');ok(action.touchBefore.transform==='none'&&activation.transform==='none','causal neutral Comet purchase press geometry');stationary(action.before,action.immediate,'causal neutral purchase immediate');stationary(action.before,action.settled,'causal neutral purchase settled');},'causal neutral Comet purchase press geometry');
+  const press=copy(base);press.comets=750;
+  await pair('pressed-purchase',press,'deeds',async()=>{},async()=>input('[data-shop="astralcore"]','touch','causal neutral purchase press','[data-comet-card="astralcore"]'),async r=>{const action=r.outcome,activation=action.activationEvents[0];ok(action.activationEvents.length===1&&activation.trusted&&activation.eventPhase===1&&activation.shop==='astralcore'&&activation.active,'actual active trusted purchase capture');ok(action.touchBefore.transform==='none'&&activation.transform==='none','causal neutral Comet purchase press geometry');stationary(action.before,action.immediate,'causal neutral purchase immediate');stationary(action.before,action.settled,'causal neutral purchase settled');},'causal neutral Comet purchase press geometry');
  }
 
  async function runSemantics(){

@@ -1,0 +1,34 @@
+{
+  "id": 44015721946,
+  "sha": "5fe1d1ad8d8d8234021eed19801eeb0fa7c725f7",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44015721946",
+  "jobs": [
+    {
+      "id": 133813059750,
+      "name": "Wisp scroll (ubuntu-latest)",
+      "conclusion": "failure",
+      "started": "2026-11-17T04:13:57Z",
+      "completed": "2026-11-17T04:15:00Z",
+      "log": "job-133813059750.log.gz",
+      "rawSha256": "19a881073e0da912e45e271fcc1f7c0ac2251ef793bfdd2f5c11e1980b58c214",
+      "summary": [
+        "2026-11-17T04:14:58.3514582Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      ]
+    },
+    {
+      "id": 133813060029,
+      "name": "Wisp scroll (windows-latest)",
+      "conclusion": "success",
+      "started": "2026-11-17T04:13:58Z",
+      "completed": "2026-11-17T04:16:23Z",
+      "log": "job-133813060029.log.gz",
+      "rawSha256": "456f36e249b23ebd3f5faa90aaf77c680843a76ef088ab1922e1ca3cc82948b2",
+      "summary": [
+        "2026-11-17T04:15:09.3777261Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"win32\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":419.640625,\"layoutTop\":2762.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2672.640625,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":419.640625,\"layoutTop\":2762.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2672.640625,\"card\":\"stone",
+        "2026-11-17T04:15:09.4064482Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m\r"
+      ]
+    }
+  ]
+}

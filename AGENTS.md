@@ -74,7 +74,11 @@ Read archives and technical guides only when needed.
 - Every upgrade UI must show each insufficient resource amount in red and
   disable the purchase button when the upgrade is unaffordable. Refresh both
   as resources change.
-- Preserve chronological simulation, online/offline parity, automation and save/
+- Ascension is manual: first clear Rift15; each later Ascend requires a clear
+  above the highest previously rewarded clear. Auto-Ascend is retired; previous
+  owners receive a validated one-time100-Comet refund. Preserve prior progress.
+  See `docs/decisions/2026-11-16-manual-team-progression.md`.
+- Preserve chronological simulation, online/offline parity, remaining automation and save/
   recovery. `docs/project/KNOWN_ISSUES.md` records limitations; a contract does
   not prove every current path passes.
 - Preserve mobile accessibility, WebView 60 compatibility, package
@@ -82,14 +86,18 @@ Read archives and technical guides only when needed.
 - Accepted requirements and verified code determine mechanics, balance, caps
   and migrations. Proposed or archived candidates are not implemented rules.
 
-F05 approved rule (7 October 2026): calculate the new-depth bonus from the
+F05 approved rounding rule (7 October 2026), for eligible manual new records:
+calculate the new-depth bonus from the
 unrounded depth-curve difference with current Tree/completed Lab bonuses and
-round up once. Preserve first reward, 20% repeat, minimum 1 and the full-reward
+round up once. Preserve first reward, protected base/earned-bonus component,
+minimum1 for eligible rewards and the full-reward
 cap. [Decision and status](docs/decisions/2026-10-07-ascend-prisms-rounding.md).
 
-PRISM_EARNING_001's protected-bonus repeat rule is included in the combined
-endless-progression Android release. The historical 20%-of-full rule remains
-historical. See [requirements/evidence](docs/tasks/PRISM_EARNING_001.md) and
+PRISM_EARNING_001's protected-bonus rule was included in the combined
+endless-progression Android release. Its same/lower-depth repeat behavior is
+superseded by the user's16 November manual forward-only rule above; eligible
+new-record calculation retains the earned bonus. The historical20%-of-full rule
+remains historical. See [requirements/evidence](docs/tasks/PRISM_EARNING_001.md) and
 [combined migration/release](docs/tasks/REPOSITORY_MIGRATION_001.md).
 
 ## Language and new rules

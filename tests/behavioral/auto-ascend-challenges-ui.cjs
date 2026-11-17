@@ -1,6 +1,37 @@
 'use strict';
 // Runs in the existing Comet native-input profiles and real production page.
-module.exports=async function({evaluate,send,assert,screenshot,touch,width,textScale,motion}){
+module.exports=retired;
+module.exports.historical=historical; // Explicit historical callers only.
+async function retired({evaluate,send,assert,screenshot,touch,width,textScale,motion}){
+  await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();b.autoTarget.nativeInput(true);const s=b.freshStateSnapshot();s.maxDepthEver=16;s.depth=s.enemyDepth=16;s.enemyHp=s.enemyMaxHp=1e100;s.comets=99;s.lastSeen=b.clockNow();s.owned.autoascend=true;s.autoAscendEnabled=true;delete s.autoAscendRefund;s.activeStudies=[{id:'guardmastery',remainingSec:123,totalDurationSec:150,speedMult:2}];b.setState(s);b.comet.render();b.comet.tab('deeds');document.documentElement.style.fontSize='${16*textScale}px';})()`);
+  try{
+    assert(await evaluate('!document.querySelector("[data-comet-card=autoascend],[data-shop=autoascend],[data-autoascend-challenge],[data-autoascend-open],[data-autoascend-unlock],[data-autoascend-target],[data-autoascend-toggle]")'),'retired Ritual purchase, challenges and shortcuts stay absent');
+    const refund=await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();return {comets:s.comets,owned:s.owned.autoascend,on:s.autoAscendEnabled,receipt:s.autoAscendRefund,studies:s.activeStudies};})()');
+    assert(refund.comets===199&&refund.owned&&!refund.on&&refund.receipt.policy==='autoascend-retired-v1'&&refund.receipt.total===100&&refund.receipt.paid,'legacy ON owner receives exact100Comet refund and stays OFF');
+    await evaluate('(()=>{const b=window.__lumenfallQaBridge;b.save();b.setState(JSON.parse(b.rawSave()));b.comet.render();b.comet.tab("ascend");})()');
+    assert(await evaluate('window.__lumenfallQaBridge.getState().comets===199'),'actual saved receipt prevents duplicate refund');
+    await evaluate('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');
+    await evaluate('document.getElementById("ascend-btn").scrollIntoView({block:"center"});document.getElementById("ascend-btn").focus({preventScroll:true})');
+    const geometry=await evaluate('(()=>{const e=document.getElementById("ascend-btn"),r=e.getBoundingClientRect(),s=getComputedStyle(e);return {width:r.width,height:r.height,left:r.left,right:r.right,fit:document.documentElement.scrollWidth<=innerWidth,enabled:!e.disabled,focus:document.activeElement===e,outline:parseFloat(s.outlineWidth)};})()');
+    assert(geometry.fit&&geometry.width>=44&&geometry.height>=44&&geometry.left>=0&&geometry.right<=width&&geometry.enabled&&geometry.focus&&geometry.outline>=2,'manual first-clear control fits and keeps keyboard focus at enlarged text '+JSON.stringify(geometry));
+    const first=await evaluate('(()=>{const b=window.__lumenfallQaBridge;return {state:JSON.parse(JSON.stringify(b.getState())),gain:b.ascendBreakdown().gain};})()');
+    await touch('#ascend-btn');
+    assert(await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();return s.ascendCount===1&&s.ascendRewardedDepth===15&&s.prisms==='+JSON.stringify(first.state.prisms+first.gain)+'&&JSON.stringify(s.activeStudies)==='+JSON.stringify(JSON.stringify(first.state.activeStudies))+'&&b.rawSave()===b.rawRecovery();})()'),'native touch pays first clear15 exactly and preserves paid work in both slots');
+    await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.depth=s.enemyDepth=16;s.maxDepthEver=16;s.enemyHp=s.enemyMaxHp=1e100;b.setState(s);b.comet.render();b.save();})()');
+    assert(await evaluate('document.getElementById("ascend-btn").disabled&&window.__lumenfallQaBridge.ascendBreakdown().gain===0'),'same rewarded clear disables reset and previews zero');
+    const denied=await evaluate('(()=>{const b=window.__lumenfallQaBridge;return JSON.stringify([b.getState(),b.rawSave(),b.rawRecovery()]);})()');
+    await touch('#ascend-btn');
+    assert(await evaluate('(()=>{const b=window.__lumenfallQaBridge;return JSON.stringify([b.getState(),b.rawSave(),b.rawRecovery()]);})()')===denied,'disabled native touch preserves every field and both slots');
+    await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.depth=s.enemyDepth=17;s.maxDepthEver=17;s.enemyHp=s.enemyMaxHp=1e100;b.setState(s);b.comet.render();document.getElementById("ascend-btn").scrollIntoView({block:"center"});document.getElementById("ascend-btn").focus({preventScroll:true});})()');
+    const next=await evaluate('(()=>{const b=window.__lumenfallQaBridge;return {count:b.getState().ascendCount,prisms:b.getState().prisms,gain:b.ascendBreakdown().gain,enabled:!document.getElementById("ascend-btn").disabled};})()');
+    assert(next.enabled&&next.gain>0,'strictly higher clear16 enables next manual reward');
+    await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});await send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    assert(await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();return s.ascendCount===2&&s.ascendRewardedDepth===16&&s.prisms==='+JSON.stringify(next.prisms+next.gain)+'&&s.autoAscendRefund.total===100&&s.autoAscendRefund.paid&&!s.autoAscendEnabled&&!b.ascendEligibility().autoReady&&b.rawSave()===b.rawRecovery();})()'),'native Space commits only the new record and keeps retirement receipt');
+    await screenshot('manual-ascend-retirement-'+width+'-'+textScale+'-'+motion);
+    return {policy:'retired Ritual; manual higher-record touch and keyboard',refund,geometry,firstReward:first.gain,nextReward:next.gain};
+  }finally{await evaluate('window.__lumenfallQaBridge.autoTarget.nativeInput(false)');}
+}
+async function historical({evaluate,send,assert,screenshot,touch,width,textScale,motion}){
   const root='[data-comet-card="autoascend"]',buy=root+' [data-shop="autoascend"]';
   await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();const s=b.freshStateSnapshot();s.maxDepthEver=149;s.ascendCount=24;s.depth=s.enemyDepth=16;s.enemyHp=s.enemyMaxHp=1e100;s.comets=1000000;s.lastSeen=b.clockNow();['wispascend','guardmastery','shardstudy','lumenstudy','motestudy'].forEach((id,i)=>s.longStudyLevels[id]=[9,9,8,8,15][i]);b.setState(s);b.comet.render();b.comet.tab('deeds');window.ritualButton=document.querySelector('[data-shop="autoascend"]');})()`);
   await new Promise(r=>setTimeout(r,550));

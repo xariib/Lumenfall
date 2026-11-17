@@ -10,7 +10,7 @@ if(process.env.FARM_RECAP_MUTANT){assert.equal(source.split(condition).length,2)
 source=source.replace("if(document.readyState==='loading'){","window.endlessQa={credit:simulationCreditFarmSummary,summary:simulationSummary};if(document.readyState==='loading'){");
 const fixture=JSON.parse(fs.readFileSync('tests/behavioral/fixtures.json','utf8'))['parity-long-high-power'].save;
 const records=[];
-for(const chunk of [14400,60,300]){
+for(const chunk of [14400,60,300,1]){
   const {q}=app(source,undefined,{clockDate:true,retainWrites:false});q.set(fixture);q.restoreEnemy();
   let clock=CLOCK;const summary={lumenGained:0,shardGained:0,kills:0,autoTaps:0,empowers:0,motesGained:0,luminousKills:0};
   for(let elapsed=0;elapsed<14400;elapsed+=chunk){
@@ -28,9 +28,12 @@ for(const r of records.slice(1)){
   for(const key of ['totalKills','motes','sigils','depth','riftMode','farmDepth','farmReturnDepth','ascendCount','totalTaps','prisms','comets','lumen','shards'])eq(direct.state[key],r.state[key],'unchanged chronological endpoint '+key);
   for(const key of ['activeParty','spirits','research','longStudyLevels','achieved','dailyStats','studyBoosts'])eq(direct.state[key],r.state[key],'retained purchases and work '+key);
 }
-// Captured before the recap fix: the game wallet is deliberately unchanged.
-eq(direct.state.lumen,15859808.49997822,'original ordered native Lumen wallet');
-eq(direct.state.shards,4026523.000008681,'original ordered native Shard wallet');
+// The six-second Support recast changes native addition order by sub-ulp
+// rounding. Independent one-second actual-engine receipt is retained in
+// team-progression-001/farm-one-second.json. Prior wallets were
+// 15859808.49997822 Lumen and4026523.000008681 Shards; original receipt stays.
+eq(direct.state.lumen,15859808.499977807,'ordered native Lumen wallet with current Support timing');
+eq(direct.state.shards,4026523.0000089034,'ordered native Shard wallet with current Support timing');
 eq(direct.summary.kills,50400,'original complete four-hour kill count');
 {
   const {q}=app(source,undefined,{clockDate:true,retainWrites:false}),s=q.fresh();s.riftMode='farm';s.farmDepth=s.depth=1;s.farmReturnDepth=2;q.set(s);

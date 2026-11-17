@@ -35,10 +35,10 @@ function contracts(){
   vm.runInContext(script.replace(marker,vmBridge+marker),ctx,{timeout:3000});
   const b=ctx.f25,fresh=b.fresh(),canonical=s=>b.canonical(s,'f25');
   b.set(fresh);
-  same(b.shop.map(x=>x.id),['autoascend','astralcore','astralecho','astralconvergence'],'current catalog has only permanent purchases, without retired commands');
+  same(b.shop.map(x=>x.id),['astralcore','astralecho','astralconvergence'],'current catalog has only permanent Astral purchases');
   const historical=b.fresh();historical.schemaVersion=2;historical.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};historical.comets=0;
   const retained=canonical(historical);
-  ok(b.plan('autoascend').cost+retained.comets===450,'historical F27 four-purchase450 value, separate from new full catalog1380');
+  ok(!b.plan('autoascend').available&&retained.comets===450,'historical F27 four-purchase450 value is fully retained/refunded');
   same(retained.cometClaims.retired,{comettrials:'settled',rifttrail:'settled',starfallcrest:'settled'},'all three paid entitlements and350 compensation retained');
   ok(['comettrials','rifttrail','starfallcrest'].every(id=>b.hasLegacy(id,retained)),'retired features still owned after migration');
   for(const owned of [undefined,false,true,'true',1])for(const multiplier of [1,5,10,25,50,100,'max']){

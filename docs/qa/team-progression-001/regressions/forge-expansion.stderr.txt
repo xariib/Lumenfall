@@ -1,0 +1,27 @@
+C:\lf-team\tests\behavioral\forge-expansion.cjs:676
+    const before=a.count();try{all[name]();}catch(error){error.message='['+name+'] '+error.message;throw error;}sections[name]=a.count()-before;
+                                                                                                   ^
+
+AssertionError [ERR_ASSERTION]: manual actual Ascend count
+
+2 !== 3
+
+    at Object.eq (C:\lf-team\tests\behavioral\forge-expansion.cjs:52:41)
+    at assertAscend (C:\lf-team\tests\behavioral\forge-expansion.cjs:419:25)
+    at ascendCases (C:\lf-team\tests\behavioral\forge-expansion.cjs:439:5)
+    at Object.ascend (C:\lf-team\tests\behavioral\forge-expansion.cjs:667:16)
+    at verify (C:\lf-team\tests\behavioral\forge-expansion.cjs:676:41)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\forge-expansion.cjs:684:16)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 3,
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

@@ -30,52 +30,42 @@ function endingPassive(source,a,config={},mutation) {
   if(config.readyAbility)s.heroResource.ember=100-(100/6)*seconds;
   q.set(s);a.eq(q.fill(),1,'ending witness retains original natural six-second charge cycle');
   const net=q.passive(20)-q.regen(20)*q.get().enemyMaxHp;
-  a.ok(net>0,'ending witness has positive actual net passive damage');
-  q.get().enemyHp=net*seconds;
+  a.ok(net>0,'ending witness has positive actual net passive damage');q.get().enemyHp=net*seconds;
   const before=clone(q.get()),events=[],endings=[];
   const uncal=q.observeCalibration(event=>{if(event.type==='cast')events.push({type:'cast',id:event.id,level:event.level,depth:q.get().depth,at:event.nowMs});});
   const unasc=q.observeAscends(event=>{events.push({type:'ascend'});endings.push(event);});
-  const undo=mutation?mutation(q):()=>{};let result;
-  try{result=q.advance(seconds,{kind:config.kind||'live',clockStartMs:CLOCK});}finally{undo();uncal();unasc();}
-  a.eq(result.ascends,1,'ending passive interval performs exactly one actual Auto-Ascend');
-  a.eq(endings.length,1,'one actual mutation observed at ending passive hit');
-  const ending=endings[0],carried=charge>0||phase>0;
-  const eventCharge=carried?Math.min(100,before.heroResource.ember+100/6*seconds):before.heroResource.ember;
-  a.near(ending.before.heroResource.ember,eventCharge,2e-14,'ending event-time charge includes old-run final interval');
-  a.eq(ending.before.heroResource.tide,37,'unpowered bench earns no new ending-interval charge');
+  const undo=mutation?mutation(q):()=>{};let result,atChoice;
+  try{
+    result=q.advance(seconds,{kind:config.kind||'live',clockStartMs:CLOCK});
+    a.eq(result.ascends,0,'ending passive interval waits for manual Ascend');a.eq(endings.length,0,'combat has no automatic mutation');
+    atChoice=clone(q.get());a.eq(q.ascend(),true,'actual manual choice after complete ending timestamp');
+  }finally{undo();uncal();unasc();}
+  a.eq(endings.length,1,'one actual manual mutation observed');const ending=endings[0];
+  a.eq(ending.before,atChoice,'manual reset snapshots the complete resolved timestamp');
+  const eventCharge=config.readyAbility?0:Math.min(100,before.heroResource.ember+100/6*seconds);
+  a.near(ending.before.heroResource.ember,eventCharge,2e-14,'ending event-time charge includes final interval and any due cast');
+  a.eq(ending.before.heroResource.tide,37,'benched Wisp earns no ending-interval charge');
   a.near(ending.after.heroResource.ember,eventCharge*charge/5,2e-14,'ending snapshot retains only paid event-time share');
   a.near(ending.after.heroResource.tide,37*charge/5,2e-14,'dormant retained charge waits for later recruitment');
-  const tap=phase?Math.min(999.999,before._autoTapAccum+seconds*1000):0;
-  const empower=phase?Math.min(999.999,before._autoEmpowerAccum+seconds*1000):0;
-  a.near(ending.after._autoTapAccum,tap,1e-14,'ending event-time Auto-Tap phase retained');
-  a.near(ending.after._autoEmpowerAccum,empower,1e-14,'ending event-time Auto-Empower phase retained');
-  a.eq(ending.after.spirits.ember,3,'ending reset uses Veteran starting level');
-  a.eq(ending.after.nodes,ending.before.nodes,'ending passive reset preserves all paid ownership');
-  a.eq(require('./amount-oracle.cjs').integer(ending.after.ascendCount),BigInt(before.ascendCount)+1n,'exact lifetime counter advances once with the new run');
-  a.eq(events[0],{type:'ascend'},'passive death/Ascend precedes any equal-time ready cast');
-  if(config.readyAbility){
-    a.ok(events.some(e=>e.type==='cast'),'retained full charge executes through actual ready-action resolver');
-    a.eq(events.find(e=>e.type==='cast').level,3,'equal-time cast uses the newly reset Veteran level, never old level10');
-  }else{
-    a.eq(events.filter(e=>e.type==='cast').length,0,'sub-full retained charge fires no early ability');
-    a.eq(result.kills,1,'no old-run damage spills into next encounter');
-    a.eq(result.autoTaps,0,'ending interval does not run an old tap before passive death');
-    a.eq(result.empowers,0,'ending interval does not purchase in the old run');
-  }
+  const expectedTap=config.equal?0:before._autoTapAccum+seconds*1000;
+  const expectedEmpower=config.equal?0:before._autoEmpowerAccum+seconds*1000;
+  a.near(ending.before._autoTapAccum,expectedTap,1e-14,'due old-run tap resolves before manual choice');
+  a.near(ending.before._autoEmpowerAccum,expectedEmpower,1e-14,'due old-run paid purchases resolve before manual choice');
+  a.near(ending.after._autoTapAccum,phase?Math.min(999.999,expectedTap):0,1e-14,'ending event-time Auto-Tap phase retained');
+  a.near(ending.after._autoEmpowerAccum,phase?Math.min(999.999,expectedEmpower):0,1e-14,'ending event-time Auto-Empower phase retained');
+  a.eq(ending.after.spirits.ember,3,'manual ending reset uses Veteran starting level');a.eq(ending.after.nodes,ending.before.nodes,'manual reset preserves all paid ownership');
+  a.eq(require('./amount-oracle.cjs').integer(ending.after.ascendCount),BigInt(before.ascendCount)+1n,'exact lifetime counter advances once');
+  a.eq(events[events.length-1],{type:'ascend'},'manual reset follows every due old-run action');
+  if(config.readyAbility){a.eq(events[0].type,'cast','due old-run ability resolves before manual choice');a.eq(events[0].level,10,'due ability uses actual old-run level');a.eq(ending.after.heroResource.ember,0,'consumed charge is not recreated by manual reset');}
+  else a.eq(events.filter(e=>e.type==='cast').length,0,'sub-full charge fires no early ability');
+  a.eq(result.kills,1,'actual passive target kill is counted once');
+  a.eq(result.autoTaps,config.equal?1:0,'due old-run tap count');a.eq(result.empowers,config.equal?3:0,'due old-run individual paid purchase count');
   if(config.equal){
-    a.eq([ending.before._autoTapAccum,ending.before._autoEmpowerAccum],[1000,1000],'equal-time old-run phases accrue fully before snapshot');
-    a.eq([ending.after._autoTapAccum,ending.after._autoEmpowerAccum],[999.999,999.999],'explicit persisted phase ceiling remains999.999ms');
-    const wallet=q.get().lumen,level=q.get().spirits.ember;
-    const due=q.advance(.000002,{kind:config.kind||'live',clockStartMs:CLOCK+seconds*1000});
-    a.eq(due.autoTaps,1,'retained due Auto-Tap executes once immediately after the explicit phase ceiling');
-    a.eq(due.empowers,3,'one retained Auto-Empower event executes the three separately paid batch actions');
-    a.eq(q.get().spirits.ember,level+3,'equal-time batch buys only three real levels');
-    const spent=[level,level+1,level+2].reduce((sum,k)=>sum+Math.round(10*Math.pow(1.13,k)),0);
-    a.near(wallet-q.get().lumen,spent,1e-14,'equal-time batch pays the independent original three-quote ledger');
+    a.eq(ending.before.spirits.ember,before.spirits.ember+3,'equal-time batch pays for three old-run levels before choice');
+    const wallet=q.get().lumen,level=q.get().spirits.ember,due=q.advance(.000002,{kind:config.kind||'live',clockStartMs:CLOCK+seconds*1000});
+    a.eq(due.autoTaps,0,'consumed tap cannot replay after manual reset');a.eq(due.empowers,0,'consumed paid batch cannot replay');a.eq(q.get().spirits.ember,level,'no free repeated purchase');a.eq(q.get().lumen,wallet,'no repeated purchase debit');
   }
-  return {kind:config.kind||'live',seconds,chargeRank:charge,phaseRank:phase,unsafeCount:!!config.unsafeCount,equal:!!config.equal,
-    readyAbility:!!config.readyAbility,eventCharge,retainedCharge:ending.after.heroResource.ember,
-    retainedPhases:[ending.after._autoTapAccum,ending.after._autoEmpowerAccum],events,summary:{kills:result.kills,ascends:result.ascends,autoTaps:result.autoTaps,empowers:result.empowers}};
+  return {kind:config.kind||'live',seconds,chargeRank:charge,phaseRank:phase,unsafeCount:!!config.unsafeCount,equal:!!config.equal,readyAbility:!!config.readyAbility,eventCharge,retainedCharge:ending.after.heroResource.ember,retainedPhases:[ending.after._autoTapAccum,ending.after._autoEmpowerAccum],events,manual:true,summary:{kills:result.kills,ascends:result.ascends,autoTaps:result.autoTaps,empowers:result.empowers}};
 }
 function ordinaryInterval(source,a) {
   const x=app(source),q=x.q,s=battle(q);s.autoAscendEnabled=false;s.enemyHp=s.enemyMaxHp=1e100;
@@ -176,17 +166,21 @@ function runLong(source,initial,a,config) {
     }
   }finally{observer.undo();}
   const after=clone(q.get());
-  a.ok(observer.report.ascends>=2,'8h purchased run must actually repeat Auto-Ascend '+config.id);
+  a.eq(observer.report.ascends,0,'8h purchased run must never auto Ascend '+config.id);
   a.eq(result.ascends,observer.report.ascends,'8h summary agrees with real mutation count '+config.id);
   a.eq(after.nodes,before.nodes,'8h preserves all paid Tree ranks '+config.id);
   a.eq(after.research,before.research,'8h preserves all old paid Forge ranks '+config.id);
   a.eq(after.longStudyLevels,before.longStudyLevels,'8h preserves all old paid Lab ranks '+config.id);
   a.eq(after.owned,before.owned,'8h preserves all permanent purchases '+config.id);
-  a.eq([after.autoAscendEnabled,after.autoAscendTargetDepth],[true,130],'8h preserves exact Auto-Ascend toggle/target '+config.id);
+  a.eq([after.autoAscendEnabled,after.autoAscendTargetDepth],[false,130],'8h retires toggle and preserves historical target '+config.id);
+  a.eq(after.prisms,before.prisms,'8h grants no automatic Prisms '+config.id);a.eq(after.ascendCount,before.ascendCount,'8h keeps the current run '+config.id);
   a.eq(x.storage.get(P),x.storage.get(R),'8h primary/recovery endpoint bytes agree '+config.id);
   compareState(app(source,x.storage).q.get(),after,a,'8h cold restart '+config.id);
+  const clear=after.riftMode==='farm'?after.farmReturnDepth-1:after.depth-1,eligible=clear>=15&&clear>after.ascendRewardedDepth;
+  a.eq(q.ascend(),eligible,'explicit manual choice after eight-hour return '+config.id);
+  if(eligible){const gain=reward(clear,after.ascendRewardedDepth,after.nodes.swift,after.longStudyLevels.prismstudy)+frontier(clear,after.ascendRewardedDepth,after.nodes.frontier);a.eq(q.get().prisms,after.prisms+gain,'manual return pays independent record reward '+config.id);for(const field of ['nodes','research','longStudyLevels','owned'])a.eq(q.get()[field],after[field],'manual return retains paid '+field);}
   return {state:after,report:{id:config.id,kind:config.kind||'offline',seconds,sourceSha256:hash(source),callbacks,yields,
-    result,transitions:observer.report,stateSha256:hash(JSON.stringify(after))}};
+    result,transitions:observer.report,manualReturn:{clear,eligible},stateSha256:hash(JSON.stringify(after))}};
 }
 function longRuns(source,a) {
   const initial=longSeed(source,a),narrow=replaceOne(source,'var SIM_BATCH_EVENTS = 256;','var SIM_BATCH_EVENTS = 31;','authoritative batch-size control');
@@ -261,7 +255,8 @@ function sixPartyBounds(source,a) {
     q.set(s);a.eq(q.get().activeParty,party,'six-party bound fixture retains all six powered members '+id);
     a.eq(q.get().supportBuffs,s.supportBuffs,'six-party bound keeps both valid paid source snapshots '+id);
     const snapshot=clone(q.get()),bound=q.assessment(120),profile=q.profile(120);
-    a.ok(profile && profile.eventCount>0 && profile.eventCount<=12000,'bounded actual six-party charge profile '+id);
+    a.ok(profile && profile.eventCount>0 && profile.eventCount<=180000,'bounded precise six-party charge profile '+id);
+    a.eq(profile.measuredCycles,4096,'distinct Support cycle uses documented precise sample '+id);
     a.eq(Object.keys(profile.rates),party,'six-party profile includes both Support sources and all four others '+id);
     a.eq(q.get(),snapshot,'six-party boss assessment/profile are read-only '+id);
     const actual=observe(x,600,CLOCK,a),maximum=bound.upperDps*600+bound.burstBudget;
@@ -280,8 +275,8 @@ function negatives(source) {
     assert.match(error.message,pattern,name+' must catch its intended chronology fault');
     rows.push({name,caught:true,errorName:error.name,message:error.message.split('\n')[0]});
   }
-  const lost=replaceOne(source,"var carryBeforePassive=Amount.gt(treeLevel('chargememory'),0) || Amount.gt(treeLevel('phasememory'),0);",'var carryBeforePassive=false;','paid ending interval');
-  rejects('discard-final-old-run-charge',()=>endingPassive(lost,checks()),/ending event-time charge/);
+  const lost=replaceOne(source,"state.heroResource[sp.id] = Amount.min(100,Amount.div(Amount.mul(state.heroResource[sp.id]||0,treeLevel('chargememory')),5));",'state.heroResource[sp.id]=0;','paid manual charge memory');
+  rejects('discard-paid-manual-charge',()=>endingPassive(lost,checks()),/ending snapshot retains only paid event-time share/);
   const twice=replaceOne(source,'if(!carryBeforePassive){','if(true){','single resource accrual');
   rejects('double-accrue-paid-memory-interval',()=>ordinaryInterval(twice,checks()),/ordinary interval accrues charge exactly once/);
   rejects('discard-paid-event-phase',()=>endingPassive(source,checks(),{},q=>q.disable('phasememory')),/event-time Auto-Tap phase retained/);

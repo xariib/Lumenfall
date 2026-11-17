@@ -48,15 +48,15 @@ function verify(html){
  eq(whole.started,1,'earned completion starts queued expansion once');eq(whole.state.activeStudies[0].id,'labcapacity','newly eligible expansion uses released slot');near(whole.state.activeStudies[0].remainingSec,1295999,'remaining second applies after the actual milestone');
  eq(whole.state.lumen,transition.lumen-20000,'no combat income conceals expansion payment');eq(whole.state.shards,transition.shards-2000,'one exact expansion Shard payment');
  for(const other of [split,offline])for(const key of ['activeStudies','longStudyLevels','studySlotProjects','lumen','shards','motes'])eq(other.state[key],whole.state[key],'whole/split/offline milestone parity '+key);
- // Already-claimed Deeds cannot be an accidental batching boundary for a new
- // Ascend gate. Exercise accelerated repeat cycles and actual queued payment.
+ // Already-claimed Deeds cannot bypass the Ascend goal. Resolve combat first,
+ // choose one manual new record at second1, then observe actual queued payment.
  for(const rank of [0,1]){
   const s=ready(rank);Object.assign(s,{depth:15,enemyDepth:15,ascendCount:1000,lumen:1000000,shards:1000000,activeParty:['ember'],autoAscendEnabled:true,autoAscendTargetDepth:16});
   s.owned.autoascend=true;s.spirits.ember=100;s.heroRarity.ember=5;s.research.masterwork=500;s.nodes.lumenmemory=20;s.studyQueue.labcapacity=true;s.longStudyLevels.wispascend=500;s.longStudyLevels.lumenstudy=10000;
-  install(s);q.achievements();const input=clone(q.get());input.ascendCount=0;
-  function cycles(kind,parts){install(input);let now=T;for(const dt of parts){q.advance(dt,{kind,clockStartMs:now});now+=dt*1000;}return clone(q.get());}
+  install(s);q.achievements();const input=clone(q.get());input.ascendCount=(rank?100:25)-1;
+  function cycles(kind,parts){install(input);let elapsed=0,chosen=false;for(const dt of parts){let left=dt;while(left>0){const step=!chosen?Math.min(left,1-elapsed):left;q.advance(step,{kind,clockStartMs:T+elapsed*1000});elapsed+=step;left-=step;if(!chosen&&elapsed===1){eq(q.get().ascendCount,input.ascendCount,'elapsed combat never satisfies Ascend goal');q.ascend();chosen=true;q.advance(0,{kind,clockStartMs:T+1000});}}}return clone(q.get());}
   const a=cycles('live',[60]),b=cycles('live',Array(60).fill(1)),c=cycles('offline',[60]);
-  ok(a.ascendCount>100&&a.activeStudies[0]?.id==='labcapacity','repeat cycles cross expansion Ascend milestone '+rank);
+  ok(a.ascendCount===(rank?100:25)&&a.activeStudies[0]?.id==='labcapacity','manual new record crosses expansion Ascend milestone '+rank);
   for(const v of [b,c]){eq(v.ascendCount,a.ascendCount,'caller splits and policy retain Ascend count');near(v.activeStudies[0].remainingSec,a.activeStudies[0].remainingSec,'caller splits preserve expansion unlock timestamp');eq(v.longStudyLevels.labcapacity,rank,'newly started expansion grants no early slot');}
  }
  // Purchased ranks retain their slots even below every new milestone.
@@ -76,7 +76,7 @@ const controls=[
  ['short-work','if(node.rankWorkSec)work=','if(false && node.rankWorkSec)work='],
  ['paid-resume-blocked','!paused && challenge && !challenge.met','challenge && !challenge.met'],
  ['unearned-goals','var paid=longStudyLevel(node.id);','var paid=longStudyLevel(node.id)+(findActiveStudy(node.id)?1:0);'],
- ['skipped-ascend-goal','if(capacityLimit!==null)count=Amount.min(count,capacityLimit);','if(false)count=Amount.min(count,capacityLimit);']
+ ['skipped-ascend-goal',"['ascends','Ascends',state.ascendCount,goals.ascends]","['ascends','Ascends',goals.ascends,goals.ascends]"]
 ];
 let result;try{result={status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),...verify(source),controls:[]};if(process.argv.includes('--negative'))for(const [name,from,to]of controls){assert.equal(source.split(from).length,2,'unique control '+name);let caught;try{verify(source.replace(from,to));}catch(e){caught=e.message;}assert(caught,'detected '+name);result.controls.push({name,detected:caught});}}
 catch(e){result={status:'fail',error:e.stack};process.exitCode=1;}console.log(JSON.stringify(result));

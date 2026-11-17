@@ -17,11 +17,11 @@ function app(seed){
     storage.set(key,value);writes.push(key);
   }};
   const bridge=`
-    renderHud=renderAchievements=renderShop=renderSpirits=renderSideStats=renderDaily=updateBattleFast=renderCosmetics=renderNodes=renderAscendSummary=function(){};
-    showToast=spawnFloatNum=emitCombatVfx=function(){};
+    renderAll=renderHud=renderAchievements=renderShop=renderSpirits=renderSideStats=renderDaily=updateBattleFast=renderCosmetics=renderNodes=renderAscendSummary=function(){};
+    showToast=showAscendFlash=spawnFloatNum=emitCombatVfx=function(){};
     window.qa={fresh:freshState,get:()=>state,set:s=>state=acceptPersistedState(s),normalize:acceptPersistedState,
       buy:id=>buyShopItem({id:id,cost:0}),plan:getCometBuyPlan,legacy:cometHasLegacy,queue:queueCometTrial,cancel:cancelCometTrial,
-      ascend:applyAscendMutation,tap:()=>doTap({classList:{add(){},remove(){}}}),
+      ascend:applyAscendMutation,manual:()=>doAscend(false),tap:()=>doTap({classList:{add(){},remove(){}}}),
       toggle:toggleActive,preset:applyFormationPreset,rebuild:()=>reconcileFormationRebuild(state),
       autoEmpower:autoEmpowerTick,
       recruit:id=>buySpirit(SPIRITS.find(s=>s.id===id)),recruitCost:id=>spiritCost(SPIRITS.find(s=>s.id===id)),equip:selectCometCosmetic,
@@ -70,7 +70,7 @@ function parity(actual,expected,label='state',actualState=actual,expectedState=e
 function ready(){const a=app(),s=a.b.get();s.comets=1000;s.depth=16;s.maxDepthEver=101;s.enemyHp=1e100;s.enemyMaxHp=1e100;s.lastSeen=2000000000000;return a;}
 const retiredPrices={comettrials:140,rifttrail:50,starfallcrest:160};
 function retainLegacy(a,ids){
-  const old=copy(a.b.get());old.schemaVersion=2;
+  const old=copy(a.b.get());old.schemaVersion=2;delete old.autoAscendRefund;
   for(const id of ids){assert(Object.prototype.hasOwnProperty.call(retiredPrices,id),'known historical paid identity');old.owned[id]=true;}
   const before=old.comets;a.b.set(old);
   assert.equal(a.b.get().comets,before+ids.reduce((sum,id)=>sum+retiredPrices[id],0),'actual old-save fixed retirement compensation');
@@ -81,15 +81,16 @@ function retainLegacy(a,ids){
 function trial(id,extras=[]){const a=retainLegacy(ready(),['comettrials',...extras]);assert(a.b.queue(id,15));a.b.ascend();assert.equal(a.b.get().cometTrial.phase,'active');return a;}
 function clear(a,target=15){a.b.get().depth=target+1;a.b.ascend();}
 test('authoritative catalog price, duplicate and unknown purchase rejection',()=>{
-  const a=ready();assert.deepEqual(a.b.catalog().map(item=>item.id),['autoascend','astralcore','astralecho','astralconvergence']);
-  assert.equal(a.b.plan('autoascend').cost+Object.values(retiredPrices).reduce((sum,cost)=>sum+cost,0),450,'independent historical four-purchase ledger');
+  const a=ready();assert.deepEqual(a.b.catalog().map(item=>item.id),['astralcore','astralecho','astralconvergence']);
+  assert.equal(100+Object.values(retiredPrices).reduce((sum,cost)=>sum+cost,0),450,'independent historical four-purchase ledger');
   retainLegacy(ready(),Object.keys(retiredPrices));
   a.b.get().achieved.d25=true;a.b.get().achieved.d50=true;
   require('./auto-ascend-challenges.cjs').qualify(a.b.get());
-  for(const [id,cost] of [['autoascend',100]]){
+  a.b.get().maxDepthEver=5000;
+  for(const [id,cost] of [['astralcore',750]]){
     const before=a.b.get().comets;assert(a.b.buy(id));assert.equal(a.b.get().comets,before-cost);assert.equal(a.b.buy(id),false);assert.equal(a.b.get().comets,before-cost);
   }
-  for(const id of ['offline24','comettrials','rifttrail','starfallcrest','unknown']){const before=copy(a.b.get());assert.equal(a.b.buy(id),false);assert.deepEqual(a.b.get(),before,'retired/unknown purchase is inert '+id);}
+  for(const id of ['autoascend','offline24','comettrials','rifttrail','starfallcrest','unknown']){const before=copy(a.b.get());assert.equal(a.b.buy(id),false);assert.deepEqual(a.b.get(),before,'retired/unknown purchase is inert '+id);}
   const poor=app();assert.equal(poor.b.buy('autoascend'),false);assert.equal(poor.b.get().comets,0);
 });
 test('ownership, bounded target, one pending trial and free cancellation',()=>{
@@ -160,12 +161,12 @@ test('exact-wallet manual and automatic recruits debit to zero and retain Trial 
   }
 });
 test('legacy ownership archive, normalized saves and full-snapshot backup restore',()=>{
-  const a=ready(),old=copy(a.b.get());old.schemaVersion=1;delete old.offline12hRefund;old.owned={autoascend:true,rememberbulk:true,offline24:true,offline48:true};old.nodes.reserves=6;old.comets=789;
+  const a=ready(),old=copy(a.b.get());old.schemaVersion=1;delete old.offline12hRefund;delete old.autoAscendRefund;old.owned={autoascend:true,rememberbulk:true,offline24:true,offline48:true};old.nodes.reserves=6;old.comets=789;
   const once=a.b.normalize(old),twice=a.b.normalize(copy(once));assert.deepEqual(twice,once);
-  assert.deepEqual(once.legacyCometPurchases,{rememberbulk:true,offline24:true,offline48:true});assert.equal(once.nodes.reserves,6);assert.equal(once.comets,1089);
+  assert.deepEqual(once.legacyCometPurchases,{rememberbulk:true,offline24:true,offline48:true});assert.equal(once.nodes.reserves,6);assert.equal(once.comets,1189);
   a.b.set(once);assert.equal(a.b.gate(),false);assert.equal(a.b.cap(),12);
   assert(a.b.save());const backup=a.b.backup();assert.deepEqual(a.b.decode(backup),once);
-  a.b.get().comets+=999;a.b.set(a.b.decode(backup));assert.equal(a.b.get().comets,1089);
+  a.b.get().comets+=999;a.b.set(a.b.decode(backup));assert.equal(a.b.get().comets,1189);
   a.storage.set('lumenfall_save_v2','broken');a.b.set(a.b.load());assert.deepEqual(a.b.get(),once);
 });
 test('active Trial and equipment survive normalization, backup and recovery',()=>{
@@ -187,9 +188,9 @@ test('Auto-Tap/live/offline and whole/split preserve Trial chronology',()=>{
   const summary=whole.b.advance(60,options);plain.b.advance(60,options);
   for(let i=0;i<4;i++)split.b.advance(15,{...options,clockStartMs:seed.lastSeen+i*15000});
   parity(split.b.get(),whole.b.get());live.b.advance(60,{...options,kind:'live'});
-  assert.deepEqual(live.b.get().cometTrialMarks,whole.b.get().cometTrialMarks);assert.deepEqual(whole.b.get().cometTrialMarks,{quiet:true});
+  assert.deepEqual(live.b.get().cometTrialMarks,whole.b.get().cometTrialMarks);assert.deepEqual(whole.b.get().cometTrialMarks,{});assert.equal(whole.b.get().cometTrial.phase,'pending','offline work cannot start a pending Trial through automatic reset');
   for(const key of ['lumen','shards','prisms','motes','comets','sigils','ascendCount','totalKills'])assert.equal(whole.b.get()[key],plain.b.get()[key],key+' unchanged');
-  assert(summary.autoTaps>0&&summary.ascends>1,'real automation exercised');
+  assert(summary.autoTaps>0&&summary.ascends===0,'real Auto-Tap proceeds without automatic Ascensions');
   const savedWhole=copy(whole.b.get()),savedSplit=copy(split.b.get());
   const resumedWhole=app(savedWhole),resumedSplit=app(savedSplit);
   assert.deepEqual(resumedWhole.b.get(),savedWhole,'whole saved basis survives cold load exactly');
@@ -204,17 +205,21 @@ test('Auto-Tap/live/offline and whole/split preserve Trial chronology',()=>{
     elapsed+=seconds;
   }
   assert(whole.b.get().totalTaps>savedWhole.totalTaps,'resumed interval executes real Auto-Taps across Ascend resets');
-  const corrupt=copy(savedWhole);corrupt.canonicalAutomationClock._autoTapAccum.last+=1;
+  const corrupt=copy(savedWhole);if(!corrupt.canonicalAutomationClock._autoTapAccum)corrupt.canonicalAutomationClock._autoTapAccum={base:corrupt._autoTapAccum,elapsed:0,last:corrupt._autoTapAccum};corrupt.canonicalAutomationClock._autoTapAccum.last+=1;
   assert.throws(()=>parity(corrupt,savedWhole),/saved phase/,'reject corrupt saved basis');
   const drift=copy(savedSplit);drift.canonicalAutomationClock={};drift._autoTapAccum+=0.01;
   assert.throws(()=>parity(drift,savedSplit),/canonicalAutomationClock|_autoTapAccum/,'reject real timer drift');
+  const atReturn=whole.b.get();atReturn.riftMode='push';atReturn.farmDepth=atReturn.farmReturnDepth=0;atReturn.depth=atReturn.enemyDepth=Math.max(atReturn.depth,atReturn.ascendRewardedDepth+2);atReturn.maxDepthEver=Math.max(atReturn.maxDepthEver,atReturn.depth);atReturn.enemyHp=atReturn.enemyMaxHp=1e100;
+  assert(whole.b.manual(),'manual new record starts pending Trial');assert.equal(whole.b.get().cometTrial.phase,'active');
+  const next=whole.b.get();next.depth=next.enemyDepth=Math.max(16,next.ascendRewardedDepth+2);next.maxDepthEver=Math.max(next.maxDepthEver,next.depth);next.enemyHp=next.enemyMaxHp=1e100;
+  assert(whole.b.manual(),'next manual record finishes retained Trial');assert.deepEqual(whole.b.get().cometTrialMarks,{quiet:true});
 });
 test('offline atomic failure/retry cannot award partial completion marks',()=>{
   const seed=JSON.parse(fs.readFileSync(path.join(root,'docs/qa/offline-autoascend-2026-10-07/device_backup.json'),'utf8'));
   seed.lastSeen=2000000000000;seed.owned.comettrials=true;seed.cometTrial={id:'quiet',target:15,phase:'pending'};
   const a=app(seed);a.b.save();const before=copy(a.b.get());a.clock(seed.lastSeen+60000);a.fail(true);let error;
   a.b.offline((result,e)=>error=e);a.drain();assert(error);assert.deepEqual(a.b.get(),before);
-  a.fail(false);a.b.offline((result,e)=>error=e);a.drain();assert.ifError(error);assert.deepEqual(a.b.get().cometTrialMarks,{quiet:true});
+  a.fail(false);a.b.offline((result,e)=>error=e);a.drain();assert.ifError(error);assert.deepEqual(a.b.get().cometTrialMarks,{});assert.equal(a.b.get().cometTrial.phase,'pending','offline retry never starts/completes a Trial automatically');
   const after=copy(a.b.get());assert.equal(a.b.offline(),null);assert.deepEqual(a.b.get(),after);
 });
 console.log(JSON.stringify({status:'pass',cases:records.length,records,controls:['corrupt-saved-basis','timer-phase-drift'],sourceSha256:require('node:crypto').createHash('sha256').update(html).digest('hex'),autoAscendChallenges:require('./auto-ascend-challenges.cjs').verify(html,true)},null,2));

@@ -1,0 +1,56 @@
+{
+  "id": 44022365928,
+  "sha": "fda099d4fdede1c2bbd22ad079710fba6a79f9bd",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44022365928",
+  "jobs": [
+    {
+      "id": 133839613030,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T05:24:46Z",
+      "completed": "2026-11-17T05:41:37Z",
+      "log": "job-133839613030.log.gz",
+      "rawSha256": "287448a1d5d8efc138c6bf6b3aad44fc20fa16b1154b0bce6e53ebbd991788b5",
+      "summary": [
+        "2026-11-17T05:27:05.1440333Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3859,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3873,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-17T05:27:36.2153988Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-17T05:27:46.8935073Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:36301/index.html:14661:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:36301/index.html:14669:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"120542fc95dace79992b5e9b92b4bbd272f3f32aae96a6424722e6cb63218561\",\"mutant\":true}",
+        "2026-11-17T05:28:51.2058426Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:29:18.8636884Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:30:24.4757614Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-17T05:34:05.9335486Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:34:13.3509409Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:34:20.9985607Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:34:21.0154182Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-17T05:38:03.8698412Z SyntaxError: Unexpected token '='",
+        "2026-11-17T05:39:20.6249947Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:39:51.8367800Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:39:55.4954788Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:39:59.5076476Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:40:03.6239304Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:40:08.6532579Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:40:10.3004114Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:40:11.9813899Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:40:14.7972092Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:40:17.7943506Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:41:03.8375949Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T05:41:23.1574583Z   detail: { \"status\": \"fail\", \"scenario\": \"offline-catchup-ui\", \"message\": \"failed resume clears busy flags\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 83.3, \"last\": 353 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 603, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 83.3, \"last\": 353 }, \"errors\": 0 }, \"cold\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": false, \"offlinePending\": false, \"resumeFlowBusy\": false }, \"kills\": 38"
+      ]
+    },
+    {
+      "id": 133839615766,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T05:11:51Z",
+      "completed": "2026-11-17T05:15:22Z",
+      "log": "job-133839615766.log.gz",
+      "rawSha256": "54b46647b52bf9e65695bf2eb235a13cf6aedea4a6d8eabec140cff11628bb4b",
+      "summary": [
+        "2026-11-17T05:12:47.3034931Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T05:15:17.7006330Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

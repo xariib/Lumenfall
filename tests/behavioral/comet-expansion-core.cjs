@@ -76,7 +76,7 @@ function runCore(source,options={}){
     eq(commandOnlyFields(s),{charges:0,work:0,used:false,called:false,events:emptyEvents()},'no gifts/events on fresh load');
     eq(s.cometClaims,{policy:POLICY,retired:{comettrials:'absent',rifttrail:'absent',starfallcrest:'absent'},deeds:{}},'closed fresh ledger');
     eq(s.owned.meteor,false,'Meteor unowned');eq(s.owned.starcall,false,'Call unowned');
-    eq(q.shopDefs().map(r=>r.id),q.schema()>=6?['autoascend','astralcore','astralecho','astralconvergence']:CATALOG.map(r=>r.id),'exact current permanent catalog');
+    eq(q.shopDefs().map(r=>r.id),q.schema()>=6?['astralcore','astralecho','astralconvergence']:CATALOG.map(r=>r.id),'exact current permanent catalog');
     eq(q.achievementDefs().slice(0,27).map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'all23 old rewards/order plus four fixed rewards retained in original order');
     eq(q.achievementDefs().length,76,'49 additional long-tail milestones are appended');
     eq(OLD_DEEDS.reduce((n,r)=>n+r[1],0),683,'old pool');eq(NEW_DEEDS.reduce((n,r)=>n+r[1],0),50,'new pool');
@@ -92,7 +92,7 @@ function runCore(source,options={}){
     const e=app(source),q=e.q;
     for(const version of [0,1,2])for(let mask=0;mask<8;mask++)for(const wallet of [0,0.125,0.1,2**54,2**54-10,1e30]){
       const old=legacyFixture(q,version,mask,wallet),raw=JSON.stringify(old);
-      const ids=RETIRED.filter((_,i)=>mask&(1<<i)).map(([id])=>'retirement:'+id),expected=oracle.settleKnownClaims(wallet,ids);
+      const ids=RETIRED.filter((_,i)=>mask&(1<<i)).map(([id])=>'retirement:'+id),retiredAuto=oracle.exactCredit(wallet,100),expected=oracle.settleKnownClaims(retiredAuto===null?wallet:retiredAuto,ids);
       const accepted=q.accept(old,'synthetic-old'+version);
       eq(JSON.stringify(old),raw,'migration preserves input bytes/object');eq(accepted.schemaVersion,q.schema(),'ordered migration reaches current protected schema');
       eq(accepted.comets,expected.wallet,'fixed once retirement amount');eq(pendingIds(accepted),expected.pendingIds,'unrepresentable identities stay due');
@@ -108,19 +108,19 @@ function runCore(source,options={}){
       }
       eq(accepted.cometCosmetics,old.cometCosmetics,'paid cosmetics retained');eq(accepted.cometTrial,old.cometTrial,'active paid Trial retained');
       eq(accepted.cometTrialMarks,old.cometTrialMarks,'marks retained');eq(accepted.cometTrialResult,old.cometTrialResult,'result retained');
-      for(const key of ['nodes','research','longStudyLevels','activeStudies','studyQueue','studySpeedTargets','formationPresets','lastSeen','autoAscendEnabled','autoAscendTargetDepth','ascendCount'])eq(accepted[key],key==='activeStudies'?old.activeStudies.map((work,i)=>({...work,slot:i})):old[key],'old paid/progression field '+key);
+      for(const key of ['nodes','research','longStudyLevels','activeStudies','studyQueue','studySpeedTargets','formationPresets','lastSeen','autoAscendEnabled','autoAscendTargetDepth','ascendCount'])eq(accepted[key],key==='activeStudies'?old.activeStudies.map((work,i)=>({...work,slot:i})):key==='autoAscendEnabled'?false:old[key],'old paid/progression field '+key);
     }
     for(const value of [1,'true',{},false,null]){
       const old=legacyFixture(q,2,0,0);old.owned.comettrials=value;
       eq(q.accept(old).cometClaims.retired.comettrials,'absent','legacy entitlement uses strict true');
     }
     const raw=JSON.stringify(legacyFixture(q,2,7,100)),loaded=app(source,[[P,raw]]);
-    eq(loaded.q.get().comets,450,'actual raw primary loader compensation');eq(loaded.storage.get(P),raw,'read does not overwrite original schema2 bytes');
+    eq(loaded.q.get().comets,550,'raw loader retains wallet100 plus entitlement350 and Auto-Ascend100');eq(loaded.storage.get(P),raw,'read does not overwrite original schema2 bytes');
     eq(loaded.q.save(),true,'actual schema4 save');const first=clone(loaded.q.get());
     const reloaded=app(source,Array.from(loaded.storage));eq(reloaded.q.get(),first,'settled old paid identities never replay');
     eq(reloaded.q.selectCosmetic('trail',false),true,'retained Trail original owner');eq(reloaded.q.selectCosmetic('crest',false),true,'retained Crest original owner');
     eq(reloaded.q.cancelTrial(),true,'retained active Trial can cancel');eq(reloaded.q.queueTrial('quiet',50),true,'retained Trial can queue free');
-    eq(reloaded.q.get().comets,450,'legacy controls charge no new price');
+    eq(reloaded.q.get().comets,550,'legacy controls charge no new price');
     report.witnesses.push({id:'old-loader',rawSha256:sha(raw),finalComets:first.comets,claims:first.cometClaims});
   });
   group('strict current4 paid data, recovery preservation and explicit restore',()=>{
@@ -406,7 +406,7 @@ function runCore(source,options={}){
     }
     const e=app(source),s=legacyFixture(e.q,1,7,0.125);s.owned.offline24=true;s.owned.offline48=true;s.nodes.reserves=3;s.prisms=0.125;
     const out=e.q.accept(s,'actual-v1-combined-paid-history');
-    eq(out.comets,650.125,'original300 plus three distinct retired350');eq(out.prisms,48.125,'original recorded Reserves32 plus Echo16 and retained fraction');
+    eq(out.comets,750.125,'original300 plus three distinct retired350 plus Auto-Ascend100');eq(out.prisms,48.125,'original recorded Reserves32 plus Echo16 and retained fraction');
     eq(out.feedbackMigration.receipts['node.echo'].amounts.prisms,[16],'separate original Echo6 purchase receipt');
     eq(out.offline12hRefund.policy,policy,'unchanged F26 policy');eq(out.offline12hRefund.prismPrices,[6,10,16],'original small Number prices');
     eq(out.offline12hRefund.cometsPaid,[true,true],'F26 independent payments');eq(out.cometClaims.retired,{comettrials:'settled',rifttrail:'settled',starfallcrest:'settled'},'new retirement family separately settled');

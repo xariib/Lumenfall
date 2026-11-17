@@ -1,0 +1,117 @@
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: economy/order baseline live
++ actual - expected
+
+  {
+    achievements: [],
+    ascendGains: [],
+    ascends: 0,
+    autoTaps: 3600,
++   bossKills: 19,
+-   bossKills: 20,
+    clockEndMs: 1791365164477,
+    closedStudies: [],
+    completedStudies: [
+      "Guardian's Mastery"
+    ],
+    elapsedSec: 3600,
++   empowers: 683,
++   endDepth: 200,
+-   empowers: 726,
+-   endDepth: 210,
+    fastForwardedKills: 0,
++   iterations: 8740,
++   kills: 199,
++   lumenGained: 3568705941619,
++   luminousKills: 45,
+-   iterations: 8750,
+-   kills: 209,
+-   lumenGained: 10133058552901,
+-   luminousKills: 49,
+    motesGained: 706,
++   pushDepth: 200,
+-   pushDepth: 210,
+    researchBought: 10,
+    retreated: false,
+    retreats: 0,
+    retries: 0,
++   shardGained: 6917064754,
++   sigilsGained: 190,
+-   shardGained: 16375208246,
+-   sigilsGained: 210,
+    studiesStarted: 0
+  }
+
+    at baselineSummary (C:\lf-team\tests\behavioral\offline-catchup.cjs:161:9)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\offline-catchup.cjs:404:2)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    elapsedSec: 3600,
+    lumenGained: 3568705941619,
+    shardGained: 6917064754,
+    sigilsGained: 190,
+    motesGained: 706,
+    kills: 199,
+    bossKills: 19,
+    luminousKills: 45,
+    ascends: 0,
+    autoTaps: 3600,
+    empowers: 683,
+    researchBought: 10,
+    studiesStarted: 0,
+    completedStudies: [ "Guardian's Mastery" ],
+    closedStudies: [],
+    achievements: [],
+    retreated: false,
+    retreats: 0,
+    retries: 0,
+    fastForwardedKills: 0,
+    iterations: 8740,
+    ascendGains: [],
+    endDepth: 200,
+    pushDepth: 200,
+    clockEndMs: 1791365164477
+  },
+  expected: {
+    elapsedSec: 3600,
+    lumenGained: 10133058552901,
+    shardGained: 16375208246,
+    sigilsGained: 210,
+    motesGained: 706,
+    kills: 209,
+    bossKills: 20,
+    luminousKills: 49,
+    ascends: 0,
+    autoTaps: 3600,
+    empowers: 726,
+    researchBought: 10,
+    studiesStarted: 0,
+    completedStudies: [ "Guardian's Mastery" ],
+    closedStudies: [],
+    achievements: [],
+    retreated: false,
+    retreats: 0,
+    retries: 0,
+    fastForwardedKills: 0,
+    iterations: 8750,
+    ascendGains: [],
+    endDepth: 210,
+    pushDepth: 210,
+    clockEndMs: 1791365164477
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

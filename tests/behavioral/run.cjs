@@ -172,7 +172,11 @@ async function runScenario(chrome, baseUrl, scenario, fixture, viewport = null, 
 function mutateSource(source, scenario) {
   const replaceOnce = (rule, replacement) => { assert.equal(source.split(rule).length, 2); source = source.replace(rule, () => replacement); };
   if (scenario === 'self-test-upgrade-identity-buy') replaceOnce("focus:'Lab: Lumen Wellspring'", "focus:''");
-  if (scenario === 'self-test-upgrade-identity-value') replaceOnce("function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }", "function formationMult(){ return researchFactor('formation'); }");
+  if (scenario === 'self-test-upgrade-identity-value') {
+    const current="function formationMult(){ return researchFactor('formation') * longStudyFormationMult() * researchFactor('battletempering'); }";
+    if(source.includes(current)) replaceOnce(current,"function formationMult(){ return researchFactor('formation') * researchFactor('battletempering'); }");
+    else replaceOnce("function formationMult(){ return researchFactor('formation') * longStudyFormationMult(); }", "function formationMult(){ return researchFactor('formation'); }");
+  }
   if (scenario === 'self-test-upgrade-identity-clock') {
     replaceOnce('    var gridCrossingsBefore = farmGridCrossings;\n    var gridRemainingBefore = farmGridRemainingSec;', '    var elapsedWholeBefore = elapsedWholeSec;\n    var elapsedFractionBefore = elapsedFractionSec;');
     const wideGuard='if(Amount.gt(remaining,0) && farmGridCrossings===gridCrossingsBefore && farmGridRemainingSec===gridRemainingBefore && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)){';
@@ -181,7 +185,7 @@ function mutateSource(source, scenario) {
   }
   if (scenario === 'self-test-bond-text-ability') replaceOnce('Heavy ability damage. Ultimate doubles it.', 'Heavy ability damage. Stone + Titan activate the Duskguard Bond. Ultimate doubles it.');
   if (scenario === 'self-test-bond-text-partners') replaceOnce("return SPIRITS.find(function(sp){ return sp.id===id; }).name;", "return SPIRITS.find(function(sp){ return sp.id===id; }).shortName;");
-  if (scenario === 'self-test-auto-ascend-target-window') replaceOnce('Math.min(200,highest-start+1)', 'Math.min(201,highest-start+1)');
+  if (scenario === 'self-test-auto-ascend-target-window') replaceOnce('return false; // Automatic Ascension is retired, including imported ON states.','return !!(state.owned.autoascend && ascendEligible()); // deliberate retired readiness defect');
   if (scenario === 'self-test-auto-ascend-target-manual') {
     const rule = 'function doAscend(auto){';
     replaceOnce(rule, rule + '\n  if(!auto && state.owned.autoascend) state.autoAscendTargetDepth=Math.max(autoAscendTarget(),clearedProgressionRift()+1);');

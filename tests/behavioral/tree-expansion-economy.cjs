@@ -225,8 +225,10 @@ function rewardCase(source,a,mutation) {
     a.eq(q.ascend(),true,'actual Frontier/Dust Ascend');
     a.eq([q.get().prisms,q.get().motes],[1040,110],'Dust uses final40P exactly once');
     const repeat=clone(q.get());repeat.depth=repeat.enemyDepth=101;repeat.enemyHp=repeat.enemyMaxHp=1e100;q.set(repeat);
-    a.eq(q.prismPreview().gain,4,'rewarded Frontier benchmark prevents repeat milestone credit');
-    q.ascend();a.eq([q.get().prisms,q.get().motes],[1044,110],'repeat4P grants no new Dust');
+    a.eq(q.prismPreview().gain,0,'rewarded Frontier benchmark prevents repeat rewards');
+    const before=clone(q.get());a.eq(q.ascend(),false,'same record cannot reset');a.eq(q.get(),before,'denial preserves entire paid endpoint');a.eq([q.get().prisms,q.get().motes],[1040,110],'same clear grants no Prisms or Dust');
+    const next=clone(q.get());next.depth=next.enemyDepth=102;next.enemyHp=next.enemyMaxHp=1e100;q.set(next);
+    a.eq(q.prismPreview().gain,5,'benchmark prevents repeated Frontier on next record');a.eq(q.ascend(),true,'manual next record');a.eq([q.get().prisms,q.get().motes],[1045,110],'next record pays only its earned reward');
     a.eq(app(source,x.storage).q.get().motes,110,'saved Dust is neither lost nor replayed');
   } finally {undo();}
 }
@@ -248,7 +250,7 @@ function rewards(source,a) {
         if(!extra)a.eq(preview,old,'complete old breakdown retained when no new milestone');
         q.set(s);previews++;
         if(previews%29===0 || (cleared===100 && benchmark===0 && swift===0 && rank===5)) {
-          a.eq(q.ascend(),cleared>=15,'actual sampled eligibility');
+          a.eq(q.ascend(),cleared>=15&&cleared>benchmark,'actual sampled eligibility');
           a.eq(q.get().prisms,1000+want,'actual sampled Prism wallet');
           a.eq(q.get().motes,100+dust(want,rank),'actual sampled Mote wallet');
           a.eq(q.get().ascendRewardedDepth,cleared>=15?Math.max(cleared,benchmark):benchmark,'advance benchmark once');
@@ -266,10 +268,10 @@ function rewards(source,a) {
     const s=payoutSeed(q,100,0,0,0,5,5);s.prisms=wallet;s.motes=moteWallet;
     s.owned.autoascend=true;s.autoAscendEnabled=route!=='manual';s.autoAscendTargetDepth=101;q.set(s);
     const motes=dust(40,5);
-    const result=route==='manual'?q.ascend():q.advance(0,{kind:route,clockStartMs:CLOCK});
+    if(route!=='manual'){const result=q.advance(0,{kind:route,clockStartMs:CLOCK});a.eq(result.ascends,0,'live/offline route waits for manual choice');a.eq(result.motesGained,0,'no automatic Dust');a.eq(integer(q.get().prisms),BigInt(wallet),'no automatic Prism credit');}
+    a.eq(q.ascend(),true,'manual choice after '+route+' boundary');
     a.eq(integer(q.get().prisms),BigInt(wallet)+40n,'exact actual Prism credit '+route);
     a.eq(integer(q.get().motes),BigInt(moteWallet)+BigInt(motes),'Dust follows exact actual Prism credit '+route);
-    if(route!=='manual')a.eq(integer(result.motesGained),BigInt(motes),'simulation reports every earned Mote '+route);
     if(wallet===1e30)a.eq(motes,10,'exact forty-Prism credit retains the established ten-Mote Dust reward');
     walletCases++;
   }
@@ -278,21 +280,19 @@ function rewards(source,a) {
 }
 
 function usefulBundle(cleared,swift,clarity,owned) {
-  const old=reward(cleared,cleared,swift,clarity);let to=swift,price=0;
-  do{price+=charterSwift(to,owned);to++;assert(to<=swift+100,'bounded useful Swift bundle');}while(reward(cleared,cleared,to,clarity)<=old);
-  const gain=reward(cleared,cleared,to,clarity)-old;
-  return {from:swift,to,price,gain,paybackRepeats:Math.ceil(price/gain)};
+  const old=reward(cleared,cleared-1,swift,clarity);let to=swift,price=0;
+  do{price+=charterSwift(to,owned);to++;assert(to<=swift+100,'bounded useful Swift bundle');}while(reward(cleared,cleared-1,to,clarity)<=old);
+  const gain=reward(cleared,cleared-1,to,clarity)-old;
+  return {from:swift,to,price,gain,snapshotRewardEquivalent:Math.ceil(price/gain)};
 }
 function reinvestOracle(target,charter) {
   let wallet=452,swift=6,ascends=0,spent=0,owned=false;
+  function earnUntil(quote){while(wallet<quote){assert(ascends<2000,'bounded forward-record oracle');wallet+=reward(95+ascends,94+ascends,swift,1);ascends++;}}
   while(swift<target) {
     if(charter && swift>=10 && !owned) {
-      const gain=reward(94,94,swift,1),wait=Math.max(0,Math.ceil((200-wallet)/gain));
-      wallet+=wait*gain;ascends+=wait;wallet-=200;spent+=200;owned=true;
+      earnUntil(200);wallet-=200;spent+=200;owned=true;
     }
-    const quote=charterSwift(swift,owned),gain=reward(94,94,swift,1);
-    const wait=Math.max(0,Math.ceil((quote-wallet)/gain));
-    wallet+=wait*gain;ascends+=wait;wallet-=quote;spent+=quote;swift++;
+    const quote=charterSwift(swift,owned);earnUntil(quote);wallet-=quote;spent+=quote;swift++;
   }
   return {target,charter,ascends,spent,remainingPrisms:wallet};
 }
@@ -303,11 +303,11 @@ function actualReinvest(source,a,target,charter) {
   function earnUntil(quote) {
     while(q.get().prisms<quote) {
       a.ok(ascends<2000,'actual fixed-depth reinvestment bounded below2000 Ascends');
-      const s=clone(q.get());s.depth=s.enemyDepth=95;s.riftMode='push';s.farmDepth=s.farmReturnDepth=0;
-      s.enemyHp=s.enemyMaxHp=1e100;s.ascendRewardedDepth=94;q.set(s);
-      const before=q.get().prisms,want=reward(94,94,q.get().nodes.swift,1);
-      a.eq(q.ascend(),true,'actual fixed-depth repeat handler');
-      a.eq(q.get().prisms-before,want,'actual mature repeat equals independent Prism kernel');
+      const clear=95+ascends,s=clone(q.get());s.depth=s.enemyDepth=clear+1;s.maxDepthEver=Math.max(s.maxDepthEver,clear+1);s.riftMode='push';s.farmDepth=s.farmReturnDepth=0;
+      s.enemyHp=s.enemyMaxHp=1e100;s.ascendRewardedDepth=clear-1;q.set(s);
+      const before=q.get().prisms,want=reward(clear,clear-1,q.get().nodes.swift,1);
+      a.eq(q.ascend(),true,'actual next-record manual handler');
+      a.eq(q.get().prisms-before,want,'actual mature record equals independent Prism kernel');
       ascends++;x.writes.length=0;
     }
   }
@@ -336,9 +336,9 @@ function roi(source,a) {
   a.eq(usefulBundle(20,30,0,true).price,366,'Charter30→32 useful bundle is180+186P');
   a.eq(usefulBundle(20,50,0,true).price,300,'late Swift50 meaningful future price');
   const actual=[actualReinvest(source,a,21,false),actualReinvest(source,a,21,true),actualReinvest(source,a,50,true)];
-  a.eq(actual.map(r=>r.ascends),[1541,62,247],'frozen mature independent baseline/selected counts');
-  return {rows,actualReinvestment:actual,counterfactualLegacy50:reinvestOracle(50,false),
-    assumptions:'Public mature fixture,452P/Swift6/Clarity1; synthetic repeated cleared94/benchmark94, fixed gain per current level, all purchase queues disabled; counts are Ascends, never elapsed time or time to unlock. Charter fee200P is actually paid. No combat playtest is implied.'};
+  a.eq(actual.map(r=>r.ascends),[reinvestOracle(21,false),reinvestOracle(21,true),reinvestOracle(50,true)].map(r=>r.ascends),'independent forward-record counts');
+  return {rows,actualReinvestment:actual,legacySwift49Quote:charterSwift(49,false),
+    assumptions:'Public mature fixture,452P/Swift6/Clarity1; synthetic sequential new records beginning cleared95/benchmark94, all purchase queues disabled; counts are manual Ascends, never elapsed time or time to unlock. Snapshot reward equivalents do not promise repeat farming or campaign pacing. Charter fee200P is actually paid. No combat playtest is implied.'};
 }
 
 const TRANSITION_PROFILES = [
@@ -401,7 +401,7 @@ function negatives(source) {
   }
   rejects('missing-paid-charter',()=>charterCase(source,checks(),q=>q.disable('swiftcharter')),/future Swift10 quote/);
   rejects('missing-patient-growth',()=>gentleCase(source,checks(),q=>q.disable('gentlegrowth')),/Ember50\/G5\/B20=582/);
-  rejects('double-frontier-credit',()=>rewardCase(source,checks(),q=>q.doubleFrontier()),/benchmark prevents repeat/);
+  rejects('double-frontier-credit',()=>rewardCase(source,checks(),q=>q.doubleFrontier()),/benchmark prevents repeated Frontier/);
   rejects('dust-uses-old-kernel-only',()=>rewardCase(replaceOne(source,'var dust=treeAscendMotesForWallet(gain,state.prisms);',
     'var dust=treeAscendMotesForWallet(gain-treeFrontierBonus(cleared,state.ascendRewardedDepth||0),state.prisms);','Dust final gain'),checks()),/Dust uses final40P/);
   rejects('missing-combined-carry-effect',()=>transitionProfile(source,checks(),TRANSITION_PROFILES[0],q=>q.disable('lumenmemory')),/combined paid Lumen carry/);

@@ -1,0 +1,34 @@
+{
+  "id": 44011754500,
+  "sha": "c89be93158196e911a6f5839da053d47499190f9",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44011754500",
+  "jobs": [
+    {
+      "id": 133800169069,
+      "name": "lab",
+      "conclusion": "failure",
+      "started": "2026-11-17T03:39:42Z",
+      "completed": "2026-11-17T03:43:13Z",
+      "log": "job-133800169069.log.gz",
+      "rawSha256": "054194eac46eb25b8ec05fbcd2e1f078d03bb018b21e47d8ae45ce1a2cd6dc16",
+      "summary": [
+        "2026-11-17T03:40:39.8172118Z {\"status\":\"pass\",\"source_sha256\":\"3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80\",\"checks\":3918,\"payoutCases\":180,\"routes\":[\"actual manual handler\",\"live/offline authoritative auto\",\"cold load\",\"actual backup restore\",\"primary corruption/recovery\",\"failed write/retry\",\"real Swift purchase\",\"atomic offline failure/rollback/retry\"],\"scope\":\"full game logic with DOM presentation stubbed; not browser layout or Android acceptance\"}",
+        "2026-11-17T03:43:07.5985915Z {\"status\":\"fail\",\"sourceSha256\":\"3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80\",\"node\":\"v20.20.2\",\"browser\":\"google-chrome\",\"profiles\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"samples\":[{\"id\":\"supportduration\",\"price\":{\"lumen\":5000000000,\"shard\":200000000},\"work\":55542858,\"cap\":10},{\"id\":\"labcapacity\",\"price\":{\"lumen\":20000,\"shard\":2000},\"work\":1296000,\"cap\":2},{\"id\":\"procurement\",\"price\":{\"lumen\":12000,\"shard\":600},\"work\":900,\"cap\":10},{\"id\":\"catalysis\",\"price\":{\"lumen\":40000,\"shard\":1500},\"work\":1200,\"cap\":10},{\"id\":\"focusprotocol\",\"price\":{\"lumen\":20000,\"shard\":800},\"work\":1200,\"cap\":5},{\"id\":\"fieldnotes\",\"price\":{\"lumen\":6000,\"shard\":300},\"work\":600,\"cap\":10},{\"id\":\"curriculum\",\"price\":{\"lumen\":60000,\"shard\":2000},\"work\":1500,\"cap\":3},{\"id\":\"bossledger\",\"price\":{\"lumen\":14000,\"shard\":500},\"work\":720,\"cap\":20},{\"id\":\"luminousdistill\",\"price\":{\"lumen\":25000,\"shard\":800},\"work\":960,\"cap\":20},{\"id\":\"sigilcartography\",\"price\":{\"lumen\":80000,\"shard\":3000},\"work\":1500,\"cap\":5},{\"id\":\"rarityappraisal\",\"price\":{\"lumen\":8000,\"shard\":500},\"work\":600,\"cap\":10},{\"id\":\"modulefabrication\",\"price\":{\"lumen\":20000,\"shard\":1000},\"work\":900,\"cap\":10},{\"id\":\"ultimateanalysis\",\"price\":{\"lumen\":100000,\"shard\":4000},\"work\":1200,\"cap\":10},{\"id\":\"resonantefficiency\",\"price\":{\"lumen\":30000,\"shard\":1200},\"work\":1000,\"cap\":5},{\"id\":\"adaptivegrowth\",\"price\":{\"lumen\":30000,\"shard\":1600},\"work\":1000,\"cap\":5}],\"input\":[{\"type\":\"click\",\"target\":\"<st",
+        "2026-11-17T03:43:07.6041546Z   throw new AssertionError(obj);",
+        "2026-11-17T03:43:07.6042615Z AssertionError [ERR_ASSERTION]: Lab browser acceptance failed"
+      ]
+    },
+    {
+      "id": 133800169461,
+      "name": "timed-slot-speed",
+      "conclusion": "success",
+      "started": "2026-11-17T03:39:42Z",
+      "completed": "2026-11-17T03:41:25Z",
+      "log": "job-133800169461.log.gz",
+      "rawSha256": "1f907a4b0c9c9010562562714f3944ae3545c68398f5c5767891f842c6bd4932",
+      "summary": []
+    }
+  ]
+}

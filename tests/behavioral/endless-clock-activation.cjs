@@ -24,7 +24,7 @@ const current='    binaryClock.advanceLattice(previousDuration);remaining=binary
 assert.equal(source.split(current).length,2,'unique causal mutation');
 // Hold the recorded combat inputs fixed for the stall control. The current
 // curve still runs through every positive endpoint and parity check above.
-let historical=require('./legacy-rift-curve-reference.cjs')(source);
+let historical=require('./legacy-rift-curve-reference.cjs')(require('./retired-auto-ascend-reference.cjs')(source));
 // The captured precision witness also predates the three-second Support rule.
 // Keep its original combat timing; all current positive paths above use source.
 const supportDuration="durationMs:3000+300*labExpansionLevel('supportduration')";

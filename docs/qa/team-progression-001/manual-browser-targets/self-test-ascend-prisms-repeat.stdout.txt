@@ -1,0 +1,46 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "8cfe6c2c70c22591a3670a4459fe064167367898a09471a300a833a34091f05c", "instrumented_sha256": "af4c57ed6245ae5ff76c384b992e0e59b95fcf8314cdee9fd7e415db261ffe46" }
+FAIL self-test-ascend-prisms-repeat
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 4.5009763000000005, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-repeat", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-repeat", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "reward oracle 16,15,0,0,reserve expected 1 got 2", "stack": "Error: reward oracle 16,15,0,0,reserve expected 1 got 2\n    at assert (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:19728:61)\n    at ok (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:15935:29)\n    at http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:15943:43\n    at Array.forEach (<anonymous>)\n    at check (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:15943:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:15972:3)\n    at HTMLDocument.run (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&qaFixture=fresh:21897:32)" }
+  raw artifacts: C:\lf-team\validation-evidence\manual-browser-raw\self-test-ascend-prisms-repeat-0hMVVC
+  stdout tail:
+ot detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-repeat">{
+  "scenario": "self-test-ascend-prisms-repeat",
+  "status": "fail",
+  "detail": {
+    "message": "reward oracle 16,15,0,0,reserve expected 1 got 2",
+    "stack": "Error: reward oracle 16,15,0,0,reserve expected 1 got 2\n    at assert (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:19728:61)\n    at ok (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:15935:29)\n    at http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:15943:43\n    at Array.forEach (&lt;anonymous&gt;)\n    at check (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:15943:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:15972:3)\n    at HTMLDocument.run (http://127.0.0.1:61545/index.html?qaScenario=self-test-ascend-prisms-repeat&amp;qaFixture=fresh:21897:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

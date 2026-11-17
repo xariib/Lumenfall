@@ -296,7 +296,7 @@ function runNumerical(source,options={}) {
 
   // Test the real read-only shop quote for every actual level. Exact debit is
   // computed from dyadic arithmetic, never from the product's guard expression.
-  const activeCatalog=q.schema()>=6?[{id:'autoascend',prices:[100]}].concat([['astralcore',750],['astralecho',1250],['astralconvergence',2000]].map(([id,base])=>({id,prices:Array.from({length:10},(_,level)=>Math.ceil(base*1.2**level))}))):CATALOG;
+  const activeCatalog=q.schema()>=6?[['astralcore',750],['astralecho',1250],['astralconvergence',2000]].map(([id,base])=>({id,prices:Array.from({length:10},(_,level)=>Math.ceil(base*1.2**level))})):CATALOG;
   for(const row of activeCatalog)for(let level=0;level<row.prices.length;level++){
     const s=q.schema()>=6?q.fresh():claimSnapshot(q,0,[]);if(q.schema()>=6){s.maxDepthEver=5000;if(row.id!=='autoascend')s.astralUpgrades[row.id]=level;}
     if(row.id==='meteor'){

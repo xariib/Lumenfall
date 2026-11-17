@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) is in progress.
+Manual forward-only Ascension, Auto-Ascend retirement/refund, shared Wisp damage
+growth, consistent DPS displays and harder early Support uptime are candidates.
+Focused save/mobile checks pass; full PR/integrated CI and signed Android delivery
+remain open. The released version below remains the public baseline.
+
 16 November: [Support duration/PR57](tasks/SUPPORT_DURATION_001.md) shipped as
 [Android0.2.128](https://github.com/xariib/Lumenfall/releases/tag/android-1000128),
 source`f16ffd9b`. Tide/Aurora start at3s; earned Support Endurance grows to6s.

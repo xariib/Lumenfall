@@ -104,6 +104,15 @@ window.__lumenfallQaBridge = {
     // Raw observed damage is the historical arithmetic stress input. The
     // production Farm throughput policy is tested separately, without overrides.
     naturalDps: function(){return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(2000000000000));},
+    legacyNaturalDps: function(){
+      // Immutable HP=11 quotient witness predates shared Wisp growth. Pin only
+      // that old Power operand; the exact damage/reward/clock engine stays live.
+      // Current unmodified scaling and Farm throughput have separate mandatory gates.
+      var old=spiritPower,cache=wispPowerCache;wispPowerCache={};
+      spiritPower=function(sp,level){return sp.basePower*level*(1+.01*(level-1))+((sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0);};
+      try{return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(2000000000000));}
+      finally{spiritPower=old;wispPowerCache=cache;}
+    },
     numericCosts: function(){return {titan:spiritCost(SPIRITS.find(function(s){return s.id==='titan';})),formation:researchCostForLevels(RESEARCH.find(function(s){return s.id==='formation';}),state.research.formation,1),momentum:nodeCost(NODES.find(function(s){return s.id==='momentum';})),formationStudy:studyCost(LONG_STUDIES.find(function(s){return s.id==='formationstudy';}),state.longStudyLevels.formationstudy),wispAscend:studyCost(LONG_STUDIES.find(function(s){return s.id==='wispascend';}),state.longStudyLevels.wispascend)};},
     traceFarm: function(fn){
       var original=simulationApplyFarmPassive,rows=[];
@@ -214,6 +223,7 @@ window.__lumenfallQaBridge = {
     }
   },
   autoTarget: {
+    retired: function(){return !SHOP.some(function(item){return item.id==='autoascend';});},
     nativeInput: function(enabled){reloadInProgress=!enabled;},
     render: function(){renderShop();},
     purchase: function(){var old=reloadInProgress;reloadInProgress=false;try{renderShop();document.querySelector('[data-shop="autoascend"]').click();}finally{reloadInProgress=old;}},
@@ -375,14 +385,21 @@ window.__lumenfallQaBridge = {
       };
       applyAscendMutation=function(){
         var before=copy(state),intended=before.formationRebuild?before.formationRebuild.members:before.activeParty;
-        assert(autoAscendReady() && ascendEligible() && clearedProgressionRift()>=autoAscendClearedTarget(),'audit premature Ascension');
+        assert(ascendEligible(),'audit premature Ascension');
         var gain=originals.ascend();
         if(mutation==='duplicate') originals.ascend();
+        if(state.ascendCount!==before.ascendCount+1)counts.failure='audit duplicate Ascension';
         assert(state.ascendCount===before.ascendCount+1,'audit duplicate Ascension');
         assert(state.depth===1 && state.riftMode==='push','audit Ascension resets progression');
         assert((state.formationRebuild?state.formationRebuild.members:state.activeParty).join(',')===intended.join(','),'audit Ascension preserves intent');
         SPIRITS.forEach(function(sp){assert(state.spirits[sp.id]===(sp.id==='ember'?1:0),'audit normal reset levels');});
-        counts.ascends++;party();return gain;
+        counts.ascends++;party();
+        if(mutation==='timer'){
+          state.heroResource=copy(before.heroResource);
+          state._autoTapAccum=before._autoTapAccum;
+          state._autoEmpowerAccum=before._autoEmpowerAccum;
+        }
+        return gain;
       };
       simulationApplyAutoAscend=function(summary){
         if(mutation==='premature' && !autoAscendReady()) applyAscendMutation();
@@ -421,11 +438,8 @@ window.__lumenfallQaBridge = {
         if(s.formationRebuild && !s.formationRebuild.members.some(function(id){return s.spirits[id]>0;}) && !s.spirits.ember)return;
         originals.reconcile(s);
       };
-      if(mutation==='timer'){
-        var source=String(originals.advance),guard='if(ascendRunToken===runBeforePassive){';
-        assert(source.indexOf(guard)!==-1,'timer mutation anchor');
-        advanceAuthoritativeTime=eval('('+source.replace(guard,'if(true){')+')');
-      }
+      // Timer control preserves pre-reset accrual deliberately; manual reset
+      // assertions must catch this stale-state defect at the actual boundary.
       return {counts:counts,restore:function(){
         simulationMaybeRetryBoss=originals.retry;applyAscendMutation=originals.ascend;
         simulationApplyAutoAscend=originals.auto;autoEmpowerTick=originals.buy;
@@ -649,13 +663,12 @@ window.__lumenfallQaBridge = {
     });
   },
   endgameEconomyContract: function(){
-    // Actual old-save retirement credit supplies the historical three paid
-    // prices; the retained Auto-Ascend recipe supplies the fourth. This remains
-    // an observed 450C preservation check, not the new multi-level shop total.
+    // Actual migration refunds all four retired paid purchases. Keep the
+    // original three-item credit separately observable from the new receipt.
     var old=freshState();old.schemaVersion=2;old.comets=0;
     old.owned={autoascend:true,comettrials:true,rifttrail:true,starfallcrest:true};
     var migrated=acceptPersistedState(old);
-    var restStopTotal=SHOP.find(function(item){return item.id==='autoascend';}).cost+migrated.comets;
+    var restStopTotal=migrated.comets;
     var deedTotal=qaOriginalDeeds().reduce(function(sum,item){return sum+item.reward;},0);
     var sigilsThrough220=0;
     for(var depth=10;depth<=220;depth+=10) sigilsThrough220+=sigilsFromBoss(depth);
@@ -663,7 +676,7 @@ window.__lumenfallQaBridge = {
       ultimateSigilTotal:SPIRITS.reduce(function(sum,sp){return sum+ultimateSigilCost(sp);},0),
       restStopCometTotal:restStopTotal,
       deedCometTotal:deedTotal,
-      retirementCometTotal:migrated.comets,
+      retirementCometTotal:migrated.comets-migrated.autoAscendRefund.total,
       retiredEntitlements:['comettrials','rifttrail','starfallcrest'].map(function(id){return cometHasLegacy(id,migrated);}),
       eventDeedCometTotal:ACHIEVEMENTS.filter(function(a){return ['comet_first_command','comet_first_recharge','comet_boss_strike','comet_called_kill'].indexOf(a.id)!==-1;}).reduce(function(sum,a){return sum+a.reward;},0),
       longtailDeedCometTotal:ACHIEVEMENTS.filter(function(a){return !!a.counter;}).reduce(function(sum,a){return sum+a.reward;},0),

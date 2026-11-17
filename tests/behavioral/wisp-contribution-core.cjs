@@ -92,6 +92,7 @@ function preservation(html,baseline){
  approvedRule('out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);',
   'out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);\n    if(source.supportRecastUntil)out.supportRecastUntil=clonePersistedValue(source.supportRecastUntil);');
  approvedRule('durationMs:ultimate ? 8000 : 4000','durationMs:3000');
+ approvedRule('var uptime = Math.min(1, (profile.durationMs/1000) / cycle);','var uptime = Math.min(1, (profile.durationMs/1000) / 6);');
  approvedRule('function simulationNextAbilitySeconds(){','function simulationNextAbilitySeconds(nowMs,clock){');
  approvedRule('next = Math.min(next,Math.max(0,(100-cur)/fillPerSec));',
   'var delay=(id===\'tide\'||id===\'aurora\') ? supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock) : 0;\n    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,delay));');
@@ -100,7 +101,7 @@ function preservation(html,baseline){
  approvedRule('if(!sp) continue;\n    var run=ascendRunToken,relay=',
   'if(!sp) continue;\n    if(sp.abilityType===\'support\' && supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock)>SIM_EPS)continue;\n    var run=ascendRunToken,relay=');
  approvedRule('// buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.',
-  'state.supportRecastUntil[sp.id]=nowMs+abilityCycleSeconds()*1000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
+  'state.supportRecastUntil[sp.id]=nowMs+6000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
  approvedRule('var charge=ids.map(function(){return 0;}),until=ids.map(function(){return 0;}),counts=',
   'var charge=ids.map(function(){return 0;}),until=ids.map(function(){return 0;}),available=ids.map(function(){return 0;}),counts=');
  approvedRule('if(charge[i]<100-1e-7) return;','if(charge[i]<100-1e-7 || (m.support && u+1e-9<available[i])) return;');
@@ -108,18 +109,27 @@ function preservation(html,baseline){
   'if(m.support){until[i]=u+m.duration;available[i]=u+1;pending+=relay;} else charge[i]=refund;');
  approvedRule('charge.forEach(function(value){dt=Math.min(dt,Math.max(0,(100-value)/100));});',
   'charge.forEach(function(value,i){dt=Math.min(dt,Math.max(0,(100-value)/100,members[i].support ? available[i]-u : 0));});');
- // F17's separately approved polynomial changes Ember/Stone only; prices and
- // all remaining historical power/resource/controller formulas stay original.
+ // The approved shared-development inputs replace the old Ember/Stone-only
+ // curve. Prices, resource factors and the frozen scheduler stay original.
  approvedRule('return sp.basePower * level * (1 + 0.01*(level-1));',
-  "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
+  "var weights={ember:1,tide:.8,stone:1.1,gale:.9,thorn:.9,void:1.15,aurora:.9,titan:1.25};\n  return Math.min(26,sp.basePower)*level*(1+.01*(level-1))+(352*Math.pow(Math.max(0,level-70),2))*weights[sp.id];");
  // Use the current Rift currency input ceiling for the depths exercised by
  // this oracle. The frozen rounding, multipliers and chronology stay intact.
  approvedRule('function abilityRewardRaw(sp,level,conductionLevel){',
-  "function abilityRewardRaw(sp,level,conductionLevel){\n  var d=state.depth,rift=d<=100?d:d<=150?100+(d-100)*0.648744172973063:132.43720864865315+(d-150)*0.35346620182323135;\n  var originalPower=wispPower;wispPower=function(w,l){var p=originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
+  "function abilityRewardRaw(sp,level,conductionLevel){\n  var d=state.depth,rift=d<=100?d:d<=150?100+(d-100)*0.648744172973063:132.43720864865315+(d-150)*0.35346620182323135;\n  var originalPower=wispPower;wispPower=function(w,l){var p=(w.abilityType==='ranged'||w.abilityType==='druid')?w.basePower*l*(1+.01*(l-1))*RARITY_MULT[state.heroRarity[w.id]||0]:originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
+ // The read-only estimator is intentionally revised for independent Support
+ // cycles and stored-epoch precision. Share that display input in this frozen
+ // scheduler comparison; actual rates still face the separate unchanged
+ // authoritative-observer calibration tolerances and eight causal controls.
+ var oldStart=baseline.indexOf('var forgeProfileCache='),oldEnd=baseline.indexOf('function forgeBossAssessment(',oldStart);
+ var newStart=html.indexOf('var forgeProfileCache='),newEnd=html.indexOf('function forgeBossAssessment(',newStart);
+ assert(oldStart>=0&&oldEnd>oldStart&&newStart>=0&&newEnd>newStart,'explicit display-only reference range');
+ baseline=baseline.slice(0,oldStart)+'function supportCycleSeconds(){return 6;}\nfunction gameplayNowMs(){return Date.now();}\n'+html.slice(newStart,newEnd)+baseline.slice(oldEnd);
  var before=world(baseline),after=world(html),ids=clone(after.spirits()).map(function(s){return s.id;}),checks=0,cases=[];
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
  function oldFields(s){
   s=clone(s);
+  if(Object.prototype.hasOwnProperty.call(s,'autoAscendRefund')){eq(s.autoAscendRefund,{policy:'autoascend-retired-v1',total:0,paid:true},'unowned retired automation grants no refund');delete s.autoAscendRefund;}
   ['battletempering','arcanetempering','harvesttempering'].forEach(function(id){
    if(Object.prototype.hasOwnProperty.call(s.research,id)){
     eq(s.research[id],0,'new enhancement has no free level');eq(s.researchQueue[id],false,'new enhancement queue is OFF');
@@ -147,7 +157,7 @@ function preservation(html,baseline){
   before.set(s);after.set(s);eq(oldFields(after.get()),oldFields(before.get()),'every prior canonical field retained');eq(after.get().schemaVersion,6,'current schema6');eq(after.get().astralUpgrades,{astralcore:0,astralecho:0,astralconvergence:0},'migration grants no paid investments');eq(after.get().commandRefund,{policy:'commands-retired-v1',total:0,paid:true},'no fabricated command refund');eq(after.get().studySlotProjects,[null,null,null,null,null],'five empty slot assignments on legacy migration');eq(after.get().wispMastery,noMastery,'migration grants no Mastery');eq(after.get().canonicalAutomationClock,{},'migration grants no automation time');ids.forEach(function(id){eq(after.get().recruitmentEntitlements[id],true,'existing recruited Wisp remains entitled');});eq(after.get().research.masterwork,0,'new Forge path starts unpurchased');eq(after.get().studyBoosts,{},'no free timed boost');eq(after.get().studyBoostHours,noBoostHours,'exact default timed preferences');eq(after.get().moteNextAtMs,0,'no invented payout clock');
   eq([after.dps(depth),after.passive(depth),after.ability(depth),after.auto(depth)],[before.dps(depth),before.passive(depth),before.ability(depth),before.auto(depth)],'all default gameplay estimates bit-identical');
   ids.forEach(function(id,i){eq(after.power(after.spirits()[i],s.spirits[id]),before.power(before.spirits()[i],s.spirits[id]),'unchanged power curve');eq(after.rewards(after.spirits()[i],s.spirits[id]),before.rewards(before.spirits()[i],s.spirits[id]),'unchanged default resource formula');});
-  var profile=clone(after.profile(depth));if(profile)delete profile.supportUptime;eq(profile,before.profile(depth),'default cast rates/integral/cache result unchanged');
+  var profile=clone(after.profile(depth));eq(profile,before.profile(depth),'approved reference cast rates/integral/cache result matches frozen world');
   if(forge && depth===99 && party[0]==='ember' && party[1]==='tide') ['live','offline'].forEach(function(kind){
    var seed=clone(before.get());seed.riftMode='farm';seed.farmDepth=seed.enemyDepth=99;seed.depth=99;seed.enemyHp=seed.enemyMaxHp=1e200;seed.enemyIsLuminous=false;seed.autoAscendEnabled=false;
    before.set(seed);after.set(seed);var old=before.simulate(60,kind,clock+.125),next=after.simulate(60,kind,clock+.125);eq(next.kills,0,'fixed world isolates unchanged casts and paid effects from the new enemy curve');eq(next,old,'unchanged chronological summary under historical Deed policy');eq(oldFields(after.get()),oldFields(before.get()),'every prior simulation endpoint field retained');cases.push({party:party,kind:kind,seconds:60,kills:next.kills});

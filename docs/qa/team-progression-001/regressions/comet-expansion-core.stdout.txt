@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "error": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "message": "exact current permanent catalog\n+ actual - expected\n\n  [\n-   'autoascend',\n    'astralcore',\n    'astralecho',\n    'astralconvergence'\n  ]\n",
+    "stack": "AssertionError [ERR_ASSERTION]: exact current permanent catalog\n+ actual - expected\n\n  [\n-   'autoascend',\n    'astralcore',\n    'astralecho',\n    'astralconvergence'\n  ]\n\n    at eq (C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:56:33)\n    at C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:79:5\n    at group (C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:58:136)\n    at runCore (C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:72:3)\n    at runCore (C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:50:19)\n    at cli (C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:529:14)\n    at Object.<anonymous> (C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs:537:26)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)"
+  },
+  "input": {
+    "path": "C:\\lf-team\\index.html",
+    "bytes": 1179524,
+    "sha256": "317c254b82080c4ca15340d73858b30ccf0cc1a16138571b4aa3e503fafd90f7"
+  },
+  "dependencies": [
+    {
+      "path": "C:\\lf-team\\tests\\behavioral\\comet-expansion-core.cjs",
+      "bytes": 61543,
+      "sha256": "368c951c848677f3c991ba71e87e5c248d13aa58eb721080584319e048371481"
+    },
+    {
+      "path": "C:\\lf-team\\tests\\behavioral\\comet-expansion-harness.cjs",
+      "bytes": 16372,
+      "sha256": "f694f4bebcff0b18e67dd9dfe926f065bab454dd5881c57f541ddbafbc6d7d53"
+    },
+    {
+      "path": "C:\\lf-team\\tests\\behavioral\\comet-expansion-numerical.cjs",
+      "bytes": 23045,
+      "sha256": "bfe3eb4de649c29c1a809488f8327cf2e190a6ebcbdced0bb35986ba95f36f96"
+    }
+  ],
+  "runtime": {
+    "node": "v24.22.1",
+    "v8": "13.6.233.17-node.58"
+  }
+}

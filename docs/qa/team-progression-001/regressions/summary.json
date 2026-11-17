@@ -1,0 +1,341 @@
+{
+  "status": "fail",
+  "sourceSha256": "317c254b82080c4ca15340d73858b30ccf0cc1a16138571b4aa3e503fafd90f7",
+  "node": "v24.22.1",
+  "results": [
+    {
+      "name": "check_context",
+      "args": [
+        "scripts/codex/check_context.cjs",
+        "--task",
+        "docs/tasks/FULL_GAME_WORKSHOP_AUDIT_001.md"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.1790658
+    },
+    {
+      "name": "validate_source",
+      "args": [
+        "scripts/ci/validate_source.cjs"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.32754839999999996
+    },
+    {
+      "name": "full-game-audit",
+      "args": [
+        "tests/behavioral/full-game-audit.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.9648941999999999
+    },
+    {
+      "name": "exploit-fixes",
+      "args": [
+        "tests/behavioral/exploit-fixes.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.6274045000000004
+    },
+    {
+      "name": "startup-order",
+      "args": [
+        "tests/behavioral/startup-order.cjs"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.08133880000000045
+    },
+    {
+      "name": "progression-pacing",
+      "args": [
+        "tests/behavioral/progression-pacing.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.30990369999999984
+    },
+    {
+      "name": "forge-expansion",
+      "args": [
+        "tests/behavioral/forge-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 1.0313294000000006
+    },
+    {
+      "name": "forge-expansion-calibration",
+      "args": [
+        "tests/behavioral/forge-expansion-calibration.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 28.343340899999998
+    },
+    {
+      "name": "lab-expansion",
+      "args": [
+        "tests/behavioral/lab-expansion.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.7033142999999982
+    },
+    {
+      "name": "lab-expansion-boundary",
+      "args": [
+        "tests/behavioral/lab-expansion-boundary.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.1918758000000016
+    },
+    {
+      "name": "lab-expansion-stress",
+      "args": [
+        "tests/behavioral/lab-expansion-stress.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.6516883999999992
+    },
+    {
+      "name": "forge-lab-caps",
+      "args": [
+        "tests/behavioral/forge-lab-caps.cjs",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.379594299999997
+    },
+    {
+      "name": "lab-slot-contract",
+      "args": [
+        "tests/behavioral/lab-slot-contract.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.1559582999999984
+    },
+    {
+      "name": "lab-timed-boosts",
+      "args": [
+        "tests/behavioral/lab-timed-boosts.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 5.851226600000002
+    },
+    {
+      "name": "lab-boost-queue",
+      "args": [
+        "tests/behavioral/lab-boost-queue.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 105.26849720000001
+    },
+    {
+      "name": "lab-queue-continuity",
+      "args": [
+        "tests/behavioral/lab-queue-continuity.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.5901809000000067
+    },
+    {
+      "name": "endless-progression-core",
+      "args": [
+        "tests/behavioral/endless-progression-core.cjs",
+        "index.html",
+        "--focus-f"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.4327057999999961
+    },
+    {
+      "name": "endless-price-cache",
+      "args": [
+        "tests/behavioral/endless-price-cache.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.4675246000000043
+    },
+    {
+      "name": "comet-expansion-core",
+      "args": [
+        "tests/behavioral/comet-expansion-core.cjs",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.17964010000001873
+    },
+    {
+      "name": "tree-expansion-core",
+      "args": [
+        "tests/behavioral/tree-expansion-core.cjs",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.6786604999999981
+    },
+    {
+      "name": "prism-earning-state",
+      "args": [
+        "tests/behavioral/prism-earning-state.cjs",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.4546504999999888
+    },
+    {
+      "name": "loadout-memory",
+      "args": [
+        "tests/behavioral/loadout-memory.cjs",
+        "--source",
+        "index.html",
+        "--chrome",
+        "C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.1447719999999972
+    },
+    {
+      "name": "formation-best-now-core",
+      "args": [
+        "tests/behavioral/formation-best-now-core.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.7007645000000193
+    },
+    {
+      "name": "wisp-contribution-core",
+      "args": [
+        "tests/behavioral/wisp-contribution-core.cjs",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.12681320000000415
+    },
+    {
+      "name": "permanent-progression",
+      "args": [
+        "tests/behavioral/permanent-progression.cjs",
+        "index.html"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.0791520000000019
+    },
+    {
+      "name": "support-recast-current",
+      "args": [
+        "tests/behavioral/support-recast-current.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.3749110999999976
+    },
+    {
+      "name": "early-wisp-curve-current",
+      "args": [
+        "tests/behavioral/early-wisp-curve-current.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "pass",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.074997000000003
+    },
+    {
+      "name": "farm-recap-parity",
+      "args": [
+        "tests/behavioral/farm-recap-parity.cjs",
+        "index.html",
+        "--negative"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 5.817592100000009
+    },
+    {
+      "name": "offline-catchup",
+      "args": [
+        "tests/behavioral/offline-catchup.cjs",
+        "--source",
+        "index.html"
+      ],
+      "status": "fail",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 13.232513399999997
+    }
+  ]
+}

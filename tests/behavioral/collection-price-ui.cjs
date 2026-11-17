@@ -23,11 +23,10 @@ const cases=String.raw`
    {tab:'forge',button:'[data-research="arcanecal"]',card:'[data-forge-card="arcanecal"]',prices:{lumen:15000,shard:120},field:'research',id:'arcanecal'},
    {tab:'research',button:'[data-study="guardmastery"]',card:'[data-study-card="guardmastery"]',prices:{lumen:600,shard:40},field:'activeStudies',id:'guardmastery'},
    {tab:'ascend',button:'[data-node="swift"]',card:null,prices:{prism:3},field:'nodes',id:'swift'},
-   {tab:'deeds',button:'[data-shop="autoascend"]',card:null,prices:{comet:100},field:'owned',id:'autoascend'}
+   {tab:'deeds',button:'[data-shop="astralcore"]',card:null,prices:{comet:750},field:'astralUpgrades',id:'astralcore'}
   ];
   for(const spec of specs){
    const fixture=await ev('prismQa.collectionSeed()');
-   if(spec.id==='autoascend')require('./auto-ascend-challenges.cjs').qualify(fixture);
    await ev('prismQa.set('+JSON.stringify(fixture)+');prismQa.ready();prismQa.tab('+JSON.stringify(spec.tab)+')');
    if(spec.tab==='research')await ev('document.querySelector("[data-study-slot]").click()');
    // Observe actual entry-animation completion before strict 44px geometry checks.
@@ -66,7 +65,7 @@ const cases=String.raw`
    for(const key of ['nodes','research','longStudyLevels'])for(const id of Object.keys(before[key]))if(!(key===spec.field&&id===spec.id))ok(after[key][id]===before[key][id],'old paid levels retained '+key+' '+id);
    const saved=await ev('prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k));})');ok(JSON.stringify(saved[0])===JSON.stringify(saved[1]),'two saved slots match after purchase');
    for(const kind of Object.keys(spec.prices))ok(saved[0][walletKeys[kind]]===after[walletKeys[kind]],'paid wallet saved '+kind);
-   if(spec.id==='autoascend')ok(after.autoAscendEnabled===true&&after.autoAscendTargetDepth>=16,'Auto-Ascend unlock behavior retained');
+   if(spec.id==='astralcore')ok(!after.autoAscendEnabled&&!await ev('!!document.querySelector("[data-shop=autoascend]")'),'permanent investment keeps retired automation absent');
   }
   await ev("prismQa.set(prismQa.collectionSeed());prismQa.ready();prismQa.wallets({prisms:1e16});prismQa.refreshCosts()");
   ok(await ev("!document.querySelector('[data-node=\"swift\"]').disabled"),'wide wallet exact purchase is available');

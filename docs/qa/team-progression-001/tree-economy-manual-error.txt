@@ -1,0 +1,24 @@
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: double-frontier-credit must trip a gameplay assertion, not a harness/runtime error
+    at rejects (C:\lf-team\tests\behavioral\tree-expansion-economy.cjs:396:5)
+    at negatives (C:\lf-team\tests\behavioral\tree-expansion-economy.cjs:402:3)
+    at verify (C:\lf-team\tests\behavioral\tree-expansion-economy.cjs:413:56)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\tree-expansion-economy.cjs:418:148)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

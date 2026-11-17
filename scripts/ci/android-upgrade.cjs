@@ -511,9 +511,10 @@ async function main(){
  for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],slot+': '+field+' retained');
  for(const [field,id] of [['spirits','ember'],['spirits','stone'],['heroRarity','ember'],['wispModules','ember'],['wispUltimate','ember'],['nodes','swift'],['research','arcanecal'],['longStudyLevels',study]])assert.equal(s[field][id],seed[field][id],field+'.'+id+' retained');
  const running=s.activeStudies.find(x=>x.id===study);assert(running,'Paid Study retained');assert.equal(running.speedMult,2);assert.equal(running.totalDurationSec,3600);assert(running.remainingSec>0&&running.remainingSec<=3500);
- assert.equal(s.owned.autoascend,true,'Actual paid Auto-Ascend retained');
+ assert.equal(s.owned.autoascend,true,'Historical paid Auto-Ascend identity retained');
+ assert.deepEqual(s.autoAscendRefund,{policy:'autoascend-retired-v1',total:100,paid:true},'Actual signed upgrade settles Auto-Ascend retirement once');
  for(const id of legacyPurchases)assert.equal(s.cometClaims.retired[id],'settled','Actual paid legacy entitlement/credit retained: '+id);
- assert(s.comets>=oldCold.save.comets+350,'Independent140+50+160 legacy purchase credits retained');
+ assert(s.comets>=oldCold.save.comets+450,'Independent140+50+160 legacy credits plus100-Comet retirement retained');
  assert.deepEqual(s.cometCosmetics,seed.cometCosmetics,'Paid equipped cosmetics retained');assert.deepEqual(s.cometTrialMarks,seed.cometTrialMarks,'Earned paid Trial marks retained');
  assert.equal(s.autoAscendEnabled,false,'Saved Auto-Ascend choice retained');assert.equal(s.autoAscendTargetDepth,seed.autoAscendTargetDepth,'Saved target retained');
  for(const group of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[group]||{}))assert.equal(s[group][id],false,'Saved queue choice retained: '+group+'/'+id);
@@ -524,7 +525,7 @@ async function main(){
  page=await verifyInstalledMidgameFarmHint(page,report,observed.save);
  await verifyInstalledRiftNavigation(page,report);
  await verifyInstalledRiftLooks(page,report);page.close();
- report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.physicalDevice=false;
+ report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.autoAscendRetirementCredit=100;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }
 const watchdog=setTimeout(()=>{console.error('Android upgrade QA overall deadline');process.exit(1);},600000);

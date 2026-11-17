@@ -1,0 +1,96 @@
+{
+  "whole": {
+    "elapsedSec": 28800,
+    "effectiveSec": 28800,
+    "earned": 185272283925.60025,
+    "shardEarned": 1189361664.000002,
+    "sigilsEarned": 120,
+    "motesEarned": 6789,
+    "studySpeedPurchases": 0,
+    "studyMotesSpent": 0,
+    "ascends": 0,
+    "completedStudies": [
+      "Guardian's Mastery"
+    ],
+    "closedStudies": [],
+    "retreated": true,
+    "endDepth": 160,
+    "pushDepth": 160,
+    "kills": 722,
+    "iterations": 64558,
+    "fastForwardedKills": 0
+  },
+  "reference": {
+    "kills": 722,
+    "ascends": 0,
+    "prisms": 0
+  },
+  "diffs": [
+    {
+      "p": "state.enemyHp",
+      "a": 24335569267.290764,
+      "b": 24081405160.648422,
+      "relative": 0.010444140584948693
+    },
+    {
+      "p": "state.heroResource.ember",
+      "a": 99.9999975585961,
+      "b": 1.6653345369377348e-15,
+      "relative": 1
+    },
+    {
+      "p": "state.heroResource.titan",
+      "a": 9.999997558596112,
+      "b": 10.000000000000002,
+      "relative": 2.4414038897191397e-7
+    },
+    {
+      "p": "state.canonicalAutomationClock._autoTapAccum.elapsed",
+      "a": "99999991861987036367047258493437160431493992973628337495028972625732421875e-74",
+      "b": "55511151231257827021181583404541015625e-54",
+      "relative": null
+    },
+    {
+      "p": "state.canonicalAutomationClock._autoTapAccum.last",
+      "a": 999.9999186198704,
+      "b": 5.551115123125783e-14,
+      "relative": 1
+    },
+    {
+      "p": "state.canonicalAutomationClock._autoEmpowerAccum.elapsed",
+      "a": "99999991861987036367047258493437160431493992973628337495028972625732421875e-74",
+      "b": "55511151231257827021181583404541015625e-54",
+      "relative": null
+    },
+    {
+      "p": "state.canonicalAutomationClock._autoEmpowerAccum.last",
+      "a": 999.9999186198704,
+      "b": 5.551115123125783e-14,
+      "relative": 1
+    },
+    {
+      "p": "state.totalTaps",
+      "a": 969581,
+      "b": 969582,
+      "relative": 0.0000010313722820761936
+    },
+    {
+      "p": "state.dailyStats.taps",
+      "a": 41656,
+      "b": 41657,
+      "relative": 0.000024005569292075762
+    },
+    {
+      "p": "state._autoTapAccum",
+      "a": 999.9999186198704,
+      "b": 5.551115123125783e-14,
+      "relative": 1
+    },
+    {
+      "p": "state._autoEmpowerAccum",
+      "a": 999.9999186198704,
+      "b": 5.551115123125783e-14,
+      "relative": 1
+    }
+  ]
+}

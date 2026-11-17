@@ -11,10 +11,12 @@ let x=app(source),q=x.q,b=q.endless;
  const x=app(source),q=x.q,s=q.fresh();
  s.prisms=1e30;s.nodes.stardust=5;s.depth=s.enemyDepth=10001;s.maxDepthEver=10001;
  s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=10000;
- q.set(s);q.restoreEnemy();const gain=q.prismPreview().gain;
+ q.set(s);q.restoreEnemy();q.achievements();const gain=q.prismPreview().gain;
  ok(gain>=200,'legacy unsafe-wallet fixture earns the complete Ascension Dust reward');
  const before=clone(q.get()),result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});
- eq(result.ascends,1,'legacy unsafe-wallet automatic Ascend executes');
+ eq(result.ascends,0,'legacy unsafe-wallet never automatically resets');
+ eq(q.get(),before,'zero-time retired automation preserves complete state');
+ eq(q.ascend(),true,'manual unsafe-wallet Ascend executes');
  eq(big(q.get().prisms),BigInt(before.prisms)+BigInt(gain),'legacy unsafe native Prism wallet receives every earned Prism');
  eq(q.get().motes-before.motes,50,'paid Ascension Dust retained when the old Prism wallet would round away the gain');
 }
@@ -65,7 +67,7 @@ ok(q.save(),'deep combat save');q.load();ok(a.valid(q.get().enemyHp),'deep load 
 }
 {
  const x=app(source),q=x.q,s=hugeState();s.depth=s.enemyDepth=17;s.owned.autoascend=true;s.autoAscendEnabled=true;s.autoAscendTargetDepth=16;q.set(s);q.restoreEnemy();
- const result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(result.ascends,1,'real automatic Ascend with wide currencies');ok(a.valid(result.motesGained),'wide Ascend reports valid Mote gain');eq(big(q.get().motes),10n**400n+big(result.motesGained),'wide Mote Ascend credit exact');
+ const result=q.advance(0,{kind:'offline',clockStartMs:CLOCK});eq(result.ascends,0,'wide currencies cannot revive retired automatic reset');eq(result.motesGained,0,'zero-time combat grants no Ascension Dust');eq(q.ascend(),true,'real manual Ascend with wide currencies');eq(big(q.get().motes),10n**400n,'unbought Dust leaves wide Mote wallet unchanged');
  s.depth=s.enemyDepth=1;s.owned.autoascend=false;s.autoAscendEnabled=false;s.lastSeen=CLOCK-6000;s.totalOfflineSeconds='1e400';q.set(s);q.restoreEnemy();const offline=q.offline();eq(offline.effectiveSec,6,'wide offline accumulator processes the real window');eq(big(q.get().totalOfflineSeconds),10n**400n+6n,'wide offline time accumulator remains exact');ok(q.save(),'wide offline endpoint saves');
 }
 {

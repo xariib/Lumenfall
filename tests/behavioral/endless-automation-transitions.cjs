@@ -18,7 +18,14 @@ const bytes=z.gunzipSync(fs.readFileSync('docs/qa/endless-progression-001/experi
 // it never supplies a pricing/pacing expectation for the actual game.
 const farmCap="return state.riftMode==='farm' ? Amount.min(dps,Amount.mul(state.enemyMaxHp||enemyHpFor(state.depth),ENDLESS_PROGRESSION.farmPassiveKillsPerSecond)) : dps;";
 assert.equal(source.split(farmCap).length,2,'one explicit historical Farm-rate input');
-const variants=[['current balance',source],['captured historical rates',require('./frozen-cycle-power.cjs')(source).replace(farmCap,'return dps;')]],records=[];
+// The current Farm clock fix always uses canonical advancement. The captured
+// stale-owner witness also needs its original Push-only clock operand; without
+// that input, omitting the old fallback reset is unreachable. Preserve this
+// operand only in the historical variant, with the original input/assertions.
+const clockGuard='function advanceAutomationToProjectedClock(stepSec,windowEnd){\n    if(binaryClock){';
+assert.equal(source.split(clockGuard).length,2,'one explicit current Farm clock input');
+const historical=require('./frozen-cycle-power.cjs')(source).replace(farmCap,'return dps;').replace(clockGuard,'function advanceAutomationToProjectedClock(stepSec,windowEnd){\n    if(binaryClock&&state.riftMode===\'push\'){');
+const variants=[['current damage/rate operands in retained reset engine',source],['captured historical rates and clock operand',historical]],records=[];
 try{
  for(const [variant,code]of variants){
  const x=app(code.replace(marker,observed+marker),undefined,{clockDate:true,retainWrites:false});x.clock(start);x.q.set(input.state);
@@ -27,5 +34,5 @@ try{
  assert(summary.empowers>0,'the same earned absence also funds real automatic upgrades');
  records.push({variant,checks:3,seconds:input.seconds,wallMs:performance.now()-began,emptyTicks:x.q.endless.emptyTicks(),empowers:summary.empowers,endMode:x.q.get().riftMode,retreats:summary.retreats,sourceSha256:crypto.createHash('sha256').update(code).digest('hex')});
  }
- console.log(JSON.stringify({status:'PASS',checks:6,current,records,baseSourceSha256,sourceSha256:baseSourceSha256,inputSha256:crypto.createHash('sha256').update(bytes).digest('hex'),originalSourceSha256:input.sourceSha256,limits:'Current balance plus explicit historical rate input; no historical pacing claim for the public game.'}));
+ console.log(JSON.stringify({status:'PASS',checks:6,current,records,baseSourceSha256,sourceSha256:baseSourceSha256,inputSha256:crypto.createHash('sha256').update(bytes).digest('hex'),originalSourceSha256:input.sourceSha256,limits:'Retained reset engine with current damage/rate operands plus explicit historical rate/clock input. Actual manual/Farm acceptance is separate; no historical pacing claim for the public game.'}));
 }catch(error){console.log(JSON.stringify({status:'FAIL',current,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),error:error.stack}));process.exitCode=1;}

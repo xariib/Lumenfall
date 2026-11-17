@@ -1,0 +1,26 @@
+{
+  "id": 43980662680,
+  "sha": "51966f91856e8ef369ea08d984e9801ac8595e8f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43980662680",
+  "jobs": [
+    {
+      "id": 133695955943,
+      "name": "forge",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:36:48Z",
+      "log": "job-133695955943.log.gz",
+      "rawSha256": "13e1d227e6a270a2f81555badd8c31e579cc8dd1770f86e0e7e02849f019fac5",
+      "summary": [
+        "2026-11-16T23:36:43.5083077Z   throw new AssertionError(obj);",
+        "2026-11-16T23:36:43.5085145Z AssertionError [ERR_ASSERTION]: all original save fields and paid work preserved, with exact default appearance preferences",
+        "2026-11-16T23:36:43.6294103Z AssertionError [ERR_ASSERTION]: intro must explain full earned bonus",
+        "2026-11-16T23:36:43.6352947Z   throw new AssertionError(obj);",
+        "2026-11-16T23:36:43.6363081Z AssertionError [ERR_ASSERTION]: Forge browser acceptance failed",
+        "2026-11-16T23:36:46.4375178Z {\"status\":\"fail\",\"sourceSha256\":\"2008627a86ff1309876c14b4fc85fda146e66a7c1fa35151fe98018c0b9967aa\",\"node\":\"v8.3.0\",\"v8\":\"6.0.286.52\",\"phase\":\"actual Ascend live\",\"checks\":2419,\"error\":\"AssertionError [ERR_ASSERTION]: actual automatic Ascend live\\n    at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:9:36)\\n    at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:146:166\\n    at Array.forEach (<anonymous>)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:140:29)\\n    at Module._compile (module.js:573:30)\\n    at Object.Module._extensions..js (module.js:584:10)\\n    at Module.load (module.js:507:32)\\n    at tryModuleLoad (module.js:470:12)\\n    at Function.Module._load (module.js:462:3)\\n    at Function.Module.runMain (module.js:609:10)\",\"actual\":0,\"expected\":1}"
+      ]
+    }
+  ]
+}

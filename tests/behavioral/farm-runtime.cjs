@@ -57,7 +57,7 @@ function audit(r,strictMinimum=true){
  ok(!summary.studySpeedPurchases&&!summary.studyMotesSpent,'legacy consent cannot activate a timed purchase');
  near(state.activeStudies[0].remainingSec,300-seconds,'base elapsed work');
  ok(parts.every(p=>!p.summary.abilityCasts&&!p.summary.ascends&&!p.summary.completedStudies.length),'no other economy event');
- if(type==='natural'){ok(dps===40052722017724424,'actual product natural DPS');ok(r.normalized.spirits.titan===1635&&r.normalized.research.formation===500,'finite normalization preserves investments');ok(Object.values(r.costs).flatMap(v=>typeof v==='object'?Object.values(v):[v]).every(Number.isFinite),'finite next prices');}
+ if(type==='natural'){ok(dps===40052722017724424,'historical natural-Power quotient witness');ok(r.normalized.spirits.titan===1635&&r.normalized.research.formation===500,'finite normalization preserves investments');ok(Object.values(r.costs).flatMap(v=>typeof v==='object'?Object.values(v):[v]).every(Number.isFinite),'finite next prices');}
  const minimum=type==='core'?3275345183542180:type==='natural'?3277040892359271:type==='b1'?90:null;
  if(strictMinimum&&minimum!==null)ok(kills===minimum,'documented '+type+' minimum');
  if(type==='b1'){ok(luminous===3&&state.motes===60,'B1 Motes and luminous');near(state.activeStudies[0].remainingSec,299.1,'B1 work');}
@@ -71,7 +71,7 @@ async function execute(type,use,kind,split,mutant=false){
    Object.assign(s,{riftMode:'farm',depth:1,enemyDepth:1,farmDepth:1,farmReturnDepth:2,maxDepthEver:130,enemyMaxHp:H,enemyHp:type==='core'?H:8.03,enemyIsLuminous:false,luminousAccum:.975,motes:type==='core'&&!use?0:59,lumen:0,shards:0,questDay:window.__lumenfallQaContext.currentDay()});
    s.activeStudies=[{id:'guardmastery',remainingSec:300,totalDurationSec:600,speedMult:1}];s.studyUseMotes.guardmastery=use;s.studySpeedTargets.guardmastery=3;
    if(natural){s.activeParty=['titan'];s.spirits.titan=1635;s.heroRarity.titan=5;s.heroRarity.ember=1;s.heroResource.titan=0;s.research.formation=500;s.longStudyLevels.formationstudy=500;s.longStudyLevels.wispascend=500;s.nodes.momentum=500;s.ascendCount=5;s.achieved.asc5=true;}
-   var normalized=b.setState(s),dps=natural?t.naturalDps():type==='core'||type==='fractional-high'?Math.pow(2,55)+16:1100,seconds=type==='core'?1:.9,costs=natural?t.numericCosts():null,undo=${mutant}?t.mutate('rounded-quotient'):function(){};
+   var normalized=b.setState(s),dps=natural?t.legacyNaturalDps():type==='core'||type==='fractional-high'?Math.pow(2,55)+16:1100,seconds=type==='core'?1:.9,costs=natural?t.numericCosts():null,undo=${mutant}?t.mutate('rounded-quotient'):function(){};
    // Supply the independently observed raw Power explicitly: this is the
    // original damage-arithmetic oracle, not an uncapped public Farm policy.
    try{var groups=[];function call(dt,start){var traced=t.traceFarm(function(){return t.direct(dt,kind,start);});groups.push(traced.rows);return traced.result;}function go(){var a=call(split||seconds,2000000000000);return split?[a,call(seconds-split,2000000000000+split*1000)]:[a];}var parts=t.withDps(dps,go);return {type:type,use:use,kind:kind,split:split,H:H,input:s,normalized:normalized,dps:dps,seconds:seconds,costs:costs,parts:parts,groups:groups,trace:[].concat.apply([],groups)};}finally{undo();}

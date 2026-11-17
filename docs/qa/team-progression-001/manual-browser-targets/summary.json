@@ -1,0 +1,79 @@
+{
+  "sourceSha256": "a4dc5c837348d3534a37c2defee5b1dbaee413378f003c0314165c363ba84b23",
+  "node": "v24.22.1",
+  "transport": "existing CDP-pipe adapter on Windows; not default Linux dump-dom CI",
+  "results": [
+    {
+      "name": "auto-ascend-target-cold-resume",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "ascend-prisms-contract",
+      "expected": "pass",
+      "code": 1,
+      "passed": false
+    },
+    {
+      "name": "p2-ascend-integrity",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "p2-03b-auto-ascend-integrity",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "ascend-prisms-save-reload",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "ascend-prisms-backup-restore",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "ascend-prisms-recovery",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "lab-motes-numerical",
+      "expected": "pass",
+      "code": 0,
+      "passed": true
+    },
+    {
+      "name": "self-test-auto-ascend-target-manual",
+      "expected": "causal assertion failure",
+      "code": 1,
+      "passed": true
+    },
+    {
+      "name": "self-test-auto-ascend-target-window",
+      "expected": "causal assertion failure",
+      "code": 1,
+      "passed": false
+    },
+    {
+      "name": "self-test-ascend-prisms-repeat",
+      "expected": "causal assertion failure",
+      "code": 1,
+      "passed": true
+    },
+    {
+      "name": "self-test-ascend-prisms-rounding",
+      "expected": "causal assertion failure",
+      "code": 1,
+      "passed": true
+    }
+  ]
+}

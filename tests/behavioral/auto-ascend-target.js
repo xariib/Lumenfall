@@ -8,140 +8,47 @@ window.autoTargetSeed=function(b,clear,enabled){
 window.autoTargetObservation=function(b){
   return {state:b.getState(),primary:b.rawSave(),recovery:b.rawRecovery(),events:b.lifecycleTrace(),persistence:b.persistenceStatus(),flags:b.autoTarget.flags()};
 };
-window.runAutoTargetWindows=function(b,assert){
-  var checks=0,records=[],copy=x=>JSON.parse(JSON.stringify(x));
-  function ok(v,m){checks++;assert(v,m);}
-  function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
-  function el(){return document.querySelector('[data-autoascend-target]');}
-  function options(){return Array.from(el().tagName==='SELECT'?el().options:el().parentNode.querySelector('datalist').options);}
-  [214,215,220,10001,10015,Math.pow(2,53),1e30,Number.MAX_VALUE].forEach(function(history){
-    var s=autoTargetSeed(b,43,false);s.maxDepthEver=history;b.setState(s);b.feedbackSave();
-    var before=autoTargetObservation(b);b.autoTarget.render();same(autoTargetObservation(b),before,'high-history render pure '+history);
-    var highest=Math.min(Number.MAX_SAFE_INTEGER,Math.max(15,history-1));
-    ok(b.getState().maxDepthEver===history,'high history unchanged');
-    ok(document.querySelectorAll('[data-autoascend-target]').length===1,'one target dropdown');
-    ok(el().closest('#tab-ascend'),'operative dropdown on Ascend');
-    ok(!document.querySelector('#shop-list [data-autoascend-toggle],#shop-list [data-autoascend-target]'),'no duplicate controls in Deeds');
-    ok(!document.querySelector('[data-autoascend-earlier],[data-autoascend-later],[data-autoascend-find]'),'old navigation removed');
-    var native=el().tagName==='SELECT',list=options();
-    ok(native ? list.length===highest-14 : list.length<=200+(list.some(o=>o.textContent.endsWith('(saved target)'))?1:0),'complete native list or bounded suggestions');
-    if(native)list.forEach(function(option,i){ok(option.value===String(15+i),'every consecutive native target '+i);});
-    [15,43,55,219,10000,highest].filter(x=>x<=highest).forEach(function(clear){
-      before=autoTargetObservation(b);b.autoTarget.change(String(clear));
-      var expected=copy(before.state);expected.autoAscendTargetDepth=clear+1;expected.lastSeen=b.clockNow();
-      same(b.getState(),expected,'explicit choice only changes target '+clear);
-      ok(el().value===String(clear),'chosen value visible '+clear);
-      ok(!b.getState().autoAscendEnabled,'high choice preserves OFF');
-    });
-    before=autoTargetObservation(b);b.autoTarget.render();b.refreshAffordability();same(autoTargetObservation(b),before,'high render/affordability pure');
-    records.push({history,highest,native,count:options().length,value:el().value});
-  });
-  [Math.pow(2,53),Math.pow(2,53)+2,1e30,Number.MAX_VALUE].forEach(function(internal){
-    var s=autoTargetSeed(b,43,false);s.maxDepthEver=Math.pow(2,53);s.autoAscendTargetDepth=internal;b.setState(s);b.feedbackSave();
-    var before=autoTargetObservation(b);b.autoTarget.render();same(autoTargetObservation(b),before,'legacy huge saved target render pure');
-    ok(b.getState().autoAscendTargetDepth===internal&&el().value===String(internal-1),'huge target displayed and preserved');
-    ok(options().some(o=>o.value===String(internal-1)),'huge target pinned in suggestions');
-    b.autoTarget.change('55');var expected=copy(before.state);expected.autoAscendTargetDepth=56;expected.lastSeen=b.clockNow();
-    same(b.getState(),expected,'explicit safe choice replaces legacy value');
-    ok(autoTargetObservation(b).events.length===before.events.length+1,'legacy replacement saves once');
-  });
-  var s=autoTargetSeed(b,43,false);s.maxDepthEver=1e30;b.setState(s);b.feedbackSave();b.autoTarget.render();
-  b.autoTarget.change('9007199254740991');
-  ok(b.getState().autoAscendTargetDepth===Math.pow(2,53),'safe clear endpoint stores exact N=X+1');
-  ok(options().length<=201,'suggestions stay bounded at safe endpoint');
-  var after=autoTargetObservation(b);b.autoTarget.change('9007199254740991');same(autoTargetObservation(b),after,'same committed value cannot save twice');
-  return {checks,records};
+window.autoTargetStableJson=function(value){
+  function ordered(v){if(Array.isArray(v))return v.map(ordered);if(v&&typeof v==='object'){var out={};Object.keys(v).sort().forEach(function(k){out[k]=ordered(v[k]);});return out;}return v;}
+  return JSON.stringify(ordered(value));
 };
-
+// Existing scenario IDs now protect retirement, manual records and legacy history.
+window.runAutoTargetWindows=function(b,assert){
+ var checks=0,records=[];function ok(v,m){checks++;assert(v,m);}
+ [214,215,220,10001,10015,Math.pow(2,53),1e30,Number.MAX_VALUE].forEach(function(history){
+  var s=autoTargetSeed(b,43,true);s.maxDepthEver=history;b.setState(s);b.feedbackSave();var before=autoTargetObservation(b);
+  b.autoTarget.render();b.refreshAffordability();
+  ok(!document.querySelector('[data-autoascend-target],[data-autoascend-toggle],[data-autoascend-open],[data-shop="autoascend"]'),'retired controls absent at every history');
+  ok(JSON.stringify(autoTargetObservation(b))===JSON.stringify(before),'retirement render is pure');
+  ok(b.getState().maxDepthEver===history&&b.getState().autoAscendTargetDepth===44,'legacy high history/target retained');
+  ok(!b.getState().autoAscendEnabled&&!b.ascendEligibility().autoReady,'imported ON cannot revive automatic reset');
+  ok(b.autoTarget.input('55')===false,'retired target action unavailable');
+  ok(JSON.stringify(autoTargetObservation(b))===JSON.stringify(before),'retired action preserves all state and both slots');
+  records.push({history,target:44,automatic:false});
+ });return {checks:checks,records:records};
+};
 window.runAutoTargetContract=function(b,ctx,assert,parity){
-  var checks=0,records=[],copy=x=>JSON.parse(JSON.stringify(x));
-  function ok(v,m){checks++;assert(v,m);}
-  function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
-  function seed(clear,enabled){var s=window.autoTargetSeed(b,clear,enabled);b.setState(s);b.feedbackSave();b.autoTarget.render();return b.getState();}
-  function select(){return document.querySelector('[data-autoascend-target]');}
-  [43,55].forEach(function(clear){
-    var s=seed(clear,true);ok(select().value===String(clear),'UI is clear Rift '+clear);
-    // Before defeat: current encounter still has HP. Historical high is no proof.
-    s.depth=clear;s.enemyDepth=clear;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(clear);s.spirits.ember=100;
-    b.setState(s);var before=window.autoTargetObservation(b);
-    ok(!b.ascendEligibility().autoReady,'unbeaten target is not eligible '+clear);
-    ok(!b.autoTarget.check(),'manual check before defeat cannot reset '+clear);
-    same(window.autoTargetObservation(b),before,'pre-defeat check is pure '+clear);
-    b.setState(s);var zero=b.simulateTimeline(0,'live',b.clockNow());
-    ok(zero.summary.ascends===0&&zero.state.prisms===s.prisms,'zero-time unbeaten target awards nothing '+clear);
-    s.enemyHp=1;s.heroResource.ember=100;b.setState(s);
-    var reward=b.ascendBreakdown(clear+1).gain;
-    var defeated=b.simulateTimeline(0,'live',b.clockNow());
-    ok(defeated.summary.kills===1&&defeated.summary.ascends===1,'one defeat -> one Ascend '+clear);
-    ok(defeated.state.depth===1&&defeated.state.autoAscendTargetDepth===clear+1,'reset preserves internal '+(clear+1));
-    ok(defeated.state.prisms===s.prisms+reward&&defeated.summary.ascendGains[0]===reward,'exact existing reward '+clear);
-    ok(!b.autoTarget.check(),'post-reset no double reward '+clear);
-    var cycle=copy(defeated.state);
-    for(var n=0;n<3;n++){
-      cycle.depth=clear+1;cycle.enemyDepth=clear+1;cycle.enemyHp=cycle.enemyMaxHp=b.enemyHpFor(clear+1);
-      b.setState(cycle);var gain=b.ascendBreakdown(clear+1).gain,prisms=cycle.prisms,count=cycle.ascendCount;
-      ok(b.autoTarget.check(),'next legitimate cycle qualifies '+clear);
-      cycle=b.getState();ok(cycle.autoAscendTargetDepth===clear+1&&cycle.autoAscendEnabled,'cycle target/ON fixed');
-      ok(cycle.prisms===prisms+gain&&cycle.ascendCount===count+1,'cycle reserve reward exactly once');
-      ok(!b.autoTarget.check(),'cycle check cannot double reward');
-    }
-    records.push({clear,internal:clear+1,defeat:defeated,cycles:cycle});
-  });
-  [false,true].forEach(function(enabled){
-    var s=seed(43,enabled);s.depth=101;s.enemyDepth=101;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(101);b.setState(s);
-    b.autoTarget.manual();var after=b.getState();
-    ok(after.autoAscendTargetDepth===44,'manual keeps target 43 at higher clear Rift 100');
-    ok(after.autoAscendEnabled===enabled,'manual preserves ON/OFF');
-    ok(JSON.parse(b.rawSave()).autoAscendTargetDepth===44&&JSON.parse(b.rawRecovery()).autoAscendTargetDepth===44,'actual manual save keeps chosen target');
-    b.autoTarget.render();same(select().value,'43','manual UI still shows 43');
-  });
-  var s=seed(43,false);s.depth=56;s.enemyDepth=56;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(56);b.setState(s);
-  ok(!b.autoTarget.check(),'OFF never auto-resets');
-  s.autoAscendEnabled=true;s.owned.autoascend=false;b.setState(s);
-  ok(!b.autoTarget.check(),'unowned gate');b.autoTarget.render();ok(!select(),'unowned has no selector');
-  var unownedBefore=window.autoTargetObservation(b);ok(!b.autoTarget.input('43'),'unowned input rejected');same(window.autoTargetObservation(b),unownedBefore,'unowned input pure');
-  s.owned.autoascend=true;s.riftMode='farm';s.farmDepth=42;s.farmReturnDepth=56;s.depth=42;s.enemyDepth=42;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(42);b.setState(s);
-  ok(!b.autoTarget.check(),'Farm never Ascends');b.enterPush();ok(b.ascendEligibility().autoReady,'return to Push uses legitimate cleared progression');
-  ok(b.autoTarget.check(),'Push qualifying check Ascends once');
-  // A lower target with ON must wait for an ordinary gameplay check.
-  [false,true].forEach(function(enabled){
-    s=seed(55,enabled);s.depth=50;s.enemyDepth=50;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(50);b.setState(s);b.feedbackSave();b.autoTarget.render();
-    var before=window.autoTargetObservation(b);b.autoTarget.change('43');var after=window.autoTargetObservation(b);
-    var expected=copy(before.state);expected.autoAscendTargetDepth=44;expected.lastSeen=b.clockNow();
-    same(after.state,expected,'change modifies target and normal save metadata only');
-    ok(after.events.length===before.events.length+1&&after.events[after.events.length-1].type==='save','change one save only');
-    ok(after.state.depth===50&&after.state.ascendCount===before.state.ascendCount&&after.state.prisms===before.state.prisms,'change never directly Ascends');
-    same(JSON.parse(after.primary),expected,'primary exact target change');same(after.primary,after.recovery,'recovery refreshed by normal save');
-    ok(b.autoTarget.check()===enabled,'next normal check honors ON/OFF');
-  });
-  seed(43,false);
-  ['', 'NaN','Infinity','43.5','14','101','130','-1',' 43','43.0','0x2b',null,undefined,43].forEach(function(value){
-    var before=window.autoTargetObservation(b);ok(!b.autoTarget.input(value),'reject malformed/outside input '+String(value));same(window.autoTargetObservation(b),before,'rejected input has no state/save/event mutation');
-  });
-  // Current options, not a guessed history-based fallback.
-  var el=select(),before=window.autoTargetObservation(b);el.value='101';el.dispatchEvent(new Event('change',{bubbles:true}));same(window.autoTargetObservation(b),before,'invalid native change pure');b.autoTarget.render();
-  s=seed(129,false);s.maxDepthEver=21;b.setState(s);b.autoTarget.render();
-  el=select();ok(el.options.length===7&&el.value==='129','legacy above-history target visibly selected');
-  ok(el.options[el.options.length-1].textContent==='Clear Rift 129 (saved target)','legacy option explicitly labeled');
-  before=window.autoTargetObservation(b);b.autoTarget.render();b.refreshAffordability();same(window.autoTargetObservation(b),before,'all render/affordability observers pure');
-  s.maxDepthEver=151;b.setState(s);before=window.autoTargetObservation(b);b.autoTarget.render();
-  ok(select().options.length===136&&select().value==='129','history expands every integer without changing target');same(window.autoTargetObservation(b),before,'history option rebuild pure');
-  // Existing purchase cost/initial target/ON behavior retained.
-  s=b.freshStateSnapshot();s.maxDepthEver=56;s.depth=43;s.enemyDepth=43;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(43);s.comets=10000;b.setState(s);b.autoTarget.render();
-  b.autoTarget.purchase();ok(!b.getState().owned.autoascend&&b.getState().comets===10000,'purchase stays locked before challenges');
-  s.ascendCount=25;s.maxDepthEver=150;['wispascend','guardmastery','shardstudy','lumenstudy','motestudy','measuredinquiry'].forEach(function(id,i){s.longStudyLevels[id]=i<2?9:8;});b.setState(s);
-  var item=b.autoTarget.shopItem(),funds=s.comets;b.autoTarget.purchase();
-  var bought=b.getState();ok(bought.comets===funds-item.cost&&bought.owned.autoascend&&bought.autoAscendEnabled&&bought.autoAscendTargetDepth===150,'earned purchase retains cost/default');
-  var windows=runAutoTargetWindows(b,assert);checks+=windows.checks;
-  // Exact live/offline/direct/split state parity at the target and Study boundary.
-  s=window.autoTargetSeed(b,55,true);s.depth=55;s.enemyDepth=55;s.enemyHp=1;s.enemyMaxHp=b.enemyHpFor(55);s.spirits.ember=100;s.heroResource.ember=100;
-  s.nodes.echo=6;s.activeStudies=[{id:'guardmastery',totalDurationSec:150,remainingSec:.5,speedMult:2}];b.setState(s);s=b.getState();
-  var results={};['live','offline','online-reference'].forEach(function(kind){b.setState(s);results[kind]=b.simulate(2,kind==='online-reference'?'live':kind,kind==='online-reference'?1:2,b.clockNow());});
-  parity(results.live.state,results.offline.state,'new target live/offline');parity(results.live.state,results['online-reference'].state,'new target online reference');
-  b.setState(s);b.simulate(.25,'offline',.25,b.clockNow());var split=b.simulate(1.75,'offline',1.75,b.clockNow()+250,b.clockNow());parity(split.state,results.offline.state,'new target split boundary');
-  ok(results.offline.summary.ascends===1&&results.offline.state.autoAscendTargetDepth===56,'one boundary Ascend fixed target');
-  ok(results.offline.state.longStudyLevels.guardmastery===1,'Study completion/reward survives Ascend');
-  return {checks,records,windows,parity:results,existingAssertionsChanged:[]};
+ var checks=0,records=[],copy=x=>JSON.parse(JSON.stringify(x));function ok(v,m){checks++;assert(v,m);}function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
+ b.uiMeasurementPause(true);var windows=runAutoTargetWindows(b,assert);checks+=windows.checks;
+ [15,43,55].forEach(function(clear){
+  var s=autoTargetSeed(b,clear,true);s.depth=s.enemyDepth=clear+1;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(clear+1);s.autoAscendTargetDepth=16;s.activeStudies=[{id:'guardmastery',remainingSec:123,totalDurationSec:150,speedMult:2}];s.comets=37;
+  b.setState(s);var baseline=b.getState();ok(baseline.comets===137&&baseline.autoAscendRefund.paid,'one exact owner refund');
+  ['live','offline'].forEach(function(kind){b.setState(baseline);var r=b.simulateTimeline(.25,kind,b.clockNow());ok(r.summary.ascends===0&&r.state.ascendCount===baseline.ascendCount&&r.state.prisms===baseline.prisms,'elapsed combat cannot automatically reset/pay '+kind);});
+  b.setState(baseline);b.feedbackSave();var quote=b.ascendBreakdown().gain,paid=b.getState();
+  ok(b.autoTarget.manual()===true,'manual clear qualifies '+clear);var after=b.getState();
+  ok(after.prisms===paid.prisms+quote&&after.ascendCount===paid.ascendCount+1&&after.ascendRewardedDepth===clear,'one exact manual record transaction');
+  ok(after.autoAscendTargetDepth===paid.autoAscendTargetDepth&&!after.autoAscendEnabled,'manual reset preserves historical target without automation');
+  same(after.activeStudies,paid.activeStudies,'manual reset preserves every paid work receipt');
+  same(after.autoAscendRefund,paid.autoAscendRefund,'manual reset cannot refund twice');
+  var repeat=copy(after);repeat.depth=repeat.enemyDepth=clear+1;repeat.enemyHp=repeat.enemyMaxHp=b.enemyHpFor(clear+1);b.setState(repeat);var before=autoTargetObservation(b);
+  ok(b.ascendBreakdown().gain===0&&!b.ascendEligibility().eligible,'same record awards nothing');ok(b.autoTarget.manual()===false,'same record cannot reset');same(autoTargetObservation(b),before,'denied manual reset preserves whole state and slots');
+  repeat.depth=repeat.enemyDepth=clear+2;repeat.maxDepthEver=Math.max(repeat.maxDepthEver,clear+2);repeat.enemyHp=repeat.enemyMaxHp=b.enemyHpFor(clear+2);b.setState(repeat);ok(b.autoTarget.manual()===true,'next higher clear unlocks manual reset');
+  records.push({clear:clear,firstReward:quote,nextRecord:b.getState().ascendRewardedDepth});
+ });
+ [14,15].forEach(function(clear){var s=autoTargetSeed(b,clear,true);s.depth=s.enemyDepth=clear+1;s.maxDepthEver=10000;b.setState(s);ok(b.ascendEligibility().eligible===(clear===15),'first clear15 boundary uses current run');});
+ var s=autoTargetSeed(b,43,true);s.depth=s.enemyDepth=43;s.enemyHp=1;s.enemyMaxHp=b.enemyHpFor(43);s.spirits.ember=100;s.heroResource.ember=100;b.setState(s);var r=b.simulateTimeline(0,'offline',b.clockNow());ok(r.summary.kills===1&&r.summary.ascends===0,'actual target kill stays in current run');
+ ok(b.getState().depth===44&&b.getState().autoAscendTargetDepth===44,'actual kill retains new run progress/history');
+ return {checks:checks,records:records,windows:windows,policy:'manual higher-record Ascension; retired automatic actions unavailable'};
 };
 
 window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
@@ -161,7 +68,7 @@ window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
     } else localStorage.setItem(key,JSON.stringify(saved));
     nextPhase(1);
     if(ctx.scenario.endsWith('backup-restore')){
-      var different=copy(saved);different.autoAscendEnabled=false;different.autoAscendTargetDepth=16;different.owned.autoascend=false;
+      var different=copy(saved);different.autoAscendEnabled=false;different.autoAscendTargetDepth=16;different.owned.autoascend=false;different.autoAscendRefund={policy:'autoascend-retired-v1',total:0,paid:true};
       b.setState(different);b.restoreBackup('LUMENFALL1:'+encodeURIComponent(JSON.stringify(saved)));return;
     }
     if(ctx.scenario.endsWith('reset')){b.reset();return;}
@@ -170,12 +77,12 @@ window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
   }
   var expected=JSON.parse(localStorage.getItem(key)),actual=b.getState();
   if(ctx.scenario.endsWith('reset')){assert(actual.autoAscendTargetDepth===16&&!actual.owned.autoascend&&!actual.autoAscendEnabled,'full Reset fresh target/ownership/OFF');finish('pass',{state:actual});return;}
-  assert(JSON.stringify(actual)===JSON.stringify(expected),'actual zero-time loader keeps entire state/legacy target');
+  assert(autoTargetStableJson(actual)===autoTargetStableJson(expected),'actual zero-time loader keeps entire state/legacy target '+JSON.stringify(Object.keys(actual).filter(function(k){return autoTargetStableJson(actual[k])!==autoTargetStableJson(expected[k]);}).map(function(k){return {field:k,actual:actual[k],expected:expected[k]};})));
   b.autoTarget.render();var el=document.querySelector('[data-autoascend-target]');
-  assert(el.value===String(expected.autoAscendTargetDepth-1),'legacy N displays clear N-1');
+  assert(!el&&!document.querySelector('[data-shop=autoascend],[data-autoascend-toggle]'),'legacy reload never recreates retired controls');
   assert(JSON.parse(b.rawSave()).autoAscendTargetDepth===expected.autoAscendTargetDepth&&JSON.parse(b.rawRecovery()).autoAscendTargetDepth===expected.autoAscendTargetDepth,'primary/recovery exact legacy target');
   if(ctx.scenario==='auto-ascend-target-cold-resume'){
-    assert(actual.autoAscendTargetDepth===44&&actual.ascendCount===1&&actual.longStudyLevels.guardmastery===1,'actual cold offline load consumes target and Study once');
+    assert(actual.autoAscendTargetDepth===44&&actual.ascendCount===0&&actual.longStudyLevels.guardmastery===1,'actual cold load finishes paid Study without automatic reset');
     assert(b.lifecycleTrace().filter(e=>e.type==='offline'&&e.detail.result).length===1,'cold offline applied once');
     return finish('pass',{state:actual,primary:b.rawSave(),recovery:b.rawRecovery(),events:b.lifecycleTrace()});
   }
@@ -185,7 +92,7 @@ window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
     oracle.state.lastSeen=now+6000;oracle.state.offlineClockHighWaterMs=Math.max(s.offlineClockHighWaterMs,oracle.state.lastSeen);oracle.state.totalOfflineSeconds=s.totalOfflineSeconds+6;
     b.clearLifecycleTrace();b.autoTarget.visibility(true);b.advanceTime(6000);b.autoTarget.visibility(false);
     actual=b.getState();assert(JSON.stringify(actual)===JSON.stringify(oracle.state),'whole-state visibility resume matches authoritative offline window and explicit lifecycle metadata');
-    assert(actual.autoAscendTargetDepth===44&&actual.ascendCount===s.ascendCount+1,'resume crosses one target without changing preference');
+    assert(actual.autoAscendTargetDepth===44&&actual.ascendCount===s.ascendCount&&!actual.autoAscendEnabled,'resume retains current run and historical target');
     var before=window.autoTargetObservation(b);b.autoTarget.visibility(false);assert(JSON.stringify(b.getState())===JSON.stringify(before.state),'duplicate visibility no extra reward/reset');
     assert(b.lifecycleTrace().filter(e=>e.type==='offline'&&e.detail.result).length===1,'offline exactly once');
     return finish('pass',{state:actual,oracle,primary:b.rawSave(),recovery:b.rawRecovery(),events:b.lifecycleTrace()});

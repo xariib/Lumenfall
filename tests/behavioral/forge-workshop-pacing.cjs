@@ -47,6 +47,7 @@ function verify(source){
  b.set(legacy);q.set(legacy);const migrated=F.clone(q.get());for(const id of ids){eq(migrated.research[id],0,'missing new level is zero');eq(migrated.researchQueue[id],false,'new queue is OFF');delete migrated.research[id];delete migrated.researchQueue[id];}for(const id of ['wispdamage','wispcritchance','wispcritdamage','supportduration'])for(const [field,value]of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5],['studyBoostHours',8]]){eq(migrated[field][id],value,'new Lab research retains unpurchased default '+field+'.'+id);delete migrated[field][id];}
  const preserved=F.clone(b.get());
  preserved.riftLook={backdrop:'default',wisp:'default',enemy:'default',motion:true};
+ eq(migrated.autoAscendRefund,{policy:'autoascend-retired-v1',total:0,paid:true},'unowned retired unlock gives no free currency');delete migrated.autoAscendRefund;
  eq(migrated,preserved,'all original save fields and paid work preserved, with exact default appearance preferences');
  // Independent scope checks: no compounding, no currencies from extra damage,
  // no Support power/charge buff and no effect leaking into unrelated domains.

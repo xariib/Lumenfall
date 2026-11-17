@@ -50,7 +50,7 @@ for(const auto of [false,true])for(const kind of ['live','offline'])for(const de
   const x=game(),q=x.q,s=farm(q,depth,auto);delete s.farmAutoResume;q.set(s);q.restoreEnemy();ok(q.save(),'save manual legacy Farm');
   const cold=game(x.storage),c=cold.q;eq(c.get().farmAutoResume,false,'legacy Farm conservatively migrates to manual');
   const before=c.get().ascendCount,r=c.advance(12,{kind,clockStartMs:F.CLOCK});
-  eq(c.get().riftMode,'farm','manual Farm survives chronological catch-up');eq(c.get().depth,depth,'same selected Rift');eq(c.get().autoAscendEnabled,auto,'automation preference retained');eq(c.get().ascendCount,before,'manual Farm does not auto Ascend');eq(r.retries,0,'manual Farm never retries return boss');
+  eq(c.get().riftMode,'farm','manual Farm survives chronological catch-up');eq(c.get().depth,depth,'same selected Rift');eq(c.get().autoAscendEnabled,false,'retired automation cannot survive import');eq(c.get().ascendCount,before,'manual Farm does not auto Ascend');eq(r.retries,0,'manual Farm never retries return boss');
   ok(c.save(),'save endpoint');const paid=F.clone(c.get());eq(game(cold.storage).q.get(),paid,'both-slot cold endpoint');eq(c.accept(c.decode(c.export())),paid,'backup retains endpoint');
   const broken=new Map(cold.storage);broken.set(F.P,'broken');eq(game(broken).q.get(),paid,'recovery slot retains manual Farm');
 }

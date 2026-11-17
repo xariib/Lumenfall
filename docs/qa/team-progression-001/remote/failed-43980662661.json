@@ -1,0 +1,34 @@
+{
+  "id": 43980662661,
+  "sha": "51966f91856e8ef369ea08d984e9801ac8595e8f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43980662661",
+  "jobs": [
+    {
+      "id": 133695955539,
+      "name": "lab",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:37:27Z",
+      "log": "job-133695955539.log.gz",
+      "rawSha256": "5113d7d15d4bc61b278d75adce4713af311fc1710570099d6c3f14fe0b318b9c",
+      "summary": [
+        "2026-11-16T23:37:22.0741414Z {\"status\":\"pass\",\"source_sha256\":\"2008627a86ff1309876c14b4fc85fda146e66a7c1fa35151fe98018c0b9967aa\",\"checks\":3918,\"payoutCases\":180,\"routes\":[\"actual manual handler\",\"live/offline authoritative auto\",\"cold load\",\"actual backup restore\",\"primary corruption/recovery\",\"failed write/retry\",\"real Swift purchase\",\"atomic offline failure/rollback/retry\"],\"scope\":\"full game logic with DOM presentation stubbed; not browser layout or Android acceptance\"}",
+        "2026-11-16T23:37:22.4487768Z AssertionError [ERR_ASSERTION]: intro must explain full earned bonus",
+        "2026-11-16T23:37:22.4532183Z   throw new AssertionError(obj);",
+        "2026-11-16T23:37:22.4533316Z AssertionError [ERR_ASSERTION]: Lab browser acceptance failed"
+      ]
+    },
+    {
+      "id": 133695956117,
+      "name": "timed-slot-speed",
+      "conclusion": "success",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:37:54Z",
+      "log": "job-133695956117.log.gz",
+      "rawSha256": "fa1743e3019bf33c7550f4de5fb85dcb421c66fab534f8c5b6c0bea65f1928ef",
+      "summary": []
+    }
+  ]
+}
