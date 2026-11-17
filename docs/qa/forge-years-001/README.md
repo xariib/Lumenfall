@@ -53,11 +53,16 @@ Product SHA256:`53ab7e3d82db877fd637da95604854f0f86880136ea477fab14fb80cbd5f621b
 The user confirmed all Forge paths must be finite, with possible2–3year completion
 and useful Lab growth through walls. [Decision](../../decisions/2026-11-17-finite-forge.md).
 
-Finite core373assertions/four causal controls PASS: rational independent tail
+Finite core381assertions/four causal controls PASS: rational independent tail
 quotes, real final manual/Max/queued payments, individual resource shortages,
 write rollback, cap/above-cap ownership/effects, cold load, recovery, backup
 and Ascend. Completed damage/critical Labs increase measured combat7.5x;
 resource Labs100 increase measured kill payouts9x versus those Labs at0.
+At actual boss Rift490 with all Forge capped, the no-damage-Lab fixture cannot
+beat regeneration and kills0enemies in120s. Completed damage/critical Labs turn
+that same fixture into sustained damage and17kills, ending Rift507, identically
+live and offline. The first new wall-test fixture omitted capped foundations;
+it correctly failed before the fixture was corrected to represent full Forge.
 Original Forge9404/25controls, workshop480/four, earned Lab access538/four,
 permanent progression4225, slot contract55, whole-game audit318/three and
 early Wisp2400/five controls PASS. These are self-review/automated checks.

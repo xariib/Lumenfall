@@ -61,7 +61,17 @@ function verify(html){
  const strong={passive:q.passive(501),ability:q.burst('ember'),lumen:q.lumen(501,false),shards:q.shards(501,false)};
  for(const key of ['passive','ability'])ok(Number(A.div(strong[key],weak[key]))>=7.49,'completed damage/critical Labs strengthen capped Forge combat '+key);
  for(const key of ['lumen','shards'])ok(Number(A.div(strong[key],weak[key]))>=8.99,'completed economy Labs strengthen farming '+key);
- return {checks,labComparison:{weak,strong}};
+ const walls=[];
+ for(const kind of ['live','offline'])for(const researched of [false,true]){
+  const wall=F.clone(s);wall.depth=wall.enemyDepth=490;wall.enemyHp=wall.enemyMaxHp=q.enemyHp(490);
+  for(const node of q.defs())wall.research[node.id]=node.levelCap;
+  Object.assign(wall.longStudyLevels,{wispdamage:researched?100:0,wispcritchance:researched?100:0,wispcritdamage:researched?100:0});q.set(wall);
+  const assessment=q.assessment(490);eq(assessment.verdict,researched?'sustained':'wall','actual boss wall depends on completed Labs '+kind);
+  const summary=q.advance(120,{kind,clockStartMs:F.CLOCK});
+  ok(researched?summary.kills>0:summary.kills===0,'actual capped-Forge combat crosses wall only with damage Labs '+kind);
+  walls.push({kind,researched,verdict:assessment.verdict,kills:summary.kills,endingDepth:q.get().depth});
+ }
+ return {checks,labComparison:{weak,strong},walls};
 }
 try{
  const result=verify(source),negative=[];

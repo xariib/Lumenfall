@@ -1,7 +1,7 @@
 {
   "status": "pass",
   "sourceSha256": "53ab7e3d82db877fd637da95604854f0f86880136ea477fab14fb80cbd5f621b",
-  "checks": 373,
+  "checks": 381,
   "labComparison": {
     "weak": {
       "passive": 37600290065,
@@ -16,6 +16,36 @@
       "shards": 808030046
     }
   },
+  "walls": [
+    {
+      "kind": "live",
+      "researched": false,
+      "verdict": "wall",
+      "kills": 0,
+      "endingDepth": 490
+    },
+    {
+      "kind": "live",
+      "researched": true,
+      "verdict": "sustained",
+      "kills": 17,
+      "endingDepth": 507
+    },
+    {
+      "kind": "offline",
+      "researched": false,
+      "verdict": "wall",
+      "kills": 0,
+      "endingDepth": 490
+    },
+    {
+      "kind": "offline",
+      "researched": true,
+      "verdict": "sustained",
+      "kills": 17,
+      "endingDepth": 507
+    }
+  ],
   "negative": [
     {
       "name": "endless-returns",

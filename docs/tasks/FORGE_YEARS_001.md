@@ -72,3 +72,19 @@ introducing arbitrary calendar locks. Paid above-cap levels retain their full
 effects. Candidate numbers remain subject to actual cost/reinvestment checks.
 Next: implement/test finite transactions, preservation and a multi-year
 reinvestment forecast with explicit limits. No PR/integration/APK yet.
+
+Implementation checkpoint: candidate product SHA256
+`53ab7e3d82db877fd637da95604854f0f86880136ea477fab14fb80cbd5f621b`,
+[PR59](https://github.com/xariib/Lumenfall/pull/59), initial pushed head`abeef22a`.
+All caps finite; original first300 Tempering and first50 Masterwork prices stay;
+future tails as specified above. Existing Labs are unchanged. Required original
+Forge/whole-game/slot/permanent/early-Wisp checks pass locally; new finite core
+passes. Reinvestment benchmark completes on1063productive days; lower economic
+research/lower farm/changing-income cases remain incomplete after1200days.
+See [full assumptions and initial failures](../qa/forge-years-001/README.md).
+Local mobile first retry hit CDP timeout after266checks; not yet passing.
+The credential lacks workflow-edit scope, so workflows stay byte-identical and
+the existing required Forge test entrypoint enforces the new finite/pacing checks.
+CI pending. Next: verify the actual capped-Forge boss-wall/Lab crossing,
+resolve mobile/CI findings, then integrate only after required checks pass and
+perform exact-source signed Android delivery. Do not archive; human pacing open.

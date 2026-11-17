@@ -7,6 +7,8 @@ const {spawnSync}=require('node:child_process');
 const sourcePath=path.resolve(process.argv[2]||'index.html'),evidence=path.resolve(process.argv[3]||'forge-mobile-evidence');
 let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 function one(from,to){assert.equal(driver.split(from).length,2,'one Forge transport extension');driver=driver.replace(from,()=>to);}
+one('async function ev(expression){','var lastForgeExpression="";async function ev(expression){lastForgeExpression=expression;');
+one('error:e.stack','error:e.stack,lastForgeExpression:lastForgeExpression');
 // Keep native browser animation frames for post-input layout observations.
 // Only ambient gameplay intervals are paused by the existing transport.
 one('window.requestAnimationFrame=function(){return 0;};','');
