@@ -73,6 +73,15 @@ workflows skipped, and signed unpublished Android build44064059604 running.
 The GitHub App updated the required workflow; installed CLI handles dispatch.
 Task remains in progress pending final-source CI, integration and Android release.
 
+First final-source CI44064204939: isolated offline catch-up PASS; broad job stopped
+at pre-existing startup budget32826 bytes (58 above32768) for the old Forge/Lab
+task. The startup documents/product were already at that size on baseline.
+Preserved the complete prior PROJECT_STATE byte-for-byte in the dated17 November
+history and compacted older12 November status in the active index, retaining the
+open economy finding and all source/evidence links. No threshold/gate changed.
+Final focused check:31 assertions plus all four causal controls PASS, with clean
+browser exits. Full18-profile run and Android candidate acceptance still running.
+
 Next: publish this checkpoint, run required remote CI, resolve all regressions,
 integrate serially with any newer main work, then signed Android acceptance and
 publication. Until required checks/build pass this remains open. Self-review only.

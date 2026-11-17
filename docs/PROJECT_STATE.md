@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) in progress.
+Remove hints, Farm left/Push right, opaque ring center and isolated enemy layer.
+Focused31 checks/four causal controls and navigation88 PASS; four paired8h
+replays preserve every saved field/reward. Full CI/Android acceptance pending.
+The first CI stopped on a pre-existing58-byte startup-budget excess; this status
+compaction preserves the full prior snapshot and keeps the32KiB gate unchanged.
+
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
 the user instruction, "Never ask for permissions again for Lumenfall project."
 Current entrypoints explicitly prohibit permission or renewed approval requests
@@ -67,39 +74,10 @@ at7f149b89. Human correction requires visible currency names; focused correction
 passes1,776 layout checks. Visible names are included through PR54/56 in
 Android 0.2.127; combined acceptance evidence is linked above. Phone review open.
 
-12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
-[Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
-through PR48 at `63c63b1a`: one scene and six stronger themes replace packs;
-original enemies fit their rings. All14 workflows,1,399 visual assertions and
-exact saved-state replay passed. Signed upgrade/updater retained both saves
-and paid work; retail launch/public bytes passed. [Full evidence](qa/rift-theme-redesign-001/README.md)
-retains the first native ANR and passing unchanged retry; cause is unproven.
-Physical-phone/WebView60/TalkBack/human acceptance and independent review are open.
-
-12 November: [PR42 Forge/Lab update and full evidence](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
-released as [Android0.2.110](https://github.com/xariib/Lumenfall/releases/tag/android-1000110).
-Tempering continues past300; eight Lab studies require earned first access,
-retaining paid work. Eight workflows,220 scenarios, offline catch-up, signed
-upgrade/updater, retail launch and public bytes/feed passed at `dc78daad`.
-PR46 is excluded; physical-phone/WebView60/TalkBack/human acceptance is open.
-
-12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
-initially kept PR42's Forge/Lab proposal open and closed PR46 without merging. The
-automatic-only reset delay strongly favors repetitive manual reward farming
-in the controlled comparison, contrary to the mostly-idle direction. The
-underlying rapid-repeat economy issue remains open; that review changed no gameplay.
-
-12 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
-released as [Android 0.2.107](https://github.com/xariib/Lumenfall/releases/tag/android-1000107) through PR47.
-It closes untrusted-action timing bypasses and a paid Lab work helper defect,
-uses 10,000 combat defeats for Auto-Tap, and eases later recruitment by one Lab
-level. All eight integrated workflows passed at `18e7072c`.
-Signed save-preserving upgrade, in-app update, retail-image normal launch and
-anonymous public APK/assets/feed verification passed. Thirty-day idle results
-and [delivery evidence](qa/exploit-balance-hunt-001/README.md) are saved.
-Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
-local saves remain a trust boundary. PR42 was separate at that release; its later
-delivery and PR46's subsequent closure are recorded above.
+[Pre-fix17 November status snapshot](PROJECT_STATE_2026-11-17_HISTORY.md)
+preserves the full12 November theme/PR42/PR46/exploit delivery records, exact
+versions, first failures, receipts and limitations. The rapid-repeat economy
+finding in [PR42/PR46 review](tasks/PR42_PR46_REVIEW_20261112.md) remains open.
 
 [Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
 preserve all prior release versions, hashes, receipts, first failures and known
