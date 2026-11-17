@@ -26,6 +26,11 @@ jobs:
         with:
           node-version: 24.19.0
 
+      - name: Rift hint removal, mode order and enemy visibility
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/RIFT_SCREEN_FIXES_001.md
+          node tests/behavioral/rift-screen-fixes.cjs index.html validation-evidence/rift-screen --negative
+
       - name: Paid Lab work and player action chronology
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_BALANCE_HUNT_001.md
@@ -256,11 +261,6 @@ jobs:
           done
           CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
           LUMENFALL_QA_CDP_CHROME="$CHROME" node tests/behavioral/rift-cast-text.cjs mobile/www validation-evidence/rift-cast-text
-
-      - name: Rift hint removal, mode order and enemy visibility
-        run: |
-          node scripts/codex/check_context.cjs --task docs/tasks/RIFT_SCREEN_FIXES_001.md
-          node tests/behavioral/rift-screen-fixes.cjs index.html validation-evidence/rift-screen --negative
 
       - name: Existing Rift layout after hint removal
         run: |

@@ -42,7 +42,7 @@ driver=driver.slice(0,start)+String.raw`
   await key('Enter','Enter',13);ok(await run('state.riftMode==="push"'),'right Push keyboard resumes pushing');
   ok(await run('[SAVE_KEY,RECOVERY_SAVE_KEY].every(k=>JSON.parse(localStorage.getItem(k)).riftMode==="push")'),'mode actions persist in both save slots');
   const samples=[];
-  await run('state.cometCosmetics.trail=true;state.cometCosmetics.crest=true;applyRiftTheme()');
+  await run('state.cometClaims.retired.rifttrail="settled";state.cometClaims.retired.starfallcrest="settled";state.cometCosmetics.trail=true;state.cometCosmetics.crest=true;applyRiftTheme()');
   for(const id of await run('RIFT_THEMES.map(t=>t.id)')){
    await run('selectRiftTheme('+JSON.stringify(id)+')');
    const layers=await ev("(()=>{const q=s=>document.querySelector(s),style=s=>getComputedStyle(q(s));return {enemyZ:Number(style('#enemy-glyph').zIndex),auraZ:Number(style('.rift-cosmetic-aura').zIndex),fieldZ:Number(style('.rift-arena-field').zIndex),trailZ:parseInt(style('.comet-trail').zIndex,10)||0,trailVisible:style('.comet-trail').display!=='none',isolated:style('.enemy-visuals').isolation,field:!!q('.rift-arena-field .rift-enemy-field')&&!q('.rift-cosmetic-aura .rift-enemy-field')&&Number(style('.rift-enemy-field').opacity)===1&&style('.rift-enemy-field').fill==='rgb(10, 18, 37)',inert:style('.enemy-visuals').pointerEvents==='none'}})()");
