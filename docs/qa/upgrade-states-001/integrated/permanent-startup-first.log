@@ -1,0 +1,35 @@
+##[group]Run node tests/behavioral/lab-speed-controls.cjs index.html --permanent --evidence permanent-evidence/mobile
+2026-11-17T15:43:31.2188933Z [36;1mnode tests/behavioral/lab-speed-controls.cjs index.html --permanent --evidence permanent-evidence/mobile[0m
+2026-11-17T15:43:31.2246157Z shell: /usr/bin/bash -e {0}
+2026-11-17T15:43:31.2246471Z ##[endgroup]
+2026-11-17T15:43:57.1864963Z {"status":"fail","sourceSha256":"5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa","mutation":null,"checks":0,"profiles":[],"error":"Error: CDP deadline Browser.getVersion\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:28:146)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)","stderr":"[2330:2359:1117/154343.427191:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2330:2359:1117/154344.110405:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2330:2359:1117/154344.683450:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2330:2362:1117/154345.114697:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2330:2362:1117/154345.114731:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2330:2362:1117/154345.114740:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[2330:2359:1117/154345.805139:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n"}
+2026-11-17T15:43:57.1920282Z ##[error]Process completed with exit code 1.
+2026-11-17T15:43:57.2017814Z ##[group]Run actions/upload-artifact@v4
+2026-11-17T15:43:57.2018049Z with:
+2026-11-17T15:43:57.2018238Z   name: permanent-progression-44117385807
+2026-11-17T15:43:57.2018481Z   path: permanent-evidence/
+2026-11-17T15:43:57.2018674Z   if-no-files-found: error
+2026-11-17T15:43:57.2018861Z   compression-level: 6
+2026-11-17T15:43:57.2019040Z   overwrite: false
+2026-11-17T15:43:57.2019216Z   include-hidden-files: false
+2026-11-17T15:43:57.2019410Z ##[endgroup]
+2026-11-17T15:43:57.3378014Z (node:2514) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-17T15:43:57.3378719Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-17T15:43:57.3402551Z ##[error]No files were found with the provided path: permanent-evidence/. No artifacts will be uploaded.
+2026-11-17T15:43:57.3614940Z Post job cleanup.
+2026-11-17T15:43:57.4343398Z [command]/usr/bin/git version
+2026-11-17T15:43:57.4380882Z git version 2.56.1
+2026-11-17T15:43:57.4413230Z Temporarily overriding HOME='/home/runner/work/_temp/7f0c7745-b4ed-4fe9-9f3c-82005de167fa' before making global git config changes
+2026-11-17T15:43:57.4414046Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-17T15:43:57.4417502Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-11-17T15:43:57.4452094Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-17T15:43:57.4497820Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-17T15:43:57.4805317Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-17T15:43:57.4830811Z http.https://github.com/.extraheader
+2026-11-17T15:43:57.4839897Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-17T15:43:57.4873935Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-17T15:43:57.5184393Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-17T15:43:57.5223376Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-17T15:43:57.5631832Z Cleaning up orphan processes
+2026-11-17T15:43:57.5931971Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

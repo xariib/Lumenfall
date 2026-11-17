@@ -1,0 +1,54 @@
+##[group]Run set -euo pipefail
+2026-11-17T15:43:03.9165426Z [36;1mset -euo pipefail[0m
+2026-11-17T15:43:03.9166049Z [36;1mnode tests/behavioral/run.cjs --web-root mobile/www --scenario "$SCENARIO" --raw-artifacts validation-evidence/migration-focused/raw 2>&1 | tee validation-evidence/migration-focused/result.log[0m
+2026-11-17T15:43:03.9212760Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-17T15:43:03.9213041Z env:
+2026-11-17T15:43:03.9213236Z   SCENARIO: wisp-card-simplicity
+2026-11-17T15:43:03.9213449Z ##[endgroup]
+2026-11-17T15:43:05.9789461Z Browser identity: { "selected_path": "/usr/bin/google-chrome", "resolved_path": "/opt/google/chrome/google-chrome", "sha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec", "version_error": "Browser version timed out" }
+2026-11-17T15:43:06.0204272Z Staged source: { "source_sha256": "5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa", "instrumented_sha256": "90ef7b39ea57d77618be354ad2c0c98d91a08412f9af91d8b7d403c3a65b065b" }
+2026-11-17T15:43:28.7064626Z FAIL wisp-card-simplicity
+2026-11-17T15:43:28.7066561Z   process: { "exitcode": 1, "timed_out": false, "stderr": "" }
+2026-11-17T15:43:28.7068285Z   detail: { "status": "fail", "profiles": 0, "checks": 0, "message": "Error: CDP timeout Browser.getVersion\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/wisp-upgrades.cjs:46:151)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)" }
+2026-11-17T15:43:28.7075346Z Behavioral QA failed: wisp-card-simplicity null
+2026-11-17T15:43:28.7139490Z ##[error]Process completed with exit code 1.
+2026-11-17T15:43:28.7280956Z ##[group]Run actions/upload-artifact@v4
+2026-11-17T15:43:28.7281198Z with:
+2026-11-17T15:43:28.7281433Z   name: migration-focused-wisp-card-simplicity-44117400797
+2026-11-17T15:43:28.7281747Z   path: validation-evidence/migration-focused/
+2026-11-17T15:43:28.7281992Z   if-no-files-found: warn
+2026-11-17T15:43:28.7282184Z   compression-level: 6
+2026-11-17T15:43:28.7282364Z   overwrite: false
+2026-11-17T15:43:28.7282544Z   include-hidden-files: false
+2026-11-17T15:43:28.7282742Z ##[endgroup]
+2026-11-17T15:43:28.8636765Z (node:2438) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-17T15:43:28.8637562Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-17T15:43:28.8689367Z With the provided path, there will be 4 files uploaded
+2026-11-17T15:43:28.8713598Z Artifact name is valid!
+2026-11-17T15:43:28.8714465Z Root directory input is valid!
+2026-11-17T15:43:29.2513919Z Beginning upload of artifact content to blob storage
+2026-11-17T15:43:29.2712943Z (node:2438) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-17T15:43:29.6245231Z Uploaded bytes 1489
+2026-11-17T15:43:29.7942761Z Finished uploading artifact content to blob storage!
+2026-11-17T15:43:29.7944242Z SHA256 digest of uploaded artifact zip is 86e2bf0cb1088c0893afc54a2ab8acb5965b8c23d1482bae4482fcf635899304
+2026-11-17T15:43:29.7945177Z Finalizing artifact upload
+2026-11-17T15:43:30.5657291Z Artifact migration-focused-wisp-card-simplicity-44117400797.zip successfully finalized. Artifact ID 14344470950
+2026-11-17T15:43:30.5658626Z Artifact migration-focused-wisp-card-simplicity-44117400797 has been successfully uploaded! Final size is 1489 bytes. Artifact ID is 14344470950
+2026-11-17T15:43:30.5662767Z Artifact download URL: https://github.com/xariib/Lumenfall/actions/runs/44117400797/artifacts/14344470950
+2026-11-17T15:43:30.8036590Z Post job cleanup.
+2026-11-17T15:43:30.8768581Z [command]/usr/bin/git version
+2026-11-17T15:43:30.8788914Z git version 2.56.1
+2026-11-17T15:43:30.8820532Z Temporarily overriding HOME='/home/runner/work/_temp/2c4addd9-0c74-45c0-bdc7-951fe5f66975' before making global git config changes
+2026-11-17T15:43:30.8821656Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-17T15:43:30.8825444Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-11-17T15:43:30.8958288Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-17T15:43:30.9003905Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-17T15:43:30.9308776Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-17T15:43:30.9336134Z http.https://github.com/.extraheader
+2026-11-17T15:43:30.9345857Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-17T15:43:30.9532331Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-17T15:43:30.9808440Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-17T15:43:30.9838597Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-17T15:43:31.0251664Z Cleaning up orphan processes
+2026-11-17T15:43:31.0571290Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
