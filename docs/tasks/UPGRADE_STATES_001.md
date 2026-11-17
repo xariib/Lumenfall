@@ -166,16 +166,19 @@ Four canonical offline full-state endpoints match main exactly. All30 required
 task-context checks pass; original32KiB limit unchanged. No price, cap, balance,
 schema or saved progression changes. Existing assertions/deadlines remain.
 
-Seven PR specialist workflows PASS. Pre-merge run44072682657 attempt1 stopped
-at existing native damage-details touch assertion, check319. Cause unproven;
-same failure has released-source history. Original failure/ZIP-verified context
-and local failed/passing replays are retained. Unchanged attempt2 job134019237033
-has passed that lane, currency/new upgrade suite and its controls; final190
-behavioral scenarios are running. Isolated offline job134019240150 PASS.
+Seven PR specialist workflows PASS on headbe015365. Pre-merge run44072682657
+attempt1 stopped at native touch/check319; cause unproven, prior released-source
+history retained. Attempt2 passed that lane and189/190 main scenarios. Its one
+failure expected a currency price for prerequisite-locked Expanded Apparatus,
+superseded by this task. The narrow test branch now verifies accessible name,
+no price and each unmet requirement/progress; other original checks remain.
+Product bytes/deadlines unchanged. Local424 browser assertions pass but process
+shutdown times out, recorded FAIL. New-head CI required. Isolated offline PASS.
+[Failure/change evidence](../qa/upgrade-states-001/ci-nav-assertion.json).
 [Detailed checkpoint](../qa/upgrade-states-001/continuation.json).
 
-Next: wait for complete required CI, recheck main/open overlap, merge onlyPR61
-at expected headbe015365. PR59 Forge caps andPR60 Rift screen are separate.
+Next: push revised test/evidence toPR61, finish complete new-head required CI,
+recheck main/open overlap and merge onlyPR61. PR59/60 remain separate.
 Verify integrated source/tree, dispatch all six release-gate workflows plus
 permanent/Wisp/migration checks on exact main. After all pass, dispatch existing
 Android build with publish=true; verify signing/package, save upgrade/updater,

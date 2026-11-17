@@ -96,3 +96,11 @@ the failure; full CI attempt2 is running on unchanged feature headbe015365.
 [Continuation checkpoint](continuation.json) records the exact branch/source,
 CI run/jobs, authorization, limitations and next action. This evidence branch
 keeps pending results durable without restarting the feature's required CI.
+
+Attempt2 passed189/190 main scenarios and isolated offline. Its one failed
+[navigation assertion](ci-nav-assertion.json) required a price for locked
+Expanded Apparatus, superseded by the user's requested unlock presentation.
+The narrow update checks exact unmet requirements and no price while preserving
+the other price/disabled/navigation/purity checks. Original compressed DOM,
+process result and main scenario log are retained. Local424 browser assertions
+pass but browser shutdown times out (FAIL); new-head Linux CI remains required.

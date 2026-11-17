@@ -1,0 +1,72 @@
+Browser identity: { "selected_path": "C:\\tmp\\lumenfall-chrome\\chrome-win64\\chrome.exe", "resolved_path": "C:\\tmp\\lumenfall-chrome\\chrome-win64\\chrome.exe", "sha256": "9196f87743c5a0baae3589c226ad72941bf6f0eb7669cec548ae1c80b4461c33", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2", "instrumented_sha256": "9e4abf1cfab7b6158d739bd549e98ba2341af3c153d102be43addaee619dd35a" }
+FAIL nav-workshop-contract
+  process: { "exitcode": null, "timed_out": true, "elapsed_sec": 33.664703, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "pass", "qa_scenario": "nav-workshop-contract", "json_status": "pass", "json_scenario": "nav-workshop-contract", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "checks": 424, "mainDestinations": 5, "workshopSections": 2, "wholeStatePurity": true, "silentPurchaseTypes": [ "empower", "module", "ultimate", "research", "speed-study", "study", "node", "shop" ] }
+  raw artifacts: C:\lf-upgrade-states\validation-evidence\upgrade-states\nav-current-fullchrome\nav-workshop-contract-nNFJ4u
+  stdout tail:
+ost compression was not detected'
+          );
+          finish('pass',{unexpected:'Wisp pacing regression was not detected'});
+          return;
+        }
+
+        case 'self-test-endgame-currency-regression': {
+          var unsafeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+Behavioral QA failed: nav-workshop-contract null
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="pass" data-scenario="nav-workshop-contract">{
+  "scenario": "nav-workshop-contract",
+  "status": "pass",
+  "detail": {
+    "checks": 424,
+    "mainDestinations": 5,
+    "workshopSections": 2,
+    "wholeStatePurity": true,
+    "silentPurchaseTypes": [
+      "empower",
+      "module",
+      "ultimate",
+      "research",
+      "speed-study",
+      "study",
+      "node",
+      "shop"
+    ]
+  },
+  "runtimeErrors": []
+}</pre></body></html>
+
