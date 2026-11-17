@@ -288,3 +288,11 @@ original outcomes. Self-review and automated testing only; no independent review
 Physical phone, exact WebView60 DOM, TalkBack and fresh-account calendar pacing
 remain unobserved. The 994-day model is not a new-account calendar guarantee.
 The task stays open and was not archived.
+
+After publication, newer Rift main12122b80 was merged into the delivery branch;
+its product/workflow/native files and status paragraph are preserved. Relative
+to that main, this delivery changes only Forge documentation/evidence. Combined
+finite assertions385/four controls and all39 referenced context tasks PASS.
+The main documentation update waited until the separate signed build44101297138
+completed publication. `post-release-reconciliation.json` records the scope;
+it does not claim independent full validation or ownership of the Rift feature.

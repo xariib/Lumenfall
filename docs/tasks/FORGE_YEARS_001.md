@@ -181,6 +181,14 @@ reference grants advanced progress and does not establish a new account's
 2–3-year calendar finish. Do not claim that as verified or archive this task.
 Original baseline, failed attempts and passing unchanged retries remain in QA.
 
+Post-release documentation reconciliation preserves newer Rift main12122b80
+and its status paragraph. Delivery diff against that main contains only this
+task's documentation/evidence. Combined-source finite checks PASS385/four
+controls with unchanged Lab-wall results; all39 referenced context tasks PASS.
+Waited for separate signed build44101297138 to pass publication before moving
+main with documentation. This does not claim ownership or independent full
+validation of the newer Rift work. See `post-release-reconciliation.json` in QA.
+
 Unrelated finding for later copy maintenance: the encyclopedia's Modules &
 Ultimates paragraph still mentions the superseded1/1.5s Support durations.
 This feature changes only its Masterwork reference; Support mechanics stay.
