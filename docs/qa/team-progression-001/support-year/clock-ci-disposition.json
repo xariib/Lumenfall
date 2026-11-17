@@ -1,0 +1,38 @@
+{
+  "run": 44078289304,
+  "attempt": 2,
+  "head": "4bea361a5bc0357111040b2e2d8e6ef68851434f",
+  "sourceSha256": "b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed",
+  "cause": "Captured clock witnesses already pinned old duration/Rift/retired-policy inputs but still inherited new13s recast.",
+  "fix": "Pin only captured recast input from SHA-verified released130 source. Current clock implementation and mutations remain subject code. Ordinary positive endpoint/current Support timing lanes remain13s.",
+  "activation": {
+    "checks": 444,
+    "status": "PASS"
+  },
+  "clockControls": {
+    "firstAttempt": "clock-controls-release",
+    "caught": 13,
+    "total": 14,
+    "status": "FAIL; saved"
+  },
+  "replay": {
+    "path": "clock-controls-replay",
+    "caught": 14,
+    "total": 14,
+    "status": "PASS"
+  },
+  "split": {
+    "normal": 1102,
+    "cold": 1102,
+    "mode": "Historical repeated-reset stress helper with current13s Support; current manual-game coverage remains manual-offline-parity."
+  },
+  "unchanged": [
+    "product",
+    "clock logic",
+    "mutations",
+    "assertions",
+    "numeric tolerances",
+    "deadlines",
+    "workflow gates"
+  ]
+}

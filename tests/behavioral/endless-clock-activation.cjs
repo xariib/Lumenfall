@@ -30,6 +30,9 @@ let historical=require('./legacy-rift-curve-reference.cjs')(require('./retired-a
 const supportDuration="durationMs:3000+300*labExpansionLevel('supportduration')";
 assert.equal(historical.split(supportDuration).length,2,'one historical Support timing marker');
 historical=historical.replace(supportDuration,'durationMs:ultimate ? 1500 : 1000');
+// Also pin the recast input from the verified130 witness. Current endpoint
+// and parity lanes above keep the unmodified13s source and current clock.
+historical=require('./legacy-support-recast-reference.cjs')(historical);
 run(historical,'mature-high-power','offline');
 const broken=historical.replace(current,'    binaryClock.advance(previous);');
 assert.throws(()=>run(broken,'mature-high-power','offline'),/Authoritative simulation stalled without elapsed-time or state progress/,'rounded activation reproduces the captured stall');checks++;

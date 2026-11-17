@@ -174,3 +174,12 @@ independent14400 one-second reference preserves50400 kills; exact wallets
 checks and original negative control PASS; all four endpoint wallets match
 bit-for-bit. No tolerance/product change. Lab/Wisp Browser.getVersion startup
 failures at0 checks and unchanged passing retries retained. Rerun exact head.
+
+PR62 clock activation control had captured old duration/curve/policy but new
+13s recast; restore only captured recast from SHA-verified130 input. Current
+clock body/mutations stay under test; current positive endpoint/parity lanes
+stay13s. Activation444 checks PASS. Local14-control sweep first caught13/14,
+then original14/14 after matching captured frame input; raw failure retained.
+Ordinary split/cold historical stress lanes retain13s,1102 checks each PASS;
+these are retired-policy stress helpers, not current automatic gameplay.
+Full manual-game8h acceptance remains the unmodified-source30466 checks.

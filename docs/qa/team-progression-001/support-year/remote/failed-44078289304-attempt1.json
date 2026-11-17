@@ -1,0 +1,44 @@
+{
+  "id": 44078289304,
+  "sha": "4bea361a5bc0357111040b2e2d8e6ef68851434f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44078289304",
+  "jobs": [
+    {
+      "id": 134021905677,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T11:55:02Z",
+      "completed": "2026-11-17T11:57:40Z",
+      "log": "job-134021905677.log.gz",
+      "rawSha256": "2c380e120b98601446464e237c0dbe9483f7e360aa491459e0f9d92856dd41b1",
+      "summary": [
+        "2026-11-17T11:55:54.0685761Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T11:57:37.5913069Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 134021906050,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T11:55:02Z",
+      "completed": "2026-11-17T12:05:47Z",
+      "log": "job-134021906050.log.gz",
+      "rawSha256": "d82b8dd3b3457fbc12db4f68d03ff9339b6be39153f4836c76320f48fdce00b8",
+      "summary": [
+        "2026-11-17T11:57:15.5053524Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3859,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3873,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-17T11:57:40.7315217Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-17T11:57:49.7673919Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:34661/index.html:14662:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:34661/index.html:14670:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"b65ba05779f66c6b612cee91c4f461de80d1671ec6282242949fcff996e9bebf\",\"mutant\":true}",
+        "2026-11-17T11:58:44.9215228Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:59:10.6400881Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T12:00:09.7809348Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-17T12:03:49.3667008Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T12:03:59.9123682Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T12:04:10.2258091Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T12:04:10.2391275Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-17T12:05:35.6279841Z {\"status\":\"fail\",\"sourceSha256\":\"b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed\",\"mutation\":null,\"checks\":73,\"profiles\":[{\"width\":320,\"scale\":100,\"motion\":\"reduce\",\"status\":\"pass\"},{\"width\":320,\"scale\":100,\"motion\":\"no-preference\",\"status\":\"pass\"},{\"width\":320,\"scale\":150,\"motion\":\"reduce\",\"status\":\"pass\"},{\"width\":320,\"scale\":150,\"motion\":\"no-preference\",\"status\":\"pass\"}],\"error\":\"Error: CDP deadline Input.dispatchTouchEvent target [data-study-speed-open=\\\"0\\\"] {\\\"x\\\":275,\\\"y\\\":459.875}\\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:25:146)\\n    at listOnTimeout (node:internal/timers:635:17)\\n    at process.processTimers (node:internal/timers:571:7)\",\"stderr\":\"[11114:11143:1117/120515.947620:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[11114:11143:1117/120515.947671:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[11114:11143:1117/120515.947678:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[11114:11137:1117/120515.948023:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown addre"
+      ]
+    }
+  ]
+}
