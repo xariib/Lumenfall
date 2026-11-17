@@ -1,5 +1,5 @@
 {
-  "status": "FAIL retained; unchanged retry requested",
+  "status": "PASS unchanged retry; first failure retained",
   "featureHead": "6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98",
   "sourceSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327",
   "runId": 44097173605,
@@ -15,5 +15,15 @@
   "response": "Rerun without changes to product, driver, deadline, assertions or workflow. Original artifact retained.",
   "checks": 0,
   "childError": "CDP deadline Browser.getVersion",
-  "childTeardown": "Browser close deadline"
+  "childTeardown": "Browser close deadline",
+  "final": {
+    "windowsJob": 134091323108,
+    "linuxJob": 134091325908,
+    "status": "PASS both platforms",
+    "windowsChecks": 3277,
+    "sourceUnchanged": true,
+    "artifactId": 14336025128,
+    "artifactSha256": "55a058d4f6e1c8a890e4a537e59429317fddfa2a7f5af20e60d084e521e487e8",
+    "shaAndLogCrcVerified": true
+  }
 }
