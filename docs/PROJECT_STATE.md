@@ -1,10 +1,14 @@
 # Lumenfall — current delivery status
 
-17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) is integrated
-at e6139c98: gold caps, unlock instructions and independent red shortages across
-upgrade families. Newer Forge/Rift changes are retained. All PR and nine exact-main
-workflows pass; signed Android delivery remains pending. Source-bound
-checks, initial failures and continuation evidence are saved in the task.
+17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) shipped as
+[Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138),
+source e6139c98: all maxed upgrades gold, prerequisite locks explain unlocks
+instead of prices, each missing currency red with purchase disabled. Newer
+Forge/Rift work retained. All nine exact-main workflows/190+1 scenarios,15,438
+upgrade UI checks, native controls, stable signing, save/updater/retail acceptance
+and anonymous APK/assets/feed PASS. Earlier failures remain recorded.
+[Delivery evidence](qa/upgrade-states-001/android-0.2.138/public-verification.json).
+Physical-phone/WebView60/TalkBack acceptance stays open; self-review only.
 
 17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) integrated
 at12122b80; [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136)

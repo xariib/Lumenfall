@@ -1,6 +1,27 @@
-# Upgrade states — candidate evidence
+# Upgrade states — implementation and delivery evidence
 
-Current product SHA256: `84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2`.
+PR61 is merged at `e6139c988a196e131696776784bdb15eec613f03`.
+Current product SHA256:
+`5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa`.
+All [nine integrated workflows](integrated/all-nine-pass.json) pass, including
+190 main scenarios, isolated offline,15,438 upgrade UI assertions/six profiles,
+three upgrade causal controls and493 native assertions plus the required
+suppressed-touch control. [Exact-source checks](integrated/final-checks.json).
+[Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138)
+is published. [Public verification](android-0.2.138/public-verification.json)
+checks exact-tag/latest APK, latest feed, all eight metadata files and actual
+packaged source anonymously. [Artifact verification](android-0.2.138/artifact-verification.json)
+binds package/version/signing, save/updater/retail/native receipts and screenshots.
+Android12 user-image launch and WebView91 in-place save/update acceptance PASS.
+The [earlier failed retail launch](android-first-failure/disposition.json) is
+retained: screenshot visibly renders the game, accessibility XML lacks its
+controls. Its gate remains failed; root cause unproven. No source/test/deadline
+changes were made for the passing build. Physical-phone/WebView60/TalkBack
+acceptance remains open. Self-review and automated checks only.
+
+The following records describe earlier candidate stages.
+
+Earlier candidate SHA256: `84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2`.
 Baseline main: `b075cfba`. Node24.22.1, Chrome for Testing/headless shell157,
 Windows. Self-review only; no physical phone, exact WebView60 DOM or TalkBack.
 

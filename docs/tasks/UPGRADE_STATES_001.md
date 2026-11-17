@@ -1,10 +1,11 @@
 # UPGRADE_STATES_001 — consistent upgrade presentation
 
-Status: in progress. Owner: this feature chat; no delegation.
+Status: published Android0.2.138; physical-device acceptance open.
+Owner: this feature chat; no delegation.
 Baseline: origin/main `b075cfba`; isolated `C:/lf-upgrade-states`, branch
 `feature/upgrade-states-001`. Original checkout and other worktrees preserved.
-GitHub open-PR search on 17 November returned no open PRs. Main integration
-must be checked again before delivery; other feature worktrees exist.
+PR61 merged at e6139c98; all nine exact-main validations pass.
+Other feature worktrees remain untouched.
 
 ## Original requirement — 17 November 2026
 
@@ -145,12 +146,12 @@ coverage asserts one instruction. Canonical full-state endpoints remain
 unchanged. Next: complete exact-head CI, integrate serially, run integrated
 checks, then signed Android delivery. No further source changes are planned.
 
-## Current continuation checkpoint — 17 November,19:30 UTC
+## Current continuation checkpoint — 17 November,19:38 UTC
 
 Goal: the original all-game gold-cap/unlock/red-shortage requirement above.
-Owner: this chat, no delegation. Integrated, exact-main checks PASS; APK pending;
-no delivery/completion claim. Original baseline b075cfba is retained above.
-Own worktree C:/lf-upgrade-states; feature/upgrade-states-001; PR61 last remote
+Owner: this chat, no delegation. Integrated, checked and published; phone pending;
+full device acceptance remains open. Original baseline b075cfba is retained above.
+Own worktree C:/lf-upgrade-states; evidence/upgrade-states-001; PR61 last remote
 heada0394981c74d12149ed2c8a13aef1467fc12558a. Source merge b3b6b512 includes actual remote maine599ed16
 (finite Forge/Rift UI plus newer delivery records), verified by remote ref/API.
 Other worktrees remain untouched. All a039 PR workflows PASS, including native493,
@@ -191,16 +192,19 @@ reproduces all four accepted serialized endpoints; only source binding changed.
 All33 relevant context checks and all nine exact-main workflows PASS.
 [Native decision/receipts](../qa/upgrade-states-001/native-presented/decision.json).
 
-Next: signed Android run44158806890/job134306727228 is running. All nine
-exact-main validations pass, including190main+1offline.
-[Final integrated checks](../qa/upgrade-states-001/integrated/all-nine-pass.json).
-Earlier build44154292893 passed signed save/updater/native UI but failed retail
-normal-launch UI assertion; screenshot shows game while XML lacks controls.
-[Failure](../qa/upgrade-states-001/android-first-failure/disposition.json) retained;
-root cause unproven, no test/source/gate changes. Verify current build package,
-signing, save upgrade/updater, retail launch and anonymous public APK/assets/feed.
-Keep maine613 stable until publication; then reconcile docs only.
-Temporary helpers are under C:/tmp/lf-*.cjs.
+Android0.2.138/version1000138 published by run44158806890/job134306727228.
+[Public verification](../qa/upgrade-states-001/android-0.2.138/public-verification.json)
+proves anonymous exact-tag/latest APK bytes, all eight metadata files and source
+match. Stable package/signing, both saves/paid work, updater cancellation/refusal/
+tamper/restart/install/Open and retail Android12 normal launch PASS.
+APK SHA256 bb4ba72a951a67e81f6a7946014cc0777027488d06f4d69a40988d460e92ecfe.
+[All nine integrated checks](../qa/upgrade-states-001/integrated/all-nine-pass.json)
+include190main+1offline. Earlier build44154292893 failed its retail UI assertion;
+[original evidence](../qa/upgrade-states-001/android-first-failure/disposition.json)
+remains. Source/tests/deadlines unchanged; root cause unproven.
+Documentation reconciliation is docs only;33 contexts pass and released product,
+tests and workflows are unchanged. Next: physical-phone/WebView60/TalkBack
+acceptance remains open; no archive.
 
 Standing authorization applies; no permission requests, new chats, subagents or
 message tools. Physical phone/exact WebView60 DOM/TalkBack unverified; keep task
