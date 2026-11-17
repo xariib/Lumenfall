@@ -151,7 +151,7 @@ Owner: this feature chat, one game-wide upgrade-presentation goal; no delegation
 Original requirement/rule and preservation scope are above. Repository
 `xariib/Lumenfall`, baseline/main last checked `b075cfba`.
 Feature [PR61](https://github.com/xariib/Lumenfall/pull/61) stays at
-`be015365469d200aeb2bd2444318c3172d1d8df7`, product SHA84917 above.
+`f6a141e7a4bffb09f5923d31628b3e74399e2be8`, product SHA84917 above.
 Local `C:/lf-upgrade-states` is now on `evidence/upgrade-states-001`, preserving
 new receipts without restarting the exact-source feature CI. Product bytes
 remain identical to the feature head; working-tree changes here are evidence.

@@ -104,3 +104,23 @@ The narrow update checks exact unmet requirements and no price while preserving
 the other price/disabled/navigation/purity checks. Original compressed DOM,
 process result and main scenario log are retained. Local424 browser assertions
 pass but browser shutdown times out (FAIL); new-head Linux CI remains required.
+
+Current-source320px/200% [Wisp](current-source/wisp-gold-320-2.png) and
+[Lab](current-source/upgrades-320-2.png) captures were visually checked: gold
+cap borders and wrapped content remain visible; the existing Resonate shortage
+is red. This is self-review. All seven f6a141e7 specialist workflows now pass;
+full190-scenario CI is running. Wisp keyboard/setup failures and unchanged
+PASS3277 are retained in [the receipt](ci-wisp-f6a141e7/receipt.json); cause
+remains unproven. Observation-only diagnostics are not acceptance replacements.
+
+Main advanced to PR59/finite Forge at0adb60eb during f6a141e7's successful full
+CI. The combined product is7943ca60 (full SHA in the task). Product merged
+cleanly; shared instructions retain both requirements and status retains main's
+verbatim history link. [Combined receipts](combined-0adb/upgrade-states.json):
+15,438 upgrade assertions/six profiles/clean exit, three intended causal
+rejections, finite core385/four controls, canonical four exact endpoint hashes,
+and paired230,400 one-second calls/every saved field equal. Initial browser
+startup/close failure remains FAIL. All32 relevant context checks pass.
+Prior [f6 CI](f6-ci.json) passed190main+1offline and all seven specialists;
+new-head combined CI and Android delivery remain pending. No assertions,
+deadlines or gates were changed for this merge.

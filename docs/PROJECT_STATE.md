@@ -4,8 +4,10 @@
 on isolated `feature/upgrade-states-001`: gold boxes for capped components,
 unlock instructions in place of locked prices, independent red currency
 shortages and disabled unaffordable actions across the game. Candidate checks
-and full-cap Rift guidance fix are recorded in the task. CI/integration and
-signed Android delivery remain pending; this is not a released change.
+and full-cap Rift guidance fix are recorded in the task. Combined with PR59's
+finite Forge baseline:15,438 mobile/text assertions, finite-cap checks and exact
+offline endpoints pass locally. Combined CI/integration and signed Android
+delivery remain pending; this is not a released change.
 
 17 November: [Finite Forge](tasks/FORGE_YEARS_001.md) is under validation in
 [PR59](https://github.com/xariib/Lumenfall/pull/59). Candidate Tempering caps are

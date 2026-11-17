@@ -1,0 +1,80 @@
+{
+  "status": "PASS on unchanged attempt4; original failures retained; cause unproven",
+  "featureHead": "f6a141e7a4bffb09f5923d31628b3e74399e2be8",
+  "sourceSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
+  "runId": 44087196981,
+  "jobId": 134052596505,
+  "platform": "ubuntu-latest",
+  "checks": 3233,
+  "error": "CDP deadline Input.dispatchKeyEvent",
+  "cause": "unproven",
+  "counterpart": "windows-latest job134052596336 PASS",
+  "priorIdenticalProduct": "Both platforms passed in run44072682863; subsequent changes are only docs/evidence and prerequisite-specific navigation test, which this Wisp driver does not execute.",
+  "artifact": {
+    "id": 14329663620,
+    "bytes": 8763,
+    "sha256": "6b0b9d4e4e05c5263f4c3ba583ecfe252ded755ef4191392b39fe7b40d48fcff",
+    "shaAndExtractedLogCrcVerified": true
+  },
+  "response": "Paired baseline and observation-only diagnostics completed; unchanged required candidate replay PASS. No source, assertion, timeout or gate edits were made for these transient failures. Cause remains unproven; no timing fix claimed.",
+  "retry": {
+    "jobId": 134056169825,
+    "status": "FAIL",
+    "checks": 3233,
+    "error": "CDP deadline Input.dispatchKeyEvent",
+    "sameLastProfile": true,
+    "artifactId": 14329709002,
+    "artifactSha256": "b056d0bac25c0e0d9b1aa3d24ca94e27a14e49137f52bdf7b899a07c854425c3",
+    "verified": true
+  },
+  "priorPass": {
+    "jobId": 134002598307,
+    "status": "PASS",
+    "checks": 3277,
+    "identicalProductDriverAndBrowserBinary": true,
+    "artifactId": 14324015878,
+    "artifactSha256": "285814b5d367e6c29f4ec08e2d492f0df3b7f2341e4c38c6710340b85985935f",
+    "verified": true
+  },
+  "baselineDiagnostic": {
+    "runId": 44089146064,
+    "commit": "b075cfbac508096c240d3cba8885384235e4a210",
+    "status": "PASS both platforms",
+    "linuxJob": 134059417139,
+    "checks": 3277,
+    "artifactId": 14330832677,
+    "artifactSha256": "7db1f2ab295086c412fbac57c0bdab00c1eab3ad1f4c9e4bce23ca8c1ceb8d54",
+    "verified": true
+  },
+  "attempt3": {
+    "jobId": 134062558507,
+    "status": "FAIL",
+    "reason": "Wisp setup layout did not settle within unchanged300ms, during original causal-control step before full keyboard replay",
+    "artifactId": 14332050308,
+    "artifactSha256": "2b7e2c98d8b5fe581885cd584b1c98bdfe3ca8247e3412d2aea64ca09e1fd2bc",
+    "verified": true
+  },
+  "final": {
+    "linuxJob": 134066823289,
+    "windowsJob": 134066826591,
+    "status": "PASS both platforms",
+    "checks": 3277,
+    "unchanged": true,
+    "artifactId": 14331847312,
+    "artifactSha256": "b4713ba422f86bb0ef430d49c1523e19388399f5e4e042642b4e4f6d7f78836d",
+    "verified": true
+  },
+  "observationalDiagnostic": {
+    "branch": "diagnostic/upgrade-states-wisp-input",
+    "head": "a153a11028e1fb10af87f293f38bdda5022bc777",
+    "runId": 44090625583,
+    "status": "PASS both platforms",
+    "checks": 3277,
+    "linuxJob": 134066529906,
+    "artifactId": 14331483501,
+    "artifactSha256": "76702bbffa80029797065912d22687dc97fdffca17e482dbafa3c06984534395",
+    "verified": true,
+    "notAcceptanceReplacement": true,
+    "earlierDiagnosticFailures": "First logging hook had missing closure (SyntaxError), corrected only on diagnostic branch. Corrected run first hit original300ms setup guard on Linux. Both retained, neither accepted."
+  }
+}

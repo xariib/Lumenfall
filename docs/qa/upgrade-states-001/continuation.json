@@ -1,23 +1,16 @@
 {
-  "status": "in progress; prerequisite-specific navigation assertion updated; new CI required",
-  "utc": "2026-11-17T12:51:41.006Z",
+  "status": "in progress; combined finite Forge source locally verified; full CI pending",
+  "utc": "2026-11-17T13:52:48.305Z",
   "featureBranch": "feature/upgrade-states-001",
-  "featureHead": "be015365469d200aeb2bd2444318c3172d1d8df7",
-  "productSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
+  "featureHead": "59bd6565",
+  "productSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327",
   "pullRequest": 61,
-  "mainBaseline": "b075cfbac508096c240d3cba8885384235e4a210",
+  "mainBaseline": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
   "ci": {
-    "runId": 44072682657,
-    "firstMainJob": 134002780556,
-    "unchangedRetryJob": 134019237033,
-    "specialists": "all seven passed",
-    "isolatedOffline": "passed",
-    "failure": "native touch opens damage details at check319; cause unproven; same assertion has prior released-source intermittent failures",
-    "phase": "Attempt2:189/190 main scenarios pass. Expanded Apparatus price assertion superseded by requested unlock presentation. Narrow test update pending new exact-head CI; product unchanged.",
-    "localWispOriginalRetry": "PASS467 unchanged",
-    "localUpgradeStates": "PASS15402/6 profiles plus3 controls"
+    "phase": "Combined PR59/main validation pending new push",
+    "sourceSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327"
   },
-  "next": "Push narrow navigation assertion and saved evidence to feature PR, finish all required new-head CI, integrate and perform exact-main validation plus signed Android delivery.",
+  "next": "Commit/push combined feature head, run full new-head CI, recheck actual main, integrate only PR61 then exact-main validation and signed/public Android delivery.",
   "authorization": "Standing scope authorization; no permission prompts. No new chats, subagents or messages. Evidence branch preserves pending results without restarting source CI.",
   "archive": "open; not archived; physical phone/WebView60 DOM/TalkBack unverified",
   "localVerification": {
@@ -65,5 +58,43 @@
         "cleanShutdown": true
       }
     ]
+  },
+  "cleanup": "Automatic approval review rejected removal of C:/Users/xarib/AppData/Local/Temp/lumenfall-behavioral-lK019w as blocked by policy. Directory retained. Aborted oversized local staging copy was not acceptance.",
+  "previousCi": {
+    "runId": 44087196592,
+    "firstMainJob": 134002780556,
+    "unchangedRetryJob": 134019237033,
+    "specialists": "all seven PASS on f6a141e7",
+    "isolatedOffline": "passed",
+    "failure": "native touch opens damage details at check319; cause unproven; same assertion has prior released-source intermittent failures",
+    "phase": "Passed new upgrade suite/controls and original Wisp native lane; beginning final190 scenarios. Wisp-scroll latest original replay PASS3277 after retained failures; cause unproven.",
+    "localWispOriginalRetry": "PASS467 unchanged",
+    "localUpgradeStates": "PASS15402/6 profiles plus3 controls",
+    "previousRunId": 44072682657,
+    "currentMainJob": 134052595529,
+    "currentOfflineJob": 134052595208,
+    "wisp": {
+      "linuxJob": 134066823289,
+      "windowsJob": 134066826591,
+      "status": "PASS both platforms",
+      "checks": 3277,
+      "unchanged": true,
+      "artifactId": 14331847312,
+      "artifactSha256": "b4713ba422f86bb0ef430d49c1523e19388399f5e4e042642b4e4f6d7f78836d",
+      "verified": true
+    }
+  },
+  "featureHeadNote": "Local source merge; evidence merge commit follows before push. Read branch for latest PR head.",
+  "combined": {
+    "browserChecks": 15438,
+    "profiles": 6,
+    "controls": 3,
+    "finiteChecks": 385,
+    "finiteControls": 4,
+    "canonicalEndpoints": "all four exact unchanged",
+    "pairedCalls": 230400,
+    "everySavedFieldEqual": true,
+    "contextChecks": 32,
+    "firstBrowserStartup": "FAIL retained; zero checks; clean successful retry"
   }
 }
