@@ -145,15 +145,16 @@ coverage asserts one instruction. Canonical full-state endpoints remain
 unchanged. Next: complete exact-head CI, integrate serially, run integrated
 checks, then signed Android delivery. No further source changes are planned.
 
-## Current continuation checkpoint — 17 November,14:32 UTC
+## Current continuation checkpoint — 17 November,14:45 UTC
 
 Goal: the original all-game gold-cap/unlock/red-shortage requirement above.
 Owner: this chat, no delegation. Implementation remains in progress; no APK
 delivery or completion claim. Original baseline b075cfba is retained above.
 Own worktree C:/lf-upgrade-states; feature/upgrade-states-001; PR61 last remote
-head6cb2fad6. Local source merge b3b6b512 includes actual remote maine599ed16
+heada0394981c74d12149ed2c8a13aef1467fc12558a. Source merge b3b6b512 includes actual remote maine599ed16
 (finite Forge/Rift UI plus newer delivery records), verified by remote ref/API.
-Other worktrees remain untouched; final evidence commit/new-head CI follows.
+Other worktrees remain untouched. New pre-merge run44106176907/main134119026031
+and isolated offline134119025789 are running; specialists run concurrently.
 
 Product merged cleanly; status conflicts retain this feature plus main's newer
 Forge release/Rift records. Workflows are unchanged relative to newer main.
