@@ -104,3 +104,11 @@ The narrow update checks exact unmet requirements and no price while preserving
 the other price/disabled/navigation/purity checks. Original compressed DOM,
 process result and main scenario log are retained. Local424 browser assertions
 pass but browser shutdown times out (FAIL); new-head Linux CI remains required.
+
+Current-source320px/200% [Wisp](current-source/wisp-gold-320-2.png) and
+[Lab](current-source/upgrades-320-2.png) captures were visually checked: gold
+cap borders and wrapped content remain visible; the existing Resonate shortage
+is red. This is self-review. All seven f6a141e7 specialist workflows now pass;
+full190-scenario CI is running. Wisp keyboard/setup failures and unchanged
+PASS3277 are retained in [the receipt](ci-wisp-f6a141e7/receipt.json); cause
+remains unproven. Observation-only diagnostics are not acceptance replacements.
