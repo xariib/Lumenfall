@@ -146,7 +146,8 @@ migration44090020744. Tree attempt1 has no completed positive browser result:
 log and hash/CRC-verified original text artifact are retained in QA. Unchanged
 failed-job rerun requested. No source/deadline/acceptance change. Other integrated
 workflows continue. Delivery checkpoint branch is `docs/forge-years-delivery`;
-do not move main while exact-source validation/build/publication is running.
+keep its documentation separate during exact-source validation/publication,
+then reconcile any concurrent integration before publishing the final receipt.
 
 Next: complete nine exact integrated workflows, resolve any findings, build and
 publish the signed Android update, verify native/public receipts, then save the
