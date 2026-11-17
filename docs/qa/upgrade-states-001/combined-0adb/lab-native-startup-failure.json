@@ -1,0 +1,14 @@
+{
+  "status": "FAIL/CANCELLED retained; unchanged retry requested",
+  "featureHead": "6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98",
+  "sourceSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327",
+  "runId": 44097173554,
+  "jobId": 134087278667,
+  "node": "v20.20.2",
+  "checks": 0,
+  "error": "CDP deadline Browser.getVersion",
+  "teardown": "Browser close deadline; Node process remained open until unchanged20min job timeout",
+  "cause": "Browser failed before game checks; underlying platform cause unproven",
+  "otherLabJob": "134087264631 PASS",
+  "response": "Retain original log. Rerun same job without changing source, driver, assertions, process/job limits or workflow."
+}

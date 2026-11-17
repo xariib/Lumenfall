@@ -1,0 +1,9 @@
+{
+  "status": "fail",
+  "sourceSha256": "451c234ed6dd078f2fe8eb684d7822593b5ddda0360752dd40f4216214a0c73f",
+  "node": "v24.22.1",
+  "records": [],
+  "error": "AssertionError [ERR_ASSERTION]: locked action explains unlock without prices [data-rarity=\"ember\"] {\"text\":\"Rarity Up8012\",\"disabled\":true,\"state\":\"locked\",\"border\":\"1px rgb(59, 64, 96)\",\"prices\":[{\"kind\":\"lumen\",\"amount\":80,\"red\":true},{\"kind\":\"shard\",\"amount\":12,\"red\":true}],\"gold\":false,\"overflow\":false}\n    at ok (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:30:27)\n    at run (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:74:69)\n    at async C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:109:144",
+  "teardown": "browser exit deadline",
+  "checks": 38
+}

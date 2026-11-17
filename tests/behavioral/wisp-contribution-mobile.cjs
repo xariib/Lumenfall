@@ -55,7 +55,7 @@ async function run(){
   records.push({width,fontPercent,motion,contrast,elapsedMs:observed.elapsedMs,fit:true,realTouch:true,realKeyboard:true});
   if(width===390&&motion==='reduce'){await ev('document.querySelector(".formation-help").scrollIntoView({block:"start"})');const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'roles-390-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
  }
- const teamProgression=await require('./team-progression-ui.cjs')({send,ev,ok,pause,out});
+ const teamProgression=await require('./team-progression-ui.cjs')({send,ev,ok,pause,out,suppressTouch:process.argv.includes('--suppress-team-touch')});
  const supportProfiles=[],supportStartChecks=checks;
  await require('./support-duration-ui.cjs')({send,ev,pause,check:ok,records:supportProfiles,args:['--evidence',path.join(out,'support-duration')]});
  ok((await ev('roleErrors')).length===0,'Support profiles have no browser runtime errors');

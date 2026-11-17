@@ -1,0 +1,32 @@
+{
+  "status": "original assertion superseded by user requirement; revised check pending CI",
+  "featureHead": "be015365469d200aeb2bd2444318c3172d1d8df7",
+  "productSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
+  "runId": 44072682657,
+  "attempt": 2,
+  "jobId": 134019237033,
+  "results": {
+    "mainScenarios": 190,
+    "passed": 189,
+    "failed": [
+      "nav-workshop-contract"
+    ],
+    "isolatedOffline": "pass"
+  },
+  "failure": "disabled purchase retains accessible action and actual currency price",
+  "observation": "Expanded Apparatus correctly shows Requires Different studies 1 / 6 without a price. Its existing data-state remains unaffordable; this test now uses the authoritative Study plan to distinguish unmet prerequisites from a wallet shortage.",
+  "change": "Only the requirements-plan branch now asserts accessible name, no currency icon, and each exact unmet requirement/current/target. Every other price, native disabled, navigation and state/save-purity assertion remains.",
+  "productChanged": false,
+  "artifact": {
+    "id": 14329506557,
+    "bytes": 231161404,
+    "sha256": "f51f0b289f8a8bad5563ff49b69d522934c8a6e63b772d1202b187f24b567563",
+    "verified": true
+  },
+  "local": {
+    "status": "FAIL",
+    "domStatus": "pass",
+    "assertions": 424,
+    "reason": "Full Chrome timed out at unchanged25s process deadline after all browser assertions passed; headless pipe cleanup also failed. Neither counts as full acceptance. Original Linux gate will rerun unchanged."
+  }
+}

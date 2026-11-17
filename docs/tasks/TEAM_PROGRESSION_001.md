@@ -36,18 +36,21 @@ for retired Auto-Ascend owners. [Earlier decision](../decisions/2026-11-16-manua
 ## Current source and concurrent integration
 
 Isolated C:/lf-team, branch fix/support-year-001, [PR62](https://github.com/xariib/Lumenfall/pull/62).
-Original root checkout and other worktrees remain untouched. Current product
-SHA256:b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57.
-Includes main12122b805b4dd7ad28fef5f26dad94e8a5a8c3df: finite Forge/PR59,
-its Lab presented-surface/fresh-profile repair, and Rift UI/PR60 (hint removal,
-Farm/Push order, enemy/field layering). Preserve all imported requirements, tests
-and original symbols/assets. Resolved only actual source-binding/status-history
-overlaps. No Support workflow changes; imported current Rift gates stay intact.
+Original root checkout and other worktrees remain untouched. Combined product
+SHA256:fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059.
+Includes maine6139c98: finite Forge/PR59, Rift screen/PR60 and upgrade states/PR61.
+Preserve gold caps, unlock instructions, independent red shortages/disabled
+unaffordable controls and original symbols/assets/flows. Current main native
+presentation helper and suppressed-touch causal control remain unchanged; Wisp
+entry also retains all12 Support profiles, with real payments and runtime checks.
+Only actual mobile-entry/source-binding conflicts required combination; no
+workflow edits. New main AGENTS upgrade-presentation rule is preserved.
 
-Public baseline Android0.2.135/source0adb60eb is the finite Forge delivery.
-Rift Android0.2.136/source12122 is now published; current main0823102c adds
-only preserved delivery documentation. Recheck latest main before serial integration;
-preserve newer code rather than overwriting it. PR61 owns separate upgrade UI.
+Public baseline is Rift Android0.2.136/source12122. New main upgrade-state
+integrated validation/release is in progress; do not invalidate its publication.
+Recheck actual main/product/active builds and verified public release before
+serial integration. Earlier1d861c3c productB full PR suite is still finishing.
+[Exact pre-upgrade checkpoint](../qa/team-progression-001/support-year/pre-upgrade-merge-task.md) retains earlier requirements/evidence; gzip preserves its bytes.
 
 ## Acceptance and evidence
 
@@ -59,12 +62,17 @@ modes; full source-bound PR/integrated gates and signed/native/public release.
 All original tolerances, deadlines and controls stay. Self-review is not
 independent review. [Evidence/history](../qa/team-progression-001/support-year/README.md).
 
-Current combined source: four8h independent one-second windows retain every
+Previous productB (b2228100, pre-upgrade merge): four8h independent one-second windows retain every
 accepted full-state hash and722/618/1161/678 kills; regenerated binding is in
 rift-combined-golden.json. Actual V8 6.0 whole-source Forge2530 checks PASS.
-Both ran sequentially with256MiB Node heaps to bound local memory use.
+Both ran sequentially with256MiB Node heaps to bound local memory use. New
+combined source now reproduces all four references, passes V8 6.0 2530,
+recast2012/four (paid11886/six, manual8h30466), and team1929/seven.
+Native control and complete new-head CI remain required; these current-source
+receipts are upgrade-combined-*.json. All39 workflow context tasks also PASS.
 Recast2012/four (paid11886/six, manual8h30466) and team1929/seven also PASS
-on this exact product. Full exact-head gates remain pending.
+on productB. Its Wisp/Support mobile step passed; full190 suite still pending.
+These earlier receipts do not establish combined source acceptance.
 
 Previous Forge-only combined3a223893 source: recast2012/four (paid11886/six,
 actual manual8h partition30466), team1929/seven, Forge9409/25, V8 Forge2530 and
@@ -86,7 +94,9 @@ is retained. New guard initially rejected the intentionally whole-card research
 action at200% text because its full rectangle exceeds viewport height. Corrected
 to require a visible44px intersection plus on-screen hit-tested center. Original
 paid start/payment/persistence assertions remain. Complete CI replay mandatory;
-no product change for this driver repair.
+no product change for this driver repair. The upgrade merge now retains main
+team helper exactly (same presented-screen/hit/44px guards, painted-frame wait,
+original40ms and deadlines), its12-profile path and suppressed-touch control.
 
 Local near-zero RAM interrupted workers, and optional Windows browser runs
 reported startup/input/cleanup failures. Incomplete runs are not passes. The

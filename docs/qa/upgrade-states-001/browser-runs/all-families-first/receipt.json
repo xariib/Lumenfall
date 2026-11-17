@@ -1,0 +1,8 @@
+{
+  "status": "fail",
+  "sourceSha256": "0f5f663a89e9f92f0a8218d29ee96a6584669ff5ae9e222879c382c9a9331170",
+  "node": "v24.22.1",
+  "records": [],
+  "error": "Error: Error: Prism refund credits need recovery\n    at persistenceError (http://127.0.0.1:53077/:5239:15)\n    at normalizeCheaperRecruitmentRefund (http://127.0.0.1:53077/:6002:37)\n    at normalizeCurrentSave (http://127.0.0.1:53077/:5860:5)\n    at acceptPersistedState (http://127.0.0.1:53077/:6243:20)\n    at Object.set (http://127.0.0.1:53077/:14676:28)\n    at <anonymous>:1:11\n    at ev (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:31:148)\n    at async install (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:32:31)\n    at async run (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:68:4)\n    at async C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:97:144",
+  "checks": 0
+}
