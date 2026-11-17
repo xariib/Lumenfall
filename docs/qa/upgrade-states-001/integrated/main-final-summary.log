@@ -1,0 +1,100 @@
+2026-11-17T16:45:52.6623319Z PASS p2-06b-live-feedback
+2026-11-17T16:45:54.3504370Z PASS p2-06b-reduced-motion
+2026-11-17T16:45:55.7023299Z PASS layout-fresh [360,800,0,0]
+2026-11-17T16:45:57.0386361Z PASS layout-fresh [360,780,0,0]
+2026-11-17T16:45:58.3929089Z PASS layout-fresh [390,844,0,0]
+2026-11-17T16:45:59.7923474Z PASS layout-fresh [412,915,0,0]
+2026-11-17T16:46:01.1559095Z PASS layout-fresh [360,640,24,24]
+2026-11-17T16:46:02.6781459Z PASS layout-dense [360,800,0,0]
+2026-11-17T16:46:04.1318215Z PASS layout-dense [360,780,0,0]
+2026-11-17T16:46:05.5899584Z PASS layout-dense [390,844,0,0]
+2026-11-17T16:46:07.0185150Z PASS layout-dense [412,915,0,0]
+2026-11-17T16:46:08.4734239Z PASS layout-dense [360,640,24,24]
+2026-11-17T16:46:09.9121964Z PASS layout-boss [360,800,0,0]
+2026-11-17T16:46:11.3811377Z PASS layout-boss [360,780,0,0]
+2026-11-17T16:46:12.8633813Z PASS layout-boss [390,844,0,0]
+2026-11-17T16:46:14.3519941Z PASS layout-boss [412,915,0,0]
+2026-11-17T16:46:15.7988745Z PASS layout-boss [360,640,24,24]
+2026-11-17T16:46:17.2616738Z PASS layout-accessibility-states [360,800,0,0]
+2026-11-17T16:46:18.7418402Z PASS layout-accessibility-states [360,780,0,0]
+2026-11-17T16:46:20.2436735Z PASS layout-accessibility-states [390,844,0,0]
+2026-11-17T16:46:21.6917599Z PASS layout-accessibility-states [412,915,0,0]
+2026-11-17T16:46:23.1534691Z PASS layout-accessibility-states [360,640,24,24]
+2026-11-17T16:46:24.5360786Z PASS p1-05-accessibility-baseline
+2026-11-17T16:46:25.8488713Z PASS p1-05-accessibility-contract
+2026-11-17T16:46:27.8147987Z PASS p1-05-control-regressions
+2026-11-17T16:46:29.1377101Z PASS p1-05-reduced-motion
+2026-11-17T16:46:30.3689261Z PASS fresh-load
+2026-11-17T16:46:31.4797061Z PASS midgame-load
+2026-11-17T16:46:32.6426086Z PASS mature-load
+2026-11-17T16:46:33.7896213Z PASS legacy-load
+2026-11-17T16:46:35.0399088Z PASS corrupted-load
+2026-11-17T16:46:36.1474777Z PASS malformed-daily-load
+2026-11-17T16:46:37.2651745Z PASS farm-load
+2026-11-17T16:46:38.7339892Z PASS farm-roundtrip
+2026-11-17T16:46:40.0783620Z PASS enemy-normal-reload
+2026-11-17T16:46:41.3707020Z PASS enemy-boss-reload
+2026-11-17T16:46:42.5002749Z PASS active-studies-load
+2026-11-17T16:46:43.6371640Z PASS auto-ascend-load
+2026-11-17T16:46:45.0967376Z PASS reset-roundtrip
+2026-11-17T16:46:46.4250892Z PASS restore-roundtrip
+2026-11-17T16:46:47.5876453Z PASS malformed-backup-rejection
+2026-11-17T16:46:48.7794827Z PASS recovery-from-corrupt-primary
+2026-11-17T16:46:49.9539106Z PASS unsupported-future-load
+2026-11-17T16:46:51.3303635Z PASS legacy-backup-restore
+2026-11-17T16:46:52.4955801Z PASS future-backup-rejection
+2026-11-17T16:46:53.8082624Z PASS recovery-offline-once
+2026-11-17T16:46:54.9778242Z PASS save-failure-warning
+2026-11-17T16:46:56.2483891Z PASS parity-short
+2026-11-17T16:47:08.3229130Z PASS parity-medium-farm
+2026-11-17T16:47:12.5036795Z PASS p2-07a-farm-retention
+2026-11-17T16:47:13.9747118Z PASS p2-07a-timer-boundary
+2026-11-17T16:47:19.8370011Z PASS parity-long-high-power
+2026-11-17T16:47:21.0018970Z PASS parity-boss-short
+2026-11-17T16:47:23.8336292Z PASS parity-boss-retry
+2026-11-17T16:47:25.3505307Z PASS parity-auto-ascend
+2026-11-17T16:47:26.5112980Z PASS chronology-research-mid-window
+2026-11-17T16:47:27.6406708Z PASS chronology-study-mid-window
+2026-11-17T16:47:28.8281140Z PASS chronology-auto-empower-mid-window
+2026-11-17T16:47:29.9808221Z PASS chronology-auto-ascend-mid-window
+2026-11-17T16:47:31.4174392Z PASS chronology-boss-retry
+2026-11-17T16:47:32.5823815Z PASS chronology-simultaneous-order
+2026-11-17T16:47:33.7744602Z PASS lifecycle-background-resume
+2026-11-17T16:47:35.1041825Z PASS lifecycle-repeated-resume
+2026-11-17T16:47:36.4782170Z PASS lifecycle-cold-restart
+2026-11-17T16:47:37.5669139Z PASS lifecycle-partial-enemy
+2026-11-17T16:47:38.7534556Z PASS lifecycle-boss-background-short
+2026-11-17T16:47:40.3161519Z PASS lifecycle-boss-retry
+2026-11-17T16:47:41.4999820Z PASS lifecycle-auto-ascend
+2026-11-17T16:47:42.7444912Z PASS p2-ascend-integrity
+2026-11-17T16:47:43.9386084Z PASS p2-03b-auto-ascend-integrity
+2026-11-17T16:47:45.3171340Z PASS p2-wisp-progression-pacing
+2026-11-17T16:47:46.6280039Z PASS p2-endgame-currency-utility
+2026-11-17T16:47:47.9001475Z PASS p2-03a-wisp-role-integrity
+2026-11-17T16:47:49.3940789Z PASS p2-03a-wisp-role-integrity-mature
+2026-11-17T16:47:50.6423326Z PASS p2-03a-wisp-role-integrity-endgame
+2026-11-17T16:47:52.3168196Z PASS p2-02a-core-qol
+2026-11-17T16:47:53.5822287Z PASS p2-02b-wisp-hierarchy
+2026-11-17T16:47:55.0368327Z PASS p2-02b-lab-hierarchy
+2026-11-17T16:47:56.4547301Z PASS lifecycle-long-study
+2026-11-17T16:47:57.8340614Z PASS lifecycle-lab-queue
+2026-11-17T16:47:59.2962866Z PASS lifecycle-daily-rollover
+2026-11-17T16:48:00.5221740Z PASS wisp-formula-contract
+2026-11-17T16:48:01.0773230Z PASS formation-bonds-core
+2026-11-17T16:48:47.3169909Z PASS formation-bonds-mobile
+2026-11-17T16:48:48.7156971Z PASS auto-ascend-target-backup-restore
+2026-11-17T16:48:50.2929445Z PASS formation-autosave-contract
+2026-11-17T16:49:13.6603890Z PASS formation-autosave-native
+2026-11-17T16:49:36.9681201Z PASS formation-autosave-reduced-motion
+2026-11-17T16:49:38.4778242Z PASS formation-autosave-save-reload
+2026-11-17T16:49:39.9681228Z PASS formation-autosave-backup-restore
+2026-11-17T16:49:41.4117493Z PASS formation-autosave-recovery
+2026-11-17T16:49:50.0580494Z PASS ascend-prisms-contract
+2026-11-17T16:49:51.4700274Z PASS ascend-prisms-save-reload
+2026-11-17T16:49:52.9249895Z PASS ascend-prisms-backup-restore
+2026-11-17T16:49:54.2863859Z PASS ascend-prisms-recovery
+2026-11-17T16:49:54.2881626Z Behavioral QA passed: 190 deterministic scenario(s).
+2026-11-17T16:49:55.8910104Z Browser smoke test passed: game initialized without uncaught runtime errors at a 390x844 mobile viewport.
+2026-11-17T16:50:05.2757994Z Uploaded bytes 109051904
+2026-11-17T16:50:09.8314830Z Uploaded bytes 184549376
+2026-11-17T16:50:11.3549316Z Uploaded bytes 226492416

@@ -2,8 +2,8 @@
 
 17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) is integrated
 at e6139c98: gold caps, unlock instructions and independent red shortages across
-upgrade families. Newer Forge/Rift changes are retained. All PR checks pass;
-exact-main acceptance and signed Android delivery remain pending. Source-bound
+upgrade families. Newer Forge/Rift changes are retained. All PR and nine exact-main
+workflows pass; signed Android delivery remains pending. Source-bound
 checks, initial failures and continuation evidence are saved in the task.
 
 17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) integrated

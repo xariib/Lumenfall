@@ -145,10 +145,10 @@ coverage asserts one instruction. Canonical full-state endpoints remain
 unchanged. Next: complete exact-head CI, integrate serially, run integrated
 checks, then signed Android delivery. No further source changes are planned.
 
-## Current continuation checkpoint — 17 November,15:45 UTC
+## Current continuation checkpoint — 17 November,19:30 UTC
 
 Goal: the original all-game gold-cap/unlock/red-shortage requirement above.
-Owner: this chat, no delegation. Integrated, exact-main acceptance/APK pending;
+Owner: this chat, no delegation. Integrated, exact-main checks PASS; APK pending;
 no delivery/completion claim. Original baseline b075cfba is retained above.
 Own worktree C:/lf-upgrade-states; feature/upgrade-states-001; PR61 last remote
 heada0394981c74d12149ed2c8a13aef1467fc12558a. Source merge b3b6b512 includes actual remote maine599ed16
@@ -188,15 +188,19 @@ exit cleanly. Source7943 and finite baseline af692 each PASS493; suppressed
 control rejects at171. Latest5097 source also PASS493/control171 and upgrade
 DOM15438/six profiles/three controls, all with clean exit. Canonical generator
 reproduces all four accepted serialized endpoints; only source binding changed.
-All33 relevant context checks PASS. Exact-main nine-workflow acceptance is running.
+All33 relevant context checks and all nine exact-main workflows PASS.
 [Native decision/receipts](../qa/upgrade-states-001/native-presented/decision.json).
 
-Next: finish all nine exact-e613 workflow_dispatch checks. Pre-merge run44117341563
-uses main134158929108/offline134158928688; the other eight IDs are saved in
-integrated/dispatched.json under QA. Then existing publish=true Android flow.
-Recheck actual main before building; preserve concurrent work. Verify package/signing,
-save upgrade/updater, retail launch and anonymous public APK/assets/feed.
-Record final status in GitHub. Temporary helpers are under C:/tmp/lf-*.cjs.
+Next: signed Android run44158806890/job134306727228 is running. All nine
+exact-main validations pass, including190main+1offline.
+[Final integrated checks](../qa/upgrade-states-001/integrated/all-nine-pass.json).
+Earlier build44154292893 passed signed save/updater/native UI but failed retail
+normal-launch UI assertion; screenshot shows game while XML lacks controls.
+[Failure](../qa/upgrade-states-001/android-first-failure/disposition.json) retained;
+root cause unproven, no test/source/gate changes. Verify current build package,
+signing, save upgrade/updater, retail launch and anonymous public APK/assets/feed.
+Keep maine613 stable until publication; then reconcile docs only.
+Temporary helpers are under C:/tmp/lf-*.cjs.
 
 Standing authorization applies; no permission requests, new chats, subagents or
 message tools. Physical phone/exact WebView60 DOM/TalkBack unverified; keep task
