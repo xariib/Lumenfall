@@ -1,12 +1,51 @@
 {
   "commit": "e6139c988a196e131696776784bdb15eec613f03",
   "sourceSha256": "5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa",
-  "status": "three initial failures retained; unchanged failed-job retries requested",
+  "status": "PASS unchanged retries; original startup failures retained",
   "failures": [
-    {"runId":44117362672,"jobId":134159004902,"name":"Lab timed slot speed","checks":0,"error":"CDP deadline Browser.getVersion","otherLabJob":"PASS"},
-    {"runId":44117385807,"jobId":134159084488,"name":"Permanent native profiles","checks":0,"error":"CDP deadline Browser.getVersion","secondary":"Artifact upload has no permanent-evidence directory because native checks never started"},
-    {"runId":44117400797,"jobId":134159141851,"name":"Focused Wisp card simplicity","checks":0,"error":"CDP timeout Browser.getVersion","otherMigrationCases":"offline catch-up and Rift stacking PASS","artifactId":14344470950,"artifactSha256":"86e2bf0cb1088c0893afc54a2ab8acb5965b8c23d1482bae4482fcf635899304"}
+    {
+      "runId": 44117362672,
+      "jobId": 134159004902,
+      "name": "Lab timed slot speed",
+      "checks": 0,
+      "error": "CDP deadline Browser.getVersion",
+      "otherLabJob": "PASS"
+    },
+    {
+      "runId": 44117385807,
+      "jobId": 134159084488,
+      "name": "Permanent native profiles",
+      "checks": 0,
+      "error": "CDP deadline Browser.getVersion",
+      "secondary": "Artifact upload has no permanent-evidence directory because native checks never started"
+    },
+    {
+      "runId": 44117400797,
+      "jobId": 134159141851,
+      "name": "Focused Wisp card simplicity",
+      "checks": 0,
+      "error": "CDP timeout Browser.getVersion",
+      "otherMigrationCases": "offline catch-up and Rift stacking PASS",
+      "artifactId": 14344470950,
+      "artifactSha256": "86e2bf0cb1088c0893afc54a2ab8acb5965b8c23d1482bae4482fcf635899304"
+    }
   ],
   "cause": "Browser startup failed before the game was loaded; underlying platform cause unproven. Same product/tests passed complete a039 PR CI.",
-  "response": "Preserve logs; rerun failed jobs with identical source, drivers, assertions, deadlines and workflows. Required acceptance remains open."
+  "response": "Preserve logs; rerun failed jobs with identical source, drivers, assertions, deadlines and workflows. Required acceptance remains open.",
+  "retryJobs": {
+    "lab": [
+      134163895540,
+      134163900275
+    ],
+    "permanent": [
+      134163919425
+    ],
+    "migration": [
+      134163948100,
+      134163949955,
+      134163951423
+    ]
+  },
+  "allRetryJobs": "success",
+  "noSourceDriverDeadlineOrWorkflowChanges": true
 }
