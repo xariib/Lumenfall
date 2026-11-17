@@ -1,0 +1,23 @@
+{
+  "id": 44001935490,
+  "sha": "5a1b860e037ab344503f2aa9772deeb60697c0fb",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44001935490",
+  "jobs": [
+    {
+      "id": 133767897330,
+      "name": "forge",
+      "conclusion": "failure",
+      "started": "2026-11-17T02:18:00Z",
+      "completed": "2026-11-17T02:25:25Z",
+      "log": "job-133767897330.log.gz",
+      "rawSha256": "61971b218a12f0d0a627b0cc1469418a9373615098d1743bc5c6837a46d2365e",
+      "summary": [
+        "2026-11-17T02:25:18.1947849Z {\"status\":\"fail\",\"sourceSha256\":\"081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502\",\"node\":\"v20.20.2\",\"browser\":\"google-chrome\",\"profiles\":[],\"error\":\"Error: CDP deadline Target.createBrowserContext\\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.forge-mobile-2774.cjs:52:146)\\n    at listOnTimeout (node:internal/timers:581:17)\\n    at process.processTimers (node:internal/timers:519:7)\",\"exit\":{\"code\":0,\"signal\":null},\"checks\":0,\"stderr\":\"[2789:2817:1117/022456.719606:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2789:2817:1117/022457.354688:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2789:2817:1117/022457.997092:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2789:2823:1117/022459.291467:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2789:2823:1117/022459.291508:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")",
+        "2026-11-17T02:25:18.1992483Z   throw new AssertionError(obj);",
+        "2026-11-17T02:25:18.1993583Z AssertionError [ERR_ASSERTION]: Forge browser acceptance failed"
+      ]
+    }
+  ]
+}

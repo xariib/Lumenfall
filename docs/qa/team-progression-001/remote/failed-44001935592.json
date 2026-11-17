@@ -1,0 +1,63 @@
+{
+  "id": 44001935592,
+  "sha": "5a1b860e037ab344503f2aa9772deeb60697c0fb",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44001935592",
+  "jobs": [
+    {
+      "id": 133770320549,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T02:23:58Z",
+      "completed": "2026-11-17T02:44:59Z",
+      "log": "job-133770320549.log.gz",
+      "rawSha256": "52f11861c0d3b33132010629a629efd082d810331bf64840711a121453f8b30d",
+      "summary": [
+        "2026-11-17T02:29:25.6558989Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-17T02:33:02.9375105Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:33:13.6514828Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:33:23.3011445Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:33:23.3145778Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-17T02:36:20.8323494Z SyntaxError: Unexpected token '='",
+        "2026-11-17T02:37:33.7552740Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:02.3155644Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:05.3196828Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:08.4982249Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:11.6667211Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:15.8270062Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:17.2261926Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:18.7007022Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:21.1373521Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:38:23.7583629Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:39:08.1182278Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:39:34.4319919Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-ui\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 66.69999999999999, \"last\": 267.8 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 603, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 66.69999999999999, \"last\": 267.8 }, \"errors\": 0 }, \"cold\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": false, \"offlinePending\": false, \"resumeFlowBusy\": false }, \"kills\": 385868, \"ascends\":",
+        "2026-11-17T02:39:34.4337014Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:39:59.1919494Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-legacy-dom\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 4, \"maxGap\": 83.30000000000001, \"last\": 271.5 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 603, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"legacy dialog background without color-mix/alpha hex\", \"paint\": { \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"backgroundImage\": \"radial-gradient(at 100% 0%, rgba(57, 49, 75, 0.533), rgba(0, 0, 0, 0) 65%), linear-gradient(145deg, rgb(27, 41, 65), rgb(17, 26, 44))\" } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartb",
+        "2026-11-17T02:39:59.1930750Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:40:00.5191272Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:40:16.2173602Z \u001b[36;1m  assert.equal(bad.status,'fail');assert(bad.message.includes(message));\u001b[0m",
+        "2026-11-17T02:40:58.3838857Z {\"status\":\"fail\",\"profiles\":1,\"samples\":0,\"message\":\"Error: keyboard opens Lab details dialog\\n    at assert (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:49:48)\\n    at midgameFarmAcceptance (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:125:2)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:351:21)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:443:3\",\"result\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/hint-control-open/results.json\"}",
+        "2026-11-17T02:41:00.3609522Z {\"status\":\"fail\",\"profiles\":1,\"samples\":0,\"message\":\"Error: open details refresh both exact shortfalls\\n    at assert (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:49:48)\\n    at midgameFarmAcceptance (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:142:2)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:351:21)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:443:3\",\"result\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/hint-control-refresh/results.json\"}",
+        "2026-11-17T02:41:06.7423771Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:41:13.6738358Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:41:19.8218702Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:41:26.1807370Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T02:44:45.0878821Z AssertionError [ERR_ASSERTION]: every intentional defect must fail its intended concrete assertion"
+      ]
+    },
+    {
+      "id": 133770323239,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T02:18:01Z",
+      "completed": "2026-11-17T02:21:40Z",
+      "log": "job-133770323239.log.gz",
+      "rawSha256": "4656ce5c10f7f3c4022c5dcf1cbfcd2b9e30c8263a75e892c5a87ee15c06ea60",
+      "summary": [
+        "2026-11-17T02:19:00.8320604Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T02:21:36.1585160Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}
