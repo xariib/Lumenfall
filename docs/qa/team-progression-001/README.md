@@ -2,6 +2,11 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Integrated52fa: all nine workflows PASS. Main44034487772 attempt4 verifies
+190 main +1 isolated offline scenarios in the raw logs. Prior failures and
+unchanged passing replays remain below. Product3f912328 unchanged. Signed
+publication/native/public verification is next.
+
 Integrated attempt3 stopped in existing Lab catalogue touch after six320px
 profiles at the first390px case. Unchanged replay `lab-main-assert-replay.json`
 PASS1,264/36. Attempt2 Wisp check269 maps to new Team profile5

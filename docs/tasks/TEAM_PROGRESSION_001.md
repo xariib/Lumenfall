@@ -122,6 +122,11 @@ earlier in existing Lab catalogue touch, after six320px profiles on the first
 with12 Team profiles. Original failure records retained; cause unproven.
 Unchanged main attempt4 runs at52fa. No product/test edits or acceptance waiver.
 
+Integrated main attempt4 PASS: all190 main +1 isolated offline scenarios
+verified in actual raw job logs. All nine exact52fa integrated workflows PASS.
+Original failed attempts and unchanged passing replays remain saved. Product
+SHA3f912328 is unchanged; signed public build is next.
+
 Implemented: six-second initial Support recast, unchanged paid90-day earliest
 sustained per-source work; shared direct-damage growth with original Gale/Thorn
 resource economy; matching current DPS and separate base/Support/ability
@@ -148,9 +153,10 @@ It is not final delivery. New signed main build/public verification still needed
 Self-review only; physical phone, exact WebView60 DOM, TalkBack and human pacing
 unobserved. Task/chat remains open, unarchived.
 
-Next: obtain all nine52fa integrated workflow passes, build/publish signed APK
-with existing build-android publish:true, verify actual version/package/cert,
-both saves/paid work/refund, updater/retail launch and anonymous APK/assets/feed.
-Inspect final installed screenshots; save final Task/PROJECT_STATE/evidence to
-GitHub with a docs-only commit after release. No permission prompts, agents,
-message tools or new chats. Keep human/device acceptance explicitly open.
+Next: signed public build44048063909 is running at exact52fa (publish:true).
+All nine integrated workflows PASS, verified190 main +1 isolated scenarios.
+Verify actual version/package/cert, both saves/paid work/refund, updater/retail
+launch and anonymous APK/assets/feed. Inspect final installed screenshots;
+save final Task/PROJECT_STATE/evidence to GitHub with a docs-only commit after
+release. No permission prompts, agents, message tools or new chats. Keep
+human/device acceptance explicitly open. Main remains52fa until verification.

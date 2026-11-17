@@ -1,7 +1,17 @@
 {
   "sha": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1",
-  "observedAt": "2026-11-17T07:46:15.178Z",
+  "observedAt": "2026-11-17T08:35:51.124Z",
   "runs": [
+    {
+      "id": 44048063909,
+      "path": ".github/workflows/build-android.yml",
+      "event": "workflow_dispatch",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44048063909",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
     {
       "id": 44034510468,
       "path": ".github/workflows/migration-focused-validation.yml",
@@ -86,8 +96,8 @@
       "id": 44034487772,
       "path": ".github/workflows/pre-merge-validation.yml",
       "event": "workflow_dispatch",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempt": 4,
       "url": "https://github.com/xariib/Lumenfall/actions/runs/44034487772",
       "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
