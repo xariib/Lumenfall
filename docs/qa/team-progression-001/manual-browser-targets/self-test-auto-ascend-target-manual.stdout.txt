@@ -1,0 +1,41 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "0d43ec689729efd167e3a966887208127e6797f356d049501668a99a0a709c83", "instrumented_sha256": "db4ab55c4d087ed7ddf1d59841630d211700a163923a3e4dc58d6e543f4848e0" }
+FAIL self-test-auto-ascend-target-manual
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 2.2350078, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-auto-ascend-target-manual", "json_status": "fail", "json_scenario": "self-test-auto-ascend-target-manual", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "manual reset preserves historical target without automation", "stack": "Error: manual reset preserves historical target without automation\n    at assert (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&qaFixture=fresh:19729:61)\n    at ok (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&qaFixture=fresh:18940:90)\n    at http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&qaFixture=fresh:18949:3\n    at Array.forEach (<anonymous>)\n    at window.runAutoTargetContract (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&qaFixture=fresh:18942:13)\n    at HTMLDocument.run (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&qaFixture=fresh:20230:46)" }
+  raw artifacts: C:\lf-team\validation-evidence\manual-browser-raw\self-test-auto-ascend-target-manual-t6O2pQ
+  stdout tail:
+les=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash" role="status" aria-live="polite" aria-atomic="true"><span>ASCENDED</span><strong>+13 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-auto-ascend-target-manual">{
+  "scenario": "self-test-auto-ascend-target-manual",
+  "status": "fail",
+  "detail": {
+    "message": "manual reset preserves historical target without automation",
+    "stack": "Error: manual reset preserves historical target without automation\n    at assert (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&amp;qaFixture=fresh:19729:61)\n    at ok (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&amp;qaFixture=fresh:18940:90)\n    at http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&amp;qaFixture=fresh:18949:3\n    at Array.forEach (&lt;anonymous&gt;)\n    at window.runAutoTargetContract (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&amp;qaFixture=fresh:18942:13)\n    at HTMLDocument.run (http://127.0.0.1:54494/index.html?qaScenario=self-test-auto-ascend-target-manual&amp;qaFixture=fresh:20230:46)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

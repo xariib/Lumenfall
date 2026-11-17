@@ -1,0 +1,39 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "1e285c819669d56cd3208128bcef2dce1c59a9f5387d3dd855d36b78ac5f070e", "instrumented_sha256": "b7455a46d384699ac887790aed952f89f4e7c99cd1c1453b484b73314db0a940" }
+FAIL self-test-ascend-prisms-rounding
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 4.4733945, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-ascend-prisms-rounding", "json_status": "fail", "json_scenario": "self-test-ascend-prisms-rounding", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "reward oracle 16,15,1,0,progressBonus expected 1 got 0", "stack": "Error: reward oracle 16,15,1,0,progressBonus expected 1 got 0\n    at assert (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:19728:61)\n    at ok (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:15935:29)\n    at http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:15943:43\n    at Array.forEach (<anonymous>)\n    at check (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:15943:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:15972:20)\n    at HTMLDocument.run (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&qaFixture=fresh:21897:32)" }
+  raw artifacts: C:\lf-team\validation-evidence\manual-browser-raw\self-test-ascend-prisms-rounding-uU4NSk
+  stdout tail:
+eturn entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash" role="status" aria-live="polite" aria-atomic="true"><span>ASCENDED</span><strong>+2 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="self-test-ascend-prisms-rounding">{
+  "scenario": "self-test-ascend-prisms-rounding",
+  "status": "fail",
+  "detail": {
+    "message": "reward oracle 16,15,1,0,progressBonus expected 1 got 0",
+    "stack": "Error: reward oracle 16,15,1,0,progressBonus expected 1 got 0\n    at assert (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:19728:61)\n    at ok (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:15935:29)\n    at http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:15943:43\n    at Array.forEach (&lt;anonymous&gt;)\n    at check (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:15943:23)\n    at window.runAscendPrismsContract (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:15972:20)\n    at HTMLDocument.run (http://127.0.0.1:63132/index.html?qaScenario=self-test-ascend-prisms-rounding&amp;qaFixture=fresh:21897:32)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

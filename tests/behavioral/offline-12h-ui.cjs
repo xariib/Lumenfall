@@ -29,7 +29,7 @@ async function run(){
   const observation=await evaluate(`(async()=>{
    const b=window.__lumenfallQaBridge;let card=document.querySelector('[data-offline-policy]');card.scrollIntoView({block:'center'});
    const measure=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {text:e.textContent,w:r.width,h:r.height,left:r.left,right:r.right,font:s.fontSize,color:s.color,bg:s.backgroundColor};};
-   const before=JSON.stringify(b.getState());document.querySelector('[data-shop=autoascend]').focus({preventScroll:true});const focused=document.activeElement;
+   const before=JSON.stringify(b.getState());document.querySelector('[data-shop=astralcore]').focus({preventScroll:true});const focused=document.activeElement;
    b.upgradeClarity.render();const focusKept=document.activeElement.isConnected&&document.activeElement.dataset.shop===focused.dataset.shop;
    await new Promise(resolve=>setTimeout(resolve,450));card=document.querySelector('[data-offline-policy]');card.scrollIntoView({block:'center'});
    return {width:innerWidth,card:measure(card),lines:Array.from(card.querySelectorAll('.name,.desc')).map(measure),overflow:card.scrollWidth-card.clientWidth,

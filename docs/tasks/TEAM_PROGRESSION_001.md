@@ -79,80 +79,59 @@ unrelated progression/paid work preservation and existing relevant CI gates.
 Review full diff and save first failures honestly. Required failures remain
 open; never weaken gates or call self-review independent review.
 
-17 November checkpoint: current draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
-branch feature/team-progression-work at C:/lf-team; main remains ba879406.
-Pushed checkpoints e32656df and51966f91. No other feature edits or agents used.
-Supplied save is transcribed into tests/behavioral/fixtures/team-progression-user-save.json;
-no real player app/save was touched. All balances/work/history retained, including
-an idempotent100-Comet retirement refund (20→120 for the supplied save).
+17 November continuation: draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
+branch feature/team-progression-work, worktree C:/lf-team. Pushed e32656df,
+51966f91,f1820c2e,ae14bfd7. Main remains ba879406; root historical checkout untouched.
+All exact earlier milestones and initial failures are retained in
+[QA history](../qa/team-progression-001/README.md), including hash-bound CI logs.
 
-Focused feature suite passes1,144+ checks/seven controls. Required Support and
-paid90-day work checks pass; Forge9,404/25 controls, Tree5,811/28, Lab2,841/ten,
-Comet12,884 and Prism state checks pass at their recorded candidate hashes.
-Mobile467 checks includes twelve new profiles320/390/430px,100/200% text,both
-motion settings, actual input, six-Wisp fit and stable disclosure/focus/scroll.
-Screenshots inspected. Browser Brave/Chrome157.0.8103.79; Node24.22.1. Actual
-Node8.3/V8 6.0 Forge, Lab, Tree, Comet and permanent-progression checks pass locally.
-Self/automated verification only. [All exact receipts/first failures](../qa/team-progression-001/README.md).
+Implementation is complete as a candidate:6s initial Support recast with unchanged
+90-day earliest sustained per-source work; shared direct-damage growth; original
+utility currency curve; matching passive DPS and separate base/Support/ability
+readouts; manual higher-record resets and once-only100-Comet owner refund.
+Supplied save fixture preserves balances, work, boosts, roster, levels, history
+and recovery;20 Comets becomes120 once. No real player save/app was modified.
+Current supplied shares are Ember44%,Stone31%,Tide15%,Gale10%; equal developed
+Titan below20%. These are explicit tested configurations, not universal share caps.
 
-Announced scope correction: shared growth is direct damage only. Gale/Thorn
-resource abilities keep their original curve and upgrade factors, preserving
-existing Lumen/Shard pacing and Workshop budgets. Independent resource oracle
-and Workshop pacing pass. Current passive shares: Ember44%,Stone31%,Tide15%,Gale10%;
-equal developed Titan below20%. No dynamic share cap or paid-upgrade removal.
+Sourcea4dc5c83 atae14bfd7 passed remote Forge,Tree,Lab (both jobs),Comet,
+permanent progression,Wisp scroll (Linux/Windows),shared UI and isolated offline.
+Main CI stopped at a stale Auto-Ascend card reference in Workshop clarity; this
+is now changed to an available permanent investment. No workflow gates weakened.
+Other obsolete repeat/automatic/shop tests now assert manual records, no automatic
+payments, original prices, rollback, paid work, exact timers and recovery. Dormant
+trillion-reset math retains original operands through an explicitly historical
+adapter and immutable released-policy gzip; actual manual game stays mandatory.
 
-Long-window checks exposed dropped automation clock across Push/Farm/Push.
-Keep exact timers through Farm; new full8h whole/one-second/cold60s gate proves
-3 retreats,3 retries,722 kills,28,800 taps andzero automatic Ascends/Prisms.
-HUD stored-epoch sampling correction passes3,134 checks/eight causal controls
-with original accuracy bounds. One native-epoch-quantum Support charge-bar
-saturation is normalized only at returned endpoints while recast still blocks;
-no cast deadline or combat event moves. Broader final-source reruns remain open.
+Current source081f82c0 adds legacy word-wrap fallback to the two new damage
+styles. Node24.22.1 focused suite passes1,170/seven controls. Tree economy14,078/
+six controls, numerical Prisms341,654/seven controls and actual V8 6.0 reward/save
+3,277 checks pass at their recorded hashes; previous full Node8.3(V8 6.0) lanes
+also pass remotely. Offline12h migration/transaction suite passes34 records.
+Four independently generated8h one-second windows have722/618/1161/678 kills,
+zero Ascends/Prisms. Their complete-state hashes are unchanged by the CSS-only
+fallback and bound to current source in offline-swift-current-golden.json.
 
-First PR CI failures and raw/hash-bound logs are retained. Updating obsolete
-Auto-Ascend/repeat/catalog assertions to manual gates and paid transactions.
-No workflow gates waived/deleted. Retired trillion-reset arithmetic stress tests
-retain original entry conditions through an explicitly historical-only adapter
-and immutable released-policy gzip; actual manual game is separately mandatory.
-Archives and original receipts remain unchanged. Optional pre-PR42 cap script
-is an older expectation, not a demonstrated new regression. Full regression and
-browser drivers still need current-source acceptance; do not merge on partial PASS.
+The new caption originally wrapped and shifted Empower; separate stable base
+and Support lines fix the unchanged original12-profile assertions. Those body
+assertions passed locally and in the main CI step; one local run failed graceful
+browser teardown, retained as failure. New native manual touch/keyboard and88
+contract checks pass. Cold-resume structural comparison now ignores object-key
+order only, preserving all fields, array order and exact numbers. Natural HP11
+quotient witnesses pin only their historical Power operand; current unmodified
+damage and actual Farm throughput have separate mandatory coverage.
 
-Next: finish long-window/frozen comparisons and all required PR CI gates,
-review complete diff, integrate serially, rerun integrated gates, build signed
-APK and verify save upgrade/updater/retail/public assets. Phone, exact WebView60
-DOM, TalkBack and human pacing remain unobserved. Keep feature/chat open;
-no archive or completion claim before delivery/required observed acceptance.
+Local diagnostic main run stopped at80 emitted records due Windows profile
+cleanup EPERM; this is not full190-case acceptance. Its initial failures/raw
+artifacts are compressed with hashes. Existing CDP-pipe transport only; Linux
+default CI remains authoritative. A remaining-scenarios diagnostic is running
+under validation-evidence/remaining-browser. Targeted results/first transport
+failures are retained, including a successful causal readiness retry. No source
+or acceptance assumptions may be changed just to make a check pass.
 
-Next checkpoint: f1820c2e pushed. Product source6773532a passes remote Forge,
-Lab (both jobs), Comet, Wisp scroll (Linux/Windows) and isolated offline1/191.
-Main stops on obsolete stationary-shop Auto-Ascend lookup; Tree stops on sampled
-repeat eligibility and repeat-ROI assumptions; shared standalone stops on old
-Encyclopedia wording; permanent lane had an initial Browser.getVersion timeout.
-All first failures/raw logs retained. Local unmodified191-case runner is now
-using the existing CDP-pipe option (dump-dom stalls on this Windows executor).
-It exposes obsolete Auto/Comet/Prism scenarios and one real new layout defect.
-
-Current continuation: replace obsolete assertions with manual/new-record
-transactions; keep native input, actual reload/recovery/visibility, negative
-controls and complete paid-state comparison. New contract88 checks and native
-touch/keyboard scenarios pass; cold-resume mismatch was object-key order only,
-so structural comparison retains all fields/array order/numbers exactly.
-Tree economy14,078/six controls, numerical Prisms341,654/seven controls and
-actual V8 6.0 reward/save3,277 checks pass on source6773532a. Retired numerical
-cycle suites all pass with unchanged frozen transcripts. Comet unlocks12 cases
-now retain pending Trials through offline work and require explicit manual
-record choices; full feature retirement suite replaces obsolete unlock gates.
-
-Actual layout regression: base-DPS/Support caption could wrap at changing
-values and shift Empower. Sourcea4dc5c83 puts these on separate stable lines;
-all12 original card-layout profiles passed their assertions, but that local
-attempt failed browser teardown. Keep its receipt as failure, rerun unchanged.
-Update Android upgrade checks for the additional exact100-Comet receipt.
-The HP11 natural numerical witness now explicitly pins only its historical
-Power operand; original huge quotient cases/controls stay unchanged. Current
-unmodified shared damage and actual Farm throughput have mandatory coverage.
-
-Next concrete action: finish full-run findings, rerun changed scenarios and
-original layout gate, push coherent test/evidence checkpoint, obtain all required
-PR and integrated-main gates, then signed Android/native/public delivery.
+Next: publish current compatibility/golden/obsolete-reference checkpoint, obtain
+all required PR gates, finish discovered actual regressions, review complete diff,
+integrate serially and rerun integrated gates. Then build/publish established signed
+Android APK; verify save upgrade/updater/retail and anonymous public assets/feed.
+Phone, exact WebView60 DOM,TalkBack and human pacing are unobserved; retain that
+limitation and keep owner chat open. No archive/completion claim before delivery.

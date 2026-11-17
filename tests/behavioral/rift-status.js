@@ -47,16 +47,16 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   function seed(){return window.riftStatusSeed(b,ctx);}
   function install(s){b.setState(s);b.renderLayout();}
   function powerText(id,state){
-    // Independent share of the existing effective-party formula, including
-    // the active support buff, is the original chip's passive contribution.
-    var m=b.wispFormulaSnapshot(id),value=m.totalActivePartyPower>0?m.wispPower/m.totalActivePartyPower*m.effectivePartyPower:0;
+    // Compose each actual passive contribution with contextual damage Bonds;
+    // the UI now labels the same current DPS as the Wisp card.
+    var m=b.wispFormulaSnapshot(id),value=m.wispPower*m.passiveGlobalPowerMult*m.formationDamageMult;
     var now=b.clockNow(),known=1,sources=state.supportBuffs&&state.supportBuffs.version===1?state.supportBuffs.sources:null;
     ['tide','aurora'].forEach(sourceId=>{var source=sources&&sources[sourceId];if(source&&now<source.until)known+=source.mult-1;});
     var legacy=state.buffUntil&&now<state.buffUntil?state.buffMult:1;
     value*=Math.max(legacy,known);
-    if(value<1000)return String(Math.round(value*10)/10);
+    if(value<1000)return String(Math.round(value*10)/10)+'/s';
     var units=['','K','M','B','T','Qa','Qi','Sx','Sp','Oc'],tier=Math.min(Math.floor(Math.log10(value)/3),units.length-1);
-    return (value/Math.pow(10,tier*3)).toFixed(2)+units[tier];
+    return (value/Math.pow(10,tier*3)).toFixed(2)+units[tier]+'/s';
   }
   function badge(){
     var free=Math.max(0,b.riftStatus.slots()-b.getState().activeStudies.length),el=q('#lab-capacity-badge');
@@ -175,7 +175,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
         var expectedStatus=powered?(card.classList.contains('is-casting')?'Casting; ':recast>0&&value>=100?'Waiting for Support recast; ':value>=100?'Ready; ':'')+Math.round(value)+'% charged; '+Math.ceil(Math.max(recast,chargeSeconds))+(recast>0?' seconds until Support can cast again; extra charge does not bypass the interval':grants?' seconds by natural charge; grants can ready it earlier':' seconds to next ability'):'Unpowered — Empower this Wisp';
         ok(bar.getAttribute('aria-valuetext')===expectedStatus,'ability status and timing remain accessible and use actual charge speed');
         var expectedPower=powerText(id,state);
-        ok(power&&power.textContent===expectedPower&&power.title==='Passive Wisp power'&&power.getAttribute('aria-label')==='Passive Wisp power: '+expectedPower,'Rift card displays its authoritative passive Wisp power');
+        ok(power&&power.textContent===expectedPower&&power.title==='Current passive damage per second'&&power.getAttribute('aria-label')==='Current passive damage per second: '+expectedPower,'Rift card displays its authoritative current passive DPS');
         ok(status&&status.textContent===(!powered?'Lv 0':''),'powered Rift cards do not repeat ability status as visible text');
         ok(!card.querySelector('.rift-wisp-time')&&!/\b\d+(?:\.\d+)?\s*(?:s|sec|seconds)\b/i.test(card.textContent),'Rift card has no visible ability countdown');
       });

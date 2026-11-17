@@ -1,0 +1,13 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "91bbf198f737f58d8ca0cbb76f484eb892e1b8e3732999e35391a4a76809c5e4", "instrumented_sha256": "03ec87c0dd624633245bc38bd37eeeed7fcae14dd41cc14df41f62dde7edb620" }
+FAIL self-test-auto-ascend-target-window
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 23.5299731, "timeout_sec": 25 }
+  observed QA: { "qa_count": 0, "qa_status": null, "qa_scenario": null, "json_status": null, "json_scenario": null, "runtime_markers": [], "runtime_error_count": null, "json_error": "Expected exactly one completed QA result", "valid": false }
+  failure: null
+  raw artifacts: C:\lf-team\validation-evidence\manual-browser-raw\self-test-auto-ascend-target-window-74x47s
+  Chromium stderr tail:
+Error: CDP deadline Runtime.evaluate
+    at Timeout._onTimeout (C:\lf-team\tests\behavioral\browser-dom.cjs:16:146)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+

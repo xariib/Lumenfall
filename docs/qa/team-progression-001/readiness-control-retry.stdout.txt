@@ -1,0 +1,42 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "f6f5a773131a3ab7e5cc6152855435e5de31163685234fa07927433db7b1b2b5", "instrumented_sha256": "0421699e699ca55210c7673e85b8022edca2c725423d1d4556242984e7b7f68b" }
+FAIL self-test-auto-ascend-target-window
+  process: { "exitcode": 0, "timed_out": false, "elapsed_sec": 4.7101636000000005, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "self-test-auto-ascend-target-window", "json_status": "fail", "json_scenario": "self-test-auto-ascend-target-window", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "elapsed combat cannot automatically reset/pay live", "stack": "Error: elapsed combat cannot automatically reset/pay live\n    at assert (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&qaFixture=fresh:19728:61)\n    at ok (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&qaFixture=fresh:18939:90)\n    at http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&qaFixture=fresh:18944:114\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&qaFixture=fresh:18944:22\n    at Array.forEach (<anonymous>)\n    at window.runAutoTargetContract (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&qaFixture=fresh:18941:13)\n    at HTMLDocument.run (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&qaFixture=fresh:20229:46)" }
+  raw artifacts: C:\lf-team\validation-evidence\auto-ready-control\self-test-auto-ascend-target-window-SSkUXZ
+  stdout tail:
+-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<pre id="qa-result" data-status="fail" data-scenario="self-test-auto-ascend-target-window">{
+  "scenario": "self-test-auto-ascend-target-window",
+  "status": "fail",
+  "detail": {
+    "message": "elapsed combat cannot automatically reset/pay live",
+    "stack": "Error: elapsed combat cannot automatically reset/pay live\n    at assert (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&amp;qaFixture=fresh:19728:61)\n    at ok (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&amp;qaFixture=fresh:18939:90)\n    at http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&amp;qaFixture=fresh:18944:114\n    at Array.forEach (&lt;anonymous&gt;)\n    at http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&amp;qaFixture=fresh:18944:22\n    at Array.forEach (&lt;anonymous&gt;)\n    at window.runAutoTargetContract (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&amp;qaFixture=fresh:18941:13)\n    at HTMLDocument.run (http://127.0.0.1:51747/index.html?qaScenario=self-test-auto-ascend-target-window&amp;qaFixture=fresh:20229:46)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

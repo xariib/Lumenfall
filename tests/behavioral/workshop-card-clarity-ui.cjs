@@ -39,12 +39,12 @@ module.exports=async function({send,ev,pause,check,records}){
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
   await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&document.getElementById("comet-commands").hidden&&!document.querySelector("[data-comet-command]")'),'retired commands have no player UI');
   check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed-series]").length===17'),'all76 historical identities remain in17 advancing Deed cards');
-  for(const [tab,id] of [['research','lab-help'],['ascend','tree-bonds'],['forge','forge-arcanecal'],['deeds','comet-autoascend']]){
+  for(const [tab,id] of [['research','lab-help'],['ascend','tree-bonds'],['forge','forge-arcanecal'],['deeds','comet-astralcore']]){
    await ev('document.querySelector('+JSON.stringify('[data-tab="'+tab+'"]')+').click()');
    await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+tab)+').getAnimations().map(a=>a.finished)).then(()=>true)');
    const summary='[data-card-details-summary="'+id+'"]';
    if(!(await ev('!!document.querySelector('+JSON.stringify(summary)+')'))){
-    const selector=id==='tree-bonds'?'[data-tree-node="bonds"]':id==='forge-arcanecal'?'[data-forge-card="arcanecal"]':'[data-comet-card="autoascend"]';
+    const selector=id==='tree-bonds'?'[data-tree-node="bonds"]':id==='forge-arcanecal'?'[data-forge-card="arcanecal"]':'[data-comet-card="astralcore"]';
     check(await ev('document.querySelector('+JSON.stringify(selector)+').textContent.trim().length>0'),'direct current effects replace redundant disclosure '+id);
     const button=selector+' button';await ev('document.querySelector('+JSON.stringify(button)+').focus({preventScroll:true})');
     const before=await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})');await ev('clarityQA.render();clarityQA.render()');
