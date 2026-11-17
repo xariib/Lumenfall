@@ -1,0 +1,50 @@
+{
+  "status": "fail",
+  "sourceSha256": "92971e3a29a24916d5566fe62e51553a094b4559d16ee84b48e95734e0fbfe26",
+  "node": "v24.19.0",
+  "browser": "google-chrome",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: enemy stays above theme fill in isolated inert artwork layer default\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.rift-screen-fixes-4096.cjs:39:27)\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.rift-screen-fixes-4096.cjs:90:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.rift-screen-fixes-4096.cjs:116:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<span class=\"farm-depth\">Rift 287</span>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": "Tab",
+      "target": "<button class=\"rift-mode-btn active\" id=\"rift-farm-btn\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Farm Rift 287\" title=\"\">Farm<span class=\"farm-depth\">Rift 287</span></button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": "Tab",
+      "target": "<button class=\"rift-mode-btn\" id=\"rift-push-btn\" aria-pressed=\"false\">Push</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": "Enter",
+      "target": "<button class=\"rift-mode-btn\" id=\"rift-push-btn\" aria-pressed=\"false\">Push</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"rift-mode-btn\" id=\"rift-push-btn\" aria-pressed=\"false\">Push</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": "Enter",
+      "target": "<button class=\"rift-mode-btn active\" id=\"rift-push-btn\" aria-pressed=\"true\">Push</button>",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 10,
+  "stderr": "[4111:4134:1117/114853.225018:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4134:1117/114853.225496:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4134:1117/114853.225513:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4138:1117/114853.243283:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4138:1117/114853.243305:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4138:1117/114853.243312:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4134:1117/114853.253225:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4134:1117/114853.276146:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.345701:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4134:1117/114853.345804:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.345814:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4134:1117/114853.345847:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.347365:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4111:1117/114853.348120:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4134:1117/114853.348390:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.372866:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4111:1117/114853.374768:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4134:1117/114853.374977:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.382621:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4111:1117/114853.442402:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4111:1117/114853.442464:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files\n[4111:4134:1117/114853.443953:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.472992:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[4111:4134:1117/114853.473090:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[4111:4111:1117/114853.502305:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}

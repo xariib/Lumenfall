@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) in progress.
+Remove hints, Farm left/Push right and correct arena/enemy layering. Previous
+source passed666 focused checks/five controls and signed Android133; newer
+main/PR59 is now retained and combined-source validation is required.
+[Full pre-feature status snapshot](PROJECT_STATE_2026-11-17_RIFT_BASELINE.md) is intact.
+The previously reported rapid-repeat economy finding remains open; no economy
+fix is introduced by this Rift presentation task.
+
 17 November: [Finite Forge/PR59](tasks/FORGE_YEARS_001.md) shipped as
 [Android 0.2.135](https://github.com/xariib/Lumenfall/releases/tag/android-1000135), source `0adb60eb`.
 Tempering caps are 375/325/315; Masterwork remains 500 with attainable future

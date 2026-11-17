@@ -1727,32 +1727,6 @@
   .stage .depth-label .region-label{font-size:10px;line-height:14px;letter-spacing:.16em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .stage .rift-heading .rift-mode-row{height:46px;min-height:46px;margin:0;gap:3px;padding:1px;background:#090f20a6;border-radius:12px;}
   .stage .rift-mode-btn{min-width:44px;min-height:44px;font-size:12px;padding:3px 6px;letter-spacing:.09em;white-space:nowrap;}
-  /* F07: the hint body has the same reserved space when hidden or scrollable. */
-  #rift-guidance-slot{position:relative;display:flex;height:46px;flex:none;margin:0 10px;color:#f0effb;background:#141d30;border:1px solid #52617e;border-radius:11px;box-sizing:border-box;box-shadow:0 3px 10px #050a1666;}
-  /* Paint behind the inset strip into the arena gap without changing its tracks. */
-  #rift-guidance-slot::before{content:'';position:absolute;top:-1px;right:-11px;bottom:-7px;left:-11px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#171930 0%,#0d0f1f 100%);}
-  #rift-guidance-slot[hidden],#rift-objective-row[hidden]{display:none;}
-#rift-hints-toggle{display:block;flex:none;width:auto;max-width:70%;min-width:44px;height:44px;min-height:44px;padding:2px;border:0;border-right:1px solid #52617e;border-radius:10px 0 0 10px;background:#1c2339;color:#f0effb;font:inherit;font-size:.875rem;line-height:1.1;font-weight:700;white-space:nowrap;cursor:pointer;}
-/* Reserve both labels' intrinsic width without consuming hint space in ems. */
-#rift-hints-toggle::before{content:'Show hints\A Hide hints';display:block;height:0;overflow:hidden;visibility:hidden;white-space:pre;}
-  #rift-objective-row{flex:1;min-width:0;height:44px;min-height:0;overflow-y:auto;overflow-x:hidden;border-radius:0 10px 10px 0;}
-  #rift-guidance-slot .rift-objective{min-width:0;min-height:44px;height:auto;padding:4px 2px;grid-template-columns:minmax(0,1fr) auto;gap:1px;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;}
-  #rift-guidance-slot .objective-kind{display:none;}
-  #rift-guidance-slot .objective-copy strong,#rift-guidance-slot .objective-copy small{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;}
-  #rift-guidance-slot .objective-copy strong{font-size:.875rem;line-height:1.2;}
-  #rift-guidance-slot .objective-copy small{font-size:.75rem;line-height:1.2;color:#b5b4cb;}
-  #rift-guidance-slot .objective-copy small.objective-shortfall{color:#ff9fae;}
-  #rift-guidance-slot .objective-arrow{color:#b5b4cb;}
-  #rift-hints-toggle:focus,#rift-objective-row:focus,#rift-guidance-slot .rift-objective:focus{outline:2px solid #e7c67e;outline-offset:-3px;}
-  #rift-guidance-slot .rift-hint-summary{height:44px;padding:0 2px;}
-  #rift-guidance-slot .rift-hint-summary .objective-arrow{line-height:1;}
-  #rift-guidance-slot .rift-hint-summary .objective-copy strong{white-space:nowrap;}
-  #rift-guidance-slot .rift-hint-summary .objective-copy small{display:none;}
-  #rift-hint-overlay .modal{text-align:left;overflow-wrap:break-word;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 48px);max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 48px);overflow-y:auto;}
-  #rift-hint-overlay h2{font-size:1.25rem;}
-  #rift-hint-overlay p,#rift-hint-overlay button{font-size:1rem;line-height:1.4;}
-  #rift-hint-overlay button{min-height:44px;white-space:normal;}
-  #rift-hint-detail.objective-shortfall{color:#ff9fae;}
   .late-power-guide[hidden]{display:none;}
   .late-power-guide{overflow-wrap:anywhere;}
   .late-power-guide h3{margin:0 0 8px;font-size:1rem;}
@@ -2334,7 +2308,9 @@
 #tab-forge .mult-btn { flex-basis: 3.5em; }
 @keyframes upgradePanelIn { from { opacity:0;transform:translateY(7px); } to { opacity:1;transform:none; } }
   /* RIFT_COSMETICS_001: SVG/rgba fallbacks also render on WebView 60. */
-  .rift-cosmetic-aura{position:absolute;top:0;right:0;bottom:0;left:0;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+  .rift-arena-field,.rift-cosmetic-aura{position:absolute;top:0;right:0;bottom:0;left:0;inset:0;width:100%;height:100%;pointer-events:none;}
+  .rift-arena-field{z-index:-1;}
+  .rift-cosmetic-aura{z-index:1;}
   .rift-cosmetic-aura .cosmetic-pattern{display:none;}
   [data-rift-theme="default"] .cosmetic-default,[data-rift-theme="ember"] .cosmetic-ember,[data-rift-theme="void"] .cosmetic-void,
   [data-rift-theme="aurora"] .cosmetic-aurora,[data-rift-theme="solar"] .cosmetic-solar,
@@ -2423,7 +2399,7 @@
   .stage .enemy-readout .hp-bar-track{flex:1;min-width:0;}
   .stage .enemy-readout .hp-bar-fill{display:block;}
   .stage .enemy-readout .hp-text{flex:none;margin:0;line-height:16px;}
-  .enemy-visuals{position:absolute;top:42px;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+  .enemy-visuals{position:absolute;top:42px;right:0;bottom:0;left:0;z-index:1;isolation:isolate;display:flex;align-items:center;justify-content:center;pointer-events:none;}
   #tab-battle .stage .enemy-glyph{margin-top:0;max-height:calc(100% - 8px);}
   @media(max-height:680px){
     .stage .rift-heading{display:grid;grid-template-columns:minmax(0,1fr) 88px;gap:2px;height:auto;align-items:center;}
@@ -3035,12 +3011,6 @@
       <div class="chip"><span class="shape shape-star glyph-icon" style="background:var(--comet)"></span><span class="lbl">Comets</span><span class="val mono" id="hud-comet">0</span></div>
       <div class="chip"><span class="shape shape-octagon glyph-icon" style="background:var(--sigil)"></span><span class="lbl">Sigils</span><span class="val mono" id="hud-sigil">0</span></div>
     </header>
-    <div id="rift-guidance-slot">
-      <button type="button" id="rift-hints-toggle" aria-expanded="true" aria-controls="rift-objective-row">Hide hints</button>
-      <div id="rift-objective-row" role="region" aria-label="Rift guidance" tabindex="0">
-        <div class="rift-objective" id="rift-objective"></div>
-      </div>
-    </div>
     <nav class="tabbar" aria-label="Main navigation">
 <button class="tab-btn" data-tab="spirits"><span class="nav-icon"><svg class="nav-art" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c0 6-8 9-7 14a7 7 0 0 0 14 0c1-4-3-7-4-9l-3 6M9 16l3 4 3-4"/></svg></span><span class="lb">Wisps</span></button>
 <button class="tab-btn" data-tab="workshop" aria-label="Workshop"><span class="nav-icon"><svg class="nav-art" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18l-3 5H7L3 9V7ZM8 12v4l-3 4h14l-3-4v-4M9 4h8v3"/></svg></span><span class="lb">Workshop</span><span class="lab-capacity-badge" id="lab-capacity-badge" aria-hidden="true" hidden></span></button>
@@ -3091,8 +3061,8 @@
           <button type="button" class="rift-step" id="rift-forward-one" aria-label="Next Rift" title="Next farming Rift; resume Push at your saved Rift"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg></button>
         </div>
         <div class="rift-mode-row">
-          <button class="rift-mode-btn active" id="rift-push-btn">Push</button>
           <button class="rift-mode-btn" id="rift-farm-btn">Farm</button>
+          <button class="rift-mode-btn active" id="rift-push-btn">Push</button>
         </div>
         <span class="rift-cosmetic-name" id="rift-cosmetic-name" hidden aria-hidden="true">Theme: Starlight</span></div>
 
@@ -3107,6 +3077,7 @@
               </span>
             </span>
               <span class="enemy-visuals"><span class="comet-trail" aria-hidden="true"></span><span class="comet-crest" aria-hidden="true">✦</span>
+              <svg class="rift-arena-field" viewBox="0 0 320 320" aria-hidden="true" focusable="false"><circle class="rift-enemy-field" cx="160" cy="160" r="132" fill="#0a1225"/></svg>
               <svg class="rift-cosmetic-aura" viewBox="0 0 320 320" aria-hidden="true" focusable="false">
                 <defs><symbol id="rift-ring-default" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-default"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#718fe9" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#b9d2ff"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-default)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><circle cx="160" cy="160" r="145" stroke="#718fe9" stroke-width="1" stroke-dasharray="3 9"/><g transform="rotate(0 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(45 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(90 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(135 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(180 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(225 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(270 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><g transform="rotate(315 160 160)"><path d="m160 10 4 10-4 10-4-10Z" fill="#b9d2ff" stroke="none"/></g><path d="M46 93 66 57 106 32M274 227l-20 36-40 25" stroke="#b9d2ff"/></g></symbol>
 <symbol id="rift-ring-ember" viewBox="0 0 320 320"><defs><radialGradient id="rift-ring-fill-ember"><stop stop-color="#0a1225" stop-opacity=".5"/><stop offset=".75" stop-color="#111c30" stop-opacity=".65"/><stop offset="1" stop-color="#ff7848" stop-opacity=".3"/></radialGradient></defs><g fill="none" stroke="#ffcb8b"><circle class="theme-boundary" cx="160" cy="160" r="132" fill="url(#rift-ring-fill-ember)" stroke-width="2.5"/><circle cx="160" cy="160" r="126" stroke-width=".7" opacity=".45"/><circle cx="160" cy="160" r="143" stroke="#ff7848" stroke-width="6" stroke-dasharray="32 9 5 9"/><g transform="rotate(0 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(30 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(60 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(90 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(120 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(150 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(180 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(210 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(240 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(270 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(300 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g><g transform="rotate(330 160 160)"><path d="M153 18q-2-9 6-17-1 9 6 12 6 8-3 13 1-7-4-9l-5 7Z" fill="#ff7848" stroke="none"/></g></g></symbol>
@@ -3217,14 +3188,6 @@
   </main>
 </div>
 
-<div class="overlay" id="rift-hint-overlay" style="display:none;">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="rift-hint-title" aria-describedby="rift-hint-detail" tabindex="-1">
-    <h2 id="rift-hint-title" tabindex="-1">Lab hint</h2>
-    <p id="rift-hint-detail"></p>
-    <button type="button" class="primary-btn" id="rift-hint-open-lab">Go to Lab</button>
-    <button type="button" class="ghost-btn" id="rift-hint-close">Close</button>
-  </div>
-</div>
 <div class="overlay settings-overlay" id="settings-overlay" style="display:none;">
   <div class="settings-modal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="settings-title">
     <div class="settings-head">
@@ -3248,13 +3211,6 @@
               <div class="settings-row-sub">Replay the short tutorial without resetting progress.</div>
             </div>
             <span class="settings-chevron">›</span>
-          </button>
-          <button type="button" class="settings-row" id="rift-guidance-toggle" aria-pressed="true">
-            <div class="settings-row-main">
-              <div class="settings-row-title">Rift guidance</div>
-              <div class="settings-row-sub">Show the Recruit and progression banner on Rift.</div>
-            </div>
-            <span class="rift-guidance-value" aria-hidden="true">Shown</span>
           </button>
         </div>
 
@@ -5067,8 +5023,6 @@ var RIFT_ZONES = [
 
 var SAVE_KEY = 'lumenfall_save_v2';
 var RECOVERY_SAVE_KEY = 'lumenfall_save_recovery_v1';
-var RIFT_GUIDANCE_HIDDEN_KEY = 'lumenfall_rift_guidance_hidden_v1';
-var riftGuidanceHidden = false;
 var SAVE_SCHEMA_VERSION = 6;
 var PRODUCTIVE_OFFLINE_CAP_SEC = 12 * 3600;
 var OFFLINE_12H_REFUND_POLICY = 'OFFLINE_12H_001:140/160:sum-ceil-6x1.6^level';
@@ -9292,7 +9246,7 @@ function setupOverlayFocus(){
 }
 
 function cacheEls(){
-  ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-back-one','rift-forward-one','rift-push-btn','rift-farm-btn','rift-objective','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
+  ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-back-one','rift-forward-one','rift-push-btn','rift-farm-btn','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
    'hp-fill','hp-text','stat-tap','stat-idle','spirit-list','formation-presets','bond-card','bond-summary','rift-party','boss-combat','research-list','study-list',
    'prism-preview','ascend-btn','ascend-note','auto-ascend-controls','node-list','ach-list','roster-journey','shop-list','comet-commands','comet-journal','legacy-comet-trials','comet-claim-history','theme-list','manifesto','toast',
    'daily-streak-badge','daily-quest-list','settings-overlay','settings-home','settings-encyclopedia','settings-title','settings-back','encyclopedia-content'
@@ -9525,80 +9479,6 @@ function nextRiftObjective(){
   goal.progress = Math.max(0,Math.min(100,Math.round((p-previousBoss)/10*100)));
   return goal;
 }
-function renderRiftGuidancePreference(){
-  var row=document.getElementById('rift-objective-row');
-  if(row) row.hidden=riftGuidanceHidden;
-  var hintsToggle=document.getElementById('rift-hints-toggle');
-  if(hintsToggle){
-    hintsToggle.textContent=riftGuidanceHidden ? 'Show hints' : 'Hide hints';
-    hintsToggle.setAttribute('aria-expanded',String(!riftGuidanceHidden));
-  }
-  var toggle=document.getElementById('rift-guidance-toggle');
-  if(toggle){
-    toggle.setAttribute('aria-pressed',String(!riftGuidanceHidden));
-    toggle.querySelector('.rift-guidance-value').textContent=riftGuidanceHidden ? 'Hidden' : 'Shown';
-  }
-}
-function setRiftGuidanceHidden(hidden){
-  var row=document.getElementById('rift-objective-row');
-  var returnFocus=hidden && row && row.contains(document.activeElement);
-  riftGuidanceHidden=!!hidden;
-  // Device presentation preference; never changes the canonical game save.
-  try{
-    if(riftGuidanceHidden) localStorage.setItem(RIFT_GUIDANCE_HIDDEN_KEY,'1');
-    else localStorage.removeItem(RIFT_GUIDANCE_HIDDEN_KEY);
-  }catch(e){}
-  renderRiftGuidancePreference();
-  if(returnFocus) document.getElementById('rift-hints-toggle').focus({preventScroll:true});
-}
-function hasRiftHintDetails(goal){
-  return !!goal && goal.kind==='POWER OPTION';
-}
-function closeRiftHintDetails(){
-  closeOverlay(document.getElementById('rift-hint-overlay'));
-}
-function renderRiftHintDetails(goal){
-  var title=document.getElementById('rift-hint-title');
-  var detail=document.getElementById('rift-hint-detail');
-  if(title.textContent!==goal.title)title.textContent=goal.title;
-  if(detail.textContent!==goal.detail)detail.textContent=goal.detail;
-  detail.className=goal.unfunded ? 'objective-shortfall' : '';
-}
-function openRiftHintDetails(){
-  var goal=nextRiftObjective();
-  if(!hasRiftHintDetails(goal) || riftGuidanceHidden)return;
-  renderRiftHintDetails(goal);
-  openOverlay(document.getElementById('rift-hint-overlay'),closeRiftHintDetails,els['rift-objective']);
-  // Start long advice at its heading, rather than an action below the fold.
-  document.getElementById('rift-hint-overlay').querySelector('.modal').scrollTop=0;
-  document.getElementById('rift-hint-title').focus({preventScroll:true});
-}
-function renderRiftObjective(){
-  var el = els['rift-objective'];
-  if(!el) return;
-  renderRiftGuidancePreference();
-  var goal = nextRiftObjective();
-  var details=hasRiftHintDetails(goal);
-  var overlay=document.getElementById('rift-hint-overlay');
-  if(overlayVisible(overlay)){
-    if(details && !riftGuidanceHidden)renderRiftHintDetails(goal);
-    else closeRiftHintDetails();
-  }
-  el.style.setProperty('--objective-progress',(goal.progress||0)+'%');
-  var actionable = !!goal.tab;
-  el.innerHTML =
-    '<span class="objective-kind">'+goal.kind+'</span>'+
-    '<span class="objective-copy"><strong>'+(details?'Lab hint':goal.title)+'</strong><small'+(goal.unfunded?' class="objective-shortfall"':'')+'>'+goal.detail+'</small></span>'+
-    '<span class="objective-arrow">'+(actionable?'›':'')+'</span>';
-  el.className = 'rift-objective objective-'+goal.kind.toLowerCase().replace(/[^a-z]+/g,'-')+(actionable?' actionable':'');
-  if(details)el.classList.add('rift-hint-summary');
-  if(details)el.setAttribute('aria-haspopup','dialog');else el.removeAttribute('aria-haspopup');
-  el.setAttribute('data-target-tab',goal.tab||'');
-  el.setAttribute('data-target-selector',goal.selector||'');
-  if(actionable){ el.setAttribute('role','button'); el.tabIndex=0; el.setAttribute('aria-label',(details?'Read Lab hint — ':'')+goal.title+' — '+goal.detail); }
-  else { el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-label'); }
-}
-
 var lastBattleDetailsAt=-Infinity;
 function updateBattleFast(live){
   // HP and charge keep the combat cadence. Advice and static encounter details
@@ -9617,7 +9497,6 @@ function updateBattleFast(live){
   var deedTrialStatus=document.querySelector('[data-trial-live-status]');
   if(deedTrialStatus) deedTrialStatus.textContent=cometTrialStatus();
   renderRiftMode();
-  renderRiftObjective();
   renderLatePowerAdvice();
   renderBondSummary();
   renderLabCapacityBadge();
@@ -11392,7 +11271,6 @@ function syncMainScrollMode(tabName){
   if(!main) return;
   var battlePanel = document.getElementById('tab-battle');
   var battleActive = typeof tabName==='string' ? tabName==='battle' : !!(battlePanel && battlePanel.classList.contains('active'));
-  document.getElementById('rift-guidance-slot').hidden=!battleActive;
   if(main.classList.contains('rift-scroll-locked')!==battleActive){
     main.classList.toggle('rift-scroll-locked', battleActive);
   }
@@ -13921,8 +13799,6 @@ function tick(){
   if(liveTabVisible('battle') && !overlayFocus) updateBattleFast(true);
   else {
     renderHud();
-    // A visible hint remains live while the covered arena is asleep.
-    if(overlayFocus && overlayFocus.el.id==='rift-hint-overlay')renderRiftObjective();
   }
   checkAffordability(true);
   if(liveTabVisible('spirits')){renderWispDamage();if(Date.now()-wispRoleLastRenderMs>=1000)renderWispRoles();}
@@ -14428,7 +14304,6 @@ function presentForegroundDailyReward(){
 
 function init(){
   cacheEls();
-  try{ riftGuidanceHidden=localStorage.getItem(RIFT_GUIDANCE_HIDDEN_KEY)==='1'; }catch(e){ riftGuidanceHidden=false; }
   state = loadState();
   resetLiveClock();
   labMultiplier = state.savedLabMultiplier;
@@ -14459,26 +14334,8 @@ function init(){
   document.getElementById('rift-farm-btn').addEventListener('click',function(){if(state.riftMode==='farm')selectFarmDepth(state.farmDepth);else enterFarmMode();});
   document.getElementById('rift-back-one').onclick=function(){stepRift(-1);};
   document.getElementById('rift-forward-one').onclick=function(){stepRift(1);};
-  document.getElementById('rift-objective').addEventListener('keydown',function(e){
-    if(this.getAttribute('role')==='button' && (e.key==='Enter' || e.key===' ')){
-      e.preventDefault(); if(!e.repeat) this.click();
-    }
-  });
-  document.getElementById('rift-objective').addEventListener('click', function(){
-    if(this.classList.contains('rift-hint-summary')){openRiftHintDetails();return;}
-    var target = this.getAttribute('data-target-tab');
-    if(target) openPowerAdvice({tab:target,selector:this.getAttribute('data-target-selector')});
-  });
-  document.getElementById('rift-hint-close').addEventListener('click',closeRiftHintDetails);
-  document.getElementById('rift-hint-open-lab').addEventListener('click',function(){
-    var goal=nextRiftObjective();
-    closeRiftHintDetails();
-    if(hasRiftHintDetails(goal))openPowerAdvice(goal);
-  });
   document.getElementById('late-power-open').addEventListener('click',function(){openPowerAdvice(latePowerAdvice());});
-  document.getElementById('rift-hints-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
   document.getElementById('formation-best-now-btn').addEventListener('click',fieldBestNowFormation);
-  document.getElementById('rift-guidance-toggle').addEventListener('click',function(){ setRiftGuidanceHidden(!riftGuidanceHidden); });
   document.getElementById('ascend-btn').addEventListener('click', function(){ doAscend(false); });
 
   document.getElementById('settings-btn').addEventListener('click', openSettings);

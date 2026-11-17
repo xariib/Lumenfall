@@ -1,0 +1,38 @@
+[
+  {
+    "name": "candidate",
+    "exit": 0,
+    "timeout": false,
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "rift-status-contract",
+      "json_status": "fail",
+      "json_scenario": "rift-status-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "result": "fail",
+    "detail": "charge animation does not animate layout width{\"id\":\"ember\",\"bar\":\"<div class=\\\"rift-charge\\\" role=\\\"progressbar\\\" aria-label=\\\"Ember Wisp — Nova Burst\\\" aria-valuemin=\\\"0\\\" aria-valuemax=\\\"100\\\" aria-valuenow=\\\"0\\\" aria-valuetext=\\\"0% charged; 6 seconds to next ability\\\"><span style=\\\"transform: scaleX(0);\\\"></span></div>\",\"property\":\"none\",\"duration\":\"1e-06s\",\"rules\":[]}"
+  },
+  {
+    "name": "baseline",
+    "exit": 0,
+    "timeout": false,
+    "observation": {
+      "qa_count": 1,
+      "qa_status": "fail",
+      "qa_scenario": "rift-status-contract",
+      "json_status": "fail",
+      "json_scenario": "rift-status-contract",
+      "runtime_markers": [],
+      "runtime_error_count": 0,
+      "json_error": null,
+      "valid": true
+    },
+    "result": "fail",
+    "detail": "charge animation does not animate layout width{\"id\":\"ember\",\"bar\":\"<div class=\\\"rift-charge\\\" role=\\\"progressbar\\\" aria-label=\\\"Ember Wisp — Nova Burst\\\" aria-valuemin=\\\"0\\\" aria-valuemax=\\\"100\\\" aria-valuenow=\\\"0\\\" aria-valuetext=\\\"0% charged; 6 seconds to next ability\\\"><span style=\\\"transform: scaleX(0);\\\"></span></div>\",\"property\":\"none\",\"duration\":\"1e-06s\",\"rules\":[]}"
+  }
+]

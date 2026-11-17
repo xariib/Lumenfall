@@ -1,0 +1,2912 @@
+{
+  "status": "pass",
+  "sourceSha256": "e210529dca00e0e32c13a3910a14f79b5df8197685cd323802817cd55b6011a6",
+  "node": "v24.22.1",
+  "browser": "C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/test-browser/chrome-win64/chrome.exe",
+  "profiles": [
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 210,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 254,
+          "bottom": 163,
+          "left": 210
+        },
+        "push": {
+          "x": 254,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 298,
+          "bottom": 163,
+          "left": 254
+        },
+        "enemy": {
+          "x": 18,
+          "y": 164,
+          "width": 284,
+          "height": 299,
+          "top": 164,
+          "right": 302,
+          "bottom": 463,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 318,
+          "height": 116,
+          "top": 0,
+          "right": 319,
+          "bottom": 116,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 116,
+          "width": 318,
+          "height": 468,
+          "top": 116,
+          "right": 319,
+          "bottom": 584,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 118,
+          "width": 298,
+          "height": 464,
+          "top": 118,
+          "right": 309,
+          "bottom": 582,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 591,
+          "width": 318,
+          "height": 49,
+          "top": 591,
+          "right": 319,
+          "bottom": 640,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          468,
+          468
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 210,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 254,
+          "bottom": 163,
+          "left": 210
+        },
+        "push": {
+          "x": 254,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 298,
+          "bottom": 163,
+          "left": 254
+        },
+        "enemy": {
+          "x": 18,
+          "y": 164,
+          "width": 284,
+          "height": 299,
+          "top": 164,
+          "right": 302,
+          "bottom": 463,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 318,
+          "height": 116,
+          "top": 0,
+          "right": 319,
+          "bottom": 116,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 116,
+          "width": 318,
+          "height": 468,
+          "top": 116,
+          "right": 319,
+          "bottom": 584,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 118,
+          "width": 298,
+          "height": 464,
+          "top": 118,
+          "right": 309,
+          "bottom": 582,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 591,
+          "width": 318,
+          "height": 49,
+          "top": 591,
+          "right": 319,
+          "bottom": 640,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          468,
+          468
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 1.5,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 210,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 254,
+          "bottom": 163,
+          "left": 210
+        },
+        "push": {
+          "x": 254,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 298,
+          "bottom": 163,
+          "left": 254
+        },
+        "enemy": {
+          "x": 18,
+          "y": 164,
+          "width": 284,
+          "height": 299,
+          "top": 164,
+          "right": 302,
+          "bottom": 463,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 318,
+          "height": 116,
+          "top": 0,
+          "right": 319,
+          "bottom": 116,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 116,
+          "width": 318,
+          "height": 468,
+          "top": 116,
+          "right": 319,
+          "bottom": 584,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 118,
+          "width": 298,
+          "height": 464,
+          "top": 118,
+          "right": 309,
+          "bottom": 582,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 591,
+          "width": 318,
+          "height": 49,
+          "top": 591,
+          "right": 319,
+          "bottom": 640,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          468,
+          468
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 1.5,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 210,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 254,
+          "bottom": 163,
+          "left": 210
+        },
+        "push": {
+          "x": 254,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 298,
+          "bottom": 163,
+          "left": 254
+        },
+        "enemy": {
+          "x": 18,
+          "y": 164,
+          "width": 284,
+          "height": 299,
+          "top": 164,
+          "right": 302,
+          "bottom": 463,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 318,
+          "height": 116,
+          "top": 0,
+          "right": 319,
+          "bottom": 116,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 116,
+          "width": 318,
+          "height": 468,
+          "top": 116,
+          "right": 319,
+          "bottom": 584,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 118,
+          "width": 298,
+          "height": 464,
+          "top": 118,
+          "right": 309,
+          "bottom": 582,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 591,
+          "width": 318,
+          "height": 49,
+          "top": 591,
+          "right": 319,
+          "bottom": 640,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          468,
+          468
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 210,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 254,
+          "bottom": 163,
+          "left": 210
+        },
+        "push": {
+          "x": 254,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 298,
+          "bottom": 163,
+          "left": 254
+        },
+        "enemy": {
+          "x": 18,
+          "y": 164,
+          "width": 284,
+          "height": 299,
+          "top": 164,
+          "right": 302,
+          "bottom": 463,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 318,
+          "height": 116,
+          "top": 0,
+          "right": 319,
+          "bottom": 116,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 116,
+          "width": 318,
+          "height": 468,
+          "top": 116,
+          "right": 319,
+          "bottom": 584,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 118,
+          "width": 298,
+          "height": 464,
+          "top": 118,
+          "right": 309,
+          "bottom": 582,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 591,
+          "width": 318,
+          "height": 49,
+          "top": 591,
+          "right": 319,
+          "bottom": 640,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          468,
+          468
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scale": 2,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 210,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 254,
+          "bottom": 163,
+          "left": 210
+        },
+        "push": {
+          "x": 254,
+          "y": 119,
+          "width": 44,
+          "height": 44,
+          "top": 119,
+          "right": 298,
+          "bottom": 163,
+          "left": 254
+        },
+        "enemy": {
+          "x": 18,
+          "y": 164,
+          "width": 284,
+          "height": 299,
+          "top": 164,
+          "right": 302,
+          "bottom": 463,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 318,
+          "height": 116,
+          "top": 0,
+          "right": 319,
+          "bottom": 116,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 116,
+          "width": 318,
+          "height": 468,
+          "top": 116,
+          "right": 319,
+          "bottom": 584,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 118,
+          "width": 298,
+          "height": 464,
+          "top": 118,
+          "right": 309,
+          "bottom": 582,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 591,
+          "width": 318,
+          "height": 49,
+          "top": 591,
+          "right": 319,
+          "bottom": 640,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          468,
+          468
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 193.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 196.5,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 366,
+          "bottom": 217,
+          "left": 196.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 354,
+          "height": 403,
+          "top": 222,
+          "right": 372,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 388,
+          "height": 109,
+          "top": 0,
+          "right": 389,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 388,
+          "height": 673,
+          "top": 109,
+          "right": 389,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 368,
+          "height": 661,
+          "top": 115,
+          "right": 379,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 388,
+          "height": 55,
+          "top": 789,
+          "right": 389,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 193.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 196.5,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 366,
+          "bottom": 217,
+          "left": 196.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 354,
+          "height": 403,
+          "top": 222,
+          "right": 372,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 388,
+          "height": 109,
+          "top": 0,
+          "right": 389,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 388,
+          "height": 673,
+          "top": 109,
+          "right": 389,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 368,
+          "height": 661,
+          "top": 115,
+          "right": 379,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 388,
+          "height": 55,
+          "top": 789,
+          "right": 389,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1.5,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 193.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 196.5,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 366,
+          "bottom": 217,
+          "left": 196.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 354,
+          "height": 403,
+          "top": 222,
+          "right": 372,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 388,
+          "height": 109,
+          "top": 0,
+          "right": 389,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 388,
+          "height": 673,
+          "top": 109,
+          "right": 389,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 368,
+          "height": 661,
+          "top": 115,
+          "right": 379,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 388,
+          "height": 55,
+          "top": 789,
+          "right": 389,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 1.5,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 193.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 196.5,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 366,
+          "bottom": 217,
+          "left": 196.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 354,
+          "height": 403,
+          "top": 222,
+          "right": 372,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 388,
+          "height": 109,
+          "top": 0,
+          "right": 389,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 388,
+          "height": 673,
+          "top": 109,
+          "right": 389,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 368,
+          "height": 661,
+          "top": 115,
+          "right": 379,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 388,
+          "height": 55,
+          "top": 789,
+          "right": 389,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 193.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 196.5,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 366,
+          "bottom": 217,
+          "left": 196.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 354,
+          "height": 403,
+          "top": 222,
+          "right": 372,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 388,
+          "height": 109,
+          "top": 0,
+          "right": 389,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 388,
+          "height": 673,
+          "top": 109,
+          "right": 389,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 368,
+          "height": 661,
+          "top": 115,
+          "right": 379,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 388,
+          "height": 55,
+          "top": 789,
+          "right": 389,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scale": 2,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 193.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 196.5,
+          "y": 173,
+          "width": 169.5,
+          "height": 44,
+          "top": 173,
+          "right": 366,
+          "bottom": 217,
+          "left": 196.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 354,
+          "height": 403,
+          "top": 222,
+          "right": 372,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 388,
+          "height": 109,
+          "top": 0,
+          "right": 389,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 388,
+          "height": 673,
+          "top": 109,
+          "right": 389,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 368,
+          "height": 661,
+          "top": 115,
+          "right": 379,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 388,
+          "height": 55,
+          "top": 789,
+          "right": 389,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 213.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 216.5,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 406,
+          "bottom": 217,
+          "left": 216.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 394,
+          "height": 403,
+          "top": 222,
+          "right": 412,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 428,
+          "height": 109,
+          "top": 0,
+          "right": 429,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 428,
+          "height": 673,
+          "top": 109,
+          "right": 429,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 408,
+          "height": 661,
+          "top": 115,
+          "right": 419,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 428,
+          "height": 55,
+          "top": 789,
+          "right": 429,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 213.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 216.5,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 406,
+          "bottom": 217,
+          "left": 216.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 394,
+          "height": 403,
+          "top": 222,
+          "right": 412,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 428,
+          "height": 109,
+          "top": 0,
+          "right": 429,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 428,
+          "height": 673,
+          "top": 109,
+          "right": 429,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 408,
+          "height": 661,
+          "top": 115,
+          "right": 419,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 428,
+          "height": 55,
+          "top": 789,
+          "right": 429,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1.5,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 213.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 216.5,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 406,
+          "bottom": 217,
+          "left": 216.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 394,
+          "height": 403,
+          "top": 222,
+          "right": 412,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 428,
+          "height": 109,
+          "top": 0,
+          "right": 429,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 428,
+          "height": 673,
+          "top": 109,
+          "right": 429,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 408,
+          "height": 661,
+          "top": 115,
+          "right": 419,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 428,
+          "height": 55,
+          "top": 789,
+          "right": 429,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 1.5,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 213.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 216.5,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 406,
+          "bottom": 217,
+          "left": 216.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 394,
+          "height": 403,
+          "top": 222,
+          "right": 412,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 428,
+          "height": 109,
+          "top": 0,
+          "right": 429,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 428,
+          "height": 673,
+          "top": 109,
+          "right": 429,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 408,
+          "height": 661,
+          "top": 115,
+          "right": 419,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 428,
+          "height": 55,
+          "top": 789,
+          "right": 429,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 2,
+      "motion": "no-preference",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 213.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 216.5,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 406,
+          "bottom": 217,
+          "left": 216.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 394,
+          "height": 403,
+          "top": 222,
+          "right": 412,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 428,
+          "height": 109,
+          "top": 0,
+          "right": 429,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 428,
+          "height": 673,
+          "top": 109,
+          "right": 429,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 408,
+          "height": 661,
+          "top": 115,
+          "right": 419,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 428,
+          "height": 55,
+          "top": 789,
+          "right": 429,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "scale": 2,
+      "motion": "reduce",
+      "geometry": {
+        "farm": {
+          "x": 24,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 213.5,
+          "bottom": 217,
+          "left": 24
+        },
+        "push": {
+          "x": 216.5,
+          "y": 173,
+          "width": 189.5,
+          "height": 44,
+          "top": 173,
+          "right": 406,
+          "bottom": 217,
+          "left": 216.5
+        },
+        "enemy": {
+          "x": 18,
+          "y": 222,
+          "width": 394,
+          "height": 403,
+          "top": 222,
+          "right": 412,
+          "bottom": 625,
+          "left": 18
+        },
+        "hud": {
+          "x": 1,
+          "y": 0,
+          "width": 428,
+          "height": 109,
+          "top": 0,
+          "right": 429,
+          "bottom": 109,
+          "left": 1
+        },
+        "main": {
+          "x": 1,
+          "y": 109,
+          "width": 428,
+          "height": 673,
+          "top": 109,
+          "right": 429,
+          "bottom": 782,
+          "left": 1
+        },
+        "stage": {
+          "x": 11,
+          "y": 115,
+          "width": 408,
+          "height": 661,
+          "top": 115,
+          "right": 419,
+          "bottom": 776,
+          "left": 11
+        },
+        "nav": {
+          "x": 1,
+          "y": 789,
+          "width": 428,
+          "height": 55,
+          "top": 789,
+          "right": 429,
+          "bottom": 844,
+          "left": 1
+        },
+        "order": [
+          "rift-farm-btn",
+          "rift-push-btn"
+        ],
+        "scroll": [
+          0,
+          673,
+          673
+        ],
+        "overflow": false
+      },
+      "samples": [
+        {
+          "theme": "default",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "ember",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "void",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "aurora",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "solar",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        },
+        {
+          "theme": "radiant",
+          "layers": {
+            "enemyZ": 2,
+            "auraZ": 1,
+            "fieldZ": 0,
+            "isolated": "isolate",
+            "field": true,
+            "inert": true
+          },
+          "encounters": 230
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 558,
+  "stderr": ""
+}

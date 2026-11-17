@@ -1714,7 +1714,8 @@
           assert(language.wisps.indexOf('Wisp Power')!==-1,'Wisp cards must label the canonical Wisp Power stat');
           assert(language.wisps.indexOf('Boosts passive Wisp damage and Guardian Tap')!==-1,'Support card wording must name its actual targets');
           assert(language.encyclopedia.indexOf('Ability Output')!==-1 && language.encyclopedia.indexOf('Guardian Tap')!==-1,'Encyclopedia must expose canonical output terms');
-          assert(!document.getElementById('rift-details') && language.boss.indexOf('Fractured Core')!==-1,'remaining Rift objective retains the actual Boss trait without obsolete Details text');
+          assert(language.encyclopedia.indexOf('Fractured Core')!==-1,'Encyclopedia retains the actual Boss trait after Rift hints are removed');
+          assert(!document.getElementById('rift-details') && language.riftHintsRemoved,'Rift hints and obsolete Details text remain removed; boss multipliers are verified above');
 
           finish('pass',{
             baseWispPower:emberBase.wispPower,

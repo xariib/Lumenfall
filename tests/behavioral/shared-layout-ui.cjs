@@ -154,7 +154,7 @@ function sharedDOM(kind,selector){
  }
  function context(){
   var main=document.querySelector('main'),nav=document.querySelector('nav.tabbar'),a=document.activeElement;
-  var selected=['.hud','.hud-title-row','#rift-guidance-slot','main','#tab-battle .stage','#enemy-stage','nav.tabbar'];
+  var selected=['.hud','.hud-title-row','main','#tab-battle .stage','#enemy-stage','nav.tabbar'];
   var layout={};selected.forEach(function(sel){var e=document.querySelector(sel);layout[sel]=rect(e.getBoundingClientRect());});
   return {width:innerWidth,height:innerHeight,rootFont:getComputedStyle(document.documentElement).fontSize,
    bodyWidth:document.body.scrollWidth,documentWidth:document.documentElement.scrollWidth,

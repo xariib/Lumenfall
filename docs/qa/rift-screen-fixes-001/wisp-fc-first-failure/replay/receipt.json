@@ -1,0 +1,237 @@
+{
+  "status": "pass",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "records": [
+    {
+      "name": "settled-setup",
+      "exitcode": 0,
+      "status": "pass",
+      "checks": 61,
+      "sourceSha256": "42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad",
+      "reflows": [
+        {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference",
+          "before": {
+            "top": 437.546875,
+            "layoutTop": 1798.546875
+          },
+          "after": {
+            "top": 437.546875,
+            "layoutTop": 1708.546875,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 320,
+          "scale": 1,
+          "motion": "reduce",
+          "before": {
+            "top": 437.546875,
+            "layoutTop": 1798.546875
+          },
+          "after": {
+            "top": 437.546875,
+            "layoutTop": 1708.546875,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 320,
+          "scale": 2,
+          "motion": "no-preference",
+          "before": {
+            "top": 417.421875,
+            "layoutTop": 3228.421875
+          },
+          "after": {
+            "top": 417.421875,
+            "layoutTop": 3138.421875,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 320,
+          "scale": 2,
+          "motion": "reduce",
+          "before": {
+            "top": 417.421875,
+            "layoutTop": 3228.421875
+          },
+          "after": {
+            "top": 417.421875,
+            "layoutTop": 3138.421875,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 390,
+          "scale": 1,
+          "motion": "no-preference",
+          "before": {
+            "top": 423,
+            "layoutTop": 1612
+          },
+          "after": {
+            "top": 423,
+            "layoutTop": 1522,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 390,
+          "scale": 1,
+          "motion": "reduce",
+          "before": {
+            "top": 423,
+            "layoutTop": 1612
+          },
+          "after": {
+            "top": 423,
+            "layoutTop": 1522,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 390,
+          "scale": 2,
+          "motion": "no-preference",
+          "before": {
+            "top": 419.640625,
+            "layoutTop": 2727.640625
+          },
+          "after": {
+            "top": 419.640625,
+            "layoutTop": 2637.640625,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 390,
+          "scale": 2,
+          "motion": "reduce",
+          "before": {
+            "top": 419.640625,
+            "layoutTop": 2727.640625
+          },
+          "after": {
+            "top": 419.640625,
+            "layoutTop": 2637.640625,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 430,
+          "scale": 1,
+          "motion": "no-preference",
+          "before": {
+            "top": 423,
+            "layoutTop": 1594
+          },
+          "after": {
+            "top": 423,
+            "layoutTop": 1504,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 430,
+          "scale": 1,
+          "motion": "reduce",
+          "before": {
+            "top": 423,
+            "layoutTop": 1594
+          },
+          "after": {
+            "top": 423,
+            "layoutTop": 1504,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 430,
+          "scale": 2,
+          "motion": "no-preference",
+          "before": {
+            "top": 420.046875,
+            "layoutTop": 2660.046875
+          },
+          "after": {
+            "top": 420.046875,
+            "layoutTop": 2570.046875,
+            "card": "stone"
+          }
+        },
+        {
+          "width": 430,
+          "scale": 2,
+          "motion": "reduce",
+          "before": {
+            "top": 420.046875,
+            "layoutTop": 2660.046875
+          },
+          "after": {
+            "top": 420.046875,
+            "layoutTop": 2570.046875,
+            "card": "stone"
+          }
+        }
+      ],
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/157.0.8103.50",
+        "revision": "@049750111b1e5c11565c792b2aeed5541f332bad",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "jsVersion": "15.7.112.23"
+      }
+    },
+    {
+      "name": "without-setup-wait",
+      "exitcode": 1,
+      "status": "fail",
+      "checks": 4,
+      "sourceSha256": "42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad",
+      "reflows": [
+        {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference",
+          "before": {
+            "top": 437.609619140625,
+            "layoutTop": 1806.609619140625
+          },
+          "after": {
+            "top": 429.546875,
+            "layoutTop": 1708.546875,
+            "card": "stone"
+          }
+        }
+      ]
+    },
+    {
+      "name": "without-animation-check",
+      "exitcode": 1,
+      "status": "fail",
+      "checks": 4,
+      "sourceSha256": "42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad",
+      "reflows": [
+        {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference",
+          "before": {
+            "top": 437.609619140625,
+            "layoutTop": 1806.609619140625
+          },
+          "after": {
+            "top": 429.546875,
+            "layoutTop": 1708.546875,
+            "card": "stone"
+          }
+        }
+      ]
+    }
+  ]
+}

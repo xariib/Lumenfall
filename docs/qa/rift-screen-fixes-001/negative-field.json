@@ -1,0 +1,50 @@
+{
+  "status": "fail",
+  "sourceSha256": "841ed827651e4714248ea958e2806de795a91ade1f5e66c15f16bef68d9e3e0a",
+  "node": "v24.22.1",
+  "browser": "C:/Users/xarib/Documents/ChatGPT/Lumenfall/validation-evidence/test-browser/chrome-win64/chrome.exe",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: opaque arena center blocks landscape silhouettes default\n    at ok (C:\\lf-rift-screen-fixes\\tests\\behavioral\\.rift-screen-fixes-31584.cjs:39:27)\n    at run (C:\\lf-rift-screen-fixes\\tests\\behavioral\\.rift-screen-fixes-31584.cjs:90:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\lf-rift-screen-fixes\\tests\\behavioral\\.rift-screen-fixes-31584.cjs:114:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<span class=\"farm-depth\">Rift 287</span>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": "Tab",
+      "target": "<button class=\"rift-mode-btn active\" id=\"rift-farm-btn\" aria-pressed=\"true\" data-state=\"available\" aria-label=\"Farm Rift 287\" title=\"\">Farm<span class=\"farm-depth\">Rift 287</span></button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": "Tab",
+      "target": "<button class=\"rift-mode-btn\" id=\"rift-push-btn\" aria-pressed=\"false\">Push</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": "Enter",
+      "target": "<button class=\"rift-mode-btn\" id=\"rift-push-btn\" aria-pressed=\"false\">Push</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button class=\"rift-mode-btn\" id=\"rift-push-btn\" aria-pressed=\"false\">Push</button>",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": "Enter",
+      "target": "<button class=\"rift-mode-btn active\" id=\"rift-push-btn\" aria-pressed=\"true\">Push</button>",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 11,
+  "stderr": ""
+}
