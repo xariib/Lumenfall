@@ -1,3 +1,5 @@
+Android139 native attempt1 failed its installed Ascend navigation assertion after earlier Wisp/Rift checks passed. [Original disposition/artifacts](android-attempt1/disposition.json) and [raw workflow log](remote/job-134373040642.log.gz) are retained. Root cause is unproven; one unchanged retry is running, with no test/source/deadline edits. This is a failed attempt, not a pass.
+
 # Integrated Support release checkpoint
 
 PR62 merged atceb2463f83d49402e2702e987af89958790b16db; product SHA256fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059. All8 PR workflows,190 main+1 isolated offline scenarios and758 mobile checks PASS. All12 Support profiles/265 checks and the suppressed-native-input control pass. [Current mobile evidence](current-mobile/artifact.json) and [visual review](current-mobile/visual-review.json) are source-bound. [Integration/checkpoint](integrated-checkpoint.json) records pending9 exact-main workflows and final signed/native/public Support release. Verified0.2.138 baseline is preserved. Main stays unchanged through publication. Physicalphone/exact WebView60 DOM/TalkBack/human pacing remain open. Self-review only.

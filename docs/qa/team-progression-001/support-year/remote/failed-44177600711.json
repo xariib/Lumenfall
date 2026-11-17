@@ -1,0 +1,21 @@
+{
+  "id": 44177600711,
+  "sha": "ceb2463f83d49402e2702e987af89958790b16db",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44177600711",
+  "jobs": [
+    {
+      "id": 134373040642,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-17T21:13:54Z",
+      "completed": "2026-11-17T21:19:50Z",
+      "log": "job-134373040642.log.gz",
+      "rawSha256": "f9f515440a75096484f76e20636bccdf1c3389d5eb95ddfc6d51e0c00e699168",
+      "summary": [
+        "2026-11-17T21:19:32.8570089Z AssertionError [ERR_ASSERTION]: Installed native navigation activates ascend"
+      ]
+    }
+  ]
+}

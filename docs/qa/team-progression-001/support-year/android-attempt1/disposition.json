@@ -1,0 +1,19 @@
+{
+  "status": "FAIL retained; unchanged retry pending",
+  "utc": "2026-11-17T21:21:46.245Z",
+  "runId": 44177600711,
+  "attempt": 1,
+  "commit": "ceb2463f83d49402e2702e987af89958790b16db",
+  "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "failure": "Installed native navigation activates ascend",
+  "observed": [
+    "Installed Wisp UI, Rift navigation and appearance assertions passed before failure",
+    "Captured prior menu scroll trace has three successful menus, then expected Ascend activation fails",
+    "No FATAL EXCEPTION/Fatal signal/ANR match in captured failure logcat",
+    "Support product correction does not modify navigation or Android driver; exact-source full mobile checks passed"
+  ],
+  "unknown": "Root cause unproven; native timing/input or app state cannot be established from captured prior-menu diagnostic alone",
+  "action": "One unchanged rerun to distinguish transient failure; preserve assertions, deadlines, source, initial failure artifacts; investigate any recurrence",
+  "files": "files.json",
+  "workflow": "workflow-attempt1.json"
+}
