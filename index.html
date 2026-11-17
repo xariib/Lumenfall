@@ -3617,7 +3617,7 @@ var ABILITY_DESC = {
   dps: 'Focused burst ability damage. Ultimate doubles it.',
   ranged: 'Ability damage + Shards. Ultimate doubles both.',
   druid: 'Ability damage + Lumen. Ultimate doubles both.',
-  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50% for 3s. Support Endurance research extends future casts up to 6s. Without Support Endurance, each Support waits at least 6s between casts, even with extra charge.'
+  support: 'Boosts passive Wisp damage and Guardian Tap (your damage per tap) by +25% for 3s. Ultimate: +50% for 3s. Support Endurance research extends future casts up to 6s. Without Support Endurance, each Support waits at least 13s between cast starts: 3s active, then 10s off. Endurance level 8 and sufficient Charge Rate can unlock continuous uptime after at least 360 dedicated research days at continuous 8x with all work reductions.'
 };
 
 var FORMATION_BONDS = [
@@ -4149,9 +4149,9 @@ var LAB_EXPANSION = [
   }
 ];
 // At maximum future-work reductions (0.56) and continuous 8x, each level
-// takes at least 45 days. Level 1 remains below the fastest recast interval;
-// level 2 is the first sustainable per-Support buff: at least 90 days earned.
-LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. The first two levels also lower the minimum recast interval: 6s → 4.8s → 3.6s. Natural charge can take longer. Ultimates keep their stronger buff. At maximum Charge Rate, level 2 permits continuous uptime for each Support. Each level takes at least 45 days even at continuous 8x with all work reductions. Existing casts retain their strength and expiry.'});
+// takes at least 45 days. Through level 7, downtime exceeds active duration;
+// level 8 unlocks sustained cycling: at least 360 days of dedicated research.
+LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. Levels 1–7 also reduce the minimum recast interval by 0.2s per level, starting at 13s. Downtime stays longer than active duration through level 7. Level 8 unlocks a 4.8s minimum recast: sufficient Charge Rate can sustain its 5.4s buffs. Natural charge can take longer. Ultimates keep their stronger buff. Each level takes at least 45 days even at continuous 8x with all work reductions; the first sustained milestone takes at least 360 dedicated research days after unlock. Existing casts retain their strength and expiry.'});
 var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
@@ -4226,7 +4226,7 @@ function labFutureWorkFactor(node){
 }
 function labExpansionEffect(id,raw){
   var level=Math.min(LAB_EXPANSION_CAPS[id],Math.max(0,Math.floor(raw||0)));
-  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s buffs; '+Number((6-1.2*Math.min(2,level)).toFixed(1))+'s minimum recast; '+(level<2?'level 2 permits continuous uptime at maximum Charge Rate':'continuous uptime at maximum Charge Rate');
+  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s buffs; '+Number((level<8 ? 13-0.2*level : 4.8).toFixed(1))+'s minimum recast; '+(level<8?'sustained cycling unlocks at level 8':'continuous uptime requires sufficient Charge Rate');
   if(id==='labcapacity') return '+'+level+' concurrent Study slots (up to 2 extra)';
   if(id==='procurement') return (2*level)+'% lower future Lab Lumen and Shard costs; excludes itself';
   if(id==='catalysis') return (2*level)+'% lower Mote prices for future Lab speed purchases';
@@ -7129,10 +7129,11 @@ function supportAbilityProfile(sp){
   };
 }
 function supportCycleSeconds(){
-  // Charge and Resonate cannot turn an early Support into a permanent buff.
-  // Two earned Endurance levels open sustained uptime after the existing
-  // 90-day fastest research commitment, with sufficient natural Charge Rate.
-  return Math.max(abilityCycleSeconds(),6-1.2*Math.min(2,labExpansionLevel('supportduration')));
+  // Downtime exceeds active duration through Endurance 7, even if two
+  // Supports stagger perfectly or external charge is unlimited. Endurance 8
+  // opens sustained cycling after 360 fastest dedicated research days.
+  var rank=labExpansionLevel('supportduration');
+  return Math.max(abilityCycleSeconds(),rank<8 ? 13-0.2*rank : 4.8);
 }
 function supportRecastSeconds(sp,nowMs,clock){
   if(!sp || sp.abilityType!=='support') return 0;
@@ -7340,7 +7341,7 @@ function averageAbilityDps(depth){
   state.activeParty.forEach(function(id){
     var sp = SPIRITS.find(function(s){ return s.id===id; });
     if(!sp || Amount.le(state.spirits[id]||0,0)) return;
-    total=Amount.add(total,estimate ? Amount.mul(abilityBurstDamage(sp,depth),estimate.rates[id]||0) : Amount.div(abilityBurstDamage(sp, depth),cycle));
+    total=Amount.add(total,estimate ? Amount.mul(abilityBurstDamage(sp,depth),estimate.rates[id]||0) : Amount.div(abilityBurstDamage(sp, depth),sp.abilityType==='support' ? supportCycleSeconds() : cycle));
   });
   return total;
 }
@@ -7405,7 +7406,7 @@ function wispRoleSnapshot(depth,nowMs,ids,sustained){
   var rows=SPIRITS.map(function(sp){
     var active=ids.indexOf(sp.id)!==-1 && Amount.gt(state.spirits[sp.id]||0,0);
     var level=active ? state.spirits[sp.id] : 0,power=wispPower(sp,level),passive=Amount.mul(power,global);
-    var rate=estimate ? (estimate.rates[sp.id]||0) : Amount.div(1,cycle);
+    var rate=estimate ? (estimate.rates[sp.id]||0) : Amount.div(1,sp.abilityType==='support' ? supportCycleSeconds() : cycle);
     var ability=active ? Amount.mul(Amount.mul(abilityRawBurst(sp,level),bossAbilityDamageMult(depth)),rate) : 0;
     var tap=Amount.mul(Amount.mul(passive,0.02),tapFactor),rewards=active ? abilityRewardPerCast(sp,level,undefined,ids) : {lumen:0,shards:0};
     rawPassive=Amount.add(rawPassive,passive);rawAbility=Amount.add(rawAbility,ability);rawTap=Amount.add(rawTap,tap);
@@ -8259,7 +8260,7 @@ function forgeAbilityDescription(sp){
   if(sp.abilityType!=='support' || !forgeLevel('amplifiertrim') && !forgeLevel('resonantedge') && !forgeLevel('relay') && !labExpansionLevel('supportduration')) return ABILITY_DESC[sp.abilityType];
   var trim=forgeLevel('amplifiertrim');
   var duration=supportAbilityProfile(sp).durationMs/1000;
-  var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for '+duration+'s. Ultimate: +'+Number(((50+trim)*astralFactor('astralconvergence')).toFixed(2))+'% for '+duration+'s. Support Endurance extends future buffs up to 6s. Minimum '+supportCycleSeconds().toFixed(2)+'s between this Wisp’s casts, including extra charge.';
+  var text='Boosts passive Wisp damage and Guardian Tap by +'+(25+trim)+'% for '+duration+'s. Ultimate: +'+Number(((50+trim)*astralFactor('astralconvergence')).toFixed(2))+'% for '+duration+'s. Support Endurance extends future buffs up to 6s. Minimum '+supportCycleSeconds().toFixed(2)+'s between this Wisp’s cast starts, including extra charge. Level 8 and sufficient Charge Rate unlock continuous uptime after at least 360 fastest dedicated research days.';
   if(forgeLevel('resonantedge')) text+=' Also hits for '+Number((0.10*forgeLevel('resonantedge')).toFixed(2))+' × Wisp Power before ability factors; Ultimate doubles the hit.';
   if(forgeLevel('relay')) text+=' Casts relay '+(2*forgeLevel('relay'))+' charge to powered non-Support Active Wisps.';
   return text;
@@ -11016,7 +11017,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
   {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 20 damage plus 2% of general Active-party passive power. Strong opening hits help you build your Wisp party; Wisps provide the main ongoing damage as their power grows. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
   {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown Wisp level, Rift record, Ascends, completed Wisp Ascendancy and Arcane Calibration, plus Lumen and Shards. The first tier is an early goal; later tiers require repeated permanent development. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
-  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
+  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% to +50% before Amplifier Trim, both initially lasting 3s. Support Endurance extends future casts up to 6s; level 8 and sufficient Charge Rate unlock sustained uptime after at least 360 fastest dedicated research days. Modules and Ultimates stay through Ascend.'},
   {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, uncapped Masterwork Tempering and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
   {name:'Endgame Currency Utility',meta:'Sigils and permanent Comet investments',desc:'Sigils fund Ultimates and Resonate. Comets fund permanent Astral upgrades. These investments remain through Ascend.'},
   {name:'Wisp Roles', meta:'Build label', desc:'Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles.'},

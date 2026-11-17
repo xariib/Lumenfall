@@ -38,6 +38,7 @@ function fixedState(q, options = {}) {
   s._autoTapAccum = options.tapPhase || 0;
   s.totalTaps = options.ordinal || 0;
   s.research.charge = options.swift || 0;
+  s.longStudyLevels.supportduration=options.endurance||0;
   if(s.research.charge>10)s.schemaVersion=3;
   Object.assign(s.research, options.forge === undefined ? CHARGE_CAPS : options.forge);
   for (const id of options.ultimates || []) {
@@ -152,16 +153,16 @@ function savedSupportBounds(source, checks) {
 
 function supportClockLowerBound(source, checks) {
   // A saved cast deadline is rounded at epoch precision; the scheduler retains
-  // finer phase. At this legitimate partial bar every six-second cycle has a
+  // finer phase. At this legitimate partial bar at the earned Endurance8/Charge0 boundary each six-second cycle has a
   // slightly shortened three-second Support cast. Assuming exact uptime made
   // the old proposed lower bound exceed actual DPS by more than its slack.
   const a = app(source), q = a.q;
-  const s = fixedState(q, {party: ['aurora'], auto: false, phase: [17.0001], forge: {amplifiertrim: 5}});
+  const s = fixedState(q, {party: ['aurora'], auto: false, endurance:8, phase: [17.0001], forge: {amplifiertrim: 5}});
   // Independent shared-growth Aurora132 Power × ideal Support average,
   // divided by .006 regen, with the original half-HP-unit offset below it.
   s.spirits.aurora=132;
   const own=26*132*(1+.01*131)+352*Math.pow(132-70,2)*.9;
-  s.enemyMaxHp = own*(1+.30*3/6)/.006-.5;
+  s.enemyMaxHp = own*(1+.30*5.4/6)/.006-.5;
   s.enemyHp = 100000000;
   q.set(s);
   const assessment = q.assessment(120);
@@ -311,24 +312,30 @@ function verify(source) {
     {name: 'support-last', party: ['ember', 'gale', 'thorn', 'tide', 'aurora'], swift: 10, tolerance: .003},
     {name: 'one-support', party: ['titan', 'tide', 'stone', 'void', 'thorn'], swift: 30, tolerance: .003},
     {name: 'two-support-ultimate', ultimates: ['tide', 'aurora'], swift: 60, tolerance: .003},
+    {name: 'last-pre-sustained-endurance', endurance:7, ultimates:['tide','aurora'], swift:10, tolerance:.003},
+    {name: 'first-sustained-endurance', endurance:8, ultimates:['tide','aurora'], swift:10, tolerance:.003},
     {name: 'no-support', party: ['ember', 'stone', 'void', 'gale', 'thorn'], swift: 10, tolerance: .003},
     {name: 'no-auto-tap', auto: false, swift: 0, tolerance: .003},
     {name: 'relay-only', forge: {relay: 5}, swift: 0, tolerance: .003},
     {name: 'tap-only', forge: {tapconduit: 5}, swift: 10, tolerance: .003},
     {name: 'refund-only', forge: {sustainedchannel: 5}, swift: 30, tolerance: .003},
-    {name: 'new-zero', forge: {}, swift: 0, tolerance: .003}
+    {name: 'new-zero', forge: {}, swift: 0, tolerance: .003},
+    {name:'support-hit-without-charge-grants',forge:{resonantedge:5,amplifiertrim:5},swift:0,tolerance:.003},
+    {name:'sustained-support-without-charge-grants',forge:{resonantedge:5},endurance:8,swift:2,tolerance:.003}
   );
   for (const config of cases) {
+    if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration '+config.name+'\n');
     const a = app(source), q = a.q;
     q.set(fixedState(q, config));
     const initial = clone(q.get()), profile = q.profile(config.depth || 120);
     for (const id of config.ultimates || []) checks.eq(initial.wispUltimate[id], true, 'calibration Ultimate survives real normalization: ' + id);
     checks.eq(q.get(), initial, config.name + ': HUD profile is pure');
-    if (config.name === 'new-zero') {
+    if (['new-zero','support-hit-without-charge-grants','sustained-support-without-charge-grants'].includes(config.name)) {
       checks.eq(profile, null, 'zero new charge effects retain the legacy estimate path');
     } else {
       const independentCycle=Math.max(10/3,6/(1+.08*Math.min(config.swift||0,10)));
-      const precise=initial.activeParty.some(id=>['tide','aurora'].includes(id))&&independentCycle<6;
+      const minimumRecast=[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][config.endurance||0];
+      const precise=initial.activeParty.some(id=>['tide','aurora'].includes(id))&&Math.abs(Math.max(independentCycle,minimumRecast)-independentCycle)>1e-9;
       checks.eq(profile.warmCycles, precise?1024:64, config.name + ': documented burn-in');
       checks.eq(profile.measuredCycles, precise?4096:256, config.name + ': documented measured cycles');
       checks.near(profile.cycleSeconds, Math.max(10/3,6 / (1 + .08 * Math.min(config.swift || 0,10))), 2e-15, config.name + ': independent capped natural cycle');
@@ -342,7 +349,7 @@ function verify(source) {
     const measured = observe(a, cycle * 4096, CLOCK + warmSeconds * 1000, checks);
     let worstRateError = 0;
     for (const id of initial.activeParty) {
-      const rate = profile ? profile.rates[id] : 1 / cycle;
+      const rate = profile ? profile.rates[id] : 1 / (['tide','aurora'].includes(id)?Math.max(cycle,[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][config.endurance||0]):cycle);
       const error = Math.abs(rate - measured.rates[id]) / measured.rates[id];
       worstRateError = Math.max(worstRateError, error);
       checks.ok(Number.isFinite(error) && error <= config.tolerance,
@@ -365,11 +372,17 @@ function verify(source) {
       casts: measured.counts, autoTaps: measured.taps, events: measured.events
     });
   }
+  if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration savedSupport\n');
   const savedSupport = savedSupportBounds(source, checks);
+  if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration boundCases\n');
   const boundCases = stressBounds(source, checks);
+  if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration burst\n');
   const burst = burstGuard(source, checks);
+  if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration supportClock\n');
   const supportClock = supportClockLowerBound(source, checks);
+  if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration cadenceCounter\n');
   const cadenceCounter = cadenceCounterBounds(source, checks);
+  if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration timerPrecision\n');
   const timerPrecision = timerPrecisionBounds(source, checks);
   return {checks: count, calibrationCases: measurements.length, measurements,
     savedSupport, boundCases, burstGuard: burst, supportClockLowerBound: supportClock,
@@ -403,6 +416,8 @@ if (require.main === module) {
       assert.equal(text.split(anchor).length, 2, 'one ' + label + ' mutation anchor');
       return text.replace(anchor, replacement);
     }
+    rejects('twelve-second-support-phase-alias',()=>verify(replaceOne(source,'rank<8 ? 13-0.2*rank : 4.8','rank<8 ? 12-0.2*rank : 4.8','Support phase alias')),'phase-101-swift0: HUD cast rate ember');
+    rejects('ignore-support-recast-without-charge-grants',()=>verify(replaceOne(source,"Amount.div(abilityBurstDamage(sp, depth),sp.abilityType==='support' ? supportCycleSeconds() : cycle)",'Amount.div(abilityBurstDamage(sp, depth),cycle)','Support fallback interval')),'aggregate HUD damage');
     rejects('ignore-initial-burst-budget', () => burstGuard(source, checks, true),
       'near-ready original cast kills the boss');
     const savedAnchor = 'upperSources[id]=Amount.max(1,saved[id].mult)';
@@ -418,7 +433,7 @@ if (require.main === module) {
     rejects('omit-stored-epoch-rounding-from-hud-reference',()=>verify(replaceOne(source,rounded,'recast[i]=u+m.recastCycle;','stored epoch rounding')),'HUD cast rate');
     let exactUptime = replaceOne(source, 'supportRate=0,upperSources=', 'supportRate=0,lowerBuff=1,upperSources=', 'Support lower accumulator');
     exactUptime = replaceOne(exactUptime, 'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);',
-      'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);\n      lowerBuff+=(profile.strength-1)*Math.min(1,profile.durationMs/1000*f/100);', 'exact Support uptime');
+      'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);\n      lowerBuff+=(profile.strength-1)*Math.min(1,profile.durationMs/1000/supportCycleSeconds());', 'exact Support uptime');
     exactUptime = replaceOne(exactUptime, 'var passive=passiveWispDpsAt(depth),lower=passive,upper=',
       'var passive=passiveWispDpsAt(depth),lower=passive*lowerBuff,upper=', 'buffed guaranteed passive');
     rejects('assume-exact-support-deadline-uptime', () => supportClockLowerBound(exactUptime, checks),

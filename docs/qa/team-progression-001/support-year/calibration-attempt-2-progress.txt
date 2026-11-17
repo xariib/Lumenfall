@@ -1,0 +1,52 @@
+Calibration canonical-101-swift0
+Calibration phase-101-swift0
+Calibration canonical-120-swift0
+Calibration phase-120-swift0
+Calibration canonical-101-swift10
+Calibration phase-101-swift10
+Calibration canonical-120-swift10
+Calibration phase-120-swift10
+Calibration canonical-101-swift30
+Calibration phase-101-swift30
+Calibration canonical-120-swift30
+Calibration phase-120-swift30
+Calibration canonical-101-swift60
+Calibration phase-101-swift60
+Calibration canonical-120-swift60
+Calibration phase-120-swift60
+Calibration support-first
+Calibration support-last
+Calibration one-support
+Calibration two-support-ultimate
+Calibration last-pre-sustained-endurance
+Calibration first-sustained-endurance
+Calibration no-support
+Calibration no-auto-tap
+Calibration relay-only
+Calibration tap-only
+Calibration refund-only
+Calibration new-zero
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: new-zero: HUD cast rate tide error 1.1671957671957671 exceeds 0.003; profile=0.16666666666666666, actual=0.076904296875
+    at Object.ok (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:291:42)
+    at verify (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:353:14)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\forge-expansion-calibration.cjs:394:18)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

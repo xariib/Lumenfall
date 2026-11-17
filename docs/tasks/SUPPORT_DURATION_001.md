@@ -6,6 +6,12 @@ DOM, TalkBack and human pacing acceptance remain open. [PR57](https://github.com
 merged at `f16ffd9b4319ff64fe3ecfb28ddc07a881620ec8`. Owner: this chat; no other
 chats, agents or message tools used. Keep this chat open for outstanding human acceptance.
 
+17 November correction: the user supersedes the90-day uptime target with
+roughly one year of earned late progression. Current correction is owned by
+[TEAM_PROGRESSION_001](TEAM_PROGRESSION_001.md); see
+[year-earned Support](../decisions/2026-11-17-year-earned-support.md). The0.2.128
+implementation/evidence below remains historical and is not the current target.
+
 ## Original requirements and decisions
 
 16 November 2026:

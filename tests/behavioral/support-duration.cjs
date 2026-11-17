@@ -35,18 +35,23 @@ function verify(html){
  q.ascend();eq(q.get().activeStudies,work,'Ascend retains paid duration work');
  // Existing buff snapshots keep their own strength and expiry at completion.
  let s=best();s.supportBuffs={version:1,sources:{tide:{until:CLOCK+8000.375,mult:1.5}}};
+ s.supportRecastUntil={tide:CLOCK+5000.125,aurora:CLOCK+6000.25};
  s.activeStudies=[{id:'supportduration',slot:0,remainingSec:1,totalDurationSec:55542858,speedMult:1}];q.set(s);q.finish(1);
- eq(q.get().longStudyLevels.supportduration,1,'actual completion earns one level');eq(q.get().supportBuffs,s.supportBuffs,'completion never refreshes or strengthens saved casts');
+ eq(q.get().longStudyLevels.supportduration,1,'actual completion earns one level');eq(q.get().supportBuffs,s.supportBuffs,'completion never refreshes or strengthens saved casts');eq(q.get().supportRecastUntil,s.supportRecastUntil,'completion never rewrites existing paid recast snapshots');
  // Independent fastest-case arithmetic and the real continuously paid queue.
  s=best();s.studyQueue.supportduration=true;q.set(s);const durations=Array.from({length:10},(_,i)=>q.duration('supportduration',i));
  durations.forEach((d,i)=>{eq(d,31104000,'45-day minimum work after maximum reductions '+i);ok(d/8>=45*DAY,'each level at least45 days at8x');});
- const firstUptimeSeconds=(durations[0]+durations[1])/8;ok(firstUptimeSeconds>=90*DAY,'first sustainable duration cannot arrive before90 days');
- ok(firstUptimeSeconds<90*DAY+1,'target is approximately90 days, not an accidental longer curve');
+ const twoLevelSeconds=(durations[0]+durations[1])/8,firstUptimeSeconds=durations.slice(0,8).reduce((a,b)=>a+b,0)/8;
+ ok(firstUptimeSeconds>=360*DAY,'first sustained milestone cannot arrive before360 dedicated days');
+ ok(firstUptimeSeconds<360*DAY+1,'first sustained milestone is approximately360 fastest days');
  world.clock(CLOCK);ok(q.startAt('supportduration',0),'real best-case start');ok(q.boost('supportduration',8,24),'real paid8x');ok(q.boostPreference('supportduration',8,24,true),'explicit renewal consent');
  const summary=q.summary(0),motes=q.get().motes;
- q.studyOnly(firstUptimeSeconds-1,CLOCK,summary);eq(q.get().longStudyLevels.supportduration,1,'one second before milestone still only level1');
+ q.studyOnly(twoLevelSeconds-1,CLOCK,summary);eq(q.get().longStudyLevels.supportduration,1,'one second before milestone still only level1');
  ok(summary.studySpeedPurchases>=89,'cannot skip daily paid boost renewals');eq(q.get().motes,motes-summary.studyMotesSpent+summary.motesGained,'paid renewal Motes conserved');
- q.studyOnly(2,CLOCK+(firstUptimeSeconds-1)*1000,summary);eq(q.get().longStudyLevels.supportduration,2,'milestone actually completes after90 days');
+ q.studyOnly(2,CLOCK+(twoLevelSeconds-1)*1000,summary);eq(q.get().longStudyLevels.supportduration,2,'existing first two levels still complete after90 days');
+ q.studyOnly(firstUptimeSeconds-twoLevelSeconds-2,CLOCK+(twoLevelSeconds+1)*1000,summary);eq(q.get().longStudyLevels.supportduration,7,'one second before sustained milestone still only level7');
+ q.studyOnly(2,CLOCK+(firstUptimeSeconds-1)*1000,summary);eq(q.get().longStudyLevels.supportduration,8,'sustained milestone actually completes after360 days');
+ ok(summary.studySpeedPurchases>=359,'360-day target retains every daily paid boost renewal');eq(q.get().motes,motes-summary.studyMotesSpent+summary.motesGained,'all360-day Mote payments conserved');
  records.push({firstUptimeDays8x:firstUptimeSeconds/DAY,fullTrackDays8x:durations.reduce((a,b)=>a+b,0)/(8*DAY),paidRenewals:summary.studySpeedPurchases});
  // Strength and other outputs are unchanged at every duration rank; cap is
  // effective only, preserving raw legacy ownership and already-cast records.
@@ -56,11 +61,13 @@ function verify(html){
   eq(q.get().longStudyLevels.supportduration,rank,'raw paid ownership retained');
  }
  // Integrate each independent source's actual deadline over 20 natural cycles.
- // At rank0/1 it has gaps; rank2 is continuous only with enough Charge Rate.
- for(const rank of [0,1,2,7,10])for(const charge of [0,5,10])for(const kind of ['live','offline']){
+ // Through rank7 downtime exceeds active time; rank8 needs enough Charge Rate.
+ for(const rank of [0,1,2,3,4,5,6,7,8,9,10])for(const charge of [0,1,2,5,10])for(const kind of ['live','offline']){
   const w=combat(html),b=w.q;s=funded();s.depth=s.enemyDepth=99;s.enemyHp=s.enemyMaxHp=1e100;s.research.charge=charge;s.longStudyLevels.supportduration=rank;
   s.heroResource.tide=s.heroResource.aurora=100;b.set(s);
-  const cycle=Math.max(6/(1+.08*charge),6-1.2*Math.min(2,rank)),duration=3+.3*rank,castStarts={tide:[],aurora:[]};
+  const cycle=Math.max(6/(1+.08*charge),[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][rank]),duration=3+.3*rank,castStarts={tide:[],aurora:[]};
+  if(rank<8){ok(cycle-duration>duration,'inactive time exceeds active time through rank7');ok(2*duration/cycle<1,'even perfect two-source staggering cannot sustain early coverage');}
+  if(rank===8){eq(duration>=cycle,charge>=2,'actual first sustained milestone still requires sufficient natural Charge');}
   let at=CLOCK;
   for(let i=0;i<20;i++){
    w.clock(at);b.abilities(kind,at);
@@ -74,14 +81,14 @@ function verify(html){
    at=b.get().supportRecastUntil.tide;
   }
   const expectedMult=1+Math.min(1,duration/cycle);near(b.averageBuff(99),expectedMult,'HUD time average at duration milestone');
-  ok(b.supportDescription('tide').includes('for '+duration+'s'),'Wisp description shows researched duration');
-  ok(b.ultimateDescription('aurora').includes('for '+duration+'s'),'Ultimate description shows researched duration');
+  ok(b.supportDescription('tide').includes('for '+Number(duration.toFixed(1))+'s'),'Wisp description shows researched duration');
+  ok(b.ultimateDescription('aurora').includes('for '+Number(duration.toFixed(1))+'s'),'Ultimate description shows researched duration');
   // The number on Rift is passive power, distinct from own Power and burst.
   near(b.chip('tide'),b.power('tide')*(1+50*.02)*1.2*2,'Rift chip includes passive research, ten owned Rarity tiers and both current Support buffs');
   records.push({rank,charge,kind,duration,cycle,continuous:duration>=cycle});
  }
  // Authoritative simulation parity through overlapping casts and expiries.
- for(const rank of [1,2,10]){
+ for(const rank of [1,2,7,8,10]){
   s=funded();s.depth=s.enemyDepth=99;s.enemyHp=s.enemyMaxHp=1e100;s.longStudyLevels.supportduration=rank;
   function run(kind,steps){const w=combat(html);w.q.set(s);let now=CLOCK;for(const dt of steps){w.q.advance(dt,{kind,visual:false,clockStartMs:now,offlineWindowStartMs:CLOCK});now+=dt*1000;}return clone(w.q.get());}
   const whole=run('live',[60]),offline=run('offline',[60]),split=run('live',Array(60).fill(1));
@@ -94,6 +101,8 @@ function verify(html){
 }
 const controls=[
  ['free-uptime',"durationMs:3000+300*labExpansionLevel('supportduration')",'durationMs:6000'],
+ ['early-sustained-rank','rank<8 ? 13-0.2*rank : 4.8','rank<2 ? 12-0.2*rank : 4.8'],
+ ['rejected-three-second-gap','return Math.max(abilityCycleSeconds(),rank<8 ? 13-0.2*rank : 4.8);',"return Math.max(abilityCycleSeconds(),6-1.2*Math.min(2,labExpansionLevel('supportduration')));"],
  ['short-work','rankWorkSec:[55542858]','rankWorkSec:[86400]'],
  ['early-access','supportduration:{depth:500,studies:{wispdamage:50,ultimateanalysis:5}}','supportduration:{depth:1,studies:{}}'],
  ['no-duration',"durationMs:3000+300*labExpansionLevel('supportduration')",'durationMs:3000']

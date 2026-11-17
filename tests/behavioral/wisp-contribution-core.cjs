@@ -86,13 +86,14 @@ function preservation(html,baseline){
  approvedRule('var ABILITY_BASE_CYCLE_SEC = 6;','var ABILITY_BASE_CYCLE_SEC = 6;\nvar ABILITY_MIN_CYCLE_SEC = 10 / 3;');
  approvedRule("function fillRateMult(level){ return researchFactor('charge',level); }\nfunction abilityCycleSeconds(level){ return ABILITY_BASE_CYCLE_SEC / fillRateMult(level); }","function abilityCycleSeconds(level){ return Math.max(ABILITY_MIN_CYCLE_SEC,ABILITY_BASE_CYCLE_SEC / researchFactor('charge',level)); }\nfunction fillRateMult(level){ return Math.min(researchFactor('charge',level),ABILITY_BASE_CYCLE_SEC / ABILITY_MIN_CYCLE_SEC); }");
  // F18 changes only the approved duration/recast policy in the historical
- // world. Its scheduler, charge arithmetic and Wisp formulas stay original.
+ // world. The17 November correction uses13s at unpurchased Endurance.
+ // Its scheduler, charge arithmetic and Wisp formulas stay original.
  // Independent interval-union/payment/save checks live in support-recast-current.
  approvedRule('buffUntil:0, buffMult:1, supportBuffs:null,','buffUntil:0, buffMult:1, supportBuffs:null, supportRecastUntil:{tide:0,aurora:0},');
  approvedRule('out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);',
   'out.supportBuffs = normalizeSupportBuffs(source.supportBuffs,out.research);\n    if(source.supportRecastUntil)out.supportRecastUntil=clonePersistedValue(source.supportRecastUntil);');
  approvedRule('durationMs:ultimate ? 8000 : 4000','durationMs:3000');
- approvedRule('var uptime = Math.min(1, (profile.durationMs/1000) / cycle);','var uptime = Math.min(1, (profile.durationMs/1000) / 6);');
+ approvedRule('var uptime = Math.min(1, (profile.durationMs/1000) / cycle);','var uptime = Math.min(1, (profile.durationMs/1000) / 13);');
  approvedRule('function simulationNextAbilitySeconds(){','function simulationNextAbilitySeconds(nowMs,clock){');
  approvedRule('next = Math.min(next,Math.max(0,(100-cur)/fillPerSec));',
   'var delay=(id===\'tide\'||id===\'aurora\') ? supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock) : 0;\n    next = Math.min(next,Math.max(0,(100-cur)/fillPerSec,delay));');
@@ -101,7 +102,7 @@ function preservation(html,baseline){
  approvedRule('if(!sp) continue;\n    var run=ascendRunToken,relay=',
   'if(!sp) continue;\n    if(sp.abilityType===\'support\' && supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock)>SIM_EPS)continue;\n    var run=ascendRunToken,relay=');
  approvedRule('// buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.',
-  'state.supportRecastUntil[sp.id]=nowMs+6000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
+  'state.supportRecastUntil[sp.id]=nowMs+13000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
  approvedRule('var charge=ids.map(function(){return 0;}),until=ids.map(function(){return 0;}),counts=',
   'var charge=ids.map(function(){return 0;}),until=ids.map(function(){return 0;}),available=ids.map(function(){return 0;}),counts=');
  approvedRule('if(charge[i]<100-1e-7) return;','if(charge[i]<100-1e-7 || (m.support && u+1e-9<available[i])) return;');
@@ -124,7 +125,7 @@ function preservation(html,baseline){
  var oldStart=baseline.indexOf('var forgeProfileCache='),oldEnd=baseline.indexOf('function forgeBossAssessment(',oldStart);
  var newStart=html.indexOf('var forgeProfileCache='),newEnd=html.indexOf('function forgeBossAssessment(',newStart);
  assert(oldStart>=0&&oldEnd>oldStart&&newStart>=0&&newEnd>newStart,'explicit display-only reference range');
- baseline=baseline.slice(0,oldStart)+'function supportCycleSeconds(){return 6;}\nfunction gameplayNowMs(){return Date.now();}\n'+html.slice(newStart,newEnd)+baseline.slice(oldEnd);
+ baseline=baseline.slice(0,oldStart)+'function supportCycleSeconds(){return 13;}\nfunction gameplayNowMs(){return Date.now();}\n'+html.slice(newStart,newEnd)+baseline.slice(oldEnd);
  var before=world(baseline),after=world(html),ids=clone(after.spirits()).map(function(s){return s.id;}),checks=0,cases=[];
  function eq(a,b,m){checks++;assert.deepStrictEqual(clone(a),clone(b),m);}
  function oldFields(s){

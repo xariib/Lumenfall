@@ -1,5 +1,13 @@
 # Lumenfall — current delivery status
 
+17 November correction in progress: [TEAM_PROGRESSION_001](tasks/TEAM_PROGRESSION_001.md)
+reopened by user. Support downtime must exceed active duration until a very
+late earned milestone, around one year. Planned3s active/13s recast, Endurance8
+plus Charge for sustained cycling after at least360 fastest dedicated research
+days. Preserve paid work/saves and the other0.2.130 changes. Public0.2.130 below
+is the baseline; this correction is not yet implemented or released.
+
+
 17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) shipped as
 [Android 0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130), source`52fae53d`.
 Manual higher-record Ascension replaces Auto-Ascend with once-only100-Comet

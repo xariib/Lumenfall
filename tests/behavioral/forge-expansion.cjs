@@ -394,7 +394,7 @@ function savedValues(html, a) {
     const state=battle(q,['tide']);state.research.amplifiertrim=5;state.supportBuffs={version:1,sources:{tide:{mult,until:CLOCK+1234}}};q.set(state);a.ok(!q.get().supportBuffs.sources.tide,'malformed strength never rounded onto paid lattice');
   }
   const state=battle(q,['tide']);state.lumen=state.shards=1e9;q.set(state);cast(q,'tide');const old=clone(q.get().supportBuffs);q.buy('amplifiertrim',1);a.eq(q.get().supportBuffs,old,'purchase does not reinterpret an existing cast');
-  q.get().heroResource.tide=100;q.abilities('live',CLOCK+6000);a.eq(q.get().supportBuffs.sources.tide.mult,1.26,'next actual cast gains purchased strength');q.save();a.eq(app(html,x.storage).q.get().supportBuffs,q.get().supportBuffs,'new paid strength cold reload');
+  q.get().heroResource.tide=100;q.abilities('live',CLOCK+13000);a.eq(q.get().supportBuffs.sources.tide.mult,1.26,'next actual cast gains purchased strength');q.save();a.eq(app(html,x.storage).q.get().supportBuffs,q.get().supportBuffs,'new paid strength cold reload');
 }
 
 function paidAscendSeed(q, automatic, depth = 21) {
@@ -626,7 +626,9 @@ function controllerCases(html,a,mutant=false) {
   farm.spirits.ember=1000;q.set(farm);a.eq(q.assessment(20).verdict,'sustained','guaranteed lower damage proves retry');result=advance(q,0,'offline');a.eq(q.get().riftMode,'push','actual safe retry enters Push');a.eq(q.get().depth,20,'actual retry targets saved boss');a.eq(result.retries,1,'actual safe retry recorded');
 
   const profile=battle(q,['tide','ember','stone'],20);profile.research.tapconduit=5;profile.research.relay=5;profile.research.sustainedchannel=5;profile.achieved.autotap=true;q.set(profile);
-  const before=clone(q.get()),reference=q.profile(20);a.ok(reference && reference.eventCount>0 && reference.eventCount<=12000,'bounded actual charge profile');a.eq(Object.keys(reference.rates),profile.activeParty,'one cast rate per powered Active');a.ok(reference.supportMult>=1 && reference.supportMult<=1.25,'reference Support time average bounded by actual strength');a.eq(q.get(),before,'HUD profile has no game-state side effects');
+  const before=clone(q.get()),reference=q.profile(20);a.ok(reference && reference.eventCount>0 && reference.eventCount<=180000,'bounded independent-cycle actual charge profile');a.eq(Object.keys(reference.rates),profile.activeParty,'one cast rate per powered Active');a.ok(reference.supportMult>=1 && reference.supportMult<=1.25,'reference Support time average bounded by actual strength');a.eq(q.get(),before,'HUD profile has no game-state side effects');
+  a.eq(reference.warmCycles,1024,'independent Support interval uses existing long burn-in');a.eq(reference.measuredCycles,4096,'independent Support interval uses existing long sample');
+  const aligned=clone(profile);aligned.longStudyLevels.supportduration=10;q.set(aligned);const short=q.profile(20);a.eq(short.warmCycles,64,'aligned Support/natural cycles retain original short burn-in');a.eq(short.measuredCycles,256,'aligned cycles retain original short sample');a.ok(short.eventCount>0&&short.eventCount<=12000,'original aligned-cycle event bound retained');q.set(profile);
   const powerChanged=clone(profile);powerChanged.spirits.ember=100;powerChanged.heroResource.ember=88;powerChanged.lumen=1e8;powerChanged.shards=1e8;q.set(powerChanged);a.eq(q.profile(20),reference,'sustained reference excludes mutable charge, wallets and power');
   const swift=clone(profile);swift.schemaVersion=3;swift.research.charge=30;q.set(swift);const faster=q.profile(20);a.ok(faster.cycleSeconds<reference.cycleSeconds,'natural fill invalidates cached profile');a.ok(faster.rates.ember>reference.rates.ember,'faster natural fill has faster measured casts');
   const ultimate=clone(profile);ultimate.wispUltimate.tide=true;ultimate.heroRarity.tide=5;q.set(ultimate);a.ok(q.profile(20).supportMult>reference.supportMult,'Support Ultimate invalidates duration/strength profile');
