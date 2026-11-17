@@ -39,3 +39,10 @@ Selected final screenshots: [gold at100%](wisp-gold-320-1.png),
 [gold at200%](wisp-gold-320-2.png), [Lab at200%](upgrades-320-2.png).
 Visual self-review observed static gold borders and readable red prices.
 GitHub CI/integration and signed Android build/delivery are pending.
+
+Initial [main CI log](ci-initial-main.log) stops at the unchanged32KiB startup
+gate. Duplicate12 November summaries already preserved in the linked history
+were shortened; the largest required task now totals31,954 bytes. The local
+[existing required-entry log](windows-required-entry.log) records its unchanged
+240s timeout/no receipt; this does not count as an accepted run. All initial
+failures remain visible while current-head Linux CI is pending.

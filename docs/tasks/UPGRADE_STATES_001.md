@@ -86,3 +86,20 @@ Self-review only. No gameplay price, cap, balance, schema or save reset changes.
 Next: complete final browser/controls, save evidence, open PR and run required
 CI; integrate only after passing checks, then signed Android acceptance/release.
 Integration/build not yet started. Physical-phone/WebView60/TalkBack remain open.
+
+## PR61 checkpoint
+
+[PR61](https://github.com/xariib/Lumenfall/pull/61), initial head `2518e7e8`.
+Wisp scroll, Comet/Deeds, permanent progression and isolated offline CI passed.
+Initial main job44064381284 failed before gameplay checks: shared startup plus
+the exploit task exceeded32KiB after the new rule/status; the Forge/Lab task was
+already58 bytes over on main. Duplicate12 November summaries were already
+preserved in the linked14 November history. Shortening those duplicates gives
+31,497/31,954 bytes for these two tasks with the unchanged32KiB gate; no source
+history, requirements or evidence was deleted. Main CI must run again.
+
+Local existing affordability entry hit its unchanged240s subprocess deadline
+before producing a receipt. Its log is retained; final15,252 focused assertions
+and three causal controls passed separately. Linux required-entry acceptance is
+still pending. No deadline or assertion was weakened. Other openPR59 (Forge
+caps) andPR60 (Rift screen) are separate; recheck main before integration.

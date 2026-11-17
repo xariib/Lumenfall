@@ -83,34 +83,10 @@ and paid work; retail launch/public bytes passed. [Full evidence](qa/rift-theme-
 retains the first native ANR and passing unchanged retry; cause is unproven.
 Physical-phone/WebView60/TalkBack/human acceptance and independent review are open.
 
-12 November: [PR42 Forge/Lab update and full evidence](tasks/ENDLESS_FORGE_LAB_PACING_002.md)
-released as [Android0.2.110](https://github.com/xariib/Lumenfall/releases/tag/android-1000110).
-Tempering continues past300; eight Lab studies require earned first access,
-retaining paid work. Eight workflows,220 scenarios, offline catch-up, signed
-upgrade/updater, retail launch and public bytes/feed passed at `dc78daad`.
-PR46 is excluded; physical-phone/WebView60/TalkBack/human acceptance is open.
-
-12 November: [Pending proposal review](tasks/PR42_PR46_REVIEW_20261112.md)
-initially kept PR42's Forge/Lab proposal open and closed PR46 without merging. The
-automatic-only reset delay strongly favors repetitive manual reward farming
-in the controlled comparison, contrary to the mostly-idle direction. The
-underlying rapid-repeat economy issue remains open; that review changed no gameplay.
-
-12 November: [Exploit and balance hunt](tasks/EXPLOIT_BALANCE_HUNT_001.md)
-released as [Android 0.2.107](https://github.com/xariib/Lumenfall/releases/tag/android-1000107) through PR47.
-It closes untrusted-action timing bypasses and a paid Lab work helper defect,
-uses 10,000 combat defeats for Auto-Tap, and eases later recruitment by one Lab
-level. All eight integrated workflows passed at `18e7072c`.
-Signed save-preserving upgrade, in-app update, retail-image normal launch and
-anonymous public APK/assets/feed verification passed. Thirty-day idle results
-and [delivery evidence](qa/exploit-balance-hunt-001/README.md) are saved.
-Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
-local saves remain a trust boundary. PR42 was separate at that release; its later
-delivery and PR46's subsequent closure are recorded above.
-
 [Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
 preserve all prior release versions, hashes, receipts, first failures and known
-limitations, including Android0.2.104/0.2.98/0.2.95 and preceding deliveries.
+limitations, including PR42/Android0.2.110, the closed PR46 proposal, exploit
+fixes/Android0.2.107 and preceding deliveries.
 [October history](PROJECT_STATE_2026-11-04_HISTORY.md) retains earlier records.
 
 Physical-phone, exact WebView60 DOM, TalkBack and human pacing/performance acceptance
