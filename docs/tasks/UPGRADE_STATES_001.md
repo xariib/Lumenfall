@@ -126,7 +126,7 @@ menu comparison passed398 checks/12 profiles on both released main and candidate
 the earlier partial combined run remains FAIL with unproven cause. Canonical
 four-window hashes remain exactly unchanged. Full current-head CI remains next.
 
-Latest product SHA256
+Horizontal-row candidate SHA256
 `cd2f1e7927db77e6956b0b8f3245bfee2a47f8042cc55c2a86a0d7a8db621ffd`.
 CIb0 passed the complete Lab-simple sequence, then caught an introduced Empower
 horizontal-layout regression in the existing p1-05 control scenario. Restored
@@ -136,3 +136,11 @@ contrast and affordability funding. New focused checks additionally assert
 horizontal44px Empower rows together with long-price fit. A local focused
 retry timed out before initialization (zero checks); retained as FAIL.
 Canonical endpoints remain unchanged. Required CI must rerun on this version.
+
+Current product SHA256
+`84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2`.
+Locked Ability now uses the existing single “Recruit first” instruction so
+control-state presentation cannot append a second recruitment hint. Focused
+coverage asserts one instruction. Canonical full-state endpoints remain
+unchanged. Next: complete exact-head CI, integrate serially, run integrated
+checks, then signed Android delivery. No further source changes are planned.

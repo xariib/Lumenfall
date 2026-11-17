@@ -78,6 +78,7 @@ async function run(){
    if(key!=='empower' && !(key==='module'&&id==='ember')){
     const locked=copy();if(key==='rarity'){locked.heroRarity[id]=0;locked.spirits[id]=1;}if(key==='module'){locked.wispModules[id]=0;locked.spirits[id]=0;}if(key==='ultimate'){locked.wispUltimate[id]=false;locked.heroRarity[id]=0;}if(key==='mastery')locked.research.masterwork=0;
     await install(locked,'spirits');const r=await observe(selector);ok(r.disabled&&!r.prices.length&&/Requires|Recruit/.test(r.text),'locked action explains unlock without prices '+selector+' '+JSON.stringify(r));
+    if(key==='module')ok((r.text.match(/Recruit/g)||[]).length===1,'locked ability has one clear recruitment instruction');
     await ev('upgradeQa.patch('+JSON.stringify({spirits:s.spirits,heroRarity:s.heroRarity,research:s.research})+')');ok((await observe(selector)).prices.length>0,'live prerequisites reveal price '+selector);
    }
   }

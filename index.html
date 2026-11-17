@@ -6807,7 +6807,7 @@ function wispUpgradeUnlockText(sp,plan){
 }
 function wispUpgradeButtonMarkup(sp,key,plan){
   if(key==='empower')return '<strong>'+(plan.reason==='maxed'?'Maxed':plan.reason==='locked'?wispRecruitmentRequirementText(sp):plan.reason==='unavailable'?'Price unavailable at this value':state.spirits[sp.id]>0?'Empower':'Recruit')+'</strong>'+(['available','unaffordable'].indexOf(plan.reason)!==-1?purchasePriceMarkup('lumen',plan.cost,'mono'):'');
-  if(key==='module')return plan.reason==='recruit'?'Recruit this Wisp first':'<span class="wisp-purchase-title">'+MODULE_INFO[sp.abilityType].upgradeLabel+'</span>'+purchasePriceMarkup('lumen',plan.cost.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',plan.cost.shard,'wisp-upgrade-price');
+  if(key==='module')return plan.reason==='recruit'?'Recruit first':'<span class="wisp-purchase-title">'+MODULE_INFO[sp.abilityType].upgradeLabel+'</span>'+purchasePriceMarkup('lumen',plan.cost.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',plan.cost.shard,'wisp-upgrade-price');
   if(!plan.eligible)return wispUpgradeUnlockText(sp,plan);
   var label=key==='rarity'?'Rarity Up':key==='ultimate'?'Unlock Ultimate':'Mastery Up';
   return '<span class="wisp-purchase-title">'+label+'</span>'+(key==='rarity'?purchasePriceMarkup('lumen',plan.cost.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',plan.cost.shard,'wisp-upgrade-price'):key==='ultimate'?purchasePriceMarkup('sigil',plan.cost,'wisp-upgrade-price'):purchasePriceMarkup('prism',plan.cost.prism,'wisp-upgrade-price')+purchasePriceMarkup('sigil',plan.cost.sigil,'wisp-upgrade-price'));

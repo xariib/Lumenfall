@@ -1,6 +1,6 @@
 # Upgrade states — candidate evidence
 
-Current product SHA256: `cd2f1e7927db77e6956b0b8f3245bfee2a47f8042cc55c2a86a0d7a8db621ffd`.
+Current product SHA256: `84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2`.
 Baseline main: `b075cfba`. Node24.22.1, Chrome for Testing/headless shell157,
 Windows. Self-review only; no physical phone, exact WebView60 DOM or TalkBack.
 
@@ -72,3 +72,8 @@ price text can wrap. The unchanged [p1-05 scenario](horizontal-final.log) passes
 on current source; the new suite checks horizontal44px rows alongside price fit.
 An additional [Windows startup retry](wrapping-windows.json) failed before any
 assertions and is not accepted. Current-head required CI remains pending.
+
+Current source also keeps one “Recruit first” instruction on locked Ability
+buttons, matching existing control-state wording and avoiding duplicated hints.
+The canonical replay is regenerated on these exact bytes with unchanged full
+endpoints; the original horizontal scenario receipt binds its preceding row fix.
