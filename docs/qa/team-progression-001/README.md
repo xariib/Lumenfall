@@ -145,3 +145,76 @@ Late premerge references: remaining Astral Core replaces retired Auto-Ascend in 
 1320d896 specialist workflows all PASS. Main CI43996386528 passed through tooling/source/startup and failed only an obsolete offline recap assertion expecting zero automatic Ascensions to be printed as0 times. Current game correctly omits retired automatic reset copy. Updated assertion requires actual8h resource message and absence of Auto Ascend; both native offline UI variants PASS cold/resume/cancel/restart/failure/retry/daily rollover with both saves and original deadlines/teardown. Raw logs and failed remote receipt retained. Next run full PR gates at corrected checkpoint, then integrate and validate main before signed delivery.
 
 The unchanged main workflow requires the original causal discriminator for ascension-ledger cloning. The test retains that literal inside an explicitly historical stress message. Actual non-development browser positive and ascend-copy mutation both pass their expected outcomes with normal teardown; workflow definitions are unchanged.
+
+## Task continuation retained before native checkpoint
+
+17 November continuation: draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
+branch feature/team-progression-work, worktree C:/lf-team. Pushed e32656df,
+51966f91,f1820c2e,ae14bfd7. Main remains ba879406; root historical checkout untouched.
+All exact earlier milestones and initial failures are retained in
+[QA history](../qa/team-progression-001/README.md), including hash-bound CI logs.
+
+Implementation is complete as a candidate:6s initial Support recast with unchanged
+90-day earliest sustained per-source work; shared direct-damage growth; original
+utility currency curve; matching passive DPS and separate base/Support/ability
+readouts; manual higher-record resets and once-only100-Comet owner refund.
+Supplied save fixture preserves balances, work, boosts, roster, levels, history
+and recovery;20 Comets becomes120 once. No real player save/app was modified.
+Current supplied shares are Ember44%,Stone31%,Tide15%,Gale10%. Equal development
+gives Titan about25% in a legal five-member party and20% with six. The earlier
+below20% figure compares all eight owned Wisps. These are explicit tested
+configurations, not universal share caps. Actual future recruitment/fielding
+also leaves the new Titan below1% of the supplied developed roster's damage.
+
+Sourcea4dc5c83 atae14bfd7 passed remote Forge,Tree,Lab (both jobs),Comet,
+permanent progression,Wisp scroll (Linux/Windows),shared UI and isolated offline.
+Main CI stopped at a stale Auto-Ascend card reference in Workshop clarity; this
+is now changed to an available permanent investment. No workflow gates weakened.
+Other obsolete repeat/automatic/shop tests now assert manual records, no automatic
+payments, original prices, rollback, paid work, exact timers and recovery. Dormant
+trillion-reset math retains original operands through an explicitly historical
+adapter and immutable released-policy gzip; actual manual game stays mandatory.
+
+Current source081f82c0 adds legacy word-wrap fallback to the two new damage
+styles. Node24.22.1 focused suite passes1,170/seven controls. Tree economy14,078/
+six controls, numerical Prisms341,654/seven controls and actual V8 6.0 reward/save
+3,277 checks pass at their recorded hashes; previous full Node8.3(V8 6.0) lanes
+also pass remotely. Offline12h migration/transaction suite passes34 records.
+Four independently generated8h one-second windows have722/618/1161/678 kills,
+zero Ascends/Prisms. Their complete-state hashes are unchanged by the CSS-only
+fallback and bound to current source in offline-swift-current-golden.json.
+
+The new caption originally wrapped and shifted Empower; separate stable base
+and Support lines fix the unchanged original12-profile assertions. Those body
+assertions passed locally and in the main CI step; one local run failed graceful
+browser teardown, retained as failure. New native manual touch/keyboard and88
+contract checks pass. Cold-resume structural comparison now ignores object-key
+order only, preserving all fields, array order and exact numbers. Natural HP11
+quotient witnesses pin only their historical Power operand; current unmodified
+damage and actual Farm throughput have separate mandatory coverage.
+
+Local diagnostic main run stopped at80 emitted records due Windows profile
+cleanup EPERM; this is not full190-case acceptance. Its initial failures/raw
+artifacts are compressed with hashes. Existing CDP-pipe transport only; Linux
+default CI remains authoritative. A remaining-scenarios diagnostic is running
+under validation-evidence/remaining-browser. Targeted results/first transport
+failures are retained, including a successful causal readiness retry. No source
+or acceptance assumptions may be changed just to make a check pass.
+
+Next: publish current compatibility/golden/obsolete-reference checkpoint, obtain
+all required PR gates, finish discovered actual regressions, review complete diff,
+integrate serially and rerun integrated gates. Then build/publish established signed
+Android APK; verify save upgrade/updater/retail and anonymous public assets/feed.
+Phone, exact WebView60 DOM,TalkBack and human pacing are unobserved; retain that
+limitation and keep owner chat open. No archive/completion claim before delivery.
+
+Current continuation: source remains081f82c0. Legal-party feature coverage now1,228/seven controls; funded Workshop clarity1,264/36 profiles and offline-policy UI PASS. Latest specialist gates all pass; premerge stopped on now-fixed funded Astral card. Browser save/control/formation tests now explicitly assert retirement/refunds and manual boundary resets. Local positive bodies with failed teardown remain failures. Next push this coherent checkpoint and obtain complete Linux CI before merging.
+
+Remaining diagnostic completed116 scenarios with initial failures retained in compressed, hash-bound receipts. Corrected actual manual record fixture and paid owner receipt; final endgame currency utility and1h Farm parity PASS. Farm exercises2 retries,237 paid purchases,116 kills,zero Ascends, exact reference/split and three causal controls; duplicate transaction is rejected with whole-state rollback. Wisp resource reward oracle uses independent original130/680 base curves, separated from new damage. Manual timer/cadence, partial reconstruction, actual keyboard controls and backup restore bodies pass; some Windows browser-close failures remain failures. Product unchanged081f82c0.
+
+Late premerge references: remaining Astral Core replaces retired Auto-Ascend in all-resource affordability;6,228 native checks/12 profiles plus all four causal controls PASS. Lab slot milestones now cross through a player-selected new record at second1, with original queued payment/timestamp/whole-split-offline/paid work controls:244 checks/five controls PASS. Refund browser47 groups PASS:14,400 historical internal normalization boundaries explicitly use test-only readiness; this dormant stress path is not current manual game acceptance. Actual current manual save/refund/boundary coverage remains mandatory. Initial attempt without the retained normalization path failed canonical parity and is preserved. Permanent-progression CI3d98 failed before assertions at Browser.getVersion and artifact preservation; cause unproven, unchanged gate reruns on the next head.
+
+1320d896 specialist workflows all PASS. Main CI43996386528 passed through tooling/source/startup and failed only an obsolete offline recap assertion expecting zero automatic Ascensions to be printed as0 times. Current game correctly omits retired automatic reset copy. Updated assertion requires actual8h resource message and absence of Auto Ascend; both native offline UI variants PASS cold/resume/cancel/restart/failure/retry/daily rollover with both saves and original deadlines/teardown. Raw logs and failed remote receipt retained. Next run full PR gates at corrected checkpoint, then integrate and validate main before signed delivery.
+
+Latest checkpoint:485d4dcc5748196094ada932f8272f59a996bbd1, same product081f82c0. Main PR CI43999092361 is running; isolated offline PASS. Specialist Forge/Lab/Comet/permanent/Wisp PASS; Tree/Shared still running at observation. All17 main refund controls pass exact unchanged workflow assertions locally. Signed candidate build43999391752 (publication disabled) PASS save upgrade, updater install, retail launch, package/signature/assets; candidate0.2.129 SHA2562967f5adcdf9464998ea6f83d73904405e559d39cb4f923d5f245424e085cc9c. Installed Wisp screenshot visually inspected: clear current/base DPS and Support lines. Candidate evidence is staged locally under QA/android-candidate for the final delivery evidence commit; this is not public/integrated delivery. Next: await complete PR gates, merge exact checked head, dispatch nine integrated workflows, then build/publish a new signed APK from that main SHA and verify public assets. No permission questions, agents or chat changes.
+

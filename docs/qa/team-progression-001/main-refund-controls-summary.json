@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "controls": 17,
+  "records": [
+    {
+      "mutation": "handler",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "5e4a202798db6b3503fc5e082ace3e4d58db0195044c482d4bc1a5a44c307a83",
+      "expected": "UI maxed even with affordable wallet",
+      "assertion": "Error: Error: UI maxed even with affordable wallet 20",
+      "status": "PASS"
+    },
+    {
+      "mutation": "refund",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "4af3120ed76190aece4e4bbef8edc3085b06faa1604e5d8585bb1521e6d5ab05",
+      "expected": "refund receipt prevents a second credit",
+      "assertion": "Error: Error: refund receipt prevents a second credit 21",
+      "status": "PASS"
+    },
+    {
+      "mutation": "credit",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "5e4f28d9be3fa5d71019f18b6f50a0e850936a05b69bf925ca4279a121285825",
+      "expected": "fractional original wallet retains exact refund value",
+      "assertion": "Error: Error: fractional original wallet retains exact refund value",
+      "status": "PASS"
+    },
+    {
+      "mutation": "free-credit",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "f3fd997cc469b124617caf1c196f2f57c074343ba7663901fdd88e6489435b0c",
+      "expected": "real Swift3 price debits wallet and small credit exactly",
+      "assertion": "Error: Error: real Swift3 price debits wallet and small credit exactly",
+      "status": "PASS"
+    },
+    {
+      "mutation": "wallet",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "c87c6b5727a3e221e0df9d15f699a779689710b9aaad38176e3c433e4dbba753",
+      "expected": "large wallet quote conserves exact value",
+      "assertion": "Error: Error: large wallet quote conserves exact value",
+      "status": "PASS"
+    },
+    {
+      "mutation": "receipt",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "01dab0984f9739038bf0f0d1bae09bb2b7f0b56aa5c9646a25575e5e378ff480",
+      "expected": "wrong receipt amount rejects for recovery",
+      "assertion": "Error: Error: wrong receipt amount rejects for recovery",
+      "status": "PASS"
+    },
+    {
+      "mutation": "cache",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "4d8e8f725191ec988972cc000840699419e4aa7bcbc17fd782464fd95c14cf7f",
+      "expected": "completed large refund avoids repeated price calculation at Ascend boundaries",
+      "assertion": "Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+      "status": "PASS"
+    },
+    {
+      "mutation": "credit-record",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "7d7dda8356ee453032ae3694f7354aff1de0693be33117483a22a40be387a8fe",
+      "expected": "malformed persisted Prism credit rejects for recovery",
+      "assertion": "Error: Error: malformed persisted Prism credit rejects for recovery",
+      "status": "PASS"
+    },
+    {
+      "mutation": "ascend-copy",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "4c992520de4295a10d8256cce232e665e405d5977748e0f5038ea187f0e50221",
+      "expected": "actual auto-Ascends avoid repeated refund cloning and validation",
+      "assertion": "Error: Error: historical internal stress: actual auto-Ascends avoid repeated refund cloning and validation",
+      "status": "PASS"
+    },
+    {
+      "mutation": "version-check",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "88430c8ce338237f3dd6b27b046c86f2fe47a93206c8b1b83aa3377ac55132cc",
+      "expected": "unsupported migration version rejects before any early return",
+      "assertion": "Error: Error: unsupported migration version rejects before any early return",
+      "status": "PASS"
+    },
+    {
+      "mutation": "credit-reconcile",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "72724690cccac647148adc2393a66df38f4adb3af1d2c0b1ad0658a6675411a2",
+      "expected": "own credit sequence reconciles with saved receipt",
+      "assertion": "Error: Error: own credit sequence reconciles with saved receipt",
+      "status": "PASS"
+    },
+    {
+      "mutation": "below-cap-receipt",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "f25e20b0feaf7db6cc4ae414d60e7bb009b5ce2043bc550cef577a5d24318a47",
+      "expected": "below-cap receipt rejects before legitimate purchase",
+      "assertion": "Error: Error: below-cap receipt rejects before legitimate purchase",
+      "status": "PASS"
+    },
+    {
+      "mutation": "missing-receipt",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "bf595ddbcefb0719e7117ce91a43b99275cba14bc6afc4a9effe6820669ae699",
+      "expected": "completed marker cannot refund again after receipt deletion",
+      "assertion": "Error: Error: completed marker cannot refund again after receipt deletion",
+      "status": "PASS"
+    },
+    {
+      "mutation": "canonical-price",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "6f7e939f4809a435d5e8f29877b163877137af5862e912216ac28ba777118a11",
+      "expected": "all finite original purchase value retained",
+      "assertion": "Error: Error: all finite original purchase value retained 2000/1000000",
+      "status": "PASS"
+    },
+    {
+      "mutation": "mixed-payment",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "a94a39e9fc55a85bcd26947a098ed9d199cf7ff3980674c9a43fbd2d326fdd16",
+      "expected": "wallet-only payment preserves original small credit",
+      "assertion": "Error: Error: wallet-only payment preserves original small credit",
+      "status": "PASS"
+    },
+    {
+      "mutation": "power-spacing",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "b9ce893f8bb36a5b364c90ab7a229fe8eb1a71a91b7c04ef7c858ba820144171",
+      "expected": "downward ULP at power of two supports exact mixed payment",
+      "assertion": "Error: Error: downward ULP at power of two supports exact mixed payment",
+      "status": "PASS"
+    },
+    {
+      "mutation": "funding-sources",
+      "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+      "mutationSha256": "94038c3eb8fa646d9b9524d7e4d95853dbba07d13c5f3ba3f8726d73c540ceb9",
+      "expected": "best exact available contribution finds payable Tree price",
+      "assertion": "Error: Error: best exact available contribution finds payable Tree price",
+      "status": "PASS"
+    }
+  ]
+}

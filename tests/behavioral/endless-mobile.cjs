@@ -95,7 +95,7 @@ async function run(){
      const forgeBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
      check(await ev('document.activeElement.getAttribute("data-research")==="masterwork"'),'guide locates actual Forge control');
      check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===forgeBefore,'Forge recommendation never buys');await ev('endlessUi.set('+JSON.stringify(restore)+')');
-     await ev('(()=>{var s=endlessUi.get();s.prisms=s.lumen=s.shards=0;s.owned.autoascend=true;s.autoAscendTargetDepth=20000;s.autoAscendEnabled=false;endlessUi.set(s);})()');
+     await ev('(()=>{var s=endlessUi.get();s.prisms=s.lumen=s.shards=0;s.owned.autoascend=true;s.autoAscendRefund={policy:"autoascend-retired-v1",total:100,paid:true};s.autoAscendTargetDepth=20000;s.autoAscendEnabled=false;endlessUi.set(s);})()');
      const farmingBefore=await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})');
      check(await ev('document.getElementById("late-power-detail").textContent.includes("Ascend manually")'),'Prism guide states the manual record requirement');
      check(await ev('(()=>{var root=document.getElementById("late-power-guide");root.scrollIntoView({block:"start"});return Array.from(root.querySelectorAll("h3,p,button")).every(e=>e.scrollWidth<=e.clientWidth+1);})()'),'farming recommendation wraps at enlarged text');
