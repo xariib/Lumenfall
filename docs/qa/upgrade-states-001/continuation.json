@@ -1,6 +1,6 @@
 {
   "status": "in progress; CI retry pending",
-  "utc": "2026-11-17T12:04:53.860Z",
+  "utc": "2026-11-17T12:09:40.552Z",
   "featureBranch": "feature/upgrade-states-001",
   "featureHead": "be015365469d200aeb2bd2444318c3172d1d8df7",
   "productSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
@@ -35,6 +35,32 @@
       "candidateChecks": 467,
       "observationOnly": true
     },
-    "cause": "unproven"
+    "cause": "unproven",
+    "controls": [
+      {
+        "kind": "red",
+        "accepted": true,
+        "checks": 3,
+        "expectedFailure": "individual missing currency red",
+        "sourceSha256": "07b1a06fd930e57ce9457b4622d49470890cf5e5940db0d6c601c3368d541641",
+        "cleanShutdown": true
+      },
+      {
+        "kind": "lock",
+        "accepted": true,
+        "checks": 40,
+        "expectedFailure": "locked action explains unlock",
+        "sourceSha256": "5da810e8f90b8239d28a08ae77c19c96a99eab6859b6a7d54b6053f7c70fc940",
+        "cleanShutdown": true
+      },
+      {
+        "kind": "gold",
+        "accepted": true,
+        "checks": 2173,
+        "expectedFailure": "maxed gold tree",
+        "sourceSha256": "f8d57d7f33fb367027db42d728511350b3e4bcd75f97d8fb224ba3792e742fc4",
+        "cleanShutdown": true
+      }
+    ]
   }
 }
