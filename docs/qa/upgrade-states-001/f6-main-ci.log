@@ -1,0 +1,223 @@
+Behavioral QA coverage: main 190/191 cases; both groups are required.
+2026-11-17T13:21:21.8091223Z Staged source: { "source_sha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2", "instrumented_sha256": "9e4abf1cfab7b6158d739bd549e98ba2341af3c153d102be43addaee619dd35a" }
+2026-11-17T13:21:22.7224385Z PASS tap-early-balance
+2026-11-17T13:21:23.2131747Z PASS formation-best-now-core
+2026-11-17T13:21:41.6362888Z PASS formation-best-now
+2026-11-17T13:22:31.2943602Z PASS lab-speed-controls
+2026-11-17T13:22:38.3564534Z PASS lab-timed-boosts
+2026-11-17T13:23:24.6258296Z PASS formation-collapse
+2026-11-17T13:24:08.8007293Z PASS wisp-rarity-scroll
+2026-11-17T13:24:29.1606120Z PASS wisp-card-simplicity
+2026-11-17T13:24:30.7981727Z PASS lab-affordable-alert
+2026-11-17T13:24:58.2871684Z PASS resonate-clarity
+2026-11-17T13:24:59.3892137Z PASS upgrade-identity-contracts
+2026-11-17T13:25:00.3016674Z PASS upgrade-identity-chronology
+2026-11-17T13:25:01.4058527Z PASS upgrade-identity-farm-clock
+2026-11-17T13:25:02.3135547Z PASS upgrade-identity-save-reload
+2026-11-17T13:25:03.2626629Z PASS upgrade-identity-backup-restore
+2026-11-17T13:25:04.1829239Z PASS upgrade-identity-recovery
+2026-11-17T13:25:04.9939298Z PASS upgrade-identity-ui [320,844,0,0]
+2026-11-17T13:25:05.8158666Z PASS upgrade-identity-ui [390,844,0,0]
+2026-11-17T13:25:06.6449603Z PASS upgrade-identity-ui [430,844,0,0]
+2026-11-17T13:25:07.5768180Z PASS upgrade-identity-reduced-motion [320,844,0,0]
+2026-11-17T13:25:08.4759222Z PASS upgrade-identity-reduced-motion [390,844,0,0]
+2026-11-17T13:25:09.3360485Z PASS upgrade-identity-reduced-motion [430,844,0,0]
+2026-11-17T13:25:11.9694564Z PASS wisp-upgrade-display
+2026-11-17T13:25:12.9988034Z PASS comet-unlocks-core
+2026-11-17T13:25:39.7576416Z PASS comet-unlocks-mobile
+2026-11-17T13:25:58.3135273Z PASS comet-unlocks-reduced-motion
+2026-11-17T13:25:59.9057151Z PASS lab-motes-offline-integration
+2026-11-17T13:26:00.7680322Z PASS lab-motes-numerical
+2026-11-17T13:26:02.0517657Z PASS lab-motes-runtime
+2026-11-17T13:26:03.4824854Z PASS lab-motes-conservation
+2026-11-17T13:26:05.1231852Z PASS lab-motes-contracts
+2026-11-17T13:26:06.4216394Z PASS lab-motes-chronology
+2026-11-17T13:26:07.5731538Z PASS lab-motes-ui [320,844,0,0]
+2026-11-17T13:26:08.7771899Z PASS lab-motes-ui [390,844,0,0]
+2026-11-17T13:26:09.9804888Z PASS lab-motes-ui [430,844,0,0]
+2026-11-17T13:26:34.5855697Z PASS lab-motes-native
+2026-11-17T13:26:59.4248182Z PASS lab-motes-reduced-motion
+2026-11-17T13:27:00.4266882Z PASS lab-motes-save-reload
+2026-11-17T13:27:01.3783827Z PASS lab-motes-backup-restore
+2026-11-17T13:27:02.3444656Z PASS lab-motes-recovery
+2026-11-17T13:27:03.2759406Z PASS lab-motes-reset
+2026-11-17T13:28:04.5913455Z PASS save-backup-ui
+2026-11-17T13:29:21.8840513Z PASS offline-12h-core
+2026-11-17T13:29:44.4822870Z PASS offline-12h-ui
+2026-11-17T13:30:08.2786300Z PASS offline-catchup-ui
+2026-11-17T13:30:31.5457861Z PASS offline-catchup-legacy-dom
+2026-11-17T13:30:32.7442300Z PASS nav-workshop-contract
+2026-11-17T13:30:34.2198800Z PASS inquiry-contracts
+2026-11-17T13:30:35.9336177Z PASS inquiry-chronology
+2026-11-17T13:30:37.0526057Z PASS inquiry-ui
+2026-11-17T13:30:38.1738364Z PASS inquiry-ui-reduced-motion
+2026-11-17T13:30:39.0945610Z PASS inquiry-save-reload
+2026-11-17T13:30:40.0551095Z PASS inquiry-backup-restore
+2026-11-17T13:30:40.9821713Z PASS inquiry-recovery
+2026-11-17T13:30:41.8740829Z PASS inquiry-reset
+2026-11-17T13:30:42.1375758Z PASS raw-process-contract: 31 result controls, real timeout, artifact bounds, two causal negatives/undo
+2026-11-17T13:30:43.1042235Z PASS support-stacking
+2026-11-17T13:30:44.0364008Z PASS auto-ascend-target-contract
+2026-11-17T13:30:44.9570869Z PASS auto-ascend-target-legacy16
+2026-11-17T13:30:45.8807562Z PASS auto-ascend-target-legacy44
+2026-11-17T13:30:46.8143922Z PASS auto-ascend-target-legacy56
+2026-11-17T13:30:47.7663582Z PASS auto-ascend-target-legacy130
+2026-11-17T13:30:48.6823938Z PASS auto-ascend-target-recovery
+2026-11-17T13:30:49.6345410Z PASS auto-ascend-target-resume
+2026-11-17T13:30:50.5757562Z PASS auto-ascend-target-reset
+2026-11-17T13:30:51.5141467Z PASS auto-ascend-target-manual-reload
+2026-11-17T13:30:52.4745319Z PASS auto-ascend-target-cold-resume
+2026-11-17T13:31:16.4135241Z PASS auto-ascend-target-mobile
+2026-11-17T13:31:27.0741109Z PASS auto-ascend-target-reduced-motion
+2026-11-17T13:33:05.2710395Z PASS rift-status-stacking-mobile
+2026-11-17T13:34:42.5641527Z PASS rift-status-stacking-reduced-motion
+2026-11-17T13:34:43.4681640Z PASS support-save-reload
+2026-11-17T13:34:44.4396011Z PASS support-backup-restore
+2026-11-17T13:34:45.3645200Z PASS support-recovery
+2026-11-17T13:34:46.4427404Z PASS support-resume
+2026-11-17T13:34:47.5763528Z PASS support-recovery-resume
+2026-11-17T13:34:48.4764260Z PASS support-visibility-resume
+2026-11-17T13:34:49.4611530Z PASS support-reset
+2026-11-17T13:34:50.5689378Z PASS upgrade-effects-and-deeds
+2026-11-17T13:34:51.5751138Z PASS tree-purchase-contract
+2026-11-17T13:34:52.2115881Z PASS tree-purchase-ui [320,844,0,0]
+2026-11-17T13:34:52.8428015Z PASS tree-purchase-ui [390,844,0,0]
+2026-11-17T13:34:53.4771088Z PASS tree-purchase-ui [430,844,0,0]
+2026-11-17T13:34:54.1336660Z PASS tree-purchase-ui-reduced-motion [320,844,0,0]
+2026-11-17T13:34:54.7966535Z PASS tree-purchase-ui-reduced-motion [390,844,0,0]
+2026-11-17T13:34:55.4701239Z PASS tree-purchase-ui-reduced-motion [430,844,0,0]
+2026-11-17T13:34:58.2399289Z PASS rift-status-contract
+2026-11-17T13:34:59.5312870Z PASS bond-text-contract
+2026-11-17T13:36:37.4021167Z PASS rift-status-mobile
+2026-11-17T13:39:01.3280477Z PASS rift-guidance-mobile
+2026-11-17T13:40:38.9244221Z PASS rift-status-reduced-motion
+2026-11-17T13:40:39.5026997Z PASS forge-ui-process-contract
+2026-11-17T13:41:07.0407515Z PASS forge-ui-mobile
+2026-11-17T13:41:34.7781328Z PASS forge-ui-reduced-motion
+2026-11-17T13:41:35.6099021Z PASS buff-timing
+2026-11-17T13:41:36.7595090Z PASS buff-save-reload
+2026-11-17T13:41:38.4361450Z PASS forge-contracts
+2026-11-17T13:41:39.3278762Z PASS forge-effects
+2026-11-17T13:41:40.2136055Z PASS forge-chronology
+2026-11-17T13:41:41.1346746Z PASS forge-save-reload
+2026-11-17T13:41:41.3037861Z PASS loadout-memory-core
+2026-11-17T13:43:50.2204064Z PASS loadout-memory-mobile
+2026-11-17T13:43:51.1481891Z PASS forge-backup-restore
+2026-11-17T13:43:52.1086266Z PASS forge-recovery
+2026-11-17T13:43:53.0815199Z PASS forge-baseline
+2026-11-17T13:43:56.9174800Z PASS forge-balance
+2026-11-17T13:43:58.9152184Z PASS r3-destinations
+2026-11-17T13:44:00.2945781Z PASS r3-save-reload
+2026-11-17T13:44:01.2531612Z PASS research-duration
+2026-11-17T13:44:02.1973184Z PASS research-duration-reduced-motion
+2026-11-17T13:44:03.0253134Z PASS p2-07a-persistence-review
+2026-11-17T13:44:03.9989301Z PASS p2-07a-persist-save-reload
+2026-11-17T13:44:04.9975138Z PASS p2-07a-persist-backup-restore
+2026-11-17T13:44:05.9626965Z PASS p2-07a-persist-recovery
+2026-11-17T13:44:06.9666265Z PASS p2-07a-persist-reset
+2026-11-17T13:44:08.1776522Z PASS p2-07a-formation-reconstruction
+2026-11-17T13:44:09.1908398Z PASS p2-07a-save-reload
+2026-11-17T13:44:10.2052786Z PASS p2-07a-backup-restore
+2026-11-17T13:44:11.2327189Z PASS p2-07a-recovery
+2026-11-17T13:44:12.4482826Z PASS p2-07a-chronology
+2026-11-17T13:44:13.2475760Z PASS layout-p2-07a-reconstruction [360,800,0,0]
+2026-11-17T13:44:14.0084519Z PASS layout-p2-07a-reconstruction [360,780,0,0]
+2026-11-17T13:44:14.8181610Z PASS layout-p2-07a-reconstruction [390,844,0,0]
+2026-11-17T13:44:15.5737240Z PASS layout-p2-07a-reconstruction [412,915,0,0]
+2026-11-17T13:44:16.3436703Z PASS layout-p2-07a-reconstruction [360,640,24,24]
+2026-11-17T13:44:17.5176258Z PASS p2-06b-live-feedback
+2026-11-17T13:44:18.7409248Z PASS p2-06b-reduced-motion
+2026-11-17T13:44:19.6606022Z PASS layout-fresh [360,800,0,0]
+2026-11-17T13:44:20.6131061Z PASS layout-fresh [360,780,0,0]
+2026-11-17T13:44:21.5834438Z PASS layout-fresh [390,844,0,0]
+2026-11-17T13:44:22.5395683Z PASS layout-fresh [412,915,0,0]
+2026-11-17T13:44:23.5302312Z PASS layout-fresh [360,640,24,24]
+2026-11-17T13:44:24.6276909Z PASS layout-dense [360,800,0,0]
+2026-11-17T13:44:25.6952302Z PASS layout-dense [360,780,0,0]
+2026-11-17T13:44:26.8002433Z PASS layout-dense [390,844,0,0]
+2026-11-17T13:44:27.9160697Z PASS layout-dense [412,915,0,0]
+2026-11-17T13:44:28.9802871Z PASS layout-dense [360,640,24,24]
+2026-11-17T13:44:30.0833053Z PASS layout-boss [360,800,0,0]
+2026-11-17T13:44:31.1426872Z PASS layout-boss [360,780,0,0]
+2026-11-17T13:44:32.1847599Z PASS layout-boss [390,844,0,0]
+2026-11-17T13:44:33.2719036Z PASS layout-boss [412,915,0,0]
+2026-11-17T13:44:34.3363995Z PASS layout-boss [360,640,24,24]
+2026-11-17T13:44:35.3755875Z PASS layout-accessibility-states [360,800,0,0]
+2026-11-17T13:44:36.4117857Z PASS layout-accessibility-states [360,780,0,0]
+2026-11-17T13:44:37.4725644Z PASS layout-accessibility-states [390,844,0,0]
+2026-11-17T13:44:38.5398823Z PASS layout-accessibility-states [412,915,0,0]
+2026-11-17T13:44:39.6572043Z PASS layout-accessibility-states [360,640,24,24]
+2026-11-17T13:44:40.5897361Z PASS p1-05-accessibility-baseline
+2026-11-17T13:44:41.4817491Z PASS p1-05-accessibility-contract
+2026-11-17T13:44:42.8866239Z PASS p1-05-control-regressions
+2026-11-17T13:44:43.7681361Z PASS p1-05-reduced-motion
+2026-11-17T13:44:44.5790173Z PASS fresh-load
+2026-11-17T13:44:45.3659131Z PASS midgame-load
+2026-11-17T13:44:46.1647590Z PASS mature-load
+2026-11-17T13:44:46.9594894Z PASS legacy-load
+2026-11-17T13:44:47.7473527Z PASS corrupted-load
+2026-11-17T13:44:48.5037586Z PASS malformed-daily-load
+2026-11-17T13:44:49.2807438Z PASS farm-load
+2026-11-17T13:44:50.3628603Z PASS farm-roundtrip
+2026-11-17T13:44:51.2738916Z PASS enemy-normal-reload
+2026-11-17T13:44:52.1374176Z PASS enemy-boss-reload
+2026-11-17T13:44:52.9149770Z PASS active-studies-load
+2026-11-17T13:44:53.6889140Z PASS auto-ascend-load
+2026-11-17T13:44:54.7211596Z PASS reset-roundtrip
+2026-11-17T13:44:55.6238972Z PASS restore-roundtrip
+2026-11-17T13:44:56.4165916Z PASS malformed-backup-rejection
+2026-11-17T13:44:57.2063363Z PASS recovery-from-corrupt-primary
+2026-11-17T13:44:58.0021884Z PASS unsupported-future-load
+2026-11-17T13:44:58.9750882Z PASS legacy-backup-restore
+2026-11-17T13:44:59.7917093Z PASS future-backup-rejection
+2026-11-17T13:45:00.7072084Z PASS recovery-offline-once
+2026-11-17T13:45:01.5175101Z PASS save-failure-warning
+2026-11-17T13:45:02.3976042Z PASS parity-short
+2026-11-17T13:45:10.0328500Z PASS parity-medium-farm
+2026-11-17T13:45:12.8469995Z PASS p2-07a-farm-retention
+2026-11-17T13:45:13.8119536Z PASS p2-07a-timer-boundary
+2026-11-17T13:45:17.7311373Z PASS parity-long-high-power
+2026-11-17T13:45:18.5331777Z PASS parity-boss-short
+2026-11-17T13:45:20.4681476Z PASS parity-boss-retry
+2026-11-17T13:45:21.4949309Z PASS parity-auto-ascend
+2026-11-17T13:45:22.2846041Z PASS chronology-research-mid-window
+2026-11-17T13:45:23.0977999Z PASS chronology-study-mid-window
+2026-11-17T13:45:23.9093785Z PASS chronology-auto-empower-mid-window
+2026-11-17T13:45:24.6668281Z PASS chronology-auto-ascend-mid-window
+2026-11-17T13:45:25.6375263Z PASS chronology-boss-retry
+2026-11-17T13:45:26.4844023Z PASS chronology-simultaneous-order
+2026-11-17T13:45:27.3034239Z PASS lifecycle-background-resume
+2026-11-17T13:45:28.1438532Z PASS lifecycle-repeated-resume
+2026-11-17T13:45:29.0896852Z PASS lifecycle-cold-restart
+2026-11-17T13:45:29.8814711Z PASS lifecycle-partial-enemy
+2026-11-17T13:45:30.6817766Z PASS lifecycle-boss-background-short
+2026-11-17T13:45:31.7589986Z PASS lifecycle-boss-retry
+2026-11-17T13:45:32.5709281Z PASS lifecycle-auto-ascend
+2026-11-17T13:45:33.4381149Z PASS p2-ascend-integrity
+2026-11-17T13:45:34.2479148Z PASS p2-03b-auto-ascend-integrity
+2026-11-17T13:45:35.1698648Z PASS p2-wisp-progression-pacing
+2026-11-17T13:45:36.0538523Z PASS p2-endgame-currency-utility
+2026-11-17T13:45:36.9289127Z PASS p2-03a-wisp-role-integrity
+2026-11-17T13:45:37.9631939Z PASS p2-03a-wisp-role-integrity-mature
+2026-11-17T13:45:38.8223848Z PASS p2-03a-wisp-role-integrity-endgame
+2026-11-17T13:45:40.0142304Z PASS p2-02a-core-qol
+2026-11-17T13:45:40.9022120Z PASS p2-02b-wisp-hierarchy
+2026-11-17T13:45:41.8752897Z PASS p2-02b-lab-hierarchy
+2026-11-17T13:45:42.8516914Z PASS lifecycle-long-study
+2026-11-17T13:45:43.8464408Z PASS lifecycle-lab-queue
+2026-11-17T13:45:44.8018435Z PASS lifecycle-daily-rollover
+2026-11-17T13:45:45.6068469Z PASS wisp-formula-contract
+2026-11-17T13:45:45.9972091Z PASS formation-bonds-core
+2026-11-17T13:46:29.2513798Z PASS formation-bonds-mobile
+2026-11-17T13:46:30.1950234Z PASS auto-ascend-target-backup-restore
+2026-11-17T13:46:31.2142257Z PASS formation-autosave-contract
+2026-11-17T13:46:52.2484995Z PASS formation-autosave-native
+2026-11-17T13:47:12.7265810Z PASS formation-autosave-reduced-motion
+2026-11-17T13:47:13.6871167Z PASS formation-autosave-save-reload
+2026-11-17T13:47:14.6831404Z PASS formation-autosave-backup-restore
+2026-11-17T13:47:15.6448395Z PASS formation-autosave-recovery
+2026-11-17T13:47:21.7013427Z PASS ascend-prisms-contract
+2026-11-17T13:47:22.6244120Z PASS ascend-prisms-save-reload
+2026-11-17T13:47:23.5599700Z PASS ascend-prisms-backup-restore
+2026-11-17T13:47:24.4699278Z PASS ascend-prisms-recovery
+2026-11-17T13:47:24.4704826Z Behavioral QA passed: 190 deterministic scenario(s).

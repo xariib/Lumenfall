@@ -1,0 +1,14 @@
+{
+  "status": "fail",
+  "sourceSha256": "cd2f1e7927db77e6956b0b8f3245bfee2a47f8042cc55c2a86a0d7a8db621ffd",
+  "node": "v24.22.1",
+  "records": [],
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(Date.now()<readyAt)\n\n    at run (C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:69:149)\n    at async C:\\lf-upgrade-states\\tests\\behavioral\\upgrade-states.cjs:116:144",
+  "teardown": "browser exit deadline",
+  "process": {
+    "pid": 30812,
+    "exitCode": null,
+    "signalCode": null
+  },
+  "checks": 0
+}

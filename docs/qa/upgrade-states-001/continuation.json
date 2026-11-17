@@ -1,0 +1,102 @@
+{
+  "status": "in progress; combined finite Forge source locally verified; full CI pending",
+  "utc": "2026-11-17T13:54:26.583Z",
+  "featureBranch": "feature/upgrade-states-001",
+  "featureHead": "6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98",
+  "productSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327",
+  "pullRequest": 61,
+  "mainBaseline": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
+  "ci": {
+    "runId": 44097173159,
+    "mainJob": 134087263504,
+    "offlineJob": 134087263809,
+    "phase": "Combined head required checks running",
+    "productSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327"
+  },
+  "next": "Finish current CI on exact combined head, recheck relevant main/PR60 overlap, merge only PR61; validate exact integrated main and complete signed/public Android delivery.",
+  "authorization": "Standing scope authorization; no permission prompts. No new chats, subagents or messages. Evidence branch preserves pending results without restarting source CI.",
+  "archive": "open; not archived; physical phone/WebView60 DOM/TalkBack unverified",
+  "localVerification": {
+    "upgradeStates": {
+      "status": "pass",
+      "checks": 15402,
+      "profiles": 6,
+      "cleanShutdown": true
+    },
+    "wispOriginal": {
+      "status": "PASS",
+      "checks": 467,
+      "originalProfiles": 12,
+      "teamProfiles": 12
+    },
+    "pairedDiagnostic": {
+      "baselineChecks": 467,
+      "candidateChecks": 467,
+      "observationOnly": true
+    },
+    "cause": "unproven",
+    "controls": [
+      {
+        "kind": "red",
+        "accepted": true,
+        "checks": 3,
+        "expectedFailure": "individual missing currency red",
+        "sourceSha256": "07b1a06fd930e57ce9457b4622d49470890cf5e5940db0d6c601c3368d541641",
+        "cleanShutdown": true
+      },
+      {
+        "kind": "lock",
+        "accepted": true,
+        "checks": 40,
+        "expectedFailure": "locked action explains unlock",
+        "sourceSha256": "5da810e8f90b8239d28a08ae77c19c96a99eab6859b6a7d54b6053f7c70fc940",
+        "cleanShutdown": true
+      },
+      {
+        "kind": "gold",
+        "accepted": true,
+        "checks": 2173,
+        "expectedFailure": "maxed gold tree",
+        "sourceSha256": "f8d57d7f33fb367027db42d728511350b3e4bcd75f97d8fb224ba3792e742fc4",
+        "cleanShutdown": true
+      }
+    ]
+  },
+  "cleanup": "Automatic approval review rejected removal of C:/Users/xarib/AppData/Local/Temp/lumenfall-behavioral-lK019w as blocked by policy. Directory retained. Aborted oversized local staging copy was not acceptance.",
+  "previousCi": {
+    "runId": 44087196592,
+    "firstMainJob": 134002780556,
+    "unchangedRetryJob": 134019237033,
+    "specialists": "all seven PASS on f6a141e7",
+    "isolatedOffline": "passed",
+    "failure": "native touch opens damage details at check319; cause unproven; same assertion has prior released-source intermittent failures",
+    "phase": "Passed new upgrade suite/controls and original Wisp native lane; beginning final190 scenarios. Wisp-scroll latest original replay PASS3277 after retained failures; cause unproven.",
+    "localWispOriginalRetry": "PASS467 unchanged",
+    "localUpgradeStates": "PASS15402/6 profiles plus3 controls",
+    "previousRunId": 44072682657,
+    "currentMainJob": 134052595529,
+    "currentOfflineJob": 134052595208,
+    "wisp": {
+      "linuxJob": 134066823289,
+      "windowsJob": 134066826591,
+      "status": "PASS both platforms",
+      "checks": 3277,
+      "unchanged": true,
+      "artifactId": 14331847312,
+      "artifactSha256": "b4713ba422f86bb0ef430d49c1523e19388399f5e4e042642b4e4f6d7f78836d",
+      "verified": true
+    }
+  },
+  "combined": {
+    "browserChecks": 15438,
+    "profiles": 6,
+    "controls": 3,
+    "finiteChecks": 385,
+    "finiteControls": 4,
+    "canonicalEndpoints": "all four exact unchanged",
+    "pairedCalls": 230400,
+    "everySavedFieldEqual": true,
+    "contextChecks": 32,
+    "firstBrowserStartup": "FAIL retained; zero checks; clean successful retry"
+  }
+}

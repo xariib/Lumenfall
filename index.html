@@ -2117,6 +2117,7 @@
   #tab-spirits .hero-card .class-tag{font-size:.6875rem;}
   #tab-spirits .hero-card .hero-stats{margin:6px 0;padding:0;border:0;background:transparent;}
   #tab-spirits .hero-card .wisp-empower-action{margin:6px 0;font-size:.75rem;}
+  #tab-spirits .wisp-empower-action [data-price-currency]{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;word-break:break-word;overflow-wrap:anywhere;}
   #tab-spirits .wisp-empower-action strong{flex:1;min-width:0;white-space:normal;text-align:left;}
   #tab-spirits .wisp-rarity-section,#tab-spirits .wisp-mastery-section{display:flex;flex-wrap:wrap;gap:6px 12px;padding:8px 0;}
   #tab-spirits .wisp-rarity-info,#tab-spirits .wisp-mastery-section>div:first-child{flex:1 1 11rem;min-width:0;}
@@ -2377,7 +2378,8 @@
   .wisp-progression{margin-top:10px;display:grid;gap:10px;}
   .wisp-progression>section{border-top:1px solid var(--line);padding-top:10px;}
   .wisp-progression section[data-state="maxed"]{border:1px solid #b59553;border-radius:10px;background:#3a2d1b;padding:10px;}
-  .wisp-fully-maxed,.comet-purchase[data-state="completed"]{border-color:#c9a75b;background:linear-gradient(135deg,#44331c,#211d18);}
+  #tab-spirits .hero-card.wisp-fully-maxed,#tab-deeds .comet-purchase[data-state="completed"],#tab-ascend .node-card[data-state="maxed"],#tab-spirits .hero-stat-pill.wisp-level.upgrade-maxed,#tab-spirits .wisp-progression .upgrade-maxed{border:2px solid #d9b45e;background:linear-gradient(135deg,#44331c,#211d18);color:#ffe4a4;}
+  .wisp-progression .upgrade-maxed{border-radius:10px;padding:10px;}
   .study-select{display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%;min-height:56px;text-align:left;border:0;background:transparent;color:var(--ink);padding:10px 0;font:inherit;cursor:pointer;}
   .study-select strong{flex:1 1 120px;min-width:min-content;overflow-wrap:normal;font-size:.85rem;}
   .study-select>span:last-child{margin-left:auto;color:var(--lumen);font-size:1.25rem;}
@@ -6754,6 +6756,29 @@ function wispUpgradesMaxed(id){
 function ultimateSigilCost(sp){ return labDiscountCost(ENDLESS_PROGRESSION.ultimate.sigils[sp.id],2*labExpansionLevel('ultimateanalysis')); }
 function wispRequirement(key,label,current,target){return {key:key,label:label,current:current,target:target,met:current>=target};}
 function wispRequirementText(requirements){return requirements.filter(function(r){return r.target>0;}).map(function(r){return r.label+' '+r.target;}).join(' · ');}
+function wispUpgradeUnlockText(sp,plan){
+  if(!(state.spirits[sp.id]>0))return 'Recruit this Wisp first';
+  return 'Requires '+wispRequirementText(plan.requirements.filter(function(r){return !r.met;}));
+}
+function wispUpgradeButtonMarkup(sp,key,plan){
+  if(key==='empower')return '<strong>'+(plan.reason==='maxed'?'Maxed':plan.reason==='locked'?wispRecruitmentRequirementText(sp):plan.reason==='unavailable'?'Price unavailable at this value':state.spirits[sp.id]>0?'Empower':'Recruit')+'</strong>'+(['available','unaffordable'].indexOf(plan.reason)!==-1?purchasePriceMarkup('lumen',plan.cost,'mono'):'');
+  if(key==='module')return plan.reason==='recruit'?'Recruit first':'<span class="wisp-purchase-title">'+MODULE_INFO[sp.abilityType].upgradeLabel+'</span>'+purchasePriceMarkup('lumen',plan.cost.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',plan.cost.shard,'wisp-upgrade-price');
+  if(!plan.eligible)return wispUpgradeUnlockText(sp,plan);
+  var label=key==='rarity'?'Rarity Up':key==='ultimate'?'Unlock Ultimate':'Mastery Up';
+  return '<span class="wisp-purchase-title">'+label+'</span>'+(key==='rarity'?purchasePriceMarkup('lumen',plan.cost.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',plan.cost.shard,'wisp-upgrade-price'):key==='ultimate'?purchasePriceMarkup('sigil',plan.cost,'wisp-upgrade-price'):purchasePriceMarkup('prism',plan.cost.prism,'wisp-upgrade-price')+purchasePriceMarkup('sigil',plan.cost.sigil,'wisp-upgrade-price'));
+}
+function refreshWispUpgradeButtons(){
+  var plans={empower:getSpiritBuyPlan,rarity:getWispRarityPlan,module:getWispModulePlan,ultimate:getWispUltimatePlan,mastery:getWispMasteryPlan};
+  Object.keys(plans).forEach(function(key){
+    els['spirit-list'].querySelectorAll('[data-'+key+']').forEach(function(btn){
+      var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-'+key);});if(!sp)return;
+      var plan=plans[key](sp);btn.disabled=!plan.affordable;
+      if(plan.reason==='maxed'||plan.reason==='owned')return;
+      var html=wispUpgradeButtonMarkup(sp,key,plan);
+      if(btn.innerHTML!==html)btn.innerHTML=html;
+    });
+  });
+}
 function getWispRarityPlan(sp){
   if(SPIRITS.indexOf(sp)===-1)return {affordable:false,reason:'invalid',requirements:[]};
   var tier=state.heroRarity[sp.id]||0,g=ENDLESS_PROGRESSION.rarity;
@@ -8294,7 +8319,7 @@ function updateResearchCard(node,card){
   if(p.maxed){card.dataset.state='maxed';return;}
   var label=p.reason==='locked'?'Unlocks at Rift '+p.requiredDepth:p.reason==='quantity'?'Choose 1x or Max · '+(p.limit-p.level)+' levels available':p.maxed?'Maxed':p.reason==='unavailable'?'Unavailable':'Upgrade ×'+(labMultiplier==='max'?(p.buyCount||1):labMultiplier);
   var displayed=p.buyCount?p.cost:p.needed;
-  var hidePrice=p.reason==='locked'||p.reason==='quantity';
+  var hidePrice=p.reason==='locked'||p.reason==='quantity'||p.reason==='unavailable';
   var html=(!hidePrice && node.lumenBase && Amount.valid(displayed.lumen)?purchasePriceMarkup('lumen',displayed.lumen,'cost mono'):'')+
     (!hidePrice && node.shardBase && Amount.valid(displayed.shard)?purchasePriceMarkup('shard',displayed.shard,'cost mono'):'')+'<span class="label">'+label+'</span>';
   if(btn.dataset.planHtml!==html){btn.innerHTML=html;btn.dataset.planHtml=html;}
@@ -9301,7 +9326,8 @@ function renderRiftMode(){
 function latePowerAdvice(){
   if(!SPIRITS.every(function(sp){return wispUpgradesMaxed(sp.id);}))return null;
   function advice(kind,title,detail,tab,selector,id){return {kind:kind,title:title,detail:detail,tab:tab,selector:selector,id:id,progress:100};}
-  var plans=SPIRITS.map(function(sp){return {sp:sp,plan:getWispMasteryPlan(sp)};});
+  var plans=SPIRITS.map(function(sp){return {sp:sp,plan:getWispMasteryPlan(sp)};}).filter(function(row){return row.plan.reason!=='maxed';});
+  if(!plans.length)return null;
   var next=plans.slice().sort(function(a,b){return b.plan.rank-a.plan.rank || SPIRITS.indexOf(a.sp)-SPIRITS.indexOf(b.sp);})[0];
   var neededLab=next.plan.requirements.filter(function(r){return r.key==='lab';})[0].target;
   var labNote='Next '+next.sp.shortName+' Mastery: Wisp Ascendancy '+longStudyLevel('wispascend')+' / '+neededLab+'. ';
@@ -10018,12 +10044,13 @@ function renderSpirits(keepScroll){
   replaceControlMarkup(els['spirit-list'],html,false,!!actionView);
   els['spirit-list'].querySelectorAll('[data-wisp-card]').forEach(function(card){
     var id=card.getAttribute('data-wisp-card');
-    [['.wisp-rarity-section',(state.heroRarity[id]||0)>=5],['.wisp-ability-section',moduleLevel(id)>=MODULE_MAX_LEVEL&&ultimateUnlocked(id)],['.wisp-mastery-section',wispMasteryLevel(id)>=2000]].forEach(function(row){var section=card.querySelector(row[0]);if(section&&row[1])section.setAttribute('data-state','maxed');});
+    [['.wisp-rarity-section',(state.heroRarity[id]||0)>=5],['.wisp-ability-section',moduleLevel(id)>=MODULE_MAX_LEVEL&&ultimateUnlocked(id)],['.module-row',moduleLevel(id)>=MODULE_MAX_LEVEL],['.ultimate-badge',ultimateUnlocked(id)],['.wisp-level',(state.spirits[id]||0)>=10000],['.wisp-mastery-section',wispMasteryLevel(id)>=2000]].forEach(function(row){var section=card.querySelector(row[0]);if(section&&row[1]){section.setAttribute('data-state','maxed');section.classList.add('upgrade-maxed');}});
     if((state.heroRarity[id]||0)>=5){var rarity=card.querySelector('[data-rarity]');if(rarity)rarity.remove();}
     if((state.spirits[id]||0)>=10000){var empower=card.querySelector('[data-empower]');if(empower)empower.remove();}
     if(card.classList.contains('wisp-fully-maxed'))card.querySelectorAll('[data-empower-queue]').forEach(function(button){button.remove();});
   });
   renderWispRoles();
+  refreshWispUpgradeButtons();
   highlightWispActions();
   if(actionView){
     restoreWispActionView(actionView);
@@ -10284,6 +10311,19 @@ var selectedStudySlot=-1,expandedStudySpeedSlot=-1,pendingStudyStart=null;
 function studyChoiceAction(node,plan){
   return '<button type="button" class="study-choice-hit" data-study="'+node.id+'" aria-label="'+(plan.paused?'Resume ':'Start ')+node.name+'" aria-describedby="study-price-'+node.id+'" '+(plan.affordable?'':'disabled')+'></button>';
 }
+function studyPriceMarkup(node,plan,priceOnly){
+  if(plan.paused)return fmtStudyDuration(plan.duration)+' of paid work remains. No additional cost.';
+  if(!plan.unlocked)return studyAccessText(node);
+  if(plan.reason==='requirements')return 'Requires '+plan.challenge.requirements.filter(function(r){return !r.met;}).map(function(r){return r.label+' '+r.current+' / '+r.target;}).join(' · ');
+  if(plan.reason==='slots')return 'Choose an unlocked Lab slot. Replace its research or wait for an open slot.';
+  if(plan.reason==='active')return 'Research already running. Wait for completion.';
+  if(plan.reason==='unavailable')return 'Price or research time unavailable at this value.';
+  if(plan.maxed)return 'Maxed';
+  return (priceOnly?'':'Takes '+fmtStudyDuration(plan.duration)+' &middot; ')+purchasePriceMarkup('lumen',plan.cost.lumen)+' '+purchasePriceMarkup('shard',plan.cost.shard);
+}
+function studyPriceElement(node,plan){
+  return '<div class="study-meta" id="study-price-'+node.id+'">'+studyPriceMarkup(node,plan)+'</div>';
+}
 function closeStudyStartConfirmation(){
   var pending=pendingStudyStart,el=document.querySelector('#study-start-confirmation');
   pendingStudyStart=null;
@@ -10298,7 +10338,7 @@ function refreshStudyStartConfirmation(){
   if(!el || !node)return;
   var plan=getStudyStartPlan(node,pendingStudyStart.slot);
   el.querySelector('[data-study-confirm-start]').disabled=!plan.affordable;
-  el.querySelector('[data-study-confirm-price]').innerHTML=plan.paused?'Resume saved paid work · no additional cost':purchasePriceMarkup('lumen',plan.cost.lumen)+' '+purchasePriceMarkup('shard',plan.cost.shard);
+  el.querySelector('[data-study-confirm-price]').innerHTML=plan.paused?'Resume saved paid work · no additional cost':studyPriceMarkup(node,plan,true);
 }
 function chooseStudy(node){
   if(!node || !flushLiveProgress())return;
@@ -10343,7 +10383,7 @@ function openStudySpeedMenu(slot){
 }
 function runningStudyMarkup(node,active,maxed,pct,progressValue){
   var regular=node&&!node.retiredTo&&active.slot<5,queueOn=!!state.studyQueue[active.id];
-  return '<div class="card study-card study-running '+(expandedStudySpeedSlot===active.slot?'study-speed-expanded ':'')+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="'+active.id+'">'+
+  return '<div class="card study-card study-running '+(expandedStudySpeedSlot===active.slot?'study-speed-expanded ':'')+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="'+active.id+'"'+(maxed?' data-state="maxed"':'')+'>'+
     (regular?'<button class="study-select" data-study-slot="'+active.slot+'" aria-label="Select research for Lab '+(active.slot+1)+'"><span class="study-slot-number">Lab '+(active.slot+1)+'</span><strong>'+node.name+'</strong><span class="study-level">Lv. '+longStudyLevel(active.id)+(node.levelCap!==undefined?' / '+node.levelCap:'')+'</span><span aria-hidden="true">›</span></button>':'<h3>Legacy paid study · '+(node?node.name:'Research')+'</h3>')+
     (node?projectEarnedMarkup(active.id):'')+
     (node&&!node.retiredTo?'<button class="node-queue-toggle study-repeat '+(queueOn?'active':'')+'" data-study-queue="'+active.id+'" aria-pressed="'+queueOn+'" aria-label="'+node.name+' — Queue '+(queueOn?'ON':'OFF')+'. Finish current level'+(queueOn?' and repeat.':'.')+'" title="Repeat research after this level"><span aria-hidden="true">↻</span><span class="study-queue-state">'+(queueOn?'ON':'OFF')+'</span></button>':'')+
@@ -10421,7 +10461,7 @@ function renderLongStudies(){
     var level=plan.level,cost=plan.cost,dur=plan.duration;
     var queueOn = !!state.studyQueue[lnode.id];
     if(plan.paused){
-      html += '<div class="card study-card" data-study-card="'+lnode.id+'"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' · Saved work</span></div>'+'<p class="desc">'+lnode.desc+'</p>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note" id="study-price-'+lnode.id+'">'+fmtStudyDuration(dur)+' of paid work remains. No additional cost.</div>'+studyChoiceAction(lnode,plan)+'</div>';
+      html += '<div class="card study-card" data-study-card="'+lnode.id+'"'+(plan.maxed?' data-state="maxed"':'')+'><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+(plan.maxed?' · Maxed':'')+' · Saved work</span></div>'+'<p class="desc">'+lnode.desc+'</p>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note" id="study-price-'+lnode.id+'">'+fmtStudyDuration(dur)+' of paid work remains. No additional cost.</div>'+studyChoiceAction(lnode,plan)+'</div>';
       return;
     }
     if(plan.maxed){
@@ -10429,7 +10469,7 @@ function renderLongStudies(){
       return;
     }
     html=(html + '<div class="card study-card" data-study-card="' + lnode.id + '" data-state="' + (plan.maxed?'maxed':plan.affordable?'affordable':'unavailable') + '" style="margin-bottom:10px;">' + '<div class="name"><span class="study-identity"><span class="study-title">' + lnode.name + '</span><span class="study-level" aria-label="Current level ' + level + '">Lv. ' + level + (lnode.levelCap!==undefined?' / '+lnode.levelCap:'') + (plan.maxed?' · Maxed':'') + '</span></span>' + '</div>' + '<p class="desc">'+lnode.desc+'</p>' + projectEarnedMarkup(lnode.id) + labCapacityChallengesMarkup(lnode,plan) + '<div class="effect-note">' + (plan.maxed?Amount.add(Amount.add('Effect cap reached. Queue ',queueOn?'ON':'OFF'),' retained; no new starts.'):
-        Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + (plan.maxed?'':Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('<div class="study-meta" id="study-price-',lnode.id),'">Takes '),fmtStudyDuration(dur)),' &middot; '),purchasePriceMarkup('lumen',cost.lumen)),' '),purchasePriceMarkup('shard',cost.shard)),'</div>')) + studyChoiceAction(lnode,plan) + '</div>');
+        Amount.add(Amount.add('Next: ',projectEarnedEffect(lnode.id,Amount.add(level,1))),'.')) + '</div>' + studyPriceElement(lnode,plan) + studyChoiceAction(lnode,plan) + '</div>');
   });
 
   html += '</section>'+cardDetails('lab-help','<div class="section-sub" id="study-speed-help">Lab: 24 research tracks across Foundations, Wisp fundamentals, Laboratory, Expedition and Refinement. Lumen and Shards fund starts; Motes buy speed. Up to five slots unlock through Rift progress and Expanded Apparatus challenges. Each expansion needs its Rift, Ascension and completed research goals before its timer begins. Research continues for the full time away, beyond the 12-hour combat limit. Queued levels continue while Lumen and Shards are available; already-paid work finishes even if funds run out. Study Queue begins its next paid level at 1x when a slot and currency are free. Choose a speed and 8, 12 or 24 hours. The boost belongs to its slot across projects and levels; its timer continues while idle and offline. Queue Speed Up is separate: ON starts and repeats the selected boost when research and Motes are available, charging once at each start. Change the next multiplier or duration at any time; the active paid boost finishes unchanged. OFF prevents future boosts without cancelling paid time. Existing speed already paid for a level remains protected. Research Queue OFF finishes the current level, then leaves the slot empty. Selecting different research saves the current paid work; select it again to resume without paying again.</div>','How research works','study-help');
@@ -10636,7 +10676,7 @@ function renderNodes(){
     var priced = Amount.valid(plan.cost);
     var levelText=('Level ' + level + (node.levelCap!==undefined?Amount.add(' · Cap ',node.levelCap):'') + (node.levelCap!==undefined && Amount.gt(level,node.levelCap)?' · Saved level preserved':''));
     if(node.id==='bonds'){levelText=('Level ' + Amount.min(level,20) + ' / 20');if(Amount.gt(level,20))levelText=(levelText + ' · ' + formatGroupedNumber(level) + ' purchased levels preserved');}
-    html=(html + '<div class="card node-card" data-tree-node="' + node.id + '">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--prism);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<p class="desc">'+node.desc+'</p>' + '<div class="lvl" style="color:var(--prism);">' + levelText + '</div>' + '<div class="earned-effect" data-node-effect="' + node.id + '">Bonus: ' + nodeEarnedEffect(node.id) + '</div>' + '' + (node.id==='bonds' && state.feedbackMigration.receipts['node.bonds'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; ',state.feedbackMigration.receipts['node.bonds'].unpricedFrom ? 'refunds cover purchases with available prices.' : 'purchases above level 20 refunded in Prisms.'),'</div>') : '') + (node.id==='bonds' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + (node.id==='echo' && state.feedbackMigration.receipts['node.echo'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; purchases above level 6 refunded in Prisms',state.feedbackMigration.receipts['node.echo'].unpricedFrom ? ' where original prices are available' : ''),'.</div>') : '') + (node.id==='echo' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + '</div>' + '<button class="buy-btn" data-node="' + node.id + '" ' + (plan.affordable?'':'disabled') + ' aria-label="' + (capped?Amount.add(node.name,' maximum level reached'):unavailable?Amount.add(node.name,' price unavailable'):Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('Buy ',node.name),' level '),Amount.add(level,1)),' for '),formatNum(plan.cost)),' Prisms')) + '" style="min-width:78px;">' + (capped?'<span class="label">Maxed</span>':unavailable&&!priced?'<span class="label">Unavailable</span>':Amount.add(Amount.add(Amount.add(purchasePriceMarkup('prism',plan.cost,'cost mono'),'<span class="label">'),unavailable?'Unavailable':'Prisms'),'</span>')) + '</button>' + '</div>');
+    html=(html + '<div class="card node-card" data-tree-node="' + node.id + '"' + (capped?' data-state="maxed"':'') + '>' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--prism);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<p class="desc">'+node.desc+'</p>' + '<div class="lvl" style="color:var(--prism);">' + levelText + '</div>' + '<div class="earned-effect" data-node-effect="' + node.id + '">Bonus: ' + nodeEarnedEffect(node.id) + '</div>' + '' + (node.id==='bonds' && state.feedbackMigration.receipts['node.bonds'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; ',state.feedbackMigration.receipts['node.bonds'].unpricedFrom ? 'refunds cover purchases with available prices.' : 'purchases above level 20 refunded in Prisms.'),'</div>') : '') + (node.id==='bonds' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + (node.id==='echo' && state.feedbackMigration.receipts['node.echo'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; purchases above level 6 refunded in Prisms',state.feedbackMigration.receipts['node.echo'].unpricedFrom ? ' where original prices are available' : ''),'.</div>') : '') + (node.id==='echo' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + '</div>' + '<button class="buy-btn" data-node="' + node.id + '" ' + (plan.affordable?'':'disabled') + ' aria-label="' + (capped?Amount.add(node.name,' maximum level reached'):unavailable?Amount.add(node.name,' price unavailable'):Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('Buy ',node.name),' level '),Amount.add(level,1)),' for '),formatNum(plan.cost)),' Prisms')) + '" style="min-width:78px;">' + (capped?'<span class="label">Maxed</span>':unavailable&&!priced?'<span class="label">Unavailable</span>':Amount.add(Amount.add(Amount.add(purchasePriceMarkup('prism',plan.cost,'cost mono'),'<span class="label">'),unavailable?'Unavailable':'Prisms'),'</span>')) + '</button>' + '</div>');
   });
   replaceControlMarkup(els['node-list'],html);
   els['node-list'].querySelectorAll('[data-node]').forEach(function(btn){
@@ -13874,40 +13914,7 @@ function checkAffordability(visibleOnly,force){
   var actionView=captureWispActionView();
   // Live labels can wrap as wallets change; a wallet refresh is not navigation.
   if(actionView)actionView.anchorTop=null;
-  els['spirit-list'].querySelectorAll('[data-empower]').forEach(function(btn){
-    var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-empower'); });
-    if(!sp) return;
-    var plan=getSpiritBuyPlan(sp),label=btn.querySelector('strong');
-    btn.disabled=!plan.affordable;
-    if(label) label.textContent=plan.reason==='unavailable'?'Unavailable':Amount.gt(state.spirits[sp.id]||0,0)?'Empower':'Recruit';
-  });
-  els['spirit-list'].querySelectorAll('[data-rarity]').forEach(function(btn){
-    var id = btn.getAttribute('data-rarity');
-    var sp = SPIRITS.find(function(s){ return s.id===id; });
-    if(!sp) return;
-    var tier = state.heroRarity[id]||0;
-    if(Amount.ge(tier,5)){ btn.disabled = true; return; }
-    var level = state.spirits[id];
-    var req = rarityReq(tier);
-    var cost = rarityCost(sp, tier);
-    btn.disabled = !getWispRarityPlan(sp).affordable;
-  });
-  els['spirit-list'].querySelectorAll('[data-module]').forEach(function(btn){
-    var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-module'); });
-    if(!sp) return;
-    var level = moduleLevel(sp.id);
-    if(Amount.ge(level,MODULE_MAX_LEVEL)) return;
-    var cost = moduleCost(sp, level);
-    btn.disabled = Amount.le(state.spirits[sp.id]||0,0) || Amount.lt(state.lumen,cost.lumen) || !canSpendShards(cost.shard);
-  });
-  els['spirit-list'].querySelectorAll('[data-ultimate]').forEach(function(btn){
-    var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-ultimate'); });
-    if(!sp) return;
-    btn.disabled = !getWispUltimatePlan(sp).affordable;
-  });
-  els['spirit-list'].querySelectorAll('[data-mastery]').forEach(function(btn){
-    var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-mastery');});if(sp)btn.disabled=!getWispMasteryPlan(sp).affordable;
-  });
+  refreshWispUpgradeButtons();
   els['spirit-list'].querySelectorAll('[data-sigil-resonate]').forEach(function(btn){
     var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-sigil-resonate');});
     btn.disabled=!canSigilResonate(sp);
@@ -13928,7 +13935,10 @@ function checkAffordability(visibleOnly,force){
   els['study-list'].querySelectorAll('[data-study]').forEach(function(btn){
     var lnode = LONG_STUDIES.find(function(n){ return n.id===btn.getAttribute('data-study'); });
     if(!lnode) return;
-    btn.disabled = !getStudyStartPlan(lnode,selectedStudySlot>=0?selectedStudySlot:undefined).affordable;
+    var plan=getStudyStartPlan(lnode,selectedStudySlot>=0?selectedStudySlot:undefined);
+    btn.disabled=!plan.affordable;
+    var price=document.getElementById('study-price-'+lnode.id),html=studyPriceMarkup(lnode,plan);
+    if(price && price.innerHTML!==html)price.innerHTML=html;
   });
   refreshStudyStartConfirmation();
   refreshLabCapacityChallenges();

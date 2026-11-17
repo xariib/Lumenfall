@@ -1,0 +1,29 @@
+{
+  "status": "PASS unchanged retry; first failure retained",
+  "featureHead": "6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98",
+  "sourceSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327",
+  "runId": 44097173605,
+  "jobId": 134087264488,
+  "error": "settled-setup finishes within the original deadline",
+  "observation": "Child result: zero checks, CDP deadline Browser.getVersion, then Browser close deadline. Outer original90s process limit also expired. Startup/teardown failed before game assertions; underlying cause unproven. Linux counterpart134087263948 passed.",
+  "artifact": {
+    "id": 14333938842,
+    "bytes": 651,
+    "sha256": "9613214aa12ce80702c4f150d54a8cbdd13afd94f88d800c1e4cde0409a91c7d",
+    "shaAndAllZipCrcsVerified": true
+  },
+  "response": "Rerun without changes to product, driver, deadline, assertions or workflow. Original artifact retained.",
+  "checks": 0,
+  "childError": "CDP deadline Browser.getVersion",
+  "childTeardown": "Browser close deadline",
+  "final": {
+    "windowsJob": 134091323108,
+    "linuxJob": 134091325908,
+    "status": "PASS both platforms",
+    "windowsChecks": 3277,
+    "sourceUnchanged": true,
+    "artifactId": 14336025128,
+    "artifactSha256": "55a058d4f6e1c8a890e4a537e59429317fddfa2a7f5af20e60d084e521e487e8",
+    "shaAndLogCrcVerified": true
+  }
+}

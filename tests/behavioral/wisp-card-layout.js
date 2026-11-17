@@ -55,7 +55,8 @@ window.runWispCardLayoutQa=function(baseline){
     var a=getComputedStyle(card.querySelector('.hero-ability')),m=getComputedStyle(card.querySelector('.module-row'));
     if(!baseline){
       ok(a.borderLeftWidth==='0px'&&a.backgroundColor==='rgba(0, 0, 0, 0)','ability uses plain card surface');
-      ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','Module uses plain card surface');
+      if(b.get().wispModules[id]>=b.moduleCap())ok(m.borderLeftWidth==='2px'&&m.borderLeftColor==='rgb(217, 180, 94)','maxed ability uses a gold box');
+      else ok(m.borderLeftWidth==='0px'&&m.backgroundColor==='rgba(0, 0, 0, 0)','unfinished Module uses plain card surface');
       var heading=card.querySelector('.wisp-ability-title'),level=card.querySelector('.wisp-level'),levelStyle=level&&getComputedStyle(level);
       ok(heading.textContent.includes(b.spirit(id).abilityName),'direct upgrade section names its ability');
       ok(card.querySelector('.wisp-ability-section').getAttribute('aria-label')===b.spirit(id).name+' ability','section retains Wisp context for assistive technology');

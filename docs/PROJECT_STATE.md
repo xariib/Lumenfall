@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) is under
+validation: gold caps, prerequisite unlock instructions, independent red currency
+shortfalls and disabled unaffordable buttons across upgrade families. Current
+main is preserved; source-bound checks and evidence are in the task. Full CI,
+integration and signed Android delivery remain pending.
+
 17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) integrated
 at12122b80; [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136)
 published/verified. Removes hints, Farm left/Push right, opaque arena and isolated
@@ -70,7 +76,8 @@ retain the complete 12–14 November receipts and acceptance limitations.
 
 [Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
 preserve all prior release versions, hashes, receipts, first failures and known
-limitations, including Android0.2.104/0.2.98/0.2.95 and preceding deliveries.
+limitations, including PR42/Android0.2.110, the closed PR46 proposal, exploit
+fixes/Android0.2.107 and preceding deliveries.
 [October history](PROJECT_STATE_2026-11-04_HISTORY.md) retains earlier records.
 
 Physical-phone, exact WebView60 DOM, TalkBack and human pacing/performance acceptance

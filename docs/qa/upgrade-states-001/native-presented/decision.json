@@ -1,0 +1,22 @@
+{
+  "requirement": "Keep all original native-input/functional assertions and profiles; strengthen target presentation and verify native gesture is still required.",
+  "originalCi": {
+    "runId": 44097173159,
+    "jobId": 134087263504,
+    "checks": 419,
+    "error": "real touch opens damage details",
+    "artifactId": 14336930814,
+    "artifactSha256": "6eb4f81ef33260fb02409a8ce87f6ee2f820ec32853e535dbf0530e6b12adaf2",
+    "verified": true
+  },
+  "finding": "Original helper samples after fixed40ms and asserts immediately after CDP touch acknowledgement. No presented-surface or hit verification or post-input painted-frame barrier.",
+  "change": "Keep40ms, same touchStart/touchEnd, original assertions/12+12 profiles/CDP deadlines. Capture presented surface before sampling; require viewport hit and44px target; wait one frame after original gesture. Save last surface/input observations. No direct click or disclosure mutation.",
+  "results": {
+    "baseline": "PASS493 af692d7f",
+    "candidate": "PASS493 7943ca60",
+    "suppressedTouch": "Rejected at original real-touch assertion/check171 with clean exit; same product source hash"
+  },
+  "ci": "New control wired after existing required affordability/upgrade controls; new-head CI pending.",
+  "cause": "Underlying platform cause of previous intermittent failures remains unproven; no product fix claimed.",
+  "next": "Merge newer main12122b80 preserving Rift changes, verify source binding and current-source native/upgrade checks, then new-head CI."
+}

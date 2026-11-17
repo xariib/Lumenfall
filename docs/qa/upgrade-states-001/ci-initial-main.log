@@ -1,0 +1,323 @@
+﻿2026-11-17T10:26:54.0887717Z Current runner version: '2.338.2'
+2026-11-17T10:26:54.0923775Z ##[group]Runner Image Provisioner
+2026-11-17T10:26:54.0925491Z Hosted Compute Agent
+2026-11-17T10:26:54.0926542Z Version: 20261103.629
+2026-11-17T10:26:54.0927706Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-17T10:26:54.0929283Z Build Date: 2026-11-03T17:26:59Z
+2026-11-17T10:26:54.0930503Z Worker ID: {cb67ef78-3481-4c45-8ea9-7b523f270323}
+2026-11-17T10:26:54.0931866Z Region: eastus2
+2026-11-17T10:26:54.0932831Z Cloud: Azure
+2026-11-17T10:26:54.0933775Z ##[endgroup]
+2026-11-17T10:26:54.0936622Z ##[group]Operating System
+2026-11-17T10:26:54.0937760Z Ubuntu
+2026-11-17T10:26:54.0938679Z 26.04.1
+2026-11-17T10:26:54.0939569Z LTS
+2026-11-17T10:26:54.0940588Z ##[endgroup]
+2026-11-17T10:26:54.0941551Z ##[group]Runner Image
+2026-11-17T10:26:54.0942721Z Image: ubuntu-26.04
+2026-11-17T10:26:54.0943787Z Version: 20261111.196.1
+2026-11-17T10:26:54.0946444Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-17T10:26:54.0949252Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-17T10:26:54.0951078Z ##[endgroup]
+2026-11-17T10:26:54.0952972Z ##[group]GITHUB_TOKEN Permissions
+2026-11-17T10:26:54.0956289Z Contents: read
+2026-11-17T10:26:54.0957270Z Metadata: read
+2026-11-17T10:26:54.0958393Z ##[endgroup]
+2026-11-17T10:26:54.0961494Z Secret source: Actions
+2026-11-17T10:26:54.0963131Z Cache mode: write
+2026-11-17T10:26:54.0964585Z Prepare workflow directory
+2026-11-17T10:26:54.1457795Z Prepare all required actions
+2026-11-17T10:26:54.1531031Z Getting action download info
+2026-11-17T10:26:54.3622668Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-17T10:26:54.4708520Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-17T10:26:54.5440057Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-17T10:26:54.7330721Z Complete job name: Lumenfall pre-merge validation
+2026-11-17T10:26:54.8490194Z ##[group]Run actions/checkout@v4
+2026-11-17T10:26:54.8491077Z with:
+2026-11-17T10:26:54.8491511Z   repository: xariib/Lumenfall
+2026-11-17T10:26:54.8495313Z   token: ***
+2026-11-17T10:26:54.8495752Z   ssh-strict: true
+2026-11-17T10:26:54.8496186Z   ssh-user: git
+2026-11-17T10:26:54.8496619Z   persist-credentials: true
+2026-11-17T10:26:54.8497094Z   clean: true
+2026-11-17T10:26:54.8497528Z   sparse-checkout-cone-mode: true
+2026-11-17T10:26:54.8498037Z   fetch-depth: 1
+2026-11-17T10:26:54.8498461Z   fetch-tags: false
+2026-11-17T10:26:54.8498889Z   show-progress: true
+2026-11-17T10:26:54.8499324Z   lfs: false
+2026-11-17T10:26:54.8499718Z   submodules: false
+2026-11-17T10:26:54.8500150Z   set-safe-directory: true
+2026-11-17T10:26:54.8500642Z   allow-unsafe-pr-checkout: false
+2026-11-17T10:26:54.8501402Z ##[endgroup]
+2026-11-17T10:26:55.1115971Z Syncing repository: xariib/Lumenfall
+2026-11-17T10:26:55.1119141Z ##[group]Getting Git version info
+2026-11-17T10:26:55.1120578Z Working directory is '/home/runner/work/Lumenfall/Lumenfall'
+2026-11-17T10:26:55.1122603Z [command]/usr/bin/git version
+2026-11-17T10:26:55.1123559Z git version 2.56.1
+2026-11-17T10:26:55.1126798Z ##[endgroup]
+2026-11-17T10:26:55.1170470Z Temporarily overriding HOME='/home/runner/work/_temp/0e69c305-46b9-403e-ac0a-4c39bcf66255' before making global git config changes
+2026-11-17T10:26:55.1173429Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-17T10:26:55.1176083Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-11-17T10:26:55.1241125Z Deleting the contents of '/home/runner/work/Lumenfall/Lumenfall'
+2026-11-17T10:26:55.1248957Z ##[group]Initializing the repository
+2026-11-17T10:26:55.1255139Z [command]/usr/bin/git init /home/runner/work/Lumenfall/Lumenfall
+2026-11-17T10:26:55.1397643Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-17T10:26:55.1399851Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-17T10:26:55.1401382Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-17T10:26:55.1402610Z hint: call:
+2026-11-17T10:26:55.1403235Z hint:
+2026-11-17T10:26:55.1404014Z hint: 	git config --global init.defaultBranch <name>
+2026-11-17T10:26:55.1405403Z hint:
+2026-11-17T10:26:55.1406371Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-17T10:26:55.1407877Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-17T10:26:55.1409154Z hint:
+2026-11-17T10:26:55.1409829Z hint: 	git branch -m <name>
+2026-11-17T10:26:55.1410578Z hint:
+2026-11-17T10:26:55.1411583Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-17T10:26:55.1413298Z Initialized empty Git repository in /home/runner/work/Lumenfall/Lumenfall/.git/
+2026-11-17T10:26:55.1434113Z [command]/usr/bin/git remote add origin https://github.com/xariib/Lumenfall
+2026-11-17T10:26:55.1494929Z ##[endgroup]
+2026-11-17T10:26:55.1496499Z ##[group]Disabling automatic garbage collection
+2026-11-17T10:26:55.1499354Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-17T10:26:55.1549039Z ##[endgroup]
+2026-11-17T10:26:55.1550154Z ##[group]Setting up auth
+2026-11-17T10:26:55.1556559Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-17T10:26:55.1595557Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-17T10:26:55.2086199Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-17T10:26:55.2122230Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-17T10:26:55.2402634Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-17T10:26:55.2439129Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-17T10:26:55.2720264Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-17T10:26:55.2766933Z ##[endgroup]
+2026-11-17T10:26:55.2768052Z ##[group]Fetching the repository
+2026-11-17T10:26:55.2780169Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b1adab718597d7b88bf3d394d54e3898ae56b08a:refs/remotes/pull/61/merge
+2026-11-17T10:27:26.6355297Z From https://github.com/xariib/Lumenfall
+2026-11-17T10:27:26.6356428Z  * [new ref]           b1adab718597d7b88bf3d394d54e3898ae56b08a -> pull/61/merge
+2026-11-17T10:27:26.6361356Z ##[endgroup]
+2026-11-17T10:27:26.6362326Z ##[group]Determining the checkout info
+2026-11-17T10:27:26.6365339Z ##[endgroup]
+2026-11-17T10:27:26.6371692Z [command]/usr/bin/git sparse-checkout disable
+2026-11-17T10:27:26.6473913Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-17T10:27:26.6505524Z ##[group]Checking out the ref
+2026-11-17T10:27:26.6510294Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/61/merge
+2026-11-17T10:27:27.6853232Z Updating files:  14% (2599/17762)
+2026-11-17T10:27:27.7193256Z Updating files:  15% (2665/17762)
+2026-11-17T10:27:27.7599189Z Updating files:  16% (2842/17762)
+2026-11-17T10:27:27.8393394Z Updating files:  17% (3020/17762)
+2026-11-17T10:27:27.8927274Z Updating files:  18% (3198/17762)
+2026-11-17T10:27:27.9388784Z Updating files:  19% (3375/17762)
+2026-11-17T10:27:27.9501581Z Updating files:  20% (3553/17762)
+2026-11-17T10:27:27.9655077Z Updating files:  21% (3731/17762)
+2026-11-17T10:27:27.9768260Z Updating files:  22% (3908/17762)
+2026-11-17T10:27:27.9958523Z Updating files:  23% (4086/17762)
+2026-11-17T10:27:28.1098748Z Updating files:  24% (4263/17762)
+2026-11-17T10:27:28.1990424Z Updating files:  25% (4441/17762)
+2026-11-17T10:27:28.3176240Z Updating files:  26% (4619/17762)
+2026-11-17T10:27:28.4381452Z Updating files:  27% (4796/17762)
+2026-11-17T10:27:28.5228525Z Updating files:  28% (4974/17762)
+2026-11-17T10:27:28.5726311Z Updating files:  29% (5151/17762)
+2026-11-17T10:27:28.5934489Z Updating files:  30% (5329/17762)
+2026-11-17T10:27:28.6561054Z Updating files:  31% (5507/17762)
+2026-11-17T10:27:28.6698462Z Updating files:  32% (5684/17762)
+2026-11-17T10:27:28.7054975Z Updating files:  32% (5748/17762)
+2026-11-17T10:27:28.7565219Z Updating files:  33% (5862/17762)
+2026-11-17T10:27:28.8085091Z Updating files:  34% (6040/17762)
+2026-11-17T10:27:28.8271767Z Updating files:  35% (6217/17762)
+2026-11-17T10:27:28.8631212Z Updating files:  36% (6395/17762)
+2026-11-17T10:27:28.9620633Z Updating files:  37% (6572/17762)
+2026-11-17T10:27:29.0187614Z Updating files:  38% (6750/17762)
+2026-11-17T10:27:29.1063235Z Updating files:  39% (6928/17762)
+2026-11-17T10:27:29.1340429Z Updating files:  40% (7105/17762)
+2026-11-17T10:27:29.1916719Z Updating files:  41% (7283/17762)
+2026-11-17T10:27:29.2205265Z Updating files:  42% (7461/17762)
+2026-11-17T10:27:29.2447681Z Updating files:  43% (7638/17762)
+2026-11-17T10:27:29.2728359Z Updating files:  44% (7816/17762)
+2026-11-17T10:27:29.3223732Z Updating files:  45% (7993/17762)
+2026-11-17T10:27:29.3565104Z Updating files:  46% (8171/17762)
+2026-11-17T10:27:29.3749748Z Updating files:  47% (8349/17762)
+2026-11-17T10:27:29.4032158Z Updating files:  48% (8526/17762)
+2026-11-17T10:27:29.5079336Z Updating files:  49% (8704/17762)
+2026-11-17T10:27:29.7286356Z Updating files:  50% (8881/17762)
+2026-11-17T10:27:30.0792712Z Updating files:  50% (8912/17762)
+2026-11-17T10:27:30.1414433Z Updating files:  51% (9059/17762)
+2026-11-17T10:27:30.2359870Z Updating files:  52% (9237/17762)
+2026-11-17T10:27:30.2517880Z Updating files:  53% (9414/17762)
+2026-11-17T10:27:30.2798953Z Updating files:  54% (9592/17762)
+2026-11-17T10:27:30.3269632Z Updating files:  55% (9770/17762)
+2026-11-17T10:27:30.3622668Z Updating files:  56% (9947/17762)
+2026-11-17T10:27:30.4243835Z Updating files:  57% (10125/17762)
+2026-11-17T10:27:30.5112207Z Updating files:  58% (10302/17762)
+2026-11-17T10:27:30.5644526Z Updating files:  59% (10480/17762)
+2026-11-17T10:27:30.5826580Z Updating files:  60% (10658/17762)
+2026-11-17T10:27:30.6276664Z Updating files:  61% (10835/17762)
+2026-11-17T10:27:30.6602536Z Updating files:  62% (11013/17762)
+2026-11-17T10:27:30.6694799Z Updating files:  63% (11191/17762)
+2026-11-17T10:27:30.6838890Z Updating files:  63% (11239/17762)
+2026-11-17T10:27:30.6913489Z Updating files:  64% (11368/17762)
+2026-11-17T10:27:30.7126147Z Updating files:  65% (11546/17762)
+2026-11-17T10:27:30.7457543Z Updating files:  66% (11723/17762)
+2026-11-17T10:27:30.7702288Z Updating files:  67% (11901/17762)
+2026-11-17T10:27:30.7822584Z Updating files:  68% (12079/17762)
+2026-11-17T10:27:30.8027180Z Updating files:  69% (12256/17762)
+2026-11-17T10:27:30.8150270Z Updating files:  70% (12434/17762)
+2026-11-17T10:27:30.8282426Z Updating files:  71% (12612/17762)
+2026-11-17T10:27:30.8420615Z Updating files:  72% (12789/17762)
+2026-11-17T10:27:30.8599155Z Updating files:  73% (12967/17762)
+2026-11-17T10:27:30.8817786Z Updating files:  74% (13144/17762)
+2026-11-17T10:27:30.9411464Z Updating files:  75% (13322/17762)
+2026-11-17T10:27:31.1764103Z Updating files:  76% (13500/17762)
+2026-11-17T10:27:31.2720193Z Updating files:  77% (13677/17762)
+2026-11-17T10:27:31.2926583Z Updating files:  78% (13855/17762)
+2026-11-17T10:27:31.3539137Z Updating files:  79% (14032/17762)
+2026-11-17T10:27:31.4266222Z Updating files:  80% (14210/17762)
+2026-11-17T10:27:31.4453395Z Updating files:  81% (14388/17762)
+2026-11-17T10:27:31.4779458Z Updating files:  82% (14565/17762)
+2026-11-17T10:27:31.5145129Z Updating files:  83% (14743/17762)
+2026-11-17T10:27:31.5255622Z Updating files:  84% (14921/17762)
+2026-11-17T10:27:31.5368643Z Updating files:  85% (15098/17762)
+2026-11-17T10:27:31.5646586Z Updating files:  86% (15276/17762)
+2026-11-17T10:27:31.5778942Z Updating files:  87% (15453/17762)
+2026-11-17T10:27:31.6577929Z Updating files:  88% (15631/17762)
+2026-11-17T10:27:31.6708708Z Updating files:  89% (15809/17762)
+2026-11-17T10:27:31.7724559Z Updating files:  89% (15852/17762)
+2026-11-17T10:27:31.8233330Z Updating files:  90% (15986/17762)
+2026-11-17T10:27:31.8413975Z Updating files:  91% (16164/17762)
+2026-11-17T10:27:31.8969058Z Updating files:  92% (16342/17762)
+2026-11-17T10:27:31.9557090Z Updating files:  93% (16519/17762)
+2026-11-17T10:27:32.0486952Z Updating files:  94% (16697/17762)
+2026-11-17T10:27:32.1160666Z Updating files:  95% (16874/17762)
+2026-11-17T10:27:32.1452624Z Updating files:  96% (17052/17762)
+2026-11-17T10:27:32.2349179Z Updating files:  97% (17230/17762)
+2026-11-17T10:27:32.2979296Z Updating files:  98% (17407/17762)
+2026-11-17T10:27:32.3962080Z Updating files:  99% (17585/17762)
+2026-11-17T10:27:32.3962808Z Updating files: 100% (17762/17762)
+2026-11-17T10:27:32.3963442Z Updating files: 100% (17762/17762), done.
+2026-11-17T10:27:32.4148835Z Note: switching to 'refs/remotes/pull/61/merge'.
+2026-11-17T10:27:32.4149294Z 
+2026-11-17T10:27:32.4150294Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-17T10:27:32.4153079Z changes and commit them, and you can discard any commits you make in this
+2026-11-17T10:27:32.4154454Z state without impacting any branches by switching back to a branch.
+2026-11-17T10:27:32.4154978Z 
+2026-11-17T10:27:32.4155267Z If you want to create a new branch to retain commits you create, you may
+2026-11-17T10:27:32.4155827Z do so (now or later) by using -c with the switch command. Example:
+2026-11-17T10:27:32.4156142Z 
+2026-11-17T10:27:32.4156269Z   git switch -c <new-branch-name>
+2026-11-17T10:27:32.4156483Z 
+2026-11-17T10:27:32.4156598Z Or undo this operation with:
+2026-11-17T10:27:32.4156791Z 
+2026-11-17T10:27:32.4156891Z   git switch -
+2026-11-17T10:27:32.4157060Z 
+2026-11-17T10:27:32.4157565Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-17T10:27:32.4157953Z 
+2026-11-17T10:27:32.4158379Z HEAD is now at b1adab71 Merge 2518e7e8a1bb041a79c05495630eff73b05bf1b3 into b075cfbac508096c240d3cba8885384235e4a210
+2026-11-17T10:27:32.4426136Z ##[endgroup]
+2026-11-17T10:27:32.4472356Z [command]/usr/bin/git log -1 --format=%H
+2026-11-17T10:27:32.4509007Z b1adab718597d7b88bf3d394d54e3898ae56b08a
+2026-11-17T10:27:32.4824963Z ##[group]Run actions/setup-node@v4
+2026-11-17T10:27:32.4825290Z with:
+2026-11-17T10:27:32.4825531Z   node-version: 24.19.0
+2026-11-17T10:27:32.4825783Z   always-auth: false
+2026-11-17T10:27:32.4826026Z   check-latest: false
+2026-11-17T10:27:32.4828453Z   token: ***
+2026-11-17T10:27:32.4828658Z ##[endgroup]
+2026-11-17T10:27:32.6275377Z Attempting to download 24.19.0...
+2026-11-17T10:27:32.6429698Z (node:2426) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-17T10:27:32.6431069Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-17T10:27:33.3445580Z Acquiring 24.19.0 - x64 from https://github.com/actions/node-versions/releases/download/24.19.0-30872449280/node-24.19.0-linux-x64.tar.gz
+2026-11-17T10:27:33.8084999Z Extracting ...
+2026-11-17T10:27:33.8252584Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/b873d481-9ce5-4c46-8670-3516065ec614 -f /home/runner/work/_temp/d22f63e9-008a-42ff-9cf3-fa76dc5e41ff
+2026-11-17T10:27:34.6271327Z Adding to the cache ...
+2026-11-17T10:27:36.6811708Z ##[group]Environment details
+2026-11-17T10:27:36.9273556Z node: v24.19.0
+2026-11-17T10:27:36.9273971Z npm: 11.17.0
+2026-11-17T10:27:36.9274490Z yarn: 1.22.22
+2026-11-17T10:27:36.9275286Z ##[endgroup]
+2026-11-17T10:27:36.9503152Z ##[group]Run node scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_BALANCE_HUNT_001.md
+2026-11-17T10:27:36.9503923Z [36;1mnode scripts/codex/check_context.cjs --task docs/tasks/EXPLOIT_BALANCE_HUNT_001.md[0m
+2026-11-17T10:27:36.9504893Z [36;1mmkdir -p validation-evidence/exploit-balance-hunt[0m
+2026-11-17T10:27:36.9505552Z [36;1mnode tests/behavioral/exploit-balance-hunt.cjs index.html --negative > validation-evidence/exploit-balance-hunt/core.json[0m
+2026-11-17T10:27:36.9506436Z [36;1mnode tests/behavioral/idle-automation.cjs index.html > validation-evidence/exploit-balance-hunt/idle-automation.json[0m
+2026-11-17T10:27:36.9507293Z [36;1mnode tests/behavioral/modest-recruitment.cjs index.html > validation-evidence/exploit-balance-hunt/recruitment.json[0m
+2026-11-17T10:27:36.9508134Z [36;1mnode tests/behavioral/exploit-action-ui.cjs index.html validation-evidence/exploit-balance-hunt/browser --negative[0m
+2026-11-17T10:27:36.9563146Z shell: /usr/bin/bash -e {0}
+2026-11-17T10:27:36.9563421Z ##[endgroup]
+2026-11-17T10:27:37.0030195Z Mandatory startup exceeds 32 KiB
+2026-11-17T10:27:37.0068434Z ##[error]Process completed with exit code 1.
+2026-11-17T10:27:37.0279041Z ##[group]Run actions/upload-artifact@v4
+2026-11-17T10:27:37.0279350Z with:
+2026-11-17T10:27:37.0279606Z   name: guidance-readability-evidence-44064381284
+2026-11-17T10:27:37.0279927Z   retention-days: 14
+2026-11-17T10:27:37.0280194Z   path: validation-evidence/guidance-readability/
+2026-11-17T10:27:37.0280607Z   if-no-files-found: warn
+2026-11-17T10:27:37.0280966Z   compression-level: 6
+2026-11-17T10:27:37.0281186Z   overwrite: false
+2026-11-17T10:27:37.0281399Z   include-hidden-files: false
+2026-11-17T10:27:37.0281640Z ##[endgroup]
+2026-11-17T10:27:37.1969086Z (node:2468) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-17T10:27:37.1969936Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-17T10:27:37.2004399Z ##[warning]No files were found with the provided path: validation-evidence/guidance-readability/. No artifacts will be uploaded.
+2026-11-17T10:27:37.2296645Z ##[group]Run actions/upload-artifact@v4
+2026-11-17T10:27:37.2297151Z with:
+2026-11-17T10:27:37.2297495Z   name: pre-merge-evidence-44064381284
+2026-11-17T10:27:37.2297948Z   retention-days: 14
+2026-11-17T10:27:37.2298892Z   path: validation-evidence/
+/tmp/lumenfall-collection-price/
+/tmp/lumenfall-dom.html
+/tmp/lumenfall-chrome.log
+/tmp/lumenfall-http.log
+
+2026-11-17T10:27:37.2299662Z   if-no-files-found: warn
+2026-11-17T10:27:37.2300052Z   compression-level: 6
+2026-11-17T10:27:37.2300426Z   overwrite: false
+2026-11-17T10:27:37.2300654Z   include-hidden-files: false
+2026-11-17T10:27:37.2300972Z ##[endgroup]
+2026-11-17T10:27:37.4054835Z (node:2480) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-17T10:27:37.4056438Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-17T10:27:37.7330297Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-17T10:27:37.7332791Z The least common ancestor is /. This will be the root directory of the artifact
+2026-11-17T10:27:37.7333778Z With the provided path, there will be 2047 files uploaded
+2026-11-17T10:27:37.7338889Z Artifact name is valid!
+2026-11-17T10:27:37.7339583Z Root directory input is valid!
+2026-11-17T10:27:37.9564934Z Beginning upload of artifact content to blob storage
+2026-11-17T10:27:38.9744613Z (node:2480) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-17T10:27:39.1502221Z Uploaded bytes 8388608
+2026-11-17T10:27:39.8064412Z Uploaded bytes 16777216
+2026-11-17T10:27:40.1609014Z Uploaded bytes 25165824
+2026-11-17T10:27:41.0980789Z Uploaded bytes 33554432
+2026-11-17T10:27:41.6820221Z Uploaded bytes 41943040
+2026-11-17T10:27:42.7063802Z Uploaded bytes 50331648
+2026-11-17T10:27:43.0474035Z Uploaded bytes 58720256
+2026-11-17T10:27:43.2673764Z Uploaded bytes 67108864
+2026-11-17T10:27:43.5605673Z Uploaded bytes 75497472
+2026-11-17T10:27:43.8864796Z Uploaded bytes 83886080
+2026-11-17T10:27:44.5622545Z Uploaded bytes 92274688
+2026-11-17T10:27:45.6461014Z Uploaded bytes 100663296
+2026-11-17T10:27:46.0109516Z Uploaded bytes 109051904
+2026-11-17T10:27:46.4807396Z Uploaded bytes 117440512
+2026-11-17T10:27:46.8181074Z Uploaded bytes 125829120
+2026-11-17T10:27:47.2075423Z Uploaded bytes 134217728
+2026-11-17T10:27:47.6759863Z Uploaded bytes 142606336
+2026-11-17T10:27:47.8691769Z Uploaded bytes 145369634
+2026-11-17T10:27:47.8829838Z Finished uploading artifact content to blob storage!
+2026-11-17T10:27:47.8833437Z SHA256 digest of uploaded artifact zip is cc4ce9872c2f6188a61e919c572f834a7bd42f1f4f0a3fd24f8fe8c99aa1351a
+2026-11-17T10:27:47.8838687Z Finalizing artifact upload
+2026-11-17T10:27:48.3142330Z Artifact pre-merge-evidence-44064381284.zip successfully finalized. Artifact ID 14320606219
+2026-11-17T10:27:48.3144109Z Artifact pre-merge-evidence-44064381284 has been successfully uploaded! Final size is 145369634 bytes. Artifact ID is 14320606219
+2026-11-17T10:27:48.3152319Z Artifact download URL: https://github.com/xariib/Lumenfall/actions/runs/44064381284/artifacts/14320606219
+2026-11-17T10:27:48.3464906Z Post job cleanup.
+2026-11-17T10:27:48.4345002Z [command]/usr/bin/git version
+2026-11-17T10:27:48.4392366Z git version 2.56.1
+2026-11-17T10:27:48.4437313Z Temporarily overriding HOME='/home/runner/work/_temp/a6dafe6e-e7d0-4d20-a7c6-96c90ba5dede' before making global git config changes
+2026-11-17T10:27:48.4438317Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-17T10:27:48.4443473Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Lumenfall/Lumenfall
+2026-11-17T10:27:48.4488350Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-17T10:27:48.4527459Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-17T10:27:48.4856260Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-17T10:27:48.4897680Z http.https://github.com/.extraheader
+2026-11-17T10:27:48.4907878Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-17T10:27:48.4950610Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-17T10:27:48.5303287Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-17T10:27:48.5353047Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-17T10:27:48.5862832Z Cleaning up orphan processes
+2026-11-17T10:27:48.6354124Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
