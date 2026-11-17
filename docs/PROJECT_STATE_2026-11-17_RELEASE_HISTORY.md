@@ -66,3 +66,4 @@ Physical-phone, exact WebView60 DOM and human pacing remain unverified; editable
 local saves remain a trust boundary. PR42 was separate at that release; its later
 delivery and PR46's subsequent closure are recorded above.
 
+End of the preserved release checkpoints.
