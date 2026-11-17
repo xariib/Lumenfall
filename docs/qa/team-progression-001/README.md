@@ -2,6 +2,15 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Boost protocol continuation:187f67f3 full main failed native touch after four
+passing profiles; all seven specialist workflows and isolated offline passed.
+Runtime/DOM initialization alone did not resolve it. The boost helper now waits
+for two animation frames after scroll, then reads fresh coordinates before the
+same native touch. `boost-painted-final.json`:993 checks/18 profiles PASS.
+`boost-painted-control.json`:original next3x-selection assertion catches the
+next-lock defect, normal teardown. Same15s deadline/assertions/profiles; Linux
+acceptance and full integration remain pending. Prior failures are retained.
+
 Canonical final replay: `offline-golden-final.json` uses the original
 `offline-catchup.cjs --source index.html --generate-swift-golden` entrypoint.
 All four complete saved-state hashes,722/618/1161/678 kills and zero automatic

@@ -114,6 +114,15 @@ Canonical one-second replay regenerated all four windows against3f91; every
 complete saved-state hash and all rewards exactly match the prior reference.
 Only its sourceSha256 line changes. Full current-head gate remains required.
 
+187f67f3: all seven specialist workflows PASS; isolated offline PASS. Full
+main again stopped at boost-native Input.dispatchTouchEvent, after four passing
+profiles, despite Runtime/DOM initialization. That initialization did not prove
+a fix. The boost touch helper now observes two animation frames after scrolling
+before reading fresh coordinates and sending the same native gesture. Original
+15s protocol deadline, profiles and assertions remain. Local993/18 PASS; causal
+next-lock control fails original next3x-selection assertion with normal teardown.
+Actual Linux result is still required; no root-cause or infrastructure claim.
+
 Signed candidate0.2.129/build43999391752 passed both-save upgrade, paid work,
 100-Comet refund, updater install, retail Android12 launch and assets. It
 contains earlier081f source and is unpublished; final delivery requires a new

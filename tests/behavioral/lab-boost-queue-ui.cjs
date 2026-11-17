@@ -2,7 +2,16 @@
 const fs=require('node:fs'),path=require('node:path');
 module.exports=async function({send,ev,pause,check,records,args}){
  const evidence=args.includes('--evidence')?path.resolve(args[args.indexOf('--evidence')+1]):null;
- async function touch(selector){const r=await ev('(()=>{const e=document.querySelector('+JSON.stringify(selector)+');e.scrollIntoView({block:"center"});const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(20);}
+ async function touch(selector){
+  await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"});new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
+  // Geometry can change synchronously before Chrome has presented the resized,
+  // scrolled surface. Observe a painted frame before native hit-testing, then
+  // read fresh coordinates. Keep the original input and protocol deadline.
+  const r=await ev('(()=>{const r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()');
+  try{await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+  catch(error){error.message+=' target '+selector+' '+JSON.stringify(r);throw error;}
+  await pause(20);
+ }
  async function key(value){await send('Input.dispatchKeyEvent',{type:'keyDown',key:value,code:value});await send('Input.dispatchKeyEvent',{type:'keyUp',key:value,code:value});}
  for(const width of [320,390,430])for(const scale of [100,150,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
