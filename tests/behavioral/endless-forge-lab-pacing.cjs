@@ -4,6 +4,7 @@ const F=require('./forge-expansion-harness.cjs'),L=require('./lab-expansion-harn
 const A=require('../../scripts/lib/game-amount.cjs'),{rules,ready}=require('./lab-access-reference.cjs');
 const file=process.argv[2]||'index.html',source=fs.readFileSync(file,'utf8');
 const ids=['battletempering','arcanetempering','harvesttempering'],T=F.CLOCK;
+const caps={battletempering:375,arcanetempering:325,harvesttempering:315};
 function verify(html,farming){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);};
  const x=L.app(html),q=x.q;
@@ -53,10 +54,10 @@ function verify(html,farming){
  const f=F.app(html),c=f.q;
  for(const id of ids)for(const level of [299,300,301,1000,10000]){
   const s=F.seed(c);s.maxDepthEver=1000;s.research[id]=level;s.lumen=s.shards='1e1000';c.set(s);
-  eq(c.plan(id,1).maxed,false,'no final Forge level '+id+'/'+level);
+  eq(c.plan(id,1).maxed,level>=caps[id],'finite Forge boundary '+id+'/'+level);
   ok(Math.abs(c.effect(id,level).factor-(1+.01*level))<1e-10,'continuing additive effect '+id+'/'+level);
-  ok(c.preview(id,1).next!==null,'next effect remains visible '+id+'/'+level);
-  const plan=c.plan(id,1);if(A.le(plan.cost.lumen,s.lumen)&&A.le(plan.cost.shard,s.shards)){
+  eq(c.preview(id,1).next===null,level>=caps[id],'next effect only below finite cap '+id+'/'+level);
+  const plan=c.plan(id,1);if(!plan.maxed&&A.le(plan.cost.lumen,s.lumen)&&A.le(plan.cost.shard,s.shards)){
    const before=F.clone(c.get());f.fail(true,false);eq(c.buy(id,1),false,'write failure rejects continuing purchase');eq(c.get(),before,'continuing purchase rollback');f.fail(false,false);
    eq(c.buy(id,1),true,'real continuing Forge purchase');eq(c.get().research[id],level+1,'real continuing level');
    ok(A.gt(c.cost(id,level+1,1).lumen,plan.cost.lumen),'next level is more expensive');
@@ -90,7 +91,7 @@ function verify(html,farming){
 try{
  const result=verify(source,!process.argv.includes('--no-farm')),negative=[];
  if(process.argv.includes('--negative'))for(const [name,from,to]of [
-  ['forge-final-level','name:\'Battle Tempering\',forgeGroup:\'Enhancements\',endless:true','name:\'Battle Tempering\',forgeGroup:\'Enhancements\',levelCap:300'],
+  ['forge-premature-cap','name:\'Battle Tempering\',forgeGroup:\'Enhancements\',levelCap:375','name:\'Battle Tempering\',forgeGroup:\'Enhancements\',levelCap:300'],
   ['lab-ignores-prerequisite','target:rule.studies[id],met:Amount.ge(longStudyLevel(id),rule.studies[id])','target:rule.studies[id],met:true'],
   ['lab-ignores-rift','target:depth,met:Amount.ge(state.maxDepthEver,depth)','target:depth,met:true'],
   ['lab-loses-paid-access','unlocked:paid?true:','unlocked:false?true:']

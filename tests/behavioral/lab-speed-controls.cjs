@@ -16,6 +16,9 @@ if(args.includes('--legacy-viewport'))source=source.replace(/(?:min-)?height:100
 if(args.includes('--mutate-viewport-fallback')){const a='    height:100vh;\n    min-height:100vh;\n';assert.equal(source.split(a).length,2);source=source.replace(a,'');}
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 let html=source.replace('<head>','<head><script>window.uiRegressionErrors=[];addEventListener("error",e=>uiRegressionErrors.push(e.message));addEventListener("unhandledrejection",e=>uiRegressionErrors.push(String(e.reason)));window.uiRegressionPaused=true;const normalInterval=window.setInterval;window.setInterval=(fn,ms)=>normalInterval(()=>{if(!window.uiRegressionPaused)fn();},ms);</script>');
+// Independent boost/preset profiles start with their intended text size before
+// first layout, rather than resizing a compositor surface left by another case.
+html=html.replace('<head>','<head><script>var uiRegressionInitialScale=Number(new URL(location.href).searchParams.get("uiRegressionScale"));if([100,150,200].includes(uiRegressionInitialScale))document.documentElement.style.fontSize=uiRegressionInitialScale+"%";</script>');
 const marker="if(document.readyState==='loading'){";assert.equal(html.split(marker).length,2,'unique production bridge anchor');
 html=html.replace(marker,`window.clarityQA={clear:clearStudySlot,select:function(n){selectedStudySlot=n;renderLongStudies();},deeds:function(){return ACHIEVEMENTS;},forgePlan:function(id,n){return getResearchBuyPlan(RESEARCH.find(function(n){return n.id===id;}),n);},forgeCost:function(id,l,n){return researchCostForLevels(RESEARCH.find(function(n){return n.id===id;}),l,n);},check:applyAchievementChecks,render:renderAll};window.uiRegression={ready:()=>!!els.toast,fresh:freshState,defs:()=>LONG_STUDIES,slots:studySlotCount,plan:id=>getStudyStartPlan(LONG_STUDIES.find(n=>n.id===id)),set:function(s){state=acceptPersistedState(s);renderAll();},get:()=>JSON.parse(JSON.stringify(state)),progress:updateStudyProgress,badge:renderLabCapacityBadge,wallet:function(lumen,shards){state.lumen=lumen;state.shards=shards;lastAffordabilityAt=0;checkAffordability();},queue:function(){simulationStartQueuedStudies(simulationSummary(0));updateBattleFast();},start:id=>startStudy(LONG_STUDIES.find(n=>n.id===id)),finish:function(){advanceActiveStudies(1e9);renderAll();},saves:()=>[localStorage.getItem(SAVE_KEY),localStorage.getItem(RECOVERY_SAVE_KEY)],render:renderLongStudies,fund:function(n){state.motes=n;lastAffordabilityAt=0;checkAffordability();},expire:function(){var b=state.studyBoosts.slot0;b.expiresAtMs=Math.floor(gameplayNowMs())-1;b.startedAtMs=b.expiresAtMs-28800000;els['study-list'].querySelectorAll('[data-study-boost-status=guardmastery]').forEach(function(e){e.setAttribute('data-study-boost-time',b.expiresAtMs);});updateStudyProgress();},speed:applySpeedTier,prices:()=>LAB_SPEED_TIERS.map(speedTierCost),speeds:function(){simulationBuyStudySpeeds(simulationSummary(0),0,gameplayNowMs());renderLongStudies();},save:saveState,load:function(){state=loadState();renderAll();}};`+marker);
 html=require('./fixture-live-clock.cjs')(html,"uiRegressionPaused",false);
@@ -25,13 +28,31 @@ function check(value,message){checks++;assert(value,message);}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP deadline '+method));},15000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
 async function ev(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
+async function readyDocument(){
+ let ready=false;for(let i=0;i<200;i++){try{ready=await ev('!!window.uiRegression && uiRegression.ready()');}catch{}if(ready)break;await pause(25);}check(ready,'actual application ready');await ev('document.fonts.ready');await ev('if(window.startupIntroFinish)startupIntroFinish()');await ev('document.getElementById("startup-skip").click()');await pause(500);
+}
 async function run(){
  stage=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-ui-regressions-'));fs.writeFileSync(path.join(stage,'index.html'),html);for(const dir of ['fonts','branding'])fs.cpSync(path.join(root,dir),path.join(stage,dir),{recursive:true});server=await serve(stage);
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-ui-regression-browser-'));browser=spawn(findChrome(),['--headless=new','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
  browser.stderr.on('data',b=>{stderr=(stderr+b).slice(-8000);});browser.on('exit',()=>{closed=true;for(const n of [3,4])browser.stdio[n].destroy();for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();});browser.on('error',e=>{for(const p of pending.values()){clearTimeout(p.timer);p.reject(e);}pending.clear();});
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});for(const n of [3,4])browser.stdio[n].on('error',()=>{});
  const version=await send('Browser.getVersion',{},null);const target=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;await send('Page.enable');await send('Runtime.enable');await send('DOM.enable');await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});
- let ready=false;for(let i=0;i<200;i++){try{ready=await ev('!!window.uiRegression && uiRegression.ready()');}catch{}if(ready)break;await pause(25);}check(ready,'actual application ready');await ev('document.fonts.ready');await ev('if(window.startupIntroFinish)startupIntroFinish()');await ev('document.getElementById("startup-skip").click()');await pause(500);
+ await readyDocument();
+ let profileContext=null;
+ async function freshProfile({width,scale,motion}){
+  check((await ev('uiRegressionErrors')).length===0,'no runtime errors before closing a viewport profile');
+  if(profileContext)await send('Target.disposeBrowserContext',{browserContextId:profileContext},null);
+  else await send('Target.closeTarget',{targetId:target.targetId},null);
+  const context=await send('Target.createBrowserContext',{},null);profileContext=context.browserContextId;
+  const page=await send('Target.createTarget',{url:'about:blank',browserContextId:profileContext},null);
+  session=(await send('Target.attachToTarget',{targetId:page.targetId,flatten:true},null)).sessionId;
+  await send('Page.enable');await send('Runtime.enable');await send('DOM.enable');await send('Emulation.setTouchEmulationEnabled',{enabled:true});
+  await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
+  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
+  await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html?uiRegressionScale='+scale});
+  await readyDocument();
+  check(await ev('parseFloat(getComputedStyle(document.documentElement).fontSize)')===16*scale/100,'fresh profile uses the exact requested text size');
+ }
 
 
  await ev("(()=>{var s=uiRegression.fresh();s.maxDepthEver=250;s.motes=1000;s.questDay=new Date().toISOString().slice(0,10);s.activeStudies=[{id:'guardmastery',remainingSec:150,totalDurationSec:150,speedMult:1}];uiRegression.set(s);document.querySelector('[data-tab=research]').click();})()");
@@ -39,10 +60,10 @@ async function run(){
  const o=await ev("({hidden:document.querySelector('[data-study-inspection=guardmastery]').hidden,queueVisible:!!document.querySelector('[data-study-use-motes=guardmastery]').getClientRects().length})");
  check(o.hidden&&!o.queueVisible,'baseline hides direct speed and queue choice behind disclosure');records.push(o);
  }else{
- await require(args.includes('--support-duration')?'./support-duration-ui.cjs':args.includes('--menus')?'./mobile-menu-corrections-ui.cjs':args.includes('--simple')?'./lab-simple-ui.cjs':args.includes('--deeds')?'./deeds-progressive-ui.cjs':args.includes('--access')?'./lab-access-ui.cjs':args.includes('--slot-challenges')?'./lab-slot-challenges-ui.cjs':args.includes('--longtail')?'./lab-longtail-ui.cjs':args.includes('--presets')?'./lab-speed-presets-ui.cjs':args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args});
+ await require(args.includes('--support-duration')?'./support-duration-ui.cjs':args.includes('--menus')?'./mobile-menu-corrections-ui.cjs':args.includes('--simple')?'./lab-simple-ui.cjs':args.includes('--deeds')?'./deeds-progressive-ui.cjs':args.includes('--access')?'./lab-access-ui.cjs':args.includes('--slot-challenges')?'./lab-slot-challenges-ui.cjs':args.includes('--longtail')?'./lab-longtail-ui.cjs':args.includes('--presets')?'./lab-speed-presets-ui.cjs':args.includes('--boost-queue')?'./lab-boost-queue-ui.cjs':args.includes('--slots')?'./lab-slots-speed-menu-ui.cjs':args.includes('--permanent')?'./permanent-progression-ui.cjs':args.includes('--clarity')?'./workshop-card-clarity-ui.cjs':'./lab-timed-ui.cjs')({send,ev,pause,check,records,args,freshProfile});
  if(args.includes('--simple'))await require('./mobile-menu-corrections-ui.cjs')({send,ev,pause,check,records:menuProfiles,args});
  if(args.includes('--clarity'))await require('./deeds-progressive-ui.cjs')({send,ev,pause,check,records,args});
- if(args.includes('--boost-queue'))await require('./lab-speed-presets-ui.cjs')({send,ev,pause,check,records:presetProfiles,args});
+ if(args.includes('--boost-queue'))await require('./lab-speed-presets-ui.cjs')({send,ev,pause,check,records:presetProfiles,args,freshProfile});
 }
  check((await ev('uiRegressionErrors')).length===0,'no actual browser runtime errors');
  return {status:'pass',sourceSha256,mutation,legacyViewportMode:args.includes('--legacy-viewport'),checks,profiles:records,presetProfiles,menuProfiles,version};
