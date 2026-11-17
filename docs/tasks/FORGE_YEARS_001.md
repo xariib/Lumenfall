@@ -57,7 +57,7 @@ target; this user's new years target supersedes it for this feature.
 
 Current product SHA256:
 `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
-[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `44d07b87`.
+[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `b87da914`.
 Latest source/test corrections pass local validation and are being published.
 No integration or APK yet; self-review only. Standing authorization applies.
 
@@ -115,6 +115,17 @@ is rebound. `scripts/qa/finite-forge-reference.cjs`, its separate compressed
 baseline fixture, and `independent-paired-replay.json` preserve the proof.
 The earlier presentation-only replay rejected local byte hashes even for the
 released source; no runtime/platform cause is claimed. New exact-head CI pending.
+
+Atb87da914 seven separate workflows PASS, but the same320px/200% Lab profile
+stalls during surface capture, before any touch. The first frame barrier was
+insufficient. Native Boost/preset profiles now start in fresh browser contexts
+with the requested text size applied before initial layout. All18boost and
+18preset cases, gestures, functional assertions, causal control, runtime-error
+coverage and original deadlines remain. Standalone PASS1191checks with clean
+teardown; original next-lock defect is still rejected by its functional assertion.
+Product/source binding unchanged. Actual platform cause remains unproven.
+`premerge-surface-attempt.log.gz` and `lab-boost-isolated-results.json.gz` retain
+the evidence. Main was rechecked atb075cfba; no integration/APK yet.
 
 Next: finish full mobile/CI checks, resolve any findings, publish the coherent
 checkpoint, integrate serially after all required gates pass, then run exact

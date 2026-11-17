@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-module.exports=async function({send,ev,pause,check,records,args}){
+module.exports=async function({send,ev,pause,check,records,args,freshProfile}){
  const evidence=args.includes('--evidence')?path.resolve(args[args.indexOf('--evidence')+1]):null;
  async function touch(selector){
   await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"});new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
@@ -20,7 +20,8 @@ module.exports=async function({send,ev,pause,check,records,args}){
  }
  async function key(value){await send('Input.dispatchKeyEvent',{type:'keyDown',key:value,code:value});await send('Input.dispatchKeyEvent',{type:'keyUp',key:value,code:value});}
  for(const width of [320,390,430])for(const scale of [100,150,200])for(const motion of ['reduce','no-preference']){
-  await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
+  if(freshProfile)await freshProfile({width,scale,motion});
+  else{await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');}
   await ev('(()=>{if(document.querySelector(".study-speed-editor:not([hidden])"))document.querySelector("[data-study-speed-close]").click();const s=uiRegression.fresh(),now=Date.now();s.maxDepthEver=250;s.lumen=s.shards=1e12;s.motes=10000;s.questDay=new Date().toISOString().slice(0,10);s.activeStudies=[{id:"guardmastery",slot:0,remainingSec:1e9,totalDurationSec:1e9,speedMult:1}];s.studyQueue.guardmastery=true;s.studyBoosts.slot0={mult:1.5,startedAtMs:now,expiresAtMs:now+28800000};s.studySpeedTargets.guardmastery=1.5;s.studyBoostHours.guardmastery=8;uiRegression.set(s);document.querySelector("[data-tab=research]").click();window.originalPaid=JSON.stringify(uiRegression.get().studyBoosts);window.originalWork=JSON.stringify(uiRegression.get().activeStudies);})()');
   // Switching reduced motion back on can start panelIn on the active panel.
   // Measure its settled real geometry; keep the exact 44px assertions below.

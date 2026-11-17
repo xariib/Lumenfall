@@ -192,3 +192,29 @@ Reproduce: `node scripts/qa/finite-forge-reference.cjs index.html`.
 `independent-paired-replay.json` retains exact hashes and runtime. This is a
 preservation replay for the supplied legacy fixture, not a pacing playthrough.
 The corrected binding requires a fresh exact-head CI run before integration.
+
+## Isolated native viewport profiles
+
+Atb87da914 all seven separate workflows PASS again. Full pre-merge repeats the
+same320px/200% reduced-motion stall after four completed profiles, this time in
+`Page.captureScreenshot` before native input. The surface-frame attempt did not
+fully resolve the issue. Full log: `premerge-surface-attempt.log.gz`. The exact
+Chromium cause remains unproven; no gameplay regression is inferred from it.
+
+Boost and preset cases now use a fresh browser context/page for each existing
+viewport/text/motion combination. The requested text size is set before initial
+layout; every page still executes the complete production application, real
+native gestures, paid-receipt checks, save/load, modal/keyboard/focus behavior,
+44px/fit/affordability assertions and original causal control. All original cases
+remain; they already reset their entire game fixture between profiles. Runtime
+errors are checked before each context is closed and after the final case. The
+same initialization/15-second protocol deadlines remain. Other Lab test modes
+keep their existing page flow. Context lifecycle uses the documented
+[Chrome DevTools Target API](https://chromedevtools.github.io/devtools-protocol/tot/Target/).
+
+Local positive PASS1191checks, all18boost and18preset profiles, clean teardown;
+the original next-lock mutation still fails at its intended next3x assertion.
+`lab-boost-isolated-results.json.gz` retains both outcomes. These additional108
+checks cover each fresh page's readiness, requested text size and runtime errors.
+Product HTML and existing accepted offline outcomes are unchanged. New Linux CI
+is required; integration and Android release remain pending.
