@@ -98,6 +98,10 @@ function run(source){
   return checks;
 }
 function verify(source,negative=false){
+  if(source.includes('Automatic Ascension is retired')){
+    const result=require('./team-progression.cjs').run(source,negative);
+    return {...result,scope:'Actual retired Auto-Ascend entry actions, once-only refund, manual higher-record transactions and complete supplied-save preservation; obsolete purchase challenges stay historical.'};
+  }
   const result={status:'pass',checks:run(source),sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),controls:[]};
   if(negative)for(const [name,from,to]of [
     ['Ascension threshold',"label:'Ascensions',current:s.ascendCount,target:25","label:'Ascensions',current:s.ascendCount,target:24"],

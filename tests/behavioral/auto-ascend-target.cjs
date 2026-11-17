@@ -52,61 +52,32 @@ async function run(){
   await send('Page.enable');await send('Page.navigate',{url});
   for(let i=0;i<150&&!await evaluate('!!window.__autoAscendTargetReady');i++)await new Promise(r=>setTimeout(r,20));
   assert(await evaluate('!!window.__autoAscendTargetReady'),'target page ready');await evaluate('document.fonts.ready.then(()=>true)');await evaluate('window.__qaForgeStartup.promise');
-  await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();const s=autoTargetSeed(b,43,false);s.maxDepthEver=220;s.enemyHp=s.enemyMaxHp=1e9;b.setState(s);b.save();b.renderLayout();document.documentElement.style.fontSize='${16*textScale}px';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-autoascend-target]').scrollIntoView({block:'center'});window.nativeTargetSelect=document.querySelector('[data-autoascend-target]');})()`);
-  let before=await snapshot();assert(before.fit&&before.rect.width>=44&&before.rect.height>=44,'dropdown fits and meets 44px at '+width+' scale '+textScale);
-  assert(await evaluate('document.querySelector("[data-autoascend-target]").closest("#tab-ascend")!==null&&document.querySelectorAll("[data-autoascend-target]").length===1'),'one dropdown on Ascend');
-  assert(await evaluate('!document.querySelector("[data-autoascend-earlier],[data-autoascend-later],[data-autoascend-find]")'),'old navigation absent');
-  await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:before.rect.x+before.rect.width/2,y:before.rect.y+before.rect.height/2}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await key('Escape');
-  const touched=await snapshot();assert(touched.focused&&touched.identity&&touched.value==='43','touch opens native picker without changing target');
-  await key('ArrowDown');const changed=await snapshot();assert(changed.value==='44'&&changed.observation.state.autoAscendTargetDepth===45,'real keyboard changes target');
-  const expected=JSON.parse(JSON.stringify(touched.observation.state));expected.autoAscendTargetDepth=45;expected.lastSeen=changed.observation.state.lastSeen;
-  assert(JSON.stringify(changed.observation.state)===JSON.stringify(expected),'only target/normal save metadata change');
-  assert(changed.observation.events.length===touched.observation.events.length+1,'one normal save per change');assert(changed.observation.primary===changed.observation.recovery,'recovery matches primary');
-  assert(changed.identity&&changed.focused&&changed.scroll===touched.scroll,'native node/focus/scroll preserved');
-  await key('End');const highNative=await snapshot();assert(highNative.value==='219'&&highNative.observation.state.autoAscendTargetDepth===220,'Rift 219 reachable in single dropdown');
-  before=await snapshot();await evaluate('for(let i=0;i<10;i++){window.__lumenfallQaBridge.autoTarget.render();window.__lumenfallQaBridge.refreshAffordability();window.__lumenfallQaBridge.renderLayout();}');
-  const rendered=await snapshot();assert(JSON.stringify(rendered.observation)===JSON.stringify(before.observation),'all renders are observers');assert(rendered.identity&&rendered.focused&&rendered.scroll===before.scroll,'renders retain focus and scroll');
-  await advance(350);const live=await snapshot();assert(live.focused&&live.identity&&live.value==='219'&&!live.observation.state.autoAscendEnabled,'production ticks retain focus/target/OFF');
-  assert(live.observation.state.enemyHp<rendered.observation.state.enemyHp,'genuine unpaused production ticks observed');
-  // A real Deed and frontier expansion refresh the controls while focused.
-  await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.totalTaps=10000;b.setState(s);})()');before=await snapshot();await advance(350);const achievement=await snapshot();
-  assert(Object.values(achievement.observation.state.achieved).filter(Boolean).length>Object.values(before.observation.state.achieved).filter(Boolean).length,'actual tick awards newly eligible Deed');
-  assert(achievement.focused&&achievement.identity&&achievement.scroll===before.scroll,'Deed-driven render retains picker focus and scroll');
-  await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.maxDepthEver=221;s.depth=s.enemyDepth=221;s.enemyMaxHp=b.enemyHpFor(221);s.enemyHp=.001;b.setState(s);b.autoTarget.render();b.save();b.advanceTime(600);})()');before=await snapshot();await advance(350);const frontier=await snapshot();
-  assert(before.count===206&&frontier.observation.state.maxDepthEver===222&&frontier.count===207&&frontier.value==='219','actual defeat expands every native target without changing preference: '+JSON.stringify({max:frontier.observation.state.maxDepthEver,count:frontier.count,value:frontier.value,beforeMax:before.observation.state.maxDepthEver,depth:frontier.observation.state.depth}));
-  assert(frontier.identity&&frontier.focused&&frontier.scroll===before.scroll,'frontier expansion retains picker focus and scroll: '+JSON.stringify({width,textScale,identity:frontier.identity,focused:frontier.focused,before:before.rect,after:frontier.rect,scrollBefore:before.scroll,scrollAfter:frontier.scroll}));
-  await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.depth=s.enemyDepth=43;s.enemyHp=s.enemyMaxHp=1e9;b.setState(s);b.save();})()');
-  await key('Tab');assert(await evaluate('document.activeElement.matches("[data-autoascend-toggle]")'),'Tab reaches separate ON/OFF');
-  before=await snapshot();await key('Space');const on=await snapshot();assert(on.observation.state.autoAscendEnabled&&on.observation.events.length===before.observation.events.length+1,'ON action saves once');
-  assert(await evaluate('document.activeElement.matches("[data-autoascend-toggle]")&&document.activeElement.getAttribute("aria-pressed")==="true"&&document.activeElement.textContent==="ON"'),'ON has text and pressed semantics');
-  await key('Space');const off=await snapshot();assert(!off.observation.state.autoAscendEnabled&&off.observation.events.length===on.observation.events.length+1,'OFF action saves once');
-  const metrics=await evaluate(`(()=>{
-    function luminance(color){const values=color.match(/[0-9.]+/g).slice(0,3).map(Number).map(c=>c/255).map(c=>c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4));return values[0]*.2126+values[1]*.7152+values[2]*.0722;}
-    return Array.from(document.querySelectorAll('[data-autoascend-target],[data-autoascend-toggle]')).map(e=>{const r=e.getBoundingClientRect(),style=getComputedStyle(e),fg=luminance(style.color),bg=luminance(style.backgroundColor);return {w:r.width,h:r.height,contrast:(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05),font:style.fontSize,outline:style.outlineStyle,animation:style.animationName};});
-  })()`);
-  assert(metrics.every(m=>m.w>=44&&m.h>=44&&m.contrast>=4.5),'controls meet size and contrast');
-  assert(metrics[1].outline==='solid','focused toggle visible outline');if(motion==='reduce')assert(metrics.every(m=>m.animation==='none'),'controls do not animate in reduced motion');
-  if(process.env.LUMENFALL_QA_EVIDENCE_DIR){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(process.env.LUMENFALL_QA_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.LUMENFALL_QA_EVIDENCE_DIR,'auto-ascend-'+width+'-'+textScale+'-'+motion+'.png'),Buffer.from(shot.data,'base64'));}
-  // The large-history dropdown accepts every valid value, without a second Find control.
-  await evaluate('document.activeElement.blur();(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.maxDepthEver=1e30;b.setState(s);b.save();b.autoTarget.render();document.querySelector("[data-autoascend-target]").focus({preventScroll:true});window.nativeTargetSelect=document.querySelector("[data-autoascend-target]");})()');
-  async function typeTarget(value){await evaluate('document.querySelector("[data-autoascend-target]").select()');const prior=await snapshot();await send('Input.insertText',{text:value});const draft=await snapshot();assert(JSON.stringify(draft.observation)===JSON.stringify(prior.observation),'typing does not commit target or ON/OFF');await key('Enter');return snapshot();}
-  const endpoint=await typeTarget('9007199254740991');assert(endpoint.value==='9007199254740991'&&endpoint.observation.state.autoAscendTargetDepth===9007199254740992,'safe endpoint reachable through same dropdown');assert(endpoint.count<=201&&endpoint.identity&&endpoint.focused&&endpoint.fit,'large dropdown bounded and fits');
-  const chosen=await typeTarget('219');assert(chosen.observation.state.autoAscendTargetDepth===220&&!chosen.observation.state.autoAscendEnabled,'large-history choice preserves OFF');
-  before=await snapshot();const invalid=await typeTarget('219.5');assert(JSON.stringify(invalid.observation)===JSON.stringify(before.observation),'invalid input cannot mutate saves');assert(await evaluate('document.querySelector("[data-autoascend-target]").getAttribute("aria-invalid")==="true"'),'invalid input announced');
-  await typeTarget('219');before=await snapshot();await key('Tab');const blurred=await snapshot();assert(JSON.stringify(blurred.observation)===JSON.stringify(before.observation),'Enter then blur no duplicate save');
-  // Deeds shortcut navigates to this same control and does not change any preference.
-  await evaluate('document.querySelector("[data-tab=deeds]").click()');before=await snapshot();await evaluate('document.querySelector("[data-autoascend-open]").click()');const shortcut=await snapshot();assert(shortcut.focused&&JSON.stringify(shortcut.observation)===JSON.stringify(before.observation),'Deeds shortcut only navigates and focuses');
-  // Unlock keeps the existing deterministic cost/default and has one handler.
-  await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.freshStateSnapshot();s.comets=1000;s.maxDepthEver=150;s.ascendCount=25;["wispascend","guardmastery","shardstudy","lumenstudy","motestudy","measuredinquiry"].forEach(function(id,i){s.longStudyLevels[id]=i<2?9:8;});s.achieved.d25=true;b.setState(s);b.renderLayout();document.querySelector("[data-autoascend-unlock]").click();})()');
-  const locked=await evaluate('autoTargetObservation(window.__lumenfallQaBridge)');await evaluate('document.querySelector("[data-shop=autoascend]").click()');
-  const bought=await snapshot();assert(bought.observation.state.comets===locked.state.comets-100&&bought.observation.state.owned.autoascend&&bought.observation.state.autoAscendEnabled&&bought.observation.state.autoAscendTargetDepth===150,'earned unlock retains price/ownership/default');
-  assert(bought.observation.events.length===locked.events.length+1,'purchase saves once');assert(!await evaluate('document.querySelector("#shop-list [data-autoascend-toggle],#shop-list [data-autoascend-target]")!==null'),'Deeds purchase leaves no duplicate operating controls');
-  await evaluate('(()=>{const b=window.__lumenfallQaBridge,s=b.getState();s.maxDepthEver=250;b.setState(s);b.renderLayout();})()');
-  await evaluate('document.querySelector("[data-shop=astralcore]").scrollIntoView({block:"center"});document.querySelector("[data-shop=astralcore]").focus({preventScroll:true})');before=await snapshot();await key('Space');const purchased=await snapshot();
-  assert(purchased.observation.state.astralUpgrades.astralcore===1&&purchased.observation.state.comets===before.observation.state.comets-750,'current Meteor purchase has exact price and ownership');
-  assert(purchased.observation.events.length===before.observation.events.length+1,'other Deeds purchase saves once');assert(await evaluate('document.activeElement===document.querySelector("[data-comet-card=astralcore]")'),'owned purchase keeps focus on its own card');
-  assert(purchased.observation.state.autoAscendEnabled===before.observation.state.autoAscendEnabled&&purchased.observation.state.autoAscendTargetDepth===before.observation.state.autoAscendTargetDepth,'another Comet purchase preserves existing Auto-Ascend preferences');
-  assert(purchased.runtimeErrors.length===0,'no browser runtime errors');records.push({width,textScale,motion,touched,changed,highNative,rendered,live,achievement,frontier,on,off,metrics,endpoint,chosen,invalid,shortcut,bought,purchased});
+  await send('Runtime.enable');await send('DOM.enable');
+  await evaluate('(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();b.autoTarget.nativeInput(true);const s=autoTargetSeed(b,43,true);s.depth=s.enemyDepth=45;s.ascendRewardedDepth=43;s.maxDepthEver=220;s.autoAscendTargetDepth=16;s.comets=37;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(45);s.activeStudies=[{id:"guardmastery",remainingSec:123,totalDurationSec:150,speedMult:2}];b.setState(s);b.save();b.renderLayout();document.documentElement.style.fontSize="'+16*textScale+'px";document.querySelector("[data-tab=ascend]").click();document.getElementById("ascend-btn").scrollIntoView({block:"center"});})()');
+  await evaluate('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');
+  assert(await evaluate('!document.querySelector("[data-autoascend-target],[data-autoascend-toggle],[data-autoascend-open],[data-shop=autoascend]")'),'retired controls absent');
+  const geometry=await evaluate('(()=>{var e=document.getElementById("ascend-btn"),r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom,fit:document.documentElement.scrollWidth<=innerWidth};})()');
+  assert(geometry.fit&&geometry.width>=44&&geometry.height>=44&&geometry.x>=0&&geometry.right<=width,'manual control fits and has44px touch target');
+  const before=await evaluate('autoTargetObservation(window.__lumenfallQaBridge)'),gain=await evaluate('window.__lumenfallQaBridge.ascendBreakdown().gain');
+  assert(before.state.comets===137&&before.state.autoAscendRefund.paid,'owner compensated exactly once');
+  await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:geometry.x+geometry.width/2,y:geometry.y+geometry.height/2}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  const touched=await evaluate('autoTargetObservation(window.__lumenfallQaBridge)');
+  assert(touched.state.ascendCount===before.state.ascendCount+1&&touched.state.prisms===before.state.prisms+gain&&touched.state.ascendRewardedDepth===44,'trusted touch commits one exact manual record');
+  assert(touched.primary===touched.recovery,'manual transaction commits both slots');
+  assert(touched.state.autoAscendTargetDepth===16&&!touched.state.autoAscendEnabled,'manual choice preserves legacy target and retired flag');
+  assert(JSON.stringify(touched.state.activeStudies)===JSON.stringify(before.state.activeStudies),'touch reset retains paid work');
+  await evaluate('(()=>{var b=window.__lumenfallQaBridge,s=b.getState();s.depth=s.enemyDepth=45;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(45);b.setState(s);b.renderLayout();})()');
+  const denied=await evaluate('autoTargetObservation(window.__lumenfallQaBridge)');
+  assert(await evaluate('document.getElementById("ascend-btn").disabled'),'same rewarded clear is disabled');
+  await evaluate('document.getElementById("ascend-btn").focus({preventScroll:true})');await key('Enter');
+  assert(JSON.stringify(await evaluate('autoTargetObservation(window.__lumenfallQaBridge)'))===JSON.stringify(denied),'native input cannot bypass disabled record gate');
+  await evaluate('(()=>{var b=window.__lumenfallQaBridge,s=b.getState();s.depth=s.enemyDepth=46;s.enemyHp=s.enemyMaxHp=b.enemyHpFor(46);b.setState(s);b.renderLayout();document.getElementById("ascend-btn").scrollIntoView({block:"center"});document.getElementById("ascend-btn").focus({preventScroll:true});})()');
+  const next=await evaluate('autoTargetObservation(window.__lumenfallQaBridge)'),nextGain=await evaluate('window.__lumenfallQaBridge.ascendBreakdown().gain');await key('Space');
+  const chosen=await evaluate('autoTargetObservation(window.__lumenfallQaBridge)');assert(chosen.state.ascendCount===next.state.ascendCount+1&&chosen.state.prisms===next.state.prisms+nextGain&&chosen.state.ascendRewardedDepth===45,'trusted keyboard commits next manual record');
+  await evaluate('window.__lumenfallQaBridge.renderLayout();window.__lumenfallQaBridge.refreshAffordability()');
+  assert(JSON.stringify(await evaluate('autoTargetObservation(window.__lumenfallQaBridge)'))===JSON.stringify(chosen),'render/affordability preserve every save field and slot');
+  assert((await evaluate('window.__lumenfallQaContext.errors')).length===0,'no browser runtime errors');
+  records.push({width,textScale,motion,geometry,touched,chosen,policy:'manual higher-record touch and keyboard; retired controls absent'});
   await send('Target.disposeBrowserContext',{browserContextId:ctx.browserContextId},null);
  }
  return {status:'pass',scenario,records};

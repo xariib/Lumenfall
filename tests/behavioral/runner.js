@@ -1034,8 +1034,8 @@
 
         case 'parity-auto-ascend': {
           var ascendPair = runParityPair(60,'offline',0.1);
-          assert(ascendPair.direct.summary.ascends>=1,'Auto-Ascend must fire under the current arrival-depth rule');
-          assert(ascendPair.direct.state.ascendCount>ascendPair.baseline.ascendCount,'Auto-Ascend must advance persistent Ascension count');
+          assert(ascendPair.direct.summary.ascends===0,'elapsed parity never automatically resets');
+          assert(ascendPair.direct.state.ascendCount===ascendPair.baseline.ascendCount&&ascendPair.direct.state.prisms===ascendPair.baseline.prisms,'current run and Prism wallet preserved across partitions');
           finish('pass',{
             durationSec:60,
             ascends:ascendPair.direct.summary.ascends,
@@ -1146,27 +1146,12 @@
         }
 
         case 'chronology-auto-ascend-mid-window': {
-          var ascendBaseline = state();
-          var ascendDirect = bridge.simulateTimeline(90,'offline',PARITY_CLOCK_MS);
-          var ascendEvent = firstTimelineEvent(ascendDirect,'autoAscend');
-          assert(ascendEvent,'Auto-Ascend must occur when the current target rule becomes satisfied');
-          assert(ascendEvent.elapsedSec>0 && ascendEvent.elapsedSec<90,'Auto-Ascend must occur mid-window');
-          assert(ascendDirect.state.ascendCount===ascendBaseline.ascendCount+1,'fixture must perform exactly one Auto-Ascend');
-          var ascendSplit = assertChronologicalSplit(
-            ascendBaseline,90,ascendEvent.elapsedSec,ascendDirect,
-            'mid-window Auto-Ascend'
-          );
-          assert(
-            ascendDirect.state.totalKills>ascendSplit.first.state.totalKills,
-            'offline simulation must continue from the post-Ascend state for the remaining time'
-          );
-          finish('pass',{
-            ascendSec:ascendEvent.elapsedSec,
-            ascendCount:ascendDirect.state.ascendCount,
-            killsAtAscend:ascendSplit.first.state.totalKills,
-            finalKills:ascendDirect.state.totalKills
-          });
-          return;
+          var baseline=state(),direct=bridge.simulateTimeline(90,'offline',PARITY_CLOCK_MS);
+          assert(!firstTimelineEvent(direct,'autoAscend')&&direct.summary.ascends===0,'target crossing produces no automatic event');
+          assert(direct.state.ascendCount===baseline.ascendCount&&direct.state.prisms===baseline.prisms,'offline combat retains current run and Prisms');
+          var split=assertChronologicalSplit(baseline,90,45,direct,'manual run midpoint');
+          assert(direct.state.totalKills>baseline.totalKills,'actual combat progresses through manual run');
+          finish('pass',{ascends:0,kills:direct.summary.kills,split:45,finalDepth:direct.state.depth});return;
         }
 
         case 'chronology-boss-retry': {
@@ -1369,16 +1354,16 @@
         case 'lifecycle-auto-ascend': {
           var ascendLife = await runResumeWindow(30,'Auto-Ascend offline lifecycle');
           var ascendEvent = firstTimelineEvent(ascendLife.expected,'autoAscend');
-          assert(ascendEvent && ascendEvent.elapsedSec>0 && ascendEvent.elapsedSec<30,'Auto-Ascend must occur chronologically inside the offline window');
-          assert(ascendLife.expected.summary.ascends===1,'Auto-Ascend fixture must ascend exactly once');
-          assert(ascendLife.actual.ascendCount===ascendLife.baseline.ascendCount+1,'resume must apply exactly one Ascend');
+          assert(!ascendEvent,'actual resume produces no automatic reset event');
+          assert(ascendLife.expected.summary.ascends===0,'actual resume has zero automatic Ascensions');
+          assert(ascendLife.actual.ascendCount===ascendLife.baseline.ascendCount&&ascendLife.actual.prisms===ascendLife.baseline.prisms,'resume preserves current run and Prisms');
           assert(ascendLife.actual.prisms===ascendLife.expected.state.prisms,'Ascend reward must not duplicate');
           assert(
             ascendLife.actual.totalKills>ascendLife.baseline.totalKills,
             'remaining offline time must continue from the post-Ascend state'
           );
           finish('pass',{
-            ascendSec:ascendEvent.elapsedSec,
+            ascendSec:null,
             ascendCount:ascendLife.actual.ascendCount,
             prisms:ascendLife.actual.prisms,
             finalDepth:ascendLife.actual.depth
@@ -2208,144 +2193,30 @@
           window.runAscendPrismsPersistence(bridge,ctx,assert,phase,nextPhase,backupCode,finish);return;
 
         case 'p2-ascend-integrity': {
-          function ascendState(cleared,benchmark,autoEnabled){
-            var a = cloneJson(state());
-            a.depth = cleared+1;
-            a.maxDepthEver = Math.max(a.maxDepthEver,cleared+1);
-            a.riftMode = 'push';
-            a.farmDepth = 0;
-            a.farmReturnDepth = 0;
-            a.enemyDepth = cleared+1;
-            a.enemyHp = 1;
-            a.enemyMaxHp = 1;
-            a.prisms = 0;
-            a.ascendCount = 0;
-            a.ascendRewardedDepth = benchmark||0;
-            a.spirits.ember = 50;
-            a.activeParty = ['ember'];
-            a.owned.autoascend = !!autoEnabled;
-            a.autoAscendEnabled = !!autoEnabled;
-            a.autoAscendTargetDepth = cleared+1;
-            return a;
-          }
-
-          var firstState = ascendState(100,0,false);
-          bridge.setState(firstState);
-          var firstBreakdown = bridge.ascendBreakdown(101);
-          assert(firstBreakdown.full===20,'Rift 100 baseline full Prism curve must remain 20 before Prism multipliers');
-          assert(firstBreakdown.gain===firstBreakdown.full,'first meaningful Ascend must keep the full intended reward');
-          var firstManual = bridge.ascendManual();
-          assert(firstManual.gain===20,'first meaningful Ascend must award full 20 Prisms at cleared Rift 100');
-          assert(firstManual.after.benchmark===100,'first Ascend must establish cleared Rift 100 as the reward benchmark');
-
-          var repeatState = ascendState(100,100,false);
-          bridge.setState(repeatState);
-          var repeatBreakdown = bridge.ascendBreakdown(101);
-          assert(repeatBreakdown.gain===4,'same-depth Rift 100 repeat must pay the 20% reserve reward');
-          assert(repeatBreakdown.progressBonus===0,'same-depth repeat must have no new-depth bonus');
-          var repeatManual = bridge.ascendManual();
-          assert(repeatManual.gain===4,'manual same-depth repeat must award only reserve Prisms');
-          assert(repeatManual.after.benchmark===100,'same-depth repeat must not move the benchmark');
-
-          var fartherState = ascendState(200,100,false);
-          bridge.setState(fartherState);
-          var fartherBreakdown = bridge.ascendBreakdown(201);
-          assert(fartherBreakdown.gain>repeatBreakdown.gain,'meaningfully deeper push must improve Ascend value');
-          assert(fartherBreakdown.progressBonus>0,'new cleared depth must add a positive depth bonus');
-          assert(fartherBreakdown.gain<=fartherBreakdown.full,'benchmark rule must never exceed the original full curve');
-          var fartherManual = bridge.ascendManual();
-          assert(fartherManual.gain===fartherBreakdown.gain,'manual deeper Ascend must use the benchmark breakdown exactly');
-          assert(fartherManual.after.benchmark===200,'deeper manual Ascend must advance the reward benchmark');
-
-          var wallState = ascendState(100,100,false);
-          bridge.setState(wallState);
-          var wallBreakdown = bridge.ascendBreakdown(101);
-          assert(wallBreakdown.gain>=1,'a player hard-walled at the benchmark must retain a useful prestige path');
-
-          var parityBaseline = ascendState(150,100,true);
-          bridge.setState(parityBaseline);
-          var manualExpected = bridge.ascendBreakdown(151);
-          var manualAutoParity = bridge.ascendManual();
-          assert(manualAutoParity.gain===manualExpected.gain,'manual Ascend must use the canonical benchmark reward');
-
-          bridge.setState(parityBaseline);
-          var liveAuto = bridge.simulateTimeline(1,'live',PARITY_CLOCK_MS);
-          assert(liveAuto.summary.ascends===1,'live Auto-Ascend must fire once when already ready');
-          assert(liveAuto.summary.ascendGains[0]===manualExpected.gain,'live Auto-Ascend must use the manual reward rule');
-          assert(liveAuto.state.ascendRewardedDepth===150,'live Auto-Ascend must advance the same benchmark');
-
-          bridge.setState(parityBaseline);
-          var offlineAuto = bridge.simulateTimeline(1,'offline',PARITY_CLOCK_MS);
-          assert(offlineAuto.summary.ascends===1,'offline Auto-Ascend must fire once when already ready');
-          assert(offlineAuto.summary.ascendGains[0]===manualExpected.gain,'offline Auto-Ascend must use the same benchmark reward');
-          assert(offlineAuto.state.prisms===liveAuto.state.prisms,'live and offline Auto-Ascend Prism totals must match');
-          assert(offlineAuto.state.ascendRewardedDepth===liveAuto.state.ascendRewardedDepth,'live/offline Auto-Ascend benchmark must match');
-
-          finish('pass',{
-            firstReward:firstManual.gain,
-            repeatReward:repeatManual.gain,
-            deeperReward:fartherManual.gain,
-            wallReward:wallBreakdown.gain,
-            manualAutoReward:manualExpected.gain,
-            finalBenchmark:offlineAuto.state.ascendRewardedDepth
-          });
-          return;
+          var records=[];
+          [[100,0,20],[100,100,0],[150,100,9],[20,100,0]].forEach(function(row){
+            var a=bridge.freshStateSnapshot();a.depth=a.enemyDepth=row[0]+1;a.maxDepthEver=300;a.ascendRewardedDepth=row[1];a.owned.autoascend=true;a.autoAscendEnabled=true;a.prisms=100;a.enemyHp=a.enemyMaxHp=bridge.enemyHpFor(a.depth);a.activeStudies=[{id:'guardmastery',remainingSec:123,totalDurationSec:150,speedMult:2}];
+            bridge.setState(a);var baseline=state(),quote=bridge.ascendBreakdown();assert(quote.gain===row[2],'independent manual record reward '+row.join('/'));
+            ['live','offline'].forEach(function(kind){bridge.setState(baseline);var r=bridge.simulateTimeline(1,kind,PARITY_CLOCK_MS);assert(r.summary.ascends===0&&r.state.prisms===baseline.prisms&&r.state.ascendCount===baseline.ascendCount,'no live/offline automatic receipt '+kind);});
+            bridge.setState(baseline);var receipt=bridge.ascendManual();assert(receipt.gain===row[2],'manual quote equals actual wallet credit');
+            assert(state().ascendCount===baseline.ascendCount+(row[2]>0?1:0),'only eligible choice resets once');
+            assertJsonEqual(state().activeStudies,baseline.activeStudies,'manual record preserves paid work');
+            if(!row[2])assertJsonEqual(state(),baseline,'same/lower clear leaves entire state unchanged');
+            records.push({clear:row[0],benchmark:row[1],gain:receipt.gain});
+          });finish('pass',{policy:'manual higher rewarded clear',records:records});return;
         }
 
         case 'p2-03b-auto-ascend-integrity': {
-          var base=bridge.freshStateSnapshot();
-          base.owned.autoascend=true;base.autoAscendEnabled=true;base.autoAscendTargetDepth=21;
-          base.depth=20;base.maxDepthEver=20;base.enemyDepth=20;base.enemyMaxHp=bridge.enemyHpFor(20);base.enemyHp=base.enemyMaxHp;
-          bridge.setState(base);
-          var boundary=bridge.ascendEligibility();
-          assert(boundary.cleared===19 && boundary.autoClearedTarget===20,'target 21 must authoritatively mean clear Rift 20');
-          assert(boundary.eligible===true && boundary.autoReady===false,'manual eligibility may exist before the saved Auto target, but Auto cannot fire before target clear');
-          var before=state();
-          var zero=bridge.simulate(0,'offline',0,PARITY_CLOCK_MS);
-          assert(zero.state.ascendCount===before.ascendCount,'transient arrival at target Boss must not Auto-Ascend');
-          assert(zero.state.sigils===before.sigils,'unbeaten target Boss must not grant or consume Sigils');
-
-          var kill=cloneJson(base);kill.enemyHp=1;kill.spirits.ember=100;kill.heroResource.ember=100;
-          bridge.setState(kill);
-          var afterKill=bridge.simulateTimeline(0,'offline',PARITY_CLOCK_MS);
-          assert(afterKill.state.ascendCount===kill.ascendCount+1,'clearing target Rift must produce exactly one Auto-Ascend');
-          assert(afterKill.state.depth===1,'Auto-Ascend must reset to Rift 1');
-          assert(afterKill.summary.ascends===1,'one qualifying clear must produce one Ascension event');
-          assert(afterKill.state.sigils===kill.sigils+2,'target Boss Sigils must be awarded before Ascension reset');
-          assert(bridge.ascendEligibility().autoReady===false,'post-Ascension reset cannot remain eligible from stale progress');
-
-          var stale=cloneJson(afterKill.state);stale.maxDepthEver=99;stale.depth=1;stale.enemyDepth=1;stale.enemyMaxHp=bridge.enemyHpFor(1);stale.enemyHp=stale.enemyMaxHp;
-          bridge.setState(stale);
-          assert(bridge.ascendEligibility().eligible===false && bridge.ascendEligibility().autoReady===false,'historical maxDepthEver must not prove current-run eligibility');
-          bridge.save();
-          var saved=JSON.parse(bridge.rawSave());bridge.setState(saved);
-          assert(bridge.ascendEligibility().autoReady===false,'save/load must not recreate consumed Auto eligibility');
-
-          var farm=cloneJson(base);farm.depth=19;farm.riftMode='farm';farm.farmDepth=19;farm.farmReturnDepth=21;farm.enemyDepth=19;farm.enemyMaxHp=bridge.enemyHpFor(19);farm.enemyHp=farm.enemyMaxHp;
-          bridge.setState(farm);
-          var farmEligibility=bridge.ascendEligibility();
-          assert(farmEligibility.cleared===20 && farmEligibility.eligible===true && farmEligibility.autoReady===false,'Farm may preserve cleared Push progress but cannot trigger Auto-Ascend');
-          bridge.enterPush();
-          assert(bridge.ascendEligibility().autoReady===true,'returning to Push may use the same legitimate cleared target without inventing progress');
-
-          var parity=cloneJson(base);parity.depth=19;parity.maxDepthEver=20;parity.enemyDepth=19;parity.enemyMaxHp=bridge.enemyHpFor(19);parity.enemyHp=1;parity.spirits.ember=100;
-          bridge.setState(parity);var direct=bridge.simulate(120,'offline',120,PARITY_CLOCK_MS);
-          bridge.setState(parity);var chunked=bridge.simulate(120,'offline',1,PARITY_CLOCK_MS);
-          assert(chunked.summary.ascends===direct.summary.ascends,'chunking must not change Ascension count');
-          bridge.setState(parity);var offlineDirect=bridge.simulateOfflineDirect(120,PARITY_CLOCK_MS);
-          assert(offlineDirect.summary.ascends===direct.summary.ascends,'offline/direct execution must not change Ascension count');
-
-          var manual=cloneJson(base);manual.autoAscendEnabled=false;manual.depth=16;manual.maxDepthEver=16;manual.enemyDepth=16;manual.enemyMaxHp=bridge.enemyHpFor(16);manual.enemyHp=manual.enemyMaxHp;
-          bridge.setState(manual);var manualEligibility=bridge.ascendEligibility();
-          assert(manualEligibility.eligible===true,'15 legitimately cleared Rifts must satisfy shared Ascension eligibility');
-          var rewardBefore=bridge.ascendBreakdown(16).gain;var manualResult=bridge.ascendManual();
-          assert(manualResult.gain===rewardBefore,'P2-03B must not change Ascension reward magnitude');
-          var ineligible=cloneJson(manual);ineligible.depth=15;ineligible.maxDepthEver=15;ineligible.enemyDepth=15;ineligible.enemyMaxHp=bridge.enemyHpFor(15);ineligible.enemyHp=ineligible.enemyMaxHp;ineligible.autoAscendEnabled=true;ineligible.autoAscendTargetDepth=16;
-          bridge.setState(ineligible);
-          assert(bridge.ascendEligibility().eligible===false && bridge.ascendEligibility().autoReady===false,'Auto cannot bypass shared manual eligibility below 15 cleared Rifts');
-
-          finish('pass',{targetClearedRift:20,bossRewardBeforeAscend:true,singleEvent:true,postResetSafe:true,saveLoadSafe:true,farmSafe:true,directChunkedAscends:direct.summary.ascends,manualReward:manualResult.gain});
-          return;
+          var base=bridge.freshStateSnapshot();base.owned.autoascend=true;base.autoAscendEnabled=true;base.autoAscendTargetDepth=21;
+          base.depth=base.enemyDepth=20;base.maxDepthEver=20;base.enemyMaxHp=bridge.enemyHpFor(20);base.enemyHp=1;base.spirits.ember=100;base.heroResource.ember=100;
+          bridge.setState(base);var before=state();assert(!bridge.ascendEligibility().autoReady,'historical target never revives automatic reset');
+          var killed=bridge.simulateTimeline(0,'offline',PARITY_CLOCK_MS);assert(killed.summary.kills===1&&killed.summary.ascends===0,'actual Boss clear keeps run');
+          assert(killed.state.sigils===before.sigils+2,'Boss Sigils awarded before manual choice');assert(killed.state.depth===21,'cleared Boss advances once');
+          var quoted=bridge.ascendBreakdown().gain,receipt=bridge.ascendManual();assert(receipt.gain===quoted&&state().ascendRewardedDepth===20,'one manual Boss-record receipt');assert(state().sigils===killed.state.sigils,'manual reset preserves paid Boss reward');
+          var repeat=state();repeat.riftMode='farm';repeat.depth=repeat.enemyDepth=19;repeat.farmDepth=19;repeat.farmReturnDepth=21;repeat.enemyHp=repeat.enemyMaxHp=bridge.enemyHpFor(19);bridge.setState(repeat);assert(!bridge.ascendEligibility().eligible,'Farm return at same rewarded clear cannot reset');
+          repeat.farmReturnDepth=22;repeat.maxDepthEver=22;bridge.setState(repeat);assert(bridge.ascendEligibility().eligible&&!bridge.ascendEligibility().autoReady,'higher Farm return permits only manual choice');
+          bridge.feedbackSave();var saved=JSON.parse(bridge.rawSave());bridge.setState(saved);assert(!bridge.ascendEligibility().autoReady,'saved/loaded eligibility stays manual');
+          finish('pass',{bossRewardBeforeManual:true,repeatDenied:true,farmReturnGate:true,savedAutomation:false});return;
         }
 
         case 'p2-wisp-progression-pacing': {

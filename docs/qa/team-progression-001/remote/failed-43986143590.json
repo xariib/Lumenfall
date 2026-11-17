@@ -1,0 +1,25 @@
+{
+  "id": 43986143590,
+  "sha": "f1820c2ee5c95a9d7d2d2321bac85245e4cafb57",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43986143590",
+  "jobs": [
+    {
+      "id": 133714660624,
+      "name": "tree",
+      "conclusion": "failure",
+      "started": "2026-11-17T00:15:28Z",
+      "completed": "2026-11-17T00:20:49Z",
+      "log": "job-133714660624.log.gz",
+      "rawSha256": "adc4614ea4f5f351f84e7dcde42fa9d532e85c6118e992626dbf63f6449f6c3e",
+      "summary": [
+        "2026-11-17T00:17:35.1797407Z {\"status\":\"pass\",\"sourceSha256\":\"6773532a21c30ce22eddfa2a8ffb4735b3a01c249e2b00883638da0ea4d234c7\",\"testSha256\":\"7f86e6542c9a9adef5eb70ceeec5fab7d4847381da0ac170fc4666e11754e6c0\",\"fixtureSha256\":\"3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2\",\"historicalFixtureSha256\":\"ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753\",\"checks\":1057,\"boundaries\":[{\"kind\":\"live\",\"seconds\":0.25,\"chargeRank\":0,\"phaseRank\":0,\"unsafeCount\":false,\"equal\":false,\"readyAbility\":false,\"eventCharge\":22.166666666666668,\"retainedCharge\":0,\"retainedPhases\":[0,0],\"events\":[{\"type\":\"ascend\"}],\"manual\":true,\"summary\":{\"kills\":1,\"ascends\":0,\"autoTaps\":0,\"empowers\":0}},{\"kind\":\"live\",\"seconds\":0.25,\"chargeRank\":2,\"phaseRank\":0,\"unsafeCount\":false,\"equal\":false,\"readyAbility\":false,\"eventCharge\":22.166666666666668,\"retainedCharge\":8.866666666666667,\"retainedPhases\":[0,0],\"events\":[{\"type\":\"ascend\"}],\"manual\":true,\"summary\":{\"kills\":1,\"ascends\":0,\"autoTaps\":0,\"empowers\":0}},{\"kind\":\"live\",\"seconds\":0.25,\"chargeRank\":0,\"phaseRank\":1,\"unsafeCount\":false,\"equal\":false,\"readyAbility\":false,\"eventCharge\":22.166666666666668,\"retainedCharge\":0,\"retainedPhases\":[375,625],\"events\":[{\"type\":\"ascend\"}],\"manual\":true,\"summary\":{\"kills\":1,\"ascends\":0,\"autoTaps\":0,\"empowers\":0}},{\"kind\":\"live\",\"seconds\":0.25,\"chargeRank\":2,\"phaseRank\":1,\"unsafeCount\":false,\"equal\":false,\"readyAbility\":false,\"eventCharge\":22.166666666666668,\"retainedCharge\":8.866666666666667,\"retain",
+        "2026-11-17T00:17:35.8835899Z   throw new AssertionError(obj);",
+        "2026-11-17T00:17:35.8836595Z AssertionError [ERR_ASSERTION]: actual sampled eligibility",
+        "2026-11-17T00:19:40.0843991Z {\"status\":\"pass\",\"migrationDiagnostics\":[{\"synthetic\":true,\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"seedSha256\":\"6b4c40dc44b6f0d8f8942687a4f85adcc417cd1f3254437d67714096a646e51d\",\"seed\":{\"schemaVersion\":1,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":12,\"momentum\":7,\"reserves\":3},\"prisms\":100,\"comets\":7},\"loaded\":{\"schemaVersion\":6,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":12,\"momentum\":7,\"reserves\":3,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"prisms\":40786,\"comets\":657},\"beforeLoad\":{\"synthetic\":true,\"sha256\":\"6b4c40dc44b6f0d8f8942687a4f85adcc417cd1f3254437d67714096a646e51d\",\"schemaVersion\":1,\"prisms\":100,\"comets\":7,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":12,\"momentum\":7,\"reserves\":3},\"slotsMatch\":true}},{\"synthetic\":true,\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"seedSha256\":\"236e7fbae3fe7f58c63d63570ec3c58adbbaf0c7e06e0861c8dc0dcdb35b0e62\",\"seed\":{\"schemaVersion\":1,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":12,\"momentum\":7,\"reserves\":3},\"prisms\":100,\"comets\":7},\"loaded\":{\"schemaVersion\":6,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":12,\"momentum\":7,\"reserves\":3,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits",
+        "2026-11-17T00:20:45.4908892Z Error: ENOENT: no such file or directory, open 'tree-validation/prism/legacy-cases.json'"
+      ]
+    }
+  ]
+}

@@ -104,6 +104,15 @@ window.__lumenfallQaBridge = {
     // Raw observed damage is the historical arithmetic stress input. The
     // production Farm throughput policy is tested separately, without overrides.
     naturalDps: function(){return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(2000000000000));},
+    legacyNaturalDps: function(){
+      // Immutable HP=11 quotient witness predates shared Wisp growth. Pin only
+      // that old Power operand; the exact damage/reward/clock engine stays live.
+      // Current unmodified scaling and Farm throughput have separate mandatory gates.
+      var old=spiritPower,cache=wispPowerCache;wispPowerCache={};
+      spiritPower=function(sp,level){return sp.basePower*level*(1+.01*(level-1))+((sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0);};
+      try{return Amount.mul(passiveWispDpsAt(state.depth),simulationBuffMult(2000000000000));}
+      finally{spiritPower=old;wispPowerCache=cache;}
+    },
     numericCosts: function(){return {titan:spiritCost(SPIRITS.find(function(s){return s.id==='titan';})),formation:researchCostForLevels(RESEARCH.find(function(s){return s.id==='formation';}),state.research.formation,1),momentum:nodeCost(NODES.find(function(s){return s.id==='momentum';})),formationStudy:studyCost(LONG_STUDIES.find(function(s){return s.id==='formationstudy';}),state.longStudyLevels.formationstudy),wispAscend:studyCost(LONG_STUDIES.find(function(s){return s.id==='wispascend';}),state.longStudyLevels.wispascend)};},
     traceFarm: function(fn){
       var original=simulationApplyFarmPassive,rows=[];
@@ -214,6 +223,7 @@ window.__lumenfallQaBridge = {
     }
   },
   autoTarget: {
+    retired: function(){return !SHOP.some(function(item){return item.id==='autoascend';});},
     nativeInput: function(enabled){reloadInProgress=!enabled;},
     render: function(){renderShop();},
     purchase: function(){var old=reloadInProgress;reloadInProgress=false;try{renderShop();document.querySelector('[data-shop="autoascend"]').click();}finally{reloadInProgress=old;}},

@@ -1,0 +1,34 @@
+{
+  "id": 43986143314,
+  "sha": "f1820c2ee5c95a9d7d2d2321bac85245e4cafb57",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43986143314",
+  "jobs": [
+    {
+      "id": 133714659755,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T00:15:28Z",
+      "completed": "2026-11-17T00:16:51Z",
+      "log": "job-133714659755.log.gz",
+      "rawSha256": "90704431c1b5b51ff5b8c1c1bdcce42d7823b1128ac0768bfa6dbb2044ec872f",
+      "summary": [
+        "2026-11-17T00:16:37.9796515Z {\"status\":\"fail\",\"checks\":16,\"records\":3,\"error\":\"Error: TypeError: Cannot read properties of undefined (reading 'id')\\n    at Object.setup (http://127.0.0.1:37279/index.html:14672:125)\\n    at <anonymous>:1:10\\n    at ev (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:46:148)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:68:83)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"}"
+      ]
+    },
+    {
+      "id": 133714660170,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T00:15:29Z",
+      "completed": "2026-11-17T00:18:04Z",
+      "log": "job-133714660170.log.gz",
+      "rawSha256": "60ce78a8872ee3eb488aaa6c5419e05306fe0fc63405361904e222dad27aea68",
+      "summary": [
+        "2026-11-17T00:16:17.3869025Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T00:17:59.9976701Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

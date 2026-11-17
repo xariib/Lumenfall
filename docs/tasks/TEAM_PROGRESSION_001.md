@@ -123,3 +123,36 @@ review complete diff, integrate serially, rerun integrated gates, build signed
 APK and verify save upgrade/updater/retail/public assets. Phone, exact WebView60
 DOM, TalkBack and human pacing remain unobserved. Keep feature/chat open;
 no archive or completion claim before delivery/required observed acceptance.
+
+Next checkpoint: f1820c2e pushed. Product source6773532a passes remote Forge,
+Lab (both jobs), Comet, Wisp scroll (Linux/Windows) and isolated offline1/191.
+Main stops on obsolete stationary-shop Auto-Ascend lookup; Tree stops on sampled
+repeat eligibility and repeat-ROI assumptions; shared standalone stops on old
+Encyclopedia wording; permanent lane had an initial Browser.getVersion timeout.
+All first failures/raw logs retained. Local unmodified191-case runner is now
+using the existing CDP-pipe option (dump-dom stalls on this Windows executor).
+It exposes obsolete Auto/Comet/Prism scenarios and one real new layout defect.
+
+Current continuation: replace obsolete assertions with manual/new-record
+transactions; keep native input, actual reload/recovery/visibility, negative
+controls and complete paid-state comparison. New contract88 checks and native
+touch/keyboard scenarios pass; cold-resume mismatch was object-key order only,
+so structural comparison retains all fields/array order/numbers exactly.
+Tree economy14,078/six controls, numerical Prisms341,654/seven controls and
+actual V8 6.0 reward/save3,277 checks pass on source6773532a. Retired numerical
+cycle suites all pass with unchanged frozen transcripts. Comet unlocks12 cases
+now retain pending Trials through offline work and require explicit manual
+record choices; full feature retirement suite replaces obsolete unlock gates.
+
+Actual layout regression: base-DPS/Support caption could wrap at changing
+values and shift Empower. Sourcea4dc5c83 puts these on separate stable lines;
+all12 original card-layout profiles passed their assertions, but that local
+attempt failed browser teardown. Keep its receipt as failure, rerun unchanged.
+Update Android upgrade checks for the additional exact100-Comet receipt.
+The HP11 natural numerical witness now explicitly pins only its historical
+Power operand; original huge quotient cases/controls stay unchanged. Current
+unmodified shared damage and actual Farm throughput have mandatory coverage.
+
+Next concrete action: finish full-run findings, rerun changed scenarios and
+original layout gate, push coherent test/evidence checkpoint, obtain all required
+PR and integrated-main gates, then signed Android/native/public delivery.
