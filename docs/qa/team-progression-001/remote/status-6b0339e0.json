@@ -1,17 +1,7 @@
 {
   "sha": "6b0339e050aedef56748f9752ee22243773e4eb3",
-  "observedAt": "2026-11-17T03:24:11.842Z",
+  "observedAt": "2026-11-17T03:32:50.284Z",
   "runs": [
-    {
-      "id": 44008687739,
-      "path": ".github/workflows/pre-merge-validation.yml",
-      "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
-      "attempt": 1,
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687739",
-      "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
-    },
     {
       "id": 44008687773,
       "path": ".github/workflows/permanent-progression-validation.yml",
@@ -30,16 +20,6 @@
       "conclusion": "skipped",
       "attempt": 1,
       "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687808",
-      "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
-    },
-    {
-      "id": 44008687718,
-      "path": ".github/workflows/shared-ui-validation.yml",
-      "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
-      "attempt": 1,
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687718",
       "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
     },
     {
@@ -73,6 +53,16 @@
       "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
     },
     {
+      "id": 44008687718,
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687718",
+      "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
+    },
+    {
       "id": 44008687783,
       "path": ".github/workflows/tree-focused-qa.yml",
       "event": "pull_request",
@@ -93,12 +83,22 @@
       "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
     },
     {
+      "id": 44008687739,
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687739",
+      "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
+    },
+    {
       "id": 44008687747,
       "path": ".github/workflows/wisp-scroll-validation.yml",
       "event": "pull_request",
       "status": "completed",
       "conclusion": "failure",
-      "attempt": 1,
+      "attempt": 2,
       "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687747",
       "head": "6b0339e050aedef56748f9752ee22243773e4eb3"
     }

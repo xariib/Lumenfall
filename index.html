@@ -9371,9 +9371,9 @@ function latePowerAdvice(){
       if(boost.eligible){result=advice('LAB SPEED','Speed the required Lab','Choose 8× for '+hours+'h: '+formatRiftNumber(boost.cost)+' Motes. '+(boost.affordable?'Available from your earned Motes.':'Farm Luminous Motes while it runs.'),'research','[data-study-speed-target="wispascend"]','lab');result.boost={mult:8,hours:hours,cost:boost.cost};result.affordable=boost.affordable;}
     }
   }
-  // Farming settings can otherwise reset a rebuilt run indefinitely even when
-  // the Prism goal is already funded. Stopping is always the player's choice.
-  else if(state.riftMode==='farm'&&result.kind!=='FARM SIGILS'&&result.kind!=='FARM PRISMS')result=advice('RETURN TO PUSH','Resume your Push','Keep your run Power and permanent upgrades growing. Return to Push to challenge your record.','battle','#rift-push-btn');
+  // Keep the return-to-Push recommendation independent of Lab advice. Earning
+  // more Prisms now requires a higher clear, so Farm cannot advance that goal.
+  if(state.riftMode==='farm'&&result.kind!=='FARM SIGILS')result=advice('RETURN TO PUSH','Resume your Push','Keep your run Power and permanent upgrades growing. Return to Push to challenge your record.','battle','#rift-push-btn');
   result.labNote=labNote;
   result.labTarget=neededLab;
   return result;

@@ -2,6 +2,20 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Final review correction: manual policy removal had left Farm advice as an
+`else if` of Lab guidance. Its independent condition is restored so Farm
+recommends Push when a higher clear is needed; Sigil farming remains available.
+`guidance-farm-final.json`:191 checks including the concrete Farm/Lab, manual
+Prism and retained Sigil paths, whole-save preservation and two controls.
+`core-guidance-final.json`:1,228 feature checks/seven controls. Final source
+SHA256 is3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80;
+candidate129 contains earlier081f source and is not final public delivery.
+6040 Wisp workflow passed on both OS unchanged. Older repeated Linux negative
+anchor failures occurred during first setup, before any reflow assertion.
+`remote/wisp-6b-linux-attempt2/` preserves all three control reports: focus and
+periodic reach intended assertions, anchor hits existing300ms setup ceiling.
+No deadline or assertion was relaxed; no infrastructure root cause is claimed.
+
 - `baseline-support.json`: current main Support/recast/paid research positive
   suite and causal controls, Node24.22.1.
 - `baseline-power.json`: current main approved early-Wisp curve and unchanged

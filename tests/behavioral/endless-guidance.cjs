@@ -17,6 +17,9 @@ s=fixture();s.prisms=20000;s.sigils=499999;q.set(s);eq(q.endless.advice().kind,'
 s=fixture();s.prisms=1e6;s.sigils=1e8;s.autoAscendEnabled=true;q.set(s);eq(q.get().autoAscendEnabled,false,'imported reset automation retires');eq(q.endless.advice().kind,'MASTERY READY','funded player can spend retained Prisms');
 s.autoAscendEnabled=false;s.riftMode='farm';q.set(s);eq(q.endless.advice().selector,'#rift-push-btn','funded Farm player guided to Push');
 s=fixture();s.longStudyLevels.wispascend=91;q.set(s);a=q.endless.advice();eq(a.kind,'MASTERY PATH','missing Lab gate shown');eq(a.id,'lab','correct development path');ok(a.title.includes('91 / 92'),'current/required Lab values');
+s.riftMode='farm';q.set(s);const farmLab=JSON.stringify(q.get());eq(q.endless.advice().kind,'RETURN TO PUSH','Farm return guidance remains independent of the missing Lab branch');eq(JSON.stringify(q.get()),farmLab,'Farm guidance preserves paid work and the whole save');
+s=fixture();s.riftMode='farm';s.prisms=19999;s.sigils=1e8;q.set(s);eq(q.endless.advice().kind,'RETURN TO PUSH','Farm cannot advance the higher clear needed for manual Prisms');
+s.prisms=20000;s.sigils=499999;q.set(s);eq(q.endless.advice().kind,'FARM SIGILS','useful Sigil farming remains available');
 s=fixture();s.research.masterwork=0;q.set(s);eq(q.endless.advice().id,'forge','missing Forge gate');
 s=fixture();s.nodes.swift=9;q.set(s);eq(q.endless.advice().id,'tree','missing uncapped Tree gate');
 s=fixture();s.depth=199;s.enemyDepth=199;s.farmReturnDepth=199;s.maxDepthEver=199;q.set(s);eq(q.endless.advice().kind,'PUSH','missing Rift gate');

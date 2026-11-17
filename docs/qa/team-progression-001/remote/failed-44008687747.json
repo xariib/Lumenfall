@@ -6,30 +6,30 @@
   "url": "https://github.com/xariib/Lumenfall/actions/runs/44008687747",
   "jobs": [
     {
-      "id": 133790147463,
-      "name": "Wisp scroll (windows-latest)",
-      "conclusion": "cancelled",
-      "started": "2026-11-17T03:13:47Z",
-      "completed": "2026-11-17T03:24:01Z",
-      "log": "job-133790147463.log.gz",
-      "rawSha256": "4771044b3d1bca06f1f3bd7da32c5e0ee2647e842052ca4784966df76d18386b",
+      "id": 133794613107,
+      "name": "Wisp scroll (ubuntu-latest)",
+      "conclusion": "failure",
+      "started": "2026-11-17T03:25:03Z",
+      "completed": "2026-11-17T03:26:15Z",
+      "log": "job-133794613107.log.gz",
+      "rawSha256": "e86cc378b9cec0d9e5506a1415f4965a16f1dcc88bf44f48f74350a8a8eeb934",
       "summary": [
-        "2026-11-17T03:15:05.4715434Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"win32\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":419.640625,\"layoutTop\":2762.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2672.640625,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":419.640625,\"layoutTop\":2762.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2672.640625,\"card\":\"stone",
-        "2026-11-17T03:15:05.5063906Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m\r"
+        "2026-11-17T03:26:06.7170208Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"linux\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":419.640625,\"layoutTop\":2727.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2637.640625,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":419.640625,\"layoutTop\":2727.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2637.640625,\"card\":\"stone",
+        "2026-11-17T03:26:06.7231083Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m",
+        "2026-11-17T03:26:12.3465860Z AssertionError [ERR_ASSERTION]: Error: Error: Wisp setup layout did not settle within 300ms"
       ]
     },
     {
-      "id": 133790147776,
-      "name": "Wisp scroll (ubuntu-latest)",
-      "conclusion": "failure",
-      "started": "2026-11-17T03:13:47Z",
-      "completed": "2026-11-17T03:14:49Z",
-      "log": "job-133790147776.log.gz",
-      "rawSha256": "4dc94d3f231fad6568048bfc37ec6262180566d07822c378c02c18e64ab5cc47",
+      "id": 133794613389,
+      "name": "Wisp scroll (windows-latest)",
+      "conclusion": "success",
+      "started": "2026-11-17T03:25:03Z",
+      "completed": "2026-11-17T03:27:18Z",
+      "log": "job-133794613389.log.gz",
+      "rawSha256": "758c2e3d9fb83ec087c24499e7a4a0c89404c37e85c70781b7cac61663feb8ea",
       "summary": [
-        "2026-11-17T03:14:40.4129306Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"linux\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":419.640625,\"layoutTop\":2727.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2637.640625,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":419.640625,\"layoutTop\":2727.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2637.640625,\"card\":\"stone",
-        "2026-11-17T03:14:40.4183731Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m",
-        "2026-11-17T03:14:45.7320273Z AssertionError [ERR_ASSERTION]: Error: Error: Wisp setup layout did not settle within 300ms"
+        "2026-11-17T03:26:15.7534759Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"win32\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":437.546875,\"layoutTop\":1798.546875},\"after\":{\"top\":437.546875,\"layoutTop\":1708.546875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":417.421875,\"layoutTop\":3228.421875},\"after\":{\"top\":417.421875,\"layoutTop\":3138.421875,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":423,\"layoutTop\":1612},\"after\":{\"top\":423,\"layoutTop\":1522,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":419.640625,\"layoutTop\":2762.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2672.640625,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":419.640625,\"layoutTop\":2762.640625},\"after\":{\"top\":419.640625,\"layoutTop\":2672.640625,\"card\":\"stone",
+        "2026-11-17T03:26:15.7760976Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m\r"
       ]
     }
   ]
