@@ -2,6 +2,17 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Canonical final replay: `offline-golden-final.json` uses the original
+`offline-catchup.cjs --source index.html --generate-swift-golden` entrypoint.
+All four complete saved-state hashes,722/618/1161/678 kills and zero automatic
+Ascends/Prisms exactly equal the earlier081f reference; only sourceSha256 is
+refreshed to3f91. Full main correctly caught that missed binding refresh.
+`offline-golden-other-harness.json` is an initial alternate-helper diagnostic:
+same combat counts, different endpoint accounting; it is not the bound oracle.
+The unused generator was restored unchanged. Seven c89 specialist workflows
+PASS, including unchanged Wisp/Lab failed-job retries; full current-head PR
+and integrated gates remain mandatory. No acceptance was waived.
+
 Final review correction: manual policy removal had left Farm advice as an
 `else if` of Lab guidance. Its independent condition is restored so Farm
 recommends Push when a higher clear is needed; Sigil farming remains available.
@@ -237,3 +248,80 @@ Main CI44001935592 attempt2 passed the prior touch failure unchanged, then reach
 Remaining main negative sweep:22 scenarios all exit nonzero; preserve distinction between causal reports and transport/setup failures. One pre-existing stale identity-value mutation anchor was confirmed on baselineba879406: Formation now also includes Battle Tempering. Updated only that negative mutation to remove the intended completed Lab factor while retaining Battle Tempering (older source fallback retained). It now emits valid QA FAIL at original exact old Formation factors assertion, zero runtime errors. Matching actual positive UI PASS across320/390/430 at100/200% text. No product/workflow changed. Diagnostic setup failure and repaired pair retained.
 
 Two remote boost-queue runs stopped at CDP Input.dispatchTouchEvent on the first touch of a new profile, after4 or16 passing profiles. Original raw failures are preserved; game cause unproven. Lab native client now awaits Runtime.enable and DOM.enable before gestures, matching existing CODEX_START setup guidance. This changes test-client initialization only: same native input,15s protocol deadline, assertions/profiles and product. Local positive993/18 and next-lock control fail at original intended assertion with normal teardown. Required remote full gate remains open until passing.
+
+## Pre-integration checkpoint history
+
+17 November current checkpoint: draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
+branch feature/team-progression-work, worktree C:/lf-team. Main remains ba879406;
+root historical checkout untouched. Product SHA256
+081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502.
+Detailed earlier checkpoints, failures and hash-bound receipts are preserved in
+[QA history](../qa/team-progression-001/README.md).
+
+Candidate implements six-second initial Support recast with unchanged90-day
+earliest sustained per-source work; shared direct-damage growth with original
+Gale/Thorn resource economy; matching passive DPS and separate base/Support/
+ability readouts; manual higher-record resets and once-only100-Comet owner
+refund. Supplied save retains all balances, paid work/boosts, roster, history and
+recovery;20 Comets becomes120 once. No real player save/app was modified.
+Supplied passive shares: Ember44%,Stone31%,Tide15%,Gale10%. Equal development
+gives Titan about25% of a legal five-member party and20% with six. These are
+tested configurations, not universal share caps; actual new paid Titan recruit
+is positive but below1% of the supplied developed roster.
+
+Current product verification:1,228 feature checks/seven causal controls;
+26,844 Wisp affordability checks/12 profiles/two controls;6,228 all-resource
+price checks/12 profiles/four controls; all17 exact main-workflow refund
+controls. Actual V8 6.0 reward/save checks3,277 and other recorded legacy lanes
+pass. Four independent8h one-second windows have722/618/1161/678 kills with
+zero automatic Ascends/Prisms. Native offline UI variants retain complete
+cold/resume/cancel/restart/failure/retry/daily rollover checks with normal close.
+One-hour Farm parity:2 retries,237 purchases,116 kills,0 Ascends; exact
+reference/split plus three causal controls, including duplicate transaction
+whole-state rollback. Paid Lab milestones244/five controls PASS.
+
+Previous main CI1320 stopped on obsolete0-times automatic recap copy; updated
+assertions require actual8h resource recap and absence of Auto Ascend. Both
+native variants PASS. Main CI485d4dcc/43999092361 then passed startup UI,
+tooling and all endless numerical commands but failed its last mobile command:
+the fixture changed ownership while retaining an incompatible no-owner refund
+receipt. Production validator correctly rejected it. Corrected paid-owner
+fixture now passes889 checks/72 cases/12 profiles. Quest focus/notification
+checks1,225/12 profiles PASS. All seven specialist workflows at485d4dcc PASS.
+First failures and browser startup/teardown failures remain honestly retained.
+
+Historical trillion-reset and14,400-ledger-normalization stress retains explicit
+test-only old-policy operands/readiness, never acceptance of current automatic
+gameplay. Mandatory current manual/clock/save/Support checks run unmodified
+production. No workflows, deadlines, original numeric tolerances or gates waived.
+
+Signed candidate build43999391752, publication disabled, PASS: established
+package/certificate, both-save upgrade, paid progression,100-Comet refund,
+actual updater install, normal retail Android12 launch and exact bundled assets.
+Candidate0.2.129 SHA256
+2967f5adcdf9464998ea6f83d73904405e559d39cb4f923d5f245424e085cc9c.
+Native installed Wisp screenshot visually inspected: clear current/base DPS and
+Support lines. This candidate is not public/integrated delivery. Self-review
+only; physical-phone, exact WebView60 DOM,TalkBack and human pacing unobserved.
+
+Next: push current test-only fixture correction, obtain all eight current PR
+workflow gates, review final diff and merge exact checked head serially. Dispatch
+nine existing integrated-main workflows. Build/publish a new signed APK from
+that main SHA, verify actual native receipts and anonymous public APK/assets/feed,
+then save final status/evidence in GitHub. Keep owner chat open for unobserved
+human/device acceptance; no archive/completion claim before delivery.
+
+Continuation after5a1b860e: main CI44001935592 attempt1 failed an actual Lab slot touch assertion after six profiles, despite identical product/test previously passing. Cause unproven. First receipt/logs preserved with attempt1 copy; unchanged full main retry attempt2 is running (job133770320549), isolated offline PASS. No deadlines/assertions/input handling changed. Local next-stage Guidance readability with original-width fault controls also PASS. Merge guard helper now pins5a1b860e; wait all eight current PR gates before using it.
+
+Main CI44001935592 attempt2 passed the prior touch failure unchanged, then reached all positive clock suites and13/14 causal controls. The Farm canonical-clock fix made the captured old fallback-owner defect unreachable. The historical transition variant now explicitly freezes its original Push-only clock operand as well as its original rate/Power operands; unmodified current clock remains in the other variant and mandatory actual manual/Farm suites. Original saved input and concrete Canonical timer deadline mismatch assertion retained. Positive pair and full14 controls PASS. Compact Wisp UI43,290/18 profiles and independent funding3,360 cases PASS. No production code or workflow changed; next complete PR/integrated gates and publish from main.
+
+Latest pushed head:ed3e03f07efa19472aa2a5c59acad60cdceb72b8; main PR workflow44005927188. The fourteen-control repair is test-only; actual product remains081f82c0. Merge helper is updated to this exact head and all eight PR gates remain required. All earlier failures, including5a1 main attempts1/2 and Forge startup attempt1 plus its unchanged passing retry, are committed. Candidate Android129 remains verified but unpublished; integrated/public delivery still pending.
+
+Current ed3 PR main44005927188 attempt1 failed CDP Input.dispatchTouchEvent after four passing boost profiles; raw attempt1 evidence preserved. Local unchanged exact boost test then PASS993/18 profiles. Unchanged remote attempt2 runs as job133786234808; isolated offline PASS. All seven specialist workflows currently PASS (permanent startup timeout retained with unchanged passing retry). No product/input/deadline changes made for protocol failures.
+
+Remaining main negative sweep:22 scenarios all exit nonzero; preserve distinction between causal reports and transport/setup failures. One pre-existing stale identity-value mutation anchor was confirmed on baselineba879406: Formation now also includes Battle Tempering. Updated only that negative mutation to remove the intended completed Lab factor while retaining Battle Tempering (older source fallback retained). It now emits valid QA FAIL at original exact old Formation factors assertion, zero runtime errors. Matching actual positive UI PASS across320/390/430 at100/200% text. No product/workflow changed. Diagnostic setup failure and repaired pair retained.
+
+Two remote boost-queue runs stopped at CDP Input.dispatchTouchEvent on the first touch of a new profile, after4 or16 passing profiles. Original raw failures are preserved; game cause unproven. Lab native client now awaits Runtime.enable and DOM.enable before gestures, matching existing CODEX_START setup guidance. This changes test-client initialization only: same native input,15s protocol deadline, assertions/profiles and product. Local positive993/18 and next-lock control fail at original intended assertion with normal teardown. Required remote full gate remains open until passing.
+
+Final source review found that deleting the retired Auto-Ascend advice branch accidentally attached Farm return guidance to the preceding Lab conditional. Restored its independent condition; Farm cannot earn a new Prism record, while Sigil farming remains useful. Focused guidance191 checks/two controls and actual feature1,228 checks/seven controls PASS. Product SHA256 is now3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80. Prior candidate129 remains evidence for its081f source only; final signed main build must contain the new source. All specialist6040 workflows passed, including Wisp on both OS; full main/shared were still running before this necessary fix. Older Linux Wisp negative anchor setup timed out before its first reflow; focus/periodic controls reached original assertions. Raw reports retained, original300ms ceiling unchanged. Next: push fix, require all current PR/integrated gates, publish and verify signed main APK.
+
