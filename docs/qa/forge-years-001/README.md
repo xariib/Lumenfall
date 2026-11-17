@@ -249,3 +249,9 @@ Tree attempt2 PASS unchanged, including the formerly incomplete positive browser
 case, native mobile matrix and actual V8 6.0. Eight exact integrated workflows
 PASS; the main workflow has passed every focused step and is executing the full
 190scenario suite. Its isolated offline scenario PASS. Main remains0adb60eb.
+
+All nine integrated workflows PASS at0adb60eb. Full main log134062191935 proves
+190/191cases and all190PASS; isolated log134062192501 proves1/191 and1PASS.
+Both full logs are retained as gzip, with `integrated-jobs.json` and final
+`integrated-runs.json`. Main was rechecked unchanged before signed Android
+publishing run44099434281 was dispatched (run135). Native/public delivery pending.

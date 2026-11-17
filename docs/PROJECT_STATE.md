@@ -5,8 +5,9 @@ Tempering caps are 375/325/315; Masterwork remains 500 with attainable future
 prices. Paid above-cap effects stay. A mature reinvestment reference finishes
 in 994 productive days; this is a model, not a fresh-account calendar guarantee.
 All eight PR workflows PASS, including 190 main +1 isolated offline scenarios.
-The integrated tree exactly matches the tested candidate. Nine exact integrated
-workflows are running; signed Android delivery remains pending. Self-review only;
+The integrated tree exactly matches the tested candidate. All nine exact integrated
+workflows PASS, including 190 main +1 isolated offline scenarios. Signed Android
+publishing run44099434281 is running; delivery remains pending. Self-review only;
 physical phone, exact WebView60 DOM, TalkBack and human pacing remain open.
 
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records

@@ -155,6 +155,12 @@ now PASS. The remaining full run44089952825 has passed every focused step and
 is executing190stateful scenarios; its isolated offline case already PASS.
 Main was rechecked at0adb60eb. Source remainsaf692d7f; no APK/build dispatched yet.
 
+All nine exact integrated workflows now PASS. Full logs retain190main scenarios
+and1isolated offline scenario. Main was rechecked unchanged at0adb60eb before
+dispatching signed Android publishing run44099434281 (run135). Build/native/
+public verification is pending. `integrated-jobs.json`, `integrated-runs.json`
+and compressed full job logs retain final exact-source CI evidence.
+
 Next: complete nine exact integrated workflows, resolve any findings, build and
 publish the signed Android update, verify native/public receipts, then save the
 delivery checkpoint in GitHub. Keep this task open for missing
