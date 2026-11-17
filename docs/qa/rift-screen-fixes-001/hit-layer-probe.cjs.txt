@@ -1,0 +1,25 @@
+'use strict';
+// Run from repository root. Reuse the production/native CDP acceptance driver,
+// adding immediate observations while its real 90ms hit class is active.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawnSync}=require('node:child_process');
+let driver=fs.readFileSync('tests/behavioral/rift-screen-fixes.cjs','utf8');
+function one(a,b){assert.equal(driver.split(a).length,2,a);driver=driver.replace(a,()=>b);}
+one("for(const width of [390])for(const scale of [1])for(const motion of ['no-preference']){","for(const width of [390])for(const scale of [1])for(const motion of ['no-preference','reduce']){");
+one('  const samples=[];\n  for(const id',String.raw`
+  const beforeTap=await run('state.totalTaps'),p=await point('#enemy-stage');
+  await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:p.x,y:p.y}]});
+  await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  const impact=await ev("(()=>{const q=s=>document.querySelector(s),z=s=>Number(getComputedStyle(q(s)).zIndex);return {hit:q('#enemy-stage').classList.contains('hit'),enemy:z('#enemy-glyph'),ring:z('.rift-cosmetic-aura'),field:z('.rift-arena-field'),isolated:getComputedStyle(q('.enemy-visuals')).isolation,errors:window.__prismErrors};})()");
+  ok(impact.hit,'actual native attack observed during the 90ms hit state');
+  ok(impact.enemy>impact.ring&&impact.ring>impact.field&&impact.isolated==='isolate','native hit retains enemy/ring/field paint order');
+  ok(await run('Number(state.totalTaps)===Number('+JSON.stringify(beforeTap)+')+1'),'native attack commits exactly one tap');
+  ok(!impact.errors.length,'native hit has no runtime errors');
+  records.push({width,scale,motion,geometry,impact});
+  await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);
+  continue;
+  const samples=[];
+  for(const id`);
+one('records.push({width,scale,motion,geometry,samples});','records.push({width,scale,motion,geometry,impact,samples});');
+const temp=path.resolve('tests/behavioral/.rift-hit-probe-'+process.pid+'.cjs');
+try{fs.writeFileSync(temp,driver);const r=spawnSync(process.execPath,[temp,'index.html','validation-evidence/hit-layer-proof','--quick'],{encoding:'utf8',timeout:180000,maxBuffer:8e6});if(r.error)throw r.error;process.stdout.write(r.stdout);process.stderr.write(r.stderr);process.exitCode=r.status;}
+finally{fs.rmSync(temp,{force:true});}

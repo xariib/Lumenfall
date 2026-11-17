@@ -1,0 +1,36 @@
+{
+  "command": [
+    "C:\\Users\\xarib\\Documents\\ChatGPT\\Lumenfall\\validation-evidence\\test-browser\\chrome-win64\\chrome.exe",
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-gpu",
+    "--disable-dev-shm-usage",
+    "--disable-background-networking",
+    "--disable-background-timer-throttling",
+    "--no-first-run",
+    "--window-size=390,844",
+    "--virtual-time-budget=1500",
+    "--user-data-dir=C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-qa-wisp-formula-contract-Hc3dd1",
+    "--dump-dom",
+    "http://127.0.0.1:58836/index.html?qaScenario=wisp-formula-contract&qaFixture=fresh"
+  ],
+  "fixture": "fresh",
+  "viewport": null,
+  "process": {
+    "exitcode": null,
+    "timed_out": true,
+    "elapsed_sec": 54.734165399999995,
+    "timeout_sec": 25
+  },
+  "qa": {
+    "qa_count": 0,
+    "qa_status": null,
+    "qa_scenario": null,
+    "json_status": null,
+    "json_scenario": null,
+    "runtime_markers": [],
+    "runtime_error_count": null,
+    "json_error": "Expected exactly one completed QA result",
+    "valid": false
+  }
+}

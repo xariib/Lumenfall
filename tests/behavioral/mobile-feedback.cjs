@@ -96,9 +96,10 @@ async function run(){
   // Dismiss any daily prompt with its real existing action before navigation.
   if(await ev('getComputedStyle(document.getElementById("daily-overlay")).display!=="none"'))await touch('#daily-claim');
   if(mode!=='failure'){
-   await touch('#rift-hints-toggle');assert(await ev('getComputedStyle(document.getElementById("rift-hints-toggle")).outlineStyle==="none"'),'touch hint has no focus highlight');
+   assert(await ev('!document.querySelector("#rift-hints-toggle,#rift-guidance-slot")'),'removed hints expose no touch/focus highlight');
+   await touch('#rift-farm-btn');assert(await ev('getComputedStyle(document.getElementById("rift-farm-btn")).outlineStyle==="none"'),'touch Farm has no focus highlight');
    await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
-   await ev('document.getElementById("rift-hints-toggle").focus()');assert(await ev('getComputedStyle(document.activeElement).outlineStyle!=="none"'),'keyboard focus remains visible');
+   await ev('document.getElementById("rift-farm-btn").focus()');assert(await ev('getComputedStyle(document.activeElement).outlineStyle!=="none"'),'keyboard focus remains visible');
   }
   assert.deepEqual(await ev('feedbackErrors'),[],'no runtime errors');records.push({width,motion,mode,pass:true});
  }

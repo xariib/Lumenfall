@@ -1,6 +1,6 @@
 # FORGE_YEARS_001 — long-term Forge progression
 
-Status: implementation in progress; finite completion requirement confirmed.
+Status: released as Android 0.2.135; human/device and calendar-pacing acceptance open.
 Owner: this feature chat. No subagents, chat creation or message tools used.
 
 ## Original requirement, 17 November 2026
@@ -57,9 +57,19 @@ target; this user's new years target supersedes it for this feature.
 
 Current product SHA256:
 `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
-[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `b87da914`.
-Latest source/test corrections pass local validation and are being published.
-No integration or APK yet; self-review only. Standing authorization applies.
+[PR59](https://github.com/xariib/Lumenfall/pull/59) merged tested head `2bdf4f03`
+as `0adb60eb36a3be15ce152d6ffe416d5996b039c7`. The complete integrated tree
+`cf13935c16dd2dfa9f870d64777aed3304391978` equals the tested feature tree.
+All eight required PR and nine exact integrated workflows PASS. Both full runs
+cover 190 main +1 isolated offline scenarios. Signed Android 0.2.135 is published:
+[release](https://github.com/xariib/Lumenfall/releases/tag/android-1000135),
+[APK](https://github.com/xariib/Lumenfall/releases/download/android-1000135/Lumenfall.apk).
+APK SHA256: `91214980a7997c03baf273211c6dbeb87456767aecb1b8b610c3d1b7716b351e`.
+Build44099434281 PASS: established package/signing, exact assets, signed save
+upgrade, actual updater and normal retail Android12 launch. Anonymous versioned/
+latest APK and public metadata bytes match the verified artifact. Self-review
+only; physical phone, exact WebView60 DOM, TalkBack and human/calendar pacing
+remain unverified. This task stays open; no archive action was taken.
 
 Implemented finite caps: Battle 375, Arcane 325, Harvest 315, Masterwork 500.
 Tempering's first 300 prices and Masterwork's first 50 are unchanged; marginal
@@ -127,11 +137,57 @@ Product/source binding unchanged. Actual platform cause remains unproven.
 `premerge-surface-attempt.log.gz` and `lab-boost-isolated-results.json.gz` retain
 the evidence. Main was rechecked atb075cfba; no integration/APK yet.
 
-Next: finish full mobile/CI checks, resolve any findings, publish the coherent
-checkpoint, integrate serially after all required gates pass, then run exact
-integrated checks and signed Android delivery. Keep this task open for missing
-acceptance; physical phone, exact WebView60 DOM, TalkBack and human pacing
-remain unobserved. Original baseline/evidence is preserved in the linked QA.
+Head2bdf4f03 passes all required Linux workflows, including the formerly stalled
+native Lab profiles and all190main/1isolated behavioral scenarios. Lab workflow
+attempt1 stopped at Browser.getVersion before loading the game (zero assertions);
+unchanged failed-job retry PASS. Original log is retained. PR reviews/threads
+were empty; main was stillb075cfba before the serialized merge. Nine exact-main
+manual runs were dispatched; `pr-runs.json`, `pr-jobs.json` and compressed job
+logs retain the completed PR proof. Gameplay/source binding remains unchanged.
+
+Exact integrated main is0adb60eb. Nine runs are recorded in `integrated-runs.json`:
+premerge44089952825, Comet44089970874, Forge44089980763, Lab44089987713,
+shared44089993593, Tree44089999690, permanent44090005249, Wisp44090013129,
+migration44090020744. Tree attempt1 has no completed positive browser result:
+25-second timeout, qa_count0/empty stdout; all six causal cases complete. Full
+log and hash/CRC-verified original text artifact are retained in QA. Unchanged
+failed-job rerun requested. No source/deadline/acceptance change. Other integrated
+workflows continue. Delivery checkpoint branch is `docs/forge-years-delivery`;
+keep its documentation separate during exact-source validation/publication,
+then reconcile any concurrent integration before publishing the final receipt.
+
+Integrated Tree attempt2 PASS unchanged, including the previously incomplete
+browser case, native mobile matrix and actual V8 6.0. Eight integrated workflows
+now PASS. The remaining full run44089952825 has passed every focused step and
+is executing190stateful scenarios; its isolated offline case already PASS.
+Main was rechecked at0adb60eb. Source remainsaf692d7f; no APK/build dispatched yet.
+
+All nine exact integrated workflows now PASS. Full logs retain190main scenarios
+and1isolated offline scenario. Main was rechecked unchanged at0adb60eb before
+dispatching signed Android publishing run44099434281 (run135). Build/native/
+public verification is pending. `integrated-jobs.json`, `integrated-runs.json`
+and compressed full job logs retain final exact-source CI evidence.
+
+Final delivery evidence: [receipt](../qa/forge-years-001/delivery.json),
+[anonymous verification](../qa/forge-years-001/public/public-verification.json),
+full PR/integrated logs and compressed native receipts. Build artifact14334919523
+SHA256 is `8bd82fe48bd35af9ab22f7d2a443851dc04529be0dcd2338350a76f918fbd223`;
+downloaded bytes and every ZIP CRC were verified before comparing public assets.
+Retail launch screenshot visually self-reviewed. No independent human review.
+
+Next: collect physical-phone, exact WebView60 DOM, TalkBack and actual-account
+pacing acceptance, then reassess completion. The 994-day mature fixed-farm
+reference grants advanced progress and does not establish a new account's
+2–3-year calendar finish. Do not claim that as verified or archive this task.
+Original baseline, failed attempts and passing unchanged retries remain in QA.
+
+Post-release documentation reconciliation preserves newer Rift main12122b80
+and its status paragraph. Delivery diff against that main contains only this
+task's documentation/evidence. Combined-source finite checks PASS385/four
+controls with unchanged Lab-wall results; all39 referenced context tasks PASS.
+Waited for separate signed build44101297138 to pass publication before moving
+main with documentation. This does not claim ownership or independent full
+validation of the newer Rift work. See `post-release-reconciliation.json` in QA.
 
 Unrelated finding for later copy maintenance: the encyclopedia's Modules &
 Ultimates paragraph still mentions the superseded1/1.5s Support durations.

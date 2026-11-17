@@ -145,63 +145,53 @@ coverage asserts one instruction. Canonical full-state endpoints remain
 unchanged. Next: complete exact-head CI, integrate serially, run integrated
 checks, then signed Android delivery. No further source changes are planned.
 
-## Current continuation checkpoint — 17 November, 12:28 UTC
+## Current continuation checkpoint — 17 November,14:32 UTC
 
-Owner: this feature chat, one game-wide upgrade-presentation goal; no delegation.
-Original requirement/rule and preservation scope are above. Repository
-`xariib/Lumenfall`, baseline/main last checked `b075cfba`.
-Feature [PR61](https://github.com/xariib/Lumenfall/pull/61) stays at
-`f6a141e7a4bffb09f5923d31628b3e74399e2be8`, product SHA84917 above.
-Local `C:/lf-upgrade-states` is now on `evidence/upgrade-states-001`, preserving
-new receipts without restarting the exact-source feature CI. Product bytes
-remain identical to the feature head; working-tree changes here are evidence.
+Goal: the original all-game gold-cap/unlock/red-shortage requirement above.
+Owner: this chat, no delegation. Implementation remains in progress; no APK
+delivery or completion claim. Original baseline b075cfba is retained above.
+Own worktree C:/lf-upgrade-states; feature/upgrade-states-001; PR61 last remote
+head6cb2fad6. Latest local helper commit21c3c4ef; merge of newer main12122b80
+(finite Forge plus Rift UI) is in progress. Other worktrees remain untouched.
 
-Implementation/self-review complete; integration and APK delivery pending.
-Current-source local Node24.22.1/Chrome headless157 checks:15,402 assertions/six
-320–430px,100/200% profiles; three gold/lock/red causal controls; original
-unmodified Wisp native467 checks/12 original +12 Team profiles; clean shutdowns.
-[Receipts](../qa/upgrade-states-001/current-source/upgrade-states.json),
-[native replay](../qa/upgrade-states-001/current-source/wisp-native.json).
-Four canonical offline full-state endpoints match main exactly. All30 required
-task-context checks pass; original32KiB limit unchanged. No price, cap, balance,
-schema or saved progression changes. Existing assertions/deadlines remain.
+Product merged cleanly; status conflicts retain this feature plus main's newer
+Forge release/Rift records. Workflows are unchanged relative to newer main.
+Current product SHA256
+5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa.
+Keep main's finite caps/prices, removed Rift hints, mode order/layering and all
+other mechanics, progression, paid work, save/recovery and Android identity.
+Shared startup/check context passed on actual feature task (31480bytes before
+this shortened checkpoint); original32KiB limit remains.
 
-Seven PR specialist workflows PASS on headbe015365. Pre-merge run44072682657
-attempt1 stopped at native touch/check319; cause unproven, prior released-source
-history retained. Attempt2 passed that lane and189/190 main scenarios. Its one
-failure expected a currency price for prerequisite-locked Expanded Apparatus,
-superseded by this task. The narrow test branch now verifies accessible name,
-no price and each unmet requirement/progress; other original checks remain.
-Product bytes/deadlines unchanged. Local424 browser assertions pass but process
-shutdown times out, recorded FAIL. New-head CI required. Isolated offline PASS.
-[Failure/change evidence](../qa/upgrade-states-001/ci-nav-assertion.json).
-[Detailed checkpoint](../qa/upgrade-states-001/continuation.json).
+Prior f6a141e7 CI: all seven specialists,190main+1offline PASS. Combined0adb
+source7943ca60:15,438 upgrade checks/six profiles, three causal controls, finite
+core385/four controls, canonical four exact hashes and paired230,400 one-second
+calls/every saved field equal PASS. Full CI44097173159 stopped at original native
+touch assertion/check419; seven specialists plus isolated offline PASS after
+retained zero-check browser startup retries. Causes remain unproven.
+[Combined evidence](../qa/upgrade-states-001/README.md).
 
-Next: push revised test/evidence toPR61, finish complete new-head required CI,
-recheck main/open overlap and merge onlyPR61. PR59/60 remain separate.
-Verify integrated source/tree, dispatch all six release-gate workflows plus
-permanent/Wisp/migration checks on exact main. After all pass, dispatch existing
-Android build with publish=true; verify signing/package, save upgrade/updater,
-retail launch and anonymous APK/assets/feed. Save final delivery/status on GitHub.
-Temporary authenticated API/dispatch helpers are under `C:/tmp/lf-*.cjs`;
-workflow definitions remain authoritative. No missing requirements/permissions.
-Standing authorization applies; do not ask for approval. No new chats/messages.
-Physical phone/exact WebView60 DOM/TalkBack unverified; task/chat stay open and
-unarchived. Resume from current state, never restart or replace live product.
+Necessary test correction: team-progression-ui now captures the presented
+surface, verifies viewport/hit/44px geometry before the same native touch, then
+waits one painted frame. Original40ms, all functional assertions,12 original
++12 Team profiles and original CDP deadlines remain. No direct click/disclosure
+mutation. A suppressed-touch causal control is wired through existing required
+affordability --negative; it must fail the original disclosure assertion and
+exit cleanly. Source7943 and finite baseline af692 each PASS493; suppressed
+control rejects at171. Latest5097 source also PASS493/control171. New source
+upgrade DOM/controls are running; canonical replay/binding still pending.
+[Native decision/receipts](../qa/upgrade-states-001/native-presented/decision.json).
 
-### Main advanced during validation — 17 November,13:35UTC
+Next: finish current-source browser/canonical checks; bind only after exact
+accepted endpoints match; save evidence, commit/push current merge and run all
+new-head CI. Recheck actual main and active Android build before integration;
+preserve concurrent updates and do not invalidate another release. Merge only
+PR61, verify exact integrated source/tree, dispatch all nine relevant integrated
+workflows, then existing publish=true Android flow. Verify package/signing,
+save upgrade/updater, retail launch and anonymous public APK/assets/feed.
+Record final status in GitHub. Temporary helpers are under C:/tmp/lf-*.cjs.
 
-PR59 merged at `0adb60eb`; its finite Forge changes must be retained. A local
-merge into the feature is in progress. Product merged cleanly; shared AGENTS
-and status conflicts retain both features and main's complete history link.
-Combined source SHA256 `7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327`.
-Original canonical generator reproduces all four accepted serialized endpoints;
-only source binding changed. Finite core385/four controls and separate paired
-one-second replay (230,400calls, every saved field equal) PASS. Combined upgrade
-DOM15438/six profiles PASS with clean exit after a retained startup/close failure.
-All32 relevant context checks PASS. Original f6a141e7 full CI passed190 main +1
-offline scenarios/all seven specialists, but cannot accept this newer merge.
-Combined head `6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98` is pushed toPR61.
-New pre-merge run44097173159/main134087263504/offline134087263809 is running.
-Next: finish new-head CI, recheck main, integrate and validate exact main, then
-signed Android/public delivery. Existing gestures/deadlines/gates are unchanged.
+Standing authorization applies; no permission requests, new chats, subagents or
+message tools. Physical phone/exact WebView60 DOM/TalkBack unverified; keep task
+and owner chat open. Automatic approval review blocked removal of a temporary
+test-copy directory; it was retained. Report that limitation honestly at delivery.

@@ -1,0 +1,18 @@
+{
+  "status": "PASS; documentation-only delivery integration",
+  "releasedForgeCommit": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
+  "newerMain": "12122b805b4dd7ad28fef5f26dad94e8a5a8c3df",
+  "newerMainOwner": "Rift screen fixes / PR60",
+  "combinedSourceSha256": "0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a",
+  "deliveryDiffOutsideDocs": [],
+  "conflict": "PROJECT_STATE.md: preserve newer Rift status verbatim and replace only the stale Forge paragraph with verified release status",
+  "reportedChecks": {
+    "workflowAndFeatureContextTasks": 39,
+    "finiteForgeAssertions": 385,
+    "finiteForgeCausalControls": 4,
+    "liveAndOfflineLabWall": "unchanged: zero kills without completed damage/critical Labs; 17 kills and Rift507 with research"
+  },
+  "scope": "Forge delivery documentation only; no change to newer main product, workflows, native code or other feature evidence",
+  "serialization": "Waited for separate Android build44101297138 to pass publication before integrating Forge delivery documentation",
+  "limitations": "This focused preservation check is not a claim that this feature independently revalidated or delivered the newer Rift UI work"
+}

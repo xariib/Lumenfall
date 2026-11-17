@@ -57,8 +57,8 @@ okay(q.endless.objective().kind!=='POWER OPTION','Push objectives stay authorita
 state.riftMode='farm';state.ascendCount=0;q.set(state);
 equal(q.endless.objective().kind,'FARM','first run keeps existing Farm text');
 
-okay(source.includes('#rift-guidance-slot .objective-copy small.objective-shortfall{color:#ff9fae;}'),'unfunded guidance is visibly red');
-okay(source.includes("(goal.unfunded?' class=\"objective-shortfall\"':'')"),'renderer uses the shortfall marker');
+okay(!source.includes('id="rift-guidance-slot"'),'Rift hint strip is removed');
+okay(source.includes('id="late-power-guide"'),'Workshop retains power guidance');
 
 // Exact inverse: the old generic Farm branch must fail the new funded contract.
 if(process.argv.includes('--negative')){

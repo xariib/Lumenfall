@@ -80,9 +80,10 @@ async function run(){
     await ev('document.getElementById("late-power-open").focus({preventScroll:true})');await key();
     check(await ev(mode==='guide'?'document.activeElement.getAttribute("data-mastery")==="ember"':'document.activeElement.getAttribute("data-study-speed-target")==="wispascend"'),'keyboard guide locates actual upgrade control');
     check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===before,'guide navigation never buys or changes save');
-    await ev('document.querySelector(".tab-btn[data-tab=battle]").click();document.getElementById("rift-objective").focus({preventScroll:true})');await key();
-    check(await ev(mode==='guide'?'document.getElementById("tab-spirits").classList.contains("active")&&document.activeElement.getAttribute("data-mastery")==="ember"':'document.getElementById("tab-research").classList.contains("active")&&document.activeElement.getAttribute("data-study-speed-target")==="wispascend"'),'Rift hint keyboard locates recommended development');
-    check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===before,'Rift hint navigation preserves wallets and queues');
+    await ev('document.querySelector(".tab-btn[data-tab=battle]").click()');
+    check(await ev('!document.querySelector("#rift-objective,#rift-guidance-slot,#rift-hints-toggle")'),'Rift hints remain removed; Workshop retains recommendation navigation');
+    check(await ev('JSON.stringify({s:endlessUi.get(),slots:endlessUi.slots()})')===before,'Rift navigation preserves wallets and queues');
+    await ev('document.querySelector(".tab-btn[data-tab=workshop]").click();document.querySelector("[data-tab=forge]").click()');
     if(mode==='guide'){
      const restore=await ev('endlessUi.get()');await ev('(()=>{var s=endlessUi.get();s.depth=s.enemyDepth=s.maxDepthEver=s.farmReturnDepth=199;s.riftMode="push";s.lumen=s.shards="1e400";endlessUi.set(s);})()');
      check(await ev('document.getElementById("late-power-action").textContent.includes("Rift 200")'),'wallet cannot bypass Masterwork development; guide recommends Push');

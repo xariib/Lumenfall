@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 'use strict';
+// The user removed Rift hints. Check their replacement contract on current
+// product HTML, retaining the original evidence procedure for historical HTML.
+if(!require('node:fs').readFileSync('index.html','utf8').includes('id="rift-guidance-slot"')){
+ const path=require('node:path'),result=require('node:child_process').spawnSync(process.execPath,[path.resolve('tests/behavioral/rift-screen-fixes.cjs'),path.resolve('mobile/www/index.html'),process.argv[2]],{stdio:'inherit'});
+ if(result.error)throw result.error;process.exit(result.status??1);
+}
 // The original 16-profile/160-sample driver remains a separate Full CI gate.
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const {findChrome}=require('../../tests/behavioral/run.cjs');

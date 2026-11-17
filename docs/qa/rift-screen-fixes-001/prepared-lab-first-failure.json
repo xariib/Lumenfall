@@ -1,0 +1,46 @@
+{
+  "status": "fail",
+  "sourceSha256": "e210529dca00e0e32c13a3910a14f79b5df8197685cd323802817cd55b6011a6",
+  "mutation": null,
+  "checks": 196,
+  "profiles": [
+    {
+      "width": 320,
+      "scale": 100,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 100,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 150,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 150,
+      "motion": "no-preference",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 200,
+      "motion": "reduce",
+      "status": "pass"
+    },
+    {
+      "width": 320,
+      "scale": 200,
+      "motion": "no-preference",
+      "status": "pass"
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: touch selects slot two and opens catalogue\n    at check (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:24:40)\n    at module.exports (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/workshop-card-clarity-ui.cjs:14:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:42:2)\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:50:34",
+  "stderr": "[7238:7265:1117/111234.802566:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7265:1117/111234.802601:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7265:1117/111234.802608:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7261:1117/111234.803047:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7261:1117/111234.803511:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7261:1117/111234.803530:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7261:1117/111234.814695:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7261:1117/111234.841866:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7238:1117/111234.916839:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7238:1117/111234.916913:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7261:1117/111234.917240:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7261:1117/111234.917282:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7238:1117/111234.917674:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7238:1117/111234.920550:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7261:1117/111234.922178:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7238:1117/111234.937438:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7238:1117/111234.937686:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7261:1117/111234.937893:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7238:1117/111234.941156:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7238:1117/111234.958222:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7261:1117/111234.958308:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7238:1117/111234.958334:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files\n[7238:7238:1117/111234.969991:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[7238:7261:1117/111234.970373:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[7238:7238:1117/111234.978158:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n"
+}

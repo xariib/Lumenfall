@@ -251,62 +251,31 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
  assert.deepEqual(viewport,report.androidTouch.viewport,'Native viewport unchanged after Farm reload');
  assert.deepEqual([Number(size[1]),Number(size[2])],report.androidTouch.display,'Native display unchanged');
  const tap=(point)=>{const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));};
- const hint=await page.evaluate(`(()=>{
+ const rift=await page.evaluate(`(()=>{
    document.querySelector('[data-tab="battle"]').click();
-   const e=document.querySelector('#rift-objective'),r=e.getBoundingClientRect(),v=document.querySelector('#rift-objective-row').getBoundingClientRect();
-   const x=r.left+r.width/2,y=(Math.max(r.top,v.top)+Math.min(r.bottom,v.bottom))/2;
-   return {kind:e.querySelector('.objective-kind')?.textContent,title:e.querySelector('strong')?.textContent,
-     detail:e.querySelector('small')?.textContent,name:e.getAttribute('aria-label'),
-     target:e.getAttribute('data-target-tab'),selector:e.getAttribute('data-target-selector'),
-     x,y,hit:document.elementFromPoint(x,y)?.closest('#rift-objective')===e,
-     fit:document.documentElement.scrollWidth<=innerWidth+1};
+   const box=s=>document.querySelector(s).getBoundingClientRect().toJSON();
+   return {removed:!document.querySelector('#rift-guidance-slot,#rift-hints-toggle,#rift-objective,#rift-guidance-toggle,#rift-hint-overlay'),
+    farm:box('#rift-farm-btn'),push:box('#rift-push-btn'),
+    field:!!document.querySelector('.rift-arena-field .rift-enemy-field')&&!document.querySelector('.rift-cosmetic-aura .rift-enemy-field'),
+    fieldZ:Number(getComputedStyle(document.querySelector('.rift-arena-field')).zIndex),
+    trailZ:parseInt(getComputedStyle(document.querySelector('.comet-trail')).zIndex,10)||0,
+    isolated:getComputedStyle(document.querySelector('.enemy-visuals')).isolation,
+    enemyZ:Number(getComputedStyle(document.querySelector('#enemy-glyph')).zIndex),
+    auraZ:Number(getComputedStyle(document.querySelector('.rift-cosmetic-aura')).zIndex)};
  })()`);
- fs.writeFileSync('release-evidence/installed-midgame-farm-diagnostic.json',JSON.stringify(hint,null,2)+'\n');
- assert.equal(hint.kind,'POWER OPTION');
- assert.equal(hint.title,'Lab hint');
- assert.equal(hint.detail,'+15% passive Wisp damage after study · 800 Lumen + 80 Shards');
- assert(hint.name==='Read Lab hint — Power option: Wisp Ascendancy 1 — '+hint.detail&&hint.target==='research'&&hint.selector.includes('wispascend'),'Installed accessible hint retains full current Lab quote');
- assert(hint.hit&&hint.fit,'Installed Farm hint fits and receives native touch');
- tap(hint);
- let details;
- for(let i=0;i<50;i++){
-   details=await page.evaluate(`(()=>{const o=document.querySelector('#rift-hint-overlay'),b=document.querySelector('#rift-hint-open-lab'),r=b.getBoundingClientRect();return {
-     open:getComputedStyle(o).display!=='none',title:document.querySelector('#rift-hint-title').textContent,
-     detail:document.querySelector('#rift-hint-detail').textContent,x:r.x+r.width/2,y:r.y+r.height/2,
-     fit:o.querySelector('.modal').scrollWidth<=o.querySelector('.modal').clientWidth+1,
-     hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
-   if(details.open)break;
-   await pause(100);
- }
- assert(details.open&&details.title==='Power option: Wisp Ascendancy 1'&&details.detail===hint.detail,'Native touch opens full current Lab advice');
- assert(details.fit&&details.hit,'Installed details wrap and Lab action receives touch');
+ assert(rift.removed&&rift.farm.left<rift.push.left,'Installed Rift has no hints, with Farm left and Push right');
+ assert(rift.field&&rift.isolated==='isolate'&&rift.enemyZ>rift.auraZ&&rift.auraZ>rift.fieldZ,'Installed enemy and theme ring stay above an opaque arena center');
+ assert(rift.fieldZ<rift.trailZ&&rift.trailZ<=rift.auraZ,'Installed legacy Comet Trail stays above the backing field');
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
- assert(shot.data,'Installed Farm screenshot captured');
- fs.writeFileSync('release-evidence/installed-midgame-farm.png',Buffer.from(shot.data,'base64'));
- // Record the actual native input and resulting destination, including failures.
- // Re-measure after screenshot capture rather than using an earlier layout sample.
- details=Object.assign(details,await page.evaluate(`(()=>{window.farmHintEvents=[];
-   ['pointerdown','click'].forEach(type=>document.addEventListener(type,e=>farmHintEvents.push({type,trusted:e.isTrusted,target:e.target.id,x:e.clientX,y:e.clientY}),true));
-   const b=document.querySelector('#rift-hint-open-lab'),r=b.getBoundingClientRect();
-   return {x:r.x+r.width/2,y:r.y+r.height/2,hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`));
- assert(details.hit,'Installed Lab action remains reachable immediately before native input');
- tap(details);
- let destination;
- for(let i=0;i<50;i++){
-   destination=await page.evaluate(`(()=>{const card=document.querySelector('[data-study-card="wispascend"]');return {
-     lab:document.querySelector('#tab-research').classList.contains('active'),
-     card:!!card&&card.getBoundingClientRect().width>0,focused:document.activeElement===card,
-     active:document.activeElement?.outerHTML.slice(0,600),events:window.farmHintEvents};})()`);
-   if(destination.lab&&destination.card&&destination.focused)break;
-   await pause(100);
- }
- fs.writeFileSync('release-evidence/installed-midgame-farm-input.json',JSON.stringify({details,destination},null,2)+'\n');
- const after=await page.command('Page.captureScreenshot',{format:'png'});
- fs.writeFileSync('release-evidence/installed-midgame-farm-after.png',Buffer.from(after.data,'base64'));
- requireCenteredPointer(destination.events,details,'rift-hint-open-lab');
- assert(destination.lab&&destination.card&&destination.focused,'Native touch navigates to and focuses Wisp Ascendancy');
- report.installedMidgameFarmHint={status:'PASS',hint,details,destination,screenshot:'release-evidence/installed-midgame-farm.png',syntheticFixture:true};
- console.log('Android installed Farm guidance acceptance: '+JSON.stringify(report.installedMidgameFarmHint));
+ fs.writeFileSync('release-evidence/installed-rift-screen.png',Buffer.from(shot.data,'base64'));
+ const point=selector=>page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
+ const workshop=await point('[data-tab="workshop"]');assert(workshop.hit,'Workshop receives native touch');tap(workshop);await pause(500);
+ await page.evaluate(`document.querySelector('[data-tab="research"]').scrollIntoView({block:'nearest'})`);
+ const lab=await point('[data-tab="research"]');assert(lab.hit,'Lab receives native touch');tap(lab);await pause(500);
+ const destination=await page.evaluate(`({lab:document.querySelector('#tab-research').classList.contains('active'),slots:document.querySelectorAll('[data-lab-slot]').length,mode:JSON.parse(localStorage.getItem('lumenfall_save_v2')).riftMode})`);
+ assert(destination.lab&&destination.slots===5&&destination.mode==='farm','Native Workshop navigation retains Lab access and saved Farm mode');
+ report.installedMidgameFarmHint={status:'PASS',retired:true,rift,workshop,lab,destination,screenshot:'release-evidence/installed-rift-screen.png',syntheticFixture:true};
+ console.log('Android Rift screen and retained Lab access: '+JSON.stringify(report.installedMidgameFarmHint));
  return page;
 }
 async function verifyInstalledRiftNavigation(page,report){
