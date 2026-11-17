@@ -155,9 +155,9 @@ async function run(){
    samples[samples.length-1].scroll=scroll;
   }
   if(!negative){
-   await evaluate("localStorage.setItem('lumenfall_rift_guidance_hidden_v1','0')");
+   await evaluate("localStorage.setItem('lumenfall_rift_guidance_hidden_v1','0');window.__qaGuidanceReloadToken=true");
    await send('Page.reload',{ignoreCache:true});
-   let ready=false;for(let i=0;i<150&&!ready;i++){try{ready=await evaluate('!!window.__forgeUiReady');}catch(_){}if(!ready)await new Promise(r=>setTimeout(r,20));}
+   let ready=false;for(let i=0;i<150&&!ready;i++){try{ready=await evaluate('!window.__qaGuidanceReloadToken&&!!window.__forgeUiReady');}catch(_){}if(!ready)await new Promise(r=>setTimeout(r,20));}
    assert(ready,'Rift reload initializes');await evaluate('document.fonts.ready');
    await evaluate('window.__lumenfallQaBridge.uiMeasurementPause(true);window.__lumenfallQaBridge.resetFeedback()');await evaluate('window.__qaForgeStartup.promise');
    await evaluate(`riftStatusMobile.setup(${inset},'fresh')`);await advance();

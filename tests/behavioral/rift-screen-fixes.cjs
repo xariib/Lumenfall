@@ -36,7 +36,6 @@ driver=driver.slice(0,start)+String.raw`
   ok(geometry.farm.width>=44&&geometry.farm.height>=44&&geometry.push.width>=44&&geometry.push.height>=44,'mode controls retain touch targets');
   ok(geometry.main.top-geometry.hud.bottom<=10,'no reserved hint-bar gap');
   ok(!geometry.overflow&&geometry.scroll[0]===0&&geometry.scroll[1]<=geometry.scroll[2]+1&&geometry.enemy.height>=120&&geometry.stage.bottom<=geometry.nav.top,'Rift fits viewport and attack target remains usable');
-  const saved=await run('JSON.stringify(state)');
   await tap('#rift-farm-btn');ok(await run('state.riftMode==="farm"'),'left Farm touch selects farming');
   await ev("document.getElementById('rift-farm-btn').focus({preventScroll:true})");await key('Tab','Tab',9);ok(await ev('document.activeElement.id==="rift-push-btn"'),'Tab from Farm reaches Push');
   await key('Enter','Enter',13);ok(await run('state.riftMode==="push"'),'right Push keyboard resumes pushing');

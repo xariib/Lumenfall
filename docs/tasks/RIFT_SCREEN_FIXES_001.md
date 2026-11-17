@@ -61,7 +61,17 @@ corrected by waiting for the new document's initialization token. An initial VM
 paired replay matched baseline/candidate but its endpoint used the other harness's
 golden hash; the released task already retains the correct VM reference. The new
 paired replay compares all fields to baseline and that separate reference while
-preserving the browser oracle's endpoint hashes. Full replay remains running.
+preserving the browser oracle's endpoint hashes. The corrected full paired
+replay PASS: four eight-hour windows,115,200 one-second calls per source,
+every full saved state/reward equal. Only the browser oracle source binding
+changed; every original expected browser endpoint remains unchanged.
+[Receipt](../qa/rift-screen-fixes-001/paired-replay.json).
+
+[PR60](https://github.com/xariib/Lumenfall/pull/60) published. Initial candidate
+17add629 has eight applicable PR workflows running, two conditional Prism
+workflows skipped, and signed unpublished Android build44064059604 running.
+The GitHub App updated the required workflow; installed CLI handles dispatch.
+Task remains in progress pending final-source CI, integration and Android release.
 
 Next: publish this checkpoint, run required remote CI, resolve all regressions,
 integrate serially with any newer main work, then signed Android acceptance and
