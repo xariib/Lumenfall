@@ -53,7 +53,7 @@ async function run(){
   records.push({width,fontPercent,motion,contrast,elapsedMs:observed.elapsedMs,fit:true,realTouch:true,realKeyboard:true});
   if(width===390&&motion==='reduce'){await ev('document.querySelector(".formation-help").scrollIntoView({block:"start"})');const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'roles-390-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
  }
- const teamProgression=await require('./team-progression-ui.cjs')({send,ev,ok,pause,out});
+ const teamProgression=await require('./team-progression-ui.cjs')({send,ev,ok,pause,out,suppressTouch:process.argv.includes('--suppress-team-touch')});
  fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'PASS',checks,sourceSha256,browser:identity,profiles:records,teamProgression,scope:'Modern browser DOM/CSS/native input only; not Android textZoom/exact WebView60/physical/TalkBack'},null,2));console.log(JSON.stringify({status:'PASS',checks,profiles:records.length,teamProgression,sourceSha256,browser:identity}));
 }
 function reportFailure(e){fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',checks,sourceSha256,error:String(e.stack),stderr},null,2));console.error(e);process.exitCode=1;}

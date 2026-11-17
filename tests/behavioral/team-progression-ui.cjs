@@ -2,10 +2,21 @@
 // Runs in the mandatory existing real-browser contribution lane, preserving
 // its original assertions. No new workflow permission or gate is required.
 const fs=require('node:fs'),path=require('node:path');
-module.exports=async function({send,ev,ok,pause,out}){
- const user=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/team-progression-user-save.json'))),profiles=[];
+module.exports=async function({send,ev,ok,pause,out,suppressTouch=false}){
+ const user=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/team-progression-user-save.json'))),profiles=[],nativeTouches=[];
  async function tab(name){await ev('document.querySelector("[data-tab='+name+']").click()');await ev('Promise.all(document.getElementById("tab-'+(name==='rift'?'battle':name)+'").getAnimations().map(a=>a.finished)).then(()=>true)');}
- async function touch(selector){await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');await pause(40);const r=await ev('(()=>{var r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ async function touch(selector){
+  await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');await pause(40);
+  // Sample the target after Chrome has presented the scrolled surface. A CDP
+  // input acknowledgement alone does not establish the next painted UI state.
+  const surface=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'team-native-last-surface.png'),Buffer.from(surface.data,'base64'));
+  const r=await ev('(()=>{var e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,hit=document.elementFromPoint(x,y);return {x,y,width:r.width,height:r.height,visible:x>=0&&x<innerWidth&&y>=0&&y<innerHeight,hit:!!hit&&(hit===e||e.contains(hit))};})()');
+  ok(r.visible&&r.hit,'native touch point is visible and hits its intended control '+selector);ok(r.width>=44&&r.height>=44,'native touch target retains44px '+selector);
+  if(!suppressTouch){await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x,y:r.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+  await ev('new Promise(function(resolve){requestAnimationFrame(function(){resolve(true);});})');
+  nativeTouches.push({selector,point:r,suppressed:suppressTouch,detailsOpen:await ev('!!document.querySelector("[data-wisp-damage=ember] details")&&document.querySelector("[data-wisp-damage=ember] details").open')});
+  fs.writeFileSync(path.join(out,'team-native-inputs.json'),JSON.stringify(nativeTouches,null,2));
+ }
  async function shot(name){const image=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(image.data,'base64'));}
  for(const width of [320,390,430])for(const scale of [100,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
@@ -43,5 +54,5 @@ module.exports=async function({send,ev,ok,pause,out}){
  const preview=await ev('roleQa.evaluate("ascendPrismGain()")');await touch('#ascend-btn');ok(await ev('roleQa.get().ascendCount===1&&roleQa.get().ascendRewardedDepth===15&&roleQa.get().prisms==='+preview),'real touch pays exactly one first reward');
  await ev('roleQa.evaluate("state.depth=16;state.maxDepthEver=16;state.enemyDepth=16;renderAscendSummary();")');ok(await ev('document.getElementById("ascend-btn").disabled&&document.getElementById("ascend-note").textContent.includes("16")'),'same clear cannot reset again');
  await ev('roleQa.evaluate("state.depth=17;state.maxDepthEver=17;state.enemyDepth=17;renderAscendSummary();")');ok(await ev('!document.getElementById("ascend-btn").disabled'),'next new clear enables manual reset');
- return {profiles,manualNativeInput:true};
+ return {profiles,manualNativeInput:true,nativeTouches};
 };

@@ -116,5 +116,9 @@ try{
    else{assert.equal(run.status,0);assert.equal(receipt.status,'pass');assert.equal(receipt.records.length,6);}
    console.log(JSON.stringify({upgradeStates:name,accepted:true,checks:receipt.checks,sourceSha256:receipt.sourceSha256}));
   }
+  const nativeDir=path.join(evidence,'team-native-input-control');
+  const native=spawnSync(process.execPath,[path.join(__dirname,'team-native-input-control.cjs'),sourcePath,nativeDir],{encoding:'utf8',timeout:120000,maxBuffer:16*1024*1024});
+  assert.equal(native.status,0,'suppressed native gesture must fail the original disclosure assertion: '+native.stdout+' '+native.stderr);
+  console.log(native.stdout.trim());
  }
 }finally{fs.unlinkSync(generated);}
