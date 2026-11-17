@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-17T11:38:07.046Z",
+  "head": "f9d01314567d81095467e61d9203a8c84ac3e087",
+  "sourceSha256": "b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed",
+  "offline": {
+    "run": 44074256301,
+    "job": 134008081270,
+    "cause": "Historical Support rule adapter still projected 6s into frozen chronology world while current source uses approved 13s.",
+    "fix": "Project approved 13s into historical adapter; preserve all complete state/summary comparisons and tolerances.",
+    "localReplay": "offline-reference-release.json",
+    "status": "PASS",
+    "records": 18
+  },
+  "forgeV8": {
+    "run": 44074256343,
+    "job": 134008081186,
+    "cause": "Legacy fixture applied short-sample event bound to existing independent-cycle 1024/4096 long sample.",
+    "fix": "Require established 180000 long-reference bound and exact 1024/4096 sample; separately retain original aligned64/256 and12000 bound.",
+    "localReplay": "forge-v8-release.json",
+    "status": "PASS",
+    "checks": 2498
+  },
+  "waivedGates": false
+}

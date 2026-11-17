@@ -160,3 +160,10 @@ Previous delivery: public Android0.2.130/source52fae53d remains the baseline.
 [Preserved release checkpoint](../qa/team-progression-001/support-year/prior-release-130-checkpoint.md)
 retains exact version/hashes/CI/native/public evidence. It does not prove the
 current year-earned correction, which remains open until new acceptance.
+
+PR62 first CI failures saved: historical offline adapter still6s, and V8
+short-sample bound applied to the existing long sample. Adapter now13s; full
+offline replay18 records PASS. Actual V8 replay2498 checks PASS with exact
+1024/4096 long sample and separate original64/256/12000 aligned bound.
+No product bytes, tolerance, deadline or workflow changed. New exact-head CI
+required; first failed job/run logs and dispositions retained in support-year.

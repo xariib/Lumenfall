@@ -1,0 +1,23 @@
+{
+  "id": 44074256343,
+  "sha": "f9d01314567d81095467e61d9203a8c84ac3e087",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44074256343",
+  "jobs": [
+    {
+      "id": 134008081186,
+      "name": "forge",
+      "conclusion": "failure",
+      "started": "2026-11-17T11:28:03Z",
+      "completed": "2026-11-17T11:34:10Z",
+      "log": "job-134008081186.log.gz",
+      "rawSha256": "d4676e319ec2e4fb1b5f50a0edca5ba9b39ec94be8e8cdee1886326e77941a6d",
+      "summary": [
+        "2026-11-17T11:32:08.2986043Z   throw new AssertionError(obj);",
+        "2026-11-17T11:32:08.2986805Z AssertionError [ERR_ASSERTION]: economy/order baseline live",
+        "2026-11-17T11:34:04.4530586Z {\"status\":\"fail\",\"sourceSha256\":\"b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed\",\"node\":\"v8.3.0\",\"v8\":\"6.0.286.52\",\"phase\":\"Resonate huge-wallet\",\"checks\":2490,\"error\":\"AssertionError [ERR_ASSERTION]: bounded charge estimate executes on actual V8\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:10:27)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/forge-expansion-legacy.cjs:172:223)\\n    at Module._compile (module.js:573:30)\\n    at Object.Module._extensions..js (module.js:584:10)\\n    at Module.load (module.js:507:32)\\n    at tryModuleLoad (module.js:470:12)\\n    at Function.Module._load (module.js:462:3)\\n    at Function.Module.runMain (module.js:609:10)\\n    at startup (bootstrap_node.js:158:16)\\n    at bootstrap_node.js:578:3\",\"actual\":false,\"expected\":true}"
+      ]
+    }
+  ]
+}

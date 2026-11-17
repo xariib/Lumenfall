@@ -74,7 +74,7 @@ function clockReference(original){
  return original;
 }
 function supportRuleReference(original){
- // Apply the accepted Support duration/recast rules to the frozen world, without replacing its
+ // Apply the accepted 3s/13s unpurchased Support rule to the frozen world, without replacing its
  // simulation clock, resource arithmetic, combat or reward implementations.
  function rule(from,to){assert.equal(original.split(from).length,2,'unique approved Support baseline rule');original=original.replace(from,to);}
  rule('buffUntil:0, buffMult:1, supportBuffs:null,','buffUntil:0, buffMult:1, supportBuffs:null, supportRecastUntil:{tide:0,aurora:0},');
@@ -88,8 +88,8 @@ function supportRuleReference(original){
  rule('if(!sp) continue;\n    state.heroResource[id] = 0;',
   'if(!sp) continue;\n    if(sp.abilityType===\'support\' && supportDeadlineSecondsRemaining(state.supportRecastUntil[id],nowMs,clock)>SIM_EPS)continue;\n    state.heroResource[id] = 0;');
  rule('// buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.',
-  'state.supportRecastUntil[sp.id]=nowMs+6000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
- rule('var uptime = Math.min(1, (profile.durationMs/1000) / cycle);','var uptime = Math.min(1, (profile.durationMs/1000) / 6);');
+  'state.supportRecastUntil[sp.id]=nowMs+13000;\n  // buffUntil/buffMult are an opaque legacy entitlement, never an aggregate.');
+ rule('var uptime = Math.min(1, (profile.durationMs/1000) / cycle);','var uptime = Math.min(1, (profile.durationMs/1000) / 13);');
  rule('return sp.basePower * level * (1 + 0.01*(level-1));',
   "var bonus=(sp.id==='ember'||sp.id==='stone')&&level>70?352*(level-70)*(level-70):0;\n  return sp.basePower * level * (1 + 0.01*(level-1)) + bonus;");
  return original;

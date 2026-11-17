@@ -19,3 +19,5 @@ Current-source recast2012/four, paid research11886/six, manual8h partition30466,
 Stacking first encountered Windows profile cleanup EPERM, then exposed a fixture using the old6s recast after Ascend. That fixture now also asserts retained13s history and no early reconstruction cast; the replay passes all original stacking checks/controls. Final-source mobile/V8 replay and PR/CI/native/public delivery remain pending.
 
 Final sourceb955 mobile254/12, Forge9409/25, actual V86.0.286.52 contracts8099/seven and preservation28896 PASS. All34 calibration cases/ten controls pass; the stored-epoch control is explicitly historical, the other nine run the current source. Final required CI/native/public release remains pending.
+
+PR62 first CI failures and corrections: see ci-first-failure-disposition.json. Full local offline18 records and actual V8 Forge2498 checks PASS after correcting the approved-rule historical adapter and explicitly checking both established forecast sample contracts. Product remainsb955; all exact-head CI is rerun.
