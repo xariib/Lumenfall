@@ -1,5 +1,5 @@
 {
-  "status": "FAIL retained; unchanged retry requested",
+  "status": "PASS unchanged retry; original failure retained",
   "featureHead": "a0394981c74d12149ed2c8a13aef1467fc12558a",
   "sourceSha256": "5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa",
   "runId": 44106176817,
@@ -12,5 +12,15 @@
     "sha256": "69ba44d3e55b9bc314e334cb568fbc5c6a9618b4aca39d41620484440b409b0e",
     "shaAndExtractedLogCrcVerified": true
   },
-  "response": "Retain original log; rerun without product, driver, assertion, setup limit or workflow edits."
+  "response": "Retain original log; rerun without product, driver, assertion, setup limit or workflow edits.",
+  "final": {
+    "linuxJob": 134122363048,
+    "windowsJob": 134122365210,
+    "status": "PASS both platforms",
+    "checks": 3277,
+    "unchanged": true,
+    "artifactId": 14338662546,
+    "artifactSha256": "938a1bba7a60a6244b35e1630767548480fbb70a07420957cc026fdfc9af9d12",
+    "shaAndLogCrcVerified": true
+  }
 }
