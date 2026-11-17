@@ -201,5 +201,7 @@ one-second replay (230,400calls, every saved field equal) PASS. Combined upgrade
 DOM15438/six profiles PASS with clean exit after a retained startup/close failure.
 All32 relevant context checks PASS. Original f6a141e7 full CI passed190 main +1
 offline scenarios/all seven specialists, but cannot accept this newer merge.
-Next: finish combined checks, commit/push this merge, then new-head CI and
-exact-main signed delivery. Existing gestures/deadlines/gates remain unchanged.
+Combined head `6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98` is pushed toPR61.
+New pre-merge run44097173159/main134087263504/offline134087263809 is running.
+Next: finish new-head CI, recheck main, integrate and validate exact main, then
+signed Android/public delivery. Existing gestures/deadlines/gates are unchanged.

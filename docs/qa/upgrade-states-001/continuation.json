@@ -1,16 +1,19 @@
 {
   "status": "in progress; combined finite Forge source locally verified; full CI pending",
-  "utc": "2026-11-17T13:52:48.305Z",
+  "utc": "2026-11-17T13:54:26.583Z",
   "featureBranch": "feature/upgrade-states-001",
-  "featureHead": "59bd6565",
+  "featureHead": "6cb2fad6f221bee7f38f8c075a8123dbf6bf6f98",
   "productSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327",
   "pullRequest": 61,
   "mainBaseline": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
   "ci": {
-    "phase": "Combined PR59/main validation pending new push",
-    "sourceSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327"
+    "runId": 44097173159,
+    "mainJob": 134087263504,
+    "offlineJob": 134087263809,
+    "phase": "Combined head required checks running",
+    "productSha256": "7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327"
   },
-  "next": "Commit/push combined feature head, run full new-head CI, recheck actual main, integrate only PR61 then exact-main validation and signed/public Android delivery.",
+  "next": "Finish current CI on exact combined head, recheck relevant main/PR60 overlap, merge only PR61; validate exact integrated main and complete signed/public Android delivery.",
   "authorization": "Standing scope authorization; no permission prompts. No new chats, subagents or messages. Evidence branch preserves pending results without restarting source CI.",
   "archive": "open; not archived; physical phone/WebView60 DOM/TalkBack unverified",
   "localVerification": {
@@ -84,7 +87,6 @@
       "verified": true
     }
   },
-  "featureHeadNote": "Local source merge; evidence merge commit follows before push. Read branch for latest PR head.",
   "combined": {
     "browserChecks": 15438,
     "profiles": 6,
