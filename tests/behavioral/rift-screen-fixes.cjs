@@ -19,7 +19,8 @@ if(mutation){
   '--mutate-hints':['    <nav class="tabbar"','    <div id="rift-guidance-slot"><button id="rift-hints-toggle">Show hints</button></div><nav class="tabbar"'],
   '--mutate-order':['          <button class="rift-mode-btn" id="rift-farm-btn">Farm</button>\n          <button class="rift-mode-btn active" id="rift-push-btn">Push</button>','          <button class="rift-mode-btn active" id="rift-push-btn">Push</button>\n          <button class="rift-mode-btn" id="rift-farm-btn">Farm</button>'],
   '--mutate-layer':['.enemy-stage .enemy-glyph{position:relative;z-index:2;}','.enemy-stage .enemy-glyph{position:relative;z-index:0;}'],
-  '--mutate-field':['<circle class="rift-enemy-field" cx="160" cy="160" r="132" fill="#0a1225"/>','<circle class="rift-enemy-field" cx="160" cy="160" r="132" fill="#0a1225" opacity="0"/>']
+  '--mutate-field':['<circle class="rift-enemy-field" cx="160" cy="160" r="132" fill="#0a1225"/>','<circle class="rift-enemy-field" cx="160" cy="160" r="132" fill="#0a1225" opacity="0"/>'],
+  '--mutate-trail':['.rift-arena-field{z-index:-1;}','.rift-arena-field{z-index:0;}']
  };
  assert(changes[mutation],'known mutation');const [a,b]=changes[mutation];
  one("source=fs.readFileSync(sourcePath,'utf8');","source=fs.readFileSync(sourcePath,'utf8').replaceAll('\\r\\n','\\n').replace("+JSON.stringify(a)+','+JSON.stringify(b)+');');
@@ -41,11 +42,13 @@ driver=driver.slice(0,start)+String.raw`
   await key('Enter','Enter',13);ok(await run('state.riftMode==="push"'),'right Push keyboard resumes pushing');
   ok(await run('[SAVE_KEY,RECOVERY_SAVE_KEY].every(k=>JSON.parse(localStorage.getItem(k)).riftMode==="push")'),'mode actions persist in both save slots');
   const samples=[];
+  await run('state.cometCosmetics.trail=true;state.cometCosmetics.crest=true;applyRiftTheme()');
   for(const id of await run('RIFT_THEMES.map(t=>t.id)')){
    await run('selectRiftTheme('+JSON.stringify(id)+')');
-   const layers=await ev("(()=>{const q=s=>document.querySelector(s),style=s=>getComputedStyle(q(s));return {enemyZ:Number(style('#enemy-glyph').zIndex),auraZ:Number(style('.rift-cosmetic-aura').zIndex),fieldZ:Number(style('.rift-arena-field').zIndex),isolated:style('.enemy-visuals').isolation,field:!!q('.rift-arena-field .rift-enemy-field')&&!q('.rift-cosmetic-aura .rift-enemy-field')&&Number(style('.rift-enemy-field').opacity)===1&&style('.rift-enemy-field').fill==='rgb(10, 18, 37)',inert:style('.enemy-visuals').pointerEvents==='none'}})()");
+   const layers=await ev("(()=>{const q=s=>document.querySelector(s),style=s=>getComputedStyle(q(s));return {enemyZ:Number(style('#enemy-glyph').zIndex),auraZ:Number(style('.rift-cosmetic-aura').zIndex),fieldZ:Number(style('.rift-arena-field').zIndex),trailZ:parseInt(style('.comet-trail').zIndex,10)||0,trailVisible:style('.comet-trail').display!=='none',isolated:style('.enemy-visuals').isolation,field:!!q('.rift-arena-field .rift-enemy-field')&&!q('.rift-cosmetic-aura .rift-enemy-field')&&Number(style('.rift-enemy-field').opacity)===1&&style('.rift-enemy-field').fill==='rgb(10, 18, 37)',inert:style('.enemy-visuals').pointerEvents==='none'}})()");
    ok(layers.enemyZ>layers.auraZ&&layers.isolated==='isolate'&&layers.inert,'enemy stays above theme fill in isolated inert artwork layer '+id);
    ok(layers.field&&layers.fieldZ<layers.auraZ,'opaque arena center blocks landscape silhouettes below the ring '+id);
+   ok(layers.trailVisible&&layers.fieldZ<layers.trailZ&&layers.trailZ<=layers.auraZ,'legacy Comet Trail remains above the opaque field '+id);
    const framing=await run('(function(){var failures=[],encounters=0;for(var d=1;d<=230;d++){state.depth=d;spawnEnemy(false);state.enemyIsLuminous=d%3===0;updateBattleFast();var aura=document.querySelector(".rift-cosmetic-aura"),box=aura.getBoundingClientRect(),cx=box.left+box.width/2,cy=box.top+box.height/2,r=Math.min(box.width,box.height)*132/320,art=document.querySelector(".creature-art use"),m=art.getScreenCTM(),b=art.getBBox(),corners=[[b.x,b.y-2],[b.x+b.width,b.y-2],[b.x,b.y+b.height+1],[b.x+b.width,b.y+b.height+1]],furthest=Math.max.apply(Math,corners.map(function(p){var x=m.a*p[0]+m.c*p[1]+m.e-cx,y=m.b*p[0]+m.d*p[1]+m.f-cy;return Math.sqrt(x*x+y*y);}));if(r-furthest<2)failures.push({d:d,room:r-furthest});encounters++;}return {failures:failures,encounters:encounters};})()');
    ok(!framing.failures.length,'every species, boss and Luminous enemy fits '+id+' '+JSON.stringify(framing.failures));
    if(width===390&&scale===1&&motion==='no-preference'){
@@ -69,7 +72,7 @@ driver=driver.slice(0,start)+String.raw`
 const temp=path.join(__dirname,'.rift-screen-fixes-'+process.pid+'.cjs');
 try{fs.writeFileSync(temp,driver);const result=spawnSync(process.execPath,[temp,source,out],{encoding:'utf8',timeout:600000,maxBuffer:8388608});
  if(result.error)throw result.error;process.stdout.write(result.stdout);process.stderr.write(result.stderr);process.exitCode=result.status;
- if(result.status===0&&process.argv.includes('--negative'))for(const [flag,message] of [['hints','Rift hint bar'],['order','Farm left'],['layer','enemy stays above'],['field','opaque arena center']]){
+ if(result.status===0&&process.argv.includes('--negative'))for(const [flag,message] of [['hints','Rift hint bar'],['order','Farm left'],['layer','enemy stays above'],['field','opaque arena center'],['trail','legacy Comet Trail']]){
   const dir=out+'-negative-'+flag,control=spawnSync(process.execPath,[__filename,source,dir,'--quick','--mutate-'+flag],{encoding:'utf8',timeout:180000,maxBuffer:8388608});
   assert(!control.error,control.error?.message);const receipt=JSON.parse(fs.readFileSync(path.join(dir,'receipt.json')));
   assert.equal(control.status,1,'negative control must fail '+flag);assert(receipt.error?.includes(message),'intended assertion '+flag+': '+receipt.error);assert.equal(receipt.exit?.code,0,'clean browser teardown '+flag);

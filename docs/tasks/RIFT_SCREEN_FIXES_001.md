@@ -2,6 +2,18 @@
 
 17 November 2026. Owner: this feature chat. Status: in progress.
 
+CURRENT CANDIDATE: HTML42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad.
+Prior1fcad22d is superseded; do not integrate that earlier candidate. Final
+review found field z0 could cover the original Comet Trail at auto/0. The field
+is now z-1 inside the explicit isolated z1 visuals; legacy Trail0, theme1 and
+enemy2 remain above it. This preserves an existing cosmetic, not a new effect.
+Added a visible legacy Trail fixture and a fifth causal control restoring the
+bad field z0. Game JavaScript remains byte-identical to the full paired replay;
+only CSS/SVG layering and the HTML oracle binding change. Local quick attempt
+stopped before any checks at CDP browser-context creation, with a Chrome network
+service crash. Use required Linux CI/new signed Android acceptance on this
+candidate. All old run IDs/acceptance below remain historical to their source.
+
 User requirements: “Remove the bar with hints on the rift screen. Switch farm
 and push buttons position with each other. On rift screen the enemies sometimes
 are behind the background.” Three supplied phone screenshots show Rifts286–288.
@@ -109,6 +121,53 @@ retry passed Linux/Windows. Cause unproven; no deadline/assertion changed.
 Broad CI then caught rift-cast-text.cjs's old Push→Farm Tab expectation. Update
 the test to Farm→Push, preserving native input and visible focus assertions.
 This changes no product bytes. Repeat required final-source CI before integration.
+
+## Superseded checkpoint — before the Comet Trail correction
+
+Continuation checkpoint: branch head1fcad22d9be1ec2a494e6b81e6c1951e9342cc21;
+product remains e210529dca00e0e32c13a3910a14f79b5df8197685cd323802817cd55b6011a6.
+Main stillb075cfba; PR60 open. Current native run44066560998 attempt2 reruns the
+unchanged build at8371fc6f; first-retail failure screenshots/XML are retained in
+QA and show the corrected ring. Current CI for1fcad22d must finish before serial
+integration. No merge/public release yet. Local retained cast-text check is
+running with web-root`.` (initial local invocation incorrectly passed index.html
+instead of a directory; it failed before browser startup and changed no code).
+Uncommitted QA/task updates belong to this chat; do not discard them. Next:
+inspect final CI/native results, preserve first failures/retries, resolve any
+remaining assertions, integrate unchanged validated bytes after rechecking main,
+run integrated release gates and publish/verify the signed APK. Keep task open
+for physical-phone/WebView60/TalkBack/human acceptance. No permission prompts,
+new chats, delegation or messages to other agents were used.
+
+Latest local checkpoint: Android132 run44066560998 retry PASS; downloaded APK
+a421d9ad08a83415bcb177e28c5cbc8ef976602e296fd8e1480f0d8abdcf60f6, exact packaged
+assets verified and both retail frames visually show the ring/enemy correctly.
+Native hit-layer probe PASS26 assertions/two motion profiles while the actual
+90ms hit class is active. Retained cast-text keyboard check PASS12 profiles.
+On1fcad22d, seven of eight PR workflows PASS; broad44069208627 is running its
+stateful suite. Five of six prepared release workflows PASS; broad44071191261
+is retrying unchanged after a Lab-slot touch assertion. The same source passed
+that step in PR validation; first failure is retained in QA. Prepared run IDs
+are saved in validation-evidence/release-gates-dispatched.json.
+
+Unrelated baseline finding: Windows reduced-motion rift-status-contract reports
+"charge animation does not animate layout width" for BOTH b075cfba and candidate.
+Diagnostic shows transition-property:none and duration1e-06s from existing global
+reduced-motion CSS; the old assertion expects exactly0s. No charge styling or
+assertion was changed. Keep the evidence for a separate harness task. Current
+native-input matrix/hit checks pass both motion modes; do not claim a passing
+Windows dump-DOM contract. See QA/windows-contract-baseline-diagnostic.json.
+
+Next after both broad runs PASS: recheck main and PR merge-preview tree. If main
+remains b075cfba, integrate the exact validated1fcad22d commit by lease-checked
+fast-forward, verify PR60 is merged, then publish build-android.yml on main with
+publish=true. The six prepared dispatches validate that identical commit; report
+their actual feature-branch ref honestly. If main moved, preserve new work and
+revalidate the combined version. Public verifier prepared at
+validation-evidence/verify-rift-release.cjs RUN_ID COMMIT; it downloads/verifies
+anonymous versioned/latest APK, exact metadata/assets/feed and saves evidence.
+Only after publication push docs-only final evidence/status; physical review
+remains open, so do not archive this chat. Root checkout remains untouched.
 
 Next: publish this checkpoint, run required remote CI, resolve all regressions,
 integrate serially with any newer main work, then signed Android acceptance and

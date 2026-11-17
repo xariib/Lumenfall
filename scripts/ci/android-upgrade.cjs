@@ -258,12 +258,14 @@ async function verifyInstalledMidgameFarmHint(page,report,retainedSave){
     farm:box('#rift-farm-btn'),push:box('#rift-push-btn'),
     field:!!document.querySelector('.rift-arena-field .rift-enemy-field')&&!document.querySelector('.rift-cosmetic-aura .rift-enemy-field'),
     fieldZ:Number(getComputedStyle(document.querySelector('.rift-arena-field')).zIndex),
+    trailZ:parseInt(getComputedStyle(document.querySelector('.comet-trail')).zIndex,10)||0,
     isolated:getComputedStyle(document.querySelector('.enemy-visuals')).isolation,
     enemyZ:Number(getComputedStyle(document.querySelector('#enemy-glyph')).zIndex),
     auraZ:Number(getComputedStyle(document.querySelector('.rift-cosmetic-aura')).zIndex)};
  })()`);
  assert(rift.removed&&rift.farm.left<rift.push.left,'Installed Rift has no hints, with Farm left and Push right');
  assert(rift.field&&rift.isolated==='isolate'&&rift.enemyZ>rift.auraZ&&rift.auraZ>rift.fieldZ,'Installed enemy and theme ring stay above an opaque arena center');
+ assert(rift.fieldZ<rift.trailZ&&rift.trailZ<=rift.auraZ,'Installed legacy Comet Trail stays above the backing field');
  const shot=await page.command('Page.captureScreenshot',{format:'png'});
  fs.writeFileSync('release-evidence/installed-rift-screen.png',Buffer.from(shot.data,'base64'));
  const point=selector=>page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
