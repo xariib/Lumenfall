@@ -55,36 +55,47 @@ target; this user's new years target supersedes it for this feature.
 
 ## Checkpoint / next action
 
-No gameplay changes. Added this task, the read-only
-`scripts/qa/forge-years-audit.cjs` and [baseline evidence](../qa/forge-years-001/README.md).
-Node24.22.1: context PASS, original workshop480/four controls PASS, original
-endless Forge/Lab568/four controls PASS. New actual-purchase audit completed.
-All20 short finite tracks fit the synthetic shared14-day wallets; Masterwork500
-costs about4.20e71 Lumen and1.05e70 Shards, while three tracks are endless.
-The audit explicitly does not measure a fresh account's completion calendar.
+Current product SHA256:
+`af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
+[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `532cbaa5`.
+Latest source/test corrections are being validated locally before the next push.
+No integration or APK yet; self-review only. Standing authorization applies.
 
-The finite requirement is now confirmed. Candidate calibration: Battle375,
-Arcane325, Harvest315, with original prices through300 then0.2% marginal price
-growth; Masterwork500 retains record bands and original first50 prices, then
-2.5% marginal growth. Other caps/effects unchanged. Existing Lab damage/critical
-and economy improvements must be measured as routes through walls, without
-introducing arbitrary calendar locks. Paid above-cap levels retain their full
-effects. Candidate numbers remain subject to actual cost/reinvestment checks.
-Next: implement/test finite transactions, preservation and a multi-year
-reinvestment forecast with explicit limits. No PR/integration/APK yet.
+Implemented finite caps: Battle 375, Arcane 325, Harvest 315, Masterwork 500.
+Tempering's first 300 prices and Masterwork's first 50 are unchanged; marginal
+growth then becomes 0.2% and 2.5%, including the very first new rank. Other
+caps/prices/effects, all Lab work and Masterwork record bands stay unchanged.
+Above-cap historical paid effects/levels/queues/Deeds are retained. No schema
+change, progress reset, new timer, or automatic grant in the game. Forge/help
+text now explains finite caps and existing Labs as routes through later walls.
 
-Implementation checkpoint: candidate product SHA256
-`53ab7e3d82db877fd637da95604854f0f86880136ea477fab14fb80cbd5f621b`,
-[PR59](https://github.com/xariib/Lumenfall/pull/59), initial pushed head`abeef22a`.
-All caps finite; original first300 Tempering and first50 Masterwork prices stay;
-future tails as specified above. Existing Labs are unchanged. Required original
-Forge/whole-game/slot/permanent/early-Wisp checks pass locally; new finite core
-passes. Reinvestment benchmark completes on1063productive days; lower economic
-research/lower farm/changing-income cases remain incomplete after1200days.
-See [full assumptions and initial failures](../qa/forge-years-001/README.md).
-Local mobile first retry hit CDP timeout after266checks; not yet passing.
-The credential lacks workflow-edit scope, so workflows stay byte-identical and
-the existing required Forge test entrypoint enforces the new finite/pacing checks.
-CI pending. Next: verify the actual capped-Forge boss-wall/Lab crossing,
-resolve mobile/CI findings, then integrate only after required checks pass and
-perform exact-source signed Android delivery. Do not archive; human pacing open.
+Node 24.22.1: finite core 385 assertions/four causal controls PASS; original
+workshop 480/four plus its new finite/forecast subchecks PASS. Actual V8 6.0
+passes 2,524 checks, including new tails and final/historical transactions.
+Original Forge, whole-game, slot, permanent, Lab access and early-Wisp checks
+pass; source-bound receipts and all initial failures are in
+[evidence](../qa/forge-years-001/README.md).
+
+The reinvesting mature reference finishes all 24 active paths on productive
+day 994 (about 2.7 years). It grants record 10000, Wisps 10000 and mature Labs;
+daily income extrapolates 60 actual offline seconds to 24 productive hours.
+Lower research/farm and changing-income comparisons remain unfinished at 1200
+days. This is not a fresh-account calendar guarantee. A real capped-Forge boss
+at Rift 490 changes from 0 kills to 17 kills/ending Rift 507 with completed
+damage/critical Labs, identically live and offline over 120 seconds.
+
+First CI findings: stale mobile cap-effect expectations corrected; shared
+startup budget fixed by preserving superseded status entries verbatim in
+[history](../PROJECT_STATE_2026-11-17_HISTORY.md). Tree browser timed out with
+no completed result; raw evidence retained, cause unproven. Workflow files
+remain unchanged; the existing required Forge entrypoint runs new checks.
+New mobile tests retain stationary scroll within the actual document range,
+same-upgrade focus, maxed semantics and historical bonuses; reload waits for
+its own navigation event. Local full mobile acceptance and new exact-head CI
+are still pending. No original gate, deadline or assertion is weakened.
+
+Next: finish full mobile/CI checks, resolve any findings, publish the coherent
+checkpoint, integrate serially after all required gates pass, then run exact
+integrated checks and signed Android delivery. Keep this task open for missing
+acceptance; physical phone, exact WebView60 DOM, TalkBack and human pacing
+remain unobserved. Original baseline/evidence is preserved in the linked QA.

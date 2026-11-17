@@ -43,17 +43,16 @@ unsuitable for a sustained-income claim. Every forecast extrapolates24 productiv
 hours/day without reinvestment or changing depths. This is affordability evidence,
 not a simulation of a multi-year player's account or proof of human pacing.
 
-Next: resolve finite completion versus retained endless tracks; specify a varied
-catalogue and calibrate meaningful longer progression with changing account
-power/income. Existing tests alone cannot establish the new years requirement.
+The baseline investigation is superseded by the user's finite-completion
+clarification below. Existing tests alone did not establish a years target.
 
 ## Finite candidate after user clarification
 
-Product SHA256:`53ab7e3d82db877fd637da95604854f0f86880136ea477fab14fb80cbd5f621b`.
+Current product SHA256: `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
 The user confirmed all Forge paths must be finite, with possible2–3year completion
 and useful Lab growth through walls. [Decision](../../decisions/2026-11-17-finite-forge.md).
 
-Finite core381assertions/four causal controls PASS: rational independent tail
+Finite core 385 assertions/four causal controls PASS: rational independent tail
 quotes, real final manual/Max/queued payments, individual resource shortages,
 write rollback, cap/above-cap ownership/effects, cold load, recovery, backup
 and Ascend. Completed damage/critical Labs increase measured combat7.5x;
@@ -67,8 +66,8 @@ Original Forge9404/25controls, workshop480/four, earned Lab access538/four,
 permanent progression4225, slot contract55, whole-game audit318/three and
 early Wisp2400/five controls PASS. These are self-review/automated checks.
 
-`reinvestment.json` records four real-purchase forecast cases. Reference1001
-finishes on day1063; all cases remain incomplete at14days. Economy Labs100
+`reinvestment.json` records four real-purchase forecast cases. Reference Rift1001
+finishes on day 994; all cases remain incomplete at14days. Economy Labs100
 instead of500 and fixed Rift501 instead of1001 remain incomplete after1200days.
 The growing farm501→1001/economy Labs100→500 case is23/24 complete at1200days.
 Only the stated mature reference is calibrated to2–3productive years. No actual
@@ -84,13 +83,46 @@ node scripts/qa/finite-forge-reinvestment.cjs index.html --check
 First local UI attempt used a nonexistent system Chrome path and failed before
 any profile; retry uses verified installed test Chrome. An accidental Node24
 invocation of the legacy-only Forge runner correctly rejected the runtime;
-actual V8 acceptance still requires the existing dedicated V8 lane. Product
+Actual Node8.3/V8 6.0 now passes 2,524 checks, including the new finite paths'
+tail quotes, real final purchases/exact debits and retained historical levels.
+Product
 checks above were not altered for these setup errors. CI/mobile/Android results
 remain pending; task remains open.
 
 The first browser retry reached266checks then hit the unchanged CDP evaluation
 deadline with a teardown timeout. Retained `mobile-rerun` receipt; cause unproven.
-No timeout/assertion was relaxed. GitHub rejected the initial push containing a
+No existing deadline or assertion was relaxed. GitHub rejected the initial push containing a
 workflow-file edit because its credential lacks `workflow` scope. That unpublished
 commit was amended to keep workflows unchanged and run the new finite/pacing
 checks through the already required `forge-workshop-pacing.cjs` entrypoint.
+
+Subsequent mobile findings and dispositions:
+
+- The independent cap-effect table still expected the former level300/4x
+  endpoint; corrected to the explicit375/325/315 caps and4.75/4.25/4.15x effects.
+- Reload attempted to use the page before its new navigation completed. The
+  harness now requires its own `Page.loadEventFired`, retaining the existing
+  10-second initialization and30-second CDP deadlines. A minimal native probe
+  loaded both315 and historical10000 successfully; its separate browser teardown
+  timed out, so that probe is not an overall passing acceptance result.
+- The new final-card test originally demanded the entire shortened card stay
+  visible at2x text. That conflicts with the existing stationary-purchase rule.
+  It now checks exact scroll preservation (clamped only to the new document's
+  physically available range), same-upgrade keyboard focus and full maxed/bonus
+  semantics. Existing stationary-purchase assertions and controls stay intact.
+- Initial forecast tail anchors retained one extra old-growth step at the
+  boundary. Fixed so the first future rank immediately uses0.2%/2.5% growth;
+  an independent boundary-ratio assertion covers all four paths. This replaces
+  the preliminary1063-day result with994days. First300/50 prices remain unchanged.
+- Forecast initial enemy HP now uses the actual Rift HP, instead of carrying the
+  seed's partial enemy. The frozen baseline audit remains historical; especially
+  its Rift2501 single kill is not evidence of sustainable income.
+
+First exact-head CI at532cbaa5: Forge failed the stale cap-effect expectation;
+pre-merge failed the32KiB startup budget (new shared rule plus an already large
+older task). Superseded status entries were preserved verbatim in
+[dated history](../../PROJECT_STATE_2026-11-17_HISTORY.md), making the required
+older task29122bytes. Tree's Prism contract browser timed out after25seconds
+with no DOM output or completed assertions; its full relevant raw payload is
+retained in `first-tree-browser-failure.json.gz`. Cause unproven. No assertion,
+runtime tolerance, gate or deadline was weakened. New exact-head CI is required.

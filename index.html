@@ -3713,7 +3713,7 @@ var FORGE_ENHANCEMENTS = [
 ];
 RESEARCH = RESEARCH.concat(FORGE_ENHANCEMENTS);
 RESEARCH.forEach(function(node){if(node.id==='masterwork'){node.priceTailStart=50;node.priceTailGrowth=1.025;node.desc+=' Prices rise by 35% per level through 50, then 2.5%. Completed damage Labs help reach later Rift bands.';}});
-// Finite long-tail paths retain their existing prices and earned levels.
+// Finite long-tail paths retain their earned levels and paid effects.
 // Existing saves beyond a newly introduced cap keep their paid effects.
 RESEARCH.forEach(function(node){
   if(node.levelCap===undefined && !node.endless){node.levelCap=node.id==='masterwork'?500:250;node.grandfatheredCap=true;}
@@ -8155,7 +8155,8 @@ function researchCostForLevels(node, level, count){
   if(node.priceTailStart!==undefined && level+count>node.priceTailStart){
     var early=Math.max(0,Math.min(count,node.priceTailStart-level)),late=count-early;
     function tailCost(base,growth){
-      return Amount.round(Amount.add(geometricSum(base,growth,level,early),geometricSum(Amount.mul(base,Amount.pow(growth,node.priceTailStart)),node.priceTailGrowth,Math.max(0,level-node.priceTailStart),late)),'ceil');
+      var tailBase=Amount.mul(Amount.mul(base,Amount.pow(growth,node.priceTailStart-1)),node.priceTailGrowth);
+      return Amount.round(Amount.add(geometricSum(base,growth,level,early),geometricSum(tailBase,node.priceTailGrowth,Math.max(0,level-node.priceTailStart),late)),'ceil');
     }
     return {lumen:tailCost(node.lumenBase,node.lumenGrowth),shard:tailCost(node.shardBase,node.shardGrowth)};
   }
@@ -10247,7 +10248,7 @@ function renderResearch(){
   // Build the authoritative previews and control states off-DOM. Restoring
   // focus on empty cards would clamp the scroll area before they reach full size.
   var prepared=document.createElement('div');
-  prepared.innerHTML=('<div class="section-sub">Forge: shape boss fights, tap rhythm, Support casts, resources and Resonate. Enhancements keep growing, with no final level.</div>' + multHtml + html);
+  prepared.innerHTML=('<div class="section-sub">Forge: shape boss fights, tap rhythm, Support casts, resources and Resonate. Every upgrade has a final level. Damage and economy Labs help push through later walls.</div>' + multHtml + html);
   RESEARCH.filter(function(node){return !node.retiredTo;}).forEach(function(node){updateResearchCard(node,prepared.querySelector(('[data-forge-card="' + node.id + '"]')));});
   presentControlStates(prepared);
   replaceControlMarkup(root,null,false,false,prepared);
@@ -11025,7 +11026,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 20 damage plus 2% of general Active-party passive power. Strong opening hits help you build your Wisp party; Wisps provide the main ongoing damage as their power grows. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
   {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown Wisp level, Rift record, Ascends, completed Wisp Ascendancy and Arcane Calibration, plus Lumen and Shards. The first tier is an early goal; later tiers require repeated permanent development. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
   {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim. Modules and Ultimates stay through Ascend.'},
-  {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, uncapped Masterwork Tempering and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
+  {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, Masterwork Tempering (up to level 500) and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
   {name:'Endgame Currency Utility',meta:'Sigils and permanent Comet investments',desc:'Sigils fund Ultimates and Resonate. Comets fund permanent Astral upgrades. These investments remain through Ascend.'},
   {name:'Wisp Roles', meta:'Build label', desc:'Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles.'},
   {name:'Ascend', meta:'Permanent progression', desc:'Clear Rift 15 to unlock Ascend. It restarts Rift progress, Wisp levels and Lumen; Tree restart bonuses can retain or restore some of these. Earned recruitment access, Rarity, Modules, Ultimates, Mastery, Forge, completed and running paid Lab work, Tree upgrades and other currencies remain. Each later manual Ascend requires a higher clear than your best rewarded Rift. Eligible records keep the protected base and full Tree/Lab bonus, plus a new-depth bonus; Frontier Record can add Prisms for new 25-Rift blocks. Check the exact preview before Ascending.'},

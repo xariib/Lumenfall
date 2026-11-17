@@ -20,6 +20,7 @@ for(const depth of [32,101,501,1001,2501]){
   conduction:20,dualchannel:5,overflowconduit:5,battletempering:300,
   arcanetempering:300,harvesttempering:300});
  Object.assign(s.longStudyLevels,{wispascend:500,lumenstudy:500,shardstudy:500});
+ s.enemyHp=s.enemyMaxHp=q.enemyHp(depth);
  q.set(s);q.restoreEnemy();
  const summary=q.advance(60,{kind:'offline',clockStartMs:F.CLOCK});
  const day={lumen:A.mul(summary.lumenGained,1440),shards:A.mul(summary.shardGained,1440)};

@@ -25,7 +25,7 @@ Implementation choices within the requested scope:
 
 Calibration is a model, not a guaranteed calendar date: a mature fixed-Rift1001
 benchmark, earning and reinvesting with real production prices, finishes all
-active Forge paths in1063productive days. Lesser-research/lower-farm and changing
+active Forge paths in 994 productive days. Lesser-research/lower-farm and changing
 income comparisons remain slower. The model grants record10000/Wisps10000,
 legacy economy250 and completed Labs up front; it extrapolates actual60-second
 combat samples to24productive hours/day. It does not simulate a fresh account's

@@ -13,13 +13,15 @@ function verify(html){
  function price(base,start,count,boundary,early,late){
   const end=start+count,den=1000n**BigInt(end),scale=1000n;let sum=0n;
   for(let l=start;l<end;l++){
-   const before=Math.min(l,boundary),after=Math.max(0,l-boundary);
+   const before=Math.min(l,boundary-1),after=Math.max(0,l-boundary+1);
    sum+=BigInt(base)*BigInt(early)**BigInt(before)*BigInt(late)**BigInt(after)*scale**BigInt(end-l);
   }
   return Number((sum+den-1n)/den);
  }
  for(const [id,cap,tail,lumen,shard,early,late]of specs){
   const n=q.node(id);eq([n.levelCap,n.grandfatheredCap,n.priceTailStart,n.priceTailGrowth],[cap,true,tail,late/1000],'independent finite cap and price-tail policy '+id);
+  const lastEarly=q.cost(id,tail-1,1),firstLate=q.cost(id,tail,1);
+  ok(Math.abs(Number(firstLate.lumen)/Number(lastEarly.lumen)-late/1000)<1e-10,'first new rank immediately uses the stated slower growth '+id);
   for(const start of [0,1,tail-1,tail,tail+1,cap-1])for(const count of [1,Math.min(5,cap-start),cap-start]){
    const cost=q.cost(id,start,count);
    for(const [key,base]of [['lumen',lumen],['shard',shard]]){

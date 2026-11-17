@@ -10,6 +10,7 @@ for(const [name,depth,resourceLab]of [['reference',1001,500],['less-research',10
  s.activeParty=['ember','gale','thorn'];for(const id of s.activeParty)s.spirits[id]=10000;
  Object.assign(s.research,{formation:250,focus:250,sense:250});
  Object.assign(s.longStudyLevels,{wispascend:500,lumenstudy:resourceLab,shardstudy:resourceLab});
+ s.enemyHp=s.enemyMaxHp=q.enemyHp(depth);
  q.set(s);q.restoreEnemy();
  const active=q.defs().filter(n=>!n.retiredTo),milestones=[];let completedDay=null;
  for(let day=1;day<=1200;day++){
