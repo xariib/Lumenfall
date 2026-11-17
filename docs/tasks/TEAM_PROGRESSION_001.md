@@ -196,3 +196,9 @@ Main has an active integrated Forge validation/release; preserve its source
 until publication finishes, then serialize this integration against latest main.
 PR60/61 are separate active UI changes; no agents/message tools used.
 Earlierb955 receipts remain standalone evidence, not combined acceptance.
+
+Combined mobile acceptance now runs the existing12-profile Support module
+in the required Wisp mobile browser entry point, using production Lab actions
+and prices plus all original assertions/deadlines and runtime-error coverage.
+This supplies source-bound Linux CI evidence while local RAM is exhausted;
+product remains3a223893. Local incomplete workers are not passing results.
