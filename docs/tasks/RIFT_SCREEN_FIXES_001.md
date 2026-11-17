@@ -79,8 +79,25 @@ task. The startup documents/product were already at that size on baseline.
 Preserved the complete prior PROJECT_STATE byte-for-byte in the dated17 November
 history and compacted older12 November status in the active index, retaining the
 open economy finding and all source/evidence links. No threshold/gate changed.
-Final focused check:31 assertions plus all four causal controls PASS, with clean
-browser exits. Full18-profile run and Android candidate acceptance still running.
+Focused check:31 assertions plus all four causal controls PASS, with clean
+browser exits. Full mobile matrix:558 assertions/18 profiles/24,840 encounter-theme
+samples PASS. The separate original offline job also PASS on0eb05b8b.
+
+Signed unpublished Android0.2.131/build44064059604 passes identity/assets, both
+save slots/paid work, actual updater and retail launch. Downloaded APK and all
+packaged assets independently verified. Visual self-review found a regression:
+the first retail launch screenshot lacks the theme ring behind the new root-SVG
+circle, while upgraded-app Starlight/Ember images retain it. Cause not proven;
+functional build PASS is not visual acceptance. Preserve the first screenshot.
+
+Correction: give the opaque field its own SVG at z0, the unchanged aura SVG z1
+and the enemy z2 inside isolated visuals. Add a second settled retail screenshot
+and assert this explicit layer order in browser/native tests. All production
+JavaScript bytes are identical to the full paired-replay source; save/reward
+oracle endpoints are preserved while rebinding only the HTML hash. Repeat
+affected browser/Android checks and final-source CI before integration/release.
+Current overlapping PR59 and PR61 both touch index.html; they are separate work.
+Main was stillb075cfba at the latest integration check; recheck before main update.
 
 Next: publish this checkpoint, run required remote CI, resolve all regressions,
 integrate serially with any newer main work, then signed Android acceptance and
