@@ -234,3 +234,13 @@ immediately before integration; no review submissions/threads were present.
 This is self-review plus automated validation, not independent review.
 Nine exact integrated manual workflows are running. APK/native/public delivery
 and unobserved human/device acceptance remain pending.
+
+Integrated Tree run44089999690 attempt1 fails its positive Prism browser case:
+Chrome25-second wall deadline, empty stdout, qa_count0 and no completed assertion.
+All six causal cases completed and rejected their intended defects. Full job log
+is `integrated-tree-first.log.gz`; artifact14330963960 SHA256
+`e14bdccad493b024e46d5cf630ccdc5a8e0539e6f271564b72fe61c7763aae17`
+was independently hash/ZIP-CRC checked. Its original text evidence is retained in
+`integrated-tree-first-raw.json.gz`. Cause remains unproven. Failed job rerun
+requested unchanged; no source, timeout or acceptance change. Other workflows
+continue. The final release requires every exact integrated gate to pass.

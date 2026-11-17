@@ -138,6 +138,16 @@ were empty; main was stillb075cfba before the serialized merge. Nine exact-main
 manual runs were dispatched; `pr-runs.json`, `pr-jobs.json` and compressed job
 logs retain the completed PR proof. Gameplay/source binding remains unchanged.
 
+Exact integrated main is0adb60eb. Nine runs are recorded in `integrated-runs.json`:
+premerge44089952825, Comet44089970874, Forge44089980763, Lab44089987713,
+shared44089993593, Tree44089999690, permanent44090005249, Wisp44090013129,
+migration44090020744. Tree attempt1 has no completed positive browser result:
+25-second timeout, qa_count0/empty stdout; all six causal cases complete. Full
+log and hash/CRC-verified original text artifact are retained in QA. Unchanged
+failed-job rerun requested. No source/deadline/acceptance change. Other integrated
+workflows continue. Delivery checkpoint branch is `docs/forge-years-delivery`;
+do not move main while exact-source validation/build/publication is running.
+
 Next: complete nine exact integrated workflows, resolve any findings, build and
 publish the signed Android update, verify native/public receipts, then save the
 delivery checkpoint in GitHub. Keep this task open for missing
