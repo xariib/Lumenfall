@@ -37,8 +37,9 @@ workflow task startup checks PASS after moving older PROJECT_STATE entries
 verbatim into linked history. No budget/gate/tolerance/deadline change.
 Final-source mobile254/12 profiles, actual V8 6.0 contracts8,099/seven
 controls plus28,896 preservation checks and Forge9409/25 controls PASS.
-Stacking fixture now explicitly preserves13s after Ascend and forbids early
-reconstruction; prior replay passes all original controls. Final replay runs.
+Stacking fixture explicitly preserves13s after Ascend and forbids early
+reconstruction; final-source browser replay PASS254 checks/all five causal controls.
+Final mobile screenshots inspected: descriptions/price colors fit at390px.
 Next: commit/push the frozen source and full evidence, open PR, complete exact
 PR/integrated CI and signed/native/public delivery. Main base is b075cfba;
 standing-authorization documentation is merged and preserved.
