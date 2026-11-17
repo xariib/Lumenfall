@@ -49,7 +49,7 @@ workflow edits. New main AGENTS upgrade-presentation rule is preserved.
 Public baseline is Rift Android0.2.136/source12122. New main upgrade-state
 integrated validation/release is in progress; do not invalidate its publication.
 Recheck actual main/product/active builds and verified public release before
-serial integration. Earlier1d861c3c productB full PR suite is still finishing.
+serial integration. Earlier1d861c3c productB completed the full run with only buff-timing failing.
 [Exact pre-upgrade checkpoint](../qa/team-progression-001/support-year/pre-upgrade-merge-task.md) retains earlier requirements/evidence; gzip preserves its bytes.
 
 ## Acceptance and evidence
@@ -71,7 +71,8 @@ recast2012/four (paid11886/six, manual8h30466), and team1929/seven.
 Native control and complete new-head CI remain required; these current-source
 receipts are upgrade-combined-*.json. All39 workflow context tasks also PASS.
 Recast2012/four (paid11886/six, manual8h30466) and team1929/seven also PASS
-on productB. Its Wisp/Support mobile step passed; full190 suite still pending.
+on productB. Its Wisp/Support mobile step passed745 checks (12 original/12 team/12 Support,
+Support265). Full190 stopped on the obsolete9s forced-refresh fixture.
 These earlier receipts do not establish combined source acceptance.
 
 Previous Forge-only combined3a223893 source: recast2012/four (paid11886/six,
@@ -110,6 +111,14 @@ actual manual-game30466 partition checks remain separate and required.
 retains chronological details; its gzip preserves exact prior bytes.
 [Prior130 delivery](../qa/team-progression-001/support-year/prior-release-130-checkpoint.md)
 is historical. Sourceb955/3a receipts and prior APKs are not this combined pass.
+
+Full-run fixture correction: buff-timing attempted recast at9s after a0.5s
+cast, inside the approved13s interval. Keep original legacy/source isolation
+assertions across a legal14s cast with a20s independent legacy grant; add a
+blocked9s attempt asserting unchanged source/legacy/recast snapshots. Actual
+Edge complete-source targeted scenario PASS68, including unchanged integral/
+old-epoch causal control. [Failure/disposition](../qa/team-progression-001/support-year/full-suite-buff-refresh-disposition.json).
+New full PR/integrated suite still required; no failure is relabelled PASS.
 
 ## Next action and limits
 
