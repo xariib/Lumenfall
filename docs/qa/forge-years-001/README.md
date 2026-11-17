@@ -142,3 +142,28 @@ permanent4225, slot55, early Wisp2400/five and actual V8 6.0 2524 PASS.
 Self-review found no unintended gameplay, save, asset, native or workflow change.
 The status history move retains the removed paragraphs verbatim. Signed build,
 integrated CI and human/device acceptance remain pending.
+
+## Required CI transport investigation
+
+At head34de29ce, seven required workflows PASS, including Forge, Tree, Lab,
+Comet, Wisp, permanent progression and shared UI. The isolated offline job also
+PASS. Full pre-merge attempts1/2 both stopped at Lab boost Queue's first320px/
+200% reduced-motion touch after four passing profiles:15-second CDP input
+deadline, no completed functional assertion. Both full logs are retained in
+`premerge-first-attempt.log.gz` and `premerge-second-attempt.log.gz`.
+
+The unchanged standalone Lab boost suite passes locally:993checks/18profiles.
+A narrowly scoped native-input harness correction now requires a surface
+screenshot after the existing animation-frame wait, checks fresh hit-testing,
+visibility and44px size, then sends the original touchStart/touchEnd. It retains
+all original assertions, gestures, viewport cases, mutation and15-second protocol
+deadline. The old animation-frame promise alone does not establish that the
+compositor has presented a resized surface. Actual Chromium/platform cause
+remains unproven until the Linux gate passes; no gameplay fix is inferred.
+
+With the extra surface/hit checks, standalone positive PASS1083/18profiles;
+the original next-lock mutation still fails its intended next3x functional
+assertion. Pre-touch opening screenshots and gesture phase diagnostics are saved
+when evidence is requested. Original receipts are retained in
+`lab-boost-transport-investigation.json.gz`. Product SHA256 is unchanged.
+PR60/61 are separate active work; PR61 does not edit this Lab gesture helper.

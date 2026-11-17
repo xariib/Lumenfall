@@ -57,7 +57,7 @@ target; this user's new years target supersedes it for this feature.
 
 Current product SHA256:
 `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
-[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `532cbaa5`.
+[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `34de29ce`.
 Latest source/test corrections pass local validation and are being published.
 No integration or APK yet; self-review only. Standing authorization applies.
 
@@ -94,6 +94,16 @@ same-upgrade focus, maxed semantics and historical bonuses; reload waits for
 its own navigation event. Full mobile PASS: 32,484 checks across12 profiles,
 clean browser exit and visually self-reviewed maxed cards at1x/2x. New exact-head
 CI remains pending. No original gate, deadline or assertion is weakened.
+
+At34de29ce seven required workflows and isolated offline PASS. Full pre-merge
+attempts1/2 repeat the same15-second native Lab Boost touch deadline after four
+passing viewport cases. Both logs are saved. Unchanged standalone suite passes
+993checks/18profiles. The gesture helper now requires actual surface capture
+plus fresh independent visibility/hit/44px checks before its original touch;
+original functional assertions, viewports, mutation and deadline stay. Corrected
+standalone PASS1083/18 and original next-lock causal assertion still rejects the
+defect. Product unchanged; new Linux CI is required before integration. Cause
+remains unproven. Separate PR60/61 own other UI changes; no gesture-helper overlap.
 
 Next: finish full mobile/CI checks, resolve any findings, publish the coherent
 checkpoint, integrate serially after all required gates pass, then run exact

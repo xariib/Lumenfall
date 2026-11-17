@@ -4,12 +4,18 @@ module.exports=async function({send,ev,pause,check,records,args}){
  const evidence=args.includes('--evidence')?path.resolve(args[args.indexOf('--evidence')+1]):null;
  async function touch(selector){
   await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"});new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
-  // Geometry can change synchronously before Chrome has presented the resized,
-  // scrolled surface. Observe a painted frame before native hit-testing, then
-  // read fresh coordinates. Keep the original input and protocol deadline.
-  const r=await ev('(()=>{const r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()');
-  try{await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
-  catch(error){error.message+=' target '+selector+' '+JSON.stringify(r);throw error;}
+  // Animation frames do not acknowledge compositor presentation after a text
+  // resize on headless Linux. Require a real surface frame before native input,
+  // then independently verify that the fresh point hits the intended control.
+  // Keep the original native gesture, assertions and 15-second CDP deadline.
+  const frame=await send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:false});
+  const hit=await ev('(()=>{const e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y);return{x,y,width:r.width,height:r.height,viewport:innerWidth,font:parseFloat(getComputedStyle(document.documentElement).fontSize),reduced:matchMedia("(prefers-reduced-motion: reduce)").matches,visible:r.top>=0&&r.bottom<=innerHeight+1&&r.left>=0&&r.right<=innerWidth+1,hit:!!h&&(h===e||e.contains(h))}})()');
+  check(hit.visible&&hit.hit&&hit.width>=44&&hit.height>=44,'painted native target is visible, hittable and at least44px '+selector+' '+JSON.stringify(hit));
+  if(evidence&&selector==='[data-study-speed-open="0"]'){fs.mkdirSync(evidence,{recursive:true});fs.writeFileSync(path.join(evidence,'speed-open-'+hit.viewport+'-'+hit.font+'-'+hit.reduced+'.png'),Buffer.from(frame.data,'base64'));}
+  const r={x:hit.x,y:hit.y};
+  let phase='touchStart';
+  try{await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});phase='touchEnd';await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+  catch(error){error.message+=' '+phase+' target '+selector+' '+JSON.stringify(hit);throw error;}
   await pause(20);
  }
  async function key(value){await send('Input.dispatchKeyEvent',{type:'keyDown',key:value,code:value});await send('Input.dispatchKeyEvent',{type:'keyUp',key:value,code:value});}
