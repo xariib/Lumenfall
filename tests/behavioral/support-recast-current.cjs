@@ -62,9 +62,9 @@ for(const level of [0,5,10])for(const ultimate of [false,true]){
 // staggered by half a natural cycle. Independent interval-union integration
 // proves each source and the full combined buff still have downtime without
 // earned duration research. Alternating sources also retain gaps before the earned milestone.
-for(const endurance of [0,4,7])for(const stagger of [0,5/3,[13,12.8,12.6,12.4,12.2,12,11.8,11.6][endurance]/2]){
+for(const endurance of [0,4,7])for(const stagger of [0,5/3,[13,13,13,13,13,13,13,13][endurance]/2]){
  const x=app(html),q=x.q;q.set(seed(q,10,true));q.get().longStudyLevels.supportduration=endurance;q.get().heroResource.aurora=0;
- const cycle=[13,12.8,12.6,12.4,12.2,12,11.8,11.6][endurance],duration=3+.3*endurance;
+ const cycle=[13,13,13,13,13,13,13,13][endurance],duration=3+.3*endurance;
  ok(cycle-duration>duration,'actual adversarial scenario has longer downtime than active duration');
  const casts={tide:[],aurora:[]},until={tide:0,aurora:0},sourceUptime={tide:0,aurora:0};let uptime=0,fullUptime=0;
  for(let tick=0;tick<600;tick++){

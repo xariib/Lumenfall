@@ -61,7 +61,10 @@ window.runSupportStacking=function(b,ctx,assert,parity){
   ok(s.formationRebuild.members.join(',')==='tide,aurora' && s.spirits.tide===0 && s.spirits.aurora===0,'Ascension keeps ordered intent, resets support power');
   s.lumen=1e8;b.setState(s);var price=b.formationTest.cost('tide'),funds=b.getState().lumen;b.formationTest.buy('tide');
   near(funds-b.getState().lumen,price,'reconstruction Wisp paid exactly once');ok(!b.getState().supportBuffs,'recruitment alone creates no boost');
+  ok(b.getState().supportRecastUntil.tide===T+13000,'manual Ascend retains the already recorded Support interval');
   q.ready(['tide','aurora']);b.simulateTimeline(0,'live',T+6000);
+  ok(!b.getState().supportBuffs,'reconstruction cannot bypass the retained recast before its deadline');
+  b.simulateTimeline(0,'live',T+13000);
   ok(Object.keys(b.getState().supportBuffs.sources).join(',')==='tide' && b.getState().activeParty.join(',')==='tide','only rebuilt powered intended member casts');
   ok(b.getState().formationRebuild.members.join(',')==='tide,aurora','partial reconstruction retains exact intent');
   // Parsing is bounded, source order deterministic, and independent of clock.

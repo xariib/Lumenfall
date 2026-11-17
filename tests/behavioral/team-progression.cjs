@@ -111,7 +111,7 @@ function verify(html){
  for(const rank of [0,1,2,7,8,10])for(const charge of [0,1,2,5,10]){
   const x=world(html),s=x.q.fresh();s.depth=s.enemyDepth=99;s.enemyHp=s.enemyMaxHp=1e100;s.maxDepthEver=1000;s.longStudyLevels.supportduration=rank;s.research.charge=charge;s.activeParty=['tide','aurora'];
   s.spirits.tide=s.spirits.aurora=100;s.heroResource.tide=s.heroResource.aurora=100;x.q.set(s);
-  const cycle=Math.max(6/(1+.08*charge),[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][rank]),duration=3+.3*rank;near(x.t.cycle(),cycle,'independent Support recast floor');
+  const cycle=Math.max(6/(1+.08*charge),[13,13,13,13,13,13,13,13,4.8,4.8,4.8][rank]),duration=3+.3*rank;near(x.t.cycle(),cycle,'independent Support recast floor');
   let now=CLOCK;
   for(let i=0;i<12;i++){
    x.clock(now);x.q.get().heroResource.tide=x.q.get().heroResource.aurora=100;x.q.abilities('offline',now);
@@ -135,7 +135,7 @@ function verify(html){
  return {checks,records};
 }
 const mutations=[
- ['early-uptime','return Math.max(abilityCycleSeconds(),rank<8 ? 13-0.2*rank : 4.8);','return abilityCycleSeconds();'],
+ ['early-uptime','return Math.max(abilityCycleSeconds(),rank<8 ? 13 : 4.8);','return abilityCycleSeconds();'],
  ['repeat-reset','return clearedProgressionRift()>=nextAscendClearedRift();','return clearedProgressionRift()>=15;'],
  ['repeat-preview','if(full<=0 || cleared<=benchmark){','if(full<=0){'],
  ['auto-reset','return false; // Automatic Ascension is retired, including imported ON states.','return true;'],

@@ -10,7 +10,7 @@ The following concrete implementation was announced before product edits:
 
 - Tide/Aurora start3s active with13s between cast starts:10s off. Before
   Endurance8, downtime must exceed that source's buff duration. Ranks0–7
-  have minimum intervals13,12.8,12.6,12.4,12.2,12,11.8,11.6s; duration remains
+  keep a13s minimum interval; duration remains
   3+0.3×rank seconds. Charge/external grants cannot bypass these limits.
 - Rank8 is the earned sustained-cycling milestone: minimum interval4.8s
   (ranks8–10), still limited by natural Charge. Rank8 lasts5.4s; sufficient
@@ -39,3 +39,9 @@ Calibration correction announced before applying: initial13s replaces planned
 forecast discrepancy7.69% against the unchanged5% acceptance. A13s interval
 passes that same canonical/phase test (worst relevant phase error1.28%). Full
 existing calibration/controls remain required; no tolerance is relaxed.
+
+Final curve refinement announced before applying: keep13s through rank7; only
+duration grows before the rank8 breakthrough. The earlier0.2s/rank proposal
+reintroduced phase errors7.69%,7.71%,5.89% at ranks5/6/7 in the existing phase
+world. A fixed13s interval passes all pre8 phase samples (worst1.28%) and is
+simpler to explain. Milestone8/4.8s and all360-day paid-work terms stay.

@@ -4151,7 +4151,7 @@ var LAB_EXPANSION = [
 // At maximum future-work reductions (0.56) and continuous 8x, each level
 // takes at least 45 days. Through level 7, downtime exceeds active duration;
 // level 8 unlocks sustained cycling: at least 360 days of dedicated research.
-LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. Levels 1–7 also reduce the minimum recast interval by 0.2s per level, starting at 13s. Downtime stays longer than active duration through level 7. Level 8 unlocks a 4.8s minimum recast: sufficient Charge Rate can sustain its 5.4s buffs. Natural charge can take longer. Ultimates keep their stronger buff. Each level takes at least 45 days even at continuous 8x with all work reductions; the first sustained milestone takes at least 360 dedicated research days after unlock. Existing casts retain their strength and expiry.'});
+LAB_EXPANSION.unshift({id:'supportduration',name:'Support Endurance',labGroup:'Wisp fundamentals',unlockDepth:500,levelCap:10,baseDurationSec:55542858,durationGrowth:1,rankWorkSec:[55542858],lumenBase:5000000000,lumenGrowth:2,shardBase:200000000,shardGrowth:2,desc:'Adds 0.3 seconds per level to future Tide and Aurora buffs, from 3s to 6s. The minimum recast interval stays 13s through level 7, so downtime remains longer than active duration. Level 8 unlocks a 4.8s minimum recast: sufficient Charge Rate can sustain its 5.4s buffs. Natural charge can take longer. Ultimates keep their stronger buff. Each level takes at least 45 days even at continuous 8x with all work reductions; the first sustained milestone takes at least 360 dedicated research days after unlock. Existing casts retain their strength and expiry.'});
 var LAB_EXPANSION_IDS = LAB_EXPANSION.map(function(node){return node.id;});
 var LAB_EXPANSION_CAPS = {};
 LAB_EXPANSION.forEach(function(node){LAB_EXPANSION_CAPS[node.id]=node.levelCap;LONG_STUDIES.push(node);});
@@ -4226,7 +4226,7 @@ function labFutureWorkFactor(node){
 }
 function labExpansionEffect(id,raw){
   var level=Math.min(LAB_EXPANSION_CAPS[id],Math.max(0,Math.floor(raw||0)));
-  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s buffs; '+Number((level<8 ? 13-0.2*level : 4.8).toFixed(1))+'s minimum recast; '+(level<8?'sustained cycling unlocks at level 8':'continuous uptime requires sufficient Charge Rate');
+  if(id==='supportduration') return Number((3+0.3*level).toFixed(1))+'s buffs; '+Number((level<8 ? 13 : 4.8).toFixed(1))+'s minimum recast; '+(level<8?'sustained cycling unlocks at level 8':'continuous uptime requires sufficient Charge Rate');
   if(id==='labcapacity') return '+'+level+' concurrent Study slots (up to 2 extra)';
   if(id==='procurement') return (2*level)+'% lower future Lab Lumen and Shard costs; excludes itself';
   if(id==='catalysis') return (2*level)+'% lower Mote prices for future Lab speed purchases';
@@ -7133,7 +7133,7 @@ function supportCycleSeconds(){
   // Supports stagger perfectly or external charge is unlimited. Endurance 8
   // opens sustained cycling after 360 fastest dedicated research days.
   var rank=labExpansionLevel('supportduration');
-  return Math.max(abilityCycleSeconds(),rank<8 ? 13-0.2*rank : 4.8);
+  return Math.max(abilityCycleSeconds(),rank<8 ? 13 : 4.8);
 }
 function supportRecastSeconds(sp,nowMs,clock){
   if(!sp || sp.abilityType!=='support') return 0;

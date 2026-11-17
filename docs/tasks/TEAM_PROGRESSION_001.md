@@ -13,8 +13,8 @@ only the old Support90-day target below. Main baseline18230be4/public0.2.130;
 source3f912328. Clean isolated C:/lf-team, branch fix/support-year-001; no open
 PRs/overlapping work observed. Original root checkout remains untouched.
 
-Announced before editing:3s active/13s recast (10s off). Endurance0–7 intervals
-13−.2×rank, always more downtime than active duration; rank8 opens4.8s recast
+Announced before editing:3s active/13s recast (10s off). Endurance0–7 keep a fixed
+13s interval, always more downtime than active duration; rank8 opens4.8s recast
 and sufficient Charge can sustain its5.4s buff. Eight original45-day paid
 ranks require at least360 dedicated days at8x/all reductions after access.
 Keep prices/gates, paid levels/work/boosts/queues and active cast snapshots.
@@ -27,7 +27,23 @@ current snapshots/purchased upgrades preserved; readable mobile descriptions;
 full source-bound CI, integrated checks and signed/native/public release.
 Self-review only; existing physical-phone/WebView60 DOM/TalkBack limits stay.
 
-Current correction checkpoint: source6f4283b55f7db18bdbf086cf427fc29880a16b68b8f98e834eda6c4f17956a87.
+Current frozen candidate: sourceb955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed.
+Fixed13s through Endurance7; level8/4.8s with sufficient Charge still requires
+360 fastest dedicated research days. Full calibration34 cases/ten controls
+PASS; original stored-epoch witness is explicitly frozen130 source, with all
+current-positive cases still mandatory. Current source recast2,012/four, paid
+11,886/six, manual8h partition30,466 and team1,929/seven PASS. Forty actual
+workflow task startup checks PASS after moving older PROJECT_STATE entries
+verbatim into linked history. No budget/gate/tolerance/deadline change.
+Final-source mobile254/12 profiles, actual V8 6.0 contracts8,099/seven
+controls plus28,896 preservation checks and Forge9409/25 controls PASS.
+Stacking fixture now explicitly preserves13s after Ascend and forbids early
+reconstruction; prior replay passes all original controls. Final replay runs.
+Next: commit/push the frozen source and full evidence, open PR, complete exact
+PR/integrated CI and signed/native/public delivery. Main base is b075cfba;
+standing-authorization documentation is merged and preserved.
+
+Previous candidate checkpoint: source6f4283b55f7db18bdbf086cf427fc29880a16b68b8f98e834eda6c4f17956a87.
 13s initial interval/3s active/10s off implemented; paid ranks/work unchanged.
 Baseline duration3,319/four, recast1,958/four, team1,228/seven PASS. Candidate
 13s (before display-only fallback fix) duration11,874/six, team1,929/seven,
@@ -139,43 +155,7 @@ unrelated progression/paid work preservation and existing relevant CI gates.
 Review full diff and save first failures honestly. Required failures remain
 open; never weaken gates or call self-review independent review.
 
-17 November delivery checkpoint: [PR58](https://github.com/xariib/Lumenfall/pull/58) integrated as
-`52fae53d5c9615e92e65acd99e34aa8eacb6c2e1`; checked feature head`0f56d555b7114013d0fa1a8e54a1c0a3093168d7`.
-Public [Android 0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130), code1000130,
-[APK](https://github.com/xariib/Lumenfall/releases/download/android-1000130/Lumenfall.apk).
-APK SHA256:`ef7572b5f94d8547a25ced5c2a5b806b26f7c016ad64874660d956130e346033`.
-Final product SHA256:
-3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80.
-
-Eight exact-head PR gates and nine exact integrated-main workflows PASS.
-Full main/isolated coverage is retained in [delivery receipt](../qa/team-progression-001/delivery.json)
-and source-bound raw logs. Final-source focused checks:1,228 feature/seven
-controls;30,466 offline partition;3,319 Support/paid research;191 guidance/two
-controls; actual V8 6.0 Comet/permanent1,267. Original failures and unchanged
-passing retries remain saved. No workflow, deadline, numeric tolerance or
-acceptance gate was weakened. Full diff self-reviewed; no independent review.
-
-Released: manual strictly higher-record Ascension, Auto-Ascend removed and
-100-Comet owner refund once; shared direct-damage growth with original utility
-resource economy; matching current DPS with separate base/Support/ability
-readouts; initial3s Support/6s recast. Paid Endurance remains earliest90-day
-per-source sustained uptime at continuous8x/all reductions. Supplied save
-keeps balances, paid work/boosts, roster and history;20→120 Comets once.
-Supplied passive shares44/31/15/10% Ember/Stone/Tide/Gale; equal-development
-Titan about25% of five/20% of six. These are tested rosters, not universal caps.
-
-Signed build[44048063909](https://github.com/xariib/Lumenfall/actions/runs/44048063909) PASS: established
-com.lumenfall.app/signing certificate, both-save upgrade, paid work, refund100,
-actual updater system installation, normal retail Android12 launch and exact
-bundled assets. Anonymous versioned/latest APK bytes, release feed and public
-metadata match. Installed Wisp/normal-launch screenshots visually self-reviewed
-PASS: matching DPS/base/Support lines and visible game/navigation.
-[Public/native evidence](../qa/team-progression-001/android-release/public-verification.json).
-No actual player save/app was modified. Candidate129 remains earlier evidence.
-
-Status: integrated and publicly released; human/device acceptance remains open.
-Physical phone, exact WebView60 DOM, TalkBack and human pacing unobserved;
-self-review only. Owner chat/task remains open and unarchived. Next concrete
-action: observe the player's normal signed update and assess the revised
-damage presentation and long-term pacing on their device. No permission
-prompts, new chats, subagents or message tools used.
+Previous delivery: public Android0.2.130/source52fae53d remains the baseline.
+[Preserved release checkpoint](../qa/team-progression-001/support-year/prior-release-130-checkpoint.md)
+retains exact version/hashes/CI/native/public evidence. It does not prove the
+current year-earned correction, which remains open until new acceptance.

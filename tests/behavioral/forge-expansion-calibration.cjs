@@ -154,7 +154,7 @@ function savedSupportBounds(source, checks) {
 function supportClockLowerBound(source, checks) {
   // A saved cast deadline is rounded at epoch precision; the scheduler retains
   // finer phase. At this legitimate partial bar at the earned Endurance8/Charge0 boundary each six-second cycle has a
-  // slightly shortened three-second Support cast. Assuming exact uptime made
+  // slightly shortened5.4-second Support cast. Assuming exact uptime made
   // the old proposed lower bound exceed actual DPS by more than its slack.
   const a = app(source), q = a.q;
   const s = fixedState(q, {party: ['aurora'], auto: false, endurance:8, phase: [17.0001], forge: {amplifiertrim: 5}});
@@ -284,6 +284,47 @@ function stressBounds(source, checks) {
   return cases;
 }
 
+function supportFallbackRates(source,checks){
+  const records=[];
+  for(const row of [{rank:0,swift:0,cycle:13,duration:3},{rank:8,swift:2,cycle:6/1.16,duration:5.4}]){
+    const a=app(source),q=a.q;
+    q.set(fixedState(q,{party:['tide'],depth:101,auto:false,endurance:row.rank,swift:row.swift,forge:{resonantedge:5,amplifiertrim:5}}));
+    checks.eq(q.profile(101),null,'no charge-grant estimator in independent Support fallback');
+    const power=5*50*(1+.01*49);
+    const expected=power*(1+.30*Math.min(1,row.duration/row.cycle))+power*.5/row.cycle;
+    checks.near(q.dps(101),expected,2e-15,'Support fallback independently uses its own recast interval');
+    observe(a,row.cycle*1024,CLOCK,checks);
+    const actual=observe(a,row.cycle*4096,CLOCK+row.cycle*1024*1000,checks);
+    checks.near(actual.rates.tide,1/row.cycle,.003,'isolated Support fallback rate matches authoritative casts');
+    checks.near(actual.dps,expected,.003,'isolated Support fallback mean matches authoritative damage');
+    records.push({...row,expectedDps:expected,actualDps:actual.dps,actualRate:actual.rates.tide});
+  }
+  return records;
+}
+
+function historicalHudEpochWitness(checks,mutate){
+  // The user-approved13s policy makes this old precision mutant dormant in
+  // the current worlds. Preserve its original6s-source operand and seed,
+  // never using this historical world as current-game acceptance.
+  const base=require('node:path').join(__dirname,'../../docs/qa/team-progression-001/support-year/');
+  const raw=require('node:zlib').gunzipSync(fs.readFileSync(base+'historical-hud-epoch-130.html.gz'));
+  assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),'3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80');
+  const seedBytes=fs.readFileSync(base+'historical-hud-epoch-130-seed.json');
+  assert.equal(crypto.createHash('sha256').update(seedBytes).digest('hex'),'9c23045796b82c7723873124e2f18bac6c904fb8bb9ac4046595dc218f92c491');
+  let source=raw.toString();
+  const anchor='recast[i]=(referenceEpoch+u*1000+m.recastCycle*1000-referenceEpoch)/1000;';
+  if(mutate){assert.equal(source.split(anchor).length,2);source=source.replace(anchor,'recast[i]=u+m.recastCycle;');}
+  const a=app(source),q=a.q,seed=JSON.parse(seedBytes);q.set(seed);
+  checks.eq(q.get(),seed,'historical HUD precision seed remains bit-identical');
+  const profile=q.profile(120),cycle=10/3;
+  checks.eq(profile.warmCycles,1024,'original precision witness burn-in');
+  checks.eq(profile.measuredCycles,4096,'original precision witness sample');
+  observe(a,cycle*1024,CLOCK,checks);
+  const actual=observe(a,cycle*4096,CLOCK+cycle*1024*1000,checks);
+  for(const id of seed.activeParty){const error=Math.abs(profile.rates[id]-actual.rates[id])/actual.rates[id];checks.ok(Number.isFinite(error)&&error<=.001,'canonical-120-swift10: HUD cast rate '+id+' error '+error+' exceeds0.001');}
+  return {mode:'immutable historical original precision witness',sourceSha256:crypto.createHash('sha256').update(raw).digest('hex'),profileRates:profile.rates,actualRates:actual.rates,rateRelativeTolerance:.001};
+}
+
 function verify(source) {
   let count = 0;
   const checks = {
@@ -314,6 +355,10 @@ function verify(source) {
     {name: 'two-support-ultimate', ultimates: ['tide', 'aurora'], swift: 60, tolerance: .003},
     {name: 'last-pre-sustained-endurance', endurance:7, ultimates:['tide','aurora'], swift:10, tolerance:.003},
     {name: 'first-sustained-endurance', endurance:8, ultimates:['tide','aurora'], swift:10, tolerance:.003},
+    {name:'middle-endurance-phase',endurance:5,swift:0,depth:101,phase:PHASE,tapPhase:377,tolerance:.05},
+    {name:'last-pre-sustained-phase',endurance:7,swift:0,depth:101,phase:PHASE,tapPhase:377,tolerance:.05},
+    {name:'first-sustained-phase-101',endurance:8,swift:10,depth:101,phase:PHASE,tapPhase:377,tolerance:.05},
+    {name:'first-sustained-phase-120',endurance:8,swift:10,depth:120,phase:PHASE,tapPhase:377,tolerance:.02},
     {name: 'no-support', party: ['ember', 'stone', 'void', 'gale', 'thorn'], swift: 10, tolerance: .003},
     {name: 'no-auto-tap', auto: false, swift: 0, tolerance: .003},
     {name: 'relay-only', forge: {relay: 5}, swift: 0, tolerance: .003},
@@ -334,7 +379,7 @@ function verify(source) {
       checks.eq(profile, null, 'zero new charge effects retain the legacy estimate path');
     } else {
       const independentCycle=Math.max(10/3,6/(1+.08*Math.min(config.swift||0,10)));
-      const minimumRecast=[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][config.endurance||0];
+      const minimumRecast=[13,13,13,13,13,13,13,13,4.8,4.8,4.8][config.endurance||0];
       const precise=initial.activeParty.some(id=>['tide','aurora'].includes(id))&&Math.abs(Math.max(independentCycle,minimumRecast)-independentCycle)>1e-9;
       checks.eq(profile.warmCycles, precise?1024:64, config.name + ': documented burn-in');
       checks.eq(profile.measuredCycles, precise?4096:256, config.name + ': documented measured cycles');
@@ -349,7 +394,7 @@ function verify(source) {
     const measured = observe(a, cycle * 4096, CLOCK + warmSeconds * 1000, checks);
     let worstRateError = 0;
     for (const id of initial.activeParty) {
-      const rate = profile ? profile.rates[id] : 1 / (['tide','aurora'].includes(id)?Math.max(cycle,[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][config.endurance||0]):cycle);
+      const rate = profile ? profile.rates[id] : 1 / (['tide','aurora'].includes(id)?Math.max(cycle,[13,13,13,13,13,13,13,13,4.8,4.8,4.8][config.endurance||0]):cycle);
       const error = Math.abs(rate - measured.rates[id]) / measured.rates[id];
       worstRateError = Math.max(worstRateError, error);
       checks.ok(Number.isFinite(error) && error <= config.tolerance,
@@ -384,12 +429,13 @@ function verify(source) {
   const cadenceCounter = cadenceCounterBounds(source, checks);
   if(process.env.LUMENFALL_QA_CALIBRATION_TRACE)process.stderr.write('Calibration timerPrecision\n');
   const timerPrecision = timerPrecisionBounds(source, checks);
+  const supportFallback=supportFallbackRates(source,checks);
   return {checks: count, calibrationCases: measurements.length, measurements,
     savedSupport, boundCases, burstGuard: burst, supportClockLowerBound: supportClock,
-    cadenceCounterBounds: cadenceCounter, timerPrecisionBounds: timerPrecision};
+    cadenceCounterBounds: cadenceCounter, timerPrecisionBounds: timerPrecision,supportFallback};
 }
 
-module.exports = {fixedState, observe, savedSupportBounds, supportClockLowerBound, cadenceCounterBounds, timerPrecisionBounds, stressBounds, burstGuard, verify};
+module.exports = {fixedState, observe, savedSupportBounds, supportClockLowerBound, cadenceCounterBounds, timerPrecisionBounds, stressBounds, burstGuard, supportFallbackRates, historicalHudEpochWitness, verify};
 if (require.main === module) {
   const source = fs.readFileSync(process.argv[2] || 'index.html', 'utf8');
   const started = Date.now();
@@ -416,8 +462,8 @@ if (require.main === module) {
       assert.equal(text.split(anchor).length, 2, 'one ' + label + ' mutation anchor');
       return text.replace(anchor, replacement);
     }
-    rejects('twelve-second-support-phase-alias',()=>verify(replaceOne(source,'rank<8 ? 13-0.2*rank : 4.8','rank<8 ? 12-0.2*rank : 4.8','Support phase alias')),'phase-101-swift0: HUD cast rate ember');
-    rejects('ignore-support-recast-without-charge-grants',()=>verify(replaceOne(source,"Amount.div(abilityBurstDamage(sp, depth),sp.abilityType==='support' ? supportCycleSeconds() : cycle)",'Amount.div(abilityBurstDamage(sp, depth),cycle)','Support fallback interval')),'aggregate HUD damage');
+    rejects('twelve-second-support-phase-alias',()=>verify(replaceOne(source,'rank<8 ? 13 : 4.8','rank<8 ? 12 : 4.8','Support phase alias')),'phase-101-swift0: HUD cast rate ember');
+    rejects('ignore-support-recast-without-charge-grants',()=>supportFallbackRates(replaceOne(source,"Amount.div(abilityBurstDamage(sp, depth),sp.abilityType==='support' ? supportCycleSeconds() : cycle)",'Amount.div(abilityBurstDamage(sp, depth),cycle)','Support fallback interval'),checks),'Support fallback independently uses its own recast interval');
     rejects('ignore-initial-burst-budget', () => burstGuard(source, checks, true),
       'near-ready original cast kills the boss');
     const savedAnchor = 'upperSources[id]=Amount.max(1,saved[id].mult)';
@@ -430,7 +476,10 @@ if (require.main === module) {
       refundAnchor.replace('charge[i]=refund','charge[i]=0'))),
       'HUD cast rate');
     const rounded='recast[i]=(referenceEpoch+u*1000+m.recastCycle*1000-referenceEpoch)/1000;';
-    rejects('omit-stored-epoch-rounding-from-hud-reference',()=>verify(replaceOne(source,rounded,'recast[i]=u+m.recastCycle;','stored epoch rounding')),'HUD cast rate');
+    const historicalEpoch=historicalHudEpochWitness(checks,false);
+    rejects('omit-stored-epoch-rounding-from-hud-reference',()=>historicalHudEpochWitness(checks,true),'HUD cast rate');
+    negativeControls[negativeControls.length-1].mode=historicalEpoch.mode;
+    negativeControls[negativeControls.length-1].sourceSha256=historicalEpoch.sourceSha256;
     let exactUptime = replaceOne(source, 'supportRate=0,upperSources=', 'supportRate=0,lowerBuff=1,upperSources=', 'Support lower accumulator');
     exactUptime = replaceOne(exactUptime, 'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);',
       'supportA=Amount.add(supportA,m.a);supportRate=Amount.add(supportRate,m.upper);\n      var profile=supportAbilityProfile(sp);\n      lowerBuff+=(profile.strength-1)*Math.min(1,profile.durationMs/1000/supportCycleSeconds());', 'exact Support uptime');

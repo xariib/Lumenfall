@@ -65,7 +65,7 @@ function verify(html){
  for(const rank of [0,1,2,3,4,5,6,7,8,9,10])for(const charge of [0,1,2,5,10])for(const kind of ['live','offline']){
   const w=combat(html),b=w.q;s=funded();s.depth=s.enemyDepth=99;s.enemyHp=s.enemyMaxHp=1e100;s.research.charge=charge;s.longStudyLevels.supportduration=rank;
   s.heroResource.tide=s.heroResource.aurora=100;b.set(s);
-  const cycle=Math.max(6/(1+.08*charge),[13,12.8,12.6,12.4,12.2,12,11.8,11.6,4.8,4.8,4.8][rank]),duration=3+.3*rank,castStarts={tide:[],aurora:[]};
+  const cycle=Math.max(6/(1+.08*charge),[13,13,13,13,13,13,13,13,4.8,4.8,4.8][rank]),duration=3+.3*rank,castStarts={tide:[],aurora:[]};
   if(rank<8){ok(cycle-duration>duration,'inactive time exceeds active time through rank7');ok(2*duration/cycle<1,'even perfect two-source staggering cannot sustain early coverage');}
   if(rank===8){eq(duration>=cycle,charge>=2,'actual first sustained milestone still requires sufficient natural Charge');}
   let at=CLOCK;
@@ -101,8 +101,8 @@ function verify(html){
 }
 const controls=[
  ['free-uptime',"durationMs:3000+300*labExpansionLevel('supportduration')",'durationMs:6000'],
- ['early-sustained-rank','rank<8 ? 13-0.2*rank : 4.8','rank<2 ? 12-0.2*rank : 4.8'],
- ['rejected-three-second-gap','return Math.max(abilityCycleSeconds(),rank<8 ? 13-0.2*rank : 4.8);',"return Math.max(abilityCycleSeconds(),6-1.2*Math.min(2,labExpansionLevel('supportduration')));"],
+ ['early-sustained-rank','rank<8 ? 13 : 4.8','rank<2 ? 13 : 4.8'],
+ ['rejected-three-second-gap','return Math.max(abilityCycleSeconds(),rank<8 ? 13 : 4.8);',"return Math.max(abilityCycleSeconds(),6-1.2*Math.min(2,labExpansionLevel('supportduration')));"],
  ['short-work','rankWorkSec:[55542858]','rankWorkSec:[86400]'],
  ['early-access','supportduration:{depth:500,studies:{wispdamage:50,ultimateanalysis:5}}','supportduration:{depth:1,studies:{}}'],
  ['no-duration',"durationMs:3000+300*labExpansionLevel('supportduration')",'durationMs:3000']

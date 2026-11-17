@@ -1,6 +1,6 @@
 # SUPPORT_HELP_COPY_001 — existing encyclopedia duration copy
 
-Status: recorded finding; implementation not started. No new chat or agent.
+Status: corrected in the TEAM_PROGRESSION_001 year-earned candidate; release validation pending. No new chat or agent.
 
 During TEAM_PROGRESSION_001's final diff review, the unchanged Modules &
 Ultimates encyclopedia entry was observed to say “Amplifier buffs change from +25% for 1s to +50% for 1.5s before Amplifier Trim.”
@@ -19,3 +19,8 @@ in a focused help-copy change, confirm the current runtime/paid Endurance
 rules and required source-bound checks, then integrate and deliver normally.
 Do not alter the actual duration, strength, paid work or gates to match the old
 copy. No acceptance is claimed for this follow-up.
+
+17 November correction: candidate sourceb955a8d8 fixes the Modules & Ultimates
+sentence to the actual3s starting duration/up-to6s earned duration and the
+Endurance8/360-day sustained-cycling milestone. Full integration/native/public
+release remains pending; earlier baseline observations above are historical.
