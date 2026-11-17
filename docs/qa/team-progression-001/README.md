@@ -357,3 +357,82 @@ Two remote boost-queue runs stopped at CDP Input.dispatchTouchEvent on the first
 
 Final source review found that deleting the retired Auto-Ascend advice branch accidentally attached Farm return guidance to the preceding Lab conditional. Restored its independent condition; Farm cannot earn a new Prism record, while Sigil farming remains useful. Focused guidance191 checks/two controls and actual feature1,228 checks/seven controls PASS. Product SHA256 is now3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80. Prior candidate129 remains evidence for its081f source only; final signed main build must contain the new source. All specialist6040 workflows passed, including Wisp on both OS; full main/shared were still running before this necessary fix. Older Linux Wisp negative anchor setup timed out before its first reflow; focus/periodic controls reached original assertions. Raw reports retained, original300ms ceiling unchanged. Next: push fix, require all current PR/integrated gates, publish and verify signed main APK.
 
+
+## PR integration checkpoint history
+
+17 November checkpoint: draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
+feature head c89be93158196e911a6f5839da053d47499190f9, worktree C:/lf-team.
+Main remains ba879406. Root historical checkout untouched; no overlapping PRs.
+Final product SHA256:
+3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80.
+Earlier checkpoints are preserved verbatim in [QA history](../qa/team-progression-001/README.md).
+
+Implemented: six-second initial Support recast, unchanged paid90-day earliest
+sustained per-source work; shared direct-damage growth with original Gale/Thorn
+resource economy; matching current DPS and separate base/Support/ability
+readouts; manual higher-record resets and once-only100-Comet owner refund.
+The final review also restored independent Farm-to-Push guidance after removing
+the retired Auto-Ascend advice branch. Sigil farming remains available.
+
+Final-source checks: feature1,228/seven controls; full8h partition30,466;
+Support/paid research3,319; guidance191/two controls; actual V8 6.0 Comet and
+permanent vectors1,267. Earlier numerical/mobile/affordability receipts retain
+their exact hashes. Supplied save keeps paid work, balances and roster, with
+20→120 Comets once. Passive shares44/31/15/10% Ember/Stone/Tide/Gale.
+Equal development Titan approximately25% of five,20% of six; these are tested
+configurations, not universal share caps. No actual player save/app modified.
+
+Current full PR and eight workflow gates are running. Isolated offline PASS.
+First failures remain saved; unchanged failed-job retries retain deadlines,
+assertions and causal controls. Wisp Linux startup Browser.getVersion timeout
+then unchanged retry PASS; Lab touch protocol timeout after seven profiles
+requires its unchanged retry result. No infrastructure root cause is claimed.
+
+Continuation: all seven specialist workflows now PASS, including both unchanged
+failed-job retries. Full main reached the independent offline source-binding
+gate and correctly rejected the earlier081f hash after the guidance-only edit.
+Canonical one-second replay regenerated all four windows against3f91; every
+complete saved-state hash and all rewards exactly match the prior reference.
+Only its sourceSha256 line changes. Full current-head gate remains required.
+
+187f67f3: all seven specialist workflows PASS; isolated offline PASS. Full
+main again stopped at boost-native Input.dispatchTouchEvent, after four passing
+profiles, despite Runtime/DOM initialization. That initialization did not prove
+a fix. The boost touch helper now observes two animation frames after scrolling
+before reading fresh coordinates and sending the same native gesture. Original
+15s protocol deadline, profiles and assertions remain. Local993/18 PASS; causal
+next-lock control fails original next3x-selection assertion with normal teardown.
+Actual Linux result is still required; no root-cause or infrastructure claim.
+
+5fe1d1ad full PR: all prior steps, repaired Linux boost input, seven specialist
+workflows and isolated offline PASS. The complete190-case lane failed only
+Comet native normal/reduced scenarios: their last helper still queried the
+removed Ritual card. Current helper now always tests retirement/refund and
+manual higher-record touch/keyboard; its original purchase helper is retained
+as an explicit historical export. Parent Trial/cosmetic/contrast/44px/focus
+assertions and90s deadline stay unchanged. Both actual3f91 source scenarios
+PASS all12 profiles with normal cleanup. Source and bound golden stay unchanged.
+Push this test-only repair, finish exact-head/integrated gates and signed release.
+
+fda099d4 PR main attempt1: boost protocol timeout after16 profiles; attempt2
+passes boost unchanged, then offline UI catches a test-generation race. Its
+restart snapshot already shows resumeFlowBusy=true; the next failure case
+cancelled that older intro and counted its callback as the new one. Driver now
+waits for the previous real return/intro to finish before counting callbacks for
+the next case, using the original60s until timeout. All original error-cleanup,
+wallet/endpoint, retry and daily assertions stay. Both actual3f91 native normal
+and legacy offline UI scenarios PASS completely with normal teardown. No product
+change; frame initialization/readiness has not eliminated all protocol flakes.
+
+Signed candidate0.2.129/build43999391752 passed both-save upgrade, paid work,
+100-Comet refund, updater install, retail Android12 launch and assets. It
+contains earlier081f source and is unpublished; final delivery requires a new
+signed build from validated integrated main. Established package/cert retained.
+
+Next: finish all eight current PR gates, merge exact checked c89 head after
+self-review, dispatch nine exact integrated-main workflows, publish signed APK,
+verify native receipts and anonymous public bytes/assets/feed, and save final
+status/evidence in GitHub. Keep task/chat open: physical phone, exact WebView60
+DOM, TalkBack, independent review and human pacing remain unobserved. Do not
+claim archive or human acceptance. No permission prompts, agents or new chats.
+
