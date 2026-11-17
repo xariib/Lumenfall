@@ -1,0 +1,20 @@
+{
+  "status": "FAIL retained; unchanged rerun requested",
+  "featureHead": "f6a141e7a4bffb09f5923d31628b3e74399e2be8",
+  "sourceSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
+  "runId": 44087196981,
+  "jobId": 134052596505,
+  "platform": "ubuntu-latest",
+  "checks": 3233,
+  "error": "CDP deadline Input.dispatchKeyEvent",
+  "cause": "unproven",
+  "counterpart": "windows-latest job134052596336 PASS",
+  "priorIdenticalProduct": "Both platforms passed in run44072682863; subsequent changes are only docs/evidence and prerequisite-specific navigation test, which this Wisp driver does not execute.",
+  "artifact": {
+    "id": 14329663620,
+    "bytes": 8763,
+    "sha256": "6b0b9d4e4e05c5263f4c3ba583ecfe252ded755ef4191392b39fe7b40d48fcff",
+    "shaAndExtractedLogCrcVerified": true
+  },
+  "response": "Rerun failed job without changing product, test, assertions, deadline or workflow. Preserve original full.log."
+}
