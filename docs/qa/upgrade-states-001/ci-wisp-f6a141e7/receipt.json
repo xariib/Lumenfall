@@ -16,5 +16,29 @@
     "sha256": "6b0b9d4e4e05c5263f4c3ba583ecfe252ded755ef4191392b39fe7b40d48fcff",
     "shaAndExtractedLogCrcVerified": true
   },
-  "response": "Rerun failed job without changing product, test, assertions, deadline or workflow. Preserve original full.log."
+  "response": "Investigate repeated timeout; existing Wisp workflow dispatched on main for paired baseline. No changes to product, driver or deadlines.",
+  "retry": {
+    "jobId": 134056169825,
+    "status": "FAIL",
+    "checks": 3233,
+    "error": "CDP deadline Input.dispatchKeyEvent",
+    "sameLastProfile": true,
+    "artifactId": 14329709002,
+    "artifactSha256": "b056d0bac25c0e0d9b1aa3d24ca94e27a14e49137f52bdf7b899a07c854425c3",
+    "verified": true
+  },
+  "priorPass": {
+    "jobId": 134002598307,
+    "status": "PASS",
+    "checks": 3277,
+    "identicalProductDriverAndBrowserBinary": true,
+    "artifactId": 14324015878,
+    "artifactSha256": "285814b5d367e6c29f4ec08e2d492f0df3b7f2341e4c38c6710340b85985935f",
+    "verified": true
+  },
+  "baselineDiagnostic": {
+    "runId": 44089146064,
+    "commit": "b075cfbac508096c240d3cba8885384235e4a210",
+    "status": "running"
+  }
 }
