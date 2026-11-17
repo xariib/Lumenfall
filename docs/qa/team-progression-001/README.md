@@ -2,6 +2,18 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Full5fe1d1ad run44015722026 reached all190 main cases; its only final failures
+were Comet native normal/reduced, whose last helper still queried the removed
+Auto-Ascend Ritual. All prior steps, repaired Linux boost lane, seven specialist
+workflows and isolated offline PASS. The current native helper now requires
+absent retired controls, durable100-Comet refund, retained paid work, first
+manual clear15, whole-state denial at the same clear and native Space payout
+at16. Historical purchase code remains an explicitly named historical export,
+never an automatic current-contract fallback. Parent Trial/cosmetic, focus,
+contrast,44px targets and90s deadlines remain unchanged. Final3f91 source
+normal/reduced scenarios PASS all12 profiles with normal teardown; logs are
+compressed as `comet-manual-current.log.gz` and `comet-manual-reduced.log.gz`.
+
 Boost protocol continuation:187f67f3 full main failed native touch after four
 passing profiles; all seven specialist workflows and isolated offline passed.
 Runtime/DOM initialization alone did not resolve it. The boost helper now waits

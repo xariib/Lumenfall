@@ -123,6 +123,16 @@ before reading fresh coordinates and sending the same native gesture. Original
 next-lock control fails original next3x-selection assertion with normal teardown.
 Actual Linux result is still required; no root-cause or infrastructure claim.
 
+5fe1d1ad full PR: all prior steps, repaired Linux boost input, seven specialist
+workflows and isolated offline PASS. The complete190-case lane failed only
+Comet native normal/reduced scenarios: their last helper still queried the
+removed Ritual card. Current helper now always tests retirement/refund and
+manual higher-record touch/keyboard; its original purchase helper is retained
+as an explicit historical export. Parent Trial/cosmetic/contrast/44px/focus
+assertions and90s deadline stay unchanged. Both actual3f91 source scenarios
+PASS all12 profiles with normal cleanup. Source and bound golden stay unchanged.
+Push this test-only repair, finish exact-head/integrated gates and signed release.
+
 Signed candidate0.2.129/build43999391752 passed both-save upgrade, paid work,
 100-Comet refund, updater install, retail Android12 launch and assets. It
 contains earlier081f source and is unpublished; final delivery requires a new
