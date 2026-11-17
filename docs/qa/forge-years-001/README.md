@@ -218,3 +218,81 @@ the original next-lock mutation still fails at its intended next3x assertion.
 checks cover each fresh page's readiness, requested text size and runtime errors.
 Product HTML and existing accepted offline outcomes are unchanged. New Linux CI
 is required; integration and Android release remain pending.
+
+## Tested integration
+
+All eight required workflows PASS at2bdf4f03, including every original native
+Lab profile, all190main behavioral scenarios and1isolated offline scenario.
+The separate Lab workflow initially failed at Browser.getVersion with zero
+assertions; its unchanged failed-job retry passes. Original startup log is
+retained in `lab-startup-attempt.log.gz`. `pr-runs.json`, `pr-jobs.json` and
+compressed full pre-merge job logs retain the exact-head outcomes and coverage.
+
+PR59 merged as0adb60eb36a3be15ce152d6ffe416d5996b039c7. Both complete Git trees
+arecf13935c16dd2dfa9f870d64777aed3304391978. Main was rechecked atb075cfba
+immediately before integration; no review submissions/threads were present.
+This is self-review plus automated validation, not independent review.
+Nine exact integrated manual workflows are running. APK/native/public delivery
+and unobserved human/device acceptance remain pending.
+
+Integrated Tree run44089999690 attempt1 fails its positive Prism browser case:
+Chrome25-second wall deadline, empty stdout, qa_count0 and no completed assertion.
+All six causal cases completed and rejected their intended defects. Full job log
+is `integrated-tree-first.log.gz`; artifact14330963960 SHA256
+`e14bdccad493b024e46d5cf630ccdc5a8e0539e6f271564b72fe61c7763aae17`
+was independently hash/ZIP-CRC checked. Its original text evidence is retained in
+`integrated-tree-first-raw.json.gz`. Cause remains unproven. Failed job rerun
+requested unchanged; no source, timeout or acceptance change. Other workflows
+continue. The final release requires every exact integrated gate to pass.
+
+Tree attempt2 PASS unchanged, including the formerly incomplete positive browser
+case, native mobile matrix and actual V8 6.0. Eight exact integrated workflows
+PASS; the main workflow has passed every focused step and is executing the full
+190scenario suite. Its isolated offline scenario PASS. Main remains0adb60eb.
+
+All nine integrated workflows PASS at0adb60eb. Full main log134062191935 proves
+190/191cases and all190PASS; isolated log134062192501 proves1/191 and1PASS.
+Both full logs are retained as gzip, with `integrated-jobs.json` and final
+`integrated-runs.json`. Main was rechecked unchanged before signed Android
+publishing run44099434281 was dispatched (run135). Native/public delivery pending.
+
+## Released Android delivery
+
+[Android 0.2.135](https://github.com/xariib/Lumenfall/releases/tag/android-1000135)
+is published from exact integrated commit `0adb60eb36a3be15ce152d6ffe416d5996b039c7`.
+Signed build44099434281 PASS. APK SHA256:
+`91214980a7997c03baf273211c6dbeb87456767aecb1b8b610c3d1b7716b351e`.
+Package `com.lumenfall.app`, versionCode1000135, established signing identity,
+dependency/security checks and all packaged source/font/branding bytes PASS.
+No signing/native/package/workflow changes were introduced by this feature.
+
+Disposable Android12 acceptance PASS: archived signed0.1.158 save upgrade,
+both save slots and paid progression, actual in-app updater cancellation/
+permission/tamper/installer cases, and normal production launch on a retail
+Google Play image. The retail build is non-debuggable, exposes no WebView debug
+socket/test instrumentation and rejects run-as. Visible game controls PASS;
+`production-normal-launch.png` was also visually self-reviewed. These are
+synthetic emulator fixtures, not a physical-phone or TalkBack acceptance result.
+
+Artifact14334919523 SHA256
+`8bd82fe48bd35af9ab22f7d2a443851dc04529be0dcd2338350a76f918fbd223`
+was downloaded, digest-checked and every ZIP entry CRC-verified. Its JSON/identity
+receipts are preserved in `native-verified.json.gz`. Local full asset verification
+against the intended source also PASS (`local-apk-assets.json`). Anonymous
+versioned and latest APK bytes, latest release feed, and every published metadata
+asset match this verified build (`public/public-verification.json`).
+
+`delivery.json` links the eight PR/nine integrated workflow results and proves
+190 main +1 isolated coverage on both versions. Full compressed logs retain the
+original outcomes. Self-review and automated testing only; no independent review.
+Physical phone, exact WebView60 DOM, TalkBack and fresh-account calendar pacing
+remain unobserved. The 994-day model is not a new-account calendar guarantee.
+The task stays open and was not archived.
+
+After publication, newer Rift main12122b80 was merged into the delivery branch;
+its product/workflow/native files and status paragraph are preserved. Relative
+to that main, this delivery changes only Forge documentation/evidence. Combined
+finite assertions385/four controls and all39 referenced context tasks PASS.
+The main documentation update waited until the separate signed build44101297138
+completed publication. `post-release-reconciliation.json` records the scope;
+it does not claim independent full validation or ownership of the Rift feature.

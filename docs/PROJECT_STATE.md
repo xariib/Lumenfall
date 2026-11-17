@@ -1,19 +1,30 @@
 # Lumenfall — current delivery status
 
-17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) in progress.
-Remove hints, Farm left/Push right and correct arena/enemy layering. Previous
-source passed666 focused checks/five controls and signed Android133; newer
-main/PR59 is now retained and combined-source validation is required.
+17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) integrated
+at12122b80; [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136)
+published/verified. Removes hints, Farm left/Push right, opaque arena and isolated
+enemy layer; retains newer main/PR59.666 mobile checks/five controls, four paired8h
+replays, six required exact-SHA release workflows/190+1 scenarios, signed save
+upgrade/updater/retail and anonymous APK/assets/feed PASS. All eight PR workflows
+also PASS; physical-phone/WebView60/TalkBack/human review stays open. Self-review
+only. [Evidence](qa/rift-screen-fixes-001/README.md); chat remains open.
 [Full pre-feature status snapshot](PROJECT_STATE_2026-11-17_RIFT_BASELINE.md) is intact.
 The previously reported rapid-repeat economy finding remains open; no economy
 fix is introduced by this Rift presentation task.
 
-17 November: [Finite Forge](tasks/FORGE_YEARS_001.md) is under validation in
-[PR59](https://github.com/xariib/Lumenfall/pull/59). Candidate Tempering caps are
-375/325/315; Masterwork remains500 with attainable future prices. A mature
-reinvestment reference finishes in994productive days; this is a pacing model,
-not a fresh-account calendar guarantee. Local core, V8 and12-profile mobile
-checks pass. Integration, exact-head CI and Android delivery remain pending.
+17 November: [Finite Forge/PR59](tasks/FORGE_YEARS_001.md) shipped as
+[Android 0.2.135](https://github.com/xariib/Lumenfall/releases/tag/android-1000135), source `0adb60eb`.
+Tempering caps are 375/325/315; Masterwork remains 500 with attainable future
+prices. Paid above-cap effects stay. A mature reinvestment reference finishes
+in 994 productive days; this is a model, not a fresh-account calendar guarantee.
+All eight PR workflows PASS, including 190 main +1 isolated offline scenarios.
+The integrated tree exactly matches the tested candidate. All nine exact integrated
+workflows PASS, including 190 main +1 isolated offline scenarios. Signed save
+upgrade, actual updater, normal retail Android12 launch and anonymous public
+APK/assets/feed verification PASS. [Evidence](qa/forge-years-001/delivery.json)
+retains original failures and passing unchanged retries. Self-review only;
+physical phone, exact WebView60 DOM, TalkBack and actual-account calendar pacing
+remain open. Owner task/chat stays open; the model is not a calendar guarantee.
 
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
 the user instruction, "Never ask for permissions again for Lumenfall project."
