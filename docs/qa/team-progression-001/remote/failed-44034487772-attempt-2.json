@@ -1,0 +1,63 @@
+{
+  "id": 44034487772,
+  "sha": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44034487772",
+  "jobs": [
+    {
+      "id": 133878709449,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T07:04:54Z",
+      "completed": "2026-11-17T07:25:18Z",
+      "log": "job-133878709449.log.gz",
+      "rawSha256": "ad66fd5ce9a91ded831027b2ed9ab1c620ff885998085177682154bffd145b29",
+      "summary": [
+        "2026-11-17T07:19:01.5083201Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T07:19:02.5758910Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T07:19:15.7303296Z \u001b[36;1m  assert.equal(bad.status,'fail');assert(bad.message.includes(message));\u001b[0m",
+        "2026-11-17T07:19:50.6755242Z {\"status\":\"fail\",\"profiles\":1,\"samples\":0,\"message\":\"Error: keyboard opens Lab details dialog\\n    at assert (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:49:48)\\n    at midgameFarmAcceptance (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:125:2)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:351:21)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:443:3\",\"result\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/hint-control-open/results.json\"}",
+        "2026-11-17T07:19:52.3471167Z {\"status\":\"fail\",\"profiles\":1,\"samples\":0,\"message\":\"Error: open details refresh both exact shortfalls\\n    at assert (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:49:48)\\n    at midgameFarmAcceptance (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:142:2)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:351:21)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/rift-guidance.cjs:443:3\",\"result\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/hint-control-refresh/results.json\"}",
+        "2026-11-17T07:19:56.8639322Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T07:20:01.6182616Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T07:20:06.4045576Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T07:20:11.2596445Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T07:22:42.8474950Z {\"status\":\"pass\",\"scope\":\"GUIDANCE_READABILITY_001\",\"baselineCommit\":\"684bfc52bb2ca523124fe63981188b9a8004d747\",\"fullDefaultGateExecutedHere\":false,\"inputs\":{\"path\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/inputs.json\",\"bytes\":5615,\"sha256\":\"1c25bc38043c223e8ed2a79aa775a3004cc650627588ffb18bccc3d32f6e2fec\"},\"runtime\":{\"path\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/runtime.json\",\"bytes\":1136,\"sha256\":\"63bbd57fcecfe2014fa60cb6a7bff467aaafd1aecd13cb8bf985b9d993bcaa0f\"},\"baselineAssets\":{\"path\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/baseline-assets.json\",\"bytes\":3247,\"sha256\":\"45d75259345695d4bb1239c2e480f87db41d015cd81499f94cfb52d5e805245c\"},\"baselineAssetsUnit\":{\"process\":{\"path\":\"/home/runner/work/Lumenfall/Lumenfall/validation-evidence/guidance-readability/baseline-assets-unit-process.json\",\"bytes\":844,\"sha256\":\"a802e6dfc40d59f3e3356f987335e5e585a2818f74ce48032486af168d1ee864\"},\"report\":{\"status\":\"pass\",\"scope\":\"Isolated Git asset unit test; no game or browser\",\"baselineCommit\":\"2f794ff021ef5d7085e63ad056d419de39b49a3b\",\"changedCandidateFontIgnored\":true,\"changedCandidateBrandingIgnored\":true,\"candidateOnlyAssetExcluded\":true,\"candidateUnchanged\":true,\"corruptBlobRejected\":true,\"assets\":[{\"path\":\"branding/mark.svg\",\"gitBlob\":\"2bbcc6e69f4536aaaf04ff076d911471ab2af9fd\",\"bytes\":19,\"sha256\":\"e997e538df9b512b020e13838852fc861bec311aba",
+        "2026-11-17T07:22:53.4529061Z {\"status\":\"PASS\",\"checks\":206,\"sourceSha256\":\"3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80\",\"records\":[{\"raw\":0,\"wallet\":17,\"value\":\"17\"},{\"raw\":20,\"wallet\":17,\"value\":\"17\"},{\"raw\":21,\"wallet\":17,\"value\":\"3393\"},{\"raw\":40,\"wallet\":17,\"value\":\"12655555\"},{\"raw\":95,\"wallet\":0,\"value\":\"9501183244965278\"},{\"raw\":2000,\"wallet\":0,\"value\":\"500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534643397160\"},{\"raw\":21,\"wallet\":1e+30,\"value\":\"1000000000000000019884624842032\"}],\"scope\":\"current twenty-path Tree, exact restitution, paid Studies, Forge ownership, cold load, backup, transactional storage failures and F26 coexistence; native acceptance separate\"}",
+        "2026-11-17T07:22:55.7193747Z {\"status\":\"PASS\",\"sourceSha256\":\"3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80\",\"checks\":627,\"records\":[{\"raw\":0,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":5,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":6,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":7,\"wallet\":17,\"bonds\":0,\"total\":\"33\",\"creditEntries\":0},{\"raw\":10,\"wallet\":17,\"bonds\":21,\"total\":\"3503\",\"creditEntries\":0},{\"raw\":95,\"wallet\":0,\"bonds\":40,\"total\":\"381182898585695\",\"creditEntries\":0},{\"raw\":2000,\"wallet\":0,\"bonds\":2000,\"total\":\"500418951316048248359259143653257427704520915174220620846883637219407899119006556520838354479689090677357342012369317099560156326442675676130854467602599141993713117534622650218426389825356917442087587709690091692033347198318871629159963139589581309573294292137977671743966661487529024757903887558981399300640\",\"creditEntries\":3715},{\"raw\":2100,\"wallet\":0,\"bonds\":0,\"total\":\"36969615064988623589546261493193773023062879891788863797188853546802815946586656691785735357153331322601888634767964027566503488120225610700355898842160253576222901959466171158637687612638060932728861853527923708313574602394317186610647479455968451044886549686351133777954892931694504782202759143546773354488\",\"creditEntries\":1996},{\"raw\":1e+300,\"wallet\":0,\"bonds\":0,\"total\":\"545593533174429112660680659083780728936790541299067481987023091744666711373531269789706239693500133011524053940817719665274192256578199479997005078714987885",
+        "2026-11-17T07:23:18.7913688Z Killed handler: Error: Error: UI maxed even with affordable wallet 20",
+        "2026-11-17T07:23:19.7435104Z Killed ui: Error: Error: UI maxed even with affordable wallet 20",
+        "2026-11-17T07:23:20.6938559Z Killed raw: Error: Error: legacy raw count visible",
+        "2026-11-17T07:23:21.6000002Z Killed refund: Error: Error: refund receipt prevents a second credit 21",
+        "2026-11-17T07:23:22.5400746Z Killed credit: Error: Error: fractional original wallet retains exact refund value",
+        "2026-11-17T07:23:23.5307443Z Killed free-credit: Error: Error: large credit quote conserves exact value",
+        "2026-11-17T07:23:24.5138680Z Killed wallet: Error: Error: representable large-wallet debit pays exactly",
+        "2026-11-17T07:23:26.4500712Z Killed receipt: Error: Error: wrong receipt amount rejects for recovery",
+        "2026-11-17T07:23:27.7242315Z Killed cache: Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+        "2026-11-17T07:23:29.6867967Z Killed credit-record: Error: Error: malformed persisted Prism credit rejects for recovery",
+        "2026-11-17T07:23:30.9173279Z Killed ascend-copy: Error: Error: historical internal stress: actual auto-Ascends avoid repeated refund cloning and validation",
+        "2026-11-17T07:23:32.7708004Z Killed version-check: Error: Error: unsupported migration version rejects before any early return",
+        "2026-11-17T07:23:34.6583634Z Killed credit-reconcile: Error: Error: own credit sequence reconciles with saved receipt",
+        "2026-11-17T07:23:36.5365545Z Killed missing-receipt: Error: Error: deleted completed receipt rejects instead of refunding twice",
+        "2026-11-17T07:23:38.4690579Z Killed missing-audit-history: Error: Error: retained completed history rejects deleted receipt and marker",
+        "2026-11-17T07:23:40.3241815Z Killed missing-audit-proof: Error: Error: retained completed marker rejects deleted receipt and history",
+        "2026-11-17T07:23:41.7959437Z Killed quote-copy: Error: Error: large legacy price quotes never clone the refund ledger",
+        "2026-11-17T07:25:07.7116973Z AssertionError [ERR_ASSERTION]: real touch opens damage details"
+      ]
+    },
+    {
+      "id": 133878710985,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T06:52:59Z",
+      "completed": "2026-11-17T06:55:36Z",
+      "log": "job-133878710985.log.gz",
+      "rawSha256": "c8631c4ef1c6de8366fb64ab0bdbc67e7bca1421d11d5fe38ae34607f9c992b1",
+      "summary": [
+        "2026-11-17T06:53:49.9341152Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T06:55:33.6507936Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

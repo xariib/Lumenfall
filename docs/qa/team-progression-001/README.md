@@ -2,6 +2,15 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Integrated main attempt2: prior boost lane passed unchanged, then the new
+damage-disclosure native touch assertion failed at check269. Original12 role
+profiles and the new matching-DPS checks had passed. `remote/main-52fa-attempt2-
+wisp/` preserves failure, last observation and context images from artifact
+14307694021; these images precede the failing new profile. ZIP CRC/size and
+manifest hashes verified. `wisp-main-assert-replay.json`:unchanged current
+driver PASS467, all12 Team profiles. Cause unproven; unchanged full main
+attempt3 runs at the exact same52fa source. No acceptance or touch edit.
+
 Integrated52fa continuation: eight specialist workflows PASS. Full main
 44034487772 attempt1 hit native boost Input.dispatchTouchEvent after16 profiles
 at opener coordinates382,445.984375. Raw attempt1 is preserved; unchanged main

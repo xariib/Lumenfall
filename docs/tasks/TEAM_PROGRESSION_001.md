@@ -102,6 +102,14 @@ boost Input.dispatchTouchEvent after16 passing profiles, target opener at
 running. Same52fa source; no deadline/assertion/gate changes. Build/publication
 still blocked until the complete main190 + isolated1 acceptance is green.
 
+Integrated main attempt2 passed the prior boost lane unchanged, then failed
+new Wisp UI assertion "real touch opens damage details" at check269, after
+the original12 profiles and initial matching-DPS checks. Artifact14307694021
+failure/last observation/context images are preserved under remote/main-52fa-
+attempt2-wisp with ZIP CRC/size verification. Original unchanged local replay
+then PASS467, including all12 new Team profiles; cause remains unproven.
+Unchanged integrated main attempt3 is running. No touch/assertion/product edit.
+
 Implemented: six-second initial Support recast, unchanged paid90-day earliest
 sustained per-source work; shared direct-damage growth with original Gale/Thorn
 resource economy; matching current DPS and separate base/Support/ability
