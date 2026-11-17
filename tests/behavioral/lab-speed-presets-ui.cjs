@@ -1,11 +1,12 @@
 'use strict';
-module.exports=async function({send,ev,pause,check,records,args}){
+module.exports=async function({send,ev,pause,check,records,args,freshProfile}){
  const fs=require('node:fs'),path=require('node:path');
  const evidence=args.includes('--evidence')?path.resolve(args[args.indexOf('--evidence')+1]):null;
  async function touch(selector){await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');const p=await ev('(()=>{const r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(15);}
  async function key(key){const code={Enter:13,Escape:27,Tab:9}[key];await send('Input.dispatchKeyEvent',{type:'keyDown',key,code:key,windowsVirtualKeyCode:code,...(key==='Enter'?{text:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key,code:key,windowsVirtualKeyCode:code});}
  for(const width of [320,390,430])for(const scale of [100,150,200])for(const motion of ['reduce','no-preference']){
-  await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
+  if(freshProfile)await freshProfile({width,scale,motion});
+  else{await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});}
   await ev('(()=>{if(document.querySelector(".study-speed-editor:not([hidden])"))document.querySelector("[data-study-speed-close]").click();const s=uiRegression.fresh();s.maxDepthEver=250;s.motes=100000;s.questDay=new Date().toISOString().slice(0,10);s.activeStudies=[{id:"guardmastery",slot:0,remainingSec:1e9,totalDurationSec:1e9,speedMult:1}];uiRegression.set(s);document.querySelector("[data-tab=research]").click();})()');
   await ev('document.documentElement.style.fontSize="'+scale+'%";Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');
   await touch('[data-study-speed-open="0"]');

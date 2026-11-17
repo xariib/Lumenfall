@@ -48,10 +48,10 @@ for(const id of ['arcanecal','conduction']){
 }
 const enhancements=['battletempering','arcanetempering','harvesttempering'];
 eq(q.defs().filter(n=>enhancements.includes(n.id)).map(n=>[n.id,n.unlockDepth,n.levelCap,n.endless,n.effectPerLevel,n.lumenBase,n.shardBase,n.lumenGrowth,n.shardGrowth]),[
- ['battletempering',100,undefined,true,.01,10000000,250000,1.1,1.1],
- ['arcanetempering',150,undefined,true,.01,25000000,625000,1.1,1.1],
- ['harvesttempering',200,undefined,true,.01,40000000,1000000,1.1,1.1]
-],'three explicitly specified continuing workshop enhancements');
+ ['battletempering',100,375,undefined,.01,10000000,250000,1.1,1.1],
+ ['arcanetempering',150,325,undefined,.01,25000000,625000,1.1,1.1],
+ ['harvesttempering',200,315,undefined,.01,40000000,1000000,1.1,1.1]
+],'three explicitly specified finite workshop enhancements');
 eq(q.defs().filter(n=>n.id!=='masterwork'&&!enhancements.includes(n.id)),expectedForge,'Forge definitions preserved except approved cap20 and finite cap250 values');
 eq(q.defs().filter(n=>n.id==='masterwork').length,1,'one new Masterwork track; no duplicate legacy entries');
 const controls=[];

@@ -1,11 +1,19 @@
 # Lumenfall — current delivery status
 
 17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) in progress.
-Remove hints, Farm left/Push right, opaque ring center and isolated enemy layer.
-Focused31 checks/four causal controls and navigation88 PASS; four paired8h
-replays preserve every saved field/reward. Full CI/Android acceptance pending.
-The first CI stopped on a pre-existing58-byte startup-budget excess; this status
-compaction preserves the full prior snapshot and keeps the32KiB gate unchanged.
+Remove hints, Farm left/Push right and correct arena/enemy layering. Previous
+source passed666 focused checks/five controls and signed Android133; newer
+main/PR59 is now retained and combined-source validation is required.
+[Full pre-feature status snapshot](PROJECT_STATE_2026-11-17_RIFT_BASELINE.md) is intact.
+The previously reported rapid-repeat economy finding remains open; no economy
+fix is introduced by this Rift presentation task.
+
+17 November: [Finite Forge](tasks/FORGE_YEARS_001.md) is under validation in
+[PR59](https://github.com/xariib/Lumenfall/pull/59). Candidate Tempering caps are
+375/325/315; Masterwork remains500 with attainable future prices. A mature
+reinvestment reference finishes in994productive days; this is a pacing model,
+not a fresh-account calendar guarantee. Local core, V8 and12-profile mobile
+checks pass. Integration, exact-head CI and Android delivery remain pending.
 
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
 the user instruction, "Never ask for permissions again for Lumenfall project."
@@ -46,38 +54,8 @@ scroll ranges and anonymous public APK/assets/feed verification pass.
 retries retained. Self-review only; physical-phone/exact WebView60/TalkBack/human
 acceptance remain open. This supersedes earlier presentation acceptance.
 
-14 November: [All improvements/PR53](tasks/ALL_UPDATES_RELEASE_20261114.md)
-released as [Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119),
-source `a3d125a5`. Includes PR50 Bond display
-cleanup plus the already accepted [simpler Lab](tasks/LAB_SIMPLE_001.md),
-[currency header](tasks/CURRENCY_HUD_001.md), [progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md),
-Rift themes and earlier progression/fixes. All 16 exact-source workflows, both full
-regressions and isolated offline jobs passed. Signed upgrade/updater retain both
-save slots and paid work; installed Bond/Deeds checks, retail Android 12 launch
-and anonymous public APK/assets/feed verification passed.
-[Evidence](qa/all-updates-release-20261114/README.md). Initial browser/retail
-inspection failures and unchanged passing retries are retained; causes unproven. Phone, exact
-WebView60 DOM, TalkBack and human acceptance remain open. Self-review only.
-
-14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) first shipped0.2.117;
-PR49/52 and PR50 are included in0.2.119. That APK retained Rift Bond names;
-the new correction above removes them.
-
-14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
-PR52; reopened by human correction: each series needs a live progress bar,
-retained cumulative total, existing next targets and increasing stage rewards.
-The correction is included through PR55/56 in Android 0.2.127. Combined
-CI/native/public evidence is linked above; physical/human acceptance remains open.
-
-14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
-at7f149b89. Human correction requires visible currency names; focused correction
-passes1,776 layout checks. Visible names are included through PR54/56 in
-Android 0.2.127; combined acceptance evidence is linked above. Phone review open.
-
-[Pre-fix17 November status snapshot](PROJECT_STATE_2026-11-17_HISTORY.md)
-preserves the full12 November theme/PR42/PR46/exploit delivery records, exact
-versions, first failures, receipts and limitations. The rapid-repeat economy
-finding in [PR42/PR46 review](tasks/PR42_PR46_REVIEW_20261112.md) remains open.
+[Earlier delivery entries with later corrections](PROJECT_STATE_2026-11-17_HISTORY.md)
+retain the complete 12–14 November receipts and acceptance limitations.
 
 [Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
 preserve all prior release versions, hashes, receipts, first failures and known

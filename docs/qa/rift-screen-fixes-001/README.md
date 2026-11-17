@@ -2,7 +2,7 @@
 
 Task: [RIFT_SCREEN_FIXES_001](../../tasks/RIFT_SCREEN_FIXES_001.md).
 Baseline mainb075cfba; [PR60](https://github.com/xariib/Lumenfall/pull/60).
-Status: final-source CI and signed Android rendering acceptance pending.
+Status: combined-source CI and signed Android rendering acceptance pending.
 Self-review and automation only; no independent review claimed.
 
 The three requested changes remove Rift hints, put Farm left/Push right, and
@@ -10,8 +10,13 @@ prevent landscape silhouettes from showing through the enemy arena. Original
 theme/species art, combat, prices, progression and saves are retained.
 
 Current HTML SHA256:
-42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad.
-Current candidate a8824283 has its own SVG field at z-1 inside isolated visuals,
+0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a.
+Newer main0adb60eb/PR59 was merged while retaining its complete finite Forge
+and Lab presented-surface/isolated-profile fixes. `combined-paired-replay.json`
+passes four8h windows against that newer main, comparing every saved field and
+reward and retaining all immutable endpoint hashes. Combined CI/Android must
+pass; all42ab/browser/Android133 receipts below are pre-merge historical.
+The Rift field remains at z-1 inside isolated visuals,
 legacy Comet Trail at auto/0, original ring at z1 and enemy at z2. Earlier
 e210529d receipts below are historical, before the paid Trail correction.
 The focused current-source check passed666 checks and five causal controls.
@@ -42,7 +47,7 @@ under44087287979 (PR) and44087341618 (prepared release validation).
 - `browser-timeout.json`: incomplete local expanded attempt; no PASS claimed.
 - `first-premerge-budget-failure.txt`: existing Forge/Lab startup32826 bytes,
   58 above the unchanged32KiB limit. Full prior status preserved byte-for-byte
-  in `docs/PROJECT_STATE_2026-11-17_HISTORY.md`; active index compacted.
+  in `docs/PROJECT_STATE_2026-11-17_RIFT_BASELINE.md`; active index compacted.
 - `android-first-candidate/`: signed0.2.131/build44064059604 passed functional
   identity/assets, save upgrade, actual updater and retail launch. Visual review
   then found the fresh retail ring absent; retain that failure. Upgraded app

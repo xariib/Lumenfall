@@ -3,6 +3,18 @@
 17 November 2026. Owner: this feature chat. Status: in progress; final full CI
 pending. Self-review and automated checks only. No independent review claimed.
 
+CURRENT COMBINED SOURCE:0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a.
+Merged newer main0adb60eb/PR59 without a product conflict. Finite Forge and
+Lab surface-synchronization/isolated-profile tests are retained exactly.
+Four paired8h replays against that newer main PASS every saved field/reward;
+only the combined HTML oracle binding changed, all original endpoints retained.
+The upstream canonical status-history file remains byte-identical; this task's
+complete b075 pre-feature snapshot is now`PROJECT_STATE_2026-11-17_RIFT_BASELINE.md`.
+All42ab/browser/Android133 evidence below is historical. Required combined-source
+CI and signed Android acceptance must pass before integration/publication.
+
+## Historical pre-merge checkpoint
+
 Current follow-up: fc7068706ee42d8426bc92abbc5ad46f69372556, with unchanged
 HTML42ab3e34. Early PR CI now PASS for corrected Wisp formula/Encyclopedia
 assertions and the666-check Rift matrix/five controls. Full PR44087287979 and

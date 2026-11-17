@@ -7,6 +7,10 @@ const {spawnSync}=require('node:child_process');
 const sourcePath=path.resolve(process.argv[2]||'index.html'),evidence=path.resolve(process.argv[3]||'forge-mobile-evidence');
 let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 function one(from,to){assert.equal(driver.split(from).length,2,'one Forge transport extension');driver=driver.replace(from,()=>to);}
+one('async function ev(expression){','var lastForgeExpression="";async function ev(expression){lastForgeExpression=expression;');
+one('result.error=e.stack;','result.error=e.stack;result.lastForgeExpression=lastForgeExpression;');
+one('let browser,session,','var forgePageLoads=0;let browser,session,');
+one('const m=JSON.parse(raw),p=pending.get(m.id);',"const m=JSON.parse(raw),p=pending.get(m.id);if(m.method==='Page.loadEventFired')forgePageLoads++;");
 // Keep native browser animation frames for post-input layout observations.
 // Only ambient gameplay intervals are paused by the existing transport.
 one('window.requestAnimationFrame=function(){return 0;};','');
@@ -56,9 +60,9 @@ const cases=String.raw`
    ['3 shared Resonate uses per run','4 shared Resonate uses per run','5 shared Resonate uses per run'],
    ['0 charge to each other powered Active per Resonate','2 charge to each other powered Active per Resonate','10 charge to each other powered Active per Resonate'],
    ['Restore up to 0 spent Resonate use(s) per boss kill','Restore up to 1 spent Resonate use(s) per boss kill','Restore up to 3 spent Resonate use(s) per boss kill'],
-   ['×1 passive Wisp damage and its tap component','×1.01 passive Wisp damage and its tap component','×4 passive Wisp damage and its tap component'],
-   ['×1 damaging abilities','×1.01 damaging abilities','×4 damaging abilities'],
-   ['×1 Lumen and Shard kill rewards','×1.01 Lumen and Shard kill rewards','×4 Lumen and Shard kill rewards']
+   ['×1 passive Wisp damage and its tap component','×1.01 passive Wisp damage and its tap component','×4.75 passive Wisp damage and its tap component'],
+   ['×1 damaging abilities','×1.01 damaging abilities','×4.25 damaging abilities'],
+   ['×1 Lumen and Shard kill rewards','×1.01 Lumen and Shard kill rewards','×4.15 Lumen and Shard kill rewards']
   ];
   const copy=x=>JSON.parse(JSON.stringify(x)),selector=(attr,id)=>'['+attr+'="'+id+'"]';
   async function install(s){
@@ -69,7 +73,7 @@ const cases=String.raw`
    var e=document.querySelector(sel);if(!e)throw Error('missing measured control '+sel);
    var r=e.getBoundingClientRect(),m=document.querySelector('main'),v=m.getBoundingClientRect(),nav=document.querySelector('nav.tabbar').getBoundingClientRect();
    var x=r.left+r.width/2,y=r.top+r.height/2,h=document.elementFromPoint(x,y),a=document.activeElement;
-   return {scrollTop:m.scrollTop,x:x,y:y,width:r.width,height:r.height,
+   return {scrollTop:m.scrollTop,maxScroll:Math.max(0,m.scrollHeight-m.clientHeight),x:x,y:y,width:r.width,height:r.height,
     visible:r.top>=Math.max(0,v.top)-.5&&r.bottom<=Math.min(v.bottom,nav.top,innerHeight)+.5&&r.left>=v.left-.5&&r.right<=v.right+.5,
     hit:!!h&&(h===e||e.contains(h)),focus:a&&{queue:a.dataset.queue,research:a.dataset.research,mult:a.dataset.mult},focusVisible:!!a&&a.matches(':focus-visible')};
   }.toString()+')('+JSON.stringify(sel)+')');}
@@ -192,8 +196,25 @@ const cases=String.raw`
   await frames();await pause(150);const capSettled=await measure(lastCard);ok(capSettled.visible,'settled continuing card visible');ok(await ev('document.activeElement===document.querySelector('+JSON.stringify(lastQueue)+')'),'settled continuing focus retained');
   ok(await ev('('+function(sel){const card=document.querySelector(sel);return card.dataset.state!=='maxed'&&!!card.querySelector('[data-research]')&&!!card.querySelector('[data-queue]')&&card.querySelector('[data-research]').disabled&&Array.from(card.querySelectorAll('[data-price-currency]')).filter(e=>e.style.color==='var(--danger)').length===2&&card.querySelector('[data-forge-preview]').textContent.startsWith('Current: ')&&/Next:/.test(card.textContent);}.toString()+')('+JSON.stringify(lastCard)+')'),'continuing card retains next effect and two red prices');
   await shot('forge-last-continuing-'+width+'-'+scale+'-'+motion);await fit('last continuing');
+  for(const [finiteId,ceiling]of [['battletempering',375],['arcanetempering',325],['harvesttempering',315]]){
+   const near=copy(paid);near.research[finiteId]=ceiling-1;near.savedLabMultiplier=1;
+   const price=await ev('prismQa.forgeCost('+JSON.stringify(finiteId)+','+(ceiling-1)+',1)');near.lumen=price.lumen;near.shards=price.shard;
+   await install(near);const finiteBefore=await prepare(selector('data-research',finiteId),true);await key('Enter','Enter',13);await frames();
+   const state=await ev('prismQa.get()');ok(state.research[finiteId]===ceiling&&state.lumen===0&&state.shards===0,'real final finite purchase '+finiteId);
+   const sel=selector('data-forge-card',finiteId),card=await measure(sel);
+   ok(Math.abs(card.scrollTop-Math.min(finiteBefore.scrollTop,card.maxScroll))<=1,'final cap preserves scroll within the remaining document range '+finiteId);
+   ok(await ev('document.activeElement===document.querySelector('+JSON.stringify(sel)+')'),'final cap retains same-upgrade keyboard focus '+finiteId);
+   ok(await ev('('+function(sel,ceiling){const c=document.querySelector(sel);return c.dataset.state==='maxed'&&c.textContent.includes(' / '+ceiling)&&c.textContent.includes('Current:')&&!c.querySelector('[data-research]')&&!c.querySelector('[data-queue]')&&!c.textContent.includes('Next:');}.toString()+')('+JSON.stringify(sel)+','+ceiling+')'),'finite maxed card exposes paid bonus and no purchase '+finiteId);
+   await fit('finite cap '+finiteId);await shot('finite-cap-'+finiteId+'-'+width+'-'+scale+'-'+motion);
+   near.research[finiteId]=10000;await install(near);
+   ok(await ev('document.querySelector('+JSON.stringify(sel)+').textContent.includes("×101")'),'historical overcap bonus stays visible '+finiteId);
+  }
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.code==='Space'||e.trusted&&e.key===' '),'trusted touch and keyboard evidence');
-  await ev('prismQa.forgeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready();await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('forge')");
+  await ev('prismQa.forgeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');
+  const previousLoads=forgePageLoads;await send('Page.reload');const loadDeadline=Date.now()+10000;
+  while(forgePageLoads===previousLoads&&Date.now()<loadDeadline)await pause(30);
+  ok(forgePageLoads>previousLoads,'cold reload completes its own document navigation');
+  await ready();await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('forge')");
   const cold=await ev('prismQa.get()');for(const field of ['research','researchQueue','nodes','longStudyLevels','activeStudies','owned','cometClaims','autoAscendEnabled','autoAscendTargetDepth','sigilResonanceUses'])ok(JSON.stringify(cold[field])===JSON.stringify(committed[field]),'actual reload preserves paid '+field);
   ok(added.every(id=>cold.research[id]>0),'reload retains all sixteen genuinely purchased additions');
   const ax=await send('Accessibility.getFullAXTree');ok(ax.nodes.some(n=>!n.ignored&&n.name&&/Harvest Tempering/.test(n.name.value)),'last added Forge exposed in accessibility tree');
