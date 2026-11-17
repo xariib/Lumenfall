@@ -25,3 +25,7 @@ PR62 first CI failures and corrections: see ci-first-failure-disposition.json. F
 Farm CI literal-wallet failure: farm-ci-disposition.json retains exact values and independent14400 one-second reference. All four chunk endpoints now match bit-for-bit;14780 checks and unchanged native-only recap control PASS. Lab/Wisp startup failures had0 assertions (Browser.getVersion deadline); first logs and unchanged passing retry logs are retained. No timeout/tolerance/product changes.
 
 Clock witness correction: clock-ci-disposition.json. Captured old inputs now also pin the verified130 recast, while current clock implementation/mutations stay tested. Activation444 and all14 unchanged controls PASS; first13/14 failure retained. Ordinary13s split/cold retired-policy stress helpers each1102 PASS; current manual game remains independently tested by30466 actual-source partition checks.
+
+## Rift-combined candidate
+
+Sourceb2228100 retains main12122b80 (finite Forge and Rift presentation). Four independent8h one-second full-state hashes/kills remain identical; actual V8 Forge2530 PASS on the exact combined HTML. Priorb955/3a results are historical. Original task/checkpoints are preserved in pre-rift-merge-task.md and exact gzip. New PR/integrated/native/public acceptance remains pending.

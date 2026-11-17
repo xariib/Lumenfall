@@ -5,7 +5,9 @@ window.riftStatusSeed=function(b,ctx){
   s.lumen=0;s.shards=0;return s;
 };
 window.riftGuidanceLineCheck=function(assert,phase){
-  var el=document.querySelector('#rift-objective'),style=getComputedStyle(el,'::after');
+  var el=document.querySelector('#rift-objective');
+  if(!el){assert(!document.querySelector('#rift-guidance-slot,#rift-hints-toggle,#rift-guidance-toggle,#rift-hint-overlay'),'retired hints and Settings controls stay absent: '+phase);return {phase,removed:true};}
+  var style=getComputedStyle(el,'::after');
   var diagnostic={phase,kind:el.querySelector('.objective-kind').textContent,
     hidden:document.querySelector('#rift-objective-row').hidden,content:style.content,
     width:style.width,height:style.height,background:style.backgroundImage,
@@ -69,37 +71,14 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   var undo=negative&&negative!=='buff'?b.riftStatus.mutate(negative):null;
   try{
     ok(!q('#rift-study-status,.rift-study-btn'),'Rift Study DOM/control removed entirely');
-    var guidance=q('#rift-objective-row'),dismiss=q('#rift-hints-toggle'),guidanceToggle=q('#rift-guidance-toggle'),guidanceKey='lumenfall_rift_guidance_hidden_v1';
-    ok(guidance&&guidance.contains(q('#rift-objective'))&&q('#rift-guidance-slot').contains(dismiss),'guidance and its persistent toggle share the reserved slot');
-    ok(!guidance.hidden&&guidanceToggle.getAttribute('aria-pressed')==='true','Rift guidance is shown by default and Settings reports shown');
-    ok(dismiss.tagName==='BUTTON'&&dismiss.textContent==='Hide hints'&&dismiss.getAttribute('aria-expanded')==='true','guidance toggle is a named native button');
+    var guidanceLines=[window.riftGuidanceLineCheck(ok,'render')];
     var guidanceState=b.getState(),guidanceSave=b.rawSave();
-    dismiss.focus({preventScroll:true});dismiss.click();
-    ok(guidance.hidden&&guidanceToggle.getAttribute('aria-pressed')==='false'&&localStorage.getItem(guidanceKey)==='1','dismiss hides guidance and stores only the device preference');
-    ok(document.activeElement===dismiss&&dismiss.textContent==='Show hints','hiding hints keeps focus on the persistent toggle');
-    guidance.focus();q('#rift-objective').focus();
-    ok(document.activeElement===dismiss&&!guidance.getClientRects().length&&!q('#rift-objective').getClientRects().length,'hidden hints cannot receive focus or expose controls');
-    q('#settings-btn').click();guidanceToggle.focus();guidanceToggle.click();
-    ok(!guidance.hidden&&guidanceToggle.getAttribute('aria-pressed')==='true'&&localStorage.getItem(guidanceKey)===null,'Settings restores guidance and clears the hidden preference');
-    ok(document.activeElement===guidanceToggle,'restoring guidance leaves focus on the Settings toggle');
-    q('#settings-close').click();
-    var priorFocus=document.activeElement;dismiss.click();
-    ok(document.activeElement===priorFocus,'programmatic dismissal outside guidance does not steal focus');
-    q('#settings-btn').click();guidanceToggle.click();q('#settings-close').click();
-    same(b.getState(),guidanceState,'guidance hide and restore never alter game state');
-    ok(b.rawSave()===guidanceSave,'guidance preference never rewrites the canonical game save');
-    var guidanceLines=[];
     window.riftGuidanceFixtures(b,ctx).forEach(function(fixture){
-      install(fixture.state);
-      ok(q('#rift-objective .objective-kind').textContent===fixture.kind,'guidance fixture renders '+fixture.name);
-      function check(phase){guidanceLines.push(window.riftGuidanceLineCheck(ok,fixture.name+' / '+phase));}
-      check('render');b.riftStatus.update();check('fast rerender');
-      dismiss.click();check('hidden');b.renderLayout();check('hidden rerender');
-      q('#settings-btn').click();guidanceToggle.click();q('#settings-close').click();
-      ok(!guidance.hidden,'Settings restores '+fixture.name+' guidance');
-      check('restored');b.riftStatus.update();check('restored rerender');
+      install(fixture.state);guidanceLines.push(window.riftGuidanceLineCheck(ok,fixture.name));
+      b.riftStatus.update();guidanceLines.push(window.riftGuidanceLineCheck(ok,fixture.name+' refresh'));
     });
-    install(guidanceState);
+    install(guidanceState);same(b.getState(),guidanceState,'absent hints preserve game state');
+    ok(b.rawSave()===guidanceSave,'Rift rendering preserves saved bytes');
     [1,15,40,60,90].forEach(depth=>{
       var s=seed();s.maxDepthEver=depth;s.depth=depth;s.enemyDepth=depth;s.enemyMaxHp=b.enemyHpFor(depth);s.enemyHp=s.enemyMaxHp;install(s);
       var slots=b.riftStatus.slots(),projects=b.riftStatus.projects().filter(x=>x.unlock<=depth);
@@ -405,15 +384,9 @@ window.riftStatusMobile=(()=>{
   var m=q('main'),mr=rect(m),nav=rect(q('nav.tabbar')),enemy=rect(q('#enemy-stage'));
   ok(m.scrollTop===0&&m.scrollHeight<=m.clientHeight+1&&scrollY===0,'Rift remains scroll-free without clipped content');
   ok(enemy.height>=120,'Guardian Tap >=120');
-  var boxes={},guidance=q('#rift-objective-row'),visibleSelectors=['#enemy-stage','#hp-text','#buff-indicator','#rift-push-btn','#rift-farm-btn'];if(legacyReadout===true)visibleSelectors.push('#bond-summary');
-  var slot=rect(q('#rift-guidance-slot')),hud=rect(q('.hud'));
-  ok(slot.top>=hud.bottom&&slot.bottom<=mr.top,'guidance occupies its reserved slot directly under currencies');
-  ['#rift-guidance-slot','#rift-hints-toggle'].forEach(selector=>{
-   var el=q(selector),r=rect(el);ok(r.left>=0&&r.right<=innerWidth&&r.bottom<=mr.top,selector+' visible above Rift');
-   ok(el.contains(document.elementFromPoint(r.x+r.width/2,r.y+Math.min(r.height/2,22))),selector+' hit-test');
-   if(el.tagName==='BUTTON')ok(r.width>=44&&r.height>=44,selector+' touch minimum');
-   boxes[selector]={x:r.x,y:r.y,width:r.width,height:r.height};
-  });
+  var boxes={},visibleSelectors=['#enemy-stage','#hp-text','#buff-indicator','#rift-push-btn','#rift-farm-btn'];if(legacyReadout===true)visibleSelectors.push('#bond-summary');
+  ok(!q('#rift-guidance-slot,#rift-hints-toggle,#rift-guidance-toggle'),'no Rift hint bar or toggle');
+  ok(rect(q('#rift-farm-btn')).left<rect(q('#rift-push-btn')).left,'Farm left, Push right');
   visibleSelectors.forEach(s=>{
    var el=q(s),r=rect(el);ok(r.top>=mr.top&&r.bottom<=nav.top&&r.left>=mr.left&&r.right<=mr.right,s+' fully visible');ok(el.scrollWidth<=el.clientWidth&&el.scrollHeight<=el.clientHeight+1,s+' text/content unclipped '+JSON.stringify({scroll:[el.scrollWidth,el.scrollHeight],client:[el.clientWidth,el.clientHeight],children:Array.from(el.children).map(e=>({className:e.className,box:{x:rect(e).x,y:rect(e).y,width:rect(e).width,height:rect(e).height}}))}));
    if(el.tagName==='BUTTON'){ok(r.width>=44&&r.height>=44,s+' touch minimum');ok(el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)),s+' hit-test');}
@@ -436,9 +409,6 @@ window.riftStatusMobile=(()=>{
     var surface=getComputedStyle(el);ok(surface.backgroundImage!=='none'||surface.backgroundColor!=='rgba(0, 0, 0, 0)','stat boxes retain painted surfaces over the scenic background');
    }
   });
-  if(!guidance.hidden){
-   ok(rect(guidance).left>=rect(q('#rift-hints-toggle')).right&&rect(guidance).bottom<=slot.bottom,'hint scroll area stays beside its toggle within the slot');
-  }else ok(!guidance.getClientRects().length&&!q('#rift-objective').getClientRects().length,'hidden hints expose no rendered controls');
   ok(hp.bottom<=buff.top&&(legacyReadout===true?buff.bottom<=bonds.top&&bonds.bottom<=stats.top:buff.bottom<=stats.top)&&stats.bottom<=nav.top,'HP, status, bottom numeric row and nav do not overlap');
   var tabs=[...document.querySelectorAll('nav.tabbar button')];ok(tabs.length===5,'five main tabs');tabs.forEach((el,i)=>{var r=rect(el);ok(r.width>=44&&r.height>=44,'tab touch minimum');ok(el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)),'tab hit-test');if(i)ok(rect(tabs[i-1]).right<=r.left,'one non-overlapping nav row');});
   var active=b.riftStatus.active();ok(active.every(x=>q('#bond-summary').textContent.includes(x.name.replace(' Bond',''))),'active Bond metadata matches authoritative Formation');

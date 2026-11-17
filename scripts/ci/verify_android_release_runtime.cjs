@@ -43,6 +43,9 @@ async function main(){
   }
   fs.writeFileSync('release-evidence/production-normal-launch.xml',ui);
   fs.writeFileSync('release-evidence/production-normal-launch.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{maxBuffer:16*1024*1024,timeout:30000}));
+  // Retain a second real frame for visual review of the fresh-launch ring.
+  await new Promise(resolve=>setTimeout(resolve,2000));
+  fs.writeFileSync('release-evidence/production-normal-launch-settled.png',cp.execFileSync('adb',['exec-out','screencap','-p'],{maxBuffer:16*1024*1024,timeout:30000}));
   assert(visibleGame,'Normal launch must reach visible game controls beyond the loading cover/intro');
   adb('shell','rm','-f','/data/local/tmp/lumenfall-live-ui.jar');
   const pid=adb('shell','pidof',pkg).trim();assert(/^\d+$/.test(pid),'Normal production process stays running');
