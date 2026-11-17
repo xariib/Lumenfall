@@ -68,7 +68,7 @@ window.runAutoTargetPersistence=function(b,ctx,assert,phase,nextPhase,finish){
     } else localStorage.setItem(key,JSON.stringify(saved));
     nextPhase(1);
     if(ctx.scenario.endsWith('backup-restore')){
-      var different=copy(saved);different.autoAscendEnabled=false;different.autoAscendTargetDepth=16;different.owned.autoascend=false;
+      var different=copy(saved);different.autoAscendEnabled=false;different.autoAscendTargetDepth=16;different.owned.autoascend=false;different.autoAscendRefund={policy:'autoascend-retired-v1',total:0,paid:true};
       b.setState(different);b.restoreBackup('LUMENFALL1:'+encodeURIComponent(JSON.stringify(saved)));return;
     }
     if(ctx.scenario.endsWith('reset')){b.reset();return;}

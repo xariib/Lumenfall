@@ -29,8 +29,9 @@ async function run(){
   const observation=await evaluate(`(async()=>{
    const b=window.__lumenfallQaBridge;let card=document.querySelector('[data-offline-policy]');card.scrollIntoView({block:'center'});
    const measure=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {text:e.textContent,w:r.width,h:r.height,left:r.left,right:r.right,font:s.fontSize,color:s.color,bg:s.backgroundColor};};
-   const before=JSON.stringify(b.getState());document.querySelector('[data-shop=astralcore]').focus({preventScroll:true});const focused=document.activeElement;
-   b.upgradeClarity.render();const focusKept=document.activeElement.isConnected&&document.activeElement.dataset.shop===focused.dataset.shop;
+   const before=JSON.stringify(b.getState());document.querySelector('[data-comet-card=astralcore]').focus({preventScroll:true});const focused=document.activeElement;
+   if(focused.dataset.cometCard!=='astralcore')throw Error('Actual remaining investment card receives keyboard focus');
+   b.upgradeClarity.render();const focusKept=document.activeElement.isConnected&&document.activeElement.dataset.cometCard==='astralcore';
    await new Promise(resolve=>setTimeout(resolve,450));card=document.querySelector('[data-offline-policy]');card.scrollIntoView({block:'center'});
    return {width:innerWidth,card:measure(card),lines:Array.from(card.querySelectorAll('.name,.desc')).map(measure),overflow:card.scrollWidth-card.clientWidth,
     controls:Array.from(document.querySelectorAll('#shop-list button')).map(measure),retiredAbsent:!document.querySelector('[data-shop=offline24],[data-shop=offline48],[data-node=reserves]'),

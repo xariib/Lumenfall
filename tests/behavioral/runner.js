@@ -696,8 +696,9 @@
           assert(s.heroRarity.void===5 && s.heroRarity.titan===3,'existing high Rarity progression must not be reduced by future pacing');
           assert(s.wispModules.ember===20 && s.wispModules.void===20 && s.wispModules.titan===9,'existing Module progression must not be reduced by future costs');
           assert(s.research.focus===24 && s.longStudyLevels.wispascend===9,'mature Lab progression must load intact');
-          assert(s.owned.autoascend===true && s.autoAscendEnabled===true,'mature automation flags must load intact');
-          assert(s.comets===1150 && s.sigils===210,'mature Comets include the one-time 300 refund; Sigils stay intact');
+          assert(s.owned.autoascend===true && s.autoAscendEnabled===false,'mature ownership survives with retired automation disabled');
+          assert(s.autoAscendRefund.total===100 && s.autoAscendRefund.paid===true,'mature owner receives validated retirement receipt');
+          assert(s.comets===1250 && s.sigils===210,'mature Comets include 300 offline and 100 retirement refunds; Sigils stay intact');
           assert(s.owned.autoascend && s.legacyCometPurchases.offline24 && s.legacyCometPurchases.offline48 && s.legacyCometPurchases.rememberbulk,'existing Auto-Ascend and archived Rest Stop entitlements must remain owned');
           assert(s.sigilResonanceUses===0 && s.dailyQuestRefreshes===0,'older schema-v1 saves must safely default new utility counters to zero');
           assert(s.ascendRewardedDepth===0,'existing schema-v1 saves without a benchmark must safely default to 0');
@@ -715,7 +716,8 @@
           assert(['cauterize','fracturekey','guardianseal','spillway','sustainedchannel','tapconduit','guardiancadence','relay','resonantedge','victorycharge','amplifiertrim','dualchannel','overflowconduit','resonancecells','resonancecascade','resonancereclaim'].every(function(id){return s.research[id]===0&&s.researchQueue[id]===false;}),'legacy save keeps all sixteen Forge expansion levels zero and queues OFF');
           assert(['wispascend','guardmastery','riftattune','shardstudy','lumenstudy','formationstudy','motestudy','prismstudy'].every(function(id){ return s.studyQueue[id]===true; }),'legacy autostudy preserves eight original ON choices');
           assert(s.studyQueue.measuredinquiry===false,'legacy autostudy must not activate Measured Inquiry');
-          assert(s.autoAscendEnabled===true && s.autoAscendTargetDepth>=22,'legacy auto-ascend ownership must migrate to enabled target');
+          assert(s.autoAscendEnabled===false && s.autoAscendTargetDepth>=22,'legacy target survives with retired automation disabled');
+          assert(s.autoAscendRefund.total===100 && s.autoAscendRefund.paid===true,'legacy owner retirement refund is receipted');
           assert(!Object.prototype.hasOwnProperty.call(s.owned,'autostudy'),'legacy owned.autostudy must be removed');
           assert(s.schemaVersion===6,'legacy save must migrate to current schema');
           assert(JSON.parse(bridge.rawSave()).schemaVersion===6,'migrated legacy save must round-trip as current schema');
@@ -810,7 +812,8 @@
 
         case 'auto-ascend-load':
           assert(s.owned.autoascend===true,'Auto-Ascend unlock must load');
-          assert(s.autoAscendEnabled===true,'Auto-Ascend enabled flag must load');
+          assert(s.autoAscendEnabled===false,'retired Auto-Ascend enabled flag is disabled');
+          assert(s.autoAscendRefund.total===100 && s.autoAscendRefund.paid===true,'retired owner refund is receipted');
           assert(s.autoAscendTargetDepth===30,'Auto-Ascend target must load');
           assert(s.depth===22,'fixture must stay below Auto-Ascend target during load test');
           finish('pass',{depth:s.depth,target:s.autoAscendTargetDepth});
@@ -1628,12 +1631,12 @@
           assert(galeReward.formationRewardMult===1.25,'Dawnpriest must apply +25% Formation reward multiplier');
           parityApprox(
             galeReward.abilityReward.shards,
-            Math.round(galeReward.wispPower*0.05*1.5*1.25),
+            Math.round(130*10*1.09*1.5*0.05*1.5*1.25),
             'Gale Module/Dawnpriest Shard ability reward'
           );
           parityApprox(
             thornReward.abilityReward.lumen,
-            Math.round(thornReward.wispPower*0.10*1.5*1.25*1.20),
+            Math.round(680*10*1.09*1.5*0.10*1.5*1.25*1.20),
             'Thorn Module/Dawnpriest Lumen ability reward'
           );
 
@@ -1648,12 +1651,12 @@
           var rewardUltThorn = formulaSnapshotFor(rewardUltState,'thorn',100,1);
           parityApprox(
             rewardUltGale.abilityReward.shards,
-            Math.round(rewardUltGale.wispPower*0.05*1.5*2*1.25),
+            Math.round(130*40*1.39*9*0.05*1.5*2*1.25),
             'Gale Ultimate must double Shard ability output'
           );
           parityApprox(
             rewardUltThorn.abilityReward.lumen,
-            Math.round(rewardUltThorn.wispPower*0.10*1.5*2*1.25*1.20),
+            Math.round(680*40*1.39*9*0.10*1.5*2*1.25*1.20),
             'Thorn Ultimate must double Lumen ability output'
           );
 
@@ -2305,7 +2308,7 @@
             e.enemyDepth=1;e.enemyHp=1;e.enemyMaxHp=1;e.enemyIsLuminous=false;
             e.sigils=1000000;e.comets=1000000;e.sigilResonanceUses=0;e.dailyQuestRefreshes=0;
             e.owned={autoascend:true,meteor:false,starcall:false,offline24:true,offline48:true,rememberbulk:true};
-            e.autoAscendEnabled=false;
+            e.autoAscendEnabled=false;delete e.autoAscendRefund;
             e.activeParty=['ember','tide','stone','gale','thorn'];
             ids.forEach(function(id){
               e.spirits[id]=1;

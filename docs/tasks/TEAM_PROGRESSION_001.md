@@ -91,8 +91,11 @@ utility currency curve; matching passive DPS and separate base/Support/ability
 readouts; manual higher-record resets and once-only100-Comet owner refund.
 Supplied save fixture preserves balances, work, boosts, roster, levels, history
 and recovery;20 Comets becomes120 once. No real player save/app was modified.
-Current supplied shares are Ember44%,Stone31%,Tide15%,Gale10%; equal developed
-Titan below20%. These are explicit tested configurations, not universal share caps.
+Current supplied shares are Ember44%,Stone31%,Tide15%,Gale10%. Equal development
+gives Titan about25% in a legal five-member party and20% with six. The earlier
+below20% figure compares all eight owned Wisps. These are explicit tested
+configurations, not universal share caps. Actual future recruitment/fielding
+also leaves the new Titan below1% of the supplied developed roster's damage.
 
 Sourcea4dc5c83 atae14bfd7 passed remote Forge,Tree,Lab (both jobs),Comet,
 permanent progression,Wisp scroll (Linux/Windows),shared UI and isolated offline.
@@ -135,3 +138,5 @@ integrate serially and rerun integrated gates. Then build/publish established si
 Android APK; verify save upgrade/updater/retail and anonymous public assets/feed.
 Phone, exact WebView60 DOM,TalkBack and human pacing are unobserved; retain that
 limitation and keep owner chat open. No archive/completion claim before delivery.
+
+Current continuation: source remains081f82c0. Legal-party feature coverage now1,228/seven controls; funded Workshop clarity1,264/36 profiles and offline-policy UI PASS. Latest specialist gates all pass; premerge stopped on now-fixed funded Astral card. Browser save/control/formation tests now explicitly assert retirement/refunds and manual boundary resets. Local positive bodies with failed teardown remain failures. Next push this coherent checkpoint and obtain complete Linux CI before merging.

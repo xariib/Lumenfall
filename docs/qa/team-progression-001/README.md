@@ -45,6 +45,17 @@ and Comet retries hit Page.navigate/teardown deadlines under concurrent work;
 their causes remain unproven. Earlier Comet assertions also required the new
 once-only100-Comet retirement and three-Astral catalog expectations.
 
+Legal-party clarification: the early below20% Titan result was an eight-Wisp
+roster Power comparison. `legal-parties-active.json` additionally validates
+actual five/six-member formations and exact passive-DPS sums at levels100–9999:
+Titan is about24.8%/20.2% at100, within30%/25% at every tested level. A real paid
+future recruit is actually active and has a positive share below1% in the supplied
+developed roster. Its fixture advances the required research explicitly; this
+is not an organic future-play forecast. The first `legal-parties.json` attempt
+accidentally benched the auto-fielded recruit, so that zero-share observation
+did not prove the active-unlock case; the active rerun corrects it. All source
+values, paid prices and history remain unchanged.
+
 ## Checkpoint history through ae14bfd7
 
 17 November checkpoint: current draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
@@ -124,3 +135,5 @@ unmodified shared damage and actual Farm throughput have mandatory coverage.
 Next concrete action: finish full-run findings, rerun changed scenarios and
 original layout gate, push coherent test/evidence checkpoint, obtain all required
 PR and integrated-main gates, then signed Android/native/public delivery.
+
+17 November continuation at source081f82c0: remote Shared, Tree and Forge also PASS (hash-bound logs retained). Legal five/six-member and actual paid Titan recruitment:1,228 checks/seven controls. Workshop clarity funded record250:1,264 checks/36 profiles. Offline-policy native UI PASS with actual focused remaining card and exact wallets. Remaining browser diagnostic finds old automatic-reset/retired-catalog expectations; changed tests retain manual new-record, exact timers, paid actions, recovery and causal controls. Local browser graceful-close failures remain failures even when assertion bodies pass.

@@ -52,7 +52,7 @@ window.runFormationAutosaveQa = function(b,ctx,assert){
   s=get();s.lumen=t.cost('tide');b.setState(s);before=get();t.buy('tide');
   ok(before.lumen-get().lumen===60 && get().spirits.tide===1,'existing Tide recruitment price paid');
   same(get().formationPresets,desired,'partial paid rebuild never autosaves projection');same(get().activeParty,['tide','ember'],'partial projection follows saved order');saved('Rebuild Recruit');
-  s=get();s.depth=s.enemyDepth=101;b.setState(s);b.ascendManual();same(get().formationPresets,desired,'repeated Ascend retains edits');same(get().formationRebuild.members,desired.boss,'repeated Ascend retains all pending');
+  s=get();s.depth=s.enemyDepth=s.maxDepthEver=102;b.setState(s);b.ascendManual();same(get().formationPresets,desired,'new-record Ascend retains edits');same(get().formationRebuild.members,desired.boss,'new-record Ascend retains all pending');
   s=get();s.empowerQueue.ember=false;s.lumen=1e9;b.setState(s);ok(t.tick(),'queued reconstruction purchases');same(get().formationPresets,desired,'queued purchase does not replace desired preset');
   b.applyFormationPreset('push');same(get().formationPresets,desired,'switch during rebuild isolates both presets');
   b.applyFormationPreset('boss');same(get().formationRebuild.members,desired.boss,'switch back restores pending intent');

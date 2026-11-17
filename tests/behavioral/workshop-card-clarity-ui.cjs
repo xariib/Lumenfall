@@ -35,7 +35,7 @@ module.exports=async function({send,ev,pause,check,records}){
   check(await ev(waitingSlot+'.textContent.includes("Queued for next level")&&document.querySelector("[data-study-queue=guardmastery]")'),'waiting research stays visible with Queue OFF available');
   await touch('[data-study-queue=guardmastery]');
   check(await ev('!uiRegression.get().studyQueue.guardmastery&&uiRegression.get().studySlotProjects[1]===null&&'+waitingSlot+'.textContent.includes("Choose research")&&uiRegression.get().lumen===0&&uiRegression.get().shards===0'),'native Queue OFF clears waiting intent without spending');
-  const comet=require('./auto-ascend-challenges.cjs').qualify(seed());comet.schemaVersion=5;comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
+  const comet=require('./auto-ascend-challenges.cjs').qualify(seed());comet.maxDepthEver=250;comet.schemaVersion=5;comet.owned.meteor=true;comet.owned.starcall=true;comet.cometCharges=1;await ev('uiRegression.set('+JSON.stringify(comet)+');document.querySelector("[data-tab=battle]").click()');
   check(await ev('!document.querySelector("#tab-battle #comet-commands")&&!document.querySelector("main").classList.contains("comet-command-scroll")&&getComputedStyle(document.querySelector("main")).overflowY!=="auto"'),'Comet ownership cannot make Rift scroll');
   await ev('document.querySelector("[data-tab=deeds]").click()');check(await ev('document.querySelector("#tab-deeds #comet-commands")&&document.getElementById("comet-commands").hidden&&!document.querySelector("[data-comet-command]")'),'retired commands have no player UI');
   check(await ev('clarityQA.deeds().length===76&&document.querySelectorAll("[data-deed-series]").length===17'),'all76 historical identities remain in17 advancing Deed cards');
@@ -46,7 +46,7 @@ module.exports=async function({send,ev,pause,check,records}){
    if(!(await ev('!!document.querySelector('+JSON.stringify(summary)+')'))){
     const selector=id==='tree-bonds'?'[data-tree-node="bonds"]':id==='forge-arcanecal'?'[data-forge-card="arcanecal"]':'[data-comet-card="astralcore"]';
     check(await ev('document.querySelector('+JSON.stringify(selector)+').textContent.trim().length>0'),'direct current effects replace redundant disclosure '+id);
-    const button=selector+' button';await ev('document.querySelector('+JSON.stringify(button)+').focus({preventScroll:true})');
+    const button=selector+' button';check(await ev('!document.querySelector('+JSON.stringify(button)+').disabled'),'funded direct action is available '+id);await ev('document.querySelector('+JSON.stringify(button)+').focus({preventScroll:true})');
     const before=await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})');await ev('clarityQA.render();clarityQA.render()');
     check(await ev('document.activeElement===document.querySelector('+JSON.stringify(button)+')'),'direct action focus survives refresh '+id);
     check(await ev('JSON.stringify({state:uiRegression.get(),saves:uiRegression.saves()})')===before,'direct readout refresh preserves both saves '+id);continue;

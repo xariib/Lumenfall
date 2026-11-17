@@ -13,6 +13,7 @@ function world(html){
    auto:checkAutoAscend,toggle:toggleAutoAscend,target:setAutoAscendClearedTarget,
    automatic:function(){return doAscend(true);},autoReady:autoAscendReady,
    rawEnable:function(){state.autoAscendEnabled=true;},idle:idleDps,
+   field:toggleActive,
    globals:passiveGlobalPowerMult,normalize:normalizeCurrentSave
  };`+marker));
  w.t=w.q.endless;return w;
@@ -68,7 +69,7 @@ function verify(html){
  }
  // Independent shared-growth oracle and useful marginal Empower for all roles.
  const weights={ember:1,tide:.8,stone:1.1,gale:.9,thorn:.9,void:1.15,aurora:.9,titan:1.25};
- const rarity=[1,1.5,2.25,3.5,5.5,9],shares=[];
+ const rarity=[1,1.5,2.25,3.5,5.5,9],shares=[],legalPartyShares=[];
  for(const level of [1,25,70,71,100,200,300,1000,9999]){
   const s=q.fresh();s.maxDepthEver=1000;s.depth=s.enemyDepth=101;s.enemyHp=s.enemyMaxHp=1e100;s.nodes.formationseat=1;s.activeParty=Object.keys(weights).slice(0,6);
   for(const id of Object.keys(weights)){s.spirits[id]=level;s.heroRarity[id]=3;}
@@ -79,7 +80,19 @@ function verify(html){
    if(id==='gale'||id==='thorn')near(q.resourcePower(id),q.sp(id).basePower*level*(1+.01*(level-1))*rarity[3],'independent original utility-resource curve '+id+'/'+level);
   }
   if(level>=100){for(const id of ['tide','gale','aurora'])ok(powers[id]/total>.08,'Support and utility retain material direct damage '+id+'/'+level);ok(powers.titan/total<.2,'Titan cannot dominate equal development');shares.push({level,shares:Object.fromEntries(Object.keys(powers).map(id=>[id,powers[id]/total]))});}
+  if(level>=100)for(const ids of [['ember','tide','stone','gale','titan'],['ember','tide','stone','gale','void','titan']]){
+   const team=clone(q.get());team.nodes.formationseat=ids.length===6?1:0;team.activeParty=ids;q.set(team);eq(q.get().activeParty,ids,'actual legal formation capacity '+ids.length);
+   const sum=ids.reduce((n,id)=>n+q.chip(id),0),titanShare=q.chip('titan')/sum;near(sum,t.idle(),'legal formation DPS equals actual passive combat');
+   ok(titanShare<(ids.length===5?.3:.25),'Titan cannot take over an equally developed legal party '+ids.length+'/'+level);
+   for(const id of ['tide','gale'])ok(q.chip(id)/sum>.1,'Support/utility remain material in legal party '+id+'/'+ids.length+'/'+level);
+   legalPartyShares.push({level,members:ids,titanShare});
+  }
  }
+ const recruitWorld=world(html),future=clone(user);future.longStudyLevels.wispascend=47;future.activeStudies=[];future.pausedStudies=[];for(const id of Object.keys(future.studyQueue))future.studyQueue[id]=false;
+ recruitWorld.q.set(future);const recruitmentBefore=clone(recruitWorld.q.get()),recruitPrice=recruitWorld.q.empowerCost('titan');
+ ok(recruitWorld.q.empower('titan'),'actual future Titan recruitment pays its original quote');eq(recruitWorld.q.get().lumen,recruitmentBefore.lumen-recruitPrice,'future recruitment debits Lumen exactly');if(!recruitWorld.q.get().activeParty.includes('titan'))ok(recruitWorld.t.field('titan'),'new recruit fields through actual handler');ok(recruitWorld.q.get().activeParty.includes('titan'),'new recruit is actually active');
+ const recruitedTotal=recruitWorld.q.get().activeParty.reduce((n,id)=>n+recruitWorld.q.chip(id),0),recruitShare=recruitWorld.q.chip('titan')/recruitedTotal;
+ ok(recruitShare>0&&recruitShare<.01,'active new Titan cannot take over the supplied developed roster');for(const id of user.activeParty)eq(recruitWorld.q.get().spirits[id],user.spirits[id],'recruitment preserves developed investment '+id);
  q.set(user);q.get().supportBuffs=null;const rows=user.activeParty.map(id=>({id,power:q.power(id),dps:q.chip(id)}));
  const total=rows.reduce((n,row)=>n+row.dps,0);near(total,t.idle(),'individual displayed DPS adds to actual passive combat');
  ok(rows.find(n=>n.id==='ember').power>Math.max(...rows.filter(n=>n.id!=='ember').map(n=>n.power)),'user Ember remains strongest');
@@ -116,7 +129,7 @@ function verify(html){
  const quoted=q.prismPreview().gain;
  w.fail(false,true);eq(q.ascend(),true,'primary commit owns reset when recovery write fails');eq(q.get().prisms,initial.prisms+quoted,'committed primary pays once');eq(q.get().ascendRewardedDepth,280,'committed primary owns new benchmark');w.fail(false,false);
  q.save();const committed=clone(q.get());q.load();eq(q.get(),committed,'recovery repair cannot duplicate committed reward');eq(w.storage.get(P),w.storage.get(R),'retry repairs both committed slots');
- records.push({userRoster:rows.map(row=>({...row,share:row.dps/total})),equalDevelopment:shares});
+ records.push({userRoster:rows.map(row=>({...row,share:row.dps/total})),equalDevelopment:shares,legalPartyShares,newRecruit:{level:recruitWorld.q.get().spirits.titan,share:recruitShare}});
  return {checks,records};
 }
 const mutations=[

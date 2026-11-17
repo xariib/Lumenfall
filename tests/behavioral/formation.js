@@ -42,7 +42,7 @@ window.runP207FormationQa = function(b,ctx,assert,parity){
   s=get();s.achieved.labmaster=false;b.setState(s);before=get();ok(!t.tick(),'no automation before unlock');same(get().spirits,before.spirits,'locked automation zero levels');
   s=ascend(['tide']);s.empowerQueue.ember=false;s.lumen=59;b.setState(s);before=get();ok(!t.tick(),'unaffordable purchase rejected');same(get().spirits,before.spirits,'no unaffordable level');ok(get().lumen===59,'no reservation');fund(60);buy('tide');
   // Repeated Ascension during a partial rebuild retains the original target.
-  s=ascend(['void','tide','stone'],'boss');fund(60);buy('tide');s=get();s.depth=101;s.enemyDepth=101;b.setState(s);b.ascendManual();same(get().formationRebuild.members,['void','tide','stone'],'repeat preserves original intent');same(get().activeParty,['ember'],'repeat resets levels/startup');
+  s=ascend(['void','tide','stone'],'boss');fund(60);buy('tide');s=get();s.depth=101;s.enemyDepth=101;b.setState(s);var denied=copy(get());b.ascendManual();same(get(),denied,'same-record repeat preserves entire partial rebuild');s=get();s.depth=102;s.maxDepthEver=102;s.enemyDepth=102;b.setState(s);b.ascendManual();same(get().formationRebuild.members,['void','tide','stone'],'new-record reset preserves original intent');same(get().activeParty,['ember'],'new-record reset restores startup');
   // Invalid actions retain intent; editing preserves untouched pending members.
   ok(!b.applyFormationPreset('invalid'),'unknown preset rejected');ok(!!get().formationRebuild,'failed apply retains intent');
   t.toggle('unknown');same(get().formationRebuild.members,['void','tide','stone'],'invalid Field retains intent');
@@ -103,21 +103,21 @@ window.runP207ChronologyQa = function(b,ctx,assert,parity,summaryParity){
   b.setState(unchanged.state);var noPurchase=b.simulate(0.5,'live',0.5,clock+1000);
   assert(later.state.enemyHp<noPurchase.state.enemyHp,'rebuilt power applies only to subsequent time');
   ['live','offline'].forEach(function(kind){var r=compare(initial,12,kind,'rebuild '+kind);assert(r.summary.empowers===12,'one purchase per second '+kind);assert(r.state.lumen>=0,'never overspend '+kind);});
-  // Authoritative Auto-Ascend inside an offline window, followed by real rebuilding.
+  // Offline progress resolves first; the player explicitly chooses the reset.
   seed=copy(ctx.fixtures['chronology-auto-ascend-mid-window'].save);
   seed.activeParty=['tide','ember','stone'];seed.spirits.tide=1;seed.spirits.stone=1;seed.maxDepthEver=101;
   seed.activeFormationPreset='boss';seed.formationPresets={push:['ember'],farm:['ember'],boss:seed.activeParty.slice()};
   seed.achieved.labmaster=true;seed.empowerQueue.ember=true;seed.empowerQueue.tide=true;seed.empowerQueue.stone=true;
-  b.setState(seed);seed=b.getState();var auto=b.simulateTimeline(300,'offline',clock);
-  var ascend=auto.timeline.find(function(e){return e.type==='autoAscend';});
-  assert(ascend && ascend.elapsedSec>0 && ascend.elapsedSec<300,'Auto-Ascend happens mid-window');
-  var purchase=auto.timeline.find(function(e){return e.type==='autoEmpower' && e.elapsedSec>ascend.elapsedSec;});
-  assert(purchase,'post-Ascension legitimate intended purchase within window');
-  b.setState(seed);var first=b.simulate(ascend.elapsedSec,'offline',ascend.elapsedSec,clock);
-  assert(first.state.formationRebuild && first.state.formationRebuild.members.join(',')==='tide,ember,stone','authoritative Auto preserves exact original order');
-  var second=b.simulate(300-ascend.elapsedSec,'offline',300-ascend.elapsedSec,clock+ascend.elapsedSec*1000);
-  parity(second.state,auto.state,'split exactly at Auto-Ascend');
-  compare(seed,300,'offline','mid-window Ascension');compare(seed,30,'live','live Auto-Ascend');
+  b.setState(seed);seed=b.getState();var auto=compare(seed,300,'offline','resolved offline before manual reset');
+  assert(auto.summary.ascends===0 && auto.state.ascendCount===seed.ascendCount,'offline never Ascends');
+  assert(b.ascendEligibility().eligible,'resolved progress permits manual record');
+  b.ascendManual();var reset=b.getState();
+  assert(reset.ascendCount===seed.ascendCount+1 && reset.formationRebuild.members.join(',')==='tide,ember,stone','manual reset preserves exact original order');
+  // Fund an exact legitimate recruitment after the reset to exercise rebuilding.
+  reset.lumen=t.cost('tide');reset.empowerQueue.ember=false;b.setState(reset);reset=b.getState();
+  var rebuilt=compare(reset,1,'live','post-manual reconstruction');
+  assert(rebuilt.summary.empowers===1 && rebuilt.state.spirits.tide===1,'manual reset followed by paid intended recruitment');
+  compare(seed,30,'live','live never auto-Ascends');
   // Shared economy ordering remains protected while a missing intended Wisp participates.
   var economy=copy(ctx.fixtures['chronology-simultaneous-order'].save);
   economy.formationRebuild={members:['gale','tide'],preset:''};economy.empowerQueue.tide=true;economy.studyQueue.guardmastery=true;economy.shards=10000;economy.researchQueue.charge=true;
@@ -128,7 +128,7 @@ window.runP207ChronologyQa = function(b,ctx,assert,parity,summaryParity){
   assert(Math.abs(economy.lumen+competition.summary.lumenGained-spent.lumen-competition.state.lumen)<1e-6,'exact shared Lumen ledger: no double spend');
   assert(Math.abs(economy.shards+competition.summary.shardGained-spent.shards-competition.state.shards)<1e-6,'exact shared Shard ledger: no double spend');
   assert(competition.state.lumen>=0 && competition.state.shards>=0,'shared currency cannot go negative');
-  return {cadence:'one purchase per second',ascendSec:ascend.elapsedSec,firstRebuildPurchaseSec:purchase.elapsedSec,autoAscends:auto.summary.ascends,liveReference:true,offlineReference:true,split:true,spenders:competition.summary};
+  return {cadence:'one purchase per second',manualAfterSec:300,firstRebuildPurchaseSec:1,autoAscends:auto.summary.ascends,liveReference:true,offlineReference:true,split:true,spenders:competition.summary};
 };
 window.runP207LayoutQa = async function(b,ctx,assert){
   var p=new URLSearchParams(location.search),q=function(s){return document.querySelector(s);};
@@ -234,7 +234,7 @@ window.runP207FarmReview = function(b,ctx,assert,parity,summaryParity,isolated){
     assert(direct.summary.retries===0 && direct.summary.ascends===0 && direct.state.ascendCount===seed.ascendCount,'isolated Farm no exit or Ascension');
   }else{
     assert(seed.riftMode==='farm','integrated begins in Farm');
-    assert(counts.retries>0 && counts.ascends>0 && counts.rebuildPurchases>0,'integrated exercises eligible retry, Ascension and paid reconstruction');
+    assert(counts.retries>0 && counts.purchases>0 && counts.ascends===0 && direct.state.ascendCount===seed.ascendCount,'integrated exercises eligible retry and paid upgrades without automatic Ascension');
     assert(counts.retries===direct.summary.retries && counts.ascends===direct.summary.ascends && counts.purchases===direct.summary.empowers,'integrated summary accounts for every audited mutation');
   }
   b.setState(seed);var reference=b.simulate(3600,'offline',1,clock);
@@ -252,7 +252,15 @@ window.runP207FarmReview = function(b,ctx,assert,parity,summaryParity,isolated){
   var negatives=[];
   (isolated?['farm-exit']:['premature','duplicate','free']).forEach(function(kind){
     b.setState(seed);var broken=t.audit(assert,kind),message='';
-    try{b.simulateOfflineDirect(kind==='farm-exit'||kind==='premature'?1:3600,clock);}
+    try{
+      b.simulateOfflineDirect(kind==='farm-exit'||kind==='premature'?1:3600,clock);
+      if(kind==='duplicate'){
+        // The duplicate mutation needs an eligible explicit player action.
+        var record=b.getState();record.riftMode='push';record.farmDepth=0;record.farmReturnDepth=0;
+        record.depth=record.enemyDepth=Math.max(16,record.ascendRewardedDepth+2);record.maxDepthEver=Math.max(record.maxDepthEver,record.depth);
+        record.enemyHp=record.enemyMaxHp=b.enemyHpFor(record.depth);b.setState(record);b.ascendManual();
+      }
+    }
     catch(e){message=e.message;}finally{broken.restore();}
     var expected={'farm-exit':'audit unauthorized Farm exit',premature:'audit premature Ascension',duplicate:'audit duplicate Ascension',free:'audit paid exactly once'}[kind];
     assert(message.indexOf(expected)!==-1,'targeted negative '+kind+' must fail its causal assertion: '+message);negatives.push(kind);
@@ -272,7 +280,17 @@ window.runP207TimerReview = function(b,ctx,assert,parity,summaryParity,near){
   b.setState(seed);seed=b.getState();var beforeRate=t.rates().fill;
   seed.enemyHp=t.rates().dps*boundary;
   assert(seed.enemyHp>0 && seed.enemyHp<seed.enemyMaxHp,'boundary fixture passive kill precedes other events');
-  function run(seconds,kind,chunk){b.setState(seed);return b.simulate(seconds,kind,chunk||seconds,clock);}
+  function run(seconds,kind,chunk){
+    b.setState(seed);
+    if(seconds<boundary)return b.simulate(seconds,kind,chunk||seconds,clock);
+    var first=b.simulate(boundary,kind,chunk||boundary,clock);
+    assert(first.summary.ascends===0 && first.state.ascendCount===seed.ascendCount,'kill does not automatically reset');
+    assert(b.ascendEligibility().eligible,'cleared Rift15 permits manual reset');
+    b.ascendManual();var reset=b.getState();
+    assert(reset.ascendCount===seed.ascendCount+1,'exactly one manual reset');
+    var result=seconds===boundary?{state:reset,summary:first.summary}:b.simulate(seconds-boundary,kind,chunk||seconds-boundary,clock+boundary*1000);
+    result.summary.ascends=1;return result;
+  }
   function checkAt(r,label){
     assert(r.summary.ascends===1 && r.state.ascendCount===seed.ascendCount+1,label+' exactly one boundary Ascension');
     Object.keys(r.state.heroResource).forEach(function(id){near(r.state.heroResource[id],0,label+' reset ability '+id);});
@@ -293,8 +311,12 @@ window.runP207TimerReview = function(b,ctx,assert,parity,summaryParity,near){
     [before,at,after].forEach(function(r,i){var sec=[boundary-epsilon,boundary,boundary+epsilon][i];near(r.state.activeStudies[0].remainingSec,10-sec*1.5,'Study continuous across boundary');});
     var reference=run(boundary+epsilon,kind,0.01);parity(after.state,reference.state,'timer strict reference '+kind);summaryParity(after.summary,reference.summary,'timer summary '+kind);
     [boundary-epsilon,boundary,boundary+epsilon/2].forEach(function(split){
-      run(split,kind);var end=b.simulate(boundary+epsilon-split,kind,boundary+epsilon-split,clock+split*1000);
-      parity(end.state,after.state,'timer split '+kind+' '+split);
+      b.setState(seed);
+      if(split<boundary){b.simulate(split,kind,split,clock);b.simulate(boundary-split,kind,boundary-split,clock+split*1000);b.ascendManual();}
+      else {b.simulate(boundary,kind,boundary,clock);b.ascendManual();if(split>boundary)b.simulate(split-boundary,kind,split-boundary,clock+boundary*1000);}
+      var resumedAt=Math.max(boundary,split);
+      var end=b.simulate(boundary+epsilon-resumedAt,kind,boundary+epsilon-resumedAt,clock+resumedAt*1000);
+      parity(end.state,after.state,'manual timer split '+kind+' '+split);
     });
     // Non-Ascension control retains the ordinary elapsed-time accrual.
     var normal=JSON.parse(JSON.stringify(seed));normal.autoAscendEnabled=false;b.setState(normal);
