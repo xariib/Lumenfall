@@ -60,7 +60,10 @@ async function run(){
  assert(cold.primaryKills===cold.kills&&cold.recoveryMatches,'cold canonical primary/recovery');
  assert(cold.heartbeat.frames>5,'animation/event loop progresses during long catch-up');
  assert(cold.errors===0,'cold no runtime errors');
- assert(await evaluate('document.getElementById("welcome-text").textContent.includes('+JSON.stringify(swiftGolden.phases[0].ascends+' times')+')'),'normal return message shown');
+ assert(swiftGolden.phases[0].ascends===0,'current offline oracle has no automatic resets');
+ const returnMessage=await evaluate(`(()=>{const e=document.getElementById('welcome-text');return {away:e.querySelector('.welcome-away')?.textContent,rewards:e.querySelector('.welcome-rewards')?.getAttribute('aria-label'),text:e.textContent};})()`);
+ assert(returnMessage.away==='Away for 8h 0m'&&returnMessage.rewards==='Resources gathered'&&returnMessage.text.includes('Lumen'),'normal eight-hour resource return message shown');
+ assert(!returnMessage.text.includes('Auto Ascend'),'retired automatic reset cannot appear in actual return recap');
  const returnGeometry=await evaluate(`(()=>{const overlay=document.getElementById('welcome-overlay'),button=document.getElementById('welcome-claim'),r=overlay.getBoundingClientRect(),b=button.getBoundingClientRect();return {overlay:{x:r.x,y:r.y,width:r.width,height:r.height},button:{x:b.x,y:b.y,width:b.width,height:b.height},viewport:{width:innerWidth,height:innerHeight},hit:document.elementFromPoint(b.x+b.width/2,b.y+b.height/2)===button};})()`);
  assert(returnGeometry.overlay.x===0 && returnGeometry.overlay.y===0 && returnGeometry.overlay.width===returnGeometry.viewport.width && returnGeometry.overlay.height===returnGeometry.viewport.height,'return overlay covers viewport without CSS inset: '+JSON.stringify(returnGeometry));
  assert(returnGeometry.button.y>=0 && returnGeometry.button.y+returnGeometry.button.height<=returnGeometry.viewport.height && returnGeometry.hit,'return Continue is visible and receives real input: '+JSON.stringify(returnGeometry));
